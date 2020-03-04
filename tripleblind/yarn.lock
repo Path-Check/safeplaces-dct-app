@@ -928,6 +928,13 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
+"@mauron85/react-native-background-geolocation@0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@mauron85/react-native-background-geolocation/-/react-native-background-geolocation-0.6.2.tgz#800ebcc4247068593c5c3f087e6035a4f3fcd77d"
+  integrity sha512-FeqZM3sQxCuu/ftbQRQSt/UlIeK2fPTMlJMdOkVvOIMWUpDp6vnIf5wNPRk6KyPYMUi5oemb7fPRCJYCQYMQ2w==
+  dependencies:
+    plist "^3.0.1"
+
 "@react-native-community/cli-debugger-ui@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-3.0.0.tgz#d01d08d1e5ddc1633d82c7d84d48fff07bd39416"

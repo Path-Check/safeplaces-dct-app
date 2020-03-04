@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@mauron85/react-native-background-geolocation": "0.6.2",
     "react": "16.9.0",
     "react-native": "0.61.5"
   },
