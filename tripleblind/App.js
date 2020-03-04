@@ -11,13 +11,13 @@ import {
   StatusBar
 } from 'react-native';
 
-import LocationTracking from './app/LocationTracking';
+import Entry from './app/views/Entry';
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <LocationTracking />
+      <Entry />
     </>
   );
 };
