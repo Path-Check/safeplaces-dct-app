@@ -11,13 +11,13 @@ import {
   StatusBar
 } from 'react-native';
 
-import Entry from './app/views/Entry';
+import Entry from './app/Entry';
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <Entry />
+      <Entry></Entry>
     </>
   );
 };

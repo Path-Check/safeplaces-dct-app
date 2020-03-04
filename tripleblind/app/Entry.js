@@ -4,9 +4,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import LocationTracking from './views/LocationTracking';
+import Welcome from './views/Welcome';
+
 const Stack = createStackNavigator();
 
-export class Entry extends Component {
+class Entry extends Component {
     constructor(props) {
         super(props);
     }
@@ -29,3 +31,5 @@ export class Entry extends Component {
       )
     }
 }
+
+export default Entry;
