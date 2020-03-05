@@ -18,15 +18,34 @@ This is a React Native app.
 ## Requirements
 
 * Git
-* NodeJS
+* NVM
+* Node (10.1 or newer)
+* Yarn
 * Watchman
-* React Native
-* OpenJDK (for Android)
-* XCode (for iOS)
+* OpenJDK (for Android building and installing)
+* Android Studio (SDK, AVD)
+* CocoaPods (Required for installing iOS dependencies)
+* XCode (for iOS Dev)
+* ios-deploy (installing your app on a physical device with the CLI)
 
+## Running
 
+Install modules:
+```npm install```
+
+To run, do: 
+```
+npx react-native run-android
+```
+or
+```
+npx react-native run-ios
+```
+
+## Deploying
+
+App is deployed to MIT's PlayStore account: https://play.google.com/store/apps/developer?id=MIT 
 
 # References
 
 Website: http://SafePaths.app
-
