@@ -16,7 +16,7 @@ class Entry extends Component {
     render() {
       return (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Welcome">
+          <Stack.Navigator initialRouteName="WelcomeScreen ">
             <Stack.Screen
               name="WelcomeScreen"
               component={Welcome}
@@ -25,6 +25,7 @@ class Entry extends Component {
             <Stack.Screen
               name="LocationTrackingScreen"
               component={LocationTracking}
+              options={{headerShown:false}}
             />
           </Stack.Navigator>
         </NavigationContainer>

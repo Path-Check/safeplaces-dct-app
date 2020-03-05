@@ -5,10 +5,13 @@ import {
   ScrollView,
   View,
   Text,
-  Alert
+  Alert,
+  Button
 } from 'react-native';
 
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
+
+import {GetStoreData, SetStoreData} from '../helpers/General';
 
 class LocationTracking extends Component {
     constructor(props) {
@@ -20,7 +23,7 @@ class LocationTracking extends Component {
         stationaryRadius: 50,
         distanceFilter: 50,
         notificationTitle: 'CrossPath Enabled',
-        notificationText: 'Triple Blind is monitoring your paths with others.',
+        notificationText: 'TripleBlind is checking your path with others.',
         debug: true,
         startOnBoot: false,
         stopOnTerminate: true,
@@ -38,6 +41,19 @@ class LocationTracking extends Component {
 
         BackgroundGeolocation.on('location', (location) => {
             // handle your locations here
+            GetStoreData('LOCATION_DATA')
+            .then(locationArray => {
+              // Adjust this to store an array of user locations information
+              // SetStoreData('LOCATION_DATA', null);
+                // if(locationArray != 'null') {
+                //   var locationData = locationArray;
+                //   locationData.push(location);
+                // } else {
+                //   var locationData = [];
+                // }
+
+                SetStoreData('LOCATION_DATA', location);
+            });
             // to perform long running operation on iOS
             // you need to create background task
             BackgroundGeolocation.startTask(taskKey => {
@@ -118,6 +134,13 @@ class LocationTracking extends Component {
         BackgroundGeolocation.removeAllListeners();
     }
 
+    optOut() {
+      BackgroundGeolocation.removeAllListeners();
+      SetStoreData('PARTICIPATE', 'false').then(() =>
+        this.props.navigation.navigate('WelcomeScreen', {})
+      )
+    }
+
     render() {
         return (
             <>
@@ -125,6 +148,16 @@ class LocationTracking extends Component {
                 <ScrollView
                     contentInsetAdjustmentBehavior="automatic"
                     style={styles.scrollView}>
+                    <View>
+                      <Text style={{fontSize: 25, marginTop: 35, paddingLeft: 35, width: '70%', alignSelf: 'flex-start'}}>Your Exposure Risk:</Text>
+                      <Text style={{width: 50, marginTop: -30, marginRight: 15, padding: 10,textAlign: 'center',alignSelf: 'flex-end', backgroundColor: 'green'}}>Low</Text>
+                    </View>
+                    <View>
+                      <Text style={styles.sectionDescription, {marginLeft: 35}}>News: N/A</Text>
+                    </View>
+                    <View style={{marginTop:25}}>
+                      <Button title={"Opt Out"} onPress={() => this.optOut()} />
+                    </View>
                 </ScrollView>
             </SafeAreaView>
             </>
@@ -134,7 +167,6 @@ class LocationTracking extends Component {
 
 const styles = StyleSheet.create({
     scrollView: {
-      backgroundColor: 'gray',
     },
     engine: {
       position: 'absolute',
