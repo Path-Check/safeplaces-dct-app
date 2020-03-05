@@ -13,7 +13,11 @@ A digital privacy preserving solution to allow an individual to learn their own 
 
 # Development
 
-This is a React Native app. 
+This is a React Native app version 61.5
+
+## TODO
+
+Android is currently being optimized.  iOS will need to be tested, optimized, and prepared for launch.
 
 ## Requirements
 
@@ -31,9 +35,9 @@ This is a React Native app.
 ## Running
 
 Install modules:
-```npm install```
+```npm install``` or ```yarn install```
 
-To run, do: 
+To run, do:
 ```
 npx react-native run-android
 ```
@@ -44,7 +48,7 @@ npx react-native run-ios
 
 ## Deploying
 
-App is deployed to MIT's PlayStore account: https://play.google.com/store/apps/developer?id=MIT 
+App is deployed to MIT's PlayStore account: https://play.google.com/store/apps/developer?id=MIT
 
 # References
 
