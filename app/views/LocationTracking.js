@@ -41,6 +41,20 @@ class LocationTracking extends Component {
 
         BackgroundGeolocation.on('location', (location) => {
             // handle your locations here
+            /* SAMPLE OF LOCATION DATA OBJECT
+            id: 49
+            mockLocationsEnabled: false
+            altitude: 0
+            longitude: -122.15541
+            latitude: 37.415455
+            time: 1583448706000
+            provider: "fused"
+            isFromMockProvider: false
+            speed: 0
+            accuracy: 20
+            locationProvider: 1
+            */
+            console.log(location)
             GetStoreData('LOCATION_DATA')
             .then(locationArray => {
               // Adjust this to store an array of user locations information
