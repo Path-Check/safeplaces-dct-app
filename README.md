@@ -50,6 +50,13 @@ npx react-native run-ios
 
 App is deployed to MIT's PlayStore account: https://play.google.com/store/apps/developer?id=MIT
 
+## Tested On
+
+| Device | Version |
+| ------------- | ------------- |
+| Android Pixel | API 28  |
+| Android Pixel | API 29  |
+
 # References
 
 Website: http://SafePaths.app
