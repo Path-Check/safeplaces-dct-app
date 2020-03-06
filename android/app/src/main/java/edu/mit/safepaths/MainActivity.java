@@ -1,4 +1,4 @@
-package com.tripleblind;
+package edu.mit.safepaths;
 
 import com.facebook.react.ReactActivity;
 

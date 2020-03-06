@@ -1,4 +1,4 @@
-package com.tripleblind;
+package edu.mit.safepaths;
 
 import android.app.Application;
 import android.content.Context;
