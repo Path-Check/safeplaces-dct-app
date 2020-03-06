@@ -149,6 +149,15 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (project.hasProperty('SAFEPATHS_RELEASE_STORE_FILE')) {
+                storeFile file(SAFEPATHS_RELEASE_STORE_FILE)
+                storePassword SAFEPATHS_RELEASE_STORE_PASSWORD
+                keyAlias SAFEPATHS_RELEASE_KEY_ALIAS
+                keyPassword SAFEPATHS_RELEASE_KEY_PASSWORD
+            }
+        }
+        
     }
     buildTypes {
         debug {
