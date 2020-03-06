@@ -42,14 +42,14 @@ class Welcome extends Component {
                     contentInsetAdjustmentBehavior="automatic"
                     style={styles.scrollView}>
                         <View>
-                            <Text style={styles.sectionContainer, { textAlign: 'center', paddingTop: 15 }}>Safe Passage</Text>
+                            <Text style={styles.sectionContainer, { textAlign: 'center', fontWeight: "bold", fontSize: 24, paddingTop: 15 }}>Safe Paths</Text>
                             <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>This application will automatically remember your path.  Periodically it will encrpyt and upload your path information.  Then, compare it to the paths of known infections.  If your path crosses with anyone who reports sick, you will be promptly notified.</Text>
                             <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>Using it is easy, just click the "I Want to Participate" button below.  That's all you need to do, we do the hard work in the background.</Text>
-                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15, paddingBottom: 15}}>Please, share this application with friends and family.  Working together we can keep everyone safe.</Text>
+                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15, paddingBottom: 75}}>Please, share this application with friends and family.  Working together we can keep everyone safe.</Text>
                             <Button
                                 title="I Want to Participate!"
                                 onPress={() => this.willParticipate()} />
-                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>Brought to you by TripleBlind and the Massachusetts Institute of Technology - MIT</Text>
+                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>Brought to you by the Massachusetts Institute of Technology and TripleBlind</Text>
                         </View>
                 </ScrollView>
             </SafeAreaView>

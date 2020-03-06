@@ -179,6 +179,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation project(':@mauron85_react-native-background-geolocation')
