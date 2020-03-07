@@ -55,19 +55,18 @@ class LocationTracking extends Component {
             accuracy: 20
             locationProvider: 1
             */
-            console.log(location)
+            console.log(location, false)
             GetStoreData('LOCATION_DATA')
             .then(locationArray => {
-              // Adjust this to store an array of user locations information
-              // SetStoreData('LOCATION_DATA', null);
-                // if(locationArray != 'null') {
-                //   var locationData = locationArray;
-                //   locationData.push(location);
-                // } else {
-                //   var locationData = [];
-                // }
+                console.log(locationArray);
+                if(locationArray !== null) {
+                  var locationData = locationArray;
+                  locationData.push(location);
+                } else {
+                  var locationData = [];
+                }
 
-                SetStoreData('LOCATION_DATA', location);
+                SetStoreData('LOCATION_DATA', locationData);
             });
             // to perform long running operation on iOS
             // you need to create background task
@@ -81,7 +80,8 @@ class LocationTracking extends Component {
 
         BackgroundGeolocation.on('stationary', (stationaryLocation) => {
             // handle stationary locations here
-            Actions.sendLocation(stationaryLocation);
+            // Actions.sendLocation(stationaryLocation);
+            console.log('[INFO] stationaryLocation:', stationaryLocation);
         });
 
         BackgroundGeolocation.on('error', (error) => {
