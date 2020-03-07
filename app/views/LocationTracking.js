@@ -25,7 +25,7 @@ class LocationTracking extends Component {
         distanceFilter: 50,
         notificationTitle: 'CrossPath Enabled',
         notificationText: 'SafePaths is checking your path with others.',
-        debug: true,
+        debug: false,
         startOnBoot: false,
         stopOnTerminate: true,
         locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
