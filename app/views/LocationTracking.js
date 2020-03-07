@@ -24,7 +24,7 @@ class LocationTracking extends Component {
         stationaryRadius: 50,
         distanceFilter: 50,
         notificationTitle: 'CrossPath Enabled',
-        notificationText: 'TripleBlind is checking your path with others.',
+        notificationText: 'SafePaths is checking your path with others.',
         debug: true,
         startOnBoot: false,
         stopOnTerminate: true,
