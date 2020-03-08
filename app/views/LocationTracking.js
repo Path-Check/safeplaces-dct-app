@@ -13,6 +13,9 @@ import { WebView } from 'react-native-webview';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 import {GetStoreData, SetStoreData} from '../helpers/General';
+import Database from '../models/Database';
+
+const db = new Database();
 
 class LocationTracking extends Component {
     constructor(props) {
@@ -56,8 +59,21 @@ class LocationTracking extends Component {
             locationProvider: 1
             */
             console.log(location)
-            GetStoreData('LOCATION_DATA')
-            .then(locationArray => {
+
+            let data = {
+              time: location.time,
+              latitude: location.latitude,
+              longitude: location.longitude
+            }
+
+            db.addLocation(data).then((result) => {
+              console.log(result);
+            }).catch((err) => {
+              console.log(err);
+            })
+
+            //GetStoreData('LOCATION_DATA')
+            //.then(locationArray => {
               // Adjust this to store an array of user locations information
               // SetStoreData('LOCATION_DATA', null);
                 // if(locationArray != 'null') {
@@ -66,9 +82,10 @@ class LocationTracking extends Component {
                 // } else {
                 //   var locationData = [];
                 // }
+                //SetStoreData('LOCATION_DATA', location);
+            //});
 
-                SetStoreData('LOCATION_DATA', location);
-            });
+
             // to perform long running operation on iOS
             // you need to create background task
             BackgroundGeolocation.startTask(taskKey => {
