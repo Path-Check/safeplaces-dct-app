@@ -23,6 +23,17 @@ buildscript {
 
 allprojects {
     repositories {
+        configurations.all {
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                def requested = details.requested
+                if (requested.group == 'com.google.android.gms') {
+                    details.useVersion '17.0.0'
+                }
+                if (requested.group == 'com.google.firebase') {
+                    details.useVersion '17.0.0'
+                }
+            }
+        }
         mavenLocal()
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
