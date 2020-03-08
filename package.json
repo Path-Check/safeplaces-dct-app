@@ -11,15 +11,16 @@
   },
   "dependencies": {
     "@mauron85/react-native-background-geolocation": "0.6.2",
-    "react": "16.9.0",
-    "react-native": "0.61.5",
+    "@react-native-community/masked-view": "0.1.5",
+    "@react-native-firebase/app": "^6.3.4",
     "@react-navigation/native": "5.0.9",
     "@react-navigation/stack": "5.1.1",
-    "@react-native-community/masked-view": "0.1.5",
-    "react-native-safe-area-context": "0.6.0",
+    "lodash": "4.17.15",
+    "react": "16.9.0",
+    "react-native": "0.61.5",
     "react-native-gesture-handler": "~1.5.0",
-    "react-native-screens": "2.0.0-alpha.12",
-    "lodash": "4.17.15"
+    "react-native-safe-area-context": "0.6.0",
+    "react-native-screens": "2.0.0-alpha.12"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
