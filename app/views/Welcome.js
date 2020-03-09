@@ -43,13 +43,12 @@ class Welcome extends Component {
                     style={styles.scrollView}>
                         <View>
                             <Text style={styles.sectionContainer, { textAlign: 'center', fontWeight: "bold", fontSize: 24, paddingTop: 15 }}>Safe Paths</Text>
-                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>This application will automatically remember your path.  Periodically it will encrpyt and upload your path information.  Then, compare it to the paths of known infections.  If your path crosses with anyone who reports sick, you will be promptly notified.</Text>
-                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>Using it is easy, just click the "I Want to Participate" button below.  That's all you need to do, we do the hard work in the background.</Text>
-                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15, paddingBottom: 75}}>Please, share this application with friends and family.  Working together we can keep everyone safe.</Text>
+                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 , paddingBottom: 15 }}>This app will store your location roughly every five minutes on your phone and no location data is uploaded or shared with anyone.</Text>
                             <Button
-                                title="I Want to Participate!"
+                                title="Authorize Location Permission (Even while not using the app/all the time)"
                                 onPress={() => this.willParticipate()} />
-                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>Brought to you by the Massachusetts Institute of Technology and TripleBlind</Text>
+                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>Please follow the MIT page below for details</Text>
+                            <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center', paddingTop: 15 }} onPress={() => Linking.openURL('safepaths.mit.edu')}>safepaths.mit.edu</Text>
                         </View>
                 </ScrollView>
             </SafeAreaView>
