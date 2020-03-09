@@ -168,16 +168,19 @@ class LocationTracking extends Component {
                       <Text style={{width: 50, marginTop: -30, marginRight: 15, padding: 10,textAlign: 'center',alignSelf: 'flex-end', backgroundColor: 'green'}}>Low</Text>
                     </View>
                     <View>
+                      <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 10}}>This app is storing your location roughly every five minutes on your phone and no location data has been uploaded or shared with anyone.</Text>
                       <Text style={styles.sectionDescription, {fontSize: 18, marginLeft: 5, marginTop: 10}}>Latest News:</Text>
                     </View>
                     <WebView
                         source={{ uri: 'https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public' }}
                         style={{ margin
-                            : 10, height: 450 }}
+                            : 10, height: 380 }}
                     />
                     <View style={{marginTop:25}}>
                       <Button title={"Opt Out"} onPress={() => this.optOut()} />
                     </View>
+                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>Please follow the MIT page below for details</Text>
+                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center', paddingTop: 5 }} onPress={() => Linking.openURL('safepaths.mit.edu')}>safepaths.mit.edu</Text>
                 </ScrollView>
             </SafeAreaView>
             </>
