@@ -24,14 +24,14 @@ class LocationTracking extends Component {
         desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
         stationaryRadius: 50,
         distanceFilter: 50,
-        notificationTitle: 'CrossPath Enabled',
-        notificationText: 'TripleBlind is checking your path with others.',
+        notificationTitle: 'SafePaths Enabled',
+        notificationText: 'SafePaths is recording path information on this device.',
         debug: false,
         startOnBoot: false,
         stopOnTerminate: true,
         locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
         interval: 20000,
-        fastestInterval: 10000,
+        fastestInterval: 60000,         // Time (in milliseconds) between location information polls.  E.g. 60000 = 1 minute
         activitiesInterval: 20000,
         stopOnStillActivity: false,
         postTemplate: {
@@ -44,32 +44,27 @@ class LocationTracking extends Component {
         BackgroundGeolocation.on('location', (location) => {
             // handle your locations here
             /* SAMPLE OF LOCATION DATA OBJECT
-            id: 49
-            mockLocationsEnabled: false
-            altitude: 0
-            longitude: -122.15541
-            latitude: 37.415455
-            time: 1583448706000
-            provider: "fused"
-            isFromMockProvider: false
-            speed: 0
-            accuracy: 20
-            locationProvider: 1
+                {
+                  "accuracy": 20, "altitude": 5, "id": 114, "isFromMockProvider": false,
+                  "latitude": 37.4219983, "locationProvider": 1, "longitude": -122.084,
+                  "mockLocationsEnabled": false, "provider": "fused", "speed": 0,
+                  "time": 1583696413000
+                }
             */
-            console.log(location)
+
             GetStoreData('LOCATION_DATA')
             .then(locationArray => {
-              // Adjust this to store an array of user locations information
-              // SetStoreData('LOCATION_DATA', null);
-                // if(locationArray != 'null') {
-                //   var locationData = locationArray;
-                //   locationData.push(location);
-                // } else {
-                //   var locationData = [];
-                // }
+                var locationData;
+                if (locationArray !== null) {
+                  locationData = JSON.parse(locationArray);
+                } else {
+                  locationData = [];
+                }
 
-                SetStoreData('LOCATION_DATA', location);
+                locationData.push(location);
+                SetStoreData('LOCATION_DATA', locationData);
             });
+
             // to perform long running operation on iOS
             // you need to create background task
             BackgroundGeolocation.startTask(taskKey => {
@@ -82,7 +77,8 @@ class LocationTracking extends Component {
 
         BackgroundGeolocation.on('stationary', (stationaryLocation) => {
             // handle stationary locations here
-            Actions.sendLocation(stationaryLocation);
+            // Actions.sendLocation(stationaryLocation);
+            console.log('[INFO] stationaryLocation:', stationaryLocation);
         });
 
         BackgroundGeolocation.on('error', (error) => {
@@ -161,6 +157,7 @@ class LocationTracking extends Component {
         return (
             <SafeAreaView style={styles.container} >
                     <View>
+                      <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 10}}>This app is storing your location roughly every five minutes on your phone and no location data has been uploaded or shared with anyone.</Text>
                       <Text style={styles.sectionDescription, {fontSize: 18, marginLeft: 5, marginTop: 10}}>Latest News:</Text>
                     </View>
                     <View style={styles.containerWebview } >
