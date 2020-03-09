@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
+  Linking,
   View,
   Text,
   Alert,
@@ -25,7 +26,7 @@ class LocationTracking extends Component {
         distanceFilter: 50,
         notificationTitle: 'CrossPath Enabled',
         notificationText: 'TripleBlind is checking your path with others.',
-        debug: true,
+        debug: false,
         startOnBoot: false,
         stopOnTerminate: true,
         locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
@@ -158,45 +159,52 @@ class LocationTracking extends Component {
 
     render() {
         return (
-            <>
-            <SafeAreaView>
-                <ScrollView
-                    contentInsetAdjustmentBehavior="automatic"
-                    style={styles.scrollView}>
+            <SafeAreaView style={styles.container} >
                     <View>
-                      <Text style={{fontSize: 25, marginTop: 35, paddingLeft: 35, width: '70%', alignSelf: 'flex-start'}}>Your Exposure Risk:</Text>
-                      <Text style={{width: 50, marginTop: -30, marginRight: 15, padding: 10,textAlign: 'center',alignSelf: 'flex-end', backgroundColor: 'green'}}>Low</Text>
-                    </View>
-                    <View>
-                      <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 10}}>This app is storing your location roughly every five minutes on your phone and no location data has been uploaded or shared with anyone.</Text>
                       <Text style={styles.sectionDescription, {fontSize: 18, marginLeft: 5, marginTop: 10}}>Latest News:</Text>
                     </View>
-                    <WebView
-                        source={{ uri: 'https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public' }}
-                        style={{ margin
-                            : 10, height: 380 }}
-                    />
-                    <View style={{marginTop:25}}>
-                      <Button title={"Opt Out"} onPress={() => this.optOut()} />
+                    <View style={styles.containerWebview } >
+                        <WebView
+                            source={{ uri: 'https://safepaths.mit.edu' }}
+                            style={{ margin : 10 }}
+                        />
                     </View>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>Please follow the MIT page below for details</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center', paddingTop: 5 }} onPress={() => Linking.openURL('safepaths.mit.edu')}>safepaths.mit.edu</Text>
-                </ScrollView>
+                    <View style={{padding: 10}}>
+                        <Text style={styles.sectionDescription, { textAlign: 'center', paddingBottom: 10}}>SafePaths is recording your location once a minute.</Text>
+                        <View>
+                          <Button title={"Stop Recording Location"} onPress={() => this.optOut()} />
+                        </View>
+                        <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the SafePaths hompage:</Text>
+                        <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center', paddingTop: 5 }} onPress={() => Linking.openURL('https://safepaths.mit.edu')}>safepaths.mit.edu</Text>
+                    </View>
             </SafeAreaView>
-            </>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        backgroundColor: '#FFF8ED',
+    },
+    containerWebview: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        backgroundColor: '#FFF8ED',
+    },
     scrollView: {
+        padding: 10,
+        height: '100%',
+        flex: 1,
     },
     engine: {
       position: 'absolute',
       right: 0,
-    },
-    body: {
-      backgroundColor: 'white',
     },
     sectionContainer: {
       marginTop: 32,
