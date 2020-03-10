@@ -9,6 +9,7 @@ import {
   Alert
 } from 'react-native';
 
+import colors from "../constants/colors";
 import { WebView } from 'react-native-webview';
 import Button from "../components/Button";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
@@ -156,24 +157,35 @@ class LocationTracking extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container} >
+                <View style={styles.header}>
+                    <Text style={styles.headerTitle}>Safe Paths</Text>
+                </View>
+
+                <View style={styles.main}>
+                
                     <View>
-                      <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 10}}>This app is storing your location roughly every five minutes on your phone and no location data has been uploaded or shared with anyone.</Text>
                       <Text style={styles.sectionDescription, {fontSize: 18, marginLeft: 5, marginTop: 10}}>Latest News:</Text>
                     </View>
+
                     <View style={styles.containerWebview } >
                         <WebView
                             source={{ uri: 'https://safepaths.mit.edu' }}
-                            style={{ margin : 10 }}
+                            style={{  }}
                         />
                     </View>
-                    <View style={{padding: 10}}>
-                        <Text style={styles.sectionDescription, { textAlign: 'center', paddingBottom: 10}}>SafePaths is recording your location once a minute.</Text>
+
+                    <View style={styles.block}>
                         <View>
                           <Button title={"Stop Recording Location"} onPress={() => this.optOut()} />
                         </View>
-                        <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the SafePaths hompage:</Text>
-                        <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center', paddingTop: 5 }} onPress={() => Linking.openURL('https://safepaths.mit.edu')}>safepaths.mit.edu</Text>
                     </View>
+                
+                </View>
+
+                <View style={styles.footer}>
+                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the SafePaths homepage:</Text>
+                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://safepaths.mit.edu')}>safepaths.mit.edu</Text>
+                </View>
             </SafeAreaView>
         )
     }
@@ -184,15 +196,34 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'stretch',
-        backgroundColor: '#FFF8ED',
+        alignItems: 'center',
+        color: colors.PRIMARY_TEXT,
+        backgroundColor: colors.APP_BACKGROUND,
     },
-    containerWebview: {
+    headerTitle: {
+        textAlign: 'center', 
+        fontWeight: "bold", 
+        fontSize: 24, 
+        padding: 15
+    },
+    main: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
+        alignItems: 'center',
+        width: "80%"
+    },
+    block: {
+      margin: 20,
+      width: "100%"
+    },
+    containerWebview: {
+        flex: 1,
+        width: "100%",
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'stretch',
-        backgroundColor: '#FFF8ED',
+        margin : 10
     },
     scrollView: {
         padding: 10,
@@ -209,25 +240,22 @@ const styles = StyleSheet.create({
     },
     sectionTitle: {
       fontSize: 24,
-      fontWeight: '600',
-      color: 'black',
+      fontWeight: '600'
     },
     sectionDescription: {
       marginTop: 8,
       fontSize: 18,
-      fontWeight: '400',
-      color: 'black',
+      fontWeight: '400'
     },
     highlight: {
       fontWeight: '700',
     },
     footer: {
-      color: 'black',
-      fontSize: 12,
-      fontWeight: '600',
-      padding: 4,
-      paddingRight: 12,
-      textAlign: 'right',
+        textAlign: 'center',
+        fontSize: 12,
+        fontWeight: '600',
+        padding: 4, 
+        paddingBottom: 10
     },
   });
 

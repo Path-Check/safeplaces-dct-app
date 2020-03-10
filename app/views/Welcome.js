@@ -8,6 +8,7 @@ import {
   Text
 } from 'react-native';
 
+import colors from "../constants/colors";
 import Button from "../components/Button";
 
 import {GetStoreData, SetStoreData} from '../helpers/General';
@@ -40,28 +41,28 @@ class Welcome extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.headerTitle}>Safe Paths</Text>
+                    
                 </View>
 
-                <View style={styles.topView}>
-                    <View style={styles.intro} >
-                        <View style={ {flex: 1}}>
+                <View style={styles.main}>
 
-                            <Text style={styles.sectionDescription, { textAlign: 'justify', paddingTop: 15 , fontSize: 16, paddingBottom: 15 }}>
-                                    SafePaths can run in the background to record your location once a minute.  
-                                    This location data kept on your phone, no location information is uploaded
-                                    or shared with anyone.</Text>
-                        </View>
+                    <View style={styles.topView}>
+                        <View style={styles.intro} >
+                            
+                            <Text style={styles.headerTitle}>Safe Paths</Text>
 
-                        <View style={styles.sectionContainer, {flex: 1, padding: 10, }}>
-                            <Button
-                                title="Start Recording Location"
-                                onPress={() => this.willParticipate()} />
-                            <Text style={styles.sectionNote, { textAlign: 'center', paddingTop: 15 , paddingBottom: 15 }}>
-                                NOTE: After clicking this button you may also be prompted to grant this application access.</Text>
-
+                            <Text style={styles.sectionDescription}> {'\u2022'} SafePaths records your location every 5 minutes.  </Text>
+                            <Text style={styles.sectionDescription}> {'\u2022'} Location data is kept on your phone. </Text>
+                            <Text style={styles.sectionDescription}> {'\u2022'} No location information is uploaded  or shared with anyone.  </Text>
+                                        
                         </View>
                     </View>
+
+                    <View style={styles.block}>
+                        <Button title="Accept"
+                                onPress={() => this.willParticipate()} />
+                    </View>
+
                 </View>
 
                 <View style={styles.footer}>
@@ -79,54 +80,51 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'stretch',
-        backgroundColor: '#FFF8ED',
+        alignItems: 'center',
+        color: colors.PRIMARY_TEXT,
+        backgroundColor: colors.APP_BACKGROUND,
     },
     headerTitle: {
         textAlign: 'center', 
         fontWeight: "bold", 
-        fontSize: 24, 
+        fontSize: 38, 
         padding: 15
     },
+    main: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: "80%"
+    },
+    block: {
+      margin: 20,
+      width: "100%"
+    },
     topView: {
-        flex: 3,
-        padding: 10,
+        flex: 1,
     },
     footer: {
         textAlign: 'center',
-        color: 'black',
         fontSize: 12,
         fontWeight: '600',
         padding: 4, 
         paddingBottom: 10
     },
     intro: {
-        flex: 2,
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'stretch',
     },
-    sectionContainer: {
-      margin: 32,
-      paddingHorizontal: 24,
-    },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-      color: 'black',
-    },
     sectionDescription: {
-      marginTop: 8,
       fontSize: 18,
+      lineHeight: 24,
       fontWeight: '400',
-      color: 'black',
-    },
-    sectionNote: {
-      fontSize: 12,
-    },
-    highlight: {
-      fontWeight: '700',
-    },
+      marginTop: 20,
+      marginLeft: 10,
+      marginRight: 10
+    }
   });
 
 export default Welcome;
