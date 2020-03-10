@@ -32,7 +32,7 @@ class LocationTracking extends Component {
         stopOnTerminate: true,
         locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
         interval: 20000,
-        fastestInterval: 60000,         // Time (in milliseconds) between location information polls.  E.g. 60000 = 1 minute
+        fastestInterval: 60000*5,         // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
         activitiesInterval: 20000,
         stopOnStillActivity: false,
         postTemplate: {
@@ -56,6 +56,7 @@ class LocationTracking extends Component {
             GetStoreData('LOCATION_DATA')
             .then(locationArray => {
                 var locationData;
+
                 if (locationArray !== null) {
                   locationData = JSON.parse(locationArray);
                 } else {
@@ -154,16 +155,8 @@ class LocationTracking extends Component {
       )
     }
 
-    render() {
-        return (
-            <SafeAreaView style={styles.container} >
-                <View style={styles.header}>
-                    <Text style={styles.headerTitle}>Safe Paths</Text>
-                </View>
-
-                <View style={styles.main}>
-                
-                    <View>
+/*
+                        <View>
                       <Text style={styles.sectionDescription, {fontSize: 18, marginLeft: 5, marginTop: 10}}>Latest News:</Text>
                     </View>
 
@@ -173,18 +166,34 @@ class LocationTracking extends Component {
                             style={{  }}
                         />
                     </View>
+*/
 
-                    <View style={styles.block}>
-                        <View>
-                          <Button title={"Stop Recording Location"} onPress={() => this.optOut()} />
+    render() {
+        return (
+            <SafeAreaView style={styles.container} >
+
+                <View style={styles.main}>
+                    <View style={styles.topView}>
+                        <View style={styles.intro} >
+
+                            <Text style={styles.headerTitle}>Private Kit</Text>
+
+                            <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text>
+                            <Text style={styles.sectionDescription}>It will allow you to log your location privately every five minutes. Your location information will NOT leave your phone.</Text>
+
                         </View>
                     </View>
-                
+
+                    <View style={styles.block}>
+                        <Button title={"Stop Recording Location"} onPress={() => this.optOut()} />
+                        <Text style={{ padding: 20, justifyContent: 'center', }} >Private Kit is logging location once every 5 minutes.</Text>
+                    </View>
+
                 </View>
 
                 <View style={styles.footer}>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the SafePaths homepage:</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://safepaths.mit.edu')}>safepaths.mit.edu</Text>
+                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
+                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
                 </View>
             </SafeAreaView>
         )
@@ -192,6 +201,7 @@ class LocationTracking extends Component {
 }
 
 const styles = StyleSheet.create({
+    // Container covers the entire screen
     container: {
         flex: 1,
         flexDirection: 'column',
@@ -201,9 +211,9 @@ const styles = StyleSheet.create({
         backgroundColor: colors.APP_BACKGROUND,
     },
     headerTitle: {
-        textAlign: 'center', 
-        fontWeight: "bold", 
-        fontSize: 24, 
+        textAlign: 'center',
+        fontWeight: "bold",
+        fontSize: 38,
         padding: 15
     },
     main: {
@@ -217,46 +227,30 @@ const styles = StyleSheet.create({
       margin: 20,
       width: "100%"
     },
-    containerWebview: {
+    topView: {
         flex: 1,
-        width: "100%",
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        margin : 10
-    },
-    scrollView: {
-        padding: 10,
-        height: '100%',
-        flex: 1,
-    },
-    engine: {
-      position: 'absolute',
-      right: 0,
-    },
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
-    },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600'
-    },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400'
-    },
-    highlight: {
-      fontWeight: '700',
     },
     footer: {
         textAlign: 'center',
         fontSize: 12,
         fontWeight: '600',
-        padding: 4, 
+        padding: 4,
         paddingBottom: 10
     },
+    intro: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+    },
+    sectionDescription: {
+      fontSize: 18,
+      lineHeight: 24,
+      fontWeight: '400',
+      marginTop: 20,
+      marginLeft: 10,
+      marginRight: 10
+    }
   });
 
 export default LocationTracking;

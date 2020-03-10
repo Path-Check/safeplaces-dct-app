@@ -40,34 +40,29 @@ class Welcome extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <View style={styles.header}>
-                    
-                </View>
 
                 <View style={styles.main}>
-
                     <View style={styles.topView}>
                         <View style={styles.intro} >
-                            
-                            <Text style={styles.headerTitle}>Safe Paths</Text>
 
-                            <Text style={styles.sectionDescription}> {'\u2022'} SafePaths records your location every 5 minutes.  </Text>
-                            <Text style={styles.sectionDescription}> {'\u2022'} Location data is kept on your phone. </Text>
-                            <Text style={styles.sectionDescription}> {'\u2022'} No location information is uploaded  or shared with anyone.  </Text>
-                                        
+                            <Text style={styles.headerTitle}>Private Kit</Text>
+
+                            <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text>
+                            <Text style={styles.sectionDescription}>It will allow you to log your location privately every five minutes. Your location information will NOT leave your phone.</Text>
+
                         </View>
                     </View>
 
                     <View style={styles.block}>
-                        <Button title="Accept"
-                                onPress={() => this.willParticipate()} />
+                        <Button title="Start Logging Location" onPress={() => this.willParticipate()} />
+                        <Text style={{ padding: 25, justifyContent: 'center', }} >NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.</Text>
                     </View>
 
                 </View>
 
                 <View style={styles.footer}>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the SafePaths homepage:</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://safepaths.mit.edu')}>safepaths.mit.edu</Text>
+                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
+                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
                 </View>
             </SafeAreaView>
         )
@@ -85,9 +80,9 @@ const styles = StyleSheet.create({
         backgroundColor: colors.APP_BACKGROUND,
     },
     headerTitle: {
-        textAlign: 'center', 
-        fontWeight: "bold", 
-        fontSize: 38, 
+        textAlign: 'center',
+        fontWeight: "bold",
+        fontSize: 38,
         padding: 15
     },
     main: {
@@ -108,7 +103,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 12,
         fontWeight: '600',
-        padding: 4, 
+        padding: 4,
         paddingBottom: 10
     },
     intro: {
