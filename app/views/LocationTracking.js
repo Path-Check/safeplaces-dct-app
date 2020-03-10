@@ -6,11 +6,11 @@ import {
   Linking,
   View,
   Text,
-  Alert,
-  Button
+  Alert
 } from 'react-native';
-import { WebView } from 'react-native-webview';
 
+import { WebView } from 'react-native-webview';
+import Button from "../components/Button";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 import {GetStoreData, SetStoreData} from '../helpers/General';

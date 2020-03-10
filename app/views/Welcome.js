@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {
   SafeAreaView,
-  Button,
   StyleSheet,
   ScrollView,
   Linking,
   View,
   Text
 } from 'react-native';
+
+import Button from "../components/Button";
 
 import {GetStoreData, SetStoreData} from '../helpers/General';
 
@@ -37,15 +38,18 @@ class Welcome extends Component {
 
     render() {
         return (
-            <SafeAreaView  style={styles.container}>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.header}>
+                    <Text style={styles.headerTitle}>Safe Paths</Text>
+                </View>
 
                 <View style={styles.topView}>
                     <View style={styles.intro} >
                         <View style={ {flex: 1}}>
-                            <Text style={styles.sectionContainer, { textAlign: 'center', fontWeight: "bold", fontSize: 24, paddingTop: 15 }}>
-                                    Safe Paths</Text>
+
                             <Text style={styles.sectionDescription, { textAlign: 'justify', paddingTop: 15 , fontSize: 16, paddingBottom: 15 }}>
-                                    SafePaths can run in the background to record your location once a minute.  This location data kept on your phone, no location information is uploaded
+                                    SafePaths can run in the background to record your location once a minute.  
+                                    This location data kept on your phone, no location information is uploaded
                                     or shared with anyone.</Text>
                         </View>
 
@@ -60,9 +64,9 @@ class Welcome extends Component {
                     </View>
                 </View>
 
-                <View style={styles.footer }>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the SafePaths hompage:</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center', padding: 5, paddingBottom: 10 }} onPress={() => Linking.openURL('https://safepaths.mit.edu')}>safepaths.mit.edu</Text>
+                <View style={styles.footer}>
+                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the SafePaths homepage:</Text>
+                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://safepaths.mit.edu')}>safepaths.mit.edu</Text>
                 </View>
             </SafeAreaView>
         )
@@ -78,22 +82,24 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         backgroundColor: '#FFF8ED',
     },
-
+    headerTitle: {
+        textAlign: 'center', 
+        fontWeight: "bold", 
+        fontSize: 24, 
+        padding: 15
+    },
     topView: {
         flex: 3,
         padding: 10,
     },
-    footerView: {
-        flex: 1,
+    footer: {
         textAlign: 'center',
         color: 'black',
         fontSize: 12,
         fontWeight: '600',
-        padding: 4,
-        paddingRight: 12,
+        padding: 4, 
+        paddingBottom: 10
     },
-
-
     intro: {
         flex: 2,
         flexDirection: 'column',
@@ -104,8 +110,6 @@ const styles = StyleSheet.create({
       margin: 32,
       paddingHorizontal: 24,
     },
-
-
     sectionTitle: {
       fontSize: 24,
       fontWeight: '600',
