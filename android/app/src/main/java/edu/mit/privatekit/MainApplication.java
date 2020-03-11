@@ -1,4 +1,4 @@
-package edu.mit.safepaths;
+package edu.mit.privatekit;
 
 import android.app.Application;
 import android.content.Context;

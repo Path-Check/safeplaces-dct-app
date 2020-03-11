@@ -25,8 +25,8 @@ class LocationTracking extends Component {
         desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
         stationaryRadius: 50,
         distanceFilter: 50,
-        notificationTitle: 'SafePaths Enabled',
-        notificationText: 'SafePaths is recording path information on this device.',
+        notificationTitle: 'PrivateKit Enabled',
+        notificationText: 'PrivateKit is recording path information on this device.',
         debug: false,
         startOnBoot: false,
         stopOnTerminate: true,
@@ -162,7 +162,7 @@ class LocationTracking extends Component {
 
                     <View style={styles.containerWebview } >
                         <WebView
-                            source={{ uri: 'https://safepaths.mit.edu' }}
+                            source={{ uri: 'https://privatekit.mit.edu' }}
                             style={{  }}
                         />
                     </View>

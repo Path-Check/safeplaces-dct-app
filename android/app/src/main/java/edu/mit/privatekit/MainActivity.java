@@ -1,4 +1,4 @@
-package edu.mit.safepaths;
+package edu.mit.privatekit;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "safepaths";
+    return "privatekit";
   }
 }

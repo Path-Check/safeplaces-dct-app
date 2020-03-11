@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "edu.mit.safepaths"
+        applicationId "edu.mit.privatekit"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2
@@ -150,12 +150,12 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('SAFEPATHS_RELEASE_STORE_FILE')) {
-                project.logger.lifecycle('Signing app with ' + SAFEPATHS_RELEASE_STORE_FILE)
-                storeFile file(SAFEPATHS_RELEASE_STORE_FILE)
-                storePassword SAFEPATHS_RELEASE_STORE_PASSWORD
-                keyAlias SAFEPATHS_RELEASE_KEY_ALIAS
-                keyPassword SAFEPATHS_RELEASE_KEY_PASSWORD
+            if (project.hasProperty('PRIVATEKIT_RELEASE_STORE_FILE')) {
+                project.logger.lifecycle('Signing app with ' + PRIVATEKIT_RELEASE_STORE_FILE)
+                storeFile file(PRIVATEKIT_RELEASE_STORE_FILE)
+                storePassword PRIVATEKIT_RELEASE_STORE_PASSWORD
+                keyAlias PRIVATEKIT_RELEASE_KEY_ALIAS
+                keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
             } else {
                 project.logger.lifecycle('Could not find release key')
             }
