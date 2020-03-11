@@ -12,6 +12,7 @@ import {
 import colors from "../constants/colors";
 import { WebView } from 'react-native-webview';
 import Button from "../components/Button";
+import NegButton from "../components/NegButton";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 import {GetStoreData, SetStoreData} from '../helpers/General';
@@ -185,8 +186,7 @@ class LocationTracking extends Component {
                     </View>
 
                     <View style={styles.block}>
-                        <Button title={"Stop Recording Location"} onPress={() => this.optOut()} />
-                        <Text style={{ padding: 20, justifyContent: 'center', }} >Private Kit is logging location once every 5 minutes.</Text>
+                        <NegButton title={"Stop Recording Location"} onPress={() => this.optOut()} />
                     </View>
 
                 </View>
