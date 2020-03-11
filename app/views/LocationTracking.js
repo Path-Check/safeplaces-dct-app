@@ -178,9 +178,10 @@ class LocationTracking extends Component {
                         <View style={styles.intro} >
 
                             <Text style={styles.headerTitle}>Private Kit</Text>
+                            <Text style={styles.subHeaderTitle}>(Active)</Text>
 
                             <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text>
-                            <Text style={styles.sectionDescription}>It will allow you to log your location privately every five minutes. Your location information will NOT leave your phone.</Text>
+                            <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text>
 
                         </View>
                     </View>
@@ -214,7 +215,13 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: "bold",
         fontSize: 38,
-        padding: 15
+        padding: 0
+    },
+    subHeaderTitle: {
+        textAlign: 'center',
+        fontWeight: "bold",
+        fontSize: 22,
+        padding: 5
     },
     main: {
         flex: 1,
