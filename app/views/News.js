@@ -13,48 +13,16 @@ import colors from "../constants/colors";
 import { WebView } from 'react-native-webview';
 import Button from "../components/Button";
 import NegButton from "../components/NegButton";
-import PosButton from "../components/PosButton";
-import SensButton from "../components/SensButton";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
-import {GetStoreData, SetStoreData} from '../helpers/General';
-
-class LocationTracking extends Component {
+class NewsScreen extends Component {
     constructor(props) {
         super(props);
     }
     componentDidMount() {
-        BackgroundGeolocation.configure({
-        desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
-        stationaryRadius: 50,
-        distanceFilter: 50,
-        notificationTitle: 'PrivateKit Enabled',
-        notificationText: 'PrivateKit is recording path information on this device.',
-        debug: false,
-        startOnBoot: false,
-        stopOnTerminate: true,
-        locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
-        interval: 20000,
-        fastestInterval: 60000*5,         // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-        activitiesInterval: 20000,
-        stopOnStillActivity: false,
-        postTemplate: {
-            lat: '@latitude',
-            lon: '@longitude',
-            foo: 'bar' // you can also add your own properties
-        }
-        });
 
-        BackgroundGeolocation.on('location', (location) => {
-            // handle your locations here
-            /* SAMPLE OF LOCATION DATA OBJECT
-                {
-                  "accuracy": 20, "altitude": 5, "id": 114, "isFromMockProvider": false,
-                  "latitude": 37.4219983, "locationProvider": 1, "longitude": -122.084,
-                  "mockLocationsEnabled": false, "provider": "fused", "speed": 0,
-                  "time": 1583696413000
-                }
-            */
+        /*BackgroundGeolocation.on('location', (location) => {
+
 
             GetStoreData('LOCATION_DATA')
             .then(locationArray => {
@@ -131,19 +99,8 @@ class LocationTracking extends Component {
         console.log('[INFO] App needs to authorize the http requests');
         });
 
-        BackgroundGeolocation.checkStatus(status => {
-        console.log('[INFO] BackgroundGeolocation service is running', status.isRunning);
-        console.log('[INFO] BackgroundGeolocation services enabled', status.locationServicesEnabled);
-        console.log('[INFO] BackgroundGeolocation auth status: ' + status.authorization);
-
-        // you don't need to check status before start (this is just the example)
-        if (!status.isRunning) {
-            BackgroundGeolocation.start(); //triggers start on start event
-        }
-        });
-
         // you can also just start without checking for status
-        // BackgroundGeolocation.start();
+        // BackgroundGeolocation.start();*/
     }
 
     componentWillUnmount() {
@@ -151,78 +108,25 @@ class LocationTracking extends Component {
         BackgroundGeolocation.removeAllListeners();
     }
 
-    export() {
-        this.props.navigation.navigate('ExportScreen', {})
-    }
-
-    import() {
-        this.props.navigation.navigate('ImportScreen', {})
-    }
-
-    news() {
-        this.props.navigation.navigate('NewsScreen', {})
-    }
-
-    optOut() {
-      BackgroundGeolocation.removeAllListeners();
-      SetStoreData('PARTICIPATE', 'false').then(() =>
-        this.props.navigation.navigate('WelcomeScreen', {})
-      )
-    }
-
-/*
-                        <View>
-                      <Text style={styles.sectionDescription, {fontSize: 18, marginLeft: 5, marginTop: 10}}>Latest News:</Text>
-                    </View>
-
-                    <View style={styles.containerWebview } >
-                        <WebView
-                            source={{ uri: 'https://privatekit.mit.edu' }}
-                            style={{  }}
-                        />
-                    </View>
-*/
-
     render() {
         return (
-            <SafeAreaView style={styles.container} >
-
-                <View style={styles.main}>
-                    <View style={styles.topView}>
-                        <View style={styles.intro} >
-
-                            <Text style={styles.headerTitle}>Private Kit</Text>
-                            <Text style={styles.subHeaderTitle}>(Active)</Text>
-
-                            <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text>
-                            <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text>
-
-                        </View>
-                    </View>
-
-                    <View style={styles.block}>
-                        <NegButton title={"Stop Recording Location"} onPress={() => this.optOut()} />
-                    </View>
-
-                    <View style={styles.block}>
-                        <PosButton title={"News"} onPress={() => this.news()} />
-                    </View>
-
-                    <View style={styles.block}>
-                        <SensButton title={"Import"} onPress={() => this.import()} />
-                    </View>
-
-                    <View style={styles.block}>
-                        <SensButton title={"Export"} onPress={() => this.export()} />
-                    </View>
-
+        <>
+            <View style={styles.main}>
+                <View style={styles.headerTitle}>
+                        <Text style={styles.sectionDescription, {fontSize: 22, marginTop: 8}}>Latest News:</Text>
                 </View>
-
-                <View style={styles.footer}>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
+                <View style={styles.web}>
+                    <WebView
+                        source= {{ uri: 'https://www.cdc.gov/coronavirus/2019-ncov/about/index.html' }}
+                        style= {{ marginTop: 15, marginLeft: 15}}
+                    />
                 </View>
-            </SafeAreaView>
+            </View>
+            <View style={styles.footer}>
+                <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
+                <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
+            </View>
+        </>
         )
     }
 }
@@ -249,12 +153,16 @@ const styles = StyleSheet.create({
         fontSize: 22,
         padding: 5
     },
+    web: {
+        flex: 1,
+        width: "95%"
+    },
     main: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: "80%"
+        width: "95%"
     },
     block: {
       margin: 20,
@@ -286,4 +194,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default LocationTracking;
+export default NewsScreen;
