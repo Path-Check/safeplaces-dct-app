@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import {
   SafeAreaView,
-  Button,
   StyleSheet,
   ScrollView,
+  Linking,
   View,
   Text
 } from 'react-native';
+
+import colors from "../constants/colors";
+import Button from "../components/Button";
 
 import {GetStoreData, SetStoreData} from '../helpers/General';
 
@@ -15,15 +18,15 @@ class Welcome extends Component {
         super(props);
     }
     componentDidMount() {
-		GetStoreData('PARTICIPATE')
-		.then(isParticipating => {
+        GetStoreData('PARTICIPATE')
+        .then(isParticipating => {
             console.log(isParticipating);
-			if(isParticipating == 'true') {
-				this.props.navigation.navigate('LocationTrackingScreen', {})
-			}
-		})
-		.catch(error => console.log(error))
-	}
+            if(isParticipating == 'true') {
+                this.props.navigation.navigate('LocationTrackingScreen', {})
+            }
+        })
+        .catch(error => console.log(error))
+    }
 
     componentWillUnmount() {
     }
@@ -36,64 +39,87 @@ class Welcome extends Component {
 
     render() {
         return (
-            <>
-            <SafeAreaView>
-                <ScrollView
-                    contentInsetAdjustmentBehavior="automatic"
-                    style={styles.scrollView}>
-                        <View>
-                            <Text style={styles.sectionContainer, { textAlign: 'center', fontWeight: "bold", fontSize: 24, paddingTop: 15 }}>Safe Paths</Text>
-                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>This application will automatically remember your path.  Periodically it will encrpyt and upload your path information.  Then, compare it to the paths of known infections.  If your path crosses with anyone who reports sick, you will be promptly notified.</Text>
-                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>Using it is easy, just click the "I Want to Participate" button below.  That's all you need to do, we do the hard work in the background.</Text>
-                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15, paddingBottom: 75}}>Please, share this application with friends and family.  Working together we can keep everyone safe.</Text>
-                            <Button
-                                title="I Want to Participate!"
-                                onPress={() => this.willParticipate()} />
-                            <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>Brought to you by the Massachusetts Institute of Technology and TripleBlind</Text>
+            <SafeAreaView style={styles.container}>
+
+                <View style={styles.main}>
+                    <View style={styles.topView}>
+                        <View style={styles.intro} >
+
+                            <Text style={styles.headerTitle}>Private Kit</Text>
+
+                            <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text>
+                            <Text style={styles.sectionDescription}>It will allow you to log your location privately every five minutes. Your location information will NOT leave your phone.</Text>
+
                         </View>
-                </ScrollView>
+                    </View>
+
+                    <View style={styles.block}>
+                        <Button title="Start Logging Location" onPress={() => this.willParticipate()} />
+                        <Text style={{ padding: 25, justifyContent: 'center', }} >NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.</Text>
+                    </View>
+
+                </View>
+
+                <View style={styles.footer}>
+                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
+                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
+                </View>
             </SafeAreaView>
-            </>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    scrollView: {
+    // Container covers the entire screen
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: colors.PRIMARY_TEXT,
+        backgroundColor: colors.APP_BACKGROUND,
     },
-    engine: {
-      position: 'absolute',
-      right: 0,
+    headerTitle: {
+        textAlign: 'center',
+        fontWeight: "bold",
+        fontSize: 38,
+        padding: 15
     },
-    body: {
-      backgroundColor: 'white',
+    main: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: "80%"
     },
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
+    block: {
+      margin: 20,
+      width: "100%"
     },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-      color: 'black',
-    },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400',
-      color: 'black',
-    },
-    highlight: {
-      fontWeight: '700',
+    topView: {
+        flex: 1,
     },
     footer: {
-      color: 'black',
-      fontSize: 12,
-      fontWeight: '600',
-      padding: 4,
-      paddingRight: 12,
-      textAlign: 'right',
+        textAlign: 'center',
+        fontSize: 12,
+        fontWeight: '600',
+        padding: 4,
+        paddingBottom: 10
     },
+    intro: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+    },
+    sectionDescription: {
+      fontSize: 18,
+      lineHeight: 24,
+      fontWeight: '400',
+      marginTop: 20,
+      marginLeft: 10,
+      marginRight: 10
+    }
   });
 
 export default Welcome;

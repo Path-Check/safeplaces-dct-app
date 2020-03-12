@@ -3,13 +3,16 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
+  Linking,
   View,
   Text,
-  Alert,
-  Button
+  Alert
 } from 'react-native';
-import { WebView } from 'react-native-webview';
 
+import colors from "../constants/colors";
+import { WebView } from 'react-native-webview';
+import Button from "../components/Button";
+import NegButton from "../components/NegButton";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 import {GetStoreData, SetStoreData} from '../helpers/General';
@@ -23,14 +26,14 @@ class LocationTracking extends Component {
         desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
         stationaryRadius: 50,
         distanceFilter: 50,
-        notificationTitle: 'CrossPath Enabled',
-        notificationText: 'TripleBlind is checking your path with others.',
+        notificationTitle: 'PrivateKit Enabled',
+        notificationText: 'PrivateKit is recording path information on this device.',
         debug: false,
         startOnBoot: false,
         stopOnTerminate: true,
         locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
         interval: 20000,
-        fastestInterval: 10000,
+        fastestInterval: 60000*5,         // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
         activitiesInterval: 20000,
         stopOnStillActivity: false,
         postTemplate: {
@@ -43,32 +46,28 @@ class LocationTracking extends Component {
         BackgroundGeolocation.on('location', (location) => {
             // handle your locations here
             /* SAMPLE OF LOCATION DATA OBJECT
-            id: 49
-            mockLocationsEnabled: false
-            altitude: 0
-            longitude: -122.15541
-            latitude: 37.415455
-            time: 1583448706000
-            provider: "fused"
-            isFromMockProvider: false
-            speed: 0
-            accuracy: 20
-            locationProvider: 1
+                {
+                  "accuracy": 20, "altitude": 5, "id": 114, "isFromMockProvider": false,
+                  "latitude": 37.4219983, "locationProvider": 1, "longitude": -122.084,
+                  "mockLocationsEnabled": false, "provider": "fused", "speed": 0,
+                  "time": 1583696413000
+                }
             */
-            console.log(location)
+
             GetStoreData('LOCATION_DATA')
             .then(locationArray => {
-              // Adjust this to store an array of user locations information
-              // SetStoreData('LOCATION_DATA', null);
-                // if(locationArray != 'null') {
-                //   var locationData = locationArray;
-                //   locationData.push(location);
-                // } else {
-                //   var locationData = [];
-                // }
+                var locationData;
 
-                SetStoreData('LOCATION_DATA', location);
+                if (locationArray !== null) {
+                  locationData = JSON.parse(locationArray);
+                } else {
+                  locationData = [];
+                }
+
+                locationData.push(location);
+                SetStoreData('LOCATION_DATA', locationData);
             });
+
             // to perform long running operation on iOS
             // you need to create background task
             BackgroundGeolocation.startTask(taskKey => {
@@ -81,7 +80,8 @@ class LocationTracking extends Component {
 
         BackgroundGeolocation.on('stationary', (stationaryLocation) => {
             // handle stationary locations here
-            Actions.sendLocation(stationaryLocation);
+            // Actions.sendLocation(stationaryLocation);
+            console.log('[INFO] stationaryLocation:', stationaryLocation);
         });
 
         BackgroundGeolocation.on('error', (error) => {
@@ -156,71 +156,108 @@ class LocationTracking extends Component {
       )
     }
 
-    render() {
-        return (
-            <>
-            <SafeAreaView>
-                <ScrollView
-                    contentInsetAdjustmentBehavior="automatic"
-                    style={styles.scrollView}>
-                    <View>
-                      <Text style={{fontSize: 25, marginTop: 35, paddingLeft: 35, width: '70%', alignSelf: 'flex-start'}}>Your Exposure Risk:</Text>
-                      <Text style={{width: 50, marginTop: -30, marginRight: 15, padding: 10,textAlign: 'center',alignSelf: 'flex-end', backgroundColor: 'green'}}>Low</Text>
-                    </View>
-                    <View>
+/*
+                        <View>
                       <Text style={styles.sectionDescription, {fontSize: 18, marginLeft: 5, marginTop: 10}}>Latest News:</Text>
                     </View>
-                    <WebView
-                        source={{ uri: 'https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public' }}
-                        style={{ margin
-                            : 10, height: 450 }}
-                    />
-                    <View style={{marginTop:25}}>
-                      <Button title={"Opt Out"} onPress={() => this.optOut()} />
+
+                    <View style={styles.containerWebview } >
+                        <WebView
+                            source={{ uri: 'https://privatekit.mit.edu' }}
+                            style={{  }}
+                        />
                     </View>
-                </ScrollView>
+*/
+
+    render() {
+        return (
+            <SafeAreaView style={styles.container} >
+
+                <View style={styles.main}>
+                    <View style={styles.topView}>
+                        <View style={styles.intro} >
+
+                            <Text style={styles.headerTitle}>Private Kit</Text>
+                            <Text style={styles.subHeaderTitle}>(Active)</Text>
+
+                            <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text>
+                            <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text>
+
+                        </View>
+                    </View>
+
+                    <View style={styles.block}>
+                        <NegButton title={"Stop Recording Location"} onPress={() => this.optOut()} />
+                    </View>
+
+                </View>
+
+                <View style={styles.footer}>
+                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
+                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
+                </View>
             </SafeAreaView>
-            </>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    scrollView: {
+    // Container covers the entire screen
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: colors.PRIMARY_TEXT,
+        backgroundColor: colors.APP_BACKGROUND,
     },
-    engine: {
-      position: 'absolute',
-      right: 0,
+    headerTitle: {
+        textAlign: 'center',
+        fontWeight: "bold",
+        fontSize: 38,
+        padding: 0
     },
-    body: {
-      backgroundColor: 'white',
+    subHeaderTitle: {
+        textAlign: 'center',
+        fontWeight: "bold",
+        fontSize: 22,
+        padding: 5
     },
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
+    main: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: "80%"
     },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-      color: 'black',
+    block: {
+      margin: 20,
+      width: "100%"
     },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400',
-      color: 'black',
-    },
-    highlight: {
-      fontWeight: '700',
+    topView: {
+        flex: 1,
     },
     footer: {
-      color: 'black',
-      fontSize: 12,
-      fontWeight: '600',
-      padding: 4,
-      paddingRight: 12,
-      textAlign: 'right',
+        textAlign: 'center',
+        fontSize: 12,
+        fontWeight: '600',
+        padding: 4,
+        paddingBottom: 10
     },
+    intro: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+    },
+    sectionDescription: {
+      fontSize: 18,
+      lineHeight: 24,
+      fontWeight: '400',
+      marginTop: 20,
+      marginLeft: 10,
+      marginRight: 10
+    }
   });
 
 export default LocationTracking;
