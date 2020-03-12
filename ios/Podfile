@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'tripleblind' do
-  # Pods for tripleblind
+target 'PrivateKit' do
+  # Pods for PrivateKit
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -36,20 +36,10 @@ target 'tripleblind' do
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
-  target 'tripleblindTests' do
+  target 'PrivateKitTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
   use_native_modules!
-end
-
-target 'tripleblind-tvOS' do
-  # Pods for tripleblind-tvOS
-
-  target 'tripleblind-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
