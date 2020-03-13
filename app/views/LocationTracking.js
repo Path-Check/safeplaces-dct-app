@@ -12,9 +12,6 @@ import {
 import colors from "../constants/colors";
 import { WebView } from 'react-native-webview';
 import Button from "../components/Button";
-import NegButton from "../components/NegButton";
-import PosButton from "../components/PosButton";
-import SensButton from "../components/SensButton";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 import {GetStoreData, SetStoreData} from '../helpers/General';
@@ -201,19 +198,19 @@ class LocationTracking extends Component {
                     </View>
 
                     <View style={styles.block}>
-                        <NegButton title={"Stop Recording Location"} onPress={() => this.optOut()} />
+                        <Button title={"Stop Recording Location"} bgColor={colors.NEG_BUTTON} onPress={() => this.optOut()} />
                     </View>
 
                     <View style={styles.block}>
-                        <PosButton title={"News"} onPress={() => this.news()} />
+                        <Button title={"News"} bgColor={colors.POS_BUTTON} onPress={() => this.news()} />
                     </View>
 
                     <View style={styles.block}>
-                        <SensButton title={"Import"} onPress={() => this.import()} />
+                        <Button title={"Import"} bgColor={colors.SENS_BUTTON} onPress={() => this.import()} />
                     </View>
 
                     <View style={styles.block}>
-                        <SensButton title={"Export"} onPress={() => this.export()} />
+                        <Button title={"Export"} bgColor={colors.SENS_BUTTON} onPress={() => this.export()} />
                     </View>
 
                 </View>

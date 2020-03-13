@@ -8,7 +8,12 @@ const colors = {
   APP_BACKGROUND: '#FFF8ED',
   PRIMARY_TEXT: "#000",
   GREEN: "#32A852",
-  VIOLET: "#6C3794"
+  VIOLET: "#6C3794",
+
+  REG_BUTTON: "#428AF8",
+  POS_BUTTON: "#32A852",
+  NEG_BUTTON: "#F8262F",
+  SENS_BUTTON: "#6C3794"
 };
 
 export default colors;
