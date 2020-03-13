@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+    Component
+} from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -31,15 +33,23 @@ class ImportScreen extends Component {
 
     }
 
+    backToMain() {
+        this.props.navigation.navigate('LocationTrackingScreen', {})
+    }
+
+
     render() {
         return (
-            <>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <Text onPress={() => this.backToMain()} style={styles.backArrow}> &#8249; </Text>
+                    <Text style={styles.sectionDescription}>Import Locations</Text>
+                </View>
+
                 <View style={styles.main}>
-                    <View style={styles.headerTitle}>
-                        <Text style={styles.sectionDescription, { fontSize: 22 }}>Import from Google</Text>
-                    </View>
                     <View style={styles.subHeaderTitle}>
                         <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8}}>1. Login to your Google Account and Download your Location History</Text>
+                        <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8}}>2. After downloaded, open this screen again. The data will import automatically.</Text>
                     </View>
                     <View style={styles.web}>
                         <WebView
@@ -48,11 +58,7 @@ class ImportScreen extends Component {
                         />
                     </View>
                 </View>
-                <View style={styles.footer}>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
-                </View>
-            </>
+            </SafeAreaView>
         )
     }
 }
@@ -62,8 +68,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
         color: colors.PRIMARY_TEXT,
         backgroundColor: colors.APP_BACKGROUND,
     },
@@ -88,22 +92,27 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
         width: "100%"
     },
-    block: {
-        margin: 20,
-        width: "100%"
+
+    headerContainer: {
+        flexDirection: 'row',
     },
-    topView: {
-        flex: 1,
+    backArrow: {
+        fontSize: 60,
+        lineHeight: 60,
+        fontWeight: '400',
+        marginRight: 5,
+        textAlignVertical: 'center'
     },
-    footer: {
-        textAlign: 'center',
-        fontSize: 12,
-        fontWeight: '600',
-        padding: 4,
-        paddingBottom: 10
+    sectionDescription: {
+        fontSize: 24,
+        lineHeight: 24,
+        fontWeight: '800',
+        textAlignVertical: 'center'
     },
+
 });
 export default ImportScreen;
