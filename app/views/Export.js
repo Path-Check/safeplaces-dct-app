@@ -7,7 +7,7 @@ import {
     View,
     Text,
     Alert,
-    Image
+    Image,
     Share
 } from 'react-native';
 
