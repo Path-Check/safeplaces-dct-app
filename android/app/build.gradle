@@ -197,6 +197,8 @@ dependencies {
     implementation project(':@mauron85_react-native-background-geolocation')
     implementation "androidx.annotation:annotation:1.1.0"
 
+    compile project(':react-native-fs')
+
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
         debugImplementation files(hermesPath + "hermes-debug.aar")
