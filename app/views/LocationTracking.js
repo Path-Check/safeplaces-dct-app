@@ -1,20 +1,28 @@
-import React, { Component } from 'react';
+import React, {
+    Component
+} from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  Linking,
-  View,
-  Text,
-  Alert
+    SafeAreaView,
+    StyleSheet,
+    ScrollView,
+    Linking,
+    View,
+    Text,
+    Alert
 } from 'react-native';
 
 import colors from "../constants/colors";
-import { WebView } from 'react-native-webview';
+import {
+    WebView
+} from 'react-native-webview';
 import Button from "../components/Button";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
-import {GetStoreData, SetStoreData} from '../helpers/General';
+
+import {
+    GetStoreData,
+    SetStoreData
+} from '../helpers/General';
 
 class LocationTracking extends Component {
     constructor(props) {
@@ -22,24 +30,24 @@ class LocationTracking extends Component {
     }
     componentDidMount() {
         BackgroundGeolocation.configure({
-        desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
-        stationaryRadius: 50,
-        distanceFilter: 50,
-        notificationTitle: 'PrivateKit Enabled',
-        notificationText: 'PrivateKit is recording path information on this device.',
-        debug: false,
-        startOnBoot: false,
-        stopOnTerminate: true,
-        locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
-        interval: 20000,
-        fastestInterval: 60000*5,         // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-        activitiesInterval: 20000,
-        stopOnStillActivity: false,
-        postTemplate: {
-            lat: '@latitude',
-            lon: '@longitude',
-            foo: 'bar' // you can also add your own properties
-        }
+            desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
+            stationaryRadius: 50,
+            distanceFilter: 50,
+            notificationTitle: 'PrivateKit Enabled',
+            notificationText: 'PrivateKit is recording path information on this device.',
+            debug: false,
+            startOnBoot: false,
+            stopOnTerminate: true,
+            locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
+            interval: 20000,
+            fastestInterval: 60000 * 5, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+            activitiesInterval: 20000,
+            stopOnStillActivity: false,
+            postTemplate: {
+                lat: '@latitude',
+                lon: '@longitude',
+                foo: 'bar' // you can also add your own properties
+            }
         });
 
         BackgroundGeolocation.on('location', (location) => {
@@ -54,18 +62,18 @@ class LocationTracking extends Component {
             */
 
             GetStoreData('LOCATION_DATA')
-            .then(locationArray => {
-                var locationData;
+                .then(locationArray => {
+                    var locationData;
 
-                if (locationArray !== null) {
-                  locationData = JSON.parse(locationArray);
-                } else {
-                  locationData = [];
-                }
+                    if (locationArray !== null) {
+                        locationData = JSON.parse(locationArray);
+                    } else {
+                        locationData = [];
+                    }
 
-                locationData.push(location);
-                SetStoreData('LOCATION_DATA', locationData);
-            });
+                    locationData.push(location);
+                    SetStoreData('LOCATION_DATA', locationData);
+                });
 
             // to perform long running operation on iOS
             // you need to create background task
@@ -84,59 +92,65 @@ class LocationTracking extends Component {
         });
 
         BackgroundGeolocation.on('error', (error) => {
-        console.log('[ERROR] BackgroundGeolocation error:', error);
+            console.log('[ERROR] BackgroundGeolocation error:', error);
         });
 
         BackgroundGeolocation.on('start', () => {
-        console.log('[INFO] BackgroundGeolocation service has been started');
+            console.log('[INFO] BackgroundGeolocation service has been started');
         });
 
         BackgroundGeolocation.on('stop', () => {
-        console.log('[INFO] BackgroundGeolocation service has been stopped');
+            console.log('[INFO] BackgroundGeolocation service has been stopped');
         });
 
         BackgroundGeolocation.on('authorization', (status) => {
-        console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
-        if (status !== BackgroundGeolocation.AUTHORIZED) {
-            // we need to set delay or otherwise alert may not be shown
-            setTimeout(() =>
-            Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [
-                { text: 'Yes', onPress: () => BackgroundGeolocation.showAppSettings() },
-                { text: 'No', onPress: () => console.log('No Pressed'), style: 'cancel' }
-            ]), 1000);
-        }
+            console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
+            if (status !== BackgroundGeolocation.AUTHORIZED) {
+                // we need to set delay or otherwise alert may not be shown
+                setTimeout(() =>
+                    Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [{
+                        text: 'Yes',
+                        onPress: () => BackgroundGeolocation.showAppSettings()
+                    },
+                    {
+                        text: 'No',
+                        onPress: () => console.log('No Pressed'),
+                        style: 'cancel'
+                    }
+                    ]), 1000);
+            }
         });
 
         BackgroundGeolocation.on('background', () => {
-        console.log('[INFO] App is in background');
+            console.log('[INFO] App is in background');
         });
 
         BackgroundGeolocation.on('foreground', () => {
-        console.log('[INFO] App is in foreground');
+            console.log('[INFO] App is in foreground');
         });
 
         BackgroundGeolocation.on('abort_requested', () => {
-        console.log('[INFO] Server responded with 285 Updates Not Required');
+            console.log('[INFO] Server responded with 285 Updates Not Required');
 
-        // Here we can decide whether we want stop the updates or not.
-        // If you've configured the server to return 285, then it means the server does not require further update.
-        // So the normal thing to do here would be to `BackgroundGeolocation.stop()`.
-        // But you might be counting on it to receive location updates in the UI, so you could just reconfigure and set `url` to null.
+            // Here we can decide whether we want stop the updates or not.
+            // If you've configured the server to return 285, then it means the server does not require further update.
+            // So the normal thing to do here would be to `BackgroundGeolocation.stop()`.
+            // But you might be counting on it to receive location updates in the UI, so you could just reconfigure and set `url` to null.
         });
 
         BackgroundGeolocation.on('http_authorization', () => {
-        console.log('[INFO] App needs to authorize the http requests');
+            console.log('[INFO] App needs to authorize the http requests');
         });
 
         BackgroundGeolocation.checkStatus(status => {
-        console.log('[INFO] BackgroundGeolocation service is running', status.isRunning);
-        console.log('[INFO] BackgroundGeolocation services enabled', status.locationServicesEnabled);
-        console.log('[INFO] BackgroundGeolocation auth status: ' + status.authorization);
+            console.log('[INFO] BackgroundGeolocation service is running', status.isRunning);
+            console.log('[INFO] BackgroundGeolocation services enabled', status.locationServicesEnabled);
+            console.log('[INFO] BackgroundGeolocation auth status: ' + status.authorization);
 
-        // you don't need to check status before start (this is just the example)
-        if (!status.isRunning) {
-            BackgroundGeolocation.start(); //triggers start on start event
-        }
+            // you don't need to check status before start (this is just the example)
+            if (!status.isRunning) {
+                BackgroundGeolocation.start(); //triggers start on start event
+            }
         });
 
         // you can also just start without checking for status
@@ -161,24 +175,12 @@ class LocationTracking extends Component {
     }
 
     optOut() {
-      BackgroundGeolocation.removeAllListeners();
-      SetStoreData('PARTICIPATE', 'false').then(() =>
-        this.props.navigation.navigate('WelcomeScreen', {})
-      )
+        BackgroundGeolocation.removeAllListeners();
+        SetStoreData('PARTICIPATE', 'false').then(() =>
+            this.props.navigation.navigate('WelcomeScreen', {})
+        )
     }
 
-/*
-                        <View>
-                      <Text style={styles.sectionDescription, {fontSize: 18, marginLeft: 5, marginTop: 10}}>Latest News:</Text>
-                    </View>
-
-                    <View style={styles.containerWebview } >
-                        <WebView
-                            source={{ uri: 'https://privatekit.mit.edu' }}
-                            style={{  }}
-                        />
-                    </View>
-*/
 
     render() {
         return (
@@ -189,7 +191,6 @@ class LocationTracking extends Component {
                         <View style={styles.intro} >
 
                             <Text style={styles.headerTitle}>Private Kit</Text>
-                            <Text style={styles.subHeaderTitle}>(Active)</Text>
 
                             <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text>
                             <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text>
@@ -254,8 +255,8 @@ const styles = StyleSheet.create({
         width: "80%"
     },
     block: {
-      margin: 20,
-      width: "100%"
+        margin: 20,
+        width: "100%"
     },
     topView: {
         flex: 1,
@@ -274,13 +275,13 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
     },
     sectionDescription: {
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: '400',
-      marginTop: 20,
-      marginLeft: 10,
-      marginRight: 10
+        fontSize: 18,
+        lineHeight: 24,
+        fontWeight: '400',
+        marginTop: 20,
+        marginLeft: 10,
+        marginRight: 10
     }
-  });
+});
 
 export default LocationTracking;
