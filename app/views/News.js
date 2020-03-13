@@ -12,7 +12,6 @@ import {
 import colors from "../constants/colors";
 import { WebView } from 'react-native-webview';
 import Button from "../components/Button";
-import NegButton from "../components/NegButton";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 class NewsScreen extends Component {
