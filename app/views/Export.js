@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  Linking,
-  View,
-  Text,
-  Alert,
-  Image
+    SafeAreaView,
+    StyleSheet,
+    ScrollView,
+    Linking,
+    View,
+    Text,
+    Alert,
+    Image
 } from 'react-native';
 
 import colors from "../constants/colors";
-import { WebView } from 'react-native-webview';
+import WebView from 'react-native-webview';
 import Button from "../components/Button";
-import NegButton from "../components/NegButton";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 class ExportScreen extends Component {
@@ -114,16 +113,16 @@ class ExportScreen extends Component {
             <>
                 <View style={styles.main}>
                     <View style={styles.headerTitle}>
-                      <Text style={styles.sectionDescription, {fontSize: 22, marginTop: 10}}>Export Data</Text>
+                        <Text style={styles.sectionDescription, { fontSize: 22, marginTop: 10 }}>Export Data</Text>
                     </View>
                     <View style={styles.subHeaderTitle}>
                         <Text style={styles.sectionDescription}>Rolling out soon</Text>
                     </View>
                     <View style={styles.block}>
-                    <Image
-                        source={require('../assets/privatekit_qrcode.png')}
-                        style={{width: 330, height: 330}}
-                    />
+                        <Image
+                            source={require('../assets/privatekit_qrcode.png')}
+                            style={{ width: 330, height: 330 }}
+                        />
                     </View>
                 </View>
 
@@ -167,10 +166,10 @@ const styles = StyleSheet.create({
         width: "95%"
     },
     block: {
-      margin: 20,
-      width: "75%",
-      alignItems: 'center',
-      justifyContent: 'center'
+        margin: 20,
+        width: "75%",
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     topView: {
         flex: 1,
@@ -189,13 +188,13 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
     },
     sectionDescription: {
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: '400',
-      marginTop: 20,
-      marginLeft: 10,
-      marginRight: 10
+        fontSize: 18,
+        lineHeight: 24,
+        fontWeight: '400',
+        marginTop: 20,
+        marginLeft: 10,
+        marginRight: 10
     }
-  });
+});
 
 export default ExportScreen;
