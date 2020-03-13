@@ -19,6 +19,13 @@ Android is currently being optimized.  iOS will need to be tested, optimized, an
 
 Refer to and run the dev_setup.sh for needed tools.
 
+### iOS Configuration - First Time Setup
+
+1. pod install in `ios` directory
+2. Open `.workspace` file in the iOS directory and run `build`
+3. If you have any trouble with packages not round, try `react-native link` from project directory.
+4. Look at running commands below.
+
 ## Running
 
 Install modules:
@@ -30,7 +37,7 @@ npx react-native run-android
 ```
 or
 ```
-npx react-native run-ios
+npx react-native run-ios --simulator="iPhone 8 Plus"
 ```
 
 ## Deploying
