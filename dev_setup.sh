@@ -103,7 +103,7 @@ if ! found_exe android-studio ; then
 
     echo "${BLUE}Adding environment variables via ~/.profile_mobileapp${RESET}"
 
-    echo "# ==== Added by TripleBlind/mobileapp's dev_setup.sh ====" >> ~/.profile_mobileapp
+    echo "# ==== Added by PrivateKit/mobileapp's dev_setup.sh ====" >> ~/.profile_mobileapp
     echo "export ANDROID_HOME=\$HOME/Android/Sdk" >> ~/.profile_mobileapp
     echo "export PATH=\$PATH:\$ANDROID_HOME/emulator" >> ~/.profile_mobileapp
     echo "export PATH=\$PATH:\$ANDROID_HOME/tools" >> ~/.profile_mobileapp
