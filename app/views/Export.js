@@ -15,7 +15,6 @@ import WebView from 'react-native-webview';
 import Button from "../components/Button";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { GetStoreData } from '../helpers/General';
-import * as RNFS from 'react-native-fs';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
@@ -33,62 +32,27 @@ class ExportScreen extends Component {
     }
 
     onShare = async () => {
-        try {
-            const locationArray = await GetStoreData('LOCATION_DATA');
-            var locationData;
+            try {
+                const locationArray = await GetStoreData('LOCATION_DATA');
+                var locationData;
 
-            if (locationArray !== null) {
-                locationData = JSON.parse(locationArray);
-            } else {
-                locationData = [];
-            }
-
-            /*savePath = RNFS.DocumentDirectoryPath + "/loc_data.json";
-
-            locationData = JSON.stringify(locationData);
-            RNFS.writeFile(savePath, locationData, 'ascii').then(res => {
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err.message, err.code);
-            });
-
-            console.log(savePath);*/
-
-            b64Data = base64.encode(JSON.stringify(locationData));
-            Share.open({
-                url: "data:string/txt;base64," + b64Data
-            }).then(res => {
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err.message, err.code);
-            })
-
-
-            console.log(result);
-
-            RNFS.unlink(savePath).then(res => {
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err.message, err.code);
-            });
-            /*const result = await Share.share({
-                message: JSON.stringify(locationData)
-            });
-
-            if (result.action === Share.sharedAction) {
-                if (result.activityType) {
-                    // shared with activity type of result.activityType
+                if (locationArray !== null) {
+                    locationData = JSON.parse(locationArray);
                 } else {
-                    // shared
+                    locationData = [];
                 }
-            } else if (result.action === Share.dismissedAction) {
-                // dismissed
-            }*/
-        } catch (error) {
-            console.log(error.message);
+
+                b64Data = base64.encode(JSON.stringify(locationData));
+                Share.open({
+                    url: "data:string/txt;base64," + b64Data
+                }).then(res => {
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.log(err.message, err.code);
+                })
+            } catch (error) {
+                console.log(error.message);
         }
     };
 
