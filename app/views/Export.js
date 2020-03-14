@@ -7,14 +7,21 @@ import {
     View,
     Text,
     Alert,
-    Image,
-    Share
+    Image
 } from 'react-native';
 
 import colors from "../constants/colors";
 import WebView from 'react-native-webview';
 import Button from "../components/Button";
 import { GetStoreData } from '../helpers/General';
+import Share from 'react-native-share';
+import RNFetchBlob from 'rn-fetch-blob';
+
+const base64 = RNFetchBlob.base64
+
+
+//import RNShareFile from 'react-native-file-share';
+
 
 class ExportScreen extends Component {
     constructor(props) {
@@ -22,31 +29,27 @@ class ExportScreen extends Component {
     }
 
     onShare = async () => {
-        try {
-            const locationArray = await GetStoreData('LOCATION_DATA');
-            var locationData;
+            try {
+                const locationArray = await GetStoreData('LOCATION_DATA');
+                var locationData;
 
-            if (locationArray !== null) {
-                locationData = JSON.parse(locationArray);
-            } else {
-                locationData = [];
-            }
-
-            const result = await Share.share({
-                message: JSON.stringify(locationData)
-            });
-
-            if (result.action === Share.sharedAction) {
-                if (result.activityType) {
-                    // shared with activity type of result.activityType
+                if (locationArray !== null) {
+                    locationData = JSON.parse(locationArray);
                 } else {
-                    // shared
+                    locationData = [];
                 }
-            } else if (result.action === Share.dismissedAction) {
-                // dismissed
-            }
-        } catch (error) {
-            console.log(error.message);
+
+                b64Data = base64.encode(JSON.stringify(locationData));
+                Share.open({
+                    url: "data:string/txt;base64," + b64Data
+                }).then(res => {
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.log(err.message, err.code);
+                })
+            } catch (error) {
+                console.log(error.message);
         }
     };
 
@@ -55,6 +58,7 @@ class ExportScreen extends Component {
     }
 
     render() {
+
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.headerContainer}>
