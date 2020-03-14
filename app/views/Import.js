@@ -12,10 +12,24 @@ import {
 } from 'react-native';
 
 import colors from "../constants/colors";
+import WebView from 'react-native-webview';
+import Button from "../components/Button";
+
+import {SearchAndImport} from '../helpers/GoogleTakeOutAutoImport';
 
 class ImportScreen extends Component {
     constructor(props) {
         super(props);
+
+        // Autoimports if user has downloaded
+        SearchAndImport();
+    }
+
+    componentDidMount() {
+
+    }
+
+    componentWillUnmount() {
     }
 
     backToMain() {
@@ -33,7 +47,14 @@ class ImportScreen extends Component {
 
                 <View style={styles.main}>
                     <View style={styles.subHeaderTitle}>
-                        <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8 }}>Rolling out soon</Text>
+                        <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8}}>1. Login to your Google Account and Download your Location History</Text>
+                        <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8}}>2. After downloaded, open this screen again. The data will import automatically.</Text>
+                    </View>
+                    <View style={styles.web}>
+                        <WebView
+                            source= {{ uri: 'https://takeout.google.com/settings/takeout/custom/location_history' }}
+                            style= {{ marginTop: 15 }}
+                        />
                     </View>
                 </View>
             </SafeAreaView>
@@ -61,12 +82,18 @@ const styles = StyleSheet.create({
         fontSize: 22,
         padding: 5
     },
+    web: {
+        flex: 1,
+        width: "100%"
+    },
     main: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: "95%"
+        paddingLeft: 20,
+        paddingRight: 20,
+        width: "100%"
     },
 
     headerContainer: {
