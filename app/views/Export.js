@@ -7,8 +7,7 @@ import {
     View,
     Text,
     Alert,
-    Image,
-    Share
+    Image
 } from 'react-native';
 
 import colors from "../constants/colors";
@@ -16,6 +15,15 @@ import WebView from 'react-native-webview';
 import Button from "../components/Button";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { GetStoreData } from '../helpers/General';
+import * as RNFS from 'react-native-fs';
+import Share from 'react-native-share';
+import RNFetchBlob from 'rn-fetch-blob';
+
+const base64 = RNFetchBlob.base64
+
+
+//import RNShareFile from 'react-native-file-share';
+
 
 class ExportScreen extends Component {
     constructor(props) {
@@ -35,7 +43,38 @@ class ExportScreen extends Component {
                 locationData = [];
             }
 
-            const result = await Share.share({
+            /*savePath = RNFS.DocumentDirectoryPath + "/loc_data.json";
+
+            locationData = JSON.stringify(locationData);
+            RNFS.writeFile(savePath, locationData, 'ascii').then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err.message, err.code);
+            });
+
+            console.log(savePath);*/
+
+            b64Data = base64.encode(JSON.stringify(locationData));
+            Share.open({
+                url: "data:string/txt;base64," + b64Data
+            }).then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err.message, err.code);
+            })
+
+
+            console.log(result);
+
+            RNFS.unlink(savePath).then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err.message, err.code);
+            });
+            /*const result = await Share.share({
                 message: JSON.stringify(locationData)
             });
 
@@ -47,7 +86,7 @@ class ExportScreen extends Component {
                 }
             } else if (result.action === Share.dismissedAction) {
                 // dismissed
-            }
+            }*/
         } catch (error) {
             console.log(error.message);
         }
@@ -63,6 +102,7 @@ class ExportScreen extends Component {
     }
 
     render() {
+
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.headerContainer}>
