@@ -30,7 +30,6 @@ class ImportScreen extends Component {
     }
 
     componentWillUnmount() {
-
     }
 
     backToMain() {
