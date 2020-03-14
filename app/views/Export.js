@@ -14,14 +14,11 @@ import {
 import colors from "../constants/colors";
 import WebView from 'react-native-webview';
 import Button from "../components/Button";
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { GetStoreData } from '../helpers/General';
 
 class ExportScreen extends Component {
     constructor(props) {
         super(props);
-    }
-    componentDidMount() {
     }
 
     onShare = async () => {
@@ -52,11 +49,6 @@ class ExportScreen extends Component {
             console.log(error.message);
         }
     };
-
-    componentWillUnmount() {
-        // unregister all event listeners
-        BackgroundGeolocation.removeAllListeners();
-    }
 
     backToMain() {
         this.props.navigation.navigate('LocationTrackingScreen', {})
