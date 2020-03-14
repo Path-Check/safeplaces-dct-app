@@ -4,19 +4,13 @@ import React, {
 import {
     SafeAreaView,
     StyleSheet,
-    ScrollView,
     Linking,
     View,
-    Text,
-    Alert
+    Text
 } from 'react-native';
 
 import colors from "../constants/colors";
-import {
-    WebView
-} from 'react-native-webview';
 import Button from "../components/Button";
-import NegButton from "../components/NegButton";
 import LocationServices from '../services/LocationService';
 
 class LocationTracking extends Component {
