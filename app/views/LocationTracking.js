@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
+import React, {
+    Component
+} from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  Linking,
-  View,
-  Text,
-  Alert
+    SafeAreaView,
+    StyleSheet,
+    ScrollView,
+    Linking,
+    View,
+    Text,
+    Alert
 } from 'react-native';
 
 import colors from "../constants/colors";
-import { WebView } from 'react-native-webview';
+import {
+    WebView
+} from 'react-native-webview';
 import Button from "../components/Button";
 import NegButton from "../components/NegButton";
-import PosButton from "../components/PosButton";
-import SensButton from "../components/SensButton";
-
 import LocationServices from '../services/LocationService';
 
 class LocationTracking extends Component {
@@ -36,19 +37,6 @@ class LocationTracking extends Component {
         this.props.navigation.navigate('NewsScreen', {})
     }
 
-/*
-                        <View>
-                      <Text style={styles.sectionDescription, {fontSize: 18, marginLeft: 5, marginTop: 10}}>Latest News:</Text>
-                    </View>
-
-                    <View style={styles.containerWebview } >
-                        <WebView
-                            source={{ uri: 'https://privatekit.mit.edu' }}
-                            style={{  }}
-                        />
-                    </View>
-*/
-
     render() {
         return (
             <SafeAreaView style={styles.container} >
@@ -58,7 +46,6 @@ class LocationTracking extends Component {
                         <View style={styles.intro} >
 
                             <Text style={styles.headerTitle}>Private Kit</Text>
-                            <Text style={styles.subHeaderTitle}>(Active)</Text>
 
                             <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text>
                             <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text>
@@ -67,19 +54,19 @@ class LocationTracking extends Component {
                     </View>
 
                     <View style={styles.block}>
-                        <NegButton title={"Stop Recording Location"} onPress={() => LocationServices.optOut(this.props.navigation)} />
+                        <Button title={"Stop Recording Location"} bgColor={colors.NEG_BUTTON} onPress={() => LocationServices.optOut(this.props.navigation)} />
                     </View>
 
                     <View style={styles.block}>
-                        <PosButton title={"News"} onPress={() => this.news()} />
+                        <Button title={"News"} bgColor={colors.POS_BUTTON} onPress={() => this.news()} />
                     </View>
 
                     <View style={styles.block}>
-                        <SensButton title={"Import"} onPress={() => this.import()} />
+                        <Button title={"Import"} bgColor={colors.SENS_BUTTON} onPress={() => this.import()} />
                     </View>
 
                     <View style={styles.block}>
-                        <SensButton title={"Export"} onPress={() => this.export()} />
+                        <Button title={"Export"} bgColor={colors.SENS_BUTTON} onPress={() => this.export()} />
                     </View>
 
                 </View>
@@ -123,8 +110,8 @@ const styles = StyleSheet.create({
         width: "80%"
     },
     block: {
-      margin: 20,
-      width: "100%"
+        margin: 20,
+        width: "100%"
     },
     topView: {
         flex: 1,
@@ -143,13 +130,13 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
     },
     sectionDescription: {
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: '400',
-      marginTop: 20,
-      marginLeft: 10,
-      marginRight: 10
+        fontSize: 18,
+        lineHeight: 24,
+        fontWeight: '400',
+        marginTop: 20,
+        marginLeft: 10,
+        marginRight: 10
     }
-  });
+});
 
 export default LocationTracking;

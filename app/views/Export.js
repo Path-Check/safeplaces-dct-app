@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  Linking,
-  View,
-  Text,
-  Alert,
-  Image,
-  Share
+    SafeAreaView,
+    StyleSheet,
+    ScrollView,
+    Linking,
+    View,
+    Text,
+    Alert,
+    Image,
+    Share
 } from 'react-native';
 
 import colors from "../constants/colors";
-import { WebView } from 'react-native-webview';
+import WebView from 'react-native-webview';
 import Button from "../components/Button";
-import NegButton from "../components/NegButton";
-import {GetStoreData} from '../helpers/General';
-import LocationServices from '../services/LocationService';
+import { GetStoreData } from '../helpers/General';
 
 class ExportScreen extends Component {
     constructor(props) {
@@ -40,9 +38,9 @@ class ExportScreen extends Component {
 
             if (result.action === Share.sharedAction) {
                 if (result.activityType) {
-                // shared with activity type of result.activityType
+                    // shared with activity type of result.activityType
                 } else {
-                // shared
+                    // shared
                 }
             } else if (result.action === Share.dismissedAction) {
                 // dismissed
@@ -52,23 +50,28 @@ class ExportScreen extends Component {
         }
     };
 
+    backToMain() {
+        this.props.navigation.navigate('LocationTrackingScreen', {})
+    }
+
     render() {
         return (
-            <>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <Text onPress={() => this.backToMain()} style={styles.backArrow}> &#8249; </Text>
+                    <Text style={styles.sectionDescription}>Export</Text>
+                </View>
+
+
                 <View style={styles.main}>
-                    <View style={styles.headerTitle}>
-                      <Text style={styles.sectionDescription, {fontSize: 22, marginTop: 10}}>Export Data</Text>
-                    </View>
+                    <Text style={styles.mainText}>You can share you location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.</Text>
+                    <Text style={styles.mainText}>Location is shared as a simple list of times and coordinates, no other identifying information.</Text>
                     <View style={styles.block}>
                         <Button onPress={this.onShare} title="Share" />
                     </View>
                 </View>
 
-                <View style={styles.footer}>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
-                </View>
-            </>
+            </SafeAreaView>
         )
     }
 }
@@ -78,8 +81,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
         color: colors.PRIMARY_TEXT,
         backgroundColor: colors.APP_BACKGROUND,
     },
@@ -99,40 +100,40 @@ const styles = StyleSheet.create({
     main: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
+        textAlignVertical: 'top',
         alignItems: 'center',
         width: "95%"
     },
     block: {
-      margin: 20,
-      width: "75%",
-      alignItems: 'center',
-      justifyContent: 'center'
+        margin: 20,
+        width: "75%",
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    topView: {
-        flex: 1,
+    mainText: {
+        fontSize: 18,
+        lineHeight: 24,
+        fontWeight: '400',
+        textAlignVertical: 'center',
+        padding: 20,
     },
-    footer: {
-        textAlign: 'center',
-        fontSize: 12,
-        fontWeight: '600',
-        padding: 4,
-        paddingBottom: 10
+
+    headerContainer: {
+        flexDirection: 'row',
     },
-    intro: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
+    backArrow: {
+        fontSize: 60,
+        lineHeight: 60,
+        fontWeight: '400',
+        marginRight: 5,
+        textAlignVertical: 'center'
     },
     sectionDescription: {
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: '400',
-      marginTop: 20,
-      marginLeft: 10,
-      marginRight: 10
-    }
-  });
+        fontSize: 24,
+        lineHeight: 24,
+        fontWeight: '800',
+        textAlignVertical: 'center'
+    },
+});
 
 export default ExportScreen;

@@ -4,14 +4,15 @@ import colors from "../constants/colors";
 
 interface Props {
   label: string;
+  bgColor: string;
   onPress: () => void;
 }
 
 class Button extends React.Component<Props> {
   render() {
-    const { title, onPress } = this.props;
+    const { title, onPress, bgColor } = this.props;
     return (
-      <TouchableOpacity style={styles.container} onPress={onPress}>
+      <TouchableOpacity style={[styles.container, {backgroundColor: bgColor || colors.DODGER_BLUE}]} onPress={onPress} >
         <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>
     );
@@ -23,7 +24,6 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.DODGER_BLUE,
     paddingVertical: 12,
     borderRadius: 4,
     borderWidth: StyleSheet.hairlineWidth,
