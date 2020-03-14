@@ -1,4 +1,7 @@
-import {GetStoreData, SetStoreData} from '../helpers/General';
+import {
+    GetStoreData,
+    SetStoreData
+} from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 export default class LocationServices {
@@ -13,9 +16,16 @@ export default class LocationServices {
             startOnBoot: false,
             stopOnTerminate: true,
             locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
+
+            // DEBUG: Use these to get a faster output
+            //            interval: 2000,
+            //            fastestInterval: 2000, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+            //            activitiesInterval: 2000,
+
             interval: 20000,
-            fastestInterval: 60000*5,         // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+            fastestInterval: 60000 * 5, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
             activitiesInterval: 20000,
+
             stopOnStillActivity: false,
             postTemplate: {
                 lat: '@latitude',
@@ -36,17 +46,19 @@ export default class LocationServices {
             */
 
             GetStoreData('LOCATION_DATA')
-            .then(locationArray => {
-                var locationData;
-                if (locationArray !== null) {
-                  locationData = JSON.parse(locationArray);
-                } else {
-                  locationData = [];
-                }
+                .then(locationArray => {
+                    var locationData;
+                    if (locationArray !== null) {
+                        locationData = JSON.parse(locationArray);
+                    } else {
+                        locationData = [];
+                    }
 
-                locationData.push(location);
-                SetStoreData('LOCATION_DATA', locationData);
-            });
+                    locationData.push(location);
+                    console.log('[GPS] Saving point:', locationData.length);
+
+                    SetStoreData('LOCATION_DATA', locationData);
+                });
 
             // to perform long running operation on iOS
             // you need to create background task
@@ -81,10 +93,16 @@ export default class LocationServices {
             if (status !== BackgroundGeolocation.AUTHORIZED) {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
-                Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [
-                    { text: 'Yes', onPress: () => BackgroundGeolocation.showAppSettings() },
-                    { text: 'No', onPress: () => console.log('No Pressed'), style: 'cancel' }
-                ]), 1000);
+                    Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [{
+                        text: 'Yes',
+                        onPress: () => BackgroundGeolocation.showAppSettings()
+                    },
+                    {
+                        text: 'No',
+                        onPress: () => console.log('No Pressed'),
+                        style: 'cancel'
+                    }
+                    ]), 1000);
             }
         });
 
@@ -133,9 +151,9 @@ export default class LocationServices {
     }
 
     static optOut(nav) {
-      BackgroundGeolocation.removeAllListeners();
-      SetStoreData('PARTICIPATE', 'false').then(() =>
-        nav.navigate('WelcomeScreen', {})
-      )
+        BackgroundGeolocation.removeAllListeners();
+        SetStoreData('PARTICIPATE', 'false').then(() =>
+            nav.navigate('WelcomeScreen', {})
+        )
     }
 }
