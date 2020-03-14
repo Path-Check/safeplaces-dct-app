@@ -17,18 +17,14 @@ import {
 } from 'react-native-webview';
 import Button from "../components/Button";
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-
-
-import {
-    GetStoreData,
-    SetStoreData
-} from '../helpers/General';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 
 class LocationTracking extends Component {
     constructor(props) {
         super(props);
     }
     componentDidMount() {
+
         BackgroundGeolocation.configure({
             desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
             stationaryRadius: 50,
@@ -71,8 +67,22 @@ class LocationTracking extends Component {
                         locationData = [];
                     }
 
-                    locationData.push(location);
-                    SetStoreData('LOCATION_DATA', locationData);
+                    // Curate the list of points
+                    var nowUTC = new Date().toISOString();
+                    var unixtimeUTC = Date.parse(nowUTC);
+                    var unixtimeUTC_28daysAgo = unixtimeUTC - (60 * 60 * 24 * 1000 * 28);
+
+                    var curated = [];
+                    for (var i = 0; i < locationData.length; i++) {
+                        if (locationData[i]["time"] > unixtimeUTC_28daysAgo) {
+                            curated.push(locationData[i]);
+                        }
+                    }
+
+                    var lat_lon_time = { "latitude": location["latitude"], "longitude": location["longitude"], "time": unixtimeUTC };
+                    curated.push(lat_lon_time);
+
+                    SetStoreData('LOCATION_DATA', curated);
                 });
 
             // to perform long running operation on iOS
@@ -108,15 +118,9 @@ class LocationTracking extends Component {
             if (status !== BackgroundGeolocation.AUTHORIZED) {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
-                    Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [{
-                        text: 'Yes',
-                        onPress: () => BackgroundGeolocation.showAppSettings()
-                    },
-                    {
-                        text: 'No',
-                        onPress: () => console.log('No Pressed'),
-                        style: 'cancel'
-                    }
+                    Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [
+                        { text: 'Yes', onPress: () => BackgroundGeolocation.showAppSettings() },
+                        { text: 'No', onPress: () => console.log('No Pressed'), style: 'cancel' }
                     ]), 1000);
             }
         });
