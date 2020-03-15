@@ -4,8 +4,14 @@ import {
 } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
+var instanceCount = 0
+
 export default class LocationServices {
     static start() {
+        instanceCount += 1
+        if (instanceCount > 1)
+            return;
+
         BackgroundGeolocation.configure({
             desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
             stationaryRadius: 50,
@@ -94,14 +100,14 @@ export default class LocationServices {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
                     Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [{
-                        text: 'Yes',
-                        onPress: () => BackgroundGeolocation.showAppSettings()
-                    },
-                    {
-                        text: 'No',
-                        onPress: () => console.log('No Pressed'),
-                        style: 'cancel'
-                    }
+                            text: 'Yes',
+                            onPress: () => BackgroundGeolocation.showAppSettings()
+                        },
+                        {
+                            text: 'No',
+                            onPress: () => console.log('No Pressed'),
+                            style: 'cancel'
+                        }
                     ]), 1000);
             }
         });
