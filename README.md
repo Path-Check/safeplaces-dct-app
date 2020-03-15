@@ -4,7 +4,7 @@ A personal location vault that nobody else can access. It will allow you to log 
 
 ## Behavior
 
-1. Get consent to locally track location and send an encoded version online. 
+1. Get consent to locally track location and send an encoded version online.
 2. Locally cache loction info once every 5 minutes: ```	Time  |  GPS Lat  |  GPS Lon ```
 
 # Development
@@ -43,6 +43,10 @@ npx react-native run-ios --simulator="iPhone 8 Plus"
 ## Deploying
 
 App is deployed to MIT's PlayStore account: https://play.google.com/store/apps/developer?id=MIT
+
+## Contributing
+
+Join the WhatsApp group - https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
 
 ## Tested On
 
