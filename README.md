@@ -1,6 +1,13 @@
-# PrivacyKit
+# Private Kit
 
-A personal location vault that nobody else can access. It will allow you to log your location privately every five minutes. No information will leaves the phone.
+<img src="./assets/ShieldKeyHold512x512.png" data-canonical-src="./assets/ShieldKeyHold512x512.png" width="200" height="200" />
+
+A personal location vault that nobody else can access. Log your location privately every five minutes. No information will leave the phone.
+
+**Downloads:** [Google Play](https://play.google.com/store/apps/details?id=edu.mit.privatekit) | Apple App Stored - coming soon!
+
+**Home page:** http://privatekit.mit.edu
+
 
 ## Behavior
 
@@ -10,10 +17,6 @@ A personal location vault that nobody else can access. It will allow you to log 
 # Development
 
 This is a React Native app version 61.5
-
-## TODO
-
-Android is currently being optimized.  iOS will need to be tested, optimized, and prepared for launch.
 
 ## Developer Setup
 
@@ -40,11 +43,9 @@ or
 npx react-native run-ios --simulator="iPhone 8 Plus"
 ```
 
-## Deploying
-
-App is deployed to MIT's PlayStore account: https://play.google.com/store/apps/developer?id=MIT
-
 ## Contributing
+
+Read the [contribution guidelines](./.github/CONTRIBUTING.md).
 
 Join the WhatsApp group - https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
 
@@ -55,6 +56,3 @@ Join the WhatsApp group - https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
 | Android Pixel | API 28  |
 | Android Pixel | API 29  |
 
-# References
-
-Website: http://privacykit.mit.edu
