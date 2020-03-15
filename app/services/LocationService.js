@@ -5,6 +5,7 @@ import {
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 var instanceCount = 0
+var lastPointCount = 0;
 
 export default class LocationServices {
     static start() {
@@ -61,7 +62,8 @@ export default class LocationServices {
                     }
 
                     locationData.push(location);
-                    console.log('[GPS] Saving point:', locationData.length);
+                    lastPointCount = locationData.length;
+                    console.log('[GPS] Saving point:', lastPointCount);
 
                     SetStoreData('LOCATION_DATA', locationData);
                 });
@@ -100,14 +102,14 @@ export default class LocationServices {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
                     Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [{
-                            text: 'Yes',
-                            onPress: () => BackgroundGeolocation.showAppSettings()
-                        },
-                        {
-                            text: 'No',
-                            onPress: () => console.log('No Pressed'),
-                            style: 'cancel'
-                        }
+                        text: 'Yes',
+                        onPress: () => BackgroundGeolocation.showAppSettings()
+                    },
+                    {
+                        text: 'No',
+                        onPress: () => console.log('No Pressed'),
+                        style: 'cancel'
+                    }
                     ]), 1000);
             }
         });
@@ -150,6 +152,11 @@ export default class LocationServices {
         // you can also just start without checking for status
         // BackgroundGeolocation.start();
     }
+
+    static getPointCount() {
+        return lastPointCount;
+    }
+
     static stop() {
         // unregister all event listeners
         BackgroundGeolocation.removeAllListeners();
