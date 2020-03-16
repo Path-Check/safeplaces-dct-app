@@ -3,6 +3,8 @@ import {
     SetStoreData
 } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
+import { Alert } from 'react-native';
+
 
 var instanceCount = 0;
 var lastPointCount = 0;
@@ -110,7 +112,7 @@ export default class LocationServices {
         });
 
         if (Platform.OS === 'android') {
-            // This feature only is present on Android. 
+            // This feature only is present on Android.
             BackgroundGeolocation.headlessTask(async (event) => {
                 // Application was shutdown, but the headless mechanism allows us
                 // to capture events in the background.  (On Android, at least)
@@ -128,8 +130,11 @@ export default class LocationServices {
                 // eg. ajax post location
                 // IMPORTANT: task has to be ended by endTask
 
-                // TODO: Location not a variable here. Where is this from? 
-                //saveLocation(location);
+                // For capturing stationaryLocation. Note that it hasn't been
+                // tested as I couldn't produce stationaryLocation callback in emulator
+                // but since the plugin documentation mentions it, no reason to keep
+                // it empty I believe.
+                saveLocation(stationarylocation);
                 BackgroundGeolocation.endTask(taskKey);
             });
             console.log('[INFO] stationaryLocation:', stationaryLocation);
