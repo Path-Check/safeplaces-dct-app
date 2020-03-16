@@ -443,7 +443,7 @@
 			baseConfigurationReference = 71D1C872DB0CCC3BBC3D907E /* Pods-PrivateKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = A35W4MM59Y;
 				INFOPLIST_FILE = PrivateKit/Info.plist;
@@ -467,7 +467,7 @@
 			baseConfigurationReference = 9440D638E4331481079AE235 /* Pods-PrivateKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = A35W4MM59Y;
 				INFOPLIST_FILE = PrivateKit/Info.plist;

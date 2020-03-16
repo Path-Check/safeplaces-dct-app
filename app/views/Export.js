@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+    Component
+} from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -13,9 +15,12 @@ import {
 import colors from "../constants/colors";
 import WebView from 'react-native-webview';
 import Button from "../components/Button";
-import { GetStoreData } from '../helpers/General';
+import {
+    GetStoreData
+} from '../helpers/General';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
+import LocationServices from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64
 
@@ -29,18 +34,18 @@ class ExportScreen extends Component {
     }
 
     onShare = async () => {
-            try {
-                const locationArray = await GetStoreData('LOCATION_DATA');
-                var locationData;
+        try {
+            const locationArray = await GetStoreData('LOCATION_DATA');
+            var locationData;
 
-                if (locationArray !== null) {
-                    locationData = JSON.parse(locationArray);
-                } else {
-                    locationData = [];
-                }
+            if (locationArray !== null) {
+                locationData = JSON.parse(locationArray);
+            } else {
+                locationData = [];
+            }
 
-                b64Data = base64.encode(JSON.stringify(locationData));
-                Share.open({
+            b64Data = base64.encode(JSON.stringify(locationData));
+            Share.open({
                     url: "data:string/txt;base64," + b64Data
                 }).then(res => {
                     console.log(res);
@@ -48,14 +53,15 @@ class ExportScreen extends Component {
                 .catch(err => {
                     console.log(err.message, err.code);
                 })
-            } catch (error) {
-                console.log(error.message);
+        } catch (error) {
+            console.log(error.message);
         }
     };
 
     backToMain() {
         this.props.navigation.navigate('LocationTrackingScreen', {})
     }
+
 
     render() {
 
@@ -73,6 +79,7 @@ class ExportScreen extends Component {
                     <View style={styles.block}>
                         <Button onPress={this.onShare} title="Share" />
                     </View>
+                    <Text style={styles.mainText}>Points to be shared: { LocationServices.getPointCount() }</Text>
                 </View>
 
             </SafeAreaView>
@@ -116,6 +123,13 @@ const styles = StyleSheet.create({
     },
     mainText: {
         fontSize: 18,
+        lineHeight: 24,
+        fontWeight: '400',
+        textAlignVertical: 'center',
+        padding: 20,
+    },
+    smallText: {
+        fontSize: 10,
         lineHeight: 24,
         fontWeight: '400',
         textAlignVertical: 'center',
