@@ -942,6 +942,11 @@
   dependencies:
     plist "^3.0.1"
 
+"@react-native-community/async-storage@^1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.8.1.tgz#c93e69dcf948667b207e409b8039b7edf199159b"
+  integrity sha512-MA1fTp4SB7OOtDmNAwds6jIpiwwty1NIoFboWjEWkoyWW35zIuxlhHxD4joSy21aWEzUVwvv6JJ2hSsP/HTb7A==
+
 "@react-native-community/cli-debugger-ui@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-3.0.0.tgz#d01d08d1e5ddc1633d82c7d84d48fff07bd39416"
@@ -1237,6 +1242,11 @@
   dependencies:
     lodash.unescape "4.0.1"
     semver "5.5.0"
+
+"@yarnpkg/lockfile@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
+  integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
 
 abab@^2.0.0:
   version "2.0.3"
@@ -1645,6 +1655,11 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
+
+base-64@0.1.0, base-64@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+  integrity sha1-eAqZyE59YAJgNhURxId2E78k9rs=
 
 base64-js@^1.1.2, base64-js@^1.2.3:
   version "1.3.1"
@@ -2946,6 +2961,14 @@ find-up@^4.0.0, find-up@^4.1.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
+find-yarn-workspace-root@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/find-yarn-workspace-root/-/find-yarn-workspace-root-1.2.1.tgz#40eb8e6e7c2502ddfaa2577c176f221422f860db"
+  integrity sha512-dVtfb0WuQG+8Ag2uWkbG79hOUzEsRrhBzgfn86g2sJPkzmcpGdghbNTfUKGTxymFrY/tLIodDzLoW9nOJ4FY8Q==
+  dependencies:
+    fs-extra "^4.0.3"
+    micromatch "^3.1.4"
+
 flat-cache@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-2.0.1.tgz#5d296d6f04bda44a4630a301413bdbc2ec085ec0"
@@ -2999,6 +3022,15 @@ fs-extra@^1.0.0:
     graceful-fs "^4.1.2"
     jsonfile "^2.1.0"
     klaw "^1.0.0"
+
+fs-extra@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.3.tgz#0d852122e5bc5beb453fb028e9c0c9bf36340c94"
+  integrity sha512-q6rbdDd1o2mAnQreO7YADIxf/Whx4AHBiRf6d+/cVT8h44ss+lHgxf1FemcqDnQt9X3ct4McHr+JMGlYSsK7Cg==
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^4.0.0"
+    universalify "^0.1.0"
 
 fs-extra@^7.0.1:
   version "7.0.1"
@@ -3094,6 +3126,18 @@ glob-parent@^5.0.0:
   integrity sha512-qjtRgnIVmOfnKUE3NJAQEdk+lKrxfw8t5ke7SXtfMTHcjsBfOfWXCQfdb30zfDoZQ2IRSIiidmjtbHZPZ++Ihw==
   dependencies:
     is-glob "^4.0.1"
+
+glob@7.0.6:
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.0.6.tgz#211bafaf49e525b8cd93260d14ab136152b3f57a"
+  integrity sha1-IRuvr0nlJbjNkyYNFKsTYVKz9Xo=
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.2"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
 
 glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4:
   version "7.1.6"
@@ -4275,6 +4319,13 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
+klaw-sync@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/klaw-sync/-/klaw-sync-6.0.0.tgz#1fd2cfd56ebb6250181114f0a581167099c2b28c"
+  integrity sha512-nIeuVSzdCCs6TDPTqI8w1Yre34sSq7AkZ4B3sfOBbI2CgVSB4Du4aLQijFU2+lhAFCwt9+42Hel6lQNIv6AntQ==
+  dependencies:
+    graceful-fs "^4.1.11"
+
 klaw@^1.0.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/klaw/-/klaw-1.3.1.tgz#4088433b46b3b1ba259d78785d8e96f73ba02439"
@@ -4804,7 +4855,7 @@ mimic-fn@^2.0.0, mimic-fn@^2.1.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
-minimatch@^3.0.4:
+minimatch@^3.0.2, minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   integrity sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==
@@ -5310,6 +5361,24 @@ pascalcase@^0.1.1:
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
   integrity sha1-s2PlXoAGym/iF4TS2yK9FdeRfxQ=
 
+patch-package@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/patch-package/-/patch-package-6.2.1.tgz#e3c55cf09dffd3984dd300e30d842672b604307f"
+  integrity sha512-dfCtQor63PPij6DDYtCzBRoO5nNAcMSg7Cmh+DLhR+s3t0OLQBdvFxJksZHBe1J2MjsSWDjTF4+oQKFbdkssIg==
+  dependencies:
+    "@yarnpkg/lockfile" "^1.1.0"
+    chalk "^2.4.2"
+    cross-spawn "^6.0.5"
+    find-yarn-workspace-root "^1.2.1"
+    fs-extra "^7.0.1"
+    is-ci "^2.0.0"
+    klaw-sync "^6.0.0"
+    minimist "^1.2.0"
+    rimraf "^2.6.3"
+    semver "^5.6.0"
+    slash "^2.0.0"
+    tmp "^0.0.33"
+
 path-exists@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-3.0.0.tgz#ce0ebeaa5f78cb18925ea7d810d7b59b010fd515"
@@ -5417,6 +5486,11 @@ posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
+
+postinstall-postinstall@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/postinstall-postinstall/-/postinstall-postinstall-2.0.0.tgz#7ba6711b4420575c4f561638836a81faad47f43f"
+  integrity sha512-3f6qWexsHiT4WKtZc5DRb0FPLilHtARi5KpY4fqban/DJNn8/YhZH8U7dVKVz51WbOxEnR31gV+qYQhvEdHtdQ==
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -5542,6 +5616,14 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
   integrity sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
 
+react-native-fs@^2.16.6:
+  version "2.16.6"
+  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.16.6.tgz#2901789a43210a35a0ef0a098019bbef3af395fd"
+  integrity sha512-ZWOooD1AuFoAGY3HS2GY7Qx2LZo4oIg6AK0wbC68detxwvX75R/q9lRqThXNKP6vIo2VHWa0fYUo/SrLw80E8w==
+  dependencies:
+    base-64 "^0.1.0"
+    utf8 "^3.0.0"
+
 react-native-gesture-handler@~1.5.0:
   version "1.5.6"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.5.6.tgz#5d90145f624e3707db2930f43ab41579683e2375"
@@ -5570,6 +5652,11 @@ react-native-screens@2.0.0-alpha.12:
   dependencies:
     debounce "^1.2.0"
 
+react-native-share@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.0.0.tgz#5e158f773ebc91e35fbe48ffe21c0073c2c8f41a"
+  integrity sha512-5P/Fhou5jW1yY475h+wIR+VZAUZ1Gnx8N4QKGToOLNo1yUhDeLxYRhm3bGCcS/MEy35NOZ222/43SQGfUzCl/g==
+
 react-native-webview@^8.1.2:
   version "8.1.2"
   resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-8.1.2.tgz#c2ddb1e82d1c294f8f68a13be5d0536f7808f377"
@@ -5577,6 +5664,11 @@ react-native-webview@^8.1.2:
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
+
+react-native-zip-archive@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-zip-archive/-/react-native-zip-archive-5.0.1.tgz#fb99e3f6191d0d542a3d5db8ee9f1b43dd2b65dc"
+  integrity sha512-dcr5UoMnji7fwxwNYtA8GZyg31DAoCuO2O7L2FLvxVTgs1iZOHHsRRKTxK53bkGN4bwh1t24rwGW3HfDokddUQ==
 
 react-native@0.61.5:
   version "0.61.5"
@@ -5874,7 +5966,7 @@ rimraf@2.6.3:
   dependencies:
     glob "^7.1.3"
 
-rimraf@^2.5.4:
+rimraf@^2.5.4, rimraf@^2.6.3:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"
   integrity sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==
@@ -5892,6 +5984,14 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
+
+rn-fetch-blob@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/rn-fetch-blob/-/rn-fetch-blob-0.12.0.tgz#ec610d2f9b3f1065556b58ab9c106eeb256f3cba"
+  integrity sha512-+QnR7AsJ14zqpVVUbzbtAjq0iI8c9tCg49tIoKO2ezjzRunN7YL6zFSFSWZm6d+mE/l9r+OeDM3jmb2tBb2WbA==
+  dependencies:
+    base-64 "0.1.0"
+    glob "7.0.6"
 
 rsvp@^4.8.4:
   version "4.8.5"
@@ -6804,6 +6904,11 @@ use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
+
+utf8@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/utf8/-/utf8-3.0.0.tgz#f052eed1364d696e769ef058b183df88c87f69d1"
+  integrity sha512-E8VjFIQ/TyQgp+TZfS6l8yp/xWppSAHzidGiRrqe4bK4XP9pTRyKFgGJpO3SN7zdX4DeomTrwaseCHovfpFcqQ==
 
 util-deprecate@~1.0.1:
   version "1.0.2"
