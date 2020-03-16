@@ -109,13 +109,16 @@ export default class LocationServices {
             });
         });
 
-        BackgroundGeolocation.headlessTask(async (event) => {
-            // Application was shutdown, but the headless mechanism allows us
-            // to capture events in the background.  (On Android, at least)
-            if (event.name === 'location' || event.name === 'stationary') {
-                saveLocation(event.params);
-            }
-        });
+        if (Platform.OS === 'android') {
+            // This feature only is present on Android. 
+            BackgroundGeolocation.headlessTask(async (event) => {
+                // Application was shutdown, but the headless mechanism allows us
+                // to capture events in the background.  (On Android, at least)
+                if (event.name === 'location' || event.name === 'stationary') {
+                    saveLocation(event.params);
+                }
+            });
+        }
 
         BackgroundGeolocation.on('stationary', (stationaryLocation) => {
             // handle stationary locations here
@@ -124,7 +127,9 @@ export default class LocationServices {
                 // execute long running task
                 // eg. ajax post location
                 // IMPORTANT: task has to be ended by endTask
-                saveLocation(location);
+
+                // TODO: Location not a variable here. Where is this from? 
+                //saveLocation(location);
                 BackgroundGeolocation.endTask(taskKey);
             });
             console.log('[INFO] stationaryLocation:', stationaryLocation);
