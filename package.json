@@ -6,6 +6,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
+    "@react-native-community/cli-platform-ios": "^3.0.0",
     "@mauron85/react-native-background-geolocation": "^0.6.3",
     "@react-native-community/async-storage": "^1.8.1",
     "@react-native-community/masked-view": "0.1.5",
