@@ -7,8 +7,7 @@ import {
     ScrollView,
     Linking,
     View,
-    Text,
-    Alert
+    Text
 } from 'react-native';
 
 import colors from "../constants/colors";
@@ -28,17 +27,37 @@ class NewsScreen extends Component {
 
 
     render() {
-        return (
-            <SafeAreaView style={styles.container}>
-                <View style={styles.headerContainer}>
-                    <Text onPress={() => this.backToMain()} style={styles.backArrow}> &#8249; </Text>
-                    <Text style={styles.sectionDescription}>Latest News</Text>
-                </View>
-                <WebView
-                    source= {{ uri: 'https://privatekit.mit.edu/views' }}
-                    style= {{ marginTop: 15}}
-                />
-            </SafeAreaView>
+        return ( <
+            SafeAreaView style = {
+                styles.container
+            } >
+            <
+            View style = {
+                styles.headerContainer
+            } >
+            <
+            Text onPress = {
+                () => this.backToMain()
+            }
+            style = {
+                styles.backArrow
+            } > & #8249; </Text>
+                    <Text style= {
+                styles.sectionDescription
+            } > Latest News < /Text> <
+            /View> <
+            WebView source = {
+                {
+                    uri: 'https://privatekit.mit.edu/views'
+                }
+            }
+            style = {
+                {
+                    marginTop: 15
+                }
+            }
+            /> <
+            /SafeAreaView>
         )
     }
 }
