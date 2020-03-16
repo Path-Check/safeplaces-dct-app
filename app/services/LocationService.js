@@ -4,14 +4,61 @@ import {
 } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
-var instanceCount = 0
+var instanceCount = 0;
 var lastPointCount = 0;
+
+
+function saveLocation(location) {
+    // Persist this location data in our local storage of time/lat/lon values
+
+    GetStoreData('LOCATION_DATA')
+        .then(locationArrayString => {
+
+            var locationArray;
+            if (locationArrayString !== null) {
+                locationArray = JSON.parse(locationArrayString);
+            } else {
+                locationArray = [];
+            }
+
+            // Always work in UTC, not the local time in the locationData
+            var nowUTC = new Date().toISOString();
+            var unixtimeUTC = Date.parse(nowUTC);
+            var unixtimeUTC_28daysAgo = unixtimeUTC - (60 * 60 * 24 * 1000 * 28);
+
+            // Curate the list of points, only keep the last 28 days
+            var curated = [];
+            for (var i = 0; i < locationArray.length; i++) {
+                if (locationArray[i]["time"] > unixtimeUTC_28daysAgo) {
+                    curated.push(locationArray[i]);
+                }
+            }
+
+            // Save the location using the current lat-lon and the
+            // calculated UTC time (maybe a few milliseconds off from
+            // when the GPS data was collected, but that's unimportant
+            // for what we are doing.)
+            lastPointCount = locationArray.length;
+            console.log('[GPS] Saving point:', lastPointCount)
+            var lat_lon_time = {
+                "latitude": location["latitude"],
+                "longitude": location["longitude"],
+                "time": unixtimeUTC
+            };
+            curated.push(lat_lon_time);
+
+            SetStoreData('LOCATION_DATA', curated);
+        });
+}
+
 
 export default class LocationServices {
     static start() {
         instanceCount += 1
-        if (instanceCount > 1)
+        if (instanceCount > 1) {
+            BackgroundGeolocation.start();
             return;
+        }
 
         BackgroundGeolocation.configure({
             desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
@@ -19,9 +66,9 @@ export default class LocationServices {
             distanceFilter: 50,
             notificationTitle: 'PrivateKit Enabled',
             notificationText: 'PrivateKit is recording path information on this device.',
-            debug: false,
+            debug: false,    // when true, it beeps every time a loc is read
             startOnBoot: false,
-            stopOnTerminate: true,
+            stopOnTerminate: false,
             locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
 
             // DEBUG: Use these to get a faster output
@@ -51,46 +98,7 @@ export default class LocationServices {
                   "time": 1583696413000
                 }
             */
-
-            GetStoreData('LOCATION_DATA')
-                .then(locationArray => {
-                    var locationData;
-                    if (locationArray !== null) {
-                        locationData = JSON.parse(locationArray);
-                    } else {
-                        locationData = [];
-                    }
-
-                    locationData.push(location);
-                    lastPointCount = locationData.length;
-                    console.log('[GPS] Saving point:', lastPointCount)
-              
-                    // Curate the list of points
-                    SetStoreData('LOCATION_DATA', locationData); var nowUTC = new Date().toISOString();
-                    var unixtimeUTC = Date.parse(nowUTC);
-                    var unixtimeUTC_28daysAgo = unixtimeUTC - (60 * 60 * 24 * 1000 * 28);
-
-                    var curated = [];
-                    for (var i = 0; i < locationData.length; i++) {
-                        if (locationData[i]["time"] > unixtimeUTC_28daysAgo) {
-                            curated.push(locationData[i]);
-                        }
-                    }
-
-                    // Save the location using the current lat-lon and the
-                    // calculated UTC time (maybe a few milliseconds off from
-                    // when the GPS data was collected, but that's unimportant
-                    // for what we are doing.)
-                    console.log('[GPS] Saving point:', locationData.length);
-                    var lat_lon_time = {
-                        "latitude": location["latitude"],
-                        "longitude": location["longitude"],
-                        "time": unixtimeUTC
-                    };
-                    curated.push(lat_lon_time);
-
-                    SetStoreData('LOCATION_DATA', curated);
-                });
+            saveLocation(location)
 
             // to perform long running operation on iOS
             // you need to create background task
@@ -100,6 +108,14 @@ export default class LocationServices {
                 // IMPORTANT: task has to be ended by endTask
                 BackgroundGeolocation.endTask(taskKey);
             });
+        });
+
+        BackgroundGeolocation.headlessTask(async (event) => {
+            // Application was shutdown, but the headless mechanism allows us
+            // to capture events in the background.  (On Android, at least)
+            if (event.name === 'location' || event.name === 'stationary') {
+                saveLocation(event.params);
+            }
         });
 
         BackgroundGeolocation.on('stationary', (stationaryLocation) => {
@@ -160,6 +176,12 @@ export default class LocationServices {
 
         BackgroundGeolocation.on('stop', () => {
             // PUSH LOCAL NOTIFICATION HERE WARNING LOCATION HAS BEEN TERMINATED
+            console.log('[INFO] stop');
+        });
+
+        BackgroundGeolocation.on('stationary', () => {
+            // PUSH LOCAL NOTIFICATION HERE WARNING LOCATION HAS BEEN TERMINATED
+            console.log('[INFO] stationary');
         });
 
         BackgroundGeolocation.checkStatus(status => {
@@ -185,6 +207,7 @@ export default class LocationServices {
         // unregister all event listeners
         BackgroundGeolocation.removeAllListeners();
         BackgroundGeolocation.stop();
+        instanceCount -= 1;
     }
 
     static optOut(nav) {
