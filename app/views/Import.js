@@ -7,15 +7,16 @@ import {
     ScrollView,
     Linking,
     View,
-    Text,
-    Alert
+    Text
 } from 'react-native';
 
 import colors from "../constants/colors";
 import WebView from 'react-native-webview';
 import Button from "../components/Button";
 
-import {SearchAndImport} from '../helpers/GoogleTakeOutAutoImport';
+import {
+    SearchAndImport
+} from '../helpers/GoogleTakeOutAutoImport';
 
 class ImportScreen extends Component {
     constructor(props) {
@@ -29,8 +30,7 @@ class ImportScreen extends Component {
 
     }
 
-    componentWillUnmount() {
-    }
+    componentWillUnmount() { }
 
     backToMain() {
         this.props.navigation.navigate('LocationTrackingScreen', {})
@@ -47,13 +47,13 @@ class ImportScreen extends Component {
 
                 <View style={styles.main}>
                     <View style={styles.subHeaderTitle}>
-                        <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8}}>1. Login to your Google Account and Download your Location History</Text>
-                        <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8}}>2. After downloaded, open this screen again. The data will import automatically.</Text>
+                        <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8 }}>1. Login to your Google Account and Download your Location History</Text>
+                        <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8 }}>2. After downloaded, open this screen again. The data will import automatically.</Text>
                     </View>
                     <View style={styles.web}>
                         <WebView
-                            source= {{ uri: 'https://takeout.google.com/settings/takeout/custom/location_history' }}
-                            style= {{ marginTop: 15 }}
+                            source={{ uri: 'https://takeout.google.com/settings/takeout/custom/location_history' }}
+                            style={{ marginTop: 15 }}
                         />
                     </View>
                 </View>
