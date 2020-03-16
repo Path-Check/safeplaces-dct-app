@@ -98,14 +98,13 @@ export default class LocationServices {
                   "time": 1583696413000
                 }
             */
-            saveLocation(location)
-
             // to perform long running operation on iOS
             // you need to create background task
             BackgroundGeolocation.startTask(taskKey => {
                 // execute long running task
                 // eg. ajax post location
                 // IMPORTANT: task has to be ended by endTask
+                saveLocation(location);
                 BackgroundGeolocation.endTask(taskKey);
             });
         });
@@ -121,7 +120,11 @@ export default class LocationServices {
         BackgroundGeolocation.on('stationary', (stationaryLocation) => {
             // handle stationary locations here
             // Actions.sendLocation(stationaryLocation);
-            console.log('[INFO] stationaryLocation:', stationaryLocation);
+            // console.log('[INFO] stationaryLocation:', stationaryLocation);
+            BackgroundGeolocation.startTask(taskKey => {
+                saveLocation(location);
+                BackgroundGeolocation.endTask(taskKey);
+            });
         });
 
         BackgroundGeolocation.on('error', (error) => {
