@@ -134,7 +134,7 @@ export default class LocationServices {
                 // tested as I couldn't produce stationaryLocation callback in emulator
                 // but since the plugin documentation mentions it, no reason to keep
                 // it empty I believe.
-                saveLocation(stationarylocation);
+                saveLocation(stationaryLocation);
                 BackgroundGeolocation.endTask(taskKey);
             });
             console.log('[INFO] stationaryLocation:', stationaryLocation);
