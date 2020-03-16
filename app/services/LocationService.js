@@ -73,13 +73,13 @@ export default class LocationServices {
             locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
 
             // DEBUG: Use these to get a faster output
-            interval: 2000,
-            fastestInterval: 2000, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-            activitiesInterval: 2000,
+                /*interval: 2000,
+                fastestInterval: 2000, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+                activitiesInterval: 2000,*/
 
-            //interval: 20000,
-            //fastestInterval: 60000 * 5, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-            //activitiesInterval: 20000,
+            interval: 20000,
+            fastestInterval: 60000 * 5, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+            activitiesInterval: 20000,
 
             stopOnStillActivity: false,
             postTemplate: {
