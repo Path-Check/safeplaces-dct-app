@@ -3,6 +3,7 @@ import {
     SetStoreData
 } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
+import { Alert } from 'react-native';
 
 var instanceCount = 0;
 var lastPointCount = 0;
@@ -64,17 +65,17 @@ export default class LocationServices {
             desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
             stationaryRadius: 50,
             distanceFilter: 50,
-            notificationTitle: 'PrivateKit Enabled',
-            notificationText: 'PrivateKit is recording path information on this device.',
+            notificationTitle: 'Private Kit Enabled',
+            notificationText: 'Private Kit is securely storing your GPS coordinates once every five minutes on this device.',
             debug: false,    // when true, it beeps every time a loc is read
             startOnBoot: false,
             stopOnTerminate: false,
             locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
 
             // DEBUG: Use these to get a faster output
-            //            interval: 2000,
-            //            fastestInterval: 2000, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-            //            activitiesInterval: 2000,
+                /*interval: 2000,
+                fastestInterval: 2000, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+                activitiesInterval: 2000,*/
 
             interval: 20000,
             fastestInterval: 60000 * 5, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
@@ -120,7 +121,7 @@ export default class LocationServices {
         BackgroundGeolocation.on('stationary', (stationaryLocation) => {
             // handle stationary locations here
             // Actions.sendLocation(stationaryLocation);
-           BackgroundGeolocation.startTask(taskKey => {
+            BackgroundGeolocation.startTask(taskKey => {
                 // execute long running task
                 // eg. ajax post location
                 // IMPORTANT: task has to be ended by endTask
@@ -144,10 +145,11 @@ export default class LocationServices {
 
         BackgroundGeolocation.on('authorization', (status) => {
             console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
+
             if (status !== BackgroundGeolocation.AUTHORIZED) {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
-                    Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [{
+                    Alert.alert('Private Kit requires access to location information', 'Would you like to open app settings?', [{
                         text: 'Yes',
                         onPress: () => BackgroundGeolocation.showAppSettings()
                     },
@@ -157,6 +159,12 @@ export default class LocationServices {
                         style: 'cancel'
                     }
                     ]), 1000);
+            }
+            else {
+                BackgroundGeolocation.start(); //triggers start on start event
+
+                // TODO: We reach this point on Android when location services are toggled off/on.
+                //       When this fires, check if they are off and show a Notification in the tray
             }
         });
 
@@ -195,10 +203,39 @@ export default class LocationServices {
             console.log('[INFO] BackgroundGeolocation services enabled', status.locationServicesEnabled);
             console.log('[INFO] BackgroundGeolocation auth status: ' + status.authorization);
 
-            // you don't need to check status before start (this is just the example)
-            if (!status.isRunning) {
-                BackgroundGeolocation.start(); //triggers start on start event
+            BackgroundGeolocation.start(); //triggers start on start event
+
+            if (!status.locationServicesEnabled) {
+                // we need to set delay or otherwise alert may not be shown
+                setTimeout(() =>
+                    Alert.alert('Private Kit requires location services to be enabled', 'Would you like to open location settings?', [{
+                        text: 'Yes',
+                        onPress: () => BackgroundGeolocation.showLocationSettings()
+                    },
+                    {
+                        text: 'No',
+                        onPress: () => console.log('No Pressed'),
+                        style: 'cancel'
+                    }
+                    ]), 1000);
             }
+            else if (!status.authorization) {
+                // we need to set delay or otherwise alert may not be shown
+                setTimeout(() =>
+                    Alert.alert('Private Kit requires access to location information', 'Would you like to open app settings?', [{
+                        text: 'Yes',
+                        onPress: () => BackgroundGeolocation.showAppSettings()
+                    },
+                    {
+                        text: 'No',
+                        onPress: () => console.log('No Pressed'),
+                        style: 'cancel'
+                    }
+                    ]), 1000);
+            }
+            else if (!status.isRunning) {
+            }
+
         });
 
         // you can also just start without checking for status
