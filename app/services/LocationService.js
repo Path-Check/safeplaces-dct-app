@@ -5,6 +5,7 @@ import {
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 var instanceCount = 0
+var lastPointCount = 0;
 
 export default class LocationServices {
     static start() {
@@ -60,6 +61,10 @@ export default class LocationServices {
                         locationData = [];
                     }
 
+                    locationData.push(location);
+                    lastPointCount = locationData.length;
+                    console.log('[GPS] Saving point:', lastPointCount)
+              
                     // Curate the list of points
                     SetStoreData('LOCATION_DATA', locationData); var nowUTC = new Date().toISOString();
                     var unixtimeUTC = Date.parse(nowUTC);
@@ -171,6 +176,11 @@ export default class LocationServices {
         // you can also just start without checking for status
         // BackgroundGeolocation.start();
     }
+
+    static getPointCount() {
+        return lastPointCount;
+    }
+
     static stop() {
         // unregister all event listeners
         BackgroundGeolocation.removeAllListeners();
