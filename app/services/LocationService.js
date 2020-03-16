@@ -63,9 +63,33 @@ export default class LocationServices {
 
                     locationData.push(location);
                     lastPointCount = locationData.length;
-                    console.log('[GPS] Saving point:', lastPointCount);
+                    console.log('[GPS] Saving point:', lastPointCount)
+              
+                    // Curate the list of points
+                    SetStoreData('LOCATION_DATA', locationData); var nowUTC = new Date().toISOString();
+                    var unixtimeUTC = Date.parse(nowUTC);
+                    var unixtimeUTC_28daysAgo = unixtimeUTC - (60 * 60 * 24 * 1000 * 28);
 
-                    SetStoreData('LOCATION_DATA', locationData);
+                    var curated = [];
+                    for (var i = 0; i < locationData.length; i++) {
+                        if (locationData[i]["time"] > unixtimeUTC_28daysAgo) {
+                            curated.push(locationData[i]);
+                        }
+                    }
+
+                    // Save the location using the current lat-lon and the
+                    // calculated UTC time (maybe a few milliseconds off from
+                    // when the GPS data was collected, but that's unimportant
+                    // for what we are doing.)
+                    console.log('[GPS] Saving point:', locationData.length);
+                    var lat_lon_time = {
+                        "latitude": location["latitude"],
+                        "longitude": location["longitude"],
+                        "time": unixtimeUTC
+                    };
+                    curated.push(lat_lon_time);
+
+                    SetStoreData('LOCATION_DATA', curated);
                 });
 
             // to perform long running operation on iOS
