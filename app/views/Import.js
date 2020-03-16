@@ -30,7 +30,7 @@ class ImportScreen extends Component {
 
     }
 
-    componentWillUnmount() {}
+    componentWillUnmount() { }
 
     backToMain() {
         this.props.navigation.navigate('LocationTrackingScreen', {})
@@ -38,69 +38,26 @@ class ImportScreen extends Component {
 
 
     render() {
-        return ( <
-            SafeAreaView style = {
-                styles.container
-            } >
-            <
-            View style = {
-                styles.headerContainer
-            } >
-            <
-            Text onPress = {
-                () => this.backToMain()
-            }
-            style = {
-                styles.backArrow
-            } > & #8249; </Text>
-                    <Text style= {
-                styles.sectionDescription
-            } > Import Locations < /Text> <
-            /View>
+        return (
+            <SafeAreaView style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <Text onPress={() => this.backToMain()} style={styles.backArrow}> &#8249; </Text>
+                    <Text style={styles.sectionDescription}>Import Locations</Text>
+                </View>
 
-            <
-            View style = {
-                styles.main
-            } >
-            <
-            View style = {
-                styles.subHeaderTitle
-            } >
-            <
-            Text style = {
-                styles.sectionDescription,
-                {
-                    fontSize: 18,
-                    marginTop: 8
-                }
-            } > 1. Login to your Google Account and Download your Location History < /Text> <
-            Text style = {
-                styles.sectionDescription,
-                {
-                    fontSize: 18,
-                    marginTop: 8
-                }
-            } > 2. After downloaded, open this screen again.The data will
-            import automatically. < /Text> <
-            /View> <
-            View style = {
-                styles.web
-            } >
-            <
-            WebView source = {
-                {
-                    uri: 'https://takeout.google.com/settings/takeout/custom/location_history'
-                }
-            }
-            style = {
-                {
-                    marginTop: 15
-                }
-            }
-            /> <
-            /View> <
-            /View> <
-            /SafeAreaView>
+                <View style={styles.main}>
+                    <View style={styles.subHeaderTitle}>
+                        <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8 }}>1. Login to your Google Account and Download your Location History</Text>
+                        <Text style={styles.sectionDescription, { fontSize: 18, marginTop: 8 }}>2. After downloaded, open this screen again. The data will import automatically.</Text>
+                    </View>
+                    <View style={styles.web}>
+                        <WebView
+                            source={{ uri: 'https://takeout.google.com/settings/takeout/custom/location_history' }}
+                            style={{ marginTop: 15 }}
+                        />
+                    </View>
+                </View>
+            </SafeAreaView>
         )
     }
 }
