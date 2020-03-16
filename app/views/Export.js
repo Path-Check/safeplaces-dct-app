@@ -8,7 +8,6 @@ import {
     Linking,
     View,
     Text,
-    Alert,
     Image
 } from 'react-native';
 
@@ -46,10 +45,10 @@ class ExportScreen extends Component {
 
             b64Data = base64.encode(JSON.stringify(locationData));
             Share.open({
-                    url: "data:string/txt;base64," + b64Data
-                }).then(res => {
-                    console.log(res);
-                })
+                url: "data:string/txt;base64," + b64Data
+            }).then(res => {
+                console.log(res);
+            })
                 .catch(err => {
                     console.log(err.message, err.code);
                 })
@@ -79,7 +78,7 @@ class ExportScreen extends Component {
                     <View style={styles.block}>
                         <Button onPress={this.onShare} title="Share" />
                     </View>
-                    <Text style={styles.mainText}>Points to be shared: { LocationServices.getPointCount() }</Text>
+                    <Text style={styles.mainText}>Points to be shared: {LocationServices.getPointCount()}</Text>
                 </View>
 
             </SafeAreaView>
