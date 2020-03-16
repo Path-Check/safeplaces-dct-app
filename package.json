@@ -3,11 +3,7 @@
   "version": "0.5",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint ."
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@mauron85/react-native-background-geolocation": "^0.6.3",
@@ -16,6 +12,8 @@
     "@react-navigation/native": "5.0.9",
     "@react-navigation/stack": "5.1.1",
     "lodash": "4.17.15",
+    "patch-package": "^6.2.1",
+    "postinstall-postinstall": "^2.0.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-fs": "^2.16.6",
