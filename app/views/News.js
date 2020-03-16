@@ -7,8 +7,7 @@ import {
     ScrollView,
     Linking,
     View,
-    Text,
-    Alert
+    Text
 } from 'react-native';
 
 import colors from "../constants/colors";
@@ -35,8 +34,8 @@ class NewsScreen extends Component {
                     <Text style={styles.sectionDescription}>Latest News</Text>
                 </View>
                 <WebView
-                    source= {{ uri: 'https://privatekit.mit.edu/views' }}
-                    style= {{ marginTop: 15}}
+                    source={{ uri: 'https://privatekit.mit.edu/views' }}
+                    style={{ marginTop: 15 }}
                 />
             </SafeAreaView>
         )
