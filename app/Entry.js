@@ -8,42 +8,54 @@ import Welcome from './views/Welcome';
 import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
-import Intro1 from './views/welcomeScreens/Intro1';
-import Intro2 from './views/welcomeScreens/Intro2';
-import Intro3 from './views/welcomeScreens/Intro3';
 import Slider from './views/welcomeScreens/Slider';
+import {GetStoreData, SetStoreData} from './helpers/General';
 
 const Stack = createStackNavigator();
 
 class Entry extends Component {
     constructor(props) {
         super(props);
+        this.state={
+          initialRouteName:''
+        }
+    }
+
+    componentDidMount(){
+      GetStoreData('PARTICIPATE')
+      .then(isParticipating => {
+          console.log(isParticipating);
+              this.setState({
+                initialRouteName:isParticipating
+              })
+      })
+      .catch(error => console.log(error))
     }
 
     render() {
       return (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="WelcomeScreen ">
+          <Stack.Navigator initialRouteName='InitialScreen'>
+            {this.state.initialRouteName === 'true' ? (
+              <Stack.Screen
+              name="InitialScreen"
+              component={LocationTracking}
+              options={{headerShown:false}}
+                />
+            ):(
+              <Stack.Screen
+              name="InitialScreen"
+              component={Slider}
+              options={{headerShown:false}}
+                />
+            )}
           <Stack.Screen
               name="Slider"
               component={Slider}
               options={{headerShown:false}}
                 />
-          <Stack.Screen
-              name="Intro1"
-              component={Intro1}
-              options={{headerShown:false}}
-                />
-                <Stack.Screen
-              name="Intro2"
-              component={Intro2}
-              options={{headerShown:false}}
-                />
-                   <Stack.Screen
-              name="Intro3"
-              component={Intro3}
-              options={{headerShown:false}}
-                />
+          
+          
             <Stack.Screen
               name="WelcomeScreen"
               component={Welcome}

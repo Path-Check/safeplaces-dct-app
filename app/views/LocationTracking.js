@@ -12,9 +12,7 @@ import {
     Image,
     ScrollView
 } from 'react-native';
-
 import colors from "../constants/colors";
-import Button from "../components/Button";
 import LocationServices from '../services/LocationService';
 import exportImage from './../assets/images/export.png';
 import news from './../assets/images/newspaper.png';
