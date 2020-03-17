@@ -17,14 +17,14 @@ const Intro1 = (props) => {
            <View style={styles.navigationDotsView}>
            <View  style={styles.activeIndicator}/>
                <TouchableOpacity 
-               onPress={()=>props.swipe(2)}
+               onPress={()=>props.swipe(1)}
                style={styles.inactiveIndicator}/>
             <TouchableOpacity 
-            onPress={()=>props.swipe(3)}
+            onPress={()=>props.swipe(2)}
                style={styles.inactiveIndicator}/>
            </View>          
            <TouchableOpacity 
-            onPress={()=>props.swipe(2)}
+            onPress={()=>props.swipe(1)}
             style={styles.primaryButtonTouchable} >
                 <Text 
                     style={styles.primaryButtonText}>NEXT</Text>

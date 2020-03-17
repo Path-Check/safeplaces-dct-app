@@ -24,11 +24,11 @@ http://privatekit.mit.edu/
            
            <View style={styles.navigationDotsView}>
            <TouchableOpacity 
-           onPress={()=>props.swipe(-1)}
+           onPress={()=>props.swipe(-2)}
                style={styles.inactiveIndicator}/>
               
             <TouchableOpacity 
-            onPress={()=>props.swipe(0)}
+            onPress={()=>props.swipe(-1)}
                style={styles.inactiveIndicator}/>
              <View 
                style={styles.activeIndicator}/>
@@ -36,7 +36,7 @@ http://privatekit.mit.edu/
 
             <View style={styles.buttonContainer}>
             <TouchableOpacity 
-            onPress={()=>props.swipe(0)}
+            onPress={()=>props.swipe(-1)}
             style={styles.secondaryButtonTouchable} >
                 <Text style={styles.secondaryButtonText}>BACK</Text>
             </TouchableOpacity>

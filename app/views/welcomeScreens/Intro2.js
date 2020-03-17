@@ -25,25 +25,25 @@ Data Never Leaves Your Device Without Your Consent                </Text>
            
            <View style={styles.navigationDotsView}>
            <TouchableOpacity 
-           onPress={()=>props.swipe(0)}
+           onPress={()=>props.swipe(-1)}
                style={styles.inactiveIndicator}/>
                <View 
                style={styles.activeIndicator}/>
             <TouchableOpacity 
-            onPress={()=>props.swipe(2)}
+            onPress={()=>props.swipe(1)}
                style={styles.inactiveIndicator}/>
            </View>
 
             <View style={styles.buttonContainer}>
             <TouchableOpacity 
-            onPress={()=>props.swipe(0)}
+            onPress={()=>props.swipe(-1)}
             style={styles.secondaryButtonTouchable} >
                 <Text 
                     style={styles.secondaryButtonText}>BACK</Text>
             </TouchableOpacity>
           
            <TouchableOpacity 
-           onPress={()=>props.swipe(2)}
+           onPress={()=>props.swipe(1)}
             style={styles.primaryButtonTouchable} >
                 <Text 
                     style={styles.primaryButtonText}>NEXT</Text>
