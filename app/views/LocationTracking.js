@@ -16,6 +16,9 @@ import colors from "../constants/colors";
 import LocationServices from '../services/LocationService';
 import exportImage from './../assets/images/export.png';
 import news from './../assets/images/newspaper.png';
+
+import pkLogo from './../assets/images/PKLogo.png';
+
 import {GetStoreData, SetStoreData} from '../helpers/General';
 
 const width = Dimensions.get('window').width;
@@ -82,11 +85,21 @@ class LocationTracking extends Component {
                             <Text style={styles.headerTitle}>Private Kit</Text>
 
                             {
-                                this.state.isLogging ? (<TouchableOpacity onPress={() => this.setOptOut()} style={styles.stopLoggingButtonTouchable} >
+                                this.state.isLogging === 'true' ? (
+                                    <>
+                                    <Image source={pkLogo} style={{width:132,height:164.4,alignSelf:'center',marginTop:12}} />
+
+                                <TouchableOpacity onPress={() => this.setOptOut()} style={styles.stopLoggingButtonTouchable} >
                                 <Text style={styles.stopLoggingButtonText}>STOP LOGGING</Text>
-                            </TouchableOpacity>) : ( <TouchableOpacity onPress={() => this.willParticipate()} style={styles.startLoggingButtonTouchable} >
+                            </TouchableOpacity>
+                            </>
+                            ) : ( 
+                            <>
+                            <Image source={pkLogo} style={{width:132,height:164.4,alignSelf:'center',marginTop:12,opacity:.3}} />
+                            <TouchableOpacity onPress={() => this.willParticipate()} style={styles.startLoggingButtonTouchable} >
                                 <Text style={styles.startLoggingButtonText}>START LOGGING</Text>
-                            </TouchableOpacity>)
+                            </TouchableOpacity>
+                            </>)
                             }
                            
                            {this.state.isLogging ?  
@@ -203,7 +216,7 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         width:width*.7866,
         marginTop:30,
-        justifyContent:'center'
+        justifyContent:'center',
     },
     stopLoggingButtonText:{
         fontFamily: "OpenSans-Bold",
