@@ -1,6 +1,6 @@
 {
   "name": "privatekit",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "scripts": {
     "postinstall": "patch-package"
