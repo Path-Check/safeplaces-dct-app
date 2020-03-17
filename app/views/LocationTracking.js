@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
     Dimensions,
     Image,
-    ScrollView
+    ScrollView,BackHandler
 } from 'react-native';
 import colors from "../constants/colors";
 import LocationServices from '../services/LocationService';
@@ -33,6 +33,7 @@ class LocationTracking extends Component {
     }
 
     componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.handleBackPress); 
         GetStoreData('PARTICIPATE')
         .then(isParticipating => {
             console.log(isParticipating);
@@ -51,7 +52,12 @@ class LocationTracking extends Component {
         })
         .catch(error => console.log(error))
     }
+    componentWillUnmount() {     BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress);   }   
 
+    handleBackPress = () => {     
+        BackHandler.exitApp(); // works best when the goBack is async     
+        return true;   
+    };   
     export() {
         this.props.navigation.navigate('ExportScreen', {})
     }
