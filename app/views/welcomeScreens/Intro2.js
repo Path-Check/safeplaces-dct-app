@@ -36,14 +36,14 @@ Data Never Leaves Your Device Without Your Consent                </Text>
 
             <View style={styles.buttonContainer}>
             <TouchableOpacity 
-            onPress={()=>props.navigation.navigate('Intro1')}
+            onPress={()=>props.swipe(0)}
             style={styles.secondaryButtonTouchable} >
                 <Text 
                     style={styles.secondaryButtonText}>BACK</Text>
             </TouchableOpacity>
           
            <TouchableOpacity 
-           onPress={()=>props.navigation.navigate('Intro3')}
+           onPress={()=>props.swipe(2)}
             style={styles.primaryButtonTouchable} >
                 <Text 
                     style={styles.primaryButtonText}>NEXT</Text>

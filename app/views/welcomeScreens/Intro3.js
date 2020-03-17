@@ -36,7 +36,7 @@ http://privatekit.mit.edu/
 
             <View style={styles.buttonContainer}>
             <TouchableOpacity 
-            onPress={()=>props.navigation.navigate('Intro2')}
+            onPress={()=>props.swipe(0)}
             style={styles.secondaryButtonTouchable} >
                 <Text style={styles.secondaryButtonText}>BACK</Text>
             </TouchableOpacity>
@@ -45,7 +45,7 @@ http://privatekit.mit.edu/
            onPress={()=>props.navigation.navigate('LocationTrackingScreen')}
             style={styles.primaryButtonTouchable} >
                 <Text 
-                    style={styles.primaryButtonText}>NEXT</Text>
+                    style={styles.primaryButtonText}>START</Text>
             </TouchableOpacity>
             </View>
           

@@ -24,7 +24,7 @@ const Intro1 = (props) => {
                style={styles.inactiveIndicator}/>
            </View>          
            <TouchableOpacity 
-           onPress={()=>props.navigation.navigate('Intro2')}
+            onPress={()=>props.swipe(2)}
             style={styles.primaryButtonTouchable} >
                 <Text 
                     style={styles.primaryButtonText}>NEXT</Text>

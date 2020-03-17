@@ -15,6 +15,7 @@
     "@react-native-community/async-storage": "^1.8.1",
     "@react-native-community/cli-platform-ios": "^3.0.0",
     "@react-native-community/masked-view": "0.1.5",
+    "@react-native-community/viewpager": "^3.3.0",
     "@react-navigation/native": "5.0.9",
     "@react-navigation/stack": "5.1.1",
     "lodash": "4.17.15",

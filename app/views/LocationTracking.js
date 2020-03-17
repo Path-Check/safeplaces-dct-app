@@ -18,14 +18,31 @@ import Button from "../components/Button";
 import LocationServices from '../services/LocationService';
 import exportImage from './../assets/images/export.png';
 import news from './../assets/images/newspaper.png';
-import web from './../assets/images/www.png';
+import {GetStoreData, SetStoreData} from '../helpers/General';
 
 const width = Dimensions.get('window').width;
 
 class LocationTracking extends Component {
     constructor(props) {
         super(props);
-        LocationServices.start();
+        
+        this.state = {
+            isLogging:''
+        }
+    }
+
+    componentDidMount() {
+        GetStoreData('PARTICIPATE')
+        .then(isParticipating => {
+            console.log(isParticipating);
+                this.setState({
+                    isLogging:isParticipating
+                })
+                if(isParticipating === 'true'){
+                    this.willParticipate()
+                }
+        })
+        .catch(error => console.log(error))
     }
 
     export() {
@@ -40,6 +57,22 @@ class LocationTracking extends Component {
         this.props.navigation.navigate('NewsScreen', {})
     }
 
+    willParticipate =()=> {
+        SetStoreData('PARTICIPATE', 'true').then(() =>
+            LocationServices.start()
+        );
+        this.setState({
+            isLogging:true
+        })
+    }
+
+    setOptOut =()=>{
+        LocationServices.optOut(this.props.navigation)
+        this.setState({
+            isLogging:false
+        })
+    }
+
     render() {
         return (
             <SafeAreaView style={styles.container} >
@@ -50,12 +83,20 @@ class LocationTracking extends Component {
 
                             <Text style={styles.headerTitle}>Private Kit</Text>
 
-                            <TouchableOpacity style={styles.startLoggingButtonTouchable} >
+                            {
+                                this.state.isLogging ? (<TouchableOpacity onPress={() => this.setOptOut()} style={styles.stopLoggingButtonTouchable} >
+                                <Text style={styles.stopLoggingButtonText}>STOP LOGGING</Text>
+                            </TouchableOpacity>) : ( <TouchableOpacity onPress={() => this.willParticipate()} style={styles.startLoggingButtonTouchable} >
                                 <Text style={styles.startLoggingButtonText}>START LOGGING</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity>)
+                            }
+                           
+                           {this.state.isLogging ?  
+                            <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text> :
+                           <Text style={styles.sectionDescription} >NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.</Text> }
+                           
 
                             {/* <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text> */}
-                            {/* <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text> */}
 
                         </View>
                     </View>
@@ -76,15 +117,11 @@ class LocationTracking extends Component {
                             <Text style={styles.actionButtonText}>News</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.block}>
-                        <Button title={"Stop Recording Location"} bgColor={colors.NEG_BUTTON} onPress={() => LocationServices.optOut(this.props.navigation)} />
-                    </View>
-                    
                 </ScrollView>
 
                 <View style={styles.footer}>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
+                    <Text style={[styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }]}>For more information visit the Private Kit hompage:</Text>
+                    <Text style={[styles.sectionDescription, { color: 'blue', textAlign: 'center',marginTop:0 }]} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
                 </View>
             </SafeAreaView>
         )
@@ -124,9 +161,6 @@ const styles = StyleSheet.create({
         margin: 20,
         width: "100%"
     },
-    topView: {
-        flex: 1,
-    },
     footer: {
         textAlign: 'center',
         fontSize: 12,
@@ -135,15 +169,14 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     intro: {
-        flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'stretch',
     },
     sectionDescription: {
-        fontSize: 18,
+        fontSize: 12,
         lineHeight: 24,
-        fontWeight: '400',
+        fontFamily:'OpenSans-Regular',
         marginTop: 20,
         marginLeft: 10,
         marginRight: 10
@@ -165,10 +198,28 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "#ffffff"
     },
+    stopLoggingButtonTouchable:{
+        borderRadius: 12,
+        backgroundColor: "#fd4a4a",
+        height:52,
+        alignSelf:'center',
+        width:width*.7866,
+        marginTop:30,
+        justifyContent:'center'
+    },
+    stopLoggingButtonText:{
+        fontFamily: "OpenSans-Bold",
+        fontSize: 14,
+        lineHeight: 19,
+        letterSpacing: 0,
+        textAlign: "center",
+        color: "#ffffff"
+    },
     actionButtonsView:{
         width:width*.7866,
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        marginTop:64
     },
     actionButtonsTouchable:{
         height: 76,

@@ -11,6 +11,7 @@ import ImportScreen from './views/Import';
 import Intro1 from './views/welcomeScreens/Intro1';
 import Intro2 from './views/welcomeScreens/Intro2';
 import Intro3 from './views/welcomeScreens/Intro3';
+import Slider from './views/welcomeScreens/Slider';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,11 @@ class Entry extends Component {
       return (
         <NavigationContainer>
           <Stack.Navigator initialRouteName="WelcomeScreen ">
+          <Stack.Screen
+              name="Slider"
+              component={Slider}
+              options={{headerShown:false}}
+                />
           <Stack.Screen
               name="Intro1"
               component={Intro1}
