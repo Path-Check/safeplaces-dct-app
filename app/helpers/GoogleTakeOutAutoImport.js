@@ -31,6 +31,12 @@ export async function SearchAndImport(googleLocationJSON) {
         console.log('Unzipping', Math.trunc(progress * 100), '%');
     });
 
+    // TODO: RNFS.DownloadDirectoryPath is not defined on iOS. 
+    // Find out how to access Downloads folder.  
+    if (!RNFS.DownloadDirectoryPath) {
+        return;
+    }
+
     RNFS.readDir(RNFS.DownloadDirectoryPath) 
         .then((result) => {
             console.log('Checking Downloads Folder');
