@@ -8,6 +8,9 @@ import Welcome from './views/Welcome';
 import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
+import Intro1 from './views/welcomeScreens/Intro1';
+import Intro2 from './views/welcomeScreens/Intro2';
+import Intro3 from './views/welcomeScreens/Intro3';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +23,21 @@ class Entry extends Component {
       return (
         <NavigationContainer>
           <Stack.Navigator initialRouteName="WelcomeScreen ">
+          <Stack.Screen
+              name="Intro1"
+              component={Intro1}
+              options={{headerShown:false}}
+                />
+                <Stack.Screen
+              name="Intro2"
+              component={Intro2}
+              options={{headerShown:false}}
+                />
+                   <Stack.Screen
+              name="Intro3"
+              component={Intro3}
+              options={{headerShown:false}}
+                />
             <Stack.Screen
               name="WelcomeScreen"
               component={Welcome}
