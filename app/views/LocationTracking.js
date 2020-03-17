@@ -36,11 +36,17 @@ class LocationTracking extends Component {
         GetStoreData('PARTICIPATE')
         .then(isParticipating => {
             console.log(isParticipating);
-                this.setState({
-                    isLogging:isParticipating
-                })
+               
                 if(isParticipating === 'true'){
+                    this.setState({
+                        isLogging:true
+                    })
                     this.willParticipate()
+                }
+                else{
+                    this.setState({
+                        isLogging:false
+                    }) 
                 }
         })
         .catch(error => console.log(error))
@@ -85,7 +91,7 @@ class LocationTracking extends Component {
                             <Text style={styles.headerTitle}>Private Kit</Text>
 
                             {
-                                this.state.isLogging === 'true' ? (
+                                this.state.isLogging  ? (
                                     <>
                                     <Image source={pkLogo} style={{width:132,height:164.4,alignSelf:'center',marginTop:12}} />
 
