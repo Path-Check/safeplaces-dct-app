@@ -24,11 +24,11 @@ http://privatekit.mit.edu/
            
            <View style={styles.navigationDotsView}>
            <TouchableOpacity 
-           onPress={()=>props.navigation.navigate('Intro1')}
+           onPress={()=>props.swipe(-1)}
                style={styles.inactiveIndicator}/>
               
             <TouchableOpacity 
-            onPress={()=>props.navigation.navigate('Intro2')}
+            onPress={()=>props.swipe(0)}
                style={styles.inactiveIndicator}/>
              <View 
                style={styles.activeIndicator}/>

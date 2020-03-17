@@ -17,10 +17,10 @@ const Intro1 = (props) => {
            <View style={styles.navigationDotsView}>
            <View  style={styles.activeIndicator}/>
                <TouchableOpacity 
-               onPress={()=>props.navigation.navigate('Intro2')}
+               onPress={()=>props.swipe(2)}
                style={styles.inactiveIndicator}/>
             <TouchableOpacity 
-            onPress={()=>props.navigation.navigate('Intro3')}
+            onPress={()=>props.swipe(3)}
                style={styles.inactiveIndicator}/>
            </View>          
            <TouchableOpacity 

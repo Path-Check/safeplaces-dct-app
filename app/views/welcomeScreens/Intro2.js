@@ -25,12 +25,12 @@ Data Never Leaves Your Device Without Your Consent                </Text>
            
            <View style={styles.navigationDotsView}>
            <TouchableOpacity 
-           onPress={()=>props.navigation.navigate('Intro1')}
+           onPress={()=>props.swipe(0)}
                style={styles.inactiveIndicator}/>
                <View 
                style={styles.activeIndicator}/>
             <TouchableOpacity 
-            onPress={()=>props.navigation.navigate('Intro3')}
+            onPress={()=>props.swipe(2)}
                style={styles.inactiveIndicator}/>
            </View>
 
