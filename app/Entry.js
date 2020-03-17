@@ -2,7 +2,7 @@ import React, {Component } from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import {SafeAreaView} from 'react-native';
 import LocationTracking from './views/LocationTracking';
 import Welcome from './views/Welcome';
 import NewsScreen from './views/News';
@@ -35,6 +35,7 @@ class Entry extends Component {
     render() {
       return (
         <NavigationContainer>
+          <SafeAreaView style={{flex:1}}>
           <Stack.Navigator initialRouteName='InitialScreen'>
             {this.state.initialRouteName === 'true' ? (
               <Stack.Screen
@@ -82,6 +83,7 @@ class Entry extends Component {
               options={{headerShown:false}}
             />
           </Stack.Navigator>
+          </SafeAreaView>
         </NavigationContainer>
       )
     }
