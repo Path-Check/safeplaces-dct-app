@@ -26,7 +26,7 @@ jobs:
         brew install ant
         brew install maven
         brew install gradle
-        brew install android-sdk  
+        brew cask install android-sdk  
       
     - name: Accepting license
       run: android update sdk --no-ui  
