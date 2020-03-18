@@ -19,7 +19,7 @@ jobs:
       run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
       
     - name: Installing Java
-      run: brew tap adoptopenjdk/openjdk && brew cask install adoptopenjdk8      
+      run: brew tap adoptopenjdk/openjdk && brew cask install adoptopenjdk/openjdk/adoptopenjdk8     
       
     - name: Installing Android Studio
       run: | 
