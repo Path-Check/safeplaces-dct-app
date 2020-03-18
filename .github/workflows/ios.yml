@@ -60,5 +60,9 @@ jobs:
         pod repo update
         pod install
  
-    - name: Building
+    - name: Building React Native
       run: npx react-native build
+
+    - name: Android AssembleRelease
+      run: ./gradlew bundleRelease
+      working-directory: ./android
