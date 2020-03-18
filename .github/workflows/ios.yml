@@ -51,14 +51,16 @@ jobs:
     - name: Installing CocoaPods
       run: gem install cocoapods
 
+    - name: Update Pods
+      run: pod repo update
+      working-directory: ./ios
+
     - name: Yarn Install
       run: yarn install      
-      
+    
     - name: Pod Install 
-      run: |
-        cd ios
-        pod repo update
-        pod install
+      run: pod install
+      working-directory: ./ios
  
     - name: Building React Native
       run: npx react-native build
