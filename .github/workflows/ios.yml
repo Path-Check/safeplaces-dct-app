@@ -56,9 +56,6 @@ jobs:
     - name: Download Support Library Google M2   
       run: (echo y; echo y; echo y;) | sdkmanager "extras;google;m2repository"
 
-    - name: Updating SDK Manager (new Repos)
-      run: (echo y; echo y; echo y;) | sdkmanager --update
-
     - name: Download Support Library Solver for ConstraintLayout 1.0.2       
       run: (echo y; echo y; echo y;) | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 
