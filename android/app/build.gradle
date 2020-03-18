@@ -191,6 +191,7 @@ android {
 }
 
 dependencies {
+    implementation "com.android.support:support-core-utils:28.0.3"
     implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
