@@ -44,8 +44,8 @@ jobs:
     - name: Adding Build tools to Path
       run: export PATH=$ANDROID_HOME/build-tools/$(ls -tr $ANDROID_HOME/build-tools/ | tail -1):$PATH
       
-    - name: Accepting Android license
-      run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '0' ]; then exit 0; fi;
+    #- name: Accepting Android license
+    #  run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '0' ]; then exit 0; fi;
       #   #Captures SIGPIPE 141 error but still allow repeating "y" to accept all licenses
       
     - name: Installing NodeJS
