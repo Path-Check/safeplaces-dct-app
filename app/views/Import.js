@@ -9,7 +9,7 @@ import {
     View,
     Text,
     Image,
-    TouchableOpacity
+    TouchableOpacity,BackHandler
 } from 'react-native';
 
 import colors from "../constants/colors";
@@ -28,16 +28,22 @@ class ImportScreen extends Component {
         SearchAndImport();
     }
 
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() { }
-
     backToMain() {
         this.props.navigation.navigate('LocationTrackingScreen', {})
     }
 
+    handleBackPress = () => {     
+        this.props.navigation.navigate('LocationTrackingScreen', {});
+        return true;   
+    };  
+
+    componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.handleBackPress); 
+    }
+
+    componentWillUnmount() { 
+        BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress); 
+    }
 
     render() {
         return (
