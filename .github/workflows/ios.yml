@@ -44,6 +44,7 @@ jobs:
     - name: Adding Build tools to Path
       run: export PATH=$ANDROID_HOME/build-tools/$(ls -tr $ANDROID_HOME/build-tools/ | tail -1):$PATH
       
+    # This is ugly but it is the only thing that seems to work.   
     - name: Accepting Android license
       run: sdkmanager --update && (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
