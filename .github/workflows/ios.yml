@@ -39,7 +39,7 @@ jobs:
       run: sdkmanager "build-tools;28.0.3" 
        
     - name: Download Android 28       
-        sdkmanager "platforms;android-28"
+      run: sdkmanager "platforms;android-28"
 
     - name: Adding Build tools to Path
       run: export PATH=$ANDROID_HOME/build-tools/$(ls -tr $ANDROID_HOME/build-tools/ | tail -1):$PATH
