@@ -63,7 +63,7 @@ jobs:
       working-directory: ./ios
  
     - name: Building React Native
-      run: npx react-native build
+      run: npx react-native bundle
 
     - name: Android AssembleRelease
       run: ./gradlew bundleRelease
