@@ -41,9 +41,24 @@ jobs:
     - name: Download Android 28       
       run: sdkmanager "platforms;android-28"
 
+    - name: Download Support Library       
+      run: sdkmanager "extras;android;support"
+
+    - name: Download Android SDK Command line tools    
+      run: sdkmanager "cmdline-tools;latest "
+
+    - name: Download Google Services     
+      run: sdkmanager "extras;google;google_play_services"
+
+    - name: Download System Image Default  
+      run: sdkmanager "system-images;android-28;default;x86_64"
+
+    - name: Download System Image Google APIs     
+      run: sdkmanager "system-images;android-28;google_apis;x86_64"
+
     - name: Adding Build tools to Path
       run: export PATH=$ANDROID_HOME/build-tools/$(ls -tr $ANDROID_HOME/build-tools/ | tail -1):$PATH
-      
+
     # This is ugly but it is the only thing that seems to work.   
     - name: Accepting Android license
       run: sdkmanager --update && (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
