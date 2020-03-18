@@ -65,6 +65,6 @@ jobs:
     - name: Building React Native
       run: npx react-native bundle
 
-    - name: Android AssembleRelease
-      run: ./gradlew bundleRelease
+    - name: Android Build
+      run: ./gradlew build
       working-directory: ./android
