@@ -45,7 +45,7 @@ jobs:
       run: export PATH=$ANDROID_HOME/build-tools/$(ls -tr $ANDROID_HOME/build-tools/ | tail -1):$PATH
       
     - name: Accepting Android license
-      run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses > /dev/null
+      run: sdkmanager --update && (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
     # Maybe we dont need node?   
     #- name: Installing NodeJS
