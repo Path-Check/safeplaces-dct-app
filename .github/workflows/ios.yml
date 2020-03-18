@@ -47,10 +47,6 @@ jobs:
     - name: Accepting Android license
       run: sdkmanager --update && (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
-    # Maybe we dont need node?   
-    #- name: Installing NodeJS
-    #  run: brew install node
-      
     - name: Yarn Install
       run: yarn install      
       
