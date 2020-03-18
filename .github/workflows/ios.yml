@@ -62,8 +62,11 @@ jobs:
       run: pod install
       working-directory: ./ios
  
-#    - name: Building React Native
-#      run: npx react-native bundle --entry-file index.js --dev false --minify true --platform android --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+    - name: Asset Directory
+      run: mkdir ./android/app/src/main/assets
+
+    - name: Building React Native
+      run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 
     - name: Android Build
       run: ./gradlew build
