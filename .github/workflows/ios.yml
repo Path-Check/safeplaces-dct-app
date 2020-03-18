@@ -18,13 +18,14 @@ jobs:
     - name: Installing Homebrew
       run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
       
-    - name: Installing Java
+    - name: Installing Java 8
       run: brew tap adoptopenjdk/openjdk && brew cask install adoptopenjdk/openjdk/adoptopenjdk8     
       
+    - name: Installing Gradle
+      run: brew install gradle    
+      
     - name: Installing Android Studio
-      run: | 
-        brew install gradle
-        brew cask install android-sdk    
+      run: brew cask install android-sdk    
     
     - name: Setting Variables
       run: |
@@ -34,24 +35,25 @@ jobs:
         export PATH=$ANDROID_HOME/tools:$PATH
         export PATH=$ANDROID_HOME/platform-tools:$PATH
         
-    - name: Download buildtools
-      run: | 
-        sdkmanager "build-tools;28.0.3"
+    - name: Download Buildtools 28.0.3
+      run: sdkmanager "build-tools;28.0.3" 
+       
+    - name: Download Android 28       
         sdkmanager "platforms;android-28"
 
-    - name: Adding build tools to path
+    - name: Adding Build tools to Path
       run: export PATH=$ANDROID_HOME/build-tools/$(ls -tr $ANDROID_HOME/build-tools/ | tail -1):$PATH
       
-    - name: Accepting license
-      run: yes | sdkmanager --licenses
+    - name: Accepting Android license
+      run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;  #Captures SIGPIPE 141 error but still allow repeating "y" to accept all licenses
       
-    - name: Installing node
+    - name: Installing NodeJS
       run: brew install node
       
-    - name: Install Yarn Dependencies
+    - name: Yarn Install
       run: yarn install      
       
-    - name: Install Dependences
+    - name: Pod Install 
       run: |
         cd ios
         pod repo update
