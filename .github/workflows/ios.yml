@@ -1,4 +1,4 @@
-name: iOS CI
+name: Android and iOS build on MacOS
 
 on:
   push:
