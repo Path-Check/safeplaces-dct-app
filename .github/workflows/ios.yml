@@ -35,7 +35,9 @@ jobs:
         export PATH=$ANDROID_HOME/platform-tools:$PATH
         
     - name: Download buildtools
-      run: android update sdk --no-ui --all --filter build-tools-28.0.3,android-28,extra-android-m2repository
+      run: | 
+        sdkmanager "build-tools;28.0.3"
+        sdkmanager "platforms;android-28"
 
     - name: Adding build tools to path
       run: export PATH=$ANDROID_HOME/build-tools/$(ls -tr $ANDROID_HOME/build-tools/ | tail -1):$PATH
