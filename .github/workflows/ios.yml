@@ -106,6 +106,7 @@ jobs:
 
     - name: Checking Gradle dependencies
       run: ./gradlew check
+      working-directory: ./android
 
     - name: Android Build
       run: ./gradlew build
