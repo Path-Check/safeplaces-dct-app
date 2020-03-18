@@ -42,40 +42,40 @@ jobs:
       run: sdkmanager --list
 
     - name: Download Buildtools 28.0.3
-      run: sdkmanager "build-tools;28.0.3" 
+      run: (echo y; echo y; echo y;) | sdkmanager "build-tools;28.0.3" 
        
     - name: Download Android 28       
-      run: sdkmanager "platforms;android-28"
+      run: (echo y; echo y; echo y;) | sdkmanager "platforms;android-28"
 
     - name: Download Android Platform Tools      
-      run: sdkmanager "platform-tools"
+      run: (echo y; echo y; echo y;) | sdkmanager "platform-tools"
 
     - name: Download Support Library Android M2       
-      run: sdkmanager "extras;android;m2repository"
+      run: (echo y; echo y; echo y;) | sdkmanager "extras;android;m2repository"
 
     - name: Download Support Library Google M2   
-      run: sdkmanager "extras;google;m2repository"
+      run: (echo y; echo y; echo y;) | sdkmanager "extras;google;m2repository"
 
     - name: Updating SDK Manager (new Repos)
-      run: sdkmanager --update
+      run: (echo y; echo y; echo y;) | sdkmanager --update
 
     - name: Download Support Library Solver for ConstraintLayout 1.0.2       
-      run: sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
+      run: (echo y; echo y; echo y;) | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 
     - name: Download Support Library ConstraintLayout for Android 1.0.2        
-      run: sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
+      run: (echo y; echo y; echo y;) | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 
     - name: Download Android SDK Command line tools    
-      run: sdkmanager "cmdline-tools;latest"
+      run: (echo y; echo y; echo y;) | sdkmanager "cmdline-tools;latest"
 
     - name: Download Google Services     
-      run: sdkmanager "extras;google;google_play_services"
+      run: (echo y; echo y; echo y;) | sdkmanager "extras;google;google_play_services"
 
     - name: Download System Image Default  
-      run: sdkmanager "system-images;android-28;default;x86_64"
+      run: (echo y; echo y; echo y;) | sdkmanager "system-images;android-28;default;x86_64"
 
     - name: Download System Image Google APIs     
-      run: sdkmanager "system-images;android-28;google_apis;x86_64"
+      run: (echo y; echo y; echo y;) | sdkmanager "system-images;android-28;google_apis;x86_64"
 
     - name: List current SDK Install
       run: sdkmanager --list
