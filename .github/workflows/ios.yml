@@ -23,19 +23,13 @@ jobs:
       
     - name: Installing Android Studio
       run: | 
-        brew install ant
-        brew install maven
         brew install gradle
         brew cask install android-sdk    
     
     - name: Setting Variables
       run: |
-        export ANT_HOME=/usr/local/opt/ant
-        export MAVEN_HOME=/usr/local/opt/maven
         export GRADLE_HOME=/usr/local/opt/gradle
-        export ANDROID_HOME=/usr/local/opt/android-sdk
-        export PATH=$ANT_HOME/bin:$PATH
-        export PATH=$MAVEN_HOME/bin:$PATH
+        export ANDROID_HOME=/usr/local/share/android-sdk
         export PATH=$GRADLE_HOME/bin:$PATH
         export PATH=$ANDROID_HOME/tools:$PATH
         export PATH=$ANDROID_HOME/platform-tools:$PATH
