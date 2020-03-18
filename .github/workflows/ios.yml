@@ -26,10 +26,7 @@ jobs:
         brew install ant
         brew install maven
         brew install gradle
-        brew cask install android-sdk  
-      
-    - name: Accepting license
-      run: android update sdk --no-ui  
+        brew cask install android-sdk    
     
     - name: Setting Variables
       run: |
@@ -43,6 +40,9 @@ jobs:
         export PATH=$ANDROID_HOME/tools:$PATH
         export PATH=$ANDROID_HOME/platform-tools:$PATH
         export PATH=$ANDROID_HOME/build-tools/$(ls -tr $ANDROID_HOME/build-tools/ | tail -1):$PATH
+      
+    - name: Accepting license
+      run: yes | sdkmanager --licenses
       
     - name: Installing node
       run: brew install node
