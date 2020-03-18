@@ -168,9 +168,9 @@ echo
 echo "  Run Android Studio then:"
 echo "    * Select 'Configure > AVD Manager' at the bottom"
 echo "    * Create and run a virtula device, such as a Pixel 2"
+echo
 echo "  In a terminal run:"
-echo "    $ cd ~/mobileapp/"
-echo "    $ react-native start"
+echo "      $ ~/mobileapp/1_start_react.sh"
 echo "  In a second terminal:"
-echo "    $ cd ~/mobileapp/"
-echo "    $ npx react-native run-android"
+echo "      $ ~/mobileapp/2_start_android_app.sh"
+echo "  You can edit files and repeat step 2 again as necessary to debug."

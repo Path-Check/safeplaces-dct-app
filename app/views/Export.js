@@ -1,137 +1,87 @@
-import React, { Component } from 'react';
+import React, {
+    Component
+} from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  Linking,
-  View,
-  Text,
-  Alert,
-  Image
+    SafeAreaView,
+    StyleSheet,
+    ScrollView,
+    Linking,
+    View,
+    Text,
+    Image
 } from 'react-native';
 
 import colors from "../constants/colors";
-import { WebView } from 'react-native-webview';
+import WebView from 'react-native-webview';
 import Button from "../components/Button";
-import NegButton from "../components/NegButton";
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
+import {
+    GetStoreData
+} from '../helpers/General';
+import Share from 'react-native-share';
+import RNFetchBlob from 'rn-fetch-blob';
+import LocationServices from '../services/LocationService';
+
+const base64 = RNFetchBlob.base64
+
+
+//import RNShareFile from 'react-native-file-share';
+
 
 class ExportScreen extends Component {
     constructor(props) {
         super(props);
     }
-    componentDidMount() {
 
-        /*BackgroundGeolocation.on('location', (location) => {
+    onShare = async () => {
+        try {
+            const locationArray = await GetStoreData('LOCATION_DATA');
+            var locationData;
 
+            if (locationArray !== null) {
+                locationData = JSON.parse(locationArray);
+            } else {
+                locationData = [];
+            }
 
-            GetStoreData('LOCATION_DATA')
-            .then(locationArray => {
-                var locationData;
-
-                if (locationArray !== null) {
-                  locationData = JSON.parse(locationArray);
-                } else {
-                  locationData = [];
-                }
-
-                locationData.push(location);
-                SetStoreData('LOCATION_DATA', locationData);
-            });
-
-            // to perform long running operation on iOS
-            // you need to create background task
-            BackgroundGeolocation.startTask(taskKey => {
-                // execute long running task
-                // eg. ajax post location
-                // IMPORTANT: task has to be ended by endTask
-                BackgroundGeolocation.endTask(taskKey);
-            });
-        });
-
-        BackgroundGeolocation.on('stationary', (stationaryLocation) => {
-            // handle stationary locations here
-            // Actions.sendLocation(stationaryLocation);
-            console.log('[INFO] stationaryLocation:', stationaryLocation);
-        });
-
-        BackgroundGeolocation.on('error', (error) => {
-        console.log('[ERROR] BackgroundGeolocation error:', error);
-        });
-
-        BackgroundGeolocation.on('start', () => {
-        console.log('[INFO] BackgroundGeolocation service has been started');
-        });
-
-        BackgroundGeolocation.on('stop', () => {
-        console.log('[INFO] BackgroundGeolocation service has been stopped');
-        });
-
-        BackgroundGeolocation.on('authorization', (status) => {
-        console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
-        if (status !== BackgroundGeolocation.AUTHORIZED) {
-            // we need to set delay or otherwise alert may not be shown
-            setTimeout(() =>
-            Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [
-                { text: 'Yes', onPress: () => BackgroundGeolocation.showAppSettings() },
-                { text: 'No', onPress: () => console.log('No Pressed'), style: 'cancel' }
-            ]), 1000);
+            b64Data = base64.encode(JSON.stringify(locationData));
+            Share.open({
+                url: "data:string/txt;base64," + b64Data
+            }).then(res => {
+                console.log(res);
+            })
+                .catch(err => {
+                    console.log(err.message, err.code);
+                })
+        } catch (error) {
+            console.log(error.message);
         }
-        });
+    };
 
-        BackgroundGeolocation.on('background', () => {
-        console.log('[INFO] App is in background');
-        });
-
-        BackgroundGeolocation.on('foreground', () => {
-        console.log('[INFO] App is in foreground');
-        });
-
-        BackgroundGeolocation.on('abort_requested', () => {
-        console.log('[INFO] Server responded with 285 Updates Not Required');
-
-        // Here we can decide whether we want stop the updates or not.
-        // If you've configured the server to return 285, then it means the server does not require further update.
-        // So the normal thing to do here would be to `BackgroundGeolocation.stop()`.
-        // But you might be counting on it to receive location updates in the UI, so you could just reconfigure and set `url` to null.
-        });
-
-        BackgroundGeolocation.on('http_authorization', () => {
-        console.log('[INFO] App needs to authorize the http requests');
-        });
-
-        // you can also just start without checking for status
-        // BackgroundGeolocation.start();*/
+    backToMain() {
+        this.props.navigation.navigate('LocationTrackingScreen', {})
     }
 
-    componentWillUnmount() {
-        // unregister all event listeners
-        BackgroundGeolocation.removeAllListeners();
-    }
 
     render() {
+
         return (
-            <>
-                <View style={styles.main}>
-                    <View style={styles.headerTitle}>
-                      <Text style={styles.sectionDescription, {fontSize: 22, marginTop: 10}}>Export Data</Text>
-                    </View>
-                    <View style={styles.subHeaderTitle}>
-                        <Text style={styles.sectionDescription}>Rolling out soon</Text>
-                    </View>
-                    <View style={styles.block}>
-                    <Image
-                        source={require('../assets/privatekit_qrcode.png')}
-                        style={{width: 330, height: 330}}
-                    />
-                    </View>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <Text onPress={() => this.backToMain()} style={styles.backArrow}> &#8249; </Text>
+                    <Text style={styles.sectionDescription}>Export</Text>
                 </View>
 
-                <View style={styles.footer}>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
+
+                <View style={styles.main}>
+                    <Text style={styles.mainText}>You can share you location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.</Text>
+                    <Text style={styles.mainText}>Location is shared as a simple list of times and coordinates, no other identifying information.</Text>
+                    <View style={styles.block}>
+                        <Button onPress={this.onShare} title="Share" />
+                    </View>
+                    <Text style={styles.mainText}>Points to be shared: {LocationServices.getPointCount()}</Text>
                 </View>
-            </>
+
+            </SafeAreaView>
         )
     }
 }
@@ -141,8 +91,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
         color: colors.PRIMARY_TEXT,
         backgroundColor: colors.APP_BACKGROUND,
     },
@@ -162,40 +110,47 @@ const styles = StyleSheet.create({
     main: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
+        textAlignVertical: 'top',
         alignItems: 'center',
         width: "95%"
     },
     block: {
-      margin: 20,
-      width: "75%",
-      alignItems: 'center',
-      justifyContent: 'center'
+        margin: 20,
+        width: "75%",
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    topView: {
-        flex: 1,
+    mainText: {
+        fontSize: 18,
+        lineHeight: 24,
+        fontWeight: '400',
+        textAlignVertical: 'center',
+        padding: 20,
     },
-    footer: {
-        textAlign: 'center',
-        fontSize: 12,
-        fontWeight: '600',
-        padding: 4,
-        paddingBottom: 10
+    smallText: {
+        fontSize: 10,
+        lineHeight: 24,
+        fontWeight: '400',
+        textAlignVertical: 'center',
+        padding: 20,
     },
-    intro: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
+
+    headerContainer: {
+        flexDirection: 'row',
+    },
+    backArrow: {
+        fontSize: 60,
+        lineHeight: 60,
+        fontWeight: '400',
+        marginRight: 5,
+        textAlignVertical: 'center'
     },
     sectionDescription: {
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: '400',
-      marginTop: 20,
-      marginLeft: 10,
-      marginRight: 10
-    }
-  });
+        fontSize: 24,
+        lineHeight: 24,
+        fontWeight: '800',
+        textAlignVertical: 'center'
+    },
+});
 
 export default ExportScreen;

@@ -1,19 +1,22 @@
-# PrivacyKit
+# Private Kit
 
-A personal location vault that nobody else can access. It will allow you to log your location privately every five minutes. No information will leaves the phone.
+<img src="./assets/ShieldKeyHold512x512.png" data-canonical-src="./assets/ShieldKeyHold512x512.png" width="200" height="200" />
+
+A personal location vault that nobody else can access. Log your location privately every five minutes. No information will leave the phone.
+
+**Downloads:** [Google Play](https://play.google.com/store/apps/details?id=edu.mit.privatekit) | Apple App Store - coming soon!
+
+**Home page:** http://privatekit.mit.edu
+
 
 ## Behavior
 
-1. Get consent to locally track location and send an encoded version online. 
+1. Get consent to locally track location and send an encoded version online.
 2. Locally cache loction info once every 5 minutes: ```	Time  |  GPS Lat  |  GPS Lon ```
 
 # Development
 
 This is a React Native app version 61.5
-
-## TODO
-
-Android is currently being optimized.  iOS will need to be tested, optimized, and prepared for launch.
 
 ## Developer Setup
 
@@ -21,15 +24,14 @@ Refer to and run the dev_setup.sh for needed tools.
 
 ### iOS Configuration - First Time Setup
 
-1. pod install in `ios` directory
-2. Open `.workspace` file in the iOS directory and run `build`
-3. If you have any trouble with packages not round, try `react-native link` from project directory.
-4. Look at running commands below.
+1. Move to `ios` directory and run `pod install`
+2. If you have any trouble with packages not round, try `react-native link` from project directory.
+3. Look at running commands below.
 
 ## Running
 
 Install modules:
-```npm install``` or ```yarn install```
+```npm install``` or ```yarn install``` (note ```yarn``` does a better job at installing dependencies on macOS)
 
 To run, do:
 ```
@@ -40,9 +42,11 @@ or
 npx react-native run-ios --simulator="iPhone 8 Plus"
 ```
 
-## Deploying
+## Contributing
 
-App is deployed to MIT's PlayStore account: https://play.google.com/store/apps/developer?id=MIT
+Read the [contribution guidelines](./.github/CONTRIBUTING.md).
+
+Join the WhatsApp group - https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
 
 ## Tested On
 
@@ -51,6 +55,3 @@ App is deployed to MIT's PlayStore account: https://play.google.com/store/apps/d
 | Android Pixel | API 28  |
 | Android Pixel | API 29  |
 
-# References
-
-Website: http://privacykit.mit.edu
