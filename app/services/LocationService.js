@@ -263,6 +263,7 @@ export default class LocationServices {
 
     static optOut(nav) {
         BackgroundGeolocation.removeAllListeners();
+        BackgroundGeolocation.stop();
         SetStoreData('PARTICIPATE', 'false').then(() =>
             nav.navigate('LocationTrackingScreen', {})
         )
