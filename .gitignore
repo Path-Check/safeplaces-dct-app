@@ -60,7 +60,3 @@ buck-out/
 yarn.lock
 .vscode/launch.json
 ios/Podfile.lock
-ios/Podfile.lock
-yarn.lock
-ios/Podfile.lock
-yarn.lock
