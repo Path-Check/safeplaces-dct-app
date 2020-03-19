@@ -115,16 +115,10 @@ class LocationTracking extends Component {
                             </TouchableOpacity>
                             </>)
                             }
-                           
-                           {this.state.isLogging ?  
+
+                           {this.state.isLogging ?
                             <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text> :
                            <Text style={styles.sectionDescription} >NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.</Text> }
-                           
-
-                    <View style={styles.block}>
-                        <Button title={"Stop Recording Location"} bgColor={colors.NEG_BUTTON} onPress={() => LocationServices.stop(this.props.navigation)} />
-                    </View>
-
                         </View>
                     </View>
 
