@@ -44,6 +44,7 @@ function saveLocation(location) {
             var lat_lon_time = {
                 "latitude": location["latitude"],
                 "longitude": location["longitude"],
+                "altitude": location["altitude"],
                 "time": unixtimeUTC
             };
             curated.push(lat_lon_time);
