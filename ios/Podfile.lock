@@ -21,6 +21,8 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - Permission-LocationAlways (2.0.10):
+    - RNPermissions
   - RCTRequired (0.61.5)
   - RCTTypeSafety (0.61.5):
     - FBLazyVector (= 0.61.5)
@@ -186,7 +188,7 @@ PODS:
   - React-jsinspector (0.61.5)
   - react-native-safe-area-context (0.6.0):
     - React
-  - react-native-webview (8.1.2):
+  - react-native-webview (8.2.1):
     - React
   - React-RCTActionSheet (0.61.5):
     - React-Core/RCTActionSheetHeaders (= 0.61.5)
@@ -233,15 +235,17 @@ PODS:
     - React
   - RNGestureHandler (1.5.6):
     - React
+  - RNPermissions (2.0.10):
+    - React
   - RNScreens (2.0.0-alpha.12):
     - React
-  - RNShare (3.0.0):
+  - RNShare (3.1.1):
     - React
-  - RNZipArchive (5.0.1):
+  - RNZipArchive (5.0.2):
     - React
-    - RNZipArchive/Core (= 5.0.1)
+    - RNZipArchive/Core (= 5.0.2)
     - SSZipArchive (= 2.2.2)
-  - RNZipArchive/Core (5.0.1):
+  - RNZipArchive/Core (5.0.2):
     - React
     - SSZipArchive (= 2.2.2)
   - SSZipArchive (2.2.2)
@@ -254,6 +258,7 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
@@ -283,6 +288,7 @@ DEPENDENCIES:
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
@@ -306,6 +312,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  Permission-LocationAlways:
+    :path: "../node_modules/react-native-permissions/ios/LocationAlways.podspec"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -358,6 +366,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNShare:
@@ -375,6 +385,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  Permission-LocationAlways: 738e3b24333d52c87361804bb0a1641de014c405
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -385,7 +396,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-safe-area-context: d288138da2c800caa111f9352e9333f186a06ead
-  react-native-webview: fcb5f377aadc216273300f452ee0d321fb85809b
+  react-native-webview: 160ac8d6bb974e2933f2de6bb7464a8e934ff31d
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -401,12 +412,13 @@ SPEC CHECKSUMS:
   RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
+  RNPermissions: 1008d3511fee0e25739cf81c4af0d1b2248f1053
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
-  RNShare: 0e19ddb0bf338b62702ce1d9e001ee14effa68a8
-  RNZipArchive: 87111bb6130a38edd68c8d2059d46ac94d53ffe4
+  RNShare: a4d8a4e7b85194fcc05f6753bd484f4eba6b833d
+  RNZipArchive: ab51bc004a31657f34010254a9182014c6a81217
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: a72444a1c8c7fce528829dd576584854ab2bb99a
+PODFILE CHECKSUM: b7ab6823db1b6d543b7eec9fa5c6647e85a63579
 
 COCOAPODS: 1.9.1
