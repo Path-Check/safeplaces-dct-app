@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text,Dimensions, Image, TouchableOpacity,StyleSheet } from 'react-native'
 import welcome1 from './../../assets/images/welcome1.png'
-
+import languages from './../../locales/languages'
 const width = Dimensions.get('window').width;
 
 const Intro1 = (props) => {
@@ -9,7 +9,7 @@ const Intro1 = (props) => {
         <View style={styles.mainContainer}>
             <View style={styles.infoCard}>
                 <Image source={welcome1} style={styles.infoCardImage} />
-                <Text style={styles.infoCardHeadText}>Private Kit</Text>
+                <Text style={styles.infoCardHeadText}>{languages.t('label.private_kit')}</Text>
                 <Text style={styles.infoCardBodyText}>
                 Designed with data security and privacy protection at its heart, MIT Private Kit is the next generation of secure location logging.
                 </Text>
