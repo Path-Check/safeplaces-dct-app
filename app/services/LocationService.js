@@ -280,7 +280,7 @@ export default class LocationServices {
         BackgroundGeolocation.stop();
         instanceCount -= 1;
         SetStoreData('PARTICIPATE', 'false').then(() =>
-            nav.navigate('WelcomeScreen', {})
+            nav.navigate('LocationTrackingScreen', {})
         )
     }
 }

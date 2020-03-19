@@ -8,7 +8,9 @@ import {
     Linking,
     View,
     Text,
-    Image
+    Image,
+    Dimensions,
+    TouchableOpacity,BackHandler
 } from 'react-native';
 
 import colors from "../constants/colors";
@@ -17,9 +19,14 @@ import Button from "../components/Button";
 import {
     GetStoreData
 } from '../helpers/General';
+import {
+    convertPointsToString
+} from '../helpers/convertPointsToString';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
+import backArrow from './../assets/images/backArrow.png'
+const width = Dimensions.get('window').width;
 
 const base64 = RNFetchBlob.base64
 
@@ -61,24 +68,38 @@ class ExportScreen extends Component {
         this.props.navigation.navigate('LocationTrackingScreen', {})
     }
 
+    handleBackPress = () => {     
+        this.props.navigation.navigate('LocationTrackingScreen', {});
+        return true;   
+    };  
+
+    componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.handleBackPress); 
+    }
+
+    componentWillUnmount() { 
+        BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress); 
+    }
 
     render() {
 
         return (
             <SafeAreaView style={styles.container}>
+
                 <View style={styles.headerContainer}>
-                    <Text onPress={() => this.backToMain()} style={styles.backArrow}> &#8249; </Text>
-                    <Text style={styles.sectionDescription}>Export</Text>
+                    <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
+                         <Image style={styles.backArrow} source={backArrow} />
+                    </TouchableOpacity>
+                    <Text style={styles.headerTitle}>Export</Text>
                 </View>
 
-
                 <View style={styles.main}>
-                    <Text style={styles.mainText}>You can share you location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.</Text>
-                    <Text style={styles.mainText}>Location is shared as a simple list of times and coordinates, no other identifying information.</Text>
-                    <View style={styles.block}>
-                        <Button onPress={this.onShare} title="Share" />
-                    </View>
-                    <Text style={styles.mainText}>Points to be shared: {LocationServices.getPointCount()}</Text>
+                    <Text style={styles.sectionDescription}>You can share you location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.</Text>
+                    <Text style={styles.sectionDescription}>Location is shared as a simple list of times and coordinates, no other identifying information.</Text>
+                    <TouchableOpacity style={styles.buttonTouchable} onPress={this.onShare}>
+                        <Text style={styles.buttonText}>SHARE</Text>
+                    </TouchableOpacity>
+                    <Text style={[styles.sectionDescription,{marginTop:36}]}>Log has data of {convertPointsToString(LocationServices.getPointCount()) }</Text>
                 </View>
 
             </SafeAreaView>
@@ -92,7 +113,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         color: colors.PRIMARY_TEXT,
-        backgroundColor: colors.APP_BACKGROUND,
+        backgroundColor: colors.WHITE
     },
     headerTitle: {
         textAlign: 'center',
@@ -111,14 +132,28 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         textAlignVertical: 'top',
-        alignItems: 'center',
-        width: "95%"
+       // alignItems: 'center',
+        padding:20,
+        width:'96%',
+        alignSelf:'center'
     },
-    block: {
-        margin: 20,
-        width: "75%",
-        alignItems: 'center',
-        justifyContent: 'center'
+    buttonTouchable: {
+        borderRadius: 12,
+        backgroundColor: "#665eff",
+        height:52,
+        alignSelf:'center',
+        width:width*.7866,
+        marginTop:30,
+        justifyContent:'center'
+    },
+    buttonText:{
+
+        fontFamily: "OpenSans-Bold",
+        fontSize: 14,
+        lineHeight: 19,
+        letterSpacing: 0,
+        textAlign: "center",
+        color: "#ffffff"
     },
     mainText: {
         fontSize: 18,
@@ -137,19 +172,31 @@ const styles = StyleSheet.create({
 
     headerContainer: {
         flexDirection: 'row',
+        height:60,
+        borderBottomWidth:1,
+        borderBottomColor:'rgba(189, 195, 199,0.6)'
+    },
+    backArrowTouchable:{
+        width:60,
+        height:60,
+        paddingTop:21,
+        paddingLeft:20
     },
     backArrow: {
-        fontSize: 60,
-        lineHeight: 60,
-        fontWeight: '400',
-        marginRight: 5,
-        textAlignVertical: 'center'
+        height: 18, 
+        width: 18.48
     },
-    sectionDescription: {
+    headerTitle:{
         fontSize: 24,
         lineHeight: 24,
-        fontWeight: '800',
-        textAlignVertical: 'center'
+        fontFamily:'OpenSans-Bold',
+        top:21
+    },
+    sectionDescription: {
+        fontSize: 16,
+        lineHeight: 24,
+        marginTop:12,
+        fontFamily:'OpenSans-Regular',
     },
 });
 
