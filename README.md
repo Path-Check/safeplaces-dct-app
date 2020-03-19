@@ -1,13 +1,10 @@
-# Private Kit
-
-<img src="./assets/ShieldKeyHold512x512.png" data-canonical-src="./assets/ShieldKeyHold512x512.png" width="200" height="200" />
+# Private Kit<img align="left" src="./assets/ShieldKeyHold512x512.png" data-canonical-src="./assets/ShieldKeyHold512x512.png" width="40" height="40"/> ![Android and iOS build on MacOS](https://github.com/tripleblindmarket/private-kit/workflows/Android%20and%20iOS%20build%20on%20MacOS/badge.svg)
 
 A personal location vault that nobody else can access. Log your location privately every five minutes. No information will leave the phone.
 
-**Downloads:** [Google Play](https://play.google.com/store/apps/details?id=edu.mit.privatekit) | Apple App Store - coming soon!
-
 **Home page:** http://privatekit.mit.edu
 
+**Downloads:** [Google Play](https://play.google.com/store/apps/details?id=edu.mit.privatekit) | [Apple Store](https://apps.apple.com/us/app/private-kit-prototype/id1501903733)
 
 ## Behavior
 
