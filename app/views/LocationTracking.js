@@ -48,7 +48,7 @@ class LocationTracking extends Component {
                     </View>
 
                     <View style={styles.block}>
-                        <Button title={"Stop Recording Location"} bgColor={colors.NEG_BUTTON} onPress={() => LocationServices.optOut(this.props.navigation)} />
+                        <Button title={"Stop Recording Location"} bgColor={colors.NEG_BUTTON} onPress={() => LocationServices.stop(this.props.navigation)} />
                     </View>
 
                     <View style={styles.block}>
