@@ -69,13 +69,13 @@ export default class LocationServices {
       locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
 
       // DEBUG: Use these to get a faster output
-      interval: 2000,
-      fastestInterval: 2000, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-      activitiesInterval: 2000,
+      // interval: 2000,
+      // fastestInterval: 2000, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+      // activitiesInterval: 2000,
 
-      // interval: 20000,
-      // fastestInterval: 60000 * 5, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-      // activitiesInterval: 20000,
+      interval: 20000,
+      fastestInterval: 60000 * 5, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+      activitiesInterval: 20000,
 
       stopOnStillActivity: false,
       postTemplate: {
@@ -225,7 +225,7 @@ export default class LocationServices {
       console.log('Reached 2');
 
       if (Platform.OS === 'ios') {
-        check(PERMISSIONS.IOS.LOCATION_ALWAYS)
+        check(PERMISSIONS.IOS.LOCATION_ALWAYS) // Use react-native-permissions to check for 'Always Allow' permission
           .then(result => {
             console.log('Reached 1');
             switch (result) {
@@ -237,7 +237,7 @@ export default class LocationServices {
                   const majorVersionIOS = parseInt(Platform.Version, 10);
                   if (locRes === 'granted' && majorVersionIOS >= 13) {
                     console.log('[INFO]', 'While using access granted. iOS version 13+');
-                    Linking.openURL('app-settings:');
+                    Linking.openURL('app-settings:'); // Redirect to App Settings if iPhone is iOS 13+
                   }
                 });
                 break;
@@ -295,12 +295,18 @@ export default class LocationServices {
               [
                 {
                   text: 'Yes',
-                  // onPress: () => BackgroundGeolocation.showLocationSettings()
+                  onPress: () => {
+                    if (Platform.OS === 'android'){ // showLocationSettings() only works for android
+                    BackgroundGeolocation.showLocationSettings();
+                    } else {
+                      Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
+                    }
+                  },
                 },
                 {
                   text: 'No',
                   onPress: () => console.log('No Pressed'),
-                  style: 'cancel',
+                  style: 'cancel'
                 },
               ],
             ),
