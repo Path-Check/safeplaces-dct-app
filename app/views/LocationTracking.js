@@ -82,7 +82,7 @@ class LocationTracking extends Component {
     }
 
     setOptOut =()=>{
-        LocationServices.optOut(this.props.navigation)
+        LocationServices.stop(this.props.navigation)
         this.setState({
             isLogging:false
         })
