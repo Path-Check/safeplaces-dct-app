@@ -10,7 +10,9 @@ import {
     TouchableOpacity,
     Dimensions,
     Image,
-    ScrollView,BackHandler
+    ScrollView,
+    BackHandler,
+    Button
 } from 'react-native';
 import colors from "../constants/colors";
 import LocationServices from '../services/LocationService';
