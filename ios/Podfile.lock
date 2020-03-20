@@ -247,6 +247,8 @@ PODS:
     - React
     - SSZipArchive (= 2.2.2)
   - SSZipArchive (2.2.2)
+  - TouchID (4.4.1):
+    - React
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -289,6 +291,7 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
+  - TouchID (from `../node_modules/react-native-touch-id`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -369,11 +372,13 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-share"
   RNZipArchive:
     :path: "../node_modules/react-native-zip-archive"
+  TouchID:
+    :path: "../node_modules/react-native-touch-id"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  "@mauron85_react-native-background-geolocation": 70177f5ccd8844497a2f5f0a23c77ee4c4608d42
+  "@mauron85_react-native-background-geolocation": fa34ab82e94212be16ef6e75c32bcb707b0a1524
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   FBLazyVector: aaeaf388755e4f29cd74acbc9e3b8da6d807c37f
@@ -389,9 +394,9 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-safe-area-context: 870aba8339684c9b888d42103580b687ff3f0d0c
-  react-native-viewpager: 118e65d8c65c56fe48d12a35cdcf1fe7e027a366
-  react-native-webview: 055c7110f17c2f19c971f655064ee480638db668
+  react-native-safe-area-context: d288138da2c800caa111f9352e9333f186a06ead
+  react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
+  react-native-webview: fcb5f377aadc216273300f452ee0d321fb85809b
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -403,16 +408,17 @@ SPEC CHECKSUMS:
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
-  RNCAsyncStorage: 00bdf63f7f1e0f11d3323533dba4f222e58bf092
-  RNCMaskedView: c8b53164b85ecf94c9a44d67082df0f03c1f74cc
+  RNCAsyncStorage: e0dd7c8a36543b4ef84969acd9f8aceba3a92dc2
+  RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
   RNShare: 0e19ddb0bf338b62702ce1d9e001ee14effa68a8
-  RNZipArchive: eb4ccf13ab4d8e3e114b8182046b19f10d2ff52e
+  RNZipArchive: 87111bb6130a38edd68c8d2059d46ac94d53ffe4
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
+  TouchID: ba4c656d849cceabc2e4eef722dea5e55959ecf4
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: a72444a1c8c7fce528829dd576584854ab2bb99a
+PODFILE CHECKSUM: 5d971b51fa823fb805ad7c03eb7495b775ccfb39
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.0

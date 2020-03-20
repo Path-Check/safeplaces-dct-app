@@ -3,6 +3,7 @@ import React, {Component } from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SafeAreaView} from 'react-native';
+import Authentication from './views/Authentication';
 import LocationTracking from './views/LocationTracking';
 import Welcome from './views/Welcome';
 import NewsScreen from './views/News';
@@ -16,52 +17,31 @@ const Stack = createStackNavigator();
 class Entry extends Component {
     constructor(props) {
         super(props);
-        this.state={
-          initialRouteName:''
-        }
     }
 
     componentDidMount(){
-      GetStoreData('PARTICIPATE')
-      .then(isParticipating => {
-          console.log(isParticipating);
-              this.setState({
-                initialRouteName:isParticipating
-              })
-      })
-      .catch(error => console.log(error))
     }
 
     render() {
       return (
         <NavigationContainer>
           <SafeAreaView style={{flex:1}}>
-          <Stack.Navigator initialRouteName='InitialScreen'>
-            {this.state.initialRouteName === 'true' ? (
-              <Stack.Screen
-              name="InitialScreen"
-              component={LocationTracking}
-              options={{headerShown:false}}
-                />
-            ):(
-              <Stack.Screen
-              name="InitialScreen"
-              component={Slider}
-              options={{headerShown:false}}
-                />
-            )}
-          <Stack.Screen
+          <Stack.Navigator initialRouteName='AuthenticationScreen'>
+            <Stack.Screen
               name="Slider"
               component={Slider}
               options={{headerShown:false}}
-                />
-          
-          
+            />
+            <Stack.Screen
+              name="AuthenticationScreen"
+              component={Authentication}
+              options={{headerShown:false}}
+            />
             <Stack.Screen
               name="WelcomeScreen"
               component={Welcome}
               options={{headerShown:false}}
-                />
+            />
             <Stack.Screen
               name="LocationTrackingScreen"
               component={LocationTracking}
