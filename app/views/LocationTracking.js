@@ -22,6 +22,7 @@ import news from './../assets/images/newspaper.png';
 import pkLogo from './../assets/images/PKLogo.png';
 
 import {GetStoreData, SetStoreData} from '../helpers/General';
+import languages from './../locales/languages'
 
 const width = Dimensions.get('window').width;
 
@@ -96,7 +97,7 @@ class LocationTracking extends Component {
                     <View style={styles.topView}>
                         <View style={styles.intro} >
 
-                            <Text style={styles.headerTitle}>Private Kit</Text>
+                            <Text style={styles.headerTitle}>{languages.t('label.private_kit')}</Text>
 
                             {
                                 this.state.isLogging  ? (
@@ -104,45 +105,48 @@ class LocationTracking extends Component {
                                     <Image source={pkLogo} style={{width:132,height:164.4,alignSelf:'center',marginTop:12}} />
 
                                 <TouchableOpacity onPress={() => this.setOptOut()} style={styles.stopLoggingButtonTouchable} >
-                                <Text style={styles.stopLoggingButtonText}>STOP LOGGING</Text>
+                                <Text style={styles.stopLoggingButtonText}>{languages.t('label.stop_logging')}</Text>
                             </TouchableOpacity>
                             </>
                             ) : ( 
                             <>
                             <Image source={pkLogo} style={{width:132,height:164.4,alignSelf:'center',marginTop:12,opacity:.3}} />
                             <TouchableOpacity onPress={() => this.willParticipate()} style={styles.startLoggingButtonTouchable} >
-                                <Text style={styles.startLoggingButtonText}>START LOGGING</Text>
+                                <Text style={styles.startLoggingButtonText}>{languages.t('label.start_logging')}</Text>
                             </TouchableOpacity>
                             </>)
                             }
 
-                           {this.state.isLogging ?
-                            <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text> :
-                           <Text style={styles.sectionDescription} >NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.</Text> }
+                           
+                           {this.state.isLogging ?  
+                            <Text style={styles.sectionDescription}>{languages.t('label.logging_message')}</Text> :
+                            <Text style={styles.sectionDescription}>{languages.t('label.not_logging_message')}</Text> }
+                        
+
                         </View>
                     </View>
 
                     <View style={styles.actionButtonsView}>
                         <TouchableOpacity onPress={() => this.import()}  style={styles.actionButtonsTouchable}>
                             <Image style={styles.actionButtonImage} source={exportImage} resizeMode={'contain'}></Image>
-                            <Text style={styles.actionButtonText}>Import</Text>
+                            <Text style={styles.actionButtonText}>{languages.t('label.import')}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this.export()} style={styles.actionButtonsTouchable}>
                             <Image style={[styles.actionButtonImage,{transform:[{rotate:'180deg'}]}]} source={exportImage} resizeMode={'contain'}></Image>
-                            <Text style={styles.actionButtonText}>Export</Text>
+                            <Text style={styles.actionButtonText}>{languages.t('label.export')}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this.news()} style={styles.actionButtonsTouchable}>
                             <Image style={styles.actionButtonImage} source={news} resizeMode={'contain'}></Image>
-                            <Text style={styles.actionButtonText}>News</Text>
+                            <Text style={styles.actionButtonText}>{languages.t('label.news')}</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
 
                 <View style={styles.footer}>
-                    <Text style={[styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }]}>For more information visit the Private Kit hompage:</Text>
-                    <Text style={[styles.sectionDescription, { color: 'blue', textAlign: 'center',marginTop:0 }]} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
+                    <Text style={[styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }]}>{languages.t('label.url_info')} </Text>
+                    <Text style={[styles.sectionDescription, { color: 'blue', textAlign: 'center',marginTop:0 }]} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>{languages.t('label.private_kit_url')}</Text>
                 </View>
             </SafeAreaView>
         )
