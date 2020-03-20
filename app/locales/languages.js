@@ -11,6 +11,7 @@ import { getLanguages } from 'react-native-i18n';
 
 import enlabels from './en'; 
 import delabels from './de';
+import hilabels from './hi';
 
 
 // This will fetch the user's language
@@ -36,6 +37,11 @@ i18next.init({
     de: {
       translation: {
         label: delabels
+      }
+    },
+    hi: {
+      translation: {
+        label: hilabels
       }
     }
   }

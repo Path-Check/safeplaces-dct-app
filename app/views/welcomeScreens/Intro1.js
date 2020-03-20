@@ -10,9 +10,7 @@ const Intro1 = (props) => {
             <View style={styles.infoCard}>
                 <Image source={welcome1} style={styles.infoCardImage} />
                 <Text style={styles.infoCardHeadText}>{languages.t('label.private_kit')}</Text>
-                <Text style={styles.infoCardBodyText}>
-                Designed with data security and privacy protection at its heart, MIT Private Kit is the next generation of secure location logging.
-                </Text>
+                <Text style={styles.infoCardBodyText}>{languages.t('label.intro1_para1')}</Text>
             </View>
            <View style={styles.navigationDotsView}>
            <View  style={styles.activeIndicator}/>
@@ -27,7 +25,7 @@ const Intro1 = (props) => {
             onPress={()=>props.swipe(1)}
             style={styles.primaryButtonTouchable} >
                 <Text 
-                    style={styles.primaryButtonText}>NEXT</Text>
+                    style={styles.primaryButtonText}>{languages.t('label.next')}</Text>
             </TouchableOpacity>
             {/* <TouchableOpacity><Text style={{marginTop:12,fontFamily:'OpenSans-SemiBold',alignSelf:'center',color:'#665eff'}}>Skip this</Text></TouchableOpacity> */}
         </View>
