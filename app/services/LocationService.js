@@ -11,6 +11,9 @@ import PushNotification from "react-native-push-notification";
 
 var instanceCount = 0;
 var lastPointCount = 0;
+var locationInterval = 60000 * 5;  // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+// DEBUG: Reduce Time intervall for faster debugging
+// var locationInterval = 5000;
 
 function saveLocation(location) {
     // Persist this location data in our local storage of time/lat/lon values
@@ -35,6 +38,15 @@ function saveLocation(location) {
             for (var i = 0; i < locationArray.length; i++) {
                 if (locationArray[i]["time"] > unixtimeUTC_28daysAgo) {
                     curated.push(locationArray[i]);
+                }
+            }
+
+            // Backfill the stationary points, if available
+            if (curated.length >= 1) {
+                var lastLocationArray = curated[curated.length - 1];
+                var lastTS = lastLocationArray["time"];
+                for (; lastTS < unixtimeUTC - locationInterval; lastTS += locationInterval) {
+                    curated.push(JSON.parse(JSON.stringify(lastLocationArray)));
                 }
             }
 
@@ -77,30 +89,23 @@ export default class LocationServices {
         // PushNotificationIOS.requestPermissions();
         BackgroundGeolocation.configure({
             desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
-            stationaryRadius: 50,
-            distanceFilter: 50,
+            stationaryRadius: 5,
+            distanceFilter: 5,
             notificationTitle: 'Private Kit Enabled',
             notificationText: 'Private Kit is securely storing your GPS coordinates once every five minutes on this device.',
             debug: false,    // when true, it beeps every time a loc is read
-            startOnBoot: false,
+            startOnBoot: true,
             stopOnTerminate: false,
-            locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
+            locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
 
-            // DEBUG: Use these to get a faster output
-                /*interval: 2000,
-                fastestInterval: 2000, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-                activitiesInterval: 2000,*/
+            interval: locationInterval,
+            fastestInterval: locationInterval,
+            activitiesInterval: locationInterval,
 
-            interval: 20000,
-            fastestInterval: 60000 * 5, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-            activitiesInterval: 20000,
-
+            activityType: "AutomotiveNavigation",
+            pauseLocationUpdates: false,
+            saveBatteryOnBackground: true,
             stopOnStillActivity: false,
-            postTemplate: {
-                lat: '@latitude',
-                lon: '@longitude',
-                foo: 'bar' // you can also add your own properties
-            }
         });
 
         BackgroundGeolocation.on('location', (location) => {
