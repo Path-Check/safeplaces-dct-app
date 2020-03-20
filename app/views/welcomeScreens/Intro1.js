@@ -24,8 +24,7 @@ const Intro1 = (props) => {
            <TouchableOpacity 
             onPress={()=>props.swipe(1)}
             style={styles.primaryButtonTouchable} >
-                <Text 
-                    style={styles.primaryButtonText}>{languages.t('label.next')}</Text>
+                <Text style={styles.primaryButtonText}>{languages.t('label.next')}</Text>
             </TouchableOpacity>
             {/* <TouchableOpacity><Text style={{marginTop:12,fontFamily:'OpenSans-SemiBold',alignSelf:'center',color:'#665eff'}}>Skip this</Text></TouchableOpacity> */}
         </View>
