@@ -1,12 +1,12 @@
 {
-    "start_logging":"START LOGGING",
-    "stop_logging":"STOP LOGGING",
-    "logging_message":"It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.",
-    "not_logging_message":"NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.",
-    "import":"Import",
+    "start_logging":"STARTE DIE AUFNAHME",
+    "stop_logging":"HÖRE AUF, AUFZUNEHMEN,
+    "logging_message":"Derzeit wird Ihr Standort alle fünf Minuten privat protokolliert. Ihre Standortinformationen verlassen Ihr Telefon NICHT.",
+    "not_logging_message":"HINWEIS: Nachdem Sie auf diese Schaltfläche geklickt haben, werden Sie möglicherweise aufgefordert, Private Kit Zugriff auf Ihren Standort zu gewähren.",
+    "import":"Importieren",
     "export":"Export",
-    "news":"news",
-    "latest_news":"Latest News",
-    "url_info":"For more information visit the Private Kit hompage:",
+    "news":"Nachrichten",
+    "latest_news":"Neuesten Nachrichten",
+    "url_info":"Weitere Informationen finden Sie auf der Homepage von Private Kit:",
     "private_kit_url":"privatekit.mit.edu"
 }

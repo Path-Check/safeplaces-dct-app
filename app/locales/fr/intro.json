@@ -1,14 +1,14 @@
 {
     "private_kit":"Private Kit",
-    "intro1_para1":"Designed with data security and privacy protection at its heart, MIT Private Kit is the next generation of secure location logging.",
-    "next":"NEXT",
-    "back":"BACK",
-    "start":"START",
-    "intro2_title1":"Less than 100KB",
-    "intro2_para1":"Private Kit’s trail generator logs your device’s location data in under 100KB of space – less space than a single picture.",
-    "intro2_title2":"You are in charge",
-    "intro2_para2":"Data Never Leaves Your Device Without Your Consent",
-    "intro3_title1":"The Future",
-    "intro3_para1":"The Next Step in Solving Today and Tomorrow’s Problems Enabling individuals to log their location trail offers new opportunities for researchers studying pandemic tracking, refugee migration, and community traffic analysis.",
-    "intro3_para2":"Learn More http://privatekit.mit.edu/"
+    "intro1_para1":"Conçu avec la sécurité des données et la protection de la vie privée en son cœur, MIT Private Kit est la prochaine génération de journalisation d'emplacement sécurisée.",
+    "next":"SUIVANTE",
+    "back":"RETOUR",
+    "start":"DÉBUT",
+    "intro2_title1":"Moins que 100KB",
+    "intro2_para1":"Le générateur de pistes de Private Kit's enregistre les données de localisation de votre appareil dans moins de 100KB espaces - moins d'espace qu'une seule image.",
+    "intro2_title2":"Tu es responsable",
+    "intro2_para2":"Les données ne quittent jamais votre appareil sans votre consentement",
+    "intro3_title1":"L'avenir",
+    "intro3_para1":"La prochaine étape pour résoudre les problèmes d’aujourd’hui et de demain Permettre aux individus de consigner leur trace de localisation offre de nouvelles opportunités aux chercheurs qui étudient le suivi des pandémies, la migration des réfugiés et l’analyse du trafic communautaire.",
+    "intro3_para2":"En savoir plus sur http://privatekit.mit.edu/"
 }
