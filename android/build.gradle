@@ -8,7 +8,6 @@ buildscript {
         minSdkVersion = 16
         supportLibVersion = "28.0.0"
         googlePlayServicesVersion = "11+"
-        firebaseVersion = "11+"
     }
     repositories {
         google()

@@ -45,9 +45,9 @@ class Welcome extends Component {
                     <View style={styles.topView}>
                         <View style={styles.intro} >
 
-                            <Text style={styles.headerTitle}>Private Kit</Text>
+                            <Text style={styles.headerTitle}>COVID19 Radar</Text>
 
-                            <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text>
+                            <Text style={styles.sectionDescription}>COVID19 Radar is your personal vault that nobody else can access.</Text>
                             <Text style={styles.sectionDescription}>It will allow you to log your location privately every five minutes. Your location information will NOT leave your phone.</Text>
 
                         </View>
@@ -55,14 +55,14 @@ class Welcome extends Component {
 
                     <View style={styles.block}>
                         <Button title="Start Logging Location" onPress={() => this.willParticipate()} />
-                        <Text style={{ padding: 25, justifyContent: 'center', }} >NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.</Text>
+                        <Text style={{ padding: 25, justifyContent: 'center', }} >NOTE: After clicking this button you may be prompted to grant COVID19 Radar access to your location.</Text>
                     </View>
 
                 </View>
 
                 <View style={styles.footer}>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
+                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the COVID19 Radar hompage:</Text>
+                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('http://rise.org.cy/COVID19/')}>rise.org.cy.COVID19</Text>
                 </View>
             </SafeAreaView>
         )

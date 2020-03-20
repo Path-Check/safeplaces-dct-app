@@ -10,9 +10,7 @@ import {
     TouchableOpacity,
     Dimensions,
     Image,
-    ScrollView,
-    BackHandler,
-    Button
+    ScrollView,BackHandler
 } from 'react-native';
 import colors from "../constants/colors";
 import LocationServices from '../services/LocationService';
@@ -22,7 +20,6 @@ import news from './../assets/images/newspaper.png';
 import pkLogo from './../assets/images/PKLogo.png';
 
 import {GetStoreData, SetStoreData} from '../helpers/General';
-import languages from './../locales/languages'
 
 const width = Dimensions.get('window').width;
 
@@ -83,7 +80,7 @@ class LocationTracking extends Component {
     }
 
     setOptOut =()=>{
-        LocationServices.stop(this.props.navigation)
+        LocationServices.optOut(this.props.navigation)
         this.setState({
             isLogging:false
         })
@@ -97,7 +94,7 @@ class LocationTracking extends Component {
                     <View style={styles.topView}>
                         <View style={styles.intro} >
 
-                            <Text style={styles.headerTitle}>{languages.t('label.private_kit')}</Text>
+                            <Text style={styles.headerTitle}>COVID19 Radar</Text>
 
                             {
                                 this.state.isLogging  ? (
@@ -105,23 +102,24 @@ class LocationTracking extends Component {
                                     <Image source={pkLogo} style={{width:132,height:164.4,alignSelf:'center',marginTop:12}} />
 
                                 <TouchableOpacity onPress={() => this.setOptOut()} style={styles.stopLoggingButtonTouchable} >
-                                <Text style={styles.stopLoggingButtonText}>{languages.t('label.stop_logging')}</Text>
+                                <Text style={styles.stopLoggingButtonText}>STOP LOGGING</Text>
                             </TouchableOpacity>
                             </>
                             ) : ( 
                             <>
                             <Image source={pkLogo} style={{width:132,height:164.4,alignSelf:'center',marginTop:12,opacity:.3}} />
                             <TouchableOpacity onPress={() => this.willParticipate()} style={styles.startLoggingButtonTouchable} >
-                                <Text style={styles.startLoggingButtonText}>{languages.t('label.start_logging')}</Text>
+                                <Text style={styles.startLoggingButtonText}>START LOGGING</Text>
                             </TouchableOpacity>
                             </>)
                             }
-
                            
                            {this.state.isLogging ?  
-                            <Text style={styles.sectionDescription}>{languages.t('label.logging_message')}</Text> :
-                            <Text style={styles.sectionDescription}>{languages.t('label.not_logging_message')}</Text> }
-                        
+                            <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text> :
+                           <Text style={styles.sectionDescription} >NOTE: After clicking this button you may be prompted to grant COVID19 Radar access to your location.</Text> }
+                           
+
+                            {/* <Text style={styles.sectionDescription}>COVID19 Radar is your personal vault that nobody else can access.</Text> */}
 
                         </View>
                     </View>
@@ -129,24 +127,24 @@ class LocationTracking extends Component {
                     <View style={styles.actionButtonsView}>
                         <TouchableOpacity onPress={() => this.import()}  style={styles.actionButtonsTouchable}>
                             <Image style={styles.actionButtonImage} source={exportImage} resizeMode={'contain'}></Image>
-                            <Text style={styles.actionButtonText}>{languages.t('label.import')}</Text>
+                            <Text style={styles.actionButtonText}>Import</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this.export()} style={styles.actionButtonsTouchable}>
                             <Image style={[styles.actionButtonImage,{transform:[{rotate:'180deg'}]}]} source={exportImage} resizeMode={'contain'}></Image>
-                            <Text style={styles.actionButtonText}>{languages.t('label.export')}</Text>
+                            <Text style={styles.actionButtonText}>Export</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this.news()} style={styles.actionButtonsTouchable}>
                             <Image style={styles.actionButtonImage} source={news} resizeMode={'contain'}></Image>
-                            <Text style={styles.actionButtonText}>{languages.t('label.news')}</Text>
+                            <Text style={styles.actionButtonText}>News</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
 
                 <View style={styles.footer}>
-                    <Text style={[styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }]}>{languages.t('label.url_info')} </Text>
-                    <Text style={[styles.sectionDescription, { color: 'blue', textAlign: 'center',marginTop:0 }]} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>{languages.t('label.private_kit_url')}</Text>
+                    <Text style={[styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }]}>For more information visit the COVID19 Radar hompage:</Text>
+                    <Text style={[styles.sectionDescription, { color: 'blue', textAlign: 'center',marginTop:0 }]} onPress={() => Linking.openURL('http://rise.org.cy/COVID19/ ')}>rise.org.cy.COVID19</Text>
                 </View>
             </SafeAreaView>
         )

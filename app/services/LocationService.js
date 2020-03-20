@@ -5,12 +5,9 @@ import {
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { Alert } from 'react-native';
 
-import PushNotificationIOS from "@react-native-community/push-notification-ios";
-
-import PushNotification from "react-native-push-notification";
-
 var instanceCount = 0;
 var lastPointCount = 0;
+
 
 function saveLocation(location) {
     // Persist this location data in our local storage of time/lat/lon values
@@ -64,23 +61,12 @@ export default class LocationServices {
             return;
         }
 
-        PushNotification.configure({
-            // (required) Called when a remote or local notification is opened or received
-            onNotification: function(notification) {
-              console.log("NOTIFICATION:", notification);
-              // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
-              notification.finish(PushNotificationIOS.FetchResult.NoData);
-            },
-            requestPermissions: true
-          });
-
-        // PushNotificationIOS.requestPermissions();
         BackgroundGeolocation.configure({
             desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
             stationaryRadius: 50,
             distanceFilter: 50,
-            notificationTitle: 'Private Kit Enabled',
-            notificationText: 'Private Kit is securely storing your GPS coordinates once every five minutes on this device.',
+            notificationTitle: 'COVID19 Radar Enabled',
+            notificationText: 'COVID19 Radar is securely storing your GPS coordinates once every five minutes on this device.',
             debug: false,    // when true, it beeps every time a loc is read
             startOnBoot: false,
             stopOnTerminate: false,
@@ -171,7 +157,7 @@ export default class LocationServices {
             if (status !== BackgroundGeolocation.AUTHORIZED) {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
-                    Alert.alert('Private Kit requires access to location information', 'Would you like to open app settings?', [{
+                    Alert.alert('COVID19 Radar requires access to location information', 'Would you like to open app settings?', [{
                         text: 'Yes',
                         onPress: () => BackgroundGeolocation.showAppSettings()
                     },
@@ -211,14 +197,12 @@ export default class LocationServices {
         });
 
         BackgroundGeolocation.on('stop', () => {
-            PushNotification.localNotification({
-                title: "Location Tracking Was Disabled",
-                message: "Private Kit requires location services."
-            });
+            // PUSH LOCAL NOTIFICATION HERE WARNING LOCATION HAS BEEN TERMINATED
             console.log('[INFO] stop');
         });
 
         BackgroundGeolocation.on('stationary', () => {
+            // PUSH LOCAL NOTIFICATION HERE WARNING LOCATION HAS BEEN TERMINATED
             console.log('[INFO] stationary');
         });
 
@@ -232,7 +216,7 @@ export default class LocationServices {
             if (!status.locationServicesEnabled) {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
-                    Alert.alert('Private Kit requires location services to be enabled', 'Would you like to open location settings?', [{
+                    Alert.alert('COVID19 Radar requires location services to be enabled', 'Would you like to open location settings?', [{
                         text: 'Yes',
                         onPress: () => BackgroundGeolocation.showLocationSettings()
                     },
@@ -246,7 +230,7 @@ export default class LocationServices {
             else if (!status.authorization) {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
-                    Alert.alert('Private Kit requires access to location information', 'Would you like to open app settings?', [{
+                    Alert.alert('COVID19 Radar requires access to location information', 'Would you like to open app settings?', [{
                         text: 'Yes',
                         onPress: () => BackgroundGeolocation.showAppSettings()
                     },
@@ -270,15 +254,15 @@ export default class LocationServices {
         return lastPointCount;
     }
 
-    static stop(nav) {
+    static stop() {
         // unregister all event listeners
-        PushNotification.localNotification({
-            title: "Location Tracking Was Disabled",
-            message: "Private Kit requires location services."
-        });
         BackgroundGeolocation.removeAllListeners();
         BackgroundGeolocation.stop();
         instanceCount -= 1;
+    }
+
+    static optOut(nav) {
+        BackgroundGeolocation.removeAllListeners();
         SetStoreData('PARTICIPATE', 'false').then(() =>
             nav.navigate('LocationTrackingScreen', {})
         )

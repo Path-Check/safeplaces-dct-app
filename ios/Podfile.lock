@@ -231,8 +231,6 @@ PODS:
     - React
   - RNCMaskedView (0.1.5):
     - React
-  - RNCPushNotificationIOS (1.1.0):
-    - React
   - RNFS (2.16.6):
     - React
   - RNGestureHandler (1.5.6):
@@ -286,7 +284,6 @@ DEPENDENCIES:
   - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
-  - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -362,8 +359,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
-  RNCPushNotificationIOS:
-    :path: "../node_modules/@react-native-community/push-notification-ios"
   RNFS:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
@@ -410,7 +405,6 @@ SPEC CHECKSUMS:
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNCAsyncStorage: 00bdf63f7f1e0f11d3323533dba4f222e58bf092
   RNCMaskedView: c8b53164b85ecf94c9a44d67082df0f03c1f74cc
-  RNCPushNotificationIOS: de54f074e577e684c0619d4271a5b451e8a37ee1
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812

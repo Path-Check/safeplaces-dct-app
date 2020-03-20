@@ -1,24 +1,32 @@
 import React from 'react'
 import { View, Text,Dimensions, Image, TouchableOpacity,StyleSheet } from 'react-native'
 const width = Dimensions.get('window').width;
-import languages from './../../locales/languages'
 
 const Intro2 = (props) => {
     return (
         <View style={styles.mainContainer}>
             <View style={styles.infoCard}>
-                <Text style={styles.infoCardHeadText}>
-                {languages.t('label.intro3_title1')}
+                <Text 
+                    style={styles.infoCardHeadText}>
+                The Future
                 </Text>
-                <Text style={styles.infoCardBodyText}>{languages.t('label.intro3_para1')}</Text>
-                <Text onPress={() => Linking.openURL('https://privatekit.mit.edu')} style={[styles.infoCardBodyText,{fontFamily:'OpenSans-Bold',opacity:1,marginTop:12}]}>
-                {languages.t('label.intro3_para2')}
-                </Text>
+                <Text 
+                style={styles.infoCardBodyText}>
+                    Designed to help Cypriot citizens.
+                    Enabling individuals to log their location trail offers new opportunities for the authorities to track COVID19 with higher accuracy.</Text>
+<Text onPress={() => Linking.openURL('http://rise.org.cy/COVID19')} style={[styles.infoCardBodyText,{fontFamily:'OpenSans-Bold',opacity:1,marginTop:12}]}>
+Learn More
+rise.org.cy.COVID19
+</Text>
+
+                
             </View>
+           
            <View style={styles.navigationDotsView}>
-            <TouchableOpacity 
-                onPress={()=>props.swipe(-2)}
-                style={styles.inactiveIndicator}/>  
+           <TouchableOpacity 
+           onPress={()=>props.swipe(-2)}
+               style={styles.inactiveIndicator}/>
+              
             <TouchableOpacity 
             onPress={()=>props.swipe(-1)}
                style={styles.inactiveIndicator}/>
@@ -30,14 +38,14 @@ const Intro2 = (props) => {
             <TouchableOpacity 
             onPress={()=>props.swipe(-1)}
             style={styles.secondaryButtonTouchable} >
-                <Text style={styles.secondaryButtonText}>{languages.t('label.back')}</Text>
+                <Text style={styles.secondaryButtonText}>BACK</Text>
             </TouchableOpacity>
           
            <TouchableOpacity 
            onPress={()=>props.navigation.navigate('LocationTrackingScreen')}
             style={styles.primaryButtonTouchable} >
                 <Text 
-                    style={styles.primaryButtonText}>{languages.t('label.start')}</Text>
+                    style={styles.primaryButtonText}>START</Text>
             </TouchableOpacity>
             </View>
           
