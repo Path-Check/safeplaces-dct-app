@@ -10,7 +10,9 @@ import {
     TouchableOpacity,
     Dimensions,
     Image,
-    ScrollView,BackHandler
+    ScrollView,
+    BackHandler,
+    Button
 } from 'react-native';
 import colors from "../constants/colors";
 import LocationServices from '../services/LocationService';
@@ -81,7 +83,7 @@ class LocationTracking extends Component {
     }
 
     setOptOut =()=>{
-        LocationServices.optOut(this.props.navigation)
+        LocationServices.stop(this.props.navigation)
         this.setState({
             isLogging:false
         })
@@ -114,11 +116,13 @@ class LocationTracking extends Component {
                             </TouchableOpacity>
                             </>)
                             }
+
                            
                            {this.state.isLogging ?  
                             <Text style={styles.sectionDescription}>{languages.t('label.logging_message')}</Text> :
                             <Text style={styles.sectionDescription}>{languages.t('label.not_logging_message')}</Text> }
                         
+
                         </View>
                     </View>
 
