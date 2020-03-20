@@ -1,5 +1,10 @@
 {
     "private_kit":"Private Kit",
     "intro1_para1":"Designed with data security and privacy protection at its heart, MIT Private Kit is the next generation of secure location logging.",
-    "next":"NEXT"
+    "next":"NEXT",
+    "back":"BACK",
+    "intro2_title1":"Less than 100KB",
+    "intro2_para1":"Private Kit’s trail generator logs your device’s location data in under 100KB of space – less space than a single picture.",
+    "intro2_title2":"You are in charge",
+    "intro2_para2":"Data Never Leaves Your Device Without Your Consent"
 }
