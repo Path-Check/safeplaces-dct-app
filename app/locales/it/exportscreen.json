@@ -1,6 +1,6 @@
 {
-    "export_para_1":"You can share your location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.",
-    "export_para_2":"Location is shared as a simple list of times and coordinates, no other identifying information.",
-    "share":"SHARE",
-    "data_hint":"Log has data of"
+    "export_para_1":"Puoi condividere il tuo tracciato con chiunque usando il pulsante Condividi. Una volta premuto il pulsante, ti verraà chiesto con chi e come vuoi condividere il tuo tracciato.",
+    "export_para_2":"La posizione è condivisa come semplice lista di coordinate, no altra informazione in grado di identificarti viene condivisa",
+    "share":"CONDIVIDI",
+    "data_hint":"Il rapporto ha dati per"
 }
