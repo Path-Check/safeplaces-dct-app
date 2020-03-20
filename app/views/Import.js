@@ -19,6 +19,7 @@ import backArrow from './../assets/images/backArrow.png'
 import {
     SearchAndImport
 } from '../helpers/GoogleTakeOutAutoImport';
+import languages from './../locales/languages'
 
 class ImportScreen extends Component {
     constructor(props) {
@@ -52,13 +53,13 @@ class ImportScreen extends Component {
                     <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
                          <Image style={styles.backArrow} source={backArrow} />
                     </TouchableOpacity>
-                    <Text style={styles.headerTitle}>Import Locations</Text>
+                    <Text style={styles.headerTitle}>{languages.t('label.import_title')}</Text>
                 </View>
 
                 <View style={styles.main}>
                     <View style={styles.subHeaderTitle}>
-                        <Text style={styles.sectionDescription}>1. Login to your Google Account and Download your Location History</Text>
-                        <Text style={styles.sectionDescription}>2. After downloaded, open this screen again. The data will import automatically.</Text>
+                        <Text style={styles.sectionDescription}>{languages.t('label.import_step_1')}</Text>
+                        <Text style={styles.sectionDescription}>{languages.t('label.import_step_2')}</Text>
                     </View>
                     <View style={styles.web}>
                         <WebView
@@ -110,7 +111,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height:60,
         borderBottomWidth:1,
-        borderBottomColor:'rgba(189, 195, 199,0.6)'
+        borderBottomColor:'rgba(189, 195, 199,0.6)',
+        alignItems:'center'
     },
     backArrowTouchable:{
         width:60,
@@ -124,9 +126,7 @@ const styles = StyleSheet.create({
     },
     headerTitle:{
         fontSize: 24,
-        lineHeight: 24,
-        fontFamily:'OpenSans-Bold',
-        top:21
+        fontFamily:'OpenSans-Bold'
     },
     sectionDescription: {
         fontSize: 16,

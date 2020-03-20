@@ -1,0 +1,12 @@
+{
+    "start_logging":"START LOGGING",
+    "stop_logging":"STOP LOGGING",
+    "logging_message":"It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.",
+    "not_logging_message":"NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.",
+    "import":"Import",
+    "export":"Export",
+    "news":"news",
+    "latest_news":"Latest News",
+    "url_info":"For more information visit the Private Kit hompage:",
+    "private_kit_url":"privatekit.mit.edu"
+}
