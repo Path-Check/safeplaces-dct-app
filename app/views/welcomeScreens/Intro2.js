@@ -1,26 +1,16 @@
 import React from 'react'
 import { View, Text,Dimensions, TouchableOpacity,StyleSheet } from 'react-native'
 const width = Dimensions.get('window').width;
+import languages from './../../locales/languages'
 
 const Intro2 = (props) => {
     return (
         <View style={styles.mainContainer}>
             <View style={styles.infoCard}>
-                <Text  style={styles.infoCardHeadText}>
-                Less than 100KB
-                </Text>
-                <Text 
-                style={styles.infoCardBodyText}>
-Private Kit’s trail generator logs your device’s location data in under 100KB of space – less space than a single picture. 
-                </Text>
-
-                <Text 
-                    style={styles.infoCardHeadText}>
-                You are in charge
-                </Text>
-                <Text 
-                style={styles.infoCardBodyText}>
-Data Never Leaves Your Device Without Your Consent                </Text>
+                <Text  style={styles.infoCardHeadText}>{languages.t('label.intro2_title1')}</Text>
+                <Text style={styles.infoCardBodyText}>{languages.t('label.intro2_para1')}</Text>
+                <Text style={styles.infoCardHeadText}>{languages.t('label.intro2_title2')}</Text>
+                <Text style={styles.infoCardBodyText}>{languages.t('label.intro2_para2')}</Text>
             </View>
            
            <View style={styles.navigationDotsView}>
@@ -38,15 +28,13 @@ Data Never Leaves Your Device Without Your Consent                </Text>
             <TouchableOpacity 
             onPress={()=>props.swipe(-1)}
             style={styles.secondaryButtonTouchable} >
-                <Text 
-                    style={styles.secondaryButtonText}>BACK</Text>
+                <Text style={styles.secondaryButtonText}>{languages.t('label.back')}</Text>
             </TouchableOpacity>
           
            <TouchableOpacity 
            onPress={()=>props.swipe(1)}
             style={styles.primaryButtonTouchable} >
-                <Text 
-                    style={styles.primaryButtonText}>NEXT</Text>
+                <Text style={styles.primaryButtonText}>{languages.t('label.next')}</Text>
             </TouchableOpacity>
             </View>
           
