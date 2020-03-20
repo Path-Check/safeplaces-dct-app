@@ -3,7 +3,7 @@
     "stop_logging":"PARAR",
     "logging_message":"Sua localização atual está sendo registrada a cada cinco minutos. Suas informações de localização NÃO sairão do seu telefone.",
     "not_logging_message":"NOTA: Depois de clicar neste botão, você pode ser solicitado para liberar o acesso da sua localização ao Private Kit.",
-    "import":"Improtar",
+    "import":"Importar",
     "export":"Exportar",
     "news":"Notícias",
     "latest_news":"Últimas notícias",
