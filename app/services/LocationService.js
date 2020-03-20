@@ -5,6 +5,10 @@ import {
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { Alert } from 'react-native';
 
+import PushNotificationIOS from "@react-native-community/push-notification-ios";
+
+import PushNotification from "react-native-push-notification";
+
 var instanceCount = 0;
 var lastPointCount = 0;
 var locationInterval = 60000 * 5;  // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
@@ -72,6 +76,17 @@ export default class LocationServices {
             return;
         }
 
+        PushNotification.configure({
+            // (required) Called when a remote or local notification is opened or received
+            onNotification: function(notification) {
+              console.log("NOTIFICATION:", notification);
+              // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
+              notification.finish(PushNotificationIOS.FetchResult.NoData);
+            },
+            requestPermissions: true
+          });
+
+        // PushNotificationIOS.requestPermissions();
         BackgroundGeolocation.configure({
             desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
             stationaryRadius: 5,
@@ -201,12 +216,14 @@ export default class LocationServices {
         });
 
         BackgroundGeolocation.on('stop', () => {
-            // PUSH LOCAL NOTIFICATION HERE WARNING LOCATION HAS BEEN TERMINATED
+            PushNotification.localNotification({
+                title: "Location Tracking Was Disabled",
+                message: "Private Kit requires location services."
+            });
             console.log('[INFO] stop');
         });
 
         BackgroundGeolocation.on('stationary', () => {
-            // PUSH LOCAL NOTIFICATION HERE WARNING LOCATION HAS BEEN TERMINATED
             console.log('[INFO] stationary');
         });
 
@@ -258,15 +275,15 @@ export default class LocationServices {
         return lastPointCount;
     }
 
-    static stop() {
+    static stop(nav) {
         // unregister all event listeners
+        PushNotification.localNotification({
+            title: "Location Tracking Was Disabled",
+            message: "Private Kit requires location services."
+        });
         BackgroundGeolocation.removeAllListeners();
         BackgroundGeolocation.stop();
         instanceCount -= 1;
-    }
-
-    static optOut(nav) {
-        BackgroundGeolocation.removeAllListeners();
         SetStoreData('PARTICIPATE', 'false').then(() =>
             nav.navigate('LocationTrackingScreen', {})
         )
