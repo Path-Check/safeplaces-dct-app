@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text,Dimensions, Image, TouchableOpacity,StyleSheet } from 'react-native'
 import welcome1 from './../../assets/images/welcome1.png'
-
+import languages from './../../locales/languages'
 const width = Dimensions.get('window').width;
 
 const Intro1 = (props) => {
@@ -9,10 +9,8 @@ const Intro1 = (props) => {
         <View style={styles.mainContainer}>
             <View style={styles.infoCard}>
                 <Image source={welcome1} style={styles.infoCardImage} />
-                <Text style={styles.infoCardHeadText}>Private Kit</Text>
-                <Text style={styles.infoCardBodyText}>
-                Designed with data security and privacy protection at its heart, MIT Private Kit is the next generation of secure location logging.
-                </Text>
+                <Text style={styles.infoCardHeadText}>{languages.t('label.private_kit')}</Text>
+                <Text style={styles.infoCardBodyText}>{languages.t('label.intro1_para1')}</Text>
             </View>
            <View style={styles.navigationDotsView}>
            <View  style={styles.activeIndicator}/>
@@ -26,8 +24,7 @@ const Intro1 = (props) => {
            <TouchableOpacity 
             onPress={()=>props.swipe(1)}
             style={styles.primaryButtonTouchable} >
-                <Text 
-                    style={styles.primaryButtonText}>NEXT</Text>
+                <Text style={styles.primaryButtonText}>{languages.t('label.next')}</Text>
             </TouchableOpacity>
             {/* <TouchableOpacity><Text style={{marginTop:12,fontFamily:'OpenSans-SemiBold',alignSelf:'center',color:'#665eff'}}>Skip this</Text></TouchableOpacity> */}
         </View>

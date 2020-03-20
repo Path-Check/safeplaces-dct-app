@@ -17,6 +17,7 @@ import {
 } from 'react-native-webview';
 import Button from "../components/Button";
 import backArrow from './../assets/images/backArrow.png'
+import languages from './../locales/languages'
 
 class NewsScreen extends Component {
     constructor(props) {
@@ -47,7 +48,7 @@ class NewsScreen extends Component {
                     <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
                          <Image style={styles.backArrow} source={backArrow} />
                     </TouchableOpacity>
-                    <Text style={styles.headerTitle}>Latest News</Text>
+                    <Text style={styles.headerTitle}>{languages.t('label.latest_news')}</Text>
                 </View>
                
                 <WebView
@@ -93,7 +94,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height:60,
         borderBottomWidth:1,
-        borderBottomColor:'rgba(189, 195, 199,0.6)'
+        borderBottomColor:'rgba(189, 195, 199,0.6)',
+        alignItems:'center'
     },
     backArrowTouchable:{
         width:60,
@@ -107,9 +109,7 @@ const styles = StyleSheet.create({
     },
     headerTitle:{
         fontSize: 24,
-        lineHeight: 24,
         fontFamily:'OpenSans-Bold',
-        top:21
     },
     sectionDescription: {
         fontSize: 16,
