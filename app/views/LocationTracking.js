@@ -10,7 +10,9 @@ import {
     TouchableOpacity,
     Dimensions,
     Image,
-    ScrollView,BackHandler
+    ScrollView,
+    BackHandler,
+    Button
 } from 'react-native';
 import colors from "../constants/colors";
 import LocationServices from '../services/LocationService';
@@ -80,7 +82,7 @@ class LocationTracking extends Component {
     }
 
     setOptOut =()=>{
-        LocationServices.optOut(this.props.navigation)
+        LocationServices.stop(this.props.navigation)
         this.setState({
             isLogging:false
         })
@@ -113,14 +115,10 @@ class LocationTracking extends Component {
                             </TouchableOpacity>
                             </>)
                             }
-                           
-                           {this.state.isLogging ?  
+
+                           {this.state.isLogging ?
                             <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text> :
                            <Text style={styles.sectionDescription} >NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.</Text> }
-                           
-
-                            {/* <Text style={styles.sectionDescription}>Private Kit is your personal vault that nobody else can access.</Text> */}
-
                         </View>
                     </View>
 
