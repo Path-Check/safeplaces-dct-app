@@ -1,32 +1,24 @@
 import React from 'react'
-import { View, Text,Dimensions, Image, TouchableOpacity,StyleSheet } from 'react-native'
+import { View, Text,Dimensions, Image, TouchableOpacity,StyleSheet,Linking } from 'react-native'
 const width = Dimensions.get('window').width;
+import languages from './../../locales/languages'
 
 const Intro2 = (props) => {
     return (
         <View style={styles.mainContainer}>
             <View style={styles.infoCard}>
-                <Text 
-                    style={styles.infoCardHeadText}>
-                The Future
+                <Text style={styles.infoCardHeadText}>
+                {languages.t('label.intro3_title1')}
                 </Text>
-                <Text 
-                style={styles.infoCardBodyText}>
-                    The Next Step in Solving Today and Tomorrow’s Problems
-                    Enabling individuals to log their location trail offers new opportunities for researchers studying pandemic tracking, refugee migration, and community traffic analysis.</Text>
-<Text onPress={() => Linking.openURL('https://privatekit.mit.edu')} style={[styles.infoCardBodyText,{fontFamily:'OpenSans-Bold',opacity:1,marginTop:12}]}>
-Learn More
-http://privatekit.mit.edu/
-</Text>
-
-                
+                <Text style={styles.infoCardBodyText}>{languages.t('label.intro3_para1')}</Text>
+                <Text onPress={() => Linking.openURL('https://privatekit.mit.edu')} style={[styles.infoCardBodyText,{fontFamily:'OpenSans-Bold',opacity:1,marginTop:12}]}>
+                {languages.t('label.intro3_para2')}
+                </Text>
             </View>
-           
            <View style={styles.navigationDotsView}>
-           <TouchableOpacity 
-           onPress={()=>props.swipe(-2)}
-               style={styles.inactiveIndicator}/>
-              
+            <TouchableOpacity 
+                onPress={()=>props.swipe(-2)}
+                style={styles.inactiveIndicator}/>  
             <TouchableOpacity 
             onPress={()=>props.swipe(-1)}
                style={styles.inactiveIndicator}/>
@@ -38,14 +30,14 @@ http://privatekit.mit.edu/
             <TouchableOpacity 
             onPress={()=>props.swipe(-1)}
             style={styles.secondaryButtonTouchable} >
-                <Text style={styles.secondaryButtonText}>BACK</Text>
+                <Text style={styles.secondaryButtonText}>{languages.t('label.back')}</Text>
             </TouchableOpacity>
           
            <TouchableOpacity 
            onPress={()=>props.navigation.navigate('LocationTrackingScreen')}
             style={styles.primaryButtonTouchable} >
                 <Text 
-                    style={styles.primaryButtonText}>START</Text>
+                    style={styles.primaryButtonText}>{languages.t('label.start')}</Text>
             </TouchableOpacity>
             </View>
           
