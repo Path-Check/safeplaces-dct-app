@@ -8,6 +8,7 @@ import Welcome from './views/Welcome';
 import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
+import OverlapScreen from './views/Overlap';
 import Slider from './views/welcomeScreens/Slider';
 import {GetStoreData, SetStoreData} from './helpers/General';
 
@@ -15,6 +16,7 @@ const Stack = createStackNavigator();
 
 class Entry extends Component {
     constructor(props) {
+        console.log("test");
         super(props);
         this.state={
           initialRouteName:''
@@ -22,6 +24,7 @@ class Entry extends Component {
     }
 
     componentDidMount(){
+      console.log("test");
       GetStoreData('PARTICIPATE')
       .then(isParticipating => {
           console.log(isParticipating);
@@ -80,6 +83,11 @@ class Entry extends Component {
             <Stack.Screen
               name="ImportScreen"
               component={ImportScreen}
+              options={{headerShown:false}}
+            />
+            <Stack.Screen
+              name="OverlapScreen"
+              component={OverlapScreen}
               options={{headerShown:false}}
             />
           </Stack.Navigator>

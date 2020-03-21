@@ -8,5 +8,6 @@
     "news":"news",
     "latest_news":"Latest News",
     "url_info":"For more information visit the Private Kit hompage:",
-    "private_kit_url":"privatekit.mit.edu"
+    "private_kit_url":"privatekit.mit.edu",
+    "overlap": "Check overlap",
 }
