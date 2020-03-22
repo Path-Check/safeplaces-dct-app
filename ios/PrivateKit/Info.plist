@@ -38,7 +38,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We log your location to help you understand if your path has crossed with any diagnosed carriers.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>We use your accelerometer to help give you more precise info on if if your path has crossed with any diagnosed carriers.</string>
+	<string>We use your accelerometer to help give you more precise info on if your path has crossed with any diagnosed carriers.</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
