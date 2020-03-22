@@ -50,20 +50,13 @@ or
 npx react-native run-ios --simulator="iPhone 8 Plus"
 ```
 
-----------------------------------------------------------------------------------
 NOTE: In some cases, the abovementioned procedure leads to the error 'Failed to load bundle - Could not connect to development server'. In these cases, kill all other react-native processes and try it again.
-----------------------------------------------------------------------------------
 
 ## Contributing
 
-Read the [contribution guidelines](./.github/CONTRIBUTING.md).
+Read the [contribution guidelines](CONTRIBUTING.md).
 
-Join the WhatsApp group - https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
+WhatsApp: https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
+Slack: https://safepathsprivatekit.slack.com/
 
-## Tested On
-
-| Device | Version |
-| ------------- | ------------- |
-| Android Pixel | API 28  |
-| Android Pixel | API 29  |
 
