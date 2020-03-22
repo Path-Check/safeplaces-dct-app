@@ -188,7 +188,7 @@ PODS:
     - React
   - react-native-viewpager (3.3.0):
     - React
-  - react-native-webview (8.1.2):
+  - react-native-webview (8.2.1):
     - React
   - React-RCTActionSheet (0.61.5):
     - React-Core/RCTActionSheetHeaders (= 0.61.5)
@@ -237,15 +237,17 @@ PODS:
     - React
   - RNGestureHandler (1.5.6):
     - React
+  - RNI18n (2.0.15):
+    - React
   - RNScreens (2.0.0-alpha.12):
     - React
-  - RNShare (3.0.0):
+  - RNShare (3.1.1):
     - React
-  - RNZipArchive (5.0.1):
+  - RNZipArchive (5.0.2):
     - React
-    - RNZipArchive/Core (= 5.0.1)
+    - RNZipArchive/Core (= 5.0.2)
     - SSZipArchive (= 2.2.2)
-  - RNZipArchive/Core (5.0.1):
+  - RNZipArchive/Core (5.0.2):
     - React
     - SSZipArchive (= 2.2.2)
   - SSZipArchive (2.2.2)
@@ -289,6 +291,7 @@ DEPENDENCIES:
   - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNI18n (from `../node_modules/react-native-i18n`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
@@ -368,6 +371,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNI18n:
+    :path: "../node_modules/react-native-i18n"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNShare:
@@ -396,7 +401,7 @@ SPEC CHECKSUMS:
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-safe-area-context: 870aba8339684c9b888d42103580b687ff3f0d0c
   react-native-viewpager: 118e65d8c65c56fe48d12a35cdcf1fe7e027a366
-  react-native-webview: 055c7110f17c2f19c971f655064ee480638db668
+  react-native-webview: d3cf75764f98fd433f1222f5a7ca8e355ada2a15
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -413,9 +418,10 @@ SPEC CHECKSUMS:
   RNCPushNotificationIOS: de54f074e577e684c0619d4271a5b451e8a37ee1
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
+  RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
-  RNShare: 0e19ddb0bf338b62702ce1d9e001ee14effa68a8
-  RNZipArchive: eb4ccf13ab4d8e3e114b8182046b19f10d2ff52e
+  RNShare: a4d8a4e7b85194fcc05f6753bd484f4eba6b833d
+  RNZipArchive: f06fe0dcfb9e2fa7437fc7f6c03d5400952f2d57
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 

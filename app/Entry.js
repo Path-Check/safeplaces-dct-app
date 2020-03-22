@@ -11,6 +11,7 @@ import ImportScreen from './views/Import';
 import LicencesScreen from './views/Licenses';
 import Slider from './views/welcomeScreens/Slider';
 import { GetStoreData, SetStoreData } from './helpers/General';
+import SettingsScreen from './views/Settings';
 
 const Stack = createStackNavigator();
 
@@ -84,6 +85,11 @@ class Entry extends Component {
             <Stack.Screen
               name="LicensesScreen"
               component={LicencesScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="SettingsScreen"
+              component={SettingsScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
