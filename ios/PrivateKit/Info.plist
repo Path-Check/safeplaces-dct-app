@@ -32,13 +32,13 @@
 		<dict/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We log your location to help you understand if your path has crossed with any diagnosed carriers.</string>
+	<string>We log your location to assist you in remembering location history when working with health authorities.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We log your location to help you understand if your path has crossed with any diagnosed carriers.</string>
+	<string>We log your location to assist you in remembering location history when working with health authorities.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We log your location to help you understand if your path has crossed with any diagnosed carriers.</string>
+	<string>We log your location to assist you in remembering location history when working with health authorities.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>We use your accelerometer to help give you more precise info on if your path has crossed with any diagnosed carriers.</string>
+	<string>We use your accelerometer for accurate location history when working with health authorities and as a power saving measure. </string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
