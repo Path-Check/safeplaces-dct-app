@@ -89,12 +89,6 @@ const styles = StyleSheet.create({
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
   },
-  headerTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 38,
-    padding: 0,
-  },
   subHeaderTitle: {
     textAlign: 'center',
     fontWeight: 'bold',
