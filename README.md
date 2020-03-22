@@ -32,9 +32,10 @@ Refer to and run the dev_setup.sh for needed tools.
 
 ### iOS Configuration - First Time Setup
 
-1. Move to `ios` directory and run `pod install`
-2. If you have any trouble with packages not round, try `react-native link` from project directory.
-3. Look at running commands below.
+1. pod install in `ios` directory
+2. Open `.workspace` file in the iOS directory and run `build`
+3. If you have any trouble with packages not round, try `react-native link` from project directory.
+4. Look at running commands below.
 
 ## Running
 
