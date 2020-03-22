@@ -28,7 +28,7 @@ This is a React Native app version 61.5
 
 ## Architecture
 
-Please refer to the `Private Kit Diagram.png` for a basic overview on the sequencing of generalized events and services that are utilized by Private Kit.
+Please refer to `docs/Private Kit Diagram.png` for a basic overview on the sequencing of generalized events and services that are utilized by Private Kit.
 
 ## Developer Setup
 
