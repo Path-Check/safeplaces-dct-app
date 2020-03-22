@@ -19,6 +19,7 @@ import {
 } from 'react-native-popup-menu';
 import colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
+import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import exportImage from './../assets/images/export.png';
 import news from './../assets/images/newspaper.png';
 import kebabIcon from './../assets/images/kebabIcon.png';
@@ -72,6 +73,26 @@ class LocationTracking extends Component {
   import() {
     this.props.navigation.navigate('ImportScreen', {});
   }
+
+  willParticipate = () => {
+    SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
+
+    // Check and see if they actually authorized in the system dialog.
+    // If not, stop services and set the state to !isLogging
+    // Fixes tripleblindmarket/private-kit#129
+    BackgroundGeolocation.checkStatus(({ authorization }) => {
+      if (authorization === BackgroundGeolocation.AUTHORIZED) {
+        this.setState({
+          isLogging: true,
+        });
+      } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
+        LocationServices.stop(this.props.navigation);
+        this.setState({
+          isLogging: false,
+        });
+      }
+    });
+  };
 
   news() {
     this.props.navigation.navigate('NewsScreen', {});
