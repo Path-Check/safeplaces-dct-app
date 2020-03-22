@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   Image,
@@ -12,19 +11,10 @@ import {
 } from 'react-native';
 
 import colors from '../constants/colors';
-import WebView from 'react-native-webview';
-import Button from '../components/Button';
-import { GetStoreData } from '../helpers/General';
-import { convertPointsToString } from '../helpers/convertPointsToString';
-import Share from 'react-native-share';
-import RNFetchBlob from 'rn-fetch-blob';
-import LocationServices from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 
 const width = Dimensions.get('window').width;
-
-const base64 = RNFetchBlob.base64;
 
 class LicensesScreen extends Component {
   constructor(props) {
