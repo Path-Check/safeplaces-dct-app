@@ -86,11 +86,6 @@ class Entry extends Component {
               component={LicencesScreen}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
-              name="LicensesScreen"
-              component={LicencesScreen}
-              options={{ headerShown: false }}
-            />
           </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>
