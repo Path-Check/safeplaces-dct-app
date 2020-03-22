@@ -8,6 +8,7 @@ import Welcome from './views/Welcome';
 import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
+import LicencesScreen from './views/Licenses';
 import Slider from './views/welcomeScreens/Slider';
 import {GetStoreData, SetStoreData} from './helpers/General';
 
@@ -50,18 +51,16 @@ class Entry extends Component {
               options={{headerShown:false}}
                 />
             )}
-          <Stack.Screen
+            <Stack.Screen
               name="Slider"
               component={Slider}
               options={{headerShown:false}}
-                />
-          
-          
+            />
             <Stack.Screen
               name="WelcomeScreen"
               component={Welcome}
               options={{headerShown:false}}
-                />
+            />
             <Stack.Screen
               name="LocationTrackingScreen"
               component={LocationTracking}
@@ -80,6 +79,11 @@ class Entry extends Component {
             <Stack.Screen
               name="ImportScreen"
               component={ImportScreen}
+              options={{headerShown:false}}
+            />
+            <Stack.Screen
+              name="LicensesScreen"
+              component={LicencesScreen}
               options={{headerShown:false}}
             />
           </Stack.Navigator>
