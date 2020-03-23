@@ -17,6 +17,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import Share from 'react-native-share';
 import colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
@@ -101,6 +102,22 @@ class LocationTracking extends Component {
   licenses() {
     this.props.navigation.navigate('LicensesScreen', {});
   }
+
+  onShare = async () => {
+    try {
+      Share.open({
+        message: `${languages.t('label.private_kit')} - ${languages.t('label.intro1_para1')} ${languages.t('label.private_kit_url')}`,
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err.message, err.code);
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   willParticipate = () => {
     SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
@@ -249,6 +266,19 @@ class LocationTracking extends Component {
                 {languages.t('label.news')}
               </Text>
             </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => this.onShare()}
+              style={styles.actionButtonsTouchable}>
+              <Image
+                style={styles.actionButtonImage}
+                source={news}
+                resizeMode={'contain'}
+              />
+              <Text style={styles.actionButtonText}>
+                Share
+              </Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
 
@@ -371,7 +401,7 @@ const styles = StyleSheet.create({
     height: 76,
     borderRadius: 8,
     backgroundColor: '#454f63',
-    width: width * 0.23,
+    width: width * 0.17,
     justifyContent: 'center',
     alignItems: 'center',
   },
