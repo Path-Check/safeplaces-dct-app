@@ -34,7 +34,7 @@
             android:resource="@android:color/white"/>
         <meta-data
            android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyDp4GYTGAh8pK21Tibw2TWmjMQBzKuk9Fg"/>
+           android:value=""/>
 
         <service
             android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"

@@ -27,7 +27,8 @@ import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png'
 import languages from './../locales/languages'
-import { Marker, Circle, PROVIDER_GOOGLE } from 'react-native-maps';
+import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import CustomCircle from '../helpers/customCircle';
 import MapView from 'react-native-map-clustering';
 
 
@@ -38,17 +39,35 @@ const base64 = RNFetchBlob.base64
 const public_data = "https://docs.google.com/spreadsheets/d/1itaohdPiAeniCXNlntNztZ_oRvjh0HsGuJXUJWET008/export?format=csv"
 const show_button_text = "Show Me Trace Overlap";
 const INITIAL_REGION = {
-    latitude: 14.5617,
-    longitude: 121.0214,
-    latitudeDelta: 25,
-    longitudeDelta: 25,
+    latitude: 36.56,
+    longitude: 20.39,
+    latitudeDelta: 50,
+    longitudeDelta: 50,
 };
+
+function distance (lat1, lon1, lat2, lon2) {
+    if ((lat1 == lat2) && (lon1 == lon2)) {
+        return 0;
+    }
+    else {
+        var radlat1 = Math.PI * lat1/180;
+        var radlat2 = Math.PI * lat2/180;
+        var theta = lon1 - lon2;
+        var radtheta = Math.PI * theta / 180;
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        if (dist > 1) {
+            dist = 1;
+        }
+        dist = Math.acos(dist);
+        dist = dist * 180/Math.PI;
+        dist = dist * 60 * 1.1515;
+        return dist * 1.609344;
+    }
+}
 
 class OverlapScreen extends Component {
     constructor(props) {
         super(props);
-        //this.setState({region: {}});
-
         this.state = {
                         'region': {},
                         'markers': [],
@@ -72,48 +91,57 @@ class OverlapScreen extends Component {
         GetStoreData('LOCATION_DATA')
         .then(locationArrayString => {
             var locationArray = JSON.parse(locationArrayString);
-            var markers = [];
-            for (var i = 0; i < locationArray.length - 1; i+=1) {
-                console.log(i);
-                const coord = locationArray[i];
-                const marker = {
-                                    coordinate: {
-                                        latitude: coord["latitude"],
-                                        longitude: coord["longitude"],
-                                    },
-                                    key: i + 1,
-                                    color: '#f26964',
-                                }
-                markers.push(marker);
+            if (locationArray === null) {
+                console.log(locationArray);
             }
-            this.setState({
-                markers: markers
-            });
+            else {
+                var markers = [];
+                for (var i = 0; i < locationArray.length - 1; i+=1) {
+                    console.log(i);
+                    const coord = locationArray[i];
+                    const marker = {
+                                        coordinate: {
+                                            latitude: coord["latitude"],
+                                            longitude: coord["longitude"],
+                                        },
+                                        key: i + 1,
+                                        color: '#f26964',
+                                    }
+                    markers.push(marker);
+                }
+                this.setState({
+                    markers: markers
+                });
+            }
         });
     };
 
     getInitialState = async () => {
         try { 
-            //const locationArray
             GetStoreData('LOCATION_DATA')
             .then(locationArrayString => {
                 var locationArray = JSON.parse(locationArrayString);
-                var lastCoords = locationArray[locationArray.length - 1];
-                this.setState({
-                    region: {
-                        latitude: lastCoords["latitude"],
-                        longitude: lastCoords["longitude"],
-                        latitudeDelta: 10.10922,
-                        longitudeDelta: 10.20421,
-                    },
-                    markers: [{coordinate: {
-                                latitude: lastCoords["latitude"],
-                                longitude: lastCoords["longitude"],
-                              },
-                              key: 0,
-                              color: '#f26964',
-                        },],
-                });
+                if (locationArray === null) {
+                    console.log(locationArray);
+                }
+                else {
+                    var lastCoords = locationArray[locationArray.length - 1];
+                    this.setState({
+                        initialRegion: {
+                            latitude: lastCoords["latitude"],
+                            longitude: lastCoords["longitude"],
+                            latitudeDelta: 10.10922,
+                            longitudeDelta: 10.20421,
+                        },
+                        markers: [{coordinate: {
+                                    latitude: lastCoords["latitude"],
+                                    longitude: lastCoords["longitude"],
+                                  },
+                                  key: 0,
+                                  color: '#f26964',
+                            },],
+                    });
+                }
             });
         } catch (error) {
             console.log(error);
@@ -123,7 +151,6 @@ class OverlapScreen extends Component {
     downloadAndPlot = async () => {
         // Downloads the file on the disk and loads it into memory
         try {
-            // statements
             this.setState({'showButton': {'disabled': true,
                                           'text': 'Loading Public Trace'}});
             RNFetchBlob
@@ -139,8 +166,10 @@ class OverlapScreen extends Component {
                 // the temp file path
                 console.log('The file saved to ', res.path())
                 try {
-                    RNFetchBlob.fs.readFile(res.path(), 'utf8')
+                      RNFetchBlob.fs.readFile(res.path(), 'utf8')
                       .then((records) => {
+                        // delete the file first using flush
+                        res.flush();
                         this.parseCSV(records)
                         .then((parsedRecords) =>{
                             console.log(parsedRecords);
@@ -159,17 +188,15 @@ class OverlapScreen extends Component {
                     console.log('ERROR:', err);
                   }
               })
-              //Load csv
-              //Convert to json
-              //Remove 
         } catch(e) {
-            // statements
             console.log(e);
         }
     }
 
     parseCSV = async (records) => {
         try {
+              var latestLat = this.state.initialRegion.latitude;
+              var latestLong = this.state.initialRegion.longitude;
               const rows = records.split('\n');
               var parsedRows = {}
               for (var i = rows.length - 1; i >= 0; i--) {
@@ -177,16 +204,19 @@ class OverlapScreen extends Component {
                   const lat = parseFloat(row[7]);
                   const long = parseFloat(row[8]);
                   if (!isNaN(lat) && !isNaN(long)) {
-                    key = String(lat) + "|" + String(long)
-                    if (!(key in parsedRows)) {
-                        parsedRows[key] = 0
+                    // Threshold for using only points in 4k
+                    // if (distance(latestLat, latestLong, lat, long) < 4000) {
+                    if (true) {
+                        key = String(lat) + "|" + String(long)
+                        if (!(key in parsedRows)) {
+                            parsedRows[key] = 0
+                        }
+                        parsedRows[key] += 1
                     }
-                    parsedRows[key] += 1
                   }
               }
               return parsedRows;
         } catch(e) {
-            // statements
             console.log(e);
         }
     };
@@ -204,7 +234,7 @@ class OverlapScreen extends Component {
                                 latitude: latitude,
                                 longitude: longitude,
                             },
-                            radius: 200 * count
+                            radius: 50 * count
                             }
                     circles.push(circle);
                 }
@@ -217,11 +247,6 @@ class OverlapScreen extends Component {
         } catch(e) {
             console.log(e);
         }
-    };
-
-    onRegionChange = async(region) => {
-        //console.log(this.setState());
-        //this.setState({region});
     };
 
     backToMain() {
@@ -265,43 +290,15 @@ class OverlapScreen extends Component {
                         />
                         ))}
                         {this.state.circles.map(circle => (
-                        <Circle
+                        <CustomCircle
                             center={circle.center}
                             radius={circle.radius}
                             fillColor="rgba(208, 35, 35, 0.3)"
-                            strokeWidth={0}
                             zIndex={2}
-                            strokeWidth={2}
+                            strokeWidth={0}
                         />
                         ))}
                     </MapView>
-                    {/*<MapView
-                        provider={PROVIDER_GOOGLE}
-                        style={styles.main}
-                        initialRegion={this.state.initialRegion}
-                        region={this.state.region}
-                        clustering={true}
-                    >
-                        {this.state.markers.map(marker => (
-                        <Marker
-                          coordinate={marker.coordinate}
-                          title={marker.title}
-                          description={marker.description}
-                          tracksViewChanges={false}
-                        />
-                        ))}
-
-                        {this.state.circles.map(circle => (
-                        <Circle
-                            center={circle.center}
-                            radius={circle.radius}
-                            fillColor="rgba(208, 35, 35, 0.3)"
-                            strokeWidth={0}
-                            zIndex={2}
-                            strokeWidth={2}
-                        />
-                        ))}
-                    </MapView>*/}
                 <View style={styles.main}>
                     <TouchableOpacity style={styles.buttonTouchable} onPress={() => this.downloadAndPlot()}
                      disabled={this.state.showButton.disabled}>
