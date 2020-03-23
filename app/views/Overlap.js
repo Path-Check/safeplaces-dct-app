@@ -27,7 +27,8 @@ import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png'
 import languages from './../locales/languages'
-import MapView, { Marker, Circle, PROVIDER_GOOGLE } from 'react-native-maps';
+import { Marker, Circle, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView from 'react-native-map-clustering';
 
 
 const width = Dimensions.get('window').width;
@@ -35,15 +36,28 @@ const width = Dimensions.get('window').width;
 const base64 = RNFetchBlob.base64
 
 const public_data = "https://docs.google.com/spreadsheets/d/1itaohdPiAeniCXNlntNztZ_oRvjh0HsGuJXUJWET008/export?format=csv"
-
+const show_button_text = "Show Me Trace Overlap";
+const INITIAL_REGION = {
+    latitude: 14.5617,
+    longitude: 121.0214,
+    latitudeDelta: 25,
+    longitudeDelta: 25,
+};
 
 class OverlapScreen extends Component {
     constructor(props) {
         super(props);
         //this.setState({region: {}});
-        this.state = {'region': {}, 'markers': [], 'circles': []};
+
+        this.state = {
+                        'region': {},
+                        'markers': [],
+                        'circles': [],
+                        'showButton': {'disabled': false, 'text': show_button_text},
+                        'initialRegion': INITIAL_REGION,
+                    };
         this.getInitialState();
-        this.set_markers();
+        this.setMarkers();
     }
 
     getOverlap = async () => {
@@ -54,27 +68,27 @@ class OverlapScreen extends Component {
         }
     };
 
-    set_markers = async() => {
+    setMarkers = async() => {
         GetStoreData('LOCATION_DATA')
         .then(locationArrayString => {
             var locationArray = JSON.parse(locationArrayString);
-            for (var i = 0; i < locationArray.length - 1; i+=50) {
+            var markers = [];
+            for (var i = 0; i < locationArray.length - 1; i+=1) {
                 console.log(i);
                 const coord = locationArray[i];
-                this.setState({
-                    markers : [
-                        ...this.state.markers,
-                        {
-                            coordinate: {
-                                latitude: coord["latitude"],
-                                longitude: coord["longitude"],
-                            },
-                            key: i + 1,
-                            color: '#f26964',
-                        }
-                    ],
-                });
+                const marker = {
+                                    coordinate: {
+                                        latitude: coord["latitude"],
+                                        longitude: coord["longitude"],
+                                    },
+                                    key: i + 1,
+                                    color: '#f26964',
+                                }
+                markers.push(marker);
             }
+            this.setState({
+                markers: markers
+            });
         });
     };
 
@@ -89,8 +103,8 @@ class OverlapScreen extends Component {
                     region: {
                         latitude: lastCoords["latitude"],
                         longitude: lastCoords["longitude"],
-                        latitudeDelta: 1.10922,
-                        longitudeDelta: 1.20421,
+                        latitudeDelta: 10.10922,
+                        longitudeDelta: 10.20421,
                     },
                     markers: [{coordinate: {
                                 latitude: lastCoords["latitude"],
@@ -110,6 +124,8 @@ class OverlapScreen extends Component {
         // Downloads the file on the disk and loads it into memory
         try {
             // statements
+            this.setState({'showButton': {'disabled': true,
+                                          'text': 'Loading Public Trace'}});
             RNFetchBlob
               .config({
                 // add this option that makes response data to be stored as a file,
@@ -128,7 +144,12 @@ class OverlapScreen extends Component {
                         this.parseCSV(records)
                         .then((parsedRecords) =>{
                             console.log(parsedRecords);
-                            this.plotCircles(parsedRecords);
+                            console.log(Object.keys(parsedRecords).length);
+                            this.plotCircles(parsedRecords)
+                            .then(() => {
+                                this.setState({'showButton': {'disabled': false,
+                                                'text': show_button_text}});
+                            });
                         });
                       })
                       .catch((e) => {
@@ -149,12 +170,18 @@ class OverlapScreen extends Component {
 
     parseCSV = async (records) => {
         try {
-              var rows = records.split('\n');
-              var parsedRows = []
+              const rows = records.split('\n');
+              var parsedRows = {}
               for (var i = rows.length - 1; i >= 0; i--) {
                   var row = rows[i].split(',');
-                  if (row[7].length > 0 && row[8].length > 0) {
-                    parsedRows.push([parseFloat(row[7]), parseFloat(row[8])]);
+                  const lat = parseFloat(row[7]);
+                  const long = parseFloat(row[8]);
+                  if (!isNaN(lat) && !isNaN(long)) {
+                    key = String(lat) + "|" + String(long)
+                    if (!(key in parsedRows)) {
+                        parsedRows[key] = 0
+                    }
+                    parsedRows[key] += 1
                   }
               }
               return parsedRows;
@@ -166,25 +193,26 @@ class OverlapScreen extends Component {
 
     plotCircles = async (records) => {
         try {
-            console.log("length is ", records.length);
-            for (var i = records.length - 1; i >= 0; i-=100) {
-                var latitude = records[i][0];
-                var longitude = records[i][1];
+            var circles = [];
+            for (const key in records) {
+                const latitude = parseFloat(key.split('|')[0]);
+                const longitude = parseFloat(key.split('|')[1]);
+                const count = records[key];
                 if (!isNaN(latitude) && !isNaN(longitude)) {
-                    this.setState({
-                    circles : [
-                        ...this.state.circles,
-                        {
+                    var circle = {
                             center: {
                                 latitude: latitude,
                                 longitude: longitude,
                             },
-                            radius: 7000
-                        }
-                    ],
-                    });
+                            radius: 200 * count
+                            }
+                    circles.push(circle);
                 }
+                console.log(count);
             }
+            this.setState({
+                    circles : circles
+                    });
             console.log("done!");
         } catch(e) {
             console.log(e);
@@ -226,13 +254,40 @@ class OverlapScreen extends Component {
                     <MapView
                         provider={PROVIDER_GOOGLE}
                         style={styles.main}
-                        region={this.state.region}
+                        initialRegion={this.state.initialRegion}
                     >
                         {this.state.markers.map(marker => (
                         <Marker
                           coordinate={marker.coordinate}
                           title={marker.title}
                           description={marker.description}
+                          tracksViewChanges={false}
+                        />
+                        ))}
+                        {this.state.circles.map(circle => (
+                        <Circle
+                            center={circle.center}
+                            radius={circle.radius}
+                            fillColor="rgba(208, 35, 35, 0.3)"
+                            strokeWidth={0}
+                            zIndex={2}
+                            strokeWidth={2}
+                        />
+                        ))}
+                    </MapView>
+                    {/*<MapView
+                        provider={PROVIDER_GOOGLE}
+                        style={styles.main}
+                        initialRegion={this.state.initialRegion}
+                        region={this.state.region}
+                        clustering={true}
+                    >
+                        {this.state.markers.map(marker => (
+                        <Marker
+                          coordinate={marker.coordinate}
+                          title={marker.title}
+                          description={marker.description}
+                          tracksViewChanges={false}
                         />
                         ))}
 
@@ -241,15 +296,16 @@ class OverlapScreen extends Component {
                             center={circle.center}
                             radius={circle.radius}
                             fillColor="rgba(208, 35, 35, 0.3)"
-                            strokeColor="rgba(0,0,0,0.5)"
+                            strokeWidth={0}
                             zIndex={2}
                             strokeWidth={2}
                         />
                         ))}
-                    </MapView>
+                    </MapView>*/}
                 <View style={styles.main}>
-                    <TouchableOpacity style={styles.buttonTouchable} onPress={this.downloadAndPlot}>
-                        <Text style={styles.buttonText}>{languages.t('label.show_overlap')}</Text>
+                    <TouchableOpacity style={styles.buttonTouchable} onPress={() => this.downloadAndPlot()}
+                     disabled={this.state.showButton.disabled}>
+                        <Text style={styles.buttonText}>{languages.t(this.state.showButton.text)}</Text>
                     </TouchableOpacity>
                     <Text style={styles.sectionDescription}>{languages.t('label.overlap_para_1')}</Text>
                 </View>
