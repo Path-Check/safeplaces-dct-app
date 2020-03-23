@@ -131,7 +131,7 @@ android {
         applicationId "edu.mit.privatekit"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 9
+        versionCode 10
         versionName "0.5.4"
     }
     splits {
