@@ -1,6 +1,6 @@
 {
   "name": "privatekit",
-  "version": "0.5.2",
+  "version": "0.5.4",
   "private": true,
   "scripts": {
     "postinstall": "patch-package"
@@ -33,6 +33,7 @@
     "react-native-i18n": "^2.0.15",
     "react-native-map-clustering": "^3.1.2",
     "react-native-maps": "0.27.1",
+    "react-native-popup-menu": "^0.15.7",
     "react-native-push-notification": "^3.1.9",
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",

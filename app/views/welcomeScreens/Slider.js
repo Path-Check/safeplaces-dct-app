@@ -6,14 +6,12 @@ import Intro1 from './Intro1';
 import Intro2 from './Intro2';
 import Intro3 from './Intro3';
 
+const WelcomSlider = props => {
+  const swiperRef = React.useRef('');
 
-const WelcomSlider = ( props) => {
-
-    const swiperRef= React.useRef('')
-
-    const swipe = i => {
-        if(swiperRef) swiperRef.current.scrollBy(i)
-    }
+  const swipe = i => {
+    if (swiperRef) swiperRef.current.scrollBy(i);
+  };
   return (
     <View style={{ flex: 1 }}>
       <Swiper
@@ -21,24 +19,22 @@ const WelcomSlider = ( props) => {
         activeDotColor={'#665EFF'}
         showsPagination={false}
         ref={swiperRef}
-        loop={false}
-      >
+        loop={false}>
         <View style={styles.container}>
-          <Intro1 navigation={props.navigation} swipe={(i)=>swipe(i)} />
+          <Intro1 navigation={props.navigation} swipe={i => swipe(i)} />
         </View>
         <View style={styles.container}>
-          <Intro2 navigation={props.navigation} swipe={(i)=>swipe(i)} />
+          <Intro2 navigation={props.navigation} swipe={i => swipe(i)} />
         </View>
         <View style={styles.container}>
-          <Intro3 navigation={props.navigation} swipe={(i)=>swipe(i)} />
+          <Intro3 navigation={props.navigation} swipe={i => swipe(i)} />
         </View>
-        
       </Swiper>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1 }
+  container: { flex: 1 },
 });
 export default WelcomSlider;
