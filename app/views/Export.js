@@ -26,6 +26,9 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png'
+
+import I18n from "../../I18n";
+
 const width = Dimensions.get('window').width;
 
 const base64 = RNFetchBlob.base64
@@ -90,16 +93,16 @@ class ExportScreen extends Component {
                     <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
                          <Image style={styles.backArrow} source={backArrow} />
                     </TouchableOpacity>
-                    <Text style={styles.headerTitle}>Export</Text>
+                    <Text style={styles.headerTitle}>{I18n.t("EXPORT")}</Text>
                 </View>
 
                 <View style={styles.main}>
-                    <Text style={styles.sectionDescription}>You can share you location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.</Text>
-                    <Text style={styles.sectionDescription}>Location is shared as a simple list of times and coordinates, no other identifying information.</Text>
+                    <Text style={styles.sectionDescription}>{I18n.t("EXPORT1")}</Text>
+                    <Text style={styles.sectionDescription}>{I18n.t("EXPORT2")}</Text>
                     <TouchableOpacity style={styles.buttonTouchable} onPress={this.onShare}>
-                        <Text style={styles.buttonText}>SHARE</Text>
+                        <Text style={styles.buttonText}>{I18n.t("SHARE")}</Text>
                     </TouchableOpacity>
-                    <Text style={[styles.sectionDescription,{marginTop:36}]}>Log has data of {convertPointsToString(LocationServices.getPointCount()) }</Text>
+                    <Text style={[styles.sectionDescription,{marginTop:36}]}>{I18n.t("LOGHASDATA")} {convertPointsToString(LocationServices.getPointCount()) }</Text>
                 </View>
 
             </SafeAreaView>

@@ -1,5 +1,7 @@
 import React from 'react'
 import { View, Text,Dimensions, TouchableOpacity,StyleSheet } from 'react-native'
+import I18n from "../../../I18n";
+
 const width = Dimensions.get('window').width;
 
 const Intro2 = (props) => {
@@ -7,20 +9,19 @@ const Intro2 = (props) => {
         <View style={styles.mainContainer}>
             <View style={styles.infoCard}>
                 <Text  style={styles.infoCardHeadText}>
-                Less than 100KB
+                {I18n.t('INTRO21')}
                 </Text>
                 <Text 
                 style={styles.infoCardBodyText}>
-COVID19 Radar’s trail generator logs your device’s location data in under 100KB of space – less space than a single picture.
+                {I18n.t('INTRO22')}
                 </Text>
 
                 <Text 
                     style={styles.infoCardHeadText}>
-                You are in charge
+                 {I18n.t('INTRO23')}
                 </Text>
                 <Text 
-                style={styles.infoCardBodyText}>
-Data Never Leaves Your Device Without Your Consent                </Text>
+                style={styles.infoCardBodyText}>{I18n.t('INTRO24')} </Text>
             </View>
            
            <View style={styles.navigationDotsView}>
@@ -39,14 +40,14 @@ Data Never Leaves Your Device Without Your Consent                </Text>
             onPress={()=>props.swipe(-1)}
             style={styles.secondaryButtonTouchable} >
                 <Text 
-                    style={styles.secondaryButtonText}>BACK</Text>
+                    style={styles.secondaryButtonText}>{I18n.t('BACK')}</Text>
             </TouchableOpacity>
           
            <TouchableOpacity 
            onPress={()=>props.swipe(1)}
             style={styles.primaryButtonTouchable} >
                 <Text 
-                    style={styles.primaryButtonText}>NEXT</Text>
+                    style={styles.primaryButtonText}>{I18n.t('NEXT')}</Text>
             </TouchableOpacity>
             </View>
           

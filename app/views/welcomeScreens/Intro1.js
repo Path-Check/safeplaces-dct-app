@@ -1,17 +1,20 @@
 import React from 'react'
-import { View, Text,Dimensions, Image, TouchableOpacity,StyleSheet } from 'react-native'
+import { View, Text,Dimensions, Image, Button, TouchableOpacity,StyleSheet } from 'react-native'
 import welcome1 from './../../assets/images/welcome1.png'
+
+import I18n from "../../../I18n";
 
 const width = Dimensions.get('window').width;
 
 const Intro1 = (props) => {
+
     return (
         <View style={styles.mainContainer}>
             <View style={styles.infoCard}>
                 <Image source={welcome1} style={styles.infoCardImage} />
-                <Text style={styles.infoCardHeadText}>COVID19 Radar</Text>
+                <Text style={styles.infoCardHeadText}>{I18n.t('IXNILATIS')}</Text>
                 <Text style={styles.infoCardBodyText}>
-                Designed with data security and privacy protection at its heart, COVID19 Radar is the next generation of secure location logging. Adapted from the MIT Private Kit app.
+                {I18n.t('INTRO1')}
                 </Text>
             </View>
            <View style={styles.navigationDotsView}>
@@ -27,7 +30,7 @@ const Intro1 = (props) => {
             onPress={()=>props.swipe(1)}
             style={styles.primaryButtonTouchable} >
                 <Text 
-                    style={styles.primaryButtonText}>NEXT</Text>
+                    style={styles.primaryButtonText}>{I18n.t('NEXT')}</Text>
             </TouchableOpacity>
             {/* <TouchableOpacity><Text style={{marginTop:12,fontFamily:'OpenSans-SemiBold',alignSelf:'center',color:'#665eff'}}>Skip this</Text></TouchableOpacity> */}
         </View>

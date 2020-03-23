@@ -20,6 +20,8 @@ import {
     SearchAndImport
 } from '../helpers/GoogleTakeOutAutoImport';
 
+import I18n from "../../I18n";
+
 class ImportScreen extends Component {
     constructor(props) {
         super(props);
@@ -52,13 +54,13 @@ class ImportScreen extends Component {
                     <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
                          <Image style={styles.backArrow} source={backArrow} />
                     </TouchableOpacity>
-                    <Text style={styles.headerTitle}>Import Locations</Text>
+                    <Text style={styles.headerTitle}>{I18n.t("IMPORT0")}</Text>
                 </View>
 
                 <View style={styles.main}>
                     <View style={styles.subHeaderTitle}>
-                        <Text style={styles.sectionDescription}>1. Login to your Google Account and Download your Location History</Text>
-                        <Text style={styles.sectionDescription}>2. After downloaded, open this screen again. The data will import automatically.</Text>
+                        <Text style={styles.sectionDescription}>1. {I18n.t("IMPORT1")}</Text>
+                        <Text style={styles.sectionDescription}>2. {I18n.t("IMPORT2")}</Text>
                     </View>
                     <View style={styles.web}>
                         <WebView

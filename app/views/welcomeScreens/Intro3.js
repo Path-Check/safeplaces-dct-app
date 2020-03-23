@@ -1,5 +1,7 @@
 import React from 'react'
-import { View, Text,Dimensions, Image, TouchableOpacity,StyleSheet } from 'react-native'
+import { View, Text,Dimensions, Image, Linking, TouchableOpacity,StyleSheet } from 'react-native'
+import I18n from "../../../I18n";
+
 const width = Dimensions.get('window').width;
 
 const Intro2 = (props) => {
@@ -8,18 +10,16 @@ const Intro2 = (props) => {
             <View style={styles.infoCard}>
                 <Text 
                     style={styles.infoCardHeadText}>
-                The Future
+                {I18n.t('INTRO31')}
                 </Text>
                 <Text 
                 style={styles.infoCardBodyText}>
-                    Designed to help Cypriot citizens.
-                    Enabling individuals to log their location trail offers new opportunities for the authorities to track COVID19 with higher accuracy.</Text>
-<Text onPress={() => Linking.openURL('http://rise.org.cy/COVID19')} style={[styles.infoCardBodyText,{fontFamily:'OpenSans-Bold',opacity:1,marginTop:12}]}>
-Learn More
-rise.org.cy.COVID19
-</Text>
+                    {I18n.t('INTRO32')}</Text>
 
-                
+
+<Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('http://superworld.rise.org.cy/COVID19/')}
+style={[styles.infoCardBodyText,{fontFamily:'OpenSans-Bold',opacity:1,marginTop:12}]}>
+{I18n.t('MOREINFO')}: rise.org.cy.COVID19 </Text>
             </View>
            
            <View style={styles.navigationDotsView}>
@@ -38,14 +38,14 @@ rise.org.cy.COVID19
             <TouchableOpacity 
             onPress={()=>props.swipe(-1)}
             style={styles.secondaryButtonTouchable} >
-                <Text style={styles.secondaryButtonText}>BACK</Text>
+                <Text style={styles.secondaryButtonText}>{I18n.t('BACK')}</Text>
             </TouchableOpacity>
           
            <TouchableOpacity 
            onPress={()=>props.navigation.navigate('LocationTrackingScreen')}
             style={styles.primaryButtonTouchable} >
                 <Text 
-                    style={styles.primaryButtonText}>START</Text>
+                    style={styles.primaryButtonText}>{I18n.t('START')}</Text>
             </TouchableOpacity>
             </View>
           

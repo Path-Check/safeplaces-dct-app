@@ -21,6 +21,8 @@ import pkLogo from './../assets/images/PKLogo.png';
 
 import {GetStoreData, SetStoreData} from '../helpers/General';
 
+import I18n from "../../I18n";
+
 const width = Dimensions.get('window').width;
 
 class LocationTracking extends Component {
@@ -94,29 +96,29 @@ class LocationTracking extends Component {
                     <View style={styles.topView}>
                         <View style={styles.intro} >
 
-                            <Text style={styles.headerTitle}>COVID19 Radar</Text>
+                            <Text style={styles.headerTitle}>{I18n.t('IXNILATIS')}</Text>
 
                             {
                                 this.state.isLogging  ? (
                                     <>
-                                    <Image source={pkLogo} style={{width:132,height:164.4,alignSelf:'center',marginTop:12}} />
+                                    <Image source={pkLogo} style={{width:66,height:82,alignSelf:'center',marginTop:10}} />
 
                                 <TouchableOpacity onPress={() => this.setOptOut()} style={styles.stopLoggingButtonTouchable} >
-                                <Text style={styles.stopLoggingButtonText}>STOP LOGGING</Text>
+                                <Text style={styles.stopLoggingButtonText}>{I18n.t('STOPLOGGING')}</Text>
                             </TouchableOpacity>
                             </>
                             ) : ( 
                             <>
-                            <Image source={pkLogo} style={{width:132,height:164.4,alignSelf:'center',marginTop:12,opacity:.3}} />
+                            <Image source={pkLogo} style={{width:66,height:82,alignSelf:'center',marginTop:10,opacity:.3}} />
                             <TouchableOpacity onPress={() => this.willParticipate()} style={styles.startLoggingButtonTouchable} >
-                                <Text style={styles.startLoggingButtonText}>START LOGGING</Text>
+                                <Text style={styles.startLoggingButtonText}>{I18n.t('STARTLOGGING')}</Text>
                             </TouchableOpacity>
                             </>)
                             }
                            
                            {this.state.isLogging ?  
-                            <Text style={styles.sectionDescription}>It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.</Text> :
-                           <Text style={styles.sectionDescription} >NOTE: After clicking this button you may be prompted to grant COVID19 Radar access to your location.</Text> }
+                            <Text style={styles.sectionDescription}>{I18n.t('WELCOME1')}</Text> :
+                           <Text style={styles.sectionDescription} >{I18n.t("NOTE")}: {I18n.t("WELCOME2")}.</Text> }
                            
 
                             {/* <Text style={styles.sectionDescription}>COVID19 Radar is your personal vault that nobody else can access.</Text> */}
@@ -127,24 +129,24 @@ class LocationTracking extends Component {
                     <View style={styles.actionButtonsView}>
                         <TouchableOpacity onPress={() => this.import()}  style={styles.actionButtonsTouchable}>
                             <Image style={styles.actionButtonImage} source={exportImage} resizeMode={'contain'}></Image>
-                            <Text style={styles.actionButtonText}>Import</Text>
+                            <Text style={styles.actionButtonText}>{I18n.t("IMPORT")}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this.export()} style={styles.actionButtonsTouchable}>
                             <Image style={[styles.actionButtonImage,{transform:[{rotate:'180deg'}]}]} source={exportImage} resizeMode={'contain'}></Image>
-                            <Text style={styles.actionButtonText}>Export</Text>
+                            <Text style={styles.actionButtonText}>{I18n.t("EXPORT")}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this.news()} style={styles.actionButtonsTouchable}>
                             <Image style={styles.actionButtonImage} source={news} resizeMode={'contain'}></Image>
-                            <Text style={styles.actionButtonText}>News</Text>
+                            <Text style={styles.actionButtonText}>{I18n.t("NEWS")}</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
 
                 <View style={styles.footer}>
-                    <Text style={[styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }]}>For more information visit the COVID19 Radar hompage:</Text>
-                    <Text style={[styles.sectionDescription, { color: 'blue', textAlign: 'center',marginTop:0 }]} onPress={() => Linking.openURL('http://rise.org.cy/COVID19/ ')}>rise.org.cy.COVID19</Text>
+                    <Text style={[styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }]}>{I18n.t('MOREINFO')}:</Text>
+                    <Text style={[styles.sectionDescription, { color: 'blue', textAlign: 'center',marginTop:0 }]} onPress={() => Linking.openURL('http://superworld.rise.org.cy/COVID19/')}>rise.org.cy.COVID19</Text>
                 </View>
             </SafeAreaView>
         )

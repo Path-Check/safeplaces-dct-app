@@ -17,6 +17,7 @@ import {
 } from 'react-native-webview';
 import Button from "../components/Button";
 import backArrow from './../assets/images/backArrow.png'
+import I18n from "../../I18n";
 
 class NewsScreen extends Component {
     constructor(props) {
@@ -47,11 +48,11 @@ class NewsScreen extends Component {
                     <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
                          <Image style={styles.backArrow} source={backArrow} />
                     </TouchableOpacity>
-                    <Text style={styles.headerTitle}>Latest News</Text>
+                    <Text style={styles.headerTitle}>{I18n.t('LATESTNEWS')}</Text>
                 </View>
                
                 <WebView
-                    source={{ uri: 'http://rise.org.cy/COVID19/news' }}
+                    source={{ uri: 'http://superworld.rise.org.cy/COVID19/news/' }}
                     style={{ marginTop: 15 }}
                 />
             </SafeAreaView>
