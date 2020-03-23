@@ -3,6 +3,7 @@
   "version": "0.5.4",
   "private": true,
   "scripts": {
+    "install:pod": "cd ios && pod install",
     "postinstall": "patch-package"
   },
   "rnpm": {
