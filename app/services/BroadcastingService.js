@@ -90,7 +90,7 @@ function loadLastUUIDAndBroadcast() {
 function broadcast() {
     console.log("Broadcasting: ", currentUUID);
     AndroidBLEAdvertiserModule.setCompanyId(0xFF);
-    AndroidBLEAdvertiserModule.broadcastPacket(currentUUID, [12,23,56,28]);
+    AndroidBLEAdvertiserModule.broadcastPacket(currentUUID, [12,23,56])
     .then((sucess) => {
         console.log("Broadcasting Sucessful", sucess);
     }).catch(error => console.log("Broadcasting Error", error));
