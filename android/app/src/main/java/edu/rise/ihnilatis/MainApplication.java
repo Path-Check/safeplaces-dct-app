@@ -1,4 +1,4 @@
-package edu.mit.privatekit;
+package edu.rise.ihnilatis;
 
 import android.app.Application;
 import android.content.Context;

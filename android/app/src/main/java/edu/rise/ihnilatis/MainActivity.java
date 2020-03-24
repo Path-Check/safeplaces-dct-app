@@ -1,4 +1,4 @@
-package edu.mit.privatekit;
+package edu.rise.ihnilatis;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;

@@ -20,6 +20,6 @@ RNLocalize.addEventListener('change', ({ language }) => {
   I18n.locale = language
 })
 
-//i18n.locale = 'gr';
+//I18n.locale = 'gr';
 
 export default I18n;

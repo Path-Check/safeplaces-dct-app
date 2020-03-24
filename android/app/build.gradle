@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "edu.mit.privatekit"
+        applicationId "edu.rise.ihnilatis"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 7
