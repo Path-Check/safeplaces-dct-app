@@ -131,8 +131,8 @@ android {
         applicationId "edu.rise.ihnilatis"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 7
-        versionName "0.5.2"
+        versionCode 11
+        versionName "0.6.1"
     }
     splits {
         abi {
