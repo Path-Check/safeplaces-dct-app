@@ -132,8 +132,13 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-        versionCode 15
-        versionName "0.5.10"
+<<<<<<< HEAD
+        versionCode 14
+        versionName "0.5.9"
+=======
+        versionCode 9
+        versionName "0.5.4"
+>>>>>>> initial commit. working on android
     }
     splits {
         abi {
@@ -192,7 +197,6 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-svg')
     implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules

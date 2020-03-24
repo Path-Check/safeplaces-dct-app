@@ -1,5 +1,10 @@
 import AsyncStorage from '@react-native-community/async-storage';
+<<<<<<< HEAD
 // import _ from 'lodash';
+=======
+import _ from 'lodash';
+import DocumentPicker from 'react-native-document-picker';
+>>>>>>> initial commit. working on android
 
 /**
  * Get Data from Store
@@ -41,5 +46,28 @@ export async function SetStoreData(key, item) {
     return await AsyncStorage.setItem(key, item);
   } catch (error) {
     console.log(error.message);
+  }
+}
+
+export async function PickFile() {
+  // Pick a single file - returns actual path on Android, file:// uri on iOS
+  try {
+    const res = await DocumentPicker.pick({
+      type: [DocumentPicker.types.allFiles],
+      getPath: true,
+    });
+    console.log(
+      res.uri,
+      res.type, // mime type
+      res.name,
+      res.size,
+    );
+    return res.uri;
+  } catch (err) {
+    if (DocumentPicker.isCancel(err)) {
+      // User cancelled the picker, exit any dialogs or menus and move on
+    } else {
+      throw err;
+    }
   }
 }

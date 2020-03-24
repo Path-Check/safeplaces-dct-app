@@ -1,5 +1,7 @@
 {
     "import_title":"Import Locations",
-    "import_step_1":"1. Login to your Google Account and Download your Location History",
-    "import_step_2":"2. After downloaded, open this screen again. The data will import automatically."
+    "import_step_1":"Adding location data from Google will give you a head start on building your recent locations.",
+    "import_step_2":"Before you can import, you must first 'Take out' your location data from Google.",
+    "import_step_3":"Visit Google Takeout and export your Location History once. Choose Google Drive as the delivery method, then return here to import.",
+    "import_takeout":"Visit Google Takeout"
 }

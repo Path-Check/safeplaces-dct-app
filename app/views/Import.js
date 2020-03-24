@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Dimensions,
   SafeAreaView,
   StyleSheet,
   View,
@@ -14,8 +15,9 @@ import {
 import colors from '../constants/colors';
 import WebView from 'react-native-webview';
 import backArrow from './../assets/images/backArrow.png';
-import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
+import { ImportTakeoutData } from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
+<<<<<<< HEAD
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 class ImportScreen extends Component {
@@ -24,6 +26,15 @@ class ImportScreen extends Component {
     this.state = { visible: true };
     // Autoimports if user has downloaded
     SearchAndImport();
+=======
+import { PickFile } from '../helpers/General';
+
+const width = Dimensions.get('window').width;
+
+class ImportScreen extends Component {
+  constructor(props) {
+    super(props);
+>>>>>>> initial commit. working on android
   }
 
   backToMain() {
@@ -47,6 +58,14 @@ class ImportScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
+  importPickFile() {
+    PickFile().then(filePath =>
+      ImportTakeoutData(filePath).catch(err => {
+        console.log(err);
+      }),
+    );
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -62,13 +81,33 @@ class ImportScreen extends Component {
         </View>
 
         <View style={styles.main}>
-          <View style={styles.subHeaderTitle}>
-            <Text style={styles.sectionDescription}>
-              {languages.t('label.import_step_1')}
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.import_step_1')}
+          </Text>
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.import_step_2')}
+          </Text>
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.import_step_3')}
+          </Text>
+          <TouchableOpacity
+            onPress={() =>
+              Linking.openURL(
+                'https://takeout.google.com/settings/takeout/custom/location_history',
+              )
+            }
+            style={styles.buttonTouchable}>
+            <Text style={styles.buttonText}>
+              {languages.t('label.import_takeout').toUpperCase()}
             </Text>
-            <Text style={styles.sectionDescription}>
-              {languages.t('label.import_step_2')}
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.importPickFile()}
+            style={styles.buttonTouchable}>
+            <Text style={styles.buttonText}>
+              {languages.t('label.import_title').toUpperCase()}
             </Text>
+<<<<<<< HEAD
           </View>
           <View style={styles.web}>
             <WebView
@@ -90,6 +129,9 @@ class ImportScreen extends Component {
               />
             )}
           </View>
+=======
+          </TouchableOpacity>
+>>>>>>> initial commit. working on android
         </View>
       </SafeAreaView>
     );
@@ -110,18 +152,45 @@ const styles = StyleSheet.create({
     fontSize: 22,
     padding: 5,
   },
-  web: {
-    flex: 1,
-    width: '100%',
-  },
   main: {
     flex: 1,
     flexDirection: 'column',
+    textAlignVertical: 'top',
+    // alignItems: 'center',
+    padding: 20,
+    width: '96%',
+    alignSelf: 'center',
+  },
+  buttonTouchable: {
+    borderRadius: 12,
+    backgroundColor: '#665eff',
+    height: 52,
+    alignSelf: 'center',
+    width: width * 0.7866,
+    marginTop: 30,
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft: 20,
-    paddingRight: 20,
-    width: '100%',
+  },
+  buttonText: {
+    fontFamily: 'OpenSans-Bold',
+    fontSize: 14,
+    lineHeight: 19,
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+  mainText: {
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '400',
+    textAlignVertical: 'center',
+    padding: 20,
+  },
+  smallText: {
+    fontSize: 10,
+    lineHeight: 24,
+    fontWeight: '400',
+    textAlignVertical: 'center',
+    padding: 20,
   },
 
   headerContainer: {
@@ -148,7 +217,6 @@ const styles = StyleSheet.create({
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
-    textAlignVertical: 'center',
     marginTop: 12,
     fontFamily: 'OpenSans-Regular',
   },
