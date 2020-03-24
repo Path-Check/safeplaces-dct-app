@@ -37,9 +37,9 @@ const width = Dimensions.get('window').width;
 const base64 = RNFetchBlob.base64
 
 const public_data = "https://docs.google.com/spreadsheets/d/1itaohdPiAeniCXNlntNztZ_oRvjh0HsGuJXUJWET008/export?format=csv"
-const show_button_text = "Show Me Trace Overlap";
-const overlap_true_button_text = "Trace Overlap Found";
-const no_overlap_button_text = "No Trace Overlap Found";
+const show_button_text = languages.t('label.show_overlap');
+const overlap_true_button_text = languages.t('label.overlap_found_button_label');
+const no_overlap_button_text = languages.t('label.overlap_no_results_button_label');
 const INITIAL_REGION = {
     latitude: 36.56,
     longitude: 20.39,
@@ -282,7 +282,7 @@ class OverlapScreen extends Component {
                     <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
                          <Image style={styles.backArrow} source={backArrow} />
                     </TouchableOpacity>
-                    <Text style={styles.headerTitle}>{languages.t('label.overlap')}</Text>
+                    <Text style={styles.headerTitle}>{languages.t('label.overlap_title')}</Text>
                 </View>
                     <MapView
                         provider={PROVIDER_GOOGLE}
