@@ -22,6 +22,7 @@ import pkLogo from './../assets/images/PKLogo.png';
 import {GetStoreData, SetStoreData} from '../helpers/General';
 
 import I18n from "../../I18n";
+import FormButtons from "../../ixnilatisApp/views/FormButtons";
 
 const width = Dimensions.get('window').width;
 
@@ -125,6 +126,8 @@ class LocationTracking extends Component {
 
                         </View>
                     </View>
+
+                    <FormButtons navigation={this.props.navigation} />
 
                     <View style={styles.actionButtonsView}>
                         <TouchableOpacity onPress={() => this.import()}  style={styles.actionButtonsTouchable}>
