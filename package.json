@@ -1,9 +1,10 @@
 {
   "name": "privatekit",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "private": true,
   "scripts": {
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "postversion": "react-native-version --increment-build"
   },
   "rnpm": {
     "assets": [
@@ -50,6 +51,7 @@
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.58.0",
+    "react-native-version": "^4.0.0",
     "react-test-renderer": "16.9.0"
   },
   "jest": {
