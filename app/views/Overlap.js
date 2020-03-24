@@ -39,6 +39,8 @@ const base64 = RNFetchBlob.base64
 
 const public_data = "https://docs.google.com/spreadsheets/d/1itaohdPiAeniCXNlntNztZ_oRvjh0HsGuJXUJWET008/export?format=csv"
 const show_button_text = "Show Me Trace Overlap";
+const overlap_true_button_text = "Trace Overlap Found";
+const no_overlap_button_text = "No Trace Overlap Found";
 const INITIAL_REGION = {
     latitude: 36.56,
     longitude: 20.39,
@@ -176,8 +178,15 @@ class OverlapScreen extends Component {
                             console.log(Object.keys(parsedRecords).length);
                             this.plotCircles(parsedRecords)
                             .then(() => {
-                                this.setState({'showButton': {'disabled': false,
-                                                'text': show_button_text}});
+                                // if no overlap, alert user via button text
+                                // this is a temporary fix, make it more robust later
+                                if (Object.keys(parsedRecords).length !== 0) {
+                                    this.setState({'showButton': {'disabled': false,
+                                        'text': overlap_true_button_text}});
+                                } else {
+                                    this.setState({'showButton': {'disabled': false,
+                                        'text': no_overlap_button_text}});
+                                }
                             });
                         });
                       })
