@@ -6,7 +6,7 @@ import { getLanguages } from 'react-native-i18n';
 // Step 2 - Import them with a unique title
 // Step 3 - Add these titles under the resources object in the i18next.init function
 // Step 4 - Create separate json files for various sections under the language folder ex. en/intro1.json
-// Step 5 - Add the labels to be used in repective json files. The labels are the key and the content is the value in different language, so make sure for each file the key remains the same
+// Step 5 - Add the labels to be used in respective json files. The labels are the key and the content is the value in different language, so make sure for each file the key remains the same
 // Step 6 - In React Native code import the main languages file and call the translate function - languages.t('label.labelname')
 
 import enlabels from './en';
@@ -15,6 +15,7 @@ import hilabels from './hi';
 import frlabels from './fr';
 import itlabels from './it';
 import ptlabels from './pt';
+import mrlabels from './mr';
 import nllabels from './nl';
 
 // This will fetch the user's language
@@ -59,9 +60,15 @@ i18next.init({
     },
     pt: {
       translation: {
-        label: ptlabels,
-      },
+        label: ptlabels
+      }
     },
+    mr: {
+      translation: {
+        label: mrlabels
+      }
+    }
+  }
     nl: {
       translation: {
         label: nllabels,
