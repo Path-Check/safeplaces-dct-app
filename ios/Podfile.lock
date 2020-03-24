@@ -268,7 +268,7 @@ PODS:
     - React
   - RNScreens (2.0.0-alpha.12):
     - React
-  - RNShare (3.0.0):
+  - RNShare (3.1.1):
     - React
   - RNZipArchive (5.0.1):
     - React
@@ -438,8 +438,6 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-google-maps: 0a989abda71059db2caa98b9dacca7a8f38a47d0
-  react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-safe-area-context: d288138da2c800caa111f9352e9333f186a06ead
   react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
   react-native-webview: fcb5f377aadc216273300f452ee0d321fb85809b
@@ -461,7 +459,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
-  RNShare: 0e19ddb0bf338b62702ce1d9e001ee14effa68a8
+  RNShare: a4d8a4e7b85194fcc05f6753bd484f4eba6b833d
   RNZipArchive: 87111bb6130a38edd68c8d2059d46ac94d53ffe4
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
