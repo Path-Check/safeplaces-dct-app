@@ -8,7 +8,7 @@ export default {
   INTRO23: "You are in charge",
   INTRO24: "Data Never Leaves Your Device Without Your Consent",
   INTRO31: "Ηelp Cypriots",
-  ΙΝΤΡΟ32: "By logging your location trail, you help the authorities to track COVID19 with higher accuracy.",
+  INTRO32: "By logging your location trail, you help the authorities to track COVID19 with higher accuracy.",
   MOREINFO: "Learn More",
   START: "Start",
   WELCOME1: "The app logs your location privately every five minutes. Location information does NOT leave your phone.",
@@ -19,7 +19,7 @@ export default {
   IMPORT0: "Import Locations",
   EXPORT: "Export",
   NEWS: "News",
-  ΝΟΤΕ: "Note",
+  NOTE: "Note",
   LATESTNEWS: "Latest News",
   IMPORT1: "In case you wish to import previous locations (before you installed the app), then login to your Google account and download your location history.",
   IMPORT2: "After downloaded, open this screen again. The data will import automatically.",
@@ -28,8 +28,8 @@ export default {
   SHARE: "Share",
   LOGHASDATA: "Log has data of: ",
   ENABLED: "Ihnilatis enabled!",
-  ACCESS1: "Ihnilatis requires access to location information', 'Would you like to open app settings?",
-  ACCESS2: "Ihnilatis requires location services to be enabled. Would you like to open location settings?",
+  ACCESS1: "Are you OK to allow recording of location information on your phone?",
+  ACCESS2: "Ihnilatis requires location services to be enabled.",
   YES: "Yes",
   NO: "No"
 };

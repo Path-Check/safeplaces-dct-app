@@ -66,8 +66,8 @@ export default class LocationServices {
             desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
             stationaryRadius: 50,
             distanceFilter: 50,
-            notificationTitle: '{I18n.t("ENABLED")}',
-            notificationText: '{I18n.t("WELCOME1")}',
+            notificationTitle: I18n.t("ENABLED"),
+            notificationText: I18n.t("WELCOME1"),
             debug: false,    // when true, it beeps every time a loc is read
             startOnBoot: false,
             stopOnTerminate: false,

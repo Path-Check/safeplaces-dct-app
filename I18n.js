@@ -16,8 +16,6 @@ I18n.translations = {
   gr
 };
 
-I18n.locale = "gr";
-
 RNLocalize.addEventListener('change', ({ language }) => {
   I18n.locale = language
 })
