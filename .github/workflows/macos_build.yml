@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@develop
       
     - name: Set XCode Version
       run: sudo xcode-select -s /Applications/Xcode_11.app
