@@ -8,7 +8,7 @@ prepare and submit a pull request.
 
 * You need a Github account. You can [create one](https://github.com/signup/free)
   for free.
-* Submit an [Issue](https://github.com/tripleblind/mobileapp/issues) against
+* Submit an [Issue](https://github.com/tripleblindmarket/private-kit/issues) against
   the repo to describe the idea or problem if there is not one yet.
     * Describe a bug by including steps to reproduce and earliest version you
       know is affected.
