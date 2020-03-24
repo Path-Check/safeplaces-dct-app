@@ -1,5 +1,5 @@
 export default {
-  IXNILATIS: "TrustTracer",
+  IXNILATIS: "Ihnilatis",
   NEXT: "Next",
   BACK: "Back",
   INTRO1: "Secure location tracking for fighting COVID19 together.",
@@ -26,5 +26,10 @@ export default {
   EXPORT1: "You can share you location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.",
   EXPORT2: "Location is shared as a simple list of times and coordinates, no other identifying information.",
   SHARE: "Share",
-  LOGHASDATA: "Log has data of: "
+  LOGHASDATA: "Log has data of: ",
+  ENABLED: "Ihnilatis enabled!",
+  ACCESS1: "Ihnilatis requires access to location information', 'Would you like to open app settings?",
+  ACCESS2: "Ihnilatis requires location services to be enabled. Would you like to open location settings?",
+  YES: "Yes",
+  NO: "No"
 };

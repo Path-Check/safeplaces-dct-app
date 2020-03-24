@@ -4,6 +4,7 @@ import {
 } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { Alert } from 'react-native';
+import I18n from "../../I18n";
 
 var instanceCount = 0;
 var lastPointCount = 0;
@@ -65,8 +66,8 @@ export default class LocationServices {
             desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
             stationaryRadius: 50,
             distanceFilter: 50,
-            notificationTitle: 'COVID19 Radar Enabled',
-            notificationText: 'COVID19 Radar is securely storing your GPS coordinates once every five minutes on this device.',
+            notificationTitle: '{I18n.t("ENABLED")}',
+            notificationText: '{I18n.t("WELCOME1")}',
             debug: false,    // when true, it beeps every time a loc is read
             startOnBoot: false,
             stopOnTerminate: false,
@@ -157,12 +158,12 @@ export default class LocationServices {
             if (status !== BackgroundGeolocation.AUTHORIZED) {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
-                    Alert.alert('COVID19 Radar requires access to location information', 'Would you like to open app settings?', [{
-                        text: 'Yes',
+                    Alert.alert(I18n.t('ACCESS1'), '', [{
+                        text: I18n.t('YES'),
                         onPress: () => BackgroundGeolocation.showAppSettings()
                     },
                     {
-                        text: 'No',
+                        text: I18n.t('NO'),
                         onPress: () => console.log('No Pressed'),
                         style: 'cancel'
                     }
@@ -216,12 +217,12 @@ export default class LocationServices {
             if (!status.locationServicesEnabled) {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
-                    Alert.alert('COVID19 Radar requires location services to be enabled', 'Would you like to open location settings?', [{
-                        text: 'Yes',
+                    Alert.alert(I18n.t('ACCESS2'), '', [{
+                        text: I18n.t('YES'),
                         onPress: () => BackgroundGeolocation.showLocationSettings()
                     },
                     {
-                        text: 'No',
+                        text: I18n.t('NO'),
                         onPress: () => console.log('No Pressed'),
                         style: 'cancel'
                     }
@@ -230,12 +231,12 @@ export default class LocationServices {
             else if (!status.authorization) {
                 // we need to set delay or otherwise alert may not be shown
                 setTimeout(() =>
-                    Alert.alert('COVID19 Radar requires access to location information', 'Would you like to open app settings?', [{
-                        text: 'Yes',
+                    Alert.alert(I18n.t('ACCESS1'), '', [{
+                        text: I18n.t('YES'),
                         onPress: () => BackgroundGeolocation.showAppSettings()
                     },
                     {
-                        text: 'No',
+                        text: I18n.t('NO'),
                         onPress: () => console.log('No Pressed'),
                         style: 'cancel'
                     }
