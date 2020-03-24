@@ -8,6 +8,7 @@ import Welcome from './views/Welcome';
 import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
+import OverlapScreen from './views/Overlap';
 import LicencesScreen from './views/Licenses';
 import Slider from './views/welcomeScreens/Slider';
 import { GetStoreData, SetStoreData } from './helpers/General';
@@ -16,6 +17,7 @@ import SettingsScreen from './views/Settings';
 const Stack = createStackNavigator();
 
 class Entry extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -91,6 +93,11 @@ class Entry extends Component {
               name="SettingsScreen"
               component={SettingsScreen}
               options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="OverlapScreen"
+              component={OverlapScreen}
+              options={{headerShown:false}}
             />
           </Stack.Navigator>
         </SafeAreaView>
