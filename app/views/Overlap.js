@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, {
     Component
 } from 'react';
