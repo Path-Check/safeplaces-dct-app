@@ -39,7 +39,7 @@
     "react-native-push-notification": "^3.1.9",
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
-    "react-native-share": "^3.0.0",
+    "react-native-share": "^3.1.0",
     "react-native-webview": "^8.1.2",
     "react-native-zip-archive": "^5.0.1",
     "rn-fetch-blob": "^0.12.0"
