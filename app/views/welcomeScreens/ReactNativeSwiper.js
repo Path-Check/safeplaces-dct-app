@@ -11,7 +11,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Platform,
-  ActivityIndicator
+  ActivityIndicator,
 } from 'react-native';
 import ViewPagerAndroid from '@react-native-community/viewpager';
 
@@ -23,20 +23,20 @@ const styles = {
   container: {
     backgroundColor: 'transparent',
     position: 'relative',
-    flex: 1
+    flex: 1,
   },
 
   wrapperIOS: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
 
   wrapperAndroid: {
     backgroundColor: 'transparent',
-    flex: 1
+    flex: 1,
   },
 
   slide: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
 
   pagination_x: {
@@ -48,7 +48,7 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
 
   pagination_y: {
@@ -60,7 +60,7 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
 
   title: {
@@ -72,7 +72,7 @@ const styles = {
     left: 0,
     flexWrap: 'nowrap',
     width: 250,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
 
   buttonWrapper: {
@@ -85,13 +85,13 @@ const styles = {
     paddingHorizontal: 10,
     paddingVertical: 10,
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   buttonText: {
     fontSize: 50,
-    color: '#007aff'
-  }
+    color: '#007aff',
+  },
 };
 
 // missing `module.exports = exports['default'];` with babel6
@@ -133,7 +133,7 @@ export default class extends Component {
     /**
      * Called when the index has changed because the user swiped.
      */
-    onIndexChanged: PropTypes.func
+    onIndexChanged: PropTypes.func,
   };
 
   /**
@@ -160,7 +160,7 @@ export default class extends Component {
     autoplayTimeout: 2.5,
     autoplayDirection: true,
     index: 0,
-    onIndexChanged: () => null
+    onIndexChanged: () => null,
   };
 
   /**
@@ -186,7 +186,7 @@ export default class extends Component {
     if (!nextProps.autoplay && this.autoplayTimer)
       clearTimeout(this.autoplayTimer);
     this.setState(
-      this.initState(nextProps, this.props.index !== nextProps.index)
+      this.initState(nextProps, this.props.index !== nextProps.index),
     );
   }
 
@@ -212,7 +212,7 @@ export default class extends Component {
     const initState = {
       autoplayEnd: false,
       loopJump: false,
-      offset: {}
+      offset: {},
     };
 
     initState.total = props.children ? props.children.length || 1 : 0;
@@ -251,7 +251,7 @@ export default class extends Component {
 
     this.internals = {
       ...this.internals,
-      isScrolling: false
+      isScrolling: false,
     };
     return initState;
   }
@@ -306,7 +306,7 @@ export default class extends Component {
       () =>
         scrollView.setPageWithoutAnimation &&
         scrollView.setPageWithoutAnimation(i),
-      50
+      50,
     );
   };
 
@@ -359,11 +359,11 @@ export default class extends Component {
     if (!e.nativeEvent.contentOffset) {
       if (this.state.dir === 'x') {
         e.nativeEvent.contentOffset = {
-          x: e.nativeEvent.position * this.state.width
+          x: e.nativeEvent.position * this.state.width,
         };
       } else {
         e.nativeEvent.contentOffset = {
-          y: e.nativeEvent.position * this.state.height
+          y: e.nativeEvent.position * this.state.height,
         };
       }
     }
@@ -486,7 +486,7 @@ export default class extends Component {
     // update scroll state
     this.internals.isScrolling = true;
     this.setState({
-      autoplayEnd: false
+      autoplayEnd: false,
     });
 
     // trigger onScrollEnd manually in android
@@ -494,8 +494,8 @@ export default class extends Component {
       setImmediate(() => {
         this.onScrollEnd({
           nativeEvent: {
-            position: diff
-          }
+            position: diff,
+          },
         });
       });
     }
@@ -551,9 +551,9 @@ export default class extends Component {
             marginLeft: 3,
             marginRight: 3,
             marginTop: 3,
-            marginBottom: 3
+            marginBottom: 3,
           },
-          this.props.activeDotStyle
+          this.props.activeDotStyle,
         ]}
       />
     );
@@ -568,9 +568,9 @@ export default class extends Component {
             marginLeft: 3,
             marginRight: 3,
             marginTop: 3,
-            marginBottom: 3
+            marginBottom: 3,
           },
-          this.props.dotStyle
+          this.props.dotStyle,
         ]}
       />
     );
@@ -578,7 +578,7 @@ export default class extends Component {
       dots.push(
         i === this.state.index
           ? React.cloneElement(ActiveDot, { key: i })
-          : React.cloneElement(Dot, { key: i })
+          : React.cloneElement(Dot, { key: i }),
       );
     }
 
@@ -587,9 +587,8 @@ export default class extends Component {
         pointerEvents="none"
         style={[
           styles['pagination_' + this.state.dir],
-          this.props.paginationStyle
-        ]}
-      >
+          this.props.paginationStyle,
+        ]}>
         {dots}
       </View>
     );
@@ -617,8 +616,7 @@ export default class extends Component {
     return (
       <TouchableOpacity
         onPress={() => button !== null && this.scrollBy(1)}
-        disabled={this.props.disableNextButton}
-      >
+        disabled={this.props.disableNextButton}>
         <View>{button}</View>
       </TouchableOpacity>
     );
@@ -648,11 +646,10 @@ export default class extends Component {
           styles.buttonWrapper,
           {
             width: this.state.width,
-            height: this.state.height
+            height: this.state.height,
           },
-          this.props.buttonWrapperStyle
-        ]}
-      >
+          this.props.buttonWrapperStyle,
+        ]}>
         {this.renderPrevButton()}
         {this.renderNextButton()}
       </View>
@@ -686,8 +683,7 @@ export default class extends Component {
           onScrollBeginDrag={this.onScrollBegin}
           onMomentumScrollEnd={this.onScrollEnd}
           onScrollEndDrag={this.onScrollEndDrag}
-          style={this.props.scrollViewStyle}
-        >
+          style={this.props.scrollViewStyle}>
           {pages}
         </ScrollView>
       );
@@ -700,8 +696,7 @@ export default class extends Component {
         onPageScrollStateChanged={this.onPageScrollStateChanged}
         onPageSelected={this.onScrollEnd}
         key={pages.length}
-        style={[styles.wrapperAndroid, this.props.style]}
-      >
+        style={[styles.wrapperAndroid, this.props.style]}>
         {pages}
       </ViewPagerAndroid>
     );
@@ -724,7 +719,7 @@ export default class extends Component {
       loadMinimalLoader,
       renderPagination,
       showsButtons,
-      showsPagination
+      showsPagination,
     } = this.props;
     // let dir = state.dir
     // let key = 0
@@ -737,7 +732,7 @@ export default class extends Component {
       height,
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
     };
 
     // For make infinite at least total > 1

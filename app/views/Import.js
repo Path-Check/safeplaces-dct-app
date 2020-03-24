@@ -1,140 +1,141 @@
-import React, {
-    Component
-} from 'react';
+import React, { Component } from 'react';
 import {
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
-    Linking,
-    View,
-    Text,
-    Image,
-    TouchableOpacity,BackHandler
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  Linking,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 
-import colors from "../constants/colors";
+import colors from '../constants/colors';
 import WebView from 'react-native-webview';
-import Button from "../components/Button";
-import backArrow from './../assets/images/backArrow.png'
-import {
-    SearchAndImport
-} from '../helpers/GoogleTakeOutAutoImport';
-import languages from './../locales/languages'
+import Button from '../components/Button';
+import backArrow from './../assets/images/backArrow.png';
+import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
+import languages from './../locales/languages';
 
 class ImportScreen extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        // Autoimports if user has downloaded
-        SearchAndImport();
-    }
+    // Autoimports if user has downloaded
+    SearchAndImport();
+  }
 
-    backToMain() {
-        this.props.navigation.navigate('LocationTrackingScreen', {})
-    }
+  backToMain() {
+    this.props.navigation.navigate('LocationTrackingScreen', {});
+  }
 
-    handleBackPress = () => {     
-        this.props.navigation.navigate('LocationTrackingScreen', {});
-        return true;   
-    };  
+  handleBackPress = () => {
+    this.props.navigation.navigate('LocationTrackingScreen', {});
+    return true;
+  };
 
-    componentDidMount() {
-        BackHandler.addEventListener("hardwareBackPress", this.handleBackPress); 
-    }
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
 
-    componentWillUnmount() { 
-        BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress); 
-    }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
 
-    render() {
-        return (
-            <SafeAreaView style={styles.container}>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
-                         <Image style={styles.backArrow} source={backArrow} />
-                    </TouchableOpacity>
-                    <Text style={styles.headerTitle}>{languages.t('label.import_title')}</Text>
-                </View>
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.headerContainer}>
+          <TouchableOpacity
+            style={styles.backArrowTouchable}
+            onPress={() => this.backToMain()}>
+            <Image style={styles.backArrow} source={backArrow} />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>
+            {languages.t('label.import_title')}
+          </Text>
+        </View>
 
-                <View style={styles.main}>
-                    <View style={styles.subHeaderTitle}>
-                        <Text style={styles.sectionDescription}>{languages.t('label.import_step_1')}</Text>
-                        <Text style={styles.sectionDescription}>{languages.t('label.import_step_2')}</Text>
-                    </View>
-                    <View style={styles.web}>
-                        <WebView
-                            source={{ uri: 'https://takeout.google.com/settings/takeout/custom/location_history' }}
-                            style={{ marginTop: 15 }}
-                        />
-                    </View>
-                </View>
-            </SafeAreaView>
-        )
-    }
+        <View style={styles.main}>
+          <View style={styles.subHeaderTitle}>
+            <Text style={styles.sectionDescription}>
+              {languages.t('label.import_step_1')}
+            </Text>
+            <Text style={styles.sectionDescription}>
+              {languages.t('label.import_step_2')}
+            </Text>
+          </View>
+          <View style={styles.web}>
+            <WebView
+              source={{
+                uri:
+                  'https://takeout.google.com/settings/takeout/custom/location_history',
+              }}
+              style={{ marginTop: 15 }}
+            />
+          </View>
+        </View>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    // Container covers the entire screen
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        color: colors.PRIMARY_TEXT,
-        backgroundColor: colors.WHITE,
-    },
-    headerTitle: {
-        textAlign: 'center',
-        fontWeight: "bold",
-        fontSize: 38,
-        padding: 0
-    },
-    subHeaderTitle: {
-        textAlign: 'center',
-        fontWeight: "bold",
-        fontSize: 22,
-        padding: 5
-    },
-    web: {
-        flex: 1,
-        width: "100%"
-    },
-    main: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingLeft: 20,
-        paddingRight: 20,
-        width: "100%"
-    },
+  // Container covers the entire screen
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    color: colors.PRIMARY_TEXT,
+    backgroundColor: colors.WHITE,
+  },
+  subHeaderTitle: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 22,
+    padding: 5,
+  },
+  web: {
+    flex: 1,
+    width: '100%',
+  },
+  main: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 20,
+    paddingRight: 20,
+    width: '100%',
+  },
 
-    headerContainer: {
-        flexDirection: 'row',
-        height:60,
-        borderBottomWidth:1,
-        borderBottomColor:'rgba(189, 195, 199,0.6)',
-        alignItems:'center'
-    },
-    backArrowTouchable:{
-        width:60,
-        height:60,
-        paddingTop:21,
-        paddingLeft:20
-    },
-    backArrow: {
-        height: 18, 
-        width: 18.48
-    },
-    headerTitle:{
-        fontSize: 24,
-        fontFamily:'OpenSans-Bold'
-    },
-    sectionDescription: {
-        fontSize: 16,
-        lineHeight: 24,
-        textAlignVertical: 'center',
-        marginTop:12,
-        fontFamily:'OpenSans-Regular'
-    },
-
+  headerContainer: {
+    flexDirection: 'row',
+    height: 60,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(189, 195, 199,0.6)',
+    alignItems: 'center',
+  },
+  backArrowTouchable: {
+    width: 60,
+    height: 60,
+    paddingTop: 21,
+    paddingLeft: 20,
+  },
+  backArrow: {
+    height: 18,
+    width: 18.48,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontFamily: 'OpenSans-Bold',
+  },
+  sectionDescription: {
+    fontSize: 16,
+    lineHeight: 24,
+    textAlignVertical: 'center',
+    marginTop: 12,
+    fontFamily: 'OpenSans-Regular',
+  },
 });
 export default ImportScreen;

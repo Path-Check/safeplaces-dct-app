@@ -17,30 +17,30 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.5.3</string>
+	<string>0.5.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>11</string>
 	<key>LSRequiresIPhoneOS</key>
-	<true/>
+	<true />
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<true/>
+		<true />
 		<key>NSExceptionDomains</key>
-		<dict/>
+		<dict />
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We'll log your location privately on your device, every five minutes.</string>
+	<string>We log your location to enable new opportunities for researchers studying refugee migration, wellbeing, and community traffic analysis in a privacy-preserving way.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We'll log your location privately on your device, every five minutes.</string>
+	<string>We log your location to enable new opportunities for researchers studying refugee migration, wellbeing, and community traffic analysis in a privacy-preserving way.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We'll log your location privately on your device, every five minutes.</string>
+	<string>We log your location to enable new opportunities for researchers studying refugee migration, wellbeing, and community traffic analysis in a privacy-preserving way.</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>NSMotionUsageDescription</key>
-	<string>We'll use your device accelerometer to help us accurately log your location.</string>
+	<string>We use your accelerometer for accurate location history to enable new opportunities for researchers studying refugee migration, wellbeing, and community traffic analysis in a privacy-preserving way.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans-Bold.ttf</string>
@@ -71,6 +71,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<false />
 </dict>
 </plist>

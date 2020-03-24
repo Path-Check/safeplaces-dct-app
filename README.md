@@ -22,9 +22,13 @@ Private Kit’s trail generator logs your device’s location once every five mi
 
 **Downloads:** [Google Play](https://play.google.com/store/apps/details?id=edu.mit.privatekit) | [Apple Store](https://apps.apple.com/us/app/private-kit-prototype/id1501903733)
 
-# Development
+# Development Overview
 
 This is a React Native app version 61.5
+
+## Architecture
+
+Please refer to `docs/Private Kit Diagram.png` for a basic overview on the sequencing of generalized events and services that are utilized by Private Kit.
 
 ## Developer Setup
 
@@ -50,20 +54,13 @@ or
 npx react-native run-ios --simulator="iPhone 8 Plus"
 ```
 
-----------------------------------------------------------------------------------
 NOTE: In some cases, the abovementioned procedure leads to the error 'Failed to load bundle - Could not connect to development server'. In these cases, kill all other react-native processes and try it again.
-----------------------------------------------------------------------------------
 
 ## Contributing
 
-Read the [contribution guidelines](./.github/CONTRIBUTING.md).
+Read the [contribution guidelines](CONTRIBUTING.md).
 
-Join the WhatsApp group - https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
+WhatsApp: https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
+Slack: https://safepathsprivatekit.slack.com/
 
-## Tested On
-
-| Device | Version |
-| ------------- | ------------- |
-| Android Pixel | API 28  |
-| Android Pixel | API 29  |
 
