@@ -12,6 +12,7 @@
     ]
   },
   "dependencies": {
+    "@bam.tech/react-native-component-map-clustering": "^1.1.1",
     "@mauron85/react-native-background-geolocation": "^0.6.3",
     "@react-native-community/async-storage": "^1.8.1",
     "@react-native-community/cli-platform-ios": "^3.0.0",
@@ -31,6 +32,8 @@
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "~1.5.0",
     "react-native-i18n": "^2.0.15",
+    "react-native-map-clustering": "^3.1.2",
+    "react-native-maps": "0.27.1",
     "react-native-popup-menu": "^0.15.7",
     "react-native-push-notification": "^3.1.9",
     "react-native-safe-area-context": "0.6.0",
