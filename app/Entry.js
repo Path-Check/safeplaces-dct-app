@@ -10,6 +10,7 @@ import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
 import Slider from './views/welcomeScreens/Slider';
 import {GetStoreData, SetStoreData} from './helpers/General';
+import {getIxnilatisScreens} from '../ixnilatisApp/IxnilatisScreens';
 
 const Stack = createStackNavigator();
 
@@ -82,6 +83,7 @@ class Entry extends Component {
               component={ImportScreen}
               options={{headerShown:false}}
             />
+            {getIxnilatisScreens(Stack)}
           </Stack.Navigator>
           </SafeAreaView>
         </NavigationContainer>
