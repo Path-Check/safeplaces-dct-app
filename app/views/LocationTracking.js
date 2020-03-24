@@ -74,6 +74,10 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('ImportScreen', {});
   }
 
+  overlap() {
+        this.props.navigation.navigate('OverlapScreen', {})
+    }
+
   willParticipate = () => {
     SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
 
@@ -164,13 +168,15 @@ class LocationTracking extends Component {
                       marginTop: 12,
                     }}
                   />
-
                   <TouchableOpacity
                     onPress={() => this.setOptOut()}
                     style={styles.stopLoggingButtonTouchable}>
                     <Text style={styles.stopLoggingButtonText}>
                       {languages.t('label.stop_logging')}
                     </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.overlap()} style={styles.startLoggingButtonTouchable} >
+                    <Text style={styles.startLoggingButtonText}>{languages.t('label.overlap')}</Text>
                   </TouchableOpacity>
                 </>
               ) : (
