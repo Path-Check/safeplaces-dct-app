@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {
     Component
 } from 'react';
@@ -151,8 +152,7 @@ class OverlapScreen extends Component {
     downloadAndPlot = async () => {
         // Downloads the file on the disk and loads it into memory
         try {
-            this.setState({'showButton': {'disabled': true,
-                                          'text': 'Loading Public Trace'}});
+            this.setState({'showButton': {'disabled': true, 'text': 'Loading Public Trace'}});
             RNFetchBlob
               .config({
                 // add this option that makes response data to be stored as a file,
@@ -302,6 +302,7 @@ class OverlapScreen extends Component {
                 <View style={styles.main}>
                     <TouchableOpacity style={styles.buttonTouchable} onPress={() => this.downloadAndPlot()}
                      disabled={this.state.showButton.disabled}>
+                        {/* If no overlap found, change button text to say so. Temporary solution, replace with something more robust */}
                         <Text style={styles.buttonText}>{languages.t(this.state.showButton.text)}</Text>
                     </TouchableOpacity>
                     <Text style={styles.sectionDescription}>{languages.t('label.overlap_para_1')}</Text>
@@ -321,11 +322,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.WHITE
     },
     headerTitle: {
-        textAlign: 'center',
-        fontWeight: "bold",
-        fontSize: 38,
-
-        padding: 0
+        fontSize: 24,
+        fontFamily:'OpenSans-Bold',
     },
     subHeaderTitle: {
         textAlign: 'center',
@@ -391,10 +389,6 @@ const styles = StyleSheet.create({
     backArrow: {
         height: 18, 
         width: 18.48
-    },
-    headerTitle:{
-        fontSize: 24,
-        fontFamily:'OpenSans-Bold'
     },
     sectionDescription: {
         fontSize: 16,
