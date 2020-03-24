@@ -1,0 +1,62 @@
+diff --git a/node_modules/rn-fetch-blob/polyfill/Blob.js b/node_modules/rn-fetch-blob/polyfill/Blob.js
+index 53662a7..dd3a340 100644
+--- a/node_modules/rn-fetch-blob/polyfill/Blob.js
++++ b/node_modules/rn-fetch-blob/polyfill/Blob.js
+@@ -2,7 +2,8 @@
+ // Use of this source code is governed by a MIT-style license that can be
+ // found in the LICENSE file.
+ 
+-import RNFetchBlob from '../index.js'
++// import RNFetchBlob from '../index.js'
++import {NativeModules} from 'react-native';
+ import fs from '../fs.js'
+ import getUUID from '../utils/uuid'
+ import Log from '../utils/log.js'
+@@ -10,6 +11,7 @@ import EventTarget from './EventTarget'
+ 
+ const log = new Log('Blob')
+ const blobCacheDir = fs.dirs.DocumentDir + '/RNFetchBlob-blobs/'
++const RNFetchBlob = NativeModules.RNFetchBlob
+ 
+ log.disable()
+ // log.level(3)
+diff --git a/node_modules/rn-fetch-blob/polyfill/Fetch.js b/node_modules/rn-fetch-blob/polyfill/Fetch.js
+index 3ecb591..45c1307 100644
+--- a/node_modules/rn-fetch-blob/polyfill/Fetch.js
++++ b/node_modules/rn-fetch-blob/polyfill/Fetch.js
+@@ -1,10 +1,12 @@
+-import RNFetchBlob from '../index.js'
++// import RNFetchBlob from '../index.js'
++import {NativeModules} from 'react-native';
+ import Log from '../utils/log.js'
+ import fs from '../fs'
+ import unicode from '../utils/unicode'
+ import Blob from './Blob'
+ 
+ const log = new Log('FetchPolyfill')
++const RNFetchBlob = NativeModules.RNFetchBlob
+ 
+ log.disable()
+ // log.level(3)
+diff --git a/node_modules/rn-fetch-blob/polyfill/XMLHttpRequest.js b/node_modules/rn-fetch-blob/polyfill/XMLHttpRequest.js
+index 9036b2b..1ba2fef 100644
+--- a/node_modules/rn-fetch-blob/polyfill/XMLHttpRequest.js
++++ b/node_modules/rn-fetch-blob/polyfill/XMLHttpRequest.js
+@@ -2,7 +2,8 @@
+ // Use of this source code is governed by a MIT-style license that can be
+ // found in the LICENSE file.
+ 
+-import RNFetchBlob from '../index.js'
++// import RNFetchBlob from '../index.js'
++import {NativeModules} from 'react-native';
+ import XMLHttpRequestEventTarget from './XMLHttpRequestEventTarget.js'
+ import Log from '../utils/log.js'
+ import Blob from './Blob.js'
+@@ -10,6 +11,7 @@ import ProgressEvent from './ProgressEvent.js'
+ import URIUtil from '../utils/uri'
+ 
+ const log = new Log('XMLHttpRequest')
++const RNFetchBlob = NativeModules.RNFetchBlob
+ 
+ log.disable()
+ // log.level(3)

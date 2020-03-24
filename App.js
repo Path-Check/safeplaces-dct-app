@@ -7,17 +7,15 @@
  */
 
 import React from 'react';
-import {
-  StatusBar
-} from 'react-native';
-
+import { StatusBar } from 'react-native';
+import { MenuProvider } from 'react-native-popup-menu';
 import Entry from './app/Entry';
 
 const App: () => React$Node = () => {
   return (
-    <>
-      <Entry></Entry>
-    </>
+    <MenuProvider>
+      <Entry />
+    </MenuProvider>
   );
 };
 
