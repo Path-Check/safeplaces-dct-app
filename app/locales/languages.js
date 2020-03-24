@@ -67,8 +67,7 @@ i18next.init({
       translation: {
         label: mrlabels
       }
-    }
-  }
+    },
     nl: {
       translation: {
         label: nllabels,
