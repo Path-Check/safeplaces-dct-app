@@ -215,7 +215,7 @@ PODS:
     - React
   - react-native-viewpager (3.3.0):
     - React
-  - react-native-webview (8.1.2):
+  - react-native-webview (8.2.1):
     - React
   - React-RCTActionSheet (0.61.5):
     - React-Core/RCTActionSheetHeaders (= 0.61.5)
@@ -270,11 +270,11 @@ PODS:
     - React
   - RNShare (3.1.1):
     - React
-  - RNZipArchive (5.0.1):
+  - RNZipArchive (5.0.2):
     - React
-    - RNZipArchive/Core (= 5.0.1)
+    - RNZipArchive/Core (= 5.0.2)
     - SSZipArchive (= 2.2.2)
-  - RNZipArchive/Core (5.0.1):
+  - RNZipArchive/Core (5.0.2):
     - React
     - SSZipArchive (= 2.2.2)
   - SSZipArchive (2.2.2)
@@ -438,9 +438,9 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-safe-area-context: d288138da2c800caa111f9352e9333f186a06ead
-  react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
-  react-native-webview: fcb5f377aadc216273300f452ee0d321fb85809b
+  react-native-safe-area-context: 870aba8339684c9b888d42103580b687ff3f0d0c
+  react-native-viewpager: 118e65d8c65c56fe48d12a35cdcf1fe7e027a366
+  react-native-webview: d3cf75764f98fd433f1222f5a7ca8e355ada2a15
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -460,7 +460,7 @@ SPEC CHECKSUMS:
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
   RNShare: a4d8a4e7b85194fcc05f6753bd484f4eba6b833d
-  RNZipArchive: 87111bb6130a38edd68c8d2059d46ac94d53ffe4
+  RNZipArchive: f06fe0dcfb9e2fa7437fc7f6c03d5400952f2d57
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
