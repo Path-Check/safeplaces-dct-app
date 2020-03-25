@@ -260,25 +260,24 @@ class LocationTracking extends Component {
               </Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.footer}>
+            <Text
+              style={[
+                styles.sectionDescription,
+                { textAlign: 'center', paddingTop: 15 },
+              ]}>
+              {languages.t('label.url_info')}{' '}
+            </Text>
+            <Text
+              style={[
+                styles.sectionDescription,
+                { color: 'blue', textAlign: 'center', marginTop: 0 },
+              ]}
+              onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
+              {languages.t('label.private_kit_url')}
+            </Text>
+          </View>
         </ScrollView>
-
-        <View style={styles.footer}>
-          <Text
-            style={[
-              styles.sectionDescription,
-              { textAlign: 'center', paddingTop: 15 },
-            ]}>
-            {languages.t('label.url_info')}{' '}
-          </Text>
-          <Text
-            style={[
-              styles.sectionDescription,
-              { color: 'blue', textAlign: 'center', marginTop: 0 },
-            ]}
-            onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
-            {languages.t('label.private_kit_url')}
-          </Text>
-        </View>
       </SafeAreaView>
     );
   }
@@ -309,7 +308,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     width: '80%',
   },
@@ -321,8 +320,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '600',
-    padding: 4,
-    paddingBottom: 10,
+    padding: 2,
+    paddingBottom: 5,
   },
   intro: {
     flexDirection: 'column',
@@ -375,7 +374,7 @@ const styles = StyleSheet.create({
     width: width * 0.7866,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 64,
+    marginTop: 32,
   },
   actionButtonsTouchable: {
     height: 76,
