@@ -106,7 +106,6 @@ class FormGeneral extends Component {
             <Picker.Item label={I18n.t('FORMGENERAL_REASON_6')} value={6} />
             <Picker.Item label={I18n.t('FORMGENERAL_REASON_7')} value={7} />
             <Picker.Item label={I18n.t('FORMGENERAL_REASON_8')} value={8} />
-            <Picker.Item label={I18n.t('FORMGENERAL_REASON_9')} value={9} />
           </Picker>
           <Text style={{padding: 10}}>{this.state.reason && I18n.t('FORMGENERAL_REASON_'+this.state.reason)}</Text>
           {this.state.reason == 9 && 
