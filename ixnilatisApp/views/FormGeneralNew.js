@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
+  Alert,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -30,11 +31,8 @@ class FormGeneral extends Component {
     name: "",
     dateBirth: "",
     address: "",
-    time: "",
     reason: "",
-    timeEnd: "",
-    supervisor: "",
-    date: "",
+    reasonOther: "",
   }
   backToMain = () => {
     this.props.navigation.navigate('LocationTrackingScreen', {})
@@ -46,7 +44,11 @@ class FormGeneral extends Component {
   };  
 
   componentDidMount = () =>{
-    GetStoreData('FORMGENERAL', false).then(state => this.setState(state));
+    GetStoreData('FORMGENERAL', false).then(state => this.setState({
+      ...state,
+      reason: "",
+      reasonOther: "",
+    }));
     BackHandler.addEventListener("hardwareBackPress", this.handleBackPress); 
   }
 
@@ -54,8 +56,24 @@ class FormGeneral extends Component {
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress); 
   }
 
+  formatDate = d => {
+    return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
+  }
+
   submitForm = () => { 
-    SetStoreData('FORMGENERAL', this.state).then(() => this.backToMain());
+    if ( this.state.reason == "" ) {
+      Alert.alert(I18n.t('FORMGENERAL_NOREASON_TITLE'),I18n.t('FORMGENERAL_NOREASON_MESSAGE'));
+      return;
+    }
+    if ( this.state.reason == 9 && this.state.reasonOther == "" ) {
+      Alert.alert(I18n.t('FORMGENERAL_NOREASONOTHER_TITLE'),I18n.t('FORMGENERAL_NOREASONOTHER_MESSAGE'));
+      return;
+    }
+    const formData = {
+      ...this.state,
+      date: this.formatDate(new Date())
+    }
+    SetStoreData('FORMGENERAL', formData).then(() => this.backToMain());
   }
 
   render() {
@@ -86,18 +104,13 @@ class FormGeneral extends Component {
             value={this.state.address} 
             style={styles.input}
           />
-          <Text style={styles.label}>{I18n.t('FORMGENERAL_TIME')}</Text>
-          <TextInput 
-            onChangeText={time => this.setState({time})} 
-            value={this.state.time} 
-            style={styles.input}
-          />
           <Text style={styles.label}>{I18n.t('FORMGENERAL_REASON')}</Text>
           <Picker 
             onValueChange={reason => this.setState({reason})} 
             selectedValue={this.state.reason} 
             style={styles.picker}
           >
+            <Picker.Item label={I18n.t('FORMGENERAL_REASON_SELECT')} />
             <Picker.Item label={I18n.t('FORMGENERAL_REASON_1')} value={1} />
             <Picker.Item label={I18n.t('FORMGENERAL_REASON_2')} value={2} />
             <Picker.Item label={I18n.t('FORMGENERAL_REASON_3')} value={3} />
@@ -117,12 +130,6 @@ class FormGeneral extends Component {
               placeholder={I18n.t('FORMGENERAL_REASON_OTHER')}
             />
           }
-          <Text style={styles.label}>{I18n.t('FORMGENERAL_DATE')}</Text>
-          <TextInput 
-            onChangeText={date => this.setState({date})} 
-            value={this.state.date} 
-            style={styles.input}
-          />
           <View style={{alignItems: "center"}} >
             <TouchableOpacity style={styles.submit} onPress={this.submitForm}>
               <Text style={styles.submitText}>{I18n.t('FORMWORK_SUBMIT')}</Text>

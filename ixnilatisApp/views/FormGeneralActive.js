@@ -30,10 +30,8 @@ class FormGeneral extends Component {
     name: "",
     dateBirth: "",
     address: "",
-    time: "",
     reason: "",
-    timeEnd: "",
-    supervisor: "",
+    reasonOther: "",
     date: "",
   }
   backToMain = () => {
@@ -52,10 +50,6 @@ class FormGeneral extends Component {
 
   componentWillUnmount = () => { 
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress); 
-  }
-
-  submitForm = () => { 
-    SetStoreData('FORMGENERAL', this.state).then(() => this.backToMain());
   }
 
   render() {
@@ -79,10 +73,6 @@ class FormGeneral extends Component {
           <Text style={styles.label}>{I18n.t('FORMGENERAL_ADDRESS')}</Text>
           <Text style={styles.input} >
             {this.state.address} 
-          </Text>
-          <Text style={styles.label}>{I18n.t('FORMGENERAL_TIME')}</Text>
-          <Text style={styles.input} >
-            {this.state.time} 
           </Text>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_REASON')}</Text>
           <Text style={{padding: 10}}>{this.state.reason && I18n.t('FORMGENERAL_REASON_'+this.state.reason)}</Text>

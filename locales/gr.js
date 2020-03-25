@@ -52,6 +52,7 @@ export default {
   FORMGENERAL_ADDRESS: "Διεύθυνση μόνιμης κατοικίας",
   FORMGENERAL_TIME: "Ακριβής ώρα κυκλοφορίας",
   FORMGENERAL_REASON: "Λόγος κυκλοφορίας",
+  FORMGENERAL_REASON_SELECT: "Επιλέξτε Λόγο",
   FORMGENERAL_REASON_1: "1. Μετάβαση σε φαρμακείο ή επίσκεψη σε γιατρό",
   FORMGENERAL_REASON_2: "2. Μετάβαση σε κατάστημα για προμήθεια αγαθών πρώτης ανάγκης",
   FORMGENERAL_REASON_3: "3. Μετάβαση στην τράπεζα, στο μέτρο που δεν είναι δυνατή η ηλεκτρονική συναλλαγή",
@@ -62,5 +63,9 @@ export default {
   FORMGENERAL_REASON_8: "8. Για μετάβαση στην οικία μου μετά από υποχρεωτικό αυτοπεριορισμό ή καραντίνα",
   FORMGENERAL_REASON_9: "9. Δήλωση οποιουδήποτε άλλου σκοπού μετακίνησης που θα μπορούσε να δικαιολογηθεί με βάση τα μέτρα απαγόρευσης της κυκλοφορία",
   FORMGENERAL_REASON_OTHER: "Άλλος λόγος",
+  FORMGENERAL_NOREASON_TITLE: "Επιλέξτε λόγο",
+  FORMGENERAL_NOREASON_MESSAGE: "Παρακαλώ επιλέξτε έναν λόγο για τη μετακίνησή σας",
+  FORMGENERAL_NOREASONOTHER_TITLE: "Επιλέξτε λόγο",
+  FORMGENERAL_NOREASONOTHER_MESSAGE: "Παρακαλώ συμπληρώστε το ειδικό πεδίο με τον συγκεκριμένο λόγο της μετακίνησής σας",
   FORMGENERAL_DATE: "Ημερομηνία"
 };
