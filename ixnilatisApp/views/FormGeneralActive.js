@@ -43,8 +43,20 @@ class FormGeneral extends Component {
     return true;   
   };  
 
+  formatDateTime = d => {
+    return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
+  }
+
+  formatDate = d => {
+    return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+  }
+
   componentDidMount = () =>{
-    GetStoreData('FORMGENERAL', false).then(state => this.setState(state));
+    GetStoreData('FORMGENERAL', false).then(state => this.setState({
+      ...state,
+      dateBirth: new Date(state.dateBirth),
+      date: new Date(state.date),
+    }));
     BackHandler.addEventListener("hardwareBackPress", this.handleBackPress); 
   }
 
@@ -68,7 +80,7 @@ class FormGeneral extends Component {
           </Text>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_DATEBIRTH')}</Text>
           <Text style={styles.input} >
-            {this.state.dateBirth} 
+            {this.state.dateBirth ? this.formatDate(this.state.dateBirth) : '-'} 
           </Text>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_ADDRESS')}</Text>
           <Text style={styles.input} >
@@ -83,7 +95,7 @@ class FormGeneral extends Component {
           }
           <Text style={styles.label}>{I18n.t('FORMGENERAL_DATE')}</Text>
           <Text style={styles.input} >
-            {this.state.date} 
+            {this.state.date ? this.formatDateTime(this.state.date) : '-'} 
           </Text>
         </ScrollView>
       </SafeAreaView>

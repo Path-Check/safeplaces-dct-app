@@ -12,6 +12,7 @@ import {
   Picker,
   Text,
   TextInput,
+  Platform,
   TouchableOpacity,BackHandler
 } from 'react-native';
 
@@ -23,6 +24,7 @@ import {
 import Button from "../../app/components/Button";
 import backArrow from '../../app/assets/images/backArrow.png'
 import I18n from "../../I18n";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const width = Dimensions.get('window').width;
 
@@ -33,6 +35,7 @@ class FormGeneral extends Component {
     address: "",
     reason: "",
     reasonOther: "",
+    showDatePicker : false
   }
   backToMain = () => {
     this.props.navigation.navigate('LocationTrackingScreen', {})
@@ -46,6 +49,7 @@ class FormGeneral extends Component {
   componentDidMount = () =>{
     GetStoreData('FORMGENERAL', false).then(state => this.setState({
       ...state,
+      dateBirth: new Date(state.dateBirth),
       reason: "",
       reasonOther: "",
     }));
@@ -57,7 +61,7 @@ class FormGeneral extends Component {
   }
 
   formatDate = d => {
-    return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
+    return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
   }
 
   submitForm = () => { 
@@ -69,9 +73,14 @@ class FormGeneral extends Component {
       Alert.alert(I18n.t('FORMGENERAL_NOREASONOTHER_TITLE'),I18n.t('FORMGENERAL_NOREASONOTHER_MESSAGE'));
       return;
     }
+    const {name, dateBirth, address, reason, reasonOther } = this.state;
     const formData = {
-      ...this.state,
-      date: this.formatDate(new Date())
+      name, 
+      dateBirth,
+      address, 
+      reason, 
+      reasonOther,
+      date: new Date()
     }
     SetStoreData('FORMGENERAL', formData).then(() => this.backToMain());
   }
@@ -93,11 +102,22 @@ class FormGeneral extends Component {
             style={styles.input}
           />
           <Text style={styles.label}>{I18n.t('FORMGENERAL_DATEBIRTH')}</Text>
-          <TextInput 
-            onChangeText={dateBirth => this.setState({dateBirth})} 
-            value={this.state.dateBirth} 
-            style={styles.input}
-          />
+          <TouchableOpacity onPress={() => this.setState({showDatePicker: true})}>
+            <Text style={{...styles.input, paddingTop: 10}} >{this.state.dateBirth ? this.formatDate(this.state.dateBirth) : '-'}</Text>
+          </TouchableOpacity>
+          {this.state.showDatePicker && 
+            <DateTimePicker 
+              value={this.state.dateBirth ? this.state.dateBirth : new Date()} 
+              display="default" 
+              onChange={(e,dateBirth) => {
+                this.setState({
+                  dateBirth,
+                  showDatePicker: Platform.OS === 'ios'
+                })
+              }
+              }
+            />
+          }
           <Text style={styles.label}>{I18n.t('FORMGENERAL_ADDRESS')}</Text>
           <TextInput 
             onChangeText={address => this.setState({address})} 
