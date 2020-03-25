@@ -1,17 +1,46 @@
 import React, {Component } from 'react';
 import {
-    Dimensions,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import I18n from "../../I18n";
+import {GetStoreData} from '../../app/helpers/General';
 
 const width = Dimensions.get('window').width;
 
 class FormButtons extends Component {
+    state = {
+      formActiveDate: null
+    }
+
+    componentDidMount = () =>{
+      GetStoreData('FORMGENERAL', false).then(state => state && this.setState({
+        formActiveDate: new Date(state.date)
+      }));
+    }
+
+    newForm = () => {
+      const limitInMinutes = 30;
+      if ( this.state.formActiveDate === null) {
+        this.props.navigation.navigate('FormGeneralNewScreen', {})
+        return;
+      }
+
+      const diffInMinutes = (new Date() - this.state.formActiveDate) / 60000;
+      if (diffInMinutes >= limitInMinutes) {
+        this.props.navigation.navigate('FormGeneralNewScreen', {})
+        return;
+      }
+
+      const timeLeft = Math.round(limitInMinutes - diffInMinutes);
+      Alert.alert(I18n.t("FORMGENERAL_LIMIT_TITLE"),I18n.t("FORMGENERAL_LIMIT_MESSAGE",{minutes: timeLeft}))
+    }
+
     render() {
       return (<View style={styles.actionButtonsView}>
 
@@ -22,7 +51,7 @@ class FormButtons extends Component {
           </TouchableOpacity>
         }
 
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('FormGeneralNewScreen', {})} style={styles.actionButtonsTouchable}>
+        <TouchableOpacity onPress={this.newForm} style={styles.actionButtonsTouchable}>
           <Text style={styles.actionButtonHead}>&#9997;</Text>
           <Text style={styles.actionButtonText}>{I18n.t("FORMGENERAL_NEW")}</Text>
         </TouchableOpacity>

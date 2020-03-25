@@ -67,5 +67,7 @@ export default {
   FORMGENERAL_NOREASON_MESSAGE: "Παρακαλώ επιλέξτε έναν λόγο για τη μετακίνησή σας",
   FORMGENERAL_NOREASONOTHER_TITLE: "Επιλέξτε λόγο",
   FORMGENERAL_NOREASONOTHER_MESSAGE: "Παρακαλώ συμπληρώστε το ειδικό πεδίο με τον συγκεκριμένο λόγο της μετακίνησής σας",
-  FORMGENERAL_DATE: "Date"
+  FORMGENERAL_DATE: "Date",
+  FORMGENERAL_LIMIT_TITLE: "Δεν μπορείτε να συμπληρώσετε νέα δήλωση",
+  FORMGENERAL_LIMIT_MESSAGE: "Πρέπει να περάσουν 30 λεπτά από την τελευταία σας δήλωση ({{minutes}} λεπτά απομένουν) ",
 };

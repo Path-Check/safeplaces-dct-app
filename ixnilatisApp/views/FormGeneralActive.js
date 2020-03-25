@@ -44,11 +44,19 @@ class FormGeneral extends Component {
   };  
 
   formatDateTime = d => {
-    return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
+    const dt = d.getDate().toString().padStart(2,0);
+    const m = (d.getMonth()+1).toString().padStart(2,0);
+    const y = d.getFullYear();
+    const h = d.getHours().toString().padStart(2,0);
+    const M = d.getMinutes().toString().padStart(2,0);
+    return `${dt}/${m}/${y} ${h}:${M}`;
   }
 
   formatDate = d => {
-    return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+    const dt = d.getDate().toString().padStart(2,0);
+    const m = (d.getMonth()+1).toString().padStart(2,0);
+    const y = d.getFullYear();
+    return `${dt}/${m}/${y}`;
   }
 
   componentDidMount = () =>{
@@ -134,7 +142,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    height:60,
+    height: 80,
     borderBottomWidth:1,
     borderBottomColor:'rgba(189, 195, 199,0.6)'
   },
@@ -158,7 +166,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 26,
     fontFamily:'OpenSans-Bold',
-    top:21
+    top:21,
+    width:"70%"
   },
   picker:{
   },
