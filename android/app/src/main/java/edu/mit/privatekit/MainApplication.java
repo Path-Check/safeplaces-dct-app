@@ -40,6 +40,13 @@ public class MainApplication extends Application implements ReactApplication {
   }
 
   @Override
+  public void onTerminate() {
+      super.onTerminate();
+
+      // ADD LOCAL NOTIFICATION
+  }
+
+  @Override
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);

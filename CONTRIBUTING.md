@@ -8,26 +8,43 @@ prepare and submit a pull request.
 
 * You need a Github account. You can [create one](https://github.com/signup/free)
   for free.
-* Submit an [Issue](https://github.com/tripleblind/mobileapp/issues) against
+* Submit an [Issue](https://github.com/tripleblindmarket/private-kit/issues) against
   the repo to describe the idea or problem if there is not one yet.
     * Describe a bug by including steps to reproduce and earliest version you
       know is affected.
     * Describe a new feature with as much detail as possible.
-* Fork the repository on GitHub and clone locally (see how to [fork a repo](https://help.github.com/articles/fork-a-repo/)).
+* Fork the repository on GitHub:
+  - Visit https://github.com/tripleblindmarket/private-kit
+  - Click on the "Fork" button in the upper-left corner.
+* Clone the forked repository to your local machine:
+   ```bash
+   cd ~ # get to your home directory or where ever you want to go
+   git clone https://github.com/YOURACCOUNT/
+   ```
+   (see also how to [fork a repo](https://help.github.com/articles/fork-a-repo/))
 
 ## Make Changes
 
-  1. Create a branch based on the `develop` branch.  Name the branch in the
-     format: "flast/description", where "flast" is your first initial + last
-     name, and "description" is as simple description of the work being done.
-     For example, if Steve Penrod wants to add a new icon a branch name could
-     "spenrod/new-icon".
+  1. [Optional] Create a branch based on the `develop` branch.  Name the branch
+     something to reflect what you are doing.  For example, if Steve Penrod
+     wants to add a new icon a branch name you could do:
+     ```bash
+     git checkout develop # you want to branch from the main 'develop' branch
+     git pull # make sure you have the latest code when you start the branch
+     git checkout -b "spenrod/new-icon" develop # new branch created!
+     ```
   2. Stick to the coding style and patterns that are used already.
   3. Document code!  Comments are good.  More comments are better.  :)
   4. Make commits as you desire.  Ultimately they will be squashed, so make
-     notes to yourself.
-  5. Once you have committed everything and are done with your branch, rebase
-     your code against `develop` by:
+     notes to yourself.  It's as simple as `git commit`!
+  5. Once you have committed everything and are done with this batch of work,
+     push your changes back to your Github:
+     ```bash
+     git push
+     ```
+  6. Start a PR to submit your changes back to the original project:
+     - Visit https://github.com/YOURACCOUNT/private-kit
+     - Click on the 
       - Checkout the `develop` branch and make sure it is up-to-date.
       - Checkout your branch and rebase it against `develop`.
       - Resolve any conflicts locally.
