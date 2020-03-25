@@ -65,7 +65,7 @@ class FormGeneral extends Component {
           <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>{I18n.t('FORMGENERAL')}</Text>
+          <Text style={styles.headerTitle}>{I18n.t('FORMGENERAL_NEW')}</Text>
         </View>
         <ScrollView contentContainerStyle={styles.main}>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_NAME')}</Text>

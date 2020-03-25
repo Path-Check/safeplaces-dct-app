@@ -20,9 +20,14 @@ class FormButtons extends Component {
           <Text style={styles.actionButtonText}>{I18n.t("FORMWORK")}</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('FormGeneralScreen', {})} style={styles.actionButtonsTouchable}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('FormGeneralNewScreen', {})} style={styles.actionButtonsTouchable}>
           <Text style={styles.actionButtonHead}>{I18n.t("FORM_B")}</Text>
-          <Text style={styles.actionButtonText}>{I18n.t("FORMGENERAL")}</Text>
+          <Text style={styles.actionButtonText}>{I18n.t("FORMGENERAL_NEW")}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('FormGeneralActiveScreen', {})} style={styles.actionButtonsTouchable}>
+          <Text style={styles.actionButtonHead}>{I18n.t("FORM_B")}</Text>
+          <Text style={styles.actionButtonText}>{I18n.t("FORMGENERAL_ACTIVE")}</Text>
         </TouchableOpacity>
       </View>);
     }
@@ -39,7 +44,7 @@ const styles = StyleSheet.create({
         height: 76,
         borderRadius: 8,
         backgroundColor: "#454f63",
-        width:width*.35,
+        width:width*.25,
         justifyContent:'center',
         alignItems:'center'
     },

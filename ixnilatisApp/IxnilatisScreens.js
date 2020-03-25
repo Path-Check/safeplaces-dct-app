@@ -1,19 +1,26 @@
 import React, {Component } from 'react';
-import FormWorkScreen from "./views/FormWork";
-import FormGeneralScreen from "./views/FormGeneral";
+import FormWork from "./views/FormWork";
+import FormGeneralNew from "./views/FormGeneralNew";
+import FormGeneralActive from "./views/FormGeneralActive";
 
 export function getIxnilatisScreens(Stack) {
     return [
       <Stack.Screen
         key="FormWorkScreen"
         name="FormWorkScreen"
-        component={FormWorkScreen}
+        component={FormWork}
         options={{headerShown:false}}
       />,
       <Stack.Screen
-        key="FormGeneralScreen"
-        name="FormGeneralScreen"
-        component={FormGeneralScreen}
+        key="FormGeneralNewScreen"
+        name="FormGeneralNewScreen"
+        component={FormGeneralNew}
+        options={{headerShown:false}}
+      />,
+      <Stack.Screen
+        key="FormGeneralActiveScreen"
+        name="FormGeneralActiveScreen"
+        component={FormGeneralActive}
         options={{headerShown:false}}
       />
     ];
