@@ -68,6 +68,10 @@ class FormGeneral extends Component {
   }
 
   submitForm = () => { 
+    if ( this.state.name == "" || this.state.dateBirth == "" || this.state.address == "" ) {
+      Alert.alert(I18n.t('FORMGENERAL_NOINFO_TITLE'),I18n.t('FORMGENERAL_NOINFO_MESSAGE'));
+      return;
+    }
     if ( this.state.reason == "" ) {
       Alert.alert(I18n.t('FORMGENERAL_NOREASON_TITLE'),I18n.t('FORMGENERAL_NOREASON_MESSAGE'));
       return;

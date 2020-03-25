@@ -63,6 +63,8 @@ export default {
   FORMGENERAL_REASON_8: "8. Για μετάβαση στην οικία μου μετά από υποχρεωτικό αυτοπεριορισμό ή καραντίνα",
   FORMGENERAL_REASON_9: "9. Δήλωση οποιουδήποτε άλλου σκοπού μετακίνησης που θα μπορούσε να δικαιολογηθεί με βάση τα μέτρα απαγόρευσης της κυκλοφορία",
   FORMGENERAL_REASON_OTHER: "Άλλος λόγος",
+  FORMGENERAL_NOINFO_TITLE: "Ελλιπή Στοιχεία",
+  FORMGENERAL_NOINFO_MESSAGE: "Παρακαλώ Συμπληρώστε όλα τα προσωπικά σας στοιχεία",
   FORMGENERAL_NOREASON_TITLE: "Επιλέξτε λόγο",
   FORMGENERAL_NOREASON_MESSAGE: "Παρακαλώ επιλέξτε έναν λόγο για τη μετακίνησή σας",
   FORMGENERAL_NOREASONOTHER_TITLE: "Επιλέξτε λόγο",
