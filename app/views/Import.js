@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  Linking,
   View,
   Text,
   Image,
@@ -13,7 +11,6 @@ import {
 
 import colors from '../constants/colors';
 import WebView from 'react-native-webview';
-import Button from '../components/Button';
 import backArrow from './../assets/images/backArrow.png';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';

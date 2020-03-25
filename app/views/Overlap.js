@@ -50,11 +50,11 @@ function distance (lat1, lon1, lat2, lon2) {
         return 0;
     }
     else {
-        var radlat1 = Math.PI * lat1/180;
-        var radlat2 = Math.PI * lat2/180;
-        var theta = lon1 - lon2;
-        var radtheta = Math.PI * theta / 180;
-        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        let radlat1 = Math.PI * lat1/180;
+        let radlat2 = Math.PI * lat2/180;
+        let theta = lon1 - lon2;
+        let radtheta = Math.PI * theta / 180;
+        let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
         if (dist > 1) {
             dist = 1;
         }
@@ -90,13 +90,13 @@ class OverlapScreen extends Component {
     setMarkers = async() => {
         GetStoreData('LOCATION_DATA')
         .then(locationArrayString => {
-            var locationArray = JSON.parse(locationArrayString);
+            let locationArray = JSON.parse(locationArrayString);
             if (locationArray === null) {
                 console.log(locationArray);
             }
             else {
-                var markers = [];
-                for (var i = 0; i < locationArray.length - 1; i+=1) {
+                let markers = [];
+                for (let i = 0; i < locationArray.length - 1; i+=1) {
                     console.log(i);
                     const coord = locationArray[i];
                     const marker = {
@@ -120,12 +120,12 @@ class OverlapScreen extends Component {
         try { 
             GetStoreData('LOCATION_DATA')
             .then(locationArrayString => {
-                var locationArray = JSON.parse(locationArrayString);
+                let locationArray = JSON.parse(locationArrayString);
                 if (locationArray === null) {
                     console.log(locationArray);
                 }
                 else {
-                    var lastCoords = locationArray[locationArray.length - 1];
+                    let lastCoords = locationArray[locationArray.length - 1];
                     this.setState({
                         initialRegion: {
                             latitude: lastCoords["latitude"],
@@ -195,12 +195,12 @@ class OverlapScreen extends Component {
 
     parseCSV = async (records) => {
         try {
-              var latestLat = this.state.initialRegion.latitude;
-              var latestLong = this.state.initialRegion.longitude;
+              let latestLat = this.state.initialRegion.latitude;
+              let latestLong = this.state.initialRegion.longitude;
               const rows = records.split('\n');
-              var parsedRows = {}
-              for (var i = rows.length - 1; i >= 0; i--) {
-                  var row = rows[i].split(',');
+              let parsedRows = {}
+              for (let i = rows.length - 1; i >= 0; i--) {
+                  let row = rows[i].split(',');
                   const lat = parseFloat(row[7]);
                   const long = parseFloat(row[8]);
                   if (!isNaN(lat) && !isNaN(long)) {
@@ -223,13 +223,13 @@ class OverlapScreen extends Component {
 
     plotCircles = async (records) => {
         try {
-            var circles = [];
+            let circles = [];
             for (const key in records) {
                 const latitude = parseFloat(key.split('|')[0]);
                 const longitude = parseFloat(key.split('|')[1]);
                 const count = records[key];
                 if (!isNaN(latitude) && !isNaN(longitude)) {
-                    var circle = {
+                    let circle = {
                             center: {
                                 latitude: latitude,
                                 longitude: longitude,
