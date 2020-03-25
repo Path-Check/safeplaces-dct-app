@@ -1,6 +1,6 @@
 {
   "name": "privatekit",
-  "version": "0.5.6",
+  "version": "0.5.8",
   "private": true,
   "scripts": {
     "install:pod": "cd ios && pod install",
@@ -24,11 +24,14 @@
     "@react-navigation/stack": "5.1.1",
     "i18next": "^19.3.3",
     "lodash": "4.17.15",
+    "moment": "^2.24.0",
     "patch-package": "^6.2.1",
     "postinstall-postinstall": "^2.0.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-app-intro-slider": "^3.0.0",
+    "react-native-background-timer": "^2.2.0",
+    "react-native-ble-advertiser": "0.0.4",
     "react-native-extended-stylesheet": "^0.12.0",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "~1.5.0",
@@ -40,6 +43,7 @@
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-share": "^3.1.0",
+    "react-native-uuid-generator": "^6.1.1",
     "react-native-webview": "^8.1.2",
     "react-native-zip-archive": "^5.0.1",
     "rn-fetch-blob": "^0.12.0"
@@ -52,6 +56,7 @@
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.58.0",
+    "prettier": "1.17.0",
     "react-native-version": "^4.0.0",
     "react-test-renderer": "16.9.0"
   },
