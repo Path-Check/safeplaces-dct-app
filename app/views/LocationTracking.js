@@ -124,97 +124,95 @@ class LocationTracking extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.main}>
-          <View style={styles.topView}>
-            {/* A modal menu. Currently only used for license info */}
-            <Menu
-              style={{
-                position: 'absolute',
-                alignSelf: 'flex-end',
-                zIndex: 10,
-              }}>
-              <MenuTrigger style={{ marginTop: 14 }}>
+          {/* A modal menu. Currently only used for license info */}
+          <Menu
+            style={{
+              position: 'absolute',
+              alignSelf: 'flex-end',
+              zIndex: 10,
+            }}>
+            <MenuTrigger style={{ marginTop: 14 }}>
+              <Image
+                source={kebabIcon}
+                style={{
+                  width: 15,
+                  height: 28,
+                  padding: 14,
+                  opacity: 0.6,
+                }}
+              />
+            </MenuTrigger>
+            <MenuOptions>
+              <MenuOption
+                onSelect={() => {
+                  this.licenses();
+                }}>
+                <Text style={styles.menuOptionText}>Licenses</Text>
+              </MenuOption>
+            </MenuOptions>
+          </Menu>
+          <Text style={styles.headerTitle}>
+            {languages.t('label.private_kit')}
+          </Text>
+
+          <View style={styles.buttonsAndLogoView}>
+            {this.state.isLogging ? (
+              <>
                 <Image
-                  source={kebabIcon}
+                  source={pkLogo}
                   style={{
-                    width: 15,
-                    height: 28,
-                    padding: 14,
-                    opacity: 0.6,
+                    width: 132,
+                    height: 164.4,
+                    alignSelf: 'center',
+                    marginTop: 12,
                   }}
                 />
-              </MenuTrigger>
-              <MenuOptions>
-                <MenuOption
-                  onSelect={() => {
-                    this.licenses();
-                  }}>
-                  <Text style={styles.menuOptionText}>Licenses</Text>
-                </MenuOption>
-              </MenuOptions>
-            </Menu>
-            <View style={styles.intro}>
-              <Text style={styles.headerTitle}>
-                {languages.t('label.private_kit')}
+                <TouchableOpacity
+                  onPress={() => this.setOptOut()}
+                  style={styles.stopLoggingButtonTouchable}>
+                  <Text style={styles.stopLoggingButtonText}>
+                    {languages.t('label.stop_logging')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => this.overlap()}
+                  style={styles.startLoggingButtonTouchable}>
+                  <Text style={styles.startLoggingButtonText}>
+                    {languages.t('label.overlap')}
+                  </Text>
+                </TouchableOpacity>
+              </>
+            ) : (
+              <>
+                <Image
+                  source={pkLogo}
+                  style={{
+                    width: 132,
+                    height: 164.4,
+                    alignSelf: 'center',
+                    marginTop: 12,
+                    opacity: 0.3,
+                  }}
+                />
+                <TouchableOpacity
+                  onPress={() => this.willParticipate()}
+                  style={styles.startLoggingButtonTouchable}>
+                  <Text style={styles.startLoggingButtonText}>
+                    {languages.t('label.start_logging')}
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
+
+            {this.state.isLogging ? (
+              <Text style={styles.sectionDescription}>
+                {languages.t('label.logging_message')}
               </Text>
-
-              {this.state.isLogging ? (
-                <>
-                  <Image
-                    source={pkLogo}
-                    style={{
-                      width: 132,
-                      height: 164.4,
-                      alignSelf: 'center',
-                      marginTop: 12,
-                    }}
-                  />
-                  <TouchableOpacity
-                    onPress={() => this.setOptOut()}
-                    style={styles.stopLoggingButtonTouchable}>
-                    <Text style={styles.stopLoggingButtonText}>
-                      {languages.t('label.stop_logging')}
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.overlap()}
-                    style={styles.startLoggingButtonTouchable}>
-                    <Text style={styles.startLoggingButtonText}>
-                      {languages.t('label.overlap')}
-                    </Text>
-                  </TouchableOpacity>
-                </>
-              ) : (
-                <>
-                  <Image
-                    source={pkLogo}
-                    style={{
-                      width: 132,
-                      height: 164.4,
-                      alignSelf: 'center',
-                      marginTop: 12,
-                      opacity: 0.3,
-                    }}
-                  />
-                  <TouchableOpacity
-                    onPress={() => this.willParticipate()}
-                    style={styles.startLoggingButtonTouchable}>
-                    <Text style={styles.startLoggingButtonText}>
-                      {languages.t('label.start_logging')}
-                    </Text>
-                  </TouchableOpacity>
-                </>
-              )}
-
-              {this.state.isLogging ? (
-                <Text style={styles.sectionDescription}>
-                  {languages.t('label.logging_message')}
-                </Text>
-              ) : (
-                <Text style={styles.sectionDescription}>
-                  {languages.t('label.not_logging_message')}
-                </Text>
-              )}
-            </View>
+            ) : (
+              <Text style={styles.sectionDescription}>
+                {languages.t('label.not_logging_message')}
+              </Text>
+            )}
           </View>
 
           <View style={styles.actionButtonsView}>
@@ -260,6 +258,7 @@ class LocationTracking extends Component {
               </Text>
             </TouchableOpacity>
           </View>
+
           <View style={styles.footer}>
             <Text
               style={[
@@ -312,27 +311,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '80%',
   },
-  block: {
-    margin: 20,
-    width: '100%',
+  buttonsAndLogoView: {
+    flex: 6,
+    justifyContent: 'space-around',
+  },
+  actionButtonsView: {
+    width: width * 0.7866,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 2,
+    alignItems: 'center',
+    marginBottom: -10,
   },
   footer: {
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '600',
-    padding: 2,
-    paddingBottom: 5,
-  },
-  intro: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'stretch',
+    padding: 4,
+    paddingBottom: 10,
+    justifyContent: 'flex-end',
   },
   sectionDescription: {
     fontSize: 12,
     lineHeight: 24,
     fontFamily: 'OpenSans-Regular',
-    marginTop: 20,
     marginLeft: 10,
     marginRight: 10,
   },
@@ -342,7 +344,6 @@ const styles = StyleSheet.create({
     height: 52,
     alignSelf: 'center',
     width: width * 0.7866,
-    marginTop: 30,
     justifyContent: 'center',
   },
   startLoggingButtonText: {
@@ -359,7 +360,6 @@ const styles = StyleSheet.create({
     height: 52,
     alignSelf: 'center',
     width: width * 0.7866,
-    marginTop: 30,
     justifyContent: 'center',
   },
   stopLoggingButtonText: {
@@ -369,12 +369,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     textAlign: 'center',
     color: '#ffffff',
-  },
-  actionButtonsView: {
-    width: width * 0.7866,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 32,
   },
   actionButtonsTouchable: {
     height: 76,
