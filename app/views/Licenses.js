@@ -56,7 +56,6 @@ class LicensesScreen extends Component {
       result += '<hr/>';
     }
     result += '</body></html>';
-    console.log('Here 2!:', result);
 
     return result;
   }
