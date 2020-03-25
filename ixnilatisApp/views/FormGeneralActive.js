@@ -30,10 +30,8 @@ class FormGeneral extends Component {
     name: "",
     dateBirth: "",
     address: "",
-    time: "",
     reason: "",
-    timeEnd: "",
-    supervisor: "",
+    reasonOther: "",
     date: "",
   }
   backToMain = () => {
@@ -45,17 +43,33 @@ class FormGeneral extends Component {
     return true;   
   };  
 
+  formatDateTime = d => {
+    const dt = d.getDate().toString().padStart(2,0);
+    const m = (d.getMonth()+1).toString().padStart(2,0);
+    const y = d.getFullYear();
+    const h = d.getHours().toString().padStart(2,0);
+    const M = d.getMinutes().toString().padStart(2,0);
+    return `${dt}/${m}/${y} ${h}:${M}`;
+  }
+
+  formatDate = d => {
+    const dt = d.getDate().toString().padStart(2,0);
+    const m = (d.getMonth()+1).toString().padStart(2,0);
+    const y = d.getFullYear();
+    return `${dt}/${m}/${y}`;
+  }
+
   componentDidMount = () =>{
-    GetStoreData('FORMGENERAL', false).then(state => this.setState(state));
+    GetStoreData('FORMGENERAL', false).then(state => state && this.setState({
+      ...state,
+      dateBirth: new Date(state.dateBirth),
+      date: new Date(state.date),
+    }));
     BackHandler.addEventListener("hardwareBackPress", this.handleBackPress); 
   }
 
   componentWillUnmount = () => { 
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress); 
-  }
-
-  submitForm = () => { 
-    SetStoreData('FORMGENERAL', this.state).then(() => this.backToMain());
   }
 
   render() {
@@ -65,69 +79,32 @@ class FormGeneral extends Component {
           <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>{I18n.t('FORMGENERAL')}</Text>
+          <Text style={styles.headerTitle}>{I18n.t('FORMGENERAL_ACTIVE')}</Text>
         </View>
         <ScrollView contentContainerStyle={styles.main}>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_NAME')}</Text>
-          <TextInput 
-            onChangeText={name => this.setState({name})} 
-            value={this.state.name} 
-            style={styles.input}
-          />
+          <Text style={styles.input} >
+            {this.state.name} 
+          </Text>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_DATEBIRTH')}</Text>
-          <TextInput 
-            onChangeText={dateBirth => this.setState({dateBirth})} 
-            value={this.state.dateBirth} 
-            style={styles.input}
-          />
+          <Text style={styles.input} >
+            {this.state.dateBirth ? this.formatDate(this.state.dateBirth) : '-'} 
+          </Text>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_ADDRESS')}</Text>
-          <TextInput 
-            onChangeText={address => this.setState({address})} 
-            value={this.state.address} 
-            style={styles.input}
-          />
-          <Text style={styles.label}>{I18n.t('FORMGENERAL_TIME')}</Text>
-          <TextInput 
-            onChangeText={time => this.setState({time})} 
-            value={this.state.time} 
-            style={styles.input}
-          />
+          <Text style={styles.input} >
+            {this.state.address} 
+          </Text>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_REASON')}</Text>
-          <Picker 
-            onValueChange={reason => this.setState({reason})} 
-            selectedValue={this.state.reason} 
-            style={styles.picker}
-          >
-            <Picker.Item label={I18n.t('FORMGENERAL_REASON_1')} value={1} />
-            <Picker.Item label={I18n.t('FORMGENERAL_REASON_2')} value={2} />
-            <Picker.Item label={I18n.t('FORMGENERAL_REASON_3')} value={3} />
-            <Picker.Item label={I18n.t('FORMGENERAL_REASON_4')} value={4} />
-            <Picker.Item label={I18n.t('FORMGENERAL_REASON_5')} value={5} />
-            <Picker.Item label={I18n.t('FORMGENERAL_REASON_6')} value={6} />
-            <Picker.Item label={I18n.t('FORMGENERAL_REASON_7')} value={7} />
-            <Picker.Item label={I18n.t('FORMGENERAL_REASON_8')} value={8} />
-            <Picker.Item label={I18n.t('FORMGENERAL_REASON_9')} value={9} />
-          </Picker>
           <Text style={{padding: 10}}>{this.state.reason && I18n.t('FORMGENERAL_REASON_'+this.state.reason)}</Text>
           {this.state.reason == 9 && 
-            <TextInput 
-              onChangeText={reasonOther => this.setState({reasonOther})} 
-              value={this.state.reasonOther} 
-              style={styles.input}
-              placeholder={I18n.t('FORMGENERAL_REASON_OTHER')}
-            />
+            <Text style={styles.input} >
+              {this.state.reasonOther} 
+            </Text>
           }
           <Text style={styles.label}>{I18n.t('FORMGENERAL_DATE')}</Text>
-          <TextInput 
-            onChangeText={date => this.setState({date})} 
-            value={this.state.date} 
-            style={styles.input}
-          />
-          <View style={{alignItems: "center"}} >
-            <TouchableOpacity style={styles.submit} onPress={this.submitForm}>
-              <Text style={styles.submitText}>{I18n.t('FORMWORK_SUBMIT')}</Text>
-            </TouchableOpacity>
-          </View>
+          <Text style={styles.input} >
+            {this.state.date ? this.formatDateTime(this.state.date) : '-'} 
+          </Text>
         </ScrollView>
       </SafeAreaView>
     )
@@ -165,7 +142,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    height:60,
+    height: 80,
     borderBottomWidth:1,
     borderBottomColor:'rgba(189, 195, 199,0.6)'
   },
@@ -180,9 +157,6 @@ const styles = StyleSheet.create({
     width: 18.48
   },
   input: {
-    borderColor: '#CCCCCC',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
     height: 50,
     fontSize: 20,
     paddingLeft: 10,
@@ -192,7 +166,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 26,
     fontFamily:'OpenSans-Bold',
-    top:21
+    top:21,
+    width:"70%"
   },
   picker:{
   },
