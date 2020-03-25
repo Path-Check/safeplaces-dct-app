@@ -37,7 +37,9 @@ const width = Dimensions.get('window').width;
 const base64 = RNFetchBlob.base64
 
 const public_data = "https://docs.google.com/spreadsheets/d/1itaohdPiAeniCXNlntNztZ_oRvjh0HsGuJXUJWET008/export?format=csv"
-const show_button_text = "Show Me Trace Overlap";
+const show_button_text = languages.t('label.show_overlap');
+const overlap_true_button_text = languages.t('label.overlap_found_button_label');
+const no_overlap_button_text = languages.t('label.overlap_no_results_button_label');
 const INITIAL_REGION = {
     latitude: 36.56,
     longitude: 20.39,
@@ -151,8 +153,7 @@ class OverlapScreen extends Component {
     downloadAndPlot = async () => {
         // Downloads the file on the disk and loads it into memory
         try {
-            this.setState({'showButton': {'disabled': true,
-                                          'text': 'Loading Public Trace'}});
+            this.setState({'showButton': {'disabled': true, 'text': 'Loading Public Trace'}});
             RNFetchBlob
               .config({
                 // add this option that makes response data to be stored as a file,
@@ -176,8 +177,15 @@ class OverlapScreen extends Component {
                             console.log(Object.keys(parsedRecords).length);
                             this.plotCircles(parsedRecords)
                             .then(() => {
-                                this.setState({'showButton': {'disabled': false,
-                                                'text': show_button_text}});
+                                // if no overlap, alert user via button text
+                                // this is a temporary fix, make it more robust later
+                                if (Object.keys(parsedRecords).length !== 0) {
+                                    this.setState({'showButton': {'disabled': false,
+                                        'text': overlap_true_button_text}});
+                                } else {
+                                    this.setState({'showButton': {'disabled': false,
+                                        'text': no_overlap_button_text}});
+                                }
                             });
                         });
                       })
@@ -274,7 +282,7 @@ class OverlapScreen extends Component {
                     <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
                          <Image style={styles.backArrow} source={backArrow} />
                     </TouchableOpacity>
-                    <Text style={styles.headerTitle}>{languages.t('label.overlap')}</Text>
+                    <Text style={styles.headerTitle}>{languages.t('label.overlap_title')}</Text>
                 </View>
                     <MapView
                         provider={PROVIDER_GOOGLE}
@@ -302,6 +310,7 @@ class OverlapScreen extends Component {
                 <View style={styles.main}>
                     <TouchableOpacity style={styles.buttonTouchable} onPress={() => this.downloadAndPlot()}
                      disabled={this.state.showButton.disabled}>
+                        {/* If no overlap found, change button text to say so. Temporary solution, replace with something more robust */}
                         <Text style={styles.buttonText}>{languages.t(this.state.showButton.text)}</Text>
                     </TouchableOpacity>
                     <Text style={styles.sectionDescription}>{languages.t('label.overlap_para_1')}</Text>
@@ -321,11 +330,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.WHITE
     },
     headerTitle: {
-        textAlign: 'center',
-        fontWeight: "bold",
-        fontSize: 38,
-
-        padding: 0
+        fontSize: 24,
+        fontFamily:'OpenSans-Bold',
     },
     subHeaderTitle: {
         textAlign: 'center',
@@ -391,10 +397,6 @@ const styles = StyleSheet.create({
     backArrow: {
         height: 18, 
         width: 18.48
-    },
-    headerTitle:{
-        fontSize: 24,
-        fontFamily:'OpenSans-Bold'
     },
     sectionDescription: {
         fontSize: 16,
