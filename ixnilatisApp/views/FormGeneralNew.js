@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
+  Alert,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -11,6 +12,7 @@ import {
   Picker,
   Text,
   TextInput,
+  Platform,
   TouchableOpacity,BackHandler
 } from 'react-native';
 
@@ -22,6 +24,7 @@ import {
 import Button from "../../app/components/Button";
 import backArrow from '../../app/assets/images/backArrow.png'
 import I18n from "../../I18n";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const width = Dimensions.get('window').width;
 
@@ -30,11 +33,9 @@ class FormGeneral extends Component {
     name: "",
     dateBirth: "",
     address: "",
-    time: "",
     reason: "",
-    timeEnd: "",
-    supervisor: "",
-    date: "",
+    reasonOther: "",
+    showDatePicker : false
   }
   backToMain = () => {
     this.props.navigation.navigate('LocationTrackingScreen', {})
@@ -46,7 +47,12 @@ class FormGeneral extends Component {
   };  
 
   componentDidMount = () =>{
-    GetStoreData('FORMGENERAL', false).then(state => this.setState(state));
+    GetStoreData('FORMGENERAL', false).then(state => state && this.setState({
+      ...state,
+      dateBirth: new Date(state.dateBirth),
+      reason: "",
+      reasonOther: "",
+    }));
     BackHandler.addEventListener("hardwareBackPress", this.handleBackPress); 
   }
 
@@ -54,8 +60,36 @@ class FormGeneral extends Component {
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress); 
   }
 
+  formatDate = d => {
+    const dt = d.getDate().toString().padStart(2,0);
+    const m = (d.getMonth()+1).toString().padStart(2,0);
+    const y = d.getFullYear();
+    return `${dt}/${m}/${y}`;
+  }
+
   submitForm = () => { 
-    SetStoreData('FORMGENERAL', this.state).then(() => this.backToMain());
+    if ( this.state.name == "" || this.state.dateBirth == "" || this.state.address == "" ) {
+      Alert.alert(I18n.t('FORMGENERAL_NOINFO_TITLE'),I18n.t('FORMGENERAL_NOINFO_MESSAGE'));
+      return;
+    }
+    if ( this.state.reason == "" ) {
+      Alert.alert(I18n.t('FORMGENERAL_NOREASON_TITLE'),I18n.t('FORMGENERAL_NOREASON_MESSAGE'));
+      return;
+    }
+    if ( this.state.reason == 9 && this.state.reasonOther == "" ) {
+      Alert.alert(I18n.t('FORMGENERAL_NOREASONOTHER_TITLE'),I18n.t('FORMGENERAL_NOREASONOTHER_MESSAGE'));
+      return;
+    }
+    const {name, dateBirth, address, reason, reasonOther } = this.state;
+    const formData = {
+      name, 
+      dateBirth,
+      address, 
+      reason, 
+      reasonOther,
+      date: new Date()
+    }
+    SetStoreData('FORMGENERAL', formData).then(() => this.backToMain());
   }
 
   render() {
@@ -65,7 +99,7 @@ class FormGeneral extends Component {
           <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>{I18n.t('FORMGENERAL')}</Text>
+          <Text style={styles.headerTitle}>{I18n.t('FORMGENERAL_NEW')}</Text>
         </View>
         <ScrollView contentContainerStyle={styles.main}>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_NAME')}</Text>
@@ -75,21 +109,26 @@ class FormGeneral extends Component {
             style={styles.input}
           />
           <Text style={styles.label}>{I18n.t('FORMGENERAL_DATEBIRTH')}</Text>
-          <TextInput 
-            onChangeText={dateBirth => this.setState({dateBirth})} 
-            value={this.state.dateBirth} 
-            style={styles.input}
-          />
+          <TouchableOpacity onPress={() => this.setState({showDatePicker: true})}>
+            <Text style={{...styles.input, paddingTop: 10}} >{this.state.dateBirth ? this.formatDate(this.state.dateBirth) : '-'}</Text>
+          </TouchableOpacity>
+          {this.state.showDatePicker && 
+            <DateTimePicker 
+              value={this.state.dateBirth ? this.state.dateBirth : new Date()} 
+              display="default" 
+              onChange={(e,dateBirth) => {
+                this.setState({
+                  dateBirth,
+                  showDatePicker: Platform.OS === 'ios'
+                })
+              }
+              }
+            />
+          }
           <Text style={styles.label}>{I18n.t('FORMGENERAL_ADDRESS')}</Text>
           <TextInput 
             onChangeText={address => this.setState({address})} 
             value={this.state.address} 
-            style={styles.input}
-          />
-          <Text style={styles.label}>{I18n.t('FORMGENERAL_TIME')}</Text>
-          <TextInput 
-            onChangeText={time => this.setState({time})} 
-            value={this.state.time} 
             style={styles.input}
           />
           <Text style={styles.label}>{I18n.t('FORMGENERAL_REASON')}</Text>
@@ -98,6 +137,7 @@ class FormGeneral extends Component {
             selectedValue={this.state.reason} 
             style={styles.picker}
           >
+            <Picker.Item label={I18n.t('FORMGENERAL_REASON_SELECT')} />
             <Picker.Item label={I18n.t('FORMGENERAL_REASON_1')} value={1} />
             <Picker.Item label={I18n.t('FORMGENERAL_REASON_2')} value={2} />
             <Picker.Item label={I18n.t('FORMGENERAL_REASON_3')} value={3} />
@@ -116,12 +156,6 @@ class FormGeneral extends Component {
               placeholder={I18n.t('FORMGENERAL_REASON_OTHER')}
             />
           }
-          <Text style={styles.label}>{I18n.t('FORMGENERAL_DATE')}</Text>
-          <TextInput 
-            onChangeText={date => this.setState({date})} 
-            value={this.state.date} 
-            style={styles.input}
-          />
           <View style={{alignItems: "center"}} >
             <TouchableOpacity style={styles.submit} onPress={this.submitForm}>
               <Text style={styles.submitText}>{I18n.t('FORMWORK_SUBMIT')}</Text>
@@ -164,7 +198,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    height:60,
+    height: 80,
     borderBottomWidth:1,
     borderBottomColor:'rgba(189, 195, 199,0.6)'
   },
@@ -191,7 +225,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 26,
     fontFamily:'OpenSans-Bold',
-    top:21
+    top:21,
+    width:"70%"
   },
   picker:{
   },

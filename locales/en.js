@@ -61,4 +61,13 @@ FORMGENERAL_REASON_7: "7. Going to a ceremony (e.g. funeral, wedding, christenin
 FORMGENERAL_REASON_8: "8. Any other reason that can be justified on the basis of the restriction measures",
 FORMGENERAL_REASON_OTHER: "Other reason",
 FORMGENERAL_DATE: "Date"
+  FORMGENERAL_NOINFO_TITLE: "Ελλιπή Στοιχεία",
+  FORMGENERAL_NOINFO_MESSAGE: "Παρακαλώ Συμπληρώστε όλα τα προσωπικά σας στοιχεία",
+  FORMGENERAL_NOREASON_TITLE: "Επιλέξτε λόγο",
+  FORMGENERAL_NOREASON_MESSAGE: "Παρακαλώ επιλέξτε έναν λόγο για τη μετακίνησή σας",
+  FORMGENERAL_NOREASONOTHER_TITLE: "Επιλέξτε λόγο",
+  FORMGENERAL_NOREASONOTHER_MESSAGE: "Παρακαλώ συμπληρώστε το ειδικό πεδίο με τον συγκεκριμένο λόγο της μετακίνησής σας",
+  FORMGENERAL_DATE: "Date",
+  FORMGENERAL_LIMIT_TITLE: "Δεν μπορείτε να συμπληρώσετε νέα δήλωση",
+  FORMGENERAL_LIMIT_MESSAGE: "Πρέπει να περάσουν 30 λεπτά από την τελευταία σας δήλωση ({{minutes}} λεπτά απομένουν) "
 };
