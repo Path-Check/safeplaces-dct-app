@@ -19,6 +19,7 @@ import {
 } from 'react-native-popup-menu';
 import colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
+import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import exportImage from './../assets/images/export.png';
 import news from './../assets/images/newspaper.png';
@@ -79,7 +80,10 @@ class LocationTracking extends Component {
   }
 
   willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
+    SetStoreData('PARTICIPATE', 'true').then(() => {
+      LocationServices.start();
+      BroadcastingServices.start();
+    });
 
     // Check and see if they actually authorized in the system dialog.
     // If not, stop services and set the state to !isLogging
@@ -91,6 +95,7 @@ class LocationTracking extends Component {
         });
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
         LocationServices.stop(this.props.navigation);
+        BroadcastingServices.stop(this.props.navigation);
         this.setState({
           isLogging: false,
         });
@@ -107,7 +112,10 @@ class LocationTracking extends Component {
   }
 
   willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
+    SetStoreData('PARTICIPATE', 'true').then(() => {
+      LocationServices.start();
+      BroadcastingServices.start();
+    });
     this.setState({
       isLogging: true,
     });
@@ -115,6 +123,7 @@ class LocationTracking extends Component {
 
   setOptOut = () => {
     LocationServices.stop(this.props.navigation);
+    BroadcastingServices.stop(this.props.navigation);
     this.setState({
       isLogging: false,
     });
