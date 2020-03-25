@@ -52,7 +52,7 @@ class FormGeneral extends Component {
   }
 
   componentDidMount = () =>{
-    GetStoreData('FORMGENERAL', false).then(state => this.setState({
+    GetStoreData('FORMGENERAL', false).then(state => state && this.setState({
       ...state,
       dateBirth: new Date(state.dateBirth),
       date: new Date(state.date),
