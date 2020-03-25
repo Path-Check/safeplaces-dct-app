@@ -269,10 +269,7 @@ class LocationTracking extends Component {
 
         <View style={styles.footer}>
           <Text
-            style={[
-              styles.sectionDescription,
-              { textAlign: 'center', paddingTop: 15 },
-            ]}>
+            style={styles.sectionDescription}>
             {languages.t('label.url_info')}{' '}
           </Text>
           <Text
@@ -326,7 +323,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '600',
-    padding: 4,
+    padding: 0,
+    paddingTop: 0,
     paddingBottom: 10,
   },
   intro: {
@@ -338,7 +336,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 24,
     fontFamily: 'OpenSans-Regular',
-    marginTop: 20,
+    marginTop: 5,
     marginLeft: 10,
     marginRight: 10,
   },
@@ -380,7 +378,7 @@ const styles = StyleSheet.create({
     width: width * 0.7866,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 64,
+    marginTop: 20,
   },
   actionButtonsTouchable: {
     height: 76,

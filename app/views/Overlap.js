@@ -321,11 +321,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.WHITE
     },
     headerTitle: {
-        textAlign: 'center',
-        fontWeight: "bold",
-        fontSize: 38,
-
-        padding: 0
+        fontSize: 24,
+        fontFamily: 'OpenSans-Bold',
     },
     subHeaderTitle: {
         textAlign: 'center',
