@@ -29,9 +29,14 @@ import MapView from 'react-native-map-clustering';
 const width = Dimensions.get('window').width;
 
 const base64 = RNFetchBlob.base64;
-
+// This data source was published in the Lancet, originally mentioned in
+// this article:
+//    https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30119-5/fulltext
+// The dataset is now hosted on Github due to the high demand for it.  The
+// first Google Doc holding data (https://docs.google.com/spreadsheets/d/1itaohdPiAeniCXNlntNztZ_oRvjh0HsGuJXUJWET008/edit#gid=0)
+// points to this souce but no longer holds the actual data.
 const public_data =
-  'https://docs.google.com/spreadsheets/d/1itaohdPiAeniCXNlntNztZ_oRvjh0HsGuJXUJWET008/export?format=csv';
+  'https://raw.githubusercontent.com/beoutbreakprepared/nCoV2019/master/latest_data/latestdata.csv';
 const show_button_text = languages.t('label.show_overlap');
 const overlap_true_button_text = languages.t(
   'label.overlap_found_button_label',
@@ -152,7 +157,10 @@ class OverlapScreen extends Component {
     // Downloads the file on the disk and loads it into memory
     try {
       this.setState({
-        showButton: { disabled: true, text: 'Loading Public Trace' },
+        showButton: {
+          disabled: true,
+          text: languages.t('label.loading_public_data'),
+        },
       });
       RNFetchBlob.config({
         // add this option that makes response data to be stored as a file,
@@ -221,7 +229,7 @@ class OverlapScreen extends Component {
           // Threshold for using only points in 4k
           // if (distance(latestLat, latestLong, lat, long) < 4000) {
           if (true) {
-            key = String(lat) + '|' + String(long);
+            var key = String(lat) + '|' + String(long);
             if (!(key in parsedRows)) {
               parsedRows[key] = 0;
             }
@@ -280,6 +288,8 @@ class OverlapScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
+  // This map shows where your private location trail overlaps with public data from a variety of sources, including official reports from WHO, Ministries of Health, and Chinese local, provincial, and national health authorities. If additional data are available from reliable online reports, they are included.
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -295,7 +305,7 @@ class OverlapScreen extends Component {
         </View>
         <MapView
           provider={PROVIDER_GOOGLE}
-          style={styles.mapView}
+          style={styles.main}
           initialRegion={this.state.initialRegion}>
           {this.state.markers.map(marker => (
             <Marker
@@ -309,13 +319,13 @@ class OverlapScreen extends Component {
             <CustomCircle
               center={circle.center}
               radius={circle.radius}
-              fillColor="rgba(208, 35, 35, 0.3)"
+              fillColor="rgba(163, 47, 163, 0.3)"
               zIndex={2}
               strokeWidth={0}
             />
           ))}
         </MapView>
-        <View style={styles.mainView}>
+        <View style={styles.main}>
           <TouchableOpacity
             style={styles.buttonTouchable}
             onPress={() => this.downloadAndPlot()}
@@ -327,6 +337,25 @@ class OverlapScreen extends Component {
           </TouchableOpacity>
           <Text style={styles.sectionDescription}>
             {languages.t('label.overlap_para_1')}
+          </Text>
+        </View>
+        <View style={styles.footer}>
+          <Text
+            style={[
+              styles.sectionDescription,
+              { textAlign: 'center', paddingTop: 15 },
+            ]}>
+            {languages.t('label.nCoV2019_url_info')}{' '}
+          </Text>
+          <Text
+            style={[
+              styles.sectionDescription,
+              { color: 'blue', textAlign: 'center', marginTop: 0 },
+            ]}
+            onPress={() =>
+              Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
+            }>
+            {languages.t('label.nCoV2019_url')}
           </Text>
         </View>
       </SafeAreaView>
@@ -352,19 +381,12 @@ const styles = StyleSheet.create({
     fontSize: 22,
     padding: 5,
   },
-  mapView: {
-    flex: 2,
+  main: {
+    flex: 1,
     flexDirection: 'column',
+    textAlignVertical: 'top',
     // alignItems: 'center',
-    padding: 20,
-    width: '96%',
-    alignSelf: 'center',
-  },
-  mainView: {
-    flex: 3,
-    flexDirection: 'column',
-    // alignItems: 'center',
-    padding: 20,
+    padding: 15,
     width: '96%',
     alignSelf: 'center',
   },
@@ -374,7 +396,7 @@ const styles = StyleSheet.create({
     height: 52,
     alignSelf: 'center',
     width: width * 0.7866,
-    marginTop: 30,
+    marginTop: 15,
     justifyContent: 'center',
   },
   buttonText: {
@@ -422,6 +444,13 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     fontFamily: 'OpenSans-Regular',
+  },
+  footer: {
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '600',
+    padding: 4,
+    paddingBottom: 10,
   },
 });
 
