@@ -19,6 +19,7 @@ import {
 } from 'react-native-popup-menu';
 import colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
+import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import exportImage from './../assets/images/export.png';
 import news from './../assets/images/newspaper.png';
@@ -79,7 +80,10 @@ class LocationTracking extends Component {
   }
 
   willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
+    SetStoreData('PARTICIPATE', 'true').then(() => {
+      LocationServices.start();
+      BroadcastingServices.start();
+    });
 
     // Check and see if they actually authorized in the system dialog.
     // If not, stop services and set the state to !isLogging
@@ -91,6 +95,7 @@ class LocationTracking extends Component {
         });
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
         LocationServices.stop(this.props.navigation);
+        BroadcastingServices.stop(this.props.navigation);
         this.setState({
           isLogging: false,
         });
@@ -107,7 +112,10 @@ class LocationTracking extends Component {
   }
 
   willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
+    SetStoreData('PARTICIPATE', 'true').then(() => {
+      LocationServices.start();
+      BroadcastingServices.start();
+    });
     this.setState({
       isLogging: true,
     });
@@ -115,6 +123,7 @@ class LocationTracking extends Component {
 
   setOptOut = () => {
     LocationServices.stop(this.props.navigation);
+    BroadcastingServices.stop(this.props.navigation);
     this.setState({
       isLogging: false,
     });
@@ -124,97 +133,95 @@ class LocationTracking extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.main}>
-          <View style={styles.topView}>
-            {/* A modal menu. Currently only used for license info */}
-            <Menu
-              style={{
-                position: 'absolute',
-                alignSelf: 'flex-end',
-                zIndex: 10,
-              }}>
-              <MenuTrigger style={{ marginTop: 14 }}>
+          {/* A modal menu. Currently only used for license info */}
+          <Menu
+            style={{
+              position: 'absolute',
+              alignSelf: 'flex-end',
+              zIndex: 10,
+            }}>
+            <MenuTrigger style={{ marginTop: 14 }}>
+              <Image
+                source={kebabIcon}
+                style={{
+                  width: 15,
+                  height: 28,
+                  padding: 14,
+                  opacity: 0.6,
+                }}
+              />
+            </MenuTrigger>
+            <MenuOptions>
+              <MenuOption
+                onSelect={() => {
+                  this.licenses();
+                }}>
+                <Text style={styles.menuOptionText}>Licenses</Text>
+              </MenuOption>
+            </MenuOptions>
+          </Menu>
+          <Text style={styles.headerTitle}>
+            {languages.t('label.private_kit')}
+          </Text>
+
+          <View style={styles.buttonsAndLogoView}>
+            {this.state.isLogging ? (
+              <>
                 <Image
-                  source={kebabIcon}
+                  source={pkLogo}
                   style={{
-                    width: 15,
-                    height: 28,
-                    padding: 14,
-                    opacity: 0.6,
+                    width: 132,
+                    height: 164.4,
+                    alignSelf: 'center',
+                    marginTop: 12,
                   }}
                 />
-              </MenuTrigger>
-              <MenuOptions>
-                <MenuOption
-                  onSelect={() => {
-                    this.licenses();
-                  }}>
-                  <Text style={styles.menuOptionText}>Licenses</Text>
-                </MenuOption>
-              </MenuOptions>
-            </Menu>
-            <View style={styles.intro}>
-              <Text style={styles.headerTitle}>
-                {languages.t('label.private_kit')}
+                <TouchableOpacity
+                  onPress={() => this.setOptOut()}
+                  style={styles.stopLoggingButtonTouchable}>
+                  <Text style={styles.stopLoggingButtonText}>
+                    {languages.t('label.stop_logging')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => this.overlap()}
+                  style={styles.startLoggingButtonTouchable}>
+                  <Text style={styles.startLoggingButtonText}>
+                    {languages.t('label.overlap')}
+                  </Text>
+                </TouchableOpacity>
+              </>
+            ) : (
+              <>
+                <Image
+                  source={pkLogo}
+                  style={{
+                    width: 132,
+                    height: 164.4,
+                    alignSelf: 'center',
+                    marginTop: 12,
+                    opacity: 0.3,
+                  }}
+                />
+                <TouchableOpacity
+                  onPress={() => this.willParticipate()}
+                  style={styles.startLoggingButtonTouchable}>
+                  <Text style={styles.startLoggingButtonText}>
+                    {languages.t('label.start_logging')}
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
+
+            {this.state.isLogging ? (
+              <Text style={styles.sectionDescription}>
+                {languages.t('label.logging_message')}
               </Text>
-
-              {this.state.isLogging ? (
-                <>
-                  <Image
-                    source={pkLogo}
-                    style={{
-                      width: 132,
-                      height: 164.4,
-                      alignSelf: 'center',
-                      marginTop: 12,
-                    }}
-                  />
-                  <TouchableOpacity
-                    onPress={() => this.setOptOut()}
-                    style={styles.stopLoggingButtonTouchable}>
-                    <Text style={styles.stopLoggingButtonText}>
-                      {languages.t('label.stop_logging')}
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.overlap()}
-                    style={styles.startLoggingButtonTouchable}>
-                    <Text style={styles.startLoggingButtonText}>
-                      {languages.t('label.overlap')}
-                    </Text>
-                  </TouchableOpacity>
-                </>
-              ) : (
-                <>
-                  <Image
-                    source={pkLogo}
-                    style={{
-                      width: 132,
-                      height: 164.4,
-                      alignSelf: 'center',
-                      marginTop: 12,
-                      opacity: 0.3,
-                    }}
-                  />
-                  <TouchableOpacity
-                    onPress={() => this.willParticipate()}
-                    style={styles.startLoggingButtonTouchable}>
-                    <Text style={styles.startLoggingButtonText}>
-                      {languages.t('label.start_logging')}
-                    </Text>
-                  </TouchableOpacity>
-                </>
-              )}
-
-              {this.state.isLogging ? (
-                <Text style={styles.sectionDescription}>
-                  {languages.t('label.logging_message')}
-                </Text>
-              ) : (
-                <Text style={styles.sectionDescription}>
-                  {languages.t('label.not_logging_message')}
-                </Text>
-              )}
-            </View>
+            ) : (
+              <Text style={styles.sectionDescription}>
+                {languages.t('label.not_logging_message')}
+              </Text>
+            )}
           </View>
 
           <View style={styles.actionButtonsView}>
@@ -260,25 +267,25 @@ class LocationTracking extends Component {
               </Text>
             </TouchableOpacity>
           </View>
-        </ScrollView>
 
-        <View style={styles.footer}>
-          <Text
-            style={[
-              styles.sectionDescription,
-              { textAlign: 'center', paddingTop: 15 },
-            ]}>
-            {languages.t('label.url_info')}{' '}
-          </Text>
-          <Text
-            style={[
-              styles.sectionDescription,
-              { color: 'blue', textAlign: 'center', marginTop: 0 },
-            ]}
-            onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
-            {languages.t('label.private_kit_url')}
-          </Text>
-        </View>
+          <View style={styles.footer}>
+            <Text
+              style={[
+                styles.sectionDescription,
+                { textAlign: 'center', paddingTop: 15 },
+              ]}>
+              {languages.t('label.url_info')}{' '}
+            </Text>
+            <Text
+              style={[
+                styles.sectionDescription,
+                { color: 'blue', textAlign: 'center', marginTop: 0 },
+              ]}
+              onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
+              {languages.t('label.private_kit_url')}
+            </Text>
+          </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -309,13 +316,21 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     width: '80%',
   },
-  block: {
-    margin: 20,
-    width: '100%',
+  buttonsAndLogoView: {
+    flex: 6,
+    justifyContent: 'space-around',
+  },
+  actionButtonsView: {
+    width: width * 0.7866,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 2,
+    alignItems: 'center',
+    marginBottom: -10,
   },
   footer: {
     textAlign: 'center',
@@ -323,17 +338,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 4,
     paddingBottom: 10,
-  },
-  intro: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'stretch',
+    justifyContent: 'flex-end',
   },
   sectionDescription: {
     fontSize: 12,
     lineHeight: 24,
     fontFamily: 'OpenSans-Regular',
-    marginTop: 20,
     marginLeft: 10,
     marginRight: 10,
   },
@@ -343,7 +353,6 @@ const styles = StyleSheet.create({
     height: 52,
     alignSelf: 'center',
     width: width * 0.7866,
-    marginTop: 30,
     justifyContent: 'center',
   },
   startLoggingButtonText: {
@@ -360,7 +369,6 @@ const styles = StyleSheet.create({
     height: 52,
     alignSelf: 'center',
     width: width * 0.7866,
-    marginTop: 30,
     justifyContent: 'center',
   },
   stopLoggingButtonText: {
@@ -370,12 +378,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     textAlign: 'center',
     color: '#ffffff',
-  },
-  actionButtonsView: {
-    width: width * 0.7866,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 64,
   },
   actionButtonsTouchable: {
     height: 76,

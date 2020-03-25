@@ -29,7 +29,6 @@ import MapView from 'react-native-map-clustering';
 const width = Dimensions.get('window').width;
 
 const base64 = RNFetchBlob.base64;
-
 // This data source was published in the Lancet, originally mentioned in
 // this article:
 //    https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30119-5/fulltext
@@ -38,7 +37,6 @@ const base64 = RNFetchBlob.base64;
 // points to this souce but no longer holds the actual data.
 const public_data =
   'https://raw.githubusercontent.com/beoutbreakprepared/nCoV2019/master/latest_data/latestdata.csv';
-
 const show_button_text = languages.t('label.show_overlap');
 const overlap_true_button_text = languages.t(
   'label.overlap_found_button_label',
