@@ -15,18 +15,20 @@ class FormButtons extends Component {
     render() {
       return (<View style={styles.actionButtonsView}>
 
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('FormWorkScreen', {})} style={styles.actionButtonsTouchable}>
-          <Text style={styles.actionButtonHead}>{I18n.t("FORM_A")}</Text>
-          <Text style={styles.actionButtonText}>{I18n.t("FORMWORK")}</Text>
-        </TouchableOpacity>
+        {false && 
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('FormWorkScreen', {})} style={styles.actionButtonsTouchable}>
+            <Text style={styles.actionButtonHead}>{I18n.t("FORM_A")}</Text>
+            <Text style={styles.actionButtonText}>{I18n.t("FORMWORK")}</Text>
+          </TouchableOpacity>
+        }
 
         <TouchableOpacity onPress={() => this.props.navigation.navigate('FormGeneralNewScreen', {})} style={styles.actionButtonsTouchable}>
-          <Text style={styles.actionButtonHead}>{I18n.t("FORM_B")}</Text>
+          <Text style={styles.actionButtonHead}>&#9997;</Text>
           <Text style={styles.actionButtonText}>{I18n.t("FORMGENERAL_NEW")}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.props.navigation.navigate('FormGeneralActiveScreen', {})} style={styles.actionButtonsTouchable}>
-          <Text style={styles.actionButtonHead}>{I18n.t("FORM_B")}</Text>
+          <Text style={styles.actionButtonHead}>&#128196;</Text>
           <Text style={styles.actionButtonText}>{I18n.t("FORMGENERAL_ACTIVE")}</Text>
         </TouchableOpacity>
       </View>);
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
         height: 76,
         borderRadius: 8,
         backgroundColor: "#454f63",
-        width:width*.25,
+        width:width*.35,
         justifyContent:'center',
         alignItems:'center'
     },
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     actionButtonHead:{
         opacity: 1,
         fontFamily: "OpenSans-Bold",
-        fontSize: 14,
+        fontSize: 20,
         lineHeight: 17,
         letterSpacing: 0,
         textAlign: "center",
