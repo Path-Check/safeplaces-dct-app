@@ -57,7 +57,7 @@ FORMGENERAL_REASON_3: "3. Visiting a bank for services not online are not availa
 FORMGENERAL_REASON_4: "4. Helping people who cannot take care of themselves",
 FORMGENERAL_REASON_5: "5. Short movement, near my house for physical exercise or for pet needs",
 FORMGENERAL_REASON_6: "6. Going to a ceremony (e.g. funeral, wedding, christening) under the decree terms or visiting divorced parents or separated parents to ensure communication between parents and children",
-FORMGENERAL_REASON_7: "7. Absolutely necessary visits to governmental agencies or communal services of the wider public sector."
+FORMGENERAL_REASON_7: "7. Absolutely necessary visits to governmental agencies or communal services of the wider public sector.",
 FORMGENERAL_REASON_8: "8. Returning home after a compulsory self-restraint or quarantine",
 FORMGENERAL_REASON_9: "9. Any other reason that can be justified on the basis of the movement prohibition measures",
 FORMGENERAL_REASON_OTHER: "Other reason",

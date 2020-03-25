@@ -1,6 +1,9 @@
 import React from 'react'
-import { View, Text,Dimensions, TouchableOpacity,StyleSheet } from 'react-native'
+import { View, Text,Dimensions, Image, TouchableOpacity,StyleSheet } from 'react-native'
 import I18n from "../../../I18n";
+import logo1 from './../../assets/images/logo1.png'
+import logo2 from './../../assets/images/logo2.png'
+import logo3 from './../../assets/images/logo3.png'
 
 const width = Dimensions.get('window').width;
 
@@ -22,6 +25,11 @@ const Intro2 = (props) => {
                 </Text>
                 <Text 
                 style={styles.infoCardBodyText}>{I18n.t('INTRO24')} </Text>
+                                <View style={styles.rowContainer}>
+                                                 <Image source={logo1} style={styles.infoCardLogo} />
+                                                 <Image source={logo2} style={styles.infoCardLogo} />
+                                                 <Image source={logo3} style={styles.infoCardLogo} />
+                                 </View>
             </View>
            
            <View style={styles.navigationDotsView}>
@@ -65,6 +73,16 @@ const styles = StyleSheet.create({
     },
     infoCard: {width:width*0.7866,backgroundColor:'#3497fc',height:'70%',borderRadius:12,alignSelf:'center',marginTop:'9%',justifyContent:'center'},
     infoCardImage:{alignSelf:'center',width:width*.5,height:width*.5,marginTop:'16%'},
+        infoCardLogo:{alignSelf:'center',
+                      marginTop:'1%',
+                      flex: 1,
+                      width: 150,
+                      height: 100,
+                      resizeMode: 'contain',
+        },
+        rowContainer: {
+         flexDirection: 'row'
+         },
     infoCardHeadText:{
         fontFamily: "OpenSans-Bold",
         fontSize: 24,
