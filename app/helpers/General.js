@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 /**
  * Get Data from Store
