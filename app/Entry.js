@@ -11,7 +11,7 @@ import ImportScreen from './views/Import';
 import OverlapScreen from './views/Overlap';
 import LicencesScreen from './views/Licenses';
 import Slider from './views/welcomeScreens/Slider';
-import { GetStoreData, SetStoreData } from './helpers/General';
+import { GetStoreData } from './helpers/General';
 import SettingsScreen from './views/Settings';
 
 const Stack = createStackNavigator();

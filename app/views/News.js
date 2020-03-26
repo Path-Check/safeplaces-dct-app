@@ -11,7 +11,6 @@ import {
 
 import colors from '../constants/colors';
 import { WebView } from 'react-native-webview';
-import Button from '../components/Button';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 
@@ -67,22 +66,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-  },
-  backArrow: {
-    fontSize: 60,
-    lineHeight: 60,
-    fontWeight: '400',
-    marginRight: 5,
-    textAlignVertical: 'center',
-  },
-  sectionDescription: {
-    fontSize: 24,
-    lineHeight: 24,
-    fontWeight: '800',
-    textAlignVertical: 'center',
   },
   web: {
     flex: 1,
