@@ -71,7 +71,7 @@ class FormGeneral extends Component {
       Alert.alert(I18n.t('FORMGENERAL_NOREASON_TITLE'),I18n.t('FORMGENERAL_NOREASON_MESSAGE'));
       return;
     }
-    if ( this.state.reason == 9 && this.state.reasonOther == "" ) {
+    if ( this.state.reason == 8 && this.state.reasonOther == "" ) {
       Alert.alert(I18n.t('FORMGENERAL_NOREASONOTHER_TITLE'),I18n.t('FORMGENERAL_NOREASONOTHER_MESSAGE'));
       return;
     }
@@ -152,7 +152,7 @@ class FormGeneral extends Component {
             <Picker.Item label={I18n.t('FORMGENERAL_REASON_8')} value={8} />
           </Picker>
           <Text style={{padding: 10}}>{this.state.reason && I18n.t('FORMGENERAL_REASON_'+this.state.reason)}</Text>
-          {this.state.reason == 9 && 
+          {this.state.reason == 8 && 
             <TextInput 
               onChangeText={reasonOther => this.setState({reasonOther})} 
               value={this.state.reasonOther} 

@@ -92,7 +92,7 @@ class FormGeneral extends Component {
           </Text>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_REASON')}</Text>
           <Text style={{padding: 10}}>{this.state.reason && I18n.t('FORMGENERAL_REASON_'+this.state.reason)}</Text>
-          {this.state.reason == 9 && 
+          {this.state.reason == 8 && 
             <Text style={styles.input} >
               {this.state.reasonOther} 
             </Text>
