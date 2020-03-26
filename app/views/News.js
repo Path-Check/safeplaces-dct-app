@@ -7,7 +7,8 @@ import {
   Text,
   TouchableOpacity,
   BackHandler,
-  Dimensions,ActivityIndicator
+  Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 
 import colors from '../constants/colors';
@@ -65,8 +66,8 @@ class NewsScreen extends Component {
         />
         {this.state.visible && (
           <ActivityIndicator
-            style={{ position: "absolute", top: height / 2, left: width / 2 }}
-            size="large"
+            style={{ position: 'absolute', top: height / 2, left: width / 2 }}
+            size='large'
           />
         )}
       </SafeAreaView>
