@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  Linking,
   View,
   Text,
   Image,
@@ -37,7 +35,7 @@ class ExportScreen extends Component {
   OnShare = async () => {
     try {
       const locationArray = await GetStoreData('LOCATION_DATA');
-      var locationData;
+      let locationData;
 
       if (locationArray !== null) {
         locationData = JSON.parse(locationArray);
