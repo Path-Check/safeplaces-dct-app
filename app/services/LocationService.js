@@ -1,9 +1,8 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import { Alert, Platform } from 'react-native';
-
+import { Alert, Platform, Linking } from 'react-native';
+import { PERMISSIONS, check, RESULTS, request } from 'react-native-permissions';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-
 import PushNotification from 'react-native-push-notification';
 
 let instanceCount = 0;
@@ -250,6 +249,69 @@ export default class LocationServices {
 
       BackgroundGeolocation.start(); //triggers start on start event
 
+      if (Platform.OS === 'ios') {
+        check(PERMISSIONS.IOS.LOCATION_ALWAYS) // Use react-native-permissions to check for 'Always Allow' permission
+          .then(result => {
+            switch (result) {
+              case RESULTS.UNAVAILABLE:
+                console.log('Feature not available');
+                break;
+              case RESULTS.DENIED:
+                request(PERMISSIONS.IOS.LOCATION_ALWAYS).then(locRes => {
+                  const majorVersionIOS = parseInt(Platform.Version, 10);
+                  if (locRes === 'granted' && majorVersionIOS >= 13) {
+                    console.log(
+                      '[INFO]',
+                      'While using access granted. iOS version 13+',
+                    );
+                    Linking.openURL('app-settings:'); // Redirect to App Settings if iPhone is iOS 13+
+                  }
+                });
+                break;
+              case RESULTS.GRANTED:
+                console.log('Access Granted');
+                BackgroundGeolocation.start();
+                break;
+              case RESULTS.BLOCKED:
+                console.log(
+                  'The permission has been rejected. Cannot request again',
+                );
+                break;
+            }
+          })
+          .catch(error => {
+            console.log('[ERROR]', error);
+          });
+      } else {
+        check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION)
+          .then(result => {
+            switch (result) {
+              case RESULTS.UNAVAILABLE:
+                console.log('Feature not available android');
+                break;
+              case RESULTS.DENIED:
+                request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then(
+                  _locRes => {
+                    console.log('[INFO]', 'Requested permission');
+                  },
+                );
+                break;
+              case RESULTS.GRANTED:
+                BackgroundGeolocation.start();
+                console.log('Access Granted');
+                break;
+              case RESULTS.BLOCKED:
+                console.log(
+                  'The permission has been rejected. Cannot request again',
+                );
+                break;
+            }
+          })
+          .catch(err => {
+            console.log('[ERROR]', err);
+          });
+      }
+
       if (!status.locationServicesEnabled) {
         // we need to set delay or otherwise alert may not be shown
         setTimeout(
@@ -260,7 +322,14 @@ export default class LocationServices {
               [
                 {
                   text: 'Yes',
-                  onPress: () => BackgroundGeolocation.showLocationSettings(),
+                  onPress: () => {
+                    if (Platform.OS === 'android') {
+                      // showLocationSettings() only works for android
+                      BackgroundGeolocation.showLocationSettings();
+                    } else {
+                      Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
+                    }
+                  },
                 },
                 {
                   text: 'No',
@@ -292,7 +361,7 @@ export default class LocationServices {
             ),
           1000,
         );
-      } 
+      }
       // else if (!status.isRunning) {
       // } // commented as it was not being used
     });
