@@ -25,6 +25,7 @@ import Button from "../../app/components/Button";
 import backArrow from '../../app/assets/images/backArrow.png'
 import I18n from "../../I18n";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { formatDate } from "../dateUtils";
 
 const width = Dimensions.get('window').width;
 
@@ -58,13 +59,6 @@ class FormGeneral extends Component {
 
   componentWillUnmount = () => { 
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress); 
-  }
-
-  formatDate = d => {
-    const dt = d.getDate().toString().padStart(2,0);
-    const m = (d.getMonth()+1).toString().padStart(2,0);
-    const y = d.getFullYear();
-    return `${dt}/${m}/${y}`;
   }
 
   submitForm = () => { 
@@ -110,7 +104,7 @@ class FormGeneral extends Component {
           />
           <Text style={styles.label}>{I18n.t('FORMGENERAL_DATEBIRTH')}</Text>
           <TouchableOpacity onPress={() => this.setState({showDatePicker: true})}>
-            <Text style={{...styles.input, paddingTop: 10}} >{this.state.dateBirth ? this.formatDate(this.state.dateBirth) : '-'}</Text>
+            <Text style={{...styles.input, paddingTop: 10}} >{this.state.dateBirth ? formatDate(this.state.dateBirth) : '-'}</Text>
           </TouchableOpacity>
           {this.state.showDatePicker && 
             <DateTimePicker 

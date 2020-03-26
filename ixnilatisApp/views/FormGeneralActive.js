@@ -22,6 +22,7 @@ import {
 import Button from "../../app/components/Button";
 import backArrow from '../../app/assets/images/backArrow.png'
 import I18n from "../../I18n";
+import { formatDate, formatDateTime } from "../dateUtils";
 
 const width = Dimensions.get('window').width;
 
@@ -42,22 +43,6 @@ class FormGeneral extends Component {
     this.backToMain();
     return true;   
   };  
-
-  formatDateTime = d => {
-    const dt = d.getDate().toString().padStart(2,0);
-    const m = (d.getMonth()+1).toString().padStart(2,0);
-    const y = d.getFullYear();
-    const h = d.getHours().toString().padStart(2,0);
-    const M = d.getMinutes().toString().padStart(2,0);
-    return `${dt}/${m}/${y} ${h}:${M}`;
-  }
-
-  formatDate = d => {
-    const dt = d.getDate().toString().padStart(2,0);
-    const m = (d.getMonth()+1).toString().padStart(2,0);
-    const y = d.getFullYear();
-    return `${dt}/${m}/${y}`;
-  }
 
   componentDidMount = () =>{
     GetStoreData('FORMGENERAL', false).then(state => state && this.setState({
@@ -88,7 +73,7 @@ class FormGeneral extends Component {
           </Text>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_DATEBIRTH')}</Text>
           <Text style={styles.input} >
-            {this.state.dateBirth ? this.formatDate(this.state.dateBirth) : '-'} 
+            {this.state.dateBirth ? formatDate(this.state.dateBirth) : '-'} 
           </Text>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_ADDRESS')}</Text>
           <Text style={styles.input} >
@@ -103,7 +88,7 @@ class FormGeneral extends Component {
           }
           <Text style={styles.label}>{I18n.t('FORMGENERAL_DATE')}</Text>
           <Text style={styles.input} >
-            {this.state.date ? this.formatDateTime(this.state.date) : '-'} 
+            {this.state.date ? formatDateTime(this.state.date) : '-'} 
           </Text>
         </ScrollView>
       </SafeAreaView>
