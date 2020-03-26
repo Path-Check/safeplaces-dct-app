@@ -51,7 +51,6 @@ exports[`renders correctly 1`] = `
             style={
               Object {
                 "height": 28,
-                "opacity": 0.6,
                 "padding": 14,
                 "width": 15,
               }
@@ -377,7 +376,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          For more information visit the Private Kit hompage:
+          For more information visit the Private Kit homepage:
            
         </Text>
         <Text

@@ -144,6 +144,7 @@ exports[`renders correctly 1`] = `
           messagingEnabled={false}
           onContentProcessDidTerminate={[Function]}
           onHttpError={[Function]}
+          onLoad={[Function]}
           onLoadingError={[Function]}
           onLoadingFinish={[Function]}
           onLoadingProgress={[Function]}
@@ -172,6 +173,19 @@ exports[`renders correctly 1`] = `
           useSharedProcessPool={true}
         />
       </View>
+      <ActivityIndicator
+        animating={true}
+        color="#999999"
+        hidesWhenStopped={true}
+        size="large"
+        style={
+          Object {
+            "left": 375,
+            "position": "absolute",
+            "top": 667,
+          }
+        }
+      />
     </View>
   </View>
 </RCTSafeAreaView>
