@@ -7,16 +7,20 @@ import {
   Text,
   TouchableOpacity,
   BackHandler,
+  Dimensions,ActivityIndicator
 } from 'react-native';
 
 import colors from '../constants/colors';
 import { WebView } from 'react-native-webview';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 class NewsScreen extends Component {
   constructor(props) {
     super(props);
+    this.state = { visible: true };
   }
 
   backToMain() {
@@ -27,6 +31,10 @@ class NewsScreen extends Component {
     this.props.navigation.navigate('LocationTrackingScreen', {});
     return true;
   };
+
+  hideSpinner() {
+    this.setState({ visible: false });
+  }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -53,7 +61,14 @@ class NewsScreen extends Component {
         <WebView
           source={{ uri: 'https://privatekit.mit.edu/views' }}
           style={{ marginTop: 15 }}
+          onLoad={() => this.hideSpinner()}
         />
+        {this.state.visible && (
+          <ActivityIndicator
+            style={{ position: "absolute", top: height / 2, left: width / 2 }}
+            size="large"
+          />
+        )}
       </SafeAreaView>
     );
   }
