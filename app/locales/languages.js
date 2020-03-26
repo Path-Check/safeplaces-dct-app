@@ -60,15 +60,14 @@ i18next.init({
     },
     pt: {
       translation: {
-        label: ptlabels
-      }
+        label: ptlabels,
+      },
     },
     mr: {
       translation: {
-        label: mrlabels
-      }
-    }
-  }
+        label: mrlabels,
+      },
+    },
     nl: {
       translation: {
         label: nllabels,
