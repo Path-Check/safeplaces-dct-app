@@ -226,8 +226,6 @@ class OverlapScreen extends Component {
         const lat = parseFloat(row[7]);
         const long = parseFloat(row[8]);
         if (!isNaN(lat) && !isNaN(long)) {
-          // Threshold for using only points in 4k
-          // if (distance(latestLat, latestLong, lat, long) < 4000) {
           if (true) {
             var key = String(lat) + '|' + String(long);
             if (!(key in parsedRows)) {
@@ -246,11 +244,18 @@ class OverlapScreen extends Component {
   plotCircles = async records => {
     try {
       var circles = [];
+      const dist_threshold = 2000; //In KMs
+      const latestLat = this.state.initialRegion.latitude;
+      const latestLong = this.state.initialRegion.longitude;
       for (const key in records) {
         const latitude = parseFloat(key.split('|')[0]);
         const longitude = parseFloat(key.split('|')[1]);
         const count = records[key];
-        if (!isNaN(latitude) && !isNaN(longitude)) {
+        if (
+          !isNaN(latitude) &&
+          !isNaN(longitude) &&
+          distance(latestLat, latestLong, latitude, longitude) < dist_threshold
+        ) {
           var circle = {
             center: {
               latitude: latitude,
@@ -259,9 +264,10 @@ class OverlapScreen extends Component {
             radius: 50 * count,
           };
           circles.push(circle);
+          console.log(count);
         }
-        console.log(count);
       }
+      console.log(circles.length, 'points found');
       this.setState({
         circles: circles,
       });
@@ -319,7 +325,7 @@ class OverlapScreen extends Component {
             <CustomCircle
               center={circle.center}
               radius={circle.radius}
-              fillColor="rgba(163, 47, 163, 0.3)"
+              fillColor='rgba(163, 47, 163, 0.3)'
               zIndex={2}
               strokeWidth={0}
             />

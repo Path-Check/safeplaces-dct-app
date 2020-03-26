@@ -1,17 +1,17 @@
 /**
  * Checks the download folder, unzips and imports all data from Google TakeOut
  */
-import { zip, unzip, unzipAssets, subscribe } from 'react-native-zip-archive';
+import { unzip, subscribe } from 'react-native-zip-archive';
 import { MergeJSONWithLocalData } from '../helpers/GoogleData';
 
 // require the module
-var RNFS = require('react-native-fs');
+let RNFS = require('react-native-fs');
 
 // unzipping progress component.
-var progress;
+let progress;
 
 // Google Takout File Format.
-var takeoutZip = /^takeout[\w,\s-]+\.zip$/gm;
+let takeoutZip = /^takeout[\w,\s-]+\.zip$/gm;
 
 // Gets Path of the location file for the current month.
 function GetFileName() {
@@ -30,8 +30,8 @@ function GetFileName() {
     'December',
   ];
 
-  var year = new Date().getFullYear();
-  var month = monthNames[new Date().getMonth()].toUpperCase();
+  let year = new Date().getFullYear();
+  // let month = monthNames[new Date().getMonth()].toUpperCase();
   return (
     RNFS.DownloadDirectoryPath +
     '/Takeout/Location History/Semantic Location History/' +
@@ -42,14 +42,20 @@ function GetFileName() {
   );
 }
 
-export async function SearchAndImport(googleLocationJSON) {
+export async function SearchAndImport() {
+  //googleLocationJSON
   console.log('Auto-import start');
 
   // UnZip Progress Bar Log.
-  progress = subscribe(({ progress, filePath }) => {
-    if (Math.trunc(progress * 100) % 10 === 0)
-      console.log('Unzipping', Math.trunc(progress * 100), '%');
-  });
+  progress = subscribe(
+    ({
+      progress,
+      //  filePath
+    }) => {
+      if (Math.trunc(progress * 100) % 10 === 0)
+        console.log('Unzipping', Math.trunc(progress * 100), '%');
+    },
+  );
 
   // TODO: RNFS.DownloadDirectoryPath is not defined on iOS.
   // Find out how to access Downloads folder.
@@ -62,7 +68,10 @@ export async function SearchAndImport(googleLocationJSON) {
       console.log('Checking Downloads Folder');
 
       // Looking for takeout*.zip files and unzipping them.
-      result.map(function(file, index) {
+      result.map(function(
+        file,
+        //index
+      ) {
         if (takeoutZip.test(file.name)) {
           console.log(
             `Found Google Takeout {file.name} at {file.path}`,
