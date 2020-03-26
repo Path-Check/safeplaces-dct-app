@@ -1,0 +1,13 @@
+{
+    "start_logging":"START ZÁZNAMU",
+    "stop_logging":"STOP ZÁZNAMU",
+    "logging_message":"Aktuálně se každých pět minut zaznamenává vaše poloha. Informace o poloze neopouštějí váš telefon.",
+    "not_logging_message":"POZNÁMKA: Po kliknutí na toto tlačítko můžete být vyzváni k udělení oprávnění pro Private Kit k vaší poloze.",
+    "import":"Import",
+    "export":"Export",
+    "news":"Novinky",
+    "latest_news":"Poslední novinky",
+    "url_info":"Pro více informací navštivte domovskou stránku Private Kit:",
+    "private_kit_url":"privatekit.mit.edu",
+    "overlap": "KONTROLA PŘEKRYTÍ"
+}

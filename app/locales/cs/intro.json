@@ -1,0 +1,14 @@
+{
+    "private_kit":"Private Kit",
+    "intro1_para1":"Navrženo s důrazem na zabezpečení dat a ochranu soukromí, MIT Private Kit je další generací zabezpečeného záznamu polohy.",
+    "next":"DALŠÍ",
+    "back":"ZPĚT",
+    "start":"START",
+    "intro2_title1":"Méně než 100 KB",
+    "intro2_para1":"Private Kit zaznamenává data o poloze vašeho zařízení do 100 KB prostoru, zabírá tedy méně místa než jeden obrázek.",
+    "intro2_title2":"Je to na vás",
+    "intro2_para2": "Data nikdy neopustí vaše zařízení bez vašeho souhlasu",
+    "intro3_title1":"Budoucnost",
+    "intro3_para1": "Umožňuje jednotlivcům zaznamenávat jejich trasu a tak představuje další krok v řešení dnešních a zítřejších problémů a nabízí vědcům studujícím pandemické sledování, migraci uprchlíků a analýzu komunitního provozu nové příležitosti.",
+    "intro3_para2":"Další informace http://privatekit.mit.edu/"
+}
