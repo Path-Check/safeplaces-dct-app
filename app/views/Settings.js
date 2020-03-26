@@ -4,11 +4,16 @@ import {
   StyleSheet,
   View,
   Text,
+<<<<<<< HEAD
+=======
+  Platform,
+>>>>>>> Create Settings screen
   Image,
   Dimensions,
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
+<<<<<<< HEAD
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import colors from '../constants/colors';
@@ -23,6 +28,21 @@ class SettingsScreen extends Component {
     this.state = {
         authorities: []
     }
+=======
+import { WebView } from 'react-native-webview';
+import packageJson from '../../package.json';
+
+import colors from '../constants/colors';
+import backArrow from './../assets/images/backArrow.png';
+import languages from './../locales/languages';
+import licenses from './../assets/LICENSE.json';
+
+const width = Dimensions.get('window').width;
+
+class LicensesScreen extends Component {
+  constructor(props) {
+    super(props);
+>>>>>>> Create Settings screen
   }
 
   backToMain() {
@@ -35,6 +55,7 @@ class SettingsScreen extends Component {
   };
 
   componentDidMount() {
+<<<<<<< HEAD
     var self = this;
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
@@ -43,12 +64,36 @@ class SettingsScreen extends Component {
             self.setState({authorities: authorities});
         }
     });
+=======
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+>>>>>>> Create Settings screen
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
+<<<<<<< HEAD
+=======
+  getLicenses() {
+    var result = '<html>';
+    result +=
+      '<style>  html, body { font-size: 40px; margin: 0; padding: 0; } </style>';
+    result += '<body>';
+
+    for (var i = 0; i < licenses.licenses.length; i++) {
+      var element = licenses.licenses[i];
+
+      result += '<B>' + element.name + '</B><P>';
+      result += element.text.replace(/\n/g, '<br/>');
+      result += '<hr/>';
+    }
+    result += '</body></html>';
+
+    return result;
+  }
+
+>>>>>>> Create Settings screen
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -58,6 +103,7 @@ class SettingsScreen extends Component {
             onPress={() => this.backToMain()}>
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
+<<<<<<< HEAD
           <Text style={styles.headerTitle}>Settings</Text>
         </View>
         {/* The purpose of this section should populate a list of authorty URLS from the above didMount and should enable adding/deleting/editing of multiple or single web URLS. */}
@@ -69,6 +115,46 @@ class SettingsScreen extends Component {
               Coming Soon
             {/* Authorties section to add the URLs and Show current stored Authority URLS */}
           </Text>
+=======
+          <Text style={styles.headerTitle}>Licenses</Text>
+        </View>
+
+        <View style={styles.main}>
+          <Text style={styles.headerTitle}>
+            {languages.t('label.private_kit')}
+          </Text>
+
+          <View style={styles.row}>
+            <Text style={styles.valueName}>Version: </Text>
+            <Text style={styles.value}>{packageJson.version}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.valueName}>OS: </Text>
+            <Text style={styles.value}>
+              {Platform.OS + ' v' + Platform.Version}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={styles.valueName}>Screen Resolution: </Text>
+            <Text style={styles.value}>
+              {' '}
+              {Math.trunc(Dimensions.get('screen').width) +
+                ' x ' +
+                Math.trunc(Dimensions.get('screen').height)}
+            </Text>
+          </View>
+        </View>
+
+        <View style={{ flex: 4, paddingLeft: 20, paddingRight: 15 }}>
+          <WebView
+            originWhitelist={['*']}
+            source={{
+              html: this.getLicenses(),
+            }}
+            style={{ marginTop: 15 }}
+          />
+>>>>>>> Create Settings screen
         </View>
       </SafeAreaView>
     );
@@ -83,12 +169,15 @@ const styles = StyleSheet.create({
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
   },
+<<<<<<< HEAD
   subHeaderTitle: {
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 22,
     padding: 5,
   },
+=======
+>>>>>>> Create Settings screen
   main: {
     flex: 1,
     flexDirection: 'column',
@@ -98,6 +187,24 @@ const styles = StyleSheet.create({
     width: '96%',
     alignSelf: 'center',
   },
+<<<<<<< HEAD
+=======
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    color: colors.PRIMARY_TEXT,
+    backgroundColor: colors.WHITE,
+  },
+  valueName: {
+    fontSize: 20,
+    fontWeight: '800',
+  },
+  value: {
+    fontSize: 20,
+    fontWeight: '200',
+  },
+
+>>>>>>> Create Settings screen
   buttonTouchable: {
     borderRadius: 12,
     backgroundColor: '#665eff',
@@ -154,8 +261,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginTop: 12,
+<<<<<<< HEAD
+=======
+    overflow: 'scroll',
+>>>>>>> Create Settings screen
     fontFamily: 'OpenSans-Regular',
   },
 });
 
+<<<<<<< HEAD
 export default SettingsScreen;
+=======
+export default LicensesScreen;
+>>>>>>> Create Settings screen
