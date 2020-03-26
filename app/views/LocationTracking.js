@@ -112,6 +112,10 @@ class LocationTracking extends Component {
   notifications() {
     this.props.navigation.navigate('NotificationScreen', {});
   }
+  
+  settings() {
+    this.props.navigation.navigate('SettingsScreen', {});
+  }
 
   willParticipate = () => {
     SetStoreData('PARTICIPATE', 'true').then(() => {
@@ -153,6 +157,12 @@ class LocationTracking extends Component {
               />
             </MenuTrigger>
             <MenuOptions>
+              <MenuOption
+                onSelect={() => {
+                  this.settings();
+                }}>
+                <Text style={styles.menuOptionText}>Settings</Text>
+              </MenuOption>
               <MenuOption
                 onSelect={() => {
                   this.licenses();

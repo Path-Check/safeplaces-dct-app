@@ -9,6 +9,7 @@ import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
 import OverlapScreen from './views/Overlap';
+import SettingsScreen from './views/Settings';
 import LicencesScreen from './views/Licenses';
 import NotificationScreen from './views/Notification';
 import Slider from './views/welcomeScreens/Slider';
@@ -81,6 +82,11 @@ class Entry extends Component {
             <Stack.Screen
               name='ImportScreen'
               component={ImportScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name='SettingsScreen'
+              component={SettingsScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen
