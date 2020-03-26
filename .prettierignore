@@ -1,0 +1,9 @@
+node_modules/
+ios/
+android/
+patches/
+__tests__/
+.github/
+package-lock.json
+yarn.lock
+package.json

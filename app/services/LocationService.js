@@ -292,7 +292,7 @@ export default class LocationServices {
             ),
           1000,
         );
-      } 
+      }
       // else if (!status.isRunning) {
       // } // commented as it was not being used
     });
