@@ -27,6 +27,7 @@ import I18n from "../../I18n";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { formatDate } from "../dateUtils";
 import { increaseFormCount } from '../formLimitations';
+import { showMessage } from "react-native-flash-message";
 
 const width = Dimensions.get('window').width;
 
@@ -87,6 +88,10 @@ class FormGeneral extends Component {
     }
     await SetStoreData('FORMGENERAL', formData);
     await increaseFormCount();
+    showMessage({
+      message: I18n.t('FORMGENERAL_SUCCESS'),
+      type: "success",
+    });
     this.backToMain();
   }
 

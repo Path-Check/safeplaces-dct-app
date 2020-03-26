@@ -11,6 +11,7 @@ import ImportScreen from './views/Import';
 import Slider from './views/welcomeScreens/Slider';
 import {GetStoreData, SetStoreData} from './helpers/General';
 import {getIxnilatisScreens} from '../ixnilatisApp/IxnilatisScreens';
+import FlashMessage from "react-native-flash-message";
 
 const Stack = createStackNavigator();
 
@@ -85,6 +86,7 @@ class Entry extends Component {
             />
             {getIxnilatisScreens(Stack)}
           </Stack.Navigator>
+          <FlashMessage ref="top" />
           </SafeAreaView>
         </NavigationContainer>
       )

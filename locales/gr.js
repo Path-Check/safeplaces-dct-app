@@ -74,5 +74,6 @@ export default {
   FORMGENERAL_COUNTLIMIT_TITLE: "Δεν μπορείτε να συμπληρώσετε νέα δήλωση",
   FORMGENERAL_COUNTLIMIT_MESSAGE: "Έχετε συμπληρώσει τις 10 δηλώσεις που δικαιούστε ημερησίως",
   FORMGENERAL_TIMELIMIT_TITLE: "Δεν μπορείτε να συμπληρώσετε νέα δήλωση",
-  FORMGENERAL_TIMELIMIT_MESSAGE: "Πρέπει να περάσουν 30 λεπτά από την τελευταία σας δήλωση ({{minutes}} λεπτά απομένουν) "
+  FORMGENERAL_TIMELIMIT_MESSAGE: "Πρέπει να περάσουν 30 λεπτά από την τελευταία σας δήλωση ({{minutes}} λεπτά απομένουν) ",
+  FORMGENERAL_SUCCESS: "Η φόρμα καταχωρήθηκε επιτυχώς"
 };
