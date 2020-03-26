@@ -7,7 +7,8 @@ import {
   Image,
   TouchableOpacity,
   BackHandler,
-  Dimensions, ActivityIndicator
+  Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 
 import colors from '../constants/colors';
@@ -33,7 +34,7 @@ class ImportScreen extends Component {
     this.props.navigation.navigate('LocationTrackingScreen', {});
     return true;
   };
-  
+
   hideSpinner() {
     this.setState({ visible: false });
   }
@@ -79,11 +80,15 @@ class ImportScreen extends Component {
               style={{ marginTop: 15 }}
             />
             {this.state.visible && (
-          <ActivityIndicator
-            style={{ position: "absolute", top: height / 2, left: width / 2 }}
-            size="large"
-          />
-        )}
+              <ActivityIndicator
+                style={{
+                  position: 'absolute',
+                  top: height / 2,
+                  left: width / 2,
+                }}
+                size='large'
+              />
+            )}
           </View>
         </View>
       </SafeAreaView>
