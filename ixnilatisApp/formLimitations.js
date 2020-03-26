@@ -2,7 +2,7 @@ import { GetStoreData, SetStoreData } from '../app/helpers/General';
 import { getTodaysTimestamp } from './dateUtils';
 
 export const maxFormCount = 10;
-const waitTimeInMinutes = 0;
+const waitTimeInMinutes = 30;
 
 export async function hasFormsLeft() {
   const formCount = await GetStoreData('FORMGENERAL_COUNT_'+getTodaysTimestamp());
