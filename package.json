@@ -5,7 +5,7 @@
   "scripts": {
     "install:pod": "cd ios && pod install",
     "postinstall": "patch-package",
-    "postversion": "react-native-version --increment-build"
+    "postversion": "react-native-version"
   },
   "rnpm": {
     "assets": [
