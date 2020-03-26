@@ -14,24 +14,15 @@ import {GetStoreData} from '../../app/helpers/General';
 const width = Dimensions.get('window').width;
 
 class FormButtons extends Component {
-    state = {
-      formActiveDate: null
-    }
-
-    componentDidMount = () =>{
-      GetStoreData('FORMGENERAL', false).then(state => state && this.setState({
-        formActiveDate: new Date(state.date)
-      }));
-    }
-
-    newForm = () => {
+    newForm = async () => {
+      const formActiveDate = await GetStoreData('FORMGENERAL', false).then(state => state && new Date(state.date));
       const limitInMinutes = 30;
-      if ( this.state.formActiveDate === null) {
+      if ( formActiveDate === null) {
         this.props.navigation.navigate('FormGeneralNewScreen', {})
         return;
       }
 
-      const diffInMinutes = (new Date() - this.state.formActiveDate) / 60000;
+      const diffInMinutes = (new Date() - formActiveDate) / 60000;
       if (diffInMinutes >= limitInMinutes) {
         this.props.navigation.navigate('FormGeneralNewScreen', {})
         return;
