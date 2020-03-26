@@ -92,7 +92,7 @@ function broadcast() {
     if (Platform.OS === 'android') {
         console.log("Broadcasting: ", currentUUID);
         AndroidBLEAdvertiserModule.setCompanyId(0xFF);
-        AndroidBLEAdvertiserModule.broadcastPacket(currentUUID, [12,23,56])
+        AndroidBLEAdvertiserModule.broadcast(currentUUID, [12,23,56])
         .then((sucess) => {
             console.log("Broadcasting Sucessful", sucess);
         }).catch(error => console.log("Broadcasting Error", error));
