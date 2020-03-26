@@ -5714,6 +5714,11 @@ react-native-share@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.0.0.tgz#5e158f773ebc91e35fbe48ffe21c0073c2c8f41a"
   integrity sha512-5P/Fhou5jW1yY475h+wIR+VZAUZ1Gnx8N4QKGToOLNo1yUhDeLxYRhm3bGCcS/MEy35NOZ222/43SQGfUzCl/g==
 
+react-native-version-number@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/react-native-version-number/-/react-native-version-number-0.3.6.tgz#dd8b1435fc217df0a166d7e4a61fdc993f3e7437"
+  integrity sha512-TdyXiK90NiwmSbmAUlUBOV6WI1QGoqtvZZzI5zQY4fKl67B3ZrZn/h+Wy/OYIKKFMfePSiyfeIs8LtHGOZ/NgA==
+
 react-native-webview@^8.1.2:
   version "8.1.2"
   resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-8.1.2.tgz#c2ddb1e82d1c294f8f68a13be5d0536f7808f377"

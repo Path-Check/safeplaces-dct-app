@@ -131,6 +131,7 @@ android {
         applicationId "edu.rise.ihnilatis"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
         versionCode 11
         versionName "0.6.1"
     }

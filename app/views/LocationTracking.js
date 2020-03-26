@@ -23,6 +23,7 @@ import {GetStoreData, SetStoreData} from '../helpers/General';
 
 import I18n from "../../I18n";
 import FormButtons from "../../ixnilatisApp/views/FormButtons";
+import Version from "../../ixnilatisApp/views/Version";
 
 const width = Dimensions.get('window').width;
 
@@ -150,6 +151,7 @@ class LocationTracking extends Component {
                 <View style={styles.footer}>
                     <Text style={[styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }]}>{I18n.t('MOREINFO')}:</Text>
                     <Text style={[styles.sectionDescription, { color: 'blue', textAlign: 'center',marginTop:0 }]} onPress={() => Linking.openURL('http://superworld.rise.org.cy/COVID19/')}>rise.org.cy.COVID19</Text>
+                    <Version />
                 </View>
             </SafeAreaView>
         )
