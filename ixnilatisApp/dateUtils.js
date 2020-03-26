@@ -14,3 +14,10 @@ export function formatDateTime(dateObject) {
   return `${d}/${m}/${y} ${h}:${M}`;
 }
 
+const dayMilliseconds = 86400000;
+export function getTodaysTimestamp() {
+  const now = new Date().getTime();
+  const midnight = now - (now % dayMilliseconds);
+  return midnight;
+}
+

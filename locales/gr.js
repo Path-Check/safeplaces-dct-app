@@ -70,6 +70,8 @@ export default {
   FORMGENERAL_NOREASONOTHER_TITLE: "Επιλέξτε λόγο",
   FORMGENERAL_NOREASONOTHER_MESSAGE: "Παρακαλώ συμπληρώστε το ειδικό πεδίο με τον συγκεκριμένο λόγο της μετακίνησής σας",
   FORMGENERAL_DATE: "Ημερομηνία",
-  FORMGENERAL_LIMIT_TITLE: "Δεν μπορείτε να συμπληρώσετε νέα δήλωση",
-  FORMGENERAL_LIMIT_MESSAGE: "Πρέπει να περάσουν 30 λεπτά από την τελευταία σας δήλωση ({{minutes}} λεπτά απομένουν) "
+  FORMGENERAL_COUNTLIMIT_TITLE: "Δεν μπορείτε να συμπληρώσετε νέα δήλωση",
+  FORMGENERAL_COUNTLIMIT_MESSAGE: "Έχετε συμπληρώσει τις 10 δηλώσεις που δικαιούστε ημερησίως",
+  FORMGENERAL_TIMELIMIT_TITLE: "Δεν μπορείτε να συμπληρώσετε νέα δήλωση",
+  FORMGENERAL_TIMELIMIT_MESSAGE: "Πρέπει να περάσουν 30 λεπτά από την τελευταία σας δήλωση ({{minutes}} λεπτά απομένουν) "
 };

@@ -26,6 +26,7 @@ import backArrow from '../../app/assets/images/backArrow.png'
 import I18n from "../../I18n";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { formatDate } from "../dateUtils";
+import { increaseFormCount } from '../formLimitations';
 
 const width = Dimensions.get('window').width;
 
@@ -61,7 +62,7 @@ class FormGeneral extends Component {
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress); 
   }
 
-  submitForm = () => { 
+  submitForm = async () => { 
     if ( this.state.name == "" || this.state.dateBirth == "" || this.state.address == "" ) {
       Alert.alert(I18n.t('FORMGENERAL_NOINFO_TITLE'),I18n.t('FORMGENERAL_NOINFO_MESSAGE'));
       return;
@@ -83,7 +84,9 @@ class FormGeneral extends Component {
       reasonOther,
       date: new Date()
     }
-    SetStoreData('FORMGENERAL', formData).then(() => this.backToMain());
+    await SetStoreData('FORMGENERAL', formData);
+    await increaseFormCount();
+    this.backToMain();
   }
 
   render() {

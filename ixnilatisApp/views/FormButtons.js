@@ -9,27 +9,26 @@ import {
   View,
 } from 'react-native';
 import I18n from "../../I18n";
-import {GetStoreData} from '../../app/helpers/General';
+import { GetStoreData } from '../../app/helpers/General';
+import { hasFormsLeft, getWaitTimeLeft } from '../formLimitations';
 
 const width = Dimensions.get('window').width;
 
 class FormButtons extends Component {
     newForm = async () => {
-      const formActiveDate = await GetStoreData('FORMGENERAL', false).then(state => state && new Date(state.date));
-      const limitInMinutes = 30;
-      if ( formActiveDate === null) {
-        this.props.navigation.navigate('FormGeneralNewScreen', {})
+      const hasForms = await hasFormsLeft();
+      if ( !hasForms ) {
+        Alert.alert(I18n.t("FORMGENERAL_COUNTLIMIT_TITLE"),I18n.t("FORMGENERAL_COUNTLIMIT_MESSAGE"))
         return;
       }
 
-      const diffInMinutes = (new Date() - formActiveDate) / 60000;
-      if (diffInMinutes >= limitInMinutes) {
-        this.props.navigation.navigate('FormGeneralNewScreen', {})
+      const timeLeft = await getWaitTimeLeft();
+      if ( timeLeft > 0  ) {
+        Alert.alert(I18n.t("FORMGENERAL_TIMELIMIT_TITLE"),I18n.t("FORMGENERAL_TIMELIMIT_MESSAGE",{minutes: timeLeft}))
         return;
       }
 
-      const timeLeft = Math.round(limitInMinutes - diffInMinutes);
-      Alert.alert(I18n.t("FORMGENERAL_LIMIT_TITLE"),I18n.t("FORMGENERAL_LIMIT_MESSAGE",{minutes: timeLeft}))
+      this.props.navigation.navigate('FormGeneralNewScreen', {})
     }
 
     render() {

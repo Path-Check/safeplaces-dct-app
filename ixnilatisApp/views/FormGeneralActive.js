@@ -23,6 +23,7 @@ import Button from "../../app/components/Button";
 import backArrow from '../../app/assets/images/backArrow.png'
 import I18n from "../../I18n";
 import { formatDate, formatDateTime } from "../dateUtils";
+import { getFormCount, maxFormCount } from '../formLimitations';
 
 const width = Dimensions.get('window').width;
 
@@ -34,6 +35,7 @@ class FormGeneral extends Component {
     reason: "",
     reasonOther: "",
     date: "",
+    formCount: 0
   }
   backToMain = () => {
     this.props.navigation.navigate('LocationTrackingScreen', {})
@@ -50,6 +52,8 @@ class FormGeneral extends Component {
       dateBirth: new Date(state.dateBirth),
       date: new Date(state.date),
     }));
+    getFormCount().then(formCount => this.setState({ formCount }));
+
     BackHandler.addEventListener("hardwareBackPress", this.handleBackPress); 
   }
 
@@ -64,7 +68,10 @@ class FormGeneral extends Component {
           <TouchableOpacity style={styles.backArrowTouchable} onPress={() => this.backToMain()}>
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>{I18n.t('FORMGENERAL_ACTIVE')}</Text>
+          <Text style={styles.headerTitle}>
+            {I18n.t('FORMGENERAL_ACTIVE')}
+            <Text style={{fontSize: 14}}> ({this.state.formCount}/{maxFormCount})</Text>
+          </Text>
         </View>
         <ScrollView contentContainerStyle={styles.main}>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_NAME')}</Text>
