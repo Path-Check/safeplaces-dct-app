@@ -20,161 +20,158 @@ exports[`renders correctly 1`] = `
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "column",
-        "justifyContent": "center",
+        "justifyContent": "space-between",
         "width": "80%",
       }
     }
   >
     <View>
-      <View>
-        <Menu
+      <Menu
+        style={
+          Object {
+            "alignSelf": "flex-end",
+            "position": "absolute",
+            "zIndex": 10,
+          }
+        }
+      >
+        <MenuTrigger
           style={
             Object {
-              "alignSelf": "flex-end",
-              "position": "absolute",
-              "zIndex": 10,
+              "marginTop": 14,
             }
           }
         >
-          <MenuTrigger
-            style={
-              Object {
-                "marginTop": 14,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../app/assets/images/kebabIcon.png",
-                }
-              }
-              style={
-                Object {
-                  "height": 28,
-                  "opacity": 0.6,
-                  "padding": 14,
-                  "width": 15,
-                }
-              }
-            />
-          </MenuTrigger>
-          <MenuOptions>
-            <MenuOption
-              onSelect={[Function]}
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "OpenSans-Regular",
-                    "fontSize": 14,
-                    "padding": 10,
-                  }
-                }
-              >
-                Licenses
-              </Text>
-            </MenuOption>
-          </MenuOptions>
-        </Menu>
-        <View
-          style={
-            Object {
-              "alignItems": "stretch",
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "fontFamily": "OpenSans-Bold",
-                "fontSize": 38,
-                "padding": 0,
-                "textAlign": "center",
-              }
-            }
-          >
-            Private Kit
-          </Text>
           <Image
             source={
               Object {
-                "testUri": "../../../app/assets/images/PKLogo.png",
+                "testUri": "../../../app/assets/images/kebabIcon.png",
               }
             }
             style={
               Object {
-                "alignSelf": "center",
-                "height": 164.4,
-                "marginTop": 12,
-                "opacity": 0.3,
-                "width": 132,
+                "height": 28,
+                "opacity": 0.6,
+                "padding": 14,
+                "width": 15,
               }
             }
           />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignSelf": "center",
-                "backgroundColor": "#665eff",
-                "borderRadius": 12,
-                "height": 52,
-                "justifyContent": "center",
-                "marginTop": 30,
-                "opacity": 1,
-                "width": 589.9499999999999,
-              }
-            }
+        </MenuTrigger>
+        <MenuOptions>
+          <MenuOption
+            onSelect={[Function]}
           >
             <Text
               style={
                 Object {
-                  "color": "#ffffff",
-                  "fontFamily": "OpenSans-Bold",
+                  "fontFamily": "OpenSans-Regular",
                   "fontSize": 14,
-                  "letterSpacing": 0,
-                  "lineHeight": 19,
-                  "textAlign": "center",
+                  "padding": 10,
                 }
               }
             >
-              START LOGGING
+              Licenses
             </Text>
-          </View>
+          </MenuOption>
+        </MenuOptions>
+      </Menu>
+      <Text
+        style={
+          Object {
+            "fontFamily": "OpenSans-Bold",
+            "fontSize": 38,
+            "padding": 0,
+            "textAlign": "center",
+          }
+        }
+      >
+        Private Kit
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 6,
+            "justifyContent": "space-around",
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../app/assets/images/PKLogo.png",
+            }
+          }
+          style={
+            Object {
+              "alignSelf": "center",
+              "height": 164.4,
+              "marginTop": 12,
+              "opacity": 0.3,
+              "width": 132,
+            }
+          }
+        />
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "#665eff",
+              "borderRadius": 12,
+              "height": 52,
+              "justifyContent": "center",
+              "opacity": 1,
+              "width": 589.9499999999999,
+            }
+          }
+        >
           <Text
             style={
               Object {
-                "fontFamily": "OpenSans-Regular",
-                "fontSize": 12,
-                "lineHeight": 24,
-                "marginLeft": 10,
-                "marginRight": 10,
-                "marginTop": 20,
+                "color": "#ffffff",
+                "fontFamily": "OpenSans-Bold",
+                "fontSize": 14,
+                "letterSpacing": 0,
+                "lineHeight": 19,
+                "textAlign": "center",
               }
             }
           >
-            NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.
+            START LOGGING
           </Text>
         </View>
+        <Text
+          style={
+            Object {
+              "fontFamily": "OpenSans-Regular",
+              "fontSize": 12,
+              "lineHeight": 24,
+              "marginLeft": 10,
+              "marginRight": 10,
+            }
+          }
+        >
+          NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.
+        </Text>
       </View>
       <View
         style={
           Object {
+            "alignItems": "center",
+            "flex": 2,
             "flexDirection": "row",
             "justifyContent": "space-between",
-            "marginTop": 64,
+            "marginBottom": -10,
             "width": 589.9499999999999,
           }
         }
@@ -347,66 +344,65 @@ exports[`renders correctly 1`] = `
               }
             }
           >
-            news
+            News
           </Text>
         </View>
       </View>
+      <View
+        style={
+          Object {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "justifyContent": "flex-end",
+            "padding": 4,
+            "paddingBottom": 10,
+            "textAlign": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "OpenSans-Regular",
+                "fontSize": 12,
+                "lineHeight": 24,
+                "marginLeft": 10,
+                "marginRight": 10,
+              },
+              Object {
+                "paddingTop": 15,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          For more information visit the Private Kit hompage:
+           
+        </Text>
+        <Text
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "fontFamily": "OpenSans-Regular",
+                "fontSize": 12,
+                "lineHeight": 24,
+                "marginLeft": 10,
+                "marginRight": 10,
+              },
+              Object {
+                "color": "blue",
+                "marginTop": 0,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          privatekit.mit.edu
+        </Text>
+      </View>
     </View>
   </RCTScrollView>
-  <View
-    style={
-      Object {
-        "fontSize": 12,
-        "fontWeight": "600",
-        "padding": 4,
-        "paddingBottom": 10,
-        "textAlign": "center",
-      }
-    }
-  >
-    <Text
-      style={
-        Array [
-          Object {
-            "fontFamily": "OpenSans-Regular",
-            "fontSize": 12,
-            "lineHeight": 24,
-            "marginLeft": 10,
-            "marginRight": 10,
-            "marginTop": 20,
-          },
-          Object {
-            "paddingTop": 15,
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      For more information visit the Private Kit hompage:
-       
-    </Text>
-    <Text
-      onPress={[Function]}
-      style={
-        Array [
-          Object {
-            "fontFamily": "OpenSans-Regular",
-            "fontSize": 12,
-            "lineHeight": 24,
-            "marginLeft": 10,
-            "marginRight": 10,
-            "marginTop": 20,
-          },
-          Object {
-            "color": "blue",
-            "marginTop": 0,
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      privatekit.mit.edu
-    </Text>
-  </View>
 </RCTSafeAreaView>
 `;

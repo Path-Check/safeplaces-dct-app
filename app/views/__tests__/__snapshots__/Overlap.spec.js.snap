@@ -66,7 +66,7 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      CHECK OVERLAP
+      Check Overlap
     </Text>
   </View>
   <MapView
@@ -84,7 +84,7 @@ exports[`renders correctly 1`] = `
         "alignSelf": "center",
         "flex": 1,
         "flexDirection": "column",
-        "padding": 20,
+        "padding": 15,
         "textAlignVertical": "top",
         "width": "96%",
       }
@@ -96,7 +96,7 @@ exports[`renders correctly 1`] = `
         "alignSelf": "center",
         "flex": 1,
         "flexDirection": "column",
-        "padding": 20,
+        "padding": 15,
         "textAlignVertical": "top",
         "width": "96%",
       }
@@ -120,7 +120,7 @@ exports[`renders correctly 1`] = `
           "borderRadius": 12,
           "height": 52,
           "justifyContent": "center",
-          "marginTop": 30,
+          "marginTop": 15,
           "opacity": 1,
           "width": 589.9499999999999,
         }
@@ -138,7 +138,7 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        Show Me Trace Overlap
+        Check Public Data
       </Text>
     </View>
     <Text
@@ -151,7 +151,60 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      This map shows where your private location trail overlaps with public data from a variety of sources, including official reports from WHO, Ministries of Health, and Chinese local, provincial, and national health authorities. If additional data are available from reliable online reports, they are included.
+      Green circles are clusters of your locations, click to zoom. Red markers are your recorded locations.
+
+Press the button to download public information of confirmed cases, shown as faint purple circles.
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "fontSize": 12,
+        "fontWeight": "600",
+        "padding": 4,
+        "paddingBottom": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+          },
+          Object {
+            "paddingTop": 15,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      For more information on the dataset for this map
+       
+    </Text>
+    <Text
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+          },
+          Object {
+            "color": "blue",
+            "marginTop": 0,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      github.com/beoutbreakprepared/nCoV2019
     </Text>
   </View>
 </RCTSafeAreaView>
