@@ -251,8 +251,11 @@ class OverlapScreen extends Component {
         const latitude = parseFloat(key.split('|')[0]);
         const longitude = parseFloat(key.split('|')[1]);
         const count = records[key];
-        if (!isNaN(latitude) && !isNaN(longitude) &&
-            distance(latestLat, latestLong, latitude, longitude) < dist_threshold) {
+        if (
+          !isNaN(latitude) &&
+          !isNaN(longitude) &&
+          distance(latestLat, latestLong, latitude, longitude) < dist_threshold
+        ) {
           var circle = {
             center: {
               latitude: latitude,
@@ -264,7 +267,7 @@ class OverlapScreen extends Component {
           console.log(count);
         }
       }
-      console.log(circles.length, "points found");
+      console.log(circles.length, 'points found');
       this.setState({
         circles: circles,
       });
@@ -322,7 +325,7 @@ class OverlapScreen extends Component {
             <CustomCircle
               center={circle.center}
               radius={circle.radius}
-              fillColor="rgba(163, 47, 163, 0.3)"
+              fillColor='rgba(163, 47, 163, 0.3)'
               zIndex={2}
               strokeWidth={0}
             />

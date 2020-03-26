@@ -146,7 +146,7 @@ class LocationTracking extends Component {
                 style={{
                   width: 15,
                   height: 28,
-                  padding: 14
+                  padding: 14,
                 }}
               />
             </MenuTrigger>
