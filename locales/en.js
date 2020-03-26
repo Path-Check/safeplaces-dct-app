@@ -50,6 +50,7 @@ export default {
   FORMGENERAL_ACTIVE: "Active declaration of movement",
   FORMGENERAL_NAME: "Name and surname",
   FORMGENERAL_DATEBIRTH: "Date of birth",
+  FORMGENERAL_IDENTIFICATION: "Identity number/Passport",
   FORMGENERAL_ADDRESS: "Home address",
   FORMGENERAL_TIME: "Exact time of travelling",
   FORMGENERAL_REASON: "Reason of movement",

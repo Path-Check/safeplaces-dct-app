@@ -63,7 +63,7 @@ class FormGeneral extends Component {
   }
 
   submitForm = async () => { 
-    if ( this.state.name == "" || this.state.dateBirth == "" || this.state.address == "" ) {
+    if ( this.state.name == "" || this.state.dateBirth == "" || this.state.identification == "" || this.state.address == "" ) {
       Alert.alert(I18n.t('FORMGENERAL_NOINFO_TITLE'),I18n.t('FORMGENERAL_NOINFO_MESSAGE'));
       return;
     }
@@ -75,10 +75,11 @@ class FormGeneral extends Component {
       Alert.alert(I18n.t('FORMGENERAL_NOREASONOTHER_TITLE'),I18n.t('FORMGENERAL_NOREASONOTHER_MESSAGE'));
       return;
     }
-    const {name, dateBirth, address, reason, reasonOther } = this.state;
+    const {name, dateBirth, identification, address, reason, reasonOther } = this.state;
     const formData = {
       name, 
       dateBirth,
+      identification, 
       address, 
       reason, 
       reasonOther,
@@ -122,6 +123,12 @@ class FormGeneral extends Component {
               }
             />
           }
+          <Text style={styles.label}>{I18n.t('FORMGENERAL_IDENTIFICATION')}</Text>
+          <TextInput 
+            onChangeText={identification => this.setState({identification})} 
+            value={this.state.identification} 
+            style={styles.input}
+          />
           <Text style={styles.label}>{I18n.t('FORMGENERAL_ADDRESS')}</Text>
           <TextInput 
             onChangeText={address => this.setState({address})} 

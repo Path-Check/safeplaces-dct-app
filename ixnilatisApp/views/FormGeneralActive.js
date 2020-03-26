@@ -82,6 +82,10 @@ class FormGeneral extends Component {
           <Text style={styles.input} >
             {this.state.dateBirth ? formatDate(this.state.dateBirth) : '-'} 
           </Text>
+          <Text style={styles.label}>{I18n.t('FORMGENERAL_IDENTIFICATION')}</Text>
+          <Text style={styles.input} >
+            {this.state.identification} 
+          </Text>
           <Text style={styles.label}>{I18n.t('FORMGENERAL_ADDRESS')}</Text>
           <Text style={styles.input} >
             {this.state.address} 

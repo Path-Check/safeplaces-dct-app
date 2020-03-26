@@ -50,6 +50,7 @@ export default {
   FORMGENERAL_ACTIVE: "Ενεργή Δήλωση Μετακίνησης",
   FORMGENERAL_NAME: "Ονοματεπώνυμο",
   FORMGENERAL_DATEBIRTH: "Ημ/νία γέννησης",
+  FORMGENERAL_IDENTIFICATION: "Αριθμός ταυτότητας/Διαβατηρίου",
   FORMGENERAL_ADDRESS: "Διεύθυνση μόνιμης κατοικίας",
   FORMGENERAL_TIME: "Ακριβής ώρα κυκλοφορίας",
   FORMGENERAL_REASON: "Λόγος κυκλοφορίας",
