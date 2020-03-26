@@ -31,7 +31,6 @@ class SettingsScreen extends Component {
 =======
 import { WebView } from 'react-native-webview';
 import packageJson from '../../package.json';
-
 import colors from '../constants/colors';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
@@ -76,13 +75,13 @@ class LicensesScreen extends Component {
 <<<<<<< HEAD
 =======
   getLicenses() {
-    var result = '<html>';
+    let result = '<html>';
     result +=
       '<style>  html, body { font-size: 40px; margin: 0; padding: 0; } </style>';
     result += '<body>';
 
-    for (var i = 0; i < licenses.licenses.length; i++) {
-      var element = licenses.licenses[i];
+    for (let i = 0; i < licenses.licenses.length; i++) {
+      let element = licenses.licenses[i];
 
       result += '<B>' + element.name + '</B><P>';
       result += element.text.replace(/\n/g, '<br/>');
@@ -121,7 +120,7 @@ class LicensesScreen extends Component {
 
         <View style={styles.main}>
           <Text style={styles.headerTitle}>
-            {languages.t('label.private_kit')}
+            {languages.t('label.authorities_title')}
           </Text>
 
           <View style={styles.row}>
