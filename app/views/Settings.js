@@ -43,13 +43,14 @@ import {
   MenuOption,
   MenuTrigger,
   renderers,
+  withMenuContext,
 } from 'react-native-popup-menu';
 const { SlideInMenu } = renderers;
 >>>>>>> Add menu for authorities selection in Settings
 import colors from '../constants/colors';
 import backArrow from './../assets/images/backArrow.png';
+import closeIcon from './../assets/images/closeIcon.png';
 import languages from './../locales/languages';
-import licenses from './../assets/LICENSE.json';
 
 const width = Dimensions.get('window').width;
 
@@ -88,6 +89,7 @@ class LicensesScreen extends Component {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   getLicenses() {
     let result = '<html>';
@@ -105,6 +107,10 @@ class LicensesScreen extends Component {
     result += '</body></html>';
 
     return result;
+=======
+  openMenu() {
+    this.menu.open();
+>>>>>>> Add styling to flatlist rows, add close icon
   }
 
 >>>>>>> Create Settings screen
@@ -208,16 +214,26 @@ class LicensesScreen extends Component {
 
         <View style={styles.listContainer}>
           <FlatList
-            data={[{ key: 'foo' }, { key: 'bar' }]}
+            data={[{ key: 'Health System A' }, { key: 'Health System B' }]}
             renderItem={({ item }) => (
-              <Text style={styles.item}>{item.key}</Text>
+              <View style={styles.flatlistRowView}>
+                <Text style={styles.item}>{item.key}</Text>
+                <Image source={closeIcon} style={styles.closeIcon} />
+              </View>
             )}
           />
         </View>
 
-        <Menu name='AuthoritiesMenu' renderer={SlideInMenu} style={{ flex: 1 }}>
+        <Menu
+          name='AuthoritiesMenu'
+          renderer={SlideInMenu}
+          style={{ flex: 1, justifyContent: 'center' }}>
           <MenuTrigger>
-            <TouchableOpacity style={styles.startLoggingButtonTouchable}>
+            <TouchableOpacity
+              style={styles.startLoggingButtonTouchable}
+              onPress={() =>
+                this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
+              }>
               <Text style={styles.startLoggingButtonText}>
                 Add Trusted Source
               </Text>
@@ -262,7 +278,7 @@ const styles = StyleSheet.create({
 =======
 >>>>>>> Create Settings screen
   main: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
     textAlignVertical: 'top',
     // alignItems: 'center',
@@ -275,7 +291,7 @@ const styles = StyleSheet.create({
 =======
 =======
   listContainer: {
-    flex: 1,
+    flex: 3,
     flexDirection: 'column',
     textAlignVertical: 'top',
     // alignItems: 'center',
@@ -385,15 +401,33 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 10,
   },
+  flatlistRowView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 7,
+    paddingBottom: 5,
+    borderBottomWidth: 1,
+    borderColor: '#999999',
+  },
   item: {
     fontFamily: 'OpenSans-Regular',
     fontSize: 16,
     padding: 10,
   },
+  closeIcon: {
+    width: 15,
+    height: 15,
+    opacity: 0.5,
+    marginTop: 14,
+  },
 });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 export default SettingsScreen;
 =======
 export default LicensesScreen;
 >>>>>>> Create Settings screen
+=======
+export default withMenuContext(LicensesScreen);
+>>>>>>> Add styling to flatlist rows, add close icon
