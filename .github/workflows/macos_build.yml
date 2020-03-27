@@ -2,9 +2,9 @@ name: Android and iOS build on MacOS
 
 on:
   push:
-    branches: [ master ]
+    branches: [ develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ develop ]
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
       run: brew tap adoptopenjdk/openjdk && brew cask install adoptopenjdk/openjdk/adoptopenjdk8     
       
     - name: Installing Gradle
-      run: brew install gradle    
+      run: brew upgrade gradle    
       
     - name: Installing Android Studio
       run: brew cask install android-sdk    

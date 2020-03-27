@@ -2,26 +2,26 @@ import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  Linking,
   View,
   Text,
   Image,
   TouchableOpacity,
   BackHandler,
+  Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 
 import colors from '../constants/colors';
 import WebView from 'react-native-webview';
-import Button from '../components/Button';
 import backArrow from './../assets/images/backArrow.png';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
-
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 class ImportScreen extends Component {
   constructor(props) {
     super(props);
-
+    this.state = { visible: true };
     // Autoimports if user has downloaded
     SearchAndImport();
   }
@@ -34,6 +34,10 @@ class ImportScreen extends Component {
     this.props.navigation.navigate('LocationTrackingScreen', {});
     return true;
   };
+
+  hideSpinner() {
+    this.setState({ visible: false });
+  }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -72,8 +76,19 @@ class ImportScreen extends Component {
                 uri:
                   'https://takeout.google.com/settings/takeout/custom/location_history',
               }}
+              onLoad={() => this.hideSpinner()}
               style={{ marginTop: 15 }}
             />
+            {this.state.visible && (
+              <ActivityIndicator
+                style={{
+                  position: 'absolute',
+                  top: height / 2,
+                  left: width / 2,
+                }}
+                size='large'
+              />
+            )}
           </View>
         </View>
       </SafeAreaView>

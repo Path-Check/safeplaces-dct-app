@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -13,6 +17,7 @@
       android:roundIcon="@mipmap/ic_launcher"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <uses-library android:name="org.apache.http.legacy" android:required="false"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
@@ -31,6 +36,9 @@
         <!-- Change the resource name to your App's accent color - or any other color you want -->
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
             android:resource="@android:color/white"/>
+        <meta-data
+           android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDNplqevzMxOGNuTr_lv6NXsjzIa1PboVc"/>
 
         <service
             android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"
