@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import RNFetchBlob from 'rn-fetch-blob';
 import Share from 'react-native-share';
 import colors from '../constants/colors';
@@ -23,11 +23,12 @@ import languages from './../locales/languages';
 const width = Dimensions.get('window').width;
 const base64 = RNFetchBlob.base64;
 
-function ExportScreen({ navigation }) {
+function ExportScreen() {
   const [pointStats, setPointStats] = useState(false);
+  const { navigate } = useNavigation();
 
   function handleBackPress() {
-    navigation.navigate('LocationTrackingScreen', {});
+    navigate('LocationTrackingScreen', {});
     return true;
   }
 
@@ -50,7 +51,7 @@ function ExportScreen({ navigation }) {
   });
 
   function backToMain() {
-    navigation.navigate('LocationTrackingScreen', {});
+    navigate('LocationTrackingScreen', {});
   }
 
   async function OnShare() {
