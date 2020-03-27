@@ -122,6 +122,7 @@ class LicensesScreen extends Component {
           <Text style={styles.headerTitle}>
             {languages.t('label.authorities_title')}
           </Text>
+<<<<<<< HEAD
 
           <View style={styles.row}>
             <Text style={styles.valueName}>Version: </Text>
@@ -154,6 +155,11 @@ class LicensesScreen extends Component {
             style={{ marginTop: 15 }}
           />
 >>>>>>> Create Settings screen
+=======
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.authorities_desc')}
+          </Text>
+>>>>>>> Remove irrelevant components from Settings screen
         </View>
       </SafeAreaView>
     );
