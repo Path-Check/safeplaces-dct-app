@@ -4,14 +4,19 @@ import {
   StyleSheet,
   View,
   Text,
-  Platform,
   Image,
   Dimensions,
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
-import packageJson from '../../package.json';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+  renderers,
+} from 'react-native-popup-menu';
+const { SlideInMenu } = renderers;
 import colors from '../constants/colors';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
@@ -78,6 +83,25 @@ class LicensesScreen extends Component {
           <Text style={styles.sectionDescription}>
             {languages.t('label.authorities_desc')}
           </Text>
+          <Menu name='AuthoritiesMenu' renderer={SlideInMenu}>
+            <MenuTrigger>
+              <Text style={styles.sectionDescription}>Hello</Text>
+            </MenuTrigger>
+            <MenuOptions>
+              <MenuOption
+                onSelect={() => {
+                  this.settings();
+                }}>
+                <Text style={styles.menuOptionText}>Settings</Text>
+              </MenuOption>
+              <MenuOption
+                onSelect={() => {
+                  this.licenses();
+                }}>
+                <Text style={styles.menuOptionText}>Licenses</Text>
+              </MenuOption>
+            </MenuOptions>
+          </Menu>
         </View>
       </SafeAreaView>
     );
@@ -174,6 +198,11 @@ const styles = StyleSheet.create({
     marginTop: 12,
     overflow: 'scroll',
     fontFamily: 'OpenSans-Regular',
+  },
+  menuOptionText: {
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 14,
+    padding: 10,
   },
 });
 
