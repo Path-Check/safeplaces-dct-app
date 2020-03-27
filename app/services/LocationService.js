@@ -6,12 +6,13 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 
 let instanceCount = 0;
-let locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-// DEBUG: Reduce Time intervall for faster debugging
-// var locationInterval = 5000;
 
 export class LocationData {
-  constructor() {}
+  constructor() {
+    this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+    // DEBUG: Reduce Time intervall for faster debugging
+    // this.locationInterval = 5000;
+  }
 
   getLocationData() {
     return GetStoreData('LOCATION_DATA').then(locationArrayString => {
@@ -66,8 +67,8 @@ export class LocationData {
         let lastTS = lastLocationArray['time'];
         for (
           ;
-          lastTS < unixtimeUTC - locationInterval;
-          lastTS += locationInterval
+          lastTS < unixtimeUTC - this.locationInterval;
+          lastTS += this.locationInterval
         ) {
           curated.push(JSON.parse(JSON.stringify(lastLocationArray)));
         }
@@ -123,9 +124,9 @@ export default class LocationServices {
       stopOnTerminate: false,
       locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
 
-      interval: locationInterval,
-      fastestInterval: locationInterval,
-      activitiesInterval: locationInterval,
+      interval: locationData.locationInterval,
+      fastestInterval: locationData.locationInterval,
+      activitiesInterval: locationData.locationInterval,
 
       activityType: 'AutomotiveNavigation',
       pauseLocationUpdates: false,
