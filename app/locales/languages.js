@@ -17,6 +17,7 @@ import itlabels from './it';
 import ptlabels from './pt';
 import mrlabels from './mr';
 import nllabels from './nl';
+import htlabels from './ht';
 import pt_BRlabels from './pt_BR';
 
 // This will fetch the user's language
@@ -72,6 +73,11 @@ i18next.init({
     nl: {
       translation: {
         label: nllabels,
+      },
+    },
+    ht: {
+      translation: {
+        label: htlabels,
       },
     },
     pt_BR: {
