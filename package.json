@@ -40,12 +40,7 @@
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-app-intro-slider": "^3.0.0",
-<<<<<<< HEAD
-    "react-native-background-timer": "^2.2.0",
-    "react-native-ble-advertiser": "0.0.5",
-=======
     "react-native-document-picker": "github:r0b0t3d/react-native-document-picker",
->>>>>>> initial commit. working on android
     "react-native-extended-stylesheet": "^0.12.0",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "~1.5.0",

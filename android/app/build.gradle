@@ -132,13 +132,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-<<<<<<< HEAD
         versionCode 14
         versionName "0.5.9"
-=======
-        versionCode 9
-        versionName "0.5.4"
->>>>>>> initial commit. working on android
     }
     splits {
         abi {

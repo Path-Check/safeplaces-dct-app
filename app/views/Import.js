@@ -17,16 +17,6 @@ import WebView from 'react-native-webview';
 import backArrow from './../assets/images/backArrow.png';
 import { ImportTakeoutData } from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
-<<<<<<< HEAD
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
-class ImportScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { visible: true };
-    // Autoimports if user has downloaded
-    SearchAndImport();
-=======
 import { PickFile } from '../helpers/General';
 
 const width = Dimensions.get('window').width;
@@ -34,7 +24,6 @@ const width = Dimensions.get('window').width;
 class ImportScreen extends Component {
   constructor(props) {
     super(props);
->>>>>>> initial commit. working on android
   }
 
   backToMain() {
@@ -107,31 +96,7 @@ class ImportScreen extends Component {
             <Text style={styles.buttonText}>
               {languages.t('label.import_title').toUpperCase()}
             </Text>
-<<<<<<< HEAD
-          </View>
-          <View style={styles.web}>
-            <WebView
-              source={{
-                uri:
-                  'https://takeout.google.com/settings/takeout/custom/location_history',
-              }}
-              onLoad={() => this.hideSpinner()}
-              style={{ marginTop: 15 }}
-            />
-            {this.state.visible && (
-              <ActivityIndicator
-                style={{
-                  position: 'absolute',
-                  top: height / 2,
-                  left: width / 2,
-                }}
-                size='large'
-              />
-            )}
-          </View>
-=======
           </TouchableOpacity>
->>>>>>> initial commit. working on android
         </View>
       </SafeAreaView>
     );
