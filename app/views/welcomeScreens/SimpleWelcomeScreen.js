@@ -12,26 +12,46 @@ const width = Dimensions.get('window').width;
 import PKLogo from './../../assets/images/PKLogo.png';
 import languages from './../../locales/languages';
 
+const DescriptionComponent = ({ icon, header, subheader, ...props }) => (
+  <View style={styles.descriptionContainer}>
+    <Text style={styles.descriptionIcon}>{icon}</Text>
+    <View style={styles.descriptionTextContainer}>
+      <Text style={styles.descriptionHeaderText}>{header}</Text>
+      <Text style={styles.descriptionSubheaderText}>{subheader}</Text>
+    </View>
+  </View>
+);
+
 const SimpleWelcomeScreen = props => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.infoCard}>
-        <Image source={PKLogo} style={styles.infoCardImage} />
+        <View style={styles.imageContainer}>
+          <Image source={PKLogo} style={styles.infoCardImage} />
+        </View>
         <Text style={styles.infoCardHeadText}>
           {languages.t('label.intro_title')}
         </Text>
         <Text style={styles.infoCardSubheadText}>
           {languages.t('label.intro_subtitle')}
         </Text>
-        <Text style={styles.infoCardBodyText}>
-          {languages.t('label.intro_description_0')}
-        </Text>
-        <Text style={styles.infoCardBodyText}>
-          {languages.t('label.intro_description_1')}
-        </Text>
-        <Text style={styles.infoCardBodyText}>
-          {languages.t('label.intro_description_2')}
-        </Text>
+        <View style={styles.descriptionsContainer}>
+          <DescriptionComponent
+            icon={languages.t('label.intro_emoji_0')}
+            header={languages.t('label.intro_header_0')}
+            subheader={languages.t('label.intro_subheader_0')}
+          />
+          <DescriptionComponent
+            icon={languages.t('label.intro_emoji_1')}
+            header={languages.t('label.intro_header_1')}
+            subheader={languages.t('label.intro_subheader_1')}
+          />
+          <DescriptionComponent
+            icon={languages.t('label.intro_emoji_2')}
+            header={languages.t('label.intro_header_2')}
+            subheader={languages.t('label.intro_subheader_2')}
+          />
+        </View>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -43,8 +63,6 @@ const SimpleWelcomeScreen = props => {
           </Text>
         </TouchableOpacity>
       </View>
-
-      {/* <TouchableOpacity><Text style={{marginTop:12,fontFamily:'OpenSans-SemiBold',alignSelf:'center',color:'#665eff'}}>Skip this</Text></TouchableOpacity> */}
     </View>
   );
 };
@@ -55,30 +73,33 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   infoCard: {
-    width: width * 0.7866,
-    height: '70%',
-    borderRadius: 12,
+    width: width * 0.9,
+    height: '75%',
     alignSelf: 'center',
-    marginTop: '9%',
+    marginTop: '8%',
+    justifyContent: 'flex-start',
+  },
+  imageContainer: {
+    alignItems: 'center',
     justifyContent: 'center',
+    margin: '3%',
   },
   infoCardImage: {
-    flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'contain'
+    width: width,
+    height: width * 0.4,
+    resizeMode: 'contain',
   },
   infoCardHeadText: {
     fontFamily: 'OpenSans-Bold',
-    fontSize: 24,
+    fontSize: 40,
     lineHeight: 55,
     letterSpacing: 0,
     textAlign: 'center',
     color: '#000000',
   },
   infoCardSubheadText: {
-    fontFamily: 'OpenSans-Bold',
-    fontSize: 14,
+    fontFamily: 'OpenSans-Light',
+    fontSize: 20,
     lineHeight: 0,
     letterSpacing: 0,
     textAlign: 'center',
@@ -101,7 +122,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#665eff',
     height: 52,
     alignSelf: 'center',
-    width: width * 0.38,
+    width: width * 0.7,
     marginTop: 30,
     justifyContent: 'center',
   },
@@ -119,22 +140,36 @@ const styles = StyleSheet.create({
     width: width * 0.7866,
     alignSelf: 'center',
   },
-  secondaryButtonTouchable: {
-    borderRadius: 12,
-    backgroundColor: 'rgba(120, 132, 158, 0.16)',
-    height: 52,
+  descriptionsContainer: {
+    marginTop: '5%',
+    width: width * 0.7,
+    flex: 1,
     alignSelf: 'center',
-    width: width * 0.38,
-    marginTop: 30,
-    justifyContent: 'center',
+    paddingRight: '5%',
   },
-  secondaryButtonText: {
-    fontFamily: 'OpenSans-Bold',
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
+  descriptionContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  descriptionIcon: {
+    fontSize: 40,
     textAlign: 'center',
-    color: '#454f63',
+    alignSelf: 'center',
+  },
+  descriptionTextContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    marginLeft: '5%',
+  },
+  descriptionHeaderText: {
+    fontFamily: 'OpenSans-SemiBold',
+    fontSize: 14,
+    color: '#000000',
+  },
+  descriptionSubheaderText: {
+    fontFamily: 'OpenSans-Light',
+    fontSize: 14,
+    color: '#000000',
   },
 });
 
