@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#FFF",
+      "color": "#000",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderBottomColor": "rgba(189, 195, 199,0.6)",
+        "borderBottomWidth": 1,
+        "flexDirection": "row",
+        "height": 60,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "height": 60,
+          "opacity": 1,
+          "paddingLeft": 20,
+          "paddingTop": 21,
+          "width": 60,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/backArrow.png",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "width": 18.48,
+          }
+        }
+      />
+    </View>
+    <Text
+      style={
+        Object {
+          "fontFamily": "OpenSans-Bold",
+          "fontSize": 24,
+        }
+      }
+    >
+      Import Locations
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "paddingLeft": 20,
+        "paddingRight": 20,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "fontSize": 22,
+          "fontWeight": "bold",
+          "padding": 5,
+          "textAlign": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+            "textAlignVertical": "center",
+          }
+        }
+      >
+        1. Login to your Google Account and Download your Location History
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+            "textAlignVertical": "center",
+          }
+        }
+      >
+        2. After downloaded, open this screen again. The data will import automatically.
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "overflow": "hidden",
+            },
+            undefined,
+          ]
+        }
+      >
+        <RNCWebView
+          cacheEnabled={true}
+          javaScriptEnabled={true}
+          messagingEnabled={false}
+          onContentProcessDidTerminate={[Function]}
+          onHttpError={[Function]}
+          onLoad={[Function]}
+          onLoadingError={[Function]}
+          onLoadingFinish={[Function]}
+          onLoadingProgress={[Function]}
+          onLoadingStart={[Function]}
+          onMessage={[Function]}
+          onShouldStartLoadWithRequest={[Function]}
+          source={
+            Object {
+              "uri": "https://takeout.google.com/settings/takeout/custom/location_history",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "overflow": "hidden",
+              },
+              Object {
+                "backgroundColor": "#ffffff",
+              },
+              Object {
+                "marginTop": 15,
+              },
+            ]
+          }
+          useSharedProcessPool={true}
+        />
+      </View>
+      <ActivityIndicator
+        animating={true}
+        color="#999999"
+        hidesWhenStopped={true}
+        size="large"
+        style={
+          Object {
+            "left": 375,
+            "position": "absolute",
+            "top": 667,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
