@@ -44,6 +44,7 @@ class ImportScreen extends Component {
   }
 
   render() {
+    var counter = 0;
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.headerContainer}>
@@ -71,6 +72,23 @@ class ImportScreen extends Component {
               source={{
                 uri:
                   'https://takeout.google.com/settings/takeout/custom/location_history',
+              }}
+              // Reload once on error to workaround chromium regression for Android
+              // Chromiumn Bug :: https://bugs.chromium.org/p/chromium/issues/detail?id=1023678
+              ref={ref => { this.webView = ref; }}
+              onError={ () => {
+                console.log(counter);
+                if (counter === 0) {
+                  this.webView.reload();
+                }
+                counter++;
+              }}
+              renderError={errorName => {
+                if (counter >= 1) {
+                  <View style={styles.errorLabel}>
+                     <Text>Error Occurred while importing file { errorName }</Text>
+                  </View>
+                }
               }}
               style={{ marginTop: 15 }}
             />
