@@ -1,7 +1,7 @@
 {
     "start_logging":"DÉMARRER L'ENREGISTREMENT",
     "stop_logging":"ARRÊTER L'ENREGISTREMENT",
-    "logging_message":"Votre localisation est actuellement enregistrée en privé tous les cinq minutes. Votre localisation ne quittera pas votre appareil.",
+    "logging_message":"Votre localisation est actuellement confidentiellement enregistrée toutes les cinq minutes. Votre localisation ne quittera pas votre appareil.",
     "not_logging_message":"NOTE: Après avoir cliqué ce bouton, on peut vous demander de donner à Private Kit l'accès à votre localisation.",
     "import":"Importer",
     "export":"Exporter",
