@@ -6,7 +6,8 @@
     "install:pod": "cd ios && pod install",
     "postinstall": "patch-package",
     "postversion": "react-native-version",
-    "format:all": "prettier --write ./app/**/*.js"
+    "format:all": "prettier --write ./app/**/*.js",
+    "test": "jest test"
   },
   "lint-staged": {
     "*.js": ["prettier --write", "git add --force"]
@@ -72,6 +73,7 @@
     "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": ["./jestSetupFile.js"]
   }
 }
