@@ -1,6 +1,6 @@
 {
     "start_logging":"DÉMARRER L'ENREGISTREMENT",
-    "stop_logging":"ARRETER L'ENREGISTREMENT",
+    "stop_logging":"ARRÊTER L'ENREGISTREMENT",
     "logging_message":"Votre localisation est actuellement enregistrée en privé tous les cinq minutes. Votre localisation ne quittera pas votre appareil.",
     "not_logging_message":"NOTE: Après avoir cliqué ce bouton, on peut vous demander de donner à Private Kit l'accès à votre localisation.",
     "import":"Importer",
@@ -8,5 +8,6 @@
     "news":"nouvelles",
     "latest_news":"Dernières nouvelles",
     "url_info":"Pour plus d'information, visitez la page d'accueil Private Kit:",
-    "private_kit_url":"privatekit.mit.edu"
+    "private_kit_url":"privatekit.mit.edu",
+    "overlap": "VÉRIFIER CHEVAUCHEMENT"
 }
