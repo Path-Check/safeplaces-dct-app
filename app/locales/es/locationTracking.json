@@ -1,0 +1,13 @@
+{
+    "start_logging":"INICIAR REGISTRO",
+    "stop_logging":"PARAR REGISTRO",
+    "logging_message":"La app está ahora mismo haciendo un seguimiento de tu ubicación de forma privada cada 5 minutos. Tu registro de ubicaciones NO sale de tu teléfono",
+    "not_logging_message":"AVISO: Después de hacer click en este botón, es posible que se te pida que permitas acceso a Private Kit a tu localización.",
+    "import":"Importar",
+    "export":"Exportar",
+    "news":"Notícias",
+    "latest_news":"Últimas notícias",
+    "url_info":"Para más información visita la página de inicio de la web de Private Kit",
+    "private_kit_url":"privatekit.mit.edu",
+    "overlap": "Comprobar posibles puntos de encuentro"
+}
