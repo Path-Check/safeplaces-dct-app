@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   BackHandler,
   FlatList,
+  Alert,
 } from 'react-native';
 import Yaml from 'js-yaml';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -43,6 +44,9 @@ const authoritiesList = {
 class SettingsScreen extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedAuthorities: [],
+    };
   }
 
   backToMain() {
@@ -84,6 +88,44 @@ class SettingsScreen extends Component {
     }
   }
 
+  // Add selected authorities to state, for display in the FlatList
+  addAuthorityToState(authority) {
+    this.setState({
+      selectedAuthorities: this.state.selectedAuthorities.concat({
+        key: authority,
+        url: authoritiesList[authority].url,
+      }),
+    });
+  }
+
+  removeAuthorityFromState(authority) {
+    Alert.alert(
+      'Remove authority',
+      'Are you sure you want to remove this authority data source?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'Proceed',
+          onPress: () => {
+            let removalIndex = this.state.selectedAuthorities.indexOf(
+              authority,
+            );
+            this.state.selectedAuthorities.splice(removalIndex, 1);
+
+            this.setState({
+              selectedAuthorities: this.state.selectedAuthorities,
+            });
+          },
+        },
+      ],
+      { cancelable: false },
+    );
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -106,15 +148,24 @@ class SettingsScreen extends Component {
         </View>
 
         <View style={styles.listContainer}>
-          <FlatList
-            data={[{ key: 'Health System A' }, { key: 'Health System B' }]}
-            renderItem={({ item }) => (
-              <View style={styles.flatlistRowView}>
-                <Text style={styles.item}>{item.key}</Text>
-                <Image source={closeIcon} style={styles.closeIcon} />
-              </View>
-            )}
-          />
+          {Object.keys(this.state.selectedAuthorities).length == 0 ? (
+            <Text style={(styles.sectionDescription, { color: '#dd0000' })}>
+              No data sources yet! Tap below to add one.
+            </Text>
+          ) : (
+            <FlatList
+              data={this.state.selectedAuthorities}
+              renderItem={({ item }) => (
+                <View style={styles.flatlistRowView}>
+                  <Text style={styles.item}>{item.key}</Text>
+                  <TouchableOpacity
+                    onPress={() => this.removeAuthorityFromState(item)}>
+                    <Image source={closeIcon} style={styles.closeIcon} />
+                  </TouchableOpacity>
+                </View>
+              )}
+            />
+          )}
         </View>
 
         <Menu
@@ -133,39 +184,40 @@ class SettingsScreen extends Component {
             </TouchableOpacity>
           </MenuTrigger>
           <MenuOptions>
-            {Object.keys(authoritiesList).map(authority => {
+            {Object.keys(authoritiesList).map(key => {
               return (
                 <MenuOption
-                  key={authority}
-                  name={authority}
+                  key={key}
                   onSelect={() => {
-                    this.setState({
-                      selectedAuthorities: this.state.selectedAuthorities.push(
-                        authority,
-                      ),
-                    });
+                    this.addAuthorityToState(key);
                   }}>
-                  <Text style={styles.menuOptionText}>{authority}</Text>
+                  <Text style={styles.menuOptionText}>{key}</Text>
                 </MenuOption>
               );
             })}
             <MenuOption
               onSelect={() => {
-                this.settings();
-              }}>
-              <Text style={styles.menuOptionText}>Settings</Text>
-            </MenuOption>
-            <MenuOption
-              onSelect={() => {
-                this.licenses();
+                Alert.alert(
+                  'Coming soon',
+                  "You'll be able to add custom data sources in an imminent update.",
+                  [
+                    {
+                      text: 'Done',
+                      onPress: () => {
+                        console.log('Tried to add custom URL data source');
+                      },
+                    },
+                  ],
+                  { cancelable: false },
+                );
               }}>
               <Text style={styles.menuOptionText}>Add authority via URL</Text>
             </MenuOption>
             <MenuOption
               onSelect={() => {
-                this.fetchAuthoritiesList();
+                console.log(this.state.selectedAuthorities);
               }}>
-              <Text style={styles.menuOptionText}>Test authorities fetch</Text>
+              <Text style={styles.menuOptionText}>Console log state</Text>
             </MenuOption>
           </MenuOptions>
         </Menu>
@@ -306,6 +358,7 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Regular',
     fontSize: 16,
     padding: 10,
+    maxWidth: '90%',
   },
   closeIcon: {
     width: 15,
