@@ -36,6 +36,15 @@ target 'PrivateKit' do
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
+  # React Native Maps dependencies
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
+  
+  # sha-256 library
+  pod 'RNSha256', :path => '../node_modules/react-native-sha256'
+
   target 'PrivateKitTests' do
     inherit! :search_paths
     # Pods for testing

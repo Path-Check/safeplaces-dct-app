@@ -1,0 +1,13 @@
+{
+    "start_logging":"START OPSLAAN",
+    "stop_logging":"STOP OPSLAAN",
+    "logging_message":"De app slaat jouw locatie op dit moment elke vijf minuten privé op. Je locatieinformatie wordt NIET automatisch gedeeld vanaf je telefoon.",
+    "not_logging_message":"OPMERKING: Nadat je op deze knop hebt gedrukt, wordt je mogelijk gevraagd Private Kit toegang te verlenen tot jouw locatie.",
+    "import":"Importeren",
+    "export":"Exporteren",
+    "news":"Nieuws",
+    "latest_news":"Laatste nieuws",
+    "url_info":"Voor meer informatie bezoek de Private Kit website:",
+    "private_kit_url":"privatekit.mit.edu",
+    "overlap": "Controleer Overlap"
+}

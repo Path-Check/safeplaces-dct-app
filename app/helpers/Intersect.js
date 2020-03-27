@@ -6,9 +6,9 @@
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import geohash from 'ngeohash';
-import { sha512 } from 'react-native-sha512';
+import { sha256 } from 'react-native-sha256';
 
-var dayBin = []
+var dayBin = [];
 for (var i = 0; i < 28; i++) {
   dayBin.push(0);
 }
@@ -123,22 +123,26 @@ function binarySearchForTime(array, targetTime) {
   return -i - 1;
 }
 
-function geohashArray(array) {
-  var geoHashedArray = []
+export function geoHashArray(array) {
+  var geoHashedArray = [];
   for (var i = 0; i < array.length; i++) {
     const latitude = array[i].latitude;
     const longitude = array[i].longitude;
-    geoCode = geohash(latitude, longitude);
+    const geoCode = geohash.encode(latitude, longitude);
     geoHashedArray.push({
       geoCode: geoCode,
-      timestamp: array[i].timestamp,
+      time: array[i].time,
     });
   }
   return geoHashedArray;
 }
 
-function sha512Array(array) {
-  let hashedArray = array.map(sha512);
+export async function sha256Array(array) {
+  const promises = array.map(arrayItem => {
+    const hash = sha256(JSON.stringify(arrayItem));
+    return hash;
+  });
+  const hashedArray = await Promise.all(promises);
   return hashedArray;
 }
 
@@ -152,16 +156,18 @@ export async function hashedIntersectionSet(concernArray) {
     } else {
       locationArray = [];
     }
-    geoHashedArray = geohashArray(locationArray);
+    geoHashedArray = geoHashArray(locationArray);
     // Since the values are hashed we will have to do n^2
     for (var i = 0; i < concernArray.length; i++) {
       for (var j = 0; j < geoHashedArray.length; j++) {
-        if (sha512(geoHashedArray[j]) === concernArray[i]) {
-          let longAgo = timeNow - geoHashedArray.timestamp;
-          let daysAgo = Math.round(longAgo / (1000 * 60 * 60 * 24));
-          dayBin[daysAgo] += 1;
-        }
+        sha256(JSON.stringify(geoHashArray[j])).then(hash => {
+          if (hash == concernArray[i]) {
+            let longAgo = timeNow - geoHashedArray.time;
+            let daysAgo = Math.round(longAgo / (1000 * 60 * 60 * 24));
+            dayBin[daysAgo] += 1;
+          }
+        });
       }
     }
-  }
+  });
 }
