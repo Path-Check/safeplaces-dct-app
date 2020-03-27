@@ -5,11 +5,12 @@ import {
   View,
   Text,
   Image,
-  Dimensions,
   TouchableOpacity,
   BackHandler,
   FlatList,
 } from 'react-native';
+import Yaml from 'js-yaml';
+import RNFetchBlob from 'rn-fetch-blob';
 import {
   Menu,
   MenuOptions,
@@ -24,9 +25,22 @@ import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import languages from './../locales/languages';
 
-const width = Dimensions.get('window').width;
+const authoritiesListURL =
+  'https://github.com/tripleblindmarket/safe-places/blob/develop/healthcare-authorities.yaml';
 
-class LicensesScreen extends Component {
+// Temporary test object with authorities data
+const authoritiesList = {
+  "Steve's Example Health Authority": {
+    url:
+      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
+  },
+  "Ramesh's Example Health Org": {
+    url:
+      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/anotherlocale-safe-paths.json',
+  },
+};
+
+class SettingsScreen extends Component {
   constructor(props) {
     super(props);
   }
@@ -48,8 +62,26 @@ class LicensesScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  openMenu() {
-    this.menu.open();
+  // This function isn't working - will focus on UI function for now and
+  // leave this for someone else to connect to live data
+  fetchAuthoritiesList() {
+    try {
+      RNFetchBlob.fetch('GET', authoritiesListURL).then(res => {
+        // the temp file path
+        console.log(res);
+        console.log('The file saved to ', res.path());
+        RNFetchBlob.fs.Yaml.safeLoad(res.path(), 'utf8').then(records => {
+          // delete the file first using flush
+          res.flush();
+          this.parseCSV(records).then(parsedRecords => {
+            console.log(parsedRecords);
+            console.log(Object.keys(parsedRecords).length);
+          });
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -101,6 +133,22 @@ class LicensesScreen extends Component {
             </TouchableOpacity>
           </MenuTrigger>
           <MenuOptions>
+            {Object.keys(authoritiesList).map(authority => {
+              return (
+                <MenuOption
+                  key={authority}
+                  name={authority}
+                  onSelect={() => {
+                    this.setState({
+                      selectedAuthorities: this.state.selectedAuthorities.push(
+                        authority,
+                      ),
+                    });
+                  }}>
+                  <Text style={styles.menuOptionText}>{authority}</Text>
+                </MenuOption>
+              );
+            })}
             <MenuOption
               onSelect={() => {
                 this.settings();
@@ -111,7 +159,13 @@ class LicensesScreen extends Component {
               onSelect={() => {
                 this.licenses();
               }}>
-              <Text style={styles.menuOptionText}>Licenses</Text>
+              <Text style={styles.menuOptionText}>Add authority via URL</Text>
+            </MenuOption>
+            <MenuOption
+              onSelect={() => {
+                this.fetchAuthoritiesList();
+              }}>
+              <Text style={styles.menuOptionText}>Test authorities fetch</Text>
             </MenuOption>
           </MenuOptions>
         </Menu>
@@ -166,7 +220,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#665eff',
     height: 52,
     alignSelf: 'center',
-    width: width * 0.7866,
+    width: '79%',
     justifyContent: 'center',
   },
   startLoggingButtonText: {
@@ -182,7 +236,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#665eff',
     height: 52,
     alignSelf: 'center',
-    width: width * 0.7866,
+    width: '79%',
     marginTop: 30,
     justifyContent: 'center',
   },
@@ -261,4 +315,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withMenuContext(LicensesScreen);
+export default withMenuContext(SettingsScreen);
