@@ -11,6 +11,7 @@ import {
 const width = Dimensions.get('window').width;
 import PKLogo from './../../assets/images/PKLogo.png';
 import languages from './../../locales/languages';
+import Button from '../../components/Button';
 
 const DescriptionComponent = ({ icon, header, subheader, ...props }) => (
   <View style={styles.descriptionContainer}>
@@ -55,13 +56,13 @@ const SimpleWelcomeScreen = props => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
+        <Button
+          title={languages.t('label.intro_get_started')}
+          titleStyle={styles.primaryButtonText}
           onPress={() => props.navigation.navigate('LocationTrackingScreen')}
-          style={styles.primaryButtonTouchable}>
-          <Text style={styles.primaryButtonText}>
-            {languages.t('label.intro_get_started')}
-          </Text>
-        </TouchableOpacity>
+          bgColor='#665EFF'
+          toBgColor='#9594F2'
+        />
       </View>
     </View>
   );
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: width * 0.7866,
+    width: width * 0.7,
     alignSelf: 'center',
   },
   descriptionsContainer: {
