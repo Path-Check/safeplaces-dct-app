@@ -21,10 +21,10 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png';
+import greenMarker from './../assets/images/user-green.png';
 import languages from './../locales/languages';
-import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import CustomCircle from '../helpers/customCircle';
-import MapView from 'react-native-map-clustering';
 
 const width = Dimensions.get('window').width;
 
@@ -100,18 +100,26 @@ class OverlapScreen extends Component {
         console.log(locationArray);
       } else {
         var markers = [];
+        var previousMarkers = {};
         for (var i = 0; i < locationArray.length - 1; i += 1) {
-          console.log(i);
+          //console.log(i);
           const coord = locationArray[i];
-          const marker = {
-            coordinate: {
-              latitude: coord['latitude'],
-              longitude: coord['longitude'],
-            },
-            key: i + 1,
-            color: '#f26964',
-          };
-          markers.push(marker);
+          const lat = coord['latitude'];
+          const long = coord['longitude'];
+          const key = String(lat) + '|' + String(long);
+          if (key in previousMarkers) {
+            previousMarkers[key] += 1;
+          } else {
+            previousMarkers[key] = 0;
+            const marker = {
+              coordinate: {
+                latitude: lat,
+                longitude: long,
+              },
+              key: i + 1,
+            };
+            markers.push(marker);
+          }
         }
         this.setState({
           markers: markers,
@@ -320,6 +328,7 @@ class OverlapScreen extends Component {
               title={marker.title}
               description={marker.description}
               tracksViewChanges={false}
+              image={greenMarker}
             />
           ))}
           {this.state.circles.map(circle => (
