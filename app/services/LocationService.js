@@ -6,9 +6,6 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 
 let instanceCount = 0;
-let firstPoint = null;
-let lastPoint = null;
-let pointCount = 0;
 let locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
 // DEBUG: Reduce Time intervall for faster debugging
 // var locationInterval = 5000;
@@ -87,9 +84,6 @@ export class LocationData {
         time: unixtimeUTC,
       };
       curated.push(lat_lon_time);
-      firstPoint = firstPoint || curated[0];
-      [lastPoint] = curated.slice(-1);
-      pointCount = curated.length;
 
       SetStoreData('LOCATION_DATA', curated);
     });
