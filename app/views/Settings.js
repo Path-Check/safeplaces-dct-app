@@ -15,6 +15,7 @@ import {
   Dimensions,
   TouchableOpacity,
   BackHandler,
+  FlatList,
 } from 'react-native';
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -117,6 +118,7 @@ class LicensesScreen extends Component {
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Text style={styles.headerTitle}>Settings</Text>
         </View>
         {/* The purpose of this section should populate a list of authorty URLS from the above didMount and should enable adding/deleting/editing of multiple or single web URLS. */}
@@ -130,6 +132,9 @@ class LicensesScreen extends Component {
           </Text>
 =======
           <Text style={styles.headerTitle}>Licenses</Text>
+=======
+          <Text style={styles.headerTitle}>Settings</Text>
+>>>>>>> Add stylized button, FlatList bit to Settings
         </View>
 
         <View style={styles.main}>
@@ -174,6 +179,7 @@ class LicensesScreen extends Component {
             {languages.t('label.authorities_desc')}
           </Text>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Remove irrelevant components from Settings screen
 =======
           <Menu name='AuthoritiesMenu' renderer={SlideInMenu}>
@@ -196,7 +202,42 @@ class LicensesScreen extends Component {
             </MenuOptions>
           </Menu>
 >>>>>>> Add menu for authorities selection in Settings
+=======
+>>>>>>> Add stylized button, FlatList bit to Settings
         </View>
+
+        <View style={styles.listContainer}>
+          <FlatList
+            data={[{ key: 'foo' }, { key: 'bar' }]}
+            renderItem={({ item }) => (
+              <Text style={styles.item}>{item.key}</Text>
+            )}
+          />
+        </View>
+
+        <Menu name='AuthoritiesMenu' renderer={SlideInMenu} style={{ flex: 1 }}>
+          <MenuTrigger>
+            <TouchableOpacity style={styles.startLoggingButtonTouchable}>
+              <Text style={styles.startLoggingButtonText}>
+                Add Trusted Source
+              </Text>
+            </TouchableOpacity>
+          </MenuTrigger>
+          <MenuOptions>
+            <MenuOption
+              onSelect={() => {
+                this.settings();
+              }}>
+              <Text style={styles.menuOptionText}>Settings</Text>
+            </MenuOption>
+            <MenuOption
+              onSelect={() => {
+                this.licenses();
+              }}>
+              <Text style={styles.menuOptionText}>Licenses</Text>
+            </MenuOption>
+          </MenuOptions>
+        </Menu>
       </SafeAreaView>
     );
   }
@@ -207,6 +248,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
+    justifyContent: 'space-between',
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
   },
@@ -229,7 +271,19 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+  listContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    textAlignVertical: 'top',
+    // alignItems: 'center',
+    padding: 20,
+    width: '96%',
+    alignSelf: 'center',
+  },
+>>>>>>> Add stylized button, FlatList bit to Settings
   row: {
     flex: 1,
     flexDirection: 'row',
@@ -244,8 +298,27 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '200',
   },
+<<<<<<< HEAD
 
 >>>>>>> Create Settings screen
+=======
+  startLoggingButtonTouchable: {
+    borderRadius: 12,
+    backgroundColor: '#665eff',
+    height: 52,
+    alignSelf: 'center',
+    width: width * 0.7866,
+    justifyContent: 'center',
+  },
+  startLoggingButtonText: {
+    fontFamily: 'OpenSans-Bold',
+    fontSize: 14,
+    lineHeight: 19,
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+>>>>>>> Add stylized button, FlatList bit to Settings
   buttonTouchable: {
     borderRadius: 12,
     backgroundColor: '#665eff',
@@ -283,7 +356,6 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    height: 60,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(189, 195, 199,0.6)',
     alignItems: 'center',
@@ -311,6 +383,11 @@ const styles = StyleSheet.create({
   menuOptionText: {
     fontFamily: 'OpenSans-Regular',
     fontSize: 14,
+    padding: 10,
+  },
+  item: {
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 16,
     padding: 10,
   },
 });
