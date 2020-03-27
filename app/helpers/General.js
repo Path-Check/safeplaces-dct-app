@@ -1,10 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
-<<<<<<< HEAD
-// import _ from 'lodash';
-=======
 import _ from 'lodash';
 import DocumentPicker from 'react-native-document-picker';
->>>>>>> initial commit. working on android
 
 /**
  * Get Data from Store
