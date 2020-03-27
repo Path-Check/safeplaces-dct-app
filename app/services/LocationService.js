@@ -1,7 +1,7 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { Alert } from 'react-native';
-
+import { geoHashArray, sha512Array } from '../helpers/Intersect';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
 import PushNotification from 'react-native-push-notification';
@@ -62,6 +62,8 @@ function saveLocation(location) {
     };
     curated.push(lat_lon_time);
 
+    console.log(geoHashArray(lat_lon_time));
+    console.log(sha512Array(geoHashArray));
     SetStoreData('LOCATION_DATA', curated);
   });
 }
