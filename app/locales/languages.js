@@ -78,6 +78,8 @@ i18next.init({
     ht: {
       translation: {
         label: htlabels,
+      },
+    },
     pt_BR: {
       translation: {
         label: pt_BRlabels,
