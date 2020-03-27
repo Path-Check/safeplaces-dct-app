@@ -16,12 +16,13 @@ import {
   MenuOption,
   MenuTrigger,
   renderers,
+  withMenuContext,
 } from 'react-native-popup-menu';
 const { SlideInMenu } = renderers;
 import colors from '../constants/colors';
 import backArrow from './../assets/images/backArrow.png';
+import closeIcon from './../assets/images/closeIcon.png';
 import languages from './../locales/languages';
-import licenses from './../assets/LICENSE.json';
 
 const width = Dimensions.get('window').width;
 
@@ -47,22 +48,8 @@ class LicensesScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  getLicenses() {
-    let result = '<html>';
-    result +=
-      '<style>  html, body { font-size: 40px; margin: 0; padding: 0; } </style>';
-    result += '<body>';
-
-    for (let i = 0; i < licenses.licenses.length; i++) {
-      let element = licenses.licenses[i];
-
-      result += '<B>' + element.name + '</B><P>';
-      result += element.text.replace(/\n/g, '<br/>');
-      result += '<hr/>';
-    }
-    result += '</body></html>';
-
-    return result;
+  openMenu() {
+    this.menu.open();
   }
 
   render() {
@@ -88,16 +75,26 @@ class LicensesScreen extends Component {
 
         <View style={styles.listContainer}>
           <FlatList
-            data={[{ key: 'foo' }, { key: 'bar' }]}
+            data={[{ key: 'Health System A' }, { key: 'Health System B' }]}
             renderItem={({ item }) => (
-              <Text style={styles.item}>{item.key}</Text>
+              <View style={styles.flatlistRowView}>
+                <Text style={styles.item}>{item.key}</Text>
+                <Image source={closeIcon} style={styles.closeIcon} />
+              </View>
             )}
           />
         </View>
 
-        <Menu name='AuthoritiesMenu' renderer={SlideInMenu} style={{ flex: 1 }}>
+        <Menu
+          name='AuthoritiesMenu'
+          renderer={SlideInMenu}
+          style={{ flex: 1, justifyContent: 'center' }}>
           <MenuTrigger>
-            <TouchableOpacity style={styles.startLoggingButtonTouchable}>
+            <TouchableOpacity
+              style={styles.startLoggingButtonTouchable}
+              onPress={() =>
+                this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
+              }>
               <Text style={styles.startLoggingButtonText}>
                 Add Trusted Source
               </Text>
@@ -133,7 +130,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.WHITE,
   },
   main: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
     textAlignVertical: 'top',
     // alignItems: 'center',
@@ -142,7 +139,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   listContainer: {
-    flex: 1,
+    flex: 3,
     flexDirection: 'column',
     textAlignVertical: 'top',
     // alignItems: 'center',
@@ -243,11 +240,25 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: 10,
   },
+  flatlistRowView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 7,
+    paddingBottom: 5,
+    borderBottomWidth: 1,
+    borderColor: '#999999',
+  },
   item: {
     fontFamily: 'OpenSans-Regular',
     fontSize: 16,
     padding: 10,
   },
+  closeIcon: {
+    width: 15,
+    height: 15,
+    opacity: 0.5,
+    marginTop: 14,
+  },
 });
 
-export default LicensesScreen;
+export default withMenuContext(LicensesScreen);
