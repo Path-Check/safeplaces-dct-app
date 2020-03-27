@@ -10,6 +10,7 @@ import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
 import OverlapScreen from './views/Overlap';
 import LicencesScreen from './views/Licenses';
+import NotificationScreen from './views/Notification';
 import Slider from './views/welcomeScreens/Slider';
 import { GetStoreData } from './helpers/General';
 import SettingsScreen from './views/Settings';
@@ -94,7 +95,12 @@ class Entry extends Component {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="OverlapScreen"
+              name='NotificationScreen'
+              component={NotificationScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name='OverlapScreen'
               component={OverlapScreen}
               options={{ headerShown: false }}
             />
