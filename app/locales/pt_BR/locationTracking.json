@@ -1,0 +1,13 @@
+{
+    "start_logging":"Comece a Registrar",
+    "stop_logging":"Pare de Registrar",
+    "logging_message":"No momento, ele está registrando sua localização em privado a cada cinco minutos. Suas informações de localização NÃO deixarão o telefone.",
+    "not_logging_message":"NOTA: Depois de clicar neste botão, você pode ser solicitado a conceder acesso ao Private Kit à sua localização.",
+    "import":"Importar",
+    "export":"Exportar",
+    "news":"Notícias",
+    "latest_news":"Últimas Notícias",
+    "url_info":"url_info:",
+    "private_kit_url":"privatekit.mit.edu",
+    "overlap": "VERIFICAR SOBREPOSIÇÃO"
+}
