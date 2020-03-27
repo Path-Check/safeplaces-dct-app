@@ -9,13 +9,18 @@ import {
   Linking,
 } from 'react-native';
 const width = Dimensions.get('window').width;
-import PKLogo from './../../assets/images/PKLogo.png';
+import IconLogo from './../../assets/images/PKLogo.png';
+import IconGlobe from './../../assets/images/intro-globe.svg';
+import IconLocked from './../../assets/images/intro-locked.svg';
+import IconSiren from './../../assets/images/intro-siren.svg';
 import languages from './../../locales/languages';
 import Button from '../../components/Button';
 
 const DescriptionComponent = ({ icon, header, subheader, ...props }) => (
   <View style={styles.descriptionContainer}>
-    <Text style={styles.descriptionIcon}>{icon}</Text>
+    <View style={styles.descriptionIconContainer}>
+      {icon}
+    </View>
     <View style={styles.descriptionTextContainer}>
       <Text style={styles.descriptionHeaderText}>{header}</Text>
       <Text style={styles.descriptionSubheaderText}>{subheader}</Text>
@@ -28,7 +33,7 @@ const SimpleWelcomeScreen = props => {
     <View style={styles.mainContainer}>
       <View style={styles.infoCard}>
         <View style={styles.imageContainer}>
-          <Image source={PKLogo} style={styles.infoCardImage} />
+          <Image source={IconLogo} style={styles.infoCardImage} />
         </View>
         <Text style={styles.infoCardHeadText}>
           {languages.t('label.intro_title')}
@@ -38,17 +43,17 @@ const SimpleWelcomeScreen = props => {
         </Text>
         <View style={styles.descriptionsContainer}>
           <DescriptionComponent
-            icon={languages.t('label.intro_emoji_0')}
+            icon={<IconGlobe width={40} height={40}/>}
             header={languages.t('label.intro_header_0')}
             subheader={languages.t('label.intro_subheader_0')}
           />
           <DescriptionComponent
-            icon={languages.t('label.intro_emoji_1')}
+            icon={<IconLocked width={40} height={40}/>}
             header={languages.t('label.intro_header_1')}
             subheader={languages.t('label.intro_subheader_1')}
           />
           <DescriptionComponent
-            icon={languages.t('label.intro_emoji_2')}
+            icon={<IconSiren width={40} height={40}/>}
             header={languages.t('label.intro_header_2')}
             subheader={languages.t('label.intro_subheader_2')}
           />
@@ -152,10 +157,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  descriptionIcon: {
-    fontSize: 40,
-    textAlign: 'center',
+  descriptionIconContainer: {
     alignSelf: 'center',
+  },
+  descriptionIcon: {
+    width: 10,
+    height: 10,
+    resizeMode: 'contain',
   },
   descriptionTextContainer: {
     flex: 1,
