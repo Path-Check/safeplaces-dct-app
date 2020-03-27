@@ -75,37 +75,9 @@ class LicensesScreen extends Component {
           <Text style={styles.headerTitle}>
             {languages.t('label.authorities_title')}
           </Text>
-
-          <View style={styles.row}>
-            <Text style={styles.valueName}>Version: </Text>
-            <Text style={styles.value}>{packageJson.version}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.valueName}>OS: </Text>
-            <Text style={styles.value}>
-              {Platform.OS + ' v' + Platform.Version}
-            </Text>
-          </View>
-
-          <View style={styles.row}>
-            <Text style={styles.valueName}>Screen Resolution: </Text>
-            <Text style={styles.value}>
-              {' '}
-              {Math.trunc(Dimensions.get('screen').width) +
-                ' x ' +
-                Math.trunc(Dimensions.get('screen').height)}
-            </Text>
-          </View>
-        </View>
-
-        <View style={{ flex: 4, paddingLeft: 20, paddingRight: 15 }}>
-          <WebView
-            originWhitelist={['*']}
-            source={{
-              html: this.getLicenses(),
-            }}
-            style={{ marginTop: 15 }}
-          />
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.authorities_desc')}
+          </Text>
         </View>
       </SafeAreaView>
     );
