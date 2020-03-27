@@ -1,19 +1,11 @@
-/**
- * @format
- */
-
 import 'react-native';
 import React from 'react';
-import App from '../App';
-
-// Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-
-jest.mock('../app/Entry', () => 'Entry');
+import Export from '../Export';
 
 it('renders correctly', () => {
   const tree = renderer
-    .create(<App />)
+    .create(<Export />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
