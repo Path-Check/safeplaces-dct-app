@@ -44,8 +44,6 @@ class LocationTracking extends Component {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     GetStoreData('PARTICIPATE')
       .then(isParticipating => {
-        console.log(isParticipating);
-
         if (isParticipating === 'true') {
           this.setState({
             isLogging: true,
@@ -146,7 +144,7 @@ class LocationTracking extends Component {
                 style={{
                   width: 15,
                   height: 28,
-                  padding: 14
+                  padding: 14,
                 }}
               />
             </MenuTrigger>

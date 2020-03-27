@@ -5,7 +5,17 @@
   "scripts": {
     "install:pod": "cd ios && pod install",
     "postinstall": "patch-package",
-    "postversion": "react-native-version"
+    "postversion": "react-native-version",
+    "format:all": "prettier --write ./app/**/*.js",
+    "test": "jest test"
+  },
+  "lint-staged": {
+    "*.js": ["prettier --write", "git add --force"]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "rnpm": {
     "assets": [
@@ -54,13 +64,16 @@
     "@react-native-community/eslint-config": "^0.0.7",
     "babel-jest": "^25.1.0",
     "eslint": "^6.8.0",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "lint-staged": "^10.0.9",
     "metro-react-native-babel-preset": "^0.58.0",
-    "prettier": "1.17.0",
+    "prettier": "1.19.1",
     "react-native-version": "^4.0.0",
     "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": ["./jestSetupFile.js"]
   }
 }

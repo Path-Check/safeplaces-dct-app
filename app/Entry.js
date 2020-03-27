@@ -16,7 +16,6 @@ import { GetStoreData } from './helpers/General';
 const Stack = createStackNavigator();
 
 class Entry extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -39,59 +38,59 @@ class Entry extends Component {
     return (
       <NavigationContainer>
         <SafeAreaView style={{ flex: 1 }}>
-          <Stack.Navigator initialRouteName="InitialScreen">
+          <Stack.Navigator initialRouteName='InitialScreen'>
             {this.state.initialRouteName === 'true' ? (
               <Stack.Screen
-                name="InitialScreen"
+                name='InitialScreen'
                 component={LocationTracking}
                 options={{ headerShown: false }}
               />
             ) : (
               <Stack.Screen
-                name="InitialScreen"
+                name='InitialScreen'
                 component={Slider}
                 options={{ headerShown: false }}
               />
             )}
             <Stack.Screen
-              name="Slider"
+              name='Slider'
               component={Slider}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="WelcomeScreen"
+              name='WelcomeScreen'
               component={Welcome}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="LocationTrackingScreen"
+              name='LocationTrackingScreen'
               component={LocationTracking}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="NewsScreen"
+              name='NewsScreen'
               component={NewsScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="ExportScreen"
+              name='ExportScreen'
               component={ExportScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="ImportScreen"
+              name='ImportScreen'
               component={ImportScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="LicensesScreen"
+              name='LicensesScreen'
               component={LicencesScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="OverlapScreen"
+              name='OverlapScreen'
               component={OverlapScreen}
-              options={{headerShown:false}}
+              options={{ headerShown: false }}
             />
           </Stack.Navigator>
         </SafeAreaView>

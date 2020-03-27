@@ -1,0 +1,13 @@
+{
+    "start_logging":"KOMANSE KONEKSYON",
+    "stop_logging":"KANPE KONEKSYON",
+    "logging_message":"Li anrejistre pozisyon ou an prive chak senk (5) minit. Men okenn enfòmasyon sou pozisyon ou pap kite aparèy ou an.",
+    "not_logging_message":"Remak: Lèw fin klike sou bouton sa, sa ka rive yo mandew pouw ba Private Kit: Chase Kowona la otorizasyon poul gen aksè a pozisyon ou ye a.",
+    "import":"Pran done",
+    "export":"Voye done",
+    "news":"Nouvèl",
+    "latest_news":"Dènye Nouvèl",
+    "url_info":"Pou plis enfòmasyon vizite paj entènèt Private Kit: Chase Kowona",
+    "private_kit_url":"privatekit.mit.edu",
+    "overlap": "Konpare done"
+}
