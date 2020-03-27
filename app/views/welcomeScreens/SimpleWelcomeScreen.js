@@ -15,6 +15,8 @@ import IconLocked from './../../assets/images/intro-locked.svg';
 import IconSiren from './../../assets/images/intro-siren.svg';
 import languages from './../../locales/languages';
 import Button from '../../components/Button';
+import Colors from '../../constants/colors';
+import FontWeights from '../../constants/fontWeights';
 
 const DescriptionComponent = ({ icon, header, subheader, ...props }) => (
   <View style={styles.descriptionContainer}>
@@ -27,6 +29,8 @@ const DescriptionComponent = ({ icon, header, subheader, ...props }) => (
     </View>
   </View>
 );
+
+const ICON_SIZE = 35;
 
 const SimpleWelcomeScreen = props => {
   return (
@@ -43,17 +47,17 @@ const SimpleWelcomeScreen = props => {
         </Text>
         <View style={styles.descriptionsContainer}>
           <DescriptionComponent
-            icon={<IconGlobe width={40} height={40}/>}
+            icon={<IconGlobe width={ICON_SIZE} height={ICON_SIZE}/>}
             header={languages.t('label.intro_header_0')}
             subheader={languages.t('label.intro_subheader_0')}
           />
           <DescriptionComponent
-            icon={<IconLocked width={40} height={40}/>}
+            icon={<IconLocked width={ICON_SIZE} height={ICON_SIZE}/>}
             header={languages.t('label.intro_header_1')}
             subheader={languages.t('label.intro_subheader_1')}
           />
           <DescriptionComponent
-            icon={<IconSiren width={40} height={40}/>}
+            icon={<IconSiren width={ICON_SIZE} height={ICON_SIZE}/>}
             header={languages.t('label.intro_header_2')}
             subheader={languages.t('label.intro_subheader_2')}
           />
@@ -65,8 +69,8 @@ const SimpleWelcomeScreen = props => {
           title={languages.t('label.intro_get_started')}
           titleStyle={styles.primaryButtonText}
           onPress={() => props.navigation.navigate('LocationTrackingScreen')}
-          bgColor='#665EFF'
-          toBgColor='#9594F2'
+          bgColor={Colors.BLUE_BUTTON}
+          toBgColor={Colors.BLUE_TO_BUTTON}
         />
       </View>
     </View>
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   infoCardHeadText: {
-    fontFamily: 'OpenSans-Bold',
+    fontWeight: FontWeights.BOLD,
     fontSize: 40,
     lineHeight: 55,
     letterSpacing: 0,
@@ -104,7 +108,7 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   infoCardSubheadText: {
-    fontFamily: 'OpenSans-Light',
+    fontWeight: FontWeights.LIGHT,
     fontSize: 20,
     lineHeight: 0,
     letterSpacing: 0,
@@ -113,7 +117,7 @@ const styles = StyleSheet.create({
   },
   infoCardBodyText: {
     opacity: 0.8,
-    fontFamily: 'OpenSans-SemiBold',
+    fontWeight: FontWeights.SEMIBOLD,
     fontSize: 14,
     lineHeight: 24,
     letterSpacing: 0,
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   primaryButtonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontWeight: FontWeights.BOLD,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -171,12 +175,12 @@ const styles = StyleSheet.create({
     marginLeft: '5%',
   },
   descriptionHeaderText: {
-    fontFamily: 'OpenSans-SemiBold',
+    fontWeight: FontWeights.SEMIBOLD,
     fontSize: 14,
     color: '#000000',
   },
   descriptionSubheaderText: {
-    fontFamily: 'OpenSans-Light',
+    fontWeight: FontWeights.LIGHT,
     fontSize: 14,
     color: '#000000',
   },
