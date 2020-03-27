@@ -103,7 +103,7 @@ class ExportScreen extends Component {
           </TouchableOpacity>
           <Text style={[styles.sectionDescription, { marginTop: 36 }]}>
             {languages.t('label.data_hint')}{' '}
-            {convertPointsToString(LocationServices.getPointCount())}
+            {convertPointsToString(LocationServices.getPointCount(), LocationServices.getUpdatedAt())}
           </Text>
         </View>
       </SafeAreaView>

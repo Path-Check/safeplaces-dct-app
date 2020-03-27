@@ -1,4 +1,5 @@
-export function convertPointsToString(count) {
+export function convertPointsToString(count, updatedAt) {
+  var timeString = "";
   // For testing Manually override count
   //  count = 3000
 
@@ -19,33 +20,31 @@ export function convertPointsToString(count) {
 
   if (rdays > 0) {
     if (rdays > 1) {
-      if (rhours > 1) {
-        return (
-          rdays + ' days, ' + rhours + ' hours and ' + rminutes + ' minutes.'
-        );
-      } else {
-        return (
-          rdays + ' days, ' + rhours + ' hour and ' + rminutes + ' minutes.'
-        );
-      }
+      timeString = rdays + ' days, ';
     } else {
-      if (rhours > 1) {
-        return (
-          rdays + ' day, ' + rhours + ' hours and ' + rminutes + ' minutes.'
-        );
-      } else {
-        return (
-          rdays + ' day, ' + rhours + ' hour and ' + rminutes + ' minutes.'
-        );
-      }
+      timeString = rdays + ' day, ';
     }
   } else if (rhours > 0) {
     if (rhours > 1) {
-      return rhours + ' hours and ' + rminutes + ' minutes.';
+      timeString = rhours + ' hours, ';
     } else {
-      return rhours + ' hour and ' + rminutes + ' minutes.';
+      timeString = rhours + ' hour, ';
     }
   } else {
-    return rminutes + ' minutes.';
+    timeString = rminutes + ' minutes, ';
   }
+
+  let pointString = count + ' points';
+  var updatedAgoString = "";
+
+  if (updatedAt != undefined) {
+    let nowUTC = new Date().toISOString();
+    let unixtimeUTC = Date.parse(nowUTC);
+    let lastUpdatedAgo = (unixtimeUTC - updatedAt) / (60 * 1000);
+    let rlastUpdatedAgo = Math.round(lastUpdatedAgo);
+
+    updatedAgoString = ', last updated ' + rlastUpdatedAgo + ' minutes ago';
+  }
+
+  return timeString + pointString + updatedAgoString + '.';
 }
