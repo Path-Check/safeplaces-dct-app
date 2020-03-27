@@ -1,14 +1,14 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
 import PushNotification from 'react-native-push-notification';
 
-var instanceCount = 0;
-var lastPointCount = 0;
-var locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+let instanceCount = 0;
+let lastPointCount = 0;
+let locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
 var lastUpdatedAt;
 // DEBUG: Reduce Time intervall for faster debugging
 // var locationInterval = 5000;
@@ -17,7 +17,7 @@ function saveLocation(location) {
   // Persist this location data in our local storage of time/lat/lon values
 
   GetStoreData('LOCATION_DATA').then(locationArrayString => {
-    var locationArray;
+    let locationArray;
     if (locationArrayString !== null) {
       locationArray = JSON.parse(locationArrayString);
     } else {
@@ -25,13 +25,13 @@ function saveLocation(location) {
     }
 
     // Always work in UTC, not the local time in the locationData
-    var nowUTC = new Date().toISOString();
-    var unixtimeUTC = Date.parse(nowUTC);
-    var unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
+    let nowUTC = new Date().toISOString();
+    let unixtimeUTC = Date.parse(nowUTC);
+    let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
 
     // Curate the list of points, only keep the last 28 days
-    var curated = [];
-    for (var i = 0; i < locationArray.length; i++) {
+    let curated = [];
+    for (let i = 0; i < locationArray.length; i++) {
       if (locationArray[i]['time'] > unixtimeUTC_28daysAgo) {
         curated.push(locationArray[i]);
       }
@@ -39,8 +39,8 @@ function saveLocation(location) {
 
     // Backfill the stationary points, if available
     if (curated.length >= 1) {
-      var lastLocationArray = curated[curated.length - 1];
-      var lastTS = lastLocationArray['time'];
+      let lastLocationArray = curated[curated.length - 1];
+      let lastTS = lastLocationArray['time'];
       for (
         ;
         lastTS < unixtimeUTC - locationInterval;
@@ -56,7 +56,7 @@ function saveLocation(location) {
     // for what we are doing.)
     lastPointCount = locationArray.length;
     console.log('[GPS] Saving point:', lastPointCount);
-    var lat_lon_time = {
+    let lat_lon_time = {
       latitude: location['latitude'],
       longitude: location['longitude'],
       time: unixtimeUTC,
@@ -294,8 +294,9 @@ export default class LocationServices {
             ),
           1000,
         );
-      } else if (!status.isRunning) {
       }
+      // else if (!status.isRunning) {
+      // } // commented as it was not being used
     });
 
     // you can also just start without checking for status

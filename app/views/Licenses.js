@@ -4,15 +4,19 @@ import {
   StyleSheet,
   View,
   Text,
+  Platform,
   Image,
   Dimensions,
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
+import { WebView } from 'react-native-webview';
+import packageJson from '../../package.json';
 
 import colors from '../constants/colors';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
+import licenses from './../assets/LICENSE.json';
 
 const width = Dimensions.get('window').width;
 
@@ -38,6 +42,24 @@ class LicensesScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
+  getLicenses() {
+    var result = '<html>';
+    result +=
+      '<style>  html, body { font-size: 40px; margin: 0; padding: 0; } </style>';
+    result += '<body>';
+
+    for (var i = 0; i < licenses.licenses.length; i++) {
+      var element = licenses.licenses[i];
+
+      result += '<B>' + element.name + '</B><P>';
+      result += element.text.replace(/\n/g, '<br/>');
+      result += '<hr/>';
+    }
+    result += '</body></html>';
+
+    return result;
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -51,10 +73,40 @@ class LicensesScreen extends Component {
         </View>
 
         <View style={styles.main}>
-          <Text style={styles.sectionDescription}>
-            {/* This screen is a placeholder for complete license content, or a link */}
-            {languages.t('label.license_placeholder')}
+          <Text style={styles.headerTitle}>
+            {languages.t('label.private_kit')}
           </Text>
+
+          <View style={styles.row}>
+            <Text style={styles.valueName}>Version: </Text>
+            <Text style={styles.value}>{packageJson.version}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.valueName}>OS: </Text>
+            <Text style={styles.value}>
+              {Platform.OS + ' v' + Platform.Version}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={styles.valueName}>Screen Resolution: </Text>
+            <Text style={styles.value}>
+              {' '}
+              {Math.trunc(Dimensions.get('screen').width) +
+                ' x ' +
+                Math.trunc(Dimensions.get('screen').height)}
+            </Text>
+          </View>
+        </View>
+
+        <View style={{ flex: 4, paddingLeft: 20, paddingRight: 15 }}>
+          <WebView
+            originWhitelist={['*']}
+            source={{
+              html: this.getLicenses(),
+            }}
+            style={{ marginTop: 15 }}
+          />
         </View>
       </SafeAreaView>
     );
@@ -69,12 +121,6 @@ const styles = StyleSheet.create({
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
   },
-  subHeaderTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 22,
-    padding: 5,
-  },
   main: {
     flex: 1,
     flexDirection: 'column',
@@ -84,6 +130,21 @@ const styles = StyleSheet.create({
     width: '96%',
     alignSelf: 'center',
   },
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    color: colors.PRIMARY_TEXT,
+    backgroundColor: colors.WHITE,
+  },
+  valueName: {
+    fontSize: 20,
+    fontWeight: '800',
+  },
+  value: {
+    fontSize: 20,
+    fontWeight: '200',
+  },
+
   buttonTouchable: {
     borderRadius: 12,
     backgroundColor: '#665eff',
@@ -140,6 +201,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginTop: 12,
+    overflow: 'scroll',
     fontFamily: 'OpenSans-Regular',
   },
 });

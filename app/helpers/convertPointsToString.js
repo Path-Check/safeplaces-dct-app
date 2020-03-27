@@ -7,16 +7,16 @@ export function convertPointsToString(count, updatedAt) {
   let tot_mins = count * 5;
 
   // Calculate days
-  var days = tot_mins / 60 / 24;
-  var rdays = Math.floor(days);
+  let days = tot_mins / 60 / 24;
+  let rdays = Math.floor(days);
 
   // Calculate Hours
-  var hours = (days - rdays) * 24;
-  var rhours = Math.floor(hours);
+  let hours = (days - rdays) * 24;
+  let rhours = Math.floor(hours);
 
   // Calculate Minutes
-  var minutes = (hours - rhours) * 60;
-  var rminutes = Math.round(minutes);
+  let minutes = (hours - rhours) * 60;
+  let rminutes = Math.round(minutes);
 
   if (rdays > 0) {
     if (rdays > 1) {
