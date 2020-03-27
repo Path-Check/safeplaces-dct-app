@@ -1,7 +1,7 @@
 import React from 'react';
 import { Circle } from 'react-native-maps';
 
-function CustomCircle({ onLayout, ...props }) {
+function CustomCircle({ ...props }) {
   const ref = React.useRef();
 
   function onLayoutCircle() {
