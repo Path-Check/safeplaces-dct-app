@@ -157,10 +157,7 @@ class NotificationScreen extends Component {
               </Text>
               <ScrollView contentContainerStyle={styles.contentContainer}>
                 {this.state.data.map(data => (
-                  <TouchableOpacity
-                    key={data.x}
-                    style={styles.buttonTouchable}
-                    onPress={() => this.alertItemName(data.y)}>
+                  <TouchableOpacity key={data.x} style={styles.buttonTouchable}>
                     <Text style={styles.buttonText}>
                       {'Day ' +
                         data.x +
