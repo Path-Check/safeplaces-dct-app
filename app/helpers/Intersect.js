@@ -5,6 +5,13 @@
  */
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import geohash from 'ngeohash';
+import { sha512 } from 'react-native-sha512';
+
+var dayBin = []
+for (var i = 0; i < 28; i++) {
+  dayBin.push(0);
+}
 
 export async function IntersectSet(concernLocationArray) {
   GetStoreData('LOCATION_DATA').then(locationArrayString => {
@@ -14,38 +21,6 @@ export async function IntersectSet(concernLocationArray) {
     } else {
       locationArray = [];
     }
-
-    let dayBin = [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-    ]; // Bins for 28 days
 
     // Sort the concernLocationArray
     let localArray = normalizeData(locationArray);
@@ -146,4 +121,47 @@ function binarySearchForTime(array, targetTime) {
     }
   }
   return -i - 1;
+}
+
+function geohashArray(array) {
+  var geoHashedArray = []
+  for (var i = 0; i < array.length; i++) {
+    const latitude = array[i].latitude;
+    const longitude = array[i].longitude;
+    geoCode = geohash(latitude, longitude);
+    geoHashedArray.push({
+      geoCode: geoCode,
+      timestamp: array[i].timestamp,
+    });
+  }
+  return geoHashedArray;
+}
+
+function sha512Array(array) {
+  let hashedArray = array.map(sha512);
+  return hashedArray;
+}
+
+export async function hashedIntersectionSet(concernArray) {
+  GetStoreData('LOCATION_DATA').then(locationArrayString => {
+    var nowUTC = new Date().toISOString();
+    var timeNow = Date.parse(nowUTC);
+    var locationArray;
+    if (locationArrayString !== null) {
+      locationArray = JSON.parse(locationArrayString);
+    } else {
+      locationArray = [];
+    }
+    geoHashedArray = geohashArray(locationArray);
+    // Since the values are hashed we will have to do n^2
+    for (var i = 0; i < concernArray.length; i++) {
+      for (var j = 0; j < geoHashedArray.length; j++) {
+        if (sha512(geoHashedArray[j]) === concernArray[i]) {
+          let longAgo = timeNow - geoHashedArray.timestamp;
+          let daysAgo = Math.round(longAgo / (1000 * 60 * 60 * 24));
+          dayBin[daysAgo] += 1;
+        }
+      }
+    }
+  }
 }
