@@ -9,6 +9,7 @@ import PushNotification from 'react-native-push-notification';
 var instanceCount = 0;
 var lastPointCount = 0;
 var locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+var lastUpdatedAt;
 // DEBUG: Reduce Time intervall for faster debugging
 // var locationInterval = 5000;
 
@@ -61,6 +62,7 @@ function saveLocation(location) {
       time: unixtimeUTC,
     };
     curated.push(lat_lon_time);
+    lastUpdatedAt = unixtimeUTC;
 
     SetStoreData('LOCATION_DATA', curated);
   });
@@ -302,6 +304,10 @@ export default class LocationServices {
 
   static getPointCount() {
     return lastPointCount;
+  }
+
+  static getUpdatedAt() {
+    return lastUpdatedAt;
   }
 
   static stop(nav) {
