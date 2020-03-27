@@ -175,16 +175,16 @@ class SettingsScreen extends Component {
 
   removeAuthorityFromState(authority) {
     Alert.alert(
-      'Remove authority',
-      'Are you sure you want to remove this authority data source?',
+      languages.t('label.authorities_removal_alert_title'),
+      languages.t('label.authorities_removal_alert_desc'),
       [
         {
-          text: 'Cancel',
+          text: languages.t('label.authorities_removal_alert_cancel'),
           onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
         {
-          text: 'Proceed',
+          text: languages.t('label.authorities_removal_alert_proceed'),
           onPress: () => {
             let removalIndex = this.state.selectedAuthorities.indexOf(
               authority,
@@ -213,6 +213,7 @@ class SettingsScreen extends Component {
           </TouchableOpacity>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Text style={styles.headerTitle}>Settings</Text>
         </View>
         {/* The purpose of this section should populate a list of authorty URLS from the above didMount and should enable adding/deleting/editing of multiple or single web URLS. */}
@@ -229,6 +230,11 @@ class SettingsScreen extends Component {
 =======
           <Text style={styles.headerTitle}>Settings</Text>
 >>>>>>> Add stylized button, FlatList bit to Settings
+=======
+          <Text style={styles.headerTitle}>
+            {languages.t('label.settings_title')}
+          </Text>
+>>>>>>> Add translation variables and lines to Settings
         </View>
 
         <View style={styles.main}>
@@ -303,7 +309,7 @@ class SettingsScreen extends Component {
         <View style={styles.listContainer}>
           {Object.keys(this.state.selectedAuthorities).length == 0 ? (
             <Text style={(styles.sectionDescription, { color: '#dd0000' })}>
-              No data sources yet! Tap below to add one.
+              {languages.t('label.authorities_no_sources')}
             </Text>
           ) : (
             <FlatList
@@ -332,7 +338,7 @@ class SettingsScreen extends Component {
                 this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
               }>
               <Text style={styles.startLoggingButtonText}>
-                Add Trusted Source
+                {languages.t('label.authorities_add_button_label')}
               </Text>
             </TouchableOpacity>
           </MenuTrigger>
@@ -351,11 +357,11 @@ class SettingsScreen extends Component {
             <MenuOption
               onSelect={() => {
                 Alert.alert(
-                  'Coming soon',
-                  "You'll be able to add custom data sources in an imminent update.",
+                  languages.t('label.authorities_coming_soon_title'),
+                  languages.t('label.authorities_coming_soon_desc'),
                   [
                     {
-                      text: 'Done',
+                      text: languages.t('label.authorities_done'),
                       onPress: () => {
                         console.log('Tried to add custom URL data source');
                       },
@@ -364,13 +370,9 @@ class SettingsScreen extends Component {
                   { cancelable: false },
                 );
               }}>
-              <Text style={styles.menuOptionText}>Add authority via URL</Text>
-            </MenuOption>
-            <MenuOption
-              onSelect={() => {
-                console.log(this.state.selectedAuthorities);
-              }}>
-              <Text style={styles.menuOptionText}>Console log state</Text>
+              <Text style={styles.menuOptionText}>
+                {languages.t('label.authorities_add_url')}
+              </Text>
             </MenuOption>
           </MenuOptions>
         </Menu>
