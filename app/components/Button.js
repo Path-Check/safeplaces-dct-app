@@ -2,14 +2,9 @@ import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import colors from '../constants/colors';
 import LinearGradient from 'react-native-linear-gradient';
+import PropTypes from 'prop-types';
 
-interface Props {
-  title: string;
-  bgColor: string;
-  onPress: () => void;
-}
-
-class Button extends React.Component<Props> {
+class Button extends React.Component {
   render() {
     const {
       title,
@@ -52,5 +47,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+
+Button.propTypes = {
+  title: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
+  bgColor: PropTypes.string.isRequired,
+  toBgColor: PropTypes.string,
+  titleStyle: PropTypes.object,
+  buttonStyle: PropTypes.object,
+};
 
 export default Button;

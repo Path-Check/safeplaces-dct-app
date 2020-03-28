@@ -3,8 +3,9 @@ import { StyleSheet, Dimensions, View } from 'react-native';
 const width = Dimensions.get('window').width;
 import FontWeights from '../constants/fontWeights';
 import Button from './Button';
+import PropTypes from 'prop-types';
 
-class ButtonWrapper extends React.Component<Props> {
+class ButtonWrapper extends React.Component {
   render() {
     return (
       <View style={styles.buttonContainer}>
@@ -30,5 +31,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
+
+ButtonWrapper.propTypes = {
+  title: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
+  bgColor: PropTypes.string.isRequired,
+  toBgColor: PropTypes.string,
+  titleStyle: PropTypes.object,
+  buttonStyle: PropTypes.object,
+};
 
 export default ButtonWrapper;
