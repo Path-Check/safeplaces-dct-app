@@ -1,0 +1,11 @@
+{
+    "export_para_1":"Você pode compartilhar o seu histórico de localização com qualquer pessoa usando o botão de Compartilhar. Depois de pressionar o botão, você escolhe com quem e como deseja compartilhar.",
+    "export_para_2":"Seu histórico de localização é compartilhado como uma lista simples de horários e coordenadas sem nenhuma outra informação de identificação.",
+    "share":"COMPARTILHAR",
+    "data_hint":"Registros de",
+    "data_covers":"Total time the log covers:",
+    "data_count":"Number of points logged:",
+    "data_last_updated":"Time since last updated:",
+    "no_data": "No data",
+    "less_than_one_minute": "less than 1 minute"
+}

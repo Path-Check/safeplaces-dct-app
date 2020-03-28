@@ -1,201 +1,235 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  Linking,
   View,
   Text,
-  Alert,
-  Image
+  Image,
+  Platform,
+  Dimensions,
+  TouchableOpacity,
+  BackHandler,
 } from 'react-native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import RNFetchBlob from 'rn-fetch-blob';
+import Share from 'react-native-share';
+import colors from '../constants/colors';
+import { GetStoreData } from '../helpers/General';
+import { timeSincePoint } from '../helpers/convertPointsToString';
+import LocationServices, { LocationData } from '../services/LocationService';
+import backArrow from './../assets/images/backArrow.png';
+import languages from './../locales/languages';
 
-import colors from "../constants/colors";
-import { WebView } from 'react-native-webview';
-import Button from "../components/Button";
-import NegButton from "../components/NegButton";
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
+const width = Dimensions.get('window').width;
+const base64 = RNFetchBlob.base64;
 
-class ExportScreen extends Component {
-    constructor(props) {
-        super(props);
+function ExportScreen() {
+  const [pointStats, setPointStats] = useState(false);
+  const { navigate } = useNavigation();
+
+  function handleBackPress() {
+    navigate('LocationTrackingScreen', {});
+    return true;
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const locationData = new LocationData();
+      locationData.getPointStats().then(pointStats => {
+        setPointStats(pointStats);
+      });
+      return () => {};
+    }, []),
+  );
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+
+    return function cleanup() {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+    };
+  });
+
+  function backToMain() {
+    navigate('LocationTrackingScreen', {});
+  }
+
+  async function OnShare() {
+    try {
+      let locationData = await new LocationData.getLocationData();
+
+      const jsonData = base64.encode(JSON.stringify(locationData));
+      const title = 'PrivateKit_.json';
+      const filename = 'PrivacyKit_.json';
+      const message = 'Here is my location log from Private Kit.';
+      const url = 'data:application/json;base64,' + jsonData;
+      const options = Platform.select({
+        ios: {
+          activityItemSources: [
+            {
+              placeholderItem: { type: 'url', content: url },
+              item: {
+                default: { type: 'url', content: url },
+              },
+              subject: {
+                default: title,
+              },
+              linkMetadata: { originalUrl: url, url, title },
+            },
+            {
+              placeholderItem: { type: 'text', content: message },
+              item: {
+                default: { type: 'text', content: message },
+                message: null, // Specify no text to share via Messages app.
+              },
+            },
+          ],
+        },
+        default: {
+          title,
+          subject: title,
+          url: url,
+          message: message,
+          filename: filename,
+        },
+      });
+
+      Share.open(options)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err.message, err.code);
+        });
+    } catch (error) {
+      console.log(error.message);
     }
-    componentDidMount() {
+  }
 
-        /*BackgroundGeolocation.on('location', (location) => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headerContainer}>
+        <TouchableOpacity
+          style={styles.backArrowTouchable}
+          onPress={() => backToMain()}>
+          <Image style={styles.backArrow} source={backArrow} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>{languages.t('label.export')}</Text>
+      </View>
 
+      <View style={styles.main}>
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.export_para_1')}
+        </Text>
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.export_para_2')}
+        </Text>
+        <TouchableOpacity style={styles.buttonTouchable} onPress={OnShare}>
+          <Text style={styles.buttonText}>{languages.t('label.share')}</Text>
+        </TouchableOpacity>
+        <Text style={[styles.sectionDescription, { marginTop: 36 }]}>
+          {languages.t('label.data_covers')}{' '}
+          {pointStats ? timeSincePoint(pointStats.firstPoint) : '...'}
+        </Text>
 
-            GetStoreData('LOCATION_DATA')
-            .then(locationArray => {
-                var locationData;
+        <Text style={[styles.sectionDescription, { marginTop: 15 }]}>
+          {languages.t('label.data_count')}{' '}
+          {pointStats ? pointStats.pointCount : '...'}
+        </Text>
 
-                if (locationArray !== null) {
-                  locationData = JSON.parse(locationArray);
-                } else {
-                  locationData = [];
-                }
-
-                locationData.push(location);
-                SetStoreData('LOCATION_DATA', locationData);
-            });
-
-            // to perform long running operation on iOS
-            // you need to create background task
-            BackgroundGeolocation.startTask(taskKey => {
-                // execute long running task
-                // eg. ajax post location
-                // IMPORTANT: task has to be ended by endTask
-                BackgroundGeolocation.endTask(taskKey);
-            });
-        });
-
-        BackgroundGeolocation.on('stationary', (stationaryLocation) => {
-            // handle stationary locations here
-            // Actions.sendLocation(stationaryLocation);
-            console.log('[INFO] stationaryLocation:', stationaryLocation);
-        });
-
-        BackgroundGeolocation.on('error', (error) => {
-        console.log('[ERROR] BackgroundGeolocation error:', error);
-        });
-
-        BackgroundGeolocation.on('start', () => {
-        console.log('[INFO] BackgroundGeolocation service has been started');
-        });
-
-        BackgroundGeolocation.on('stop', () => {
-        console.log('[INFO] BackgroundGeolocation service has been stopped');
-        });
-
-        BackgroundGeolocation.on('authorization', (status) => {
-        console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
-        if (status !== BackgroundGeolocation.AUTHORIZED) {
-            // we need to set delay or otherwise alert may not be shown
-            setTimeout(() =>
-            Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [
-                { text: 'Yes', onPress: () => BackgroundGeolocation.showAppSettings() },
-                { text: 'No', onPress: () => console.log('No Pressed'), style: 'cancel' }
-            ]), 1000);
-        }
-        });
-
-        BackgroundGeolocation.on('background', () => {
-        console.log('[INFO] App is in background');
-        });
-
-        BackgroundGeolocation.on('foreground', () => {
-        console.log('[INFO] App is in foreground');
-        });
-
-        BackgroundGeolocation.on('abort_requested', () => {
-        console.log('[INFO] Server responded with 285 Updates Not Required');
-
-        // Here we can decide whether we want stop the updates or not.
-        // If you've configured the server to return 285, then it means the server does not require further update.
-        // So the normal thing to do here would be to `BackgroundGeolocation.stop()`.
-        // But you might be counting on it to receive location updates in the UI, so you could just reconfigure and set `url` to null.
-        });
-
-        BackgroundGeolocation.on('http_authorization', () => {
-        console.log('[INFO] App needs to authorize the http requests');
-        });
-
-        // you can also just start without checking for status
-        // BackgroundGeolocation.start();*/
-    }
-
-    componentWillUnmount() {
-        // unregister all event listeners
-        BackgroundGeolocation.removeAllListeners();
-    }
-
-    render() {
-        return (
-            <>
-                <View style={styles.main}>
-                    <View style={styles.headerTitle}>
-                      <Text style={styles.sectionDescription, {fontSize: 22, marginTop: 10}}>Export Data</Text>
-                    </View>
-                    <View style={styles.subHeaderTitle}>
-                        <Text style={styles.sectionDescription}>Rolling out soon</Text>
-                    </View>
-                    <View style={styles.block}>
-                    <Image
-                        source={require('../assets/privatekit_qrcode.png')}
-                        style={{width: 330, height: 330}}
-                    />
-                    </View>
-                </View>
-
-                <View style={styles.footer}>
-                    <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
-                    <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
-                </View>
-            </>
-        )
-    }
+        <Text style={[styles.sectionDescription, { marginTop: 15 }]}>
+          {languages.t('label.data_last_updated')}{' '}
+          {pointStats ? timeSincePoint(pointStats.lastPoint) : '...'}
+        </Text>
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-    // Container covers the entire screen
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: colors.PRIMARY_TEXT,
-        backgroundColor: colors.APP_BACKGROUND,
-    },
-    headerTitle: {
-        textAlign: 'center',
-        fontWeight: "bold",
-        fontSize: 38,
+  // Container covers the entire screen
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    color: colors.PRIMARY_TEXT,
+    backgroundColor: colors.WHITE,
+  },
+  headerTitle: {
+    textAlign: 'center',
+    fontSize: 24,
+    padding: 0,
+    fontFamily: 'OpenSans-Bold',
+  },
+  subHeaderTitle: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 22,
+    padding: 5,
+  },
+  main: {
+    flex: 1,
+    flexDirection: 'column',
+    textAlignVertical: 'top',
+    // alignItems: 'center',
+    padding: 20,
+    width: '96%',
+    alignSelf: 'center',
+  },
+  buttonTouchable: {
+    borderRadius: 12,
+    backgroundColor: '#665eff',
+    height: 52,
+    alignSelf: 'center',
+    width: width * 0.7866,
+    marginTop: 30,
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontFamily: 'OpenSans-Bold',
+    fontSize: 14,
+    lineHeight: 19,
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+  mainText: {
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '400',
+    textAlignVertical: 'center',
+    padding: 20,
+  },
+  smallText: {
+    fontSize: 10,
+    lineHeight: 24,
+    fontWeight: '400',
+    textAlignVertical: 'center',
+    padding: 20,
+  },
 
-        padding: 0
-    },
-    subHeaderTitle: {
-        textAlign: 'center',
-        fontWeight: "bold",
-        fontSize: 22,
-        padding: 5
-    },
-    main: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: "95%"
-    },
-    block: {
-      margin: 20,
-      width: "75%",
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    topView: {
-        flex: 1,
-    },
-    footer: {
-        textAlign: 'center',
-        fontSize: 12,
-        fontWeight: '600',
-        padding: 4,
-        paddingBottom: 10
-    },
-    intro: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-    },
-    sectionDescription: {
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: '400',
-      marginTop: 20,
-      marginLeft: 10,
-      marginRight: 10
-    }
-  });
+  headerContainer: {
+    flexDirection: 'row',
+    height: 60,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(189, 195, 199,0.6)',
+    alignItems: 'center',
+  },
+  backArrowTouchable: {
+    width: 60,
+    height: 60,
+    paddingTop: 21,
+    paddingLeft: 20,
+  },
+  backArrow: {
+    height: 18,
+    width: 18.48,
+  },
+  sectionDescription: {
+    fontSize: 16,
+    lineHeight: 24,
+    marginTop: 12,
+    fontFamily: 'OpenSans-Regular',
+  },
+});
 
 export default ExportScreen;

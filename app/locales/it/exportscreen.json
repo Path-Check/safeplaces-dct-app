@@ -1,0 +1,11 @@
+{
+    "export_para_1":"Puoi condividere i tuoi movimenti con chiunque, premendo il tasto CONDIVIDI.  Una volta premuto il tasto, l'applicazione ti chiederà con chi e come vuoi condividere le informazioni.",
+    "export_para_2":"La posizione è condivisa come una semplice lista di date e coordinate, senza alcuna informazione che possa permettere l'identificazione dell'utente.",
+    "share":"CONDIVIDI",
+    "data_hint":"Log contiene dati di",
+    "data_covers":"Total time the log covers:",
+    "data_count":"Number of points logged:",
+    "data_last_updated":"Time since last updated:",
+    "no_data": "No data",
+    "less_than_one_minute": "less than 1 minute"
+}

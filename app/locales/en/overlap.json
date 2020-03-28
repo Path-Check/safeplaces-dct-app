@@ -1,0 +1,10 @@
+{
+  "overlap_title": "Check Overlap",
+  "overlap_para_1": "The green trail represents your location history\n\nThe light purple circles represent the public dataset",
+  "show_overlap": "Click to view the public dataset",
+  "loading_public_data": "loading data...",
+  "overlap_no_results_button_label": "Public Data Loaded",
+  "overlap_found_button_label": "Public Data Loaded",
+  "nCoV2019_url_info": "For more information on the dataset for this map",
+  "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+}

@@ -1,0 +1,13 @@
+{
+    "start_logging":"INIZIA A SALVARE",
+    "stop_logging":"SMETTI DI SALVARE",
+    "logging_message":"La APP sta attualmente salvando i tuoi movimenti in privato ogni 5 minuti. Queste informazioni sono salvate solo nel tuo telefono.",
+    "not_logging_message":"NOTA: Una volta premuto questo tasto, ti sarà richiesto di garantire l'accesso ai tuoi movimenti a Private Kit.",
+    "import":"Importa",
+    "export":"Esporta",
+    "news":"novità",
+    "latest_news":"Ultime Novità",
+    "url_info":"Per più informazioni, visita la homepage di Private Kit:",
+    "private_kit_url":"privatekit.mit.edu",
+    "overlap":"CONTROLLA LE INTERSEZIONI"
+}
