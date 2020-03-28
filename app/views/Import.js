@@ -16,8 +16,7 @@ import WebView from 'react-native-webview';
 import Button from '../components/Button';
 import backArrow from './../assets/images/backArrow.png';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
-
-import I18n from '../../I18n';
+import languages from './../locales/languages';
 
 class ImportScreen extends Component {
   constructor(props) {
@@ -53,16 +52,18 @@ class ImportScreen extends Component {
             onPress={() => this.backToMain()}>
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>{I18n.t('IMPORT0')}</Text>
+          <Text style={styles.headerTitle}>
+            {languages.t('label.import_title')}
+          </Text>
         </View>
 
         <View style={styles.main}>
           <View style={styles.subHeaderTitle}>
             <Text style={styles.sectionDescription}>
-              1. {I18n.t('IMPORT1')}
+              {languages.t('label.import_step_1')}
             </Text>
             <Text style={styles.sectionDescription}>
-              2. {I18n.t('IMPORT2')}
+              {languages.t('label.import_step_2')}
             </Text>
           </View>
           <View style={styles.web}>

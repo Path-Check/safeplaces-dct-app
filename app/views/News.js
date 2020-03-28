@@ -14,7 +14,7 @@ import colors from '../constants/colors';
 import { WebView } from 'react-native-webview';
 import Button from '../components/Button';
 import backArrow from './../assets/images/backArrow.png';
-import I18n from '../../I18n';
+import languages from './../locales/languages';
 
 class NewsScreen extends Component {
   constructor(props) {
@@ -47,7 +47,9 @@ class NewsScreen extends Component {
             onPress={() => this.backToMain()}>
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>{I18n.t('LATESTNEWS')}</Text>
+          <Text style={styles.headerTitle}>
+            {languages.t('label.latest_news')}
+          </Text>
         </View>
 
         <WebView

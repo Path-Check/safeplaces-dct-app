@@ -10,7 +10,7 @@ import {
 
 import colors from '../constants/colors';
 import Button from '../components/Button';
-import I18n from '../../I18n';
+import languages from '../locales/languages';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 
@@ -44,20 +44,22 @@ class Welcome extends Component {
           <View style={styles.topView}>
             <View
               style={(styles.intro, { textAlign: 'center', paddingTop: 25 })}>
-              <Text style={styles.headerTitle}>{I18n.t('IXNILATIS')} </Text>
+              <Text style={styles.headerTitle}>
+                {languages.t('label.private_kit')}
+              </Text>
               <Text style={styles.sectionDescription}>
-                {I18n.t('WELCOME1')}
+                {languages.t('label.logging_message')}
               </Text>
             </View>
           </View>
 
           <View style={styles.block}>
             <Button
-              title="{I18n.t('STARTLOGGING')}"
+              title={languages.t('label.start_logging')}
               onPress={() => this.willParticipate()}
             />
             <Text style={{ padding: 5, justifyContent: 'center' }}>
-              {I18n.t('NOTE')}: {I18n.t('WELCOME2')}
+              {languages.t('label.not_logging_message')}
             </Text>
           </View>
         </View>
@@ -68,7 +70,7 @@ class Welcome extends Component {
               (styles.sectionDescription,
               { textAlign: 'center', paddingTop: 5 })
             }>
-            {I18n.t('MOREINFO')}:
+            {languages.t('label.url_info')}{' '}
           </Text>
           <Text
             style={
@@ -78,7 +80,7 @@ class Welcome extends Component {
             onPress={() =>
               Linking.openURL('http://superworld.rise.org.cy/COVID19/')
             }>
-            rise.org.cy.COVID19
+            {languages.t('label.private_kit_url')}
           </Text>
         </View>
       </SafeAreaView>

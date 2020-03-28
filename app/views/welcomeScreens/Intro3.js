@@ -8,19 +8,23 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import I18n from '../../../I18n';
 import logo1 from './../../assets/images/logo1.png';
 import logo2 from './../../assets/images/logo2.png';
 import logo3 from './../../assets/images/logo3.png';
 
 const width = Dimensions.get('window').width;
+import languages from './../../locales/languages';
 
 const Intro2 = (props) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.infoCard}>
-        <Text style={styles.infoCardHeadText}>{I18n.t('INTRO31')}</Text>
-        <Text style={styles.infoCardBodyText}>{I18n.t('INTRO32')}</Text>
+        <Text style={styles.infoCardHeadText}>
+          {languages.t('label.intro3_title1')}
+        </Text>
+        <Text style={styles.infoCardBodyText}>
+          {languages.t('label.intro3_para1')}
+        </Text>
         <View style={styles.rowContainer}>
           <Image source={logo1} style={styles.infoCardLogo} />
           <Image source={logo2} style={styles.infoCardLogo} />
@@ -38,7 +42,7 @@ const Intro2 = (props) => {
             styles.infoCardBodyText,
             { fontFamily: 'OpenSans-Bold', opacity: 1, marginTop: 12 },
           ]}>
-          {I18n.t('MOREINFO')}: rise.org.cy.COVID19{' '}
+          {languages.t('label.url_info')} {languages.t('label.private_kit_url')}
         </Text>
       </View>
 
@@ -59,13 +63,17 @@ const Intro2 = (props) => {
         <TouchableOpacity
           onPress={() => props.swipe(-1)}
           style={styles.secondaryButtonTouchable}>
-          <Text style={styles.secondaryButtonText}>{I18n.t('BACK')}</Text>
+          <Text style={styles.secondaryButtonText}>
+            {languages.t('label.back')}
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => props.navigation.navigate('LocationTrackingScreen')}
           style={styles.primaryButtonTouchable}>
-          <Text style={styles.primaryButtonText}>{I18n.t('START')}</Text>
+          <Text style={styles.primaryButtonText}>
+            {languages.t('label.start')}
+          </Text>
         </TouchableOpacity>
       </View>
 

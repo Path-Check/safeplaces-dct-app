@@ -1,0 +1,13 @@
+{
+    "start_logging":"START LOGGING",
+    "stop_logging":"STOP LOGGING",
+    "logging_message":"It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.",
+    "not_logging_message":"NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.",
+    "import":"Εισαγωγή",
+    "export":"Εξαγωγή",
+    "news":"Νέα",
+    "latest_news":"Τελευταία νέα",
+    "url_info":"For more information visit the Private Kit hompage:",
+    "private_kit_url":"privatekit.mit.edu",
+    "overlap": "CHECK OVERLAP"
+}

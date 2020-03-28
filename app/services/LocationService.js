@@ -1,7 +1,7 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { Alert } from 'react-native';
-import I18n from '../../I18n';
+import languages from '../../locales/languages';
 
 var instanceCount = 0;
 var lastPointCount = 0;
@@ -59,8 +59,8 @@ export default class LocationServices {
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
       stationaryRadius: 50,
       distanceFilter: 50,
-      notificationTitle: I18n.t('ENABLED'),
-      notificationText: I18n.t('WELCOME1'),
+      notificationTitle: languages.t('ENABLED'),
+      notificationText: languages.t('WELCOME1'),
       debug: false, // when true, it beeps every time a loc is read
       startOnBoot: false,
       stopOnTerminate: false,
@@ -154,13 +154,13 @@ export default class LocationServices {
         // we need to set delay or otherwise alert may not be shown
         setTimeout(
           () =>
-            Alert.alert(I18n.t('ACCESS1'), '', [
+            Alert.alert(languages.t('ACCESS1'), '', [
               {
-                text: I18n.t('YES'),
+                text: languages.t('YES'),
                 onPress: () => BackgroundGeolocation.showAppSettings(),
               },
               {
-                text: I18n.t('NO'),
+                text: languages.t('NO'),
                 onPress: () => console.log('No Pressed'),
                 style: 'cancel',
               },
@@ -224,13 +224,13 @@ export default class LocationServices {
         // we need to set delay or otherwise alert may not be shown
         setTimeout(
           () =>
-            Alert.alert(I18n.t('ACCESS2'), '', [
+            Alert.alert(languages.t('ACCESS2'), '', [
               {
-                text: I18n.t('YES'),
+                text: languages.t('YES'),
                 onPress: () => BackgroundGeolocation.showLocationSettings(),
               },
               {
-                text: I18n.t('NO'),
+                text: languages.t('NO'),
                 onPress: () => console.log('No Pressed'),
                 style: 'cancel',
               },
@@ -241,13 +241,13 @@ export default class LocationServices {
         // we need to set delay or otherwise alert may not be shown
         setTimeout(
           () =>
-            Alert.alert(I18n.t('ACCESS1'), '', [
+            Alert.alert(languages.t('ACCESS1'), '', [
               {
-                text: I18n.t('YES'),
+                text: languages.t('YES'),
                 onPress: () => BackgroundGeolocation.showAppSettings(),
               },
               {
-                text: I18n.t('NO'),
+                text: languages.t('NO'),
                 onPress: () => console.log('No Pressed'),
                 style: 'cancel',
               },
