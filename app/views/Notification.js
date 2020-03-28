@@ -129,7 +129,7 @@ class NotificationScreen extends Component {
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>
-            {languages.t('label.private_kit')}
+            {languages.t('label.notifications')}
           </Text>
         </View>
 
@@ -170,10 +170,7 @@ class NotificationScreen extends Component {
                           ? styles.notificationsTextOrange
                           : null,
                       ]}>
-                      {'Day ' +
-                        data.x +
-                        ':    Number of Intersections: ' +
-                        data.y}
+                      {'Day ' + data.x + ': ' + data.y + ' intersections'}
                     </Text>
                   </View>
                 ))}
@@ -212,10 +209,7 @@ const styles = StyleSheet.create({
   },
   main: {
     flex: 1,
-    flexDirection: 'column',
-    textAlignVertical: 'top',
     paddingVertical: 20,
-    alignSelf: 'center',
     width: '100%',
   },
   row: {
@@ -235,11 +229,12 @@ const styles = StyleSheet.create({
   buttonTouchable: {
     borderRadius: 12,
     backgroundColor: '#665eff',
-    height: 52,
     alignSelf: 'center',
     width: width * 0.7866,
-    marginTop: 7,
+    marginTop: 30,
     justifyContent: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 36,
   },
   buttonText: {
     fontFamily: 'OpenSans-Bold',
@@ -250,10 +245,11 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   mainText: {
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
+    fontFamily: 'OpenSans-Regular',
+    marginLeft: 20,
+    marginRight: 20,
   },
   smallText: {
     fontSize: 10,
