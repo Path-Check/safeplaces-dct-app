@@ -133,174 +133,187 @@ class LocationTracking extends Component {
   // create component
 
   getMenuItem = () => {
-    return <Menu
-      style={{
-        position: 'absolute',
-        alignSelf: 'flex-end',
-        zIndex: 10,
-        marginTop: '5.5%',
-      }}>
-      <MenuTrigger style={{ marginTop: 14 }}>
-        <Image
-          source={kebabIcon}
-          style={{
-            width: 15,
-            height: 28,
-            padding: 14,
-          }}
-        />
-      </MenuTrigger>
-      <MenuOptions>
-        <MenuOption
-          onSelect={() => {
-            this.licenses();
-          }}>
-          <Text style={styles.menuOptionText}>Licenses</Text>
-        </MenuOption>
-      </MenuOptions>
-    </Menu>;
-  }
+    return (
+      <Menu
+        style={{
+          position: 'absolute',
+          alignSelf: 'flex-end',
+          zIndex: 10,
+          marginTop: '5.5%',
+        }}>
+        <MenuTrigger style={{ marginTop: 14 }}>
+          <Image
+            source={kebabIcon}
+            style={{
+              width: 15,
+              height: 28,
+              padding: 14,
+            }}
+          />
+        </MenuTrigger>
+        <MenuOptions>
+          <MenuOption
+            onSelect={() => {
+              this.licenses();
+            }}>
+            <Text style={styles.menuOptionText}>Licenses</Text>
+          </MenuOption>
+        </MenuOptions>
+      </Menu>
+    );
+  };
 
   getTrackingComponent = () => {
-    return <>
-      <Image
-        source={pkLogo}
-        style={{
-          width: 132,
-          height: 164.4,
-          alignSelf: 'center',
-          marginTop: 15,
-          marginBottom: 15,
-        }}
-      />
-      <ButtonWrapper
-        title={languages.t('label.home_stop_tracking')}
-        onPress={() => this.setOptOut()}
-        bgColor={Colors.RED_BUTTON}
-        toBgColor={Colors.RED_TO_BUTTON}
-      />
-      <Text style={styles.sectionDescription}>
-        {languages.t('label.home_stop_tracking_description')}
-      </Text>
+    return (
+      <>
+        <Image
+          source={pkLogo}
+          style={{
+            width: 132,
+            height: 164.4,
+            alignSelf: 'center',
+            marginTop: 15,
+            marginBottom: 15,
+          }}
+        />
+        <ButtonWrapper
+          title={languages.t('label.home_stop_tracking')}
+          onPress={() => this.setOptOut()}
+          bgColor={Colors.RED_BUTTON}
+          toBgColor={Colors.RED_TO_BUTTON}
+        />
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.home_stop_tracking_description')}
+        </Text>
 
-      <ButtonWrapper
-        title={languages.t('label.home_check_risk')}
-        onPress={() => this.overlap()}
-        bgColor={Colors.GRAY_BUTTON}
-        toBgColor={Colors.Gray_TO_BUTTON}
-      />
-      <Text style={styles.sectionDescription}>
-        {languages.t('label.home_check_risk_description')}
-      </Text>
-    </>;
-  }
+        <ButtonWrapper
+          title={languages.t('label.home_check_risk')}
+          onPress={() => this.overlap()}
+          bgColor={Colors.GRAY_BUTTON}
+          toBgColor={Colors.Gray_TO_BUTTON}
+        />
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.home_check_risk_description')}
+        </Text>
+      </>
+    );
+  };
 
   getNotTrackingComponent = () => {
-    return <>
-      <Image
-        source={pkLogo}
-        style={{
-          width: 132,
-          height: 164.4,
-          alignSelf: 'center',
-          marginTop: 15,
-          marginBottom: 30,
-          opacity: 0.3,
-        }}
-      />
-      <ButtonWrapper
-        title={languages.t('label.home_start_tracking')}
-        onPress={() => this.willParticipate()}
-        bgColor={Colors.BLUE_BUTTON}
-        toBgColor={Colors.BLUE_TO_BUTTON}
-      />
-      <Text style={styles.sectionDescription}>
-        {languages.t('label.home_start_tracking_description')}
-      </Text>
-    </>;
-  }
+    return (
+      <>
+        <Image
+          source={pkLogo}
+          style={{
+            width: 132,
+            height: 164.4,
+            alignSelf: 'center',
+            marginTop: 15,
+            marginBottom: 30,
+            opacity: 0.3,
+          }}
+        />
+        <ButtonWrapper
+          title={languages.t('label.home_start_tracking')}
+          onPress={() => this.willParticipate()}
+          bgColor={Colors.BLUE_BUTTON}
+          toBgColor={Colors.BLUE_TO_BUTTON}
+        />
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.home_start_tracking_description')}
+        </Text>
+      </>
+    );
+  };
 
   getActionButtons = () => {
     if (!this.state.isLogging) {
       return;
     }
-    return <View style={styles.actionButtonsView}>
-      <TouchableOpacity
-        onPress={() => this.import()}
-        style={styles.actionButtonsTouchable}>
-        <Image
-          style={styles.actionButtonImage}
-          source={exportImage}
-          resizeMode={'contain'}
-        />
-        <Text style={styles.actionButtonText}>
-          {languages.t('label.import')}
-        </Text>
-      </TouchableOpacity>
+    return (
+      <View style={styles.actionButtonsView}>
+        <TouchableOpacity
+          onPress={() => this.import()}
+          style={styles.actionButtonsTouchable}>
+          <Image
+            style={styles.actionButtonImage}
+            source={exportImage}
+            resizeMode={'contain'}
+          />
+          <Text style={styles.actionButtonText}>
+            {languages.t('label.import')}
+          </Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => this.export()}
-        style={styles.actionButtonsTouchable}>
-        <Image
-          style={[
-            styles.actionButtonImage,
-            { transform: [{ rotate: '180deg' }] },
-          ]}
-          source={exportImage}
-          resizeMode={'contain'}
-        />
-        <Text style={styles.actionButtonText}>
-          {languages.t('label.export')}
-        </Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.export()}
+          style={styles.actionButtonsTouchable}>
+          <Image
+            style={[
+              styles.actionButtonImage,
+              { transform: [{ rotate: '180deg' }] },
+            ]}
+            source={exportImage}
+            resizeMode={'contain'}
+          />
+          <Text style={styles.actionButtonText}>
+            {languages.t('label.export')}
+          </Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => this.news()}
-        style={styles.actionButtonsTouchable}>
-        <Image
-          style={styles.actionButtonImage}
-          source={news}
-          resizeMode={'contain'}
-        />
-        <Text style={styles.actionButtonText}>
-          {languages.t('label.news')}
-        </Text>
-      </TouchableOpacity>
-    </View>;
-  }
+        <TouchableOpacity
+          onPress={() => this.news()}
+          style={styles.actionButtonsTouchable}>
+          <Image
+            style={styles.actionButtonImage}
+            source={news}
+            resizeMode={'contain'}
+          />
+          <Text style={styles.actionButtonText}>
+            {languages.t('label.news')}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   getPrivacyNote = () => {
     if (this.state.isLogging) {
       return;
     }
-    return <View style={styles.privacyNoteContainer}>
-      <View style={styles.privacyHeaderContainer}>
-        <IconLocked width={15} height={15} />
-        <Text style={styles.privacyHeader}>{languages.t('label.home_privacy_header')}</Text>
+    return (
+      <View style={styles.privacyNoteContainer}>
+        <View style={styles.privacyHeaderContainer}>
+          <IconLocked width={15} height={15} />
+          <Text style={styles.privacyHeader}>
+            {languages.t('label.home_privacy_header')}
+          </Text>
+        </View>
+        <Text style={styles.privacySubheader}>
+          {languages.t('label.home_privacy_subheader')}
+        </Text>
       </View>
-      <Text style={styles.privacySubheader}>{languages.t('label.home_privacy_subheader')}</Text>
-    </View>
-  }
+    );
+  };
 
   getFooter = () => {
-    return <View style={styles.footer}>
-      <Text
-        style={[
-          styles.footerDescription,
-          { marginLeft: 0, marginRight: 0 }
-        ]}>
-        {languages.t('label.home_footer')}{' '}
-      </Text>
-      <Text
-        style={[
-          styles.footerDescription,
-          { color: Colors.BLUE_LINK, marginLeft: 0, marginRight: 0 },
-        ]}
-        onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
-        {languages.t('label.home_footer_link')}
-      </Text>
-    </View>;
-  }
+    return (
+      <View style={styles.footer}>
+        <Text
+          style={[styles.footerDescription, { marginLeft: 0, marginRight: 0 }]}>
+          {languages.t('label.home_footer')}{' '}
+        </Text>
+        <Text
+          style={[
+            styles.footerDescription,
+            { color: Colors.BLUE_LINK, marginLeft: 0, marginRight: 0 },
+          ]}
+          onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
+          {languages.t('label.home_footer_link')}
+        </Text>
+      </View>
+    );
+  };
 
   render() {
     return (
@@ -312,7 +325,9 @@ class LocationTracking extends Component {
           </Text>
 
           <View style={styles.buttonsAndLogoView}>
-            {this.state.isLogging ? (this.getTrackingComponent()) : (this.getNotTrackingComponent())}
+            {this.state.isLogging
+              ? this.getTrackingComponent()
+              : this.getNotTrackingComponent()}
           </View>
 
           {this.getActionButtons()}
@@ -320,7 +335,6 @@ class LocationTracking extends Component {
           {this.getPrivacyNote()}
 
           {this.getFooter()}
-
         </ScrollView>
       </SafeAreaView>
     );
@@ -375,7 +389,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 4,
     paddingBottom: 10,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   sectionDescription: {
     fontSize: 13,
@@ -472,7 +486,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 5,
     textAlign: 'center',
-    color: 'white'
+    color: 'white',
   },
   privacySubheader: {
     fontSize: 12,

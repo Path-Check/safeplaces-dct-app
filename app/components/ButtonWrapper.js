@@ -4,21 +4,13 @@ const width = Dimensions.get('window').width;
 import FontWeights from '../constants/fontWeights';
 import Button from './Button';
 
-interface Props {
-  title: string;
-  bgColor: string;
-  onPress: () => void;
-}
-
 class ButtonWrapper extends React.Component<Props> {
   render() {
-    return <View style={styles.buttonContainer}>
-      <Button
-        titleStyle={styles.primaryButtonText}
-        {...this.props}
-      />
-    </View>
-
+    return (
+      <View style={styles.buttonContainer}>
+        <Button titleStyle={styles.primaryButtonText} {...this.props} />
+      </View>
+    );
   }
 }
 

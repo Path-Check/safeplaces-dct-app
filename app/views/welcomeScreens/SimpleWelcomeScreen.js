@@ -20,9 +20,7 @@ import FontWeights from '../../constants/fontWeights';
 
 const DescriptionComponent = ({ icon, header, subheader, ...props }) => (
   <View style={styles.descriptionContainer}>
-    <View style={styles.descriptionIconContainer}>
-      {icon}
-    </View>
+    <View style={styles.descriptionIconContainer}>{icon}</View>
     <View style={styles.descriptionTextContainer}>
       <Text style={styles.descriptionHeaderText}>{header}</Text>
       <Text style={styles.descriptionSubheaderText}>{subheader}</Text>
