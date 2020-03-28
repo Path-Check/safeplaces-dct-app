@@ -9,7 +9,7 @@ class Button extends React.Component {
     const {
       title,
       onPress,
-      bgColor = '#665EFF',
+      bgColor = colors.DODGER_BLUE,
       toBgColor = bgColor,
       titleStyle,
       buttonStyle,
