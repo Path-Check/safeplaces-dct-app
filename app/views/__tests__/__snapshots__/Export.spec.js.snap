@@ -161,9 +161,47 @@ exports[`renders correctly 1`] = `
         ]
       }
     >
-      Log has data of
+      Total time the log covers:
        
-      0 minutes.
+      ...
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+          },
+          Object {
+            "marginTop": 15,
+          },
+        ]
+      }
+    >
+      Number of points logged:
+       
+      ...
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+          },
+          Object {
+            "marginTop": 15,
+          },
+        ]
+      }
+    >
+      Time since last updated:
+       
+      ...
     </Text>
   </View>
 </RCTSafeAreaView>
