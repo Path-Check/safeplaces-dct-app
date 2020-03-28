@@ -20,6 +20,7 @@ import nllabels from './nl';
 import htlabels from './ht';
 import pt_BRlabels from './pt_BR';
 import eslabels from './es';
+import urlabels from './ur';
 
 // This will fetch the user's language
 let userLang = undefined;
@@ -89,6 +90,11 @@ i18next.init({
     es: {
       translation: {
         label: eslabels,
+      },
+    },
+    ur: {
+      translation: {
+        label: urlabels,
       },
     },
   },
