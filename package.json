@@ -10,7 +10,10 @@
     "test": "jest test"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add --force"]
+    "*.js": [
+      "prettier --write",
+      "git add --force"
+    ]
   },
   "husky": {
     "hooks": {
@@ -48,15 +51,18 @@
     "react-native-i18n": "^2.0.15",
     "react-native-map-clustering": "^3.1.2",
     "react-native-maps": "0.27.1",
+    "react-native-permissions": "^2.0.10",
     "react-native-popup-menu": "^0.15.7",
     "react-native-push-notification": "^3.1.9",
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-share": "^3.1.0",
+    "react-native-svg": "^12.0.3",
     "react-native-uuid-generator": "^6.1.1",
     "react-native-webview": "^8.1.2",
     "react-native-zip-archive": "^5.0.1",
-    "rn-fetch-blob": "^0.12.0"
+    "rn-fetch-blob": "^0.12.0",
+    "victory-native": "^34.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
