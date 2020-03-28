@@ -296,6 +296,9 @@ function OverlapScreen() {
     };
   });
 
+  // This map shows where your private location trail overlaps with public data from a variety of sources,
+  // including official reports from WHO, Ministries of Health, and Chinese local, provincial, and national
+  // health authorities. If additional data are available from reliable online reports, they are included.
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
