@@ -1,7 +1,7 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import { Alert, Platform } from 'react-native';
-
+import {Alert, Platform, Linking} from 'react-native';
+import {PERMISSIONS, check, RESULTS, request} from 'react-native-permissions';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
 import PushNotification from 'react-native-push-notification';
@@ -260,7 +260,13 @@ export default class LocationServices {
               [
                 {
                   text: 'Yes',
-                  onPress: () => BackgroundGeolocation.showLocationSettings(),
+                  onPress: () => {
+                    if (Platform.OS === 'android'){ // showLocationSettings() only works for android
+                    BackgroundGeolocation.showLocationSettings();
+                    } else {
+                      Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
+                    }
+                  },
                 },
                 {
                   text: 'No',

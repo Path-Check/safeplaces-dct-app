@@ -152,10 +152,9 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 38,
-
+    fontSize: 24,
     padding: 0,
+    fontFamily: 'OpenSans-Bold',
   },
   subHeaderTitle: {
     textAlign: 'center',

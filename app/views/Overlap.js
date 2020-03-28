@@ -96,12 +96,9 @@ class OverlapScreen extends Component {
   setMarkers = async () => {
     GetStoreData('LOCATION_DATA').then(locationArrayString => {
       var locationArray = JSON.parse(locationArrayString);
-      if (locationArray === null) {
-        console.log(locationArray);
-      } else {
+      if (locationArray !== null) {
         var markers = [];
         for (var i = 0; i < locationArray.length - 1; i += 1) {
-          console.log(i);
           const coord = locationArray[i];
           const marker = {
             coordinate: {
@@ -247,6 +244,8 @@ class OverlapScreen extends Component {
       const dist_threshold = 2000; //In KMs
       const latestLat = this.state.initialRegion.latitude;
       const latestLong = this.state.initialRegion.longitude;
+      const index = 0;
+
       for (const key in records) {
         const latitude = parseFloat(key.split('|')[0]);
         const longitude = parseFloat(key.split('|')[1]);
@@ -256,7 +255,8 @@ class OverlapScreen extends Component {
           !isNaN(longitude) &&
           distance(latestLat, latestLong, latitude, longitude) < dist_threshold
         ) {
-          var circle = {
+          const circle = {
+            key: `${index}-${latitude}-${longitude}-${count}`,
             center: {
               latitude: latitude,
               longitude: longitude,
@@ -264,14 +264,13 @@ class OverlapScreen extends Component {
             radius: 50 * count,
           };
           circles.push(circle);
-          console.log(count);
         }
+        index += 1;
       }
       console.log(circles.length, 'points found');
       this.setState({
-        circles: circles,
+        circles,
       });
-      console.log('done!');
     } catch (e) {
       console.log(e);
     }
@@ -311,11 +310,12 @@ class OverlapScreen extends Component {
         </View>
         <MapView
           provider={PROVIDER_GOOGLE}
-          style={styles.main}
+          style={styles.map}
           initialRegion={this.state.initialRegion}
           customMapStyle={customMapStyles}>
           {this.state.markers.map(marker => (
             <Marker
+              key={marker.key}
               coordinate={marker.coordinate}
               title={marker.title}
               description={marker.description}
@@ -324,6 +324,7 @@ class OverlapScreen extends Component {
           ))}
           {this.state.circles.map(circle => (
             <CustomCircle
+              key={circle.key}
               center={circle.center}
               radius={circle.radius}
               fillColor='rgba(163, 47, 163, 0.3)'
@@ -349,21 +350,24 @@ class OverlapScreen extends Component {
         <View style={styles.footer}>
           <Text
             style={[
-              styles.sectionDescription,
-              { textAlign: 'center', paddingTop: 15 },
-            ]}>
+              styles.sectionFooter,
+              { textAlign: 'center', paddingTop: 15, color: 'blue' },
+            ]}
+            onPress={() =>
+              Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
+            }>
             {languages.t('label.nCoV2019_url_info')}{' '}
           </Text>
-          <Text
+          {/* <Text
             style={[
-              styles.sectionDescription,
+              styles.sectionFooter,
               { color: 'blue', textAlign: 'center', marginTop: 0 },
             ]}
             onPress={() =>
               Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
             }>
             {languages.t('label.nCoV2019_url')}
-          </Text>
+          </Text> */}
         </View>
       </SafeAreaView>
     );
@@ -393,6 +397,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     textAlignVertical: 'top',
     // alignItems: 'center',
+    padding: 15,
+    width: '96%',
+    alignSelf: 'center',
+  },
+  map: {
+    flex: 1,
+    flexDirection: 'column',
     padding: 15,
     width: '96%',
     alignSelf: 'center',
@@ -448,6 +459,12 @@ const styles = StyleSheet.create({
   },
   sectionDescription: {
     fontSize: 16,
+    lineHeight: 24,
+    marginTop: 12,
+    fontFamily: 'OpenSans-Regular',
+  },
+  sectionFooter: {
+    fontSize: 12,
     lineHeight: 24,
     marginTop: 12,
     fontFamily: 'OpenSans-Regular',
