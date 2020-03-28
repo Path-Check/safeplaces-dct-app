@@ -1,7 +1,7 @@
 /**
  * Import a Google JSon into the Database.
  */
-import {GetStoreData, SetStoreData} from '../helpers/General';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 
 function BuildLocalFormat(placeVisit) {
   return (loc = {

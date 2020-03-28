@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import colors from '../constants/colors';
-import {WebView} from 'react-native-webview';
+import { WebView } from 'react-native-webview';
 import Button from '../components/Button';
 import backArrow from './../assets/images/backArrow.png';
 import I18n from '../../I18n';
@@ -51,8 +51,8 @@ class NewsScreen extends Component {
         </View>
 
         <WebView
-          source={{uri: 'http://superworld.rise.org.cy/COVID19/news/'}}
-          style={{marginTop: 15}}
+          source={{ uri: 'http://superworld.rise.org.cy/COVID19/news/' }}
+          style={{ marginTop: 15 }}
         />
       </SafeAreaView>
     );

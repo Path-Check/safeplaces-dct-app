@@ -2,7 +2,7 @@
  * react-native-swiper
  * @author leecade<leecade@163.com>
  */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   Text,
@@ -207,7 +207,7 @@ export default class extends Component {
 
   initState(props, updateIndex = false) {
     // set the current state
-    const state = this.state || {width: 0, height: 0, offset: {x: 0, y: 0}};
+    const state = this.state || { width: 0, height: 0, offset: { x: 0, y: 0 } };
 
     const initState = {
       autoplayEnd: false,
@@ -226,7 +226,7 @@ export default class extends Component {
     }
 
     // Default: horizontal
-    const {width, height} = Dimensions.get('window');
+    const { width, height } = Dimensions.get('window');
 
     initState.dir = props.horizontal === false ? 'y' : 'x';
 
@@ -262,9 +262,9 @@ export default class extends Component {
   }
 
   onLayout = (event) => {
-    const {width, height} = event.nativeEvent.layout;
+    const { width, height } = event.nativeEvent.layout;
     const offset = (this.internals.offset = {});
-    const state = {width, height};
+    const state = { width, height };
 
     if (this.state.total > 1) {
       let setup = this.state.index;
@@ -290,7 +290,7 @@ export default class extends Component {
     // to emulate offset.
     if (Platform.OS === 'ios') {
       if (this.initialRender && this.state.total > 1) {
-        this.scrollView.scrollTo({...offset, animated: false});
+        this.scrollView.scrollTo({ ...offset, animated: false });
         this.initialRender = false;
       }
     }
@@ -330,7 +330,7 @@ export default class extends Component {
           ? this.state.index === this.state.total - 1
           : this.state.index === 0)
       )
-        return this.setState({autoplayEnd: true});
+        return this.setState({ autoplayEnd: true });
 
       this.scrollBy(this.props.autoplayDirection ? 1 : -1);
     }, this.props.autoplayTimeout * 1000);
@@ -383,10 +383,10 @@ export default class extends Component {
    * @param {object} e native event
    */
   onScrollEndDrag = (e) => {
-    const {contentOffset} = e.nativeEvent;
-    const {horizontal, children} = this.props;
-    const {index} = this.state;
-    const {offset} = this.internals;
+    const { contentOffset } = e.nativeEvent;
+    const { horizontal, children } = this.props;
+    const { index } = this.state;
+    const { offset } = this.internals;
     const previousOffset = horizontal ? offset.x : offset.y;
     const newOffset = horizontal ? contentOffset.x : contentOffset.y;
 
@@ -447,10 +447,10 @@ export default class extends Component {
       // so we increment it by 1 then immediately set it to what it should be,
       // after render.
       if (offset[dir] === this.internals.offset[dir]) {
-        newState.offset = {x: 0, y: 0};
+        newState.offset = { x: 0, y: 0 };
         newState.offset[dir] = offset[dir] + 1;
         this.setState(newState, () => {
-          this.setState({offset: offset}, cb);
+          this.setState({ offset: offset }, cb);
         });
       } else {
         newState.offset = offset;
@@ -480,7 +480,7 @@ export default class extends Component {
       this.scrollView &&
         this.scrollView[animated ? 'setPage' : 'setPageWithoutAnimation'](diff);
     } else {
-      this.scrollView && this.scrollView.scrollTo({x, y, animated});
+      this.scrollView && this.scrollView.scrollTo({ x, y, animated });
     }
 
     // update scroll state
@@ -577,8 +577,8 @@ export default class extends Component {
     for (let i = 0; i < this.state.total; i++) {
       dots.push(
         i === this.state.index
-          ? React.cloneElement(ActiveDot, {key: i})
-          : React.cloneElement(Dot, {key: i}),
+          ? React.cloneElement(ActiveDot, { key: i })
+          : React.cloneElement(Dot, { key: i }),
       );
     }
 
@@ -709,7 +709,7 @@ export default class extends Component {
   render() {
     // const state = this.state;
     // const props = this.props;
-    const {index, total, width, height} = this.state;
+    const { index, total, width, height } = this.state;
     const {
       children,
       containerStyle,
@@ -726,7 +726,7 @@ export default class extends Component {
     const loopVal = loop ? 1 : 0;
     let pages = [];
 
-    const pageStyle = [{width: width, height: height}, styles.slide];
+    const pageStyle = [{ width: width, height: height }, styles.slide];
     const pageStyleLoading = {
       width,
       height,

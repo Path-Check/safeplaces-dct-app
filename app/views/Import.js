@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,7 +15,7 @@ import colors from '../constants/colors';
 import WebView from 'react-native-webview';
 import Button from '../components/Button';
 import backArrow from './../assets/images/backArrow.png';
-import {SearchAndImport} from '../helpers/GoogleTakeOutAutoImport';
+import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
 
 import I18n from '../../I18n';
 
@@ -71,7 +71,7 @@ class ImportScreen extends Component {
                 uri:
                   'https://takeout.google.com/settings/takeout/custom/location_history',
               }}
-              style={{marginTop: 15}}
+              style={{ marginTop: 15 }}
             />
           </View>
         </View>

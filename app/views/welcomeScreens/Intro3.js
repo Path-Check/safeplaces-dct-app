@@ -29,14 +29,14 @@ const Intro2 = (props) => {
 
         <Text
           style={
-            (styles.sectionDescription, {color: 'blue', textAlign: 'center'})
+            (styles.sectionDescription, { color: 'blue', textAlign: 'center' })
           }
           onPress={() =>
             Linking.openURL('http://superworld.rise.org.cy/COVID19/')
           }
           style={[
             styles.infoCardBodyText,
-            {fontFamily: 'OpenSans-Bold', opacity: 1, marginTop: 12},
+            { fontFamily: 'OpenSans-Bold', opacity: 1, marginTop: 12 },
           ]}>
           {I18n.t('MOREINFO')}: rise.org.cy.COVID19{' '}
         </Text>

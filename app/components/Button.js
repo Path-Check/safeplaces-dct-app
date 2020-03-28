@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import colors from '../constants/colors';
 
 interface Props {
@@ -10,12 +10,12 @@ interface Props {
 
 class Button extends React.Component<Props> {
   render() {
-    const {title, onPress, bgColor} = this.props;
+    const { title, onPress, bgColor } = this.props;
     return (
       <TouchableOpacity
         style={[
           styles.container,
-          {backgroundColor: bgColor || colors.DODGER_BLUE},
+          { backgroundColor: bgColor || colors.DODGER_BLUE },
         ]}
         onPress={onPress}>
         <Text style={styles.text}>{title}</Text>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -18,7 +18,7 @@ import news from './../assets/images/newspaper.png';
 
 import pkLogo from './../assets/images/PKLogo.png';
 
-import {GetStoreData, SetStoreData} from '../helpers/General';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 
 import I18n from '../../I18n';
 import FormButtons from '../../ixnilatisApp/views/FormButtons';
@@ -171,7 +171,7 @@ class LocationTracking extends Component {
               <Image
                 style={[
                   styles.actionButtonImage,
-                  {transform: [{rotate: '180deg'}]},
+                  { transform: [{ rotate: '180deg' }] },
                 ]}
                 source={exportImage}
                 resizeMode={'contain'}></Image>
@@ -194,14 +194,14 @@ class LocationTracking extends Component {
           <Text
             style={[
               styles.sectionDescription,
-              {textAlign: 'center', paddingTop: 15},
+              { textAlign: 'center', paddingTop: 15 },
             ]}>
             {I18n.t('MOREINFO')}:
           </Text>
           <Text
             style={[
               styles.sectionDescription,
-              {color: 'blue', textAlign: 'center', marginTop: 0},
+              { color: 'blue', textAlign: 'center', marginTop: 0 },
             ]}
             onPress={() =>
               Linking.openURL('http://superworld.rise.org.cy/COVID19/')

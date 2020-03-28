@@ -1,8 +1,8 @@
 /**
  * Checks the download folder, unzips and imports all data from Google TakeOut
  */
-import {zip, unzip, unzipAssets, subscribe} from 'react-native-zip-archive';
-import {MergeJSONWithLocalData} from '../helpers/GoogleData';
+import { zip, unzip, unzipAssets, subscribe } from 'react-native-zip-archive';
+import { MergeJSONWithLocalData } from '../helpers/GoogleData';
 
 // require the module
 var RNFS = require('react-native-fs');
@@ -46,7 +46,7 @@ export async function SearchAndImport(googleLocationJSON) {
   console.log('Auto-import start');
 
   // UnZip Progress Bar Log.
-  progress = subscribe(({progress, filePath}) => {
+  progress = subscribe(({ progress, filePath }) => {
     if (Math.trunc(progress * 100) % 10 === 0)
       console.log('Unzipping', Math.trunc(progress * 100), '%');
   });

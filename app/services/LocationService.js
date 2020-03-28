@@ -1,6 +1,6 @@
-import {GetStoreData, SetStoreData} from '../helpers/General';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import {Alert} from 'react-native';
+import { Alert } from 'react-native';
 import I18n from '../../I18n';
 
 var instanceCount = 0;

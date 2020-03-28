@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,7 +12,7 @@ import colors from '../constants/colors';
 import Button from '../components/Button';
 import I18n from '../../I18n';
 
-import {GetStoreData, SetStoreData} from '../helpers/General';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 
 class Welcome extends Component {
   constructor(props) {
@@ -42,7 +42,8 @@ class Welcome extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.main}>
           <View style={styles.topView}>
-            <View style={(styles.intro, {textAlign: 'center', paddingTop: 25})}>
+            <View
+              style={(styles.intro, { textAlign: 'center', paddingTop: 25 })}>
               <Text style={styles.headerTitle}>{I18n.t('IXNILATIS')} </Text>
               <Text style={styles.sectionDescription}>
                 {I18n.t('WELCOME1')}
@@ -55,7 +56,7 @@ class Welcome extends Component {
               title="{I18n.t('STARTLOGGING')}"
               onPress={() => this.willParticipate()}
             />
-            <Text style={{padding: 5, justifyContent: 'center'}}>
+            <Text style={{ padding: 5, justifyContent: 'center' }}>
               {I18n.t('NOTE')}: {I18n.t('WELCOME2')}
             </Text>
           </View>
@@ -64,13 +65,15 @@ class Welcome extends Component {
         <View style={styles.footer}>
           <Text
             style={
-              (styles.sectionDescription, {textAlign: 'center', paddingTop: 5})
+              (styles.sectionDescription,
+              { textAlign: 'center', paddingTop: 5 })
             }>
             {I18n.t('MOREINFO')}:
           </Text>
           <Text
             style={
-              (styles.sectionDescription, {color: 'blue', textAlign: 'center'})
+              (styles.sectionDescription,
+              { color: 'blue', textAlign: 'center' })
             }
             onPress={() =>
               Linking.openURL('http://superworld.rise.org.cy/COVID19/')

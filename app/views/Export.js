@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,8 +15,8 @@ import {
 import colors from '../constants/colors';
 import WebView from 'react-native-webview';
 import Button from '../components/Button';
-import {GetStoreData} from '../helpers/General';
-import {convertPointsToString} from '../helpers/convertPointsToString';
+import { GetStoreData } from '../helpers/General';
+import { convertPointsToString } from '../helpers/convertPointsToString';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
@@ -98,7 +98,7 @@ class ExportScreen extends Component {
             onPress={this.onShare}>
             <Text style={styles.buttonText}>{I18n.t('SHARE')}</Text>
           </TouchableOpacity>
-          <Text style={[styles.sectionDescription, {marginTop: 36}]}>
+          <Text style={[styles.sectionDescription, { marginTop: 36 }]}>
             {I18n.t('LOGHASDATA')}{' '}
             {convertPointsToString(LocationServices.getPointCount())}
           </Text>
