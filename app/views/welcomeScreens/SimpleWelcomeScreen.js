@@ -14,7 +14,7 @@ import IconGlobe from './../../assets/images/intro-globe.svg';
 import IconLocked from './../../assets/images/intro-locked.svg';
 import IconSiren from './../../assets/images/intro-siren.svg';
 import languages from './../../locales/languages';
-import Button from '../../components/Button';
+import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import FontWeights from '../../constants/fontWeights';
 
@@ -47,32 +47,29 @@ const SimpleWelcomeScreen = props => {
         </Text>
         <View style={styles.descriptionsContainer}>
           <DescriptionComponent
-            icon={<IconGlobe width={ICON_SIZE} height={ICON_SIZE}/>}
+            icon={<IconGlobe width={ICON_SIZE} height={ICON_SIZE} />}
             header={languages.t('label.intro_header_0')}
             subheader={languages.t('label.intro_subheader_0')}
           />
           <DescriptionComponent
-            icon={<IconLocked width={ICON_SIZE} height={ICON_SIZE}/>}
+            icon={<IconLocked width={ICON_SIZE} height={ICON_SIZE} />}
             header={languages.t('label.intro_header_1')}
             subheader={languages.t('label.intro_subheader_1')}
           />
           <DescriptionComponent
-            icon={<IconSiren width={ICON_SIZE} height={ICON_SIZE}/>}
+            icon={<IconSiren width={ICON_SIZE} height={ICON_SIZE} />}
             header={languages.t('label.intro_header_2')}
             subheader={languages.t('label.intro_subheader_2')}
           />
         </View>
       </View>
 
-      <View style={styles.buttonContainer}>
-        <Button
-          title={languages.t('label.intro_get_started')}
-          titleStyle={styles.primaryButtonText}
-          onPress={() => props.navigation.navigate('LocationTrackingScreen')}
-          bgColor={Colors.BLUE_BUTTON}
-          toBgColor={Colors.BLUE_TO_BUTTON}
-        />
-      </View>
+      <ButtonWrapper
+        title={languages.t('label.intro_get_started')}
+        onPress={() => props.navigation.navigate('LocationTrackingScreen')}
+        bgColor={Colors.BLUE_BUTTON}
+        toBgColor={Colors.BLUE_TO_BUTTON}
+      />
     </View>
   );
 };
@@ -127,29 +124,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 20,
   },
-  primaryButtonTouchable: {
-    borderRadius: 12,
-    backgroundColor: '#665eff',
-    height: 52,
-    alignSelf: 'center',
-    width: width * 0.7,
-    marginTop: 30,
-    justifyContent: 'center',
-  },
-  primaryButtonText: {
-    fontWeight: FontWeights.BOLD,
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: '#ffffff',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: width * 0.7,
-    alignSelf: 'center',
-  },
   descriptionsContainer: {
     marginTop: '5%',
     width: width * 0.7,
@@ -182,7 +156,7 @@ const styles = StyleSheet.create({
   descriptionSubheaderText: {
     fontWeight: FontWeights.LIGHT,
     fontSize: 14,
-    color: '#000000',
+    color: '#6A6A6A',
   },
 });
 

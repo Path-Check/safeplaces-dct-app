@@ -11,12 +11,12 @@ interface Props {
 
 class Button extends React.Component<Props> {
   render() {
-    const { title, onPress, bgColor, toBgColor, titleStyle, buttonStyle } = this.props;
+    const { title, onPress, bgColor = '#665EFF', toBgColor = bgColor, titleStyle, buttonStyle } = this.props;
     return (
       <LinearGradient
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
-      colors={[bgColor, toBgColor ? toBgColor : bgColor]}
+      colors={[bgColor, toBgColor]}
       style={[
         buttonStyle ? buttonStyle : styles.container
       ]}>

@@ -21,6 +21,8 @@ const colors = {
   RED_TO_BUTTON: '#E97C79',
   GRAY_BUTTON: '#868686',
   GRAY_TO_BUTTON: '#868686',
+
+  BLUE_LINK: '#007AFF',
 };
 
 export default colors;
