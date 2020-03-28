@@ -61,8 +61,8 @@ exports[`renders correctly 1`] = `
     <Text
       style={
         Object {
-          "fontSize": 38,
-          "fontWeight": "bold",
+          "fontFamily": "OpenSans-Bold",
+          "fontSize": 24,
           "padding": 0,
           "textAlign": "center",
         }
