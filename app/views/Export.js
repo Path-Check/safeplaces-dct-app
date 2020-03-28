@@ -90,8 +90,12 @@ class ExportScreen extends Component {
         </View>
 
         <View style={styles.main}>
-          <Text style={styles.sectionDescription}>{languages.t('label.export_para_1')}</Text>
-          <Text style={styles.sectionDescription}>{languages.t('label.export_para_2')</Text>
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.export_para_1')}
+          </Text>
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.export_para_2')}
+          </Text>
           <TouchableOpacity
             style={styles.buttonTouchable}
             onPress={this.onShare}>

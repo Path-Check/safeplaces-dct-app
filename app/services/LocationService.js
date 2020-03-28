@@ -1,7 +1,7 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { Alert } from 'react-native';
-import languages from '../../locales/languages';
+import languages from '../locales/languages';
 
 var instanceCount = 0;
 var lastPointCount = 0;

@@ -20,6 +20,7 @@ import Button from '../../app/components/Button';
 import backArrow from '../../app/assets/images/backArrow.png';
 import { formatDate, formatDateTime } from '../dateUtils';
 import { getFormCount, maxFormCount } from '../formLimitations';
+import languages from '../../app/locales/languages';
 
 const width = Dimensions.get('window').width;
 
