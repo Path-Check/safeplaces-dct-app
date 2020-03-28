@@ -349,21 +349,24 @@ class OverlapScreen extends Component {
         <View style={styles.footer}>
           <Text
             style={[
-              styles.sectionDescription,
-              { textAlign: 'center', paddingTop: 15 },
-            ]}>
+              styles.sectionFooter,
+              { textAlign: 'center', paddingTop: 15, color: 'blue' },
+            ]}
+            onPress={() =>
+              Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
+            }>
             {languages.t('label.nCoV2019_url_info')}{' '}
           </Text>
-          <Text
+          {/* <Text
             style={[
-              styles.sectionDescription,
+              styles.sectionFooter,
               { color: 'blue', textAlign: 'center', marginTop: 0 },
             ]}
             onPress={() =>
               Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
             }>
             {languages.t('label.nCoV2019_url')}
-          </Text>
+          </Text> */}
         </View>
       </SafeAreaView>
     );
@@ -448,6 +451,12 @@ const styles = StyleSheet.create({
   },
   sectionDescription: {
     fontSize: 16,
+    lineHeight: 24,
+    marginTop: 12,
+    fontFamily: 'OpenSans-Regular',
+  },
+  sectionFooter: {
+    fontSize: 12,
     lineHeight: 24,
     marginTop: 12,
     fontFamily: 'OpenSans-Regular',

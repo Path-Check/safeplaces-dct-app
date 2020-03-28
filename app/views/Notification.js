@@ -134,7 +134,7 @@ class NotificationScreen extends Component {
         </View>
 
         <View style={styles.main}>
-          <Text style={styles.headerTitle}>
+          <Text style={styles.pageTitle}>
             {languages.t('label.notification_title')}
           </Text>
           {this.state.dataAvailable ? (
@@ -152,19 +152,30 @@ class NotificationScreen extends Component {
                   data={this.state.data}
                 />
               </VictoryChart>
-              <Text style={styles.mainText}>
-                {languages.t('label.notification_main_text')}
-              </Text>
+              <View style={styles.notificationsHeader}>
+                <Text style={styles.notificationsHeaderText}>
+                  {languages.t('label.notification_main_text')}
+                </Text>
+              </View>
+
               <ScrollView contentContainerStyle={styles.contentContainer}>
                 {this.state.data.map(data => (
-                  <TouchableOpacity key={data.x} style={styles.buttonTouchable}>
-                    <Text style={styles.buttonText}>
+                  <View key={data.x} style={styles.notificationView}>
+                    <Text
+                      style={[
+                        styles.notificationsText,
+                        data.y > 80
+                          ? styles.notificationsTextRed
+                          : data.y > 50
+                          ? styles.notificationsTextOrange
+                          : null,
+                      ]}>
                       {'Day ' +
                         data.x +
-                        ':    Number of Intersections ' +
+                        ':    Number of Intersections: ' +
                         data.y}
                     </Text>
-                  </TouchableOpacity>
+                  </View>
                 ))}
               </ScrollView>
             </>
@@ -203,14 +214,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     textAlignVertical: 'top',
-    alignItems: 'center',
-    padding: 20,
-    width: '96%',
-    alignSelf: 'center',
-  },
-
-  contentContainer: {
     paddingVertical: 20,
+    alignSelf: 'center',
+    width: '100%',
   },
   row: {
     flex: 1,
@@ -260,6 +266,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: 'OpenSans-Bold',
   },
+  pageTitle: {
+    fontSize: 24,
+    fontFamily: 'OpenSans-Bold',
+    marginLeft: 20,
+  },
   headerContainer: {
     flexDirection: 'row',
     height: 60,
@@ -283,6 +294,37 @@ const styles = StyleSheet.create({
     marginTop: 12,
     overflow: 'scroll',
     fontFamily: 'OpenSans-Regular',
+  },
+  notificationsHeader: {
+    backgroundColor: '#665eff',
+    width: '100%',
+    paddingHorizontal: 20,
+    paddingVertical: 14,
+  },
+  notificationsHeaderText: {
+    color: colors.WHITE,
+    fontSize: 16,
+    fontFamily: 'OpenSans-Bold',
+  },
+  notificationView: {
+    width: '100%',
+    borderBottomColor: '#bdc3c7',
+    borderBottomWidth: 1,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+  },
+  notificationsText: {
+    color: colors.BLACK,
+    fontSize: 16,
+    fontFamily: 'OpenSans-Regular',
+  },
+  notificationsTextRed: {
+    color: colors.RED,
+    fontFamily: 'OpenSans-Bold',
+  },
+  notificationsTextOrange: {
+    color: colors.ORANGE,
+    fontFamily: 'OpenSans-SemiBold',
   },
 });
 
