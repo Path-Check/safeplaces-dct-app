@@ -60,7 +60,7 @@ export default class LocationServices {
       stationaryRadius: 50,
       distanceFilter: 50,
       notificationTitle: languages.t('label.ENABLED'),
-      notificationText: languages.t('label.WELCOME1'),
+      notificationText: languages.t('label.intro2_para1'),
       debug: false, // when true, it beeps every time a loc is read
       startOnBoot: false,
       stopOnTerminate: false,
