@@ -17,7 +17,6 @@ jest.mock('react-native-popup-menu', () => ({
   MenuOption: 'MenuOption',
   MenuTrigger: 'MenuTrigger',
 }));
-
 jest.mock('@react-navigation/native', () => {
   return {
     createAppContainer: jest
