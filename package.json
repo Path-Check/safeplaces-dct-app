@@ -39,6 +39,7 @@
     "lodash": "4.17.15",
     "moment": "^2.24.0",
     "patch-package": "^6.2.1",
+    "pluralize": "^8.0.0",
     "postinstall-postinstall": "^2.0.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
