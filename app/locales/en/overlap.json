@@ -1,0 +1,10 @@
+{
+  "overlap_title": "Check Overlap",
+  "overlap_para_1": "Green circles are clusters of your locations, click to zoom. Red markers are your recorded locations.\n\nPress the button to download public information of confirmed cases, shown as faint purple circles.",
+  "show_overlap": "Check Public Data",
+  "loading_public_data": "loading data...",
+  "overlap_no_results_button_label": "Public Data Loaded",
+  "overlap_found_button_label": "Public Data Loaded",
+  "nCoV2019_url_info": "For more information on the dataset for this map",
+  "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+}

@@ -19,8 +19,8 @@ import news from './../assets/images/newspaper.png';
 import pkLogo from './../assets/images/PKLogo.png';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import languages from './../locales/languages';
 
-import I18n from '../../I18n';
 import FormButtons from '../../ixnilatisApp/views/FormButtons';
 import Version from '../../ixnilatisApp/views/Version';
 
@@ -94,7 +94,9 @@ class LocationTracking extends Component {
         <ScrollView contentContainerStyle={styles.main}>
           <View style={styles.topView}>
             <View style={styles.intro}>
-              <Text style={styles.headerTitle}>{I18n.t('IXNILATIS')}</Text>
+              <Text style={styles.headerTitle}>
+                {languages.t('label.private_kit')}
+              </Text>
 
               {this.state.isLogging ? (
                 <>
@@ -112,7 +114,7 @@ class LocationTracking extends Component {
                     onPress={() => this.setOptOut()}
                     style={styles.stopLoggingButtonTouchable}>
                     <Text style={styles.stopLoggingButtonText}>
-                      {I18n.t('STOPLOGGING')}
+                      {languages.t('label.stop_logging')}
                     </Text>
                   </TouchableOpacity>
                 </>
@@ -132,7 +134,7 @@ class LocationTracking extends Component {
                     onPress={() => this.willParticipate()}
                     style={styles.startLoggingButtonTouchable}>
                     <Text style={styles.startLoggingButtonText}>
-                      {I18n.t('STARTLOGGING')}
+                      {languages.t('label.start_logging')}
                     </Text>
                   </TouchableOpacity>
                 </>
@@ -140,11 +142,11 @@ class LocationTracking extends Component {
 
               {this.state.isLogging ? (
                 <Text style={styles.sectionDescription}>
-                  {I18n.t('WELCOME1')}
+                  {languages.t('label.logging_message')}
                 </Text>
               ) : (
                 <Text style={styles.sectionDescription}>
-                  {I18n.t('NOTE')}: {I18n.t('WELCOME2')}.
+                  {languages.t('label.not_logging_message')}
                 </Text>
               )}
 
@@ -162,7 +164,9 @@ class LocationTracking extends Component {
                 style={styles.actionButtonImage}
                 source={exportImage}
                 resizeMode={'contain'}></Image>
-              <Text style={styles.actionButtonText}>{I18n.t('IMPORT')}</Text>
+              <Text style={styles.actionButtonText}>
+                {languages.t('label.import')}
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -175,7 +179,9 @@ class LocationTracking extends Component {
                 ]}
                 source={exportImage}
                 resizeMode={'contain'}></Image>
-              <Text style={styles.actionButtonText}>{I18n.t('EXPORT')}</Text>
+              <Text style={styles.actionButtonText}>
+                {languages.t('label.export')}
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -185,7 +191,9 @@ class LocationTracking extends Component {
                 style={styles.actionButtonImage}
                 source={news}
                 resizeMode={'contain'}></Image>
-              <Text style={styles.actionButtonText}>{I18n.t('NEWS')}</Text>
+              <Text style={styles.actionButtonText}>
+                {languages.t('label.news')}
+              </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -196,7 +204,7 @@ class LocationTracking extends Component {
               styles.sectionDescription,
               { textAlign: 'center', paddingTop: 15 },
             ]}>
-            {I18n.t('MOREINFO')}:
+            {languages.t('label.url_info')}{' '}
           </Text>
           <Text
             style={[
@@ -206,7 +214,7 @@ class LocationTracking extends Component {
             onPress={() =>
               Linking.openURL('http://superworld.rise.org.cy/COVID19/')
             }>
-            rise.org.cy.COVID19
+            {languages.t('label.private_kit_url')}
           </Text>
           <Version />
         </View>

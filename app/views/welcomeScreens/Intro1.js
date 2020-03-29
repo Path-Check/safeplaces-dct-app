@@ -9,11 +9,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import welcome1 from './../../assets/images/welcome1.png';
+import languages from './../../locales/languages';
 import logo1 from './../../assets/images/logo1.png';
 import logo2 from './../../assets/images/logo2.png';
 import logo3 from './../../assets/images/logo3.png';
-
-import I18n from '../../../I18n';
 
 const width = Dimensions.get('window').width;
 
@@ -22,8 +21,12 @@ const Intro1 = (props) => {
     <View style={styles.mainContainer}>
       <View style={styles.infoCard}>
         <Image source={welcome1} style={styles.infoCardImage} />
-        <Text style={styles.infoCardHeadText}>{I18n.t('IXNILATIS')}</Text>
-        <Text style={styles.infoCardBodyText}>{I18n.t('INTRO1')}</Text>
+        <Text style={styles.infoCardHeadText}>
+          {languages.t('label.private_kit')}
+        </Text>
+        <Text style={styles.infoCardBodyText}>
+          {languages.t('label.intro1_para1')}
+        </Text>
         <View style={styles.rowContainer}>
           <Image source={logo1} style={styles.infoCardLogo} />
           <Image source={logo2} style={styles.infoCardLogo} />
@@ -44,7 +47,9 @@ const Intro1 = (props) => {
       <TouchableOpacity
         onPress={() => props.swipe(1)}
         style={styles.primaryButtonTouchable}>
-        <Text style={styles.primaryButtonText}>{I18n.t('NEXT')}</Text>
+        <Text style={styles.primaryButtonText}>
+          {languages.t('label.next')}
+        </Text>
       </TouchableOpacity>
       {/* <TouchableOpacity><Text style={{marginTop:12,fontFamily:'OpenSans-SemiBold',alignSelf:'center',color:'#665eff'}}>Skip this</Text></TouchableOpacity> */}
     </View>

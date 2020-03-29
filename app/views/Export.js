@@ -21,8 +21,7 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png';
-
-import I18n from '../../I18n';
+import languages from '../locales/languages';
 
 const width = Dimensions.get('window').width;
 
@@ -87,19 +86,23 @@ class ExportScreen extends Component {
             onPress={() => this.backToMain()}>
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>{I18n.t('EXPORT')}</Text>
+          <Text style={styles.headerTitle}>{languages.t('label.export')}</Text>
         </View>
 
         <View style={styles.main}>
-          <Text style={styles.sectionDescription}>{I18n.t('EXPORT1')}</Text>
-          <Text style={styles.sectionDescription}>{I18n.t('EXPORT2')}</Text>
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.export_para_1')}
+          </Text>
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.export_para_2')}
+          </Text>
           <TouchableOpacity
             style={styles.buttonTouchable}
             onPress={this.onShare}>
-            <Text style={styles.buttonText}>{I18n.t('SHARE')}</Text>
+            <Text style={styles.buttonText}>{languages.t('label.share')}</Text>
           </TouchableOpacity>
           <Text style={[styles.sectionDescription, { marginTop: 36 }]}>
-            {I18n.t('LOGHASDATA')}{' '}
+            {languages.t('label.data_hint')}{' '}
             {convertPointsToString(LocationServices.getPointCount())}
           </Text>
         </View>
