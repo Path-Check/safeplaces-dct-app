@@ -3,6 +3,7 @@
  */
 import { unzip, subscribe } from 'react-native-zip-archive';
 import { MergeJSONWithLocalData } from '../helpers/GoogleData';
+import { Platform } from 'react-native';
 
 // require the module
 let RNFS = require('react-native-fs');
@@ -47,21 +48,27 @@ function GetFileName() {
 // Imports any Takeout location data
 // Currently works for Google Takeout Location data
 export async function ImportTakeoutData(filePath) {
-  console.warn('[INFO] Takeout import start. Path:', filePath);
+  let unifiedPath = filePath;
+
+  if (Platform.OS === 'ios') {
+    unifiedPath = filePath.replace('file://', '');
+  }
+
+  console.warn('[INFO] Takeout import start. Path:', unifiedPath);
 
   // UnZip Progress Bar Log.
   progress = subscribe(
     ({
       progress,
-      //  filePath
+      //  unifiedPath
     }) => {
       if (Math.trunc(progress * 100) % 10 === 0)
         console.log('Unzipping', Math.trunc(progress * 100), '%');
     },
   );
 
-  unzip(filePath, RNFS.CachesDirectoryPath).then(path => {
-    console.warn(`Unzip Completed for ${path} and ${filePath}`);
+  unzip(unifiedPath, RNFS.CachesDirectoryPath).then(path => {
+    console.warn(`Unzip Completed for ${path} and ${unifiedPath}`);
 
     RNFS.readFile(GetFileName())
       .then(result => {
@@ -71,6 +78,7 @@ export async function ImportTakeoutData(filePath) {
       .catch(err => {
         if (err.code === 'ENOENT') {
           console.log('Caught ENOENT');
+          // TODO surface this as "no current data found in UI"
         }
         console.log(err.message, err.code);
         progress.remove();
