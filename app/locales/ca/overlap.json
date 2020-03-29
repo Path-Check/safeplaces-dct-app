@@ -1,0 +1,10 @@
+{
+  "overlap_title": "Comprovar la teva intersecció",
+  "overlap_para_1": "El registre de color vert representa el teu historial de localitzacions\n\nEls cercles de color morat clar representen la informació pública actual",
+  "show_overlap": "Fes click per veure la informació pública disponible",
+  "loading_public_data": "carregant dades...",
+  "overlap_no_results_button_label": "Informació pública incorporada",
+  "overlap_found_button_label": "Informació pública incorporada",
+  "nCoV2019_url_info": "Per obtenir més informació sobre les dades darrere d'aquest mapa",
+  "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+}
