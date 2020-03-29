@@ -181,7 +181,6 @@ exports[`renders correctly 1`] = `
         "longitudeDelta": 50,
       }
     }
-    provider="google"
     style={
       Object {
         "alignSelf": "center",
@@ -240,7 +239,7 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        Check Public Data
+        Click to view the public dataset
       </Text>
     </View>
     <Text
@@ -253,9 +252,9 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      Green circles are clusters of your locations, click to zoom. Red markers are your recorded locations.
+      The green trail represents your location history
 
-Press the button to download public information of confirmed cases, shown as faint purple circles.
+The light purple circles represent the public dataset
     </Text>
   </View>
   <View
