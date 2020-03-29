@@ -90,12 +90,19 @@ class SettingsScreen extends Component {
 
   // Add selected authorities to state, for display in the FlatList
   addAuthorityToState(authority) {
-    this.setState({
-      selectedAuthorities: this.state.selectedAuthorities.concat({
-        key: authority,
-        url: authoritiesList[authority].url,
-      }),
-    });
+    if (
+      this.state.selectedAuthorities.findIndex(x => x.key === authority) === -1
+    ) {
+      console.log(this.state.selectedAuthorities);
+      this.setState({
+        selectedAuthorities: this.state.selectedAuthorities.concat({
+          key: authority,
+          url: authoritiesList[authority].url,
+        }),
+      });
+    } else {
+      console.log('Not adding the duplicate to sources list');
+    }
   }
 
   removeAuthorityFromState(authority) {
@@ -155,18 +162,27 @@ class SettingsScreen extends Component {
               {languages.t('label.authorities_no_sources')}
             </Text>
           ) : (
-            <FlatList
-              data={this.state.selectedAuthorities}
-              renderItem={({ item }) => (
-                <View style={styles.flatlistRowView}>
-                  <Text style={styles.item}>{item.key}</Text>
-                  <TouchableOpacity
-                    onPress={() => this.removeAuthorityFromState(item)}>
-                    <Image source={closeIcon} style={styles.closeIcon} />
-                  </TouchableOpacity>
-                </View>
-              )}
-            />
+            <>
+              <View style={styles.flatlistRowView}>
+                <Text style={styles.item}>Text input here</Text>
+                <TouchableOpacity
+                  onPress={() => this.addAuthorityToState('test')}>
+                  <Image source={closeIcon} style={styles.closeIcon} />
+                </TouchableOpacity>
+              </View>
+              <FlatList
+                data={this.state.selectedAuthorities}
+                renderItem={({ item }) => (
+                  <View style={styles.flatlistRowView}>
+                    <Text style={styles.item}>{item.key}</Text>
+                    <TouchableOpacity
+                      onPress={() => this.removeAuthorityFromState(item)}>
+                      <Image source={closeIcon} style={styles.closeIcon} />
+                    </TouchableOpacity>
+                  </View>
+                )}
+              />
+            </>
           )}
         </View>
 
@@ -246,7 +262,7 @@ const styles = StyleSheet.create({
     flex: 3,
     flexDirection: 'column',
     textAlignVertical: 'top',
-    // alignItems: 'center',
+    justifyContent: 'flex-start',
     padding: 20,
     width: '96%',
     alignSelf: 'center',
