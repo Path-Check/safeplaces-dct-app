@@ -88,13 +88,28 @@ function get_YN() {  # helper function for interactive questions
 ###############################################################################
 ## Main setup
 
+if [[ "$OSTYPE" == "darwin"* ]] ; then
+    if ! found_exe brew ; then
+        echo "${YELLOW}Homebrew is required to install dependencies: https://docs.brew.sh/Installation${RESET}"
+        exit 1
+    fi
+fi
+
 # Need Node.js (8.3 or newer)
 #TODO: Check nodejs version? (nodejs --version)
 if ! found_exe nodejs ; then
-    echo "${BLUE}Installing Node.js v13.x...${RESET}"
-    curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-    sudo apt-get install -y nodejs
-    echo "${GREEN}Node.js installed!${RESET}"
+    if ! found_exe node ; then
+        echo "${BLUE}Installing Node.js v13.x...${RESET}"
+        if [[ "$OSTYPE" == "darwin"* ]] ; then
+            brew install node
+        else
+            sudo apt-get install -y nodejs
+            if ! found_exe nodejs ; then
+              curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+            fi
+        fi
+        echo "${GREEN}Node.js installed!${RESET}"
+    fi
 fi
 
 
