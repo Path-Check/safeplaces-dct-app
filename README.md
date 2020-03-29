@@ -40,6 +40,14 @@ Refer to and run the dev_setup.sh for needed tools.
 2. If you have any trouble with packages not round, try `react-native link` from project directory.
 3. Look at running commands below.
 
+### Google Maps API Key
+You will need to generate a Google API key in order for the mapping features to work correctly. Refer to this guide [guide](https://developers.google.com/maps/documentation/ios-sdk/get-api-key) in order to create the API key.
+
+Once created you will need to add it to two different places in the project. One for Android and one for iOS.
+
+* Android - open `android/app/src/main/AndroidManifest.xml`and search for `com.google.android.geo.API_KEY`. Add your key to the `android:value` property.
+* iOS - open `ios/PrivateKit/AppDelegate.m` and search for `GMSServices provideAPIKey` and replace line with `[GMSServices provideAPIKey:@"YOUR_API_KEY"];`
+
 ## Running
 
 Install modules:
