@@ -54,7 +54,7 @@ export async function ImportTakeoutData(filePath) {
     unifiedPath = filePath.replace('file://', '');
   }
 
-  console.warn('[INFO] Takeout import start. Path:', unifiedPath);
+  console.log('[INFO] Takeout import start. Path:', unifiedPath);
 
   // UnZip Progress Bar Log.
   progress = subscribe(
@@ -68,7 +68,7 @@ export async function ImportTakeoutData(filePath) {
   );
 
   unzip(unifiedPath, RNFS.CachesDirectoryPath).then(path => {
-    console.warn(`Unzip Completed for ${path} and ${unifiedPath}`);
+    console.log(`Unzip Completed for ${path} and ${unifiedPath}`);
 
     RNFS.readFile(GetFileName())
       .then(result => {
