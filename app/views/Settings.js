@@ -220,7 +220,9 @@ class SettingsScreen extends Component {
                   value={this.state.urlText}
                   autoFocus={this.state.urlEntryInProgress}
                   style={[styles.item, styles.textInput]}
-                  placeholder='Paste your URL here'
+                  placeholder={languages.t(
+                    'label.authorities_input_placeholder',
+                  )}
                   onSubmitEditing={() =>
                     this.addCustomUrlToState(this.state.urlText)
                   }
