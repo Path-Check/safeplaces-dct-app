@@ -322,11 +322,8 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   main: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    width: '80%',
+    width: '100%',
   },
   buttonsAndLogoView: {
     flex: 6,
@@ -353,6 +350,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   sectionDescription: {
+    textAlign: 'center',
     fontSize: 12,
     lineHeight: 24,
     fontFamily: 'OpenSans-Regular',

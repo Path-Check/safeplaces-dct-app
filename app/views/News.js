@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 24,
     fontFamily: 'OpenSans-Bold',
-    top: 21,
   },
   sectionDescription: {
     fontSize: 16,
