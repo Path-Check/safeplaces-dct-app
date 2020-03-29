@@ -38,7 +38,7 @@ const SimpleWelcomeScreen = props => {
           <Image source={IconLogo} style={styles.infoCardImage} />
         </View>
         <Text style={styles.infoCardHeadText}>
-          {languages.t('label.intro_title')}
+          {languages.t('label.private_kit')}
         </Text>
         <Text style={styles.infoCardSubheadText}>
           {languages.t('label.intro_subtitle')}
