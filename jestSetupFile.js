@@ -7,8 +7,9 @@ jest.mock(
 );
 jest.mock('react-native-share', () => 'Share');
 jest.mock('rn-fetch-blob', () => 'Blob');
-jest.mock('react-native-map-clustering', () => 'MapView');
+jest.mock('react-native-maps', () => 'MapView');
 jest.mock('react-native-background-timer', () => 'BackgroundTimer');
+jest.mock('react-native-permissions', () => 'Permissions');
 jest.mock('react-native-popup-menu', () => ({
   Menu: 'Menu',
   MenuProvider: 'MenuProvider',
@@ -16,7 +17,6 @@ jest.mock('react-native-popup-menu', () => ({
   MenuOption: 'MenuOption',
   MenuTrigger: 'MenuTrigger',
 }));
-
 jest.mock('@react-navigation/native', () => {
   return {
     createAppContainer: jest
