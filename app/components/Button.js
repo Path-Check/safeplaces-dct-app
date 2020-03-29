@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 Button.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
-  bgColor: PropTypes.string.isRequired,
+  bgColor: PropTypes.string,
   toBgColor: PropTypes.string,
   titleStyle: PropTypes.object,
   buttonStyle: PropTypes.object,

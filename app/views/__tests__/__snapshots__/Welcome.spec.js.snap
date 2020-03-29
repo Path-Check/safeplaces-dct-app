@@ -92,45 +92,77 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
+      <BVLinearGradient
+        colors={
+          Array [
+            4282551032,
+            4282551032,
+          ]
+        }
+        endPoint={
           Object {
-            "alignItems": "center",
-            "backgroundColor": "#428AF8",
-            "borderColor": "rgba(255,255,255,0.7)",
-            "borderRadius": 4,
-            "borderWidth": 0.5,
-            "justifyContent": "center",
-            "opacity": 1,
-            "paddingVertical": 12,
-            "width": "100%",
+            "x": 1,
+            "y": 0,
           }
         }
+        locations={null}
+        startPoint={
+          Object {
+            "x": 0,
+            "y": 0,
+          }
+        }
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderColor": "rgba(255,255,255,0.7)",
+              "borderRadius": 12,
+              "justifyContent": "center",
+              "paddingVertical": 8,
+              "width": "100%",
+            },
+          ]
+        }
       >
-        <Text
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "color": "#FFF",
-              "fontSize": 20,
-              "fontWeight": "600",
-              "height": 28,
-              "textAlign": "center",
+              "alignItems": "center",
+              "borderColor": "rgba(255,255,255,0.7)",
+              "borderRadius": 12,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingVertical": 8,
+              "width": "100%",
             }
           }
         >
-          Start Logging Location
-        </Text>
-      </View>
+          <Text
+            style={
+              Object {
+                "color": "#FFF",
+                "fontSize": 20,
+                "fontWeight": "600",
+                "height": 28,
+                "textAlign": "center",
+              }
+            }
+          >
+            Start Logging Location
+          </Text>
+        </View>
+      </BVLinearGradient>
       <Text
         style={
           Object {
