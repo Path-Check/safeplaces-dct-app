@@ -252,7 +252,7 @@ class OverlapScreen extends Component {
       const dist_threshold = 2000; //In KMs
       const latestLat = this.state.initialRegion.latitude;
       const latestLong = this.state.initialRegion.longitude;
-      const index = 0;
+      var index = 0;
 
       for (const key in records) {
         const latitude = parseFloat(key.split('|')[0]);

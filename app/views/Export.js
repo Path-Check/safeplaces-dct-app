@@ -56,7 +56,7 @@ function ExportScreen() {
 
   async function OnShare() {
     try {
-      let locationData = await new LocationData.getLocationData();
+      let locationData = await new LocationData().getLocationData();
 
       const jsonData = base64.encode(JSON.stringify(locationData));
       const title = 'PrivateKit_.json';
