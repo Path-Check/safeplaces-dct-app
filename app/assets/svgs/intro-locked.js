@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+export default `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="31px" height="38px" viewBox="0 0 31 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
     <title>twemoji-locked</title>
@@ -14,4 +14,4 @@
             </g>
         </g>
     </g>
-</svg>
+</svg>`;

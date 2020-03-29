@@ -27,7 +27,8 @@ import kebabIcon from './../assets/images/kebabIcon.png';
 import pkLogo from './../assets/images/PKLogo.png';
 import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
-import IconLocked from '../assets/images/intro-locked.svg';
+import IconLocked from '../assets/svgs/intro-locked';
+import { SvgXml } from 'react-native-svg';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
@@ -284,7 +285,7 @@ class LocationTracking extends Component {
     return (
       <View style={styles.privacyNoteContainer}>
         <View style={styles.privacyHeaderContainer}>
-          <IconLocked width={15} height={15} />
+          <SvgXml xml={IconLocked} width={15} height={15} />
           <Text style={styles.privacyHeader}>
             {languages.t('label.home_privacy_header')}
           </Text>

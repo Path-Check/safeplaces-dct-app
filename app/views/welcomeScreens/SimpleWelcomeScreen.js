@@ -10,13 +10,14 @@ import {
 } from 'react-native';
 const width = Dimensions.get('window').width;
 import IconLogo from './../../assets/images/PKLogo.png';
-import IconGlobe from './../../assets/images/intro-globe.svg';
-import IconLocked from './../../assets/images/intro-locked.svg';
-import IconSiren from './../../assets/images/intro-siren.svg';
+import IconGlobe from './../../assets/svgs/intro-globe';
+import IconLocked from './../../assets/svgs/intro-locked';
+import IconSiren from './../../assets/svgs/intro-siren';
 import languages from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import FontWeights from '../../constants/fontWeights';
+import { SvgXml } from 'react-native-svg';
 
 const DescriptionComponent = ({ icon, header, subheader, ...props }) => (
   <View style={styles.descriptionContainer}>
@@ -45,17 +46,17 @@ const SimpleWelcomeScreen = props => {
         </Text>
         <View style={styles.descriptionsContainer}>
           <DescriptionComponent
-            icon={<IconGlobe width={ICON_SIZE} height={ICON_SIZE} />}
+            icon={<SvgXml xml={IconGlobe} width={ICON_SIZE} height={ICON_SIZE} />}
             header={languages.t('label.intro_header_0')}
             subheader={languages.t('label.intro_subheader_0')}
           />
           <DescriptionComponent
-            icon={<IconLocked width={ICON_SIZE} height={ICON_SIZE} />}
+            icon={<SvgXml xml={IconLocked} width={ICON_SIZE} height={ICON_SIZE} />}
             header={languages.t('label.intro_header_1')}
             subheader={languages.t('label.intro_subheader_1')}
           />
           <DescriptionComponent
-            icon={<IconSiren width={ICON_SIZE} height={ICON_SIZE} />}
+            icon={<SvgXml xml={IconSiren} width={ICON_SIZE} height={ICON_SIZE} />}
             header={languages.t('label.intro_header_2')}
             subheader={languages.t('label.intro_subheader_2')}
           />
