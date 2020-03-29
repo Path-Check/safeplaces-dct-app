@@ -11,5 +11,6 @@
     "authorities_coming_soon_title": "Coming soon",
     "authorities_coming_soon_desc": "You'll be able to add custom data sources in an imminent update.",
     "authorities_done": "Done",
-    "authorities_add_url": "Add authority via URL"
+    "authorities_add_url": "Add authority via URL",
+    "authorities_input_placeholder": "Paste your URL here"
 }
