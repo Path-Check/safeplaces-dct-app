@@ -34,6 +34,7 @@ target 'PrivateKit' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
   # React Native Maps dependencies
   rn_maps_path = '../node_modules/react-native-maps'

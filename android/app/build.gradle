@@ -191,10 +191,12 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"
 
+    compile project(':react-native-fs')
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
