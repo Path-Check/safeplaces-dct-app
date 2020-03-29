@@ -7,6 +7,8 @@ export default {
   INTRO22: "The app logs your device’s location data in under 100KB of space.",
   INTRO23: "You are in charge",
   INTRO24: "Data Never Leaves Your Device Without Your Consent",
+  INTRO25: "Fill the declaration easily",
+  INTRO26: "Request a short movement outside your home conveniently, with only a few clicks.",
   INTRO31: "Ηelp Cypriots",
   INTRO32: "By logging your location trail, you help the authorities to track COVID19 with higher accuracy.",
   MOREINFO: "Learn More",

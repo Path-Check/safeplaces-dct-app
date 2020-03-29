@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   infoCard: {
     width: width * 0.7866,
-    backgroundColor: '#665EFF',
+    backgroundColor: '#3497fc',
     height: '70%',
     borderRadius: 12,
     alignSelf: 'center',
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   primaryButtonTouchable: {
     borderRadius: 12,
-    backgroundColor: '#665eff',
+    backgroundColor: '#3497fc',
     height: 52,
     alignSelf: 'center',
     width: width * 0.7866,

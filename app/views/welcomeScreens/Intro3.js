@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   primaryButtonTouchable: {
     borderRadius: 12,
-    backgroundColor: '#665eff',
+    backgroundColor: '#3497fc',
     height: 52,
     alignSelf: 'center',
     width: width * 0.38,

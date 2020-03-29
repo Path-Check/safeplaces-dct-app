@@ -20,9 +20,10 @@ const Intro2 = (props) => {
       <View style={styles.infoCard}>
         <Text style={styles.infoCardHeadText}>{I18n.t('INTRO21')}</Text>
         <Text style={styles.infoCardBodyText}>{I18n.t('INTRO22')}</Text>
-
         <Text style={styles.infoCardHeadText}>{I18n.t('INTRO23')}</Text>
         <Text style={styles.infoCardBodyText}>{I18n.t('INTRO24')} </Text>
+        <Text style={styles.infoCardHeadText}>{I18n.t('INTRO25')}</Text>
+        <Text style={styles.infoCardBodyText}>{I18n.t('INTRO26')} </Text>
         <View style={styles.rowContainer}>
           <Image source={logo1} style={styles.infoCardLogo} />
           <Image source={logo2} style={styles.infoCardLogo} />
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     height: '70%',
     borderRadius: 12,
     alignSelf: 'center',
-    marginTop: '9%',
+    marginTop: '5%',
     justifyContent: 'center',
   },
   infoCardImage: {
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   infoCardHeadText: {
     fontFamily: 'OpenSans-Bold',
     fontSize: 24,
-    lineHeight: 55,
+    lineHeight: 45,
     letterSpacing: 0,
     textAlign: 'center',
     color: '#ffffff',
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     maxWidth: '84%',
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: 10,
   },
   navigationDotsView: {
     flexDirection: 'row',
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   },
   primaryButtonTouchable: {
     borderRadius: 12,
-    backgroundColor: '#665eff',
+    backgroundColor: '#3497fc',
     height: 52,
     alignSelf: 'center',
     width: width * 0.38,
