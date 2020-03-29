@@ -21,7 +21,7 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png';
-import languages from '../locales/languages';
+import languages from './../locales/languages';
 
 const width = Dimensions.get('window').width;
 
@@ -34,7 +34,7 @@ class ExportScreen extends Component {
     super(props);
   }
 
-  onShare = async () => {
+  OnShare = async () => {
     try {
       const locationArray = await GetStoreData('LOCATION_DATA');
       var locationData;
@@ -98,7 +98,7 @@ class ExportScreen extends Component {
           </Text>
           <TouchableOpacity
             style={styles.buttonTouchable}
-            onPress={this.onShare}>
+            onPress={this.OnShare}>
             <Text style={styles.buttonText}>{languages.t('label.share')}</Text>
           </TouchableOpacity>
           <Text style={[styles.sectionDescription, { marginTop: 36 }]}>

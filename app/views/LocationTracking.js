@@ -163,7 +163,8 @@ class LocationTracking extends Component {
               <Image
                 style={styles.actionButtonImage}
                 source={exportImage}
-                resizeMode={'contain'}></Image>
+                resizeMode={'contain'}
+              />
               <Text style={styles.actionButtonText}>
                 {languages.t('label.import')}
               </Text>
@@ -178,7 +179,8 @@ class LocationTracking extends Component {
                   { transform: [{ rotate: '180deg' }] },
                 ]}
                 source={exportImage}
-                resizeMode={'contain'}></Image>
+                resizeMode={'contain'}
+              />
               <Text style={styles.actionButtonText}>
                 {languages.t('label.export')}
               </Text>
@@ -190,7 +192,8 @@ class LocationTracking extends Component {
               <Image
                 style={styles.actionButtonImage}
                 source={news}
-                resizeMode={'contain'}></Image>
+                resizeMode={'contain'}
+              />
               <Text style={styles.actionButtonText}>
                 {languages.t('label.news')}
               </Text>

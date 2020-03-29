@@ -59,8 +59,8 @@ export default class LocationServices {
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
       stationaryRadius: 50,
       distanceFilter: 50,
-      notificationTitle: languages.t('ENABLED'),
-      notificationText: languages.t('WELCOME1'),
+      notificationTitle: languages.t('label.ENABLED'),
+      notificationText: languages.t('label.WELCOME1'),
       debug: false, // when true, it beeps every time a loc is read
       startOnBoot: false,
       stopOnTerminate: false,
@@ -154,13 +154,13 @@ export default class LocationServices {
         // we need to set delay or otherwise alert may not be shown
         setTimeout(
           () =>
-            Alert.alert(languages.t('ACCESS1'), '', [
+            Alert.alert(languages.t('label.ACCESS1'), '', [
               {
-                text: languages.t('YES'),
+                text: languages.t('label.YES'),
                 onPress: () => BackgroundGeolocation.showAppSettings(),
               },
               {
-                text: languages.t('NO'),
+                text: languages.t('label.NO'),
                 onPress: () => console.log('No Pressed'),
                 style: 'cancel',
               },
@@ -224,13 +224,13 @@ export default class LocationServices {
         // we need to set delay or otherwise alert may not be shown
         setTimeout(
           () =>
-            Alert.alert(languages.t('ACCESS2'), '', [
+            Alert.alert(languages.t('label.ACCESS2'), '', [
               {
-                text: languages.t('YES'),
+                text: languages.t('label.YES'),
                 onPress: () => BackgroundGeolocation.showLocationSettings(),
               },
               {
-                text: languages.t('NO'),
+                text: languages.t('label.NO'),
                 onPress: () => console.log('No Pressed'),
                 style: 'cancel',
               },
@@ -241,13 +241,13 @@ export default class LocationServices {
         // we need to set delay or otherwise alert may not be shown
         setTimeout(
           () =>
-            Alert.alert(languages.t('ACCESS1'), '', [
+            Alert.alert(languages.t('label.ACCESS1'), '', [
               {
-                text: languages.t('YES'),
+                text: languages.t('label.YES'),
                 onPress: () => BackgroundGeolocation.showAppSettings(),
               },
               {
-                text: languages.t('NO'),
+                text: languages.t('label.NO'),
                 onPress: () => console.log('No Pressed'),
                 style: 'cancel',
               },
