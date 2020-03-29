@@ -8,6 +8,8 @@ import Welcome from './views/Welcome';
 import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
+import OverlapScreen from './views/Overlap';
+import LicencesScreen from './views/Licenses';
 import Slider from './views/welcomeScreens/Slider';
 import { GetStoreData, SetStoreData } from './helpers/General';
 import { getIxnilatisScreens } from '../ixnilatisApp/IxnilatisScreens';
@@ -16,6 +18,7 @@ import FlashMessage from 'react-native-flash-message';
 const Stack = createStackNavigator();
 
 class Entry extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -25,13 +28,13 @@ class Entry extends Component {
 
   componentDidMount() {
     GetStoreData('PARTICIPATE')
-      .then((isParticipating) => {
+      .then(isParticipating => {
         console.log(isParticipating);
         this.setState({
           initialRouteName: isParticipating,
         });
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   }
 
   render() {
@@ -57,7 +60,6 @@ class Entry extends Component {
               component={Slider}
               options={{ headerShown: false }}
             />
-
             <Stack.Screen
               name="WelcomeScreen"
               component={Welcome}
@@ -82,6 +84,16 @@ class Entry extends Component {
               name="ImportScreen"
               component={ImportScreen}
               options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="LicensesScreen"
+              component={LicencesScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="OverlapScreen"
+              component={OverlapScreen}
+              options={{headerShown:false}}
             />
             {getIxnilatisScreens(Stack)}
           </Stack.Navigator>

@@ -14,9 +14,13 @@ A personal location vault that nobody else can access. Log your location private
 1. Get consent to locally track location and send an encoded version online.
 2. Locally cache loction info once every 5 minutes: ```	Time  |  GPS Lat  |  GPS Lon ```
 
-# Development
+# Development Overview
 
 This is a React Native app version 61.5
+
+## Architecture
+
+Please refer to `docs/Private Kit Diagram.png` for a basic overview on the sequencing of generalized events and services that are utilized by Private Kit.
 
 ## Developer Setup
 
@@ -42,16 +46,13 @@ or
 npx react-native run-ios --simulator="iPhone 8 Plus"
 ```
 
+NOTE: In some cases, the abovementioned procedure leads to the error 'Failed to load bundle - Could not connect to development server'. In these cases, kill all other react-native processes and try it again.
+
 ## Contributing
 
-Read the [contribution guidelines](./.github/CONTRIBUTING.md).
+Read the [contribution guidelines](CONTRIBUTING.md).
 
-Join the WhatsApp group - https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
+WhatsApp: https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
+Slack: https://safepathsprivatekit.slack.com/
 
-## Tested On
-
-| Device | Version |
-| ------------- | ------------- |
-| Android Pixel | API 28  |
-| Android Pixel | API 29  |
 
