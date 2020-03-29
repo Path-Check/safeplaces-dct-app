@@ -218,10 +218,10 @@ echo "Try this to get started:"
 echo
 echo "  Run Android Studio then:"
 echo "    * Select 'Configure > AVD Manager' at the bottom"
-echo "    * Create and run a virtula device, such as a Pixel 2"
+echo "    * Create and run a virtual device, such as a Pixel 2"
 echo
 echo "  In a terminal run:"
-echo "      $ ~/mobileapp/1_start_react.sh"
+echo "      $ ./1_start_react.sh"
 echo "  In a second terminal:"
-echo "      $ ~/mobileapp/2_start_android_app.sh"
+echo "      $ ./2_start_android_app.sh"
 echo "  You can edit files and repeat step 2 again as necessary to debug."
