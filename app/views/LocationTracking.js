@@ -46,7 +46,7 @@ class LocationTracking extends Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     GetStoreData('PARTICIPATE')
-      .then((isParticipating) => {
+      .then(isParticipating => {
         console.log(isParticipating);
 
         if (isParticipating === 'true') {
@@ -60,7 +60,7 @@ class LocationTracking extends Component {
           });
         }
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   }
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
@@ -324,13 +324,6 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '80%',
-  },
-  block: {
-    margin: 20,
-    width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '80%',
@@ -375,6 +368,7 @@ const styles = StyleSheet.create({
     width: width * 0.7866,
     marginTop: 30,
     justifyContent: 'center',
+    marginBottom: 20,
   },
   startLoggingButtonText: {
     fontFamily: 'OpenSans-Bold',
