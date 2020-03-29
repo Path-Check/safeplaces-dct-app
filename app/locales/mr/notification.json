@@ -1,0 +1,8 @@
+{
+    "notification_main_text": "प्रत्येक दिवसा प्रमाणे इंटरसेक्शन पडताळून पह",
+    "notification_title": "तुमच्या इंटरसेक्शनचे विश्लेशण कर",
+    "notification_data_not_available": "\n\nआपण कोणताही ट्रेल डाऊनलोड केला नाही!\n\n",
+    "notification_warning_text": "अनियमित इंटरसेक्शन्स साठी खाली दिलेले बटण दाबा.\nचेतावणी: हे नक्कल केलेले इंटरसेक्शन्स आहेत, वास्तविक इंटरसेक्शन नाहीत",
+    "notification_random_data_button": "अनियमित डेटा मिळवण्यासाठी हे बटण दाबा",
+    "notifications":"सूचना"
+}
