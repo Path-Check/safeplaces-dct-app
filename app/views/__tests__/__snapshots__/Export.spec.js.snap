@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`<Export /> renders correctly 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -61,8 +61,8 @@ exports[`renders correctly 1`] = `
     <Text
       style={
         Object {
-          "fontSize": 38,
-          "fontWeight": "bold",
+          "fontFamily": "OpenSans-Bold",
+          "fontSize": 24,
           "padding": 0,
           "textAlign": "center",
         }
@@ -126,21 +126,26 @@ exports[`renders correctly 1`] = `
           "height": 52,
           "justifyContent": "center",
           "marginTop": 30,
-          "opacity": 1,
+          "opacity": 0.7,
           "width": 589.9499999999999,
         }
       }
     >
       <Text
         style={
-          Object {
-            "color": "#ffffff",
-            "fontFamily": "OpenSans-Bold",
-            "fontSize": 14,
-            "letterSpacing": 0,
-            "lineHeight": 19,
-            "textAlign": "center",
-          }
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontFamily": "OpenSans-Bold",
+              "fontSize": 14,
+              "letterSpacing": 0,
+              "lineHeight": 19,
+              "textAlign": "center",
+            },
+            Object {
+              "opacity": 0.7,
+            },
+          ]
         }
       >
         SHARE
@@ -161,9 +166,47 @@ exports[`renders correctly 1`] = `
         ]
       }
     >
-      Log has data of
+      Total time the log covers:
        
-      0 minutes.
+      ...
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+          },
+          Object {
+            "marginTop": 15,
+          },
+        ]
+      }
+    >
+      Number of points logged:
+       
+      ...
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+          },
+          Object {
+            "marginTop": 15,
+          },
+        ]
+      }
+    >
+      Time since last updated:
+       
+      ...
     </Text>
   </View>
 </RCTSafeAreaView>

@@ -109,15 +109,9 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('LicensesScreen', {});
   }
 
-  willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => {
-      LocationServices.start();
-      BroadcastingServices.start();
-    });
-    this.setState({
-      isLogging: true,
-    });
-  };
+  notifications() {
+    this.props.navigation.navigate('NotificationScreen', {});
+  }
 
   setOptOut = () => {
     LocationServices.stop(this.props.navigation);
@@ -154,6 +148,12 @@ class LocationTracking extends Component {
                   this.licenses();
                 }}>
                 <Text style={styles.menuOptionText}>Licenses</Text>
+              </MenuOption>
+              <MenuOption
+                onSelect={() => {
+                  this.notifications();
+                }}>
+                <Text style={styles.menuOptionText}>Notifications</Text>
               </MenuOption>
             </MenuOptions>
           </Menu>
