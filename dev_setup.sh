@@ -169,38 +169,19 @@ fi
 
 
 # Need Watchman v4.9+ (watchman --version)
-if ! found_exe watchman ; then
-    echo "${BLUE}Installing Watchman, this is going to take a little bit...${RESET}"
-    echo "${YELLOW}TODO: Watchman setup...is it necessary?${RESET}"
+if [[ "$OSTYPE" == "darwin"* ]] ; then
+    if ! found_exe watchman ; then
+        echo "Updating homebrew..."
+        brew update && brew upgrade
+        echo "${BLUE}Installing Watchman, this is going to take a little bit...${RESET}"
+        brew install watchman
 
-#    if ! found_exe brew ; then
-#        # Use the linuxbrew system to install 'watchman'
-#        sudo apt-get install linuxbrew-wrapper
-#        export PATH="$HOME/.linuxbrew/bin:$PATH"
-#        export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-#        export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-#    fi
-#    brew update && brew upgrade
-#
-#    brew install --HEAD watchman
-#
-#    # Then increase the amount of inotify user instances, user watches and queued events
-#    echo fs.inotify.max_user_instances=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-#    echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-#    echo fs.inotify.max_queued_events=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-
-
-# SSP: This is the source-code version that didn't quite work
-#    pushd ~
-#    git clone https://github.com/facebook/watchman.git
-#    cd watchman/
-#    git checkout v4.9.0
-#    sudo apt-get install -y autoconf automake build-essential python-dev libtool m4
-#    ./autogen.sh
-#    ./configure --enable-lenient
-#    make
-#    sudo make install
-#    popd # Return to where we were
+        # TODO: Is this needed? on which environments?
+        # Then increase the amount of inotify user instances, user watches and queued events
+        # echo fs.inotify.max_user_instances=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+        # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+        # echo fs.inotify.max_queued_events=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+    fi
 fi
 
 
