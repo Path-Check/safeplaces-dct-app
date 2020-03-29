@@ -21,10 +21,10 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png';
+import greenMarker from './../assets/images/user-green.png';
 import languages from './../locales/languages';
-import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import CustomCircle from '../helpers/customCircle';
-import MapView from 'react-native-map-clustering';
 
 const width = Dimensions.get('window').width;
 
@@ -96,22 +96,27 @@ class OverlapScreen extends Component {
   setMarkers = async () => {
     GetStoreData('LOCATION_DATA').then(locationArrayString => {
       var locationArray = JSON.parse(locationArrayString);
-      if (locationArray === null) {
-        console.log(locationArray);
-      } else {
+      if (locationArray !== null) {
         var markers = [];
+        var previousMarkers = {};
         for (var i = 0; i < locationArray.length - 1; i += 1) {
-          console.log(i);
           const coord = locationArray[i];
-          const marker = {
-            coordinate: {
-              latitude: coord['latitude'],
-              longitude: coord['longitude'],
-            },
-            key: i + 1,
-            color: '#f26964',
-          };
-          markers.push(marker);
+          const lat = coord['latitude'];
+          const long = coord['longitude'];
+          const key = String(lat) + '|' + String(long);
+          if (key in previousMarkers) {
+            previousMarkers[key] += 1;
+          } else {
+            previousMarkers[key] = 0;
+            const marker = {
+              coordinate: {
+                latitude: lat,
+                longitude: long,
+              },
+              key: i + 1,
+            };
+            markers.push(marker);
+          }
         }
         this.setState({
           markers: markers,
@@ -247,6 +252,8 @@ class OverlapScreen extends Component {
       const dist_threshold = 2000; //In KMs
       const latestLat = this.state.initialRegion.latitude;
       const latestLong = this.state.initialRegion.longitude;
+      var index = 0;
+
       for (const key in records) {
         const latitude = parseFloat(key.split('|')[0]);
         const longitude = parseFloat(key.split('|')[1]);
@@ -256,7 +263,8 @@ class OverlapScreen extends Component {
           !isNaN(longitude) &&
           distance(latestLat, latestLong, latitude, longitude) < dist_threshold
         ) {
-          var circle = {
+          const circle = {
+            key: `${index}-${latitude}-${longitude}-${count}`,
             center: {
               latitude: latitude,
               longitude: longitude,
@@ -264,14 +272,13 @@ class OverlapScreen extends Component {
             radius: 50 * count,
           };
           circles.push(circle);
-          console.log(count);
         }
+        index += 1;
       }
       console.log(circles.length, 'points found');
       this.setState({
-        circles: circles,
+        circles,
       });
-      console.log('done!');
     } catch (e) {
       console.log(e);
     }
@@ -311,18 +318,22 @@ class OverlapScreen extends Component {
         </View>
         <MapView
           provider={PROVIDER_GOOGLE}
-          style={styles.main}
-          initialRegion={this.state.initialRegion}>
+          style={styles.map}
+          initialRegion={this.state.initialRegion}
+          customMapStyle={customMapStyles}>
           {this.state.markers.map(marker => (
             <Marker
+              key={marker.key}
               coordinate={marker.coordinate}
               title={marker.title}
               description={marker.description}
               tracksViewChanges={false}
+              image={greenMarker}
             />
           ))}
           {this.state.circles.map(circle => (
             <CustomCircle
+              key={circle.key}
               center={circle.center}
               radius={circle.radius}
               fillColor='rgba(163, 47, 163, 0.3)'
@@ -348,21 +359,24 @@ class OverlapScreen extends Component {
         <View style={styles.footer}>
           <Text
             style={[
-              styles.sectionDescription,
-              { textAlign: 'center', paddingTop: 15 },
-            ]}>
+              styles.sectionFooter,
+              { textAlign: 'center', paddingTop: 15, color: 'blue' },
+            ]}
+            onPress={() =>
+              Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
+            }>
             {languages.t('label.nCoV2019_url_info')}{' '}
           </Text>
-          <Text
+          {/* <Text
             style={[
-              styles.sectionDescription,
+              styles.sectionFooter,
               { color: 'blue', textAlign: 'center', marginTop: 0 },
             ]}
             onPress={() =>
               Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
             }>
             {languages.t('label.nCoV2019_url')}
-          </Text>
+          </Text> */}
         </View>
       </SafeAreaView>
     );
@@ -392,6 +406,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     textAlignVertical: 'top',
     // alignItems: 'center',
+    padding: 15,
+    width: '96%',
+    alignSelf: 'center',
+  },
+  map: {
+    flex: 1,
+    flexDirection: 'column',
     padding: 15,
     width: '96%',
     alignSelf: 'center',
@@ -451,6 +472,12 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontFamily: 'OpenSans-Regular',
   },
+  sectionFooter: {
+    fontSize: 12,
+    lineHeight: 24,
+    marginTop: 12,
+    fontFamily: 'OpenSans-Regular',
+  },
   footer: {
     textAlign: 'center',
     fontSize: 12,
@@ -459,5 +486,107 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
 });
+
+const customMapStyles = [
+  {
+    featureType: 'all',
+    elementType: 'all',
+    stylers: [
+      {
+        saturation: '32',
+      },
+      {
+        lightness: '-3',
+      },
+      {
+        visibility: 'on',
+      },
+      {
+        weight: '1.18',
+      },
+    ],
+  },
+  {
+    featureType: 'administrative',
+    elementType: 'labels',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'landscape',
+    elementType: 'labels',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'landscape.man_made',
+    elementType: 'all',
+    stylers: [
+      {
+        saturation: '-70',
+      },
+      {
+        lightness: '14',
+      },
+    ],
+  },
+  {
+    featureType: 'poi',
+    elementType: 'labels',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'transit',
+    elementType: 'labels',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'water',
+    elementType: 'all',
+    stylers: [
+      {
+        saturation: '100',
+      },
+      {
+        lightness: '-14',
+      },
+    ],
+  },
+  {
+    featureType: 'water',
+    elementType: 'labels',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+      {
+        lightness: '12',
+      },
+    ],
+  },
+];
 
 export default OverlapScreen;
