@@ -3,4 +3,9 @@
     "export_para_2":"Tu historial de ubicaciones se compartirá como una lista de coordenadas en el tiempo, sin revelar ningún dato personal",
     "share":"COMPARTIR",
     "data_hint":"Tienes información acumulada de"
+    "data_covers":"Tiempo total registrado:",
+    "data_count":"Número de puntos registrados:",
+    "data_last_updated":"Tiempo desde la última actualizazión:",
+    "no_data": "No data",
+    "less_than_one_minute": "less than 1 minute"
 }
