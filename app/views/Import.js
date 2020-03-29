@@ -92,7 +92,7 @@ class ImportScreen extends Component {
               }}
               renderError={errorName => {
                 if (counter >= 1) {
-                  <View style={styles.errorLabel}>
+                  <View style={styles.sectionDescription}>
                     <Text>Error Occurred while importing file {errorName}</Text>
                   </View>;
                 }
