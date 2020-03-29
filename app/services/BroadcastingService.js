@@ -20,7 +20,7 @@ const MANUFACTURER_ID = 0xff;
 const MANUFACTURER_DATA = [12, 23, 56];
 
 function nowStr() {
-  return Moment(new Date()).format('H:mm');
+  return Moment(new Date()).format('H:mm')
 }
 
 /*
@@ -28,10 +28,7 @@ function nowStr() {
  */
 function isNewContact(contact) {
   var nowLocal = new Date().getTime();
-  if (
-    lastSeen[contact['uuid']] &&
-    lastSeen[contact['uuid']] > nowLocal - c5_MINS
-  ) {
+  if (lastSeen[contact['uuid']] && lastSeen[contact['uuid']] > nowLocal - c5_MINS) {
     //console.log('[Bluetooth]', nowStr(), currentUUID, 'Ignoring UUID for 5 mins:', contact['uuid']);
     return false; // needs a space of 5 mins to log again.
   }
@@ -74,14 +71,8 @@ function saveContact(contact) {
         time: unixtimeUTC,
       };
       curated.push(uuid_time);
-      console.log(
-        '[Bluetooth]',
-        nowStr(),
-        currentUUID,
-        'Saving contact:',
-        contact['uuid'],
-        curated.length,
-      );
+      console.log('[Bluetooth]', nowStr(), currentUUID,
+        'Saving contact:', contact['uuid'], curated.length);
 
       SetStoreData('CONTACT_DATA', curated);
     });
@@ -109,12 +100,8 @@ function saveMyUUID(me) {
     };
 
     console.log(
-      '[Bluetooth]',
-      nowStr(),
-      me['uuid'],
-      'Saving myUUID:',
-      me['uuid'],
-      curated.length,
+      '[Bluetooth]', nowStr(), me['uuid'],
+      'Saving myUUID:', me['uuid'], curated.length,
     );
     curated.push(uuid_time);
 
@@ -126,10 +113,9 @@ function loadLastUUIDAndBroadcast() {
   GetStoreData('MY_UUIDs', false).then(myUUIDArray => {
     if (!myUUIDArray) {
       console.log(
-        '[Bluetooth]',
-        nowStr(),
+        '[Bluetooth]', nowStr(),
         myUUIDArray[myUUIDArray.length - 1].uuid,
-        'Loading last uuid',
+        'Loading last uuid'
       );
       var lastUUID = myUUIDArray[myUUIDArray.length - 1].uuid;
       broadcast(lastUUID);
@@ -147,39 +133,13 @@ function broadcast(currentUUID) {
     //console.log('[Bluetooth]', nowStr(), currentUUID, 'Broadcasting');
     AndroidBLEAdvertiserModule.setCompanyId(MANUFACTURER_ID);
     AndroidBLEAdvertiserModule.broadcast(currentUUID, MANUFACTURER_DATA)
-      .then(success =>
-        console.log(
-          '[Bluetooth]',
-          nowStr(),
-          currentUUID,
-          'Broadcasting Sucessful',
-          success,
-        ),
-      )
-      .catch(error =>
-        console.log(
-          '[Bluetooth]',
-          nowStr(),
-          currentUUID,
-          'Broadcasting Error',
-          error,
-        ),
-      );
+      .then(success => console.log('[Bluetooth]', nowStr(), currentUUID, 'Broadcasting Sucessful', success))
+      .catch(error => console.log('[Bluetooth]', nowStr(), currentUUID, 'Broadcasting Error', error));
 
     //console.log('[Bluetooth]', nowStr(), currentUUID, "Starting Scanner");
     AndroidBLEAdvertiserModule.scan(MANUFACTURER_DATA, {})
-      .then(success =>
-        console.log(
-          '[Bluetooth]',
-          nowStr(),
-          currentUUID,
-          'Scan Successful',
-          success,
-        ),
-      )
-      .catch(error =>
-        console.log('[Bluetooth]', nowStr(), currentUUID, 'Scan Error', error),
-      );
+      .then(success => console.log('[Bluetooth]', nowStr(), currentUUID, "Scan Successful", success))
+      .catch(error => console.log('[Bluetooth]', nowStr(), currentUUID, "Scan Error", error));
   }
 }
 
@@ -190,45 +150,13 @@ function stopBroadcast(currentUUID) {
   if (Platform.OS === 'android') {
     //console.log('[Bluetooth]', nowStr(), currentUUID, 'Stopping Broadcast');
     AndroidBLEAdvertiserModule.stopBroadcast()
-      .then(success =>
-        console.log(
-          '[Bluetooth]',
-          nowStr(),
-          currentUUID,
-          'Stop Broadcast Successful',
-          success,
-        ),
-      )
-      .catch(error =>
-        console.log(
-          '[Bluetooth]',
-          nowStr(),
-          currentUUID,
-          'Stop Broadcast Error',
-          error,
-        ),
-      );
+      .then(success => console.log('[Bluetooth]', nowStr(), currentUUID, "Stop Broadcast Successful", success))
+      .catch(error => console.log('[Bluetooth]', nowStr(), currentUUID, "Stop Broadcast Error", error));
 
     //console.log('[Bluetooth]', nowStr(), currentUUID, "Stopping Scanning");
     AndroidBLEAdvertiserModule.stopScan()
-      .then(success =>
-        console.log(
-          '[Bluetooth]',
-          nowStr(),
-          currentUUID,
-          'Stop Scan Successful',
-          success,
-        ),
-      )
-      .catch(error =>
-        console.log(
-          '[Bluetooth]',
-          nowStr(),
-          currentUUID,
-          'Stop Scan Error',
-          error,
-        ),
-      );
+      .then(success => console.log('[Bluetooth]', nowStr(), currentUUID, "Stop Scan Successful", success))
+      .catch(error => console.log('[Bluetooth]', nowStr(), currentUUID, "Stop Scan Error", error));
   }
 }
 
@@ -246,53 +174,43 @@ function generateNewUUIDAndBroadcast() {
 
 export default class BroadcastingServices {
   static isBTActive() {
-    AndroidBLEAdvertiserModule.getAdapterState()
-      .then(result => {
-        console.log(
-          '[Bluetooth]',
-          nowStr(),
-          currentUUID,
-          'Bluetooth State',
-          result,
-        );
-        if (result != 12) {
-          setTimeout(
-            () =>
-              Alert.alert(
-                'Private Kit requires bluetooth to be enabled',
-                'Would you like to enable Bluetooth?',
-                [
-                  {
-                    text: 'Yes',
-                    onPress: () => AndroidBLEAdvertiserModule.enableAdapter(),
-                  },
-                  {
-                    text: 'No',
-                    onPress: () => console.log('No Pressed'),
-                    style: 'cancel',
-                  },
-                ],
-              ),
-            1000,
-          );
-          return false;
-        } else {
-          return true;
-        }
-      })
-      .catch(error => {
+    AndroidBLEAdvertiserModule.getAdapterState().then(result => {
+      console.log('[Bluetooth]', nowStr(), currentUUID, 'Bluetooth State', result);
+      if (result != 12) {
+        setTimeout(() =>
+          Alert.alert(
+            'Private Kit requires bluetooth to be enabled',
+            'Would you like to enable Bluetooth?',
+            [
+              {
+                text: 'Yes',
+                onPress: () => AndroidBLEAdvertiserModule.enableAdapter(),
+              },
+              {
+                text: 'No',
+                onPress: () => console.log('No Pressed'),
+                style: 'cancel',
+              },
+            ],
+          ),
+          1000);
         return false;
-        console.log('[Bluetooth]', nowStr(), currentUUID, 'BT Not Enabled');
-      });
+      } else {
+        return true;
+      }
+    }).catch(error => {
+      return false;
+      console.log('[Bluetooth]', nowStr(), currentUUID, "BT Not Enabled")
+    });
   }
 
   static start() {
-    const eventEmitter = new NativeEventEmitter(
-      NativeModules.AndroidBLEAdvertiserModule,
-    );
-    onBTStatusChange = eventEmitter.addListener('onBTStatusChange', status => {
-      if (status.enabled) BroadcastingServices.startAndSetCallbacks();
-      else BroadcastingServices.stopAndClearCallbacks();
+    const eventEmitter = new NativeEventEmitter(NativeModules.AndroidBLEAdvertiserModule);
+    onBTStatusChange = eventEmitter.addListener('onBTStatusChange', (status) => {
+      if (status.enabled)
+        BroadcastingServices.startAndSetCallbacks();
+      else
+        BroadcastingServices.stopAndClearCallbacks();
     });
 
     if (!BroadcastingServices.isBTActive()) return;
@@ -318,10 +236,8 @@ export default class BroadcastingServices {
     }
 
     // listening event.
-    const eventEmitter = new NativeEventEmitter(
-      NativeModules.AndroidBLEAdvertiserModule,
-    );
-    onDeviceFound = eventEmitter.addListener('onDeviceFound', event => {
+    const eventEmitter = new NativeEventEmitter(NativeModules.AndroidBLEAdvertiserModule);
+    onDeviceFound = eventEmitter.addListener('onDeviceFound', (event) => {
       //console.log('[Bluetooth]', nowStr(), currentUUID, 'New Device', event);
       if (event.serviceUuids && event.serviceUuids.length > 0)
         saveContact({ uuid: event.serviceUuids[0] });

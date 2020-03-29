@@ -103,7 +103,7 @@ export default class LocationServices {
 
     PushNotification.configure({
       // (required) Called when a remote or local notification is opened or received
-      onNotification: function(notification) {
+      onNotification: function (notification) {
         console.log('NOTIFICATION:', notification);
         // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
         notification.finish(PushNotificationIOS.FetchResult.NoData);
@@ -288,8 +288,7 @@ export default class LocationServices {
                 {
                   text: 'Yes',
                   onPress: () => {
-                    if (Platform.OS === 'android') {
-                      // showLocationSettings() only works for android
+                    if (Platform.OS === 'android') { // showLocationSettings() only works for android
                       BackgroundGeolocation.showLocationSettings();
                     } else {
                       Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
