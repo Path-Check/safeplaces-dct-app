@@ -11,7 +11,10 @@
     "test": "jest test"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add --force"]
+    "*.js": [
+      "prettier --write",
+      "git add --force"
+    ]
   },
   "husky": {
     "hooks": {
@@ -91,6 +94,8 @@
   },
   "jest": {
     "preset": "react-native",
-    "setupFiles": ["./jestSetupFile.js"]
+    "setupFiles": [
+      "./jestSetupFile.js"
+    ]
   }
 }

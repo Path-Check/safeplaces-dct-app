@@ -47,7 +47,7 @@ function GetFileName() {
 // Imports any Takeout location data
 // Currently works for Google Takeout Location data
 export async function ImportTakeoutData(filePath) {
-  console.log('[INFO] Takeout import start. Path:', filePath);
+  console.warn('[INFO] Takeout import start. Path:', filePath);
 
   // UnZip Progress Bar Log.
   progress = subscribe(
@@ -61,7 +61,7 @@ export async function ImportTakeoutData(filePath) {
   );
 
   unzip(filePath, RNFS.CachesDirectoryPath).then(path => {
-    console.log(`Unzip Completed for ${path} and ${filePath}`);
+    console.warn(`Unzip Completed for ${path} and ${filePath}`);
 
     RNFS.readFile(GetFileName())
       .then(result => {
