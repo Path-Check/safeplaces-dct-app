@@ -74,7 +74,7 @@ i18next.init({
         label: nllabels,
       },
     },
-	cs: {
+    cs: {
       translation: {
         label: cslabels,
       },
