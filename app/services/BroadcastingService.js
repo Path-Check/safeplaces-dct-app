@@ -12,7 +12,7 @@ var onDeviceFound = null;
 var onBTStatusChange = null;
 var lastSeen = {};
 
-const c5_MINS  = 1000 * 60 * 5;
+const c5_MINS = 1000 * 60 * 5;
 const c28_DAYS = 1000 * 60 * 60 * 24 * 28;
 const c1_HOUR  = 1000 * 60 * 60;
 
@@ -20,17 +20,20 @@ const MANUFACTURER_ID = 0xff;
 const MANUFACTURER_DATA = [12, 23, 56];
 
 function nowStr() {
-  return Moment(new Date()).format('H:mm')
+  return Moment(new Date()).format('H:mm');
 }
 
 /*
- * Check if the contact is new in the last 5 mins. 
+ * Check if the contact is new in the last 5 mins.
  */
 function isNewContact(contact) {
   var nowLocal = new Date().getTime();
-  if (lastSeen[contact['uuid']] && lastSeen[contact['uuid']] > nowLocal - c5_MINS) {
+  if (
+    lastSeen[contact['uuid']] &&
+    lastSeen[contact['uuid']] > nowLocal - c5_MINS
+  ) {
     //console.log('[Bluetooth]', nowStr(), currentUUID, 'Ignoring UUID for 5 mins:', contact['uuid']);
-    return false; // needs a space of 5 mins to log again. 
+    return false; // needs a space of 5 mins to log again.
   }
 
   lastSeen[contact['uuid']] = nowLocal;
@@ -38,26 +41,26 @@ function isNewContact(contact) {
 }
 
 /*
- * Select only the last 28 days of data. 
+ * Select only the last 28 days of data.
  */
 function filterAfter(arrayIncludingTime, time) {
-    let curated = [];
-    for (let i = 0; i < arrayIncludingTime.length; i++) {
-      if (arrayIncludingTime[i]['time'] > time) {
-        curated.push(arrayIncludingTime[i]);
-      }
+  let curated = [];
+  for (let i = 0; i < arrayIncludingTime.length; i++) {
+    if (arrayIncludingTime[i]['time'] > time) {
+      curated.push(arrayIncludingTime[i]);
     }
-    return curated;
+  }
+  return curated;
 }
 
 function saveContact(contact) {
   // Persist this contact data in our local storage of time/uuid values
   //console.log('[Bluetooth]', nowStr(), currentUUID, 'New Device Found', contact['uuid']);
-  if (isNewContact(contact)) { 
+  if (isNewContact(contact)) {
     GetStoreData('CONTACT_DATA', false).then(contactArray => {
       if (!contactArray) {
         contactArray = [];
-      } 
+      }
 
       // Always work in UTC, not the local time in the contactData
       var nowUTC = new Date().toISOString();
@@ -71,9 +74,15 @@ function saveContact(contact) {
         time: unixtimeUTC,
       };
       curated.push(uuid_time);
-      console.log('[Bluetooth]', nowStr(), currentUUID, 
-      'Saving contact:', contact['uuid'], curated.length);
-      
+      console.log(
+        '[Bluetooth]',
+        nowStr(),
+        currentUUID,
+        'Saving contact:',
+        contact['uuid'],
+        curated.length,
+      );
+
       SetStoreData('CONTACT_DATA', curated);
     });
   }
@@ -100,8 +109,12 @@ function saveMyUUID(me) {
     };
 
     console.log(
-      '[Bluetooth]', nowStr(), me['uuid'], 
-      'Saving myUUID:', me['uuid'], curated.length,
+      '[Bluetooth]',
+      nowStr(),
+      me['uuid'],
+      'Saving myUUID:',
+      me['uuid'],
+      curated.length,
     );
     curated.push(uuid_time);
 
@@ -113,9 +126,10 @@ function loadLastUUIDAndBroadcast() {
   GetStoreData('MY_UUIDs', false).then(myUUIDArray => {
     if (!myUUIDArray) {
       console.log(
-        '[Bluetooth]', nowStr(),
+        '[Bluetooth]',
+        nowStr(),
         myUUIDArray[myUUIDArray.length - 1].uuid,
-        'Loading last uuid'
+        'Loading last uuid',
       );
       var lastUUID = myUUIDArray[myUUIDArray.length - 1].uuid;
       broadcast(lastUUID);
@@ -161,7 +175,7 @@ function generateNewUUIDAndBroadcast() {
 
     currentUUID = uuid;
     saveMyUUID({ uuid: uuid });
-    
+
     broadcast(currentUUID);
   });
 }
@@ -233,7 +247,7 @@ export default class BroadcastingServices {
   static startAndSetCallbacks() {
     // if it was already active
     if (onDeviceFound) {
-       BroadcastingServices.stopAndClearCallbacks();
+      BroadcastingServices.stopAndClearCallbacks();
     }
 
     // listening event. 
@@ -244,7 +258,7 @@ export default class BroadcastingServices {
         saveContact({ uuid: event.serviceUuids[0]});
     });
 
-    // Get a Valid UUID and start broadcasting and scanning. 
+    // Get a Valid UUID and start broadcasting and scanning.
     loadLastUUIDAndBroadcast();
 
     BackgroundTimer.runBackgroundTimer(() => {
