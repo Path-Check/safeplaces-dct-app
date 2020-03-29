@@ -8,7 +8,6 @@ import {
   Image,
   TouchableOpacity,
   BackHandler,
-  Dimensions,
   ActivityIndicator,
 } from 'react-native';
 

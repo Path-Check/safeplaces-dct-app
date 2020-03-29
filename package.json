@@ -10,7 +10,10 @@
     "test": "jest test"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add --force"]
+    "*.js": [
+      "prettier --write",
+      "git add --force"
+    ]
   },
   "husky": {
     "hooks": {
@@ -40,6 +43,8 @@
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-app-intro-slider": "^3.0.0",
+    "react-native-background-timer": "^2.2.0",
+    "react-native-ble-advertiser": "0.0.6",
     "react-native-document-picker": "github:r0b0t3d/react-native-document-picker",
     "react-native-extended-stylesheet": "^0.12.0",
     "react-native-fs": "^2.16.6",
@@ -73,6 +78,8 @@
   },
   "jest": {
     "preset": "react-native",
-    "setupFiles": ["./jestSetupFile.js"]
+    "setupFiles": [
+      "./jestSetupFile.js"
+    ]
   }
 }
