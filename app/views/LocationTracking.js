@@ -311,7 +311,7 @@ class LocationTracking extends Component {
       <View style={styles.footer}>
         <Text
           style={[styles.footerDescription, { marginLeft: 0, marginRight: 0 }]}>
-          {languages.t('label.home_footer')}{' '}
+          {languages.t('label.url_info')}{' '}
         </Text>
         <Text
           style={[
@@ -319,7 +319,7 @@ class LocationTracking extends Component {
             { color: Colors.BLUE_LINK, marginLeft: 0, marginRight: 0 },
           ]}
           onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
-          {languages.t('label.home_footer_link')}
+          {languages.t('label.home_footer')}
         </Text>
       </View>
     );
@@ -331,7 +331,7 @@ class LocationTracking extends Component {
         <ScrollView contentContainerStyle={styles.main}>
           {this.getMenuItem()}
           <Text style={styles.headerTitle}>
-            {languages.t('label.home_title')}
+            {languages.t('label.private_kit')}
           </Text>
 
           <View style={styles.buttonsAndLogoView}>
