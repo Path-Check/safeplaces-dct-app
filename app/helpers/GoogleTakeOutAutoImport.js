@@ -1,7 +1,7 @@
 /**
  * Checks the download folder, unzips and imports all data from Google TakeOut
  */
-import {  unzip, subscribe } from 'react-native-zip-archive';
+import { unzip, subscribe } from 'react-native-zip-archive';
 import { MergeJSONWithLocalData } from '../helpers/GoogleData';
 
 // require the module
@@ -42,19 +42,20 @@ function GetFileName() {
   );
 }
 
-export async function SearchAndImport(
+export async function SearchAndImport() {
   //googleLocationJSON
-  ) {
   console.log('Auto-import start');
 
   // UnZip Progress Bar Log.
-  progress = subscribe(({ 
-    progress, 
-  //  filePath 
-  }) => {
-    if (Math.trunc(progress * 100) % 10 === 0)
-      console.log('Unzipping', Math.trunc(progress * 100), '%');
-  });
+  progress = subscribe(
+    ({
+      progress,
+      //  filePath
+    }) => {
+      if (Math.trunc(progress * 100) % 10 === 0)
+        console.log('Unzipping', Math.trunc(progress * 100), '%');
+    },
+  );
 
   // TODO: RNFS.DownloadDirectoryPath is not defined on iOS.
   // Find out how to access Downloads folder.
@@ -68,9 +69,9 @@ export async function SearchAndImport(
 
       // Looking for takeout*.zip files and unzipping them.
       result.map(function(
-        file, 
+        file,
         //index
-        ) {
+      ) {
         if (takeoutZip.test(file.name)) {
           console.log(
             `Found Google Takeout {file.name} at {file.path}`,

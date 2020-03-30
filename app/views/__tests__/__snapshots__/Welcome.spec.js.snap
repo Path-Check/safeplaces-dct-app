@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#FFF8ED",
+      "color": "#000",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "width": "80%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "stretch",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 38,
+              "fontWeight": "bold",
+              "padding": 15,
+              "textAlign": "center",
+            }
+          }
+        >
+          Private Kit
+        </Text>
+        <Text
+          style={
+            Object {
+              "fontSize": 18,
+              "fontWeight": "400",
+              "lineHeight": 24,
+              "marginLeft": 10,
+              "marginRight": 10,
+              "marginTop": 20,
+            }
+          }
+        >
+          Private Kit is your personal vault that nobody else can access.
+        </Text>
+        <Text
+          style={
+            Object {
+              "fontSize": 18,
+              "fontWeight": "400",
+              "lineHeight": 24,
+              "marginLeft": 10,
+              "marginRight": 10,
+              "marginTop": 20,
+            }
+          }
+        >
+          It will allow you to log your location privately every five minutes. Your location information will NOT leave your phone.
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "margin": 20,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#428AF8",
+            "borderColor": "rgba(255,255,255,0.7)",
+            "borderRadius": 4,
+            "borderWidth": 0.5,
+            "justifyContent": "center",
+            "opacity": 1,
+            "paddingVertical": 12,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFF",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "height": 28,
+              "textAlign": "center",
+            }
+          }
+        >
+          Start Logging Location
+        </Text>
+      </View>
+      <Text
+        style={
+          Object {
+            "justifyContent": "center",
+            "padding": 25,
+          }
+        }
+      >
+        NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "fontSize": 12,
+        "fontWeight": "600",
+        "padding": 4,
+        "paddingBottom": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "paddingTop": 15,
+          "textAlign": "center",
+        }
+      }
+    >
+      For more information visit the Private Kit hompage:
+    </Text>
+    <Text
+      onPress={[Function]}
+      style={
+        Object {
+          "color": "blue",
+          "textAlign": "center",
+        }
+      }
+    >
+      privatekit.mit.edu
+    </Text>
+  </View>
+</RCTSafeAreaView>
+`;

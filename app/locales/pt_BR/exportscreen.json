@@ -1,0 +1,11 @@
+{
+    "export_para_1":"Você pode compartilhar sua trilha de localização com qualquer pessoa usando o botão Compartilhar abaixo. Depois de pressionar o botão, ele perguntará com quem e como você deseja compartilhá-lo.",
+    "export_para_2":"O local é compartilhado como uma lista simples de horários e coordenadas, nenhuma outra informação de identificação.",
+    "share":"COMPARTILHAR",
+    "data_hint":"Registro possui dados de",
+    "data_covers":"Total time the log covers:",
+    "data_count":"Number of points logged:",
+    "data_last_updated":"Time since last updated:",
+    "no_data": "No data",
+    "less_than_one_minute": "less than 1 minute"
+}

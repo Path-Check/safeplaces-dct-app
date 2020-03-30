@@ -1,0 +1,11 @@
+
+{
+  "overlap_title": "Controlla Sovrapposizioni",
+  "overlap_para_1": "Le aree verdi sono dati aggregati della tua posizione, clicca per ingrandire. Gli indicatori rossi sono le tue posizioni registrate. \n\nClicca il pulsante per scaricare informazioni pubbliche su casi confermati, indicati come aree viola.",
+  "show_overlap": "Controllo dati pubblici",
+  "loading_public_data": "Caricamento dati...",
+  "overlap_no_results_button_label": "Nessun risultato trovato",
+  "overlap_found_button_label": "Dati pubblici caricati",
+  "nCoV2019_url_info": "Per maggiori informazioni su questa mappa",
+  "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+}
