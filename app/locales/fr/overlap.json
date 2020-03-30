@@ -1,7 +1,7 @@
 {
     "overlap_title": "Vérifier chevauchement",
-    "overlap_para_1": "Les cercles verts sont des grappes de vos localisations. Cliquer pour zoomer. Les marqueurs rouges sont vos lieux enregistrés.\n\nCliquer sur le bouton pour télécharger l'information publique des cas confirmés, montrés avec des circles violets pâles.",
-    "show_overlap": "Vérifier les données publiques",
+    "overlap_para_1": "Le tracé vert réprésente votre historique de localisation\n\nLes cercles violets pâles réprésentent les données publiques.",
+    "show_overlap": "Cliquer pour voir les données publiques",
     "loading_public_data": "chargement...",
     "overlap_no_results_button_label": "Données publiques chargées",
     "overlap_found_button_label": "Données publiques chargées",
