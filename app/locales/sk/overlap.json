@@ -1,0 +1,10 @@
+{
+  "overlap_title": "Prezri prekrytie",
+  "overlap_para_1": "The green trail represents your location history\n\nThe light purple circles represent the public dataset",
+  "show_overlap": "Click to view the public dataset",
+  "loading_public_data": "Načítavajú sa dáta...",
+  "overlap_no_results_button_label": "Verejné dáta načítané",
+  "overlap_found_button_label": "Verejné dáta načítané",
+  "nCoV2019_url_info": "Viac informácií o súbore pre túto mapu",
+  "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+}
