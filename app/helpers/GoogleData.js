@@ -40,7 +40,7 @@ function InsertIfNew(localDataJSON, loc) {
 
 function Merge(localDataJSON, googleDataJSON) {
   googleDataJSON.timelineObjects.map(function(
-    data, 
+    data,
     //index
   ) {
     // Only import visited places, not paths for now

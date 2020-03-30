@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Export /> renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#FFF",
+      "color": "#000",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderBottomColor": "rgba(189, 195, 199,0.6)",
+        "borderBottomWidth": 1,
+        "flexDirection": "row",
+        "height": 60,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "height": 60,
+          "opacity": 1,
+          "paddingLeft": 20,
+          "paddingTop": 21,
+          "width": 60,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/backArrow.png",
+          }
+        }
+        style={
+          Object {
+            "height": 18,
+            "width": 18.48,
+          }
+        }
+      />
+    </View>
+    <Text
+      style={
+        Object {
+          "fontFamily": "OpenSans-Bold",
+          "fontSize": 24,
+          "padding": 0,
+          "textAlign": "center",
+        }
+      }
+    >
+      Export
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignSelf": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "padding": 20,
+        "textAlignVertical": "top",
+        "width": "96%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontFamily": "OpenSans-Regular",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "marginTop": 12,
+        }
+      }
+    >
+      You can share your location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.
+    </Text>
+    <Text
+      style={
+        Object {
+          "fontFamily": "OpenSans-Regular",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "marginTop": 12,
+        }
+      }
+    >
+      Location is shared as a simple list of times and coordinates, no other identifying information.
+    </Text>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignSelf": "center",
+          "backgroundColor": "#665eff",
+          "borderRadius": 12,
+          "height": 52,
+          "justifyContent": "center",
+          "marginTop": 30,
+          "opacity": 0.7,
+          "width": 589.9499999999999,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+              "fontFamily": "OpenSans-Bold",
+              "fontSize": 14,
+              "letterSpacing": 0,
+              "lineHeight": 19,
+              "textAlign": "center",
+            },
+            Object {
+              "opacity": 0.7,
+            },
+          ]
+        }
+      >
+        SHARE
+      </Text>
+    </View>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+          },
+          Object {
+            "marginTop": 36,
+          },
+        ]
+      }
+    >
+      Total time the log covers:
+       
+      ...
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+          },
+          Object {
+            "marginTop": 15,
+          },
+        ]
+      }
+    >
+      Number of points logged:
+       
+      ...
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "marginTop": 12,
+          },
+          Object {
+            "marginTop": 15,
+          },
+        ]
+      }
+    >
+      Time since last updated:
+       
+      ...
+    </Text>
+  </View>
+</RCTSafeAreaView>
+`;

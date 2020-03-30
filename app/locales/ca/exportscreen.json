@@ -1,0 +1,11 @@
+{
+    "export_para_1":"Pots compartir el teu historial de localitzacions amb el botó Compartir. Un cop hagis fet clic, tu decideixes amb qui i com vols compartir aquesta informació.",
+    "export_para_2":"El teu historial de localitzacions es compartirà com una llista de coordenades geogràfiques amb un temps associat, sense enviar mai cap data personal.",
+    "share":"COMPARTIR",
+    "data_hint":"Tens informació acumulada de",
+    "data_covers":"Temps total enregistrat:",
+    "data_count":"Número de punts enregistrats:",
+    "data_last_updated":"Temps desde l'última actualització:",
+    "no_data": "No hi ha dades",
+    "less_than_one_minute": "menys de 1 minut"
+}

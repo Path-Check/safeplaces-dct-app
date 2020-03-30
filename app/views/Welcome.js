@@ -49,7 +49,7 @@ class Welcome extends Component {
 
           <View style={styles.block}>
             <Button
-              title="Start Logging Location"
+              title='Start Logging Location'
               onPress={() => this.willParticipate()}
             />
             <Text style={{ padding: 25, justifyContent: 'center' }}>
