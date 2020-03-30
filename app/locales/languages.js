@@ -22,6 +22,7 @@ import pt_BRlabels from './pt_BR';
 import eslabels from './es';
 import calabels from './ca';
 import ig_NGlabels from './ig_NG';
+import yo from './yo';
 
 // This will fetch the user's language
 let userLang = undefined;
@@ -101,6 +102,11 @@ i18next.init({
     ig_NG: {
       translation: {
         label: ig_NGlabels,
+      },
+    },
+    yo: {
+      translation: {
+        label: yolabels,
       },
     },
   },
