@@ -21,6 +21,7 @@ import htlabels from './ht';
 import pt_BRlabels from './pt_BR';
 import eslabels from './es';
 import calabels from './ca';
+import sklabels from './sk';
 
 // This will fetch the user's language
 let userLang = undefined;
@@ -95,6 +96,11 @@ i18next.init({
     ca: {
       translation: {
         label: calabels,
+      },
+    },
+    sk: {
+      translation: {
+        label: sklabels,
       },
     },
   },
