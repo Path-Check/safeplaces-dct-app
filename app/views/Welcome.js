@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   block: {
-    margin: 5,
+    margin: 3,
     width: '80%',
   },
   topView: {

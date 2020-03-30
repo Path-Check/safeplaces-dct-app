@@ -1,13 +1,13 @@
 {
-    "start_logging":"START LOGGING",
-    "stop_logging":"STOP LOGGING",
-    "logging_message":"It is currently logging your location privately every five minutes. Your location information will NOT leave your phone.",
-    "not_logging_message":"NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.",
+    "start_logging":"Εκκίνηση καταγραφής",
+    "stop_logging":"Τέλος καταγραφής",
+    "logging_message":"Ο ΙΧΝΗΛΑΤΗΣ καταγράφει την τοποθεσία σου κάθε 5 λεπτά ΜΟΝΟ στη συσκευή σου.",
+    "not_logging_message":"Σημείωση: Μετά που πατήσεις αυτό το κουμπί, θα σου ζητήσει να δώσεις πρόσβαση στον ΙΧΝΗΛΑΤΗ στα δεδομένα τοποθεσίας σου.",
     "import":"Εισαγωγή",
     "export":"Εξαγωγή",
     "news":"Νέα",
     "latest_news":"Τελευταία νέα",
-    "url_info":"For more information visit the Private Kit hompage:",
-    "private_kit_url":"privatekit.mit.edu",
-    "overlap": "CHECK OVERLAP"
+    "url_info":"Για περισσότερες πληροφορίες, επισκέψου την ιστοσελίδα:",
+    "private_kit_url":"rise.org.cy.COVID19",
+    "overlap": "Έλεγχος overlap"
 }

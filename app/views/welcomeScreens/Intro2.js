@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     height: '70%',
     borderRadius: 12,
     alignSelf: 'center',
-    marginTop: '5%',
+    marginTop: '7%',
     justifyContent: 'center',
   },
   infoCardImage: {
