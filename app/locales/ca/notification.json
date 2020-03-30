@@ -1,0 +1,8 @@
+{
+    "notification_main_text": "Comprova la teva intersecció diàriament",
+    "notification_title": "Analitza la teva intersecció",
+    "notification_data_not_available": "\n\nNo tens informació pública per analitzar la intersecció descarregada!\n\n",
+    "notification_warning_text": "Pots fer click al següent botó per generar una simulació de intersecció. \nAVÍS: Aquesta intersecció no es basa en casos reals, és una simulació",
+    "notification_random_data_button": "Fes click en aquest botó per generar una simulació",
+    "notifications":"Notificacions"
+}

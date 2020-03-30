@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import RNFetchBlob from 'rn-fetch-blob';
 import RNFS from 'react-native-fs';
@@ -24,8 +25,9 @@ import languages from './../locales/languages';
 const width = Dimensions.get('window').width;
 const base64 = RNFetchBlob.base64;
 
-function ExportScreen() {
+function ExportScreen({ shareButtonDisabled }) {
   const [pointStats, setPointStats] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(shareButtonDisabled);
   const { navigate } = useNavigation();
 
   function handleBackPress() {
@@ -38,6 +40,7 @@ function ExportScreen() {
       const locationData = new LocationData();
       locationData.getPointStats().then(pointStats => {
         setPointStats(pointStats);
+        setButtonDisabled(pointStats.pointCount === 0);
       });
       return () => {};
     }, []),
@@ -55,7 +58,7 @@ function ExportScreen() {
     navigate('LocationTrackingScreen', {});
   }
 
-  async function OnShare() {
+  async function onShare() {
     try {
       let locationData = await new LocationData().getLocationData();
       var options = {};
@@ -129,8 +132,20 @@ function ExportScreen() {
         <Text style={styles.sectionDescription}>
           {languages.t('label.export_para_2')}
         </Text>
-        <TouchableOpacity style={styles.buttonTouchable} onPress={OnShare}>
-          <Text style={styles.buttonText}>{languages.t('label.share')}</Text>
+        <TouchableOpacity
+          disabled={buttonDisabled}
+          onPress={onShare}
+          style={[
+            styles.buttonTouchable,
+            buttonDisabled && styles.buttonDisabled,
+          ]}>
+          <Text
+            style={[
+              styles.buttonText,
+              buttonDisabled && styles.buttonDisabled,
+            ]}>
+            {languages.t('label.share')}
+          </Text>
         </TouchableOpacity>
         <Text style={[styles.sectionDescription, { marginTop: 36 }]}>
           {languages.t('label.data_covers')}{' '}
@@ -197,6 +212,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
+  buttonDisabled: {
+    opacity: 0.7,
+  },
   mainText: {
     fontSize: 18,
     lineHeight: 24,
@@ -211,7 +229,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     padding: 20,
   },
-
   headerContainer: {
     flexDirection: 'row',
     height: 60,
@@ -236,5 +253,13 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Regular',
   },
 });
+
+ExportScreen.propTypes = {
+  shareButtonDisabled: PropTypes.bool,
+};
+
+ExportScreen.defaultProps = {
+  shareButtonDisabled: true,
+};
 
 export default ExportScreen;
