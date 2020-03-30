@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     height: 60,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(189, 195, 199,0.6)',
+    alignItems: 'center',
   },
   backArrowTouchable: {
     width: 60,
@@ -135,7 +136,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 24,
     fontFamily: 'OpenSans-Bold',
-    top: 21,
   },
   sectionDescription: {
     fontSize: 16,

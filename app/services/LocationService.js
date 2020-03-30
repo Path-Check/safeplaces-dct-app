@@ -1,15 +1,22 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { Alert } from 'react-native';
+
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
+
+import PushNotification from 'react-native-push-notification';
 import languages from '../locales/languages';
 
 var instanceCount = 0;
 var lastPointCount = 0;
+var locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+// DEBUG: Reduce Time intervall for faster debugging
+// var locationInterval = 5000;
 
 function saveLocation(location) {
   // Persist this location data in our local storage of time/lat/lon values
 
-  GetStoreData('LOCATION_DATA').then((locationArrayString) => {
+  GetStoreData('LOCATION_DATA').then(locationArrayString => {
     var locationArray;
     if (locationArrayString !== null) {
       locationArray = JSON.parse(locationArrayString);
@@ -27,6 +34,19 @@ function saveLocation(location) {
     for (var i = 0; i < locationArray.length; i++) {
       if (locationArray[i]['time'] > unixtimeUTC_28daysAgo) {
         curated.push(locationArray[i]);
+      }
+    }
+
+    // Backfill the stationary points, if available
+    if (curated.length >= 1) {
+      var lastLocationArray = curated[curated.length - 1];
+      var lastTS = lastLocationArray['time'];
+      for (
+        ;
+        lastTS < unixtimeUTC - locationInterval;
+        lastTS += locationInterval
+      ) {
+        curated.push(JSON.parse(JSON.stringify(lastLocationArray)));
       }
     }
 
@@ -55,35 +75,39 @@ export default class LocationServices {
       return;
     }
 
-    BackgroundGeolocation.configure({
-      desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
-      stationaryRadius: 50,
-      distanceFilter: 50,
-      notificationTitle: languages.t('ENABLED'),
-      notificationText: languages.t('WELCOME1'),
-      debug: false, // when true, it beeps every time a loc is read
-      startOnBoot: false,
-      stopOnTerminate: false,
-      locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
-
-      // DEBUG: Use these to get a faster output
-      /*interval: 2000,
-                fastestInterval: 2000, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-                activitiesInterval: 2000,*/
-
-      interval: 20000,
-      fastestInterval: 60000 * 5, // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-      activitiesInterval: 20000,
-
-      stopOnStillActivity: false,
-      postTemplate: {
-        lat: '@latitude',
-        lon: '@longitude',
-        foo: 'bar', // you can also add your own properties
+    PushNotification.configure({
+      // (required) Called when a remote or local notification is opened or received
+      onNotification: function(notification) {
+        console.log('NOTIFICATION:', notification);
+        // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
+        notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
+      requestPermissions: true,
     });
 
-    BackgroundGeolocation.on('location', (location) => {
+    // PushNotificationIOS.requestPermissions();
+    BackgroundGeolocation.configure({
+      desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
+      stationaryRadius: 5,
+      distanceFilter: 5,
+      notificationTitle: languages.t('label.ENABLED'),
+      notificationText: languages.t('label.intro2_para1'),
+      debug: false, // when true, it beeps every time a loc is read
+      startOnBoot: true,
+      stopOnTerminate: false,
+      locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
+
+      interval: locationInterval,
+      fastestInterval: locationInterval,
+      activitiesInterval: locationInterval,
+
+      activityType: 'AutomotiveNavigation',
+      pauseLocationUpdates: false,
+      saveBatteryOnBackground: true,
+      stopOnStillActivity: false,
+    });
+
+    BackgroundGeolocation.on('location', location => {
       // handle your locations here
       /* SAMPLE OF LOCATION DATA OBJECT
                 {
@@ -95,7 +119,7 @@ export default class LocationServices {
             */
       // to perform long running operation on iOS
       // you need to create background task
-      BackgroundGeolocation.startTask((taskKey) => {
+      BackgroundGeolocation.startTask(taskKey => {
         // execute long running task
         // eg. ajax post location
         // IMPORTANT: task has to be ended by endTask
@@ -106,7 +130,7 @@ export default class LocationServices {
 
     if (Platform.OS === 'android') {
       // This feature only is present on Android.
-      BackgroundGeolocation.headlessTask(async (event) => {
+      BackgroundGeolocation.headlessTask(async event => {
         // Application was shutdown, but the headless mechanism allows us
         // to capture events in the background.  (On Android, at least)
         if (event.name === 'location' || event.name === 'stationary') {
@@ -115,10 +139,10 @@ export default class LocationServices {
       });
     }
 
-    BackgroundGeolocation.on('stationary', (stationaryLocation) => {
+    BackgroundGeolocation.on('stationary', stationaryLocation => {
       // handle stationary locations here
       // Actions.sendLocation(stationaryLocation);
-      BackgroundGeolocation.startTask((taskKey) => {
+      BackgroundGeolocation.startTask(taskKey => {
         // execute long running task
         // eg. ajax post location
         // IMPORTANT: task has to be ended by endTask
@@ -133,7 +157,7 @@ export default class LocationServices {
       console.log('[INFO] stationaryLocation:', stationaryLocation);
     });
 
-    BackgroundGeolocation.on('error', (error) => {
+    BackgroundGeolocation.on('error', error => {
       console.log('[ERROR] BackgroundGeolocation error:', error);
     });
 
@@ -145,7 +169,7 @@ export default class LocationServices {
       console.log('[INFO] BackgroundGeolocation service has been stopped');
     });
 
-    BackgroundGeolocation.on('authorization', (status) => {
+    BackgroundGeolocation.on('authorization', status => {
       console.log(
         '[INFO] BackgroundGeolocation authorization status: ' + status,
       );
@@ -154,17 +178,21 @@ export default class LocationServices {
         // we need to set delay or otherwise alert may not be shown
         setTimeout(
           () =>
-            Alert.alert(languages.t('ACCESS1'), '', [
-              {
-                text: languages.t('YES'),
-                onPress: () => BackgroundGeolocation.showAppSettings(),
-              },
-              {
-                text: languages.t('NO'),
-                onPress: () => console.log('No Pressed'),
-                style: 'cancel',
-              },
-            ]),
+            Alert.alert(
+              languages.t('label.ACCESS1'),
+              'Would you like to open app settings?',
+              [
+                {
+                  text: languages.t('label.YES'),
+                  onPress: () => BackgroundGeolocation.showAppSettings(),
+                },
+                {
+                  text: languages.t('label.NO'),
+                  onPress: () => console.log('No Pressed'),
+                  style: 'cancel',
+                },
+              ],
+            ),
           1000,
         );
       } else {
@@ -196,16 +224,18 @@ export default class LocationServices {
     });
 
     BackgroundGeolocation.on('stop', () => {
-      // PUSH LOCAL NOTIFICATION HERE WARNING LOCATION HAS BEEN TERMINATED
+      PushNotification.localNotification({
+        title: 'Location Tracking Was Disabled',
+        message: 'Private Kit requires location services.',
+      });
       console.log('[INFO] stop');
     });
 
     BackgroundGeolocation.on('stationary', () => {
-      // PUSH LOCAL NOTIFICATION HERE WARNING LOCATION HAS BEEN TERMINATED
       console.log('[INFO] stationary');
     });
 
-    BackgroundGeolocation.checkStatus((status) => {
+    BackgroundGeolocation.checkStatus(status => {
       console.log(
         '[INFO] BackgroundGeolocation service is running',
         status.isRunning,
@@ -224,34 +254,42 @@ export default class LocationServices {
         // we need to set delay or otherwise alert may not be shown
         setTimeout(
           () =>
-            Alert.alert(languages.t('ACCESS2'), '', [
-              {
-                text: languages.t('YES'),
-                onPress: () => BackgroundGeolocation.showLocationSettings(),
-              },
-              {
-                text: languages.t('NO'),
-                onPress: () => console.log('No Pressed'),
-                style: 'cancel',
-              },
-            ]),
+            Alert.alert(
+              languages.t('label.ACCESS2'),
+              'Would you like to open location settings?',
+              [
+                {
+                  text: languages.t('label.YES'),
+                  onPress: () => BackgroundGeolocation.showLocationSettings(),
+                },
+                {
+                  text: languages.t('label.NO'),
+                  onPress: () => console.log('No Pressed'),
+                  style: 'cancel',
+                },
+              ],
+            ),
           1000,
         );
       } else if (!status.authorization) {
         // we need to set delay or otherwise alert may not be shown
         setTimeout(
           () =>
-            Alert.alert(languages.t('ACCESS1'), '', [
-              {
-                text: languages.t('YES'),
-                onPress: () => BackgroundGeolocation.showAppSettings(),
-              },
-              {
-                text: languages.t('NO'),
-                onPress: () => console.log('No Pressed'),
-                style: 'cancel',
-              },
-            ]),
+            Alert.alert(
+              languages.t('label.ACCESS1'),
+              'Would you like to open app settings?',
+              [
+                {
+                  text: languages.t('label.YES'),
+                  onPress: () => BackgroundGeolocation.showAppSettings(),
+                },
+                {
+                  text: languages.t('label.NO'),
+                  onPress: () => console.log('No Pressed'),
+                  style: 'cancel',
+                },
+              ],
+            ),
           1000,
         );
       } else if (!status.isRunning) {
@@ -266,15 +304,15 @@ export default class LocationServices {
     return lastPointCount;
   }
 
-  static stop() {
+  static stop(nav) {
     // unregister all event listeners
+    PushNotification.localNotification({
+      title: 'Location Tracking Was Disabled',
+      message: 'Private Kit requires location services.',
+    });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
     instanceCount -= 1;
-  }
-
-  static optOut(nav) {
-    BackgroundGeolocation.removeAllListeners();
     SetStoreData('PARTICIPATE', 'false').then(() =>
       nav.navigate('LocationTrackingScreen', {}),
     );

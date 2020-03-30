@@ -7,6 +7,7 @@ import {
   View,
   Text,
   Image,
+  Platform,
   Dimensions,
   TouchableOpacity,
   BackHandler,
@@ -21,20 +22,21 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png';
-import languages from '../locales/languages';
+import languages from './../locales/languages';
 
 const width = Dimensions.get('window').width;
 
 const base64 = RNFetchBlob.base64;
 
-//import RNShareFile from 'react-native-file-share';
+// require the module
+// var RNFS = require('react-native-fs');
 
 class ExportScreen extends Component {
   constructor(props) {
     super(props);
   }
 
-  onShare = async () => {
+  OnShare = async () => {
     try {
       const locationArray = await GetStoreData('LOCATION_DATA');
       var locationData;
@@ -45,14 +47,47 @@ class ExportScreen extends Component {
         locationData = [];
       }
 
-      b64Data = base64.encode(JSON.stringify(locationData));
-      Share.open({
-        url: 'data:string/txt;base64,' + b64Data,
-      })
-        .then((res) => {
+      const jsonData = base64.encode(JSON.stringify(locationData));
+      const title = 'PrivateKit_.json';
+      const filename = 'PrivacyKit_.json';
+      const message = 'Here is my location log from Private Kit.';
+      const url = 'data:application/json;base64,' + jsonData;
+      const options = Platform.select({
+        ios: {
+          activityItemSources: [
+            {
+              placeholderItem: { type: 'url', content: url },
+              item: {
+                default: { type: 'url', content: url },
+              },
+              subject: {
+                default: title,
+              },
+              linkMetadata: { originalUrl: url, url, title },
+            },
+            {
+              placeholderItem: { type: 'text', content: message },
+              item: {
+                default: { type: 'text', content: message },
+                message: null, // Specify no text to share via Messages app.
+              },
+            },
+          ],
+        },
+        default: {
+          title,
+          subject: title,
+          url: url,
+          message: message,
+          filename: filename,
+        },
+      });
+
+      Share.open(options)
+        .then(res => {
           console.log(res);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err.message, err.code);
         });
     } catch (error) {
@@ -98,7 +133,7 @@ class ExportScreen extends Component {
           </Text>
           <TouchableOpacity
             style={styles.buttonTouchable}
-            onPress={this.onShare}>
+            onPress={this.OnShare}>
             <Text style={styles.buttonText}>{languages.t('label.share')}</Text>
           </TouchableOpacity>
           <Text style={[styles.sectionDescription, { marginTop: 36 }]}>
@@ -178,6 +213,7 @@ const styles = StyleSheet.create({
     height: 60,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(189, 195, 199,0.6)',
+    alignItems: 'center',
   },
   backArrowTouchable: {
     width: 60,
@@ -193,7 +229,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 24,
     fontFamily: 'OpenSans-Bold',
-    top: 21,
   },
   sectionDescription: {
     fontSize: 16,

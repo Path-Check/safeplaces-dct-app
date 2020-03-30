@@ -20,13 +20,13 @@ class Welcome extends Component {
   }
   componentDidMount() {
     GetStoreData('PARTICIPATE')
-      .then((isParticipating) => {
+      .then(isParticipating => {
         console.log(isParticipating);
         if (isParticipating == 'true') {
           this.props.navigation.navigate('LocationTrackingScreen', {});
         }
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   }
 
   componentWillUnmount() {}
@@ -42,8 +42,9 @@ class Welcome extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.main}>
           <View style={styles.topView}>
-            <View
-              style={(styles.intro, { textAlign: 'center', paddingTop: 25 })}>
+            <View style={styles.intro}>
+              <Text style={styles.headerTitle}>CovTracer</Text>
+
               <Text style={styles.headerTitle}>
                 {languages.t('label.private_kit')}
               </Text>
@@ -58,7 +59,7 @@ class Welcome extends Component {
               title={languages.t('label.start_logging')}
               onPress={() => this.willParticipate()}
             />
-            <Text style={{ padding: 5, justifyContent: 'center' }}>
+            <Text style={{ padding: 25, justifyContent: 'center' }}>
               {languages.t('label.not_logging_message')}
             </Text>
           </View>
@@ -68,7 +69,7 @@ class Welcome extends Component {
           <Text
             style={
               (styles.sectionDescription,
-              { textAlign: 'center', paddingTop: 5 })
+              { textAlign: 'center', paddingTop: 15 })
             }>
             {languages.t('label.url_info')}{' '}
           </Text>
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 38,
-    padding: 5,
+    padding: 15,
   },
   main: {
     flex: 1,
@@ -114,6 +115,8 @@ const styles = StyleSheet.create({
   block: {
     margin: 3,
     width: '80%',
+    margin: 20,
+    width: '100%',
   },
   topView: {
     flex: 1,
@@ -123,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
     padding: 4,
-    paddingBottom: 5,
+    paddingBottom: 10,
   },
   intro: {
     flex: 1,
@@ -133,11 +136,11 @@ const styles = StyleSheet.create({
   },
   sectionDescription: {
     fontSize: 18,
-    lineHeight: 14,
+    lineHeight: 24,
     fontWeight: '400',
-    marginTop: 5,
-    marginLeft: 5,
-    marginRight: 5,
+    marginTop: 20,
+    marginLeft: 10,
+    marginRight: 10,
   },
 });
 

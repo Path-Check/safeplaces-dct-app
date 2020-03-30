@@ -58,11 +58,11 @@ export async function SearchAndImport(googleLocationJSON) {
   }
 
   RNFS.readDir(RNFS.DownloadDirectoryPath)
-    .then((result) => {
+    .then(result => {
       console.log('Checking Downloads Folder');
 
       // Looking for takeout*.zip files and unzipping them.
-      result.map(function (file, index) {
+      result.map(function(file, index) {
         if (takeoutZip.test(file.name)) {
           console.log(
             `Found Google Takeout {file.name} at {file.path}`,
@@ -70,29 +70,29 @@ export async function SearchAndImport(googleLocationJSON) {
           );
 
           unzip(file.path, RNFS.DownloadDirectoryPath)
-            .then((path) => {
+            .then(path => {
               console.log(`Unzip Completed for ${path} and ${file.path}`);
 
               RNFS.readFile(GetFileName())
-                .then((result) => {
+                .then(result => {
                   console.log('Opened file');
 
                   MergeJSONWithLocalData(JSON.parse(result));
                   progress.remove();
                 })
-                .catch((err) => {
+                .catch(err => {
                   console.log(err.message, err.code);
                   progress.remove();
                 });
             })
-            .catch((error) => {
+            .catch(error => {
               console.log(error);
               progress.remove();
             });
         }
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err.message, err.code);
       progress.remove();
     });

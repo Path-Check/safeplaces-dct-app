@@ -39,7 +39,7 @@ function InsertIfNew(localDataJSON, loc) {
 }
 
 function Merge(localDataJSON, googleDataJSON) {
-  googleDataJSON.timelineObjects.map(function (data, index) {
+  googleDataJSON.timelineObjects.map(function(data, index) {
     // Only import visited places, not paths for now
     if (data.placeVisit) {
       var loc = BuildLocalFormat(data.placeVisit);
@@ -49,7 +49,7 @@ function Merge(localDataJSON, googleDataJSON) {
 }
 
 export async function MergeJSONWithLocalData(googleDataJSON) {
-  GetStoreData('LOCATION_DATA').then((locationArray) => {
+  GetStoreData('LOCATION_DATA').then(locationArray => {
     var locationData;
 
     if (locationArray !== null) {
