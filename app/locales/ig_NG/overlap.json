@@ -1,0 +1,10 @@
+{
+  "overlap_title": "Lelee Overlap",
+  "overlap_para_1": "The green trail represents your location history\n\nThe light purple circles represent the public dataset",
+  "show_overlap": "Lelee data Ọhaneze",
+  "loading_public_data": "itinye data...",
+  "overlap_no_results_button_label": "Public Data Loaded",
+  "overlap_found_button_label": "Public Data Loaded",
+  "nCoV2019_url_info": " Maka ozi ndị ọzọ na dataset maka maapụ a",
+  "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+}
