@@ -1,6 +1,6 @@
 {
   "overlap_title": "Kontrola překrytí",
-  "overlap_para_1": "Zelené kruhy jsou shluky vašich míst, kliknutím je zvětšíte. Červené značky jsou vaše zaznamenané pozice.\n\nStisknutím tlačítka stáhnete veřejná data o potvrzených případech, které jsou znázorněny jako slabé fialové kruhy.",
+  "overlap_para_1": "Zelená trasa představuje historii vaši polohy\n\nSvětle fialové kruhy představují veřejná data",
   "show_overlap": "Kontrola veřejných dat",
   "loading_public_data": "načítání dat ...",
   "overlap_no_results_button_label": "Veřejná data byla načtena",
