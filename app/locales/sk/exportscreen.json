@@ -3,9 +3,9 @@
     "export_para_2":"Poloha je zdieľaná ako jednoduchý zoznam časov a súradníc bez akýchkoľvek ďalších identifikačných informácií.",
     "share":"ZDIEĽAŤ",
     "data_hint":"Záznam obsahuje dáta o",
-    "data_covers":"Total time the log covers:",
-    "data_count":"Number of points logged:",
-    "data_last_updated":"Time since last updated:",
-    "no_data": "No data",
-    "less_than_one_minute": "less than 1 minute"
+    "data_covers":"Celkový čas, ktorý zaznamenávanie pokrýva:",
+    "data_count":"Počet zaznamenaných bodov:",
+    "data_last_updated":"Čas od poslednej aktualizácie:",
+    "no_data": "Žiadne údaje",
+    "less_than_one_minute": "menej ako 1 minúta"
 }
