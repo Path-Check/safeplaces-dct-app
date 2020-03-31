@@ -59,9 +59,15 @@ class SettingsScreen extends Component {
 
     // Update user settings state from async storage
     GetStoreData('AUTHORITY_SOURCE_SETTINGS', false).then(result => {
-      this.setState({
-        selectedAuthorities: result,
-      });
+      if (result !== null) {
+        console.log('Retrieving settings from async storage:');
+        console.log(result);
+        this.setState({
+          selectedAuthorities: result,
+        });
+      } else {
+        console.log('No stored authority settings.');
+      }
     });
   }
 
