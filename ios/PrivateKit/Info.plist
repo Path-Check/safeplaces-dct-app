@@ -23,13 +23,13 @@
 	<key>CFBundleVersion</key>
 	<string>15</string>
 	<key>LSRequiresIPhoneOS</key>
-	<true />
+	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<true />
+		<true/>
 		<key>NSExceptionDomains</key>
-		<dict />
+		<dict/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>We log your location to enable new opportunities for researchers studying refugee migration, wellbeing, and community traffic analysis in a privacy-preserving way.</string>
@@ -67,10 +67,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false />
+	<false/>
 </dict>
 </plist>
