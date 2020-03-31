@@ -32,19 +32,6 @@ import languages from './../locales/languages';
 const authoritiesListURL =
   'https://raw.githubusercontent.com/tripleblindmarket/safe-places/develop/healthcare-authorities.yaml';
 
-// Temporary test object with authorities data
-/*
-let authoritiesList = {
-  "Sam's Example Health Authority": {
-    url:
-      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
-  },
-  "Ramesh's Example Health Org": {
-    url:
-      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/anotherlocale-safe-paths.json',
-  },
-}; */
-
 class SettingsScreen extends Component {
   constructor(props) {
     super(props);

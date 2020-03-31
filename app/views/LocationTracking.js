@@ -26,6 +26,7 @@ import news from './../assets/images/newspaper.png';
 import kebabIcon from './../assets/images/kebabIcon.png';
 import pkLogo from './../assets/images/PKLogo.png';
 
+import { IntersectSet } from '../helpers/Intersect';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from './../locales/languages';
 
@@ -36,6 +37,7 @@ class LocationTracking extends Component {
     super(props);
 
     this.state = {
+      timer_intersect: null,
       isLogging: '',
     };
   }
@@ -56,8 +58,70 @@ class LocationTracking extends Component {
         }
       })
       .catch(error => console.log(error));
+
+    let timer_intersect = setInterval(this.intersect_tick, 1000 * 60 * 60 * 12); // once every 12 hours
+    // DEBUG:  1000 * 10); // once every 10 seconds
+
+    this.setState({
+      timer_intersect,
+    });
   }
+
+  intersect_tick = () => {
+    // This function is called once every 12 hours.  It should do several things:
+
+    // Get the user's health authorities
+    GetStoreData('HEALTH_AUTHORITIES')
+      .then(authority_list => {
+        if (!authority_list) {
+          // DEBUG: Force a test list
+          // authority_list = [
+          //  {
+          //    name: 'Platte County Health',
+          //    url:
+          //      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
+          //  },
+          //];
+          return;
+        }
+
+        if (authority_list) {
+          // Pull down data from all the registered health authorities
+          for (let authority of authority_list) {
+            fetch(authority.url)
+              .then(response => response.json())
+              .then(responseJson => {
+                // Example response =
+                // { "authority_name":  "Steve's Fake Testing Organization",
+                //   "publish_date_utc": "1584924583",
+                //   "info_website": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
+                //   "concern_points":
+                //    [
+                //      { "time": 123, "latitude": 12.34, "longitude": 12.34},
+                //      { "time": 456, "latitude": 12.34, "longitude": 12.34}
+                //    ]
+                // }
+
+                // Update cache of info about the authority
+                // (info_url might have changed, etc.)
+
+                // TODO: authority_list, match by authority_list.url, then re-save "authority_name", "info_website" and
+                // "publish_date_utc" (we should notify users if their authority is no longer functioning.)
+                // console.log('Received data from authority.url=', authority.url);
+
+                IntersectSet(responseJson.concern_points);
+              });
+          }
+        } else {
+          console.log('No authority list');
+          return;
+        }
+      })
+      .catch(error => console.log('Failed to load authority list', error));
+  };
+
   componentWillUnmount() {
+    clearInterval(this.state.timer_intersect);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
@@ -112,7 +176,7 @@ class LocationTracking extends Component {
   notifications() {
     this.props.navigation.navigate('NotificationScreen', {});
   }
-  
+
   settings() {
     this.props.navigation.navigate('SettingsScreen', {});
   }
