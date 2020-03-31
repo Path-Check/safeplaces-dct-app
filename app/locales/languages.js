@@ -103,7 +103,8 @@ i18next.init({
     ur: {
       translation: {
         label: urlabels,
-
+      },
+    },
     ca: {
       translation: {
         label: calabels,
