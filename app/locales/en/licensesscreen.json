@@ -1,3 +1,5 @@
 {
-    "license_placeholder": "This app is built under the MIT license."
+    "license_placeholder": "This app is built under the MIT license. It fully respects your privacy and your data remains secure at your device only.",
+    "privacy_placeholder": "The application was designed so that these data cannot be normally accessed outside the user’s devise and the user alone may choose when to export the data and to whom to supply them to. As such, Data never leaves the user’s device without their consent. See more information here: http://covid-19.rise.org.cy/",
+    "ack_placeholder": "This project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No. 739578.\n\n \nThis project has also received funding from the Government of the Republic of Cyprus through the Directorate General for European Programmes, Coordination and Development."
 }

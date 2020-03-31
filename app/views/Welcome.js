@@ -79,7 +79,7 @@ class Welcome extends Component {
               { color: 'blue', textAlign: 'center' })
             }
             onPress={() =>
-              Linking.openURL('http://superworld.rise.org.cy/COVID19/')
+              Linking.openURL('http://covid-19.rise.org.cy/index.html')
             }>
             {languages.t('label.private_kit_url')}
           </Text>

@@ -1,6 +1,7 @@
 {
   "ACCESS1": "Are you OK to allow recording of location information on your phone?",
   "ACCESS2": "CovTracer requires location services to be enabled.",
+  "ACCESS3": "Would you like to open location settings?",
   "ENABLED": "CovTracer enabled!",
   "FORMGENERAL": "Declaration of movement",
   "FORMGENERAL_ACTIVE": "Active declaration of movement",

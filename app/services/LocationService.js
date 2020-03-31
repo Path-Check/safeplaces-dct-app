@@ -256,7 +256,7 @@ export default class LocationServices {
           () =>
             Alert.alert(
               languages.t('label.ACCESS2'),
-              'Would you like to open location settings?',
+              languages.t('label.ACCESS3'),
               [
                 {
                   text: languages.t('label.YES'),

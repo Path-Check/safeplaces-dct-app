@@ -1,10 +1,10 @@
 {
-  "overlap_title": "Check Overlap",
-  "overlap_para_1": "Green circles are clusters of your locations, click to zoom. Red markers are your recorded locations.\n\nPress the button to download public information of confirmed cases, shown as faint purple circles.",
-  "show_overlap": "Check Public Data",
-  "loading_public_data": "loading data...",
-  "overlap_no_results_button_label": "Public Data Loaded",
-  "overlap_found_button_label": "Public Data Loaded",
-  "nCoV2019_url_info": "For more information on the dataset for this map",
+  "overlap_title": "Έλεγχος πιθανής μόλυνσης",
+  "overlap_para_1": "Οι πράσινοι κύκλοι είναι συμπλέγματα των τοποθεσιών σου, κάνε κλικ για μεγέθυνση. Κόκκινοι δείκτες είναι οι καταγεγραμμένες τοποθεσίες σου.\n\nΠάτησε το κουμπί για να κατεβάσεις δημόσιες πληροφορίες από επιβεβαιωμένα κρούσματα, που εμφανίζονται σαν μωβ κύκλοι.",
+  "show_overlap": "Έλεγχος δημόσιων δεδομένων",
+  "loading_public_data": "Φόρτωση δεδομένων...",
+  "overlap_no_results_button_label": "Φόρτωση δημόσιων δεδομένων",
+  "overlap_found_button_label": "Τα δημόσια δεδομένα έχουν φορτωθεί",
+  "nCoV2019_url_info": "Για περισσότερες πληροφορίες όσον αφορά τα δημόσια δεδομένα του χάρτη",
   "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
 }

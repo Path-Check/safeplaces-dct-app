@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  Image,
   View,
   Text,
+  Image,
+  Dimensions,
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
 
-import colors from '../constants/colors';
-import { WebView } from 'react-native-webview';
-import Button from '../components/Button';
-import backArrow from './../assets/images/backArrow.png';
-import languages from './../locales/languages';
+import colors from '../../app/constants/colors';
+import backArrow from '../../app/assets/images/backArrow.png';
+import languages from '../../app/locales/languages';
 
-class NewsScreen extends Component {
+const width = Dimensions.get('window').width;
+
+class getPrivacyScreens extends Component {
   constructor(props) {
     super(props);
   }
@@ -47,15 +47,15 @@ class NewsScreen extends Component {
             onPress={() => this.backToMain()}>
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.latest_news')}
-          </Text>
+          <Text style={styles.headerTitle}>Privacy</Text>
         </View>
 
-        <WebView
-          source={{ uri: 'http://covid-19.rise.org.cy/news/' }}
-          style={{ marginTop: 15 }}
-        />
+        <View style={styles.main}>
+          <Text style={styles.sectionDescription}>
+            {/* This screen is a placeholder for complete license content, or a link */}
+            {languages.t('label.privacy_placeholder')}
+          </Text>
+        </View>
       </SafeAreaView>
     );
   }
@@ -69,27 +69,55 @@ const styles = StyleSheet.create({
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
   },
-  headerContainer: {
-    flexDirection: 'row',
+  subHeaderTitle: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 22,
+    padding: 5,
   },
-  backArrow: {
-    fontSize: 60,
-    lineHeight: 60,
-    fontWeight: '400',
-    marginRight: 5,
-    textAlignVertical: 'center',
-  },
-  sectionDescription: {
-    fontSize: 24,
-    lineHeight: 24,
-    fontWeight: '800',
-    textAlignVertical: 'center',
-  },
-  web: {
+  main: {
     flex: 1,
-    width: '100%',
-    margin: 0,
-    padding: 0,
+    flexDirection: 'column',
+    textAlignVertical: 'top',
+    // alignItems: 'center',
+    padding: 20,
+    width: '96%',
+    alignSelf: 'center',
+  },
+  buttonTouchable: {
+    borderRadius: 12,
+    backgroundColor: '#665eff',
+    height: 52,
+    alignSelf: 'center',
+    width: width * 0.7866,
+    marginTop: 30,
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontFamily: 'OpenSans-Bold',
+    fontSize: 14,
+    lineHeight: 19,
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+  mainText: {
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '400',
+    textAlignVertical: 'center',
+    padding: 20,
+  },
+  smallText: {
+    fontSize: 10,
+    lineHeight: 24,
+    fontWeight: '400',
+    textAlignVertical: 'center',
+    padding: 20,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontFamily: 'OpenSans-Bold',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -108,18 +136,12 @@ const styles = StyleSheet.create({
     height: 18,
     width: 18.48,
   },
-  headerTitle: {
-    fontSize: 24,
-    lineHeight: 24,
-    fontFamily: 'OpenSans-Bold',
-  },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
-    textAlignVertical: 'center',
     marginTop: 12,
     fontFamily: 'OpenSans-Regular',
   },
 });
 
-export default NewsScreen;
+export default getPrivacyScreens;
