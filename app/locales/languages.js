@@ -114,6 +114,7 @@ i18next.init({
     yo: {
       translation: {
         label: yolabels,
+    },
     cs: {
       translation: {
         label: cslabels,
