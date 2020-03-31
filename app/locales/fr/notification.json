@@ -1,0 +1,8 @@
+{
+    "notification_main_text": "Vérifier votre intersection par jour",
+    "notification_title": "Analyser votre intersection",
+    "notification_data_not_available": "\n\nVous n'avez pas de tracés téléchargés!\n\n",
+    "notification_warning_text": "Vous pouvez cliquer ce bouton suivant pour générer des intersections aléatoires. \n\nATTENTION: ce sont des intersections simulées et non réelles",
+    "notification_random_data_button": "Cliquer ce bouton pour générer des données aléatoires",
+    "notifications":"Notifications"
+}

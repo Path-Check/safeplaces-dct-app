@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,20 +11,20 @@ import {
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
-
-import colors from '../constants/colors';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import WebView from 'react-native-webview';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import RNFetchBlob from 'rn-fetch-blob';
+import Share from 'react-native-share';
+import colors from '../constants/colors';
 import Button from '../components/Button';
 import { GetStoreData } from '../helpers/General';
 import { convertPointsToString } from '../helpers/convertPointsToString';
-import Share from 'react-native-share';
-import RNFetchBlob from 'rn-fetch-blob';
 import LocationServices from '../services/LocationService';
-import backArrow from './../assets/images/backArrow.png';
-import languages from './../locales/languages';
-import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import greenMarker from '../assets/images/user-green.png';
+import backArrow from '../assets/images/backArrow.png';
+import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
-import MapView from 'react-native-map-clustering';
 
 const width = Dimensions.get('window').width;
 
@@ -72,101 +72,102 @@ function distance(lat1, lon1, lat2, lon2) {
   }
 }
 
-class OverlapScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      region: {},
-      markers: [],
-      circles: [],
-      showButton: { disabled: false, text: show_button_text },
-      initialRegion: INITIAL_REGION,
-    };
-    this.getInitialState();
-    this.setMarkers();
-  }
+function OverlapScreen() {
+  const [region, setRegion] = useState({});
+  const [markers, setMarkers] = useState([]);
+  const [circles, setCircles] = useState([]);
+  const [showButton, setShowButton] = useState({
+    disabled: false,
+    text: show_button_text,
+  });
+  const [initialRegion, setInitialRegion] = useState(INITIAL_REGION);
+  const { navigate } = useNavigation();
+  const mapView = useRef();
 
-  getOverlap = async () => {
+  async function getOverlap() {
     try {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
 
-  setMarkers = async () => {
+  async function populateMarkers() {
     GetStoreData('LOCATION_DATA').then(locationArrayString => {
       var locationArray = JSON.parse(locationArrayString);
       if (locationArray !== null) {
         var markers = [];
+        var previousMarkers = {};
         for (var i = 0; i < locationArray.length - 1; i += 1) {
           const coord = locationArray[i];
-          const marker = {
-            coordinate: {
-              latitude: coord['latitude'],
-              longitude: coord['longitude'],
-            },
-            key: i + 1,
-            color: '#f26964',
-          };
-          markers.push(marker);
+          const lat = coord['latitude'];
+          const long = coord['longitude'];
+          const key = String(lat) + '|' + String(long);
+          if (key in previousMarkers) {
+            previousMarkers[key] += 1;
+          } else {
+            previousMarkers[key] = 0;
+            const marker = {
+              coordinate: {
+                latitude: lat,
+                longitude: long,
+              },
+              key: i + 1,
+            };
+            markers.push(marker);
+          }
         }
-        this.setState({
-          markers: markers,
-        });
+
+        setMarkers(markers);
       }
     });
-  };
+  }
 
-  getInitialState = async () => {
+  async function getInitialState() {
     try {
       GetStoreData('LOCATION_DATA').then(locationArrayString => {
-        var locationArray = JSON.parse(locationArrayString);
-        if (locationArray === null) {
-          console.log(locationArray);
-        } else {
-          var lastCoords = locationArray[locationArray.length - 1];
-          this.setState({
-            initialRegion: {
-              latitude: lastCoords['latitude'],
-              longitude: lastCoords['longitude'],
-              latitudeDelta: 10.10922,
-              longitudeDelta: 10.20421,
-            },
-            markers: [
-              {
-                coordinate: {
-                  latitude: lastCoords['latitude'],
-                  longitude: lastCoords['longitude'],
-                },
-                key: 0,
-                color: '#f26964',
-              },
-            ],
+        const locationArray = JSON.parse(locationArrayString);
+        if (locationArray !== null) {
+          const { latitude, longitude } = locationArray.slice(-1)[0];
+
+          mapView.current &&
+            mapView.current.animateCamera({ center: { latitude, longitude } });
+          setInitialRegion({
+            latitude,
+            longitude,
+            latitudeDelta: 10.10922,
+            longitudeDelta: 10.20421,
           });
+          populateMarkers([
+            {
+              coordinate: {
+                latitude,
+                longitude,
+              },
+              key: 0,
+              color: '#f26964',
+            },
+          ]);
         }
       });
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
-  downloadAndPlot = async () => {
+  async function downloadAndPlot() {
     // Downloads the file on the disk and loads it into memory
     try {
-      this.setState({
-        showButton: {
-          disabled: true,
-          text: languages.t('label.loading_public_data'),
-        },
+      setShowButton({
+        disabled: true,
+        text: languages.t('label.loading_public_data'),
       });
+
       RNFetchBlob.config({
         // add this option that makes response data to be stored as a file,
         // this is much more performant.
         fileCache: true,
       })
-        .fetch('GET', public_data, {
-          //some headers ..
-        })
+        .fetch('GET', public_data, {})
         .then(res => {
           // the temp file path
           console.log('The file saved to ', res.path());
@@ -176,25 +177,21 @@ class OverlapScreen extends Component {
               .then(records => {
                 // delete the file first using flush
                 res.flush();
-                this.parseCSV(records).then(parsedRecords => {
+                parseCSV(records).then(parsedRecords => {
                   console.log(parsedRecords);
                   console.log(Object.keys(parsedRecords).length);
-                  this.plotCircles(parsedRecords).then(() => {
+                  plotCircles(parsedRecords).then(() => {
                     // if no overlap, alert user via button text
                     // this is a temporary fix, make it more robust later
                     if (Object.keys(parsedRecords).length !== 0) {
-                      this.setState({
-                        showButton: {
-                          disabled: false,
-                          text: overlap_true_button_text,
-                        },
+                      setShowButton({
+                        disabled: false,
+                        text: overlap_true_button_text,
                       });
                     } else {
-                      this.setState({
-                        showButton: {
-                          disabled: false,
-                          text: no_overlap_button_text,
-                        },
+                      setShowButton({
+                        disabled: false,
+                        text: no_overlap_button_text,
                       });
                     }
                   });
@@ -210,14 +207,15 @@ class OverlapScreen extends Component {
     } catch (e) {
       console.log(e);
     }
-  };
+  }
 
-  parseCSV = async records => {
+  async function parseCSV(records) {
     try {
-      var latestLat = this.state.initialRegion.latitude;
-      var latestLong = this.state.initialRegion.longitude;
+      const latestLat = initialRegion.latitude;
+      const latestLong = initialRegion.longitude;
       const rows = records.split('\n');
-      var parsedRows = {};
+      const parsedRows = {};
+
       for (var i = rows.length - 1; i >= 0; i--) {
         var row = rows[i].split(',');
         const lat = parseFloat(row[7]);
@@ -236,15 +234,15 @@ class OverlapScreen extends Component {
     } catch (e) {
       console.log(e);
     }
-  };
+  }
 
   plotCircles = async records => {
     try {
-      var circles = [];
-      const dist_threshold = 2000; //In KMs
-      const latestLat = this.state.initialRegion.latitude;
-      const latestLong = this.state.initialRegion.longitude;
-      const index = 0;
+      const circles = [];
+      const distThreshold = 2000; //In KMs
+      const latestLat = initialRegion.latitude;
+      const latestLong = initialRegion.longitude;
+      let index = 0;
 
       for (const key in records) {
         const latitude = parseFloat(key.split('|')[0]);
@@ -253,7 +251,7 @@ class OverlapScreen extends Component {
         if (
           !isNaN(latitude) &&
           !isNaN(longitude) &&
-          distance(latestLat, latestLong, latitude, longitude) < dist_threshold
+          distance(latestLat, latestLong, latitude, longitude) < distThreshold
         ) {
           const circle = {
             key: `${index}-${latitude}-${longitude}-${count}`,
@@ -268,110 +266,104 @@ class OverlapScreen extends Component {
         index += 1;
       }
       console.log(circles.length, 'points found');
-      this.setState({
-        circles,
-      });
+      setCircles(circles);
     } catch (e) {
       console.log(e);
     }
   };
 
-  backToMain() {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+  function backToMain() {
+    navigate('LocationTrackingScreen', {});
   }
 
-  handleBackPress = () => {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+  function handleBackPress() {
+    navigate('LocationTrackingScreen', {});
     return true;
-  };
-
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-  }
+  useFocusEffect(
+    React.useCallback(() => {
+      getInitialState();
+      populateMarkers();
+      return () => {};
+    }, []),
+  );
 
-  // This map shows where your private location trail overlaps with public data from a variety of sources, including official reports from WHO, Ministries of Health, and Chinese local, provincial, and national health authorities. If additional data are available from reliable online reports, they are included.
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+    return function cleanup() {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+    };
+  });
 
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.overlap_title')}
-          </Text>
-        </View>
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={styles.map}
-          initialRegion={this.state.initialRegion}
-          customMapStyle={customMapStyles}>
-          {this.state.markers.map(marker => (
-            <Marker
-              key={marker.key}
-              coordinate={marker.coordinate}
-              title={marker.title}
-              description={marker.description}
-              tracksViewChanges={false}
-            />
-          ))}
-          {this.state.circles.map(circle => (
-            <CustomCircle
-              key={circle.key}
-              center={circle.center}
-              radius={circle.radius}
-              fillColor='rgba(163, 47, 163, 0.3)'
-              zIndex={2}
-              strokeWidth={0}
-            />
-          ))}
-        </MapView>
-        <View style={styles.main}>
-          <TouchableOpacity
-            style={styles.buttonTouchable}
-            onPress={() => this.downloadAndPlot()}
-            disabled={this.state.showButton.disabled}>
-            {/* If no overlap found, change button text to say so. Temporary solution, replace with something more robust */}
-            <Text style={styles.buttonText}>
-              {languages.t(this.state.showButton.text)}
-            </Text>
-          </TouchableOpacity>
-          <Text style={styles.sectionDescription}>
-            {languages.t('label.overlap_para_1')}
-          </Text>
-        </View>
-        <View style={styles.footer}>
-          <Text
-            style={[
-              styles.sectionFooter,
-              { textAlign: 'center', paddingTop: 15, color: 'blue' },
-            ]}
-            onPress={() =>
-              Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
-            }>
-            {languages.t('label.nCoV2019_url_info')}{' '}
-          </Text>
-          {/* <Text
-            style={[
-              styles.sectionFooter,
-              { color: 'blue', textAlign: 'center', marginTop: 0 },
-            ]}
-            onPress={() =>
-              Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
-            }>
-            {languages.t('label.nCoV2019_url')}
-          </Text> */}
-        </View>
-      </SafeAreaView>
-    );
-  }
+  // This map shows where your private location trail overlaps with public data from a variety of sources,
+  // including official reports from WHO, Ministries of Health, and Chinese local, provincial, and national
+  // health authorities. If additional data are available from reliable online reports, they are included.
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headerContainer}>
+        <TouchableOpacity
+          style={styles.backArrowTouchable}
+          onPress={backToMain}>
+          <Image style={styles.backArrow} source={backArrow} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>
+          {languages.t('label.overlap_title')}
+        </Text>
+      </View>
+      <MapView
+        ref={mapView}
+        provider={PROVIDER_GOOGLE}
+        style={styles.map}
+        initialRegion={initialRegion}
+        customMapStyle={customMapStyles}>
+        {markers.map(marker => (
+          <Marker
+            key={marker.key}
+            coordinate={marker.coordinate}
+            title={marker.title}
+            description={marker.description}
+            tracksViewChanges={false}
+            image={greenMarker}
+          />
+        ))}
+        {circles.map(circle => (
+          <CustomCircle
+            key={circle.key}
+            center={circle.center}
+            radius={circle.radius}
+            fillColor='rgba(163, 47, 163, 0.3)'
+            zIndex={2}
+            strokeWidth={0}
+          />
+        ))}
+      </MapView>
+      <View style={styles.main}>
+        <TouchableOpacity
+          style={styles.buttonTouchable}
+          onPress={downloadAndPlot}
+          disabled={showButton.disabled}>
+          {/* If no overlap found, change button text to say so. Temporary solution, replace with something more robust */}
+          <Text style={styles.buttonText}>{languages.t(showButton.text)}</Text>
+        </TouchableOpacity>
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.overlap_para_1')}
+        </Text>
+      </View>
+      <View style={styles.footer}>
+        <Text
+          style={[
+            styles.sectionFooter,
+            { textAlign: 'center', paddingTop: 15, color: 'blue' },
+          ]}
+          onPress={() =>
+            Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
+          }>
+          {languages.t('label.nCoV2019_url_info')}{' '}
+        </Text>
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
