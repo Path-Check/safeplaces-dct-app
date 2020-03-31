@@ -20,6 +20,7 @@ import nllabels from './nl';
 import htlabels from './ht';
 import pt_BRlabels from './pt_BR';
 import eslabels from './es';
+import urlabels from './ur';
 import knlabels from './kn';
 import calabels from './ca';
 import cslabels from './cs';
@@ -97,6 +98,11 @@ i18next.init({
     es: {
       translation: {
         label: eslabels,
+      },
+    },
+    ur: {
+      translation: {
+        label: urlabels,
       },
     },
     ca: {
