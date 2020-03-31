@@ -1,7 +1,7 @@
 {
   "overlap_title": "Ṣayẹwo Apọju",
-  "overlap_para_1": "The green trail represents your location history\n\nThe light purple circles represent the public dataset",
-  "show_overlap": "Ṣayẹwo Alaye Gbogbo data",
+  "overlap_para_1": "Trail alawọ ewe duro fun itan ipo rẹ\n\nAwọn iyika pọpu fẹẹrẹ duro fun ibi ipamọ data gbogbogbo",
+  "show_overlap": "Tẹ lati wo ibi ipamọ data gbogbogbo",
   "loading_public_data": "ikojọpọ data...",
   "overlap_no_results_button_label": "Ti Kojọpọ Alaye Gbogbo data",
   "overlap_found_button_label": "Ti Kojọpọ Alaye Gbogbo data",
