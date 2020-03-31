@@ -1,0 +1,11 @@
+{
+    "overlap_title": "Vérifier chevauchement",
+    "overlap_para_1": "Le tracé vert réprésente votre historique de localisation\n\nLes cercles violets pâles réprésentent les données publiques.",
+    "show_overlap": "Cliquer pour voir les données publiques",
+    "loading_public_data": "chargement...",
+    "overlap_no_results_button_label": "Données publiques chargées",
+    "overlap_found_button_label": "Données publiques chargées",
+    "nCoV2019_url_info": "Pour plus d'information à propos des données sur cette carte",
+    "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+  }
+  

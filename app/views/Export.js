@@ -13,6 +13,7 @@ import {
 import PropTypes from 'prop-types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import RNFetchBlob from 'rn-fetch-blob';
+import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
 import colors from '../constants/colors';
 import { GetStoreData } from '../helpers/General';
@@ -60,50 +61,57 @@ function ExportScreen({ shareButtonDisabled }) {
   async function onShare() {
     try {
       let locationData = await new LocationData().getLocationData();
-
-      const jsonData = base64.encode(JSON.stringify(locationData));
-      const title = 'PrivateKit_.json';
-      const filename = 'PrivacyKit_.json';
+      let nowUTC = new Date().toISOString();
+      let unixtimeUTC = Date.parse(nowUTC);
+      
+      var options = {};
+      var jsonData = JSON.stringify(locationData);
+      const title = 'PrivateKit.json';
+      const filename = unixtimeUTC+'.json';
       const message = 'Here is my location log from Private Kit.';
-      const url = 'data:application/json;base64,' + jsonData;
-      const options = Platform.select({
-        ios: {
-          activityItemSources: [
-            {
-              placeholderItem: { type: 'url', content: url },
-              item: {
-                default: { type: 'url', content: url },
-              },
-              subject: {
-                default: title,
-              },
-              linkMetadata: { originalUrl: url, url, title },
-            },
-            {
-              placeholderItem: { type: 'text', content: message },
-              item: {
-                default: { type: 'text', content: message },
-                message: null, // Specify no text to share via Messages app.
-              },
-            },
-          ],
-        },
-        default: {
+      if (Platform.OS === 'ios') {
+        var url = RNFS.Bundle + '/' + filename;
+        await RNFS.writeFile(url, jsonData, 'utf8')
+          .then(success => {
+            options = {
+              activityItemSources: [
+                {
+                  placeholderItem: { type: 'url', content: url },
+                  item: {
+                    default: { type: 'url', content: url },
+                  },
+                  subject: {
+                    default: title,
+                  },
+                  linkMetadata: { originalUrl: url, url, title },
+                },
+              ],
+            };
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
+      } else {
+        jsonData = 'data:application/json;base64,' + base64.encode(jsonData);
+        options = {
           title,
           subject: title,
-          url: url,
+          url: jsonData,
           message: message,
           filename: filename,
-        },
-      });
-
-      Share.open(options)
+        };
+      }
+      await Share.open(options)
         .then(res => {
           console.log(res);
         })
         .catch(err => {
+          console.log(err);
           console.log(err.message, err.code);
         });
+      if (Platform.OS === 'ios') {
+        await RNFS.unlink(url);
+      }
     } catch (error) {
       console.log(error.message);
     }
