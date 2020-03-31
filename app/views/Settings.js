@@ -112,22 +112,27 @@ class SettingsScreen extends Component {
     if (
       this.state.selectedAuthorities.findIndex(x => x.key === authority) === -1
     ) {
-      this.setState({
-        selectedAuthorities: this.state.selectedAuthorities.concat({
-          key: authority,
-          url: this.state.authoritiesList[authorityIndex][authority][0].url,
-        }),
-      });
-      // Add current settings state to async storage.
-      SetStoreData('AUTHORITY_SOURCE_SETTINGS', this.state.selectedAuthorities);
+      this.setState(
+        {
+          selectedAuthorities: this.state.selectedAuthorities.concat({
+            key: authority,
+            url: this.state.authoritiesList[authorityIndex][authority][0].url,
+          }),
+        },
+        () => {
+          // Add current settings state to async storage.
+          SetStoreData(
+            'AUTHORITY_SOURCE_SETTINGS',
+            this.state.selectedAuthorities,
+          );
+        },
+      );
     } else {
       console.log('Not adding the duplicate to sources list');
     }
   }
 
   addCustomUrlToState(urlInput) {
-    console.log('attempting to add custom URL to state');
-
     if (urlInput === '') {
       console.log('URL input was empty, not saving');
     } else if (
@@ -135,23 +140,27 @@ class SettingsScreen extends Component {
     ) {
       console.log('URL input was duplicate, not saving');
     } else {
-      this.setState({
-        selectedAuthorities: this.state.selectedAuthorities.concat({
-          key: urlInput,
-          url: urlInput,
-        }),
-        displayUrlEntry: 'none',
-        urlEntryInProgress: false,
-      });
-      // Add current settings state to async storage.
-      SetStoreData('AUTHORITY_SOURCE_SETTINGS', this.state.selectedAuthorities);
+      this.setState(
+        {
+          selectedAuthorities: this.state.selectedAuthorities.concat({
+            key: urlInput,
+            url: urlInput,
+          }),
+          displayUrlEntry: 'none',
+          urlEntryInProgress: false,
+        },
+        () => {
+          // Add current settings state to async storage.
+          SetStoreData(
+            'AUTHORITY_SOURCE_SETTINGS',
+            this.state.selectedAuthorities,
+          );
+        },
+      );
     }
   }
 
   removeAuthorityFromState(authority) {
-    console.log('State upon element removal:');
-    console.log(this.state.selectedAuthorities);
-
     Alert.alert(
       languages.t('label.authorities_removal_alert_title'),
       languages.t('label.authorities_removal_alert_desc'),
@@ -169,14 +178,17 @@ class SettingsScreen extends Component {
             );
             this.state.selectedAuthorities.splice(removalIndex, 1);
 
-            this.setState({
-              selectedAuthorities: this.state.selectedAuthorities,
-            });
-
-            // Add current settings state to async storage.
-            SetStoreData(
-              'AUTHORITY_SOURCE_SETTINGS',
-              this.state.selectedAuthorities,
+            this.setState(
+              {
+                selectedAuthorities: this.state.selectedAuthorities,
+              },
+              () => {
+                // Add current settings state to async storage.
+                SetStoreData(
+                  'AUTHORITY_SOURCE_SETTINGS',
+                  this.state.selectedAuthorities,
+                );
+              },
             );
           },
         },
