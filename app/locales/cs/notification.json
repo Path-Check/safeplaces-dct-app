@@ -1,8 +1,8 @@
 {
-    "notification_main_text": "Zkontrolujte své prùseèíky kadı den",
-    "notification_title": "Analyzujte své prùseèíky",
-    "notification_data_not_available": "\n\nNemáte ádné staené trasy!\n\n",
-    "notification_warning_text": "Stisknutím následujícího tlaèítka mùete vygenerovat náhodné prùseèíky.\nVAROVÁNÍ: Jedná se o simulované prùseèíky, které nejsou skuteèné",
-    "notification_random_data_button": "Stisknutím tohoto tlaèítka vygenerujete náhodná data",
-    "notifications":"Oznámení"
+    "notification_main_text": "Zkontrolujte svÃ© prÅ¯seÄÃ­ky kaÅ¾dÃ½ den",
+    "notification_title": "Analyzujte svÃ© prÅ¯seÄÃ­ky",
+    "notification_data_not_available": "\n\nNemÃ¡te Å¾Ã¡dnÃ© staÅ¾enÃ© trasy!\n\n",
+    "notification_warning_text": "StisknutÃ­m nÃ¡sledujÃ­cÃ­ho tlaÄÃ­tka mÅ¯Å¾ete vygenerovat nÃ¡hodnÃ© prÅ¯seÄÃ­ky.\nVAROVÃNÃ: JednÃ¡ se o simulovanÃ© prÅ¯seÄÃ­ky, kterÃ© nejsou skuteÄnÃ©",
+    "notification_random_data_button": "StisknutÃ­m tohoto tlaÄÃ­tka vygenerujete nÃ¡hodnÃ¡ data",
+    "notifications":"OznÃ¡menÃ­"
 }
