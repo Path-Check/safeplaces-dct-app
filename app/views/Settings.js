@@ -52,7 +52,11 @@ import {
   withMenuContext,
 } from 'react-native-popup-menu';
 const { SlideInMenu } = renderers;
+<<<<<<< HEAD
 >>>>>>> Add menu for authorities selection in Settings
+=======
+import { GetStoreData, SetStoreData } from '../helpers/General';
+>>>>>>> Store user settings in async storage
 import colors from '../constants/colors';
 import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
@@ -116,7 +120,17 @@ class SettingsScreen extends Component {
 >>>>>>> Create Settings screen
 =======
     this.fetchAuthoritiesList();
+<<<<<<< HEAD
 >>>>>>> Add check for connection, let user know if error
+=======
+
+    // Update user settings state from async storage
+    GetStoreData('AUTHORITY_SOURCE_SETTINGS', false).then(result => {
+      this.setState({
+        selectedAuthorities: result,
+      });
+    });
+>>>>>>> Store user settings in async storage
   }
 
   componentWillUnmount() {
@@ -206,6 +220,8 @@ class SettingsScreen extends Component {
           url: this.state.authoritiesList[authorityIndex][authority][0].url,
         }),
       });
+      // Add current settings state to async storage.
+      SetStoreData('AUTHORITY_SOURCE_SETTINGS', this.state.selectedAuthorities);
     } else {
       console.log('Not adding the duplicate to sources list');
     }
@@ -229,10 +245,15 @@ class SettingsScreen extends Component {
         displayUrlEntry: 'none',
         urlEntryInProgress: false,
       });
+      // Add current settings state to async storage.
+      SetStoreData('AUTHORITY_SOURCE_SETTINGS', this.state.selectedAuthorities);
     }
   }
 
   removeAuthorityFromState(authority) {
+    console.log('State upon element removal:');
+    console.log(this.state.selectedAuthorities);
+
     Alert.alert(
       languages.t('label.authorities_removal_alert_title'),
       languages.t('label.authorities_removal_alert_desc'),
@@ -253,6 +274,12 @@ class SettingsScreen extends Component {
             this.setState({
               selectedAuthorities: this.state.selectedAuthorities,
             });
+
+            // Add current settings state to async storage.
+            SetStoreData(
+              'AUTHORITY_SOURCE_SETTINGS',
+              this.state.selectedAuthorities,
+            );
           },
         },
       ],
