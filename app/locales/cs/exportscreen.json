@@ -1,0 +1,11 @@
+{
+    "export_para_1":"Pomocí tlačítka Sdílet můžete sdílet svou trasu s kýmkoli. Jakmile tlačítko stisknete, aplikace se vás zeptá, s kým a jak ji chcete sdílet.",
+    "export_para_2":"Poloha je sdílena jako jednoduchý seznam časů a souřadnic, žádné další identifikační údaje.",
+    "share":"SDÍLET",
+    "data_hint":"Záznam obsahuje data",
+    "data_covers":"Celkový čas, který záznam obsahuje:",
+    "data_count":"Počet zaznamenaných bodů:",
+    "data_last_updated":"Čas od poslední aktualizace:",
+    "no_data": "Žádná data",
+    "less_than_one_minute": "méně než 1 minuta"
+}
