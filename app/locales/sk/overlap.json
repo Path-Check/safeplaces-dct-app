@@ -1,7 +1,7 @@
 {
   "overlap_title": "Prezri prekrytie",
-  "overlap_para_1": "The green trail represents your location history\n\nThe light purple circles represent the public dataset",
-  "show_overlap": "Click to view the public dataset",
+  "overlap_para_1": "Zelené označenie predstavuje históriu tvojich geografických polôh\n\nFialové kruhy predstavujú súbor verejných údajov",
+  "show_overlap": "Kliknutím zobrazíš verejný súbor údajov",
   "loading_public_data": "Načítavajú sa dáta...",
   "overlap_no_results_button_label": "Verejné dáta načítané",
   "overlap_found_button_label": "Verejné dáta načítané",
