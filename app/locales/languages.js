@@ -99,7 +99,6 @@ i18next.init({
         label: eslabels,
       },
     },
-
     ur: {
       translation: {
         label: urlabels,
@@ -108,7 +107,6 @@ i18next.init({
     ca: {
       translation: {
         label: calabels,
-
       },
     },
   },
