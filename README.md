@@ -38,6 +38,12 @@ First, install Node dependencies:
 
 To set up your environment, go to the [React Native development environment docs](https://reactnative.dev/docs/environment-setup), select "React Native CLI Quickstart", select "iOS" under target OS, then follow the instructions under "Installing dependencies".
 
+Next, run:
+
+    cd ios/
+    pod install
+    cd ..
+
 To run the app:
     
     npx react-native run-ios
