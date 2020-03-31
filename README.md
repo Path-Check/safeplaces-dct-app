@@ -32,7 +32,7 @@ Please refer to `docs/Private Kit Diagram.png` for a basic overview on the seque
 
 ## Developer Setup
 
-Refer to and run the dev_setup.sh for needed tools.
+Refer to and run the dev_setup.sh (Linux/MacOS) or dev_setup.bat (Windows) for needed tools.
 
 ### iOS Configuration - First Time Setup
 
