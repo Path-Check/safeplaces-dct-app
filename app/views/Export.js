@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  Linking,
   View,
   Text,
   Image,
@@ -12,136 +10,163 @@ import {
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
-
+import PropTypes from 'prop-types';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import RNFetchBlob from 'rn-fetch-blob';
+import RNFS from 'react-native-fs';
+import Share from 'react-native-share';
 import colors from '../constants/colors';
 import { GetStoreData } from '../helpers/General';
-import { convertPointsToString } from '../helpers/convertPointsToString';
-import Share from 'react-native-share';
-import RNFetchBlob from 'rn-fetch-blob';
-import LocationServices from '../services/LocationService';
+import { timeSincePoint } from '../helpers/convertPointsToString';
+import LocationServices, { LocationData } from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 
 const width = Dimensions.get('window').width;
-
 const base64 = RNFetchBlob.base64;
 
-// require the module
-// var RNFS = require('react-native-fs');
+function ExportScreen({ shareButtonDisabled }) {
+  const [pointStats, setPointStats] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(shareButtonDisabled);
+  const { navigate } = useNavigation();
 
-class ExportScreen extends Component {
-  constructor(props) {
-    super(props);
+  function handleBackPress() {
+    navigate('LocationTrackingScreen', {});
+    return true;
   }
 
-  OnShare = async () => {
+  useFocusEffect(
+    React.useCallback(() => {
+      const locationData = new LocationData();
+      locationData.getPointStats().then(pointStats => {
+        setPointStats(pointStats);
+        setButtonDisabled(pointStats.pointCount === 0);
+      });
+      return () => {};
+    }, []),
+  );
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+
+    return function cleanup() {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+    };
+  });
+
+  function backToMain() {
+    navigate('LocationTrackingScreen', {});
+  }
+
+  async function onShare() {
     try {
-      const locationArray = await GetStoreData('LOCATION_DATA');
-      var locationData;
-
-      if (locationArray !== null) {
-        locationData = JSON.parse(locationArray);
-      } else {
-        locationData = [];
-      }
-
-      const jsonData = base64.encode(JSON.stringify(locationData));
-      const title = 'PrivateKit_.json';
-      const filename = 'PrivacyKit_.json';
+      let locationData = await new LocationData().getLocationData();
+      let nowUTC = new Date().toISOString();
+      let unixtimeUTC = Date.parse(nowUTC);
+      
+      var options = {};
+      var jsonData = JSON.stringify(locationData);
+      const title = 'PrivateKit.json';
+      const filename = unixtimeUTC+'.json';
       const message = 'Here is my location log from Private Kit.';
-      const url = 'data:application/json;base64,' + jsonData;
-      const options = Platform.select({
-        ios: {
-          activityItemSources: [
-            {
-              placeholderItem: { type: 'url', content: url },
-              item: {
-                default: { type: 'url', content: url },
-              },
-              subject: {
-                default: title,
-              },
-              linkMetadata: { originalUrl: url, url, title },
-            },
-            {
-              placeholderItem: { type: 'text', content: message },
-              item: {
-                default: { type: 'text', content: message },
-                message: null, // Specify no text to share via Messages app.
-              },
-            },
-          ],
-        },
-        default: {
+      if (Platform.OS === 'ios') {
+        var url = RNFS.Bundle + '/' + filename;
+        await RNFS.writeFile(url, jsonData, 'utf8')
+          .then(success => {
+            options = {
+              activityItemSources: [
+                {
+                  placeholderItem: { type: 'url', content: url },
+                  item: {
+                    default: { type: 'url', content: url },
+                  },
+                  subject: {
+                    default: title,
+                  },
+                  linkMetadata: { originalUrl: url, url, title },
+                },
+              ],
+            };
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
+      } else {
+        jsonData = 'data:application/json;base64,' + base64.encode(jsonData);
+        options = {
           title,
           subject: title,
-          url: url,
+          url: jsonData,
           message: message,
           filename: filename,
-        },
-      });
-
-      Share.open(options)
+        };
+      }
+      await Share.open(options)
         .then(res => {
           console.log(res);
         })
         .catch(err => {
+          console.log(err);
           console.log(err.message, err.code);
         });
+      if (Platform.OS === 'ios') {
+        await RNFS.unlink(url);
+      }
     } catch (error) {
       console.log(error.message);
     }
-  };
-
-  backToMain() {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
   }
 
-  handleBackPress = () => {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
-    return true;
-  };
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headerContainer}>
+        <TouchableOpacity
+          style={styles.backArrowTouchable}
+          onPress={() => backToMain()}>
+          <Image style={styles.backArrow} source={backArrow} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>{languages.t('label.export')}</Text>
+      </View>
 
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-  }
-
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>{languages.t('label.export')}</Text>
-        </View>
-
-        <View style={styles.main}>
-          <Text style={styles.sectionDescription}>
-            {languages.t('label.export_para_1')}
+      <View style={styles.main}>
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.export_para_1')}
+        </Text>
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.export_para_2')}
+        </Text>
+        <TouchableOpacity
+          disabled={buttonDisabled}
+          onPress={onShare}
+          style={[
+            styles.buttonTouchable,
+            buttonDisabled && styles.buttonDisabled,
+          ]}>
+          <Text
+            style={[
+              styles.buttonText,
+              buttonDisabled && styles.buttonDisabled,
+            ]}>
+            {languages.t('label.share')}
           </Text>
-          <Text style={styles.sectionDescription}>
-            {languages.t('label.export_para_2')}
-          </Text>
-          <TouchableOpacity
-            style={styles.buttonTouchable}
-            onPress={this.OnShare}>
-            <Text style={styles.buttonText}>{languages.t('label.share')}</Text>
-          </TouchableOpacity>
-          <Text style={[styles.sectionDescription, { marginTop: 36 }]}>
-            {languages.t('label.data_hint')}{' '}
-            {convertPointsToString(LocationServices.getPointCount())}
-          </Text>
-        </View>
-      </SafeAreaView>
-    );
-  }
+        </TouchableOpacity>
+        <Text style={[styles.sectionDescription, { marginTop: 36 }]}>
+          {languages.t('label.data_covers')}{' '}
+          {pointStats ? timeSincePoint(pointStats.firstPoint) : '...'}
+        </Text>
+
+        <Text style={[styles.sectionDescription, { marginTop: 15 }]}>
+          {languages.t('label.data_count')}{' '}
+          {pointStats ? pointStats.pointCount : '...'}
+        </Text>
+
+        <Text style={[styles.sectionDescription, { marginTop: 15 }]}>
+          {languages.t('label.data_last_updated')}{' '}
+          {pointStats ? timeSincePoint(pointStats.lastPoint) : '...'}
+        </Text>
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -154,10 +179,9 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 38,
-
+    fontSize: 24,
     padding: 0,
+    fontFamily: 'OpenSans-Bold',
   },
   subHeaderTitle: {
     textAlign: 'center',
@@ -191,6 +215,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
+  buttonDisabled: {
+    opacity: 0.7,
+  },
   mainText: {
     fontSize: 18,
     lineHeight: 24,
@@ -205,7 +232,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     padding: 20,
   },
-
   headerContainer: {
     flexDirection: 'row',
     height: 60,
@@ -230,5 +256,13 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Regular',
   },
 });
+
+ExportScreen.propTypes = {
+  shareButtonDisabled: PropTypes.bool,
+};
+
+ExportScreen.defaultProps = {
+  shareButtonDisabled: true,
+};
 
 export default ExportScreen;

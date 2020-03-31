@@ -44,8 +44,6 @@ class LocationTracking extends Component {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     GetStoreData('PARTICIPATE')
       .then(isParticipating => {
-        console.log(isParticipating);
-
         if (isParticipating === 'true') {
           this.setState({
             isLogging: true,
@@ -111,15 +109,9 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('LicensesScreen', {});
   }
 
-  willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => {
-      LocationServices.start();
-      BroadcastingServices.start();
-    });
-    this.setState({
-      isLogging: true,
-    });
-  };
+  notifications() {
+    this.props.navigation.navigate('NotificationScreen', {});
+  }
 
   setOptOut = () => {
     LocationServices.stop(this.props.navigation);
@@ -147,7 +139,6 @@ class LocationTracking extends Component {
                   width: 15,
                   height: 28,
                   padding: 14,
-                  opacity: 0.6,
                 }}
               />
             </MenuTrigger>
@@ -157,6 +148,12 @@ class LocationTracking extends Component {
                   this.licenses();
                 }}>
                 <Text style={styles.menuOptionText}>Licenses</Text>
+              </MenuOption>
+              <MenuOption
+                onSelect={() => {
+                  this.notifications();
+                }}>
+                <Text style={styles.menuOptionText}>Notifications</Text>
               </MenuOption>
             </MenuOptions>
           </Menu>

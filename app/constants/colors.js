@@ -9,6 +9,8 @@ const colors = {
   PRIMARY_TEXT: '#000',
   GREEN: '#32A852',
   VIOLET: '#6C3794',
+  RED: '#e74c3c',
+  ORANGE: '#e67e22',
 
   REG_BUTTON: '#428AF8',
   POS_BUTTON: '#32A852',

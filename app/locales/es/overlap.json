@@ -1,0 +1,10 @@
+{
+  "overlap_title": "Comprobar posibles puntos de encuentro",
+  "overlap_para_1": "El registro de color verde representa tu historial de localizaciones\n\nLos círculos de color púrpura claro representan la información pública actual",
+  "show_overlap": "Haz click para ver la información pública disponible",
+  "loading_public_data": "cargando datos...",
+  "overlap_no_results_button_label": "Información pública incorporada",
+  "overlap_found_button_label": "Información pública incorporada",
+  "nCoV2019_url_info": "Para obtener más información sobre los datos detrás de este mapa",
+  "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+}

@@ -1,3 +1,4 @@
+
 # How to contribute
 
 We welcome participation in open project.  We want to make it as easy as
@@ -44,7 +45,7 @@ prepare and submit a pull request.
      ```
   6. Start a PR to submit your changes back to the original project:
      - Visit https://github.com/YOURACCOUNT/private-kit
-     - Click on the 
+     - Click on the
       - Checkout the `develop` branch and make sure it is up-to-date.
       - Checkout your branch and rebase it against `develop`.
       - Resolve any conflicts locally.
@@ -65,6 +66,27 @@ prepare and submit a pull request.
 push directly to `develop`!  All work is done against `develop`, reviewed and
 merged via PRs, and ultimately `develop` gets merged into `master` for tagged
 code releases.
+
+## Testing
+This project utilizes the [Jest](https://jestjs.io/) testing framework to test the components.
+
+### Commands
+`yarn test` - Runs the test suite
+`yarn test -u` - Runs the test suite and updates any snapshots that need updating. Don't run this until you have determined that the snapshot failures are legitimate failures based on your changes.
+
+### Adding new components/tests
+When adding new components to the project, make sure to add at least snapshot test. The test files are located in the `__tests__` directory at the same level as the component you are testing. For instance, if you are adding a new view called `TestView` under the `views` directory, you would add a `TestView.spec.js` file in the `views/__tests__` directory.
+
+After making your changes and adding a new test file, make sure to run `yarn test` to make sure you don't have any test failures.
+
+### Snapshot failures
+The most common failure you will most likely run into is a snapshot failure.  [Snapshot testing](https://jestjs.io/docs/en/snapshot-testing) ensures that a component renders the same output after it has been modified. If you receive a snapshot failure, check the differences in the snapshot failure to make sure they are expected changes. If they are all expected changes then you just need to update the snapshot by running `yarn test -u`. This will update the snapshot file so you can commit the changes.
+
+### Mocking modules
+When writing tests for components that use installed packages, we usually don't want to rely on loading those packages in the testing environment. In those cases we can just mock the modules so they get stubbed out. There are two common ways to mock components:
+
+* adding a mock to `jestSetupFile.js` in the root of the project. This is the common way to mock a module that uses a default export.
+* adding a mock file to the  `__mocks__` in the root of the project. This is the common way to mock a module that uses named exports or specific methods on the module.
 
 ## Submit Changes
 
@@ -87,9 +109,9 @@ code releases.
 
 * Now that you have a copy of the branch, switch to it using ```git checkout branch-name```. Your directory will now be an exact copy of the PR. Be sure to tell the author about any bugs or suggestions, as you cannot add your own changes to a pull request directly.
 
-* When you are done checking out their work, use ```git checkout master``` to return to your local version 
+* When you are done checking out their work, use ```git checkout master``` to return to your local version
 
-### Git Aliases to help with pull request reviews 
+### Git Aliases to help with pull request reviews
 
 Aliases are shortcuts that you can define in git bash (or linux/mac) that reduces typing and minimizes errors. The following commands create two aliases, one for grabbing a PR and switching to that branch. The other one deletes the branch.
 

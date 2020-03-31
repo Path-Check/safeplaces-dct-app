@@ -1,51 +1,47 @@
-export function convertPointsToString(count) {
-  // For testing Manually override count
-  //  count = 3000
+import pluralize from 'pluralize';
+import languages from './../locales/languages';
 
-  // Get minutes
-  let tot_mins = count * 5;
-
-  // Calculate days
-  var days = tot_mins / 60 / 24;
-  var rdays = Math.floor(days);
-
-  // Calculate Hours
-  var hours = (days - rdays) * 24;
-  var rhours = Math.floor(hours);
-
-  // Calculate Minutes
-  var minutes = (hours - rhours) * 60;
-  var rminutes = Math.round(minutes);
-
-  if (rdays > 0) {
-    if (rdays > 1) {
-      if (rhours > 1) {
-        return (
-          rdays + ' days, ' + rhours + ' hours and ' + rminutes + ' minutes.'
-        );
-      } else {
-        return (
-          rdays + ' days, ' + rhours + ' hour and ' + rminutes + ' minutes.'
-        );
-      }
-    } else {
-      if (rhours > 1) {
-        return (
-          rdays + ' day, ' + rhours + ' hours and ' + rminutes + ' minutes.'
-        );
-      } else {
-        return (
-          rdays + ' day, ' + rhours + ' hour and ' + rminutes + ' minutes.'
-        );
-      }
-    }
-  } else if (rhours > 0) {
-    if (rhours > 1) {
-      return rhours + ' hours and ' + rminutes + ' minutes.';
-    } else {
-      return rhours + ' hour and ' + rminutes + ' minutes.';
-    }
-  } else {
-    return rminutes + ' minutes.';
+export function timeSincePoint(point) {
+  if (!point) {
+    return languages.t('label.no_data');
   }
+
+  const pointDays = point ? daysDifferenceFromNow(point.time) : null;
+  const pointHours = point ? hoursDifferenceFromNow(point.time) : null;
+  const pointMinutes = point ? minutesDifferenceFromNow(point.time) : null;
+  const pointTime = [
+    pointDays > 0 ? pluralize('day', pointDays, true) : null,
+    pointHours > 0 ? pluralize('hour', pointHours, true) : null,
+    pointMinutes > 0
+      ? pluralize('minute', pointMinutes, true)
+      : languages.t('label.less_than_one_minute'),
+  ]
+    .filter(item => item)
+    .join(' ');
+
+  return pointTime;
+}
+
+function daysDifferenceFromNow(timestamp) {
+  var difference = now() - timestamp;
+  var daysDifference = Math.floor(difference / 1000 / 60 / 60 / 24);
+  return daysDifference;
+}
+
+function hoursDifferenceFromNow(timestamp) {
+  var difference = now() - timestamp;
+  var hoursDifference = Math.floor(difference / 1000 / 60 / 60);
+  return hoursDifference % 24;
+}
+
+function minutesDifferenceFromNow(timestamp) {
+  var difference = now() - timestamp;
+  var minutesDifference = Math.floor(difference / 1000 / 60);
+
+  return minutesDifference % 60;
+}
+
+function now() {
+  let nowUTC = new Date().toISOString();
+  return Date.parse(nowUTC);
 }

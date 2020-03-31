@@ -12,10 +12,10 @@ function BuildLocalFormat(placeVisit) {
 }
 
 function LocationExists(localDataJSON, loc) {
-  var wasImportedBefore = false;
+  let wasImportedBefore = false;
 
-  for (var index = 0; index < localDataJSON.length; ++index) {
-    var storedLoc = localDataJSON[index];
+  for (let index = 0; index < localDataJSON.length; ++index) {
+    let storedLoc = localDataJSON[index];
     if (
       storedLoc.latitude == loc.latitude &&
       storedLoc.longitude == loc.longitude &&
@@ -39,10 +39,13 @@ function InsertIfNew(localDataJSON, loc) {
 }
 
 function Merge(localDataJSON, googleDataJSON) {
-  googleDataJSON.timelineObjects.map(function(data, index) {
+  googleDataJSON.timelineObjects.map(function(
+    data,
+    //index
+  ) {
     // Only import visited places, not paths for now
     if (data.placeVisit) {
-      var loc = BuildLocalFormat(data.placeVisit);
+      let loc = BuildLocalFormat(data.placeVisit);
       InsertIfNew(localDataJSON, loc);
     }
   });
@@ -50,7 +53,7 @@ function Merge(localDataJSON, googleDataJSON) {
 
 export async function MergeJSONWithLocalData(googleDataJSON) {
   GetStoreData('LOCATION_DATA').then(locationArray => {
-    var locationData;
+    let locationData;
 
     if (locationArray !== null) {
       locationData = JSON.parse(locationArray);
