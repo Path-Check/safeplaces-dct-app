@@ -26,6 +26,20 @@ Safe Paths logs your device’s location once every five minutes and stores 28 d
 
 **Downloads for Private Kit:** [Google Play](https://play.google.com/store/apps/details?id=edu.mit.privatekit) | [Apple Store](https://apps.apple.com/us/app/private-kit-prototype/id1501903733)
 
+# Privacy of the Bluetooth Contact Tracing algorithm. 
+
+Here's a much-simplified version: 
+
+```
+1. Phone generates a new random code each hour. 
+2. Phone broadcasts that code alone to neighboring phones. 
+3. Receiving phones save those random codes locally. 
+
+4. Upon diagnosis, the host's contact codes alone are sent to a server. 
+
+5. All phones regularly download a list of UUIDs that had contact with a host and alert the user if he was close to one. 
+```
+
 # Development Overview
 
 This is a React Native app version 61.5
