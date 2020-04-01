@@ -1,6 +1,6 @@
 {
-    "start_logging":"INCEPE INREGISTRAREA",
-    "stop_logging":"OPRESTE INREGISTRAREA",
+    "start_logging":"START JURNAL",
+    "stop_logging":"STOP JURNAL",
     "logging_message":"Locatia dumneavoastra este inregistrata anonim la fiecare 5 minute. Informatiile inregistratre NU vor parasi dispozitivul dumneavoastra.",
     "not_logging_message":"NOTA: Dupa ce apasati acest buton, este posibil sa fie nevoie sa aprobati ca Private Kit sa foloseasca locatia dispozitivului.",
     "import":"Importa\n(optional)",
