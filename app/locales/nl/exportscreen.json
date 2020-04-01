@@ -3,9 +3,9 @@
     "export_para_2":"Je locatiehistorie wordt gedeeld als een eenvoudige lijst met tijden en coördinaten, zonder andere identificerende informatie.",
     "share":"DEEL",
     "data_hint":"Log bevat data van",
-    "data_covers":"Total time the log covers:",
-    "data_count":"Number of points logged:",
-    "data_last_updated":"Time since last updated:",
-    "no_data": "No data",
-    "less_than_one_minute": "less than 1 minute"
+    "data_covers":"Totale tijd van het log:",
+    "data_count":"Aantal punten opgenomen in het log:",
+    "data_last_updated":"Tijd sinds de laatste update:",
+    "no_data": "Geen data",
+    "less_than_one_minute": "minder dan 1 minuut"
 }
