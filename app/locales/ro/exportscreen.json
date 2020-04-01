@@ -4,7 +4,7 @@
     "share":"Trimiteti Locatiile",
     "data_hint":"Logul are date de",
     "data_covers":"Timp total logat:",
-    "data_count":"Numar de puncte logate:",
+    "data_count":"Numar de locatii logate:",
     "data_last_updated":"De la ultima updatare de date, au trecut:",
     "no_data": "Nu exista inca date salvate",
     "less_than_one_minute": "mai putin de 1 minut"
