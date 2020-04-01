@@ -1,0 +1,8 @@
+{
+    "notification_main_text": "Comprueba tus posibles puntos de encuentro a diario",
+    "notification_title": "Analizar tus puntos de encuentro",
+    "notification_data_not_available": "\n\nNo tienes información pública de posibles puntos de encuentro descargada!\n\n",
+    "notification_warning_text": "Pues hacer click en el siguiente botón para generar una simulación de puntos de encuentro. \nAVISO: Estos puntos de encuentro no son casos reales, sino simulaciones",
+    "notification_random_data_button": "Haz click en este botón para generar una simulación",
+    "notifications":"Notificaciones"
+}

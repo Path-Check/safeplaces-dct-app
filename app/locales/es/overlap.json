@@ -1,7 +1,7 @@
 {
   "overlap_title": "Comprobar posibles puntos de encuentro",
-  "overlap_para_1": "Los círculos verdes indican las ubicaciones en las que te has registrado más veces. Amplia el mapa para ver los marcadores rojos, que indican tus ubicaciones exactas guardadas en cada momento. \n\nHaz click en el botón para descargar la información pública sobre casos confirmados, que se muestra con los círculos de color púrpura claro.",
-  "show_overlap": "Incorporar información pública",
+  "overlap_para_1": "El registro de color verde representa tu historial de localizaciones\n\nLos círculos de color púrpura claro representan la información pública actual",
+  "show_overlap": "Haz click para ver la información pública disponible",
   "loading_public_data": "cargando datos...",
   "overlap_no_results_button_label": "Información pública incorporada",
   "overlap_found_button_label": "Información pública incorporada",
