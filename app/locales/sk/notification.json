@@ -1,0 +1,8 @@
+{
+    "notification_main_text": "Skontroluj svoj prienik denných dát",
+    "notification_title": "Analyzuj svoj prienik",
+    "notification_data_not_available": "\n\nNemáš žiadne stiahnuté trasy!\n\n",
+    "notification_warning_text": "Stlačením nasledujúceho tlačidla môžete vygenerovať náhodné križovatky.\nVarovanie: Tieto simulované križovatky nie sú skutočné",
+    "notification_random_data_button": "Kliknutím na toto tlačidlo vygeneruješ náhodné dáta",
+    "notifications":"Upozornenia"
+}
