@@ -1,0 +1,11 @@
+{
+    "export_para_1":"Môžeš zdielať svoju polohu s kýmkoľvek pomocou tlačidla Zdieľať. Po kliknutí na toto tlačidlo si budeš môcť vybrať s kým a ako chceš svoju polohu zdieľať.",
+    "export_para_2":"Poloha je zdieľaná ako jednoduchý zoznam časov a súradníc bez akýchkoľvek ďalších identifikačných informácií.",
+    "share":"ZDIEĽAŤ",
+    "data_hint":"Záznam obsahuje dáta o",
+    "data_covers":"Celkový čas, ktorý zaznamenávanie pokrýva:",
+    "data_count":"Počet zaznamenaných bodov:",
+    "data_last_updated":"Čas od poslednej aktualizácie:",
+    "no_data": "Žiadne údaje",
+    "less_than_one_minute": "menej ako 1 minúta"
+}
