@@ -1,7 +1,7 @@
 {
   "overlap_title": "Verificar Sobreposição",
-  "overlap_para_1": "Círculos verdes são agrupamentos de seus locais, clique para ampliar. Marcadores vermelhos são seus locais gravados. \n\nPressione o botão para baixar informações públicas de casos confirmados, mostrados como círculos roxo claro.",
-  "show_overlap": "Verificar dados públicos",
+  "overlap_para_1": "Círculos verdes representam o seu histórico de localização, clique nele para ampliar. \n\nOs círculos roxos claros representam o conjunto de dados público.",
+  "show_overlap": "Clique para ver os dados públicos",
   "loading_public_data": "carregando dados...",
   "overlap_no_results_button_label": "Dados públicos carregados",
   "overlap_found_button_label": "Dados públicos carregados",
