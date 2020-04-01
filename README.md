@@ -31,14 +31,22 @@ Safe Paths logs your device’s location once every five minutes and stores 28 d
 Here's a much-simplified version: 
 
 ```
-1. Phone generates a new random code each hour. 
-2. Phone broadcasts that code alone to neighboring phones. 
-3. Receiving phones save those random codes locally. 
+1. Phone generates a new random code each hour
+2. Phone broadcasts that code alone to neighboring phones
+3. Receiving phones save those random codes locally
 
-4. Upon diagnosis, the host's contact codes alone are sent to a server. 
+4. Upon diagnosis, the user's contact codes alone are sent to a server
 
-5. All phones regularly download a list of UUIDs that had contact with a host and alert the user if he was close to one. 
+5. Phone regularly downloads a list of codes from the server 
+6. Phone alerts the user if one if his codes is in the list
 ```
+
+Hence, no one knows anyone. 
+
+1. The infected does not know the names of the contacts. 
+2. Contacts do not know the names of the infected. 
+3. The server only hosts random codes.
+4. If anyone else get a hold on the phone, they only have random codes. 
 
 # Development Overview
 
