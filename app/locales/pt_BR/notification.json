@@ -1,8 +1,8 @@
 {
-    "notification_main_text": "Check your Intersection day wise",
-    "notification_title": "Analyze your intersection",
-    "notification_data_not_available": "\n\nYou do not have any trails downloaded!\n\n",
-    "notification_warning_text": "You can press the following button to generate random intersections.\nWARNING: These are simulated intersections not real",
-    "notification_random_data_button": "Press this button to generate random data",
-    "notifications":"Notifications"
+    "notification_main_text": "Verifique sua interseção por dia",
+    "notification_title": "Analise sua interseção",
+    "notification_data_not_available": "\n\nVocê não tem nenhuma trilha baixada!\n\n",
+    "notification_warning_text": "Você pode pressionar o botão a seguir para gerar cruzamentos aleatórios.\nATENÇÃO: Essas interseções são simuladas, não são reais",
+    "notification_random_data_button": "Pressione este botão para gerar dados aleatórios",
+    "notifications":"Notificações"
 }
