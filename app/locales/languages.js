@@ -24,6 +24,7 @@ import urlabels from './ur';
 import knlabels from './kn';
 import calabels from './ca';
 import yolabels from './yo';
+import gjlabels from './gj';
 import cslabels from './cs';
 
 // This will fetch the user's language
@@ -114,6 +115,11 @@ i18next.init({
     yo: {
       translation: {
         label: yolabels,
+      },
+    },
+    gj: {
+      translation: {
+        label: gjlabels,
       },
     },
     cs: {
