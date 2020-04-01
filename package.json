@@ -1,6 +1,6 @@
 {
   "name": "privatekit",
-  "version": "0.5.10",
+  "version": "0.5.11",
   "private": true,
   "scripts": {
     "install:pod": "cd ios && pod install",
