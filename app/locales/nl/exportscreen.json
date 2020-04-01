@@ -1,0 +1,11 @@
+{
+    "export_para_1":"Je kunt jouw locatiehistorie met iedereen delen via de knop Deel hieronder. Zodra je op de knop drukt, wordt je gevraagd met wie en hoe je deze wilt delen.",
+    "export_para_2":"Je locatiehistorie wordt gedeeld als een eenvoudige lijst met tijden en coördinaten, zonder andere identificerende informatie.",
+    "share":"DEEL",
+    "data_hint":"Log bevat data van",
+    "data_covers":"Total time the log covers:",
+    "data_count":"Number of points logged:",
+    "data_last_updated":"Time since last updated:",
+    "no_data": "No data",
+    "less_than_one_minute": "less than 1 minute"
+}

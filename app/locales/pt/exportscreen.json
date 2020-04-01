@@ -1,6 +1,11 @@
 {
-    "export_para_1":"You can share your location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.",
-    "export_para_2":"Location is shared as a simple list of times and coordinates, no other identifying information.",
-    "share":"SHARE",
-    "data_hint":"Log has data of"
+    "export_para_1":"Você pode compartilhar o seu histórico de localização com qualquer pessoa usando o botão de Compartilhar. Depois de pressionar o botão, você escolhe com quem e como deseja compartilhar.",
+    "export_para_2":"Seu histórico de localização é compartilhado como uma lista simples de horários e coordenadas sem nenhuma outra informação de identificação.",
+    "share":"COMPARTILHAR",
+    "data_hint":"Registros de",
+    "data_covers":"Total time the log covers:",
+    "data_count":"Number of points logged:",
+    "data_last_updated":"Time since last updated:",
+    "no_data": "No data",
+    "less_than_one_minute": "less than 1 minute"
 }

@@ -131,8 +131,9 @@ android {
         applicationId "edu.mit.privatekit"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 8
-        versionName "0.5.3"
+        multiDexEnabled true
+        versionCode 16
+        versionName "0.5.11"
     }
     splits {
         abi {
@@ -191,6 +192,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-svg')
     implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
@@ -205,7 +207,37 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation(project(':react-native-maps')){
+       exclude group: 'com.google.android.gms', module: 'play-services-base'
+       exclude group: 'com.google.android.gms', module: 'play-services-maps'
+    }
+    implementation 'com.google.android.gms:play-services-base:10.0.1'
+    implementation 'com.google.android.gms:play-services-maps:10.0.1'
 }
+
+ // Just to fix the app start crash error
+ allprojects {
+    repositories {
+    //start here
+    configurations.all {
+ resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+   def requested = details.requested
+       if (requested.group == 'com.google.android.gms') {
+          details.useVersion '12.0.1'
+       }
+       if (requested.group == 'com.google.firebase') {
+          details.useVersion '12.0.1'
+         }
+       }
+     }
+    //end
+     jcenter()
+       maven {
+         url "https://maven.google.com"
+       }
+     }
+ }
 
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use

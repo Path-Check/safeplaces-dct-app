@@ -1,0 +1,10 @@
+{
+  "overlap_title": "Controleer Overlap",
+  "overlap_para_1": "Groene cirkels zijn clusters van uw locaties, klik om in te zoomen. Rode markeringen zijn uw geregistreerde locaties.\n\nDruk op de knop om openbare informatie over bevestigde gevallen te downloaden, weergegeven als vage paarse cirkels.",
+  "show_overlap": "Check Openbare Informatie",
+  "loading_public_data": "Openbare informatie laden...",
+  "overlap_no_results_button_label": "Openbare Informatie Geladen",
+  "overlap_found_button_label": "Openbare Informatie Geladen",
+  "nCoV2019_url_info": "Voor meer informatie over de dataset van deze kaart",
+  "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+}

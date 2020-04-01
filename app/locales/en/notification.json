@@ -1,0 +1,8 @@
+{
+    "notification_main_text": "Check your Intersection day wise",
+    "notification_title": "Analyze your intersection",
+    "notification_data_not_available": "\n\nYou do not have any trails downloaded!\n\n",
+    "notification_warning_text": "You can press the following button to generate random intersections.\nWARNING: These are simulated intersections not real",
+    "notification_random_data_button": "Press this button to generate random data",
+    "notifications":"Notifications"
+}
