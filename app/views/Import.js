@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   BackHandler,
   ActivityIndicator,
+  Linking,
 } from 'react-native';
 
 import colors from '../constants/colors';
