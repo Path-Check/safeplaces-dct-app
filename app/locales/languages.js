@@ -122,11 +122,6 @@ i18next.init({
         label: cslabels,
       },
     },
-    ms: {
-      translation: {
-        label: mslabels,
-      },
-    },
   },
 });
 
