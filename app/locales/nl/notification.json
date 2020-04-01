@@ -1,0 +1,8 @@
+{
+    "notification_main_text": "Controleer dagelijks jouw kruispunten",
+    "notification_title": "Analyseer jouw kruispunt",
+    "notification_data_not_available": "\n\nJe hebt geen routes gedownload!\n\n",
+    "notification_warning_text": "Je kunt op de volgende knop drukken om willekeurige kruispunten te genereren.\nWAARSCHUWING: Dit zijn gesimuleerde kruispunten die niet echt zijn",
+    "notification_random_data_button": "Druk op deze knop om willekeurige gegevens te genereren",
+    "notifications":"Meldingen"
+}
