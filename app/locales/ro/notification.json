@@ -1,0 +1,8 @@
+{
+    "notification_main_text": "Verificati-va intersectarile in functie de zi",
+    "notification_title": "Analizati-va intersectarile",
+    "notification_data_not_available": "\n\nNu aveti trasee downloadate!\n\n",
+    "notification_warning_text": "Puteti sa apasati butonul urmator pentru a genera intersectari aleatorii.\nATENTIE: Aceste intersectari simulate nu sunt reale",
+    "notification_random_data_button": "Apasati acest buton pentru a genera date aleatorii.",
+    "notifications":"Notificari"
+}

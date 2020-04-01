@@ -1,0 +1,14 @@
+{
+    "private_kit":"Private Kit",
+    "intro1_para1":"Anonimatul si securizarea datelor este principiul de baza al designului MIT Private Kit, care reprezinta noua generatie de logare anonima a locatiilor.",
+    "next":"INAINTE",
+    "back":"INAPOI",
+    "start":"PORNESTE",
+    "intro2_title1":"Mai putin de 100KB",
+    "intro2_para1":"Generatorul de trasee Private Kit inregistreaza locatia dispozitivului tau in sub 100KB spatiu memorie – mai putin spatiu decat o poza.",
+    "intro2_title2":"Aveti Control Total",
+    "intro2_para2": "Locatiile nu parasesc dispozitivul DECAT la cererea dumneavoastra.",
+    "intro3_title1":"COVID-19",
+    "intro3_para1": "Trackingul a fost folosit cu mare succes in incetinirea avansarii pandemiei COVID-19 in tari precum Coreea de Sud si Singapore. Private Kit ofera aceleasi capacitati de tracking garantand in plus ANONIMATUL utilizatorilor.",
+    "intro3_para2":"Mai multe informatii la http://privatekit.mit.edu/"
+}

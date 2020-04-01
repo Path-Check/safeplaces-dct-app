@@ -1,0 +1,10 @@
+{
+  "overlap_title": "Verifica Intersectari",
+  "overlap_para_1": "Traseele tale sunt formate din cercuri verzi \n\nTraseele altor persoane sunt formate din cercuri mov deschis",
+  "show_overlap": "Apasa pentru a vedea traseele altor personane (in lucru)",
+  "loading_public_data": "incarcare date...",
+  "overlap_no_results_button_label": "Datele Publicate Incarcate",
+  "overlap_found_button_label": "Datele Publicate Incarcate",
+  "nCoV2019_url_info": "Pentru mai multe informatii despre setul de date din aceast harta, accesati",
+  "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+}

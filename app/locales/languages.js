@@ -24,6 +24,7 @@ import urlabels from './ur';
 import knlabels from './kn';
 import calabels from './ca';
 import cslabels from './cs';
+import rolabels from './ro';
 
 // This will fetch the user's language
 let userLang = undefined;
@@ -113,6 +114,11 @@ i18next.init({
     cs: {
       translation: {
         label: cslabels,
+      },
+    },
+    ro: {
+      translation: {
+        label: rolabels,
       },
     },
   },
