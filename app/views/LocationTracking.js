@@ -361,6 +361,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 38,
     padding: 0,
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.BOLD,
     marginTop: '7%',
   },
@@ -399,6 +400,7 @@ const styles = StyleSheet.create({
   },
   sectionDescription: {
     fontSize: 13,
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.MEDIUM,
     marginLeft: '12%',
     marginRight: '12%',
@@ -409,6 +411,7 @@ const styles = StyleSheet.create({
   },
   footerDescription: {
     fontSize: 12,
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.REGULAR,
     marginLeft: '12%',
     marginRight: '12%',
@@ -426,6 +429,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   startLoggingButtonText: {
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.BOLD,
     fontSize: 14,
     lineHeight: 19,
@@ -442,6 +446,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   stopLoggingButtonText: {
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.BOLD,
     fontSize: 14,
     lineHeight: 19,
@@ -463,6 +468,7 @@ const styles = StyleSheet.create({
   },
   actionButtonText: {
     opacity: 0.56,
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.BOLD,
     fontSize: 12,
     lineHeight: 17,
@@ -472,6 +478,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   menuOptionText: {
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.REGULAR,
     fontSize: 14,
     padding: 10,
@@ -488,6 +495,7 @@ const styles = StyleSheet.create({
     marginTop: '2%',
   },
   privacyHeader: {
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.SEMIBOLD,
     fontSize: 16,
     marginLeft: 5,

@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   infoCardHeadText: {
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.BOLD,
     fontSize: 40,
     lineHeight: 55,
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   infoCardSubheadText: {
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.LIGHT,
     fontSize: 20,
     lineHeight: 0,
@@ -122,6 +124,7 @@ const styles = StyleSheet.create({
   },
   infoCardBodyText: {
     opacity: 0.8,
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.SEMIBOLD,
     fontSize: 14,
     lineHeight: 24,
@@ -157,11 +160,13 @@ const styles = StyleSheet.create({
     marginLeft: '5%',
   },
   descriptionHeaderText: {
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.SEMIBOLD,
     fontSize: 14,
     color: '#000000',
   },
   descriptionSubheaderText: {
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.LIGHT,
     fontSize: 14,
     color: '#6A6A6A',

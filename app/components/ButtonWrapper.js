@@ -17,6 +17,7 @@ class ButtonWrapper extends React.Component {
 
 const styles = StyleSheet.create({
   primaryButtonText: {
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.BOLD,
     fontSize: 16,
     lineHeight: 19,

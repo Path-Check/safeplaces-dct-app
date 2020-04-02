@@ -108,14 +108,14 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'IBM Plex Sans',
   },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
     textAlignVertical: 'center',
     marginTop: 12,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: 'IBM Plex Sans',
   },
 });
 
