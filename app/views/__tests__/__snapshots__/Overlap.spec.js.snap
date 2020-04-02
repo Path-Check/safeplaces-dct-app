@@ -70,6 +70,109 @@ exports[`renders correctly 1`] = `
     </Text>
   </View>
   <MapView
+    customMapStyle={
+      Array [
+        Object {
+          "elementType": "all",
+          "featureType": "all",
+          "stylers": Array [
+            Object {
+              "saturation": "32",
+            },
+            Object {
+              "lightness": "-3",
+            },
+            Object {
+              "visibility": "on",
+            },
+            Object {
+              "weight": "1.18",
+            },
+          ],
+        },
+        Object {
+          "elementType": "labels",
+          "featureType": "administrative",
+          "stylers": Array [
+            Object {
+              "visibility": "off",
+            },
+          ],
+        },
+        Object {
+          "elementType": "labels",
+          "featureType": "landscape",
+          "stylers": Array [
+            Object {
+              "visibility": "off",
+            },
+          ],
+        },
+        Object {
+          "elementType": "all",
+          "featureType": "landscape.man_made",
+          "stylers": Array [
+            Object {
+              "saturation": "-70",
+            },
+            Object {
+              "lightness": "14",
+            },
+          ],
+        },
+        Object {
+          "elementType": "labels",
+          "featureType": "poi",
+          "stylers": Array [
+            Object {
+              "visibility": "off",
+            },
+          ],
+        },
+        Object {
+          "elementType": "labels",
+          "featureType": "road",
+          "stylers": Array [
+            Object {
+              "visibility": "off",
+            },
+          ],
+        },
+        Object {
+          "elementType": "labels",
+          "featureType": "transit",
+          "stylers": Array [
+            Object {
+              "visibility": "off",
+            },
+          ],
+        },
+        Object {
+          "elementType": "all",
+          "featureType": "water",
+          "stylers": Array [
+            Object {
+              "saturation": "100",
+            },
+            Object {
+              "lightness": "-14",
+            },
+          ],
+        },
+        Object {
+          "elementType": "labels",
+          "featureType": "water",
+          "stylers": Array [
+            Object {
+              "visibility": "off",
+            },
+            Object {
+              "lightness": "12",
+            },
+          ],
+        },
+      ]
+    }
     initialRegion={
       Object {
         "latitude": 36.56,
@@ -78,14 +181,12 @@ exports[`renders correctly 1`] = `
         "longitudeDelta": 50,
       }
     }
-    provider="google"
     style={
       Object {
         "alignSelf": "center",
         "flex": 1,
         "flexDirection": "column",
         "padding": 15,
-        "textAlignVertical": "top",
         "width": "96%",
       }
     }
@@ -138,7 +239,7 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        Check Public Data
+        Click to view the public dataset
       </Text>
     </View>
     <Text
@@ -151,9 +252,9 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      Green circles are clusters of your locations, click to zoom. Red markers are your recorded locations.
+      The green trail represents your location history
 
-Press the button to download public information of confirmed cases, shown as faint purple circles.
+The light purple circles represent the public dataset
     </Text>
   </View>
   <View
@@ -168,15 +269,17 @@ Press the button to download public information of confirmed cases, shown as fai
     }
   >
     <Text
+      onPress={[Function]}
       style={
         Array [
           Object {
             "fontFamily": "OpenSans-Regular",
-            "fontSize": 16,
+            "fontSize": 12,
             "lineHeight": 24,
             "marginTop": 12,
           },
           Object {
+            "color": "blue",
             "paddingTop": 15,
             "textAlign": "center",
           },
@@ -185,26 +288,6 @@ Press the button to download public information of confirmed cases, shown as fai
     >
       For more information on the dataset for this map
        
-    </Text>
-    <Text
-      onPress={[Function]}
-      style={
-        Array [
-          Object {
-            "fontFamily": "OpenSans-Regular",
-            "fontSize": 16,
-            "lineHeight": 24,
-            "marginTop": 12,
-          },
-          Object {
-            "color": "blue",
-            "marginTop": 0,
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      github.com/beoutbreakprepared/nCoV2019
     </Text>
   </View>
 </RCTSafeAreaView>
