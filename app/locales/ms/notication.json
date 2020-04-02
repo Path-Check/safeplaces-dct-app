@@ -1,0 +1,8 @@
+{
+    "notification_main_text": "Semak persimpangan anda berasaskan hari",
+    "notification_title": "Analisiskan persimpangan anda",
+    "notification_data_not_available": "\n\nAnda tidak ada jejakan yang telah di-downloadkan!\n\n",
+    "notification_warning_text": "Anda boleh tekan butang ini untuk menjana persimapngan rambang.\nAMARAN: Ini hanyalah persimpangan simulasi dan bukan persimpangan yang benar",
+    "notification_random_data_button": "Tekan butang ini untuk mengambil data rambang",
+    "notifications":"Pemberitahuan"
+}
