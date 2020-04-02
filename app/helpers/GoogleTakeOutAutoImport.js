@@ -15,7 +15,7 @@ let progress;
 let takeoutZip = /^takeout[\w,\s-]+\.zip$/gm;
 
 // Download directory based on Platform OS
-var downloadDir =
+let downloadDir =
   Platform.OS === 'ios'
     ? RNFS.DocumentDirectoryPath + '/Downloads/'
     : RNFS.DownloadDirectoryPath;
