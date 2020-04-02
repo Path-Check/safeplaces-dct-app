@@ -1,6 +1,6 @@
 {
   "name": "privatekit",
-  "version": "0.5.10",
+  "version": "0.5.11",
   "private": true,
   "scripts": {
     "install:pod": "cd ios && pod install",
@@ -46,7 +46,7 @@
     "react-native": "0.61.5",
     "react-native-app-intro-slider": "^3.0.0",
     "react-native-background-timer": "^2.2.0",
-    "react-native-ble-advertiser": "0.0.9",
+    "react-native-ble-advertiser": "0.0.10",
     "react-native-extended-stylesheet": "^0.12.0",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "~1.5.0",
