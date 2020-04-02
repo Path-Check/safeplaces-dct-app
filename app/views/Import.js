@@ -9,6 +9,7 @@ import {
   BackHandler,
   Dimensions,
   ActivityIndicator,
+  Platform,
 } from 'react-native';
 
 import colors from '../constants/colors';
@@ -75,6 +76,17 @@ class ImportScreen extends Component {
               source={{
                 uri:
                   'https://takeout.google.com/settings/takeout/custom/location_history',
+              }}
+              // capture download url on ios
+              onShouldStartLoadWithRequest={event => {
+                if (
+                  Platform.OS === 'ios' &&
+                  event.url.includes('apidata.googleusercontent')
+                ) {
+                  SaveTakeoutFile(event.url);
+                  return false;
+                }
+                return true;
               }}
               onLoad={() => this.hideSpinner()}
               style={{ marginTop: 15 }}

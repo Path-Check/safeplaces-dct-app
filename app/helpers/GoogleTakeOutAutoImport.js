@@ -3,6 +3,7 @@
  */
 import { unzip, subscribe } from 'react-native-zip-archive';
 import { MergeJSONWithLocalData } from '../helpers/GoogleData';
+import { Platform } from 'react-native';
 
 // require the module
 let RNFS = require('react-native-fs');
@@ -12,6 +13,12 @@ let progress;
 
 // Google Takout File Format.
 let takeoutZip = /^takeout[\w,\s-]+\.zip$/gm;
+
+// Download directory based on Platform OS
+var downloadDir =
+  Platform.OS === 'ios'
+    ? RNFS.DocumentDirectoryPath + '/Downloads/'
+    : RNFS.DownloadDirectoryPath;
 
 // Gets Path of the location file for the current month.
 function GetFileName() {
@@ -33,13 +40,27 @@ function GetFileName() {
   let year = new Date().getFullYear();
   // let month = monthNames[new Date().getMonth()].toUpperCase();
   return (
-    RNFS.DownloadDirectoryPath +
+    downloadDir +
     '/Takeout/Location History/Semantic Location History/' +
     year +
     '/' +
     year +
     '_MARCH.json'
   );
+}
+
+export function SaveTakeoutFile(path) {
+  RNFS.mkdir(downloadDir)
+    .then(result => {
+      console.log('The directory created', downloadDir);
+    })
+    .catch(err => {
+      console.warn('err', err);
+    });
+  RNFS.downloadFile({
+    fromUrl: path,
+    toFile: downloadDir + '/takeout0.zip',
+  });
 }
 
 export async function SearchAndImport() {
@@ -59,11 +80,11 @@ export async function SearchAndImport() {
 
   // TODO: RNFS.DownloadDirectoryPath is not defined on iOS.
   // Find out how to access Downloads folder.
-  if (!RNFS.DownloadDirectoryPath) {
-    return;
-  }
+  // if (!RNFS.DownloadDirectoryPath) {
+  //  return;
+  //}
 
-  RNFS.readDir(RNFS.DownloadDirectoryPath)
+  RNFS.readDir(downloadDir)
     .then(result => {
       console.log('Checking Downloads Folder');
 
@@ -74,11 +95,11 @@ export async function SearchAndImport() {
       ) {
         if (takeoutZip.test(file.name)) {
           console.log(
-            `Found Google Takeout {file.name} at {file.path}`,
+            `Found Google Takeout ${file.name} at ${file.path}`,
             file.name,
           );
 
-          unzip(file.path, RNFS.DownloadDirectoryPath)
+          unzip(file.path, downloadDir)
             .then(path => {
               console.log(`Unzip Completed for ${path} and ${file.path}`);
 
