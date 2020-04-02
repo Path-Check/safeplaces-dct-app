@@ -1,11 +1,11 @@
 {
-    "export_para_1":"You can share your location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.",
-    "export_para_2":"Location is shared as a simple list of times and coordinates, no other identifying information.",
-    "share":"SHARE",
-    "data_hint":"Log has data of",
-    "data_covers":"Total time the log covers:",
-    "data_count":"Number of points logged:",
-    "data_last_updated":"Time since last updated:",
-    "no_data": "No data",
-    "less_than_one_minute": "less than 1 minute"
+    "export_para_1":"Вы можете поделиться своим местоположением с другими, нажав на кнопку «Поделится». Вы сможете выбрать, с кем и как вы хотите поделиться этой информацией.",
+    "export_para_2":"Другие пользователи видят ваше местоположение в виде списка координат и времени. Никакие личные данные не отображаются",
+    "share":"ПОДЕЛИТЬСЯ",
+    "data_hint":"Доступна хронология за",
+    "data_covers":"Общее время отслеживания:",
+    "data_count":"Зафиксировано мест:",
+    "data_last_updated":"Время после последнего обновления:",
+    "no_data": "Нет данных",
+    "less_than_one_minute": "менее 1 минуты"
 }
