@@ -1,0 +1,13 @@
+{
+    "start_logging":"MULAKAN LOG",
+    "stop_logging":"BERHENTIKAN LOG",
+    "logging_message":"App ini sedang logkan lokasi anda setiap lima minit. Maklumat lokasi anda tidak akan dikeluarkan daripada telefon pintar anda tanpa kebenaran.",
+    "not_logging_message":"NOTA: Setelah anda klikkan butang ini anda akan diminta untuk izinkan Private Kit akses kepada lokasi anda.",
+    "import":"Import",
+    "export":"Export",
+    "news":"Berita",
+    "latest_news":"Berita Kini (COVID-19)",
+    "url_info":"Untuk maklumat lanjut sila melawat laman utama Private Kit di:",
+    "private_kit_url":"privatekit.mit.edu",
+    "overlap": "SEMAK TINDIHAN LOKASI"
+}
