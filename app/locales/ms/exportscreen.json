@@ -1,0 +1,11 @@
+{
+  "export_para_1": "Anda boleh kongsikan jejakan anda dengan sesiapa pun meggunakan butang KONGSI dibawah.  Sekali anda tekan butang ini ia akan tanya anda dengan siapa and bagaimana anda mahu berkongsi data anda.",
+  "export_para_2": "Lokasi anda dikongsi sebagai senarai mudah yang terdiri daripada waktu dan koordinasi, bukan maklumat peribadi atau maklumat yang mengenalpastikan identiti anda.",
+  "share": "KONGSI",
+  "data_hint": "Log ada data ",
+  "data_covers": "Jumlah masa log meliputi:",
+  "data_count": "Nombor ketika-ketika yang di-logkan:",
+  "data_last_updated": "Masa pada kemas kini terakhir:",
+  "no_data": "Tiada data",
+  "less_than_one_minute": "kurang daripada 1 minit"
+}
