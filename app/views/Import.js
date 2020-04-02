@@ -15,7 +15,10 @@ import {
 import colors from '../constants/colors';
 import WebView from 'react-native-webview';
 import backArrow from './../assets/images/backArrow.png';
-import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
+import {
+  SearchAndImport,
+  SaveTakeoutFile,
+} from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
