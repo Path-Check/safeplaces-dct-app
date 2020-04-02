@@ -1,11 +1,10 @@
 {
-    "export_para_1":"You can share your location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.",
-    "export_para_2":"Location is shared as a simple list of times and coordinates, no other identifying information.",
-    "share":"SHARE",
-    "data_hint":"Log has data of",
-    "data_covers":"Total time the log covers:",
-    "data_count":"Number of points logged:",
-    "data_last_updated":"Time since last updated:",
-    "no_data": "No data",
-    "less_than_one_minute": "less than 1 minute"
+    "export_para_1":"ചുവടെയുള്ള പങ്കിടൽ ബട്ടൺ ഉപയോഗിക്കുന്ന ആരുമായും നിങ്ങളുടെ ലൊക്കേഷൻ ട്രയൽ പങ്കിടാം. ഒരിക്കൽ നിങ്ങൾ ബട്ടൺ അമർത്തിയാൽ അത് ആരുമായി, എങ്ങനെ പങ്കിടണമെന്ന് നിങ്ങളോട് ചോദിക്കും.",
+    "export_para_2":"സമയങ്ങളുടെയും കോർഡിനേറ്റുകളുടെയും ലളിതമായ പട്ടികയായി ലൊക്കേഷൻ പങ്കിടുന്നു. മറ്റ് ഐഡന്റിറ്റി വിവരങ്ങളൊന്നും പങ്കിടില്ല. ",
+    "data_hint":"ലോഗിനുള്ളിലെ ഡാറ്റ",
+    "data_covers":"ലോഗ് കവർ ചെയ്യുന്ന ആകെ സമയം:",
+    "data_count":"ലോഗ്  ചെയ്ത പോയിന്റുകളുടെ എണ്ണം:",
+    "data_last_updated":"അവസാനം അപ്ഡേറ്റ് ചെയ്ത സമയം",
+    "no_data": "ഡാറ്റാ ഇല്ല",
+    "less_than_one_minute": "1 മിനിറ്റിൽ താഴെ"
 }
