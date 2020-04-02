@@ -12,6 +12,11 @@ import OverlapScreen from './views/Overlap';
 import LicencesScreen from './views/Licenses';
 import NotificationScreen from './views/Notification';
 import SimpleWelcomeScreen from './views/welcomeScreens/SimpleWelcomeScreen';
+import Onboarding1 from './views/launchScreens/Onboarding1';
+import Onboarding2 from './views/launchScreens/Onboarding2';
+import Onboarding3 from './views/launchScreens/Onboarding3';
+import Onboarding4 from './views/launchScreens/Onboarding4';
+import Onboarding5 from './views/launchScreens/Onboarding5';
 import { GetStoreData } from './helpers/General';
 
 const Stack = createStackNavigator();
@@ -38,68 +43,91 @@ class Entry extends Component {
   render() {
     return (
       <NavigationContainer>
-        <SafeAreaView style={{ flex: 1 }}>
-          <Stack.Navigator initialRouteName='InitialScreen'>
-            {this.state.initialRouteName === 'true' ? (
-              <Stack.Screen
-                name='InitialScreen'
-                component={LocationTracking}
-                options={{ headerShown: false }}
-              />
-            ) : (
-              <Stack.Screen
-                name='InitialScreen'
-                component={SimpleWelcomeScreen}
-                options={{ headerShown: false }}
-              />
-            )}
+        <Stack.Navigator initialRouteName='InitialScreen'>
+          {this.state.initialRouteName === 'true' ? (
             <Stack.Screen
-              name='SimpleWelcomeScreen'
-              component={SimpleWelcomeScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='WelcomeScreen'
-              component={Welcome}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='LocationTrackingScreen'
+              name='InitialScreen'
               component={LocationTracking}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
-              name='NewsScreen'
-              component={NewsScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='ExportScreen'
-              component={ExportScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='ImportScreen'
-              component={ImportScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='LicensesScreen'
-              component={LicencesScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='NotificationScreen'
-              component={NotificationScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='OverlapScreen'
-              component={OverlapScreen}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </SafeAreaView>
+          ) : (
+              <Stack.Screen
+                name='InitialScreen'
+                component={Onboarding1}
+                options={{ headerShown: false }}
+              />
+            )}
+          <Stack.Screen
+            name='Onboarding1'
+            component={Onboarding1}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Onboarding2'
+            component={Onboarding2}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Onboarding3'
+            component={Onboarding3}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Onboarding4'
+            component={Onboarding4}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Onboarding5'
+            component={Onboarding5}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='SimpleWelcomeScreen'
+            component={SimpleWelcomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='WelcomeScreen'
+            component={Welcome}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='LocationTrackingScreen'
+            component={LocationTracking}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='NewsScreen'
+            component={NewsScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ExportScreen'
+            component={ExportScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ImportScreen'
+            component={ImportScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='LicensesScreen'
+            component={LicencesScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='NotificationScreen'
+            component={NotificationScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='OverlapScreen'
+            component={OverlapScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
       </NavigationContainer>
     );
   }

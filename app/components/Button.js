@@ -9,6 +9,7 @@ class Button extends React.Component {
     const {
       title,
       onPress,
+      buttonColor = colors.WHITE,
       bgColor = colors.DODGER_BLUE,
       toBgColor = bgColor,
       titleStyle,
@@ -23,7 +24,15 @@ class Button extends React.Component {
         <TouchableOpacity
           style={[buttonStyle ? buttonStyle : styles.container]}
           onPress={onPress}>
-          <Text style={titleStyle ? titleStyle : styles.text}>{title}</Text>
+          <Text
+            style={[
+              titleStyle ? titleStyle : styles.text,
+              {
+                color: buttonColor,
+              },
+            ]}>
+            {title}
+          </Text>
         </TouchableOpacity>
       </LinearGradient>
     );
@@ -40,7 +49,6 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.7)',
   },
   text: {
-    color: colors.WHITE,
     textAlign: 'center',
     height: 28,
     fontSize: 20,
@@ -51,6 +59,7 @@ const styles = StyleSheet.create({
 Button.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  buttonColor: PropTypes.string,
   bgColor: PropTypes.string,
   toBgColor: PropTypes.string,
   titleStyle: PropTypes.object,

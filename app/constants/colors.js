@@ -8,7 +8,7 @@ const colors = {
   APP_BACKGROUND: '#FFF8ED',
   PRIMARY_TEXT: '#000',
   GREEN: '#32A852',
-  VIOLET: '#6C3794',
+  VIOLET: '#4051DB',
   RED: '#e74c3c',
   ORANGE: '#e67e22',
 
@@ -16,6 +16,11 @@ const colors = {
   POS_BUTTON: '#32A852',
   NEG_BUTTON: '#F8262F',
   SENS_BUTTON: '#6C3794',
+  VIOLET_BUTTON: '#6979F8',
+
+  INTRO_WHITE_BG: '#F7F8FF',
+
+  DIVIDER: '#A5AFFB',
 
   BLUE_BUTTON: '#05369B',
   BLUE_TO_BUTTON: '#185BD3',

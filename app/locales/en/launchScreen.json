@@ -1,0 +1,22 @@
+{
+  "launch_screen1_header": "The way back to normal starts here.",
+  "launch_get_started": "Get Started",
+  "launch_next": "Next",
+  "launch_set_up_phone": "Set up my phone",
+  "launch_finish_set_up": "Finish Setup",
+
+  "launch_location_access": "Location access",
+  "launch_notification_access": "Allow notifications",
+
+  "launch_screen2_header": "We save your location data every 5 minutes.",
+  "launch_screen2_subheader": "Your data is only saved on your phone - we don't share it.",
+
+  "launch_screen3_header": "If you cross paths with someone who tests positive for COVID-19, we will notify you.",
+  "launch_screen3_subheader": "And tell you what to do next.",
+
+  "launch_screen4_header": "If you test positive, share your anonymized data to alert those you crossed paths with.",
+  "launch_screen4_subheader": "And that’s it.",
+
+  "launch_screen5_header": "Almost done.",
+  "launch_screen5_subheader": "For this to work, we need to enable a few settings."
+}

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: width * 0.7,
+    width: width * 0.8,
     alignSelf: 'center',
   },
 });
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
 ButtonWrapper.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  buttonColor: PropTypes.string,
   bgColor: PropTypes.string.isRequired,
   toBgColor: PropTypes.string,
   titleStyle: PropTypes.object,
