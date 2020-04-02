@@ -1,14 +1,14 @@
 {
     "private_kit":"പ്രൈവറ്റ് കിറ്റ്",
     "intro1_para1":"ഡാറ്റാ സുരക്ഷയും സ്വകാര്യത പരിരക്ഷണവും ഉപയോഗിച്ച് രൂപകൽപ്പന ചെയ്‌തിരിക്കുന്ന എംഐടി പ്രൈവറ്റ് കിറ്റ് .",
-    "next":"NEXT",
-    "back":"BACK",
-    "start":"START",
-    "intro2_title1":"Less than 100KB",
-    "intro2_para1":"Private Kit’s trail generator logs your device’s location data in under 100KB of space – less space than a single picture.",
-    "intro2_title2":"You are in charge",
-    "intro2_para2": "Data Never Leaves Your Device Without Your Consent",
-    "intro3_title1":"The Future",
-    "intro3_para1": "The Next Step in Solving Today's and Tomorrow’s Problems Enabling individuals to log their location trail offers new opportunities for researchers studying pandemic tracking, refugee migration, and community traffic analysis.",
+    "next":"അടുത്തത്",
+    "back":"തിരികെ",
+    "start":"ആരംഭിക്കുക",
+    "intro2_title1":"100KB- യിൽ കുറവ്",
+    "intro2_para1":"പ്രൈവറ്റ് കിറ്റിന്റെ ട്രയൽ ജനറേറ്റർ നിങ്ങളുടെ ഫോണിന്റെ ലൊക്കേഷൻ ഡാറ്റ 100KB- യിൽ താഴെ ലോഗിൻ ചെയ്യുന്നു - ഒരു ചിത്രത്തേക്കാൾ കുറവ് സ്ഥലം.",
+    "intro2_title2":"നിങ്ങൾക്ക് ചുമതലയുണ്ട്",
+    "intro2_para2": "നിങ്ങളുടെ സമ്മതമില്ലാതെ ഡാറ്റ ഒരിക്കലും നിങ്ങളുടെ ഫോണിൽ നിന്ന്  പുറത്തു പോകില്ല.",
+    "intro3_title1":"ഭാവി",
+    "intro3_para1": "ഇന്നത്തെയും നാളെയും പ്രശ്‌നങ്ങൾ പരിഹരിക്കുന്നതിനുള്ള അടുത്ത ഘട്ടം വ്യക്തികളെ അവരുടെ ലൊക്കേഷൻ ട്രയൽ ലോഗിൻ ചെയ്യാൻ പ്രാപ്‌തമാക്കുന്നത് പാൻഡെമിക് ട്രാക്കിംഗ്, അഭയാർഥി കുടിയേറ്റം, കമ്മ്യൂണിറ്റി ട്രാഫിക് വിശകലനം എന്നിവ പഠിക്കുന്ന ഗവേഷകർക്ക് പുതിയ അവസരങ്ങൾ വാഗ്ദാനം ചെയ്യുന്നു.",
     "intro3_para2":"Learn More http://privatekit.mit.edu/"
 }

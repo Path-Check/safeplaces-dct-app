@@ -1,10 +1,10 @@
 {
-  "overlap_title": "",
-  "overlap_para_1": "",
-  "show_overlap": "",
-  "loading_public_data": "...",
-  "overlap_no_results_button_label": "",
-  "overlap_found_button_label": "",
-  "nCoV2019_url_info": "",
+  "overlap_title": "ഓവർലാപ്പ് പരിശോധിക്കുക",
+  "overlap_para_1": "പച്ച നടപ്പാത നിങ്ങളുടെ ലൊക്കേഷൻ ചരിത്രത്തെ പ്രതിനിധീകരിക്കുന്നു. ഇളം പർപ്പിൾ സർക്കിളുകൾ പൊതു ഡാറ്റാഗണത്തെ പ്രതിനിധീകരിക്കുന്നു",
+  "show_overlap": "പൊതു ഡാറ്റാസെറ്റ് കാണാൻ ക്ലിക്കുചെയ്യുക",
+  "loading_public_data": "ഡാറ്റ ലോഡുചെയ്യുന്നു ...",
+  "overlap_no_results_button_label": "പൊതു ഡാറ്റ ലോഡുചെയ്‌തു",
+  "overlap_found_button_label": "പൊതു ഡാറ്റ ലോഡുചെയ്‌തു",
+  "nCoV2019_url_info": "ഈ മാപ്പിലെ ഡാറ്റാസെറ്റിനെക്കുറിച്ചുള്ള കൂടുതൽ വിവരങ്ങൾക്ക്",
   "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
 }

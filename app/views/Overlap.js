@@ -37,7 +37,7 @@ const base64 = RNFetchBlob.base64;
 // points to this souce but no longer holds the actual data.
 const public_data =
   'https://raw.githubusercontent.com/beoutbreakprepared/nCoV2019/master/latest_data/latestdata.csv';
-const show_button_text = languages.t('label.show_overlap');
+const show_button_text = languages.t('label.show_overlap',);
 const overlap_true_button_text = languages.t(
   'label.overlap_found_button_label',
 );
@@ -78,7 +78,7 @@ function OverlapScreen() {
   const [circles, setCircles] = useState([]);
   const [showButton, setShowButton] = useState({
     disabled: false,
-    text: show_button_text,
+    text:  languages.t('label.show_overlap'),
   });
   const [initialRegion, setInitialRegion] = useState(INITIAL_REGION);
   const { navigate } = useNavigation();
@@ -149,6 +149,8 @@ function OverlapScreen() {
           ]);
         }
       });
+
+      
     } catch (error) {
       console.log(error);
     }
@@ -186,12 +188,12 @@ function OverlapScreen() {
                     if (Object.keys(parsedRecords).length !== 0) {
                       setShowButton({
                         disabled: false,
-                        text: overlap_true_button_text,
+                        text:  languages.t('label.overlap_found_button_label',),
                       });
                     } else {
                       setShowButton({
                         disabled: false,
-                        text: no_overlap_button_text,
+                        text:  languages.t('label.overlap_found_button_label',),
                       });
                     }
                   });

@@ -1,8 +1,8 @@
 {
-    "notification_main_text": "",
-    "notification_title":"",
-    "notification_data_not_available": "",
-    "notification_warning_text": "",
-    "notification_random_data_button": "",
-    "notifications":""
+    "notification_main_text": "നിങ്ങളുടെ ഇന്റർസെക്ഷൻ ദിവസം തിരിച്ച് പരിശോധിക്കുക",
+    "notification_title": "നിങ്ങളുടെ ഇന്റർസെക്ഷൻ വിശകലനം ചെയ്യുക",
+    "notification_data_not_available": "\n\nനിങ്ങൾക്ക് ട്രയൽ ഡാറ്റാ ഒന്നും ഡൌൺലോഡ് ചെയ്തിട്ടില്ല !\n\n",
+    "notification_warning_text": "ക്രമരഹിതമായ ഇന്റർസെക്ഷൻ സൃഷ്ടിക്കുന്നതിന് നിങ്ങൾക്ക് ഇനിപ്പറയുന്ന ബട്ടൺ അമർത്താം. മുന്നറിയിപ്പ്: ഇവ യഥാർത്ഥമല്ലാത്ത സിമുലേറ്റഡ് ഡാറ്റ ആണ് ",
+    "notification_random_data_button": "ക്രമരഹിതമായ ഡാറ്റ സൃഷ്ടിക്കുന്നതിന് ഈ ബട്ടൺ അമർത്തുക",
+    "notifications":"അറിയിപ്പുകൾ"
 }
