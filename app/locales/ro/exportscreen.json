@@ -1,5 +1,5 @@
 {
-    "export_para_1":"Puteti sa trimiteti locatiile vizitate oricui folosind butonul 'Trimite Locatiile'. Veti fi intrebat cui si in ce fel vreti sa trimiteti locatiile.",
+    "export_para_1":"Puteti sa trimiteti locatiile vizitate oricui folosind butonul 'Exporta Jurnal'. Veti fi intrebat cui si prin ce metoda vreti sa exportati jurnalul.",
     "export_para_2":"Locatiile vizitate sunt exportate ca o lista simpla 'latitudine/longitudine/timp', FARA ALTE INFORMATII DE INDENTIFICARE!",
     "share":"Trimiteti Locatiile",
     "data_hint":"Logul are date de",
@@ -9,6 +9,3 @@
     "no_data": "Nu exista inca date salvate",
     "less_than_one_minute": "mai putin de 1 minut"
 }
-
-
-
