@@ -46,17 +46,23 @@ const SimpleWelcomeScreen = props => {
         </Text>
         <View style={styles.descriptionsContainer}>
           <DescriptionComponent
-            icon={<SvgXml xml={IconGlobe} width={ICON_SIZE} height={ICON_SIZE} />}
+            icon={
+              <SvgXml xml={IconGlobe} width={ICON_SIZE} height={ICON_SIZE} />
+            }
             header={languages.t('label.intro_header_0')}
             subheader={languages.t('label.intro_subheader_0')}
           />
           <DescriptionComponent
-            icon={<SvgXml xml={IconLocked} width={ICON_SIZE} height={ICON_SIZE} />}
+            icon={
+              <SvgXml xml={IconLocked} width={ICON_SIZE} height={ICON_SIZE} />
+            }
             header={languages.t('label.intro_header_1')}
             subheader={languages.t('label.intro_subheader_1')}
           />
           <DescriptionComponent
-            icon={<SvgXml xml={IconSiren} width={ICON_SIZE} height={ICON_SIZE} />}
+            icon={
+              <SvgXml xml={IconSiren} width={ICON_SIZE} height={ICON_SIZE} />
+            }
             header={languages.t('label.intro_header_2')}
             subheader={languages.t('label.intro_subheader_2')}
           />
@@ -65,7 +71,10 @@ const SimpleWelcomeScreen = props => {
 
       <ButtonWrapper
         title={languages.t('label.intro_get_started')}
-        onPress={() => props.navigation.navigate('LocationTrackingScreen')}
+        onPress={() => {
+          props.navigation.replace('LocationTrackingScreen');
+          props.navigation.navigate('LocationTrackingScreen');
+        }}
         bgColor={Colors.BLUE_BUTTON}
         toBgColor={Colors.BLUE_TO_BUTTON}
       />

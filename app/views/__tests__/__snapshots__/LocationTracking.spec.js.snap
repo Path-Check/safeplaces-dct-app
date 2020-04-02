@@ -310,52 +310,54 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#6A6A6A",
-                "fontSize": 12,
-                "fontWeight": "400",
-                "marginBottom": "2%",
-                "marginLeft": "12%",
-                "marginRight": "12%",
-                "marginTop": "2%",
-                "textAlign": "center",
-              },
-              Object {
-                "marginLeft": 0,
-                "marginRight": 0,
-              },
-            ]
-          }
-        >
-          For more info visit 
-           
-        </Text>
-        <Text
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "color": "#6A6A6A",
-                "fontSize": 12,
-                "fontWeight": "400",
-                "marginBottom": "2%",
-                "marginLeft": "12%",
-                "marginRight": "12%",
-                "marginTop": "2%",
-                "textAlign": "center",
-              },
-              Object {
-                "color": "#007AFF",
-                "marginLeft": 0,
-                "marginRight": 0,
-              },
-            ]
-          }
-        >
-          privatekit.mit.edu
+        <Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#6A6A6A",
+                  "fontSize": 12,
+                  "fontWeight": "400",
+                  "marginBottom": "2%",
+                  "marginLeft": "12%",
+                  "marginRight": "12%",
+                  "marginTop": "2%",
+                  "textAlign": "center",
+                },
+                Object {
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            For more info visit 
+             
+          </Text>
+          <Text
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "color": "#6A6A6A",
+                  "fontSize": 12,
+                  "fontWeight": "400",
+                  "marginBottom": "2%",
+                  "marginLeft": "12%",
+                  "marginRight": "12%",
+                  "marginTop": "2%",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#007AFF",
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            privatekit.mit.edu
+          </Text>
         </Text>
       </View>
     </View>

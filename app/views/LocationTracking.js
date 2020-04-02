@@ -300,17 +300,22 @@ class LocationTracking extends Component {
   getFooter = () => {
     return (
       <View style={styles.footer}>
-        <Text
-          style={[styles.footerDescription, { marginLeft: 0, marginRight: 0 }]}>
-          {languages.t('label.url_info')}{' '}
-        </Text>
-        <Text
-          style={[
-            styles.footerDescription,
-            { color: Colors.BLUE_LINK, marginLeft: 0, marginRight: 0 },
-          ]}
-          onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
-          {languages.t('label.home_footer')}
+        <Text>
+          <Text
+            style={[
+              styles.footerDescription,
+              { marginLeft: 0, marginRight: 0 },
+            ]}>
+            {languages.t('label.url_info')}{' '}
+          </Text>
+          <Text
+            style={[
+              styles.footerDescription,
+              { color: Colors.BLUE_LINK, marginLeft: 0, marginRight: 0 },
+            ]}
+            onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
+            {languages.t('label.home_footer')}
+          </Text>
         </Text>
       </View>
     );
