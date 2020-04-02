@@ -61,7 +61,7 @@ exports[`renders correctly 1`] = `
     <Text
       style={
         Object {
-          "fontFamily": "OpenSans-Bold",
+          "fontFamily": "IBMPlexSans-Bold",
           "fontSize": 24,
         }
       }
@@ -95,7 +95,7 @@ exports[`renders correctly 1`] = `
       <Text
         style={
           Object {
-            "fontFamily": "OpenSans-Regular",
+            "fontFamily": "IBMPlexSans-Regular",
             "fontSize": 16,
             "lineHeight": 24,
             "marginTop": 12,
@@ -108,7 +108,7 @@ exports[`renders correctly 1`] = `
       <Text
         style={
           Object {
-            "fontFamily": "OpenSans-Regular",
+            "fontFamily": "IBMPlexSans-Regular",
             "fontSize": 16,
             "lineHeight": 24,
             "marginTop": 12,

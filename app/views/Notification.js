@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 36,
   },
   buttonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'IBM Plex Sans',
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
   mainText: {
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: 'IBM Plex Sans',
     marginLeft: 20,
     marginRight: 20,
   },
@@ -260,11 +260,11 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'IBM Plex Sans',
   },
   pageTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'IBM Plex Sans',
     marginLeft: 20,
   },
   headerContainer: {
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     overflow: 'scroll',
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: 'IBM Plex Sans',
   },
   notificationsHeader: {
     backgroundColor: '#665eff',
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
   notificationsHeaderText: {
     color: colors.WHITE,
     fontSize: 16,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'IBM Plex Sans',
   },
   notificationView: {
     width: '100%',
@@ -312,15 +312,15 @@ const styles = StyleSheet.create({
   notificationsText: {
     color: colors.BLACK,
     fontSize: 16,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: 'IBM Plex Sans',
   },
   notificationsTextRed: {
     color: colors.RED,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'IBM Plex Sans',
   },
   notificationsTextOrange: {
     color: colors.ORANGE,
-    fontFamily: 'OpenSans-SemiBold',
+    fontFamily: 'IBM Plex Sans',
   },
 });
 

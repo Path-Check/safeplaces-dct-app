@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'IBM Plex Sans',
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'IBM Plex Sans',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     overflow: 'scroll',
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: 'IBM Plex Sans',
   },
 });
 

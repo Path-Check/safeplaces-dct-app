@@ -63,11 +63,11 @@ function ExportScreen({ shareButtonDisabled }) {
       let locationData = await new LocationData().getLocationData();
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
-      
+
       var options = {};
       var jsonData = JSON.stringify(locationData);
       const title = 'PrivateKit.json';
-      const filename = unixtimeUTC+'.json';
+      const filename = unixtimeUTC + '.json';
       const message = 'Here is my location log from Private Kit.';
       if (Platform.OS === 'ios') {
         var url = RNFS.Bundle + '/' + filename;
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 24,
     padding: 0,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'IBM Plex Sans',
   },
   subHeaderTitle: {
     textAlign: 'center',
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'IBM Plex Sans',
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginTop: 12,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: 'IBM Plex Sans',
   },
 });
 
