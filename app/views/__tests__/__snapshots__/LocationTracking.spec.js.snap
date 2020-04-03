@@ -70,6 +70,21 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
+              Settings
+            </Text>
+          </MenuOption>
+          <MenuOption
+            onSelect={[Function]}
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "OpenSans-Regular",
+                  "fontSize": 14,
+                  "padding": 10,
+                }
+              }
+            >
               Licenses
             </Text>
           </MenuOption>
