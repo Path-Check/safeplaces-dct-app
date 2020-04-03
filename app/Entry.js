@@ -51,12 +51,12 @@ class Entry extends Component {
               options={{ headerShown: false }}
             />
           ) : (
-            <Stack.Screen
-              name='InitialScreen'
-              component={Onboarding1}
-              options={{ headerShown: false }}
-            />
-          )}
+              <Stack.Screen
+                name='InitialScreen'
+                component={Onboarding5}
+                options={{ headerShown: false }}
+              />
+            )}
           <Stack.Screen
             name='Onboarding1'
             component={Onboarding1}

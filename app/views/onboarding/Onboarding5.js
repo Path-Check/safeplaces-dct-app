@@ -8,6 +8,7 @@ import {
   StatusBar,
 } from 'react-native';
 const width = Dimensions.get('window').width;
+import { check, request, PERMISSIONS, RESULTS, checkNotifications, requestNotifications } from 'react-native-permissions';
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
@@ -57,31 +58,134 @@ class Onboarding extends Component {
       notificationPermission: PermissionStatusEnum.UNKNOWN,
       locationPermission: PermissionStatusEnum.UNKNOWN,
     };
+    this.checkLocationStatus();
+    this.checkNotificationStatus();
   }
 
-  // willParticipate = () => {
-  //   SetStoreData('PARTICIPATE', 'true').then(() => {
-  //     LocationServices.start();
-  //     BroadcastingServices.start();
-  //   });
+  isLocationChecked() {
+    return this.state.locationPermission !== PermissionStatusEnum.UNKNOWN;
+  }
 
-  //   // Check and see if they actually authorized in the system dialog.
-  //   // If not, stop services and set the state to !isLogging
-  //   // Fixes tripleblindmarket/private-kit#129
-  //   BackgroundGeolocation.checkStatus(({ authorization }) => {
-  //     if (authorization === BackgroundGeolocation.AUTHORIZED) {
-  //       this.setState({
-  //         isLogging: true,
-  //       });
-  //     } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
-  //       LocationServices.stop(this.props.navigation);
-  //       BroadcastingServices.stop(this.props.navigation);
-  //       this.setState({
-  //         isLogging: false,
-  //       });
-  //     }
-  //   });
-  // };
+  isNotificationChecked() {
+    return this.state.notificationPermission !== PermissionStatusEnum.UNKNOWN;
+  }
+
+  checkLocationStatus() {
+    check(PERMISSIONS.IOS.LOCATION_ALWAYS)
+      .then(result => {
+        switch (result) {
+          case RESULTS.GRANTED:
+            this.setState({
+              locationPermission: PermissionStatusEnum.GRANTED,
+            });
+            break;
+          case RESULTS.UNAVAILABLE:
+          case RESULTS.BLOCKED:
+            this.setState({
+              locationPermission: PermissionStatusEnum.DENIED,
+            });
+            break;
+        }
+      })
+      .catch(error => {
+        console.log('error checking location: ' + error);
+      });
+  }
+
+  checkNotificationStatus() {
+    checkNotifications().then(({ status }) => {
+      switch (status) {
+        case RESULTS.GRANTED:
+          this.setState({
+            notificationPermission: PermissionStatusEnum.GRANTED,
+          });
+          break;
+        case RESULTS.UNAVAILABLE:
+        case RESULTS.BLOCKED:
+          this.setState({
+            notificationPermission: PermissionStatusEnum.DENIED,
+          });
+          break;
+      }
+    });
+  }
+
+  requestLocation() {
+    request(PERMISSIONS.IOS.LOCATION_ALWAYS).then(result => {
+      switch (result) {
+        case RESULTS.GRANTED:
+          this.setState({
+            locationPermission: PermissionStatusEnum.GRANTED,
+          });
+          break;
+        case RESULTS.UNAVAILABLE:
+        case RESULTS.BLOCKED:
+          this.setState({
+            locationPermission: PermissionStatusEnum.DENIED,
+          });
+          break;
+      }
+    });
+  }
+
+  requestNotification() {
+    requestNotifications(['alert', 'badge', 'sound']).then(({ status }) => {
+      switch (status) {
+        case RESULTS.GRANTED:
+          this.setState({
+            notificationPermission: PermissionStatusEnum.GRANTED,
+          });
+          break;
+        case RESULTS.UNAVAILABLE:
+        case RESULTS.BLOCKED:
+          this.setState({
+            notificationPermission: PermissionStatusEnum.DENIED,
+          });
+          break;
+      }
+    });
+  }
+
+  buttonPressed() {
+    if (!this.isLocationChecked()) {
+      this.requestLocation();
+    } else if (!this.isNotificationChecked()) {
+      this.requestNotification();
+    } else {
+      this.props.navigation.replace('LocationTrackingScreen');
+      this.props.navigation.navigate('LocationTrackingScreen');
+    }
+  }
+
+  getTitleText() {
+    if (!this.isLocationChecked()) {
+      return languages.t('label.launch_location_header');
+    } else if (!this.isNotificationChecked()) {
+      return languages.t('label.launch_notif_header');
+    } else {
+      return languages.t('label.launch_done_header');
+    }
+  }
+
+  getSubtitleText() {
+    if (!this.isLocationChecked()) {
+      return languages.t('label.launch_location_subheader');
+    } else if (!this.isNotificationChecked()) {
+      return languages.t('label.launch_notif_subheader');
+    } else {
+      return languages.t('label.launch_done_subheader');
+    }
+  }
+
+  getButtonText() {
+    if (!this.isLocationChecked()) {
+      return languages.t('label.launch_enable_location');
+    } else if (!this.isNotificationChecked()) {
+      return languages.t('label.launch_enable_notif');
+    } else {
+      return languages.t('label.launch_finish_set_up');
+    }
+  }
 
   render() {
     return (
@@ -95,34 +199,31 @@ class Onboarding extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             <Text style={styles.headerText}>
-              {languages.t('label.launch_location_header')}
+              {this.getTitleText()}
             </Text>
             <Text style={styles.subheaderText}>
-              {languages.t('label.launch_location_subheader')}
+              {this.getSubtitleText()}
             </Text>
 
-            {/* <View style={styles.statusContainer}> */}
-            <View style={styles.divider}></View>
-            <PermissionDescription
-              title={languages.t('label.launch_location_access')}
-              status={this.state.locationPermission}
-            />
-            <View style={styles.divider}></View>
-            <PermissionDescription
-              title={languages.t('label.launch_notification_access')}
-              status={this.state.notificationPermission}
-            />
-            <View style={styles.divider}></View>
-            <View style={styles.spacer}></View>
-            {/* </View> */}
+            <View style={styles.statusContainer}>
+              <View style={styles.divider}></View>
+              <PermissionDescription
+                title={languages.t('label.launch_location_access')}
+                status={this.state.locationPermission}
+              />
+              <View style={styles.divider}></View>
+              <PermissionDescription
+                title={languages.t('label.launch_notification_access')}
+                status={this.state.notificationPermission}
+              />
+              <View style={styles.divider}></View>
+              <View style={styles.spacer}></View>
+            </View>
           </View>
           <View style={styles.footerContainer}>
             <ButtonWrapper
-              title={languages.t('label.launch_enable_location')}
-              onPress={() => {
-                this.props.navigation.replace('Onboarding6');
-                this.props.navigation.navigate('Onboarding6');
-              }}
+              title={this.getButtonText()}
+              onPress={this.buttonPressed.bind(this)}
               buttonColor={Colors.VIOLET}
               bgColor={Colors.WHITE}
             />
@@ -142,19 +243,18 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    marginTop: '45%',
   },
   contentContainer: {
     width: width * 0.9,
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignSelf: 'center',
   },
   headerText: {
     color: Colors.WHITE,
     fontWeight: FontWeights.MEDIUM,
     fontSize: 26,
-    width: width * 0.67,
+    width: width * 0.8,
     fontFamily: 'IBM Plex Sans',
   },
   subheaderText: {
@@ -166,12 +266,12 @@ const styles = StyleSheet.create({
     fontFamily: 'IBM Plex Sans',
   },
   statusContainer: {
-    // paddingTop: '60%',
+    marginTop: '5%',
   },
   divider: {
     backgroundColor: Colors.DIVIDER,
     height: 1,
-    marginVertical: 5,
+    marginVertical: '3%',
   },
   spacer: {
     marginVertical: '5%',
@@ -183,9 +283,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   permissionContainer: {
-    // flex: 1,
-    paddingTop: '2%',
-    paddingBottom: '2%',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

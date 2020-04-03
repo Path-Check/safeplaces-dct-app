@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     color: Colors.VIOLET,
     fontWeight: FontWeights.MEDIUM,
     fontSize: 26,
-    width: width * 0.67,
+    width: width * 0.7,
     fontFamily: 'IBM Plex Sans',
   },
   subheaderText: {
