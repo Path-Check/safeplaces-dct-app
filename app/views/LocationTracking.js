@@ -32,8 +32,6 @@ import pkLogo from './../assets/images/PKLogo.png';
 import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
 import PulseLoader from '../components/PulseLoader';
-import backArrow from './../assets/images/backArrow.png';
-
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
@@ -324,12 +322,7 @@ class LocationTracking extends Component {
         />
             <PulseLoader
                 avatarProvider={(size) => {
-                  return <Image style={{
-                width: size,
-                height: size,
-                borderRadius: size / 2,
-            }} source={backArrow} />;
-                  // return <StateIcon size={size} status={this.state.currentState} />;
+                  return <StateIcon size={size} status={this.state.currentState} />;
                 }}
               />
         <View style={styles.mainContainer}>
