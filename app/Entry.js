@@ -12,7 +12,8 @@ import OverlapScreen from './views/Overlap';
 import LicencesScreen from './views/Licenses';
 import NotificationScreen from './views/Notification';
 import Slider from './views/welcomeScreens/Slider';
-import { GetStoreData } from './helpers/General';
+import { GetStoreData, SetStoreData } from './helpers/General';
+import SettingsScreen from './views/Settings';
 
 const Stack = createStackNavigator();
 
@@ -88,6 +89,7 @@ class Entry extends Component {
               component={LicencesScreen}
               options={{ headerShown: false }}
             />
+            <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
             <Stack.Screen
               name='NotificationScreen'
               component={NotificationScreen}
