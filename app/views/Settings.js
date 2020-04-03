@@ -32,6 +32,8 @@ import languages from './../locales/languages';
 const authoritiesListURL =
   'https://raw.githubusercontent.com/tripleblindmarket/safe-places/develop/healthcare-authorities.yaml';
 
+const width = Dimensions.get('window').width;
+
 class SettingsScreen extends Component {
   constructor(props) {
     super(props);
@@ -411,12 +413,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
+
   buttonTouchable: {
     borderRadius: 12,
     backgroundColor: '#665eff',
     height: 52,
     alignSelf: 'center',
-    width: '79%',
+    width: width * 0.7866,
     marginTop: 30,
     justifyContent: 'center',
   },

@@ -173,6 +173,17 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('LicensesScreen', {});
   }
 
+  settings() {
+    this.props.navigation.navigate('SettingsScreen', {});
+  }
+
+  willParticipate = () => {
+    SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
+    this.setState({
+      isLogging: true,
+    });
+  };
+
   notifications() {
     this.props.navigation.navigate('NotificationScreen', {});
   }
@@ -238,6 +249,12 @@ class LocationTracking extends Component {
                   this.notifications();
                 }}>
                 <Text style={styles.menuOptionText}>Notifications</Text>
+              </MenuOption>
+              <MenuOption
+                onSelect={() => {
+                  this.settings();
+                }}>
+                <Text style={styles.menuOptionText}>Settings</Text>
               </MenuOption>
             </MenuOptions>
           </Menu>
