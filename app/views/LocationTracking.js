@@ -31,7 +31,6 @@ import kebabIcon from './../assets/images/kebabIcon.png';
 import pkLogo from './../assets/images/PKLogo.png';
 import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
-// import Pulse2 from '../components/Pulse2';
 import Pulse from 'react-native-pulse';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
