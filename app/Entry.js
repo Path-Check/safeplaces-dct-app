@@ -16,7 +16,6 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
-import Onboarding6 from './views/onboarding/Onboarding6';
 import { GetStoreData } from './helpers/General';
 
 const Stack = createStackNavigator();
@@ -53,7 +52,7 @@ class Entry extends Component {
           ) : (
               <Stack.Screen
                 name='InitialScreen'
-                component={Onboarding5}
+                component={Onboarding1}
                 options={{ headerShown: false }}
               />
             )}
@@ -80,11 +79,6 @@ class Entry extends Component {
           <Stack.Screen
             name='Onboarding5'
             component={Onboarding5}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='Onboarding6'
-            component={Onboarding6}
             options={{ headerShown: false }}
           />
           <Stack.Screen
