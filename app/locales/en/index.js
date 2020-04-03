@@ -5,6 +5,7 @@ import exportFile from './exportscreen.json';
 import licensesFile from './licensesscreen.json';
 import overlapFile from './overlap.json';
 import notificationFile from './notification.json';
+import locationService from './locationService.json';
 
 export default {
   ...intro,
@@ -14,4 +15,5 @@ export default {
   ...overlapFile,
   ...licensesFile,
   ...notificationFile,
+  ...locationService,
 };
