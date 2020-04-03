@@ -34,7 +34,7 @@ import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
 import Pulse from 'react-native-pulse';
 
-import { openSettings } from 'react-native-permissions';
+import { check, PERMISSIONS, openSettings } from 'react-native-permissions';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
@@ -80,10 +80,46 @@ class LocationTracking extends Component {
   constructor(props) {
     super(props);
 
+    let currentState;
+    if (this.isLocationEnabled()) {
+      currentState = StateEnum.UNKNOWN;
+    } else {
+      // logic for detecting if you're at risk
+      if (false) {
+        currentState = StateEnum.AT_RISK;
+      } else {
+        currentState = StateEnum.NO_CONTACT;
+      }
+    }
+
     this.state = {
-      isLogging: '', // what is this?
-      currentState: StateEnum.UNKNOWN,
+      isLogging: '',
+      currentState: StateEnum.NO_CONTACT,
     };
+  }
+
+  // NEED TO DEDUP THIS CODE FROM Onboarding5.js
+  isLocationEnabled() {
+    // NEED TO TEST ON ANNDROID
+    let locationPermission;
+    if (Platform.OS === 'ios') {
+      locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
+    } else {
+      locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+    }
+    check(locationPermission)
+      .then(result => {
+        switch (result) {
+          case RESULTS.GRANTED:
+            return true;
+          case RESULTS.UNAVAILABLE:
+          case RESULTS.BLOCKED:
+            return false;
+        }
+      })
+      .catch(error => {
+        console.log('error checking location: ' + error);
+      });
   }
 
   componentDidMount() {
@@ -329,7 +365,25 @@ class LocationTracking extends Component {
 
   getSettings() {
     return (
-      <TouchableOpacity style={styles.settingsContainer}>
+      <TouchableOpacity
+        style={styles.settingsContainer}
+        onPress={() => {
+          // THIS IS FOR TESTING - DELETE LATER
+          switch (this.state.currentState) {
+            case StateEnum.NO_CONTACT:
+              this.setState({ isLogging: '', currentState: StateEnum.AT_RISK });
+              break;
+            case StateEnum.AT_RISK:
+              this.setState({ isLogging: '', currentState: StateEnum.UNKNOWN });
+              break;
+            case StateEnum.UNKNOWN:
+              this.setState({
+                isLogging: '',
+                currentState: StateEnum.NO_CONTACT,
+              });
+              break;
+          }
+        }}>
         <Image resizeMode={'contain'} />
         <SvgXml
           style={styles.stateIcon}

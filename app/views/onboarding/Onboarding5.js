@@ -8,7 +8,14 @@ import {
   StatusBar,
 } from 'react-native';
 const width = Dimensions.get('window').width;
-import { check, request, PERMISSIONS, RESULTS, checkNotifications, requestNotifications } from 'react-native-permissions';
+import {
+  check,
+  request,
+  PERMISSIONS,
+  RESULTS,
+  checkNotifications,
+  requestNotifications,
+} from 'react-native-permissions';
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
@@ -71,7 +78,14 @@ class Onboarding extends Component {
   }
 
   checkLocationStatus() {
-    check(PERMISSIONS.IOS.LOCATION_ALWAYS)
+    // NEED TO TEST ON ANNDROID
+    let locationPermission;
+    if (Platform.OS === 'ios') {
+      locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
+    } else {
+      locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+    }
+    check(locationPermission)
       .then(result => {
         switch (result) {
           case RESULTS.GRANTED:
@@ -111,7 +125,14 @@ class Onboarding extends Component {
   }
 
   requestLocation() {
-    request(PERMISSIONS.IOS.LOCATION_ALWAYS).then(result => {
+    // NEED TO TEST ON ANNDROID
+    let locationPermission;
+    if (Platform.OS === 'ios') {
+      locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
+    } else {
+      locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+    }
+    request(locationPermission).then(result => {
       switch (result) {
         case RESULTS.GRANTED:
           this.setState({
@@ -198,12 +219,8 @@ class Onboarding extends Component {
 
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <Text style={styles.headerText}>
-              {this.getTitleText()}
-            </Text>
-            <Text style={styles.subheaderText}>
-              {this.getSubtitleText()}
-            </Text>
+            <Text style={styles.headerText}>{this.getTitleText()}</Text>
+            <Text style={styles.subheaderText}>{this.getSubtitleText()}</Text>
 
             <View style={styles.statusContainer}>
               <View style={styles.divider}></View>
