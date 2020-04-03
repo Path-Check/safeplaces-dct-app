@@ -4,7 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native';
 import LocationTracking from './views/LocationTracking';
-import Welcome from './views/Welcome';
 import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
@@ -50,12 +49,12 @@ class Entry extends Component {
               options={{ headerShown: false }}
             />
           ) : (
-              <Stack.Screen
-                name='InitialScreen'
-                component={Onboarding1}
-                options={{ headerShown: false }}
-              />
-            )}
+            <Stack.Screen
+              name='InitialScreen'
+              component={Onboarding1}
+              options={{ headerShown: false }}
+            />
+          )}
           <Stack.Screen
             name='Onboarding1'
             component={Onboarding1}
@@ -79,11 +78,6 @@ class Entry extends Component {
           <Stack.Screen
             name='Onboarding5'
             component={Onboarding5}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='WelcomeScreen'
-            component={Welcome}
             options={{ headerShown: false }}
           />
           <Stack.Screen

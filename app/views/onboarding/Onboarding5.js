@@ -24,10 +24,7 @@ import FontWeights from '../../constants/fontWeights';
 import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
-
-import LocationServices from '../../services/LocationService';
-import BroadcastingServices from '../../services/BroadcastingService';
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
+import { SetStoreData } from '../../helpers/General';
 
 import { SvgXml } from 'react-native-svg';
 
@@ -135,6 +132,7 @@ class Onboarding extends Component {
     request(locationPermission).then(result => {
       switch (result) {
         case RESULTS.GRANTED:
+          SetStoreData('PARTICIPATE', 'true'); // replaces "start" button?
           this.setState({
             locationPermission: PermissionStatusEnum.GRANTED,
           });

@@ -30,7 +30,12 @@ import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
 import Pulse from 'react-native-pulse';
 
-import { check, PERMISSIONS, openSettings } from 'react-native-permissions';
+import {
+  check,
+  PERMISSIONS,
+  RESULTS,
+  openSettings,
+} from 'react-native-permissions';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
@@ -80,7 +85,7 @@ class LocationTracking extends Component {
     if (this.isLocationEnabled()) {
       currentState = StateEnum.UNKNOWN;
     } else {
-      // logic for detecting if you're at risk
+      // TODO: logic for detecting if you're at risk
       if (false) {
         currentState = StateEnum.AT_RISK;
       } else {
@@ -126,6 +131,7 @@ class LocationTracking extends Component {
           this.setState({
             isLogging: true,
           });
+          console.log('participiating....');
           this.willParticipate();
         } else {
           this.setState({
