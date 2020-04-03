@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   contentContainer: {
-    width: width * 0.6,
+    width: width * 0.75,
     flex: 1,
     justifyContent: 'center',
     alignSelf: 'center',

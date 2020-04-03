@@ -7,7 +7,7 @@ import {
   ImageBackground,
 } from 'react-native';
 const width = Dimensions.get('window').width;
-import BackgroundImage from './../../assets/images/launchScreen3.png';
+import BackgroundImage from './../../assets/images/launchScreen1.png';
 import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';

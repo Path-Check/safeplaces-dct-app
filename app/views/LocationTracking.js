@@ -512,7 +512,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignSelf: 'center',
-    paddingBottom: '15%',
+    // paddingBottom: '5%',
   },
   settingsContainer: {
     // paddingTop: 48,
@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
     top: '7%',
   },
   pulseContainer: {
-    top: '18%',
+    top: '24%',
     justifyContent: 'center',
     alignItems: 'center',
   },

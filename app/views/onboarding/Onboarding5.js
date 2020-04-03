@@ -186,6 +186,14 @@ class Onboarding extends Component {
     }
   }
 
+  getTitleTextView() {
+    if (!this.isLocationChecked() || !this.isNotificationChecked()) {
+      return <Text style={styles.headerText}>{this.getTitleText()}</Text>;
+    } else {
+      return <Text style={styles.bigHeaderText}>{this.getTitleText()}</Text>;
+    }
+  }
+
   getSubtitleText() {
     if (!this.isLocationChecked()) {
       return languages.t('label.launch_location_subheader');
@@ -245,7 +253,7 @@ class Onboarding extends Component {
 
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <Text style={styles.headerText}>{this.getTitleText()}</Text>
+            {this.getTitleTextView()}
             <Text style={styles.subheaderText}>{this.getSubtitleText()}</Text>
             <View style={styles.statusContainer}>
               {this.getLocationPermission()}
@@ -283,6 +291,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
   },
+  bigHeaderText: {
+    color: Colors.WHITE,
+    fontWeight: FontWeights.MEDIUM,
+    fontSize: 52,
+    lineHeight: 48.5,
+    paddingTop: 52 - 48.5, // lineHeight hack
+    width: width * 0.7,
+    fontFamily: 'IBM Plex Sans',
+  },
   headerText: {
     color: Colors.WHITE,
     fontWeight: FontWeights.MEDIUM,
@@ -291,11 +308,11 @@ const styles = StyleSheet.create({
     fontFamily: 'IBM Plex Sans',
   },
   subheaderText: {
-    marginTop: '6%',
+    marginTop: '3%',
     color: Colors.WHITE,
     fontWeight: FontWeights.REGULAR,
     fontSize: 15,
-    width: width * 0.6,
+    width: width * 0.55,
     fontFamily: 'IBM Plex Sans',
   },
   statusContainer: {
