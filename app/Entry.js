@@ -95,7 +95,6 @@ class Entry extends Component {
               component={LicencesScreen}
               options={{ headerShown: false }}
             />
-            <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
             <Stack.Screen
               name='NotificationScreen'
               component={NotificationScreen}
