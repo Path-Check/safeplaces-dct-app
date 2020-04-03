@@ -21,15 +21,11 @@ import {
 } from 'react-native-popup-menu';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
-// import BackgroundOverlayImage from './../assets/images/homeScreenBackgroundOverlay.png';
 import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
 import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import exportImage from './../assets/images/export.png';
-import news from './../assets/images/newspaper.png';
-import kebabIcon from './../assets/images/kebabIcon.png';
-import pkLogo from './../assets/images/PKLogo.png';
 import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
 import Pulse from 'react-native-pulse';
