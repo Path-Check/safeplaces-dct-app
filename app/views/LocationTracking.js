@@ -31,7 +31,8 @@ import kebabIcon from './../assets/images/kebabIcon.png';
 import pkLogo from './../assets/images/PKLogo.png';
 import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
-import PulseLoader from '../components/PulseLoader';
+// import Pulse2 from '../components/Pulse2';
+import Pulse from 'react-native-pulse';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
@@ -61,7 +62,14 @@ const StateIcon = ({ title, status, size, ...props }) => {
       icon = StateNoContact;
       break;
   }
-  return <SvgXml style={styles.stateIcon} xml={icon} width={size ? size : 80} height={size ? size : 80} />;
+  return (
+    <SvgXml
+      style={styles.stateIcon}
+      xml={icon}
+      width={size ? size : 80}
+      height={size ? size : 80}
+    />
+  );
 };
 
 const width = Dimensions.get('window').width;
@@ -320,16 +328,32 @@ class LocationTracking extends Component {
           backgroundColor='transparent'
           translucent={true}
         />
-            <PulseLoader
-                avatarProvider={(size) => {
-                  return <StateIcon size={size} status={this.state.currentState} />;
-                }}
-              />
+
+        <TouchableOpacity style={styles.settingsContainer}>
+          <Image source={SettingsGear} resizeMode={'contain'} />
+          <SvgXml
+            style={styles.stateIcon}
+            xml={SettingsGear}
+            width={32}
+            height={32}
+          />
+        </TouchableOpacity>
+
+        <View style={styles.pulseContainer}>
+          <Pulse
+            image={exportImage}
+            color='#FFFFFF40'
+            numPulses={3}
+            diameter={400}
+            speed={20}
+            duration={2000}
+          />
+          <StateIcon size={80} status={this.state.currentState} />
+        </View>
+
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <View style={styles.stateIconContainer}>
-
-            </View>
+            <View style={styles.stateIconContainer}></View>
 
             <Text style={styles.mainText}>
               {languages.t('label.home_no_contact')}
@@ -338,7 +362,7 @@ class LocationTracking extends Component {
             <Text style={styles.subheaderText}>
               {languages.t('label.home_no_contact_sub')}
             </Text>
-            <View style={styles.buttonContainer}>
+            {/* <View style={styles.buttonContainer}>
               <ButtonWrapper
                 title={languages.t('label.home_enable_location')}
                 onPress={() => {
@@ -348,7 +372,7 @@ class LocationTracking extends Component {
                 buttonColor={Colors.WHITE}
                 bgColor={Colors.VIOLET_BUTTON}
               />
-            </View>
+            </View> */}
           </View>
         </View>
       </ImageBackground>
@@ -371,20 +395,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignSelf: 'center',
+    paddingBottom: '15%',
   },
-  buttonContainer: {
-
+  settingsContainer: {
+    paddingTop: 48,
+    paddingRight: 24,
+    alignSelf: 'flex-end',
   },
-  stateIconContainer: {
-    // position: 'absolute',
-    // top: 0,
-    // left: 0,
-    // right: 0,
-    // bottom: 0,
-    // marginVertical: '10%',
-  },
-  stateIcon: {
-    // alignSelf: 'center',
+  buttonContainer: {},
+  pulseContainer: {
+    top: '18%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   mainText: {
     textAlign: 'center',
