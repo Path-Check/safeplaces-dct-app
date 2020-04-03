@@ -20,6 +20,7 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
+import BackgroundOverlayImage from './../assets/images/homeScreenBackgroundOverlay.png';
 import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
@@ -131,7 +132,6 @@ class LocationTracking extends Component {
           this.setState({
             isLogging: true,
           });
-          console.log('participiating....');
           this.willParticipate();
         } else {
           this.setState({
@@ -476,6 +476,9 @@ class LocationTracking extends Component {
           backgroundColor='transparent'
           translucent={true}
         />
+        {/* <ImageBackground
+          source={BackgroundOverlayImage}
+          style={styles.circlesOverlay}> */}
 
         {this.getSettings()}
 
@@ -492,6 +495,7 @@ class LocationTracking extends Component {
             {this.getCTAIfNeeded()}
           </View>
         </View>
+        {/* </ImageBackground> */}
       </ImageBackground>
     );
   }
@@ -504,6 +508,13 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     flex: 1,
   },
+  // circlesOverlay: {
+  //   top: '-40%',
+  //   width: '100%',
+  //   height: '100%',
+  //   resizeMode: 'cover',
+  //   flex: 1,
+  // },
   mainContainer: {
     flex: 1,
   },
