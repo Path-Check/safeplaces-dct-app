@@ -20,6 +20,8 @@
     "home_unknown": "Unknown",
     "home_no_contact_sub": "You haven’t been near anyone who has tested positive for COVID-19.",
     "home_at_risk_sub": "You’ve crossed paths with someone who has tested positive for COVID-19.",
-    "home_unknown_sub": "We can’t tell if you’re at risk unless you enable the app to access your location."
+    "home_unknown_sub": "We can’t tell if you’re at risk unless you enable the app to access your location.",
+
+    "home_enable_location": "Enable Location Data"
 
 }

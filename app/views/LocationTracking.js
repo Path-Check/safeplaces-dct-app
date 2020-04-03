@@ -31,6 +31,9 @@ import kebabIcon from './../assets/images/kebabIcon.png';
 import pkLogo from './../assets/images/PKLogo.png';
 import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
+import PulseLoader from '../components/PulseLoader';
+import backArrow from './../assets/images/backArrow.png';
+
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
@@ -47,7 +50,7 @@ const StateEnum = {
   NO_CONTACT: 2,
 };
 
-const StateIcon = ({ title, status, ...props }) => {
+const StateIcon = ({ title, status, size, ...props }) => {
   let icon;
   switch (status) {
     case StateEnum.UNKNOWN:
@@ -60,7 +63,7 @@ const StateIcon = ({ title, status, ...props }) => {
       icon = StateNoContact;
       break;
   }
-  return <SvgXml style={styles.stateIcon} xml={icon} width={80} height={80} />;
+  return <SvgXml style={styles.stateIcon} xml={icon} width={size ? size : 80} height={size ? size : 80} />;
 };
 
 const width = Dimensions.get('window').width;
@@ -314,31 +317,47 @@ class LocationTracking extends Component {
   render() {
     return (
       <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
-        <ImageBackground
-          source={BackgroundOverlayImage}
-          style={styles.backgroundImageCircles}>
-          <StatusBar
-            barStyle='light-content'
-            backgroundColor='transparent'
-            translucent={true}
-          />
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent={true}
+        />
+            <PulseLoader
+                avatarProvider={(size) => {
+                  return <Image style={{
+                width: size,
+                height: size,
+                borderRadius: size / 2,
+            }} source={backArrow} />;
+                  // return <StateIcon size={size} status={this.state.currentState} />;
+                }}
+              />
+        <View style={styles.mainContainer}>
+          <View style={styles.contentContainer}>
+            <View style={styles.stateIconContainer}>
 
-          <View style={styles.mainContainer}>
-            <View style={styles.contentContainer}>
-              <View style={styles.stateIconContainer}>
-                <StateIcon status={this.state.currentState} />
-              </View>
+            </View>
 
-              <Text style={styles.mainText}>
-                {languages.t('label.home_no_contact')}
-              </Text>
+            <Text style={styles.mainText}>
+              {languages.t('label.home_no_contact')}
+            </Text>
 
-              <Text style={styles.subheaderText}>
-                {languages.t('label.home_no_contact_sub')}
-              </Text>
+            <Text style={styles.subheaderText}>
+              {languages.t('label.home_no_contact_sub')}
+            </Text>
+            <View style={styles.buttonContainer}>
+              <ButtonWrapper
+                title={languages.t('label.home_enable_location')}
+                onPress={() => {
+                  props.navigation.replace('Onboarding5');
+                  props.navigation.navigate('Onboarding5');
+                }}
+                buttonColor={Colors.WHITE}
+                bgColor={Colors.VIOLET_BUTTON}
+              />
             </View>
           </View>
-        </ImageBackground>
+        </View>
       </ImageBackground>
     );
   }
@@ -351,10 +370,6 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     flex: 1,
   },
-  backgroundImageCircles: {
-    top: -80,
-    flex: 1,
-  },
   mainContainer: {
     flex: 1,
   },
@@ -364,24 +379,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
   },
+  buttonContainer: {
+
+  },
   stateIconContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // position: 'absolute',
+    // top: 0,
+    // left: 0,
+    // right: 0,
+    // bottom: 0,
+    // marginVertical: '10%',
   },
   stateIcon: {
-    marginTop: '2.5%', // HUGE HACK because not center
-    alignSelf: 'center',
+    // alignSelf: 'center',
   },
   mainText: {
-    marginTop: '125%',
     textAlign: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
     lineHeight: 34,
     color: Colors.WHITE,
     fontWeight: FontWeights.MEDIUM,
@@ -391,8 +404,6 @@ const styles = StyleSheet.create({
   subheaderText: {
     marginTop: '5%',
     textAlign: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
     fontWeight: FontWeights.REGULAR,
