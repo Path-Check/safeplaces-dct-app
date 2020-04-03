@@ -63,11 +63,11 @@ function ExportScreen({ shareButtonDisabled }) {
       let locationData = await new LocationData().getLocationData();
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
-
+      
       var options = {};
       var jsonData = JSON.stringify(locationData);
       const title = 'PrivateKit.json';
-      const filename = unixtimeUTC + '.json';
+      const filename = unixtimeUTC+'.json';
       const message = 'Here is my location log from Private Kit.';
       if (Platform.OS === 'ios') {
         var url = RNFS.Bundle + '/' + filename;
