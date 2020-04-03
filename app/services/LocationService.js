@@ -206,8 +206,8 @@ export default class LocationServices {
         setTimeout(
           () =>
             Alert.alert(
-              languages.t('label.location_access_title'),
-              languages.t('label.location_access_message'),
+              languages.t('label.require_location_information_title'),
+              languages.t('label.require_location_information_message'),
               [
                 {
                   text: languages.t('label.yes'),
@@ -282,8 +282,8 @@ export default class LocationServices {
         setTimeout(
           () =>
             Alert.alert(
-              languages.t('label.location_access_title'),
-              languages.t('label.location_access_message'),
+              languages.t('label.require_location_services_title'),
+              languages.t('label.require_location_services_message'),
               [
                 {
                   text: languages.t('label.yes'),
@@ -310,8 +310,8 @@ export default class LocationServices {
         setTimeout(
           () =>
             Alert.alert(
-              languages.t('label.location_access_title'),
-              languages.t('label.location_access_message'),
+              languages.t('label.require_location_information_title'),
+              languages.t('label.require_location_information_message'),
               [
                 {
                   text: languages.t('label.yes'),
