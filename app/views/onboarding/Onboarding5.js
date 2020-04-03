@@ -196,6 +196,34 @@ class Onboarding extends Component {
     }
   }
 
+  getLocationPermission() {
+    return (
+      <>
+        <View style={styles.divider}></View>
+        <PermissionDescription
+          title={languages.t('label.launch_location_access')}
+          status={this.state.locationPermission}
+        />
+        <View style={styles.divider}></View>
+      </>
+    );
+  }
+
+  getNotificationsPermissionIfIOS() {
+    if (Platform.OS === 'ios') {
+      return (
+        <>
+          <PermissionDescription
+            title={languages.t('label.launch_notification_access')}
+            status={this.state.notificationPermission}
+          />
+          <View style={styles.divider}></View>
+        </>
+      );
+    }
+    return;
+  }
+
   getButtonText() {
     if (!this.isLocationChecked()) {
       return languages.t('label.launch_enable_location');
@@ -219,19 +247,9 @@ class Onboarding extends Component {
           <View style={styles.contentContainer}>
             <Text style={styles.headerText}>{this.getTitleText()}</Text>
             <Text style={styles.subheaderText}>{this.getSubtitleText()}</Text>
-
             <View style={styles.statusContainer}>
-              <View style={styles.divider}></View>
-              <PermissionDescription
-                title={languages.t('label.launch_location_access')}
-                status={this.state.locationPermission}
-              />
-              <View style={styles.divider}></View>
-              <PermissionDescription
-                title={languages.t('label.launch_notification_access')}
-                status={this.state.notificationPermission}
-              />
-              <View style={styles.divider}></View>
+              {this.getLocationPermission()}
+              {this.getNotificationsPermissionIfIOS()}
               <View style={styles.spacer}></View>
             </View>
           </View>
