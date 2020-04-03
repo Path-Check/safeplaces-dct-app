@@ -9,14 +9,17 @@ import {
 } from 'react-native';
 const width = Dimensions.get('window').width;
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
-import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
 import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import FontWeights from '../../constants/fontWeights';
-import IconDenied from './../../assets/svgs/permissionDenied';
-import IconGranted from './../../assets/svgs/permissionGranted';
-import IconUnknown from './../../assets/svgs/permissionUnknown';
+import IconDenied from '../../assets/svgs/permissionDenied';
+import IconGranted from '../../assets/svgs/permissionGranted';
+import IconUnknown from '../../assets/svgs/permissionUnknown';
+
+import LocationServices from '../../services/LocationService';
+import BroadcastingServices from '../../services/BroadcastingService';
+import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 
 import { SvgXml } from 'react-native-svg';
 
@@ -56,6 +59,30 @@ class Onboarding extends Component {
     };
   }
 
+  // willParticipate = () => {
+  //   SetStoreData('PARTICIPATE', 'true').then(() => {
+  //     LocationServices.start();
+  //     BroadcastingServices.start();
+  //   });
+
+  //   // Check and see if they actually authorized in the system dialog.
+  //   // If not, stop services and set the state to !isLogging
+  //   // Fixes tripleblindmarket/private-kit#129
+  //   BackgroundGeolocation.checkStatus(({ authorization }) => {
+  //     if (authorization === BackgroundGeolocation.AUTHORIZED) {
+  //       this.setState({
+  //         isLogging: true,
+  //       });
+  //     } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
+  //       LocationServices.stop(this.props.navigation);
+  //       BroadcastingServices.stop(this.props.navigation);
+  //       this.setState({
+  //         isLogging: false,
+  //       });
+  //     }
+  //   });
+  // };
+
   render() {
     return (
       <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
@@ -68,10 +95,10 @@ class Onboarding extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             <Text style={styles.headerText}>
-              {languages.t('label.launch_screen5_header')}
+              {languages.t('label.launch_done_header')}
             </Text>
             <Text style={styles.subheaderText}>
-              {languages.t('label.launch_screen5_subheader')}
+              {languages.t('label.launch_done_subheader')}
             </Text>
           </View>
           <View style={styles.footerContainer}>
@@ -127,6 +154,7 @@ const styles = StyleSheet.create({
     lineHeight: 45 * 0.85,
     paddingTop: 45 - 45 * 0.85, // hack
     width: width * 0.6,
+    fontFamily: 'IBM Plex Sans',
   },
   subheaderText: {
     marginTop: '3%',
@@ -134,6 +162,7 @@ const styles = StyleSheet.create({
     fontWeight: FontWeights.REGULAR,
     fontSize: 15,
     width: width * 0.6,
+    fontFamily: 'IBM Plex Sans',
   },
   divider: {
     backgroundColor: Colors.DIVIDER,
@@ -159,6 +188,7 @@ const styles = StyleSheet.create({
     fontWeight: FontWeights.REGULAR,
     fontSize: 16,
     alignSelf: 'center',
+    fontFamily: 'IBM Plex Sans',
   },
   permissionIcon: {
     alignSelf: 'center',

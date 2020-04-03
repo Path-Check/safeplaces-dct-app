@@ -7,7 +7,7 @@ import {
   ImageBackground,
 } from 'react-native';
 const width = Dimensions.get('window').width;
-import BackgroundImage from './../../assets/images/launchScreen1.png';
+import BackgroundImage from './../../assets/images/launchScreen3.png';
 import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
@@ -19,18 +19,18 @@ const Onboarding = props => {
       <View style={styles.mainContainer}>
         <View style={styles.contentContainer}>
           <Text style={styles.headerText}>
-            {languages.t('label.launch_screen2_header')}
+            {languages.t('label.launch_screen4_header')}
           </Text>
           <Text style={styles.subheaderText}>
-            {languages.t('label.launch_screen2_subheader')}
+            {languages.t('label.launch_screen4_subheader')}
           </Text>
         </View>
         <View style={styles.footerContainer}>
           <ButtonWrapper
-            title={languages.t('label.launch_next')}
+            title={languages.t('label.launch_set_up_phone')}
             onPress={() => {
-              props.navigation.replace('Onboarding3');
-              props.navigation.navigate('Onboarding3');
+              props.navigation.replace('Onboarding5');
+              props.navigation.navigate('Onboarding5');
             }}
             buttonColor={Colors.WHITE}
             bgColor={Colors.VIOLET_BUTTON}
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     color: Colors.VIOLET,
     fontWeight: FontWeights.MEDIUM,
     fontSize: 26,
-    width: width * 0.6,
+    width: width * 0.67,
+    fontFamily: 'IBM Plex Sans',
   },
   subheaderText: {
     marginTop: '6%',
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
     fontWeight: FontWeights.REGULAR,
     fontSize: 15,
     width: width * 0.6,
+    fontFamily: 'IBM Plex Sans',
   },
   footerContainer: {
     position: 'absolute',

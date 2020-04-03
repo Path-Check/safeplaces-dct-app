@@ -3,20 +3,28 @@
   "launch_get_started": "Get Started",
   "launch_next": "Next",
   "launch_set_up_phone": "Set up my phone",
+  "launch_enable_location": "Enable Location",
+  "launch_enable_notif": "Enable Notifications",
   "launch_finish_set_up": "Finish Setup",
 
   "launch_location_access": "Location access",
   "launch_notification_access": "Allow notifications",
 
-  "launch_screen2_header": "We save your location data every 5 minutes.",
-  "launch_screen2_subheader": "Your data is only saved on your phone - we don't share it.",
+  "launch_screen2_header": "Get notified if you come across anyone diagnosed with COVID-19.",
+  "launch_screen2_subheader": "Learn what to do next if you are at risk.",
 
-  "launch_screen3_header": "If you cross paths with someone who tests positive for COVID-19, we will notify you.",
-  "launch_screen3_subheader": "And tell you what to do next.",
+  "launch_screen3_header": "If you test positive, you can share anonymized data to help others.",
+  "launch_screen3_subheader": "Do your part to keep the entire community safe.",
 
-  "launch_screen4_header": "If you test positive, share your anonymized data to alert those you crossed paths with.",
-  "launch_screen4_subheader": "And that’s it.",
+  "launch_screen4_header": "Your data is only saved on your phone. Never shared.",
+  "launch_screen4_subheader": "If you test positive, you can choose to share location info with health officials.",
 
-  "launch_screen5_header": "Almost done.",
-  "launch_screen5_subheader": "For this to work, we need to enable a few settings."
+  "launch_location_header": "To remember where you go, your phone needs to save your location.",
+  "launch_location_subheader": "Don’t worry, information never leaves your device unless you explicitly ask to do so.",
+  
+  "launch_notif_header": "Notifications will let you know if you cross paths with an infected person.",
+  "launch_notif_subheader": "Stay up to date on your potential exposure risks",
+
+  "launch_done_header": "All finished",
+  "launch_done_subheader": "You’re ready to roll. And you can always updated your preferences later."
 }

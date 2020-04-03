@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     color: Colors.WHITE,
     fontWeight: FontWeights.MEDIUM,
     fontSize: 26,
+    fontFamily: 'IBM Plex Sans',
   },
   footerContainer: {
     position: 'absolute',

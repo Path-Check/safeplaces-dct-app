@@ -11,12 +11,12 @@ import ImportScreen from './views/Import';
 import OverlapScreen from './views/Overlap';
 import LicencesScreen from './views/Licenses';
 import NotificationScreen from './views/Notification';
-import SimpleWelcomeScreen from './views/welcomeScreens/SimpleWelcomeScreen';
-import Onboarding1 from './views/launchScreens/Onboarding1';
-import Onboarding2 from './views/launchScreens/Onboarding2';
-import Onboarding3 from './views/launchScreens/Onboarding3';
-import Onboarding4 from './views/launchScreens/Onboarding4';
-import Onboarding5 from './views/launchScreens/Onboarding5';
+import Onboarding1 from './views/onboarding/Onboarding1';
+import Onboarding2 from './views/onboarding/Onboarding2';
+import Onboarding3 from './views/onboarding/Onboarding3';
+import Onboarding4 from './views/onboarding/Onboarding4';
+import Onboarding5 from './views/onboarding/Onboarding5';
+import Onboarding6 from './views/onboarding/Onboarding6';
 import { GetStoreData } from './helpers/General';
 
 const Stack = createStackNavigator();
@@ -51,12 +51,12 @@ class Entry extends Component {
               options={{ headerShown: false }}
             />
           ) : (
-              <Stack.Screen
-                name='InitialScreen'
-                component={Onboarding1}
-                options={{ headerShown: false }}
-              />
-            )}
+            <Stack.Screen
+              name='InitialScreen'
+              component={Onboarding1}
+              options={{ headerShown: false }}
+            />
+          )}
           <Stack.Screen
             name='Onboarding1'
             component={Onboarding1}
@@ -83,8 +83,8 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name='SimpleWelcomeScreen'
-            component={SimpleWelcomeScreen}
+            name='Onboarding6'
+            component={Onboarding6}
             options={{ headerShown: false }}
           />
           <Stack.Screen

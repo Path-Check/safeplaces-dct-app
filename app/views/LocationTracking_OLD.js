@@ -10,8 +10,6 @@ import {
   Image,
   ScrollView,
   BackHandler,
-  ImageBackground,
-  StatusBar,
 } from 'react-native';
 import {
   Menu,
@@ -19,8 +17,6 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
-import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import BackgroundOverlayImage from './../assets/images/homeScreenBackgroundOverlay.png';
 import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
 import BroadcastingServices from '../services/BroadcastingService';
@@ -31,37 +27,11 @@ import kebabIcon from './../assets/images/kebabIcon.png';
 import pkLogo from './../assets/images/PKLogo.png';
 import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
+import IconLocked from '../assets/svgs/intro-locked';
+import { SvgXml } from 'react-native-svg';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
-
-import { SvgXml } from 'react-native-svg';
-import StateAtRisk from './../assets/svgs/stateAtRisk';
-import StateNoContact from './../assets/svgs/stateNoContact';
-import StateUnknown from './../assets/svgs/stateUnknown';
-import SettingsGear from './../assets/svgs/settingsGear';
-
-const StateEnum = {
-  UNKNOWN: 0,
-  AT_RISK: 1,
-  NO_CONTACT: 2,
-};
-
-const StateIcon = ({ title, status, ...props }) => {
-  let icon;
-  switch (status) {
-    case StateEnum.UNKNOWN:
-      icon = StateUnknown;
-      break;
-    case StateEnum.AT_RISK:
-      icon = StateAtRisk;
-      break;
-    case StateEnum.NO_CONTACT:
-      icon = StateNoContact;
-      break;
-  }
-  return <SvgXml style={styles.stateIcon} xml={icon} width={80} height={80} />;
-};
 
 const width = Dimensions.get('window').width;
 
@@ -70,8 +40,7 @@ class LocationTracking extends Component {
     super(props);
 
     this.state = {
-      isLogging: '', // what is this?
-      currentState: StateEnum.NO_CONTACT,
+      isLogging: '',
     };
   }
 
@@ -92,7 +61,6 @@ class LocationTracking extends Component {
       })
       .catch(error => console.log(error));
   }
-
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
@@ -101,7 +69,6 @@ class LocationTracking extends Component {
     BackHandler.exitApp(); // works best when the goBack is async
     return true;
   };
-
   export() {
     this.props.navigation.navigate('ExportScreen', {});
   }
@@ -311,93 +278,237 @@ class LocationTracking extends Component {
     );
   };
 
+  getPrivacyNote = () => {
+    if (this.state.isLogging) {
+      return;
+    }
+    return (
+      <View style={styles.privacyNoteContainer}>
+        <View style={styles.privacyHeaderContainer}>
+          <SvgXml xml={IconLocked} width={15} height={15} />
+          <Text style={styles.privacyHeader}>
+            {languages.t('label.home_privacy_header')}
+          </Text>
+        </View>
+        <Text style={styles.privacySubheader}>
+          {languages.t('label.home_privacy_subheader')}
+        </Text>
+      </View>
+    );
+  };
+
+  getFooter = () => {
+    return (
+      <View style={styles.footer}>
+        <Text>
+          <Text
+            style={[
+              styles.footerDescription,
+              { marginLeft: 0, marginRight: 0 },
+            ]}>
+            {languages.t('label.url_info')}{' '}
+          </Text>
+          <Text
+            style={[
+              styles.footerDescription,
+              { color: Colors.BLUE_LINK, marginLeft: 0, marginRight: 0 },
+            ]}
+            onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
+            {languages.t('label.home_footer')}
+          </Text>
+        </Text>
+      </View>
+    );
+  };
+
   render() {
     return (
-      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
-        <ImageBackground
-          source={BackgroundOverlayImage}
-          style={styles.backgroundImageCircles}>
-          <StatusBar
-            barStyle='light-content'
-            backgroundColor='transparent'
-            translucent={true}
-          />
+      <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.main}>
+          {this.getMenuItem()}
+          <Text style={styles.headerTitle}>
+            {languages.t('label.private_kit')}
+          </Text>
 
-          <View style={styles.mainContainer}>
-            <View style={styles.contentContainer}>
-              <View style={styles.stateIconContainer}>
-                <StateIcon status={this.state.currentState} />
-              </View>
-
-              <Text style={styles.mainText}>
-                {languages.t('label.home_no_contact')}
-              </Text>
-
-              <Text style={styles.subheaderText}>
-                {languages.t('label.home_no_contact_sub')}
-              </Text>
-            </View>
+          <View style={styles.buttonsAndLogoView}>
+            {this.state.isLogging
+              ? this.getTrackingComponent()
+              : this.getNotTrackingComponent()}
           </View>
-        </ImageBackground>
-      </ImageBackground>
+
+          {this.getActionButtons()}
+
+          {this.getPrivacyNote()}
+
+          {this.getFooter()}
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
+  // Container covers the entire screen
+  container: {
     flex: 1,
-  },
-  backgroundImageCircles: {
-    top: -80,
-    flex: 1,
-  },
-  mainContainer: {
-    flex: 1,
-  },
-  contentContainer: {
-    width: width * 0.6,
-    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
-    alignSelf: 'center',
+    alignItems: 'center',
+    color: Colors.PRIMARY_TEXT,
+    backgroundColor: Colors.WHITE,
   },
-  stateIconContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+  headerTitle: {
+    textAlign: 'center',
+    fontSize: 38,
+    padding: 0,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeights.BOLD,
+    marginTop: '7%',
+  },
+  subHeaderTitle: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 22,
+    padding: 5,
+  },
+  main: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '90%',
+  },
+  buttonsAndLogoView: {
+    flex: 6,
+    justifyContent: 'flex-start',
+  },
+  actionButtonsView: {
+    width: width * 0.7866,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 2,
+    alignItems: 'center',
+    marginBottom: -10,
+  },
+  footer: {
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '600',
+    padding: 4,
+    paddingBottom: 10,
+    flexDirection: 'row',
+  },
+  sectionDescription: {
+    fontSize: 13,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeights.MEDIUM,
+    marginLeft: '12%',
+    marginRight: '12%',
+    marginTop: '2%',
+    marginBottom: '2%',
+    textAlign: 'center',
+    color: '#6A6A6A',
+  },
+  footerDescription: {
+    fontSize: 12,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeights.REGULAR,
+    marginLeft: '12%',
+    marginRight: '12%',
+    marginTop: '2%',
+    marginBottom: '2%',
+    textAlign: 'center',
+    color: '#6A6A6A',
+  },
+  startLoggingButtonTouchable: {
+    borderRadius: 12,
+    backgroundColor: '#665eff',
+    height: 52,
+    alignSelf: 'center',
+    width: width * 0.7866,
+    justifyContent: 'center',
+  },
+  startLoggingButtonText: {
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeights.BOLD,
+    fontSize: 14,
+    lineHeight: 19,
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+  stopLoggingButtonTouchable: {
+    borderRadius: 12,
+    backgroundColor: '#fd4a4a',
+    height: 52,
+    alignSelf: 'center',
+    width: width * 0.7866,
+    justifyContent: 'center',
+  },
+  stopLoggingButtonText: {
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeights.BOLD,
+    fontSize: 14,
+    lineHeight: 19,
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+  actionButtonsTouchable: {
+    height: 76,
+    borderRadius: 8,
+    backgroundColor: '#454f63',
+    width: width * 0.23,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  stateIcon: {
-    marginTop: '2.5%', // HUGE HACK because not center
-    alignSelf: 'center',
+  actionButtonImage: {
+    height: 21.6,
+    width: 32.2,
   },
-  mainText: {
-    marginTop: '125%',
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    lineHeight: 34,
-    color: Colors.WHITE,
-    fontWeight: FontWeights.MEDIUM,
-    fontSize: 26,
+  actionButtonText: {
+    opacity: 0.56,
     fontFamily: 'IBM Plex Sans',
-  },
-  subheaderText: {
-    marginTop: '5%',
+    fontWeight: FontWeights.BOLD,
+    fontSize: 12,
+    lineHeight: 17,
+    letterSpacing: 0,
     textAlign: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    lineHeight: 24.5,
-    color: Colors.WHITE,
+    color: '#ffffff',
+    marginTop: 6,
+  },
+  menuOptionText: {
+    fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeights.REGULAR,
-    fontSize: 18,
+    fontSize: 14,
+    padding: 10,
+  },
+  privacyNoteContainer: {
+    backgroundColor: '#15D09B',
+    width: width * 0.7,
+    borderRadius: 12,
+    paddingVertical: 8,
+  },
+  privacyHeaderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: '2%',
+  },
+  privacyHeader: {
     fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeights.SEMIBOLD,
+    fontSize: 16,
+    marginLeft: 5,
+    textAlign: 'center',
+    color: 'white',
+  },
+  privacySubheader: {
+    fontSize: 12,
+    textAlign: 'center',
+    color: 'white',
+    margin: '2%',
+    marginLeft: '5%',
+    marginRight: '5%',
   },
 });
 
