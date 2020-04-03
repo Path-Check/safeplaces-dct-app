@@ -20,7 +20,8 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import BackgroundOverlayImage from './../assets/images/homeScreenBackgroundOverlay.png';
+import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
+// import BackgroundOverlayImage from './../assets/images/homeScreenBackgroundOverlay.png';
 import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
 import BroadcastingServices from '../services/BroadcastingService';
@@ -32,6 +33,8 @@ import pkLogo from './../assets/images/PKLogo.png';
 import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
 import Pulse from 'react-native-pulse';
+
+import { openSettings } from 'react-native-permissions';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
@@ -79,7 +82,7 @@ class LocationTracking extends Component {
 
     this.state = {
       isLogging: '', // what is this?
-      currentState: StateEnum.NO_CONTACT,
+      currentState: StateEnum.UNKNOWN,
     };
   }
 
@@ -146,17 +149,17 @@ class LocationTracking extends Component {
     });
   };
 
-  news() {
-    this.props.navigation.navigate('NewsScreen', {});
-  }
+  // news() {
+  //   this.props.navigation.navigate('NewsScreen', {});
+  // }
 
   licenses() {
     this.props.navigation.navigate('LicensesScreen', {});
   }
 
-  notifications() {
-    this.props.navigation.navigate('NotificationScreen', {});
-  }
+  // notifications() {
+  //   this.props.navigation.navigate('NotificationScreen', {});
+  // }
 
   setOptOut = () => {
     LocationServices.stop(this.props.navigation);
@@ -166,178 +169,181 @@ class LocationTracking extends Component {
     });
   };
 
-  // create component
+  // getMenuItem = () => {
+  //   return (
+  //     <Menu
+  //       style={{
+  //         position: 'absolute',
+  //         alignSelf: 'flex-end',
+  //         zIndex: 10,
+  //         marginTop: '5.5%',
+  //       }}>
+  //       <MenuTrigger style={{ marginTop: 14 }}>
+  //         <Image
+  //           source={kebabIcon}
+  //           style={{
+  //             width: 15,
+  //             height: 28,
+  //             padding: 14,
+  //           }}
+  //         />
+  //       </MenuTrigger>
+  //       <MenuOptions>
+  //         <MenuOption
+  //           onSelect={() => {
+  //             this.licenses();
+  //           }}>
+  //           <Text style={styles.menuOptionText}>Licenses</Text>
+  //         </MenuOption>
+  //         <MenuOption
+  //           onSelect={() => {
+  //             this.notifications();
+  //           }}>
+  //           <Text style={styles.menuOptionText}>Notifications</Text>
+  //         </MenuOption>
+  //       </MenuOptions>
+  //     </Menu>
+  //   );
+  // };
 
-  getMenuItem = () => {
-    return (
-      <Menu
-        style={{
-          position: 'absolute',
-          alignSelf: 'flex-end',
-          zIndex: 10,
-          marginTop: '5.5%',
-        }}>
-        <MenuTrigger style={{ marginTop: 14 }}>
-          <Image
-            source={kebabIcon}
-            style={{
-              width: 15,
-              height: 28,
-              padding: 14,
-            }}
-          />
-        </MenuTrigger>
-        <MenuOptions>
-          <MenuOption
-            onSelect={() => {
-              this.licenses();
-            }}>
-            <Text style={styles.menuOptionText}>Licenses</Text>
-          </MenuOption>
-          <MenuOption
-            onSelect={() => {
-              this.notifications();
-            }}>
-            <Text style={styles.menuOptionText}>Notifications</Text>
-          </MenuOption>
-        </MenuOptions>
-      </Menu>
-    );
-  };
+  // getTrackingComponent = () => {
+  //   return (
+  //     <>
+  //       <Image
+  //         source={pkLogo}
+  //         style={{
+  //           width: 132,
+  //           height: 164.4,
+  //           alignSelf: 'center',
+  //           marginTop: 15,
+  //           marginBottom: 15,
+  //         }}
+  //       />
+  //       <ButtonWrapper
+  //         title={languages.t('label.home_stop_tracking')}
+  //         onPress={() => this.setOptOut()}
+  //         bgColor={Colors.RED_BUTTON}
+  //         toBgColor={Colors.RED_TO_BUTTON}
+  //       />
+  //       <Text style={styles.sectionDescription}>
+  //         {languages.t('label.home_stop_tracking_description')}
+  //       </Text>
 
-  getTrackingComponent = () => {
-    return (
-      <>
-        <Image
-          source={pkLogo}
-          style={{
-            width: 132,
-            height: 164.4,
-            alignSelf: 'center',
-            marginTop: 15,
-            marginBottom: 15,
-          }}
-        />
-        <ButtonWrapper
-          title={languages.t('label.home_stop_tracking')}
-          onPress={() => this.setOptOut()}
-          bgColor={Colors.RED_BUTTON}
-          toBgColor={Colors.RED_TO_BUTTON}
-        />
-        <Text style={styles.sectionDescription}>
-          {languages.t('label.home_stop_tracking_description')}
-        </Text>
+  //       <ButtonWrapper
+  //         title={languages.t('label.home_check_risk')}
+  //         onPress={() => this.overlap()}
+  //         bgColor={Colors.GRAY_BUTTON}
+  //         toBgColor={Colors.Gray_TO_BUTTON}
+  //       />
+  //       <Text style={styles.sectionDescription}>
+  //         {languages.t('label.home_check_risk_description')}
+  //       </Text>
+  //     </>
+  //   );
+  // };
 
-        <ButtonWrapper
-          title={languages.t('label.home_check_risk')}
-          onPress={() => this.overlap()}
-          bgColor={Colors.GRAY_BUTTON}
-          toBgColor={Colors.Gray_TO_BUTTON}
-        />
-        <Text style={styles.sectionDescription}>
-          {languages.t('label.home_check_risk_description')}
-        </Text>
-      </>
-    );
-  };
+  // getNotTrackingComponent = () => {
+  //   return (
+  //     <>
+  //       <Image
+  //         source={pkLogo}
+  //         style={{
+  //           width: 132,
+  //           height: 164.4,
+  //           alignSelf: 'center',
+  //           marginTop: 15,
+  //           marginBottom: 30,
+  //           opacity: 0.3,
+  //         }}
+  //       />
+  //       <ButtonWrapper
+  //         title={languages.t('label.home_start_tracking')}
+  //         onPress={() => this.willParticipate()}
+  //         bgColor={Colors.BLUE_BUTTON}
+  //         toBgColor={Colors.BLUE_TO_BUTTON}
+  //       />
+  //       <Text style={styles.sectionDescription}>
+  //         {languages.t('label.home_start_tracking_description')}
+  //       </Text>
+  //     </>
+  //   );
+  // };
 
-  getNotTrackingComponent = () => {
-    return (
-      <>
-        <Image
-          source={pkLogo}
-          style={{
-            width: 132,
-            height: 164.4,
-            alignSelf: 'center',
-            marginTop: 15,
-            marginBottom: 30,
-            opacity: 0.3,
-          }}
-        />
-        <ButtonWrapper
-          title={languages.t('label.home_start_tracking')}
-          onPress={() => this.willParticipate()}
-          bgColor={Colors.BLUE_BUTTON}
-          toBgColor={Colors.BLUE_TO_BUTTON}
-        />
-        <Text style={styles.sectionDescription}>
-          {languages.t('label.home_start_tracking_description')}
-        </Text>
-      </>
-    );
-  };
+  // getActionButtons = () => {
+  //   if (!this.state.isLogging) {
+  //     return;
+  //   }
+  //   return (
+  //     <View style={styles.actionButtonsView}>
+  //       <TouchableOpacity
+  //         onPress={() => this.import()}
+  //         style={styles.actionButtonsTouchable}>
+  //         <Image
+  //           style={styles.actionButtonImage}
+  //           source={exportImage}
+  //           resizeMode={'contain'}
+  //         />
+  //         <Text style={styles.actionButtonText}>
+  //           {languages.t('label.import')}
+  //         </Text>
+  //       </TouchableOpacity>
 
-  getActionButtons = () => {
-    if (!this.state.isLogging) {
-      return;
+  //       <TouchableOpacity
+  //         onPress={() => this.export()}
+  //         style={styles.actionButtonsTouchable}>
+  //         <Image
+  //           style={[
+  //             styles.actionButtonImage,
+  //             { transform: [{ rotate: '180deg' }] },
+  //           ]}
+  //           source={exportImage}
+  //           resizeMode={'contain'}
+  //         />
+  //         <Text style={styles.actionButtonText}>
+  //           {languages.t('label.export')}
+  //         </Text>
+  //       </TouchableOpacity>
+
+  //       <TouchableOpacity
+  //         onPress={() => this.news()}
+  //         style={styles.actionButtonsTouchable}>
+  //         <Image
+  //           style={styles.actionButtonImage}
+  //           source={news}
+  //           resizeMode={'contain'}
+  //         />
+  //         <Text style={styles.actionButtonText}>
+  //           {languages.t('label.news')}
+  //         </Text>
+  //       </TouchableOpacity>
+  //     </View>
+  //   );
+  // };
+
+  getBackground() {
+    if (this.state.currentState == StateEnum.AT_RISK) {
+      return BackgroundImageAtRisk;
     }
+    return BackgroundImage;
+  }
+
+  getSettings() {
     return (
-      <View style={styles.actionButtonsView}>
-        <TouchableOpacity
-          onPress={() => this.import()}
-          style={styles.actionButtonsTouchable}>
-          <Image
-            style={styles.actionButtonImage}
-            source={exportImage}
-            resizeMode={'contain'}
-          />
-          <Text style={styles.actionButtonText}>
-            {languages.t('label.import')}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => this.export()}
-          style={styles.actionButtonsTouchable}>
-          <Image
-            style={[
-              styles.actionButtonImage,
-              { transform: [{ rotate: '180deg' }] },
-            ]}
-            source={exportImage}
-            resizeMode={'contain'}
-          />
-          <Text style={styles.actionButtonText}>
-            {languages.t('label.export')}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => this.news()}
-          style={styles.actionButtonsTouchable}>
-          <Image
-            style={styles.actionButtonImage}
-            source={news}
-            resizeMode={'contain'}
-          />
-          <Text style={styles.actionButtonText}>
-            {languages.t('label.news')}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
-  render() {
-    return (
-      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor='transparent'
-          translucent={true}
+      <TouchableOpacity style={styles.settingsContainer}>
+        <Image resizeMode={'contain'} />
+        <SvgXml
+          style={styles.stateIcon}
+          xml={SettingsGear}
+          width={32}
+          height={32}
         />
+      </TouchableOpacity>
+    );
+  }
 
-        <TouchableOpacity style={styles.settingsContainer}>
-          <Image source={SettingsGear} resizeMode={'contain'} />
-          <SvgXml
-            style={styles.stateIcon}
-            xml={SettingsGear}
-            width={32}
-            height={32}
-          />
-        </TouchableOpacity>
-
+  getPulseIfNeeded() {
+    if (this.state.currentState == StateEnum.NO_CONTACT) {
+      return (
         <View style={styles.pulseContainer}>
           <Pulse
             image={exportImage}
@@ -349,29 +355,85 @@ class LocationTracking extends Component {
           />
           <StateIcon size={80} status={this.state.currentState} />
         </View>
+      );
+    }
+    return (
+      <View style={styles.pulseContainer}>
+        <StateIcon size={80} status={this.state.currentState} />
+      </View>
+    );
+  }
+
+  getMainText() {
+    switch (this.state.currentState) {
+      case StateEnum.NO_CONTACT:
+        return 'label.home_no_contact_header';
+      case StateEnum.AT_RISK:
+        return 'label.home_at_risk_header';
+      case StateEnum.UNKNOWN:
+        return 'label.home_unknown_header';
+    }
+  }
+
+  getSubText() {
+    switch (this.state.currentState) {
+      case StateEnum.NO_CONTACT:
+        return 'label.home_no_contact_subtext';
+      case StateEnum.AT_RISK:
+        return 'label.home_at_risk_subtext';
+      case StateEnum.UNKNOWN:
+        return 'label.home_unknown_subtext';
+    }
+  }
+
+  getCTAIfNeeded() {
+    let buttonLabel;
+    if (this.state.currentState === StateEnum.NO_CONTACT) {
+      return;
+    } else if (this.state.currentState === StateEnum.AT_RISK) {
+      buttonLabel = 'label.home_next_steps';
+    } else if (this.state.currentState === StateEnum.UNKNOWN) {
+      buttonLabel = 'label.home_enable_location';
+    }
+
+    return (
+      <View style={styles.buttonContainer}>
+        <ButtonWrapper
+          title={languages.t(buttonLabel)}
+          onPress={() => {
+            openSettings();
+          }}
+          buttonColor={Colors.VIOLET}
+          bgColor={Colors.WHITE}
+        />
+      </View>
+    );
+  }
+
+  render() {
+    return (
+      <ImageBackground
+        source={this.getBackground()}
+        style={styles.backgroundImage}>
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent={true}
+        />
+
+        {this.getSettings()}
+
+        {this.getPulseIfNeeded()}
 
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <View style={styles.stateIconContainer}></View>
-
             <Text style={styles.mainText}>
-              {languages.t('label.home_no_contact')}
+              {languages.t(this.getMainText())}
             </Text>
-
             <Text style={styles.subheaderText}>
-              {languages.t('label.home_no_contact_sub')}
+              {languages.t(this.getSubText())}
             </Text>
-            {/* <View style={styles.buttonContainer}>
-              <ButtonWrapper
-                title={languages.t('label.home_enable_location')}
-                onPress={() => {
-                  props.navigation.replace('Onboarding5');
-                  props.navigation.navigate('Onboarding5');
-                }}
-                buttonColor={Colors.WHITE}
-                bgColor={Colors.VIOLET_BUTTON}
-              />
-            </View> */}
+            {this.getCTAIfNeeded()}
           </View>
         </View>
       </ImageBackground>
@@ -397,11 +459,15 @@ const styles = StyleSheet.create({
     paddingBottom: '15%',
   },
   settingsContainer: {
-    paddingTop: 48,
-    paddingRight: 24,
+    // paddingTop: 48,
+    // paddingRight: 24,
+    marginTop: '14%',
+    marginRight: '5%',
     alignSelf: 'flex-end',
   },
-  buttonContainer: {},
+  buttonContainer: {
+    top: '7%',
+  },
   pulseContainer: {
     top: '18%',
     justifyContent: 'center',

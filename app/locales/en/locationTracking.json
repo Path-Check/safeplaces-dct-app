@@ -15,13 +15,14 @@
     "home_privacy_header": "Privacy Info",
     "home_privacy_subheader": "Your location history stays on your phone and is never shared without your consent",
 
-    "home_no_contact": "No known contact",
-    "home_at_risk": "You're at risk",
-    "home_unknown": "Unknown",
-    "home_no_contact_sub": "You haven’t been near anyone who has tested positive for COVID-19.",
-    "home_at_risk_sub": "You’ve crossed paths with someone who has tested positive for COVID-19.",
-    "home_unknown_sub": "We can’t tell if you’re at risk unless you enable the app to access your location.",
+    "home_no_contact_header": "No known contact",
+    "home_at_risk_header": "You're at risk",
+    "home_unknown_header": "Unknown",
+    "home_no_contact_subtext": "You haven’t been near anyone who has tested positive for COVID-19.",
+    "home_at_risk_subtext": "You’ve crossed paths with someone who has tested positive for COVID-19.",
+    "home_unknown_subtext": "We can’t tell if you’re at risk unless you enable the app to access your location.",
 
-    "home_enable_location": "Enable Location Data"
+    "home_enable_location": "Enable Location Data",
+    "home_next_steps": "What to do now"
 
 }
