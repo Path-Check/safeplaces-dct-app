@@ -6,8 +6,6 @@
     "location_disabled_title": "Location Tracking Was Disabled",
     "location_disabled_message": "Private Kit requires location services.",
     "location_access_title": "Private Kit requires access to location information",
-    "location_access_message": "Would you like to open app settings?",
-    "enabled_title": ""
-
+    "location_access_message": "Would you like to open app settings?"
 }
 
