@@ -10,6 +10,7 @@ import {
   FlatList,
   Alert,
   TextInput,
+  Dimensions,
 } from 'react-native';
 import Yaml from 'js-yaml';
 import RNFetchBlob from 'rn-fetch-blob';

@@ -14,7 +14,6 @@ import LicencesScreen from './views/Licenses';
 import NotificationScreen from './views/Notification';
 import Slider from './views/welcomeScreens/Slider';
 import { GetStoreData, SetStoreData } from './helpers/General';
-import SettingsScreen from './views/Settings';
 
 const Stack = createStackNavigator();
 
