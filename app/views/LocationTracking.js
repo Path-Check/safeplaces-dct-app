@@ -188,10 +188,6 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('NotificationScreen', {});
   }
 
-  settings() {
-    this.props.navigation.navigate('SettingsScreen', {});
-  }
-
   willParticipate = () => {
     SetStoreData('PARTICIPATE', 'true').then(() => {
       LocationServices.start();
