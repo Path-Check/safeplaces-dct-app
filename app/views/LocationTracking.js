@@ -250,12 +250,6 @@ class LocationTracking extends Component {
                 }}>
                 <Text style={styles.menuOptionText}>Notifications</Text>
               </MenuOption>
-              <MenuOption
-                onSelect={() => {
-                  this.settings();
-                }}>
-                <Text style={styles.menuOptionText}>Settings</Text>
-              </MenuOption>
             </MenuOptions>
           </Menu>
           <Text style={styles.headerTitle}>
