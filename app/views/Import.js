@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import WebView from 'react-native-webview';
 import backArrow from './../assets/images/backArrow.png';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
@@ -143,14 +144,14 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
     textAlignVertical: 'center',
     marginTop: 12,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
 });
 export default ImportScreen;

@@ -19,6 +19,7 @@ const colors = {
   VIOLET_BUTTON: '#6979F8',
 
   INTRO_WHITE_BG: '#F7F8FF',
+  PULSE_WHITE: '#FFFFFF40',
 
   DIVIDER: '#A5AFFB',
 

@@ -13,7 +13,6 @@ import BackgroundImage from './../../assets/images/launchScreen2.png';
 import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
-import FontWeights from '../../constants/fontWeights';
 import fontFamily from '../../constants/fonts';
 
 const Onboarding = props => {
