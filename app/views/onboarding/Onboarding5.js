@@ -292,27 +292,24 @@ const styles = StyleSheet.create({
   },
   bigHeaderText: {
     color: Colors.WHITE,
-    fontWeight: FontWeights.MEDIUM,
     fontSize: 52,
     lineHeight: 48.5,
     paddingTop: 52 - 48.5, // lineHeight hack
     width: width * 0.7,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: 'IBMPlexSans-Medium',
   },
   headerText: {
     color: Colors.WHITE,
-    fontWeight: FontWeights.MEDIUM,
     fontSize: 26,
     width: width * 0.8,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: 'IBMPlexSans-Medium',
   },
   subheaderText: {
     marginTop: '3%',
     color: Colors.WHITE,
-    fontWeight: FontWeights.REGULAR,
     fontSize: 15,
     width: width * 0.55,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: 'IBMPlexSans-Regular',
   },
   statusContainer: {
     marginTop: '5%',
@@ -337,10 +334,9 @@ const styles = StyleSheet.create({
   },
   permissionTitle: {
     color: Colors.WHITE,
-    fontWeight: FontWeights.REGULAR,
     fontSize: 16,
     alignSelf: 'center',
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: 'IBMPlexSans-Regular',
   },
   permissionIcon: {
     alignSelf: 'center',
