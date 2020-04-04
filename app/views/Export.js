@@ -16,6 +16,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
 import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import { GetStoreData } from '../helpers/General';
 import { timeSincePoint } from '../helpers/convertPointsToString';
 import LocationServices, { LocationData } from '../services/LocationService';
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 24,
     padding: 0,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
   subHeaderTitle: {
     textAlign: 'center',
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -253,7 +254,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginTop: 12,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
 });
 

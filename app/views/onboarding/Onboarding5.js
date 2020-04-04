@@ -20,7 +20,6 @@ import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
-import FontWeights from '../../constants/fontWeights';
 import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';

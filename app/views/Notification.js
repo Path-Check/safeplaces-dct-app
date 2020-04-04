@@ -15,6 +15,7 @@ import { WebView } from 'react-native-webview';
 import packageJson from '../../package.json';
 
 import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -237,7 +238,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 36,
   },
   buttonText: {
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
   mainText: {
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
     marginRight: 20,
   },
@@ -260,11 +261,11 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
   pageTitle: {
     fontSize: 24,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
   },
   headerContainer: {
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     overflow: 'scroll',
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
   notificationsHeader: {
     backgroundColor: '#665eff',
@@ -300,7 +301,7 @@ const styles = StyleSheet.create({
   notificationsHeaderText: {
     color: colors.WHITE,
     fontSize: 16,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
   notificationView: {
     width: '100%',
@@ -312,15 +313,15 @@ const styles = StyleSheet.create({
   notificationsText: {
     color: colors.BLACK,
     fontSize: 16,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
   notificationsTextRed: {
     color: colors.RED,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
   notificationsTextOrange: {
     color: colors.ORANGE,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
 });
 

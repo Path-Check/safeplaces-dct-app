@@ -14,6 +14,7 @@ import { WebView } from 'react-native-webview';
 import packageJson from '../../package.json';
 
 import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 import licenses from './../assets/LICENSE.json';
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -178,7 +179,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -202,7 +203,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     overflow: 'scroll',
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
 });
 

@@ -15,6 +15,7 @@ import colors from '../constants/colors';
 import { WebView } from 'react-native-webview';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
+import fontFamily from '../constants/fonts';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -108,14 +109,14 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
     textAlignVertical: 'center',
     marginTop: 12,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
 });
 

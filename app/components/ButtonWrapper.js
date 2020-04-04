@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Dimensions, View } from 'react-native';
 const width = Dimensions.get('window').width;
-import FontWeights from '../constants/fontWeights';
 import Button from './Button';
 import PropTypes from 'prop-types';
 import fontFamily from '../constants/fonts';
