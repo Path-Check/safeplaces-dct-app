@@ -1,9 +1,10 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import { Alert, Platform, Linking } from 'react-native';
+import { Alert, Linking } from 'react-native';
 import { PERMISSIONS, check, RESULTS, request } from 'react-native-permissions';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
+import { isPlatformAndroid } from '../Util';
 
 let instanceCount = 0;
 
@@ -155,7 +156,7 @@ export default class LocationServices {
       });
     });
 
-    if (Platform.OS === 'android') {
+    if (isPlatformAndroid()) {
       // This feature only is present on Android.
       BackgroundGeolocation.headlessTask(async event => {
         // Application was shutdown, but the headless mechanism allows us
@@ -288,7 +289,7 @@ export default class LocationServices {
         //         {
         //           text: 'Yes',
         //           onPress: () => {
-        //             if (Platform.OS === 'android') {
+        //             if (isPlatformAndroid()) {
         //               // showLocationSettings() only works for android
         //               BackgroundGeolocation.showLocationSettings();
         //             } else {

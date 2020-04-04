@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { isPlatformiOS } from './../Util';
 
 const fontFamily = {
   primaryBold: 'IBMPlexSans-Bold',
@@ -10,7 +10,7 @@ const fontFamily = {
   primaryLightItalic: 'IBMPlexSans-LightItalic',
   primaryMedium: 'IBMPlexSans-Medium',
   primaryMediumItalic: 'IBMPlexSans-MediumItalic',
-  primaryRegular: Platform.OS === 'ios' ? 'IBMPlexSans' : 'IBMPlexSans-Regular',
+  primaryRegular: isPlatformiOS() ? 'IBMPlexSans' : 'IBMPlexSans-Regular',
   primarySemiBold: 'IBMPlexSans-SemiBold',
   primarySemiBoldItalic: 'IBMPlexSans-SemiBoldItalic',
   primaryThin: 'IBMPlexSans-Thin',

@@ -7,7 +7,6 @@ import {
   ImageBackground,
   StatusBar,
 } from 'react-native';
-const width = Dimensions.get('window').width;
 import {
   check,
   request,
@@ -24,10 +23,11 @@ import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
 import { SetStoreData } from '../../helpers/General';
-
+import { isPlatformiOS } from './../../Util';
 import { SvgXml } from 'react-native-svg';
 import fontFamily from '../../constants/fonts';
 
+const width = Dimensions.get('window').width;
 const PermissionStatusEnum = {
   UNKNOWN: 0,
   GRANTED: 1,
@@ -77,7 +77,7 @@ class Onboarding extends Component {
   checkLocationStatus() {
     // NEED TO TEST ON ANNDROID
     let locationPermission;
-    if (Platform.OS === 'ios') {
+    if (isPlatformiOS()) {
       locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
     } else {
       locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
@@ -124,7 +124,7 @@ class Onboarding extends Component {
   requestLocation() {
     // NEED TO TEST ON ANNDROID
     let locationPermission;
-    if (Platform.OS === 'ios') {
+    if (isPlatformiOS()) {
       locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
     } else {
       locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
@@ -218,7 +218,7 @@ class Onboarding extends Component {
   }
 
   getNotificationsPermissionIfIOS() {
-    if (Platform.OS === 'ios') {
+    if (isPlatformiOS()) {
       return (
         <>
           <PermissionDescription

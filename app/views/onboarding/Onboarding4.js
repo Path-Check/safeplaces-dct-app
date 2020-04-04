@@ -7,12 +7,13 @@ import {
   ImageBackground,
   StatusBar,
 } from 'react-native';
-const width = Dimensions.get('window').width;
 import BackgroundImage from './../../assets/images/launchScreen1.png';
 import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
+
+const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
   return (

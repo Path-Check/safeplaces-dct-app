@@ -29,8 +29,8 @@ import BackgroundGeolocation from '@mauron85/react-native-background-geolocation
 import PushNotification from 'react-native-push-notification';
 import exportImage from './../assets/images/export.png';
 import ButtonWrapper from '../components/ButtonWrapper';
+import { isPlatformiOS } from './../Util';
 import Pulse from 'react-native-pulse';
-
 import {
   check,
   PERMISSIONS,
@@ -102,7 +102,7 @@ class LocationTracking extends Component {
   checkCurrentState() {
     // NEED TO TEST ON ANDROID
     let locationPermission;
-    if (Platform.OS === 'ios') {
+    if (isPlatformiOS()) {
       locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
     } else {
       locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
