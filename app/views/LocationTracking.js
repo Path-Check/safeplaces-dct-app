@@ -78,10 +78,13 @@ const StateIcon = ({ title, status, size, ...props }) => {
 };
 
 const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 class LocationTracking extends Component {
   constructor(props) {
     super(props);
+
+    console.log(height);
 
     let currentState;
     if (this.isLocationEnabled()) {
@@ -493,13 +496,13 @@ class LocationTracking extends Component {
             speed={20}
             duration={2000}
           />
-          <StateIcon size={80} status={this.state.currentState} />
+          <StateIcon size={height} status={this.state.currentState} />
         </View>
       );
     }
     return (
       <View style={styles.pulseContainer}>
-        <StateIcon size={80} status={this.state.currentState} />
+        <StateIcon size={height} status={this.state.currentState} />
       </View>
     );
   }
@@ -560,11 +563,6 @@ class LocationTracking extends Component {
           backgroundColor='transparent'
           translucent={true}
         />
-        {/* <ImageBackground
-          source={BackgroundOverlayImage}
-          style={styles.circlesOverlay}> */}
-
-        {this.getSettings()}
 
         {this.getPulseIfNeeded()}
 
@@ -579,7 +577,7 @@ class LocationTracking extends Component {
             {this.getCTAIfNeeded()}
           </View>
         </View>
-        {/* </ImageBackground> */}
+        {this.getSettings()}
       </ImageBackground>
     );
   }
@@ -600,16 +598,22 @@ const styles = StyleSheet.create({
   //   flex: 1,
   // },
   mainContainer: {
+    // backgroundColor: 'red',
+    top: '50%',
     flex: 1,
   },
   contentContainer: {
     width: width * 0.6,
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignSelf: 'center',
     // paddingBottom: '5%',
   },
   settingsContainer: {
+    position: 'absolute',
+    top: 0,
+    // left: 0,
+    // right: 0,
     // paddingTop: 48,
     // paddingRight: 24,
     marginTop: '14%',
@@ -620,8 +624,14 @@ const styles = StyleSheet.create({
     top: '7%',
   },
   pulseContainer: {
-    top: '24%',
-    justifyContent: 'center',
+    position: 'absolute',
+    resizeMode: 'contain',
+    //top: '-23%', // 667
+    top: '-13%', // 812
+    //top: height * -0.13,
+    left: 0,
+    right: 0,
+    // justifyContent: 'center',
     alignItems: 'center',
   },
   mainText: {
