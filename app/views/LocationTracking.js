@@ -572,6 +572,7 @@ class LocationTracking extends Component {
       buttonLabel = 'label.home_MASSIVE_HACK';
       buttonFunction = () => {
         // jin put yo hacks in this slot bro
+        // this.props.navigation.replace('MAP HACK');
       };
       // return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
