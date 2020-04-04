@@ -1,3 +1,6 @@
+jest.spyOn(console, 'log').mockImplementationOnce(() => {});
+jest.mock('../../helpers/__mocks__/General');
+
 import 'react-native';
 import React from 'react';
 import renderer from 'react-test-renderer';
