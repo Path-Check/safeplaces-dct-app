@@ -234,15 +234,21 @@ class LocationTracking extends Component {
         <MenuOptions>
           <MenuOption
             onSelect={() => {
-              this.licenses();
-            }}>
-            <Text style={styles.menuOptionText}>Licenses</Text>
-          </MenuOption>
-          <MenuOption
-            onSelect={() => {
               this.notifications();
             }}>
             <Text style={styles.menuOptionText}>Notifications</Text>
+          </MenuOption>
+          <MenuOption
+            onSelect={() => {
+              this.settings();
+            }}>
+            <Text style={styles.menuOptionText}>Settings</Text>
+          </MenuOption>
+          <MenuOption
+            onSelect={() => {
+              this.licenses();
+            }}>
+            <Text style={styles.menuOptionText}>Licenses</Text>
           </MenuOption>
         </MenuOptions>
       </Menu>
