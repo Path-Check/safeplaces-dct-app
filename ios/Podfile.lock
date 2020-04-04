@@ -272,11 +272,13 @@ PODS:
     - React
   - RNFS (2.16.6):
     - React
-  - RNGestureHandler (1.5.6):
+  - RNGestureHandler (1.6.1):
     - React
   - RNI18n (2.0.15):
     - React
   - RNPermissions (2.0.10):
+    - React
+  - RNReanimated (1.7.1):
     - React
   - RNScreens (2.0.0-alpha.12):
     - React
@@ -343,6 +345,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNI18n (from `../node_modules/react-native-i18n`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -443,6 +446,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-i18n"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNShare:
@@ -498,9 +503,10 @@ SPEC CHECKSUMS:
   RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
   RNCPushNotificationIOS: ec3e8c17cda6a92a0bb97a53ec5ecf5771d94d21
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
-  RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
+  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNPermissions: 1008d3511fee0e25739cf81c4af0d1b2248f1053
+  RNReanimated: 4e102df74a9674fa943e05f97f3362b6e44d0b48
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
   RNShare: c19dbe4a7224098cd3cfc4d3b92c886ca817b3f0
   RNSVG: 7e16ddfc6e00d5aa69c9eb83e699bcce5dcb85d4
@@ -508,6 +514,6 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 83ceb50a972ec01b4b7f7464fcd9196ed86c4d3e
+PODFILE CHECKSUM: 11fb261d935b534dc9ac05aa6f2539671466c17f
 
 COCOAPODS: 1.9.1
