@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     lineHeight: 35,
     color: Colors.WHITE,
-    fontWeight: FontWeights.MEDIUM,
     fontSize: 26,
     fontFamily: 'IBMPlexSans-Medium',
   },
