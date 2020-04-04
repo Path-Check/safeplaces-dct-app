@@ -127,28 +127,17 @@ class LocationTracking extends Component {
   }
 
   checkIfUserAtRisk() {
-    // already set on 12h timer but run when app opens too
+    // already set on 12h timer, but run when this screen opens too
     this.intersect_tick();
 
     GetStoreData('CROSSED_PATHS').then(dayBin => {
-      // console.log(dayBin);
       if (dayBin === null) {
-        this.setState({ currentState: StateEnum.NO_CONTACT });
-        this.setState({ dataAvailable: false });
         console.log("Can't find crossed paths");
+        this.setState({ currentState: StateEnum.NO_CONTACT });
       } else {
-        this.setState({ currentState: StateEnum.AT_RISK });
-        let crossed_path_data = [];
         console.log('Found crossed paths');
-        this.setState({ dataAvailable: true });
-        dayBinParsed = JSON.parse(dayBin);
-        for (var i = 0; i < dayBinParsed.length; i++) {
-          const val = dayBinParsed[i];
-          data = { x: i, y: val, fill: this.colorfill(val) };
-          crossed_path_data.push(data);
-        }
-        // this.setState({ data: crossed_path_data });
-        // console.log(crossed_path_data)
+        this.setState({ currentState: StateEnum.AT_RISK });
+        // dayBinParsed = JSON.parse(dayBin);
       }
     });
   }
