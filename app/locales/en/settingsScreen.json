@@ -1,0 +1,16 @@
+{
+    "settings_title": "Settings",
+    "authorities_title": "Trusted Sources",
+    "authorities_desc": "You can get data from one or more healthcare authorities that you trust. Either select a name from the global registry, or enter the web address of an authority you trust that's implemented Safe Paths.",
+    "authorities_removal_alert_title": "Remove authority",
+    "authorities_removal_alert_desc": "Are you sure you want to remove this authority data source?",
+    "authorities_removal_alert_cancel": "Cancel",
+    "authorities_removal_alert_proceed": "Procceed",
+    "authorities_no_sources": "No data sources yet! Tap below to add one.",
+    "authorities_add_button_label": "Add Trusted Source",
+    "authorities_coming_soon_title": "Coming soon",
+    "authorities_coming_soon_desc": "You'll be able to add custom data sources in an imminent update.",
+    "authorities_done": "Done",
+    "authorities_add_url": "Add authority via URL",
+    "authorities_input_placeholder": "Paste your URL here"
+}

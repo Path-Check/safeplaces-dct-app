@@ -114,7 +114,7 @@ i18next.init({
     gj: {
       translation: {
         label: gjlabels,
-      }
+      },
     },
     cs: {
       translation: {
