@@ -21,7 +21,7 @@
   [GMSServices provideAPIKey:@"AIzaSyB0-TLHy-0Nmed6rYG1IkvwqVtjAKHV9lk"];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                   moduleName:@"PrivateKit"
+                                                   moduleName:@"COVIDSafePaths"
                                             initialProperties:nil];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];

@@ -1,4 +1,4 @@
-package edu.mit.privatekit;
+package com.covidsafepaths;
 
 import android.app.Application;
 import android.content.Context;

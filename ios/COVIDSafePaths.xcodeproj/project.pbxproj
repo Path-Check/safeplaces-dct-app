@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* PrivateKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PrivateKitTests.m */; };
+		00E356F31AD99517003FC87E /* COVIDSafePathsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */; };
 		08445F4C24283AFF008754AC /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4B24283AFF008754AC /* Accelerate.framework */; };
 		08445F4E24283B0B008754AC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4D24283B0B008754AC /* CoreData.framework */; };
 		08445F50242849C1008754AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4F242849C1008754AC /* CoreGraphics.framework */; };
@@ -29,8 +29,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		6828C7F4BF9544B791DB8E0F /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C692EBDB3E8541C7A282FF93 /* OpenSans-SemiBold.ttf */; };
 		8130315107624C06A0D02817 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53F9F2C225904506967FEB4E /* OpenSans-ExtraBoldItalic.ttf */; };
-		9846A487BF83593378FBB9B4 /* libPods-PrivateKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5770BD87365CB0125519F3 /* libPods-PrivateKit.a */; };
-		A590ED9611860B67C13D72CD /* libPods-PrivateKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB8E05EB6A91794343D2430 /* libPods-PrivateKitTests.a */; };
+		9846A487BF83593378FBB9B4 /* libPods-COVIDSafePaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5770BD87365CB0125519F3 /* libPods-COVIDSafePaths.a */; };
+		A590ED9611860B67C13D72CD /* libPods-COVIDSafePathsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB8E05EB6A91794343D2430 /* libPods-COVIDSafePathsTests.a */; };
 		B4013ADB6F02420A88004767 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07DA2C9CA83F4C21B7D133C5 /* OpenSans-LightItalic.ttf */; };
 		B6CCB74110A247D2AB228197 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F5A32624649CC837BA571 /* OpenSans-Light.ttf */; };
 		D86C551F0DF249ED8BC98C36 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA050CB1DAE4800AAAEAE3E /* OpenSans-Regular.ttf */; };
@@ -47,15 +47,15 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = PrivateKit;
+			remoteInfo = COVIDSafePaths;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* PrivateKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrivateKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* COVIDSafePathsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = COVIDSafePathsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* PrivateKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivateKitTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsTests.m; sourceTree = "<group>"; };
 		07DA2C9CA83F4C21B7D133C5 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-LightItalic.ttf"; path = "../app/assets/fonts/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		08445F4324283A2F008754AC /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = "GoogleMaps-3.8.0/Base/Frameworks/GoogleMapsBase.framework"; sourceTree = "<group>"; };
 		08445F4524283A40008754AC /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "GoogleMaps-3.8.0/Maps/Frameworks/GoogleMaps.framework"; sourceTree = "<group>"; };
@@ -76,36 +76,36 @@
 		08445F6324284A36008754AC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		08445F6524284A42008754AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		08445F6724284A52008754AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		0DA5F38AAA9DAD3DC7E25DFE /* Pods-PrivateKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKitTests.release.xcconfig"; path = "Target Support Files/Pods-PrivateKitTests/Pods-PrivateKitTests.release.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* PrivateKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PrivateKit/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = PrivateKit/AppDelegate.m; sourceTree = "<group>"; };
+		0DA5F38AAA9DAD3DC7E25DFE /* Pods-COVIDSafePathsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePathsTests.release.xcconfig"; path = "Target Support Files/Pods-COVIDSafePathsTests/Pods-COVIDSafePathsTests.release.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* COVIDSafePaths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COVIDSafePaths.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = COVIDSafePaths/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = COVIDSafePaths/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PrivateKit/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PrivateKit/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PrivateKit/main.m; sourceTree = "<group>"; };
-		3E10CA5A72D06133B886B461 /* libPods-PrivateKit-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PrivateKit-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = COVIDSafePaths/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = COVIDSafePaths/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = COVIDSafePaths/main.m; sourceTree = "<group>"; };
+		3E10CA5A72D06133B886B461 /* libPods-COVIDSafePaths-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-COVIDSafePaths-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53F9F2C225904506967FEB4E /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBoldItalic.ttf"; path = "../app/assets/fonts/OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		5BB8E05EB6A91794343D2430 /* libPods-PrivateKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PrivateKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB8E05EB6A91794343D2430 /* libPods-COVIDSafePathsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-COVIDSafePathsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A6F5A32624649CC837BA571 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../app/assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		71D1C872DB0CCC3BBC3D907E /* Pods-PrivateKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit.debug.xcconfig"; path = "Target Support Files/Pods-PrivateKit/Pods-PrivateKit.debug.xcconfig"; sourceTree = "<group>"; };
+		71D1C872DB0CCC3BBC3D907E /* Pods-COVIDSafePaths.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths.debug.xcconfig"; sourceTree = "<group>"; };
 		7932FB5F9EEA459987375700 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBoldItalic.ttf"; path = "../app/assets/fonts/OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		9440D638E4331481079AE235 /* Pods-PrivateKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit.release.xcconfig"; path = "Target Support Files/Pods-PrivateKit/Pods-PrivateKit.release.xcconfig"; sourceTree = "<group>"; };
+		9440D638E4331481079AE235 /* Pods-COVIDSafePaths.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths.release.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths.release.xcconfig"; sourceTree = "<group>"; };
 		9B686523B4164257AD651CE2 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../app/assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
-		9FA39802441F3BE7A66ECEDB /* Pods-PrivateKit-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-PrivateKit-tvOSTests/Pods-PrivateKit-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		9FA39802441F3BE7A66ECEDB /* Pods-COVIDSafePaths-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths-tvOSTests/Pods-COVIDSafePaths-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		B3FC897224B6433697E4D6CD /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Italic.ttf"; path = "../app/assets/fonts/OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		BEB7CA13AC07404090279B14 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-BoldItalic.ttf"; path = "../app/assets/fonts/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
-		C5CAF9029B3AE69C411463F3 /* Pods-PrivateKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKitTests.debug.xcconfig"; path = "Target Support Files/Pods-PrivateKitTests/Pods-PrivateKitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePathsTests.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePathsTests/Pods-COVIDSafePathsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C692EBDB3E8541C7A282FF93 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../app/assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
-		C92C147334A73EA6C87105F3 /* Pods-PrivateKit-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit-tvOS.release.xcconfig"; path = "Target Support Files/Pods-PrivateKit-tvOS/Pods-PrivateKit-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		C92C147334A73EA6C87105F3 /* Pods-COVIDSafePaths-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths-tvOS.release.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths-tvOS/Pods-COVIDSafePaths-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		CAA050CB1DAE4800AAAEAE3E /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../app/assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
-		DCA1D1551CFF3D7C90EDC77C /* libPods-PrivateKit-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PrivateKit-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE1C131D2EE7D1EC24368F32 /* Pods-PrivateKit-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-PrivateKit-tvOSTests/Pods-PrivateKit-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E7628266ADD70F7A55167E2C /* Pods-PrivateKit-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-PrivateKit-tvOS/Pods-PrivateKit-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		DCA1D1551CFF3D7C90EDC77C /* libPods-COVIDSafePaths-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-COVIDSafePaths-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE1C131D2EE7D1EC24368F32 /* Pods-COVIDSafePaths-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths-tvOSTests/Pods-COVIDSafePaths-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E7628266ADD70F7A55167E2C /* Pods-COVIDSafePaths-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths-tvOS/Pods-COVIDSafePaths-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F242CB4939FC4D66B5630776 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../app/assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
-		FF5770BD87365CB0125519F3 /* libPods-PrivateKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PrivateKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF5770BD87365CB0125519F3 /* libPods-COVIDSafePaths.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-COVIDSafePaths.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A590ED9611860B67C13D72CD /* libPods-PrivateKitTests.a in Frameworks */,
+				A590ED9611860B67C13D72CD /* libPods-COVIDSafePathsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,20 +136,20 @@
 				08445F50242849C1008754AC /* CoreGraphics.framework in Frameworks */,
 				08445F4E24283B0B008754AC /* CoreData.framework in Frameworks */,
 				08445F4C24283AFF008754AC /* Accelerate.framework in Frameworks */,
-				9846A487BF83593378FBB9B4 /* libPods-PrivateKit.a in Frameworks */,
+				9846A487BF83593378FBB9B4 /* libPods-COVIDSafePaths.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* PrivateKitTests */ = {
+		00E356EF1AD99517003FC87E /* COVIDSafePathsTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* PrivateKitTests.m */,
+				00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = PrivateKitTests;
+			path = COVIDSafePathsTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -163,14 +163,14 @@
 		08CFC7C2232A41A8F8E9E0B0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				71D1C872DB0CCC3BBC3D907E /* Pods-PrivateKit.debug.xcconfig */,
-				9440D638E4331481079AE235 /* Pods-PrivateKit.release.xcconfig */,
-				E7628266ADD70F7A55167E2C /* Pods-PrivateKit-tvOS.debug.xcconfig */,
-				C92C147334A73EA6C87105F3 /* Pods-PrivateKit-tvOS.release.xcconfig */,
-				DE1C131D2EE7D1EC24368F32 /* Pods-PrivateKit-tvOSTests.debug.xcconfig */,
-				9FA39802441F3BE7A66ECEDB /* Pods-PrivateKit-tvOSTests.release.xcconfig */,
-				C5CAF9029B3AE69C411463F3 /* Pods-PrivateKitTests.debug.xcconfig */,
-				0DA5F38AAA9DAD3DC7E25DFE /* Pods-PrivateKitTests.release.xcconfig */,
+				71D1C872DB0CCC3BBC3D907E /* Pods-COVIDSafePaths.debug.xcconfig */,
+				9440D638E4331481079AE235 /* Pods-COVIDSafePaths.release.xcconfig */,
+				E7628266ADD70F7A55167E2C /* Pods-COVIDSafePaths-tvOS.debug.xcconfig */,
+				C92C147334A73EA6C87105F3 /* Pods-COVIDSafePaths-tvOS.release.xcconfig */,
+				DE1C131D2EE7D1EC24368F32 /* Pods-COVIDSafePaths-tvOSTests.debug.xcconfig */,
+				9FA39802441F3BE7A66ECEDB /* Pods-COVIDSafePaths-tvOSTests.release.xcconfig */,
+				C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */,
+				0DA5F38AAA9DAD3DC7E25DFE /* Pods-COVIDSafePathsTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -192,7 +192,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* PrivateKit */ = {
+		13B07FAE1A68108700A75B9A /* COVIDSafePaths */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -203,7 +203,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = PrivateKit;
+			name = COVIDSafePaths;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -226,10 +226,10 @@
 				08445F4B24283AFF008754AC /* Accelerate.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				FF5770BD87365CB0125519F3 /* libPods-PrivateKit.a */,
-				DCA1D1551CFF3D7C90EDC77C /* libPods-PrivateKit-tvOS.a */,
-				3E10CA5A72D06133B886B461 /* libPods-PrivateKit-tvOSTests.a */,
-				5BB8E05EB6A91794343D2430 /* libPods-PrivateKitTests.a */,
+				FF5770BD87365CB0125519F3 /* libPods-COVIDSafePaths.a */,
+				DCA1D1551CFF3D7C90EDC77C /* libPods-COVIDSafePaths-tvOS.a */,
+				3E10CA5A72D06133B886B461 /* libPods-COVIDSafePaths-tvOSTests.a */,
+				5BB8E05EB6A91794343D2430 /* libPods-COVIDSafePathsTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -248,9 +248,9 @@
 				08445F4724283A46008754AC /* GoogleMapsCore.framework */,
 				08445F4524283A40008754AC /* GoogleMaps.framework */,
 				08445F4324283A2F008754AC /* GoogleMapsBase.framework */,
-				13B07FAE1A68108700A75B9A /* PrivateKit */,
+				13B07FAE1A68108700A75B9A /* COVIDSafePaths */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* PrivateKitTests */,
+				00E356EF1AD99517003FC87E /* COVIDSafePathsTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				08CFC7C2232A41A8F8E9E0B0 /* Pods */,
@@ -264,8 +264,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* PrivateKit.app */,
-				00E356EE1AD99517003FC87E /* PrivateKitTests.xctest */,
+				13B07F961A680F5B00A75B9A /* COVIDSafePaths.app */,
+				00E356EE1AD99517003FC87E /* COVIDSafePathsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -273,9 +273,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* PrivateKitTests */ = {
+		00E356ED1AD99517003FC87E /* COVIDSafePathsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "PrivateKitTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "COVIDSafePathsTests" */;
 			buildPhases = (
 				B998DCD24C01049E90831BAC /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -287,14 +287,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = PrivateKitTests;
-			productName = PrivateKitTests;
-			productReference = 00E356EE1AD99517003FC87E /* PrivateKitTests.xctest */;
+			name = COVIDSafePathsTests;
+			productName = COVIDSafePathsTests;
+			productReference = 00E356EE1AD99517003FC87E /* COVIDSafePathsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* PrivateKit */ = {
+		13B07F861A680F5B00A75B9A /* COVIDSafePaths */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "PrivateKit" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "COVIDSafePaths" */;
 			buildPhases = (
 				E9F9269D5792A0036B734171 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -308,9 +308,9 @@
 			);
 			dependencies = (
 			);
-			name = PrivateKit;
-			productName = PrivateKit;
-			productReference = 13B07F961A680F5B00A75B9A /* PrivateKit.app */;
+			name = COVIDSafePaths;
+			productName = COVIDSafePaths;
+			productReference = 13B07F961A680F5B00A75B9A /* COVIDSafePaths.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -331,7 +331,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "PrivateKit" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "COVIDSafePaths" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -344,8 +344,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* PrivateKit */,
-				00E356ED1AD99517003FC87E /* PrivateKitTests */,
+				13B07F861A680F5B00A75B9A /* COVIDSafePaths */,
+				00E356ED1AD99517003FC87E /* COVIDSafePathsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -400,7 +400,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PrivateKit/Pods-PrivateKit-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -409,7 +409,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrivateKit/Pods-PrivateKit-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B998DCD24C01049E90831BAC /* [CP] Check Pods Manifest.lock */ = {
@@ -427,7 +427,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PrivateKitTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-COVIDSafePathsTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -449,7 +449,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PrivateKit-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-COVIDSafePaths-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -482,7 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* PrivateKitTests.m in Sources */,
+				00E356F31AD99517003FC87E /* COVIDSafePathsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,7 +500,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* PrivateKit */;
+			target = 13B07F861A680F5B00A75B9A /* COVIDSafePaths */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -512,7 +512,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = PrivateKit;
+			path = COVIDSafePaths;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -520,7 +520,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5CAF9029B3AE69C411463F3 /* Pods-PrivateKitTests.debug.xcconfig */;
+			baseConfigurationReference = C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -528,7 +528,7 @@
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrivateKitTests/Info.plist;
+				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -538,18 +538,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PrivateKit.app/PrivateKit";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DA5F38AAA9DAD3DC7E25DFE /* Pods-PrivateKitTests.release.xcconfig */;
+			baseConfigurationReference = 0DA5F38AAA9DAD3DC7E25DFE /* Pods-COVIDSafePathsTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrivateKitTests/Info.plist;
+				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -559,13 +559,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PrivateKit.app/PrivateKit";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71D1C872DB0CCC3BBC3D907E /* Pods-PrivateKit.debug.xcconfig */;
+			baseConfigurationReference = 71D1C872DB0CCC3BBC3D907E /* Pods-COVIDSafePaths.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = NO;
@@ -576,7 +576,7 @@
 					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrivateKit/Info.plist;
+				INFOPLIST_FILE = COVIDSafePaths/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -584,14 +584,14 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.mit.privatekit;
-				PRODUCT_NAME = PrivateKit;
+				PRODUCT_NAME = COVIDSafePaths;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9440D638E4331481079AE235 /* Pods-PrivateKit.release.xcconfig */;
+			baseConfigurationReference = 9440D638E4331481079AE235 /* Pods-COVIDSafePaths.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = YES;
@@ -602,7 +602,7 @@
 					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrivateKit/Info.plist;
+				INFOPLIST_FILE = COVIDSafePaths/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -610,7 +610,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.mit.privatekit;
-				PRODUCT_NAME = PrivateKit;
+				PRODUCT_NAME = COVIDSafePaths;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -717,7 +717,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "PrivateKitTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "COVIDSafePathsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -726,7 +726,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "PrivateKit" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "COVIDSafePaths" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -735,7 +735,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "PrivateKit" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "COVIDSafePaths" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

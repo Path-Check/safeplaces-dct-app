@@ -1,4 +1,4 @@
-package edu.mit.privatekit;
+package com.covidsafepaths;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "PrivateKit";
+    return "COVIDSafePaths";
   }
 }
