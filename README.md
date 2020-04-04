@@ -72,8 +72,7 @@ NOTE: In some cases, the abovementioned procedure leads to the error 'Failed to 
 
 Read the [contribution guidelines](CONTRIBUTING.md).
 
-Slack: https://safepathsprivatekit.slack.com/
-WhatsApp: https://chat.whatsapp.com/HXonYGVeAwQIKxO0HYlxYL
+
 
 
 
