@@ -1,0 +1,8 @@
+{
+    "notification_main_text": "Zkontrolujte své průsečíky každý den",
+    "notification_title": "Analyzujte své průsečíky",
+    "notification_data_not_available": "\n\nNemáte žádné stažené trasy!\n\n",
+    "notification_warning_text": "Stisknutím následujícího tlačítka můžete vygenerovat náhodné průsečíky.\nVAROVÁNÍ: Jedná se o simulované průsečíky, které nejsou skutečné",
+    "notification_random_data_button": "Stisknutím tohoto tlačítka vygenerujete náhodná data",
+    "notifications":"Oznámení"
+}

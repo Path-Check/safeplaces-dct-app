@@ -1,0 +1,13 @@
+{
+  "start_logging":"INICIAR REGISTRE",
+  "stop_logging":"PARAR REGISTRE",
+  "logging_message":"La app actualment esta fent un registre de la teva localització cada 5 minuts. El teu registre NO surt del teu telèfon.",
+  "not_logging_message":"AVÍS: Després de fer click en este botó, es possible que la app et demani que permetis l’accés a la teva localització.",
+  "import":"Importar",
+  "export":"Exportar",
+  "news":"Notícies",
+  "latest_news":"Últimes notícies",
+  "url_info":"Per més informació visita la pàgina de inici de la web de Private Kit:",
+  "private_kit_url":"privatekit.mit.edu",
+  "overlap": "Comprovar la teva intersecció"
+}

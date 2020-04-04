@@ -17,7 +17,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
-import colors from '../constants/colors';
+import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
 import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
@@ -25,9 +25,14 @@ import exportImage from './../assets/images/export.png';
 import news from './../assets/images/newspaper.png';
 import kebabIcon from './../assets/images/kebabIcon.png';
 import pkLogo from './../assets/images/PKLogo.png';
+import FontWeights from '../constants/fontWeights';
+import ButtonWrapper from '../components/ButtonWrapper';
+import IconLocked from '../assets/svgs/intro-locked';
+import { SvgXml } from 'react-native-svg';
 
+import { IntersectSet } from '../helpers/Intersect';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import languages from './../locales/languages';
+import languages from '../locales/languages';
 
 const width = Dimensions.get('window').width;
 
@@ -36,6 +41,7 @@ class LocationTracking extends Component {
     super(props);
 
     this.state = {
+      timer_intersect: null,
       isLogging: '',
     };
   }
@@ -56,8 +62,70 @@ class LocationTracking extends Component {
         }
       })
       .catch(error => console.log(error));
+
+    let timer_intersect = setInterval(this.intersect_tick, 1000 * 60 * 60 * 12); // once every 12 hours
+    // DEBUG:  1000 * 10); // once every 10 seconds
+
+    this.setState({
+      timer_intersect,
+    });
   }
+
+  intersect_tick = () => {
+    // This function is called once every 12 hours.  It should do several things:
+
+    // Get the user's health authorities
+    GetStoreData('HEALTH_AUTHORITIES')
+      .then(authority_list => {
+        if (!authority_list) {
+          // DEBUG: Force a test list
+          // authority_list = [
+          //  {
+          //    name: 'Platte County Health',
+          //    url:
+          //      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
+          //  },
+          //];
+          return;
+        }
+
+        if (authority_list) {
+          // Pull down data from all the registered health authorities
+          for (let authority of authority_list) {
+            fetch(authority.url)
+              .then(response => response.json())
+              .then(responseJson => {
+                // Example response =
+                // { "authority_name":  "Steve's Fake Testing Organization",
+                //   "publish_date_utc": "1584924583",
+                //   "info_website": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
+                //   "concern_points":
+                //    [
+                //      { "time": 123, "latitude": 12.34, "longitude": 12.34},
+                //      { "time": 456, "latitude": 12.34, "longitude": 12.34}
+                //    ]
+                // }
+
+                // Update cache of info about the authority
+                // (info_url might have changed, etc.)
+
+                // TODO: authority_list, match by authority_list.url, then re-save "authority_name", "info_website" and
+                // "publish_date_utc" (we should notify users if their authority is no longer functioning.)
+                // console.log('Received data from authority.url=', authority.url);
+
+                IntersectSet(responseJson.concern_points);
+              });
+          }
+        } else {
+          console.log('No authority list');
+          return;
+        }
+      })
+      .catch(error => console.log('Failed to load authority list', error));
+  };
+
   componentWillUnmount() {
+    clearInterval(this.state.timer_intersect);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
@@ -109,6 +177,17 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('LicensesScreen', {});
   }
 
+  settings() {
+    this.props.navigation.navigate('SettingsScreen', {});
+  }
+
+  willParticipate = () => {
+    SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
+    this.setState({
+      isLogging: true,
+    });
+  };
+
   notifications() {
     this.props.navigation.navigate('NotificationScreen', {});
   }
@@ -131,171 +210,223 @@ class LocationTracking extends Component {
     });
   };
 
+  // create component
+
+  getMenuItem = () => {
+    return (
+      <Menu
+        style={{
+          position: 'absolute',
+          alignSelf: 'flex-end',
+          zIndex: 10,
+          marginTop: '5.5%',
+        }}>
+        <MenuTrigger style={{ marginTop: 14 }}>
+          <Image
+            source={kebabIcon}
+            style={{
+              width: 15,
+              height: 28,
+              padding: 14,
+            }}
+          />
+        </MenuTrigger>
+        <MenuOptions>
+          <MenuOption
+            onSelect={() => {
+              this.licenses();
+            }}>
+            <Text style={styles.menuOptionText}>{languages.t('label.licenses')}</Text>
+          </MenuOption>
+          <MenuOption
+            onSelect={() => {
+              this.notifications();
+            }}>
+            <Text style={styles.menuOptionText}>{languages.t('label.notifications')}</Text>
+          </MenuOption>
+        </MenuOptions>
+      </Menu>
+    );
+  };
+
+  getTrackingComponent = () => {
+    return (
+      <>
+        <Image
+          source={pkLogo}
+          style={{
+            width: 132,
+            height: 164.4,
+            alignSelf: 'center',
+            marginTop: 15,
+            marginBottom: 15,
+          }}
+        />
+        <ButtonWrapper
+          title={languages.t('label.home_stop_tracking')}
+          onPress={() => this.setOptOut()}
+          bgColor={Colors.RED_BUTTON}
+          toBgColor={Colors.RED_TO_BUTTON}
+        />
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.home_stop_tracking_description')}
+        </Text>
+
+        <ButtonWrapper
+          title={languages.t('label.home_check_risk')}
+          onPress={() => this.overlap()}
+          bgColor={Colors.GRAY_BUTTON}
+          toBgColor={Colors.Gray_TO_BUTTON}
+        />
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.home_check_risk_description')}
+        </Text>
+      </>
+    );
+  };
+
+  getNotTrackingComponent = () => {
+    return (
+      <>
+        <Image
+          source={pkLogo}
+          style={{
+            width: 132,
+            height: 164.4,
+            alignSelf: 'center',
+            marginTop: 15,
+            marginBottom: 30,
+            opacity: 0.3,
+          }}
+        />
+        <ButtonWrapper
+          title={languages.t('label.home_start_tracking')}
+          onPress={() => this.willParticipate()}
+          bgColor={Colors.BLUE_BUTTON}
+          toBgColor={Colors.BLUE_TO_BUTTON}
+        />
+        <Text style={styles.sectionDescription}>
+          {languages.t('label.home_start_tracking_description')}
+        </Text>
+      </>
+    );
+  };
+
+  getActionButtons = () => {
+    if (!this.state.isLogging) {
+      return;
+    }
+    return (
+      <View style={styles.actionButtonsView}>
+        <TouchableOpacity
+          onPress={() => this.import()}
+          style={styles.actionButtonsTouchable}>
+          <Image
+            style={styles.actionButtonImage}
+            source={exportImage}
+            resizeMode={'contain'}
+          />
+          <Text style={styles.actionButtonText}>
+            {languages.t('label.import')}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => this.export()}
+          style={styles.actionButtonsTouchable}>
+          <Image
+            style={[
+              styles.actionButtonImage,
+              { transform: [{ rotate: '180deg' }] },
+            ]}
+            source={exportImage}
+            resizeMode={'contain'}
+          />
+          <Text style={styles.actionButtonText}>
+            {languages.t('label.export')}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => this.news()}
+          style={styles.actionButtonsTouchable}>
+          <Image
+            style={styles.actionButtonImage}
+            source={news}
+            resizeMode={'contain'}
+          />
+          <Text style={styles.actionButtonText}>
+            {languages.t('label.news')}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  getPrivacyNote = () => {
+    if (this.state.isLogging) {
+      return;
+    }
+    return (
+      <View style={styles.privacyNoteContainer}>
+        <View style={styles.privacyHeaderContainer}>
+          <SvgXml xml={IconLocked} width={15} height={15} />
+          <Text style={styles.privacyHeader}>
+            {languages.t('label.home_privacy_header')}
+          </Text>
+        </View>
+        <Text style={styles.privacySubheader}>
+          {languages.t('label.home_privacy_subheader')}
+        </Text>
+      </View>
+    );
+  };
+
+  getFooter = () => {
+    return (
+      <View style={styles.footer}>
+        <Text>
+          <Text
+            style={[
+              styles.footerDescription,
+              { marginLeft: 0, marginRight: 0 },
+            ]}>
+            {languages.t('label.url_info')}{' '}
+          </Text>
+          <Text
+            style={[
+              styles.footerDescription,
+              { color: Colors.BLUE_LINK, marginLeft: 0, marginRight: 0 },
+            ]}
+            onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
+            {languages.t('label.home_footer')}
+          </Text>
+        </Text>
+      </View>
+    );
+  };
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.main}>
-          {/* A modal menu. Currently only used for license info */}
-          <Menu
-            style={{
-              position: 'absolute',
-              alignSelf: 'flex-end',
-              zIndex: 10,
-            }}>
-            <MenuTrigger style={{ marginTop: 14 }}>
-              <Image
-                source={kebabIcon}
-                style={{
-                  width: 15,
-                  height: 28,
-                  padding: 14,
-                }}
-              />
-            </MenuTrigger>
-            <MenuOptions>
-              <MenuOption
-                onSelect={() => {
-                  this.licenses();
-                }}>
-                <Text style={styles.menuOptionText}>
-                  {languages.t('label.licenses')}
-                </Text>
-              </MenuOption>
-              <MenuOption
-                onSelect={() => {
-                  this.notifications();
-                }}>
-                <Text style={styles.menuOptionText}>
-                  {languages.t('label.notifications')}
-                </Text>
-              </MenuOption>
-            </MenuOptions>
-          </Menu>
+          {this.getMenuItem()}
+
           <Text style={styles.headerTitle}>
             {languages.t('label.private_kit')}
           </Text>
 
           <View style={styles.buttonsAndLogoView}>
-            {this.state.isLogging ? (
-              <>
-                <Image
-                  source={pkLogo}
-                  style={{
-                    width: 132,
-                    height: 164.4,
-                    alignSelf: 'center',
-                    marginTop: 12,
-                  }}
-                />
-                <TouchableOpacity
-                  onPress={() => this.setOptOut()}
-                  style={styles.stopLoggingButtonTouchable}>
-                  <Text style={styles.stopLoggingButtonText}>
-                    {languages.t('label.stop_logging')}
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => this.overlap()}
-                  style={styles.startLoggingButtonTouchable}>
-                  <Text style={styles.startLoggingButtonText}>
-                    {languages.t('label.overlap')}
-                  </Text>
-                </TouchableOpacity>
-              </>
-            ) : (
-              <>
-                <Image
-                  source={pkLogo}
-                  style={{
-                    width: 132,
-                    height: 164.4,
-                    alignSelf: 'center',
-                    marginTop: 12,
-                    opacity: 0.3,
-                  }}
-                />
-                <TouchableOpacity
-                  onPress={() => this.willParticipate()}
-                  style={styles.startLoggingButtonTouchable}>
-                  <Text style={styles.startLoggingButtonText}>
-                    {languages.t('label.start_logging')}
-                  </Text>
-                </TouchableOpacity>
-              </>
-            )}
-
-            {this.state.isLogging ? (
-              <Text style={styles.sectionDescription}>
-                {languages.t('label.logging_message')}
-              </Text>
-            ) : (
-              <Text style={styles.sectionDescription}>
-                {languages.t('label.not_logging_message')}
-              </Text>
-            )}
+            {this.state.isLogging
+              ? this.getTrackingComponent()
+              : this.getNotTrackingComponent()}
           </View>
 
-          <View style={styles.actionButtonsView}>
-            <TouchableOpacity
-              onPress={() => this.import()}
-              style={styles.actionButtonsTouchable}>
-              <Image
-                style={styles.actionButtonImage}
-                source={exportImage}
-                resizeMode={'contain'}
-              />
-              <Text style={styles.actionButtonText}>
-                {languages.t('label.import')}
-              </Text>
-            </TouchableOpacity>
+          {this.getActionButtons()}
 
-            <TouchableOpacity
-              onPress={() => this.export()}
-              style={styles.actionButtonsTouchable}>
-              <Image
-                style={[
-                  styles.actionButtonImage,
-                  { transform: [{ rotate: '180deg' }] },
-                ]}
-                source={exportImage}
-                resizeMode={'contain'}
-              />
-              <Text style={styles.actionButtonText}>
-                {languages.t('label.export')}
-              </Text>
-            </TouchableOpacity>
+          {this.getPrivacyNote()}
 
-            <TouchableOpacity
-              onPress={() => this.news()}
-              style={styles.actionButtonsTouchable}>
-              <Image
-                style={styles.actionButtonImage}
-                source={news}
-                resizeMode={'contain'}
-              />
-              <Text style={styles.actionButtonText}>
-                {languages.t('label.news')}
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.footer}>
-            <Text
-              style={[
-                styles.sectionDescription,
-                { textAlign: 'center', paddingTop: 15 },
-              ]}>
-              {languages.t('label.url_info')}{' '}
-            </Text>
-            <Text
-              style={[
-                styles.sectionDescription,
-                { color: 'blue', textAlign: 'center', marginTop: 0 },
-              ]}
-              onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
-              {languages.t('label.private_kit_url')}
-            </Text>
-          </View>
+          {this.getFooter()}
         </ScrollView>
       </SafeAreaView>
     );
@@ -309,14 +440,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
+    color: Colors.PRIMARY_TEXT,
+    backgroundColor: Colors.WHITE,
   },
   headerTitle: {
     textAlign: 'center',
     fontSize: 38,
     padding: 0,
-    fontFamily: 'OpenSans-Bold',
+    fontWeight: FontWeights.BOLD,
+    marginTop: '7%',
   },
   subHeaderTitle: {
     textAlign: 'center',
@@ -329,11 +461,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '80%',
+    width: '90%',
   },
   buttonsAndLogoView: {
     flex: 6,
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
   },
   actionButtonsView: {
     width: width * 0.7866,
@@ -349,14 +481,27 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 4,
     paddingBottom: 10,
-    justifyContent: 'flex-end',
+    flexDirection: 'row',
   },
   sectionDescription: {
+    fontSize: 13,
+    fontWeight: FontWeights.MEDIUM,
+    marginLeft: '12%',
+    marginRight: '12%',
+    marginTop: '2%',
+    marginBottom: '2%',
+    textAlign: 'center',
+    color: '#6A6A6A',
+  },
+  footerDescription: {
     fontSize: 12,
-    lineHeight: 24,
-    fontFamily: 'OpenSans-Regular',
-    marginLeft: 10,
-    marginRight: 10,
+    fontWeight: FontWeights.REGULAR,
+    marginLeft: '12%',
+    marginRight: '12%',
+    marginTop: '2%',
+    marginBottom: '2%',
+    textAlign: 'center',
+    color: '#6A6A6A',
   },
   startLoggingButtonTouchable: {
     borderRadius: 12,
@@ -367,7 +512,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   startLoggingButtonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontWeight: FontWeights.BOLD,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -383,7 +528,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   stopLoggingButtonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontWeight: FontWeights.BOLD,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -404,7 +549,7 @@ const styles = StyleSheet.create({
   },
   actionButtonText: {
     opacity: 0.56,
-    fontFamily: 'OpenSans-Bold',
+    fontWeight: FontWeights.BOLD,
     fontSize: 12,
     lineHeight: 17,
     letterSpacing: 0,
@@ -413,9 +558,35 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   menuOptionText: {
-    fontFamily: 'OpenSans-Regular',
+    fontWeight: FontWeights.REGULAR,
     fontSize: 14,
     padding: 10,
+  },
+  privacyNoteContainer: {
+    backgroundColor: '#15D09B',
+    width: width * 0.7,
+    borderRadius: 12,
+    paddingVertical: 8,
+  },
+  privacyHeaderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: '2%',
+  },
+  privacyHeader: {
+    fontWeight: FontWeights.SEMIBOLD,
+    fontSize: 16,
+    marginLeft: 5,
+    textAlign: 'center',
+    color: 'white',
+  },
+  privacySubheader: {
+    fontSize: 12,
+    textAlign: 'center',
+    color: 'white',
+    margin: '2%',
+    marginLeft: '5%',
+    marginRight: '5%',
   },
 });
 
