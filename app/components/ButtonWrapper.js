@@ -4,6 +4,7 @@ const width = Dimensions.get('window').width;
 import FontWeights from '../constants/fontWeights';
 import Button from './Button';
 import PropTypes from 'prop-types';
+import fontFamily from '../constants/fonts';
 
 class ButtonWrapper extends React.Component {
   render() {
@@ -17,7 +18,7 @@ class ButtonWrapper extends React.Component {
 
 const styles = StyleSheet.create({
   primaryButtonText: {
-    fontFamily: 'IBMPlexSans-SemiBold',
+    fontFamily: fontFamily.primarySemiBold,
     fontSize: 16,
     lineHeight: 19,
     letterSpacing: 0,
