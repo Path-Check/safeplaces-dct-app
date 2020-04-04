@@ -9,9 +9,10 @@ import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
 import OverlapScreen from './views/Overlap';
+import SettingsScreen from './views/Settings';
 import LicencesScreen from './views/Licenses';
 import NotificationScreen from './views/Notification';
-import Slider from './views/welcomeScreens/Slider';
+import SimpleWelcomeScreen from './views/welcomeScreens/SimpleWelcomeScreen';
 import { GetStoreData } from './helpers/General';
 
 const Stack = createStackNavigator();
@@ -49,13 +50,13 @@ class Entry extends Component {
             ) : (
               <Stack.Screen
                 name='InitialScreen'
-                component={Slider}
+                component={SimpleWelcomeScreen}
                 options={{ headerShown: false }}
               />
             )}
             <Stack.Screen
-              name='Slider'
-              component={Slider}
+              name='SimpleWelcomeScreen'
+              component={SimpleWelcomeScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -81,6 +82,11 @@ class Entry extends Component {
             <Stack.Screen
               name='ImportScreen'
               component={ImportScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name='SettingsScreen'
+              component={SettingsScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen

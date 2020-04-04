@@ -21,7 +21,7 @@ exports[`renders correctly 1`] = `
         "flex": 1,
         "flexDirection": "column",
         "justifyContent": "space-between",
-        "width": "80%",
+        "width": "90%",
       }
     }
   >
@@ -30,6 +30,7 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "alignSelf": "flex-end",
+            "marginTop": "5.5%",
             "position": "absolute",
             "zIndex": 10,
           }
@@ -64,8 +65,8 @@ exports[`renders correctly 1`] = `
             <Text
               style={
                 Object {
-                  "fontFamily": "OpenSans-Regular",
                   "fontSize": 14,
+                  "fontWeight": "400",
                   "padding": 10,
                 }
               }
@@ -79,8 +80,8 @@ exports[`renders correctly 1`] = `
             <Text
               style={
                 Object {
-                  "fontFamily": "OpenSans-Regular",
                   "fontSize": 14,
+                  "fontWeight": "400",
                   "padding": 10,
                 }
               }
@@ -93,8 +94,9 @@ exports[`renders correctly 1`] = `
       <Text
         style={
           Object {
-            "fontFamily": "OpenSans-Bold",
             "fontSize": 38,
+            "fontWeight": "700",
+            "marginTop": "7%",
             "padding": 0,
             "textAlign": "center",
           }
@@ -106,7 +108,7 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "flex": 6,
-            "justifyContent": "space-around",
+            "justifyContent": "flex-start",
           }
         }
       >
@@ -120,300 +122,242 @@ exports[`renders correctly 1`] = `
             Object {
               "alignSelf": "center",
               "height": 164.4,
-              "marginTop": 12,
+              "marginBottom": 30,
+              "marginTop": 15,
               "opacity": 0.3,
               "width": 132,
             }
           }
         />
         <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
             Object {
               "alignSelf": "center",
-              "backgroundColor": "#665eff",
-              "borderRadius": 12,
-              "height": 52,
+              "flexDirection": "row",
               "justifyContent": "center",
-              "opacity": 1,
-              "width": 589.9499999999999,
+              "width": 525,
             }
           }
         >
-          <Text
-            style={
+          <BVLinearGradient
+            colors={
+              Array [
+                4278531739,
+                4279786451,
+              ]
+            }
+            endPoint={
               Object {
-                "color": "#ffffff",
-                "fontFamily": "OpenSans-Bold",
-                "fontSize": 14,
-                "letterSpacing": 0,
-                "lineHeight": 19,
-                "textAlign": "center",
+                "x": 1,
+                "y": 0,
               }
             }
-          >
-            START LOGGING
-          </Text>
-        </View>
-        <Text
-          style={
-            Object {
-              "fontFamily": "OpenSans-Regular",
-              "fontSize": 12,
-              "lineHeight": 24,
-              "marginLeft": 10,
-              "marginRight": 10,
-            }
-          }
-        >
-          NOTE: After clicking this button you may be prompted to grant Private Kit access to your location.
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 2,
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "marginBottom": -10,
-            "width": 589.9499999999999,
-          }
-        }
-      >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#454f63",
-              "borderRadius": 8,
-              "height": 76,
-              "justifyContent": "center",
-              "opacity": 1,
-              "width": 172.5,
-            }
-          }
-        >
-          <Image
-            resizeMode="contain"
-            source={
+            locations={null}
+            startPoint={
               Object {
-                "testUri": "../../../app/assets/images/export.png",
-              }
-            }
-            style={
-              Object {
-                "height": 21.6,
-                "width": 32.2,
-              }
-            }
-          />
-          <Text
-            style={
-              Object {
-                "color": "#ffffff",
-                "fontFamily": "OpenSans-Bold",
-                "fontSize": 12,
-                "letterSpacing": 0,
-                "lineHeight": 17,
-                "marginTop": 6,
-                "opacity": 0.56,
-                "textAlign": "center",
-              }
-            }
-          >
-            Import
-          </Text>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#454f63",
-              "borderRadius": 8,
-              "height": 76,
-              "justifyContent": "center",
-              "opacity": 1,
-              "width": 172.5,
-            }
-          }
-        >
-          <Image
-            resizeMode="contain"
-            source={
-              Object {
-                "testUri": "../../../app/assets/images/export.png",
+                "x": 0,
+                "y": 0,
               }
             }
             style={
               Array [
                 Object {
-                  "height": 21.6,
-                  "width": 32.2,
-                },
-                Object {
-                  "transform": Array [
-                    Object {
-                      "rotate": "180deg",
-                    },
-                  ],
+                  "alignItems": "center",
+                  "borderColor": "rgba(255,255,255,0.7)",
+                  "borderRadius": 12,
+                  "justifyContent": "center",
+                  "paddingVertical": 8,
+                  "width": "100%",
                 },
               ]
             }
-          />
-          <Text
-            style={
-              Object {
-                "color": "#ffffff",
-                "fontFamily": "OpenSans-Bold",
-                "fontSize": 12,
-                "letterSpacing": 0,
-                "lineHeight": 17,
-                "marginTop": 6,
-                "opacity": 0.56,
-                "textAlign": "center",
-              }
-            }
           >
-            Export
-          </Text>
+            <View
+              accessible={true}
+              focusable={true}
+              isTVSelectable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderColor": "rgba(255,255,255,0.7)",
+                  "borderRadius": 12,
+                  "justifyContent": "center",
+                  "opacity": 1,
+                  "paddingVertical": 8,
+                  "width": "100%",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#ffffff",
+                    "fontSize": 16,
+                    "fontWeight": "700",
+                    "letterSpacing": 0,
+                    "lineHeight": 19,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Start tracking
+              </Text>
+            </View>
+          </BVLinearGradient>
         </View>
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+        <Text
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#454f63",
-              "borderRadius": 8,
-              "height": 76,
-              "justifyContent": "center",
-              "opacity": 1,
-              "width": 172.5,
+              "color": "#6A6A6A",
+              "fontSize": 13,
+              "fontWeight": "500",
+              "marginBottom": "2%",
+              "marginLeft": "12%",
+              "marginRight": "12%",
+              "marginTop": "2%",
+              "textAlign": "center",
             }
           }
         >
-          <Image
-            resizeMode="contain"
-            source={
-              Object {
-                "testUri": "../../../app/assets/images/newspaper.png",
-              }
-            }
-            style={
-              Object {
-                "height": 21.6,
-                "width": 32.2,
-              }
-            }
-          />
-          <Text
-            style={
-              Object {
-                "color": "#ffffff",
-                "fontFamily": "OpenSans-Bold",
-                "fontSize": 12,
-                "letterSpacing": 0,
-                "lineHeight": 17,
-                "marginTop": 6,
-                "opacity": 0.56,
-                "textAlign": "center",
-              }
-            }
-          >
-            News
-          </Text>
-        </View>
+          You'll need to allow location permissions
+        </Text>
       </View>
       <View
         style={
           Object {
+            "backgroundColor": "#15D09B",
+            "borderRadius": 12,
+            "paddingVertical": 8,
+            "width": 525,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "marginTop": "2%",
+            }
+          }
+        >
+          <SvgXml
+            height={15}
+            width={15}
+            xml="<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<svg width=\\"31px\\" height=\\"38px\\" viewBox=\\"0 0 31 38\\" version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>twemoji-locked</title>
+    <desc>Created with Sketch.</desc>
+    <g id=\\"Page-1\\" stroke=\\"none\\" stroke-width=\\"1\\" fill=\\"none\\" fill-rule=\\"evenodd\\">
+        <g id=\\"Welcome\\" transform=\\"translate(-58.000000, -447.000000)\\" fill-rule=\\"nonzero\\">
+            <g id=\\"twemoji-locked\\" transform=\\"translate(53.000000, 444.000000)\\">
+                <g id=\\"Icon\\">
+                    <path d=\\"M20.5,3.41666667 C14.2099167,3.41666667 9.11111111,8.51547222 9.11111111,14.8055556 L9.11111111,26.1944444 L13.6666667,26.1944444 L13.6666667,14.8055556 C13.6666667,11.0316098 16.7260542,7.97222222 20.5,7.97222222 C24.2739458,7.97222222 27.3333333,11.0316098 27.3333333,14.8055556 L27.3333333,26.1944444 L31.8888889,26.1944444 L31.8888889,14.8055556 C31.8888889,8.51547222 26.7900833,3.41666667 20.5,3.41666667 Z\\" id=\\"Icon-Path\\" fill=\\"#AAB8C2\\"></path>
+                    <path d=\\"M35.3055556,36.4444444 C35.3055556,38.9604083 33.2659639,41 30.75,41 L10.25,41 C7.73403614,41 5.69444444,38.9604083 5.69444444,36.4444444 L5.69444444,22.7777778 C5.69444444,20.2618139 7.73403614,18.2222222 10.25,18.2222222 L30.75,18.2222222 C33.2659639,18.2222222 35.3055556,20.2618139 35.3055556,22.7777778 L35.3055556,36.4444444 Z\\" id=\\"Icon-Path\\" fill=\\"#FFAC33\\"></path>
+                </g>
+                <rect id=\\"ViewBox\\" x=\\"0\\" y=\\"0\\" width=\\"41\\" height=\\"41\\"></rect>
+            </g>
+        </g>
+    </g>
+</svg>"
+          />
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+                "fontWeight": "600",
+                "marginLeft": 5,
+                "textAlign": "center",
+              }
+            }
+          >
+            Privacy Info
+          </Text>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 12,
+              "margin": "2%",
+              "marginLeft": "5%",
+              "marginRight": "5%",
+              "textAlign": "center",
+            }
+          }
+        >
+          Your location history stays on your phone and is never shared without your consent
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
             "fontSize": 12,
             "fontWeight": "600",
-            "justifyContent": "flex-end",
             "padding": 4,
             "paddingBottom": 10,
             "textAlign": "center",
           }
         }
       >
-        <Text
-          style={
-            Array [
-              Object {
-                "fontFamily": "OpenSans-Regular",
-                "fontSize": 12,
-                "lineHeight": 24,
-                "marginLeft": 10,
-                "marginRight": 10,
-              },
-              Object {
-                "paddingTop": 15,
-                "textAlign": "center",
-              },
-            ]
-          }
-        >
-          For more information visit the Private Kit homepage:
-           
-        </Text>
-        <Text
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "fontFamily": "OpenSans-Regular",
-                "fontSize": 12,
-                "lineHeight": 24,
-                "marginLeft": 10,
-                "marginRight": 10,
-              },
-              Object {
-                "color": "blue",
-                "marginTop": 0,
-                "textAlign": "center",
-              },
-            ]
-          }
-        >
-          privatekit.mit.edu
+        <Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#6A6A6A",
+                  "fontSize": 12,
+                  "fontWeight": "400",
+                  "marginBottom": "2%",
+                  "marginLeft": "12%",
+                  "marginRight": "12%",
+                  "marginTop": "2%",
+                  "textAlign": "center",
+                },
+                Object {
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            For more info visit 
+             
+          </Text>
+          <Text
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "color": "#6A6A6A",
+                  "fontSize": 12,
+                  "fontWeight": "400",
+                  "marginBottom": "2%",
+                  "marginLeft": "12%",
+                  "marginRight": "12%",
+                  "marginTop": "2%",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#007AFF",
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            privatekit.mit.edu
+          </Text>
         </Text>
       </View>
     </View>

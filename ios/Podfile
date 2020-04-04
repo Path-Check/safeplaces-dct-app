@@ -47,7 +47,6 @@ target 'COVIDSafePaths' do
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
   
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
   target 'COVIDSafePathsTests' do
     inherit! :search_paths
