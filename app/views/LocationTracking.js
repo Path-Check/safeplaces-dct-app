@@ -85,8 +85,6 @@ class LocationTracking extends Component {
   constructor(props) {
     super(props);
 
-    console.log(height);
-
     let currentState;
     if (this.isLocationEnabled()) {
       currentState = StateEnum.UNKNOWN;
@@ -532,12 +530,17 @@ class LocationTracking extends Component {
 
   getCTAIfNeeded() {
     let buttonLabel;
+    let buttonFunction;
     if (this.state.currentState === StateEnum.NO_CONTACT) {
       return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
       buttonLabel = 'label.home_next_steps';
+      buttonFunction = () => {};
     } else if (this.state.currentState === StateEnum.UNKNOWN) {
       buttonLabel = 'label.home_enable_location';
+      buttonFunction = () => {
+        openSettings();
+      };
     }
 
     return (
@@ -545,7 +548,7 @@ class LocationTracking extends Component {
         <ButtonWrapper
           title={languages.t(buttonLabel)}
           onPress={() => {
-            openSettings();
+            buttonFunction();
           }}
           buttonColor={Colors.VIOLET}
           bgColor={Colors.WHITE}
@@ -627,12 +630,9 @@ const styles = StyleSheet.create({
   pulseContainer: {
     position: 'absolute',
     resizeMode: 'contain',
-    //top: '-23%', // 667
-    top: '-13%', // 812
-    //top: height * -0.13,
+    top: '-13%',
     left: 0,
     right: 0,
-    // justifyContent: 'center',
     alignItems: 'center',
   },
   mainText: {
