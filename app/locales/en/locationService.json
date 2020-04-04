@@ -1,13 +1,13 @@
 {
     "yes": "Yes",
     "no": "No",
-    "location_enabled_title": "Private Kit Enabled",
-    "location_enabled_message": "Private Kit is securely storing your GPS coordinates once every five minutes on this device.",
+    "location_enabled_title": "COVID Safe Paths Enabled",
+    "location_enabled_message": "COVID Safe Paths is securely storing your GPS coordinates once every five minutes on this device.",
     "location_disabled_title": "Location Tracking Was Disabled",
-    "location_disabled_message": "Private Kit requires location services.",
-    "require_location_information_title": "Private Kit requires access to location information",
+    "location_disabled_message": "COVID Safe Paths requires location services.",
+    "require_location_information_title": "COVID Safe Paths requires access to location information",
     "require_location_information_message": "Would you like to open app settings?",
-    "require_location_services_title": "Private Kit requires location services to be enabled",
+    "require_location_services_title": "COVID Safe Paths requires location services to be enabled",
     "require_location_services_message": "Would you like to open location settings?"
 }
 
