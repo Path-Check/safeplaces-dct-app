@@ -133,7 +133,7 @@ class Onboarding extends Component {
     request(locationPermission).then(result => {
       switch (result) {
         case RESULTS.GRANTED:
-          SetStoreData('PARTICIPATE', 'true'); // replaces "start" button?
+          console.log('Location granted');
           this.setState({
             locationPermission: PermissionStatusEnum.GRANTED,
           });
@@ -172,6 +172,7 @@ class Onboarding extends Component {
     } else if (!this.isNotificationChecked()) {
       this.requestNotification();
     } else {
+      SetStoreData('PARTICIPATE', 'true'); // replaces "start" button
       this.props.navigation.replace('LocationTrackingScreen');
     }
   }

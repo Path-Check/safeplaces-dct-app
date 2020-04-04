@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AppState,
   SafeAreaView,
   StyleSheet,
   Linking,
@@ -85,27 +86,17 @@ class LocationTracking extends Component {
   constructor(props) {
     super(props);
 
-    let currentState;
-    if (this.isLocationEnabled()) {
-      currentState = StateEnum.UNKNOWN;
-    } else {
-      // TODO: logic for detecting if you're at risk
-      if (false) {
-        currentState = StateEnum.AT_RISK;
-      } else {
-        currentState = StateEnum.NO_CONTACT;
-      }
-    }
-
     this.state = {
+      appState: AppState.currentState,
       timer_intersect: null,
       isLogging: '',
       currentState: StateEnum.NO_CONTACT,
     };
+
+    this.checkCurrentState();
   }
 
-  // NEED TO DEDUP THIS CODE FROM Onboarding5.js
-  isLocationEnabled() {
+  checkCurrentState() {
     // NEED TO TEST ON ANNDROID
     let locationPermission;
     if (Platform.OS === 'ios') {
@@ -113,14 +104,17 @@ class LocationTracking extends Component {
     } else {
       locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
     }
+    let locationDisabled = true;
     check(locationPermission)
       .then(result => {
         switch (result) {
           case RESULTS.GRANTED:
-            return true;
+            this.checkIfUserAtRisk();
+            return;
           case RESULTS.UNAVAILABLE:
           case RESULTS.BLOCKED:
-            return false;
+            console.log('NO LOCATION');
+            this.setState({ currentState: StateEnum.UNKNOWN });
         }
       })
       .catch(error => {
@@ -128,7 +122,35 @@ class LocationTracking extends Component {
       });
   }
 
+  checkIfUserAtRisk() {
+    // already set on 12h timer but run when app opens too
+    this.intersect_tick();
+
+    GetStoreData('CROSSED_PATHS').then(dayBin => {
+      // console.log(dayBin);
+      if (dayBin === null) {
+        this.setState({ currentState: StateEnum.NO_CONTACT });
+        this.setState({ dataAvailable: false });
+        console.log("Can't find crossed paths");
+      } else {
+        this.setState({ currentState: StateEnum.AT_RISK });
+        let crossed_path_data = [];
+        console.log('Found crossed paths');
+        this.setState({ dataAvailable: true });
+        dayBinParsed = JSON.parse(dayBin);
+        for (var i = 0; i < dayBinParsed.length; i++) {
+          const val = dayBinParsed[i];
+          data = { x: i, y: val, fill: this.colorfill(val) };
+          crossed_path_data.push(data);
+        }
+        // this.setState({ data: crossed_path_data });
+        // console.log(crossed_path_data)
+      }
+    });
+  }
+
   componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     GetStoreData('PARTICIPATE')
       .then(isParticipating => {
@@ -155,7 +177,6 @@ class LocationTracking extends Component {
 
   intersect_tick = () => {
     // This function is called once every 12 hours.  It should do several things:
-
     // Get the user's health authorities
     GetStoreData('HEALTH_AUTHORITIES')
       .then(authority_list => {
@@ -207,9 +228,23 @@ class LocationTracking extends Component {
   };
 
   componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
     clearInterval(this.state.timer_intersect);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
+
+  // need to check state if new foreground event
+  // e.g. if user changed location permission
+  _handleAppStateChange = nextAppState => {
+    if (
+      this.state.appState.match(/inactive|background/) &&
+      nextAppState === 'active'
+    ) {
+      console.log('checkIfLocationDisabled');
+      this.checkCurrentState();
+    }
+    this.setState({ appState: nextAppState });
+  };
 
   handleBackPress = () => {
     BackHandler.exitApp(); // works best when the goBack is async
@@ -252,9 +287,9 @@ class LocationTracking extends Component {
     });
   };
 
-  // news() {
-  //   this.props.navigation.navigate('NewsScreen', {});
-  // }
+  news() {
+    this.props.navigation.navigate('NewsScreen', {});
+  }
 
   licenses() {
     this.props.navigation.navigate('LicensesScreen', {});
