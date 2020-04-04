@@ -5,7 +5,6 @@ import {
   View,
   Text,
   Image,
-  Platform,
   Dimensions,
   TouchableOpacity,
   BackHandler,
@@ -22,6 +21,7 @@ import { timeSincePoint } from '../helpers/convertPointsToString';
 import LocationServices, { LocationData } from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
+import { isPlatformiOS } from './../Util';
 
 const width = Dimensions.get('window').width;
 const base64 = RNFetchBlob.base64;
@@ -70,7 +70,7 @@ function ExportScreen({ shareButtonDisabled }) {
       const title = 'PrivateKit.json';
       const filename = unixtimeUTC + '.json';
       const message = 'Here is my location log from Private Kit.';
-      if (Platform.OS === 'ios') {
+      if (isPlatformiOS()) {
         var url = RNFS.MainBundlePath + '/' + filename;
         await RNFS.writeFile(url, jsonData, 'utf8')
           .then(success => {
@@ -110,7 +110,7 @@ function ExportScreen({ shareButtonDisabled }) {
           console.log(err);
           console.log(err.message, err.code);
         });
-      if (Platform.OS === 'ios') {
+      if (isPlatformiOS()) {
         await RNFS.unlink(url);
       }
     } catch (error) {
