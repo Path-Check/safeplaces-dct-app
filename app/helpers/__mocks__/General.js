@@ -1,11 +1,11 @@
 export function GetStoreData(data) {
-    return new Promise((resolve, reject) => {
-        resolve(data);
-    });
+  return new Promise((resolve, reject) => {
+    resolve(data);
+  });
 }
 
 export function SetStoreData() {
-    return new Promise((resolve, reject) => {
-        resolve({});
-    });
+  return new Promise((resolve, reject) => {
+    resolve({});
+  });
 }
