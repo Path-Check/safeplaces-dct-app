@@ -456,21 +456,22 @@ class LocationTracking extends Component {
       <TouchableOpacity
         style={styles.settingsContainer}
         onPress={() => {
+          props.navigation.replace('Settings');
           // THIS IS FOR TESTING - DELETE LATER
-          switch (this.state.currentState) {
-            case StateEnum.NO_CONTACT:
-              this.setState({ isLogging: '', currentState: StateEnum.AT_RISK });
-              break;
-            case StateEnum.AT_RISK:
-              this.setState({ isLogging: '', currentState: StateEnum.UNKNOWN });
-              break;
-            case StateEnum.UNKNOWN:
-              this.setState({
-                isLogging: '',
-                currentState: StateEnum.NO_CONTACT,
-              });
-              break;
-          }
+          // switch (this.state.currentState) {
+          //   case StateEnum.NO_CONTACT:
+          //     this.setState({ isLogging: '', currentState: StateEnum.AT_RISK });
+          //     break;
+          //   case StateEnum.AT_RISK:
+          //     this.setState({ isLogging: '', currentState: StateEnum.UNKNOWN });
+          //     break;
+          //   case StateEnum.UNKNOWN:
+          //     this.setState({
+          //       isLogging: '',
+          //       currentState: StateEnum.NO_CONTACT,
+          //     });
+          //     break;
+          // }
         }}>
         <Image resizeMode={'contain'} />
         <SvgXml
@@ -542,7 +543,6 @@ class LocationTracking extends Component {
         openSettings();
       };
     }
-
     return (
       <View style={styles.buttonContainer}>
         <ButtonWrapper
@@ -567,9 +567,7 @@ class LocationTracking extends Component {
           backgroundColor='transparent'
           translucent={true}
         />
-
         {this.getPulseIfNeeded()}
-
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             <Text style={styles.mainText}>
@@ -594,32 +592,18 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     flex: 1,
   },
-  // circlesOverlay: {
-  //   top: '-40%',
-  //   width: '100%',
-  //   height: '100%',
-  //   resizeMode: 'cover',
-  //   flex: 1,
-  // },
   mainContainer: {
-    // backgroundColor: 'red',
     top: '50%',
     flex: 1,
   },
   contentContainer: {
     width: width * 0.6,
     flex: 1,
-    // justifyContent: 'center',
     alignSelf: 'center',
-    // paddingBottom: '5%',
   },
   settingsContainer: {
     position: 'absolute',
     top: 0,
-    // left: 0,
-    // right: 0,
-    // paddingTop: 48,
-    // paddingRight: 24,
     marginTop: '14%',
     marginRight: '5%',
     alignSelf: 'flex-end',
