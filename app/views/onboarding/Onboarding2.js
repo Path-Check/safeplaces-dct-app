@@ -5,7 +5,7 @@ import {
   Dimensions,
   StyleSheet,
   ImageBackground,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 const width = Dimensions.get('window').width;
 import BackgroundImage from './../../assets/images/launchScreen2.png';
@@ -22,7 +22,10 @@ const Onboarding = props => {
         backgroundColor='transparent'
         translucent={true}
       />
-      <ImageBackground source={BackgroundImage} style={styles.backgroundImage} />
+      <ImageBackground
+        source={BackgroundImage}
+        style={styles.backgroundImage}
+      />
       <View style={styles.contentContainer}>
         <Text style={styles.headerText}>
           {languages.t('label.launch_screen2_header')}
@@ -65,18 +68,16 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: Colors.VIOLET,
-    fontWeight: FontWeights.MEDIUM,
     fontSize: 26,
     width: width * 0.8,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: 'IBMPlexSans-Medium',
   },
   subheaderText: {
     marginTop: '6%',
     color: Colors.VIOLET,
-    fontWeight: FontWeights.REGULAR,
     fontSize: 15,
     width: width * 0.8,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: 'IBMPlexSans-Regular',
   },
   footerContainer: {
     position: 'absolute',
