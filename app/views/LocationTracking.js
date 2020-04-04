@@ -456,7 +456,7 @@ class LocationTracking extends Component {
       <TouchableOpacity
         style={styles.settingsContainer}
         onPress={() => {
-          props.navigation.replace('Settings');
+          this.props.navigation.replace('SettingsScreen');
           // THIS IS FOR TESTING - DELETE LATER
           // switch (this.state.currentState) {
           //   case StateEnum.NO_CONTACT:

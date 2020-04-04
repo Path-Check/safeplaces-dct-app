@@ -1,21 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
+  SafeAreaView,
+  StyleSheet,
+  Linking,
   View,
   Text,
+  TouchableOpacity,
   Dimensions,
-  StyleSheet,
+  Image,
+  ScrollView,
+  BackHandler,
   ImageBackground,
   StatusBar,
 } from 'react-native';
+
+import languages from './../locales/languages';
+import Colors from './../constants/colors';
+import fontFamily from './../constants/fonts';
+
+import { SvgXml } from 'react-native-svg';
+
 const width = Dimensions.get('window').width;
-import languages from '../../locales/languages';
-import Colors from '../../constants/colors';
-import fontFamily from '../../constants/fonts';
 
-const Settings = props => {
-  return <></>;
-};
+class SettingsScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      //
+    };
+  }
 
-const styles = StyleSheet.create({});
+  componentDidMount() {
+    //
+  }
 
-export default Onboarding;
+  render() {
+    return (
+      <View>
+        <StatusBar
+          barStyle='dark-content'
+          backgroundColor='transparent'
+          translucent={true}
+        />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  //
+});
+
+export default SettingsScreen;
