@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native';
 import LocationTracking from './views/LocationTracking';
 import NewsScreen from './views/News';
@@ -42,7 +42,11 @@ class Entry extends Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='InitialScreen'>
+        <Stack.Navigator
+          initialRouteName='InitialScreen'
+          screenOptions={{
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          }}>
           {this.state.initialRouteName === 'true' ? (
             <Stack.Screen
               name='InitialScreen'
@@ -50,12 +54,12 @@ class Entry extends Component {
               options={{ headerShown: false }}
             />
           ) : (
-            <Stack.Screen
-              name='InitialScreen'
-              component={Onboarding1}
-              options={{ headerShown: false }}
-            />
-          )}
+              <Stack.Screen
+                name='InitialScreen'
+                component={Onboarding1}
+                options={{ headerShown: false }}
+              />
+            )}
           <Stack.Screen
             name='Onboarding1'
             component={Onboarding1}

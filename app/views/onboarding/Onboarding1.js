@@ -38,7 +38,6 @@ const Onboarding = props => {
               title={languages.t('label.launch_get_started')}
               onPress={() => {
                 props.navigation.replace('Onboarding2');
-                props.navigation.navigate('Onboarding2');
               }}
               buttonColor={Colors.VIOLET}
               bgColor={Colors.WHITE}
