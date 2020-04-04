@@ -22,7 +22,10 @@ const Onboarding = props => {
         backgroundColor='transparent'
         translucent={true}
       />
-      <ImageBackground source={BackgroundImage} style={styles.backgroundImage} />
+      <ImageBackground
+        source={BackgroundImage}
+        style={styles.backgroundImage}
+      />
       <View style={styles.contentContainer}>
         <Text style={styles.headerText}>
           {languages.t('label.launch_screen3_header')}
@@ -65,18 +68,16 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: Colors.VIOLET,
-    fontWeight: FontWeights.MEDIUM,
     fontSize: 26,
     width: width * 0.75,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: 'IBMPlexSans-Medium',
   },
   subheaderText: {
     marginTop: '6%',
     color: Colors.VIOLET,
-    fontWeight: FontWeights.REGULAR,
     fontSize: 15,
     width: width * 0.5,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: 'IBMPlexSans-Regular',
   },
   footerContainer: {
     position: 'absolute',
