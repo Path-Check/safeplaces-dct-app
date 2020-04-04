@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ImageBackground,
   StatusBar,
+  Platform,
 } from 'react-native';
 const width = Dimensions.get('window').width;
 import BackgroundImage from './../../assets/images/launchScreen2.png';
@@ -13,6 +14,7 @@ import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import FontWeights from '../../constants/fontWeights';
+import fontFamily from '../../constants/fonts';
 
 const Onboarding = props => {
   return (
@@ -70,14 +72,14 @@ const styles = StyleSheet.create({
     color: Colors.VIOLET,
     fontSize: 26,
     width: width * 0.8,
-    fontFamily: 'IBMPlexSans-Medium',
+    fontFamily: fontFamily.primaryMedium,
   },
   subheaderText: {
     marginTop: '6%',
     color: Colors.VIOLET,
     fontSize: 15,
     width: width * 0.8,
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   footerContainer: {
     position: 'absolute',

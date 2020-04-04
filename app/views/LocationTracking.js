@@ -47,6 +47,7 @@ import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import SettingsGear from './../assets/svgs/settingsGear';
+import fontFamily from '../constants/fonts';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -638,18 +639,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 34,
     color: Colors.WHITE,
-    fontWeight: FontWeights.MEDIUM,
     fontSize: 26,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryMedium,
   },
   subheaderText: {
     marginTop: '5%',
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
-    fontWeight: FontWeights.REGULAR,
     fontSize: 18,
-    fontFamily: 'IBM Plex Sans',
+    fontFamily: fontFamily.primaryRegular,
   },
 });
 

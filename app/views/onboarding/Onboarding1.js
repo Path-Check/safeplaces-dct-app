@@ -14,6 +14,7 @@ import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import FontWeights from '../../constants/fontWeights';
+import fontFamily from '../../constants/fonts';
 
 const Onboarding = props => {
   return (
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     lineHeight: 35,
     color: Colors.WHITE,
     fontSize: 26,
-    fontFamily: 'IBMPlexSans-Medium',
+    fontFamily: fontFamily.primaryMedium,
   },
   footerContainer: {
     position: 'absolute',

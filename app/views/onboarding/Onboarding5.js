@@ -27,6 +27,7 @@ import IconUnknown from '../../assets/svgs/permissionUnknown';
 import { SetStoreData } from '../../helpers/General';
 
 import { SvgXml } from 'react-native-svg';
+import fontFamily from '../../constants/fonts';
 
 const PermissionStatusEnum = {
   UNKNOWN: 0,
@@ -296,20 +297,20 @@ const styles = StyleSheet.create({
     lineHeight: 48.5,
     paddingTop: 52 - 48.5, // lineHeight hack
     width: width * 0.7,
-    fontFamily: 'IBMPlexSans-Medium',
+    fontFamily: fontFamily.primaryMedium,
   },
   headerText: {
     color: Colors.WHITE,
     fontSize: 26,
     width: width * 0.8,
-    fontFamily: 'IBMPlexSans-Medium',
+    fontFamily: fontFamily.primaryMedium,
   },
   subheaderText: {
     marginTop: '3%',
     color: Colors.WHITE,
     fontSize: 15,
     width: width * 0.55,
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   statusContainer: {
     marginTop: '5%',
@@ -336,7 +337,7 @@ const styles = StyleSheet.create({
     color: Colors.WHITE,
     fontSize: 16,
     alignSelf: 'center',
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   permissionIcon: {
     alignSelf: 'center',

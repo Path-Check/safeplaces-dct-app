@@ -13,6 +13,7 @@ import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import FontWeights from '../../constants/fontWeights';
+import fontFamily from '../../constants/fonts';
 
 const Onboarding = props => {
   return (
@@ -68,17 +69,16 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: Colors.VIOLET,
-    fontWeight: FontWeights.MEDIUM,
     fontSize: 26,
     width: width * 0.7,
-    fontFamily: 'IBMPlexSans-Medium',
+    fontFamily: fontFamily.primaryMedium,
   },
   subheaderText: {
     marginTop: '6%',
     color: Colors.VIOLET,
     fontSize: 15,
     width: width * 0.6,
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   footerContainer: {
     position: 'absolute',
