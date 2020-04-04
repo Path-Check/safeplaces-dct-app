@@ -96,8 +96,12 @@ class LocationTracking extends Component {
     this.checkCurrentState();
   }
 
+  /*  Check current state
+        1) determine if user has correct location permissions
+        2) check if they are at risk -> checkIfUserAtRisk()
+        3) set state accordingly */
   checkCurrentState() {
-    // NEED TO TEST ON ANNDROID
+    // NEED TO TEST ON ANDROID
     let locationPermission;
     if (Platform.OS === 'ios') {
       locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
@@ -233,7 +237,7 @@ class LocationTracking extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  // need to check state if new foreground event
+  // need to check state again if new foreground event
   // e.g. if user changed location permission
   _handleAppStateChange = nextAppState => {
     if (
