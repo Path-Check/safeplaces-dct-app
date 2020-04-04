@@ -38,6 +38,7 @@ import {
   openSettings,
 } from 'react-native-permissions';
 
+import { IntersectSet } from '../helpers/Intersect';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
@@ -77,10 +78,13 @@ const StateIcon = ({ title, status, size, ...props }) => {
 };
 
 const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 class LocationTracking extends Component {
   constructor(props) {
     super(props);
+
+    console.log(height);
 
     let currentState;
     if (this.isLocationEnabled()) {
@@ -95,6 +99,7 @@ class LocationTracking extends Component {
     }
 
     this.state = {
+      timer_intersect: null,
       isLogging: '',
       currentState: StateEnum.NO_CONTACT,
     };
@@ -140,9 +145,70 @@ class LocationTracking extends Component {
         }
       })
       .catch(error => console.log(error));
+
+    let timer_intersect = setInterval(this.intersect_tick, 1000 * 60 * 60 * 12); // once every 12 hours
+    // DEBUG:  1000 * 10); // once every 10 seconds
+
+    this.setState({
+      timer_intersect,
+    });
   }
 
+  intersect_tick = () => {
+    // This function is called once every 12 hours.  It should do several things:
+
+    // Get the user's health authorities
+    GetStoreData('HEALTH_AUTHORITIES')
+      .then(authority_list => {
+        if (!authority_list) {
+          // DEBUG: Force a test list
+          // authority_list = [
+          //  {
+          //    name: 'Platte County Health',
+          //    url:
+          //      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
+          //  },
+          //];
+          return;
+        }
+
+        if (authority_list) {
+          // Pull down data from all the registered health authorities
+          for (let authority of authority_list) {
+            fetch(authority.url)
+              .then(response => response.json())
+              .then(responseJson => {
+                // Example response =
+                // { "authority_name":  "Steve's Fake Testing Organization",
+                //   "publish_date_utc": "1584924583",
+                //   "info_website": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
+                //   "concern_points":
+                //    [
+                //      { "time": 123, "latitude": 12.34, "longitude": 12.34},
+                //      { "time": 456, "latitude": 12.34, "longitude": 12.34}
+                //    ]
+                // }
+
+                // Update cache of info about the authority
+                // (info_url might have changed, etc.)
+
+                // TODO: authority_list, match by authority_list.url, then re-save "authority_name", "info_website" and
+                // "publish_date_utc" (we should notify users if their authority is no longer functioning.)
+                // console.log('Received data from authority.url=', authority.url);
+
+                IntersectSet(responseJson.concern_points);
+              });
+          }
+        } else {
+          console.log('No authority list');
+          return;
+        }
+      })
+      .catch(error => console.log('Failed to load authority list', error));
+  };
+
   componentWillUnmount() {
+    clearInterval(this.state.timer_intersect);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
@@ -195,9 +261,30 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('LicensesScreen', {});
   }
 
-  // notifications() {
-  //   this.props.navigation.navigate('NotificationScreen', {});
-  // }
+  settings() {
+    this.props.navigation.navigate('SettingsScreen', {});
+  }
+
+  willParticipate = () => {
+    SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
+    this.setState({
+      isLogging: true,
+    });
+  };
+
+  notifications() {
+    this.props.navigation.navigate('NotificationScreen', {});
+  }
+
+  willParticipate = () => {
+    SetStoreData('PARTICIPATE', 'true').then(() => {
+      LocationServices.start();
+      BroadcastingServices.start();
+    });
+    this.setState({
+      isLogging: true,
+    });
+  };
 
   setOptOut = () => {
     LocationServices.stop(this.props.navigation);
@@ -409,13 +496,13 @@ class LocationTracking extends Component {
             speed={20}
             duration={2000}
           />
-          <StateIcon size={80} status={this.state.currentState} />
+          <StateIcon size={height} status={this.state.currentState} />
         </View>
       );
     }
     return (
       <View style={styles.pulseContainer}>
-        <StateIcon size={80} status={this.state.currentState} />
+        <StateIcon size={height} status={this.state.currentState} />
       </View>
     );
   }
@@ -476,11 +563,6 @@ class LocationTracking extends Component {
           backgroundColor='transparent'
           translucent={true}
         />
-        {/* <ImageBackground
-          source={BackgroundOverlayImage}
-          style={styles.circlesOverlay}> */}
-
-        {this.getSettings()}
 
         {this.getPulseIfNeeded()}
 
@@ -495,7 +577,7 @@ class LocationTracking extends Component {
             {this.getCTAIfNeeded()}
           </View>
         </View>
-        {/* </ImageBackground> */}
+        {this.getSettings()}
       </ImageBackground>
     );
   }
@@ -516,16 +598,22 @@ const styles = StyleSheet.create({
   //   flex: 1,
   // },
   mainContainer: {
+    // backgroundColor: 'red',
+    top: '50%',
     flex: 1,
   },
   contentContainer: {
     width: width * 0.6,
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignSelf: 'center',
     // paddingBottom: '5%',
   },
   settingsContainer: {
+    position: 'absolute',
+    top: 0,
+    // left: 0,
+    // right: 0,
     // paddingTop: 48,
     // paddingRight: 24,
     marginTop: '14%',
@@ -536,8 +624,14 @@ const styles = StyleSheet.create({
     top: '7%',
   },
   pulseContainer: {
-    top: '24%',
-    justifyContent: 'center',
+    position: 'absolute',
+    resizeMode: 'contain',
+    //top: '-23%', // 667
+    top: '-13%', // 812
+    //top: height * -0.13,
+    left: 0,
+    right: 0,
+    // justifyContent: 'center',
     alignItems: 'center',
   },
   mainText: {

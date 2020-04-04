@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native';
 import LocationTracking from './views/LocationTracking';
 import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
 import OverlapScreen from './views/Overlap';
+import SettingsScreen from './views/Settings';
 import LicencesScreen from './views/Licenses';
 import NotificationScreen from './views/Notification';
 import Onboarding1 from './views/onboarding/Onboarding1';
@@ -15,7 +16,7 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
-import { GetStoreData } from './helpers/General';
+import { GetStoreData, SetStoreData } from './helpers/General';
 
 const Stack = createStackNavigator();
 
@@ -41,7 +42,11 @@ class Entry extends Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='InitialScreen'>
+        <Stack.Navigator
+          initialRouteName='InitialScreen'
+          screenOptions={{
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          }}>
           {this.state.initialRouteName === 'true' ? (
             <Stack.Screen
               name='InitialScreen'
@@ -49,12 +54,12 @@ class Entry extends Component {
               options={{ headerShown: false }}
             />
           ) : (
-            <Stack.Screen
-              name='InitialScreen'
-              component={Onboarding1}
-              options={{ headerShown: false }}
-            />
-          )}
+              <Stack.Screen
+                name='InitialScreen'
+                component={Onboarding1}
+                options={{ headerShown: false }}
+              />
+            )}
           <Stack.Screen
             name='Onboarding1'
             component={Onboarding1}
@@ -98,6 +103,11 @@ class Entry extends Component {
           <Stack.Screen
             name='ImportScreen'
             component={ImportScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='SettingsScreen'
+            component={SettingsScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

@@ -172,7 +172,6 @@ class Onboarding extends Component {
       this.requestNotification();
     } else {
       this.props.navigation.replace('LocationTrackingScreen');
-      this.props.navigation.navigate('LocationTrackingScreen');
     }
   }
 
