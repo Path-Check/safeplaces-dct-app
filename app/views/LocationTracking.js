@@ -568,7 +568,13 @@ class LocationTracking extends Component {
     let buttonLabel;
     let buttonFunction;
     if (this.state.currentState === StateEnum.NO_CONTACT) {
-      return;
+      // TMP HACK FOR MI
+      buttonLabel = 'label.home_MASSIVE_HACK';
+      buttonFunction = () => {
+        // jin put yo hacks in this slot bro
+        // this.props.navigation.replace('MAP HACK');
+      };
+      // return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
       buttonLabel = 'label.home_next_steps';
       buttonFunction = () => {};
