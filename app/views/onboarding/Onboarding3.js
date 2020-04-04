@@ -5,6 +5,7 @@ import {
   Dimensions,
   StyleSheet,
   ImageBackground,
+  StatusBar,
 } from 'react-native';
 const width = Dimensions.get('window').width;
 import BackgroundImage from './../../assets/images/launchScreen3.png';
@@ -15,42 +16,46 @@ import FontWeights from '../../constants/fontWeights';
 
 const Onboarding = props => {
   return (
-    <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
-      <View style={styles.mainContainer}>
-        <View style={styles.contentContainer}>
-          <Text style={styles.headerText}>
-            {languages.t('label.launch_screen3_header')}
-          </Text>
-          <Text style={styles.subheaderText}>
-            {languages.t('label.launch_screen3_subheader')}
-          </Text>
-        </View>
-        <View style={styles.footerContainer}>
-          <ButtonWrapper
-            title={languages.t('label.launch_next')}
-            onPress={() => {
-              props.navigation.replace('Onboarding4');
-              props.navigation.navigate('Onboarding4');
-            }}
-            buttonColor={Colors.WHITE}
-            bgColor={Colors.VIOLET_BUTTON}
-          />
-        </View>
+    <View style={styles.mainContainer}>
+      <StatusBar
+        barStyle='dark-content'
+        backgroundColor='transparent'
+        translucent={true}
+      />
+      <ImageBackground source={BackgroundImage} style={styles.backgroundImage} />
+      <View style={styles.contentContainer}>
+        <Text style={styles.headerText}>
+          {languages.t('label.launch_screen3_header')}
+        </Text>
+        <Text style={styles.subheaderText}>
+          {languages.t('label.launch_screen3_subheader')}
+        </Text>
       </View>
-    </ImageBackground>
+      <View style={styles.footerContainer}>
+        <ButtonWrapper
+          title={languages.t('label.launch_next')}
+          onPress={() => {
+            props.navigation.replace('Onboarding4');
+          }}
+          buttonColor={Colors.WHITE}
+          bgColor={Colors.VIOLET_BUTTON}
+        />
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
-    height: '80%',
+    height: '100%',
+    top: '-10%',
     resizeMode: 'cover',
-    flex: 1,
-    backgroundColor: Colors.INTRO_WHITE_BG,
+    position: 'absolute',
   },
   mainContainer: {
     flex: 1,
+    backgroundColor: Colors.INTRO_WHITE_BG,
   },
   contentContainer: {
     width: width * 0.9,
