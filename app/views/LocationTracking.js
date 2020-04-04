@@ -26,6 +26,7 @@ import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
 import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
+import PushNotification from 'react-native-push-notification';
 import exportImage from './../assets/images/export.png';
 import ButtonWrapper from '../components/ButtonWrapper';
 import Pulse from 'react-native-pulse';
@@ -207,7 +208,15 @@ class LocationTracking extends Component {
                 // "publish_date_utc" (we should notify users if their authority is no longer functioning.)
                 // console.log('Received data from authority.url=', authority.url);
 
-                IntersectSet(responseJson.concern_points);
+                IntersectSet(responseJson.concern_points, dayBin => {
+                  console.log('asasasas');
+                  if (dayBin !== null) {
+                    PushNotification.localNotification({
+                      title: languages.t('label.push_at_risk_title'),
+                      message: languages.t('label.push_at_risk_message'),
+                    });
+                  }
+                });
               });
           }
         } else {
