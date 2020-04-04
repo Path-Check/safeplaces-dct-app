@@ -14,6 +14,7 @@ import OverlapScreen from './views/Overlap';
 import SettingsScreen from './views/Settings';
 import LicencesScreen from './views/Licenses';
 import NotificationScreen from './views/Notification';
+import MapLocation from './views/MapLocation';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
@@ -86,6 +87,11 @@ class Entry extends Component {
           <Stack.Screen
             name='Onboarding5'
             component={Onboarding5}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='MapLocation'
+            component={MapLocation}
             options={{ headerShown: false }}
           />
           <Stack.Screen

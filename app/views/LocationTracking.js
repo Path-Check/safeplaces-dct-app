@@ -491,7 +491,7 @@ class LocationTracking extends Component {
       <TouchableOpacity
         style={styles.settingsContainer}
         onPress={() => {
-          this.props.navigation.replace('SettingsScreen');
+          this.props.navigation.navigate('SettingsScreen');
           // THIS IS FOR TESTING - DELETE LATER
           // switch (this.state.currentState) {
           //   case StateEnum.NO_CONTACT:
@@ -568,11 +568,10 @@ class LocationTracking extends Component {
     let buttonLabel;
     let buttonFunction;
     if (this.state.currentState === StateEnum.NO_CONTACT) {
-      // TMP HACK FOR MI
+      // TODO: TMP HACK FOR MI
       buttonLabel = 'label.home_MASSIVE_HACK';
       buttonFunction = () => {
-        // jin put yo hacks in this slot bro
-        // this.props.navigation.replace('MAP HACK');
+        this.props.navigation.navigate('MapLocation');
       };
       // return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
