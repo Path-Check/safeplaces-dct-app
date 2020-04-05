@@ -46,63 +46,6 @@ class SettingsScreen extends Component {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  importButtonPressed() {}
-
-  getMapsImport() {
-    return (
-      <>
-        <View style={styles.section}>
-          <View style={styles.iconRowContainer}>
-            <SvgXml xml={googleMapsIcon} style={{ alignSelf: 'center' }} />
-            <Text style={styles.iconRowText}>
-              {languages.t('label.maps_import_title')}
-            </Text>
-          </View>
-          <View style={styles.sectionRowContainer}>
-            <Text style={styles.settingRowText}>
-              {languages.t('label.maps_import_text')}
-            </Text>
-          </View>
-          <ButtonWrapper
-            title={languages.t('label.maps_import_button_text')}
-            onPress={this.importButtonPressed.bind(this)}
-            buttonColor={Colors.VIOLET}
-            bgColor={Colors.WHITE}
-            borderColor={Colors.VIOLET}
-            buttonWidth={'100%'}
-          />
-          <View style={styles.sectionRowContainer}>
-            <Text style={styles.settingRowNoteText}>
-              {languages.t('label.maps_import_disclaimer')}
-            </Text>
-          </View>
-        </View>
-      </>
-    );
-  }
-
-  getSettingRow(text, icon, color) {
-    const renderIcon = () => {
-      return icon ? <SvgXml xml={icon} /> : null;
-    };
-    return (
-      <>
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('About')}
-          style={styles.sectionRowContainer}>
-          <Text
-            style={[
-              styles.settingRowText,
-              { color: color || Colors.VIOLET_TEXT },
-            ]}>
-            {languages.t(text)}
-          </Text>
-          {renderIcon()}
-        </TouchableOpacity>
-      </>
-    );
-  }
-
   render() {
     return (
       <>
@@ -120,34 +63,21 @@ class SettingsScreen extends Component {
               <SvgXml style={styles.backArrow} xml={backArrow} />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>
-              {languages.t('label.settings_title')}
+              {languages.t('label.about_title')}
             </Text>
           </View>
 
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.spacer} />
 
-            <View style={styles.fullDivider} />
-            <View style={styles.mainContainer}>{this.getMapsImport()}</View>
-            <View style={styles.fullDivider} />
-
             <View style={styles.spacer} />
-            <View style={styles.fullDivider} />
 
             <View style={styles.mainContainer}>
-              <View style={styles.section}>
-                {this.getSettingRow('label.about_title')}
-                <View style={styles.divider}></View>
-                {this.getSettingRow('label.licenses_title')}
-                <View style={styles.divider}></View>
-                {this.getSettingRow(
-                  'label.tested_positive_title',
-                  warning,
-                  Colors.RED_TEXT,
-                )}
-              </View>
+              <Text>{languages.t('label.commitment')}</Text>
+              <Text>{languages.t('label.commitment_para')}</Text>
+              <Text>{languages.t('label.team')}</Text>
+              <Text>{languages.t('label.team_para')}</Text>
             </View>
-            <View style={styles.fullDivider} />
           </ScrollView>
         </SafeAreaView>
       </>
@@ -194,6 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: '100%',
     backgroundColor: Colors.WHITE,
+    paddingHorizontal: 26,
   },
   section: {
     flexDirection: 'column',
