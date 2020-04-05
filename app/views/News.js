@@ -9,14 +9,16 @@ import {
   BackHandler,
   Dimensions,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
 import { GetStoreData } from '../helpers/General';
 import colors from '../constants/colors';
 import { WebView } from 'react-native-webview';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
-import Swiper from 'react-native-web-swiper';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -24,13 +26,13 @@ class NewsScreen extends Component {
   constructor(props) {
     super(props);
     let default_news = {
-      name: 'Safe Paths', // TODO: translate
+      name: 'Safe Paths News', // TODO: translate
       url: 'https://privatekit.mit.edu/views', // TODO: New
     };
     this.state = {
       visible: true,
       default_news: default_news,
-      newsUrls: [default_news],
+      newsUrls: [default_news, default_news],
       current_page: 0,
     };
   }
@@ -50,6 +52,30 @@ class NewsScreen extends Component {
     });
   }
 
+  _renderItem = item => {
+    console.log('Item', item);
+    return (
+      <View style={styles.singleNews}>
+        <View style={styles.singleNewsHead}>
+          <Text style={styles.singleNewsHeadText}>{item.item.name}</Text>
+        </View>
+        <WebView
+          source={{
+            uri: item.item.url,
+          }}
+          containerStyle={{
+            borderRadius: 12,
+          }}
+          cacheEnabled
+          onLoad={() =>
+            this.setState({
+              visible: false,
+            })
+          }
+        />
+      </View>
+    );
+  };
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
@@ -63,7 +89,10 @@ class NewsScreen extends Component {
         let arr = [];
 
         // TODO: using this as test data for now without assigning
-        arr.push({ name: 'Test', url: 'https://gpll.org' });
+        arr.push({
+          name: 'Haiti',
+          url: 'https://wmcelroy.wixsite.com/covidhaiti/kat',
+        });
         arr.push(this.state.default_news);
 
         console.log('name_news:', arr);
@@ -79,6 +108,7 @@ class NewsScreen extends Component {
   }
 
   render() {
+    console.log('News URL -', this.state.newsUrls);
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.headerContainer}>
@@ -92,34 +122,32 @@ class NewsScreen extends Component {
           </Text>
         </View>
 
-        <Swiper
-          onIndexChanged={index => this.setState({ current_page: index })}>
-          {this.state.newsUrls.map(data => (
-            <View style={[styles.slideContainer, styles.slide]}>
-              <Text>{data.name}</Text>
-            </View>
-          ))}
-        </Swiper>
-
-        <WebView
-          source={{
-            uri: this.state.newsUrls[this.state.current_page].url,
-          }}
-          style={{
-            marginTop: 15,
-          }}
-          onLoad={() => this.hideSpinner()}
-        />
-        {this.state.visible && (
-          <ActivityIndicator
-            style={{
-              position: 'absolute',
-              top: height / 2,
-              left: width / 2,
+        <View
+          style={{ backgroundColor: '#3A4CD7', flex: 1, paddingVertical: 24 }}>
+          <Carousel
+            ref={c => {
+              this._carousel = c;
             }}
-            size='large'
+            data={this.state.newsUrls}
+            renderItem={this._renderItem}
+            sliderWidth={width}
+            itemWidth={width * 0.85}
+            layout={'default'}
+            scrollEnabled
           />
-        )}
+
+          {this.state.visible && (
+            <ActivityIndicator
+              style={{
+                position: 'absolute',
+                top: height / 2,
+                left: width / 2,
+              }}
+              size='large'
+              color='black'
+            />
+          )}
+        </View>
       </SafeAreaView>
     );
   }
@@ -174,6 +202,39 @@ const styles = StyleSheet.create({
   slide: {
     height: 100,
     backgroundColor: 'rgba(20,20,200,0.3)',
+  },
+  sourceTouchable: {
+    marginRight: 20,
+    alignItems: 'center',
+    width: 180,
+    borderRadius: 6,
+    backgroundColor: '#3A4CD7',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+  },
+  sourceName: {
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: 'OpenSans-SemiBold',
+  },
+  singleNews: {
+    flexGrow: 1,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    alignSelf: 'center',
+    width: '100%',
+  },
+  singleNewsHead: {
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: 3,
+    marginBottom: 24,
+  },
+  singleNewsHeadText: {
+    fontSize: 16,
+    fontFamily: 'OpenSans-SemiBold',
   },
 });
 
