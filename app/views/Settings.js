@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  Linking,
   View,
   Text,
   TouchableOpacity,
   Dimensions,
-  Image,
   ScrollView,
   BackHandler,
-  ImageBackground,
   StatusBar,
 } from 'react-native';
 
@@ -48,18 +45,6 @@ class SettingsScreen extends Component {
 
   importButtonPressed() {
     console.log('importButton');
-  }
-
-  aboutButtonPressed() {
-    console.log('about');
-  }
-
-  eventHistoryButtonPressed() {
-    console.log('eventHistory');
-  }
-
-  licensesButtonPressed() {
-    console.log('licenses');
   }
 
   testedPositiveButtonPressed() {
@@ -116,14 +101,14 @@ class SettingsScreen extends Component {
     );
   }
 
-  getSettingRow(text, icon, color) {
+  getSettingRow(text, actionListener, icon, color) {
     const renderIcon = () => {
       return icon ? <SvgXml xml={icon} /> : null;
     };
     return (
       <>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('About')}
+          onPress={() => actionListener()}
           style={styles.sectionRowContainer}>
           <Text
             style={[
@@ -162,27 +147,26 @@ class SettingsScreen extends Component {
 
             <View style={styles.mainContainer}>
               <View style={styles.section}>
-                <TouchableOpacity onPress={() => this.aboutButtonPressed()}>
-                  {this.getSettingRow('label.about_title')}
-                </TouchableOpacity>
+                {this.getSettingRow('label.about_title', () => {
+                  this.props.navigation.navigate('About');
+                })}
                 <View style={styles.divider}></View>
-                <TouchableOpacity
-                  onPress={() => this.eventHistoryButtonPressed()}>
-                  {this.getSettingRow('label.event_history_title')}
-                </TouchableOpacity>
+                {this.getSettingRow('label.event_history_title', () => {
+                  this.props.navigation.navigate('Event History');
+                })}
                 <View style={styles.divider}></View>
-                <TouchableOpacity onPress={() => this.licensesButtonPressed()}>
-                  {this.getSettingRow('label.licenses_title')}
-                </TouchableOpacity>
+                {this.getSettingRow('label.licenses_title', () => {
+                  this.props.navigation.navigate('Event History');
+                })}
                 <View style={styles.divider}></View>
-                <TouchableOpacity
-                  onPress={() => this.testedPositiveButtonPressed()}>
-                  {this.getSettingRow(
-                    'label.tested_positive_title',
-                    warning,
-                    Colors.RED_TEXT,
-                  )}
-                </TouchableOpacity>
+                {this.getSettingRow(
+                  'label.tested_positive_title',
+                  () => {
+                    this.props.navigation.navigate('Event History');
+                  },
+                  warning,
+                  Colors.RED_TEXT,
+                )}
               </View>
             </View>
             <View style={styles.fullDivider} />
