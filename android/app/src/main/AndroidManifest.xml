@@ -22,7 +22,6 @@
       android:theme="@style/AppTheme">
       <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
-      <!-- Add this SplashActivity -->
       <activity
         android:name=".SplashActivity"
         android:theme="@style/SplashTheme"
