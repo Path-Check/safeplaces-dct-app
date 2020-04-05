@@ -8,8 +8,12 @@ const width = Dimensions.get('window').width;
 
 class ButtonWrapper extends React.Component {
   render() {
+    const additionalStyle = {};
+    if (this.props.buttonWidth) {
+      additionalStyle.width = this.props.buttonWidth;
+    }
     return (
-      <View style={styles.buttonContainer}>
+      <View style={[styles.buttonContainer, additionalStyle]}>
         <Button titleStyle={styles.primaryButtonText} {...this.props} />
       </View>
     );
@@ -42,6 +46,7 @@ ButtonWrapper.propTypes = {
   titleStyle: PropTypes.object,
   buttonStyle: PropTypes.object,
   borderColor: PropTypes.string,
+  buttonWidth: PropTypes.any,
 };
 
 export default ButtonWrapper;

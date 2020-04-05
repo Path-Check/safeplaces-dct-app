@@ -20,6 +20,7 @@ import Colors from '../constants/colors';
 import fontFamily from './../constants/fonts';
 import backArrow from './../assets/svgs/backArrow';
 import warning from './../assets/svgs/warning';
+import googleMapsIcon from './../assets/svgs/google-maps-logo';
 import { SvgXml } from 'react-native-svg';
 
 const width = Dimensions.get('window').width;
@@ -50,24 +51,32 @@ class SettingsScreen extends Component {
   getMapsImport() {
     return (
       <>
-        <Text style={styles.buttonText}>
-          {languages.t('label.maps_import_title')}
-        </Text>
-        <Text style={styles.buttonText}>
-          {languages.t('label.maps_import_text')}
-        </Text>
-        <View>
+        <View style={styles.section}>
+          <View style={styles.iconRowContainer}>
+            <SvgXml xml={googleMapsIcon} style={{ alignSelf: 'center' }} />
+            <Text style={styles.iconRowText}>
+              {languages.t('label.maps_import_title')}
+            </Text>
+          </View>
+          <View style={styles.sectionRowContainer}>
+            <Text style={styles.settingRowText}>
+              {languages.t('label.maps_import_text')}
+            </Text>
+          </View>
           <ButtonWrapper
             title={languages.t('label.maps_import_button_text')}
             onPress={this.importButtonPressed.bind(this)}
             buttonColor={Colors.VIOLET}
             bgColor={Colors.WHITE}
             borderColor={Colors.VIOLET}
+            buttonWidth={'100%'}
           />
+          <View style={styles.sectionRowContainer}>
+            <Text style={styles.settingRowNoteText}>
+              {languages.t('label.maps_import_disclaimer')}
+            </Text>
+          </View>
         </View>
-        <Text style={styles.buttonText}>
-          {languages.t('label.maps_import_disclaimer')}
-        </Text>
       </>
     );
   }
@@ -81,7 +90,7 @@ class SettingsScreen extends Component {
         <View style={styles.sectionRowContainer}>
           <Text
             style={[
-              styles.settingButtonText,
+              styles.settingRowText,
               { color: color || Colors.VIOLET_TEXT },
             ]}>
             {languages.t(text)}
@@ -113,32 +122,31 @@ class SettingsScreen extends Component {
             </Text>
           </View>
 
-          {/* <View style={styles.locationContainer}>
-            <View style={styles.section}>
-              <View style={styles.contentContainer}>
-                {this.getMapsImport()}
+          <ScrollView contentContainerStyle={styles.contentContainer}>
+            <View style={styles.spacer} />
+
+            <View style={styles.fullDivider} />
+            <View style={styles.mainContainer}>{this.getMapsImport()}</View>
+            <View style={styles.fullDivider} />
+
+            <View style={styles.spacer} />
+            <View style={styles.fullDivider} />
+
+            <View style={styles.mainContainer}>
+              <View style={styles.section}>
+                {this.getSettingRow('label.about_title')}
+                <View style={styles.divider}></View>
+                {this.getSettingRow('label.licenses_title')}
+                <View style={styles.divider}></View>
+                {this.getSettingRow(
+                  'label.tested_positive_title',
+                  warning,
+                  Colors.RED_TEXT,
+                )}
               </View>
             </View>
-          </View> */}
-
-          <View style={styles.spacer}></View>
-          <View style={styles.fullDivider}></View>
-
-          <View style={styles.mainContainer}>
-            <View style={styles.section}>
-              {this.getSettingRow('label.about_title')}
-              <View style={styles.divider}></View>
-              {this.getSettingRow('label.licenses_title')}
-              <View style={styles.divider}></View>
-              {this.getSettingRow(
-                'label.tested_positive_title',
-                warning,
-                Colors.RED_TEXT,
-              )}
-              <View style={styles.bottomDivider}></View>
-            </View>
-          </View>
-          <View style={styles.fullDivider}></View>
+            <View style={styles.fullDivider} />
+          </ScrollView>
         </SafeAreaView>
       </>
     );
@@ -158,7 +166,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: Colors.NAV_BAR_VIOLET,
-    // alignItems: 'center',
     backgroundColor: Colors.VIOLET,
   },
   headerTitle: {
@@ -172,7 +179,7 @@ const styles = StyleSheet.create({
   },
   backArrowTouchable: {
     width: 60,
-    height: 60,
+    height: 55,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1,
@@ -188,7 +195,7 @@ const styles = StyleSheet.create({
   },
   section: {
     flexDirection: 'column',
-    width: '90%',
+    width: '87.5%',
     alignSelf: 'center',
     backgroundColor: Colors.WHITE,
   },
@@ -198,9 +205,26 @@ const styles = StyleSheet.create({
     paddingVertical: '5%',
     backgroundColor: Colors.WHITE,
   },
-  settingButtonText: {
+  iconRowContainer: {
+    flexDirection: 'row',
+    paddingTop: '4%',
+  },
+  settingRowText: {
     color: Colors.VIOLET_TEXT,
-    fontSize: 16,
+    fontSize: 18,
+    fontFamily: fontFamily.primaryRegular,
+  },
+  settingRowNoteText: {
+    color: Colors.VIOLET_TEXT,
+    fontSize: 14,
+    opacity: 0.6,
+    fontFamily: fontFamily.primaryItalic,
+  },
+  iconRowText: {
+    color: Colors.VIOLET_TEXT,
+    fontSize: 21,
+    paddingLeft: 10,
+    alignSelf: 'center',
     fontFamily: fontFamily.primaryRegular,
   },
   divider: {
@@ -213,7 +237,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   spacer: {
-    marginVertical: '5%',
+    marginVertical: '2%',
   },
 });
 
