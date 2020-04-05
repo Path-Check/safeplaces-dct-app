@@ -133,6 +133,7 @@ class LocationTracking extends Component {
     BackHandler.exitApp(); // works best when the goBack is async
     return true;
   };
+
   export() {
     this.props.navigation.navigate('ExportScreen', {});
   }
@@ -181,26 +182,9 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('SettingsScreen', {});
   }
 
-  willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => LocationServices.start());
-    this.setState({
-      isLogging: true,
-    });
-  };
-
   notifications() {
     this.props.navigation.navigate('NotificationScreen', {});
   }
-
-  willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => {
-      LocationServices.start();
-      BroadcastingServices.start();
-    });
-    this.setState({
-      isLogging: true,
-    });
-  };
 
   setOptOut = () => {
     LocationServices.stop(this.props.navigation);
@@ -236,19 +220,25 @@ class LocationTracking extends Component {
             onSelect={() => {
               this.notifications();
             }}>
-            <Text style={styles.menuOptionText}>{languages.t('label.notifications')}</Text>
+            <Text style={styles.menuOptionText}>
+              {languages.t('label.notifications')}
+            </Text>
           </MenuOption>
           <MenuOption
             onSelect={() => {
               this.settings();
             }}>
-            <Text style={styles.menuOptionText}>{languages.t('label.settings')}</Text>
+            <Text style={styles.menuOptionText}>
+              {languages.t('label.settings')}
+            </Text>
           </MenuOption>
           <MenuOption
             onSelect={() => {
               this.licenses();
             }}>
-            <Text style={styles.menuOptionText}>{languages.t('label.licenses')}</Text>
+            <Text style={styles.menuOptionText}>
+              {languages.t('label.licenses')}
+            </Text>
           </MenuOption>
         </MenuOptions>
       </Menu>
