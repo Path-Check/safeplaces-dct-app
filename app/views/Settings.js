@@ -12,6 +12,7 @@ import {
   BackHandler,
   ImageBackground,
   StatusBar,
+  Platform,
 } from 'react-native';
 
 import languages from './../locales/languages';
@@ -108,8 +109,10 @@ class SettingsScreen extends Component {
       <>
         <StatusBar
           barStyle='light-content'
-          backgroundColor='transparent'
-          translucent={true}
+          backgroundColor={
+            Platform.OS === 'ios' ? 'transparent' : Colors.VIOLET
+          }
+          translucent={Platform.OS === 'ios' ? true : false}
         />
         <SafeAreaView style={styles.topSafeAreaContainer} />
         <SafeAreaView style={styles.bottomSafeAreaContainer}>
