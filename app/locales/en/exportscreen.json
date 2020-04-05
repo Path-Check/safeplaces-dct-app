@@ -1,11 +1,12 @@
 {
-    "export_para_1":"You can share your location trail with anyone using the Share button below.  Once you press the button it will ask you with whom and how you want to share it.",
-    "export_para_2":"Location is shared as a simple list of times and coordinates, no other identifying information.",
+    "export_para_1":"Please do your part in stopping COVID-19 by sharing your location history with local authorities.",
+    "export_para_2":"Location is shared as a simple list of times and places, no personal information is shared.",
     "share":"SHARE",
     "data_hint":"Log has data of",
     "data_covers":"Total time the log covers:",
     "data_count":"Number of points logged:",
     "data_last_updated":"Time since last updated:",
     "no_data": "No data",
-    "less_than_one_minute": "less than 1 minute"
+    "less_than_one_minute": "less than 1 minute",
+    "share_location_data":"Share location data"
 }
