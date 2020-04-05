@@ -153,6 +153,10 @@ class SettingsScreen extends Component {
                   this.props.navigation.navigate('AboutScreen');
                 })}
                 <View style={styles.divider}></View>
+                {this.getSettingRow('label.news_title', () => {
+                  this.props.navigation.navigate('NewsScreen');
+                })}
+                <View style={styles.divider}></View>
                 {this.getSettingRow('label.event_history_title', () => {
                   this.props.navigation.navigate('NotificationScreen');
                 })}

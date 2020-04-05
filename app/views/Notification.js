@@ -41,12 +41,12 @@ class NotificationScreen extends Component {
 
   backToMain() {
     this.resetState();
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   handleBackPress = () => {
     this.resetState();
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
     return true;
   };
 
