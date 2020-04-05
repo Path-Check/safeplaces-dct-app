@@ -1,35 +1,16 @@
 import React, { Component } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Linking,
-  View,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  Image,
-  ScrollView,
-  BackHandler,
-  ImageBackground,
-  StatusBar,
-  Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, ScrollView, BackHandler } from 'react-native';
 
 import languages from './../locales/languages';
-import ButtonWrapper from '../components/ButtonWrapper';
+import { isPlatformiOS } from './../Util';
 import Colors from '../constants/colors';
 import fontFamily from './../constants/fonts';
-import backArrow from './../assets/svgs/backArrow';
 import team from './../assets/svgs/team';
-
-import warning from './../assets/svgs/warning';
-import googleMapsIcon from './../assets/svgs/google-maps-logo';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { SvgXml } from 'react-native-svg';
 import lock from '../assets/svgs/lock';
 
-const width = Dimensions.get('window').width;
-
-class SettingsScreen extends Component {
+class AboutScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,89 +33,36 @@ class SettingsScreen extends Component {
 
   render() {
     return (
-      <>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor={
-            Platform.OS === 'ios' ? 'transparent' : Colors.VIOLET
-          }
-          translucent={Platform.OS === 'ios' ? true : false}
-        />
-        <SafeAreaView style={styles.topSafeAreaContainer} />
-        <SafeAreaView style={styles.bottomSafeAreaContainer}>
-          <View style={styles.headerContainer}>
-            <TouchableOpacity
-              style={styles.backArrowTouchable}
-              onPress={() => this.backToMain()}>
-              <SvgXml style={styles.backArrow} xml={backArrow} />
-            </TouchableOpacity>
-            <Text style={styles.headerTitle}>
-              {languages.t('label.about_title')}
-            </Text>
-          </View>
+      <NavigationBarWrapper
+        title={languages.t('label.about_title')}
+        onBackPress={this.backToMain.bind(this)}>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <View style={styles.spacer} />
 
-          <ScrollView contentContainerStyle={styles.contentContainer}>
-            <View style={styles.spacer} />
+          <View style={styles.spacer} />
 
-            <View style={styles.spacer} />
+          <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
+          <Text style={styles.aboutSectionTitles}>
+            {languages.t('label.commitment')}
+          </Text>
+          <Text style={styles.aboutSectionPara}>
+            {languages.t('label.commitment_para')}
+          </Text>
 
-            <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
-            <Text style={styles.aboutSectionTitles}>
-              {languages.t('label.commitment')}
-            </Text>
-            <Text style={styles.aboutSectionPara}>
-              {languages.t('label.commitment_para')}
-            </Text>
-
-            <SvgXml style={styles.aboutSectionIconTeam} xml={team} />
-            <Text style={styles.aboutSectionTitles}>
-              {languages.t('label.team')}
-            </Text>
-            <Text style={styles.aboutSectionPara}>
-              {languages.t('label.team_para')}
-            </Text>
-          </ScrollView>
-        </SafeAreaView>
-      </>
+          <SvgXml style={styles.aboutSectionIconTeam} xml={team} />
+          <Text style={styles.aboutSectionTitles}>
+            {languages.t('label.team')}
+          </Text>
+          <Text style={styles.aboutSectionPara}>
+            {languages.t('label.team_para')}
+          </Text>
+        </ScrollView>
+      </NavigationBarWrapper>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  topSafeAreaContainer: {
-    flex: 0,
-    backgroundColor: Colors.VIOLET,
-  },
-  bottomSafeAreaContainer: {
-    flex: 1,
-    backgroundColor: Colors.INTRO_WHITE_BG,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.NAV_BAR_VIOLET,
-    backgroundColor: Colors.VIOLET,
-  },
-  headerTitle: {
-    fontSize: 26,
-    fontFamily: fontFamily.primaryMedium,
-    color: Colors.WHITE,
-    position: 'absolute',
-    alignSelf: 'center',
-    textAlign: 'center',
-    width: '100%',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 55,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-  },
-  backArrow: {
-    height: 18,
-    width: 18,
-  },
   contentContainer: {
     flexDirection: 'column',
     width: '100%',
@@ -186,4 +114,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SettingsScreen;
+export default AboutScreen;
