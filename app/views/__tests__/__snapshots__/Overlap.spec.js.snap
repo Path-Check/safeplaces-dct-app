@@ -61,7 +61,7 @@ exports[`renders correctly 1`] = `
     <Text
       style={
         Object {
-          "fontFamily": "OpenSans-Bold",
+          "fontFamily": "IBMPlexSans",
           "fontSize": 24,
         }
       }
@@ -231,7 +231,7 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "color": "#ffffff",
-            "fontFamily": "OpenSans-Bold",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 14,
             "letterSpacing": 0,
             "lineHeight": 19,
@@ -245,7 +245,7 @@ exports[`renders correctly 1`] = `
     <Text
       style={
         Object {
-          "fontFamily": "OpenSans-Regular",
+          "fontFamily": "IBMPlexSans",
           "fontSize": 16,
           "lineHeight": 24,
           "marginTop": 12,
@@ -273,7 +273,7 @@ The light purple circles represent the public dataset
       style={
         Array [
           Object {
-            "fontFamily": "OpenSans-Regular",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 12,
             "lineHeight": 24,
             "marginTop": 12,

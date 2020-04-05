@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AppState,
   SafeAreaView,
   StyleSheet,
   Linking,
@@ -10,6 +11,8 @@ import {
   Image,
   ScrollView,
   BackHandler,
+  ImageBackground,
+  StatusBar,
 } from 'react-native';
 import {
   Menu,
@@ -17,36 +20,124 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import BackgroundImage from './../assets/images/launchScreenBackground.png';
+import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
 import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
+import PushNotification from 'react-native-push-notification';
 import exportImage from './../assets/images/export.png';
-import news from './../assets/images/newspaper.png';
-import kebabIcon from './../assets/images/kebabIcon.png';
-import pkLogo from './../assets/images/PKLogo.png';
-import FontWeights from '../constants/fontWeights';
 import ButtonWrapper from '../components/ButtonWrapper';
-import IconLocked from '../assets/svgs/intro-locked';
-import { SvgXml } from 'react-native-svg';
+import { isPlatformiOS } from './../Util';
+import Pulse from 'react-native-pulse';
+import {
+  check,
+  PERMISSIONS,
+  RESULTS,
+  openSettings,
+} from 'react-native-permissions';
 
 import { IntersectSet } from '../helpers/Intersect';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
+import { SvgXml } from 'react-native-svg';
+import StateAtRisk from './../assets/svgs/stateAtRisk';
+import StateNoContact from './../assets/svgs/stateNoContact';
+import StateUnknown from './../assets/svgs/stateUnknown';
+import SettingsGear from './../assets/svgs/settingsGear';
+import fontFamily from '../constants/fonts';
+
+const StateEnum = {
+  UNKNOWN: 0,
+  AT_RISK: 1,
+  NO_CONTACT: 2,
+};
+
+const StateIcon = ({ title, status, size, ...props }) => {
+  let icon;
+  switch (status) {
+    case StateEnum.UNKNOWN:
+      icon = StateUnknown;
+      break;
+    case StateEnum.AT_RISK:
+      icon = StateAtRisk;
+      break;
+    case StateEnum.NO_CONTACT:
+      icon = StateNoContact;
+      break;
+  }
+  return (
+    <SvgXml xml={icon} width={size ? size : 80} height={size ? size : 80} />
+  );
+};
+
 const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 class LocationTracking extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      appState: AppState.currentState,
       timer_intersect: null,
       isLogging: '',
+      currentState: StateEnum.NO_CONTACT,
     };
+
+    this.checkCurrentState();
+  }
+
+  /*  Check current state
+        1) determine if user has correct location permissions
+        2) check if they are at risk -> checkIfUserAtRisk()
+        3) set state accordingly */
+  checkCurrentState() {
+    // NEED TO TEST ON ANDROID
+    let locationPermission;
+    if (isPlatformiOS()) {
+      locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
+    } else {
+      locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+    }
+    let locationDisabled = true;
+    check(locationPermission)
+      .then(result => {
+        switch (result) {
+          case RESULTS.GRANTED:
+            this.checkIfUserAtRisk();
+            return;
+          case RESULTS.UNAVAILABLE:
+          case RESULTS.BLOCKED:
+            console.log('NO LOCATION');
+            this.setState({ currentState: StateEnum.UNKNOWN });
+        }
+      })
+      .catch(error => {
+        console.log('error checking location: ' + error);
+      });
+  }
+
+  checkIfUserAtRisk() {
+    // already set on 12h timer, but run when this screen opens too
+    this.intersect_tick();
+
+    GetStoreData('CROSSED_PATHS').then(dayBin => {
+      if (dayBin === null) {
+        console.log("Can't find crossed paths");
+        this.setState({ currentState: StateEnum.NO_CONTACT });
+      } else {
+        console.log('Found crossed paths');
+        this.setState({ currentState: StateEnum.AT_RISK });
+        // dayBinParsed = JSON.parse(dayBin);
+      }
+    });
   }
 
   componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     GetStoreData('PARTICIPATE')
       .then(isParticipating => {
@@ -73,7 +164,6 @@ class LocationTracking extends Component {
 
   intersect_tick = () => {
     // This function is called once every 12 hours.  It should do several things:
-
     // Get the user's health authorities
     GetStoreData('HEALTH_AUTHORITIES')
       .then(authority_list => {
@@ -113,7 +203,15 @@ class LocationTracking extends Component {
                 // "publish_date_utc" (we should notify users if their authority is no longer functioning.)
                 // console.log('Received data from authority.url=', authority.url);
 
-                IntersectSet(responseJson.concern_points);
+                IntersectSet(responseJson.concern_points, dayBin => {
+                  console.log('asasasas');
+                  if (dayBin !== null) {
+                    PushNotification.localNotification({
+                      title: languages.t('label.push_at_risk_title'),
+                      message: languages.t('label.push_at_risk_message'),
+                    });
+                  }
+                });
               });
           }
         } else {
@@ -125,9 +223,23 @@ class LocationTracking extends Component {
   };
 
   componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
     clearInterval(this.state.timer_intersect);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
+
+  // need to check state again if new foreground event
+  // e.g. if user changed location permission
+  _handleAppStateChange = nextAppState => {
+    if (
+      this.state.appState.match(/inactive|background/) &&
+      nextAppState === 'active'
+    ) {
+      console.log('checkIfLocationDisabled');
+      this.checkCurrentState();
+    }
+    this.setState({ appState: nextAppState });
+  };
 
   handleBackPress = () => {
     BackHandler.exitApp(); // works best when the goBack is async
@@ -194,17 +306,36 @@ class LocationTracking extends Component {
     });
   };
 
-  // create component
+  getBackground() {
+    if (this.state.currentState === StateEnum.AT_RISK) {
+      return BackgroundImageAtRisk;
+    }
+    return BackgroundImage;
+  }
 
-  getMenuItem = () => {
+  getSettings() {
     return (
-      <Menu
-        style={{
-          position: 'absolute',
-          alignSelf: 'flex-end',
-          zIndex: 10,
-          marginTop: '5.5%',
+      <TouchableOpacity
+        style={styles.settingsContainer}
+        onPress={() => {
+          this.props.navigation.navigate('SettingsScreen');
+          // THIS IS FOR TESTING - DELETE LATER
+          // switch (this.state.currentState) {
+          //   case StateEnum.NO_CONTACT:
+          //     this.setState({ isLogging: '', currentState: StateEnum.AT_RISK });
+          //     break;
+          //   case StateEnum.AT_RISK:
+          //     this.setState({ isLogging: '', currentState: StateEnum.UNKNOWN });
+          //     break;
+          //   case StateEnum.UNKNOWN:
+          //     this.setState({
+          //       isLogging: '',
+          //       currentState: StateEnum.NO_CONTACT,
+          //     });
+          //     break;
+          // }
         }}>
+<<<<<<< HEAD
         <MenuTrigger style={{ marginTop: 14 }}>
           <Image
             source={kebabIcon}
@@ -274,317 +405,173 @@ class LocationTracking extends Component {
           onPress={() => this.overlap()}
           bgColor={Colors.GRAY_BUTTON}
           toBgColor={Colors.Gray_TO_BUTTON}
+=======
+        <Image resizeMode={'contain'} />
+        <SvgXml
+          style={styles.stateIcon}
+          xml={SettingsGear}
+          width={32}
+          height={32}
+>>>>>>> 2cc314d662656a95d5e6fea8a69e27abc4844ad5
         />
-        <Text style={styles.sectionDescription}>
-          {languages.t('label.home_check_risk_description')}
-        </Text>
-        */}
-      </>
+      </TouchableOpacity>
     );
-  };
+  }
 
-  getNotTrackingComponent = () => {
-    return (
-      <>
-        <Image
-          source={pkLogo}
-          style={{
-            width: 132,
-            height: 164.4,
-            alignSelf: 'center',
-            marginTop: 15,
-            marginBottom: 30,
-            opacity: 0.3,
-          }}
-        />
-        <ButtonWrapper
-          title={languages.t('label.home_start_tracking')}
-          onPress={() => this.willParticipate()}
-          bgColor={Colors.BLUE_BUTTON}
-          toBgColor={Colors.BLUE_TO_BUTTON}
-        />
-        <Text style={styles.sectionDescription}>
-          {languages.t('label.home_start_tracking_description')}
-        </Text>
-      </>
-    );
-  };
-
-  getActionButtons = () => {
-    if (!this.state.isLogging) {
-      return;
-    }
-    return (
-      <View style={styles.actionButtonsView}>
-        <TouchableOpacity
-          onPress={() => this.import()}
-          style={styles.actionButtonsTouchable}>
-          <Image
-            style={styles.actionButtonImage}
-            source={exportImage}
-            resizeMode={'contain'}
+  getPulseIfNeeded() {
+    if (this.state.currentState == StateEnum.NO_CONTACT) {
+      return (
+        <View style={styles.pulseContainer}>
+          <Pulse
+            image={{ exportImage }}
+            color={Colors.PULSE_WHITE}
+            numPulses={3}
+            diameter={400}
+            speed={20}
+            duration={2000}
           />
-          <Text style={styles.actionButtonText}>
-            {languages.t('label.import')}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => this.export()}
-          style={styles.actionButtonsTouchable}>
-          <Image
-            style={[
-              styles.actionButtonImage,
-              { transform: [{ rotate: '180deg' }] },
-            ]}
-            source={exportImage}
-            resizeMode={'contain'}
-          />
-          <Text style={styles.actionButtonText}>
-            {languages.t('label.export')}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => this.news()}
-          style={styles.actionButtonsTouchable}>
-          <Image
-            style={styles.actionButtonImage}
-            source={news}
-            resizeMode={'contain'}
-          />
-          <Text style={styles.actionButtonText}>
-            {languages.t('label.news')}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
-  getPrivacyNote = () => {
-    if (this.state.isLogging) {
-      return;
-    }
-    return (
-      <View style={styles.privacyNoteContainer}>
-        <View style={styles.privacyHeaderContainer}>
-          <SvgXml xml={IconLocked} width={15} height={15} />
-          <Text style={styles.privacyHeader}>
-            {languages.t('label.home_privacy_header')}
-          </Text>
+          <StateIcon size={height} status={this.state.currentState} />
         </View>
-        <Text style={styles.privacySubheader}>
-          {languages.t('label.home_privacy_subheader')}
-        </Text>
-      </View>
-    );
-  };
-
-  getFooter = () => {
+      );
+    }
     return (
-      <View style={styles.footer}>
-        <Text>
-          <Text
-            style={[
-              styles.footerDescription,
-              { marginLeft: 0, marginRight: 0 },
-            ]}>
-            {languages.t('label.url_info')}{' '}
-          </Text>
-          <Text
-            style={[
-              styles.footerDescription,
-              { color: Colors.BLUE_LINK, marginLeft: 0, marginRight: 0 },
-            ]}
-            onPress={() => Linking.openURL('https://privatekit.mit.edu')}>
-            {languages.t('label.home_footer')}
-          </Text>
-        </Text>
+      <View style={styles.pulseContainer}>
+        <StateIcon size={height} status={this.state.currentState} />
       </View>
     );
-  };
+  }
+
+  getMainText() {
+    switch (this.state.currentState) {
+      case StateEnum.NO_CONTACT:
+        return 'label.home_no_contact_header';
+      case StateEnum.AT_RISK:
+        return 'label.home_at_risk_header';
+      case StateEnum.UNKNOWN:
+        return 'label.home_unknown_header';
+    }
+  }
+
+  getSubText() {
+    switch (this.state.currentState) {
+      case StateEnum.NO_CONTACT:
+        return 'label.home_no_contact_subtext';
+      case StateEnum.AT_RISK:
+        return 'label.home_at_risk_subtext';
+      case StateEnum.UNKNOWN:
+        return 'label.home_unknown_subtext';
+    }
+  }
+
+  getCTAIfNeeded() {
+    let buttonLabel;
+    let buttonFunction;
+    if (this.state.currentState === StateEnum.NO_CONTACT) {
+      // TMP HACK FOR MI
+      // buttonLabel = 'label.home_MASSIVE_HACK';
+      // buttonFunction = () => {
+      //   this.props.navigation.navigate('MapLocation');
+      // };
+      return;
+    } else if (this.state.currentState === StateEnum.AT_RISK) {
+      buttonLabel = 'label.home_next_steps';
+      buttonFunction = () => {};
+    } else if (this.state.currentState === StateEnum.UNKNOWN) {
+      buttonLabel = 'label.home_enable_location';
+      buttonFunction = () => {
+        openSettings();
+      };
+    }
+    return (
+      <View style={styles.buttonContainer}>
+        <ButtonWrapper
+          title={languages.t(buttonLabel)}
+          onPress={() => {
+            buttonFunction();
+          }}
+          buttonColor={Colors.VIOLET}
+          bgColor={Colors.WHITE}
+        />
+      </View>
+    );
+  }
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <ScrollView contentContainerStyle={styles.main}>
-          {this.getMenuItem()}
-
-          <Text style={styles.headerTitle}>
-            {languages.t('label.private_kit')}
-          </Text>
-
-          <View style={styles.buttonsAndLogoView}>
-            {this.state.isLogging
-              ? this.getTrackingComponent()
-              : this.getNotTrackingComponent()}
+      <ImageBackground
+        source={this.getBackground()}
+        style={styles.backgroundImage}>
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent={true}
+        />
+        {this.getPulseIfNeeded()}
+        <View style={styles.mainContainer}>
+          <View style={styles.contentContainer}>
+            <Text style={styles.mainText}>
+              {languages.t(this.getMainText())}
+            </Text>
+            <Text style={styles.subheaderText}>
+              {languages.t(this.getSubText())}
+            </Text>
+            {this.getCTAIfNeeded()}
           </View>
-
-          {this.getActionButtons()}
-
-          {this.getPrivacyNote()}
-
-          {this.getFooter()}
-        </ScrollView>
-      </SafeAreaView>
+        </View>
+        {this.getSettings()}
+      </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
+  backgroundImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: Colors.PRIMARY_TEXT,
-    backgroundColor: Colors.WHITE,
   },
-  headerTitle: {
-    textAlign: 'center',
-    fontSize: 38,
-    padding: 0,
-    fontWeight: FontWeights.BOLD,
-    marginTop: '7%',
-  },
-  subHeaderTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 22,
-    padding: 5,
-  },
-  main: {
+  mainContainer: {
+    top: '50%',
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '90%',
   },
-  buttonsAndLogoView: {
-    flex: 6,
-    justifyContent: 'flex-start',
-  },
-  actionButtonsView: {
-    width: width * 0.7866,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flex: 2,
-    alignItems: 'center',
-    marginBottom: -10,
-  },
-  footer: {
-    textAlign: 'center',
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingBottom: 10,
-    flexDirection: 'row',
-  },
-  sectionDescription: {
-    fontSize: 13,
-    fontWeight: FontWeights.MEDIUM,
-    marginLeft: '12%',
-    marginRight: '12%',
-    marginTop: '2%',
-    marginBottom: '2%',
-    textAlign: 'center',
-    color: '#6A6A6A',
-  },
-  footerDescription: {
-    fontSize: 12,
-    fontWeight: FontWeights.REGULAR,
-    marginLeft: '12%',
-    marginRight: '12%',
-    marginTop: '2%',
-    marginBottom: '2%',
-    textAlign: 'center',
-    color: '#6A6A6A',
-  },
-  startLoggingButtonTouchable: {
-    borderRadius: 12,
-    backgroundColor: '#665eff',
-    height: 52,
+  contentContainer: {
+    width: width * 0.6,
+    flex: 1,
     alignSelf: 'center',
-    width: width * 0.7866,
-    justifyContent: 'center',
   },
-  startLoggingButtonText: {
-    fontWeight: FontWeights.BOLD,
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: '#ffffff',
-  },
-  stopLoggingButtonTouchable: {
-    borderRadius: 12,
-    backgroundColor: '#fd4a4a',
-    height: 52,
-    alignSelf: 'center',
-    width: width * 0.7866,
-    justifyContent: 'center',
-  },
-  stopLoggingButtonText: {
-    fontWeight: FontWeights.BOLD,
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: '#ffffff',
-  },
-  actionButtonsTouchable: {
-    height: 76,
-    borderRadius: 8,
-    backgroundColor: '#454f63',
-    width: width * 0.23,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  actionButtonImage: {
-    height: 21.6,
-    width: 32.2,
-  },
-  actionButtonText: {
-    opacity: 0.56,
-    fontWeight: FontWeights.BOLD,
-    fontSize: 12,
-    lineHeight: 17,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: '#ffffff',
-    marginTop: 6,
-  },
-  menuOptionText: {
-    fontWeight: FontWeights.REGULAR,
-    fontSize: 14,
-    padding: 10,
-  },
-  privacyNoteContainer: {
-    backgroundColor: '#15D09B',
-    width: width * 0.7,
-    borderRadius: 12,
-    paddingVertical: 8,
-  },
-  privacyHeaderContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: '2%',
-  },
-  privacyHeader: {
-    fontWeight: FontWeights.SEMIBOLD,
-    fontSize: 16,
-    marginLeft: 5,
-    textAlign: 'center',
-    color: 'white',
-  },
-  privacySubheader: {
-    fontSize: 12,
-    textAlign: 'center',
-    color: 'white',
-    margin: '2%',
-    marginLeft: '5%',
+  settingsContainer: {
+    position: 'absolute',
+    top: 0,
+    marginTop: '14%',
     marginRight: '5%',
+    alignSelf: 'flex-end',
+  },
+  buttonContainer: {
+    top: '7%',
+  },
+  pulseContainer: {
+    position: 'absolute',
+    resizeMode: 'contain',
+    top: '-13%',
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  mainText: {
+    textAlign: 'center',
+    lineHeight: 34,
+    color: Colors.WHITE,
+    fontSize: 26,
+    fontFamily: fontFamily.primaryMedium,
+  },
+  subheaderText: {
+    marginTop: '5%',
+    textAlign: 'center',
+    lineHeight: 24.5,
+    color: Colors.WHITE,
+    fontSize: 18,
+    fontFamily: fontFamily.primaryRegular,
   },
 });
 

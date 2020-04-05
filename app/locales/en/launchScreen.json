@@ -1,0 +1,30 @@
+{
+  "launch_screen1_header": "The way back to normal starts here.",
+  "launch_get_started": "Get Started",
+  "launch_next": "Next",
+  "launch_set_up_phone": "Set up my phone",
+  "launch_enable_location": "Enable Location",
+  "launch_enable_notif": "Enable Notifications",
+  "launch_finish_set_up": "Finish Setup",
+
+  "launch_location_access": "Location access",
+  "launch_notification_access": "Allow notifications",
+
+  "launch_screen2_header": "Get notified if you come across anyone diagnosed with COVID-19.",
+  "launch_screen2_subheader": "Learn what to do next if you are at risk.",
+
+  "launch_screen3_header": "If you test positive, you can share anonymized data to help others.",
+  "launch_screen3_subheader": "Do your part to keep the entire community safe.",
+
+  "launch_screen4_header": "Your data is only saved on your phone. Never shared.",
+  "launch_screen4_subheader": "If you test positive, you alone can choose to share location info with health officials.",
+
+  "launch_location_header": "To remember where you go, your phone needs to save your location.",
+  "launch_location_subheader": "Don’t worry, information never leaves your device unless you explicitly ask to do so.",
+
+  "launch_notif_header": "Notifications will let you know if you cross paths with an infected person.",
+  "launch_notif_subheader": "We won't bother you except to share updates on your potential exposure risks.",
+
+  "launch_done_header": "All finished",
+  "launch_done_subheader": "You’re ready to roll. Remember, you can always update your preferences later."
+}

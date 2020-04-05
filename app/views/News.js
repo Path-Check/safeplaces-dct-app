@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  Image,
-  View,
-  Text,
-  TouchableOpacity,
   BackHandler,
   Dimensions,
   ActivityIndicator,
@@ -13,8 +8,10 @@ import {
 
 import colors from '../constants/colors';
 import { WebView } from 'react-native-webview';
-import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
+import fontFamily from '../constants/fonts';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -25,11 +22,11 @@ class NewsScreen extends Component {
   }
 
   backToMain() {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   handleBackPress = () => {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
     return true;
   };
 
@@ -47,21 +44,11 @@ class NewsScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.latest_news')}
-          </Text>
-        </View>
-
+      <NavigationBarWrapper
+        title={languages.t('label.latest_news')}
+        onBackPress={this.backToMain.bind(this)}>
         <WebView
           source={{ uri: 'https://privatekit.mit.edu/views' }}
-          style={{ marginTop: 15 }}
           onLoad={() => this.hideSpinner()}
         />
         {this.state.visible && (
@@ -70,7 +57,7 @@ class NewsScreen extends Component {
             size='large'
           />
         )}
-      </SafeAreaView>
+      </NavigationBarWrapper>
     );
   }
 }
@@ -89,33 +76,12 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
   },
-  headerContainer: {
-    flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
-  },
-  backArrow: {
-    height: 18,
-    width: 18.48,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
-  },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
     textAlignVertical: 'center',
     marginTop: 12,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
 });
 

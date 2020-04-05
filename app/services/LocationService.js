@@ -1,9 +1,10 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import { Alert, Platform, Linking } from 'react-native';
+import { Alert, Linking } from 'react-native';
 import { PERMISSIONS, check, RESULTS, request } from 'react-native-permissions';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
+import { isPlatformAndroid } from '../Util';
 import languages from '../locales/languages';
 
 let instanceCount = 0;
@@ -155,7 +156,7 @@ export default class LocationServices {
       });
     });
 
-    if (Platform.OS === 'android') {
+    if (isPlatformAndroid()) {
       // This feature only is present on Android.
       BackgroundGeolocation.headlessTask(async event => {
         // Application was shutdown, but the headless mechanism allows us
@@ -203,25 +204,25 @@ export default class LocationServices {
 
       if (status !== BackgroundGeolocation.AUTHORIZED) {
         // we need to set delay or otherwise alert may not be shown
-        setTimeout(
-          () =>
-            Alert.alert(
-              languages.t('label.require_location_information_title'),
-              languages.t('label.require_location_information_message'),
-              [
-                {
-                  text: languages.t('label.yes'),
-                  onPress: () => BackgroundGeolocation.showAppSettings(),
-                },
-                {
-                  text: languages.t('label.no'),
-                  onPress: () => console.log('No Pressed'),
-                  style: 'cancel',
-                },
-              ],
-            ),
-          1000,
-        );
+        // setTimeout(
+        //   () =>
+        //     Alert.alert(
+        //       languages.t('label.require_location_information_title'),
+        //       languages.t('label.require_location_information_message'),
+        //       [
+        //         {
+        //           text: languages.t('label.yes'),
+        //           onPress: () => BackgroundGeolocation.showAppSettings(),
+        //         },
+        //         {
+        //           text: languages.t('label.no'),
+        //           onPress: () => console.log('No Pressed'),
+        //           style: 'cancel',
+        //         },
+        //       ],
+        //     ),
+        //   1000,
+        // );
       } else {
         BackgroundGeolocation.start(); //triggers start on start event
 
@@ -279,53 +280,53 @@ export default class LocationServices {
 
       if (!status.locationServicesEnabled) {
         // we need to set delay or otherwise alert may not be shown
-        setTimeout(
-          () =>
-            Alert.alert(
-              languages.t('label.require_location_services_title'),
-              languages.t('label.require_location_services_message'),
-              [
-                {
-                  text: languages.t('label.yes'),
-                  onPress: () => {
-                    if (Platform.OS === 'android') {
-                      // showLocationSettings() only works for android
-                      BackgroundGeolocation.showLocationSettings();
-                    } else {
-                      Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
-                    }
-                  },
-                },
-                {
-                  text: languages.t('label.no'),
-                  onPress: () => console.log('No Pressed'),
-                  style: 'cancel',
-                },
-              ],
-            ),
-          1000,
-        );
+        // setTimeout(
+        //   () =>
+        //     Alert.alert(
+        //       languages.t('label.require_location_services_title'),
+        //       languages.t('label.require_location_services_message'),
+        //       [
+        //         {
+        //           text: languages.t('label.yes'),
+        //           onPress: () => {
+        //             if (isPlatformAndroid()) {
+        //               // showLocationSettings() only works for android
+        //               BackgroundGeolocation.showLocationSettings();
+        //             } else {
+        //               Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
+        //             }
+        //           },
+        //         },
+        //         {
+        //           text: languages.t('label.no'),
+        //           onPress: () => console.log('No Pressed'),
+        //           style: 'cancel',
+        //         },
+        //       ],
+        //     ),
+        //   1000,
+        // );
       } else if (!status.authorization) {
         // we need to set delay or otherwise alert may not be shown
-        setTimeout(
-          () =>
-            Alert.alert(
-              languages.t('label.require_location_information_title'),
-              languages.t('label.require_location_information_message'),
-              [
-                {
-                  text: languages.t('label.yes'),
-                  onPress: () => BackgroundGeolocation.showAppSettings(),
-                },
-                {
-                  text: languages.t('label.no'),
-                  onPress: () => console.log('No Pressed'),
-                  style: 'cancel',
-                },
-              ],
-            ),
-          1000,
-        );
+        // setTimeout(
+        //   () =>
+        //     Alert.alert(
+        //       languages.t('label.require_location_information_title'),
+        //       languages.t('label.require_location_information_message'),
+        //       [
+        //         {
+        //           text: languages.t('label.yes'),
+        //           onPress: () => BackgroundGeolocation.showAppSettings(),
+        //         },
+        //         {
+        //           text: languages.t('label.no'),
+        //           onPress: () => console.log('No Pressed'),
+        //           style: 'cancel',
+        //         },
+        //       ],
+        //     ),
+        //   1000,
+        // );
       }
       // else if (!status.isRunning) {
       // } // commented as it was not being used

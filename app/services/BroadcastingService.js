@@ -1,11 +1,10 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { Alert, Platform } from 'react-native';
+import { Alert } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import UUIDGenerator from 'react-native-uuid-generator';
-import Moment from 'moment';
-
 import AndroidBLEAdvertiserModule from 'react-native-ble-advertiser';
 import { NativeEventEmitter, NativeModules } from 'react-native';
+import { isPlatformAndroid, nowStr } from '../Util';
 
 var currentUUID = null;
 var onDeviceFound = null;
@@ -18,10 +17,6 @@ const c1_HOUR = 1000 * 60 * 60;
 
 const MANUFACTURER_ID = 0xff;
 const MANUFACTURER_DATA = [12, 23, 56];
-
-function nowStr() {
-  return Moment(new Date()).format('H:mm');
-}
 
 /*
  * Check if the contact is new in the last 5 mins.
@@ -264,7 +259,7 @@ export default class BroadcastingServices {
 
   static start() {
     // Do not run on iOS for now.
-    if (Platform.OS === 'android') {
+    if (isPlatformAndroid()) {
       const eventEmitter = new NativeEventEmitter(
         NativeModules.AndroidBLEAdvertiserModule,
       );
@@ -305,7 +300,7 @@ export default class BroadcastingServices {
   }
 
   static stop() {
-    if (Platform.OS === 'android') {
+    if (isPlatformAndroid()) {
       if (onBTStatusChange) {
         onBTStatusChange.remove();
         onBTStatusChange = null;

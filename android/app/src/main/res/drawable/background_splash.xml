@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@color/app_bg"/>
+
+    <!-- TODO: linear-gradient(245.21deg, #6979F8 0%, #3A4CD7 100%); -->
+
+    <item
+        android:width="140dp"
+        android:height="177dp"
+        android:drawable="@mipmap/splash_icon"
+        android:gravity="center" />
+
+</layer-list>
+

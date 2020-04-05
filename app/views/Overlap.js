@@ -25,6 +25,7 @@ import greenMarker from '../assets/images/user-green.png';
 import backArrow from '../assets/images/backArrow.png';
 import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
+import fontFamily from '../constants/fonts';
 
 const width = Dimensions.get('window').width;
 
@@ -273,11 +274,11 @@ function OverlapScreen() {
   };
 
   function backToMain() {
-    navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   function handleBackPress() {
-    navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
     return true;
   }
 
@@ -376,7 +377,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryRegular,
   },
   subHeaderTitle: {
     textAlign: 'center',
@@ -410,7 +411,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryRegular,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -453,13 +454,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginTop: 12,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   sectionFooter: {
     fontSize: 12,
     lineHeight: 24,
     marginTop: 12,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   footer: {
     textAlign: 'center',
