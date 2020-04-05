@@ -45,81 +45,97 @@ i18next.init({
       translation: {
         label: enlabels,
       },
+      label: 'English',
     },
     de: {
       translation: {
         label: delabels,
       },
+      label: 'Deutsch',
     },
     hi: {
       translation: {
         label: hilabels,
       },
+      label: 'हिन्दी',
     },
     fr: {
       translation: {
         label: frlabels,
       },
+      label: 'Français',
     },
     it: {
       translation: {
         label: itlabels,
       },
+      label: 'Italiano',
     },
     pt: {
       translation: {
         label: ptlabels,
       },
+      label: 'Português',
     },
     mr: {
       translation: {
         label: mrlabels,
       },
+      label: 'मराठी',
     },
     nl: {
       translation: {
         label: nllabels,
       },
+      label: 'Nederlands',
     },
     ht: {
       translation: {
         label: htlabels,
       },
+      label: 'Kreyòl ayisyen',
     },
     pt_BR: {
       translation: {
         label: pt_BRlabels,
       },
+      label: 'Portugues do Brasil',
     },
     kn: {
       translation: {
         label: knlabels,
       },
+      label: 'ಕನ್ನಡ',
     },
     es: {
       translation: {
         label: eslabels,
       },
+      label: 'Español',
     },
     ur: {
       translation: {
         label: urlabels,
       },
+      label: 'اردو',
     },
     ca: {
       translation: {
         label: calabels,
       },
+      label: 'Català',
     },
     gj: {
       translation: {
         label: gjlabels,
       },
+      label: 'ગુજરાતી',
     },
     cs: {
       translation: {
         label: cslabels,
       },
+      label: 'Ceština',
     },
   },
 });

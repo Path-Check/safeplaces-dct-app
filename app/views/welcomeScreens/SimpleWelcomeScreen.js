@@ -1,13 +1,5 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  Linking,
-} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, Dimensions, Image, StyleSheet } from 'react-native';
 const width = Dimensions.get('window').width;
 import IconLogo from './../../assets/images/PKLogo.png';
 import IconGlobe from './../../assets/svgs/intro-globe';
@@ -15,6 +7,7 @@ import IconLocked from './../../assets/svgs/intro-locked';
 import IconSiren from './../../assets/svgs/intro-siren';
 import languages from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
+import NativePicker from '../../components/NativePicker';
 import Colors from '../../constants/colors';
 import FontWeights from '../../constants/fontWeights';
 import { SvgXml } from 'react-native-svg';
@@ -31,56 +24,141 @@ const DescriptionComponent = ({ icon, header, subheader, ...props }) => (
 
 const ICON_SIZE = 35;
 
-const SimpleWelcomeScreen = props => {
-  return (
-    <View style={styles.mainContainer}>
-      <View style={styles.infoCard}>
-        <View style={styles.imageContainer}>
-          <Image source={IconLogo} style={styles.infoCardImage} />
-        </View>
-        <Text style={styles.infoCardHeadText}>
-          {languages.t('label.private_kit')}
-        </Text>
-        <Text style={styles.infoCardSubheadText}>
-          {languages.t('label.intro_subtitle')}
-        </Text>
-        <View style={styles.descriptionsContainer}>
-          <DescriptionComponent
-            icon={
-              <SvgXml xml={IconGlobe} width={ICON_SIZE} height={ICON_SIZE} />
-            }
-            header={languages.t('label.intro_header_0')}
-            subheader={languages.t('label.intro_subheader_0')}
-          />
-          <DescriptionComponent
-            icon={
-              <SvgXml xml={IconLocked} width={ICON_SIZE} height={ICON_SIZE} />
-            }
-            header={languages.t('label.intro_header_1')}
-            subheader={languages.t('label.intro_subheader_1')}
-          />
-          <DescriptionComponent
-            icon={
-              <SvgXml xml={IconSiren} width={ICON_SIZE} height={ICON_SIZE} />
-            }
-            header={languages.t('label.intro_header_2')}
-            subheader={languages.t('label.intro_subheader_2')}
-          />
-        </View>
-      </View>
+const localesList = [
+  {
+    label: 'Català',
+    value: 'ca',
+  },
+  {
+    label: 'Ceština',
+    value: 'cs',
+  },
+  {
+    label: 'Deutsch',
+    value: 'de',
+  },
+  {
+    label: 'English',
+    value: 'en',
+  },
+  {
+    label: 'Español',
+    value: 'es',
+  },
+  {
+    label: 'Français',
+    value: 'fr',
+  },
+  {
+    label: 'ગુજરાતી',
+    value: 'gj',
+  },
+  {
+    label: 'हिन्दी',
+    value: 'hi',
+  },
+  {
+    label: 'Kreyòl ayisyen',
+    value: 'ht',
+  },
+  {
+    label: 'Italiano',
+    value: 'it',
+  },
+  {
+    label: 'ಕನ್ನಡ',
+    value: 'kn',
+  },
+  {
+    label: 'मराठी',
+    value: 'mr',
+  },
+  {
+    label: 'Nederlands',
+    value: 'nl',
+  },
+  {
+    label: 'Português',
+    value: 'pt',
+  },
+  {
+    label: 'Portugues do Brasil',
+    value: 'pt_BR',
+  },
+  {
+    label: 'اردو',
+    value: 'ur',
+  },
+];
 
-      <ButtonWrapper
-        title={languages.t('label.intro_get_started')}
-        onPress={() => {
-          props.navigation.replace('LocationTrackingScreen');
-          props.navigation.navigate('LocationTrackingScreen');
-        }}
-        bgColor={Colors.BLUE_BUTTON}
-        toBgColor={Colors.BLUE_TO_BUTTON}
-      />
-    </View>
-  );
-};
+class SimpleWelcomeScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      localeSelected: 'en',
+    };
+  }
+
+  render() {
+    return (
+      <View style={styles.mainContainer}>
+        <NativePicker
+          items={localesList}
+          value={this.state.language}
+          onValueChange={(itemValue, itemIndex) => {
+            this.setState({ language: itemValue });
+            console.log("Here's language data test:");
+            console.log(languages.options.resources['en'].label);
+          }}
+        />
+        <View style={styles.infoCard}>
+          <View style={styles.imageContainer}>
+            <Image source={IconLogo} style={styles.infoCardImage} />
+          </View>
+          <Text style={styles.infoCardHeadText}>
+            {languages.t('label.private_kit')}
+          </Text>
+          <Text style={styles.infoCardSubheadText}>
+            {languages.t('label.intro_subtitle')}
+          </Text>
+          <View style={styles.descriptionsContainer}>
+            <DescriptionComponent
+              icon={
+                <SvgXml xml={IconGlobe} width={ICON_SIZE} height={ICON_SIZE} />
+              }
+              header={languages.t('label.intro_header_0')}
+              subheader={languages.t('label.intro_subheader_0')}
+            />
+            <DescriptionComponent
+              icon={
+                <SvgXml xml={IconLocked} width={ICON_SIZE} height={ICON_SIZE} />
+              }
+              header={languages.t('label.intro_header_1')}
+              subheader={languages.t('label.intro_subheader_1')}
+            />
+            <DescriptionComponent
+              icon={
+                <SvgXml xml={IconSiren} width={ICON_SIZE} height={ICON_SIZE} />
+              }
+              header={languages.t('label.intro_header_2')}
+              subheader={languages.t('label.intro_subheader_2')}
+            />
+          </View>
+        </View>
+
+        <ButtonWrapper
+          title={languages.t('label.intro_get_started')}
+          onPress={() => {
+            this.props.navigation.replace('LocationTrackingScreen');
+            this.props.navigation.navigate('LocationTrackingScreen');
+          }}
+          bgColor={Colors.BLUE_BUTTON}
+          toBgColor={Colors.BLUE_TO_BUTTON}
+        />
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -165,6 +243,11 @@ const styles = StyleSheet.create({
     fontWeight: FontWeights.LIGHT,
     fontSize: 14,
     color: '#6A6A6A',
+  },
+  menuOptionText: {
+    fontWeight: FontWeights.REGULAR,
+    fontSize: 14,
+    padding: 10,
   },
 });
 
