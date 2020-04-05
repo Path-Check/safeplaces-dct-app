@@ -15,6 +15,7 @@ import {
 import languages from './../locales/languages';
 import ButtonWrapper from '../components/ButtonWrapper';
 import Colors from '../constants/colors';
+import { isPlatformiOS } from './../Util';
 import fontFamily from './../constants/fonts';
 import backArrow from './../assets/svgs/backArrow';
 import warning from './../assets/svgs/warning';
@@ -129,10 +130,8 @@ class SettingsScreen extends Component {
       <>
         <StatusBar
           barStyle='light-content'
-          backgroundColor={
-            Platform.OS === 'ios' ? 'transparent' : Colors.VIOLET
-          }
-          translucent={Platform.OS === 'ios' ? true : false}
+          backgroundColor={Colors.VIOLET}
+          translucent={isPlatformiOS()}
         />
         <SafeAreaView style={styles.topSafeAreaContainer} />
         <SafeAreaView style={styles.bottomSafeAreaContainer}>
