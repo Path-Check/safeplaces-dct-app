@@ -234,15 +234,21 @@ class LocationTracking extends Component {
         <MenuOptions>
           <MenuOption
             onSelect={() => {
-              this.licenses();
-            }}>
-            <Text style={styles.menuOptionText}>{languages.t('label.licenses')}</Text>
-          </MenuOption>
-          <MenuOption
-            onSelect={() => {
               this.notifications();
             }}>
             <Text style={styles.menuOptionText}>{languages.t('label.notifications')}</Text>
+          </MenuOption>
+          <MenuOption
+            onSelect={() => {
+              this.settings();
+            }}>
+            <Text style={styles.menuOptionText}>{languages.t('label.settings')}</Text>
+          </MenuOption>
+          <MenuOption
+            onSelect={() => {
+              this.licenses();
+            }}>
+            <Text style={styles.menuOptionText}>{languages.t('label.licenses')}</Text>
           </MenuOption>
         </MenuOptions>
       </Menu>
@@ -259,7 +265,7 @@ class LocationTracking extends Component {
             height: 164.4,
             alignSelf: 'center',
             marginTop: 15,
-            marginBottom: 15,
+            marginBottom: 25,
           }}
         />
         <ButtonWrapper
@@ -272,6 +278,7 @@ class LocationTracking extends Component {
           {languages.t('label.home_stop_tracking_description')}
         </Text>
 
+        {/* 
         <ButtonWrapper
           title={languages.t('label.home_check_risk')}
           onPress={() => this.overlap()}
@@ -281,6 +288,7 @@ class LocationTracking extends Component {
         <Text style={styles.sectionDescription}>
           {languages.t('label.home_check_risk_description')}
         </Text>
+        */}
       </>
     );
   };
