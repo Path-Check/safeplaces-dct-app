@@ -46,7 +46,42 @@ class SettingsScreen extends Component {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  importButtonPressed() {}
+  importButtonPressed() {
+    console.log('importButton');
+  }
+
+  aboutButtonPressed() {
+    console.log('about');
+  }
+
+  eventHistoryButtonPressed() {
+    console.log('eventHistory');
+  }
+
+  licensesButtonPressed() {
+    console.log('licenses');
+  }
+
+  testedPositiveButtonPressed() {
+    console.log('testedPositive');
+  }
+
+  getHeader() {
+    return (
+      <>
+        <View style={styles.headerContainer}>
+          <TouchableOpacity
+            style={styles.backArrowTouchable}
+            onPress={() => this.backToMain()}>
+            <SvgXml style={styles.backArrow} xml={backArrow} />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>
+            {languages.t('label.settings_title')}
+          </Text>
+        </View>
+      </>
+    );
+  }
 
   getMapsImport() {
     return (
@@ -111,16 +146,7 @@ class SettingsScreen extends Component {
         />
         <SafeAreaView style={styles.topSafeAreaContainer} />
         <SafeAreaView style={styles.bottomSafeAreaContainer}>
-          <View style={styles.headerContainer}>
-            <TouchableOpacity
-              style={styles.backArrowTouchable}
-              onPress={() => this.backToMain()}>
-              <SvgXml style={styles.backArrow} xml={backArrow} />
-            </TouchableOpacity>
-            <Text style={styles.headerTitle}>
-              {languages.t('label.settings_title')}
-            </Text>
-          </View>
+          {this.getHeader()}
 
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.spacer} />
@@ -134,15 +160,27 @@ class SettingsScreen extends Component {
 
             <View style={styles.mainContainer}>
               <View style={styles.section}>
-                {this.getSettingRow('label.about_title')}
+                <TouchableOpacity onPress={() => this.aboutButtonPressed()}>
+                  {this.getSettingRow('label.about_title')}
+                </TouchableOpacity>
                 <View style={styles.divider}></View>
-                {this.getSettingRow('label.licenses_title')}
+                <TouchableOpacity
+                  onPress={() => this.eventHistoryButtonPressed()}>
+                  {this.getSettingRow('label.event_history_title')}
+                </TouchableOpacity>
                 <View style={styles.divider}></View>
-                {this.getSettingRow(
-                  'label.tested_positive_title',
-                  warning,
-                  Colors.RED_TEXT,
-                )}
+                <TouchableOpacity onPress={() => this.licensesButtonPressed()}>
+                  {this.getSettingRow('label.licenses_title')}
+                </TouchableOpacity>
+                <View style={styles.divider}></View>
+                <TouchableOpacity
+                  onPress={() => this.testedPositiveButtonPressed()}>
+                  {this.getSettingRow(
+                    'label.tested_positive_title',
+                    warning,
+                    Colors.RED_TEXT,
+                  )}
+                </TouchableOpacity>
               </View>
             </View>
             <View style={styles.fullDivider} />
