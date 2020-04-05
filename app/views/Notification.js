@@ -26,6 +26,7 @@ import {
   VictoryTooltip,
 } from 'victory-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -150,18 +151,9 @@ class NotificationScreen extends Component {
     const hasExposure = this.state.data.some(point => point.y > 0);
 
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.notifications')}
-          </Text>
-        </View>
-
+      <NavigationBarWrapper
+        title={languages.t('label.notifications')}
+        onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
           <Text style={styles.pageTitle}>
             {languages.t('label.notification_title')}
@@ -268,7 +260,7 @@ class NotificationScreen extends Component {
             </>
           )}
         </View>
-      </SafeAreaView>
+      </NavigationBarWrapper>
     );
   }
 }
