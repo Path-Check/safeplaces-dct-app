@@ -19,6 +19,9 @@ import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
+
 class ImportScreen extends Component {
   constructor(props) {
     super(props);
@@ -50,18 +53,9 @@ class ImportScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.import_title')}
-          </Text>
-        </View>
-
+      <NavigationBarWrapper
+        title={languages.t('label.import_title')}
+        onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
           <View style={styles.subHeaderTitle}>
             <Text style={styles.sectionDescription}>
@@ -92,7 +86,7 @@ class ImportScreen extends Component {
             )}
           </View>
         </View>
-      </SafeAreaView>
+      </NavigationBarWrapper>
     );
   }
 }
