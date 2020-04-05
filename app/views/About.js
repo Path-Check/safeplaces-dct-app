@@ -12,6 +12,7 @@ import {
   BackHandler,
   ImageBackground,
   StatusBar,
+  Platform,
 } from 'react-native';
 
 import languages from './../locales/languages';
@@ -19,9 +20,12 @@ import ButtonWrapper from '../components/ButtonWrapper';
 import Colors from '../constants/colors';
 import fontFamily from './../constants/fonts';
 import backArrow from './../assets/svgs/backArrow';
+import team from './../assets/svgs/team';
+
 import warning from './../assets/svgs/warning';
 import googleMapsIcon from './../assets/svgs/google-maps-logo';
 import { SvgXml } from 'react-native-svg';
+import lock from '../assets/svgs/lock';
 
 const width = Dimensions.get('window').width;
 
@@ -51,8 +55,10 @@ class SettingsScreen extends Component {
       <>
         <StatusBar
           barStyle='light-content'
-          backgroundColor='transparent'
-          translucent={true}
+          backgroundColor={
+            Platform.OS === 'ios' ? 'transparent' : Colors.VIOLET
+          }
+          translucent={Platform.OS === 'ios' ? true : false}
         />
         <SafeAreaView style={styles.topSafeAreaContainer} />
         <SafeAreaView style={styles.bottomSafeAreaContainer}>
@@ -72,12 +78,15 @@ class SettingsScreen extends Component {
 
             <View style={styles.spacer} />
 
+            <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
             <Text style={styles.aboutSectionTitles}>
               {languages.t('label.commitment')}
             </Text>
             <Text style={styles.aboutSectionPara}>
               {languages.t('label.commitment_para')}
             </Text>
+
+            <SvgXml style={styles.aboutSectionIconTeam} xml={team} />
             <Text style={styles.aboutSectionTitles}>
               {languages.t('label.team')}
             </Text>
@@ -138,11 +147,21 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: Colors.WHITE,
   },
+  aboutSectionIconTeam: {
+    width: 40.38,
+    height: 19,
+    marginTop: 36,
+  },
+  aboutSectionIconLock: {
+    width: 20,
+    height: 26.67,
+    marginTop: 36,
+  },
   aboutSectionTitles: {
     color: Colors.VIOLET_TEXT,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
-    marginTop: 52,
+    marginTop: 9,
   },
   aboutSectionPara: {
     color: Colors.VIOLET_TEXT,
