@@ -131,7 +131,8 @@ class SettingsScreen extends Component {
         title={languages.t('label.settings_title')}
         onBackPress={this.backToMain.bind(this)}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View style={styles.spacer} />
+          {/* TODO FIX THIS - don't remove */}
+          {/* <View style={styles.spacer} /> */}
 
           <View style={styles.fullDivider} />
           <View style={styles.mainContainer}>{this.getMapsImport()}</View>
@@ -142,8 +143,6 @@ class SettingsScreen extends Component {
 
           <View style={styles.mainContainer}>
             <View style={styles.section}>
-              {this.getSettingRow('label.about_title', this.aboutButtonPressed)}
-              <View style={styles.divider}></View>
               {this.getSettingRow(
                 'label.choose_provider_title',
                 this.chooseProviderScreenButtonPressed,
@@ -157,15 +156,25 @@ class SettingsScreen extends Component {
               )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
-                'label.licenses_title',
-                this.licensesButtonPressed,
-              )}
-              <View style={styles.divider}></View>
-              {this.getSettingRow(
                 'label.tested_positive_title',
                 this.testedPositiveButtonPressed,
                 warning,
                 Colors.RED_TEXT,
+              )}
+            </View>
+          </View>
+          <View style={styles.fullDivider} />
+
+          <View style={styles.spacer} />
+
+          <View style={styles.fullDivider} />
+          <View style={styles.mainContainer}>
+            <View style={styles.section}>
+              {this.getSettingRow('label.about_title', this.aboutButtonPressed)}
+              <View style={styles.divider}></View>
+              {this.getSettingRow(
+                'label.licenses_title',
+                this.licensesButtonPressed,
               )}
             </View>
           </View>
