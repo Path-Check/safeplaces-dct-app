@@ -46,8 +46,7 @@ class SettingsScreen extends Component {
   }
 
   importButtonPressed() {
-    console.log('importButtonPressed');
-    // this.props.navigation.navigate('Import');
+    this.props.navigation.navigate('ImportScreen');
   }
 
   aboutButtonPressed() {
