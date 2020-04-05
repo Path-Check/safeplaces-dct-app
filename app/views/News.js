@@ -11,17 +11,28 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
+import { GetStoreData } from '../helpers/General';
 import colors from '../constants/colors';
 import { WebView } from 'react-native-webview';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
+import Swiper from 'react-native-web-swiper';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 class NewsScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { visible: true };
+    let default_news = {
+      name: 'Safe Paths', // TODO: translate
+      url: 'https://privatekit.mit.edu/views', // TODO: New
+    };
+    this.state = {
+      visible: true,
+      default_news: default_news,
+      newsUrls: [default_news],
+      current_page: 0,
+    };
   }
 
   backToMain() {
@@ -34,11 +45,33 @@ class NewsScreen extends Component {
   };
 
   hideSpinner() {
-    this.setState({ visible: false });
+    this.setState({
+      visible: false,
+    });
   }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+
+    GetStoreData('AUTHORITY_NEWS')
+      .then(name_news => {
+        console.log('name_news:', name_news);
+
+        // Bring in news from the various authorities.  This is
+        // pulled down from the web when you subscribe to an Authority
+        // on the Settings page.
+        let arr = [];
+
+        // TODO: using this as test data for now without assigning
+        arr.push({ name: 'Test', url: 'https://gpll.org' });
+        arr.push(this.state.default_news);
+
+        console.log('name_news:', arr);
+        this.setState({
+          newsUrls: arr,
+        });
+      })
+      .catch(error => console.log(error));
   }
 
   componentWillUnmount() {
@@ -59,14 +92,31 @@ class NewsScreen extends Component {
           </Text>
         </View>
 
+        <Swiper
+          onIndexChanged={index => this.setState({ current_page: index })}>
+          {this.state.newsUrls.map(data => (
+            <View style={[styles.slideContainer, styles.slide]}>
+              <Text>{data.name}</Text>
+            </View>
+          ))}
+        </Swiper>
+
         <WebView
-          source={{ uri: 'https://privatekit.mit.edu/views' }}
-          style={{ marginTop: 15 }}
+          source={{
+            uri: this.state.newsUrls[this.state.current_page].url,
+          }}
+          style={{
+            marginTop: 15,
+          }}
           onLoad={() => this.hideSpinner()}
         />
         {this.state.visible && (
           <ActivityIndicator
-            style={{ position: 'absolute', top: height / 2, left: width / 2 }}
+            style={{
+              position: 'absolute',
+              top: height / 2,
+              left: width / 2,
+            }}
             size='large'
           />
         )}
@@ -84,7 +134,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.WHITE,
   },
   web: {
-    flex: 1,
     width: '100%',
     margin: 0,
     padding: 0,
@@ -116,6 +165,15 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     marginTop: 12,
     fontFamily: 'OpenSans-Regular',
+  },
+  slideContainer: {
+    height: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  slide: {
+    height: 100,
+    backgroundColor: 'rgba(20,20,200,0.3)',
   },
 });
 

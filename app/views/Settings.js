@@ -30,6 +30,10 @@ import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import languages from './../locales/languages';
 
+// This is the definitive listing of registered Healthcare Authorities.  To
+// register, just submit a PR against that list on Github.  Users are also
+// free to type in a non-official authority.
+//
 const authoritiesListURL =
   'https://raw.githubusercontent.com/tripleblindmarket/safe-places/develop/healthcare-authorities.yaml';
 
