@@ -52,6 +52,9 @@ class Entry extends Component {
           initialRouteName='InitialScreen'
           screenOptions={{
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            cardStyle: {
+              backgroundColor: 'transparent', // prevent white flash on Android
+            },
           }}>
           {this.state.initialRouteName === 'true' ? (
             <Stack.Screen
