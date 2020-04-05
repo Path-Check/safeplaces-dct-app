@@ -46,12 +46,12 @@ class SettingsScreen extends Component {
   }
 
   importButtonPressed() {
-    console.log('importButton');
+    this.props.navigation.navigate('ImportScreen');
   }
 
-  testedPositiveButtonPressed() {
-    console.log('testedPositive');
-  }
+  // testedPositiveButtonPressed() {
+  //   console.log('testedPositive');
+  // }
 
   getHeader() {
     return (
@@ -150,21 +150,21 @@ class SettingsScreen extends Component {
             <View style={styles.mainContainer}>
               <View style={styles.section}>
                 {this.getSettingRow('label.about_title', () => {
-                  this.props.navigation.navigate('About');
+                  this.props.navigation.navigate('AboutScreen');
                 })}
                 <View style={styles.divider}></View>
                 {this.getSettingRow('label.event_history_title', () => {
-                  this.props.navigation.navigate('Event History');
+                  this.props.navigation.navigate('NotificationScreen');
                 })}
                 <View style={styles.divider}></View>
                 {this.getSettingRow('label.licenses_title', () => {
-                  this.props.navigation.navigate('Event History');
+                  this.props.navigation.navigate('LicensesScreen');
                 })}
                 <View style={styles.divider}></View>
                 {this.getSettingRow(
                   'label.tested_positive_title',
                   () => {
-                    this.props.navigation.navigate('Event History');
+                    this.props.navigation.navigate('ExportScreen');
                   },
                   warning,
                   Colors.RED_TEXT,
