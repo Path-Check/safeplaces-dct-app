@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">PrivateKit</string>
+    <!-- Shown on app info, app switcher, etc -->
+    <string name="app_name">COVID Safe Paths</string>
+
+    <!-- Shown below icon on launcher only -->
+    <string name="app_name_short">Safe Paths</string>
 </resources>
