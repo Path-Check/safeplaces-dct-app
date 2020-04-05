@@ -72,12 +72,18 @@ class SettingsScreen extends Component {
 
             <View style={styles.spacer} />
 
-            <View style={styles.mainContainer}>
-              <Text>{languages.t('label.commitment')}</Text>
-              <Text>{languages.t('label.commitment_para')}</Text>
-              <Text>{languages.t('label.team')}</Text>
-              <Text>{languages.t('label.team_para')}</Text>
-            </View>
+            <Text style={styles.aboutSectionTitles}>
+              {languages.t('label.commitment')}
+            </Text>
+            <Text style={styles.aboutSectionPara}>
+              {languages.t('label.commitment_para')}
+            </Text>
+            <Text style={styles.aboutSectionTitles}>
+              {languages.t('label.team')}
+            </Text>
+            <Text style={styles.aboutSectionPara}>
+              {languages.t('label.team_para')}
+            </Text>
           </ScrollView>
         </SafeAreaView>
       </>
@@ -120,7 +126,7 @@ const styles = StyleSheet.create({
     height: 18,
     width: 18,
   },
-  mainContainer: {
+  contentContainer: {
     flexDirection: 'column',
     width: '100%',
     backgroundColor: Colors.WHITE,
@@ -132,31 +138,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: Colors.WHITE,
   },
-  sectionRowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: '5%',
-    backgroundColor: Colors.WHITE,
-  },
-  iconRowContainer: {
-    flexDirection: 'row',
-    paddingTop: '4%',
-  },
-  settingRowText: {
+  aboutSectionTitles: {
     color: Colors.VIOLET_TEXT,
-    fontSize: 18,
-    fontFamily: fontFamily.primaryRegular,
+    fontSize: 26,
+    fontFamily: fontFamily.primaryMedium,
+    marginTop: 52,
   },
-  settingRowNoteText: {
+  aboutSectionPara: {
     color: Colors.VIOLET_TEXT,
-    fontSize: 14,
-    opacity: 0.6,
-    fontFamily: fontFamily.primaryItalic,
-  },
-  iconRowText: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 21,
-    paddingLeft: 10,
+    fontSize: 16,
+    lineHeight: 22.5,
+    marginTop: 12,
     alignSelf: 'center',
     fontFamily: fontFamily.primaryRegular,
   },
