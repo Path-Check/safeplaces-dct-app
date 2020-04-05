@@ -11,7 +11,6 @@ const colors = {
   VIOLET: '#4051DB',
   RED: '#e74c3c',
   ORANGE: '#e67e22',
-  GREY_BG: '#E5E5E5',
   REG_BUTTON: '#428AF8',
   POS_BUTTON: '#32A852',
   NEG_BUTTON: '#F8262F',
