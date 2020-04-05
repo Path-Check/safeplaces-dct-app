@@ -117,6 +117,7 @@ jobs:
      working-directory: ./android
 
    - uses: actions/upload-artifact@v1
+     name: Upload APK artifact
      with:
        name: app-debug
        path: android/app/build/outputs/apk/debug/app-debug.apk
