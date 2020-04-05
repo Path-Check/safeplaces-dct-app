@@ -21,6 +21,7 @@ import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
 import AboutScreen from './views/About';
+import ChooseProviderScreen from './views/ChooseProviderScreen';
 
 import { GetStoreData, SetStoreData } from './helpers/General';
 
@@ -122,6 +123,11 @@ class Entry extends Component {
           <Stack.Screen
             name='SettingsScreen'
             component={SettingsScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ChooseProviderScreen'
+            component={ChooseProviderScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

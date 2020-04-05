@@ -36,7 +36,7 @@ const authoritiesListURL =
 
 const width = Dimensions.get('window').width;
 
-class SettingsScreen extends Component {
+class ChooseProviderScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -510,4 +510,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withMenuContext(SettingsScreen);
+export default withMenuContext(ChooseProviderScreen);

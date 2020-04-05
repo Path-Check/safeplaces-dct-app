@@ -53,6 +53,10 @@ class SettingsScreen extends Component {
     this.props.navigation.navigate('AboutScreen');
   }
 
+  chooseProviderScreenButtonPressed() {
+    this.props.navigation.navigate('ChooseProviderScreen');
+  }
+
   newsButtonPressed() {
     this.props.navigation.navigate('NewsScreen');
   }
@@ -168,6 +172,11 @@ class SettingsScreen extends Component {
                 {this.getSettingRow(
                   'label.about_title',
                   this.aboutButtonPressed,
+                )}
+                <View style={styles.divider}></View>
+                {this.getSettingRow(
+                  'label.choose_provider_title',
+                  this.chooseProviderScreenButtonPressed,
                 )}
                 <View style={styles.divider}></View>
                 {this.getSettingRow('label.news_title', this.newsButtonPressed)}

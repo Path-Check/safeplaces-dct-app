@@ -9,7 +9,8 @@ import launchScreenFile from './launchScreen.json';
 import locationService from './locationService.json';
 import settingsFile from './settingsScreen.json';
 import pushFile from './push.json';
-import about from './about.json';
+import aboutFile from './about.json';
+import chooseProviderFile from './chooseProvider.json';
 
 export default {
   ...intro,
@@ -23,4 +24,7 @@ export default {
   ...about,
   ...locationService,
   ...settingsFile,
+  ...pushFile,
+  ...aboutFile,
+  ...chooseProviderFile,
 };
