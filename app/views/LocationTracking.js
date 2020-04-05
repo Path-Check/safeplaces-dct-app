@@ -335,84 +335,12 @@ class LocationTracking extends Component {
           //     break;
           // }
         }}>
-<<<<<<< HEAD
-        <MenuTrigger style={{ marginTop: 14 }}>
-          <Image
-            source={kebabIcon}
-            style={{
-              width: 15,
-              height: 28,
-              padding: 14,
-            }}
-          />
-        </MenuTrigger>
-        <MenuOptions>
-          <MenuOption
-            onSelect={() => {
-              this.notifications();
-            }}>
-            <Text style={styles.menuOptionText}>
-              {languages.t('label.notifications')}
-            </Text>
-          </MenuOption>
-          <MenuOption
-            onSelect={() => {
-              this.settings();
-            }}>
-            <Text style={styles.menuOptionText}>
-              {languages.t('label.settings')}
-            </Text>
-          </MenuOption>
-          <MenuOption
-            onSelect={() => {
-              this.licenses();
-            }}>
-            <Text style={styles.menuOptionText}>
-              {languages.t('label.licenses')}
-            </Text>
-          </MenuOption>
-        </MenuOptions>
-      </Menu>
-    );
-  };
-
-  getTrackingComponent = () => {
-    return (
-      <>
-        <Image
-          source={pkLogo}
-          style={{
-            width: 132,
-            height: 164.4,
-            alignSelf: 'center',
-            marginTop: 15,
-            marginBottom: 25,
-          }}
-        />
-        <ButtonWrapper
-          title={languages.t('label.home_stop_tracking')}
-          onPress={() => this.setOptOut()}
-          bgColor={Colors.RED_BUTTON}
-          toBgColor={Colors.RED_TO_BUTTON}
-        />
-        <Text style={styles.sectionDescription}>
-          {languages.t('label.home_stop_tracking_description')}
-        </Text>
-
-        {/* 
-        <ButtonWrapper
-          title={languages.t('label.home_check_risk')}
-          onPress={() => this.overlap()}
-          bgColor={Colors.GRAY_BUTTON}
-          toBgColor={Colors.Gray_TO_BUTTON}
-=======
         <Image resizeMode={'contain'} />
         <SvgXml
           style={styles.stateIcon}
           xml={SettingsGear}
           width={32}
           height={32}
->>>>>>> 2cc314d662656a95d5e6fea8a69e27abc4844ad5
         />
       </TouchableOpacity>
     );
