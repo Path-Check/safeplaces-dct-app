@@ -71,7 +71,7 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              Licenses
+              Notifications
             </Text>
           </MenuOption>
           <MenuOption
@@ -86,7 +86,22 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              Notifications
+              Settings
+            </Text>
+          </MenuOption>
+          <MenuOption
+            onSelect={[Function]}
+          >
+            <Text
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                  "padding": 10,
+                }
+              }
+            >
+              Licenses
             </Text>
           </MenuOption>
         </MenuOptions>
@@ -102,7 +117,8 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        Private Kit
+        COVID
+Safe Paths
       </Text>
       <View
         style={
