@@ -163,7 +163,7 @@ if ! found_exe android-studio ; then
 
         echo "${BLUE}Adding environment variables to ${YELLOW}~/.profile_mobileapp${RESET}"
 
-        echo "# ==== Added by PrivateKit/mobileapp's dev_setup.sh ====" > ~/.profile_mobileapp
+        echo "# ==== Added by COVID Safe Paths dev_setup.sh ====" > ~/.profile_mobileapp
         if [[ "$OSTYPE" == "darwin"* ]] ; then
             echo "export ANDROID_SDK_ROOT=\$HOME/Library/Android/sdk" >> ~/.profile_mobileapp
         else
