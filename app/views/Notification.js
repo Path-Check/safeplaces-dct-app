@@ -29,6 +29,19 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+const max_exposure_window = 14; // Two weeks is the longest view that matters
+const bin_duration = 5; // each bin count represents a 5 minute period
+
+// Thresholds are the number of counts in the intersection bins (5 minute
+// timeframse) which are used to provide user interface hints.
+// TODO: These thresholds semi-arbitrary, this could use some medical research.
+const Threshold = {
+  HIGH: 96, // 96 * 5 minutes = eight hours
+  MEDIUM: 36, // 36 * 5 minutes = three hours
+  LOW: 12, // 12 * 5 minutes = one hour
+  LOWEST: 0, // 0 * 5 minutes = no known exposure!
+};
+
 var using_random_intersections = false;
 
 class NotificationScreen extends Component {
@@ -78,7 +91,8 @@ class NotificationScreen extends Component {
     }
   }
 
-  generate_random_intersections(length = 14) {
+  /* DEBUGGING TOOL -- handy for creating faux data
+  generate_random_intersections(length) {
     using_random_intersections = true;
     var dayBin = [];
     for (var i = 0; i < length; i++) {
@@ -89,6 +103,7 @@ class NotificationScreen extends Component {
     SetStoreData('CROSSED_PATHS', dayBin);
     this.refreshState();
   }
+  */
 
   getInitialState = async () => {
     GetStoreData('CROSSED_PATHS').then(dayBin => {
@@ -102,8 +117,12 @@ class NotificationScreen extends Component {
         this.setState({ dataAvailable: true });
         dayBinParsed = JSON.parse(dayBin);
 
-        // Don't display more than 14 days of crossing data
-        for (var i = 0; i < dayBinParsed.length && i < 28; i++) {
+        // Don't display more than two weeks of crossing data
+        for (
+          var i = 0;
+          i < dayBinParsed.length && i < max_exposure_window;
+          i++
+        ) {
           const val = dayBinParsed[i];
           data = { x: i, y: val, fill: this.colorfill(val) };
           crossed_path_data.push(data);
@@ -114,25 +133,21 @@ class NotificationScreen extends Component {
   };
 
   colorfill(data) {
-    var color = colors.BROWN;
-    if (data > 20) {
-      color = colors.YELLOW;
+    var color = colors.LOWEST_RISK;
+    if (data > Threshold.LOW) {
+      color = colors.LOWER_RISK;
     }
-    if (data > 50) {
-      color = colors.ORANGE;
+    if (data > Threshold.MEDIUM) {
+      color = colors.MIDDLE_RISK;
     }
-    if (data > 80) {
-      color = colors.RED;
+    if (data > Threshold.HIGH) {
+      color = colors.HIGHEST_RISK;
     }
     return color;
   }
 
   render() {
-    let hasExposure = false;
-    if (this.state.data)
-      for (var i = 0; i < this.state.data.length; i++) {
-        if (this.state.data[i].y > 0) hasExposure = true;
-      }
+    const hasExposure = this.state.data.some(point => point.y > 0);
 
     return (
       <SafeAreaView style={styles.container}>
@@ -160,7 +175,7 @@ class NotificationScreen extends Component {
                 dependentAxis={true}>
                 <VictoryAxis
                   dependentAxis={false}
-                  tickCount={14}
+                  tickCount={max_exposure_window}
                   tickFormat={t =>
                     t == 1
                       ? languages.t('label.notification_today')
@@ -194,7 +209,7 @@ class NotificationScreen extends Component {
               <ScrollView contentContainerStyle={styles.contentContainer}>
                 {this.state.data.map(data =>
                   data.y === 0 ? (
-                    data.x == 13 && !hasExposure ? (
+                    data.x == max_exposure_window - 1 && !hasExposure ? (
                       <Text style={styles.noExposure}>
                         No known exposures to COVID during the last two weeks.
                       </Text>
@@ -206,25 +221,25 @@ class NotificationScreen extends Component {
                       <Text
                         style={[
                           styles.notificationsText,
-                          data.y > 80
+                          data.y > Threshold.HIGH
                             ? styles.notificationsTextHigh
-                            : data.y > 50
+                            : data.y > Threshold.MEDIUM
                             ? styles.notificationsTextMedium
                             : null,
                         ]}>
                         {data.x == 0
                           ? languages.t(
                               'label.notifications_exposure_format_today',
-                              { exposureTime: data.y * 5 },
+                              { exposureTime: data.y * bin_duration },
                             )
                           : data.x == 1
                           ? languages.t(
                               'label.notifications_exposure_format_yesterday',
-                              { exposureTime: data.y * 5 },
+                              { exposureTime: data.y * bin_duration },
                             )
                           : languages.t('label.notifications_exposure_format', {
                               daysAgo: data.x,
-                              exposureTime: data.y * 5,
+                              exposureTime: data.y * bin_duration,
                             })}
                       </Text>
                     </View>
@@ -244,7 +259,7 @@ class NotificationScreen extends Component {
                 style={styles.buttonTouchable}
                 onPress={
                   () =>
-                    this.goToSettings() /* DEBUG: this.generate_random_intersections() */
+                    this.goToSettings() /* DEBUGGING TOOL: this.generate_random_intersections(max_exposure_window) */
                 }>
                 <Text style={styles.buttonText}>
                   {languages.t('label.notification_random_data_button')}
@@ -376,16 +391,16 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Regular',
   },
   notificationsTextHigh: {
-    color: colors.RED,
+    color: colors.HIGHEST_RISK,
     fontFamily: 'OpenSans-Bold',
   },
   notificationsTextMedium: {
-    color: colors.ORANGE,
+    color: colors.MIDDLE_RISK,
     fontFamily: 'OpenSans-SemiBold',
   },
   noExposure: {
     margin: 30,
-    color: colors.BROWN,
+    color: colors.LOWEST_RISK,
     fontSize: 20,
     fontFamily: 'OpenSans-SemiBold',
   },
