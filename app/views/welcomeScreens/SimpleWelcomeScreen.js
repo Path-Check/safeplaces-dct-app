@@ -5,11 +5,12 @@ import IconLogo from './../../assets/images/PKLogo.png';
 import IconGlobe from './../../assets/svgs/intro-globe';
 import IconLocked from './../../assets/svgs/intro-locked';
 import IconSiren from './../../assets/svgs/intro-siren';
-import languages from './../../locales/languages';
+import languages, { findUserLang } from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import NativePicker from '../../components/NativePicker';
 import Colors from '../../constants/colors';
 import FontWeights from '../../constants/fontWeights';
+import { SetStoreData } from '../../helpers/General';
 import { SvgXml } from 'react-native-svg';
 
 const DescriptionComponent = ({ icon, header, subheader, ...props }) => (
@@ -24,78 +25,27 @@ const DescriptionComponent = ({ icon, header, subheader, ...props }) => (
 
 const ICON_SIZE = 35;
 
-const localesList = [
-  {
-    label: 'Català',
-    value: 'ca',
-  },
-  {
-    label: 'Ceština',
-    value: 'cs',
-  },
-  {
-    label: 'Deutsch',
-    value: 'de',
-  },
-  {
-    label: 'English',
-    value: 'en',
-  },
-  {
-    label: 'Español',
-    value: 'es',
-  },
-  {
-    label: 'Français',
-    value: 'fr',
-  },
-  {
-    label: 'ગુજરાતી',
-    value: 'gj',
-  },
-  {
-    label: 'हिन्दी',
-    value: 'hi',
-  },
-  {
-    label: 'Kreyòl ayisyen',
-    value: 'ht',
-  },
-  {
-    label: 'Italiano',
-    value: 'it',
-  },
-  {
-    label: 'ಕನ್ನಡ',
-    value: 'kn',
-  },
-  {
-    label: 'मराठी',
-    value: 'mr',
-  },
-  {
-    label: 'Nederlands',
-    value: 'nl',
-  },
-  {
-    label: 'Português',
-    value: 'pt',
-  },
-  {
-    label: 'Portugues do Brasil',
-    value: 'pt_BR',
-  },
-  {
-    label: 'اردو',
-    value: 'ur',
-  },
-];
-
 class SimpleWelcomeScreen extends Component {
   constructor(props) {
     super(props);
+
+    // Get locales list from i18next for locales menu
+    let localesList = [];
+    for (let key in languages.options.resources) {
+      localesList = localesList.concat({
+        value: key,
+        label: languages.options.resources[key].label,
+      });
+    }
+
+    console.log('Currently selected language: ');
+    console.log(languages.language);
+
     this.state = {
-      localeSelected: 'en',
+      language: findUserLang(res => {
+        this.setState({ language: res });
+      }),
+      localesList: localesList,
     };
   }
 
@@ -103,12 +53,19 @@ class SimpleWelcomeScreen extends Component {
     return (
       <View style={styles.mainContainer}>
         <NativePicker
-          items={localesList}
+          items={this.state.localesList}
           value={this.state.language}
           onValueChange={(itemValue, itemIndex) => {
             this.setState({ language: itemValue });
+
+            // If user picks manual lang, update and store setting
+            languages.changeLanguage(itemValue, (err, t) => {
+              if (err) return console.log('something went wrong loading', err);
+            });
             console.log("Here's language data test:");
-            console.log(languages.options.resources['en'].label);
+            console.log(itemValue);
+
+            SetStoreData('LANG_OVERRIDE', itemValue);
           }}
         />
         <View style={styles.infoCard}>

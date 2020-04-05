@@ -1,5 +1,6 @@
 import i18next from 'i18next';
 import { getLanguages } from 'react-native-i18n';
+import { GetStoreData } from '../helpers/General';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 // Step 1 - Create index.js files for each language we want to have, in this file you can import all the json files (Step 4) and export them
@@ -27,18 +28,38 @@ import gjlabels from './gj';
 import cslabels from './cs';
 
 // This will fetch the user's language
-let userLang = undefined;
-getLanguages().then(languages => {
-  userLang = languages[0].split('-')[0]; // ['en-US' will become 'en']
-  i18next.changeLanguage(userLang);
-});
+// Set up as a function so first onboarding screen can also update
+// ...from async language override setting
+export function findUserLang(callback) {
+  let userLang = undefined;
+  getLanguages().then(languages => {
+    userLang = languages[0].split('-')[0]; // ['en-US' will become 'en']
+
+    // If the user specified a language override, use it instead
+    GetStoreData('LANG_OVERRIDE').then(res => {
+      if (typeof res === 'string') {
+        console.log('Found user language override:');
+        console.log(res);
+        userLang = res;
+        i18next.changeLanguage(res);
+      } else {
+        i18next.changeLanguage(userLang);
+      }
+
+      // Run state updating callback to trigger rerender
+      callback(userLang);
+
+      return userLang;
+    });
+  });
+}
 
 i18next.init({
   interpolation: {
     // React already does escaping
     escapeValue: false,
   },
-  lng: userLang, // 'en' | 'es',
+  lng: 'en', // 'en' | 'es',
   fallbackLng: 'en', // If language detector fails
   resources: {
     en: {
