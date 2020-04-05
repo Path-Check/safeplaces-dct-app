@@ -4,6 +4,7 @@ import { Alert, Platform, Linking } from 'react-native';
 import { PERMISSIONS, check, RESULTS, request } from 'react-native-permissions';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
+import languages from '../locales/languages';
 
 let instanceCount = 0;
 
@@ -116,9 +117,8 @@ export default class LocationServices {
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
       stationaryRadius: 5,
       distanceFilter: 5,
-      notificationTitle: 'Private Kit Enabled',
-      notificationText:
-        'Private Kit is securely storing your GPS coordinates once every five minutes on this device.',
+      notificationTitle: languages.t('label.location_enabled_title'),
+      notificationText: languages.t('label.location_enabled_message'),
       debug: false, // when true, it beeps every time a loc is read
       startOnBoot: true,
       stopOnTerminate: false,
@@ -206,15 +206,15 @@ export default class LocationServices {
         setTimeout(
           () =>
             Alert.alert(
-              'Private Kit requires access to location information',
-              'Would you like to open app settings?',
+              languages.t('label.require_location_information_title'),
+              languages.t('label.require_location_information_message'),
               [
                 {
-                  text: 'Yes',
+                  text: languages.t('label.yes'),
                   onPress: () => BackgroundGeolocation.showAppSettings(),
                 },
                 {
-                  text: 'No',
+                  text: languages.t('label.no'),
                   onPress: () => console.log('No Pressed'),
                   style: 'cancel',
                 },
@@ -282,11 +282,11 @@ export default class LocationServices {
         setTimeout(
           () =>
             Alert.alert(
-              'Private Kit requires location services to be enabled',
-              'Would you like to open location settings?',
+              languages.t('label.require_location_services_title'),
+              languages.t('label.require_location_services_message'),
               [
                 {
-                  text: 'Yes',
+                  text: languages.t('label.yes'),
                   onPress: () => {
                     if (Platform.OS === 'android') {
                       // showLocationSettings() only works for android
@@ -297,7 +297,7 @@ export default class LocationServices {
                   },
                 },
                 {
-                  text: 'No',
+                  text: languages.t('label.no'),
                   onPress: () => console.log('No Pressed'),
                   style: 'cancel',
                 },
@@ -310,15 +310,15 @@ export default class LocationServices {
         setTimeout(
           () =>
             Alert.alert(
-              'Private Kit requires access to location information',
-              'Would you like to open app settings?',
+              languages.t('label.require_location_information_title'),
+              languages.t('label.require_location_information_message'),
               [
                 {
-                  text: 'Yes',
+                  text: languages.t('label.yes'),
                   onPress: () => BackgroundGeolocation.showAppSettings(),
                 },
                 {
-                  text: 'No',
+                  text: languages.t('label.no'),
                   onPress: () => console.log('No Pressed'),
                   style: 'cancel',
                 },
@@ -338,8 +338,8 @@ export default class LocationServices {
   static stop(nav) {
     // unregister all event listeners
     PushNotification.localNotification({
-      title: 'Location Tracking Was Disabled',
-      message: 'Private Kit requires location services.',
+      title: languages.t('label.location_disabled_title'),
+      message: languages.t('label.location_disabled_message'),
     });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();

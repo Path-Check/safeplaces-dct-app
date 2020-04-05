@@ -236,19 +236,19 @@ class LocationTracking extends Component {
             onSelect={() => {
               this.notifications();
             }}>
-            <Text style={styles.menuOptionText}>Notifications</Text>
+            <Text style={styles.menuOptionText}>{languages.t('label.notifications')}</Text>
           </MenuOption>
           <MenuOption
             onSelect={() => {
               this.settings();
             }}>
-            <Text style={styles.menuOptionText}>Settings</Text>
+            <Text style={styles.menuOptionText}>{languages.t('label.settings')}</Text>
           </MenuOption>
           <MenuOption
             onSelect={() => {
               this.licenses();
             }}>
-            <Text style={styles.menuOptionText}>Licenses</Text>
+            <Text style={styles.menuOptionText}>{languages.t('label.licenses')}</Text>
           </MenuOption>
         </MenuOptions>
       </Menu>
@@ -419,6 +419,7 @@ class LocationTracking extends Component {
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.main}>
           {this.getMenuItem()}
+
           <Text style={styles.headerTitle}>
             {languages.t('label.private_kit')}
           </Text>

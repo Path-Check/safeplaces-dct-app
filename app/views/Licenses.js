@@ -69,7 +69,9 @@ class LicensesScreen extends Component {
             onPress={() => this.backToMain()}>
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Licenses</Text>
+          <Text style={styles.headerTitle}>
+            {languages.t('label.licenses')}
+          </Text>
         </View>
 
         <View style={styles.main}>
