@@ -61,7 +61,7 @@ class NotificationScreen extends Component {
 
   goToSettings() {
     this.resetState();
-    this.props.navigation.navigate('SettingsScreen', {});
+    this.props.navigation.navigate('ChooseProviderScreen', {});
   }
 
   handleBackPress = () => {
