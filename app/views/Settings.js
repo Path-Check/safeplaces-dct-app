@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   BackHandler,
+  Dimensions,
 } from 'react-native';
 
 // This is the definitive listing of registered Healthcare Authorities.  To

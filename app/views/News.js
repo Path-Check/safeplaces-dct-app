@@ -5,6 +5,11 @@ import {
   Dimensions,
   ActivityIndicator,
   ScrollView,
+  SafeAreaView,
+  View,
+  TouchableOpacity,
+  Image,
+  Text,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
@@ -107,8 +112,10 @@ class NewsScreen extends Component {
   render() {
     console.log('News URL -', this.state.newsUrls);
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
+      <NavigationBarWrapper
+        title={languages.t('label.latest_news')}
+        onBackPress={this.backToMain.bind(this)}>
+        {/* <View style={styles.headerContainer}>
           <TouchableOpacity
             style={styles.backArrowTouchable}
             onPress={() => this.backToMain()}>
@@ -117,7 +124,7 @@ class NewsScreen extends Component {
           <Text style={styles.headerTitle}>
             {languages.t('label.latest_news')}
           </Text>
-        </View>
+        </View> */}
 
         <View
           style={{ backgroundColor: '#3A4CD7', flex: 1, paddingVertical: 24 }}>
@@ -145,7 +152,7 @@ class NewsScreen extends Component {
             />
           )}
         </View>
-      </SafeAreaView>
+      </NavigationBarWrapper>
     );
   }
 }
@@ -179,21 +186,6 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: 'rgba(20,20,200,0.3)',
   },
-  sourceTouchable: {
-    marginRight: 20,
-    alignItems: 'center',
-    width: 180,
-    borderRadius: 6,
-    backgroundColor: '#3A4CD7',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 16,
-  },
-  sourceName: {
-    color: 'white',
-    textAlign: 'center',
-    fontFamily: 'OpenSans-SemiBold',
-  },
   singleNews: {
     flexGrow: 1,
     backgroundColor: 'white',
@@ -210,7 +202,7 @@ const styles = StyleSheet.create({
   },
   singleNewsHeadText: {
     fontSize: 16,
-    fontFamily: 'OpenSans-SemiBold',
+    fontFamily: fontFamily.primarySemiBold,
   },
 });
 
