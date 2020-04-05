@@ -138,8 +138,9 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexDirection: 'column',
     width: '100%',
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.GREY_BG,
     paddingHorizontal: 26,
+    flex: 1,
   },
   section: {
     flexDirection: 'column',
