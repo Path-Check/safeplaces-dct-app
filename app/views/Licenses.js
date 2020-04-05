@@ -5,21 +5,21 @@ import {
   View,
   Text,
   Platform,
-  Image,
   Dimensions,
   TouchableOpacity,
   BackHandler,
+  StatusBar,
+  ScrollView,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 import packageJson from '../../package.json';
 
-import colors from '../constants/colors';
+import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 import licenses from './../assets/LICENSE.json';
-
-const width = Dimensions.get('window').width;
+import { SvgXml } from 'react-native-svg';
+import backArrow from './../assets/svgs/backArrow';
 
 class LicensesScreen extends Component {
   constructor(props) {
@@ -27,11 +27,11 @@ class LicensesScreen extends Component {
   }
 
   backToMain() {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   handleBackPress = () => {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.backToMain();
     return true;
   };
 
@@ -63,147 +63,139 @@ class LicensesScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>Licenses</Text>
-        </View>
-
-        <View style={styles.main}>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.private_kit')}
-          </Text>
-
-          <View style={styles.row}>
-            <Text style={styles.valueName}>Version: </Text>
-            <Text style={styles.value}>{packageJson.version}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.valueName}>OS: </Text>
-            <Text style={styles.value}>
-              {Platform.OS + ' v' + Platform.Version}
+      <>
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor={
+            Platform.OS === 'ios' ? 'transparent' : Colors.VIOLET
+          }
+          translucent={Platform.OS === 'ios' ? true : false}
+        />
+        <SafeAreaView style={styles.topSafeAreaContainer} />
+        <SafeAreaView style={styles.bottomSafeAreaContainer}>
+          <View style={styles.headerContainer}>
+            <TouchableOpacity
+              style={styles.backArrowTouchable}
+              onPress={() => this.backToMain()}>
+              <SvgXml style={styles.backArrow} xml={backArrow} />
+            </TouchableOpacity>
+            <Text style={styles.headerTitle}>
+              {languages.t('label.licenses_title')}
             </Text>
           </View>
 
-          <View style={styles.row}>
-            <Text style={styles.valueName}>Screen Resolution: </Text>
-            <Text style={styles.value}>
-              {' '}
-              {Math.trunc(Dimensions.get('screen').width) +
-                ' x ' +
-                Math.trunc(Dimensions.get('screen').height)}
-            </Text>
-          </View>
-        </View>
+          <ScrollView contentContainerStyle={styles.contentContainer}>
+            <View style={styles.main}>
+              <View style={styles.row}>
+                <Text style={styles.valueName}>
+                  {languages.t('label.private_kit')}{' '}
+                </Text>
+              </View>
 
-        <View style={{ flex: 4, paddingLeft: 20, paddingRight: 15 }}>
-          <WebView
-            originWhitelist={['*']}
-            source={{
-              html: this.getLicenses(),
-            }}
-            style={{ marginTop: 15 }}
-          />
-        </View>
-      </SafeAreaView>
+              <View style={styles.row}>
+                <Text style={styles.valueName}>Version: </Text>
+                <Text style={styles.value}>{packageJson.version}</Text>
+              </View>
+
+              <View style={styles.row}>
+                <Text style={styles.valueName}>OS: </Text>
+                <Text style={styles.value}>
+                  {Platform.OS + ' v' + Platform.Version}
+                </Text>
+              </View>
+
+              <View style={styles.row}>
+                <Text style={styles.valueName}>Screen Resolution: </Text>
+                <Text style={styles.value}>
+                  {' '}
+                  {Math.trunc(Dimensions.get('screen').width) +
+                    ' x ' +
+                    Math.trunc(Dimensions.get('screen').height)}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.spacer} />
+
+            <View style={styles.spacer} />
+
+            <View style={{ flex: 4 }}>
+              <WebView
+                originWhitelist={['*']}
+                source={{
+                  html: this.getLicenses(),
+                }}
+                style={{
+                  marginTop: 15,
+                  backgroundColor: Colors.INTRO_WHITE_BG,
+                }}
+              />
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
   // Container covers the entire screen
-  container: {
+  topSafeAreaContainer: {
+    flex: 0,
+    backgroundColor: Colors.VIOLET,
+  },
+  bottomSafeAreaContainer: {
     flex: 1,
-    flexDirection: 'column',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
-  main: {
-    flex: 1,
-    flexDirection: 'column',
-    textAlignVertical: 'top',
-    // alignItems: 'center',
-    padding: 20,
-    width: '96%',
-    alignSelf: 'center',
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
-  valueName: {
-    fontSize: 20,
-    fontWeight: '800',
-  },
-  value: {
-    fontSize: 20,
-    fontWeight: '200',
-  },
-
-  buttonTouchable: {
-    borderRadius: 12,
-    backgroundColor: '#665eff',
-    height: 52,
-    alignSelf: 'center',
-    width: width * 0.7866,
-    marginTop: 30,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: fontFamily.primaryRegular,
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: '#ffffff',
-  },
-  mainText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryRegular,
+    backgroundColor: Colors.INTRO_WHITE_BG,
   },
   headerContainer: {
     flexDirection: 'row',
-    height: 60,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
+    borderBottomColor: Colors.NAV_BAR_VIOLET,
+    backgroundColor: Colors.VIOLET,
+  },
+  headerTitle: {
+    fontSize: 26,
+    fontFamily: fontFamily.primaryMedium,
+    color: Colors.WHITE,
+    position: 'absolute',
+    alignSelf: 'center',
+    textAlign: 'center',
+    width: '100%',
   },
   backArrowTouchable: {
     width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
+    height: 55,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
   },
   backArrow: {
     height: 18,
-    width: 18.48,
+    width: 18,
   },
-  sectionDescription: {
-    fontSize: 16,
-    lineHeight: 24,
-    marginTop: 12,
-    overflow: 'scroll',
-    fontFamily: fontFamily.primaryRegular,
+  contentContainer: {
+    flexDirection: 'column',
+    width: '100%',
+    backgroundColor: Colors.INTRO_WHITE_BG,
+    paddingHorizontal: 26,
+    flex: 1,
+  },
+  row: {
+    flexDirection: 'row',
+    color: Colors.PRIMARY_TEXT,
+    alignItems: 'flex-start',
+  },
+  valueName: {
+    color: Colors.VIOLET_TEXT,
+    fontSize: 20,
+    fontFamily: fontFamily.primaryMedium,
+    marginTop: 9,
+  },
+  value: {
+    color: Colors.VIOLET_TEXT,
+    fontSize: 20,
+    fontFamily: fontFamily.primaryMedium,
+    marginTop: 9,
   },
 });
 

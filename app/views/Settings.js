@@ -51,21 +51,23 @@ class SettingsScreen extends Component {
   }
 
   aboutButtonPressed() {
-    this.props.navigation.navigate('About');
+    this.props.navigation.navigate('AboutScreen');
+  }
+
+  newsButtonPressed() {
+    this.props.navigation.navigate('NewsScreen');
   }
 
   eventHistoryButtonPressed() {
-    console.log('eventHistoryButtonPressed');
-    // this.props.navigation.navigate('Event History');
+    this.props.navigation.navigate('NotificationScreen');
   }
 
   licensesButtonPressed() {
-    console.log('licensesButtonPressed');
-    // this.props.navigation.navigate('Licenses');
+    this.props.navigation.navigate('LicensesScreen');
   }
 
   testedPositiveButtonPressed() {
-    console.log('testedPositiveButtonPressed');
+    this.props.navigation.navigate('ExportScreen');
   }
 
   getHeader() {
@@ -168,6 +170,8 @@ class SettingsScreen extends Component {
                   'label.about_title',
                   this.aboutButtonPressed,
                 )}
+                <View style={styles.divider}></View>
+                {this.getSettingRow('label.news_title', this.newsButtonPressed)}
                 <View style={styles.divider}></View>
                 {this.getSettingRow(
                   'label.event_history_title',

@@ -29,10 +29,14 @@ const base64 = RNFetchBlob.base64;
 function ExportScreen({ shareButtonDisabled }) {
   const [pointStats, setPointStats] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(shareButtonDisabled);
-  const { navigate } = useNavigation();
+  const { goBack } = useNavigation();
+
+  function backToMain() {
+    goBack();
+  }
 
   function handleBackPress() {
-    navigate('LocationTrackingScreen', {});
+    backToMain();
     return true;
   }
 
@@ -48,16 +52,15 @@ function ExportScreen({ shareButtonDisabled }) {
   );
 
   useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
     return function cleanup() {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+      BackHandler.removeEventListener(
+        'hardwareBackPress',
+        this.handleBackPress,
+      );
     };
   });
-
-  function backToMain() {
-    navigate('LocationTrackingScreen', {});
-  }
 
   async function onShare() {
     try {

@@ -20,7 +20,7 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
-import About from './views/About';
+import AboutScreen from './views/About';
 
 import { GetStoreData, SetStoreData } from './helpers/General';
 
@@ -140,8 +140,8 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name='About'
-            component={About}
+            name='AboutScreen'
+            component={AboutScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
