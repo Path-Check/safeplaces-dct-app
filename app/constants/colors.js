@@ -9,8 +9,13 @@ const colors = {
   PRIMARY_TEXT: '#000',
   GREEN: '#32A852',
   VIOLET: '#4051DB',
-  RED: '#e74c3c',
-  ORANGE: '#e67e22',
+
+  // For notifications
+  HIGHEST_RISK: '#e74c3c',
+  MIDDLE_RISK: '#e67e22',
+  LOWER_RISK: '#FFFF33',
+  LOWEST_RISK: 'brown',
+
   REG_BUTTON: '#428AF8',
   POS_BUTTON: '#32A852',
   NEG_BUTTON: '#F8262F',
