@@ -133,10 +133,8 @@ function ExportScreen(props) {
     <>
       <StatusBar
         barStyle='light-content'
-        backgroundColor={
-          Platform.OS === 'ios' ? 'transparent' : Colors.VIOLET_BUTTON
-        }
-        translucent={Platform.OS === 'ios' ? true : false}
+        backgroundColor={Colors.VIOLET_BUTTON}
+        translucent={false}
       />
       <SafeAreaView style={styles.topSafeAreaContainer} />
       <SafeAreaView style={styles.bottomSafeAreaContainer}>
@@ -183,16 +181,14 @@ const styles = StyleSheet.create({
   // Container covers the entire screen
   topSafeAreaContainer: {
     flex: 0,
-    // backgroundColor: Colors.VIOLET,
+    backgroundColor: Colors.VIOLET_BUTTON,
   },
   bottomSafeAreaContainer: {
     flex: 1,
+    backgroundColor: Colors.VIOLET_BUTTON_DARK,
   },
   headerContainer: {
     flexDirection: 'row',
-    // borderBottomWidth: 1,
-    // borderBottomColor: Colors.NAV_BAR_VIOLET,
-    // backgroundColor: Colors.VIOLET,
     justifyContent: 'flex-end',
   },
   backArrowTouchable: {
@@ -229,7 +225,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 22.5,
     marginTop: 22,
-    alignSelf: 'center',
     fontFamily: fontFamily.primaryRegular,
   },
 
