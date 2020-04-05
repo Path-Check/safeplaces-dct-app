@@ -1,28 +1,21 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
   TouchableOpacity,
-  Dimensions,
   ScrollView,
   BackHandler,
-  StatusBar,
-  Platform,
 } from 'react-native';
 
 import languages from './../locales/languages';
 import ButtonWrapper from '../components/ButtonWrapper';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import { isPlatformiOS } from './../Util';
 import fontFamily from './../constants/fonts';
-import backArrow from './../assets/svgs/backArrow';
 import warning from './../assets/svgs/warning';
 import googleMapsIcon from './../assets/svgs/google-maps-logo';
 import { SvgXml } from 'react-native-svg';
-
-const width = Dimensions.get('window').width;
 
 class SettingsScreen extends Component {
   constructor(props) {
@@ -43,6 +36,10 @@ class SettingsScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
   importButtonPressed() {
@@ -68,23 +65,6 @@ class SettingsScreen extends Component {
 
   testedPositiveButtonPressed() {
     this.props.navigation.navigate('ExportScreen');
-  }
-
-  getHeader() {
-    return (
-      <>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <SvgXml style={styles.backArrow} xml={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.settings_title')}
-          </Text>
-        </View>
-      </>
-    );
   }
 
   getMapsImport() {
@@ -144,96 +124,51 @@ class SettingsScreen extends Component {
 
   render() {
     return (
-      <>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor={Colors.VIOLET}
-          translucent={isPlatformiOS()}
-        />
-        <SafeAreaView style={styles.topSafeAreaContainer} />
-        <SafeAreaView style={styles.bottomSafeAreaContainer}>
-          {this.getHeader()}
+      <NavigationBarWrapper
+        title={languages.t('label.settings_title')}
+        onBackPress={this.backToMain.bind(this)}>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <View style={styles.spacer} />
 
-          <ScrollView contentContainerStyle={styles.contentContainer}>
-            <View style={styles.spacer} />
+          <View style={styles.fullDivider} />
+          <View style={styles.mainContainer}>{this.getMapsImport()}</View>
+          <View style={styles.fullDivider} />
 
-            <View style={styles.fullDivider} />
-            <View style={styles.mainContainer}>{this.getMapsImport()}</View>
-            <View style={styles.fullDivider} />
+          <View style={styles.spacer} />
+          <View style={styles.fullDivider} />
 
-            <View style={styles.spacer} />
-            <View style={styles.fullDivider} />
-
-            <View style={styles.mainContainer}>
-              <View style={styles.section}>
-                {this.getSettingRow(
-                  'label.about_title',
-                  this.aboutButtonPressed,
-                )}
-                <View style={styles.divider}></View>
-                {this.getSettingRow('label.news_title', this.newsButtonPressed)}
-                <View style={styles.divider}></View>
-                {this.getSettingRow(
-                  'label.event_history_title',
-                  this.eventHistoryButtonPressed,
-                )}
-                <View style={styles.divider}></View>
-                {this.getSettingRow(
-                  'label.licenses_title',
-                  this.licensesButtonPressed,
-                )}
-                <View style={styles.divider}></View>
-                {this.getSettingRow(
-                  'label.tested_positive_title',
-                  this.testedPositiveButtonPressed,
-                  warning,
-                  Colors.RED_TEXT,
-                )}
-              </View>
+          <View style={styles.mainContainer}>
+            <View style={styles.section}>
+              {this.getSettingRow('label.about_title', this.aboutButtonPressed)}
+              <View style={styles.divider}></View>
+              {this.getSettingRow('label.news_title', this.newsButtonPressed)}
+              <View style={styles.divider}></View>
+              {this.getSettingRow(
+                'label.event_history_title',
+                this.eventHistoryButtonPressed,
+              )}
+              <View style={styles.divider}></View>
+              {this.getSettingRow(
+                'label.licenses_title',
+                this.licensesButtonPressed,
+              )}
+              <View style={styles.divider}></View>
+              {this.getSettingRow(
+                'label.tested_positive_title',
+                this.testedPositiveButtonPressed,
+                warning,
+                Colors.RED_TEXT,
+              )}
             </View>
-            <View style={styles.fullDivider} />
-          </ScrollView>
-        </SafeAreaView>
-      </>
+          </View>
+          <View style={styles.fullDivider} />
+        </ScrollView>
+      </NavigationBarWrapper>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  topSafeAreaContainer: {
-    flex: 0,
-    backgroundColor: Colors.VIOLET,
-  },
-  bottomSafeAreaContainer: {
-    flex: 1,
-    backgroundColor: Colors.INTRO_WHITE_BG,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.NAV_BAR_VIOLET,
-    backgroundColor: Colors.VIOLET,
-  },
-  headerTitle: {
-    fontSize: 26,
-    fontFamily: fontFamily.primaryMedium,
-    color: Colors.WHITE,
-    position: 'absolute',
-    alignSelf: 'center',
-    textAlign: 'center',
-    width: '100%',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 55,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-  },
-  backArrow: {
-    height: 18,
-    width: 18,
-  },
   mainContainer: {
     flexDirection: 'column',
     width: '100%',
