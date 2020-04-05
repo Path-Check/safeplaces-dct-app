@@ -46,11 +46,26 @@ class SettingsScreen extends Component {
   }
 
   importButtonPressed() {
-    console.log('importButton');
+    console.log('importButtonPressed');
+    // this.props.navigation.navigate('Import');
+  }
+
+  aboutButtonPressed() {
+    this.props.navigation.navigate('About');
+  }
+
+  eventHistoryButtonPressed() {
+    console.log('eventHistoryButtonPressed');
+    // this.props.navigation.navigate('Event History');
+  }
+
+  licensesButtonPressed() {
+    console.log('licensesButtonPressed');
+    // this.props.navigation.navigate('Licenses');
   }
 
   testedPositiveButtonPressed() {
-    console.log('testedPositive');
+    console.log('testedPositiveButtonPressed');
   }
 
   getHeader() {
@@ -110,7 +125,7 @@ class SettingsScreen extends Component {
     return (
       <>
         <TouchableOpacity
-          onPress={() => actionListener()}
+          onPress={actionListener.bind(this)}
           style={styles.sectionRowContainer}>
           <Text
             style={[
@@ -149,26 +164,26 @@ class SettingsScreen extends Component {
 
             <View style={styles.mainContainer}>
               <View style={styles.section}>
-                {this.getSettingRow('label.about_title', () => {
-                  this.props.navigation.navigate('About');
-                })}
+                {this.getSettingRow(
+                  'label.about_title',
+                  this.aboutButtonPressed,
+                )}
                 <View style={styles.divider}></View>
-                {this.getSettingRow('label.event_history_title', () => {
-                  this.props.navigation.navigate('Event History');
-                })}
+                {this.getSettingRow(
+                  'label.event_history_title',
+                  this.eventHistoryButtonPressed,
+                )}
                 <View style={styles.divider}></View>
-                {this.getSettingRow('label.licenses_title', () => {
-                  this.props.navigation.navigate('Event History');
-                })}
+                {this.getSettingRow(
+                  'label.licenses_title',
+                  this.licensesButtonPressed,
+                )}
                 <View style={styles.divider}></View>
                 {this.getSettingRow(
                   'label.tested_positive_title',
-                  () => {
-                    this.props.navigation.navigate('Event History');
-                  },
+                  this.testedPositiveButtonPressed,
                   warning,
                   Colors.RED_TEXT,
-                  null,
                 )}
               </View>
             </View>
