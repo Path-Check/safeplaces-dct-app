@@ -166,6 +166,7 @@ class SettingsScreen extends Component {
                   },
                   warning,
                   Colors.RED_TEXT,
+                  null,
                 )}
               </View>
             </View>
