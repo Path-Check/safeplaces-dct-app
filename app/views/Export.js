@@ -17,6 +17,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import RNFetchBlob from 'rn-fetch-blob';
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
+// import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { GetStoreData } from '../helpers/General';
 import { timeSincePoint } from '../helpers/convertPointsToString';

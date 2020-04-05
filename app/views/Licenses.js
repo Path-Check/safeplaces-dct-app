@@ -27,11 +27,11 @@ class LicensesScreen extends Component {
   }
 
   backToMain() {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   handleBackPress = () => {
-    this.props.navigation.goBack();
+    this.backToMain();
     return true;
   };
 
