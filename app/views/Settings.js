@@ -81,14 +81,14 @@ class SettingsScreen extends Component {
     );
   }
 
-  getSettingRow(text, icon, color) {
+  getSettingRow(text, icon, color, route) {
     const renderIcon = () => {
       return icon ? <SvgXml xml={icon} /> : null;
     };
     return (
       <>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('About')}
+          onPress={() => this.props.navigation.navigate(route)}
           style={styles.sectionRowContainer}>
           <Text
             style={[
@@ -136,14 +136,15 @@ class SettingsScreen extends Component {
 
             <View style={styles.mainContainer}>
               <View style={styles.section}>
-                {this.getSettingRow('label.about_title')}
+                {this.getSettingRow('label.about_title', null, null, 'About')}
                 <View style={styles.divider}></View>
-                {this.getSettingRow('label.licenses_title')}
+                {this.getSettingRow('label.licenses_title', null, null, null)}
                 <View style={styles.divider}></View>
                 {this.getSettingRow(
                   'label.tested_positive_title',
                   warning,
                   Colors.RED_TEXT,
+                  null,
                 )}
               </View>
             </View>
