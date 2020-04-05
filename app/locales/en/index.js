@@ -8,6 +8,7 @@ import notificationFile from './notification.json';
 import launchScreenFile from './launchScreen.json';
 import settingsFile from './settingsScreen.json';
 import pushFile from './push.json';
+import about from './about.json';
 
 export default {
   ...intro,
@@ -19,5 +20,5 @@ export default {
   ...notificationFile,
   ...launchScreenFile,
   ...settingsFile,
-  ...pushFile,
+  ...about,
 };

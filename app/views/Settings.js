@@ -122,7 +122,9 @@ class SettingsScreen extends Component {
     };
     return (
       <>
-        <View style={styles.sectionRowContainer}>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('About')}
+          style={styles.sectionRowContainer}>
           <Text
             style={[
               styles.settingRowText,
@@ -131,7 +133,7 @@ class SettingsScreen extends Component {
             {languages.t(text)}
           </Text>
           {renderIcon()}
-        </View>
+        </TouchableOpacity>
       </>
     );
   }
