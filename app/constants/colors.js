@@ -8,7 +8,7 @@ const colors = {
   APP_BACKGROUND: '#FFF8ED',
   PRIMARY_TEXT: '#000',
   GREEN: '#32A852',
-  VIOLET: '#6C3794',
+  VIOLET: '#4051DB',
 
   // For notifications
   HIGHEST_RISK: '#e74c3c',
@@ -20,6 +20,17 @@ const colors = {
   POS_BUTTON: '#32A852',
   NEG_BUTTON: '#F8262F',
   SENS_BUTTON: '#6C3794',
+  VIOLET_BUTTON: '#6979F8',
+  VIOLET_BUTTON_DARK: '#3A4CD7',
+
+  VIOLET_TEXT: '#6979F8',
+
+  GRAY_BACKGROUND: '#DADADA',
+
+  INTRO_WHITE_BG: '#F7F8FF',
+  PULSE_WHITE: '#FFFFFF40',
+
+  DIVIDER: '#A5AFFB',
 
   BLUE_BUTTON: '#05369B',
   BLUE_TO_BUTTON: '#185BD3',
@@ -28,7 +39,17 @@ const colors = {
   GRAY_BUTTON: '#868686',
   GRAY_TO_BUTTON: '#868686',
 
+  MAP_LINE_STROKE: '#4052DB',
+
+  BOTTOM_SHEET_HEADER_INDICATOR: '#E1E4FF',
+
   BLUE_LINK: '#007AFF',
+
+  VIOLET_TEXT: '#3C4ED8',
+  RED_TEXT: '#FF5656',
+
+  NAV_BAR_VIOLET: '#5061E6',
+  NAV_BAR_BORDER: 'rgba(189, 195, 199,0.6)',
 };
 
 export default colors;

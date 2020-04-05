@@ -9,21 +9,42 @@ class Button extends React.Component {
     const {
       title,
       onPress,
+      buttonColor = colors.WHITE,
       bgColor = colors.DODGER_BLUE,
       toBgColor = bgColor,
       titleStyle,
       buttonStyle,
+      buttonHeight = 54,
+      borderColor,
     } = this.props;
     return (
       <LinearGradient
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         colors={[bgColor, toBgColor]}
-        style={[buttonStyle ? buttonStyle : styles.container]}>
+        style={[
+          buttonStyle ? buttonStyle : styles.container,
+          {
+            height: buttonHeight,
+            borderWidth: borderColor ? 2 : 0,
+            borderColor: borderColor,
+          },
+        ]}>
         <TouchableOpacity
-          style={[buttonStyle ? buttonStyle : styles.container]}
+          style={[
+            buttonStyle ? buttonStyle : styles.container,
+            { height: buttonHeight },
+          ]}
           onPress={onPress}>
-          <Text style={titleStyle ? titleStyle : styles.text}>{title}</Text>
+          <Text
+            style={[
+              titleStyle ? titleStyle : styles.text,
+              {
+                color: buttonColor,
+              },
+            ]}>
+            {title}
+          </Text>
         </TouchableOpacity>
       </LinearGradient>
     );
@@ -37,24 +58,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 8,
     borderRadius: 12,
-    borderColor: 'rgba(255,255,255,0.7)',
   },
   text: {
-    color: colors.WHITE,
     textAlign: 'center',
     height: 28,
     fontSize: 20,
-    fontWeight: '600',
   },
 });
 
 Button.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  buttonColor: PropTypes.string,
   bgColor: PropTypes.string,
   toBgColor: PropTypes.string,
   titleStyle: PropTypes.object,
   buttonStyle: PropTypes.object,
+  borderColor: PropTypes.string,
 };
 
 export default Button;

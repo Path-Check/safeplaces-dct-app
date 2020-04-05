@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  Image,
-  View,
-  Text,
-  TouchableOpacity,
   BackHandler,
   Dimensions,
   ActivityIndicator,
@@ -16,9 +11,11 @@ import Carousel from 'react-native-snap-carousel';
 import { GetStoreData } from '../helpers/General';
 import colors from '../constants/colors';
 import { WebView } from 'react-native-webview';
-import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import fontFamily from '../constants/fonts';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -38,11 +35,11 @@ class NewsScreen extends Component {
   }
 
   backToMain() {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   handleBackPress = () => {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
     return true;
   };
 
@@ -166,33 +163,12 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
   },
-  headerContainer: {
-    flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
-  },
-  backArrow: {
-    height: 18,
-    width: 18.48,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
-  },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
     textAlignVertical: 'center',
     marginTop: 12,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   slideContainer: {
     height: 100,

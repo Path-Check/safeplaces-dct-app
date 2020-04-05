@@ -4,7 +4,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Platform,
   Image,
   Dimensions,
   TouchableOpacity,
@@ -15,6 +14,7 @@ import { WebView } from 'react-native-webview';
 import packageJson from '../../package.json';
 
 import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -26,6 +26,7 @@ import {
   VictoryTooltip,
 } from 'victory-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -55,17 +56,17 @@ class NotificationScreen extends Component {
 
   backToMain() {
     this.resetState();
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   goToSettings() {
     this.resetState();
-    this.props.navigation.navigate('SettingsScreen', {});
+    this.props.navigation.navigate('ChooseProviderScreen', {});
   }
 
   handleBackPress = () => {
     this.resetState();
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
     return true;
   };
 
@@ -150,18 +151,9 @@ class NotificationScreen extends Component {
     const hasExposure = this.state.data.some(point => point.y > 0);
 
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.notifications')}
-          </Text>
-        </View>
-
+      <NavigationBarWrapper
+        title={languages.t('label.notifications')}
+        onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
           <Text style={styles.pageTitle}>
             {languages.t('label.notification_title')}
@@ -268,7 +260,7 @@ class NotificationScreen extends Component {
             </>
           )}
         </View>
-      </SafeAreaView>
+      </NavigationBarWrapper>
     );
   }
 }
@@ -311,18 +303,17 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   buttonText: {
-    fontFamily: 'OpenSans-Bold',
-    fontSize: 20,
-    lineHeight: 24,
+    fontFamily: fontFamily.primaryRegular,
+    fontSize: 14,
+    lineHeight: 19,
     letterSpacing: 0,
     textAlign: 'center',
     color: '#ffffff',
   },
   mainText: {
-    fontSize: 20,
-    lineHeight: 30,
-    fontFamily: 'OpenSans-Regular',
-    marginTop: 30,
+    fontSize: 16,
+    lineHeight: 24,
+    fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 10,
@@ -336,11 +327,11 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryRegular,
   },
   pageTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
   },
   headerContainer: {
@@ -365,7 +356,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     overflow: 'scroll',
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   notificationsHeader: {
     backgroundColor: '#665eff',
@@ -376,7 +367,7 @@ const styles = StyleSheet.create({
   notificationsHeaderText: {
     color: colors.WHITE,
     fontSize: 16,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryRegular,
   },
   notificationView: {
     width: '100%',
@@ -388,21 +379,21 @@ const styles = StyleSheet.create({
   notificationsText: {
     color: colors.BLACK,
     fontSize: 16,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   notificationsTextHigh: {
     color: colors.HIGHEST_RISK,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryBold,
   },
   notificationsTextMedium: {
     color: colors.MIDDLE_RISK,
-    fontFamily: 'OpenSans-SemiBold',
+    fontFamily: fontFamily.primaryMedium,
   },
   noExposure: {
     margin: 30,
     color: colors.LOWEST_RISK,
     fontSize: 20,
-    fontFamily: 'OpenSans-SemiBold',
+    fontFamily: fontFamily.primaryMedium,
   },
 });
 

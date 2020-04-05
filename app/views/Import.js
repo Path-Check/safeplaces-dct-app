@@ -12,12 +12,16 @@ import {
 } from 'react-native';
 
 import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import WebView from 'react-native-webview';
 import backArrow from './../assets/images/backArrow.png';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
+
 class ImportScreen extends Component {
   constructor(props) {
     super(props);
@@ -27,11 +31,11 @@ class ImportScreen extends Component {
   }
 
   backToMain() {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   handleBackPress = () => {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
     return true;
   };
 
@@ -49,18 +53,9 @@ class ImportScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.import_title')}
-          </Text>
-        </View>
-
+      <NavigationBarWrapper
+        title={languages.t('label.import_title')}
+        onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
           <View style={styles.subHeaderTitle}>
             <Text style={styles.sectionDescription}>
@@ -91,7 +86,7 @@ class ImportScreen extends Component {
             )}
           </View>
         </View>
-      </SafeAreaView>
+      </NavigationBarWrapper>
     );
   }
 }
@@ -143,14 +138,14 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryRegular,
   },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
     textAlignVertical: 'center',
     marginTop: 12,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
 });
 export default ImportScreen;

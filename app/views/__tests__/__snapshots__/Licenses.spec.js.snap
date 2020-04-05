@@ -61,7 +61,7 @@ exports[`renders correctly 1`] = `
     <Text
       style={
         Object {
-          "fontFamily": "OpenSans-Bold",
+          "fontFamily": "IBMPlexSans",
           "fontSize": 24,
         }
       }
@@ -84,12 +84,13 @@ exports[`renders correctly 1`] = `
     <Text
       style={
         Object {
-          "fontFamily": "OpenSans-Bold",
+          "fontFamily": "IBMPlexSans",
           "fontSize": 24,
         }
       }
     >
-      Private Kit
+      COVID
+Safe Paths
     </Text>
     <View
       style={

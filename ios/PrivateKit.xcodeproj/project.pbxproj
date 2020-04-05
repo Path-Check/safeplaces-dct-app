@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0076A257761B4FE184D4FAFE /* IBMPlexSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BA94CE8425944B8990A49B3 /* IBMPlexSans-Bold.ttf */; };
 		00E356F31AD99517003FC87E /* PrivateKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PrivateKitTests.m */; };
 		08445F4C24283AFF008754AC /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4B24283AFF008754AC /* Accelerate.framework */; };
 		08445F4E24283B0B008754AC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4D24283B0B008754AC /* CoreData.framework */; };
@@ -23,22 +24,25 @@
 		08445F6424284A36008754AC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6324284A36008754AC /* QuartzCore.framework */; };
 		08445F6624284A42008754AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6524284A42008754AC /* SystemConfiguration.framework */; };
 		08445F6824284A52008754AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6724284A52008754AC /* UIKit.framework */; };
+		0F130FE6EA784DA193120BEF /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C840FB7884D64E6FA97ECC2C /* IBMPlexSans-Medium.ttf */; };
+		0F6F6B8B939044F396202EE1 /* IBMPlexSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 542F7FB7FF534DC2A7D428AE /* IBMPlexSans-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		6828C7F4BF9544B791DB8E0F /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C692EBDB3E8541C7A282FF93 /* OpenSans-SemiBold.ttf */; };
-		8130315107624C06A0D02817 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53F9F2C225904506967FEB4E /* OpenSans-ExtraBoldItalic.ttf */; };
+		293BC1167944469E848E4DD3 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5DFB90A472F4881A3C888C3 /* IBMPlexSans-ThinItalic.ttf */; };
+		2C883891512048299ECF6B38 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E872D3374DDA4AA29E3D8511 /* IBMPlexSans-Thin.ttf */; };
+		64ACB99B89554C468148CCD6 /* IBMPlexSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 450B58D199444B7D8DEE6A0A /* IBMPlexSans-Italic.ttf */; };
+		7BE9CC19E97E417F8D85CDFA /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B27E26E7076641EFB4386943 /* IBMPlexSans-ExtraLightItalic.ttf */; };
 		9846A487BF83593378FBB9B4 /* libPods-PrivateKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5770BD87365CB0125519F3 /* libPods-PrivateKit.a */; };
 		A590ED9611860B67C13D72CD /* libPods-PrivateKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB8E05EB6A91794343D2430 /* libPods-PrivateKitTests.a */; };
-		B4013ADB6F02420A88004767 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07DA2C9CA83F4C21B7D133C5 /* OpenSans-LightItalic.ttf */; };
-		B6CCB74110A247D2AB228197 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F5A32624649CC837BA571 /* OpenSans-Light.ttf */; };
-		D86C551F0DF249ED8BC98C36 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA050CB1DAE4800AAAEAE3E /* OpenSans-Regular.ttf */; };
-		E48B0565CDD44328BEF2F063 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3FC897224B6433697E4D6CD /* OpenSans-Italic.ttf */; };
-		E798329A430E40B786B42CBC /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7932FB5F9EEA459987375700 /* OpenSans-SemiBoldItalic.ttf */; };
-		EABBBE9C01934B4A9A35DE89 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB7CA13AC07404090279B14 /* OpenSans-BoldItalic.ttf */; };
-		F7554FB6D2CB4E4692D5B359 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F242CB4939FC4D66B5630776 /* OpenSans-Bold.ttf */; };
-		FCC9CA644CC14079861A8CFB /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B686523B4164257AD651CE2 /* OpenSans-ExtraBold.ttf */; };
+		A711F93C56DC413B99F63636 /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC1EBAC6486247BFA5EF04EB /* IBMPlexSans-SemiBold.ttf */; };
+		AF045FF4B6E94ED3810484D7 /* IBMPlexSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3267DEC44754D9BB6ABA49D /* IBMPlexSans-BoldItalic.ttf */; };
+		C0BDDBE3FFC54A77A26D7C1B /* IBMPlexSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 556FEC0379104674A3837885 /* IBMPlexSans-MediumItalic.ttf */; };
+		C6C206E93BCA4543A72FA246 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56E8CDA04E244E24A9781CA8 /* IBMPlexSans-SemiBoldItalic.ttf */; };
+		D2E57BD070F047E58DC57231 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 41038D978FEE48AD9709F232 /* IBMPlexSans-Light.ttf */; };
+		D5B6EB5D4B314ACFADAAEFE9 /* IBMPlexSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9ABA426412C489ABAE6E56B /* IBMPlexSans-LightItalic.ttf */; };
+		D6F8E4798A8D4C7FA7A6D4DD /* IBMPlexSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DD29292C60B45029B7823D6 /* IBMPlexSans-ExtraLight.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,13 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = PrivateKit;
 		};
+		2E9077652439A903005C98DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E9077612439A903005C98DE /* SplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7682761D8E76B80014119E;
+			remoteInfo = SplashScreen;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -56,7 +67,6 @@
 		00E356EE1AD99517003FC87E /* PrivateKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrivateKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PrivateKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivateKitTests.m; sourceTree = "<group>"; };
-		07DA2C9CA83F4C21B7D133C5 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-LightItalic.ttf"; path = "../app/assets/fonts/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		08445F4324283A2F008754AC /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = "GoogleMaps-3.8.0/Base/Frameworks/GoogleMapsBase.framework"; sourceTree = "<group>"; };
 		08445F4524283A40008754AC /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "GoogleMaps-3.8.0/Maps/Frameworks/GoogleMaps.framework"; sourceTree = "<group>"; };
 		08445F4724283A46008754AC /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = "GoogleMaps-3.8.0/Maps/Frameworks/GoogleMapsCore.framework"; sourceTree = "<group>"; };
@@ -77,6 +87,7 @@
 		08445F6524284A42008754AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		08445F6724284A52008754AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0DA5F38AAA9DAD3DC7E25DFE /* Pods-PrivateKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKitTests.release.xcconfig"; path = "Target Support Files/Pods-PrivateKitTests/Pods-PrivateKitTests.release.xcconfig"; sourceTree = "<group>"; };
+		0DD29292C60B45029B7823D6 /* IBMPlexSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLight.ttf"; path = "../app/assets/fonts/IBMPlexSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* PrivateKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PrivateKit/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = PrivateKit/AppDelegate.m; sourceTree = "<group>"; };
@@ -84,27 +95,32 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PrivateKit/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PrivateKit/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PrivateKit/main.m; sourceTree = "<group>"; };
+		2E9077612439A903005C98DE /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		3E10CA5A72D06133B886B461 /* libPods-PrivateKit-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PrivateKit-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		53F9F2C225904506967FEB4E /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBoldItalic.ttf"; path = "../app/assets/fonts/OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		41038D978FEE48AD9709F232 /* IBMPlexSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Light.ttf"; path = "../app/assets/fonts/IBMPlexSans-Light.ttf"; sourceTree = "<group>"; };
+		450B58D199444B7D8DEE6A0A /* IBMPlexSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Italic.ttf"; path = "../app/assets/fonts/IBMPlexSans-Italic.ttf"; sourceTree = "<group>"; };
+		542F7FB7FF534DC2A7D428AE /* IBMPlexSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Regular.ttf"; path = "../app/assets/fonts/IBMPlexSans-Regular.ttf"; sourceTree = "<group>"; };
+		556FEC0379104674A3837885 /* IBMPlexSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-MediumItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-MediumItalic.ttf"; sourceTree = "<group>"; };
+		56E8CDA04E244E24A9781CA8 /* IBMPlexSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-SemiBoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		5BB8E05EB6A91794343D2430 /* libPods-PrivateKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PrivateKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A6F5A32624649CC837BA571 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../app/assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		6BA94CE8425944B8990A49B3 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Bold.ttf"; path = "../app/assets/fonts/IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
 		71D1C872DB0CCC3BBC3D907E /* Pods-PrivateKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit.debug.xcconfig"; path = "Target Support Files/Pods-PrivateKit/Pods-PrivateKit.debug.xcconfig"; sourceTree = "<group>"; };
-		7932FB5F9EEA459987375700 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBoldItalic.ttf"; path = "../app/assets/fonts/OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		9440D638E4331481079AE235 /* Pods-PrivateKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit.release.xcconfig"; path = "Target Support Files/Pods-PrivateKit/Pods-PrivateKit.release.xcconfig"; sourceTree = "<group>"; };
-		9B686523B4164257AD651CE2 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../app/assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		9FA39802441F3BE7A66ECEDB /* Pods-PrivateKit-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-PrivateKit-tvOSTests/Pods-PrivateKit-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		B3FC897224B6433697E4D6CD /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Italic.ttf"; path = "../app/assets/fonts/OpenSans-Italic.ttf"; sourceTree = "<group>"; };
-		BEB7CA13AC07404090279B14 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-BoldItalic.ttf"; path = "../app/assets/fonts/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		B27E26E7076641EFB4386943 /* IBMPlexSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLightItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		C5CAF9029B3AE69C411463F3 /* Pods-PrivateKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKitTests.debug.xcconfig"; path = "Target Support Files/Pods-PrivateKitTests/Pods-PrivateKitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C692EBDB3E8541C7A282FF93 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../app/assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		C840FB7884D64E6FA97ECC2C /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../app/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
 		C92C147334A73EA6C87105F3 /* Pods-PrivateKit-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit-tvOS.release.xcconfig"; path = "Target Support Files/Pods-PrivateKit-tvOS/Pods-PrivateKit-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		CAA050CB1DAE4800AAAEAE3E /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../app/assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		CC1EBAC6486247BFA5EF04EB /* IBMPlexSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-SemiBold.ttf"; path = "../app/assets/fonts/IBMPlexSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		D5DFB90A472F4881A3C888C3 /* IBMPlexSans-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ThinItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-ThinItalic.ttf"; sourceTree = "<group>"; };
 		DCA1D1551CFF3D7C90EDC77C /* libPods-PrivateKit-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PrivateKit-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1C131D2EE7D1EC24368F32 /* Pods-PrivateKit-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-PrivateKit-tvOSTests/Pods-PrivateKit-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E7628266ADD70F7A55167E2C /* Pods-PrivateKit-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrivateKit-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-PrivateKit-tvOS/Pods-PrivateKit-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E872D3374DDA4AA29E3D8511 /* IBMPlexSans-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Thin.ttf"; path = "../app/assets/fonts/IBMPlexSans-Thin.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F242CB4939FC4D66B5630776 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../app/assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		F3267DEC44754D9BB6ABA49D /* IBMPlexSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-BoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		F9ABA426412C489ABAE6E56B /* IBMPlexSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-LightItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		FF5770BD87365CB0125519F3 /* libPods-PrivateKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PrivateKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -178,16 +194,20 @@
 		13AEDF79CAC944D79C55B9D6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F242CB4939FC4D66B5630776 /* OpenSans-Bold.ttf */,
-				BEB7CA13AC07404090279B14 /* OpenSans-BoldItalic.ttf */,
-				9B686523B4164257AD651CE2 /* OpenSans-ExtraBold.ttf */,
-				53F9F2C225904506967FEB4E /* OpenSans-ExtraBoldItalic.ttf */,
-				B3FC897224B6433697E4D6CD /* OpenSans-Italic.ttf */,
-				6A6F5A32624649CC837BA571 /* OpenSans-Light.ttf */,
-				07DA2C9CA83F4C21B7D133C5 /* OpenSans-LightItalic.ttf */,
-				CAA050CB1DAE4800AAAEAE3E /* OpenSans-Regular.ttf */,
-				C692EBDB3E8541C7A282FF93 /* OpenSans-SemiBold.ttf */,
-				7932FB5F9EEA459987375700 /* OpenSans-SemiBoldItalic.ttf */,
+				6BA94CE8425944B8990A49B3 /* IBMPlexSans-Bold.ttf */,
+				F3267DEC44754D9BB6ABA49D /* IBMPlexSans-BoldItalic.ttf */,
+				0DD29292C60B45029B7823D6 /* IBMPlexSans-ExtraLight.ttf */,
+				B27E26E7076641EFB4386943 /* IBMPlexSans-ExtraLightItalic.ttf */,
+				450B58D199444B7D8DEE6A0A /* IBMPlexSans-Italic.ttf */,
+				41038D978FEE48AD9709F232 /* IBMPlexSans-Light.ttf */,
+				F9ABA426412C489ABAE6E56B /* IBMPlexSans-LightItalic.ttf */,
+				C840FB7884D64E6FA97ECC2C /* IBMPlexSans-Medium.ttf */,
+				556FEC0379104674A3837885 /* IBMPlexSans-MediumItalic.ttf */,
+				542F7FB7FF534DC2A7D428AE /* IBMPlexSans-Regular.ttf */,
+				CC1EBAC6486247BFA5EF04EB /* IBMPlexSans-SemiBold.ttf */,
+				56E8CDA04E244E24A9781CA8 /* IBMPlexSans-SemiBoldItalic.ttf */,
+				E872D3374DDA4AA29E3D8511 /* IBMPlexSans-Thin.ttf */,
+				D5DFB90A472F4881A3C888C3 /* IBMPlexSans-ThinItalic.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -234,9 +254,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2E9077622439A903005C98DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2E9077662439A903005C98DE /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				2E9077612439A903005C98DE /* SplashScreen.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -324,10 +353,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = PDLZ3XQV6D;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = A35W4MM59Y;
+						DevelopmentTeam = PDLZ3XQV6D;
 					};
 				};
 			};
@@ -342,6 +372,12 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2E9077622439A903005C98DE /* Products */;
+					ProjectRef = 2E9077612439A903005C98DE /* SplashScreen.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* PrivateKit */,
@@ -349,6 +385,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2E9077662439A903005C98DE /* libSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSplashScreen.a;
+			remoteRef = 2E9077652439A903005C98DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -364,16 +410,20 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				F7554FB6D2CB4E4692D5B359 /* OpenSans-Bold.ttf in Resources */,
-				EABBBE9C01934B4A9A35DE89 /* OpenSans-BoldItalic.ttf in Resources */,
-				FCC9CA644CC14079861A8CFB /* OpenSans-ExtraBold.ttf in Resources */,
-				8130315107624C06A0D02817 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
-				E48B0565CDD44328BEF2F063 /* OpenSans-Italic.ttf in Resources */,
-				B6CCB74110A247D2AB228197 /* OpenSans-Light.ttf in Resources */,
-				B4013ADB6F02420A88004767 /* OpenSans-LightItalic.ttf in Resources */,
-				D86C551F0DF249ED8BC98C36 /* OpenSans-Regular.ttf in Resources */,
-				6828C7F4BF9544B791DB8E0F /* OpenSans-SemiBold.ttf in Resources */,
-				E798329A430E40B786B42CBC /* OpenSans-SemiBoldItalic.ttf in Resources */,
+				0076A257761B4FE184D4FAFE /* IBMPlexSans-Bold.ttf in Resources */,
+				AF045FF4B6E94ED3810484D7 /* IBMPlexSans-BoldItalic.ttf in Resources */,
+				D6F8E4798A8D4C7FA7A6D4DD /* IBMPlexSans-ExtraLight.ttf in Resources */,
+				7BE9CC19E97E417F8D85CDFA /* IBMPlexSans-ExtraLightItalic.ttf in Resources */,
+				64ACB99B89554C468148CCD6 /* IBMPlexSans-Italic.ttf in Resources */,
+				D2E57BD070F047E58DC57231 /* IBMPlexSans-Light.ttf in Resources */,
+				D5B6EB5D4B314ACFADAAEFE9 /* IBMPlexSans-LightItalic.ttf in Resources */,
+				0F130FE6EA784DA193120BEF /* IBMPlexSans-Medium.ttf in Resources */,
+				C0BDDBE3FFC54A77A26D7C1B /* IBMPlexSans-MediumItalic.ttf in Resources */,
+				0F6F6B8B939044F396202EE1 /* IBMPlexSans-Regular.ttf in Resources */,
+				A711F93C56DC413B99F63636 /* IBMPlexSans-SemiBold.ttf in Resources */,
+				C6C206E93BCA4543A72FA246 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */,
+				2C883891512048299ECF6B38 /* IBMPlexSans-Thin.ttf in Resources */,
+				293BC1167944469E848E4DD3 /* IBMPlexSans-ThinItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +573,7 @@
 			baseConfigurationReference = C5CAF9029B3AE69C411463F3 /* Pods-PrivateKitTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = PDLZ3XQV6D;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -548,6 +599,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = PDLZ3XQV6D;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PrivateKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -569,15 +621,71 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = A35W4MM59Y;
+				DEVELOPMENT_TEAM = PDLZ3XQV6D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
 					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+				);
 				INFOPLIST_FILE = PrivateKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/@mauron85_react-native-background-geolocation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-google-maps\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -595,15 +703,71 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = A35W4MM59Y;
+				DEVELOPMENT_TEAM = PDLZ3XQV6D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
 					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+				);
 				INFOPLIST_FILE = PrivateKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/@mauron85_react-native-background-geolocation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-google-maps\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
