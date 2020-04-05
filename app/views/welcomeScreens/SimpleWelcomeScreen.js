@@ -38,9 +38,6 @@ class SimpleWelcomeScreen extends Component {
       });
     }
 
-    console.log('Currently selected language: ');
-    console.log(languages.language);
-
     this.state = {
       language: findUserLang(res => {
         this.setState({ language: res });
@@ -52,22 +49,23 @@ class SimpleWelcomeScreen extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <NativePicker
-          items={this.state.localesList}
-          value={this.state.language}
-          onValueChange={(itemValue, itemIndex) => {
-            this.setState({ language: itemValue });
+        <View style={{ maxWidth: '35%', marginLeft: '12%' }}>
+          <NativePicker
+            items={this.state.localesList}
+            value={this.state.language}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ language: itemValue });
 
-            // If user picks manual lang, update and store setting
-            languages.changeLanguage(itemValue, (err, t) => {
-              if (err) return console.log('something went wrong loading', err);
-            });
-            console.log("Here's language data test:");
-            console.log(itemValue);
+              // If user picks manual lang, update and store setting
+              languages.changeLanguage(itemValue, (err, t) => {
+                if (err)
+                  return console.log('something went wrong loading', err);
+              });
 
-            SetStoreData('LANG_OVERRIDE', itemValue);
-          }}
-        />
+              SetStoreData('LANG_OVERRIDE', itemValue);
+            }}
+          />
+        </View>
         <View style={styles.infoCard}>
           <View style={styles.imageContainer}>
             <Image source={IconLogo} style={styles.infoCardImage} />
