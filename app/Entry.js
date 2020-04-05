@@ -21,7 +21,7 @@ import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
 import AboutScreen from './views/About';
-import ChooseProviderScreen from './views/ChooseProviderScreen';
+import ChooseProviderScreen from './views/ChooseProvider';
 
 import { GetStoreData, SetStoreData } from './helpers/General';
 

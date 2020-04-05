@@ -217,7 +217,7 @@ class ChooseProviderScreen extends Component {
             <Image style={styles.backArrow} source={backArrow} />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>
-            {languages.t('label.settings_title')}
+            {languages.t('label.choose_provider_title')}
           </Text>
         </View>
 

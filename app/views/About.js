@@ -31,6 +31,10 @@ class AboutScreen extends Component {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
   render() {
     return (
       <NavigationBarWrapper

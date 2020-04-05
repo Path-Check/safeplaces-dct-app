@@ -21,7 +21,6 @@ export default {
   ...licensesFile,
   ...notificationFile,
   ...launchScreenFile,
-  ...about,
   ...locationService,
   ...settingsFile,
   ...pushFile,

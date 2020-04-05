@@ -1,5 +1,5 @@
 {
-    "settings_title": "Settings",
+    "choose_provider_title": "Choose Provider",
     "authorities_title": "Trusted Sources",
     "authorities_desc": "You can get data from one or more healthcare authorities that you trust. Either select a name from the global registry, or enter the web address of an authority you trust that's implemented Safe Paths.",
     "authorities_removal_alert_title": "Remove authority",
