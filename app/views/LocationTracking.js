@@ -69,12 +69,7 @@ const StateIcon = ({ title, status, size, ...props }) => {
       break;
   }
   return (
-    <SvgXml
-      style={styles.stateIcon}
-      xml={icon}
-      width={size ? size : 80}
-      height={size ? size : 80}
-    />
+    <SvgXml xml={icon} width={size ? size : 80} height={size ? size : 80} />
   );
 };
 
@@ -568,12 +563,12 @@ class LocationTracking extends Component {
     let buttonLabel;
     let buttonFunction;
     if (this.state.currentState === StateEnum.NO_CONTACT) {
-      // TODO: TMP HACK FOR MI
-      buttonLabel = 'label.home_MASSIVE_HACK';
-      buttonFunction = () => {
-        this.props.navigation.navigate('MapLocation');
-      };
-      // return;
+      // TMP HACK FOR MI
+      // buttonLabel = 'label.home_MASSIVE_HACK';
+      // buttonFunction = () => {
+      //   this.props.navigation.navigate('MapLocation');
+      // };
+      return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
       buttonLabel = 'label.home_next_steps';
       buttonFunction = () => {};

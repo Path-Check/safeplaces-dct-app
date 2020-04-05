@@ -25,6 +25,7 @@ import {
 const { SlideInMenu } = renderers;
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
@@ -407,7 +408,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   startLoggingButtonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryBold,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -425,7 +426,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryBold,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -448,7 +449,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryBold,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -471,10 +472,10 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     overflow: 'scroll',
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   menuOptionText: {
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
     fontSize: 14,
     padding: 10,
   },
@@ -487,7 +488,7 @@ const styles = StyleSheet.create({
     borderColor: '#999999',
   },
   item: {
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
     fontSize: 16,
     padding: 10,
     maxWidth: '90%',

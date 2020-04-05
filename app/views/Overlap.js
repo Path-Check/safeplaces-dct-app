@@ -274,11 +274,11 @@ function OverlapScreen() {
   };
 
   function backToMain() {
-    navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   function handleBackPress() {
-    navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
     return true;
   }
 

@@ -14,15 +14,27 @@ class Button extends React.Component {
       toBgColor = bgColor,
       titleStyle,
       buttonStyle,
+      buttonHeight = 54,
+      borderColor,
     } = this.props;
     return (
       <LinearGradient
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         colors={[bgColor, toBgColor]}
-        style={[buttonStyle ? buttonStyle : styles.container]}>
+        style={[
+          buttonStyle ? buttonStyle : styles.container,
+          {
+            height: buttonHeight,
+            borderWidth: borderColor ? 2 : 0,
+            borderColor: borderColor,
+          },
+        ]}>
         <TouchableOpacity
-          style={[buttonStyle ? buttonStyle : styles.container]}
+          style={[
+            buttonStyle ? buttonStyle : styles.container,
+            { height: buttonHeight },
+          ]}
           onPress={onPress}>
           <Text
             style={[
@@ -46,7 +58,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 8,
     borderRadius: 12,
-    borderColor: 'rgba(255,255,255,0.7)',
   },
   text: {
     textAlign: 'center',
@@ -63,6 +74,7 @@ Button.propTypes = {
   toBgColor: PropTypes.string,
   titleStyle: PropTypes.object,
   buttonStyle: PropTypes.object,
+  borderColor: PropTypes.string,
 };
 
 export default Button;

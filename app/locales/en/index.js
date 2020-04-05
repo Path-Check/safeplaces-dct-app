@@ -6,8 +6,10 @@ import licensesFile from './licensesscreen.json';
 import overlapFile from './overlap.json';
 import notificationFile from './notification.json';
 import launchScreenFile from './launchScreen.json';
+import locationService from './locationService.json';
 import settingsFile from './settingsScreen.json';
 import pushFile from './push.json';
+import about from './about.json';
 
 export default {
   ...intro,
@@ -18,6 +20,7 @@ export default {
   ...licensesFile,
   ...notificationFile,
   ...launchScreenFile,
+  ...about,
+  ...locationService,
   ...settingsFile,
-  ...pushFile,
 };
