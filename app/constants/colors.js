@@ -31,6 +31,12 @@ const colors = {
   GRAY_TO_BUTTON: '#868686',
 
   BLUE_LINK: '#007AFF',
+
+  VIOLET_TEXT: '#3C4ED8',
+  RED_TEXT: '#FF5656',
+
+  NAV_BAR_VIOLET: '#5061E6',
+  NAV_BAR_BORDER: 'rgba(189, 195, 199,0.6)',
 };
 
 export default colors;

@@ -41,6 +41,7 @@ ButtonWrapper.propTypes = {
   toBgColor: PropTypes.string,
   titleStyle: PropTypes.object,
   buttonStyle: PropTypes.object,
+  borderColor: PropTypes.string,
 };
 
 export default ButtonWrapper;
