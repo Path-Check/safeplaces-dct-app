@@ -47,12 +47,14 @@ export function findUserLang(callback) {
       }
 
       // Run state updating callback to trigger rerender
-      callback(userLang);
+      typeof callback === 'function' ? callback(userLang) : null;
 
       return userLang;
     });
   });
 }
+
+findUserLang();
 
 i18next.init({
   interpolation: {
