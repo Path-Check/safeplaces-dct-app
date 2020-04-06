@@ -72,33 +72,53 @@ export default class NativePicker extends Component {
             animationType='slide'
             transparent
             visible={this.state.modalVisible}>
-            <TouchableWithoutFeedback
-              onPress={() => this.setState({ modalVisible: false })}>
-              <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                  <Text
-                    style={{ color: 'blue' }}
-                    onPress={() => this.setState({ modalVisible: false })}>
-                    Done
-                  </Text>
-                </View>
+            <View style={{ flex: 2 }}>
+              <TouchableWithoutFeedback
+                style={{ flex: 1, backgroundColor: '#000000', opacity: 0.4 }}
+                onPress={() => this.setState({ modalVisible: false })}>
                 <View
-                  onStartShouldSetResponder={evt => true}
-                  onResponderReject={evt => {}}>
-                  <Picker
-                    selectedValue={this.props.value}
-                    onValueChange={this.props.onValueChange}>
-                    {this.props.items.map((i, index) => (
-                      <Picker.Item
-                        key={index}
-                        label={i.label}
-                        value={i.value}
-                      />
-                    ))}
-                  </Picker>
+                  style={{
+                    flex: 1,
+                    backgroundColor: '#000000',
+                    opacity: 0.2,
+                  }}></View>
+              </TouchableWithoutFeedback>
+            </View>
+            <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
+              <TouchableWithoutFeedback
+                onPress={() => this.setState({ modalVisible: false })}>
+                <View style={styles.modalContainer}>
+                  <View style={styles.modalContent}>
+                    <Text
+                      style={{
+                        color: '#007aff',
+                        fontWeight: 'bold',
+                        textAlign: 'right',
+                        marginTop: 16,
+                        marginRight: 22,
+                      }}
+                      onPress={() => this.setState({ modalVisible: false })}>
+                      Done
+                    </Text>
+                  </View>
+                  <View
+                    onStartShouldSetResponder={evt => true}
+                    onResponderReject={evt => {}}>
+                    <Picker
+                      selectedValue={this.props.value}
+                      onValueChange={this.props.onValueChange}>
+                      {this.props.items.map((i, index) => (
+                        <Picker.Item
+                          key={index}
+                          label={i.label}
+                          value={i.value}
+                        />
+                      ))}
+                    </Picker>
+                  </View>
                 </View>
-              </View>
-            </TouchableWithoutFeedback>
+              </TouchableWithoutFeedback>
+            </View>
           </Modal>
         </View>
       );
