@@ -3,7 +3,7 @@ import React from 'react';
 import {render, wait} from '@testing-library/react-native';
 import LocationTracking from '../LocationTracking';
 
-// Skipped due to worker not exiting, hanging CI action
+// TODO(#373): Skipped due to worker not exiting, hanging CI action
 it.skip('renders correctly', async () => {
   const {asJSON} = render(<LocationTracking />);
 
