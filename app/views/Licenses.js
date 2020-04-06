@@ -45,8 +45,8 @@ class LicensesScreen extends Component {
       '<style>  html, body { font-size: 40px; margin: 0; padding: 0; } </style>';
     result += '<body>';
 
-    for (var i = 0; i < licenses.licenses.length; i++) {
-      var element = licenses.licenses[i];
+    for (var i = 0; i < licenses.terms_and_licenses.length; i++) {
+      var element = licenses.terms_and_licenses[i];
 
       result += '<B>' + element.name + '</B><P>';
       result += element.text.replace(/\n/g, '<br/>');
@@ -60,32 +60,19 @@ class LicensesScreen extends Component {
   render() {
     return (
       <NavigationBarWrapper
-        title={languages.t('label.licenses_title')}
+        title={languages.t('label.legal_page_title')}
         onBackPress={this.backToMain.bind(this)}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.main}>
-            <View style={styles.row}>
-              <Text style={styles.valueName}>
-                {languages.t('label.private_kit')}{' '}
-              </Text>
-            </View>
-
             <View style={styles.row}>
               <Text style={styles.valueName}>Version: </Text>
               <Text style={styles.value}>{packageJson.version}</Text>
             </View>
 
             <View style={styles.row}>
-              <Text style={styles.valueName}>OS: </Text>
-              <Text style={styles.value}>
-                {Platform.OS + ' v' + Platform.Version}
-              </Text>
-            </View>
-
-            <View style={styles.row}>
-              <Text style={styles.valueName}>Screen Resolution: </Text>
-              <Text style={styles.value}>
-                {' '}
+              <Text style={styles.valueSmall}>
+                OS:
+                {Platform.OS + ' v' + Platform.Version}; Screen:
                 {Math.trunc(Dimensions.get('screen').width) +
                   ' x ' +
                   Math.trunc(Dimensions.get('screen').height)}
@@ -137,6 +124,12 @@ const styles = StyleSheet.create({
   value: {
     color: Colors.VIOLET_TEXT,
     fontSize: 20,
+    fontFamily: fontFamily.primaryMedium,
+    marginTop: 9,
+  },
+  valueSmall: {
+    color: Colors.VIOLET_TEXT,
+    fontSize: 16,
     fontFamily: fontFamily.primaryMedium,
     marginTop: 9,
   },
