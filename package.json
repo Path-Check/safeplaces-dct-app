@@ -3,6 +3,7 @@
   "version": "0.5.11",
   "private": true,
   "scripts": {
+    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && pod install",
     "postinstall": "patch-package",
     "postversion": "react-native-version",
