@@ -1,0 +1,59 @@
+Commit headline -- not longer than this line (50)
+
+Longer change description.  Please keep text no longer than this line -------
+
+ ### Testing Notes ###
+Include instructions for reviewers to run tests related to this PR.
+
+ ### Fixed Issues ###
+NONE - Replace with description and/or associated Github issue
+       numbers, e.g. Resolves #12, Resolves #100
+
+ ### Tech Notes ###
+NONE - Explain new algorithms in detail, new utility classes this
+       introduces, tool changes, etc. Basically, these are asides
+       you are writing to other developers on the project
+
+ ### API Notes ###
+NONE - Message types added or changed, new signals, APIs, etc.
+       It is very important to note any change which breaks backwards
+       compatibility.
+
+ ### Environment Notes ###
+NONE - New package requirements, new files being written to disk, etc.
+
+# This template is for commits to this repo.  Change the first line (think of
+# it as the "headline" for the commit) and then add a longer description of
+# the change.  To be nice, keep the headline to 50 characters (Github will
+# truncate after that in its UI) and wrap content at 78 characters
+# or less (to be nice in all text editors).  The first lines of this template
+# are exactly 50 and 78 characters for reference.
+#
+# Also use imperative writing in the headline and description, such as "Fix
+# broken code" not "Fixes the broken code" or "Fixed the broken code".  Good
+# imperative phrases are:
+#   * Add something new
+#   * Fix something broken
+#   * Remove unused something
+#   * Update this thing
+#   * Refactor that thing
+# As you see above, you can use [Github markdown](https://guides.github.com/features/mastering-markdown/)
+# freely. Notice the above violation of the 78 character rule in the long
+# hyperlink -- just don't include important stuff after the 78th character,
+# wrap as soon as possible.
+#
+# Finally, you can include nice code examples like this:
+# ```python
+# def example():
+#     print("Nicely highlighted python code")
+# ```
+#
+# Sections below can be filled out and edited as appropriate. The same
+# sections are used in the PR template, so this can be notes to yourself for
+# when you check in a larger body of work with multiple commits.  Sections
+# can optionally be removed.
+#
+# Please fill this out carefully. This moment is when the code you are
+# committing is clearest in the mind of you, the foremost expert in this
+# change. Please pause to think of side effects and impacts.
+#

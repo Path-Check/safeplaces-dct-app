@@ -182,7 +182,7 @@ class SettingsScreen extends Component {
               {this.getSettingRow('label.about_title', this.aboutButtonPressed)}
               <View style={styles.divider}></View>
               {this.getSettingRow(
-                'label.licenses_title',
+                'label.legal_page_title',
                 this.licensesButtonPressed,
               )}
             </View>
