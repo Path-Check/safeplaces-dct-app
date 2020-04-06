@@ -86,8 +86,12 @@ class LocationTracking extends Component {
       isLogging: '',
       currentState: StateEnum.NO_CONTACT,
     };
-
-    this.checkCurrentState();
+    try {
+      this.checkCurrentState();
+    } catch (e) {
+      // statements
+      console.log(e);
+    }
   }
 
   /*  Check current state
