@@ -1,4 +1,4 @@
-name: Jest Test Runner
+name: Unit test
 
 on:
   push:
