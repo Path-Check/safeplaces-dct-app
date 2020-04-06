@@ -1,11 +1,11 @@
 import 'react-native';
 import React from 'react';
-import renderer from 'react-test-renderer';
+import {render, wait} from '@testing-library/react-native';
 import LocationTracking from '../LocationTracking';
 
 it('renders correctly', async () => {
-  const tree = renderer
-    .create(<LocationTracking />)
-    .toJSON();
-  await expect(tree).toMatchSnapshot();
+  const {asJSON} = render(<LocationTracking />);
+
+  await wait();
+  expect(asJSON()).toMatchSnapshot();
 });
