@@ -209,6 +209,8 @@ if ! found_exe react-native ; then
     echo "${GREEN}React Native tools installed!${RESET}"
 fi
 
+git config commit.template ./.gitmessage
+
 
 echo "${GREEN}You are now ready to go!${RESET}"
 echo
