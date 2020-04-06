@@ -162,6 +162,7 @@ Array [
             javaScriptEnabled={true}
             messagingEnabled={false}
             onContentProcessDidTerminate={[Function]}
+            onError={[Function]}
             onHttpError={[Function]}
             onLoad={[Function]}
             onLoadingError={[Function]}
