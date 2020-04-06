@@ -61,16 +61,12 @@ export default class NativePicker extends Component {
       return (
         <View style={styles.inputContainer}>
           <TouchableOpacity
-            onPress={() => this.setState({ modalVisible: true })}>
-            <TextInput
-              style={styles.input}
-              editable={false}
-              placeholder='Select language'
-              onChangeText={searchString => {
-                this.setState({ searchString });
-              }}
-              value={selectedLabel}
-            />
+            onPress={() => {
+              this.setState({ modalVisible: true });
+              console.log('Locale press registered!');
+            }}
+            style={styles.touchableTrigger}>
+            <Text style={styles.touchableText}>{selectedLabel}</Text>
           </TouchableOpacity>
           <Modal
             animationType='slide'
@@ -137,15 +133,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: '5%',
   },
-  input: {
+  touchableTrigger: {
     backgroundColor: '#ffffff',
     opacity: 0.4,
-    textAlign: 'center',
-    paddingVertical: 3,
-    paddingHorizontal: 9,
+    paddingVertical: 4,
+    paddingHorizontal: 11,
     borderRadius: 100,
-    color: '#4051DB',
-    textTransform: 'uppercase',
+  },
+  touchableText: {
     fontSize: 12,
+    color: '#4051DB',
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
 });
