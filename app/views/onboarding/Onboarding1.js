@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -9,46 +9,87 @@ import {
 } from 'react-native';
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
-import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
+import languages, { findUserLang } from './../../locales/languages';
+import NativePicker from '../../components/NativePicker';
+import { SetStoreData } from '../../helpers/General';
 
 const width = Dimensions.get('window').width;
 
-const Onboarding = props => {
-  return (
-    <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
-      <ImageBackground
-        source={BackgroundOverlayImage}
-        style={styles.backgroundImage}>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor='transparent'
-          translucent={true}
-        />
+class Onboarding extends Component {
+  constructor(props) {
+    super(props);
 
-        <View style={styles.mainContainer}>
-          <View style={styles.contentContainer}>
-            <Text style={styles.mainText}>
-              {languages.t('label.launch_screen1_header')}
-            </Text>
-          </View>
-          <View style={styles.footerContainer}>
-            <ButtonWrapper
-              title={languages.t('label.launch_get_started')}
-              onPress={() => {
-                props.navigation.replace('Onboarding2');
+    // Get locales list from i18next for locales menu
+    let localesList = [];
+    for (let key in languages.options.resources) {
+      localesList = localesList.concat({
+        value: key,
+        label: languages.options.resources[key].label,
+      });
+    }
+
+    this.state = {
+      language: findUserLang(res => {
+        this.setState({ language: res });
+      }),
+      localesList: localesList,
+    };
+  }
+
+  render() {
+    return (
+      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+        <ImageBackground
+          source={BackgroundOverlayImage}
+          style={styles.backgroundImage}>
+          <StatusBar
+            barStyle='light-content'
+            backgroundColor='transparent'
+            translucent={true}
+          />
+          <View style={{ paddingTop: 20 }}>
+            <NativePicker
+              items={this.state.localesList}
+              value={this.state.language}
+              onValueChange={(itemValue, itemIndex) => {
+                this.setState({ language: itemValue });
+
+                // If user picks manual lang, update and store setting
+                languages.changeLanguage(itemValue, (err, t) => {
+                  if (err)
+                    return console.log('something went wrong loading', err);
+                });
+
+                SetStoreData('LANG_OVERRIDE', itemValue);
               }}
-              buttonColor={Colors.VIOLET}
-              bgColor={Colors.WHITE}
             />
           </View>
-        </View>
+
+          <View style={styles.mainContainer}>
+            <View style={styles.contentContainer}>
+              <Text style={styles.mainText}>
+                {languages.t('label.launch_screen1_header')}
+              </Text>
+            </View>
+            <View style={styles.footerContainer}>
+              <ButtonWrapper
+                title={languages.t('label.launch_get_started')}
+                onPress={() => {
+                  this.props.navigation.replace('Onboarding2');
+                }}
+                buttonColor={Colors.VIOLET}
+                bgColor={Colors.WHITE}
+              />
+            </View>
+          </View>
+        </ImageBackground>
       </ImageBackground>
-    </ImageBackground>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -80,6 +121,11 @@ const styles = StyleSheet.create({
     bottom: 0,
     marginBottom: '10%',
     alignSelf: 'center',
+  },
+  menuOptionText: {
+    fontWeight: 'normal',
+    fontSize: 14,
+    padding: 10,
   },
 });
 
