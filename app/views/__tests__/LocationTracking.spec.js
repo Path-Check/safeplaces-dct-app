@@ -7,5 +7,6 @@ it('renders correctly', async () => {
   const {asJSON} = render(<LocationTracking />);
 
   await wait();
+
   expect(asJSON()).toMatchSnapshot();
 });
