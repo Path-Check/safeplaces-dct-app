@@ -162,8 +162,21 @@ class LocationTracking extends Component {
     });
   }
 
+  findNewAuthorities() {
+    // TODO: This should pull down the Healtcare Authorities list (see Settings.js)
+    // Then it should look at the GPS extent box of each authority and (if any
+    // of the GPS coordinates change) pop-up a notification that is basically:
+    //    There is a new "Healthcare Authority" for an area where you have
+    //    been.
+    // Tapping that notification asks if they want to Add that Healthcare Authority
+    // under the Settings screen.
+  }
+
   intersect_tick = () => {
     // This function is called once every 12 hours.  It should do several things:
+
+    this.findNewAuthorities();
+
     // Get the user's health authorities
     GetStoreData('HEALTH_AUTHORITIES')
       .then(authority_list => {
@@ -178,6 +191,8 @@ class LocationTracking extends Component {
           //];
           return;
         }
+
+        let name_news = [];
 
         if (authority_list) {
           // Pull down data from all the registered health authorities
@@ -197,11 +212,15 @@ class LocationTracking extends Component {
                 // }
 
                 // Update cache of info about the authority
-                // (info_url might have changed, etc.)
+                // TODO: Add an "info_newsflash" UTC timestamp and popup a
+                //       notification if that changes, i.e. if there is a newsflash?
+                name_news.push({
+                  name: responseJson.authority_name,
+                  news_url: responseJson.info_website,
+                });
 
-                // TODO: authority_list, match by authority_list.url, then re-save "authority_name", "info_website" and
-                // "publish_date_utc" (we should notify users if their authority is no longer functioning.)
-                // console.log('Received data from authority.url=', authority.url);
+                // TODO: Look at "publish_date_utc".  We should notify users if
+                //       their authority is no longer functioning.)
 
                 IntersectSet(responseJson.concern_points, dayBin => {
                   console.log('asasasas');
@@ -213,6 +232,16 @@ class LocationTracking extends Component {
                   }
                 });
               });
+
+            SetStoreData('AUTHORITY_NEWS', name_news)
+              .then(() => {
+                // TODO: Anything after this saves?  Background caching of
+                //       news to make it snappy?  Could be a problem in some
+                //       locales with high data costs.
+              })
+              .catch(error =>
+                console.log('Failed to save authority/news URL list'),
+              );
           }
         } else {
           console.log('No authority list');
