@@ -52,6 +52,7 @@ class ImportScreen extends Component {
   }
 
   render() {
+    let counter = 0;
     return (
       <NavigationBarWrapper
         title={languages.t('label.import_title')}
@@ -72,6 +73,25 @@ class ImportScreen extends Component {
                   'https://takeout.google.com/settings/takeout/custom/location_history',
               }}
               onLoad={() => this.hideSpinner()}
+              // Reload once on error to workaround chromium regression for Android
+              // Chromiumn Bug :: https://bugs.chromium.org/p/chromium/issues/detail?id=1023678
+              ref={ref => {
+                this.webView = ref;
+              }}
+              onError={() => {
+                console.log(counter);
+                if (counter === 0) {
+                  this.webView.reload();
+                }
+                counter++;
+              }}
+              renderError={errorName => {
+                if (counter >= 1) {
+                  <View style={styles.sectionDescription}>
+                    <Text>Error Occurred while importing file {errorName}</Text>
+                  </View>;
+                }
+              }}
               style={{ marginTop: 15 }}
             />
             {this.state.visible && (
