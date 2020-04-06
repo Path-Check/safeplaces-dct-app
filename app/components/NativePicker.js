@@ -33,7 +33,7 @@ export default class NativePicker extends Component {
           <TouchableOpacity
             onPress={() => this.setState({ modalVisible: true })}>
             <TextInput
-              style={styles.input}
+              style={[styles.touchableTrigger, styles.touchableText]}
               editable={false}
               placeholder='Select language'
               onChangeText={searchString => {
@@ -63,7 +63,6 @@ export default class NativePicker extends Component {
           <TouchableOpacity
             onPress={() => {
               this.setState({ modalVisible: true });
-              console.log('Locale press registered!');
             }}
             style={styles.touchableTrigger}>
             <Text style={styles.touchableText}>{selectedLabel}</Text>
