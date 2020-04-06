@@ -31,7 +31,7 @@ class NewsScreen extends Component {
     super(props);
     let default_news = {
       name: 'Safe Paths News', // TODO: translate
-      url: 'https://privatekit.mit.edu/views', // TODO: New
+      url: languages.t('label.app_info_url'),
     };
     this.state = {
       visible: true,
