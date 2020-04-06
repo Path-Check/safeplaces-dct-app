@@ -8,16 +8,15 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        node-version: [12, 13]
+    # strategy:
+    #   matrix:
+    #     node-version: [12, 13] # TODO
 
     runs-on: ubuntu-latest
-    container: node:13
-
 
     steps:
     - uses: actions/checkout@v2
+    - run: node --version
     - run: yarn
     - run: yarn test
       env:
