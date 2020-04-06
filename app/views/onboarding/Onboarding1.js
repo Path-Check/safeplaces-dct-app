@@ -50,7 +50,12 @@ class Onboarding extends Component {
             backgroundColor='transparent'
             translucent={true}
           />
-          <View style={{ paddingTop: 20 }}>
+          <View
+            style={{
+              paddingTop: 40,
+              position: 'absolute',
+              alignSelf: 'center',
+            }}>
             <NativePicker
               items={this.state.localesList}
               value={this.state.language}
@@ -60,7 +65,10 @@ class Onboarding extends Component {
                 // If user picks manual lang, update and store setting
                 languages.changeLanguage(itemValue, (err, t) => {
                   if (err)
-                    return console.log('something went wrong loading', err);
+                    return console.log(
+                      'something went wrong in lang change',
+                      err,
+                    );
                 });
 
                 SetStoreData('LANG_OVERRIDE', itemValue);

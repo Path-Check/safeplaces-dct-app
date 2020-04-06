@@ -21,15 +21,36 @@ export default class NativePicker extends Component {
   }
 
   render() {
+    // iOS and Android Pickers behave differently, handled below
     if (Platform.OS === 'android') {
+      const selectedItem = this.props.items.find(
+        i => i.value === this.props.value,
+      );
+      const selectedLabel = selectedItem ? selectedItem.label : '';
+
       return (
-        <Picker
-          selectedValue={this.props.value}
-          onValueChange={this.props.onValueChange}>
-          {this.props.items.map((i, index) => (
-            <Picker.Item key={index} label={i.label} value={i.value} />
-          ))}
-        </Picker>
+        <View style={styles.inputContainer}>
+          <TouchableOpacity
+            onPress={() => this.setState({ modalVisible: true })}>
+            <TextInput
+              style={styles.input}
+              editable={false}
+              placeholder='Select language'
+              onChangeText={searchString => {
+                this.setState({ searchString });
+              }}
+              value={selectedLabel}
+            />
+          </TouchableOpacity>
+          <Picker
+            selectedValue={this.props.value}
+            onValueChange={this.props.onValueChange}
+            style={{ opacity: 0, marginTop: -45 }}>
+            {this.props.items.map((i, index) => (
+              <Picker.Item key={index} label={i.label} value={i.value} />
+            ))}
+          </Picker>
+        </View>
       );
     } else {
       const selectedItem = this.props.items.find(
@@ -115,5 +136,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginLeft: '5%',
+  },
+  input: {
+    backgroundColor: '#ffffff',
+    opacity: 0.4,
+    textAlign: 'center',
+    paddingVertical: 5,
+    paddingHorizontal: 12,
+    borderRadius: 100,
+    color: '#4051DB',
+    textTransform: 'uppercase',
+    fontSize: 12,
   },
 });
