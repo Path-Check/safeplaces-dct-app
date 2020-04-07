@@ -25,7 +25,7 @@ import {
   VictoryChart,
   VictoryTooltip,
 } from 'victory-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import Colors from '../constants/colors';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 
 const width = Dimensions.get('window').width;
@@ -42,8 +42,6 @@ const Threshold = {
   LOW: 12, // 12 * 5 minutes = one hour
   LOWEST: 0, // 0 * 5 minutes = no known exposure!
 };
-
-var using_random_intersections = false;
 
 class NotificationScreen extends Component {
   constructor(props) {
@@ -83,32 +81,22 @@ class NotificationScreen extends Component {
     this.getInitialState();
   }
 
-  resetState() {
-    if (using_random_intersections === true) {
-      using_random_intersections = false;
-      AsyncStorage.removeItem('CROSSED_PATHS');
-      console.log('deleting random intersection data');
-      this.setState({ dataAvailable: false });
-    }
-  }
-
-  /* DEBUGGING TOOL -- handy for creating faux data
-  generate_random_intersections(length) {
-    using_random_intersections = true;
-    var dayBin = [];
-    for (var i = 0; i < length; i++) {
-      // Random Integer between 0-99
-      const intersections = Math.floor((Math.random() * 200) / 2);
-      dayBin.push(intersections);
-    }
-    SetStoreData('CROSSED_PATHS', dayBin);
-    this.refreshState();
-  }
-  */
+  resetState() {}
 
   getInitialState = async () => {
     GetStoreData('CROSSED_PATHS').then(dayBin => {
       console.log(dayBin);
+
+      /* DEBUGGING TOOL -- handy for creating faux data
+      let pseudoBin = [];
+      for (var i = 0; i < 28; i++) {
+        // Random Integer between 0-99
+        const intersections = Math.floor((Math.random() * 500) / 500);
+        pseudoBin.push(intersections);
+      }
+      dayBin = JSON.stringify(pseudoBin);
+      */
+
       if (dayBin === null) {
         this.setState({ dataAvailable: false });
         console.log("Can't found Crossed Paths");
@@ -116,7 +104,7 @@ class NotificationScreen extends Component {
         var crossed_path_data = [];
         console.log('Found Crossed Paths');
         this.setState({ dataAvailable: true });
-        dayBinParsed = JSON.parse(dayBin);
+        let dayBinParsed = JSON.parse(dayBin);
 
         // Don't display more than two weeks of crossing data
         for (
@@ -125,7 +113,7 @@ class NotificationScreen extends Component {
           i++
         ) {
           const val = dayBinParsed[i];
-          data = { x: i, y: val, fill: this.colorfill(val) };
+          let data = { x: i, y: val, fill: this.colorfill(val) };
           crossed_path_data.push(data);
         }
         this.setState({ data: crossed_path_data });
@@ -152,7 +140,7 @@ class NotificationScreen extends Component {
 
     return (
       <NavigationBarWrapper
-        title={languages.t('label.notifications')}
+        title={languages.t('label.event_history_title')}
         onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
           <Text style={styles.pageTitle}>
@@ -203,22 +191,14 @@ class NotificationScreen extends Component {
                   data.y === 0 ? (
                     data.x == max_exposure_window - 1 && !hasExposure ? (
                       <Text style={styles.noExposure}>
-                        No known exposures to COVID during the last two weeks.
+                        {languages.t('label.notifications_no_exposure')}
                       </Text>
                     ) : (
                       <Text style={{ height: 0 }}></Text>
                     )
                   ) : (
                     <View key={data.x} style={styles.notificationView}>
-                      <Text
-                        style={[
-                          styles.notificationsText,
-                          data.y > Threshold.HIGH
-                            ? styles.notificationsTextHigh
-                            : data.y > Threshold.MEDIUM
-                            ? styles.notificationsTextMedium
-                            : null,
-                        ]}>
+                      <Text style={[styles.notificationsText]}>
                         {data.x == 0
                           ? languages.t(
                               'label.notifications_exposure_format_today',
@@ -249,10 +229,7 @@ class NotificationScreen extends Component {
               </Text>
               <TouchableOpacity
                 style={styles.buttonTouchable}
-                onPress={
-                  () =>
-                    this.goToSettings() /* DEBUGGING TOOL: this.generate_random_intersections(max_exposure_window) */
-                }>
+                onPress={() => this.goToSettings()}>
                 <Text style={styles.buttonText}>
                   {languages.t('label.notification_random_data_button')}
                 </Text>
@@ -284,14 +261,6 @@ const styles = StyleSheet.create({
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
   },
-  valueName: {
-    fontSize: 20,
-    fontWeight: '800',
-  },
-  value: {
-    fontSize: 20,
-    fontWeight: '200',
-  },
   buttonTouchable: {
     borderRadius: 12,
     backgroundColor: '#665eff',
@@ -303,7 +272,9 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   buttonText: {
-    fontFamily: fontFamily.primaryRegular,
+    fontSize: 14,
+    lineHeight: 19,
+    fontFamily: fontFamily.primaryBold,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -311,12 +282,15 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   mainText: {
-    fontSize: 16,
+    fontSize: 18,
     lineHeight: 24,
     fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 10,
+    marginTop: 20,
+    color: Colors.VIOLET_TEXT,
+    overflow: 'scroll',
   },
   smallText: {
     fontSize: 10,
@@ -331,6 +305,7 @@ const styles = StyleSheet.create({
   },
   pageTitle: {
     fontSize: 24,
+    color: Colors.VIOLET_TEXT,
     fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
   },
@@ -366,8 +341,9 @@ const styles = StyleSheet.create({
   },
   notificationsHeaderText: {
     color: colors.WHITE,
-    fontSize: 16,
-    fontFamily: fontFamily.primaryRegular,
+    fontSize: 18,
+    lineHeight: 22,
+    fontFamily: fontFamily.primaryBold,
   },
   notificationView: {
     width: '100%',
@@ -391,8 +367,9 @@ const styles = StyleSheet.create({
   },
   noExposure: {
     margin: 30,
-    color: colors.LOWEST_RISK,
+    color: 'forestgreen',
     fontSize: 20,
+    textAlign: 'center',
     fontFamily: fontFamily.primaryMedium,
   },
 });
