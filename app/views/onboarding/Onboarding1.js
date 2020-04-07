@@ -50,25 +50,33 @@ class Onboarding extends Component {
             backgroundColor='transparent'
             translucent={true}
           />
-          <View style={{ paddingTop: 20 }}>
-            <NativePicker
-              items={this.state.localesList}
-              value={this.state.language}
-              onValueChange={(itemValue, itemIndex) => {
-                this.setState({ language: itemValue });
-
-                // If user picks manual lang, update and store setting
-                languages.changeLanguage(itemValue, (err, t) => {
-                  if (err)
-                    return console.log('something went wrong loading', err);
-                });
-
-                SetStoreData('LANG_OVERRIDE', itemValue);
-              }}
-            />
-          </View>
-
           <View style={styles.mainContainer}>
+            <View
+              style={{
+                paddingTop: 60,
+                position: 'absolute',
+                alignSelf: 'center',
+                zIndex: 10,
+              }}>
+              <NativePicker
+                items={this.state.localesList}
+                value={this.state.language}
+                onValueChange={(itemValue, itemIndex) => {
+                  this.setState({ language: itemValue });
+
+                  // If user picks manual lang, update and store setting
+                  languages.changeLanguage(itemValue, (err, t) => {
+                    if (err)
+                      return console.log(
+                        'something went wrong in lang change',
+                        err,
+                      );
+                  });
+
+                  SetStoreData('LANG_OVERRIDE', itemValue);
+                }}
+              />
+            </View>
             <View style={styles.contentContainer}>
               <Text style={styles.mainText}>
                 {languages.t('label.launch_screen1_header')}
