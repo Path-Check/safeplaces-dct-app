@@ -151,7 +151,7 @@ if ! found_exe android-studio ; then
         echo "   NOTE: You might need to close and reopent Android Studio the first time to see this."
         echo "   * Under the SDK Platforms tab, click Show Package Details"
         echo "   * Expand the 'Android 9.0 (Pie)' entry"
-        echo "     - Check: Android SDK Platform 29"
+        echo "     - Check: Android SDK Platform 28"
         echo "     - Check: Intel x86 Atom_64 System Image or Google APIs Intel x86 Atom System Image"
         echo "   * Under the SDK Tools tab, check 'Show Package Details'"
         echo "   * Expand the 'Android SDK Build-Tools' entry"
@@ -163,7 +163,7 @@ if ! found_exe android-studio ; then
 
         echo "${BLUE}Adding environment variables to ${YELLOW}~/.profile_mobileapp${RESET}"
 
-        echo "# ==== Added by PrivateKit/mobileapp's dev_setup.sh ====" > ~/.profile_mobileapp
+        echo "# ==== Added by COVID Safe Paths dev_setup.sh ====" > ~/.profile_mobileapp
         if [[ "$OSTYPE" == "darwin"* ]] ; then
             echo "export ANDROID_SDK_ROOT=\$HOME/Library/Android/sdk" >> ~/.profile_mobileapp
         else
@@ -208,6 +208,8 @@ if ! found_exe react-native ; then
     npm install
     echo "${GREEN}React Native tools installed!${RESET}"
 fi
+
+git config commit.template ./.gitmessage
 
 
 echo "${GREEN}You are now ready to go!${RESET}"

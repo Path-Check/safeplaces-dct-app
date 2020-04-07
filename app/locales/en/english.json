@@ -1,0 +1,190 @@
+{
+    "commitment": "Commitment",
+    "commitment_para": "Safe Paths securely records and checks your interaction with people using your location. Your data will NEVER leave your phone without your consent.",
+    "team": "Team",
+    "team_para": "Our team is composed of a consortium of epidemiologists, engineers, data scientists, digital privacy evangelists, professors and researchers from reputable institutions, including: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young and Link Ventures.",
+
+
+
+    "authorities_title": "Trusted Sources",
+    "authorities_desc": "Choose trusted healthcare authorities in your area to obtain exposure data. Either select a name from the global registry, or enter the web address provided by an authority which has implemented Safe Paths.",
+    "authorities_removal_alert_title": "Remove authority",
+    "authorities_removal_alert_desc": "Are you sure you want to remove this authority data source?",
+    "authorities_removal_alert_cancel": "Cancel",
+    "authorities_removal_alert_proceed": "Procceed",
+    "authorities_no_sources": "No data source yet",
+    "authorities_add_button_label": "Add Trusted Source",
+    "authorities_add_url": "Add authority via URL",
+    "authorities_input_placeholder": "Paste your URL here",
+
+
+
+    "export_para_1": "If you test positive for COVID-19, please do your part by sharing your location history with local authorities.",
+    "export_para_2": "Location is shared as a simple list of times and places, no additional information.",
+    "share": "SHARE",
+    "data_hint": "Log has data of",
+    "data_covers": "Total time the log covers:",
+    "data_count": "Number of points logged:",
+    "data_last_updated": "Time since last updated:",
+    "no_data": "No data",
+    "less_than_one_minute": "less than 1 minute",
+    "share_location_data": "Share location data",
+
+
+
+    "import_title": "Import Locations",
+    "import_step_1": "1. Login to your Google Account and Download your Location History",
+    "import_step_2": "2. After downloaded, open this screen again. The data will import automatically.",
+
+
+
+    "private_kit": "COVID\nSafe Paths",
+    "next": "NEXT",
+    "back": "BACK",
+    "start": "START",
+    "intro_subtitle": "We can fight COVID-19 together",
+    "intro_header_0": "Map where you go",
+    "intro_subheader_0": "The app saves your location every 5 minutes",
+    "intro_header_1": "Keep your privacy",
+    "intro_subheader_1": "Your data never leaves your phone without your consent",
+    "intro_header_2": "Stay informed of risk",
+    "intro_subheader_2": "Check if you crossed paths with a COVID-19 patient",
+    "intro_get_started": "I want to help!",
+
+
+
+    "launch_screen1_header": "The way back to normal starts here.",
+    "launch_get_started": "Get Started",
+    "launch_next": "Next",
+    "launch_set_up_phone": "Set up my phone",
+    "launch_enable_location": "Enable Location",
+    "launch_enable_notif": "Enable Notifications",
+    "launch_finish_set_up": "Finish Setup",
+
+    "launch_location_access": "Location access",
+    "launch_notification_access": "Allow notifications",
+
+    "launch_screen2_header": "Get notified if you cross paths with someone later diagnosed for COVID-19.",
+    "launch_screen2_subheader": "Knowledge is power.",
+
+    "launch_screen3_header": "If you test positive, you can choose to donate your data anonymously",
+    "launch_screen3_subheader": "Which helps keep your entire community safe.",
+
+    "launch_screen4_header": "You're in complete control. Data is only saved on your phone.",
+    "launch_screen4_subheader": "If you test positive, you alone can choose whether to share.",
+
+    "launch_location_header": "To remember where you go, your phone needs to save your location.",
+    "launch_location_subheader": "Don’t worry, information never leaves your device unless you explicitly decide to share.",
+
+    "launch_notif_header": "Notifications will let you know if you cross paths with an infected person.",
+    "launch_notif_subheader": "We won't bother you except to share updates on your potential exposure risks.",
+
+    "launch_done_header": "All finished",
+    "launch_done_subheader": "You’re ready to roll. Remember, you can always update your preferences later.",
+
+
+
+    "licenses": "Licenses",
+    "license_placeholder": "This app is built under the MIT license.",
+
+
+
+    "yes": "Yes",
+    "no": "No",
+    "location_enabled_title": "COVID Safe Paths Enabled",
+    "location_enabled_message": "COVID Safe Paths is securely storing your GPS coordinates once every five minutes on this device.",
+    "location_disabled_title": "Location Tracking Was Disabled",
+    "location_disabled_message": "COVID Safe Paths requires location services.",
+    "require_location_information_title": "COVID Safe Paths requires access to location information",
+    "require_location_information_message": "Would you like to open app settings?",
+    "require_location_services_title": "COVID Safe Paths requires location services to be enabled",
+    "require_location_services_message": "Would you like to open location settings?",
+
+
+
+    "import": "Import",
+    "export": "Export",
+    "news": "News",
+    "latest_news": "Latest News",
+    "url_info": "For more info visit ",
+    "home_footer": "privatekit.mit.edu",
+    "app_info_url": "https://covidsafepaths.org/in-app-news",
+
+
+
+    "home_start_tracking": "Start tracking",
+    "home_start_tracking_description": "You'll need to allow location permissions",
+    "home_stop_tracking": "Stop tracking",
+    "home_stop_tracking_description": "Your location is being saved privately to your phone",
+    "home_check_risk": "Check if you are at risk",
+    "home_check_risk_description": "See if you have crossed paths with someone who has later tested positive for COVID-19",
+    "home_privacy_header": "Privacy Info",
+    "home_privacy_subheader": "Your location history stays on your phone and is never shared without your consent",
+
+    "home_no_contact_header": "No known contact",
+    "home_no_contact_subtext": "Based on available data you haven’t been near anyone reported positive for COVID-19.",
+
+    "home_at_risk_header": "You might be at risk",
+    "home_at_risk_subtext": "Based on available data you have crossed paths with someone who tested positive for COVID-19.",
+
+
+    "home_unknown_header": "Unknown",
+    "home_unknown_subtext": "We can’t tell if you’re at risk unless you enable the app to access your location.",
+
+    "home_enable_location": "Enable Location Data",
+    "home_MASSIVE_HACK": "<MAP HACK>",
+    "home_next_steps": "Show your exposure history",
+
+
+
+    "notification_main_text": "Recent notifications:",
+    "notification_title": "2-Week Exposure Profile",
+    "notification_data_not_available": "No exposure data is available.",
+    "notification_warning_text": "If a Healthcare Authority exists in your area you can subscribe to obtain regular updates of exposure risks.",
+    "notification_random_data_button": "Select Healthcare Authority",
+    "notifications_exposure_format_today": "Today you crossed paths with someone infectious for {{exposureTime}} minutes.",
+    "notifications_exposure_format_yesterday": "Yesterday you crossed paths with someone infectious for {{exposureTime}} minutes.",
+    "notifications_exposure_format": "{{daysAgo}} days ago you crossed paths someone infectious for {{exposureTime}} minutes.",
+    "notifications_no_exposure": "No known exposures to COVID-19 during the last two weeks.",
+    "notification_today": "today",
+    "notification_2_weeks_ago": "2 weeks ago",
+
+
+
+    "overlap_title": "Check Overlap",
+    "overlap_para_1": "The green trail represents your location history\n\nThe light purple circles represent the public dataset",
+    "show_overlap": "Click to view the public dataset",
+    "loading_public_data": "loading data...",
+    "overlap_no_results_button_label": "Public Data Loaded",
+    "overlap_found_button_label": "Public Data Loaded",
+    "nCoV2019_url_info": "For more information on the dataset for this map",
+    "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019",
+
+
+
+    "push_at_risk_title": "You may be at risk",
+    "push_at_risk_message": "You have crossed paths with a COVID-19 patient",
+
+
+
+    "settings_title": "Dashboard",
+    "maps_import_title": "Google Maps",
+    "maps_import_text": "To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.",
+    "maps_import_button_text": "Import past locations",
+    "maps_import_disclaimer": "Safe Paths has no affiliation with Google and never shares your data.",
+    "legal_page_title": "Legal",
+    "about_title": "About",
+
+    "news_title": "Latest news",
+    "news_subtitle": "Read about the latest COVID updates from your health authority and in general.",
+
+    "event_history_title": "Exposure history",
+    "event_history_subtitle": "Understand your personal exposure based on information shared by health authorities.",
+
+    "tested_positive_title": "Share location history",
+    "tested_positive_subtitle": "Your private data can be transferred to health authorities, backed up, or otherwise shared.",
+
+    "choose_provider_title": "Choose health authority",
+    "choose_provider_subtitle": "To be informed of exposures you will need to subscribe to a health authority."
+
+}

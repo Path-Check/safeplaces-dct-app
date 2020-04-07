@@ -4,7 +4,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Platform,
   Image,
   Dimensions,
   TouchableOpacity,
@@ -15,6 +14,7 @@ import { WebView } from 'react-native-webview';
 import packageJson from '../../package.json';
 
 import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -25,10 +25,23 @@ import {
   VictoryChart,
   VictoryTooltip,
 } from 'victory-native';
+import Colors from '../constants/colors';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
-var using_random_intersections = false;
+const max_exposure_window = 14; // Two weeks is the longest view that matters
+const bin_duration = 5; // each bin count represents a 5 minute period
+
+// Thresholds are the number of counts in the intersection bins (5 minute
+// timeframse) which are used to provide user interface hints.
+// TODO: These thresholds semi-arbitrary, this could use some medical research.
+const Threshold = {
+  HIGH: 96, // 96 * 5 minutes = eight hours
+  MEDIUM: 36, // 36 * 5 minutes = three hours
+  LOW: 12, // 12 * 5 minutes = one hour
+  LOWEST: 0, // 0 * 5 minutes = no known exposure!
+};
 
 class NotificationScreen extends Component {
   constructor(props) {
@@ -41,12 +54,17 @@ class NotificationScreen extends Component {
 
   backToMain() {
     this.resetState();
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
+  }
+
+  goToSettings() {
+    this.resetState();
+    this.props.navigation.navigate('ChooseProviderScreen', {});
   }
 
   handleBackPress = () => {
     this.resetState();
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
     return true;
   };
 
@@ -63,30 +81,22 @@ class NotificationScreen extends Component {
     this.getInitialState();
   }
 
-  resetState() {
-    if (using_random_intersections === true) {
-      using_random_intersections = false;
-      AsyncStorage.removeItem('CROSSED_PATHS');
-      console.log('deleting random intersection data');
-      this.setState({ dataAvailable: false });
-    }
-  }
-
-  generate_random_intersections(length = 28) {
-    using_random_intersections = true;
-    var dayBin = [];
-    for (var i = 0; i < length; i++) {
-      // Random Integer between 0-99
-      const intersections = Math.floor(Math.random() * 100);
-      dayBin.push(intersections);
-    }
-    SetStoreData('CROSSED_PATHS', dayBin);
-    this.refreshState();
-  }
+  resetState() {}
 
   getInitialState = async () => {
     GetStoreData('CROSSED_PATHS').then(dayBin => {
       console.log(dayBin);
+
+      /* DEBUGGING TOOL -- handy for creating faux data
+      let pseudoBin = [];
+      for (var i = 0; i < 28; i++) {
+        // Random Integer between 0-99
+        const intersections = Math.floor((Math.random() * 500) / 500);
+        pseudoBin.push(intersections);
+      }
+      dayBin = JSON.stringify(pseudoBin);
+      */
+
       if (dayBin === null) {
         this.setState({ dataAvailable: false });
         console.log("Can't found Crossed Paths");
@@ -94,10 +104,16 @@ class NotificationScreen extends Component {
         var crossed_path_data = [];
         console.log('Found Crossed Paths');
         this.setState({ dataAvailable: true });
-        dayBinParsed = JSON.parse(dayBin);
-        for (var i = 0; i < dayBinParsed.length; i++) {
+        let dayBinParsed = JSON.parse(dayBin);
+
+        // Don't display more than two weeks of crossing data
+        for (
+          var i = 0;
+          i < dayBinParsed.length && i < max_exposure_window;
+          i++
+        ) {
           const val = dayBinParsed[i];
-          data = { x: i, y: val, fill: this.colorfill(val) };
+          let data = { x: i, y: val, fill: this.colorfill(val) };
           crossed_path_data.push(data);
         }
         this.setState({ data: crossed_path_data });
@@ -106,44 +122,56 @@ class NotificationScreen extends Component {
   };
 
   colorfill(data) {
-    var color = 'green';
-    if (data > 20) {
-      color = 'yellow';
+    var color = colors.LOWEST_RISK;
+    if (data > Threshold.LOW) {
+      color = colors.LOWER_RISK;
     }
-    if (data > 50) {
-      color = 'orange';
+    if (data > Threshold.MEDIUM) {
+      color = colors.MIDDLE_RISK;
     }
-    if (data > 80) {
-      color = 'red';
+    if (data > Threshold.HIGH) {
+      color = colors.HIGHEST_RISK;
     }
     return color;
   }
 
   render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.notifications')}
-          </Text>
-        </View>
+    const hasExposure = this.state.data.some(point => point.y > 0);
 
+    return (
+      <NavigationBarWrapper
+        title={languages.t('label.event_history_title')}
+        onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
           <Text style={styles.pageTitle}>
             {languages.t('label.notification_title')}
           </Text>
           {this.state.dataAvailable ? (
             <>
-              <VictoryChart height={0.35 * height} dependentAxis={true}>
-                <VictoryAxis dependentAxis={true} />
+              <VictoryChart
+                height={0.25 * height}
+                padding={{ top: 20, bottom: 50, left: 20, right: 40 }}
+                margin={0}
+                dependentAxis={true}>
+                <VictoryAxis
+                  dependentAxis={false}
+                  tickCount={max_exposure_window}
+                  tickFormat={t =>
+                    t == 1
+                      ? languages.t('label.notification_today')
+                      : t == 12
+                      ? languages.t('label.notification_2_weeks_ago')
+                      : ''
+                  }
+                />
 
                 <VictoryBar
                   alignment='start'
+                  barRatio={0.8}
+                  animate={{
+                    duration: 2000,
+                    onLoad: { duration: 1000 },
+                  }}
                   style={{
                     data: {
                       fill: ({ datum }) => datum.fill,
@@ -159,21 +187,36 @@ class NotificationScreen extends Component {
               </View>
 
               <ScrollView contentContainerStyle={styles.contentContainer}>
-                {this.state.data.map(data => (
-                  <View key={data.x} style={styles.notificationView}>
-                    <Text
-                      style={[
-                        styles.notificationsText,
-                        data.y > 80
-                          ? styles.notificationsTextRed
-                          : data.y > 50
-                          ? styles.notificationsTextOrange
-                          : null,
-                      ]}>
-                      {'Day ' + data.x + ': ' + data.y + ' intersections'}
-                    </Text>
-                  </View>
-                ))}
+                {this.state.data.map(data =>
+                  data.y === 0 ? (
+                    data.x == max_exposure_window - 1 && !hasExposure ? (
+                      <Text style={styles.noExposure}>
+                        {languages.t('label.notifications_no_exposure')}
+                      </Text>
+                    ) : (
+                      <Text style={{ height: 0 }}></Text>
+                    )
+                  ) : (
+                    <View key={data.x} style={styles.notificationView}>
+                      <Text style={[styles.notificationsText]}>
+                        {data.x == 0
+                          ? languages.t(
+                              'label.notifications_exposure_format_today',
+                              { exposureTime: data.y * bin_duration },
+                            )
+                          : data.x == 1
+                          ? languages.t(
+                              'label.notifications_exposure_format_yesterday',
+                              { exposureTime: data.y * bin_duration },
+                            )
+                          : languages.t('label.notifications_exposure_format', {
+                              daysAgo: data.x,
+                              exposureTime: data.y * bin_duration,
+                            })}
+                      </Text>
+                    </View>
+                  ),
+                )}
               </ScrollView>
             </>
           ) : (
@@ -186,7 +229,7 @@ class NotificationScreen extends Component {
               </Text>
               <TouchableOpacity
                 style={styles.buttonTouchable}
-                onPress={() => this.generate_random_intersections()}>
+                onPress={() => this.goToSettings()}>
                 <Text style={styles.buttonText}>
                   {languages.t('label.notification_random_data_button')}
                 </Text>
@@ -194,7 +237,7 @@ class NotificationScreen extends Component {
             </>
           )}
         </View>
-      </SafeAreaView>
+      </NavigationBarWrapper>
     );
   }
 }
@@ -218,14 +261,6 @@ const styles = StyleSheet.create({
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
   },
-  valueName: {
-    fontSize: 20,
-    fontWeight: '800',
-  },
-  value: {
-    fontSize: 20,
-    fontWeight: '200',
-  },
   buttonTouchable: {
     borderRadius: 12,
     backgroundColor: '#665eff',
@@ -233,11 +268,13 @@ const styles = StyleSheet.create({
     width: width * 0.7866,
     marginTop: 30,
     justifyContent: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 36,
+    paddingVertical: 15,
+    width: '90%',
   },
   buttonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontSize: 14,
+    lineHeight: 19,
+    fontFamily: fontFamily.primaryBold,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -245,11 +282,15 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   mainText: {
-    fontSize: 16,
+    fontSize: 18,
     lineHeight: 24,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
     marginRight: 20,
+    marginBottom: 10,
+    marginTop: 20,
+    color: Colors.VIOLET_TEXT,
+    overflow: 'scroll',
   },
   smallText: {
     fontSize: 10,
@@ -260,11 +301,12 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryRegular,
   },
   pageTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    color: Colors.VIOLET_TEXT,
+    fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
   },
   headerContainer: {
@@ -289,7 +331,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     overflow: 'scroll',
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
   notificationsHeader: {
     backgroundColor: '#665eff',
@@ -299,8 +341,9 @@ const styles = StyleSheet.create({
   },
   notificationsHeaderText: {
     color: colors.WHITE,
-    fontSize: 16,
-    fontFamily: 'OpenSans-Bold',
+    fontSize: 18,
+    lineHeight: 22,
+    fontFamily: fontFamily.primaryBold,
   },
   notificationView: {
     width: '100%',
@@ -312,15 +355,22 @@ const styles = StyleSheet.create({
   notificationsText: {
     color: colors.BLACK,
     fontSize: 16,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
   },
-  notificationsTextRed: {
-    color: colors.RED,
-    fontFamily: 'OpenSans-Bold',
+  notificationsTextHigh: {
+    color: colors.HIGHEST_RISK,
+    fontFamily: fontFamily.primaryBold,
   },
-  notificationsTextOrange: {
-    color: colors.ORANGE,
-    fontFamily: 'OpenSans-SemiBold',
+  notificationsTextMedium: {
+    color: colors.MIDDLE_RISK,
+    fontFamily: fontFamily.primaryMedium,
+  },
+  noExposure: {
+    margin: 30,
+    color: 'forestgreen',
+    fontSize: 20,
+    textAlign: 'center',
+    fontFamily: fontFamily.primaryMedium,
   },
 });
 

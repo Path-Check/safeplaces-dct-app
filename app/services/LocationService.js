@@ -1,9 +1,11 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import {Alert, Platform, Linking} from 'react-native';
-import {PERMISSIONS, check, RESULTS, request} from 'react-native-permissions';
+import { Alert, Linking } from 'react-native';
+import { PERMISSIONS, check, RESULTS, request } from 'react-native-permissions';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
+import { isPlatformAndroid } from '../Util';
+import languages from '../locales/languages';
 
 let instanceCount = 0;
 
@@ -116,9 +118,8 @@ export default class LocationServices {
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
       stationaryRadius: 5,
       distanceFilter: 5,
-      notificationTitle: 'Private Kit Enabled',
-      notificationText:
-        'Private Kit is securely storing your GPS coordinates once every five minutes on this device.',
+      notificationTitle: languages.t('label.location_enabled_title'),
+      notificationText: languages.t('label.location_enabled_message'),
       debug: false, // when true, it beeps every time a loc is read
       startOnBoot: true,
       stopOnTerminate: false,
@@ -155,7 +156,7 @@ export default class LocationServices {
       });
     });
 
-    if (Platform.OS === 'android') {
+    if (isPlatformAndroid()) {
       // This feature only is present on Android.
       BackgroundGeolocation.headlessTask(async event => {
         // Application was shutdown, but the headless mechanism allows us
@@ -203,25 +204,25 @@ export default class LocationServices {
 
       if (status !== BackgroundGeolocation.AUTHORIZED) {
         // we need to set delay or otherwise alert may not be shown
-        setTimeout(
-          () =>
-            Alert.alert(
-              'Private Kit requires access to location information',
-              'Would you like to open app settings?',
-              [
-                {
-                  text: 'Yes',
-                  onPress: () => BackgroundGeolocation.showAppSettings(),
-                },
-                {
-                  text: 'No',
-                  onPress: () => console.log('No Pressed'),
-                  style: 'cancel',
-                },
-              ],
-            ),
-          1000,
-        );
+        // setTimeout(
+        //   () =>
+        //     Alert.alert(
+        //       languages.t('label.require_location_information_title'),
+        //       languages.t('label.require_location_information_message'),
+        //       [
+        //         {
+        //           text: languages.t('label.yes'),
+        //           onPress: () => BackgroundGeolocation.showAppSettings(),
+        //         },
+        //         {
+        //           text: languages.t('label.no'),
+        //           onPress: () => console.log('No Pressed'),
+        //           style: 'cancel',
+        //         },
+        //       ],
+        //     ),
+        //   1000,
+        // );
       } else {
         BackgroundGeolocation.start(); //triggers start on start event
 
@@ -279,52 +280,53 @@ export default class LocationServices {
 
       if (!status.locationServicesEnabled) {
         // we need to set delay or otherwise alert may not be shown
-        setTimeout(
-          () =>
-            Alert.alert(
-              'Private Kit requires location services to be enabled',
-              'Would you like to open location settings?',
-              [
-                {
-                  text: 'Yes',
-                  onPress: () => {
-                    if (Platform.OS === 'android'){ // showLocationSettings() only works for android
-                    BackgroundGeolocation.showLocationSettings();
-                    } else {
-                      Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
-                    }
-                  },
-                },
-                {
-                  text: 'No',
-                  onPress: () => console.log('No Pressed'),
-                  style: 'cancel',
-                },
-              ],
-            ),
-          1000,
-        );
+        // setTimeout(
+        //   () =>
+        //     Alert.alert(
+        //       languages.t('label.require_location_services_title'),
+        //       languages.t('label.require_location_services_message'),
+        //       [
+        //         {
+        //           text: languages.t('label.yes'),
+        //           onPress: () => {
+        //             if (isPlatformAndroid()) {
+        //               // showLocationSettings() only works for android
+        //               BackgroundGeolocation.showLocationSettings();
+        //             } else {
+        //               Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
+        //             }
+        //           },
+        //         },
+        //         {
+        //           text: languages.t('label.no'),
+        //           onPress: () => console.log('No Pressed'),
+        //           style: 'cancel',
+        //         },
+        //       ],
+        //     ),
+        //   1000,
+        // );
       } else if (!status.authorization) {
         // we need to set delay or otherwise alert may not be shown
-        setTimeout(
-          () =>
-            Alert.alert(
-              'Private Kit requires access to location information',
-              'Would you like to open app settings?',
-              [
-                {
-                  text: 'Yes',
-                  onPress: () => BackgroundGeolocation.showAppSettings(),
-                },
-                {
-                  text: 'No',
-                  onPress: () => console.log('No Pressed'),
-                  style: 'cancel',
-                },
-              ],
-            ),
-          1000,
-        );
+        // setTimeout(
+        //   () =>
+        //     Alert.alert(
+        //       languages.t('label.require_location_information_title'),
+        //       languages.t('label.require_location_information_message'),
+        //       [
+        //         {
+        //           text: languages.t('label.yes'),
+        //           onPress: () => BackgroundGeolocation.showAppSettings(),
+        //         },
+        //         {
+        //           text: languages.t('label.no'),
+        //           onPress: () => console.log('No Pressed'),
+        //           style: 'cancel',
+        //         },
+        //       ],
+        //     ),
+        //   1000,
+        // );
       }
       // else if (!status.isRunning) {
       // } // commented as it was not being used
@@ -337,14 +339,14 @@ export default class LocationServices {
   static stop(nav) {
     // unregister all event listeners
     PushNotification.localNotification({
-      title: 'Location Tracking Was Disabled',
-      message: 'Private Kit requires location services.',
+      title: languages.t('label.location_disabled_title'),
+      message: languages.t('label.location_disabled_message'),
     });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
     instanceCount -= 1;
-    SetStoreData('PARTICIPATE', 'false').then(() =>
-      nav.navigate('LocationTrackingScreen', {}),
-    );
+    SetStoreData('PARTICIPATE', 'false').then(() => {
+      // nav.navigate('LocationTrackingScreen', {});
+    });
   }
 }
