@@ -59,8 +59,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: android/app/build/outputs/apk/release/app.apk
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: android/app/build/outputs/apk/release/app-release-unsigned.apk
           asset_name: app-release-${{ github.ref }}.apk
           asset_content_type: application/zip
 
@@ -70,7 +70,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
           asset_path: android/app/build/outputs/bundle/release/app.aab
           asset_name: app-release-${{ github.ref }}.aab
           asset_content_type: application/zip
