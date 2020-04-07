@@ -55,7 +55,7 @@ Once created you will need to add it to two different places in the project. One
 ## Running
 
 Install modules:
-```npm install``` or ```yarn install``` (note ```yarn``` does a better job at installing dependencies on macOS)
+```yarn install``` (note ```yarn``` does a better job at installing dependencies on macOS, and it's mandatory to install `Yarn` on the local machine to run this project)
 
 To run, do:
 ```

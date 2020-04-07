@@ -151,7 +151,7 @@ if ! found_exe android-studio ; then
         echo "   NOTE: You might need to close and reopent Android Studio the first time to see this."
         echo "   * Under the SDK Platforms tab, click Show Package Details"
         echo "   * Expand the 'Android 9.0 (Pie)' entry"
-        echo "     - Check: Android SDK Platform 29"
+        echo "     - Check: Android SDK Platform 28"
         echo "     - Check: Intel x86 Atom_64 System Image or Google APIs Intel x86 Atom System Image"
         echo "   * Under the SDK Tools tab, check 'Show Package Details'"
         echo "   * Expand the 'Android SDK Build-Tools' entry"
