@@ -105,10 +105,10 @@ jobs:
         run: npx react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios
 
       - name: Build IPA (debug)
-        # run: xcodebuild -workspace PrivateKit.xcworkspace -configuration Debug -scheme PrivateKit
-        run: |
-          xcodebuild -workspace PrivateKit.xcworkspace -scheme PrivateKit archive -archivePath PrivateKit.xcarchive -allowProvisioningUpdates
-          xcodebuild -exportArchive -archivePath ./PrivateKit.xcarchive -exportPath . -exportOptionsPlist PrivateKit/Info.plist
+        # xcodebuild -workspace PrivateKit.xcworkspace -configuration Debug -scheme PrivateKit
+        # xcodebuild -workspace PrivateKit.xcworkspace -scheme PrivateKit archive -archivePath PrivateKit.xcarchive -allowProvisioningUpdates
+        # xcodebuild -exportArchive -archivePath ./PrivateKit.xcarchive -exportPath . -exportOptionsPlist PrivateKit/Info.plist
+        run: xcodebuild -workspace PrivateKit.xcworkspace -configuration Debug -scheme PrivateKit
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
