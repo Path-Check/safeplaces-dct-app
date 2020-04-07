@@ -1,6 +1,8 @@
 name: Create Release Assets
 
 on:
+  pull_request:
+    branches: [develop]
   push:
     branches: [develop]
     # Sequence of patterns matched against refs/tags
@@ -8,8 +10,7 @@ on:
     #- 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
-  build:
-    name: Upload Release Asset
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -31,6 +32,9 @@ jobs:
       - name: Build APK
         run: ./gradlew assembleDebug
         working-directory: ./android
+
+      - name: Setup kernel for react native, increase watchers for release versions. 
+        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
       - name: Build AAB
         run: ./gradlew bundleRelease --stacktrace
