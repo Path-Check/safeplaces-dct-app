@@ -14,10 +14,12 @@ import { WebView } from 'react-native-webview';
 import Button from '../components/Button';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
+import NetInfo from '@react-native-community/netinfo';
 
 class NewsScreen extends Component {
   constructor(props) {
     super(props);
+    this.state = { iscached: true};
   }
 
   backToMain() {
@@ -28,9 +30,18 @@ class NewsScreen extends Component {
     this.props.navigation.navigate('LocationTrackingScreen', {});
     return true;
   };
+  handleConnectionInfoChange  = ()=>
+  {
+    NetInfo.fetch().then(state => {
+      if(!state.isConnected)
+        this.setState({iscached:true})
+    });
+
+  }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    this.handleConnectionInfoChange()
   }
 
   componentWillUnmount() {
@@ -52,6 +63,7 @@ class NewsScreen extends Component {
         </View>
 
         <WebView
+            cacheEnabled={this.state.iscached}
           source={{ uri: 'https://privatekit.mit.edu/views' }}
           style={{ marginTop: 15 }}
         />

@@ -25,6 +25,7 @@ import exportImage from './../assets/images/export.png';
 import news from './../assets/images/newspaper.png';
 import kebabIcon from './../assets/images/kebabIcon.png';
 import pkLogo from './../assets/images/PKLogo.png';
+import NetInfo from '@react-native-community/netinfo';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from './../locales/languages';
@@ -76,7 +77,12 @@ class LocationTracking extends Component {
   }
 
   overlap() {
-    this.props.navigation.navigate('OverlapScreen', {});
+    NetInfo.fetch().then(state => {
+      if(state.isConnected)
+        this.props.navigation.navigate('OverlapScreen', {});
+      else
+        alert(languages.t('networkError'))
+    });
   }
 
   willParticipate = () => {
