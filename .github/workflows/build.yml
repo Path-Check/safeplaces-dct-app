@@ -26,7 +26,7 @@ jobs:
         run: yarn
 
       - name: Bundle JS
-        run: react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+        run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
 
       - name: Build Android (debug)
         run: ./gradlew assembleDebug
