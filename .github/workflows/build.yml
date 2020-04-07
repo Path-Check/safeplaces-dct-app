@@ -1,0 +1,28 @@
+name: Build Android and iOS
+on:
+  push:
+    branches:
+      - master
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn
+      - name: Run tests
+        run: yarn test
+
+  build-android-debug:
+    needs: install-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Android (debug)
+        run: ./gradlew assembleDebug
+        working-directory: ./android
+
+      - name: Upload Artifact (debug)
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-debug.apk
+          path: android/app/build/outputs/apk/debug/
