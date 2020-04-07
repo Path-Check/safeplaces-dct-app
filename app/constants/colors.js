@@ -12,9 +12,9 @@ const colors = {
 
   // For notifications
   HIGHEST_RISK: '#e74c3c',
-  MIDDLE_RISK: '#e67e22',
-  LOWER_RISK: '#FFFF33',
-  LOWEST_RISK: 'brown',
+  MIDDLE_RISK: '#e74c3c',
+  LOWER_RISK: '#e74c3c',
+  LOWEST_RISK: '#e74c3c',
 
   REG_BUTTON: '#428AF8',
   POS_BUTTON: '#32A852',

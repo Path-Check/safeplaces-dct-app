@@ -157,7 +157,7 @@ exports[`renders correctly 1`] = `
             >
               OS:
               ios vundefined
-              ; Screen:
+              ;
               750 x 1334
             </Text>
           </View>

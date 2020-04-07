@@ -112,7 +112,7 @@ class SettingsScreen extends Component {
     );
   }
 
-  getSettingRow(text, actionListener, icon, color) {
+  getSettingRow(text, actionListener, icon, color, subtitle) {
     const renderIcon = () => {
       return icon ? <SvgXml xml={icon} /> : null;
     };
@@ -121,14 +121,32 @@ class SettingsScreen extends Component {
         <TouchableOpacity
           onPress={actionListener.bind(this)}
           style={styles.sectionRowContainer}>
-          <Text
-            style={[
-              styles.settingRowText,
-              { color: color || Colors.VIOLET_TEXT },
-            ]}>
-            {languages.t(text)}
-          </Text>
+          {subtitle ? (
+            <Text
+              style={[
+                styles.settingRowText,
+                {
+                  color: color || Colors.VIOLET_TEXT,
+                  fontFamily: fontFamily.primaryBold,
+                },
+              ]}>
+              {languages.t(text)}
+            </Text>
+          ) : (
+            <Text
+              style={[
+                styles.settingRowText,
+                { color: color || Colors.VIOLET_TEXT },
+              ]}>
+              {languages.t(text)}
+            </Text>
+          )}
           {renderIcon()}
+          {subtitle ? (
+            <Text style={styles.settingsRowSubtitleText}>
+              {languages.t(subtitle)}
+            </Text>
+          ) : null}
         </TouchableOpacity>
       </>
     );
@@ -155,20 +173,33 @@ class SettingsScreen extends Component {
               {this.getSettingRow(
                 'label.choose_provider_title',
                 this.chooseProviderScreenButtonPressed,
+                null,
+                null,
+                'label.choose_provider_subtitle',
               )}
               <View style={styles.divider}></View>
-              {this.getSettingRow('label.news_title', this.newsButtonPressed)}
+              {this.getSettingRow(
+                'label.news_title',
+                this.newsButtonPressed,
+                null,
+                null,
+                'label.news_subtitle',
+              )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
                 'label.event_history_title',
                 this.eventHistoryButtonPressed,
+                null,
+                null,
+                'label.event_history_subtitle',
               )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
                 'label.tested_positive_title',
                 this.testedPositiveButtonPressed,
-                warning,
-                Colors.RED_TEXT,
+                null,
+                null,
+                'label.tested_positive_subtitle',
               )}
             </View>
           </View>
@@ -206,8 +237,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: Colors.WHITE,
   },
+  settingsRowSubtitleText: {
+    width: '87.5%',
+    fontSize: 16,
+    color: Colors.VIOLET_TEXT,
+    backgroundColor: Colors.WHITE,
+    fontFamily: fontFamily.primary,
+  },
   sectionRowContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     paddingVertical: '5%',
     backgroundColor: Colors.WHITE,

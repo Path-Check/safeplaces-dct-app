@@ -436,7 +436,9 @@ class LocationTracking extends Component {
       return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
       buttonLabel = 'label.home_next_steps';
-      buttonFunction = () => {};
+      buttonFunction = () => {
+        this.props.navigation.navigate('NotificationScreen');
+      };
     } else if (this.state.currentState === StateEnum.UNKNOWN) {
       buttonLabel = 'label.home_enable_location';
       buttonFunction = () => {

@@ -25,11 +25,13 @@ import {
 const { SlideInMenu } = renderers;
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import colors from '../constants/colors';
+import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import languages from '../locales/languages';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 
 const authoritiesListURL =
   'https://raw.githubusercontent.com/tripleblindmarket/safe-places/develop/healthcare-authorities.yaml';
@@ -209,18 +211,9 @@ class ChooseProviderScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.choose_provider_title')}
-          </Text>
-        </View>
-
+      <NavigationBarWrapper
+        title={languages.t('label.choose_provider_title')}
+        onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
           <Text style={styles.headerTitle}>
             {languages.t('label.authorities_title')}
@@ -233,7 +226,16 @@ class ChooseProviderScreen extends Component {
         <View style={styles.listContainer}>
           {Object.keys(this.state.selectedAuthorities).length == 0 ? (
             <>
-              <Text style={(styles.sectionDescription, { color: '#dd0000' })}>
+              <Text
+                style={
+                  (styles.sectionDescription,
+                  {
+                    textAlign: 'center',
+                    fontSize: 24,
+                    paddingTop: 30,
+                    color: '#dd0000',
+                  })
+                }>
                 {languages.t('label.authorities_no_sources')}
               </Text>
               <View
@@ -352,7 +354,7 @@ class ChooseProviderScreen extends Component {
             </MenuOption>
           </MenuOptions>
         </Menu>
-      </SafeAreaView>
+      </NavigationBarWrapper>
     );
   }
 }
@@ -450,6 +452,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     fontFamily: fontFamily.primaryBold,
+    color: Colors.VIOLET_TEXT,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -468,10 +471,11 @@ const styles = StyleSheet.create({
     width: 18.48,
   },
   sectionDescription: {
-    fontSize: 16,
+    fontSize: 18,
     lineHeight: 24,
     marginTop: 12,
     overflow: 'scroll',
+    color: Colors.VIOLET_TEXT,
     fontFamily: fontFamily.primaryRegular,
   },
   menuOptionText: {
