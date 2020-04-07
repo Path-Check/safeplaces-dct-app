@@ -17,7 +17,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: node --version
-    - run: yarn
+
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.OS }}-yarn-cache-
+
+    - run: yarn --frozen-lockfile
+
     - run: yarn test
       env:
         CI: true
