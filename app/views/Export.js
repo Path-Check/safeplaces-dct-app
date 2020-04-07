@@ -82,7 +82,7 @@ function ExportScreen(props) {
       const filename = unixtimeUTC + '.json';
       const message = 'Here is my location log from Private Kit.';
       if (isPlatformiOS()) {
-        var url = RNFS.MainBundlePath + '/' + filename;
+        var url = RNFS.DocumentDirectoryPath + '/' + filename;
         await RNFS.writeFile(url, jsonData, 'utf8')
           .then(success => {
             options = {
