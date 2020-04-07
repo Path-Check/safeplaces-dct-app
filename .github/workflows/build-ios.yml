@@ -109,6 +109,7 @@ jobs:
         # xcodebuild -workspace PrivateKit.xcworkspace -scheme PrivateKit archive -archivePath PrivateKit.xcarchive -allowProvisioningUpdates
         # xcodebuild -exportArchive -archivePath ./PrivateKit.xcarchive -exportPath . -exportOptionsPlist PrivateKit/Info.plist
         run: xcodebuild -workspace PrivateKit.xcworkspace -configuration Debug -scheme PrivateKit
+        working-directory: ./ios
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
