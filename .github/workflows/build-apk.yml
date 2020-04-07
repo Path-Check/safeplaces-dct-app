@@ -1,4 +1,4 @@
-name: Build Android and iOS
+name: Build Android APK (debug)
 
 on:
   pull_request:
@@ -7,16 +7,7 @@ on:
     branches: [develop]
 
 jobs:
-  install-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: yarn
-      - name: Run tests
-        run: yarn test
-
-  build-android-debug:
+  build:
     needs: install-and-test
     runs-on: ubuntu-latest
     steps:
@@ -28,11 +19,11 @@ jobs:
       - name: Bundle JS
         run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
 
-      - name: Build Android (debug)
+      - name: Build APK
         run: ./gradlew assembleDebug
         working-directory: ./android
 
-      - name: Upload Artifact (debug)
+      - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
           name: Debug APK
