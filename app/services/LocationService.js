@@ -7,13 +7,16 @@ import PushNotification from 'react-native-push-notification';
 import { isPlatformAndroid } from '../Util';
 import languages from '../locales/languages';
 
-let instanceCount = 0;
+let hasBeenStarted = false;
 
 export class LocationData {
   constructor() {
     this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
     // DEBUG: Reduce Time intervall for faster debugging
     // this.locationInterval = 5000;
+
+    // NOTE:  It is important that minLocationSaveInterval is shorter than the locationInterval (to avoid strange skips)
+    this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
   }
 
   getLocationData() {
@@ -54,6 +57,15 @@ export class LocationData {
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
       let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
+
+      // Verify that at least the minimum amount of time between saves has passed
+      // This ensures that no matter how fast GPS coords are delivered, saving
+      // does not happen any faster than the minLocationSaveInterval
+      let lastSaveTime = locationArray[locationArray.length-1]['time'];
+      if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
+        console.log('[GPS] Discarding point (too early):', unixtimeUTC - lastSaveTime);
+        return;
+      }
 
       // Curate the list of points, only keep the last 28 days
       let curated = [];
@@ -97,11 +109,13 @@ export default class LocationServices {
   static start() {
     const locationData = new LocationData();
 
-    instanceCount += 1;
-    if (instanceCount > 1) {
+    // handles edge cases around Android where start might get called again even though
+    // the service is already created.  Make sure the listeners are still bound and exit
+    if (hasBeenStarted) {
       BackgroundGeolocation.start();
       return;
     }
+    hasBeenStarted = true;
 
     PushNotification.configure({
       // (required) Called when a remote or local notification is opened or received
@@ -167,34 +181,12 @@ export default class LocationServices {
       });
     }
 
-    BackgroundGeolocation.on('stationary', stationaryLocation => {
-      // handle stationary locations here
-      // Actions.sendLocation(stationaryLocation);
-      BackgroundGeolocation.startTask(taskKey => {
-        // execute long running task
-        // eg. ajax post location
-        // IMPORTANT: task has to be ended by endTask
-
-        // For capturing stationaryLocation. Note that it hasn't been
-        // tested as I couldn't produce stationaryLocation callback in emulator
-        // but since the plugin documentation mentions it, no reason to keep
-        // it empty I believe.
-        locationData.saveLocation(stationaryLocation);
-        BackgroundGeolocation.endTask(taskKey);
-      });
-      console.log('[INFO] stationaryLocation:', stationaryLocation);
-    });
-
     BackgroundGeolocation.on('error', error => {
       console.log('[ERROR] BackgroundGeolocation error:', error);
     });
 
     BackgroundGeolocation.on('start', () => {
       console.log('[INFO] BackgroundGeolocation service has been started');
-    });
-
-    BackgroundGeolocation.on('stop', () => {
-      console.log('[INFO] BackgroundGeolocation service has been stopped');
     });
 
     BackgroundGeolocation.on('authorization', status => {
@@ -328,12 +320,9 @@ export default class LocationServices {
         //   1000,
         // );
       }
-      // else if (!status.isRunning) {
-      // } // commented as it was not being used
+
     });
 
-    // you can also just start without checking for status
-    // BackgroundGeolocation.start();
   }
 
   static stop(nav) {
