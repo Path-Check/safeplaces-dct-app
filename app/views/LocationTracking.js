@@ -23,10 +23,11 @@ import {
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import Colors from '../constants/colors';
+
 import LocationServices from '../services/LocationService';
 //import BroadcastingServices from '../services/BroadcastingService';
+import BackgroundTaskServices from '../services/BackgroundTaskService';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import PushNotification from 'react-native-push-notification';
 import exportImage from './../assets/images/export.png';
 import ButtonWrapper from '../components/ButtonWrapper';
 import { isPlatformiOS } from './../Util';
@@ -39,7 +40,6 @@ import {
 } from 'react-native-permissions';
 import foreArrow from './../assets/images/foreArrow.png';
 
-import { IntersectSet } from '../helpers/Intersect';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
@@ -130,7 +130,7 @@ class LocationTracking extends Component {
 
   checkIfUserAtRisk() {
     // already set on 12h timer, but run when this screen opens too
-    this.intersect_tick();
+    BackgroundTaskServices.start();
 
     GetStoreData(CROSSED_PATHS).then(dayBin => {
       if (dayBin === null) {
@@ -161,13 +161,6 @@ class LocationTracking extends Component {
         }
       })
       .catch(error => console.log(error));
-
-    let timer_intersect = setInterval(this.intersect_tick, 1000 * 60 * 60 * 12); // once every 12 hours
-    // DEBUG:  1000 * 10); // once every 10 seconds
-
-    this.setState({
-      timer_intersect,
-    });
   }
 
   findNewAuthorities() {
@@ -179,84 +172,6 @@ class LocationTracking extends Component {
     // Tapping that notification asks if they want to Add that Healthcare Authority
     // under the Settings screen.
   }
-
-  intersect_tick = () => {
-    // This function is called once every 12 hours.  It should do several things:
-
-    this.findNewAuthorities();
-
-    // Get the user's health authorities
-    GetStoreData('HEALTH_AUTHORITIES')
-      .then(authority_list => {
-        if (!authority_list) {
-          // DEBUG: Force a test list
-          // authority_list = [
-          //  {
-          //    name: 'Platte County Health',
-          //    url:
-          //      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
-          //  },
-          //];
-          return;
-        }
-
-        let name_news = [];
-
-        if (authority_list) {
-          // Pull down data from all the registered health authorities
-          for (let authority of authority_list) {
-            fetch(authority.url)
-              .then(response => response.json())
-              .then(responseJson => {
-                // Example response =
-                // { "authority_name":  "Steve's Fake Testing Organization",
-                //   "publish_date_utc": "1584924583",
-                //   "info_website": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
-                //   "concern_points":
-                //    [
-                //      { "time": 123, "latitude": 12.34, "longitude": 12.34},
-                //      { "time": 456, "latitude": 12.34, "longitude": 12.34}
-                //    ]
-                // }
-
-                // Update cache of info about the authority
-                // TODO: Add an "info_newsflash" UTC timestamp and popup a
-                //       notification if that changes, i.e. if there is a newsflash?
-                name_news.push({
-                  name: responseJson.authority_name,
-                  news_url: responseJson.info_website,
-                });
-
-                // TODO: Look at "publish_date_utc".  We should notify users if
-                //       their authority is no longer functioning.)
-
-                IntersectSet(responseJson.concern_points, dayBin => {
-                  if (dayBin !== null) {
-                    PushNotification.localNotification({
-                      title: languages.t('label.push_at_risk_title'),
-                      message: languages.t('label.push_at_risk_message'),
-                    });
-                  }
-                });
-              });
-
-            SetStoreData('AUTHORITY_NEWS', name_news)
-              .then(() => {
-                // TODO: Anything after this saves?  Background caching of
-                //       news to make it snappy?  Could be a problem in some
-                //       locales with high data costs.
-              })
-              .catch(error =>
-                console.log('Failed to save authority/news URL list'),
-              );
-          }
-        } else {
-          console.log('No authority list');
-          return;
-        }
-      })
-      .catch(error => console.log('Failed to load authority list', error));
-  };
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
