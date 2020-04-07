@@ -136,7 +136,7 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        You haven’t been near anyone who has tested positive for COVID-19.
+        Based on available data you haven’t been near anyone reported positive for COVID-19.
       </Text>
     </View>
   </View>
