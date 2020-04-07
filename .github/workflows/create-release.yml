@@ -29,9 +29,9 @@ jobs:
       - name: Bundle JS
         run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
 
-      - name: Build APK
-        run: ./gradlew assembleDebug
-        working-directory: ./android
+#      - name: Build APK
+#        run: ./gradlew assembleDebug
+#        working-directory: ./android
 
       - name: Setup kernel for react native, increase watchers for release versions. 
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
