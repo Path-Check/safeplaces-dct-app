@@ -54,7 +54,7 @@ jobs:
           prerelease: false
 
       - name: Upload APK Asset
-        id: upload-release-asset 
+        id: upload-release-asset-apr 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -65,7 +65,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload AAB Asset
-        id: upload-release-asset 
+        id: upload-release-asset-aab
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
