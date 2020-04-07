@@ -35,5 +35,5 @@ jobs:
       - name: Upload Artifact (debug)
         uses: actions/upload-artifact@v1
         with:
-          name: safe-paths-apk
+          name: Debug APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
