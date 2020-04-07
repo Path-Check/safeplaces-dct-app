@@ -1,13 +1,9 @@
 name: Create Release Assets
 
 on:
-  pull_request:
-    branches: [develop]
   push:
-    branches: [develop]
-    # Sequence of patterns matched against refs/tags
-    #tags:
-    #- 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   deploy:
@@ -25,13 +21,6 @@ jobs:
             ${{ runner.OS }}-yarn-cache-
 
       - run: yarn --frozen-lockfile
-
-#      - name: Bundle JS
-#        run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
-
-#      - name: Build APK
-#        run: ./gradlew assembleDebug
-#        working-directory: ./android
 
       - name: Setup kernel for react native, increase watchers for release versions. 
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
@@ -53,24 +42,35 @@ jobs:
         run: ./gradlew assembleRelease --stacktrace
         working-directory: ./android
 
-#      - name: Create Release
-#        id: create_release
-#        uses: actions/create-release@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          tag_name: ${{ github.ref }}
-#          release_name: Release ${{ github.ref }}
-#          draft: false
-#          prerelease: false
-#
-#      - name: Upload Release Asset
-#        id: upload-release-asset 
-#        uses: actions/upload-release-asset@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-#          asset_path: android/app/build/outputs/apk/release/app-release.apk
-#          asset_name: app-release-${{ github.ref }}.apk
-#          asset_content_type: application/zip
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload APK Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: android/app/build/outputs/apk/release/app-release.apk
+          asset_name: app-release-${{ github.ref }}.apk
+          asset_content_type: application/zip
+
+      - name: Upload AAB Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: android/app/build/outputs/bundle/release/app-release.aab
+          asset_name: app-release-${{ github.ref }}.aab
+          asset_content_type: application/zip
