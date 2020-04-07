@@ -9,7 +9,9 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  TouchableHighlight,
   BackHandler,
+  Modal
 } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import WebView from 'react-native-webview';
@@ -23,6 +25,8 @@ import { convertPointsToString } from '../helpers/convertPointsToString';
 import LocationServices from '../services/LocationService';
 import greenMarker from '../assets/images/user-green.png';
 import backArrow from '../assets/images/backArrow.png';
+import infoIcon from '../assets/images/info.png';
+
 import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
 
@@ -76,6 +80,7 @@ function OverlapScreen() {
   const [region, setRegion] = useState({});
   const [markers, setMarkers] = useState([]);
   const [circles, setCircles] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
   const [showButton, setShowButton] = useState({
     disabled: false,
     text: show_button_text,
@@ -302,6 +307,57 @@ function OverlapScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
+        <View style={styles.centeredView}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert("Modal has been closed.");
+            }}
+          >
+            <View style={[styles.overlay, { flex: 1, alignItems: 'center', justifyContent: 'center' }]}>
+              <View style={styles.modalView}>
+
+                <TouchableHighlight
+                  style={{ ...styles.openButton }}
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                  }}
+                >
+               
+                  <View style={styles.footer}>
+                    <Text style={styles.sectionDescription,{ textAlign: 'center', paddingTop: 15,color: '#fff' }}>
+                      {languages.t('label.overlap_para_1')}
+                    </Text>
+
+
+                    <Text
+                      style={[
+                        styles.sectionFooter,
+                        { textAlign: 'center', paddingTop: 15, color: '#63beff' },
+                      ]}
+                      onPress={() =>
+                        Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
+                      }>
+                      {languages.t('label.nCoV2019_url_info')}{' '}
+                    </Text>
+                    <View style={{
+                      flexDirection: 'row', alignItems: 'center', justifyContent: 'center'
+                    }}>
+                      <Text style={[styles.okButton]}>{"OK"}</Text>
+                    </View>
+                  </View>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </Modal>
+
+
+        </View>
+
+
+
         <TouchableOpacity
           style={styles.backArrowTouchable}
           onPress={backToMain}>
@@ -310,6 +366,16 @@ function OverlapScreen() {
         <Text style={styles.headerTitle}>
           {languages.t('label.overlap_title')}
         </Text>
+
+        <TouchableOpacity
+          style={styles.infoArrowTouchable}
+          onPress={() => {
+            setModalVisible(true);
+          }}>
+          <Image style={styles.info} source={infoIcon} />
+        </TouchableOpacity>
+
+
       </View>
       <MapView
         ref={mapView}
@@ -338,30 +404,15 @@ function OverlapScreen() {
           />
         ))}
       </MapView>
-      <View style={styles.main}>
-        <TouchableOpacity
-          style={styles.buttonTouchable}
-          onPress={downloadAndPlot}
-          disabled={showButton.disabled}>
-          {/* If no overlap found, change button text to say so. Temporary solution, replace with something more robust */}
-          <Text style={styles.buttonText}>{languages.t(showButton.text)}</Text>
-        </TouchableOpacity>
-        <Text style={styles.sectionDescription}>
-          {languages.t('label.overlap_para_1')}
-        </Text>
-      </View>
-      <View style={styles.footer}>
-        <Text
-          style={[
-            styles.sectionFooter,
-            { textAlign: 'center', paddingTop: 15, color: 'blue' },
-          ]}
-          onPress={() =>
-            Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
-          }>
-          {languages.t('label.nCoV2019_url_info')}{' '}
-        </Text>
-      </View>
+      <TouchableOpacity
+        style={styles.buttonTouchable}
+        onPress={downloadAndPlot}
+        disabled={showButton.disabled}>
+        {/* If no overlap found, change button text to say so. Temporary solution, replace with something more robust */}
+        <Text style={styles.buttonText}>{languages.t(showButton.text)}</Text>
+      </TouchableOpacity>
+      
+
     </SafeAreaView>
   );
 }
@@ -388,17 +439,20 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     textAlignVertical: 'top',
-    // alignItems: 'center',
     padding: 15,
     width: '96%',
-    alignSelf: 'center',
+    alignSelf: 'flex-end',
+    justifyContent: 'flex-end',
+    display: 'none'
   },
   map: {
     flex: 1,
     flexDirection: 'column',
-    padding: 15,
+    margin: 10,
+    marginTop: 60,
     width: '96%',
     alignSelf: 'center',
+    ...StyleSheet.absoluteFillObject
   },
   buttonTouchable: {
     borderRadius: 12,
@@ -406,9 +460,21 @@ const styles = StyleSheet.create({
     height: 52,
     alignSelf: 'center',
     width: width * 0.7866,
-    marginTop: 15,
     justifyContent: 'center',
+    position: 'absolute',
+    bottom: 35
   },
+  okButton: {
+    fontFamily: 'OpenSans-Bold',
+    fontSize: 18,
+    lineHeight: 19,
+    letterSpacing: 0,
+    marginTop: 15,
+    textAlign: 'center',
+    color: '#ffffff',
+
+  },
+
   buttonText: {
     fontFamily: 'OpenSans-Bold',
     fontSize: 14,
@@ -438,37 +504,137 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(189, 195, 199,0.6)',
     alignItems: 'center',
+    // backgroundColor:'#cc0033'
   },
   backArrowTouchable: {
     width: 60,
     height: 60,
     paddingTop: 21,
     paddingLeft: 20,
+
   },
   backArrow: {
     height: 18,
     width: 18.48,
+
+  },
+
+  infoArrowTouchable: {
+    width: '50%',
+    height: 60,
+    paddingTop: 21,
+    marginStart: 40,
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    position: 'relative'
+
+  },
+  info: {
+    height: 24,
+    width: 24,
+    position: 'relative',
+    justifyContent: 'flex-end',
+
   },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
     marginTop: 12,
+    justifyContent:'center',
+    alignContent:'center',
+    alignItems:'center',
+    alignSelf:'center',
     fontFamily: 'OpenSans-Regular',
+    color: "#fff"
   },
   sectionFooter: {
-    fontSize: 12,
-    lineHeight: 24,
-    marginTop: 12,
+    fontSize: 14,
+    lineHeight: 20,
+    marginTop: 5,
     fontFamily: 'OpenSans-Regular',
   },
   footer: {
+    fontFamily: 'OpenSans-Regular',
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '600',
     padding: 4,
     paddingBottom: 10,
+    
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    //padding: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  },
+  openButton: {
+    backgroundColor: "#333333",
+    borderRadius: 10,
+    padding: 10,
+    elevation: 2
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: "#06273F80",
+  },
+  buttonLarge_appThemestroke: {
+    marginTop: 0,
+    width: 230,
+    alignSelf: 'center',
+    marginBottom: 30,
+    height: 48,
+    borderWidth: 1,
+    borderColor: "#57A3e2",
+    justifyContent: 'center',
+    borderRadius: 24,
+
+  },
+  buttonStyle: {
+    width: '50%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+
+  },
+  buttonTxt: {
+    fontSize: 12,
+    textAlign: 'center',
+    fontFamily: 'OpenSans-Regular',
+    //fontWeight: CustomFont.fontWeightMontserrat500,
+    color: "#000",
   },
 });
+
+
 
 const customMapStyles = [
   {
@@ -573,3 +739,4 @@ const customMapStyles = [
 ];
 
 export default OverlapScreen;
+
