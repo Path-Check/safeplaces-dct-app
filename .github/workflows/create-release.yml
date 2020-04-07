@@ -34,7 +34,6 @@ jobs:
 
       - name: Sign AAB
         uses: r0adkll/sign-android-release@v1
-        working-directory: ./android
         with:
           releaseDirectory: android/app/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
