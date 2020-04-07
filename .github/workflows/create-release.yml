@@ -37,7 +37,7 @@ jobs:
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
       - name: Build AAB
-        run: ./gradlew bundleRelease --stacktrace
+        run: ./gradlew clean bundleRelease --stacktrace
         working-directory: ./android
 
       - name: Sign AAB
