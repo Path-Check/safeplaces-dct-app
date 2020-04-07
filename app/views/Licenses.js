@@ -72,7 +72,7 @@ class LicensesScreen extends Component {
             <View style={styles.row}>
               <Text style={styles.valueSmall}>
                 OS:
-                {Platform.OS + ' v' + Platform.Version}; Screen:
+                {Platform.OS + ' v' + Platform.Version};
                 {Math.trunc(Dimensions.get('screen').width) +
                   ' x ' +
                   Math.trunc(Dimensions.get('screen').height)}

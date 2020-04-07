@@ -150,24 +150,10 @@ exports[`renders correctly 1`] = `
               "textAlign": "center",
             }
           }
-        >
-          No known contact
-        </Text>
-        <Text
-          style={
-            Object {
-              "color": "#FFF",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 18,
-              "lineHeight": 24.5,
-              "marginTop": "5%",
-              "textAlign": "center",
-            }
-          }
-        >
-          You haven’t been near anyone who has tested positive for COVID-19.
-        </Text>
-      </View>
+        }
+      >
+        Based on available data you haven’t been near anyone reported positive for COVID-19.
+      </Text>
     </View>
     <View
       accessible={true}

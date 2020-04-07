@@ -120,7 +120,7 @@ Array [
                 }
               }
             >
-              I tested positive
+              Share location history
             </Text>
             <Text
               style={
@@ -133,7 +133,7 @@ Array [
                 }
               }
             >
-              Please do your part in stopping COVID-19 by sharing your location history with local authorities.
+              If you test positive for COVID-19, please do your part by sharing your location history with local authorities.
             </Text>
             <Text
               style={
@@ -146,7 +146,7 @@ Array [
                 }
               }
             >
-              Location is shared as a simple list of times and places, no personal information is shared.
+              Location is shared as a simple list of times and places, no additional information.
             </Text>
             <View
               accessible={true}
