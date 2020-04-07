@@ -7,24 +7,17 @@ import {
   Text,
   TouchableOpacity,
   BackHandler,
-  Dimensions,
-  ActivityIndicator,
 } from 'react-native';
 
 import colors from '../constants/colors';
 import { WebView } from 'react-native-webview';
+import Button from '../components/Button';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
-import {  isUserOnline } from '../helpers/General';
-import NetInfo from "@react-native-community/netinfo";
-
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
 
 class NewsScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { visible: true};
   }
 
   backToMain() {
@@ -36,60 +29,33 @@ class NewsScreen extends Component {
     return true;
   };
 
-  hideSpinner() {
-    this.setState({ visible: false });
-  }
-
-  componentWillMount(): void {
-    this.handleConnectionInfoChange()
-  }
-
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-
   }
 
-  handleConnectionInfoChange  = ()=>
-  {
-    NetInfo.fetch().then(state => {
-      if(!state.isConnected)
-        this.setState({iscached:true,visible:false})
-    });
-
-  }
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
   render() {
     return (
-        <SafeAreaView style={styles.container}>
-          <View style={styles.headerContainer}>
-            <TouchableOpacity
-                style={styles.backArrowTouchable}
-                onPress={() => this.backToMain()}>
-              <Image style={styles.backArrow} source={backArrow} />
-            </TouchableOpacity>
-            <Text style={styles.headerTitle}>
-              {languages.t('label.latest_news')}
-            </Text>
-          </View>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.headerContainer}>
+          <TouchableOpacity
+            style={styles.backArrowTouchable}
+            onPress={() => this.backToMain()}>
+            <Image style={styles.backArrow} source={backArrow} />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>
+            {languages.t('label.latest_news')}
+          </Text>
+        </View>
 
-          <WebView
-              cacheEnabled={this.state.iscached}
-              source={{ uri: 'https://privatekit.mit.edu/views' }}
-              style={{ marginTop: 15 }}
-              onError={() => this.hideSpinner()}
-              renderError={() => this.hideSpinner()}
-              onLoad={() => this.hideSpinner()}
-          />
-          {this.state.visible && (
-              <ActivityIndicator
-                  style={{ position: 'absolute', top: height / 2, left: width / 2 }}
-                  size='large'
-              />
-          )}
-        </SafeAreaView>
+        <WebView
+          source={{ uri: 'https://privatekit.mit.edu/views' }}
+          style={{ marginTop: 15 }}
+        />
+      </SafeAreaView>
     );
   }
 }
@@ -101,6 +67,22 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
+  },
+  headerContainer: {
+    flexDirection: 'row',
+  },
+  backArrow: {
+    fontSize: 60,
+    lineHeight: 60,
+    fontWeight: '400',
+    marginRight: 5,
+    textAlignVertical: 'center',
+  },
+  sectionDescription: {
+    fontSize: 24,
+    lineHeight: 24,
+    fontWeight: '800',
+    textAlignVertical: 'center',
   },
   web: {
     flex: 1,
