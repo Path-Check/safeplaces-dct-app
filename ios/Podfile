@@ -26,6 +26,7 @@ target 'PrivateKit' do
   permissions_path = '../node_modules/react-native-permissions/ios'
 
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
+  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
 
   pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
   pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
@@ -46,8 +47,11 @@ target 'PrivateKit' do
   pod 'react-native-google-maps', :path => rn_maps_path
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
-  
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
   target 'PrivateKitTests' do
     inherit! :search_paths

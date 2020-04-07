@@ -3,7 +3,7 @@ ios/
 android/
 patches/
 __tests__/
-.github/
+.github/.github
 package-lock.json
 yarn.lock
 package.json

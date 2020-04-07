@@ -1,0 +1,181 @@
+{
+    "commitment": "Angajman",
+    "commitment_para": "Chemen sekirize yo byen anrejistre e yo tckeke entèraksyon ak moun ki itilize posisyon ou. Done ou yo pap janm kite telefòn ou san konsantman ou.",
+    "team": "Ekip",
+    "team_para": "Ekip nou an konpoze de yon group ki genyen ladanl epidemyolojis, enjenyè, syantis done, evanjelizasyon vi prive dijital, pwofesè ak chèchè nan anpil gran enstitisyon nan mond lan, tank: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young ak Link Ventures.",
+
+
+
+    "choose_provider_title": "Chwazi otorite sante",
+    "authorities_title": "Sous ou ka fè konfyans",
+    "authorities_desc": "Ou ka jwenn done nan men youn oswa plizyè otorite swen sante ke ou fè konfyans. Swa ou chwazi yon non nan rejis mondyal la, oswa ou antre non adrès entènèt yon otorite ou fè konfyans ki aplike chemen sekirize yo.",
+    "authorities_removal_alert_title": "Retire otorite",
+    "authorities_removal_alert_desc": "Eske ou si ke ou vle retire sous done otorite sa?",
+    "authorities_removal_alert_cancel": "Anile",
+    "authorities_removal_alert_proceed": "Kontinye",
+    "authorities_no_sources": "Ou poko genyen sous done! Peze bouton anba pou ou ajoute yonn.",
+    "authorities_add_button_label": "Ajoute yon sous de konfyans",
+    "authorities_coming_soon_title": "Gen pou vin prochènman",
+    "authorities_coming_soon_desc": "Ou pral kapab ajoute sous done pèsonalize nan yon mizajou trè prochènman.",
+    "authorities_done": "Fini",
+    "authorities_add_url": "Ajoute otorite a pati yon URL",
+    "authorities_input_placeholder": "Kole URL ou an la",
+
+
+
+    "export_para_1": "Tanpri fè pati  pa ou nan kanpe COVID-19 lèw pataje list pozisyon ou ak otorite lokal yo.",
+    "export_para_2": "Lokalizasyon yop rale nan fòm yon seep lis lè akm kowòdone zòn yo, okenn enfòmasyon pèsonèl pap kite transfere",
+    "share": "Pataje",
+    "data_hint": "Men done ki sou koneksyon an",
+    "data_covers": "Kantite tan koneksyon an dire:",
+    "data_count": "Kantite pwen koneksyon:",
+    "data_last_updated": "Tan ki pase depi dènye mizajou a:",
+    "no_data": "Pa gen okenn done",
+    "less_than_one_minute": "Mwens pase 1 minit",
+    "share_location_data": "Pataje done lokalizasyon",
+
+
+
+    "import_title": "Pran done lokalizasyon",
+    "import_step_1": "1. Konekte sou kont Gmail ou et telechaje lis pozisyon ou yo",
+    "import_step_2": "2. Lèl fin telechaje, relouvri paj sa. Done yo ap monte otomatikman.",
+
+
+
+    "private_kit": "COVID\nChemen ki an sekirite ",
+    "next": "Kontinye",
+    "back": "Retounen",
+    "start": "Kòmanse",
+    "intro_subtitle": "Nou kappa konbat COVID-19 ansanm",
+    "intro_header_0": "Kat kotew ale yo",
+    "intro_subheader_0": "Aplikasyon an anrejistre pozisyon ou chak 5 mini",
+    "intro_header_1": "Kenbe vi prive ou",
+    "intro_subheader_1": "Done ou yo pap janm kite telefòn ou san konsantman ou.",
+    "intro_header_2": "Rete enfòme sou risk yo",
+    "intro_subheader_2": "Tcheke si ou kwaze wout yon yon moun ki gen COVIS-19",
+    "intro_get_started": "Mw vle de!",
+
+
+
+    "launch_screen1_header": "Wout pou tounen nan nòmal kòmanse isit la.",
+    "launch_get_started": "Kòmanse",
+    "launch_next": "Kontinye",
+    "launch_set_up_phone": "Fikse telefòn mwen",
+    "launch_enable_location": "Aktive lokalizasyon",
+    "launch_enable_notif": "Aktive notifikasyon",
+    "launch_finish_set_up": "Fini enstalasyon",
+
+    "launch_location_access": "Gen aksè a lokalizasyon",
+    "launch_notification_access": "Pèmèt notifoikasyon",
+
+    "launch_screen2_header": "Resevwa notifikasyon si mw sou wout yon moun ki diagnostike COVID-19.",
+    "launch_screen2_subheader": "Konnen kisaw dwe fè si ou gen risk",
+
+    "launch_screen3_header": "Si ou teste pozitif, ou ka pataje done pouw ede lòt moun pandan wap kenbe idantite ou sekrè.",
+    "launch_screen3_subheader": "Fè sa ou konnen ki bon pouw kenbe tout kominote a an sekirite.",
+
+    "launch_screen4_header": "DFone ou yo anrejistre selman sou telefòn ou, san yo pa pataje ak pèsonn.",
+    "launch_screen4_subheader": "Si ou teste pozitif, sèlman ou men kapab chwazi pataje enfòmasyon pozisyon ou ak ofisyèl sante.",
+
+    "launch_location_header": "Pou Sonja kotew ale, telefòn ou bezwen anregistre pozisyon ou",
+    "launch_location_subheader": "Pa enkyete, enfòmasyon pa janm kite aparèy ou a sof si ou mande pou fè sa.",
+
+    "launch_notif_header": "Notifikasyon ap fèw konnen si ou kwaze chemin yon moun ki enfekte",
+    "launch_notif_subheader": "Nou pa pral deranje ou eksepte pou nou pataje enfòmasyon siw gen risk sou yon potansyèl ou.",
+
+    "launch_done_header": "Fini nèt",
+    "launch_done_subheader": "Ou pare pouw woule. Sonje byen, ou ka toujou fè mizajou sou preferans ou yo pita.",
+
+
+
+    "licenses": "Licenses",
+    "license_placeholder": "Aplikasyon sa kreye an akò ak lisans MIT",
+    "settings": "Settings",
+
+
+
+    "yes": "Wi",
+    "no": "Non",
+    "location_enabled_title": "COVID Aktive Chemen ki an sekirite",
+    "location_enabled_message": "COVID Chemen ki an sekirite ap byen estoke GPS kowòdone ou yon fwa chak senk minit sou aparèy sa a.",
+    "location_disabled_title": "GPS ou te dezaktive",
+    "location_disabled_message": "COVID Chemen ki an sekirite mande aktive sèvis lokalizasyon",
+    "require_location_information_title": "COVID Chemen ki an Sekirite mande aksè a enfòmasyon sou lokalizasyon",
+    "require_location_information_message": "Èske ou ta renmen louvri paramèt aplikasyon an?",
+    "require_location_services_title": "COVID Chemen ki an Sekirite mande aktive sèvis lokalizasyon",
+    "require_location_services_message": "Èske ou ta renmen louvri paramèt lokalizasyon?",
+
+
+
+    "import": "Pran done",
+    "export": "Voye done",
+    "news": "Nouvèl",
+    "latest_news": "Dènye nouvèl",
+    "url_info": "Pou plis enfòmasyon vizite: ",
+    "home_footer": "privatekit.mit.edu",
+
+
+
+    "home_start_tracking": "Kòmanse swiv",
+    "home_start_tracking_description": "Ou pral bezwen pèmèt otorizasyon lokalizasyon",
+    "home_stop_tracking": "Sispann swiv",
+    "home_stop_tracking_description": "Pozisyon ou ap enrejistre ak diskresyon sou telefòn ou nan moman an.",
+    "home_check_risk": "Tcheke si ou gen risk",
+    "home_check_risk_description": "Gade si ou te kwaze chemen yon moun ki te teste pozitif pou COVID-19 aprè",
+    "home_privacy_header": "Enfòmasyon prive",
+    "home_privacy_subheader": "Lis pozisyon ou yo rete sou telefòn ou epi yo pa janm pataje san konsantman ou",
+
+    "home_no_contact_header": "kontak enkoni",
+    "home_at_risk_header": "Ou ka gen risk",
+    "home_unknown_header": "Enkoni",
+    "home_no_contact_subtext": "Ou pa te prè pèsonn moun ki te teste pozitif pou COVID-19.",
+    "home_at_risk_subtext": "Ou te kwaze chemen ak yon moun ki te teste pozitif pou COVID-19.",
+    "home_unknown_subtext": "Nou pa ka di si ou nan risk sof si ou pèmèt app a jwenn aksè a lokalizasyon ou.",
+
+    "home_enable_location": "Aktive done lokalizasyon",
+    "home_MASSIVE_HACK": "<MAP HACK>",
+    "home_next_steps": "Ki sa ki fè kounye a",
+
+
+
+    "notification_main_text": "Dènye notifikasyon:",
+    "notification_title": "Ekspozisyon Profile pou 2-Semèn ",
+    "notification_data_not_available": "Pa gen done ekspoze ki disponib.",
+    "notification_warning_text": "Si yon Otorite Swen Sante egziste nan zòn ou an ou kapab pran abònman pou jwenn dènye enfòmasyon si gen risk ekspozisyon",
+    "notification_random_data_button": "Chwazi Otorite Swen Sante",
+    "notifications": "Notifikasyon",
+    "notifications_exposure_format_today": "Jodi a ou kwaze chemen avèk yon moun enfekte pandan {{exposureTime}} minit.",
+    "notifications_exposure_format_yesterday": "Yè ou kwaze chemen avèk yon moun enfekte pandan {{exposureTime}} minit.",
+    "notifications_exposure_format": "{{daysAgo}} jou pas, ou kwaze chemen avèk yon moun enfekte pandan {{exposureTime}} minit.",
+    "notification_today": "Jodi a",
+    "notification_2_weeks_ago": "2 semenn pase",
+
+
+
+    "overlap_title": "Tcheke sipèpoze yo",
+    "overlap_para_1": "kote vèt la reprezant lis kote ou ye a\n\nNan ti sèk limyè koulè wouj yo ap reprezante done piblik la",
+    "show_overlap": "Klike sou yo wè done piblik la",
+    "loading_public_data": "Chajman done...",
+    "overlap_no_results_button_label": "Done Piblik chaje",
+    "overlap_found_button_label": "Done Piblik chaje",
+    "nCoV2019_url_info": "Pou plis enfòmasyon sou done pou kat sa a",
+    "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019",
+
+
+
+    "push_at_risk_title": "Ou ka gen risk",
+    "push_at_risk_message": "Ou kwaze chemen avèk yon moun ki enfekte COVID-19",
+
+
+
+    "settings_title": "Paramèt",
+    "maps_import_title": "Kat Google",
+    "maps_import_text": "Pou wè si ou rankontre yon moun ki gen COVID-19, telechaje aplikasyon sa a avan, ou kapab voye lis localizasron pèsonèl ou.",
+    "maps_import_button_text": "Voye lokalizasyon ki pase yo",
+    "maps_import_disclaimer": "Chemen san danje pa gen okenn afilyasyon ak Google epi li pa janm pataje done ou yo.",
+    "about_title": "Apropo",
+    "news_title": "Dènye nouvèl",
+    "event_history_title": "Lis evènman",
+    "licenses_title": "Lisans",
+    "tested_positive_title": "Mwen teste pozitif"
+}

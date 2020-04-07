@@ -1,0 +1,54 @@
+name: Build iOS
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Set XCode Version
+        run: sudo xcode-select -s /Applications/Xcode_11.app
+
+      - name: Installing CocoaPods
+        run: gem install cocoapods
+
+      - name: Update Pods
+        run: pod repo update
+        working-directory: ./ios
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - run: yarn --frozen-lockfile
+
+      - name: Pod Install
+        run: pod install
+        working-directory: ./ios
+
+      - name: make src/main/assets directory
+        run: mkdir -p ./android/app/src/main/assets
+
+      - name: Bundle iOS JS
+        run: npx react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios
+      # - name: Build App
+      #   # xcodebuild -workspace PrivateKit.xcworkspace -configuration Debug -scheme PrivateKit
+      #   # xcodebuild -workspace PrivateKit.xcworkspace -scheme PrivateKit archive -archivePath PrivateKit.xcarchive -allowProvisioningUpdates
+      #   # xcodebuild -exportArchive -archivePath ./PrivateKit.xcarchive -exportPath . -exportOptionsPlist PrivateKit/Info.plist
+      #   run: xcodebuild -workspace PrivateKit.xcworkspace -scheme PrivateKit archive -archivePath PrivateKit.xcarchive -allowProvisioningUpdates
+      #   working-directory: ./ios
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: Debug IPA
+      #     path: ios/build/

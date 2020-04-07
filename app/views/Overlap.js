@@ -29,6 +29,7 @@ import infoIcon from '../assets/images/info.png';
 
 import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
+import fontFamily from '../constants/fonts';
 
 const width = Dimensions.get('window').width;
 
@@ -278,11 +279,11 @@ function OverlapScreen() {
   };
 
   function backToMain() {
-    navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   function handleBackPress() {
-    navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
     return true;
   }
 
@@ -313,7 +314,7 @@ function OverlapScreen() {
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
-              Alert.alert("Modal has been closed.");
+             // Alert.alert("Modal has been closed.");
             }}
           >
             <View style={[styles.overlay, { flex: 1, alignItems: 'center', justifyContent: 'center' }]}>
@@ -330,8 +331,6 @@ function OverlapScreen() {
                     <Text style={styles.sectionDescription,{ textAlign: 'center', paddingTop: 15,color: '#fff' }}>
                       {languages.t('label.overlap_para_1')}
                     </Text>
-
-
                     <Text
                       style={[
                         styles.sectionFooter,
@@ -352,12 +351,7 @@ function OverlapScreen() {
               </View>
             </View>
           </Modal>
-
-
         </View>
-
-
-
         <TouchableOpacity
           style={styles.backArrowTouchable}
           onPress={backToMain}>
@@ -427,7 +421,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryRegular,
   },
   subHeaderTitle: {
     textAlign: 'center',
@@ -476,7 +470,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primaryRegular,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
@@ -551,7 +545,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
     marginTop: 5,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryRegular,
+  },
+  sectionFooter: {
+    fontSize: 12,
+    lineHeight: 24,
+    marginTop: 12,
+    fontFamily: fontFamily.primaryRegular,
   },
   footer: {
     fontFamily: 'OpenSans-Regular',

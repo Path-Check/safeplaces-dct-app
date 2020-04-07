@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
   Platform,
-  Image,
   Dimensions,
-  TouchableOpacity,
   BackHandler,
+  ScrollView,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 import packageJson from '../../package.json';
 
-import colors from '../constants/colors';
-import backArrow from './../assets/images/backArrow.png';
+import Colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import languages from './../locales/languages';
 import licenses from './../assets/LICENSE.json';
-
-const width = Dimensions.get('window').width;
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 
 class LicensesScreen extends Component {
   constructor(props) {
@@ -26,11 +23,11 @@ class LicensesScreen extends Component {
   }
 
   backToMain() {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.props.navigation.goBack();
   }
 
   handleBackPress = () => {
-    this.props.navigation.navigate('LocationTrackingScreen', {});
+    this.backToMain();
     return true;
   };
 
@@ -48,8 +45,8 @@ class LicensesScreen extends Component {
       '<style>  html, body { font-size: 40px; margin: 0; padding: 0; } </style>';
     result += '<body>';
 
-    for (var i = 0; i < licenses.licenses.length; i++) {
-      var element = licenses.licenses[i];
+    for (var i = 0; i < licenses.terms_and_licenses.length; i++) {
+      var element = licenses.terms_and_licenses[i];
 
       result += '<B>' + element.name + '</B><P>';
       result += element.text.replace(/\n/g, '<br/>');
@@ -62,147 +59,79 @@ class LicensesScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity
-            style={styles.backArrowTouchable}
-            onPress={() => this.backToMain()}>
-            <Image style={styles.backArrow} source={backArrow} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>Licenses</Text>
-        </View>
+      <NavigationBarWrapper
+        title={languages.t('label.legal_page_title')}
+        onBackPress={this.backToMain.bind(this)}>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <View style={styles.main}>
+            <View style={styles.row}>
+              <Text style={styles.valueName}>Version: </Text>
+              <Text style={styles.value}>{packageJson.version}</Text>
+            </View>
 
-        <View style={styles.main}>
-          <Text style={styles.headerTitle}>
-            {languages.t('label.private_kit')}
-          </Text>
-
-          <View style={styles.row}>
-            <Text style={styles.valueName}>Version: </Text>
-            <Text style={styles.value}>{packageJson.version}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.valueName}>OS: </Text>
-            <Text style={styles.value}>
-              {Platform.OS + ' v' + Platform.Version}
-            </Text>
+            <View style={styles.row}>
+              <Text style={styles.valueSmall}>
+                OS:
+                {Platform.OS + ' v' + Platform.Version};
+                {Math.trunc(Dimensions.get('screen').width) +
+                  ' x ' +
+                  Math.trunc(Dimensions.get('screen').height)}
+              </Text>
+            </View>
           </View>
 
-          <View style={styles.row}>
-            <Text style={styles.valueName}>Screen Resolution: </Text>
-            <Text style={styles.value}>
-              {' '}
-              {Math.trunc(Dimensions.get('screen').width) +
-                ' x ' +
-                Math.trunc(Dimensions.get('screen').height)}
-            </Text>
-          </View>
-        </View>
+          <View style={styles.spacer} />
+          <View style={styles.spacer} />
 
-        <View style={{ flex: 4, paddingLeft: 20, paddingRight: 15 }}>
-          <WebView
-            originWhitelist={['*']}
-            source={{
-              html: this.getLicenses(),
-            }}
-            style={{ marginTop: 15 }}
-          />
-        </View>
-      </SafeAreaView>
+          <View style={{ flex: 4 }}>
+            <WebView
+              originWhitelist={['*']}
+              source={{
+                html: this.getLicenses(),
+              }}
+              style={{
+                marginTop: 15,
+                backgroundColor: Colors.INTRO_WHITE_BG,
+              }}
+            />
+          </View>
+        </ScrollView>
+      </NavigationBarWrapper>
     );
   }
 }
 
 const styles = StyleSheet.create({
   // Container covers the entire screen
-  container: {
-    flex: 1,
+  contentContainer: {
     flexDirection: 'column',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
-  main: {
+    width: '100%',
+    backgroundColor: Colors.INTRO_WHITE_BG,
+    paddingHorizontal: 26,
     flex: 1,
-    flexDirection: 'column',
-    textAlignVertical: 'top',
-    // alignItems: 'center',
-    padding: 20,
-    width: '96%',
-    alignSelf: 'center',
   },
   row: {
-    flex: 1,
     flexDirection: 'row',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
+    color: Colors.PRIMARY_TEXT,
+    alignItems: 'flex-start',
   },
   valueName: {
+    color: Colors.VIOLET_TEXT,
     fontSize: 20,
-    fontWeight: '800',
+    fontFamily: fontFamily.primaryMedium,
+    marginTop: 9,
   },
   value: {
+    color: Colors.VIOLET_TEXT,
     fontSize: 20,
-    fontWeight: '200',
+    fontFamily: fontFamily.primaryMedium,
+    marginTop: 9,
   },
-
-  buttonTouchable: {
-    borderRadius: 12,
-    backgroundColor: '#665eff',
-    height: 52,
-    alignSelf: 'center',
-    width: width * 0.7866,
-    marginTop: 30,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: 'OpenSans-Bold',
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: '#ffffff',
-  },
-  mainText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: 'OpenSans-Bold',
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
-  },
-  backArrow: {
-    height: 18,
-    width: 18.48,
-  },
-  sectionDescription: {
+  valueSmall: {
+    color: Colors.VIOLET_TEXT,
     fontSize: 16,
-    lineHeight: 24,
-    marginTop: 12,
-    overflow: 'scroll',
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: fontFamily.primaryMedium,
+    marginTop: 9,
   },
 });
 
