@@ -50,7 +50,6 @@ class Onboarding extends Component {
             backgroundColor='transparent'
             translucent={true}
           />
-
           <View style={styles.mainContainer}>
             <View
               style={{
