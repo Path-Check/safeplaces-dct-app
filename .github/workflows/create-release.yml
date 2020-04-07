@@ -54,13 +54,13 @@ jobs:
           prerelease: false
 
       - name: Upload APK Asset
-        id: upload-release-asset-apr 
+        id: upload-release-asset-apk
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: android/app/build/outputs/apk/release/app-release.apk
+          asset_path: android/app/build/outputs/apk/release/app.apk
           asset_name: app-release-${{ github.ref }}.apk
           asset_content_type: application/zip
 
@@ -71,6 +71,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: android/app/build/outputs/bundle/release/app-release.aab
+          asset_path: android/app/build/outputs/bundle/release/app.aab
           asset_name: app-release-${{ github.ref }}.aab
           asset_content_type: application/zip
