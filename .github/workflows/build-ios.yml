@@ -22,7 +22,7 @@ jobs:
         run: pod repo update
         working-directory: ./ios
 
-      - name: Cache dependencies
+      - name: Cache node_modules/
         uses: actions/cache@v1
         with:
           path: node_modules

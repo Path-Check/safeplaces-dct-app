@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Cache dependencies
+      - name: Cache node_modules/
         uses: actions/cache@v1
         with:
           path: node_modules
