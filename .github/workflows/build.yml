@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+      - name: Jetify
+        run: npx jetify
+
       - name: Build Android (debug)
         run: ./gradlew assembleDebug
         working-directory: ./android
