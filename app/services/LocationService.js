@@ -61,10 +61,12 @@ export class LocationData {
       // Verify that at least the minimum amount of time between saves has passed
       // This ensures that no matter how fast GPS coords are delivered, saving
       // does not happen any faster than the minLocationSaveInterval
-      let lastSaveTime = locationArray[locationArray.length-1]['time'];
-      if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
-        console.log('[GPS] Discarding point (too early):', unixtimeUTC - lastSaveTime);
-        return;
+      if (locationArray.length >= 1) {
+        let lastSaveTime = locationArray[locationArray.length-1]['time'];
+        if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
+          console.log('[GPS] Discarding point (too early):', unixtimeUTC - lastSaveTime);
+          return;
+        }
       }
 
       // Curate the list of points, only keep the last 28 days

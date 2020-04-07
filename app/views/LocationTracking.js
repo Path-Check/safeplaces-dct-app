@@ -24,7 +24,7 @@ import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
-import BroadcastingServices from '../services/BroadcastingService';
+//import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotification from 'react-native-push-notification';
 import exportImage from './../assets/images/export.png';
@@ -294,7 +294,7 @@ class LocationTracking extends Component {
   willParticipate = () => {
     SetStoreData('PARTICIPATE', 'true').then(() => {
       LocationServices.start();
-      BroadcastingServices.start();
+      //BroadcastingServices.start();
     });
 
     // Check and see if they actually authorized in the system dialog.
@@ -307,7 +307,7 @@ class LocationTracking extends Component {
         });
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
         LocationServices.stop(this.props.navigation);
-        BroadcastingServices.stop(this.props.navigation);
+        //BroadcastingServices.stop(this.props.navigation);
         this.setState({
           isLogging: false,
         });
@@ -333,7 +333,7 @@ class LocationTracking extends Component {
 
   setOptOut = () => {
     LocationServices.stop(this.props.navigation);
-    BroadcastingServices.stop(this.props.navigation);
+    //BroadcastingServices.stop(this.props.navigation);
     this.setState({
       isLogging: false,
     });
