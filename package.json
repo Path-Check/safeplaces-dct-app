@@ -5,7 +5,7 @@
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && pod install",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package; npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
     "test": "jest test"
@@ -80,12 +80,12 @@
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "@babel/runtime": "^7.8.4",
+    "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
     "babel-jest": "^25.1.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
-    "jetifier": "^1.6.5",
     "lint-staged": "^10.0.9",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "1.19.1",
