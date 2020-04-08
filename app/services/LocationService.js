@@ -7,13 +7,18 @@ import PushNotification from 'react-native-push-notification';
 import { isPlatformAndroid } from '../Util';
 import languages from '../locales/languages';
 
-let instanceCount = 0;
+let hasBeenStarted = false;
 
 export class LocationData {
   constructor() {
+    // The desired location interval, and the minimum acceptable interval
     this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-    // DEBUG: Reduce Time intervall for faster debugging
-    // this.locationInterval = 5000;
+    // minLocationSaveInterval should be shorter than the locationInterval (to avoid strange skips)
+    this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
+
+    // Maximum time that we will backfill for missing data
+    this.maxBackfillTime = 60000 * 60 * 8 // Time (in milliseconds).  60000 * 60 * 8 = 8 hours
+
   }
 
   getLocationData() {
@@ -50,10 +55,21 @@ export class LocationData {
   saveLocation(location) {
     // Persist this location data in our local storage of time/lat/lon values
     this.getLocationData().then(locationArray => {
+
       // Always work in UTC, not the local time in the locationData
-      let nowUTC = new Date().toISOString();
-      let unixtimeUTC = Date.parse(nowUTC);
+      let unixtimeUTC = Math.floor(location['time']);
       let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
+
+      // Verify that at least the minimum amount of time between saves has passed
+      // This ensures that no matter how fast GPS coords are delivered, saving
+      // does not happen any faster than the minLocationSaveInterval
+      if (locationArray.length >= 1) {
+        let lastSaveTime = locationArray[locationArray.length - 1]['time'];
+        if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
+          //console.log('[INFO] Discarding point (too soon):', unixtimeUTC);
+          return;
+        }
+      }
 
       // Curate the list of points, only keep the last 28 days
       let curated = [];
@@ -64,29 +80,47 @@ export class LocationData {
       }
 
       // Backfill the stationary points, if available
+      // The assumption is that if we see a gap in the data, the
+      // best guess is that the person was in that location for 
+      // the entire time.  This makes it easier for a health authority
+      // person to have a set of locations over time, and they can manually
+      // redact the time frames that aren't correct.
       if (curated.length >= 1) {
         let lastLocationArray = curated[curated.length - 1];
-        let lastTS = lastLocationArray['time'];
+
+        // Figure out the time to start the backfill from.  Default is
+        // the time of the last entry in the location set.
+        // To protect ourselves, we won't backfill more than the
+        // maxBackfillTime
+        let lastRecordedTime = lastLocationArray['time'];
+        if ((unixtimeUTC - lastRecordedTime) > this.maxBackfillTime) {
+          lastRecordedTime = unixtimeUTC - this.maxBackfillTime;
+        }
+
         for (
-          ;
-          lastTS < unixtimeUTC - this.locationInterval;
-          lastTS += this.locationInterval
+          let newTS = lastRecordedTime + this.locationInterval;
+          newTS < unixtimeUTC - this.locationInterval;
+          newTS += this.locationInterval
         ) {
-          curated.push(JSON.parse(JSON.stringify(lastLocationArray)));
+          let lat_lon_time = {
+            latitude: lastLocationArray['latitude'],
+            longitude: lastLocationArray['longitude'],
+            time: newTS
+          };
+          console.log('[INFO] backfill location:',lat_lon_time);
+          curated.push(lat_lon_time);
         }
       }
 
       // Save the location using the current lat-lon and the
-      // calculated UTC time (maybe a few milliseconds off from
-      // when the GPS data was collected, but that's unimportant
-      // for what we are doing.)
-      console.log('[GPS] Saving point:', locationArray.length);
+      // recorded GPS timestamp
       let lat_lon_time = {
         latitude: location['latitude'],
         longitude: location['longitude'],
-        time: unixtimeUTC,
+        time: unixtimeUTC
       };
       curated.push(lat_lon_time);
+      console.log('[INFO] saved location:',lat_lon_time);
 
       SetStoreData('LOCATION_DATA', curated);
     });
@@ -97,11 +131,13 @@ export default class LocationServices {
   static start() {
     const locationData = new LocationData();
 
-    instanceCount += 1;
-    if (instanceCount > 1) {
+    // handles edge cases around Android where start might get called again even though
+    // the service is already created.  Make sure the listeners are still bound and exit
+    if (hasBeenStarted) {
       BackgroundGeolocation.start();
       return;
     }
+    hasBeenStarted = true;
 
     PushNotification.configure({
       // (required) Called when a remote or local notification is opened or received
@@ -167,34 +203,12 @@ export default class LocationServices {
       });
     }
 
-    BackgroundGeolocation.on('stationary', stationaryLocation => {
-      // handle stationary locations here
-      // Actions.sendLocation(stationaryLocation);
-      BackgroundGeolocation.startTask(taskKey => {
-        // execute long running task
-        // eg. ajax post location
-        // IMPORTANT: task has to be ended by endTask
-
-        // For capturing stationaryLocation. Note that it hasn't been
-        // tested as I couldn't produce stationaryLocation callback in emulator
-        // but since the plugin documentation mentions it, no reason to keep
-        // it empty I believe.
-        locationData.saveLocation(stationaryLocation);
-        BackgroundGeolocation.endTask(taskKey);
-      });
-      console.log('[INFO] stationaryLocation:', stationaryLocation);
-    });
-
     BackgroundGeolocation.on('error', error => {
       console.log('[ERROR] BackgroundGeolocation error:', error);
     });
 
     BackgroundGeolocation.on('start', () => {
       console.log('[INFO] BackgroundGeolocation service has been started');
-    });
-
-    BackgroundGeolocation.on('stop', () => {
-      console.log('[INFO] BackgroundGeolocation service has been stopped');
     });
 
     BackgroundGeolocation.on('authorization', status => {
@@ -328,12 +342,7 @@ export default class LocationServices {
         //   1000,
         // );
       }
-      // else if (!status.isRunning) {
-      // } // commented as it was not being used
     });
-
-    // you can also just start without checking for status
-    // BackgroundGeolocation.start();
   }
 
   static stop(nav) {
