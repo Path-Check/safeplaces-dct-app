@@ -62,9 +62,12 @@ export class LocationData {
       // This ensures that no matter how fast GPS coords are delivered, saving
       // does not happen any faster than the minLocationSaveInterval
       if (locationArray.length >= 1) {
-        let lastSaveTime = locationArray[locationArray.length-1]['time'];
+        let lastSaveTime = locationArray[locationArray.length - 1]['time'];
         if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
-          console.log('[GPS] Discarding point (too early):', unixtimeUTC - lastSaveTime);
+          console.log(
+            '[GPS] Discarding point (too early):',
+            unixtimeUTC - lastSaveTime,
+          );
           return;
         }
       }
@@ -91,14 +94,12 @@ export class LocationData {
       }
 
       // Save the location using the current lat-lon and the
-      // calculated UTC time (maybe a few milliseconds off from
-      // when the GPS data was collected, but that's unimportant
-      // for what we are doing.)
+      // recorded GPS timestamp
       console.log('[GPS] Saving point:', locationArray.length);
       let lat_lon_time = {
         latitude: location['latitude'],
         longitude: location['longitude'],
-        time: unixtimeUTC,
+        time: location['time'],
       };
       curated.push(lat_lon_time);
 
@@ -322,9 +323,7 @@ export default class LocationServices {
         //   1000,
         // );
       }
-
     });
-
   }
 
   static stop(nav) {
