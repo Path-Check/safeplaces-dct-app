@@ -12,13 +12,13 @@ let hasBeenStarted = false;
 export class LocationData {
   constructor() {
     // Intervals driving the desired location interval, and the minimum acceptable interval
-    this.locationInterval = 60000 * 1; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+    this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
     // It is important that minLocationSaveInterval is shorter than the locationInterval (to avoid strange skips)
     this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
 
     // Maximum time that we will backfill for missing data
     this.maxBackfillTime = 60000 * 60 * 8 // Time (in milliseconds).  60000 * 60 * 8 = 8 hours
-    
+
   }
 
   getLocationData() {
@@ -66,7 +66,7 @@ export class LocationData {
       if (locationArray.length >= 1) {
         let lastSaveTime = locationArray[locationArray.length - 1]['time'];
         if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
-          console.log('[INFO] Discarding point (too soon):', unixtimeUTC);
+          //console.log('[INFO] Discarding point (too soon):', unixtimeUTC);
           return;
         }
       }
@@ -94,18 +94,18 @@ export class LocationData {
         // maxBackfillTime
         let lastRecordedTime = lastLocationArray['time'];
         if ((unixtimeUTC - lastRecordedTime) > this.maxBackfillTime) {
-          lastRecordedTime = unixtimeUTC - this.maxBackfillTime
+          lastRecordedTime = unixtimeUTC - this.maxBackfillTime;
         }
 
         for (
-          lastTS = lastRecordedTime;
-          lastTS < unixtimeUTC - this.locationInterval;
-          lastTS += this.locationInterval
+          let newTS = lastRecordedTime + this.locationInterval;
+          newTS < unixtimeUTC - this.locationInterval;
+          newTS += this.locationInterval
         ) {
           let lat_lon_time = {
             latitude: lastLocationArray['latitude'],
             longitude: lastLocationArray['longitude'],
-            time: lastTS
+            time: newTS
           };
           console.log('[INFO] backfill location:',lat_lon_time);
           curated.push(lat_lon_time);
