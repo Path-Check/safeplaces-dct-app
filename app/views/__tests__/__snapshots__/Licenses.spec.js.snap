@@ -133,7 +133,7 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              0.5.11
+              0.5.12
             </Text>
           </View>
           <View
