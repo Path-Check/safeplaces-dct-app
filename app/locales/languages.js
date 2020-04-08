@@ -1,6 +1,7 @@
 import i18next from 'i18next';
 import { getLanguages } from 'react-native-i18n';
 import { GetStoreData } from '../helpers/General';
+import { LANG_OVERRIDE } from '../constants/storage';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 // Step 1 - Create index.js files for each language we want to have, in this file you can import all the json files (Step 4) and export them
@@ -36,7 +37,7 @@ export function findUserLang(callback) {
     userLang = languages[0].split('-')[0]; // ['en-US' will become 'en']
 
     // If the user specified a language override, use it instead
-    GetStoreData('LANG_OVERRIDE').then(res => {
+    GetStoreData(LANG_OVERRIDE).then(res => {
       if (typeof res === 'string') {
         console.log('Found user language override:');
         console.log(res);

@@ -2,6 +2,7 @@ import React from 'react';
 import {
   View,
   Text,
+  Dimensions,
   StyleSheet,
   ImageBackground,
   StatusBar,
@@ -11,7 +12,8 @@ import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import { width } from '../../helpers/Constants';
+
+const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
   return (

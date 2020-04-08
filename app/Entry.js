@@ -24,6 +24,7 @@ import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 
 import { GetStoreData, SetStoreData } from './helpers/General';
+import { PARTICIPATE } from './constants/storage';
 
 const Stack = createStackNavigator();
 
@@ -36,7 +37,7 @@ class Entry extends Component {
   }
 
   componentDidMount() {
-    GetStoreData('PARTICIPATE')
+    GetStoreData(PARTICIPATE)
       .then(isParticipating => {
         console.log(isParticipating);
         this.setState({

@@ -5,6 +5,7 @@ import {
   View,
   Text,
   Image,
+  Dimensions,
   TouchableOpacity,
   BackHandler,
   ScrollView,
@@ -26,8 +27,10 @@ import {
 } from 'victory-native';
 import Colors from '../constants/colors';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { width, height } from '../helpers/Constants';
+import { CROSSED_PATHS } from '../constants/storage';
 
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 const max_exposure_window = 14; // Two weeks is the longest view that matters
 const bin_duration = 5; // each bin count represents a 5 minute period
 
@@ -82,7 +85,7 @@ class NotificationScreen extends Component {
   resetState() {}
 
   getInitialState = async () => {
-    GetStoreData('CROSSED_PATHS').then(dayBin => {
+    GetStoreData(CROSSED_PATHS).then(dayBin => {
       console.log(dayBin);
 
       /* DEBUGGING TOOL -- handy for creating faux data

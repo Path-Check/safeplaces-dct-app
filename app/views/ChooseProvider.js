@@ -10,6 +10,7 @@ import {
   FlatList,
   Alert,
   TextInput,
+  Dimensions,
 } from 'react-native';
 import Yaml from 'js-yaml';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -30,9 +31,10 @@ import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import languages from '../locales/languages';
-import { width } from '../helpers/Constants';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { authoritiesListURL } from '../helpers/config';
+import { AUTHORITIES_LIST_URL } from '../helpers/authorities';
+
+const width = Dimensions.get('window').width;
 
 class ChooseProviderScreen extends Component {
   constructor(props) {
@@ -84,7 +86,7 @@ class ChooseProviderScreen extends Component {
         // this is much more performant.
         fileCache: true,
       })
-        .fetch('GET', authoritiesListURL, {
+        .fetch('GET', AUTHORITIES_LIST_URL, {
           //some headers ..
         })
         .then(result => {
