@@ -99,7 +99,7 @@ export class LocationData {
       let lat_lon_time = {
         latitude: location['latitude'],
         longitude: location['longitude'],
-        time: location['time'],
+        time: parseInt(location['time']),
       };
       curated.push(lat_lon_time);
 
