@@ -161,65 +161,65 @@ class LocationTracking extends Component {
             {languages.t('label.private_kit')}
           </Text>
 
-          <View style={styles.buttonsAndLogoView}>
-            {this.state.isLogging ? (
-              <>
-                <Image
-                  source={pkLogo}
-                  style={{
-                    width: 132,
-                    height: 164.4,
-                    alignSelf: 'center',
-                    marginTop: 12,
-                  }}
-                />
-                <TouchableOpacity
-                  onPress={() => this.setOptOut()}
-                  style={styles.stopLoggingButtonTouchable}>
-                  <Text style={styles.stopLoggingButtonText}>
-                    {languages.t('label.stop_logging')}
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => this.overlap()}
-                  style={styles.startLoggingButtonTouchable}>
-                  <Text style={styles.startLoggingButtonText}>
-                    {languages.t('label.overlap')}
-                  </Text>
-                </TouchableOpacity>
-              </>
-            ) : (
-              <>
-                <Image
-                  source={pkLogo}
-                  style={{
-                    width: 132,
-                    height: 164.4,
-                    alignSelf: 'center',
-                    marginTop: 12,
-                    opacity: 0.3,
-                  }}
-                />
-                <TouchableOpacity
-                  onPress={() => this.willParticipate()}
-                  style={styles.startLoggingButtonTouchable}>
-                  <Text style={styles.startLoggingButtonText}>
-                    {languages.t('label.start_logging')}
-                  </Text>
-                </TouchableOpacity>
-              </>
-            )}
+          {/* <View style={styles.buttonsAndLogoView}> */}
+          {this.state.isLogging ? (
+            <>
+              <Image
+                source={pkLogo}
+                style={{
+                  width: 132,
+                  height: 164.4,
+                  alignSelf: 'center',
+                  marginTop: 12,
+                }}
+              />
+              <TouchableOpacity
+                onPress={() => this.setOptOut()}
+                style={styles.stopLoggingButtonTouchable}>
+                <Text style={styles.stopLoggingButtonText}>
+                  {languages.t('label.stop_logging')}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.overlap()}
+                style={styles.startLoggingButtonTouchable}>
+                <Text style={styles.startLoggingButtonText}>
+                  {languages.t('label.overlap')}
+                </Text>
+              </TouchableOpacity>
+            </>
+          ) : (
+            <>
+              <Image
+                source={pkLogo}
+                style={{
+                  width: 132,
+                  height: 164.4,
+                  alignSelf: 'center',
+                  marginTop: 12,
+                  opacity: 0.3,
+                }}
+              />
+              <TouchableOpacity
+                onPress={() => this.willParticipate()}
+                style={styles.startLoggingButtonTouchable}>
+                <Text style={styles.startLoggingButtonText}>
+                  {languages.t('label.start_logging')}
+                </Text>
+              </TouchableOpacity>
+            </>
+          )}
 
-            {this.state.isLogging ? (
-              <Text style={styles.sectionDescription}>
-                {languages.t('label.logging_message')}
-              </Text>
-            ) : (
-              <Text style={styles.sectionDescription}>
-                {languages.t('label.not_logging_message')}
-              </Text>
-            )}
-          </View>
+          {this.state.isLogging ? (
+            <Text style={styles.sectionDescription}>
+              {languages.t('label.logging_message')}
+            </Text>
+          ) : (
+            <Text style={styles.sectionDescription}>
+              {languages.t('label.not_logging_message')}
+            </Text>
+          )}
+          {/* </View> */}
 
           <View style={styles.actionButtonsView}>
             <TouchableOpacity
@@ -311,11 +311,11 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   main: {
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '80%',
+    flexGrow: 1,
   },
   buttonsAndLogoView: {
     flex: 6,
@@ -325,7 +325,6 @@ const styles = StyleSheet.create({
     width: width * 0.7866,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    flex: 2,
     alignItems: 'center',
     marginBottom: -10,
   },
@@ -351,6 +350,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: width * 0.7866,
     justifyContent: 'center',
+    marginBottom: 10,
   },
   startLoggingButtonText: {
     fontFamily: 'OpenSans-Bold',
@@ -367,6 +367,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: width * 0.7866,
     justifyContent: 'center',
+    marginBottom: 12,
   },
   stopLoggingButtonText: {
     fontFamily: 'OpenSans-Bold',
