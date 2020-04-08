@@ -5,6 +5,7 @@
 
     <!-- Circles -->
     <item
+        android:width="687dp"
         android:drawable="@drawable/ic_splash_circles"
         android:gravity="center" />
 
