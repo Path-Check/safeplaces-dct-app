@@ -36,9 +36,9 @@ jobs:
         uses: actions/cache@v1
         with:
           path: Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          key: ${{ runner.OS }}-pods-cache-${{ hashFiles('**/Podfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-pods-
+            ${{ runner.OS }}-pods-cache-
 
       - name: Pod Install
         run: pod install
