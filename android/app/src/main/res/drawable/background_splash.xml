@@ -21,6 +21,6 @@
         android:height="19dp"
         android:drawable="@drawable/ic_splash_logo_text"
         android:gravity="center"
-        android:top="282dp" />
+        android:top="450dp" />
 </layer-list>
 
