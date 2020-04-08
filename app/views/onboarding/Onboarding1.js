@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  Dimensions,
   StyleSheet,
   ImageBackground,
   StatusBar,
@@ -14,7 +15,9 @@ import fontFamily from '../../constants/fonts';
 import languages, { findUserLang } from './../../locales/languages';
 import NativePicker from '../../components/NativePicker';
 import { SetStoreData } from '../../helpers/General';
-import { width } from '../../helpers/Constants';
+import { LANG_OVERRIDE } from '../../constants/storage';
+
+const width = Dimensions.get('window').width;
 
 class Onboarding extends Component {
   constructor(props) {
@@ -71,7 +74,7 @@ class Onboarding extends Component {
                       );
                   });
 
-                  SetStoreData('LANG_OVERRIDE', itemValue);
+                  SetStoreData(LANG_OVERRIDE, itemValue);
                 }}
               />
             </View>

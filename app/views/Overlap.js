@@ -7,6 +7,7 @@ import {
   View,
   Text,
   Image,
+  Dimensions,
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
@@ -25,8 +26,10 @@ import backArrow from '../assets/images/backArrow.png';
 import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
 import fontFamily from '../constants/fonts';
-import { width } from '../helpers/Constants';
-import { public_data } from '../helpers/config';
+import { PUBLIC_DATA_URL } from '../helpers/authorities';
+import { LOCATION_DATA } from '../constants/storage';
+
+const width = Dimensions.get('window').width;
 
 const base64 = RNFetchBlob.base64;
 // This data source was published in the Lancet, originally mentioned in
@@ -90,7 +93,7 @@ function OverlapScreen() {
   }
 
   async function populateMarkers() {
-    GetStoreData('LOCATION_DATA').then(locationArrayString => {
+    GetStoreData(LOCATION_DATA).then(locationArrayString => {
       var locationArray = JSON.parse(locationArrayString);
       if (locationArray !== null) {
         var markers = [];
@@ -122,7 +125,7 @@ function OverlapScreen() {
 
   async function getInitialState() {
     try {
-      GetStoreData('LOCATION_DATA').then(locationArrayString => {
+      GetStoreData(LOCATION_DATA).then(locationArrayString => {
         const locationArray = JSON.parse(locationArrayString);
         if (locationArray !== null) {
           const { latitude, longitude } = locationArray.slice(-1)[0];
@@ -165,7 +168,7 @@ function OverlapScreen() {
         // this is much more performant.
         fileCache: true,
       })
-        .fetch('GET', public_data, {})
+        .fetch('GET', PUBLIC_DATA_URL, {})
         .then(res => {
           // the temp file path
           console.log('The file saved to ', res.path());

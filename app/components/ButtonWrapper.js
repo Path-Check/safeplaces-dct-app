@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Dimensions, View } from 'react-native';
 import Button from './Button';
 import PropTypes from 'prop-types';
 import fontFamily from '../constants/fonts';
-import { width } from '../helpers/Constants';
+
+const width = Dimensions.get('window').width;
 
 class ButtonWrapper extends React.Component {
   render() {

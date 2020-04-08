@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   BackHandler,
+  Dimensions,
   ActivityIndicator,
 } from 'react-native';
 
@@ -16,7 +17,8 @@ import WebView from 'react-native-webview';
 import backArrow from './../assets/images/backArrow.png';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
-import { width, height } from '../helpers/Constants';
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 

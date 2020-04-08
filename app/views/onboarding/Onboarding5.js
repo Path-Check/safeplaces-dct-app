@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  Dimensions,
   StyleSheet,
   ImageBackground,
   StatusBar,
@@ -25,7 +26,9 @@ import { SetStoreData } from '../../helpers/General';
 import { isPlatformiOS } from './../../Util';
 import { SvgXml } from 'react-native-svg';
 import fontFamily from '../../constants/fonts';
-import { width } from '../../helpers/Constants';
+import { PARTICIPATE } from '../../constants/storage';
+
+const width = Dimensions.get('window').width;
 
 const PermissionStatusEnum = {
   UNKNOWN: 0,
@@ -170,7 +173,7 @@ class Onboarding extends Component {
     } else if (!this.isNotificationChecked()) {
       this.requestNotification();
     } else {
-      SetStoreData('PARTICIPATE', 'true'); // replaces "start" button
+      SetStoreData(PARTICIPATE, 'true'); // replaces "start" button
       this.props.navigation.replace('LocationTrackingScreen');
     }
   }

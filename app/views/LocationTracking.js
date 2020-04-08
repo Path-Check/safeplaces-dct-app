@@ -7,6 +7,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Dimensions,
   Image,
   ScrollView,
   BackHandler,
@@ -48,7 +49,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import SettingsGear from './../assets/svgs/settingsGear';
 import fontFamily from '../constants/fonts';
-import { width, height } from '../helpers/Constants';
+import { PARTICIPATE, CROSSED_PATHS } from '../constants/storage';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -73,6 +74,9 @@ const StateIcon = ({ title, status, size, ...props }) => {
     <SvgXml xml={icon} width={size ? size : 80} height={size ? size : 80} />
   );
 };
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 class LocationTracking extends Component {
   constructor(props) {
@@ -128,7 +132,7 @@ class LocationTracking extends Component {
     // already set on 12h timer, but run when this screen opens too
     this.intersect_tick();
 
-    GetStoreData('CROSSED_PATHS').then(dayBin => {
+    GetStoreData(CROSSED_PATHS).then(dayBin => {
       if (dayBin === null) {
         console.log("Can't find crossed paths");
         this.setState({ currentState: StateEnum.NO_CONTACT });
@@ -143,7 +147,7 @@ class LocationTracking extends Component {
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    GetStoreData('PARTICIPATE')
+    GetStoreData(PARTICIPATE)
       .then(isParticipating => {
         if (isParticipating === 'true') {
           this.setState({
@@ -291,8 +295,8 @@ class LocationTracking extends Component {
   }
 
   willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => {
-      // Turn off bluetooth for v1
+    SetStoreData(PARTICIPATE, 'true').then(() => {
+      // Turn of bluetooth for v1
       //BroadcastingServices.start();
     });
     // Check and see if they actually authorized in the system dialog.

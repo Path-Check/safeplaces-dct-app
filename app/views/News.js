@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   BackHandler,
+  Dimensions,
   ActivityIndicator,
   ScrollView,
   SafeAreaView,
@@ -21,7 +22,9 @@ import languages from './../locales/languages';
 import fontFamily from '../constants/fonts';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import { width, height } from '../helpers/Constants';
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 class NewsScreen extends Component {
   constructor(props) {
