@@ -11,12 +11,14 @@ let hasBeenStarted = false;
 
 export class LocationData {
   constructor() {
-    this.locationInterval = 6000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-    // DEBUG: Reduce Time intervall for faster debugging
-    // this.locationInterval = 5000;
-
-    // NOTE:  It is important that minLocationSaveInterval is shorter than the locationInterval (to avoid strange skips)
+    // Intervals driving the desired location interval, and the minimum acceptable interval
+    this.locationInterval = 60000 * 1; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+    // It is important that minLocationSaveInterval is shorter than the locationInterval (to avoid strange skips)
     this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
+
+    // Maximum time that we will backfill for missing data
+    this.maxBackfillTime = 60000 * 60 * 8 // Time (in milliseconds).  60000 * 60 * 8 = 8 hours
+    
   }
 
   getLocationData() {
@@ -56,10 +58,7 @@ export class LocationData {
 
       // Always work in UTC, not the local time in the locationData
       let unixtimeUTC = Math.floor(location['time']);
-
       let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
-
-      console.log('[GPS] saving:', unixtimeUTC);
 
       // Verify that at least the minimum amount of time between saves has passed
       // This ensures that no matter how fast GPS coords are delivered, saving
@@ -67,7 +66,7 @@ export class LocationData {
       if (locationArray.length >= 1) {
         let lastSaveTime = locationArray[locationArray.length - 1]['time'];
         if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
-          console.log('[GPS] Discarding:', unixtimeUTC);
+          console.log('[INFO] Discarding point (too soon):', unixtimeUTC);
           return;
         }
       }
@@ -81,28 +80,47 @@ export class LocationData {
       }
 
       // Backfill the stationary points, if available
+      // The assumption is that if we see a gap in the data, the
+      // best guess is that the person was in that location for 
+      // the entire time.  This makes it easier for a health authority
+      // person to have a set of locations over time, and they can manually
+      // redact the time frames that aren't correct.
       if (curated.length >= 1) {
         let lastLocationArray = curated[curated.length - 1];
-        let lastTS = lastLocationArray['time'];
+
+        // Figure out the time to start the backfill from.  Default is
+        // the time of the last entry in the location set.
+        // To protect ourselves, we won't backfill more than the
+        // maxBackfillTime
+        let lastRecordedTime = lastLocationArray['time'];
+        if ((unixtimeUTC - lastRecordedTime) > this.maxBackfillTime) {
+          lastRecordedTime = unixtimeUTC - this.maxBackfillTime
+        }
+
         for (
-          ;
+          lastTS = lastRecordedTime;
           lastTS < unixtimeUTC - this.locationInterval;
           lastTS += this.locationInterval
         ) {
-          curated.push(JSON.parse(JSON.stringify(lastLocationArray)));
+          let lat_lon_time = {
+            latitude: lastLocationArray['latitude'],
+            longitude: lastLocationArray['longitude'],
+            time: lastTS
+          };
+          console.log('[INFO] backfill location:',lat_lon_time);
+          curated.push(lat_lon_time);
         }
       }
 
       // Save the location using the current lat-lon and the
       // recorded GPS timestamp
-      console.log('[GPS] Saving point:', locationArray.length);
-      
       let lat_lon_time = {
         latitude: location['latitude'],
         longitude: location['longitude'],
         time: unixtimeUTC
       };
       curated.push(lat_lon_time);
+      console.log('[INFO] saved location:',lat_lon_time);
 
       SetStoreData('LOCATION_DATA', curated);
     });
