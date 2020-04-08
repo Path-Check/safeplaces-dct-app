@@ -304,12 +304,6 @@ const styles = StyleSheet.create({
     padding: 0,
     fontFamily: 'OpenSans-Bold',
   },
-  subHeaderTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 22,
-    padding: 5,
-  },
   main: {
     flex: 1,
     flexDirection: 'column',

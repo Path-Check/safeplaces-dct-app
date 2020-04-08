@@ -110,13 +110,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: 'OpenSans-Bold',
   },
-  sectionDescription: {
-    fontSize: 16,
-    lineHeight: 24,
-    textAlignVertical: 'center',
-    marginTop: 12,
-    fontFamily: 'OpenSans-Regular',
-  },
 });
 
 export default NewsScreen;

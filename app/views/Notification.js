@@ -218,10 +218,6 @@ const styles = StyleSheet.create({
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
   },
-  valueName: {
-    fontSize: 20,
-    fontWeight: '800',
-  },
   value: {
     fontSize: 20,
     fontWeight: '200',
@@ -251,13 +247,6 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
   },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
   headerTitle: {
     fontSize: 24,
     fontFamily: 'OpenSans-Bold',
@@ -283,13 +272,6 @@ const styles = StyleSheet.create({
   backArrow: {
     height: 18,
     width: 18.48,
-  },
-  sectionDescription: {
-    fontSize: 16,
-    lineHeight: 24,
-    marginTop: 12,
-    overflow: 'scroll',
-    fontFamily: 'OpenSans-Regular',
   },
   notificationsHeader: {
     backgroundColor: '#665eff',

@@ -76,12 +76,6 @@ const styles = StyleSheet.create({
     marginTop: '9%',
     justifyContent: 'center',
   },
-  infoCardImage: {
-    alignSelf: 'center',
-    width: width * 0.5,
-    height: width * 0.5,
-    marginTop: '16%',
-  },
   infoCardHeadText: {
     fontFamily: 'OpenSans-Bold',
     fontSize: 24,

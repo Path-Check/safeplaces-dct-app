@@ -46,8 +46,10 @@ target 'PrivateKit' do
   pod 'react-native-google-maps', :path => rn_maps_path
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
-  
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+
+
 
   target 'PrivateKitTests' do
     inherit! :search_paths
