@@ -169,13 +169,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     padding: 20,
   },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
   headerTitle: {
     fontSize: 24,
     fontFamily: 'OpenSans-Bold',
