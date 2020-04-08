@@ -48,7 +48,9 @@ class SettingsScreen extends Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     NetInfo.fetch().then(state => {
-      if (!state.isConnected) this.setState({ isUserOffline: true });
+      if (!state.isConnected) {
+        this.setState({ isUserOffline: true });
+      }
     });
   }
 
@@ -74,8 +76,10 @@ class SettingsScreen extends Component {
 
   eventHistoryButtonPressed() {
     if (this.state.isUserOffline) {
-      alert(languages.t('offlineMessage'));
-    } else this.props.navigation.navigate('NotificationScreen');
+      alert(languages.t('offline_Message'));
+    } else {
+      this.props.navigation.navigate('NotificationScreen');
+    }
   }
 
   licensesButtonPressed() {

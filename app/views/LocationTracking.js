@@ -263,7 +263,9 @@ class LocationTracking extends Component {
     clearInterval(this.state.timer_intersect);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     NetInfo.fetch().then(state => {
-      if (!state.isConnected) this.setState({ isUserOffline: true });
+      if (!state.isConnected) {
+        this.setState({ isUserOffline: true });
+      }
     });
   }
 
@@ -295,8 +297,10 @@ class LocationTracking extends Component {
 
   overlap() {
     if (this.state.isUserOffline) {
-      alert(languages.t('offlineMessage'));
-    } else this.props.navigation.navigate('OverlapScreen', {});
+      alert(languages.t('offline_Message'));
+    } else {
+      this.props.navigation.navigate('OverlapScreen', {});
+    }
   }
 
   willParticipate = () => {

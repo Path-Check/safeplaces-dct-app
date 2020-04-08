@@ -186,6 +186,6 @@
 
     "choose_provider_title": "Choose health authority",
     "choose_provider_subtitle": "To be informed of exposures you will need to subscribe to a health authority.",
-    "offlineMessage": "Please check your internet connection and try again."
+    "offline_Message": "Please check your internet connection and try again."
 
 }

@@ -39,7 +39,7 @@ class NewsScreen extends Component {
       default_news: default_news,
       newsUrls: [default_news, default_news],
       current_page: 0,
-      iscached: false,
+      enable_webview_cache: false,
     };
   }
 
@@ -60,7 +60,9 @@ class NewsScreen extends Component {
 
   handleConnectionInfoChange = () => {
     NetInfo.fetch().then(state => {
-      if (!state.isConnected) this.setState({ iscached: true });
+      if (!state.isConnected) {
+        this.setState({ enable_webview_cache: true });
+      }
     });
   };
   _renderItem = item => {
@@ -71,7 +73,7 @@ class NewsScreen extends Component {
           <Text style={styles.singleNewsHeadText}>{item.item.name}</Text>
         </View>
         <WebView
-          cacheEnabled={this.state.iscached}
+          cacheEnabled={this.state.enable_webview_cache}
           source={{
             uri: item.item.url,
           }}
