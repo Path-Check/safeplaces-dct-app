@@ -10,7 +10,10 @@ function executeTask() {
   check_intersect = () => {
     // This function is called once every 12 hours.  It should do several things:
 
-    console.log('Intersect tick entering', isPlatformiOS());
+    console.log(
+      'Intersect tick entering on ',
+      isPlatformiOS() ? 'iOS' : 'Android',
+    );
     // this.findNewAuthorities(); NOT IMPLEMENTED YET
 
     // Get the user's health authorities
