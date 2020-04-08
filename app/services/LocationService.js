@@ -11,7 +11,7 @@ let hasBeenStarted = false;
 
 export class LocationData {
   constructor() {
-    this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+    this.locationInterval = 6000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
     // DEBUG: Reduce Time intervall for faster debugging
     // this.locationInterval = 5000;
 
@@ -53,10 +53,13 @@ export class LocationData {
   saveLocation(location) {
     // Persist this location data in our local storage of time/lat/lon values
     this.getLocationData().then(locationArray => {
+
       // Always work in UTC, not the local time in the locationData
-      let nowUTC = new Date().toISOString();
-      let unixtimeUTC = Date.parse(nowUTC);
+      let unixtimeUTC = Math.floor(location['time']);
+
       let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
+
+      console.log('[GPS] saving:', unixtimeUTC);
 
       // Verify that at least the minimum amount of time between saves has passed
       // This ensures that no matter how fast GPS coords are delivered, saving
@@ -64,10 +67,7 @@ export class LocationData {
       if (locationArray.length >= 1) {
         let lastSaveTime = locationArray[locationArray.length - 1]['time'];
         if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
-          console.log(
-            '[GPS] Discarding point (too early):',
-            unixtimeUTC - lastSaveTime,
-          );
+          console.log('[GPS] Discarding:', unixtimeUTC);
           return;
         }
       }
@@ -96,10 +96,11 @@ export class LocationData {
       // Save the location using the current lat-lon and the
       // recorded GPS timestamp
       console.log('[GPS] Saving point:', locationArray.length);
+      
       let lat_lon_time = {
         latitude: location['latitude'],
         longitude: location['longitude'],
-        time: parseInt(location['time']),
+        time: unixtimeUTC
       };
       curated.push(lat_lon_time);
 
