@@ -11,6 +11,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { MenuProvider } from 'react-native-popup-menu';
 import Entry from './app/Entry';
 
+// eslint-disable-next-line no-undef
 const App: () => React$Node = () => {
   useEffect(() => {
     SplashScreen.hide();

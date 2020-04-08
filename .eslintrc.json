@@ -2,12 +2,16 @@
   "root": true,
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "prettier/react"
   ],
   "parser": "babel-eslint",
   "plugins": [
     "react",
-    "react-native"
+    "react-native",
+    "prettier"
     // "json"
   ],
   "parserOptions": {
@@ -22,7 +26,8 @@
     "commonjs": true,
     "es6": true,
     "react-native/react-native": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "settings": {
     "react": {
@@ -40,6 +45,7 @@
     "no-underscore-dangle": 2, // Disallow dangling underscores in identifiers
     "no-unreachable": 2, // Disallow unreachable code after return, throw, continue, and break statements
     "no-unused-vars": 2, // Disallow Unused Variables
+    "no-use-before-define": 0, // disable no use before define warning
     "no-useless-escape": 2, // Disallow unnecessary escape usage
     "no-console": 0, // disallow the use of console
     "no-var": 2, // require let or const instead of var
@@ -64,6 +70,27 @@
     "react/no-string-refs": 1, // Prevent string definitions for references and prevent referencing this.refs
     "react/prop-types": 0, // Prevent missing props validation in a React component definition
     "react/react-in-jsx-scope": 2, // Prevent missing React when using JSX
-    "react/self-closing-comp": 2 // Prevent extra closing tags for components without children
+    "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
+    "react/sort-comp": 0, // sort comp
+    "react/destructuring-assignment": 0, // Prevent warning on destructuring assignment of props
+    "react/jsx-no-bind": 0,
+    "prefer-destructuring": "off", 
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 100
+      }
+    ]
   }
 }

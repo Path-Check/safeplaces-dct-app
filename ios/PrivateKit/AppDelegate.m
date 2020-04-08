@@ -15,6 +15,10 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <react-native-splash-screen/RNSplashScreen.h>
 
+@interface AppDelegate() <UNUserNotificationCenterDelegate>
+
+@end
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
