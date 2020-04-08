@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
   StyleSheet,
   ImageBackground,
   StatusBar,
@@ -15,8 +14,7 @@ import fontFamily from '../../constants/fonts';
 import languages, { findUserLang } from './../../locales/languages';
 import NativePicker from '../../components/NativePicker';
 import { SetStoreData } from '../../helpers/General';
-
-const width = Dimensions.get('window').width;
+import { width } from '../../helpers/Constants';
 
 class Onboarding extends Component {
   constructor(props) {

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
   StyleSheet,
   ImageBackground,
   StatusBar,
@@ -32,8 +31,6 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import { SvgXml } from 'react-native-svg';
 import fontFamily from '../constants/fonts';
 import LocationServices, { LocationData } from '../services/LocationService';
-
-const width = Dimensions.get('window').width;
 
 const InitialRegion = {
   latitude: 35.692863,

@@ -5,7 +5,6 @@ import {
   View,
   Text,
   Image,
-  Dimensions,
   TouchableOpacity,
   BackHandler,
   StatusBar,
@@ -33,7 +32,6 @@ import { SvgXml } from 'react-native-svg';
 import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
 
-const width = Dimensions.get('window').width;
 const base64 = RNFetchBlob.base64;
 
 function ExportScreen(props) {

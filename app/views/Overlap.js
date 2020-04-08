@@ -7,7 +7,6 @@ import {
   View,
   Text,
   Image,
-  Dimensions,
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
@@ -26,8 +25,8 @@ import backArrow from '../assets/images/backArrow.png';
 import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
 import fontFamily from '../constants/fonts';
-
-const width = Dimensions.get('window').width;
+import { width } from '../helpers/Constants';
+import { public_data } from '../helpers/config';
 
 const base64 = RNFetchBlob.base64;
 // This data source was published in the Lancet, originally mentioned in
@@ -36,8 +35,6 @@ const base64 = RNFetchBlob.base64;
 // The dataset is now hosted on Github due to the high demand for it.  The
 // first Google Doc holding data (https://docs.google.com/spreadsheets/d/1itaohdPiAeniCXNlntNztZ_oRvjh0HsGuJXUJWET008/edit#gid=0)
 // points to this souce but no longer holds the actual data.
-const public_data =
-  'https://raw.githubusercontent.com/beoutbreakprepared/nCoV2019/master/latest_data/latestdata.csv';
 const show_button_text = languages.t('label.show_overlap');
 const overlap_true_button_text = languages.t(
   'label.overlap_found_button_label',
