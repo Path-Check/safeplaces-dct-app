@@ -15,7 +15,7 @@ jobs:
       - name: Set XCode Version
         run: sudo xcode-select -s /Applications/Xcode_11.app
 
-      - name: Installing CocoaPods
+      - name: Install CocoaPods
         run: gem install cocoapods
 
       - name: Update Pods
@@ -31,6 +31,14 @@ jobs:
             ${{ runner.OS }}-yarn-cache-
 
       - run: yarn --frozen-lockfile
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v1
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
 
       - name: Pod Install
         run: pod install
