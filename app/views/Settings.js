@@ -6,17 +6,13 @@ import {
   TouchableOpacity,
   ScrollView,
   BackHandler,
-  Dimensions,
 } from 'react-native';
 
 // This is the definitive listing of registered Healthcare Authorities.  To
 // register, just submit a PR against that list on Github.  Users are also
 // free to type in a non-official authority.
 //
-const authoritiesListURL =
-  'https://raw.githubusercontent.com/tripleblindmarket/safe-places/develop/healthcare-authorities.yaml';
 
-const width = Dimensions.get('window').width;
 import languages from './../locales/languages';
 import ButtonWrapper from '../components/ButtonWrapper';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';

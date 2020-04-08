@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
   StyleSheet,
   ImageBackground,
   StatusBar,
@@ -26,8 +25,8 @@ import { SetStoreData } from '../../helpers/General';
 import { isPlatformiOS } from './../../Util';
 import { SvgXml } from 'react-native-svg';
 import fontFamily from '../../constants/fonts';
+import { width } from '../../helpers/Constants';
 
-const width = Dimensions.get('window').width;
 const PermissionStatusEnum = {
   UNKNOWN: 0,
   GRANTED: 1,

@@ -10,7 +10,6 @@ import {
   FlatList,
   Alert,
   TextInput,
-  Dimensions,
 } from 'react-native';
 import Yaml from 'js-yaml';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -31,12 +30,9 @@ import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import languages from '../locales/languages';
+import { width } from '../helpers/Constants';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-
-const authoritiesListURL =
-  'https://raw.githubusercontent.com/tripleblindmarket/safe-places/develop/healthcare-authorities.yaml';
-
-const width = Dimensions.get('window').width;
+import { authoritiesListURL } from '../helpers/config';
 
 class ChooseProviderScreen extends Component {
   constructor(props) {

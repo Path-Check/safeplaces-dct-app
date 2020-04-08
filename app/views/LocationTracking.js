@@ -7,7 +7,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Dimensions,
   Image,
   ScrollView,
   BackHandler,
@@ -48,6 +47,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import SettingsGear from './../assets/svgs/settingsGear';
 import fontFamily from '../constants/fonts';
+import { width, height } from '../helpers/Constants';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -72,9 +72,6 @@ const StateIcon = ({ title, status, size, ...props }) => {
     <SvgXml xml={icon} width={size ? size : 80} height={size ? size : 80} />
   );
 };
-
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
 
 class LocationTracking extends Component {
   constructor(props) {
