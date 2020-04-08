@@ -69,7 +69,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+          asset_path: android/app/build/outputs/apk/release/app-release-unsigned-signed.apk
           asset_name: app-release-${{ github.ref }}.apk
           asset_content_type: application/zip
 
