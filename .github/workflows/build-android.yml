@@ -22,11 +22,19 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      - name: Bundle JS
-        run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
-      - name: Build APK
-        run: ./gradlew assembleDebug
+      - name: Bundle JS
+        run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
+
+      - name: Build APK (gradle)
+        run: ./gradlew assembleDebug --no-daemon
         working-directory: ./android
 
       - name: Upload APK

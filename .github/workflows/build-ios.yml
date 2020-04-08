@@ -15,13 +15,6 @@ jobs:
       - name: Set XCode Version
         run: sudo xcode-select -s /Applications/Xcode_11.app
 
-      - name: Installing CocoaPods
-        run: gem install cocoapods
-
-      - name: Update Pods
-        run: pod repo update
-        working-directory: ./ios
-
       - name: Cache node_modules/
         uses: actions/cache@v1
         with:
@@ -32,15 +25,27 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
+      - name: Install CocoaPods
+        run: gem install cocoapods
+
+      - name: Update Pods
+        run: pod repo update
+        working-directory: ./ios
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v1
+        with:
+          path: ios/Pods
+          key: ${{ runner.OS }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-pods-
+
       - name: Pod Install
         run: pod install
         working-directory: ./ios
 
-      - name: make src/main/assets directory
-        run: mkdir -p ./android/app/src/main/assets
-
       - name: Bundle iOS JS
-        run: npx react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios
+        run: npx react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios --verbose
       # - name: Build App
       #   # xcodebuild -workspace PrivateKit.xcworkspace -configuration Debug -scheme PrivateKit
       #   # xcodebuild -workspace PrivateKit.xcworkspace -scheme PrivateKit archive -archivePath PrivateKit.xcarchive -allowProvisioningUpdates
