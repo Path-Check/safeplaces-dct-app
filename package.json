@@ -33,6 +33,7 @@
     "@react-native-community/cli-platform-ios": "^3.0.0",
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "0.1.5",
+    "@react-native-community/netinfo": "^5.7.0",
     "@react-native-community/push-notification-ios": "^1.1.0",
     "@react-native-community/viewpager": "^3.3.0",
     "@react-navigation/native": "5.0.9",

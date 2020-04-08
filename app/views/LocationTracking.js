@@ -31,6 +31,7 @@ import exportImage from './../assets/images/export.png';
 import ButtonWrapper from '../components/ButtonWrapper';
 import { isPlatformiOS } from './../Util';
 import Pulse from 'react-native-pulse';
+import NetInfo from '@react-native-community/netinfo';
 import {
   check,
   PERMISSIONS,
@@ -48,6 +49,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import SettingsGear from './../assets/svgs/settingsGear';
 import fontFamily from '../constants/fonts';
+import NetInfo from '@react-native-community/netinfo';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -85,6 +87,7 @@ class LocationTracking extends Component {
       timer_intersect: null,
       isLogging: '',
       currentState: StateEnum.NO_CONTACT,
+      isUserOffline: false,
     };
     try {
       this.checkCurrentState();
@@ -259,6 +262,9 @@ class LocationTracking extends Component {
     AppState.removeEventListener('change', this._handleAppStateChange);
     clearInterval(this.state.timer_intersect);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    NetInfo.fetch().then(state => {
+      if (!state.isConnected) this.setState({ isUserOffline: true });
+    });
   }
 
   // need to check state again if new foreground event
@@ -288,7 +294,9 @@ class LocationTracking extends Component {
   }
 
   overlap() {
-    this.props.navigation.navigate('OverlapScreen', {});
+    if (this.state.isUserOffline) {
+      alert(languages.t('offlineMessage'));
+    } else this.props.navigation.navigate('OverlapScreen', {});
   }
 
   willParticipate = () => {

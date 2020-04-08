@@ -22,7 +22,7 @@ import languages from './../locales/languages';
 import fontFamily from '../constants/fonts';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-
+import NetInfo from '@react-native-community/netinfo';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -33,11 +33,13 @@ class NewsScreen extends Component {
       name: 'Safe Paths News', // TODO: translate
       url: 'https://privatekit.mit.edu',
     };
+
     this.state = {
       visible: true,
       default_news: default_news,
       newsUrls: [default_news, default_news],
       current_page: 0,
+      iscached: false,
     };
   }
 
@@ -56,6 +58,11 @@ class NewsScreen extends Component {
     });
   }
 
+  handleConnectionInfoChange = () => {
+    NetInfo.fetch().then(state => {
+      if (!state.isConnected) this.setState({ iscached: true });
+    });
+  };
   _renderItem = item => {
     console.log('Item', item);
     return (
@@ -64,6 +71,7 @@ class NewsScreen extends Component {
           <Text style={styles.singleNewsHeadText}>{item.item.name}</Text>
         </View>
         <WebView
+          cacheEnabled={this.state.iscached}
           source={{
             uri: item.item.url,
           }}
@@ -71,7 +79,6 @@ class NewsScreen extends Component {
             borderBottomLeftRadius: 12,
             borderBottomRightRadius: 12,
           }}
-          cacheEnabled
           onLoad={() =>
             this.setState({
               visible: false,
@@ -83,7 +90,7 @@ class NewsScreen extends Component {
   };
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-
+    this.handleConnectionInfoChange();
     GetStoreData('AUTHORITY_NEWS')
       .then(name_news => {
         console.log('name_news:', name_news);

@@ -8,6 +8,7 @@ import {
   BackHandler,
   Dimensions,
 } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 
 // This is the definitive listing of registered Healthcare Authorities.  To
 // register, just submit a PR against that list on Github.  Users are also
@@ -31,6 +32,7 @@ class SettingsScreen extends Component {
     super(props);
     this.state = {
       //
+      isUserOffline: false,
     };
   }
 
@@ -45,6 +47,9 @@ class SettingsScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    NetInfo.fetch().then(state => {
+      if (!state.isConnected) this.setState({ isUserOffline: true });
+    });
   }
 
   componentWillUnmount() {
@@ -68,7 +73,9 @@ class SettingsScreen extends Component {
   }
 
   eventHistoryButtonPressed() {
-    this.props.navigation.navigate('NotificationScreen');
+    if (this.state.isUserOffline) {
+      alert(languages.t('offlineMessage'));
+    } else this.props.navigation.navigate('NotificationScreen');
   }
 
   licensesButtonPressed() {
