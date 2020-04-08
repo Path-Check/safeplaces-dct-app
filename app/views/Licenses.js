@@ -22,6 +22,8 @@ class LicensesScreen extends Component {
     super(props);
   }
 
+  
+
   backToMain() {
     this.props.navigation.goBack();
   }
