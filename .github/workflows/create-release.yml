@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Cache node_modules/
         uses: actions/cache@v1
         with:
@@ -22,8 +22,16 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      - name: Setup kernel for react native, increase watchers for release versions. 
+      - name: Setup kernel for react native, increase watchers for release versions.
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Build AAB
         run: ./gradlew clean bundleRelease --stacktrace
@@ -39,7 +47,7 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Build APK
-        run: ./gradlew assembleRelease --stacktrace
+        run: ./gradlew assembleRelease --stacktrace --no-daemon
         working-directory: ./android
 
       - name: Sign APK
@@ -79,7 +87,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: android/app/build/outputs/bundle/release/app.aab
           asset_name: app-release-${{ github.ref }}.aab
           asset_content_type: application/zip
