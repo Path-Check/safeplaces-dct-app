@@ -1,4 +1,12 @@
 import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock';
+import { NativeModules } from 'react-native';
+
+NativeModules.RNCNetInfo = {
+  getCurrentConnectivity: jest.fn(),
+  isConnectionMetered: jest.fn(),
+  addListener: jest.fn(),
+  removeListeners: jest.fn(),
+};
 
 // Silence YellowBox useNativeDriver warning
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');

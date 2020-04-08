@@ -31,7 +31,6 @@ import exportImage from './../assets/images/export.png';
 import ButtonWrapper from '../components/ButtonWrapper';
 import { isPlatformiOS } from './../Util';
 import Pulse from 'react-native-pulse';
-import NetInfo from '@react-native-community/netinfo';
 import {
   check,
   PERMISSIONS,

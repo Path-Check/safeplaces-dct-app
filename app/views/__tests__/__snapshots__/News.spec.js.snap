@@ -307,7 +307,7 @@ exports[`renders correctly 1`] = `
                       }
                     >
                       <RNCWebView
-                        cacheEnabled={true}
+                        cacheEnabled={false}
                         javaScriptEnabled={true}
                         messagingEnabled={false}
                         source={
@@ -405,7 +405,7 @@ exports[`renders correctly 1`] = `
                       }
                     >
                       <RNCWebView
-                        cacheEnabled={true}
+                        cacheEnabled={false}
                         javaScriptEnabled={true}
                         messagingEnabled={false}
                         source={
