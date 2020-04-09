@@ -10,22 +10,22 @@ import { GetStoreData } from '../helpers/General';
 // Step 5 - Add the labels to be used in respective json files. The labels are the key and the content is the value in different language, so make sure for each file the key remains the same
 // Step 6 - In React Native code import the main languages file and call the translate function - languages.t('label.labelname')
 
-import enlabels from './en';
-import delabels from './de';
-import hilabels from './hi';
-import frlabels from './fr';
-import itlabels from './it';
-import ptlabels from './pt';
-import mrlabels from './mr';
-import nllabels from './nl';
-import htlabels from './ht';
-import pt_BRlabels from './pt_BR';
-import eslabels from './es';
-import urlabels from './ur';
-import knlabels from './kn';
-import calabels from './ca';
-import gjlabels from './gj';
-import cslabels from './cs';
+import enlabels from './en/index.json';
+import delabels from './de/index.json';
+import hilabels from './hi/index.json';
+import frlabels from './fr/index.json';
+import itlabels from './it/index.json';
+import ptlabels from './pt/index.json';
+import mrlabels from './mr/index.json';
+import nllabels from './nl/index.json';
+import htlabels from './ht/index.json';
+import pt_BRlabels from './pt_BR/index.json';
+import eslabels from './es/index.json';
+import urlabels from './ur/index.json';
+import knlabels from './kn/index.json';
+import calabels from './ca/index.json';
+import gjlabels from './gj/index.json';
+import cslabels from './cs/index.json';
 
 // This will fetch the user's language
 // Set up as a function so first onboarding screen can also update
