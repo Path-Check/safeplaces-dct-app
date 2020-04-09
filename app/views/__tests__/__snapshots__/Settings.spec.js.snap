@@ -233,6 +233,8 @@ exports[`renders correctly 1`] = `
                 }
               >
                 <View
+                  accessibilityLabel="Import past locations"
+                  accessibilityRole="button"
                   accessible={true}
                   focusable={true}
                   isTVSelectable={true}
