@@ -134,6 +134,10 @@ android {
         multiDexEnabled true
         versionCode 19
         versionName "0.9.1"
+
+        // detox e2e testing
+        testBuildType System.getProperty('testBuildType', 'debug')
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     splits {
         abi {
@@ -161,7 +165,7 @@ android {
                 project.logger.lifecycle('Could not find release key')
             }
         }
-        
+
     }
     buildTypes {
         debug {
@@ -215,6 +219,8 @@ dependencies {
     }
     implementation 'com.google.android.gms:play-services-base:10.0.1'
     implementation 'com.google.android.gms:play-services-maps:10.0.1'
+
+    androidTestImplementation('com.wix:detox:+')  // detox: e2e testing
 }
 
  // Just to fix the app start crash error
