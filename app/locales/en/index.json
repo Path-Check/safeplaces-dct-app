@@ -1,4 +1,5 @@
 {
+  "label": {
     "commitment": "Commitment",
     "commitment_para": "Safe Paths securely records and checks your interaction with people using your location. Your data will NEVER leave your phone without your consent.",
     "team": "Team",
@@ -160,4 +161,5 @@
 
     "terms_of_use": "Terms of use",
     "terms_of_use_url": "https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#"
+  }
 }

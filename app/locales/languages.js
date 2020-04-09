@@ -65,99 +65,67 @@ i18next.init({
   fallbackLng: 'en', // If language detector fails
   resources: {
     en: {
-      translation: {
-        label: enlabels,
-      },
+      translation: enlabels,
       label: 'English',
     },
     de: {
-      translation: {
-        label: delabels,
-      },
+      translation: delabels,
       label: 'Deutsch',
     },
     hi: {
-      translation: {
-        label: hilabels,
-      },
+      translation: hilabels,
       label: 'हिन्दी',
     },
     fr: {
-      translation: {
-        label: frlabels,
-      },
+      translation: frlabels,
       label: 'Français',
     },
     it: {
-      translation: {
-        label: itlabels,
-      },
+      translation: itlabels,
       label: 'Italiano',
     },
     pt: {
-      translation: {
-        label: ptlabels,
-      },
+      translation: ptlabels,
       label: 'Português',
     },
     mr: {
-      translation: {
-        label: mrlabels,
-      },
+      translation: mrlabels,
       label: 'मराठी',
     },
     nl: {
-      translation: {
-        label: nllabels,
-      },
+      translation: nllabels,
       label: 'Nederlands',
     },
     ht: {
-      translation: {
-        label: htlabels,
-      },
+      translation: htlabels,
       label: 'Kreyòl ayisyen',
     },
     pt_BR: {
-      translation: {
-        label: pt_BRlabels,
-      },
+      translation: pt_BRlabels,
       label: 'Portugues do Brasil',
     },
     kn: {
-      translation: {
-        label: knlabels,
-      },
+      translation: knlabels,
       label: 'ಕನ್ನಡ',
     },
     es: {
-      translation: {
-        label: eslabels,
-      },
+      translation: eslabels,
       label: 'Español',
     },
     ur: {
-      translation: {
-        label: urlabels,
-      },
+      translation: urlabels,
       label: 'اردو',
     },
     ca: {
-      translation: {
-        label: calabels,
-      },
+      translation: calabels,
       label: 'Català',
     },
     gj: {
-      translation: {
-        label: gjlabels,
-      },
+      translation: gjlabels,
       label: 'ગુજરાતી',
     },
     cs: {
-      translation: {
-        label: cslabels,
-      },
+      translation: cslabels,
       label: 'Ceština',
     },
   },

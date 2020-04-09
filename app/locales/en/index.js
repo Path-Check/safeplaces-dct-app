@@ -1,4 +1,4 @@
-import english from './english.json';
+import english from './index.json';
 
 export default {
   ...english,
