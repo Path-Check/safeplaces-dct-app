@@ -433,11 +433,11 @@ class LocationTracking extends Component {
   getSubText() {
     switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
-        return 'label.home_no_contact_subtext';
+        return languages.t('label.home_no_contact_subtext');
       case StateEnum.AT_RISK:
-        return 'label.home_at_risk_subtext';
+        return languages.t('label.home_at_risk_subtext');
       case StateEnum.UNKNOWN:
-        return 'label.home_unknown_subtext';
+        return languages.t('label.home_unknown_subtext');
     }
   }
   getSubSubText() {
@@ -445,7 +445,7 @@ class LocationTracking extends Component {
       case StateEnum.NO_CONTACT:
         return null;
       case StateEnum.AT_RISK:
-        return 'label.home_at_risk_subsubtext';
+        return languages.t('label.home_at_risk_subsubtext');
       case StateEnum.UNKNOWN:
         return null;
     }
@@ -504,12 +504,8 @@ class LocationTracking extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             {this.getMainText()}
-            <Text style={styles.subheaderText}>
-              {languages.t(this.getSubText())}
-            </Text>
-            <Text style={styles.subsubheaderText}>
-              {languages.t(this.getSubSubText())}
-            </Text>
+            <Text style={styles.subheaderText}>{this.getSubText()}</Text>
+            <Text style={styles.subsubheaderText}>{this.getSubSubText()}</Text>
             {this.getCTAIfNeeded()}
           </View>
         </View>
