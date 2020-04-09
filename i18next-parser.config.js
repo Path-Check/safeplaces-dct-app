@@ -39,22 +39,22 @@ module.exports = {
   // Control the line ending. See options at https://github.com/ryanve/eol
 
   locales: [
-    'ca',
-    'cs',
-    'de',
+    // 'ca',
+    // 'cs',
+    // 'de',
     'en',
-    'es',
-    'fr',
+    // 'es',
+    // 'fr',
     // 'gj',
-    'hi',
+    // 'hi',
     // 'ht',
-    'it',
-    'kn',
-    'mr',
-    'nl',
-    // 'pt_BR',
-    // 'pt',
-    'ur',
+    // 'it',
+    // 'kn',
+    // 'mr',
+    // 'nl',
+    // // 'pt_BR',
+    // // 'pt',
+    // 'ur',
   ],
   // An array of the locales in your applications
 
@@ -67,7 +67,7 @@ module.exports = {
   // Supports JSON (.json) and YAML (.yml) file formats
   // Where to write the locale files relative to process.cwd()
 
-  input: undefined,
+  input: ['app/**/*.js'],
   // An array of globs that describe where to look for source files
   // relative to the location of the configuration file
 
@@ -75,10 +75,10 @@ module.exports = {
   // For react file, extract the defaultNamespace - https://react.i18next.com/components/translate-hoc.html
   // Ignored when parsing a `.jsx` file and namespace is extracted from that file.
 
-  sort: false,
+  sort: true,
   // Whether or not to sort the catalog
 
-  useKeysAsDefaultValue: false,
+  useKeysAsDefaultValue: true,
   // Whether to use the keys as the default value; ex. "Hello": "Hello", "World": "World"
   // The option `defaultValue` will not work if this is set to true
 

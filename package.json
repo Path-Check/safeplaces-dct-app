@@ -8,7 +8,7 @@
     "postinstall": "patch-package; npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
-    "i18n:extract": "i18next 'app/**/*.js'",
+    "i18n:extract": "i18next",
     "test": "jest test"
   },
   "lint-staged": {
