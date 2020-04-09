@@ -8,7 +8,7 @@ import { isPlatformAndroid } from '../Util';
 import languages from '../locales/languages';
 import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
 
-let hasBeenStarted = false;
+let isBackgroundGeolocationConfigured = false;
 
 export class LocationData {
   constructor() {
@@ -132,11 +132,10 @@ export default class LocationServices {
 
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
-    if (hasBeenStarted) {
+    if (isBackgroundGeolocationConfigured) {
       BackgroundGeolocation.start();
       return;
     }
-    hasBeenStarted = true;
 
     PushNotification.configure({
       // (required) Called when a remote or local notification is opened or received
@@ -290,6 +289,7 @@ export default class LocationServices {
       );
 
       BackgroundGeolocation.start(); //triggers start on start event
+      isBackgroundGeolocationConfigured = true;
 
       if (!status.locationServicesEnabled) {
         // we need to set delay or otherwise alert may not be shown
@@ -344,7 +344,7 @@ export default class LocationServices {
     });
   }
 
-  static stop(nav) {
+  static stop() {
     // unregister all event listeners
     PushNotification.localNotification({
       title: languages.t('label.location_disabled_title'),
@@ -352,7 +352,8 @@ export default class LocationServices {
     });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
-    instanceCount -= 1;
+    
+    isBackgroundGeolocationConfigured = false;
     SetStoreData(PARTICIPATE, 'false').then(() => {
       // nav.navigate('LocationTrackingScreen', {});
     });
