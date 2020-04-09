@@ -37,6 +37,7 @@ import {
   RESULTS,
   openSettings,
 } from 'react-native-permissions';
+import foreArrow from './../assets/images/foreArrow.png';
 
 import { IntersectSet } from '../helpers/Intersect';
 import { GetStoreData, SetStoreData } from '../helpers/General';
@@ -399,6 +400,7 @@ class LocationTracking extends Component {
     }
     return (
       <View style={styles.pulseContainer}>
+        <Text>Testdsfafasfsdafasfsadf</Text>
         <StateIcon size={height} status={this.state.currentState} />
       </View>
     );
@@ -407,11 +409,23 @@ class LocationTracking extends Component {
   getMainText() {
     switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
-        return 'label.home_no_contact_header';
+        return (
+          <Text style={styles.mainTextBelow}>
+            {languages.t('label.home_no_contact_header')}
+          </Text>
+        );
       case StateEnum.AT_RISK:
-        return 'label.home_at_risk_header';
+        return (
+          <Text style={styles.mainTextAbove}>
+            {languages.t('label.home_at_risk_header')}
+          </Text>
+        );
       case StateEnum.UNKNOWN:
-        return 'label.home_unknown_header';
+        return (
+          <Text style={styles.mainTextBelow}>
+            {languages.t('label.home_unknown_header')}
+          </Text>
+        );
     }
   }
 
@@ -423,6 +437,16 @@ class LocationTracking extends Component {
         return 'label.home_at_risk_subtext';
       case StateEnum.UNKNOWN:
         return 'label.home_unknown_subtext';
+    }
+  }
+  getSubSubText() {
+    switch (this.state.currentState) {
+      case StateEnum.NO_CONTACT:
+        return null;
+      case StateEnum.AT_RISK:
+        return 'label.home_at_risk_subsubtext';
+      case StateEnum.UNKNOWN:
+        return null;
     }
   }
 
@@ -454,11 +478,15 @@ class LocationTracking extends Component {
           onPress={() => {
             buttonFunction();
           }}
-          buttonColor={Colors.VIOLET}
+          buttonColor={Colors.BLUE_BUTTON}
           bgColor={Colors.WHITE}
         />
       </View>
     );
+  }
+
+  getMayoInfoPressed() {
+    Linking.openURL(languages.t('label.home_mayo_link_URL'));
   }
 
   render() {
@@ -474,23 +502,40 @@ class LocationTracking extends Component {
         {this.getPulseIfNeeded()}
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <Text style={styles.mainText}>
-              {languages.t(this.getMainText())}
-            </Text>
+            {this.getMainText()}
             <Text style={styles.subheaderText}>
               {languages.t(this.getSubText())}
             </Text>
-            {this.getCTAIfNeeded()}
-            <Text
-              style={styles.mainMayoLink}
-              onPress={() =>
-                Linking.openURL(
-                  'https://www.mayoclinic.org/coronavirus-covid-19',
-                )
-              }>
-              {languages.t('label.home_mayo_link_label')}
+            <Text style={styles.subsubheaderText}>
+              {languages.t(this.getSubSubText())}
             </Text>
+            {this.getCTAIfNeeded()}
           </View>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={this.getMayoInfoPressed.bind(this)}
+            style={styles.mayoInfoRow}>
+            <View style={styles.mayoInfoContainer}>
+              <Text
+                style={styles.mainMayoHeader}
+                onPress={() =>
+                  Linking.openURL(languages.t('label.home_mayo_link_URL'))
+                }>
+                {languages.t('label.home_mayo_link_heading')}
+              </Text>
+              <Text
+                style={styles.mainMayoSubtext}
+                onPress={() =>
+                  Linking.openURL(languages.t('label.home_mayo_link_URL'))
+                }>
+                {languages.t('label.home_mayo_link_label')}
+              </Text>
+            </View>
+            <View style={styles.arrowContainer}>
+              <Image source={foreArrow} style={this.arrow} />
+            </View>
+          </TouchableOpacity>
         </View>
         {this.getSettings()}
       </ImageBackground>
@@ -510,7 +555,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   contentContainer: {
-    width: width * 0.6,
+    width: width * 0.8,
     flex: 1,
     alignSelf: 'center',
   },
@@ -532,7 +577,16 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: 'center',
   },
-  mainText: {
+  mainTextAbove: {
+    textAlign: 'center',
+    lineHeight: 34,
+    marginTop: -170,
+    marginBottom: 125,
+    color: Colors.WHITE,
+    fontSize: 26,
+    fontFamily: fontFamily.primaryMedium,
+  },
+  mainTextBelow: {
     textAlign: 'center',
     lineHeight: 34,
     color: Colors.WHITE,
@@ -547,13 +601,40 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: fontFamily.primaryRegular,
   },
-  mainMayoLink: {
-    marginTop: '25%',
+  subsubheaderText: {
+    marginTop: 15,
     textAlign: 'center',
+    lineHeight: 24.5,
+    color: Colors.WHITE,
+    fontSize: 18,
+    fontFamily: fontFamily.primaryLight,
+    marginBottom: '8%',
+  },
+  mayoInfoRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  mayoInfoContainer: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignContent: 'flex-end',
+    padding: 20,
+  },
+  mainMayoHeader: {
+    textAlign: 'left',
     color: Colors.MISCHKA,
-    textDecorationLine: 'underline',
-    fontSize: 16,
+    fontSize: 18,
+    fontFamily: fontFamily.primaryBold,
+  },
+  mainMayoSubtext: {
+    textAlign: 'left',
+    color: Colors.MISCHKA,
+    fontSize: 18,
     fontFamily: fontFamily.primaryRegular,
+  },
+  arrowContainer: {
+    alignSelf: 'center',
+    paddingRight: 20,
   },
 });
 
