@@ -26,7 +26,7 @@
     "loading_public_data": "carregant dades...",
     "logging_message": "La app actualment esta fent un registre de la teva localització cada 5 minuts. El teu registre NO surt del teu telèfon.",
     "nCoV2019_url_info": "Per obtenir més informació sobre les dades darrere d'aquest mapa",
-    "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+    "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019",
     "news": "Notícies",
     "next": "SEGÜENT",
     "no_data": "No hi ha dades",
@@ -49,6 +49,6 @@
     "start_logging": "INICIAR REGISTRE",
     "start": "INICI",
     "stop_logging": "PARAR REGISTRE",
-    "url_info": "Per més informació visita la pàgina de inici de la web de Private Kit:",
+    "url_info": "Per més informació visita la pàgina de inici de la web de Private Kit:"
   }
 }

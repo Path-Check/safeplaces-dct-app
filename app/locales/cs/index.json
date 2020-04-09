@@ -26,7 +26,7 @@
     "loading_public_data": "načítání dat ...",
     "logging_message": "Aktuálně se každých pět minut zaznamenává vaše poloha. Informace o poloze neopouštějí váš telefon.",
     "nCoV2019_url_info": "Další informace o datovém souboru této mapy",
-    "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019"
+    "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019",
     "news": "Novinky",
     "next": "DALŠÍ",
     "no_data": "Žádná data",
@@ -49,6 +49,6 @@
     "start_logging": "START ZÁZNAMU",
     "start": "START",
     "stop_logging": "STOP ZÁZNAMU",
-    "url_info": "Pro více informací navštivte domovskou stránku Private Kit:",
+    "url_info": "Pro více informací navštivte domovskou stránku Private Kit:"
   }
 }
