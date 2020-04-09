@@ -1,0 +1,33 @@
+{
+  "label": {
+    "back": "TERUG",
+    "data_count": "Number of points logged:",
+    "data_covers": "Total time the log covers:",
+    "data_hint": "Log bevat data van",
+    "data_last_updated": "Time since last updated:",
+    "export": "Exporteren",
+    "import": "Importeren",
+    "intro1_para1": "Ontworpen met gegevensbeveiliging en privacybescherming als basis. MIT Private Kit is de volgende generatie van veilige locatietracking.",
+    "intro2_para1": "Private Kit gebruikt minder dan 100KB om je locatiehistorie op te slaan – minder dan de ruimte van één foto dus.",
+    "intro2_para2": "Data verlaat nooit je telefoon zonder jouw expliciete toestemming.",
+    "intro2_title1": "Minder dan 100KB",
+    "intro2_title2": "Jij houdt de controle",
+    "intro3_para1": "De volgende stap in het oplossen van de problemen van vandaag en morgen. Mensen in staat stellen hun locatiehistorie bij te houden, biedt nieuwe kansen voor onderzoekers die de verspreiding van pandemiën, vluchtelingenmigratie en gemeenschapsverkeer bestuderen.",
+    "intro3_para2": "Kom meer te weten:\n http://privatekit.mit.edu/",
+    "intro3_title1": "De toekomst",
+    "license_placeholder": "Deze app is gebouwd onder de MIT licentie.",
+    "logging_message": "De app slaat jouw locatie op dit moment elke vijf minuten privé op. Je locatieinformatie wordt NIET automatisch gedeeld vanaf je telefoon.",
+    "nCoV2019_url": "github.com/beoutbreakprepared/nCoV2019",
+    "news": "Nieuws",
+    "next": "VOLGENDE",
+    "not_logging_message": "OPMERKING: Nadat je op deze knop hebt gedrukt, wordt je mogelijk gevraagd Private Kit toegang te verlenen tot jouw locatie.",
+    "overlap": "Controleer Overlap",
+    "private_kit_url": "privatekit.mit.edu",
+    "private_kit": "Private Kit",
+    "share": "DEEL",
+    "start_logging": "START OPSLAAN",
+    "start": "START",
+    "stop_logging": "STOP OPSLAAN",
+    "url_info": "Voor meer informatie bezoek de Private Kit website:"
+  }
+}
