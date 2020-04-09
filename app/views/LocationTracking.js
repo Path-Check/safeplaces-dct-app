@@ -111,11 +111,13 @@ class LocationTracking extends Component {
       .then(result => {
         switch (result) {
           case RESULTS.GRANTED:
+            LocationServices.start();
             this.checkIfUserAtRisk();
             return;
           case RESULTS.UNAVAILABLE:
           case RESULTS.BLOCKED:
             console.log('NO LOCATION');
+            LocationServices.stop();
             this.setState({ currentState: StateEnum.UNKNOWN });
         }
       })
@@ -293,21 +295,20 @@ class LocationTracking extends Component {
 
   willParticipate = () => {
     SetStoreData('PARTICIPATE', 'true').then(() => {
-      LocationServices.start();
-      // Turn of bluetooth for v1
+      // Turn off bluetooth for v1
       //BroadcastingServices.start();
     });
-
     // Check and see if they actually authorized in the system dialog.
     // If not, stop services and set the state to !isLogging
     // Fixes tripleblindmarket/private-kit#129
     BackgroundGeolocation.checkStatus(({ authorization }) => {
       if (authorization === BackgroundGeolocation.AUTHORIZED) {
+        LocationServices.start();
         this.setState({
           isLogging: true,
         });
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
-        LocationServices.stop(this.props.navigation);
+        LocationServices.stop();
         // Turn of bluetooth for v1
         //BroadcastingServices.stop(this.props.navigation);
         this.setState({
