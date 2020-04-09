@@ -28,10 +28,6 @@ jobs:
       - name: Install CocoaPods
         run: gem install cocoapods
 
-      - name: Update Pods
-        run: pod repo update
-        working-directory: ./ios
-
       - name: Cache CocoaPods
         uses: actions/cache@v1
         with:
@@ -41,7 +37,7 @@ jobs:
             ${{ runner.OS }}-pods-
 
       - name: Pod Install
-        run: pod install
+        run: pod install --repo-update
         working-directory: ./ios
 
       - name: Bundle iOS JS
