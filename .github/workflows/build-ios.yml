@@ -25,8 +25,7 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      - name: Install CocoaPods
-        run: gem install cocoapods
+      - run: gem install cocoapods
 
       - name: Cache CocoaPods
         uses: actions/cache@v1
@@ -36,8 +35,7 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-pods-
 
-      - name: Pod Install
-        run: pod install --repo-update
+      - run: pod install --repo-update
         working-directory: ./ios
 
       - name: Bundle iOS JS
