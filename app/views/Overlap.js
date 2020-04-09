@@ -379,12 +379,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: fontFamily.primaryRegular,
   },
-  subHeaderTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 22,
-    padding: 5,
-  },
   main: {
     flex: 1,
     flexDirection: 'column',
@@ -418,21 +412,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
-  mainText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-
   headerContainer: {
     flexDirection: 'row',
     height: 60,

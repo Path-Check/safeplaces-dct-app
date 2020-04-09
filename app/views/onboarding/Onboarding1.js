@@ -130,11 +130,6 @@ const styles = StyleSheet.create({
     marginBottom: '10%',
     alignSelf: 'center',
   },
-  menuOptionText: {
-    fontWeight: 'normal',
-    fontSize: 14,
-    padding: 10,
-  },
 });
 
 export default Onboarding;

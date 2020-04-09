@@ -393,10 +393,6 @@ const styles = StyleSheet.create({
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
   },
-  valueName: {
-    fontSize: 20,
-    fontWeight: '800',
-  },
   value: {
     fontSize: 20,
     fontWeight: '200',
@@ -435,36 +431,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
-  mainText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
   headerTitle: {
     fontSize: 24,
     fontFamily: fontFamily.primaryBold,
     color: Colors.VIOLET_TEXT,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
   },
   backArrow: {
     height: 18,
