@@ -3,29 +3,32 @@ import { getLanguages } from 'react-native-i18n';
 import { GetStoreData } from '../helpers/General';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
-// Step 1 - Create index.js files for each language we want to have, in this file you can import all the json files (Step 4) and export them
-// Step 2 - Import them with a unique title
-// Step 3 - Add these titles under the resources object in the i18next.init function
-// Step 4 - Create separate json files for various sections under the language folder ex. en/intro1.json
-// Step 5 - Add the labels to be used in respective json files. The labels are the key and the content is the value in different language, so make sure for each file the key remains the same
-// Step 6 - In React Native code import the main languages file and call the translate function - languages.t('label.labelname')
 
-import enlabels from './en/index.json';
-import delabels from './de/index.json';
-import hilabels from './hi/index.json';
-import frlabels from './fr/index.json';
-import itlabels from './it/index.json';
-import ptlabels from './pt/index.json';
-import mrlabels from './mr/index.json';
-import nllabels from './nl/index.json';
-import htlabels from './ht/index.json';
-import pt_BRlabels from './pt_BR/index.json';
-import eslabels from './es/index.json';
-import urlabels from './ur/index.json';
-import knlabels from './kn/index.json';
-import calabels from './ca/index.json';
-import gjlabels from './gj/index.json';
-import cslabels from './cs/index.json';
+// Adding/updating a language:
+// 1. Update i18next-parser.config.js to ensure the xy language is in "locales"
+// 2. run: npm run i18n:extract
+// 3. All known/new keys will be added into xy/index.json
+//    - any removed keys will be put into index_old.json, do not commit this file
+// 4. Update translations as needed
+// 5. REMOVE all empty translations. e.g. "key": "", this will allow fallback to the default: English
+// 6. import xyIndex from `./xy/index.json` and add the language to the block at the bottom
+
+import enIndex from './en/index.json';
+import deIndex from './de/index.json';
+import hiIndex from './hi/index.json';
+import frIndex from './fr/index.json';
+import itIndex from './it/index.json';
+import ptIndex from './pt/index.json';
+import mrIndex from './mr/index.json';
+import nlIndex from './nl/index.json';
+import htIndex from './ht/index.json';
+import pt_BRIndex from './pt_BR/index.json';
+import esIndex from './es/index.json';
+import urIndex from './ur/index.json';
+import knIndex from './kn/index.json';
+import caIndex from './ca/index.json';
+import gjIndex from './gj/index.json';
+import csIndex from './cs/index.json';
 
 // This will fetch the user's language
 // Set up as a function so first onboarding screen can also update
@@ -65,67 +68,67 @@ i18next.init({
   fallbackLng: 'en', // If language detector fails
   resources: {
     en: {
-      translation: enlabels,
+      translation: enIndex,
       label: 'English',
     },
     de: {
-      translation: delabels,
+      translation: deIndex,
       label: 'Deutsch',
     },
     hi: {
-      translation: hilabels,
+      translation: hiIndex,
       label: 'हिन्दी',
     },
     fr: {
-      translation: frlabels,
+      translation: frIndex,
       label: 'Français',
     },
     it: {
-      translation: itlabels,
+      translation: itIndex,
       label: 'Italiano',
     },
     pt: {
-      translation: ptlabels,
+      translation: ptIndex,
       label: 'Português',
     },
     mr: {
-      translation: mrlabels,
+      translation: mrIndex,
       label: 'मराठी',
     },
     nl: {
-      translation: nllabels,
+      translation: nlIndex,
       label: 'Nederlands',
     },
     ht: {
-      translation: htlabels,
+      translation: htIndex,
       label: 'Kreyòl ayisyen',
     },
     pt_BR: {
-      translation: pt_BRlabels,
+      translation: pt_BRIndex,
       label: 'Portugues do Brasil',
     },
     kn: {
-      translation: knlabels,
+      translation: knIndex,
       label: 'ಕನ್ನಡ',
     },
     es: {
-      translation: eslabels,
+      translation: esIndex,
       label: 'Español',
     },
     ur: {
-      translation: urlabels,
+      translation: urIndex,
       label: 'اردو',
     },
     ca: {
-      translation: calabels,
+      translation: caIndex,
       label: 'Català',
     },
     gj: {
-      translation: gjlabels,
+      translation: gjIndex,
       label: 'ગુજરાતી',
     },
     cs: {
-      translation: cslabels,
+      translation: csIndex,
       label: 'Ceština',
     },
   },
