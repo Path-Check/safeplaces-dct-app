@@ -130,7 +130,7 @@ class SettingsScreen extends Component {
                   fontFamily: fontFamily.primaryBold,
                 },
               ]}>
-              {languages.t(text)}
+              {text}
             </Text>
           ) : (
             <Text
@@ -138,14 +138,12 @@ class SettingsScreen extends Component {
                 styles.settingRowText,
                 { color: color || Colors.VIOLET_TEXT },
               ]}>
-              {languages.t(text)}
+              {text}
             </Text>
           )}
           {renderIcon()}
           {subtitle ? (
-            <Text style={styles.settingsRowSubtitleText}>
-              {languages.t(subtitle)}
-            </Text>
+            <Text style={styles.settingsRowSubtitleText}>{subtitle}</Text>
           ) : null}
         </TouchableOpacity>
       </>
@@ -171,35 +169,35 @@ class SettingsScreen extends Component {
           <View style={styles.mainContainer}>
             <View style={styles.section}>
               {this.getSettingRow(
-                'label.choose_provider_title',
+                languages.t('label.choose_provider_title'),
                 this.chooseProviderScreenButtonPressed,
                 null,
                 null,
-                'label.choose_provider_subtitle',
+                languages.t('label.choose_provider_subtitle'),
               )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
-                'label.news_title',
+                languages.t('label.news_title'),
                 this.newsButtonPressed,
                 null,
                 null,
-                'label.news_subtitle',
+                languages.t('label.news_subtitle'),
               )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
-                'label.event_history_title',
+                languages.t('label.event_history_title'),
                 this.eventHistoryButtonPressed,
                 null,
                 null,
-                'label.event_history_subtitle',
+                languages.t('label.event_history_subtitle'),
               )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
-                'label.tested_positive_title',
+                languages.t('label.tested_positive_title'),
                 this.testedPositiveButtonPressed,
                 null,
                 null,
-                'label.tested_positive_subtitle',
+                languages.t('label.tested_positive_subtitle'),
               )}
             </View>
           </View>
