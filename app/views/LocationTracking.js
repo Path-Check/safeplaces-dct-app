@@ -227,7 +227,6 @@ class LocationTracking extends Component {
                 //       their authority is no longer functioning.)
 
                 IntersectSet(responseJson.concern_points, dayBin => {
-                  console.log('asasasas');
                   if (dayBin !== null) {
                     PushNotification.localNotification({
                       title: languages.t('label.push_at_risk_title'),
@@ -482,6 +481,15 @@ class LocationTracking extends Component {
               {languages.t(this.getSubText())}
             </Text>
             {this.getCTAIfNeeded()}
+            <Text
+              style={styles.mainMayoLink}
+              onPress={() =>
+                Linking.openURL(
+                  'https://www.mayoclinic.org/coronavirus-covid-19',
+                )
+              }>
+              {languages.t('label.home_mayo_link_label')}
+            </Text>
           </View>
         </View>
         {this.getSettings()}
@@ -514,7 +522,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    top: '7%',
+    top: '4%',
   },
   pulseContainer: {
     position: 'absolute',
@@ -537,6 +545,14 @@ const styles = StyleSheet.create({
     lineHeight: 24.5,
     color: Colors.WHITE,
     fontSize: 18,
+    fontFamily: fontFamily.primaryRegular,
+  },
+  mainMayoLink: {
+    marginTop: '25%',
+    textAlign: 'center',
+    color: Colors.MISCHKA,
+    textDecorationLine: 'underline',
+    fontSize: 16,
     fontFamily: fontFamily.primaryRegular,
   },
 });
