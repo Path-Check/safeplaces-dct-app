@@ -208,10 +208,13 @@ class SettingsScreen extends Component {
           <View style={styles.fullDivider} />
           <View style={styles.mainContainer}>
             <View style={styles.section}>
-              {this.getSettingRow('label.about_title', this.aboutButtonPressed)}
+              {this.getSettingRow(
+                languages.t('label.about_title'),
+                this.aboutButtonPressed,
+              )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
-                'label.legal_page_title',
+                languages.t('label.legal_page_title'),
                 this.licensesButtonPressed,
               )}
             </View>
