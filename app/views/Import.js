@@ -1,82 +1,68 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
   Dimensions,
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
-  Image,
   TouchableOpacity,
-  BackHandler,
-  ActivityIndicator,
   Linking,
 } from 'react-native';
 
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import WebView from 'react-native-webview';
-import backArrow from './../assets/images/backArrow.png';
-import { ImportTakeoutData } from '../helpers/GoogleTakeOutAutoImport';
+import {
+  ImportTakeoutData,
+  NoRecentLocationsError,
+} from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
-<<<<<<< HEAD
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
-
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-
-class ImportScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { visible: true };
-    // Autoimports if user has downloaded
-    SearchAndImport();
-=======
 import { PickFile } from '../helpers/General';
 
 const width = Dimensions.get('window').width;
 
-class ImportScreen extends Component {
-  constructor(props) {
-    super(props);
->>>>>>> initial commit. working on android
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
+
+const makeImportResults = (label = '', error = false) => ({
+  error,
+  label,
+});
+
+const ImportScreen = props => {
+  const {
+    navigation: { goBack },
+  } = props;
+  const [importResults, setImportResults] = useState(makeImportResults());
+
+  async function importPickFile() {
+    try {
+      // reset info message
+      setImportResults(makeImportResults());
+
+      const filePath = await PickFile();
+      if (filePath) {
+        const newLocations = await ImportTakeoutData(filePath);
+        if (newLocations.length) {
+          setImportResults(makeImportResults('label.import_success'));
+        } else {
+          setImportResults(makeImportResults('label.import_already_imported'));
+        }
+      }
+    } catch (err) {
+      if (err instanceof NoRecentLocationsError) {
+        setImportResults(
+          makeImportResults('label.import_no_recent_locations', true),
+        );
+      } else {
+        setImportResults(makeImportResults('label.import_error', true));
+      }
+    }
   }
 
-  backToMain() {
-    this.props.navigation.goBack();
-  }
-
-  handleBackPress = () => {
-    this.props.navigation.goBack();
-    return true;
-  };
-
-  hideSpinner() {
-    this.setState({ visible: false });
-  }
-
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-  }
-
-  importPickFile() {
-    PickFile().then(filePath =>
-      ImportTakeoutData(filePath).catch(err => {
-        console.log(err);
-      }),
-    );
-  }
-
-  render() {
-    let counter = 0;
-    return (
-      <NavigationBarWrapper
-        title={languages.t('label.import_title')}
-        onBackPress={this.backToMain.bind(this)}>
-        <View style={styles.main}>
+  return (
+    <NavigationBarWrapper
+      title={languages.t('label.import_title')}
+      onBackPress={goBack}>
+      <View style={styles.main}>
+        <View style={styles.subHeaderTitle}>
           <Text style={styles.sectionDescription}>
             {languages.t('label.import_step_1')}
           </Text>
@@ -98,60 +84,27 @@ class ImportScreen extends Component {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.importPickFile()}
+            onPress={importPickFile}
             style={styles.buttonTouchable}>
             <Text style={styles.buttonText}>
               {languages.t('label.import_title').toUpperCase()}
             </Text>
-<<<<<<< HEAD
-          </View>
-          <View style={styles.web}>
-            <WebView
-              source={{
-                uri:
-                  'https://takeout.google.com/settings/takeout/custom/location_history',
-              }}
-              onLoad={() => this.hideSpinner()}
-              // Reload once on error to workaround chromium regression for Android
-              // Chromiumn Bug :: https://bugs.chromium.org/p/chromium/issues/detail?id=1023678
-              ref={ref => {
-                this.webView = ref;
-              }}
-              onError={() => {
-                console.log(counter);
-                if (counter === 0) {
-                  this.webView.reload();
-                }
-                counter++;
-              }}
-              renderError={errorName => {
-                if (counter >= 1) {
-                  <View style={styles.sectionDescription}>
-                    <Text>Error Occurred while importing file {errorName}</Text>
-                  </View>;
-                }
-              }}
-              style={{ marginTop: 15 }}
-            />
-            {this.state.visible && (
-              <ActivityIndicator
-                style={{
-                  position: 'absolute',
-                  top: height / 2,
-                  left: width / 2,
-                }}
-                size='large'
-              />
-            )}
-          </View>
-=======
           </TouchableOpacity>
->>>>>>> initial commit. working on android
+
+          {importResults.label ? (
+            <Text
+              style={{
+                ...styles.importResults,
+                ...(importResults?.error ? styles.importResultsError : {}),
+              }}>
+              {languages.t(importResults.label)}
+            </Text>
+          ) : null}
         </View>
-      </NavigationBarWrapper>
-    );
-  }
-}
+      </View>
+    </NavigationBarWrapper>
+  );
+};
 
 const styles = StyleSheet.create({
   // Container covers the entire screen
@@ -171,14 +124,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     textAlignVertical: 'top',
-    // alignItems: 'center',
-    padding: 20,
-    width: '96%',
+    paddingLeft: 20,
+    paddingRight: 20,
+    width: '100%',
     alignSelf: 'center',
   },
   buttonTouchable: {
     borderRadius: 12,
-    backgroundColor: '#665eff',
+    backgroundColor: colors.VIOLET,
     height: 52,
     alignSelf: 'center',
     width: width * 0.7866,
@@ -186,28 +139,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: fontFamily.primarySemiBold,
     fontSize: 14,
     lineHeight: 19,
     letterSpacing: 0,
     textAlign: 'center',
-    color: '#ffffff',
+    color: colors.WHITE,
   },
-  mainText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-
   headerContainer: {
     flexDirection: 'row',
     height: 60,
@@ -234,6 +172,17 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     fontFamily: fontFamily.primaryRegular,
+  },
+  importResults: {
+    fontSize: 12,
+    lineHeight: 20,
+    marginTop: 10,
+    textAlign: 'center',
+    fontFamily: fontFamily.primaryRegular,
+    color: colors.VIOLET_TEXT,
+  },
+  importResultsError: {
+    color: colors.RED_TEXT,
   },
 });
 export default ImportScreen;

@@ -32,10 +32,15 @@
 
 
 
-    "import_title": "Import Locations",
-    "import_step_1": "1. Login to your Google Account and Download your Location History",
-    "import_step_2": "2. After downloaded, open this screen again. The data will import automatically.",
-
+    "import_title":"Import Locations",
+    "import_step_1":"Adding location data from Google will give you a head start on building your recent locations.",
+    "import_step_2":"Before you can import, you must first 'Take out' your location data from Google.",
+    "import_step_3":"Visit Google Takeout and export your Location History using following settings: \n1. Delivery method: \"Google Drive\" \n2. Frequency: \"Export once\" \n3. File type & size: \".zip\" and \"1GB\" \n4. Return here to import the archive",
+    "import_takeout":"Visit Google Takeout",
+    "import_success":"Recent locations has been successfully imported!",
+    "import_already_imported":"Provided Takeout file has already been imported.",
+    "import_error":"Something went wrong while importing your data.",
+    "import_no_recent_locations": "Takeout doesn't have any recent locations.",
 
 
     "private_kit": "COVID\nSafe Paths",

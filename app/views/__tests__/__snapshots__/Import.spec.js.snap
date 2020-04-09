@@ -91,12 +91,12 @@ Array [
     <View
       style={
         Object {
-          "alignItems": "center",
+          "alignSelf": "center",
           "flex": 1,
           "flexDirection": "column",
-          "justifyContent": "center",
           "paddingLeft": 20,
           "paddingRight": 20,
+          "textAlignVertical": "top",
           "width": "100%",
         }
       }
@@ -118,11 +118,10 @@ Array [
               "fontSize": 16,
               "lineHeight": 24,
               "marginTop": 12,
-              "textAlignVertical": "center",
             }
           }
         >
-          1. Login to your Google Account and Download your Location History
+          Adding location data from Google will give you a head start on building your recent locations.
         </Text>
         <Text
           style={
@@ -131,81 +130,105 @@ Array [
               "fontSize": 16,
               "lineHeight": 24,
               "marginTop": 12,
-              "textAlignVertical": "center",
             }
           }
         >
-          2. After downloaded, open this screen again. The data will import automatically.
+          Before you can import, you must first 'Take out' your location data from Google.
         </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "flex": 1,
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "overflow": "hidden",
-              },
-              undefined,
-            ]
-          }
-        >
-          <RNCWebView
-            cacheEnabled={true}
-            javaScriptEnabled={true}
-            messagingEnabled={false}
-            onContentProcessDidTerminate={[Function]}
-            onError={[Function]}
-            onHttpError={[Function]}
-            onLoad={[Function]}
-            onLoadingError={[Function]}
-            onLoadingFinish={[Function]}
-            onLoadingProgress={[Function]}
-            onLoadingStart={[Function]}
-            onMessage={[Function]}
-            onShouldStartLoadWithRequest={[Function]}
-            source={
-              Object {
-                "uri": "https://takeout.google.com/settings/takeout/custom/location_history",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "overflow": "hidden",
-                },
-                Object {
-                  "backgroundColor": "#ffffff",
-                },
-                Object {
-                  "marginTop": 15,
-                },
-              ]
-            }
-            useSharedProcessPool={true}
-          />
-        </View>
-        <ActivityIndicator
-          animating={true}
-          color="#999999"
-          hidesWhenStopped={true}
-          size="large"
+        <Text
           style={
             Object {
-              "left": 375,
-              "position": "absolute",
-              "top": 667,
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 16,
+              "lineHeight": 24,
+              "marginTop": 12,
             }
           }
-        />
+        >
+          Visit Google Takeout and export your Location History using following settings: 
+1. Delivery method: "Google Drive" 
+2. Frequency: "Export once" 
+3. File type & size: ".zip" and "1GB" 
+4. Return here to import the archive
+        </Text>
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "#4051DB",
+              "borderRadius": 12,
+              "height": 52,
+              "justifyContent": "center",
+              "marginTop": 30,
+              "opacity": 1,
+              "width": 589.9499999999999,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#FFF",
+                "fontFamily": "IBMPlexSans-SemiBold",
+                "fontSize": 14,
+                "letterSpacing": 0,
+                "lineHeight": 19,
+                "textAlign": "center",
+              }
+            }
+          >
+            VISIT GOOGLE TAKEOUT
+          </Text>
+        </View>
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "#4051DB",
+              "borderRadius": 12,
+              "height": 52,
+              "justifyContent": "center",
+              "marginTop": 30,
+              "opacity": 1,
+              "width": 589.9499999999999,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#FFF",
+                "fontFamily": "IBMPlexSans-SemiBold",
+                "fontSize": 14,
+                "letterSpacing": 0,
+                "lineHeight": 19,
+                "textAlign": "center",
+              }
+            }
+          >
+            IMPORT LOCATIONS
+          </Text>
+        </View>
       </View>
     </View>
   </RCTSafeAreaView>,
