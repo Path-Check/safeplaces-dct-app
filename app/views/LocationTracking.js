@@ -228,15 +228,10 @@ class LocationTracking extends Component {
           isLogging: true,
         });
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
-<<<<<<< HEAD
         LocationServices.stop();
-        // Turn of bluetooth for v1
+        // Turn off bluetooth for v1
         //BroadcastingServices.stop(this.props.navigation);
-=======
-        LocationServices.stop(this.props.navigation);
-        BroadcastingServices.stop(this.props.navigation);
         BackgroundTaskServices.stop();
->>>>>>> Add stop call for the background task service
         this.setState({
           isLogging: false,
         });
