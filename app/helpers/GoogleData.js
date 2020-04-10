@@ -2,6 +2,7 @@
  * Import a Google JSon into the Database.
  */
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import { LOCATION_DATA } from '../constants/storage';
 
 function BuildLocalFormat(placeVisit) {
   return (loc = {
@@ -52,7 +53,7 @@ function Merge(localDataJSON, googleDataJSON) {
 }
 
 export async function MergeJSONWithLocalData(googleDataJSON) {
-  GetStoreData('LOCATION_DATA').then(locationArray => {
+  GetStoreData(LOCATION_DATA).then(locationArray => {
     let locationData;
 
     if (locationArray !== null) {
@@ -64,6 +65,6 @@ export async function MergeJSONWithLocalData(googleDataJSON) {
     Merge(locationData, googleDataJSON);
 
     console.log('Saving on array');
-    SetStoreData('LOCATION_DATA', locationData);
+    SetStoreData(LOCATION_DATA, locationData);
   });
 }
