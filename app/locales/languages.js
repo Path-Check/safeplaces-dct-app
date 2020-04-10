@@ -8,7 +8,7 @@ import { GetStoreData } from '../helpers/General';
 // 1. Update i18next-parser.config.js to ensure the xy language is in "locales"
 // 2. run: npm run i18n:extract
 // 3. All known/new keys will be added into xy.json
-//    - any removed keys will be put into index_old.json, do not commit this file
+//    - any removed keys will be put into xy_old.json, do not commit this file
 // 4. Update translations as needed
 // 5. REMOVE all empty translations. e.g. "key": "", this will allow fallback to the default: English
 // 6. import xyIndex from `./xy.json` and add the language to the block at the bottom

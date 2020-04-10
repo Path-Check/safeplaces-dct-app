@@ -43,7 +43,7 @@ buck-out/
 !debug.keystore
 
 # i18next-parser
-app/locales/**/*_old.json
+app/locales/*_old.json
 
 # fastlane
 #
