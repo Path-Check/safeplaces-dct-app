@@ -23,7 +23,6 @@ import {
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import Colors from '../constants/colors';
-
 import LocationServices from '../services/LocationService';
 //import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundTaskServices, {

@@ -3,6 +3,7 @@ import PushNotification from 'react-native-push-notification';
 import { IntersectSet } from '../helpers/Intersect';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { isPlatformiOS } from './../Util';
+import languages from '../locales/languages';
 
 const INTERSECT_INTERVAL = 30 / 60; // In Minutes
 
@@ -28,7 +29,7 @@ export function executeTask() {
           //      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
           //  },
           //];
-          console.log('No authority list');
+          console.log('No authorities', authority_list);
           return;
         }
 
@@ -64,7 +65,10 @@ export function executeTask() {
                 //       their authority is no longer functioning.)
 
                 IntersectSet(responseJson.concern_points, dayBin => {
-                  if (dayBin !== null) {
+                  if (
+                    dayBin !== null &&
+                    dayBin.reduce((a, b) => a + b, 0) > 0
+                  ) {
                     PushNotification.localNotification({
                       title: languages.t('label.push_at_risk_title'),
                       message: languages.t('label.push_at_risk_message'),
