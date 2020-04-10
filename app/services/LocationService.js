@@ -6,7 +6,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import { isPlatformAndroid } from '../Util';
 import languages from '../locales/languages';
-import { areLocationsNearby } from '../helpers/Intersect';
+import { isLocationsNearby } from '../helpers/Intersect';
 
 let isBackgroundGeolocationConfigured = false;
 
@@ -88,7 +88,7 @@ export class LocationData {
       if (curated.length >= 1) {
         let lastLocationArray = curated[curated.length - 1];
 
-        var nearby = areLocationsNearby(
+        var nearby = isLocationsNearby(
           lastLocationArray['latitude'],
           lastLocationArray['longitude'],
           location['latitude'],

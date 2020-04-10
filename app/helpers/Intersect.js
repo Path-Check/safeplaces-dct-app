@@ -76,7 +76,7 @@ export async function IntersectSet(concernLocationArray, completion) {
 
       while (i < concernArray.length && concernArray[i].time <= timeMax) {
         if (
-          areLocationsNearby(
+          isLocationsNearby(
             concernArray[i].latitude,
             concernArray[i].longitude,
             loc.latitude,
@@ -104,7 +104,7 @@ export async function IntersectSet(concernLocationArray, completion) {
 // Function to determine if two location points are "nearby".
 // Uses shortcuts when possible, then the exact calculation.
 // returns boolean
-export function areLocationsNearby(lat1, lon1, lat2, lon2) {
+export function isLocationsNearby(lat1, lon1, lat2, lon2) {
   var nearbyDistance = 20; // in meters, anything closer is "nearby"
 
   // these numbers from https://en.wikipedia.org/wiki/Decimal_degrees
