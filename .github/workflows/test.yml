@@ -1,4 +1,4 @@
-name: Unit test
+name: Test
 
 on:
   push:
@@ -7,15 +7,12 @@ on:
     branches: [ develop ]
 
 jobs:
-  build:
-    # strategy:
-    #   matrix:
-    #     node-version: [12, 13] # TODO
-
+  unit-test:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+
     - run: node --version
 
     - name: Cache node_modules/
