@@ -136,14 +136,14 @@ class LocationTracking extends Component {
     // already set on 12h timer, but run when this screen opens too
     executeTask();
 
-    GetStoreData(CROSSED_PATHS).then(dayBin => {
-      if (dayBin === null) {
-        console.log("Can't find crossed paths");
-        this.setState({ currentState: StateEnum.NO_CONTACT });
-      } else {
+    GetStoreData('CROSSED_PATHS').then(dayBin => {
+      dayBin = JSON.parse(dayBin);
+      if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
         console.log('Found crossed paths');
         this.setState({ currentState: StateEnum.AT_RISK });
-        // dayBinParsed = JSON.parse(dayBin);
+      } else {
+        console.log("Can't find crossed paths");
+        this.setState({ currentState: StateEnum.NO_CONTACT });
       }
     });
   }
