@@ -22,8 +22,4 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      - run: echo $GITHUB_EVENT_PATH
-
-      - run: git log
-
-      - run: ./node_modules/.bin/lint-diff develop
+      - run: ./node_modules/.bin/lint-diff origin/develop
