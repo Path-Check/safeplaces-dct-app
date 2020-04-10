@@ -8,7 +8,9 @@
     "postinstall": "patch-package; npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
-    "test": "jest test"
+    "test": "jest test",
+    "build:e2e:ios": "detox build -c ios.sim.debug",
+    "test:e2e:ios": "detox test -c ios.sim.debug"
   },
   "lint-staged": {
     "*.js": [
