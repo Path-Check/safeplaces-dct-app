@@ -175,7 +175,7 @@ function normalizeData(arr) {
     }
   }
 
-  result.sort();
+  result.sort((a, b) => a.time - b.time);
   return result;
 }
 
