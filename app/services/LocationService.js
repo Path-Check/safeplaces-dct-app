@@ -352,6 +352,7 @@ export default class LocationServices {
     });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
+
     isBackgroundGeolocationConfigured = false;
     SetStoreData(PARTICIPATE, 'false').then(() => {
       // nav.navigate('LocationTrackingScreen', {});
