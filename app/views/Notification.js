@@ -27,6 +27,7 @@ import {
 } from 'victory-native';
 import Colors from '../constants/colors';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { CROSSED_PATHS } from '../constants/storage';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -84,14 +85,14 @@ class NotificationScreen extends Component {
   resetState() {}
 
   getInitialState = async () => {
-    GetStoreData('CROSSED_PATHS').then(dayBin => {
+    GetStoreData(CROSSED_PATHS).then(dayBin => {
       console.log(dayBin);
 
       /* DEBUGGING TOOL -- handy for creating faux data
       let pseudoBin = [];
       for (var i = 0; i < 28; i++) {
         // Random Integer between 0-99
-        const intersections = Math.floor((Math.random() * 500) / 500);
+        const intersections = Math.floor((Math.random() * 500) / 300);
         pseudoBin.push(intersections);
       }
       dayBin = JSON.stringify(pseudoBin);
@@ -180,11 +181,8 @@ class NotificationScreen extends Component {
                   data={this.state.data}
                 />
               </VictoryChart>
-              <View style={styles.notificationsHeader}>
-                <Text style={styles.notificationsHeaderText}>
-                  {languages.t('label.notification_main_text')}
-                </Text>
-              </View>
+
+              <View style={styles.fullDivider} />
 
               <ScrollView contentContainerStyle={styles.contentContainer}>
                 {this.state.data.map(data =>
@@ -214,9 +212,23 @@ class NotificationScreen extends Component {
                               exposureTime: data.y * bin_duration,
                             })}
                       </Text>
+                      <View style={styles.divider} />
                     </View>
                   ),
                 )}
+                <Text style={styles.whatNextHeader}>What does this mean?</Text>
+                <Text style={styles.whatNextBody}>
+                  Individuals who don&apos;t exhibit symptoms can sometimes
+                  still carry the infection and infect others. Being careful
+                  about social distancing and coming in contact with large
+                  groups or at risk individuals (the elderly, those with
+                  significant other medical issues) is important to manage both
+                  your risk and the risk to others.
+                </Text>
+                <Text style={styles.whatNextBody}>
+                  If you have no symptoms but still would like to be tested you
+                  can go to your nearest testing site.
+                </Text>
               </ScrollView>
             </>
           ) : (
@@ -289,49 +301,16 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginBottom: 10,
     marginTop: 20,
-    color: Colors.VIOLET_TEXT,
     overflow: 'scroll',
-  },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryRegular,
   },
   pageTitle: {
     fontSize: 24,
-    color: Colors.VIOLET_TEXT,
     fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
   },
   backArrow: {
     height: 18,
     width: 18.48,
-  },
-  sectionDescription: {
-    fontSize: 16,
-    lineHeight: 24,
-    marginTop: 12,
-    overflow: 'scroll',
-    fontFamily: fontFamily.primaryRegular,
   },
   notificationsHeader: {
     backgroundColor: '#665eff',
@@ -347,23 +326,14 @@ const styles = StyleSheet.create({
   },
   notificationView: {
     width: '100%',
-    borderBottomColor: '#bdc3c7',
-    borderBottomWidth: 1,
-    paddingVertical: 14,
+    paddingVertical: 5,
     paddingHorizontal: 20,
   },
   notificationsText: {
     color: colors.BLACK,
     fontSize: 16,
+    paddingHorizontal: 10,
     fontFamily: fontFamily.primaryRegular,
-  },
-  notificationsTextHigh: {
-    color: colors.HIGHEST_RISK,
-    fontFamily: fontFamily.primaryBold,
-  },
-  notificationsTextMedium: {
-    color: colors.MIDDLE_RISK,
-    fontFamily: fontFamily.primaryMedium,
   },
   noExposure: {
     margin: 30,
@@ -371,6 +341,29 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     fontFamily: fontFamily.primaryMedium,
+  },
+  divider: {
+    marginTop: 15,
+    backgroundColor: Colors.DIVIDER,
+    height: 1.5,
+  },
+  fullDivider: {
+    backgroundColor: Colors.DIVIDER,
+    height: 1,
+    width: '100%',
+  },
+  whatNextHeader: {
+    fontSize: 24,
+    fontFamily: fontFamily.primaryBold,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
+  },
+  whatNextBody: {
+    fontSize: 20,
+    fontFamily: fontFamily.primaryRegular,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
   },
 });
 

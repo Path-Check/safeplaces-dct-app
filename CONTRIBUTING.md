@@ -6,7 +6,7 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 - You need a Github account. You can [create one](https://github.com/signup/free) for free.
 
-- Submit an [Issue](https://github.com/tripleblindmarket/private-kit/issues) against the repo to describe the idea or problem if there is not one yet.
+- Submit an [Issue](https://github.com/tripleblindmarket/covid-safe-paths/issues) against the repo to describe the idea or problem if there is not one yet.
 
 - Describe a bug by including steps to reproduce, and the earliest version you know is affected.
 
@@ -14,8 +14,7 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 - Fork the repository on GitHub:
 
-- Visit https://github.com/tripleblindmarket/private-kit
-
+- Visit https://github.com/tripleblindmarket/covid-safe-paths
 - Click on the "Fork" button in the upper-left corner.
 
 - Clone the forked repository to your local machine:
@@ -27,7 +26,7 @@ cd ~ # get to your home directory or where ever you want to go
 git clone https://github.com/YOURACCOUNT/
 
 # set upstream against Private Kit repository
-git remote add upstream https://github.com/tripleblindmarket/private-kit.git
+git remote add upstream https://github.com/tripleblindmarket/covid-safe-paths.git
 
 ```
 
@@ -87,7 +86,7 @@ git push origin feature/<your-feature-branch-name> # after resolving all conflic
 
 6. Start a PR to submit your changes back to the original project:
 
-- Visit https://github.com/your-git-userid/private-kit/branches
+- Visit https://github.com/your-git-userid/covid-safe-paths/branches
 
 - You should see the new branch that you recently created and pushed on this page. Example - feature/your-branch-name (similar to the image shown below).
 
@@ -99,9 +98,9 @@ git push origin feature/<your-feature-branch-name> # after resolving all conflic
 
 - Verify following -
 
-  - Base repository - tripleblindmarket/private-kit
+  - Base repository - tripleblindmarket/covid-safe-paths
   - Base branch - develop
-  - Head repository - your-git-id/private-kit
+  - Head repository - your-git-id/covid-safe-paths
   - Compare branch - feature/your-branch-name
 
 - Provide a meaningful title and description to your PR, as shown in the above image.

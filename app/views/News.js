@@ -30,8 +30,8 @@ class NewsScreen extends Component {
   constructor(props) {
     super(props);
     let default_news = {
-      name: 'Safe Paths News', // TODO: translate
-      url: 'https://privatekit.mit.edu',
+      name: languages.t('label.default_news_site_name'),
+      url: languages.t('label.default_news_site_url'),
     };
     this.state = {
       visible: true,
@@ -177,11 +177,6 @@ const styles = StyleSheet.create({
     width: '100%',
     margin: 0,
     padding: 0,
-  },
-  slideContainer: {
-    height: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   slide: {
     height: 100,

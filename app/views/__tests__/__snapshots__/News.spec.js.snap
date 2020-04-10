@@ -181,8 +181,8 @@ exports[`renders correctly 1`] = `
                   "url": "https://wmcelroy.wixsite.com/covidhaiti/kat",
                 },
                 Object {
-                  "name": "Safe Paths News",
-                  "url": "https://privatekit.mit.edu",
+                  "name": "SafePaths News",
+                  "url": "https://covidsafepaths.org/in-app-news",
                 },
               ]
             }
@@ -387,7 +387,7 @@ exports[`renders correctly 1`] = `
                           }
                         }
                       >
-                        Safe Paths News
+                        SafePaths News
                       </Text>
                     </View>
                     <View
@@ -410,7 +410,7 @@ exports[`renders correctly 1`] = `
                         messagingEnabled={false}
                         source={
                           Object {
-                            "uri": "https://privatekit.mit.edu",
+                            "uri": "https://covidsafepaths.org/in-app-news",
                           }
                         }
                         style={

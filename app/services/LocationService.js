@@ -6,8 +6,9 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import { isPlatformAndroid } from '../Util';
 import languages from '../locales/languages';
+import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
 
-let hasBeenStarted = false;
+let isBackgroundGeolocationConfigured = false;
 
 export class LocationData {
   constructor() {
@@ -17,12 +18,11 @@ export class LocationData {
     this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
 
     // Maximum time that we will backfill for missing data
-    this.maxBackfillTime = 60000 * 60 * 8 // Time (in milliseconds).  60000 * 60 * 8 = 8 hours
-
+    this.maxBackfillTime = 60000 * 60 * 8; // Time (in milliseconds).  60000 * 60 * 8 = 8 hours
   }
 
   getLocationData() {
-    return GetStoreData('LOCATION_DATA').then(locationArrayString => {
+    return GetStoreData(LOCATION_DATA).then(locationArrayString => {
       let locationArray = [];
       if (locationArrayString !== null) {
         locationArray = JSON.parse(locationArrayString);
@@ -55,7 +55,6 @@ export class LocationData {
   saveLocation(location) {
     // Persist this location data in our local storage of time/lat/lon values
     this.getLocationData().then(locationArray => {
-
       // Always work in UTC, not the local time in the locationData
       let unixtimeUTC = Math.floor(location['time']);
       let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
@@ -81,7 +80,7 @@ export class LocationData {
 
       // Backfill the stationary points, if available
       // The assumption is that if we see a gap in the data, the
-      // best guess is that the person was in that location for 
+      // best guess is that the person was in that location for
       // the entire time.  This makes it easier for a health authority
       // person to have a set of locations over time, and they can manually
       // redact the time frames that aren't correct.
@@ -93,7 +92,7 @@ export class LocationData {
         // To protect ourselves, we won't backfill more than the
         // maxBackfillTime
         let lastRecordedTime = lastLocationArray['time'];
-        if ((unixtimeUTC - lastRecordedTime) > this.maxBackfillTime) {
+        if (unixtimeUTC - lastRecordedTime > this.maxBackfillTime) {
           lastRecordedTime = unixtimeUTC - this.maxBackfillTime;
         }
 
@@ -105,9 +104,9 @@ export class LocationData {
           let lat_lon_time = {
             latitude: lastLocationArray['latitude'],
             longitude: lastLocationArray['longitude'],
-            time: newTS
+            time: newTS,
           };
-          console.log('[INFO] backfill location:',lat_lon_time);
+          console.log('[INFO] backfill location:', lat_lon_time);
           curated.push(lat_lon_time);
         }
       }
@@ -117,12 +116,12 @@ export class LocationData {
       let lat_lon_time = {
         latitude: location['latitude'],
         longitude: location['longitude'],
-        time: unixtimeUTC
+        time: unixtimeUTC,
       };
       curated.push(lat_lon_time);
-      console.log('[INFO] saved location:',lat_lon_time);
+      console.log('[INFO] saved location:', lat_lon_time);
 
-      SetStoreData('LOCATION_DATA', curated);
+      SetStoreData(LOCATION_DATA, curated);
     });
   }
 }
@@ -133,11 +132,10 @@ export default class LocationServices {
 
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
-    if (hasBeenStarted) {
+    if (isBackgroundGeolocationConfigured) {
       BackgroundGeolocation.start();
       return;
     }
-    hasBeenStarted = true;
 
     PushNotification.configure({
       // (required) Called when a remote or local notification is opened or received
@@ -291,6 +289,7 @@ export default class LocationServices {
       );
 
       BackgroundGeolocation.start(); //triggers start on start event
+      isBackgroundGeolocationConfigured = true;
 
       if (!status.locationServicesEnabled) {
         // we need to set delay or otherwise alert may not be shown
@@ -345,7 +344,7 @@ export default class LocationServices {
     });
   }
 
-  static stop(nav) {
+  static stop() {
     // unregister all event listeners
     PushNotification.localNotification({
       title: languages.t('label.location_disabled_title'),
@@ -353,8 +352,9 @@ export default class LocationServices {
     });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
-    instanceCount -= 1;
-    SetStoreData('PARTICIPATE', 'false').then(() => {
+
+    isBackgroundGeolocationConfigured = false;
+    SetStoreData(PARTICIPATE, 'false').then(() => {
       // nav.navigate('LocationTrackingScreen', {});
     });
   }
