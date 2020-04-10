@@ -13,8 +13,8 @@ import { GetStoreData } from '../helpers/General';
 // 5. REMOVE all empty translations. e.g. "key": "", this will allow fallback to the default: English
 // 6. import xyIndex from `./xy.json` and add the language to the block at the bottom
 
-import enIndex from './en.json';
-import htIndex from './ht.json';
+import en from './en.json';
+import ht from './ht.json';
 
 // This will fetch the user's language
 // Set up as a function so first onboarding screen can also update
@@ -53,70 +53,8 @@ i18next.init({
   lng: 'en', // 'en' | 'es',
   fallbackLng: 'en', // If language detector fails
   resources: {
-    en: {
-      translation: enIndex,
-      label: 'English',
-    },
-    de: {
-      translation: deIndex,
-      label: 'Deutsch',
-    },
-    hi: {
-      translation: hiIndex,
-      label: 'हिन्दी',
-    },
-    fr: {
-      translation: frIndex,
-      label: 'Français',
-    },
-    it: {
-      translation: itIndex,
-      label: 'Italiano',
-    },
-    pt: {
-      translation: ptIndex,
-      label: 'Português',
-    },
-    mr: {
-      translation: mrIndex,
-      label: 'मराठी',
-    },
-    nl: {
-      translation: nlIndex,
-      label: 'Nederlands',
-    },
-    ht: {
-      translation: htIndex,
-      label: 'Kreyòl ayisyen',
-    },
-    pt_BR: {
-      translation: pt_BRIndex,
-      label: 'Portugues do Brasil',
-    },
-    kn: {
-      translation: knIndex,
-      label: 'ಕನ್ನಡ',
-    },
-    es: {
-      translation: esIndex,
-      label: 'Español',
-    },
-    ur: {
-      translation: urIndex,
-      label: 'اردو',
-    },
-    ca: {
-      translation: caIndex,
-      label: 'Català',
-    },
-    gj: {
-      translation: gjIndex,
-      label: 'ગુજરાતી',
-    },
-    cs: {
-      translation: csIndex,
-      label: 'Ceština',
-    },
+    en: { label: 'English', translation: en },
+    ht: { label: 'Kreyòl ayisyen', translation: ht },
   },
 });
 
