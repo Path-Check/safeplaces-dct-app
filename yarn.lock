@@ -4212,10 +4212,9 @@ i18n-js@3.0.11:
   resolved "https://registry.yarnpkg.com/i18n-js/-/i18n-js-3.0.11.tgz#f9e96bdb641c5b9d6be12759d7c422089987ef02"
   integrity sha512-v7dG3kYJTQTyox3NqDabPDE/ZotWntyMI9kh4cYi+XlCSnsIR+KBTS2opPyObL8WndnklcLzbNU92FP/mLge3Q==
 
-i18next-parser@^1.0.2:
+i18next-parser@tstirrat/i18next-parser#guard-plural-rule:
   version "1.0.2"
-  resolved "https://registry.yarnpkg.com/i18next-parser/-/i18next-parser-1.0.2.tgz#6511870cd87b0ef25f82723fa54f19d17c6546e4"
-  integrity sha512-E25Xe4z6uktwJkmMqcaKryIHsVvCmJ06ydrJ8DIg9seNJVlR7LEO8U87eJqKvlCynibbhrDeS/iOApzne3Vuyg==
+  resolved "https://codeload.github.com/tstirrat/i18next-parser/tar.gz/acc3ca4ef2cde07c5879043036ed6076d840cfcd"
   dependencies:
     broccoli-plugin "^1.3.0"
     cheerio "^1.0.0-rc.2"
