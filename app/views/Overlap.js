@@ -52,6 +52,9 @@ const INITIAL_REGION = {
   longitudeDelta: 50,
 };
 
+// TODO: This code is functionally duplicated by logic in the areLocationsNearby() function
+//  in Intersect.js.  Not cleaning up right now since for v1.0 this is unused code, but 
+//  should clean this up in the future.
 function distance(lat1, lon1, lat2, lon2) {
   if (lat1 == lat2 && lon1 == lon2) {
     return 0;
