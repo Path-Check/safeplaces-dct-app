@@ -2,6 +2,7 @@
  * Import a Google JSon into the Database.
  */
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import { LOCATION_DATA } from '../constants/storage';
 
 /**
  * Rounds float number to a desired number of decimal places and returns a float
@@ -62,14 +63,14 @@ function extractNewLocations(storedLocations, googleLocationHistory) {
 }
 
 export async function mergeJSONWithLocalData(googleLocationHistory) {
-  let storedLocations = await GetStoreData('LOCATION_DATA', false);
+  let storedLocations = await GetStoreData(LOCATION_DATA, false);
   storedLocations = Array.isArray(storedLocations) ? storedLocations : [];
   const newLocations = extractNewLocations(
     storedLocations,
     googleLocationHistory,
   );
 
-  await SetStoreData('LOCATION_DATA', [...storedLocations, ...newLocations]);
+  await SetStoreData(LOCATION_DATA, [...storedLocations, ...newLocations]);
 
   return newLocations;
 }
