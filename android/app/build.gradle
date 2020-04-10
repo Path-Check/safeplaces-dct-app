@@ -161,7 +161,6 @@ android {
                 project.logger.lifecycle('Could not find release key')
             }
         }
-
     }
     buildTypes {
         debug {
