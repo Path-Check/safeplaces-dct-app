@@ -57,6 +57,31 @@ describe('importTakeoutData', () => {
     );
   });
 
+  it('throws InvalidFileExtensionError exception if wrong file format is supplied', async () => {
+    jest.doMock('../GoogleData', () => {
+      return {
+        mergeJSONWithLocalData: async () => {},
+      };
+    });
+
+    jest.doMock('react-native-fs', () => {
+      return {
+        CachesDirectoryPath: '/tmp',
+        exists: async () => false,
+        readFile: async () => ({}),
+        unlink: async () => {},
+      };
+    });
+
+    const {
+      importTakeoutData,
+      InvalidFileExtensionError,
+    } = require('../GoogleTakeOutAutoImport');
+    await expect(importTakeoutData('file://test.tar')).rejects.toThrowError(
+      InvalidFileExtensionError,
+    );
+  });
+
   it(`locations successfully added to local store`, async () => {
     jest.doMock('../GoogleData', () => {
       const {

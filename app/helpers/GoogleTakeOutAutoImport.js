@@ -7,7 +7,9 @@ import { Platform } from 'react-native';
 import RNFS from 'react-native-fs';
 
 export class NoRecentLocationsError extends Error {}
+export class InvalidFileExtensionError extends Error {}
 
+const ZIP_EXT_CHECK_REGEX = /\.zip$/;
 let progress;
 const MONTHS = [
   'JANUARY',
@@ -52,6 +54,11 @@ export async function importTakeoutData(filePath) {
   if (Platform.OS === 'ios') {
     unifiedPath = filePath.replace('file://', '');
   }
+
+  if (!ZIP_EXT_CHECK_REGEX.test(unifiedPath)) {
+    throw new InvalidFileExtensionError();
+  }
+
   // UnZip Progress Bar Log.
   // progress callback is required by unzip().
   progress = subscribe(

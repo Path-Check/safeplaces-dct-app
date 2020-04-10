@@ -13,6 +13,7 @@ import fontFamily from '../constants/fonts';
 import {
   importTakeoutData,
   NoRecentLocationsError,
+  InvalidFileExtensionError,
 } from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
 import { pickFile } from '../helpers/General';
@@ -50,6 +51,10 @@ const ImportScreen = props => {
       if (err instanceof NoRecentLocationsError) {
         setImportResults(
           makeImportResults('label.import_no_recent_locations', true),
+        );
+      } else if (err instanceof InvalidFileExtensionError) {
+        setImportResults(
+          makeImportResults('label.import_invalid_file_format', true),
         );
       } else {
         setImportResults(makeImportResults('label.import_error', true));
