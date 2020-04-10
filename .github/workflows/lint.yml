@@ -18,5 +18,5 @@ jobs:
 
       - uses: 18F/github-action-eslint@1.0.0
         with:
-          files: ${{ steps.getfile.outputs.files }}
+          files: app/views/Import.js
           repo-token: ${{ secrets.GITHUB_TOKEN }}
