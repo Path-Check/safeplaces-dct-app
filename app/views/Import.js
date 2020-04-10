@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
-  Image,
-  TouchableOpacity,
   BackHandler,
   Dimensions,
   ActivityIndicator,
@@ -14,7 +11,6 @@ import {
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import WebView from 'react-native-webview';
-import backArrows from './../assets/images/backArrow.png';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
 const width = Dimensions.get('window').width;
@@ -137,14 +133,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     width: '100%',
-  },
-  backArrow: {
-    height: 18,
-    width: 18.48,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryRegular,
   },
   sectionDescription: {
     fontSize: 16,
