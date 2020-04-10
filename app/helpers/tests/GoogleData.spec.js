@@ -1,10 +1,5 @@
 import { makeTimelineObject } from './GoogleTakeoutUtils';
-const {
-  location1,
-  location2,
-  location3,
-  location4,
-} = require('./fixtures/googleImport');
+const { location2, location3, location4 } = require('./fixtures/googleImport');
 
 const GOOGLE_IMPORT = {
   timelineObjects: [
