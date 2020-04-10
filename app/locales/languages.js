@@ -3,29 +3,18 @@ import { getLanguages } from 'react-native-i18n';
 import { GetStoreData } from '../helpers/General';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
-// Step 1 - Create index.js files for each language we want to have, in this file you can import all the json files (Step 4) and export them
-// Step 2 - Import them with a unique title
-// Step 3 - Add these titles under the resources object in the i18next.init function
-// Step 4 - Create separate json files for various sections under the language folder ex. en/intro1.json
-// Step 5 - Add the labels to be used in respective json files. The labels are the key and the content is the value in different language, so make sure for each file the key remains the same
-// Step 6 - In React Native code import the main languages file and call the translate function - languages.t('label.labelname')
 
-import enlabels from './en';
-import delabels from './de';
-import hilabels from './hi';
-import frlabels from './fr';
-import itlabels from './it';
-import ptlabels from './pt';
-import mrlabels from './mr';
-import nllabels from './nl';
-import htlabels from './ht';
-import pt_BRlabels from './pt_BR';
-import eslabels from './es';
-import urlabels from './ur';
-import knlabels from './kn';
-import calabels from './ca';
-import gjlabels from './gj';
-import cslabels from './cs';
+// Adding/updating a language:
+// 1. Update i18next-parser.config.js to ensure the xy language is in "locales"
+// 2. run: npm run i18n:extract
+// 3. All known/new keys will be added into xy.json
+//    - any removed keys will be put into xy_old.json, do not commit this file
+// 4. Update translations as needed
+// 5. REMOVE all empty translations. e.g. "key": "", this will allow fallback to the default: English
+// 6. import xyIndex from `./xy.json` and add the language to the block at the bottom
+
+import en from './en.json';
+import ht from './ht.json';
 
 // This will fetch the user's language
 // Set up as a function so first onboarding screen can also update
@@ -64,102 +53,8 @@ i18next.init({
   lng: 'en', // 'en' | 'es',
   fallbackLng: 'en', // If language detector fails
   resources: {
-    en: {
-      translation: {
-        label: enlabels,
-      },
-      label: 'English',
-    },
-    de: {
-      translation: {
-        label: delabels,
-      },
-      label: 'Deutsch',
-    },
-    hi: {
-      translation: {
-        label: hilabels,
-      },
-      label: 'हिन्दी',
-    },
-    fr: {
-      translation: {
-        label: frlabels,
-      },
-      label: 'Français',
-    },
-    it: {
-      translation: {
-        label: itlabels,
-      },
-      label: 'Italiano',
-    },
-    pt: {
-      translation: {
-        label: ptlabels,
-      },
-      label: 'Português',
-    },
-    mr: {
-      translation: {
-        label: mrlabels,
-      },
-      label: 'मराठी',
-    },
-    nl: {
-      translation: {
-        label: nllabels,
-      },
-      label: 'Nederlands',
-    },
-    ht: {
-      translation: {
-        label: htlabels,
-      },
-      label: 'Kreyòl ayisyen',
-    },
-    pt_BR: {
-      translation: {
-        label: pt_BRlabels,
-      },
-      label: 'Portugues do Brasil',
-    },
-    kn: {
-      translation: {
-        label: knlabels,
-      },
-      label: 'ಕನ್ನಡ',
-    },
-    es: {
-      translation: {
-        label: eslabels,
-      },
-      label: 'Español',
-    },
-    ur: {
-      translation: {
-        label: urlabels,
-      },
-      label: 'اردو',
-    },
-    ca: {
-      translation: {
-        label: calabels,
-      },
-      label: 'Català',
-    },
-    gj: {
-      translation: {
-        label: gjlabels,
-      },
-      label: 'ગુજરાતી',
-    },
-    cs: {
-      translation: {
-        label: cslabels,
-      },
-      label: 'Ceština',
-    },
+    en: { label: 'English', translation: en },
+    ht: { label: 'Kreyòl ayisyen', translation: ht },
   },
 });
 

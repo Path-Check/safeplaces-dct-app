@@ -8,6 +8,7 @@
     "postinstall": "patch-package; npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
+    "i18n:extract": "i18next",
     "test": "jest test"
   },
   "lint-staged": {
@@ -85,6 +86,7 @@
     "babel-jest": "^25.1.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
+    "i18next-parser": "^1.0.2",
     "jest": "^25.1.0",
     "lint-staged": "^10.0.9",
     "metro-react-native-babel-preset": "^0.58.0",
