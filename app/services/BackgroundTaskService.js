@@ -6,18 +6,18 @@ import { isPlatformiOS } from './../Util';
 
 const INTERSECT_INTERVAL = 30 / 60; // In Minutes
 
-function executeTask() {
+export function executeTask() {
   check_intersect = () => {
     // This function is called once every 12 hours.  It should do several things:
 
     console.log(
-      'Intersect tick entering on ',
+      'Intersect tick entering on',
       isPlatformiOS() ? 'iOS' : 'Android',
     );
     // this.findNewAuthorities(); NOT IMPLEMENTED YET
 
     // Get the user's health authorities
-    GetStoreData('HEALTH_AUTHORITIES')
+    GetStoreData('AUTHORITY_SOURCE_SETTINGS')
       .then(authority_list => {
         if (!authority_list) {
           // DEBUG: Force a test list
@@ -28,14 +28,16 @@ function executeTask() {
           //      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
           //  },
           //];
+          console.log('No authority list');
           return;
         }
 
         let name_news = [];
-
         if (authority_list) {
           // Pull down data from all the registered health authorities
-          for (let authority of authority_list) {
+          authority_list = JSON.parse(authority_list);
+          for (const authority of authority_list) {
+            console.log('[auth]', authority);
             fetch(authority.url)
               .then(response => response.json())
               .then(responseJson => {
@@ -78,9 +80,13 @@ function executeTask() {
                 //       locales with high data costs.
               })
               .catch(error =>
-                console.log('Failed to save authority/news URL list'),
+                console.log('Failed to save authority/news URL list', error),
               );
           }
+          let nowUTC = new Date().toISOString();
+          let unixtimeUTC = Date.parse(nowUTC);
+          // Last checked key is not being used atm. TODO check this to update periodically instead of every foreground activity
+          SetStoreData('LAST_CHECKED', unixtimeUTC);
         } else {
           console.log('No authority list');
           return;
@@ -95,7 +101,6 @@ export default class BackgroundTaskServices {
   static start() {
     // Configure it.
     console.log('creating background task object');
-    executeTask();
     BackgroundFetch.configure(
       {
         minimumFetchInterval: 15,
