@@ -101,7 +101,8 @@ export async function IntersectSet(concernLocationArray, completion) {
   });
 }
 
-// function to deterine if two location points are "nearby"
+// Function to determine if two location points are "nearby".
+// Uses shortcuts when possible, then the exact calculation.
 // returns boolean
 export function areLocationsNearby(lat1, lon1, lat2, lon2) {
   var nearbyDistance = 20; // in meters, anything closer is "nearby"
