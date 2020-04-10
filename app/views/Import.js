@@ -138,20 +138,6 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     width: '100%',
   },
-
-  headerContainer: {
-    flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
-  },
   backArrow: {
     height: 18,
     width: 18.48,

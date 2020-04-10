@@ -302,45 +302,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     overflow: 'scroll',
   },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryRegular,
-  },
   pageTitle: {
     fontSize: 24,
     fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
   },
-  headerContainer: {
-    flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
-  },
   backArrow: {
     height: 18,
     width: 18.48,
-  },
-  sectionDescription: {
-    fontSize: 16,
-    lineHeight: 24,
-    marginTop: 12,
-    overflow: 'scroll',
-    fontFamily: fontFamily.primaryRegular,
   },
   notificationsHeader: {
     backgroundColor: '#665eff',
@@ -364,14 +333,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingHorizontal: 10,
     fontFamily: fontFamily.primaryRegular,
-  },
-  notificationsTextHigh: {
-    color: colors.HIGHEST_RISK,
-    fontFamily: fontFamily.primaryBold,
-  },
-  notificationsTextMedium: {
-    color: colors.MIDDLE_RISK,
-    fontFamily: fontFamily.primaryMedium,
   },
   noExposure: {
     margin: 30,
