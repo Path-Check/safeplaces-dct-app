@@ -26,7 +26,10 @@ import Colors from '../constants/colors';
 
 import LocationServices from '../services/LocationService';
 //import BroadcastingServices from '../services/BroadcastingService';
-import BackgroundTaskServices from '../services/BackgroundTaskService';
+import BackgroundTaskServices, {
+  executeTask,
+} from '../services/BackgroundTaskService';
+
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import exportImage from './../assets/images/export.png';
 import ButtonWrapper from '../components/ButtonWrapper';
@@ -129,8 +132,9 @@ class LocationTracking extends Component {
   }
 
   checkIfUserAtRisk() {
-    // already set on 12h timer, but run when this screen opens too
     BackgroundTaskServices.start();
+    // already set on 12h timer, but run when this screen opens too
+    executeTask();
 
     GetStoreData(CROSSED_PATHS).then(dayBin => {
       if (dayBin === null) {
@@ -224,9 +228,15 @@ class LocationTracking extends Component {
           isLogging: true,
         });
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
+<<<<<<< HEAD
         LocationServices.stop();
         // Turn of bluetooth for v1
         //BroadcastingServices.stop(this.props.navigation);
+=======
+        LocationServices.stop(this.props.navigation);
+        BroadcastingServices.stop(this.props.navigation);
+        BackgroundTaskServices.stop();
+>>>>>>> Add stop call for the background task service
         this.setState({
           isLogging: false,
         });
