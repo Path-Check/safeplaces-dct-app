@@ -26,6 +26,8 @@ import backArrow from '../assets/images/backArrow.png';
 import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
 import fontFamily from '../constants/fonts';
+import { PUBLIC_DATA_URL } from '../constants/authorities';
+import { LOCATION_DATA } from '../constants/storage';
 
 const width = Dimensions.get('window').width;
 
@@ -36,8 +38,6 @@ const base64 = RNFetchBlob.base64;
 // The dataset is now hosted on Github due to the high demand for it.  The
 // first Google Doc holding data (https://docs.google.com/spreadsheets/d/1itaohdPiAeniCXNlntNztZ_oRvjh0HsGuJXUJWET008/edit#gid=0)
 // points to this souce but no longer holds the actual data.
-const public_data =
-  'https://raw.githubusercontent.com/beoutbreakprepared/nCoV2019/master/latest_data/latestdata.csv';
 const show_button_text = languages.t('label.show_overlap');
 const overlap_true_button_text = languages.t(
   'label.overlap_found_button_label',
@@ -96,7 +96,7 @@ function OverlapScreen() {
   }
 
   async function populateMarkers() {
-    GetStoreData('LOCATION_DATA').then(locationArrayString => {
+    GetStoreData(LOCATION_DATA).then(locationArrayString => {
       var locationArray = JSON.parse(locationArrayString);
       if (locationArray !== null) {
         var markers = [];
@@ -128,7 +128,7 @@ function OverlapScreen() {
 
   async function getInitialState() {
     try {
-      GetStoreData('LOCATION_DATA').then(locationArrayString => {
+      GetStoreData(LOCATION_DATA).then(locationArrayString => {
         const locationArray = JSON.parse(locationArrayString);
         if (locationArray !== null) {
           const { latitude, longitude } = locationArray.slice(-1)[0];
@@ -171,7 +171,7 @@ function OverlapScreen() {
         // this is much more performant.
         fileCache: true,
       })
-        .fetch('GET', public_data, {})
+        .fetch('GET', PUBLIC_DATA_URL, {})
         .then(res => {
           // the temp file path
           console.log('The file saved to ', res.path());
@@ -382,12 +382,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: fontFamily.primaryRegular,
   },
-  subHeaderTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 22,
-    padding: 5,
-  },
   main: {
     flex: 1,
     flexDirection: 'column',
@@ -421,21 +415,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
-  mainText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-
   headerContainer: {
     flexDirection: 'row',
     height: 60,

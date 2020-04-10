@@ -5,9 +5,10 @@
  */
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import { LOCATION_DATA, CROSSED_PATHS } from '../constants/storage';
 
 export async function IntersectSet(concernLocationArray, completion) {
-  GetStoreData('LOCATION_DATA').then(locationArrayString => {
+  GetStoreData(LOCATION_DATA).then(locationArrayString => {
     var locationArray;
     if (locationArrayString !== null) {
       locationArray = JSON.parse(locationArrayString);
@@ -96,7 +97,7 @@ export async function IntersectSet(concernLocationArray, completion) {
 
     // TODO: Show in the UI!
     console.log('Crossing results: ', dayBin);
-    SetStoreData('CROSSED_PATHS', dayBin); // TODO: Store per authority?
+    SetStoreData(CROSSED_PATHS, dayBin); // TODO: Store per authority?
     completion(dayBin);
   });
 }

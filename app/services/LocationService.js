@@ -1,12 +1,11 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import { Alert, Linking } from 'react-native';
-import { PERMISSIONS, check, RESULTS, request } from 'react-native-permissions';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import { isPlatformAndroid } from '../Util';
 import languages from '../locales/languages';
 import { isLocationsNearby } from '../helpers/Intersect';
+import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
 
 let isBackgroundGeolocationConfigured = false;
 
@@ -23,7 +22,7 @@ export class LocationData {
   }
 
   getLocationData() {
-    return GetStoreData('LOCATION_DATA').then(locationArrayString => {
+    return GetStoreData(LOCATION_DATA).then(locationArrayString => {
       let locationArray = [];
       if (locationArrayString !== null) {
         locationArray = JSON.parse(locationArrayString);
@@ -88,7 +87,7 @@ export class LocationData {
       if (curated.length >= 1) {
         let lastLocationArray = curated[curated.length - 1];
 
-        var nearby = isLocationsNearby(
+        let nearby = isLocationsNearby(
           lastLocationArray['latitude'],
           lastLocationArray['longitude'],
           location['latitude'],
@@ -126,7 +125,7 @@ export class LocationData {
       curated.push(lat_lon_time);
       console.log('[INFO] saved location:', lat_lon_time);
 
-      SetStoreData('LOCATION_DATA', curated);
+      SetStoreData(LOCATION_DATA, curated);
     });
   }
 }
@@ -357,8 +356,9 @@ export default class LocationServices {
     });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
+
     isBackgroundGeolocationConfigured = false;
-    SetStoreData('PARTICIPATE', 'false').then(() => {
+    SetStoreData(PARTICIPATE, 'false').then(() => {
       // nav.navigate('LocationTrackingScreen', {});
     });
   }
