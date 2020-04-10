@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import _ from 'lodash';
 import DocumentPicker from 'react-native-document-picker';
 
 /**
@@ -45,7 +44,7 @@ export async function SetStoreData(key, item) {
   }
 }
 
-export async function PickFile() {
+export async function pickFile() {
   // Pick a single file - returns actual path on Android, file:// uri on iOS
   try {
     const res = await DocumentPicker.pick({

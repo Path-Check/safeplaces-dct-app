@@ -11,11 +11,11 @@ import {
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import {
-  ImportTakeoutData,
+  importTakeoutData,
   NoRecentLocationsError,
 } from '../helpers/GoogleTakeOutAutoImport';
 import languages from './../locales/languages';
-import { PickFile } from '../helpers/General';
+import { pickFile } from '../helpers/General';
 
 const width = Dimensions.get('window').width;
 
@@ -37,9 +37,9 @@ const ImportScreen = props => {
       // reset info message
       setImportResults(makeImportResults());
 
-      const filePath = await PickFile();
+      const filePath = await pickFile();
       if (filePath) {
-        const newLocations = await ImportTakeoutData(filePath);
+        const newLocations = await importTakeoutData(filePath);
         if (newLocations.length) {
           setImportResults(makeImportResults('label.import_success'));
         } else {

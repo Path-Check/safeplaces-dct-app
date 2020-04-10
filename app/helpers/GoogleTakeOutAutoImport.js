@@ -29,7 +29,7 @@ const MONTHS = [
  * especially the case when we are in the early days of the current month.
  * @returns {string[]} - array of files for latest 2 months from google takeout archive
  */
-function getFilenamesForLatest2Months(rootPath) {
+export function getFilenamesForLatest2Months(rootPath) {
   const now = new Date();
   const previousMonth = new Date();
   previousMonth.setMonth(now.getMonth() - 1);
@@ -46,7 +46,7 @@ function getFilenamesForLatest2Months(rootPath) {
 
 // Imports any Takeout location data
 // Currently works for Google Takeout Location data
-export async function ImportTakeoutData(filePath) {
+export async function importTakeoutData(filePath) {
   let unifiedPath = filePath;
 
   if (Platform.OS === 'ios') {

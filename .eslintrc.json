@@ -2,7 +2,8 @@
   "root": true,
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
   ],
   "parser": "babel-eslint",
   "plugins": [
@@ -32,7 +33,7 @@
   "rules": { // 0 is for off, 1 is for warning, 2 is for error
     "eol-last": 2, // Require file to end with single newline
     "no-constant-condition": 2, // Disallow use of constant expressions in conditions
-    "no-dupe-keys": 2, // Disallow Duplicate Keys 
+    "no-dupe-keys": 2, // Disallow Duplicate Keys
     "no-empty": 2, // Disallow Empty Block Statements
     "no-extra-boolean-cast": 2, // Disallow Extra Boolean Casts
     "no-prototype-builtins": 2, // Disallow use of Object.prototypes builtins directly
