@@ -32,7 +32,7 @@ import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import languages from '../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { AUTHORITIES_LIST_URL } from '../helpers/authorities';
+import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 
 const width = Dimensions.get('window').width;
 

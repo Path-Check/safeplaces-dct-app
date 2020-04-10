@@ -26,7 +26,7 @@ import backArrow from '../assets/images/backArrow.png';
 import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
 import fontFamily from '../constants/fonts';
-import { PUBLIC_DATA_URL } from '../helpers/authorities';
+import { PUBLIC_DATA_URL } from '../constants/authorities';
 import { LOCATION_DATA } from '../constants/storage';
 
 const width = Dimensions.get('window').width;
