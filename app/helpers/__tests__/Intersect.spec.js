@@ -1,6 +1,4 @@
-import LocationService, { isLocationsNearby } from '../Intersect';
-import * as General from '../../helpers/General';
-
+import { isLocationsNearby } from '../Intersect';
 
 describe('isLocationsNearby', () => {
 
