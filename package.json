@@ -14,6 +14,7 @@
   "lint-staged": {
     "*.js": [
       "prettier --write",
+      "lint-diff HEAD",
       "git add --force"
     ]
   },
@@ -83,6 +84,7 @@
     "husky": "^4.2.3",
     "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
     "jest": "^25.1.0",
+    "lint-diff": "^1.2.1",
     "lint-staged": "^10.0.9",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "1.19.1",

@@ -146,14 +146,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.WHITE,
   },
-  backArrow: {
-    height: 18,
-    width: 18.48,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryRegular,
-  },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
