@@ -7,16 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: get changed files
-        id: getfile
-        run: |
-          echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | xargs)"
-
-      - name: echo output
-        run: |
-          echo ${{ steps.getfile.outputs.files }}
 
       - uses: 18F/github-action-eslint@1.0.0
         with:
-          files: app/views/Import.js
           repo-token: ${{ secrets.GITHUB_TOKEN }}
