@@ -4,7 +4,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import { isPlatformAndroid } from '../Util';
 import languages from '../locales/languages';
-import { isLocationsNearby } from '../helpers/Intersect';
+import { isLocationsNearby as areLocationsNearby } from '../helpers/Intersect';
 import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
 
 let isBackgroundGeolocationConfigured = false;
@@ -87,7 +87,7 @@ export class LocationData {
       if (curated.length >= 1) {
         let lastLocationArray = curated[curated.length - 1];
 
-        let nearby = isLocationsNearby(
+        let areCurrentPreviousNearby = areLocationsNearby(
           lastLocationArray['latitude'],
           lastLocationArray['longitude'],
           location['latitude'],
@@ -98,7 +98,7 @@ export class LocationData {
         // Actually do the backfill if the current point is nearby the previous
         // point and the time is within the maximum time to backfill.
         let lastRecordedTime = lastLocationArray['time'];
-        if (nearby && unixtimeUTC - lastRecordedTime < this.maxBackfillTime) {
+        if (areCurrentPreviousNearby && unixtimeUTC - lastRecordedTime < this.maxBackfillTime) {
           for (
             let newTS = lastRecordedTime + this.locationInterval;
             newTS < unixtimeUTC - this.locationInterval;
