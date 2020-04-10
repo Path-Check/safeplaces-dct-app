@@ -1,6 +1,8 @@
 name: Lint
 
-on: pull_request
+on:
+  pull_request:
+    branches: [ develop ]
 
 jobs:
   eslint:
@@ -8,6 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: 18F/github-action-eslint@1.0.0
+      - name: Cache node_modules/
+        uses: actions/cache@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - run: yarn --frozen-lockfile
+
+      - run: lint-diff develop
