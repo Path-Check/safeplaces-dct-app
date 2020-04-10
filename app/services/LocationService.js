@@ -6,6 +6,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import { isPlatformAndroid } from '../Util';
 import languages from '../locales/languages';
+import { areLocationsNearby } from '../helpers/Intersect';
 
 let isBackgroundGeolocationConfigured = false;
 
@@ -13,15 +14,12 @@ export class LocationData {
   constructor() {
     // The desired location interval, and the minimum acceptable interval
     this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+
     // minLocationSaveInterval should be shorter than the locationInterval (to avoid strange skips)
     this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
 
     // Maximum time that we will backfill for missing data
-    this.maxBackfillTime = 60000 * 60 * 8 // Time (in milliseconds).  60000 * 60 * 8 = 8 hours
-
-    // Maximum travel distance for backfill to kick in
-    // Backfill won't kick in above this distance travelled between two points
-    this.maxBackfillDistance = 50;  // distance in meters
+    this.maxBackfillTime = 60000 * 60 * 24; // Time (in milliseconds).  60000 * 60 * 8 = 24 hours
   }
 
   getLocationData() {
@@ -55,31 +53,31 @@ export class LocationData {
     };
   }
 
-
   /*
    * Calculate fairly accurately the distance between to lat-long points
    *    Uses the Spherical Law of Cosines method.
    *    https://www.movable-type.co.uk/scripts/latlong.html
-   *    https://en.wikipedia.org/wiki/Spherical_law_of_cosines 
-   * 
+   *    https://en.wikipedia.org/wiki/Spherical_law_of_cosines
+   *
    * Calculates the distance in meters
    */
   calcDistance(lat1, lon1, lat2, lon2) {
-
-    var p1 = lat1.toRadians()
-    var p2 = lat2.toRadians()
-    var deltaLambda = (lon2-lon1).toRadians()
+    var p1 = (lat1 * Math.PI) / 180;
+    var p2 = (lat2 * Math.PI) / 180;
+    var deltaLambda = ((lon2 - lon1) * Math.PI) / 180;
     var R = 6371e3; // gives d in metres
-    
-    var d = Math.acos( Math.sin(p1)*Math.sin(p2) + Math.cos(p1)*Math.cos(p2) * Math.cos(deltaLambda) ) * R;
+
+    var d =
+      Math.acos(
+        Math.sin(p1) * Math.sin(p2) +
+          Math.cos(p1) * Math.cos(p2) * Math.cos(deltaLambda),
+      ) * R;
     return d;
   }
-
 
   saveLocation(location) {
     // Persist this location data in our local storage of time/lat/lon values
     this.getLocationData().then(locationArray => {
-
       // Always work in UTC, not the local time in the locationData
       let unixtimeUTC = Math.floor(location['time']);
       let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
@@ -104,35 +102,39 @@ export class LocationData {
       }
 
       // Backfill the stationary points, if available
-      // The assumption is that if we see a gap in the data, the
-      // best guess is that the person was in that location for 
-      // the entire time.  This makes it easier for a health authority
+      // The assumption is that if we see a gap in the data, and the 
+      // device hasn't moved significantly, then we can fill in the missing data
+      // with the current location.  This makes it easier for a health authority
       // person to have a set of locations over time, and they can manually
       // redact the time frames that aren't correct.
       if (curated.length >= 1) {
         let lastLocationArray = curated[curated.length - 1];
 
-        // Figure out the time to start the backfill from.  Default is
-        // the time of the last entry in the location set.
-        // To protect ourselves, we won't backfill more than the
-        // maxBackfillTime
-        let lastRecordedTime = lastLocationArray['time'];
-        if ((unixtimeUTC - lastRecordedTime) > this.maxBackfillTime) {
-          lastRecordedTime = unixtimeUTC - this.maxBackfillTime;
-        }
+        var nearby = areLocationsNearby(
+          lastLocationArray['latitude'],
+          lastLocationArray['longitude'],
+          location['latitude'],
+          location['longitude'],
+        );
+        //console.log('[INFO] nearby:', nearby);
 
-        for (
-          let newTS = lastRecordedTime + this.locationInterval;
-          newTS < unixtimeUTC - this.locationInterval;
-          newTS += this.locationInterval
-        ) {
-          let lat_lon_time = {
-            latitude: lastLocationArray['latitude'],
-            longitude: lastLocationArray['longitude'],
-            time: newTS
-          };
-          console.log('[INFO] backfill location:',lat_lon_time);
-          curated.push(lat_lon_time);
+        // Actually do the backfill if the current point is nearby the previous
+        // point and the time is within the maximum time to backfill.
+        let lastRecordedTime = lastLocationArray['time'];
+        if (nearby && unixtimeUTC - lastRecordedTime < this.maxBackfillTime) {
+          for (
+            let newTS = lastRecordedTime + this.locationInterval;
+            newTS < unixtimeUTC - this.locationInterval;
+            newTS += this.locationInterval
+          ) {
+            let lat_lon_time = {
+              latitude: lastLocationArray['latitude'],
+              longitude: lastLocationArray['longitude'],
+              time: newTS,
+            };
+            //console.log('[INFO] backfill location:', lat_lon_time);
+            curated.push(lat_lon_time);
+          }
         }
       }
 
@@ -141,10 +143,10 @@ export class LocationData {
       let lat_lon_time = {
         latitude: location['latitude'],
         longitude: location['longitude'],
-        time: unixtimeUTC
+        time: unixtimeUTC,
       };
       curated.push(lat_lon_time);
-      console.log('[INFO] saved location:',lat_lon_time);
+      console.log('[INFO] saved location:', lat_lon_time);
 
       SetStoreData('LOCATION_DATA', curated);
     });
