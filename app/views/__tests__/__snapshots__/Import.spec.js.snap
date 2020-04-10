@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`Import component renders correctly 1`] = `
 Array [
   <RCTSafeAreaView
     emulateUnlessSupported={true}
@@ -175,6 +175,7 @@ Array [
               "width": 589.9499999999999,
             }
           }
+          testID="google-takeout-link"
         >
           <Text
             style={
@@ -214,6 +215,7 @@ Array [
               "width": 589.9499999999999,
             }
           }
+          testID="google-takeout-import-btn"
         >
           <Text
             style={

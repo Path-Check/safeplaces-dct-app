@@ -78,6 +78,7 @@ const ImportScreen = props => {
             {languages.t('label.import_step_3')}
           </Text>
           <TouchableOpacity
+            testID='google-takeout-link'
             onPress={() =>
               Linking.openURL(
                 'https://takeout.google.com/settings/takeout/custom/location_history',
@@ -89,6 +90,7 @@ const ImportScreen = props => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
+            testID='google-takeout-import-btn'
             onPress={importPickFile}
             style={styles.buttonTouchable}>
             <Text style={styles.buttonText}>
