@@ -7,28 +7,14 @@ import { GetStoreData } from '../helpers/General';
 // Adding/updating a language:
 // 1. Update i18next-parser.config.js to ensure the xy language is in "locales"
 // 2. run: npm run i18n:extract
-// 3. All known/new keys will be added into xy/index.json
+// 3. All known/new keys will be added into xy.json
 //    - any removed keys will be put into index_old.json, do not commit this file
 // 4. Update translations as needed
 // 5. REMOVE all empty translations. e.g. "key": "", this will allow fallback to the default: English
-// 6. import xyIndex from `./xy/index.json` and add the language to the block at the bottom
+// 6. import xyIndex from `./xy.json` and add the language to the block at the bottom
 
-import enIndex from './en/index.json';
-import deIndex from './de/index.json';
-import hiIndex from './hi/index.json';
-import frIndex from './fr/index.json';
-import itIndex from './it/index.json';
-import ptIndex from './pt/index.json';
-import mrIndex from './mr/index.json';
-import nlIndex from './nl/index.json';
-import htIndex from './ht/index.json';
-import pt_BRIndex from './pt_BR/index.json';
-import esIndex from './es/index.json';
-import urIndex from './ur/index.json';
-import knIndex from './kn/index.json';
-import caIndex from './ca/index.json';
-import gjIndex from './gj/index.json';
-import csIndex from './cs/index.json';
+import enIndex from './en.json';
+import htIndex from './ht.json';
 
 // This will fetch the user's language
 // Set up as a function so first onboarding screen can also update
