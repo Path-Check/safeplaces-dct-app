@@ -5,6 +5,7 @@ import UUIDGenerator from 'react-native-uuid-generator';
 import AndroidBLEAdvertiserModule from 'react-native-ble-advertiser';
 import { NativeEventEmitter, NativeModules } from 'react-native';
 import { isPlatformAndroid, nowStr } from '../Util';
+import { CONTACT_DATA, MY_UUIDs } from '../constants/storage';
 
 var currentUUID = null;
 var onDeviceFound = null;
@@ -52,7 +53,7 @@ function saveContact(contact) {
   // Persist this contact data in our local storage of time/uuid values
   //console.log('[Bluetooth]', nowStr(), currentUUID, 'New Device Found', contact['uuid']);
   if (isNewContact(contact)) {
-    GetStoreData('CONTACT_DATA', false).then(contactArray => {
+    GetStoreData(CONTACT_DATA, false).then(contactArray => {
       if (!contactArray) {
         contactArray = [];
       }
@@ -78,7 +79,7 @@ function saveContact(contact) {
         curated.length,
       );
 
-      SetStoreData('CONTACT_DATA', curated);
+      SetStoreData(CONTACT_DATA, curated);
     });
   }
 }
@@ -86,7 +87,7 @@ function saveContact(contact) {
 function saveMyUUID(me) {
   // Persist this contact data in our local storage of time/lat/lon values
 
-  GetStoreData('MY_UUIDs', false).then(myUUIDArray => {
+  GetStoreData(MY_UUIDs, false).then(myUUIDArray => {
     if (!myUUIDArray) {
       myUUIDArray = [];
     }
@@ -113,12 +114,12 @@ function saveMyUUID(me) {
     );
     curated.push(uuid_time);
 
-    SetStoreData('MY_UUIDs', curated);
+    SetStoreData(MY_UUIDs, curated);
   });
 }
 
 function loadLastUUIDAndBroadcast() {
-  GetStoreData('MY_UUIDs', false).then(myUUIDArray => {
+  GetStoreData(MY_UUIDs, false).then(myUUIDArray => {
     if (!myUUIDArray) {
       console.log(
         '[Bluetooth]',

@@ -27,6 +27,7 @@ import {
 } from 'victory-native';
 import Colors from '../constants/colors';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { CROSSED_PATHS } from '../constants/storage';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -84,7 +85,7 @@ class NotificationScreen extends Component {
   resetState() {}
 
   getInitialState = async () => {
-    GetStoreData('CROSSED_PATHS').then(dayBin => {
+    GetStoreData(CROSSED_PATHS).then(dayBin => {
       console.log(dayBin);
 
       /* DEBUGGING TOOL -- handy for creating faux data

@@ -32,9 +32,7 @@ import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import languages from '../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-
-const authoritiesListURL =
-  'https://raw.githubusercontent.com/tripleblindmarket/safe-places/develop/healthcare-authorities.yaml';
+import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 
 const width = Dimensions.get('window').width;
 
@@ -88,7 +86,7 @@ class ChooseProviderScreen extends Component {
         // this is much more performant.
         fileCache: true,
       })
-        .fetch('GET', authoritiesListURL, {
+        .fetch('GET', AUTHORITIES_LIST_URL, {
           //some headers ..
         })
         .then(result => {
