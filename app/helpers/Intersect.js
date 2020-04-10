@@ -9,7 +9,7 @@ import { LOCATION_DATA, CROSSED_PATHS } from '../constants/storage';
 
 export async function IntersectSet(concernLocationArray, completion) {
   GetStoreData(LOCATION_DATA).then(locationArrayString => {
-    var locationArray;
+    let locationArray;
     if (locationArrayString !== null) {
       locationArray = JSON.parse(locationArrayString);
     } else {
@@ -59,8 +59,8 @@ export async function IntersectSet(concernLocationArray, completion) {
     let ftPerLat = 364000; // 1 deg lat equals 364,000 ft
     let ftPerLon = 288200; // 1 deg of longitude equals 288,200 ft
 
-    var nowUTC = new Date().toISOString();
-    var timeNow = Date.parse(nowUTC);
+    let nowUTC = new Date().toISOString();
+    let timeNow = Date.parse(nowUTC);
 
     // Save a little CPU, no need to do sqrt()
     let concernDistWindowSq = concernDistWindow * concernDistWindow;
@@ -106,15 +106,15 @@ export async function IntersectSet(concernLocationArray, completion) {
 // Uses shortcuts when possible, then the exact calculation.
 // returns boolean
 export function isLocationsNearby(lat1, lon1, lat2, lon2) {
-  var nearbyDistance = 20; // in meters, anything closer is "nearby"
+  let nearbyDistance = 20; // in meters, anything closer is "nearby"
 
   // these numbers from https://en.wikipedia.org/wiki/Decimal_degrees
-  var notNearbyInLatitude = 0.00017966; // = nearbyDistance / 111320
-  var notNearbyInLongitude_23Lat = 0.00019518; // = nearbyDistance / 102470
-  var notNearbyInLongitude_45Lat = 0.0002541; // = nearbyDistance / 78710
-  var notNearbyInLongitude_67Lat = 0.00045981; // = nearbyDistance / 43496
+  let notNearbyInLatitude = 0.00017966; // = nearbyDistance / 111320
+  let notNearbyInLongitude_23Lat = 0.00019518; // = nearbyDistance / 102470
+  let notNearbyInLongitude_45Lat = 0.0002541; // = nearbyDistance / 78710
+  let notNearbyInLongitude_67Lat = 0.00045981; // = nearbyDistance / 43496
 
-  deltaLon = lon2 - lon1;
+  let deltaLon = lon2 - lon1;
 
   // Initial checks we can do quickly.  The idea is to filter out any cases where the
   //   difference in latitude or the difference in longitude must be larger than the
@@ -133,11 +133,11 @@ export function isLocationsNearby(lat1, lon1, lat2, lon2) {
   //    https://en.wikipedia.org/wiki/Spherical_law_of_cosines
   //
   // Calculates the distance in meters
-  var p1 = (lat1 * Math.PI) / 180;
-  var p2 = (lat2 * Math.PI) / 180;
-  var deltaLambda = (deltaLon * Math.PI) / 180;
-  var R = 6371e3; // gives d in metres
-  var d =
+  let p1 = (lat1 * Math.PI) / 180;
+  let p2 = (lat2 * Math.PI) / 180;
+  let deltaLambda = (deltaLon * Math.PI) / 180;
+  let R = 6371e3; // gives d in metres
+  let d =
     Math.acos(
       Math.sin(p1) * Math.sin(p2) +
         Math.cos(p1) * Math.cos(p2) * Math.cos(deltaLambda),
@@ -155,9 +155,9 @@ function normalizeData(arr) {
   //   * Values stored as strings instead of numbers
   //   * Extra info in the input
   //   * Improperly sorted data (can happen after an Import)
-  var result = [];
+  let result = [];
 
-  for (var i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     elem = arr[i];
     if ('time' in elem && 'latitude' in elem && 'longitude' in elem) {
       result.push({
@@ -179,12 +179,12 @@ function binarySearchForTime(array, targetTime) {
   // Returns:
   //   value >= 0,   index of found item
   //   value < 0,    i where -(i+1) is the insertion point
-  var i = 0;
-  var n = array.length - 1;
+  let i = 0;
+  let n = array.length - 1;
 
   while (i <= n) {
-    var k = (n + i) >> 1;
-    var cmp = targetTime - array[k].time;
+    let k = (n + i) >> 1;
+    let cmp = targetTime - array[k].time;
 
     if (cmp > 0) {
       i = k + 1;
