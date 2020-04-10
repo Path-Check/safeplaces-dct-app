@@ -13,6 +13,7 @@
 #import <RNCPushNotificationIOS.h>
 #import <UserNotifications/UserNotifications.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import <react-native-splash-screen/RNSplashScreen.h>
 
 @implementation AppDelegate
 
@@ -34,6 +35,8 @@
   
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
+  
+  [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
   return YES;
 }
 

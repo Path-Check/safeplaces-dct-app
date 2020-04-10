@@ -1,11 +1,11 @@
 import 'react-native';
 import React from 'react';
-import renderer from 'react-test-renderer';
+import {render, wait} from '@testing-library/react-native';
 import News from '../News';
 
-it('renders correctly', () => {
-  const tree = renderer
-    .create(<News />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+it('renders correctly', async () => {
+  const {asJSON} = render(<News />);
+  await wait();
+
+  expect(asJSON()).toMatchSnapshot();
 });

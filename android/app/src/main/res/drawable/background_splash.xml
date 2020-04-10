@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@color/ic_launcher_background"/>
+
+    <!-- Circles -->
+    <item
+        android:width="687dp"
+        android:drawable="@drawable/ic_splash_circles"
+        android:gravity="center" />
+
+    <!-- Logo -->
+    <item
+        android:width="237dp"
+        android:height="237dp"
+        android:drawable="@drawable/ic_splash_logo"
+        android:gravity="center" />
+
+    <!-- Text -->
+    <item
+        android:width="180dp"
+        android:height="19dp"
+        android:drawable="@drawable/ic_splash_logo_text"
+        android:gravity="center"
+        android:top="450dp" />
+</layer-list>
+

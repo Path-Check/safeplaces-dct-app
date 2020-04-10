@@ -5,32 +5,45 @@ import {
   View,
   Text,
   Image,
-  Platform,
   Dimensions,
   TouchableOpacity,
   BackHandler,
+  StatusBar,
+  ScrollView,
+  Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import RNFetchBlob from 'rn-fetch-blob';
+import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
-import colors from '../constants/colors';
+// import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import { GetStoreData } from '../helpers/General';
 import { timeSincePoint } from '../helpers/convertPointsToString';
 import LocationServices, { LocationData } from '../services/LocationService';
 import backArrow from './../assets/images/backArrow.png';
+import { isPlatformiOS } from './../Util';
+import LinearGradient from 'react-native-linear-gradient';
+
+import Colors from '../constants/colors';
 import languages from './../locales/languages';
+import licenses from './../assets/LICENSE.json';
+import { SvgXml } from 'react-native-svg';
+import close from './../assets/svgs/close';
+import exportIcon from './../assets/svgs/export';
 
 const width = Dimensions.get('window').width;
 const base64 = RNFetchBlob.base64;
 
-function ExportScreen({ shareButtonDisabled }) {
+function ExportScreen(props) {
+  const { shareButtonDisabled } = props;
   const [pointStats, setPointStats] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(shareButtonDisabled);
   const { navigate } = useNavigation();
 
   function handleBackPress() {
-    navigate('LocationTrackingScreen', {});
+    props.navigation.goBack();
     return true;
   }
 
@@ -54,198 +67,188 @@ function ExportScreen({ shareButtonDisabled }) {
   });
 
   function backToMain() {
-    navigate('LocationTrackingScreen', {});
+    props.navigation.goBack();
   }
 
   async function onShare() {
     try {
       let locationData = await new LocationData().getLocationData();
+      let nowUTC = new Date().toISOString();
+      let unixtimeUTC = Date.parse(nowUTC);
 
-      const jsonData = base64.encode(JSON.stringify(locationData));
-      const title = 'PrivateKit_.json';
-      const filename = 'PrivacyKit_.json';
+      var options = {};
+      var jsonData = JSON.stringify(locationData);
+      const title = 'PrivateKit.json';
+      const filename = unixtimeUTC + '.json';
       const message = 'Here is my location log from Private Kit.';
-      const url = 'data:application/json;base64,' + jsonData;
-      const options = Platform.select({
-        ios: {
-          activityItemSources: [
-            {
-              placeholderItem: { type: 'url', content: url },
-              item: {
-                default: { type: 'url', content: url },
-              },
-              subject: {
-                default: title,
-              },
-              linkMetadata: { originalUrl: url, url, title },
-            },
-            {
-              placeholderItem: { type: 'text', content: message },
-              item: {
-                default: { type: 'text', content: message },
-                message: null, // Specify no text to share via Messages app.
-              },
-            },
-          ],
-        },
-        default: {
+      if (isPlatformiOS()) {
+        var url = RNFS.DocumentDirectoryPath + '/' + filename;
+        await RNFS.writeFile(url, jsonData, 'utf8')
+          .then(success => {
+            options = {
+              activityItemSources: [
+                {
+                  placeholderItem: { type: 'url', content: url },
+                  item: {
+                    default: { type: 'url', content: url },
+                  },
+                  subject: {
+                    default: title,
+                  },
+                  linkMetadata: { originalUrl: url, url, title },
+                },
+              ],
+            };
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
+      } else {
+        jsonData = 'data:application/json;base64,' + base64.encode(jsonData);
+        options = {
           title,
           subject: title,
-          url: url,
+          url: jsonData,
           message: message,
           filename: filename,
-        },
-      });
-
-      Share.open(options)
+        };
+      }
+      await Share.open(options)
         .then(res => {
           console.log(res);
         })
         .catch(err => {
+          console.log(err);
           console.log(err.message, err.code);
         });
+      if (isPlatformiOS()) {
+        await RNFS.unlink(url);
+      }
     } catch (error) {
       console.log(error.message);
     }
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.headerContainer}>
-        <TouchableOpacity
-          style={styles.backArrowTouchable}
-          onPress={() => backToMain()}>
-          <Image style={styles.backArrow} source={backArrow} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>{languages.t('label.export')}</Text>
-      </View>
+    <>
+      <StatusBar
+        barStyle='light-content'
+        backgroundColor={Colors.VIOLET_BUTTON}
+        translucent={false}
+      />
+      <SafeAreaView style={styles.topSafeAreaContainer} />
+      <SafeAreaView style={styles.bottomSafeAreaContainer}>
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1 }}
+          colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
+          style={{ flex: 1, height: '100%' }}>
+          <View style={styles.headerContainer}>
+            <TouchableOpacity
+              style={styles.backArrowTouchable}
+              onPress={() => backToMain()}>
+              <SvgXml style={styles.backArrow} xml={close} />
+            </TouchableOpacity>
+          </View>
 
-      <View style={styles.main}>
-        <Text style={styles.sectionDescription}>
-          {languages.t('label.export_para_1')}
-        </Text>
-        <Text style={styles.sectionDescription}>
-          {languages.t('label.export_para_2')}
-        </Text>
-        <TouchableOpacity
-          disabled={buttonDisabled}
-          onPress={onShare}
-          style={[
-            styles.buttonTouchable,
-            buttonDisabled && styles.buttonDisabled,
-          ]}>
-          <Text
-            style={[
-              styles.buttonText,
-              buttonDisabled && styles.buttonDisabled,
-            ]}>
-            {languages.t('label.share')}
-          </Text>
-        </TouchableOpacity>
-        <Text style={[styles.sectionDescription, { marginTop: 36 }]}>
-          {languages.t('label.data_covers')}{' '}
-          {pointStats ? timeSincePoint(pointStats.firstPoint) : '...'}
-        </Text>
+          <ScrollView contentContainerStyle={styles.contentContainer}>
+            <View style={styles.main}>
+              <Text style={styles.exportSectionTitles}>
+                {languages.t('label.tested_positive_title')}
+              </Text>
+              <Text style={styles.exportSectionPara}>
+                {languages.t('label.export_para_1')}
+              </Text>
+              <Text style={styles.exportSectionPara}>
+                {languages.t('label.export_para_2')}
+              </Text>
 
-        <Text style={[styles.sectionDescription, { marginTop: 15 }]}>
-          {languages.t('label.data_count')}{' '}
-          {pointStats ? pointStats.pointCount : '...'}
-        </Text>
-
-        <Text style={[styles.sectionDescription, { marginTop: 15 }]}>
-          {languages.t('label.data_last_updated')}{' '}
-          {pointStats ? timeSincePoint(pointStats.lastPoint) : '...'}
-        </Text>
-      </View>
-    </SafeAreaView>
+              <TouchableOpacity style={styles.exportButton} onPress={onShare}>
+                <Text style={styles.exportButtonText}>
+                  {languages.t('label.share_location_data')}
+                </Text>
+                <SvgXml style={styles.exportIcon} xml={exportIcon} />
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </LinearGradient>
+      </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   // Container covers the entire screen
-  container: {
+  topSafeAreaContainer: {
+    flex: 0,
+    backgroundColor: Colors.VIOLET_BUTTON,
+  },
+  bottomSafeAreaContainer: {
     flex: 1,
-    flexDirection: 'column',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
-  headerTitle: {
-    textAlign: 'center',
-    fontSize: 24,
-    padding: 0,
-    fontFamily: 'OpenSans-Bold',
-  },
-  subHeaderTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 22,
-    padding: 5,
-  },
-  main: {
-    flex: 1,
-    flexDirection: 'column',
-    textAlignVertical: 'top',
-    // alignItems: 'center',
-    padding: 20,
-    width: '96%',
-    alignSelf: 'center',
-  },
-  buttonTouchable: {
-    borderRadius: 12,
-    backgroundColor: '#665eff',
-    height: 52,
-    alignSelf: 'center',
-    width: width * 0.7866,
-    marginTop: 30,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: 'OpenSans-Bold',
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: '#ffffff',
-  },
-  buttonDisabled: {
-    opacity: 0.7,
-  },
-  mainText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
+    backgroundColor: Colors.VIOLET_BUTTON_DARK,
   },
   headerContainer: {
     flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
   backArrowTouchable: {
     width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
+    height: 55,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
   },
   backArrow: {
     height: 18,
-    width: 18.48,
+    width: 18,
   },
-  sectionDescription: {
-    fontSize: 16,
-    lineHeight: 24,
-    marginTop: 12,
-    fontFamily: 'OpenSans-Regular',
+  contentContainer: {
+    flexDirection: 'column',
+    width: '100%',
+    flex: 1,
+    paddingHorizontal: 26,
+  },
+  row: {
+    flexDirection: 'row',
+    color: Colors.PRIMARY_TEXT,
+    alignItems: 'flex-start',
+  },
+
+  exportSectionTitles: {
+    color: Colors.WHITE,
+    fontSize: 26,
+    fontFamily: fontFamily.primaryMedium,
+    marginTop: 9,
+  },
+  exportSectionPara: {
+    color: Colors.WHITE,
+    fontSize: 18,
+    lineHeight: 22.5,
+    marginTop: 22,
+    fontFamily: fontFamily.primaryRegular,
+  },
+
+  exportButton: {
+    backgroundColor: Colors.WHITE,
+    flexDirection: 'row',
+    height: 64,
+    borderRadius: 8,
+    marginTop: 48,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  exportButtonText: {
+    color: Colors.VIOLET,
+    fontSize: 20,
+    fontFamily: fontFamily.primaryMedium,
+  },
+  exportIcon: {
+    width: 16,
+    height: 21,
+  },
+  main: {
+    flex: 1,
+    paddingTop: 48,
   },
 });
 
