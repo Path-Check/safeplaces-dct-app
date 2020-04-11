@@ -104,15 +104,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontFamily: fontFamily.primaryRegular,
   },
-  divider: {
-    backgroundColor: Colors.DIVIDER,
-    height: 1.5,
-  },
-  fullDivider: {
-    backgroundColor: Colors.DIVIDER,
-    height: 1,
-    width: '100%',
-  },
   spacer: {
     marginVertical: '2%',
   },

@@ -202,10 +202,17 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
 fi
 
 
+if ! found_exe yarn ; then
+    echo "${BLUE}Installing Yarn package manager${RESET}"
+    brew install yarn
+    yarn
+    echo "${GREEN}Yarn installed!${RESET}"
+fi
+
 if ! found_exe react-native ; then
     echo "${BLUE}Installing React Native tool...${RESET}"
-    sudo npm install -g react-native-cli
-    npm install
+    yarn global add react-native-cli
+    yarn
     echo "${GREEN}React Native tools installed!${RESET}"
 fi
 

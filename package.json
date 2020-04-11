@@ -1,6 +1,6 @@
 {
   "name": "privatekit",
-  "version": "0.5.11",
+  "version": "0.9.1",
   "private": true,
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
@@ -8,11 +8,13 @@
     "postinstall": "patch-package; npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
+    "i18n:extract": "i18next",
     "test": "jest test"
   },
   "lint-staged": {
     "*.js": [
       "prettier --write",
+      "lint-diff HEAD",
       "git add --force"
     ]
   },
@@ -27,10 +29,8 @@
     ]
   },
   "dependencies": {
-    "@bam.tech/react-native-component-map-clustering": "^1.1.1",
     "@mauron85/react-native-background-geolocation": "^0.6.3",
     "@react-native-community/async-storage": "^1.8.1",
-    "@react-native-community/cli-platform-ios": "^3.0.0",
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "0.1.5",
     "@react-native-community/push-notification-ios": "^1.1.0",
@@ -40,7 +40,6 @@
     "@testing-library/react-native": "^5.0.3",
     "i18next": "^19.3.3",
     "js-yaml": "^3.13.1",
-    "lodash": "4.17.15",
     "moment": "^2.24.0",
     "patch-package": "^6.2.1",
     "pluralize": "^8.0.0",
@@ -49,14 +48,13 @@
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-app-intro-slider": "^3.0.0",
+    "react-native-background-fetch": "^3.0.4",
     "react-native-background-timer": "^2.2.0",
     "react-native-ble-advertiser": "0.0.10",
-    "react-native-extended-stylesheet": "^0.12.0",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-i18n": "^2.0.15",
     "react-native-linear-gradient": "^2.5.6",
-    "react-native-map-clustering": "^3.1.2",
     "react-native-maps": "0.27.1",
     "react-native-permissions": "^2.0.10",
     "react-native-popup-menu": "^0.15.7",
@@ -70,7 +68,6 @@
     "react-native-splash-screen": "^3.2.0",
     "react-native-svg": "^12.0.3",
     "react-native-uuid-generator": "^6.1.1",
-    "react-native-web-swiper": "^2.1.0",
     "react-native-webview": "^8.1.2",
     "react-native-zip-archive": "^5.0.1",
     "reanimated-bottom-sheet": "^1.0.0-alpha.19",
@@ -85,7 +82,9 @@
     "babel-jest": "^25.1.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
+    "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
     "jest": "^25.1.0",
+    "lint-diff": "^1.2.1",
     "lint-staged": "^10.0.9",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "1.19.1",

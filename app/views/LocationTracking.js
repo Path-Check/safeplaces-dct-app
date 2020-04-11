@@ -24,9 +24,11 @@ import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
-import BroadcastingServices from '../services/BroadcastingService';
+//import BroadcastingServices from '../services/BroadcastingService';
+import BackgroundTaskServices from '../services/BackgroundTaskService';
+import { checkIntersect } from '../helpers/Intersect';
+
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import PushNotification from 'react-native-push-notification';
 import exportImage from './../assets/images/export.png';
 import ButtonWrapper from '../components/ButtonWrapper';
 import { isPlatformiOS } from './../Util';
@@ -37,8 +39,8 @@ import {
   RESULTS,
   openSettings,
 } from 'react-native-permissions';
+import foreArrow from './../assets/images/foreArrow.png';
 
-import { IntersectSet } from '../helpers/Intersect';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
@@ -48,6 +50,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import SettingsGear from './../assets/svgs/settingsGear';
 import fontFamily from '../constants/fonts';
+import { PARTICIPATE, CROSSED_PATHS } from '../constants/storage';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -111,11 +114,13 @@ class LocationTracking extends Component {
       .then(result => {
         switch (result) {
           case RESULTS.GRANTED:
+            LocationServices.start();
             this.checkIfUserAtRisk();
             return;
           case RESULTS.UNAVAILABLE:
           case RESULTS.BLOCKED:
             console.log('NO LOCATION');
+            LocationServices.stop();
             this.setState({ currentState: StateEnum.UNKNOWN });
         }
       })
@@ -125,17 +130,18 @@ class LocationTracking extends Component {
   }
 
   checkIfUserAtRisk() {
+    BackgroundTaskServices.start();
     // already set on 12h timer, but run when this screen opens too
-    this.intersect_tick();
+    checkIntersect();
 
     GetStoreData('CROSSED_PATHS').then(dayBin => {
-      if (dayBin === null) {
-        console.log("Can't find crossed paths");
-        this.setState({ currentState: StateEnum.NO_CONTACT });
-      } else {
+      dayBin = JSON.parse(dayBin);
+      if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
         console.log('Found crossed paths');
         this.setState({ currentState: StateEnum.AT_RISK });
-        // dayBinParsed = JSON.parse(dayBin);
+      } else {
+        console.log("Can't find crossed paths");
+        this.setState({ currentState: StateEnum.NO_CONTACT });
       }
     });
   }
@@ -143,7 +149,7 @@ class LocationTracking extends Component {
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    GetStoreData('PARTICIPATE')
+    GetStoreData(PARTICIPATE)
       .then(isParticipating => {
         if (isParticipating === 'true') {
           this.setState({
@@ -157,13 +163,6 @@ class LocationTracking extends Component {
         }
       })
       .catch(error => console.log(error));
-
-    let timer_intersect = setInterval(this.intersect_tick, 1000 * 60 * 60 * 12); // once every 12 hours
-    // DEBUG:  1000 * 10); // once every 10 seconds
-
-    this.setState({
-      timer_intersect,
-    });
   }
 
   findNewAuthorities() {
@@ -175,85 +174,6 @@ class LocationTracking extends Component {
     // Tapping that notification asks if they want to Add that Healthcare Authority
     // under the Settings screen.
   }
-
-  intersect_tick = () => {
-    // This function is called once every 12 hours.  It should do several things:
-
-    this.findNewAuthorities();
-
-    // Get the user's health authorities
-    GetStoreData('HEALTH_AUTHORITIES')
-      .then(authority_list => {
-        if (!authority_list) {
-          // DEBUG: Force a test list
-          // authority_list = [
-          //  {
-          //    name: 'Platte County Health',
-          //    url:
-          //      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
-          //  },
-          //];
-          return;
-        }
-
-        let name_news = [];
-
-        if (authority_list) {
-          // Pull down data from all the registered health authorities
-          for (let authority of authority_list) {
-            fetch(authority.url)
-              .then(response => response.json())
-              .then(responseJson => {
-                // Example response =
-                // { "authority_name":  "Steve's Fake Testing Organization",
-                //   "publish_date_utc": "1584924583",
-                //   "info_website": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
-                //   "concern_points":
-                //    [
-                //      { "time": 123, "latitude": 12.34, "longitude": 12.34},
-                //      { "time": 456, "latitude": 12.34, "longitude": 12.34}
-                //    ]
-                // }
-
-                // Update cache of info about the authority
-                // TODO: Add an "info_newsflash" UTC timestamp and popup a
-                //       notification if that changes, i.e. if there is a newsflash?
-                name_news.push({
-                  name: responseJson.authority_name,
-                  news_url: responseJson.info_website,
-                });
-
-                // TODO: Look at "publish_date_utc".  We should notify users if
-                //       their authority is no longer functioning.)
-
-                IntersectSet(responseJson.concern_points, dayBin => {
-                  console.log('asasasas');
-                  if (dayBin !== null) {
-                    PushNotification.localNotification({
-                      title: languages.t('label.push_at_risk_title'),
-                      message: languages.t('label.push_at_risk_message'),
-                    });
-                  }
-                });
-              });
-
-            SetStoreData('AUTHORITY_NEWS', name_news)
-              .then(() => {
-                // TODO: Anything after this saves?  Background caching of
-                //       news to make it snappy?  Could be a problem in some
-                //       locales with high data costs.
-              })
-              .catch(error =>
-                console.log('Failed to save authority/news URL list'),
-              );
-          }
-        } else {
-          console.log('No authority list');
-          return;
-        }
-      })
-      .catch(error => console.log('Failed to load authority list', error));
-  };
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
@@ -292,22 +212,24 @@ class LocationTracking extends Component {
   }
 
   willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => {
-      LocationServices.start();
-      BroadcastingServices.start();
+    SetStoreData(PARTICIPATE, 'true').then(() => {
+      // Turn of bluetooth for v1
+      //BroadcastingServices.start();
     });
-
     // Check and see if they actually authorized in the system dialog.
     // If not, stop services and set the state to !isLogging
     // Fixes tripleblindmarket/private-kit#129
     BackgroundGeolocation.checkStatus(({ authorization }) => {
       if (authorization === BackgroundGeolocation.AUTHORIZED) {
+        LocationServices.start();
         this.setState({
           isLogging: true,
         });
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
-        LocationServices.stop(this.props.navigation);
-        BroadcastingServices.stop(this.props.navigation);
+        LocationServices.stop();
+        // Turn off bluetooth for v1
+        //BroadcastingServices.stop(this.props.navigation);
+        BackgroundTaskServices.stop();
         this.setState({
           isLogging: false,
         });
@@ -333,7 +255,8 @@ class LocationTracking extends Component {
 
   setOptOut = () => {
     LocationServices.stop(this.props.navigation);
-    BroadcastingServices.stop(this.props.navigation);
+    // Turn of bluetooth for v1
+    //BroadcastingServices.stop(this.props.navigation);
     this.setState({
       isLogging: false,
     });
@@ -397,6 +320,7 @@ class LocationTracking extends Component {
     }
     return (
       <View style={styles.pulseContainer}>
+        <Text>Testdsfafasfsdafasfsadf</Text>
         <StateIcon size={height} status={this.state.currentState} />
       </View>
     );
@@ -405,22 +329,44 @@ class LocationTracking extends Component {
   getMainText() {
     switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
-        return 'label.home_no_contact_header';
+        return (
+          <Text style={styles.mainTextBelow}>
+            {languages.t('label.home_no_contact_header')}
+          </Text>
+        );
       case StateEnum.AT_RISK:
-        return 'label.home_at_risk_header';
+        return (
+          <Text style={styles.mainTextAbove}>
+            {languages.t('label.home_at_risk_header')}
+          </Text>
+        );
       case StateEnum.UNKNOWN:
-        return 'label.home_unknown_header';
+        return (
+          <Text style={styles.mainTextBelow}>
+            {languages.t('label.home_unknown_header')}
+          </Text>
+        );
     }
   }
 
   getSubText() {
     switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
-        return 'label.home_no_contact_subtext';
+        return languages.t('label.home_no_contact_subtext');
       case StateEnum.AT_RISK:
-        return 'label.home_at_risk_subtext';
+        return languages.t('label.home_at_risk_subtext');
       case StateEnum.UNKNOWN:
-        return 'label.home_unknown_subtext';
+        return languages.t('label.home_unknown_subtext');
+    }
+  }
+  getSubSubText() {
+    switch (this.state.currentState) {
+      case StateEnum.NO_CONTACT:
+        return null;
+      case StateEnum.AT_RISK:
+        return languages.t('label.home_at_risk_subsubtext');
+      case StateEnum.UNKNOWN:
+        return null;
     }
   }
 
@@ -435,12 +381,12 @@ class LocationTracking extends Component {
       // };
       return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
-      buttonLabel = 'label.home_next_steps';
+      buttonLabel = languages.t('label.home_next_steps');
       buttonFunction = () => {
         this.props.navigation.navigate('NotificationScreen');
       };
     } else if (this.state.currentState === StateEnum.UNKNOWN) {
-      buttonLabel = 'label.home_enable_location';
+      buttonLabel = languages.t('label.home_enable_location');
       buttonFunction = () => {
         openSettings();
       };
@@ -448,15 +394,19 @@ class LocationTracking extends Component {
     return (
       <View style={styles.buttonContainer}>
         <ButtonWrapper
-          title={languages.t(buttonLabel)}
+          title={buttonLabel}
           onPress={() => {
             buttonFunction();
           }}
-          buttonColor={Colors.VIOLET}
+          buttonColor={Colors.BLUE_BUTTON}
           bgColor={Colors.WHITE}
         />
       </View>
     );
+  }
+
+  getMayoInfoPressed() {
+    Linking.openURL(languages.t('label.home_mayo_link_URL'));
   }
 
   render() {
@@ -472,14 +422,36 @@ class LocationTracking extends Component {
         {this.getPulseIfNeeded()}
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <Text style={styles.mainText}>
-              {languages.t(this.getMainText())}
-            </Text>
-            <Text style={styles.subheaderText}>
-              {languages.t(this.getSubText())}
-            </Text>
+            {this.getMainText()}
+            <Text style={styles.subsubheaderText}>{this.getSubSubText()}</Text>
+            <Text style={styles.subheaderText}>{this.getSubText()}</Text>
             {this.getCTAIfNeeded()}
           </View>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={this.getMayoInfoPressed.bind(this)}
+            style={styles.mayoInfoRow}>
+            <View style={styles.mayoInfoContainer}>
+              <Text
+                style={styles.mainMayoHeader}
+                onPress={() =>
+                  Linking.openURL(languages.t('label.home_mayo_link_URL'))
+                }>
+                {languages.t('label.home_mayo_link_heading')}
+              </Text>
+              <Text
+                style={styles.mainMayoSubtext}
+                onPress={() =>
+                  Linking.openURL(languages.t('label.home_mayo_link_URL'))
+                }>
+                {languages.t('label.home_mayo_link_label')}
+              </Text>
+            </View>
+            <View style={styles.arrowContainer}>
+              <Image source={foreArrow} style={this.arrow} />
+            </View>
+          </TouchableOpacity>
         </View>
         {this.getSettings()}
       </ImageBackground>
@@ -499,7 +471,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   contentContainer: {
-    width: width * 0.6,
+    width: width * 0.65,
     flex: 1,
     alignSelf: 'center',
   },
@@ -511,7 +483,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    top: '7%',
+    top: '9%',
   },
   pulseContainer: {
     position: 'absolute',
@@ -521,7 +493,16 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: 'center',
   },
-  mainText: {
+  mainTextAbove: {
+    textAlign: 'center',
+    lineHeight: 34,
+    marginTop: -210,
+    marginBottom: 125,
+    color: Colors.WHITE,
+    fontSize: 28,
+    fontFamily: fontFamily.primaryMedium,
+  },
+  mainTextBelow: {
     textAlign: 'center',
     lineHeight: 34,
     color: Colors.WHITE,
@@ -529,12 +510,47 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryMedium,
   },
   subheaderText: {
-    marginTop: '5%',
+    marginTop: 120,
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
     fontSize: 18,
     fontFamily: fontFamily.primaryRegular,
+  },
+  subsubheaderText: {
+    marginTop: -115,
+    textAlign: 'center',
+    lineHeight: 24.5,
+    color: Colors.WHITE,
+    fontSize: 16,
+    fontFamily: fontFamily.primaryLight,
+    marginBottom: '8%',
+  },
+  mayoInfoRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  mayoInfoContainer: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignContent: 'flex-end',
+    padding: 20,
+  },
+  mainMayoHeader: {
+    textAlign: 'left',
+    color: Colors.MISCHKA,
+    fontSize: 18,
+    fontFamily: fontFamily.primaryBold,
+  },
+  mainMayoSubtext: {
+    textAlign: 'left',
+    color: Colors.MISCHKA,
+    fontSize: 18,
+    fontFamily: fontFamily.primaryRegular,
+  },
+  arrowContainer: {
+    alignSelf: 'center',
+    paddingRight: 20,
   },
 });
 
