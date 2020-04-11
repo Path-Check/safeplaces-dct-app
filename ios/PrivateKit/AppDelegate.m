@@ -14,6 +14,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <react-native-splash-screen/RNSplashScreen.h>
+#import <TSBackgroundFetch/TSBackgroundFetch.h>
 
 @implementation AppDelegate
 
@@ -37,6 +38,8 @@
   center.delegate = self;
   
   [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
+  // [REQUIRED] Register BackgroundFetch
+    [[TSBackgroundFetch sharedInstance] didFinishLaunching];
   return YES;
 }
 

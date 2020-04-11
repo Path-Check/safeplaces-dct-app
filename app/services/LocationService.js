@@ -1,11 +1,10 @@
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import { Alert, Linking } from 'react-native';
-import { PERMISSIONS, check, RESULTS, request } from 'react-native-permissions';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import { isPlatformAndroid } from '../Util';
 import languages from '../locales/languages';
+import { isLocationsNearby as areLocationsNearby } from '../helpers/Intersect';
 import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
 
 let isBackgroundGeolocationConfigured = false;
@@ -14,11 +13,12 @@ export class LocationData {
   constructor() {
     // The desired location interval, and the minimum acceptable interval
     this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+
     // minLocationSaveInterval should be shorter than the locationInterval (to avoid strange skips)
     this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
 
     // Maximum time that we will backfill for missing data
-    this.maxBackfillTime = 60000 * 60 * 8; // Time (in milliseconds).  60000 * 60 * 8 = 8 hours
+    this.maxBackfillTime = 60000 * 60 * 24; // Time (in milliseconds).  60000 * 60 * 8 = 24 hours
   }
 
   getLocationData() {
@@ -79,35 +79,42 @@ export class LocationData {
       }
 
       // Backfill the stationary points, if available
-      // The assumption is that if we see a gap in the data, the
-      // best guess is that the person was in that location for
-      // the entire time.  This makes it easier for a health authority
+      // The assumption is that if we see a gap in the data, and the
+      // device hasn't moved significantly, then we can fill in the missing data
+      // with the current location.  This makes it easier for a health authority
       // person to have a set of locations over time, and they can manually
       // redact the time frames that aren't correct.
       if (curated.length >= 1) {
         let lastLocationArray = curated[curated.length - 1];
 
-        // Figure out the time to start the backfill from.  Default is
-        // the time of the last entry in the location set.
-        // To protect ourselves, we won't backfill more than the
-        // maxBackfillTime
-        let lastRecordedTime = lastLocationArray['time'];
-        if (unixtimeUTC - lastRecordedTime > this.maxBackfillTime) {
-          lastRecordedTime = unixtimeUTC - this.maxBackfillTime;
-        }
+        let areCurrentPreviousNearby = areLocationsNearby(
+          lastLocationArray['latitude'],
+          lastLocationArray['longitude'],
+          location['latitude'],
+          location['longitude'],
+        );
+        //console.log('[INFO] nearby:', nearby);
 
-        for (
-          let newTS = lastRecordedTime + this.locationInterval;
-          newTS < unixtimeUTC - this.locationInterval;
-          newTS += this.locationInterval
+        // Actually do the backfill if the current point is nearby the previous
+        // point and the time is within the maximum time to backfill.
+        let lastRecordedTime = lastLocationArray['time'];
+        if (
+          areCurrentPreviousNearby &&
+          unixtimeUTC - lastRecordedTime < this.maxBackfillTime
         ) {
-          let lat_lon_time = {
-            latitude: lastLocationArray['latitude'],
-            longitude: lastLocationArray['longitude'],
-            time: newTS,
-          };
-          console.log('[INFO] backfill location:', lat_lon_time);
-          curated.push(lat_lon_time);
+          for (
+            let newTS = lastRecordedTime + this.locationInterval;
+            newTS < unixtimeUTC - this.locationInterval;
+            newTS += this.locationInterval
+          ) {
+            let lat_lon_time = {
+              latitude: lastLocationArray['latitude'],
+              longitude: lastLocationArray['longitude'],
+              time: newTS,
+            };
+            //console.log('[INFO] backfill location:', lat_lon_time);
+            curated.push(lat_lon_time);
+          }
         }
       }
 
