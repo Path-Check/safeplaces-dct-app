@@ -53,7 +53,6 @@ export const CalendarDay = ({
 
 const DayContainer = styled.View`
   align-items: center;
-  // border: 1px solid green;
   padding: 4px;
 `;
 
@@ -100,7 +99,7 @@ const CircleInnerText = styled.Text`
 
 export const DayOfWeek = styled.Text`
   color: #707070;
-  font-family: 'IBM Plex Mono';
+  font-family: 'IBM Plex Sans';
   font-size: 9px;
   font-weight: bold;
   letter-spacing: 1.5px;
