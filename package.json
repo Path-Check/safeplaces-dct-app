@@ -43,6 +43,7 @@
     "i18next": "^19.3.3",
     "js-yaml": "^3.13.1",
     "moment": "^2.24.0",
+    "moment-range": "^4.0.2",
     "patch-package": "^6.2.1",
     "pluralize": "^8.0.0",
     "postinstall-postinstall": "^2.0.0",
