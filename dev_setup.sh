@@ -184,10 +184,9 @@ if ! found_exe android-studio ; then
     fi
 fi
 
-if ! found_exe bundler ; then
+if ! gem list '^bundler$' -i --version 2.1.4; then
     echo "${BLUE}Installing Ruby bundler for Cocoapod management...${RESET}"
     sudo gem install bundler
-    bundler
     echo "${GREEN}Bundler is installed!${RESET}"
 fi
 
