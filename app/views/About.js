@@ -9,12 +9,14 @@ import team from './../assets/svgs/team';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { SvgXml } from 'react-native-svg';
 import lock from '../assets/svgs/lock';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import { DEBUG_MODE, CROSSED_PATHS } from '../constants/storage';
 
 class AboutScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //
+      tapCount: 0, // tracks number of taps, for debugging
     };
   }
 
@@ -23,17 +25,59 @@ class AboutScreen extends Component {
   }
 
   handleBackPress = () => {
+    this.setState({ tapCount: 0 });
     this.backToMain();
     return true;
   };
 
   componentDidMount() {
+    GetStoreData(DEBUG_MODE).then(dbgMode => {
+      if (dbgMode == 'true') {
+        this.setState({ tapCount: 4 });
+      }
+    });
+
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
+
+  handleTapTeam = () => {
+    this.setState({ tapCount: this.state.tapCount + 1 });
+    if (this.state.tapCount >= 3) {
+      if (this.state.tapCount == 3) {
+        // Debug mode on
+        SetStoreData(DEBUG_MODE, 'true');
+
+        // Create faux intersection data
+        let pseudoBin = [];
+        for (let i = 0; i < 28; i++) {
+          const intersections = Math.max(
+            0,
+            Math.floor(Math.random() * 50 - 20),
+          );
+          pseudoBin.push(intersections);
+        }
+        let dayBin = JSON.stringify(pseudoBin);
+        SetStoreData(CROSSED_PATHS, dayBin);
+      } else if (this.state.tapCount == 7) {
+        // Debug mode off
+
+        // Create faux intersection data
+        let pseudoBin = [];
+        for (let i = 0; i < 28; i++) {
+          pseudoBin.push(0);
+        }
+        let dayBin = JSON.stringify(pseudoBin);
+        SetStoreData(CROSSED_PATHS, dayBin);
+
+        this.setState({ tapCount: 0 });
+        SetStoreData(DEBUG_MODE, 'false');
+      }
+    }
+  };
 
   render() {
     return (
@@ -53,7 +97,19 @@ class AboutScreen extends Component {
             {languages.t('label.commitment_para')}
           </Text>
 
-          <SvgXml style={styles.aboutSectionIconTeam} xml={team} />
+          <SvgXml
+            onPress={this.handleTapTeam.bind(this)}
+            style={
+              (styles.aboutSectionIconTeam,
+              {
+                width: 40.38,
+                height: 19,
+                marginTop: 36,
+                backgroundColor: this.state.tapCount > 3 ? 'red' : null,
+              })
+            }
+            xml={team}
+          />
           <Text style={styles.aboutSectionTitles}>
             {languages.t('label.team')}
           </Text>
@@ -79,11 +135,6 @@ const styles = StyleSheet.create({
     width: '87.5%',
     alignSelf: 'center',
     backgroundColor: Colors.WHITE,
-  },
-  aboutSectionIconTeam: {
-    width: 40.38,
-    height: 19,
-    marginTop: 36,
   },
   aboutSectionIconLock: {
     width: 20,

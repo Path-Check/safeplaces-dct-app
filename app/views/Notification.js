@@ -18,7 +18,7 @@ import fontFamily from '../constants/fonts';
 import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 import AsyncStorage from '@react-native-community/async-storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import { GetStoreData } from '../helpers/General';
 import {
   VictoryBar,
   VictoryAxis,
@@ -87,16 +87,6 @@ class NotificationScreen extends Component {
   getInitialState = async () => {
     GetStoreData(CROSSED_PATHS).then(dayBin => {
       console.log(dayBin);
-
-      /* DEBUGGING TOOL -- handy for creating faux data
-      let pseudoBin = [];
-      for (var i = 0; i < 28; i++) {
-        // Random Integer between 0-99
-        const intersections = Math.floor((Math.random() * 500) / 300);
-        pseudoBin.push(intersections);
-      }
-      dayBin = JSON.stringify(pseudoBin);
-      */
 
       if (dayBin === null) {
         this.setState({ dataAvailable: false });

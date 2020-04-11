@@ -50,7 +50,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import SettingsGear from './../assets/svgs/settingsGear';
 import fontFamily from '../constants/fonts';
-import { PARTICIPATE, CROSSED_PATHS } from '../constants/storage';
+import { PARTICIPATE, CROSSED_PATHS, DEBUG_MODE } from '../constants/storage';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -131,18 +131,23 @@ class LocationTracking extends Component {
 
   checkIfUserAtRisk() {
     BackgroundTaskServices.start();
-    // already set on 12h timer, but run when this screen opens too
-    checkIntersect();
 
-    GetStoreData('CROSSED_PATHS').then(dayBin => {
-      dayBin = JSON.parse(dayBin);
-      if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
-        console.log('Found crossed paths');
-        this.setState({ currentState: StateEnum.AT_RISK });
-      } else {
-        console.log("Can't find crossed paths");
-        this.setState({ currentState: StateEnum.NO_CONTACT });
+    GetStoreData(DEBUG_MODE).then(dbgMode => {
+      if (dbgMode != 'true') {
+        // already set on 12h timer, but run when this screen opens too
+        checkIntersect();
       }
+
+      GetStoreData(CROSSED_PATHS).then(dayBin => {
+        dayBin = JSON.parse(dayBin);
+        if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
+          console.log('Found crossed paths');
+          this.setState({ currentState: StateEnum.AT_RISK });
+        } else {
+          console.log("Can't find crossed paths");
+          this.setState({ currentState: StateEnum.NO_CONTACT });
+        }
+      });
     });
   }
 
