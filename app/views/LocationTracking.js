@@ -25,9 +25,8 @@ import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
 //import BroadcastingServices from '../services/BroadcastingService';
-import BackgroundTaskServices, {
-  executeTask,
-} from '../services/BackgroundTaskService';
+import BackgroundTaskServices from '../services/BackgroundTaskService';
+import checkIntersect from '../helpers/Intersect';
 
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import exportImage from './../assets/images/export.png';
@@ -133,7 +132,7 @@ class LocationTracking extends Component {
   checkIfUserAtRisk() {
     BackgroundTaskServices.start();
     // already set on 12h timer, but run when this screen opens too
-    executeTask();
+    checkIntersect();
 
     GetStoreData('CROSSED_PATHS').then(dayBin => {
       dayBin = JSON.parse(dayBin);
