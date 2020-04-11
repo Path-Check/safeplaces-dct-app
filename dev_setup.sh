@@ -184,6 +184,13 @@ if ! found_exe android-studio ; then
     fi
 fi
 
+if ! found_exe bundler ; then
+    echo "${BLUE}Installing Ruby bundler for Cocoapod management...${RESET}"
+    sudo gem install bundler
+    bundler
+    echo "${GREEN}Bundler is installed!${RESET}"
+fi
+
 
 # Need Watchman v4.9+ (watchman --version)
 if [[ "$OSTYPE" == "darwin"* ]] ; then
