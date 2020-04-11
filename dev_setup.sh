@@ -184,6 +184,7 @@ if ! found_exe android-studio ; then
     fi
 fi
 
+<<<<<<< HEAD
 # Install ruby bundler and cocoapods for iOS only, because they're only necessary for iOS development
 # Mac OS comes with ruby out of the box.
 if [[ "$OSTYPE" == "darwin"* ]] ; then
@@ -192,6 +193,12 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
         sudo gem install bundler
         echo "${GREEN}Bundler is installed!${RESET}"
     fi
+=======
+if ! gem list '^bundler$' -i --version 2.1.4; then
+    echo "${BLUE}Installing Ruby bundler for Cocoapod management...${RESET}"
+    sudo gem install bundler
+    echo "${GREEN}Bundler is installed!${RESET}"
+>>>>>>> 2ce0d1df632c898d87edaf569091d1e84ba85212
 fi
 
 
