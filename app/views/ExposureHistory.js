@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, BackHandler } from 'react-native';
-import styled from '@emotion/native';
+import styled, { css } from '@emotion/native';
 
 import fontFamily from '../constants/fonts';
 import languages from './../locales/languages';
@@ -10,6 +10,7 @@ import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { CROSSED_PATHS } from '../constants/storage';
 import { MAX_EXPOSURE_WINDOW, BIN_DURATION } from '../constants/history';
 import { DetailedHistory } from './ExposureHistory/DetailedHistory';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export const ExposureHistoryScreen = ({ navigation }) => {
   const [history, setHistory] = useState(null);
@@ -20,9 +21,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
       let dayBins = await GetStoreData(CROSSED_PATHS);
       setIsLoading(false);
 
-      console.log(dayBins);
-
-      dayBins = generateFakeIntersections(); // handy for creating faux data
+      // dayBins = generateFakeIntersections(6); // handy for creating faux data
 
       if (dayBins === null) {
         setHistory(null);
@@ -52,7 +51,11 @@ export const ExposureHistoryScreen = ({ navigation }) => {
     <NavigationBarWrapper
       title={languages.t('label.event_history_title')}
       onBackPress={() => navigation.goBack()}>
-      <Container>
+      <ScrollView
+        contentContainerStyle={css`
+          padding: 20px;
+          background-color: white;
+        `}>
         <PageTitle>{languages.t('history.timeline')}</PageTitle>
         {history ? (
           <DetailedHistory history={history} />
@@ -72,15 +75,10 @@ export const ExposureHistoryScreen = ({ navigation }) => {
             />
           </>
         )}
-      </Container>
+      </ScrollView>
     </NavigationBarWrapper>
   );
 };
-
-const Container = styled.View`
-  padding: 20px;
-  flex: 1;
-`;
 
 const PageTitle = styled.Text`
   font-size: 16px;
@@ -89,9 +87,10 @@ const PageTitle = styled.Text`
   font-family: 'IBM Plex Sans';
 `;
 
-function generateFakeIntersections() {
+// eslint-disable-next-line no-unused-vars
+function generateFakeIntersections(days = MAX_EXPOSURE_WINDOW) {
   let pseudoBin = [];
-  for (let i = 0; i < MAX_EXPOSURE_WINDOW; i++) {
+  for (let i = 0; i < days; i++) {
     // Random Integer between 0-99
     const intersections = Math.floor(Math.random() * 10);
     console.log(intersections);
@@ -139,9 +138,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 20,
     overflow: 'scroll',
-  },
-  pageTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryRegular,
   },
 });

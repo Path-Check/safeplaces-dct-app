@@ -2,6 +2,7 @@ import moment from 'moment';
 import React from 'react';
 import styled from '@emotion/native';
 import { CalendarDay } from './CalendarDay';
+import languages from '../../locales/languages';
 
 /**
  * Details for a single day exposure.
@@ -16,22 +17,19 @@ export const SingleExposureDetail = ({ daysAgo, exposureTime }) => {
   const date = moment().subtract(daysAgo, 'day');
 
   // TODO: need today, not "a few seconds ago"
-  const dateHumanized = date.fromNow();
+  const dateHumanized = date.calendar();
 
   return (
     <Container>
       <CalendarDay showMonthLabel date={date} exposureTime={exposureTime} />
       <DetailsBox>
-        <Heading>Possible exposure</Heading>
+        <Heading>{languages.t('history.possible_exposure')}</Heading>
         <SubheadingContainer>
           <SubheadingText>{exposureTimeHuman}</SubheadingText>
           <Divider />
           <SubheadingText>{dateHumanized}</SubheadingText>
         </SubheadingContainer>
-        <BodyText>
-          It is possible you were in contact with or close to someone who tested
-          positive for COVID-19
-        </BodyText>
+        <BodyText>{languages.t('history.possible_exposure_para')}</BodyText>
       </DetailsBox>
     </Container>
   );
