@@ -26,7 +26,7 @@ import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
 //import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
-import checkIntersect from '../helpers/Intersect';
+import { checkIntersect } from '../helpers/Intersect';
 
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import exportImage from './../assets/images/export.png';
@@ -423,8 +423,8 @@ class LocationTracking extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             {this.getMainText()}
-            <Text style={styles.subheaderText}>{this.getSubText()}</Text>
             <Text style={styles.subsubheaderText}>{this.getSubSubText()}</Text>
+            <Text style={styles.subheaderText}>{this.getSubText()}</Text>
             {this.getCTAIfNeeded()}
           </View>
         </View>
@@ -471,7 +471,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   contentContainer: {
-    width: width * 0.8,
+    width: width * 0.65,
     flex: 1,
     alignSelf: 'center',
   },
@@ -483,7 +483,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    top: '4%',
+    top: '9%',
   },
   pulseContainer: {
     position: 'absolute',
@@ -496,10 +496,10 @@ const styles = StyleSheet.create({
   mainTextAbove: {
     textAlign: 'center',
     lineHeight: 34,
-    marginTop: -170,
+    marginTop: -210,
     marginBottom: 125,
     color: Colors.WHITE,
-    fontSize: 26,
+    fontSize: 28,
     fontFamily: fontFamily.primaryMedium,
   },
   mainTextBelow: {
@@ -510,7 +510,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryMedium,
   },
   subheaderText: {
-    marginTop: '5%',
+    marginTop: 120,
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
@@ -518,11 +518,11 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryRegular,
   },
   subsubheaderText: {
-    marginTop: 15,
+    marginTop: -115,
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: fontFamily.primaryLight,
     marginBottom: '8%',
   },
