@@ -75,7 +75,7 @@
     "no_data": "No data",
     "notification_2_weeks_ago": "2 weeks ago",
     "notification_data_not_available": "No exposure data is available.",
-    "notification_random_data_button": "Select Healthcare Authority",
+    "notification_select_authority": "Select Healthcare Authority",
     "notification_title": "2-Week Exposure Profile",
     "notification_today": "today",
     "notification_warning_text": "If a Healthcare Authority exists in your area you can subscribe to obtain regular updates of exposure risks.",

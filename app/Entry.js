@@ -5,7 +5,6 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
-import { SafeAreaView } from 'react-native';
 import LocationTracking from './views/LocationTracking';
 import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
@@ -13,7 +12,7 @@ import ImportScreen from './views/Import';
 import OverlapScreen from './views/Overlap';
 import SettingsScreen from './views/Settings';
 import LicencesScreen from './views/Licenses';
-import NotificationScreen from './views/Notification';
+import { ExposureHistoryScreen } from './views/ExposureHistory';
 import MapLocation from './views/MapLocation';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
@@ -23,7 +22,7 @@ import Onboarding5 from './views/onboarding/Onboarding5';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 
-import { GetStoreData, SetStoreData } from './helpers/General';
+import { GetStoreData } from './helpers/General';
 import { PARTICIPATE } from './constants/storage';
 
 const Stack = createStackNavigator();
@@ -137,8 +136,8 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name='NotificationScreen'
-            component={NotificationScreen}
+            name='ExposureHistoryScreen'
+            component={ExposureHistoryScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
