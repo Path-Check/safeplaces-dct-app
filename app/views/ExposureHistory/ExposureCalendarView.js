@@ -1,40 +1,41 @@
 import React from 'react';
-import styled from '@emotion/native';
 import moment from 'moment';
+import { DayOfWeek, CalendarDay } from './CalendarDay';
+import { MonthGrid } from './MonthGrid';
+
+/**
+ * Get a date key that does not include time.
+ *
+ * @param {moment.Moment} date
+ */
+function getDayKey(date) {
+  return date.endOf('day').unix();
+}
 
 /**
  * Calendar view of recent exposures.
  *
- * @param {{history: !import('../../constants/history').HistoryDay[]}} param0
+ * @param {{
+ *   history: !import('../../constants/history').HistoryDay[],
+ *   weeks?: number,
+ * }} param0
  */
-// eslint-disable-next-line no-unused-vars
-export const ExposureCalendarView = ({ history }) => {
-  const localeData = moment.localeData();
+export const ExposureCalendarView = ({ history, weeks }) => {
+  /** @type {{[date: string]: number}} */
+  const exposureMap = {};
+  history.forEach(day => {
+    const date = moment().subtract(day.daysAgo, 'days');
+    exposureMap[getDayKey(date)] = day.exposureTime;
+  });
 
-  moment();
   return (
-    <Container>
-      <DaysOfWeek>
-        {localeData.weekdaysShort().map(d => (
-          <DayHeader key={d}>{d}</DayHeader>
-        ))}
-      </DaysOfWeek>
-    </Container>
+    <MonthGrid
+      weeks={weeks}
+      renderDayHeader={d => <DayOfWeek key={d}>{d}</DayOfWeek>}
+      renderDay={date => {
+        const exposureTime = exposureMap[getDayKey(date)];
+        return <CalendarDay date={date} exposureTime={exposureTime} />;
+      }}
+    />
   );
 };
-
-const Container = styled.View`
-  height: 180px;
-  padding: 4px;
-`;
-
-const DaysOfWeek = styled.View`
-  flex-direction: row;
-  flex: 1;
-`;
-
-const DayHeader = styled.Text`
-  text-transform: uppercase;
-  color: black;
-  flex: 1;
-`;
