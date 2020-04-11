@@ -34,7 +34,9 @@ export const ExposureCalendarView = ({ history, weeks }) => {
       renderDayHeader={d => <DayOfWeek key={d}>{d}</DayOfWeek>}
       renderDay={date => {
         const exposureTime = exposureMap[getDayKey(date)];
-        return <CalendarDay date={date} exposureTime={exposureTime} />;
+        return (
+          <CalendarDay showToday date={date} exposureTime={exposureTime} />
+        );
       }}
     />
   );
