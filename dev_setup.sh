@@ -184,6 +184,16 @@ if ! found_exe android-studio ; then
     fi
 fi
 
+# Install ruby bundler and cocoapods for iOS only, because they're only necessary for iOS development
+# Mac OS comes with ruby out of the box.
+if [[ "$OSTYPE" == "darwin"* ]] ; then
+    if ! gem list '^bundler$' -i --version 2.1.4; then
+        echo "${BLUE}Installing Ruby bundler for Cocoapod management...${RESET}"
+        sudo gem install bundler
+        echo "${GREEN}Bundler is installed!${RESET}"
+    fi
+fi
+
 
 # Need Watchman v4.9+ (watchman --version)
 if [[ "$OSTYPE" == "darwin"* ]] ; then
@@ -202,10 +212,17 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
 fi
 
 
+if ! found_exe yarn ; then
+    echo "${BLUE}Installing Yarn package manager${RESET}"
+    brew install yarn
+    yarn
+    echo "${GREEN}Yarn installed!${RESET}"
+fi
+
 if ! found_exe react-native ; then
     echo "${BLUE}Installing React Native tool...${RESET}"
-    sudo npm install -g react-native-cli
-    npm install
+    yarn global add react-native-cli
+    yarn
     echo "${GREEN}React Native tools installed!${RESET}"
 fi
 
