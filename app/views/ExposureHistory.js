@@ -25,7 +25,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
 
       if (dayBins === null) {
         setHistory(null);
-        console.log("Can't found Crossed Paths");
+        console.log("Can't find Crossed Paths");
       } else {
         console.log('Found Crossed Paths');
         setHistory(convertToDailyMinutesExposed(dayBins));

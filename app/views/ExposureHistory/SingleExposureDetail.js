@@ -17,7 +17,7 @@ export const SingleExposureDetail = ({ daysAgo, exposureTime }) => {
   const date = moment().subtract(daysAgo, 'day');
 
   // TODO: need today, not "a few seconds ago"
-  const dateHumanized = date.calendar();
+  const dateHumanized = date.startOf('day').calendar();
 
   return (
     <Container>
