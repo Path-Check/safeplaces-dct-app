@@ -23,7 +23,7 @@
   [GMSServices provideAPIKey:@"AIzaSyB0-TLHy-0Nmed6rYG1IkvwqVtjAKHV9lk"];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                   moduleName:@"PrivateKit"
+                                                   moduleName:@"COVIDSafePaths"
                                             initialProperties:nil];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
@@ -82,8 +82,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 - (void)applicationWillTerminate:(UIApplication *)application {
   UILocalNotification *notification = [[UILocalNotification alloc] init];
   notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
-  notification.alertTitle = @"Private Kit Was Closed";
-  notification.alertBody = @"Private Kit requires to be running.";
+  notification.alertTitle = @"COVID Safe Paths Was Closed";
+  notification.alertBody = @"COVID Safe Paths requires to be running.";
   notification.timeZone = [NSTimeZone defaultTimeZone];
   notification.soundName = UILocalNotificationDefaultSoundName;
   notification.applicationIconBadgeNumber = 0;
