@@ -1,0 +1,34 @@
+name: Dev setup
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - 'dev_setup.sh'
+  pull_request:
+    branches: [develop]
+    paths:
+      - 'dev_setup.sh'
+
+jobs:
+  test-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: ./dev_setup.sh -ni
+        with:
+          CI: true
+
+      - run: ./__tests__/dev_setup.test.sh
+
+  test-mac:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: ./dev_setup.sh -ni
+        with:
+          CI: true
+
+      - run: ./__tests__/dev_setup.test.sh
