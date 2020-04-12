@@ -141,10 +141,12 @@ if ! found_exe android-studio; then
   echo "Building for Android requires Android Studio.  Would you like to see Android Studio instructions?"
   if get_YN "" "" "Skipping"; then
 
-    echo "${YELLOW}Install Android Studio from https://developer.android.com/studio/index.html${RESET}"
-    echo "You can also use your software store to install."
-    echo "${BLUE}Press RETURN after completing this step.${RESET}"
-    read
+    if [[ $non_interactive != "Y" ]]; then
+      echo "${YELLOW}Install Android Studio from https://developer.android.com/studio/index.html${RESET}"
+      echo "You can also use your software store to install."
+      echo "${BLUE}Press RETURN after completing this step.${RESET}"
+      read
+    fi
 
     # Need Android 9 (Pie) SDK
     echo "We need the Android 9 (Pie) SDK.  Please follow these steps:"
@@ -194,6 +196,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     sudo gem install bundler
     echo "${GREEN}Bundler is installed!${RESET}"
   fi
+
+  cd ios
+  bundle install && bundle exec pod install --repo-update
+  cd ..
 fi
 
 # Need Watchman v4.9+ (watchman --version)
