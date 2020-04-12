@@ -1,4 +1,4 @@
-# COVID Safe Paths <img align="left" src="./assets/ShieldKeyHold512x512.png" data-canonical-src="./assets/ShieldKeyHold512x512.png" width="40" height="40"/> ![Android and iOS build on MacOS](https://github.com/tripleblindmarket/private-kit/workflows/Android%20and%20iOS%20build%20on%20MacOS/badge.svg)
+# COVID Safe Paths <img align="left" src="./assets/ShieldKeyHold512x512.png" data-canonical-src="./assets/ShieldKeyHold512x512.png" width="40" height="40"/> ![Android and iOS build on MacOS](https://github.com/tripleblindmarket/covid-safe-paths/workflows/Android%20and%20iOS%20build%20on%20MacOS/badge.svg)
 
 **applying the technology and philosophy of Private Kit to COVID**
 
@@ -24,7 +24,7 @@ Safe Paths logs your device’s location once every five minutes and stores 28 d
 
 **Downloads for COVID Safe Paths:** _coming soon!_
 
-**Downloads for Private Kit:** [Google Play](https://play.google.com/store/apps/details?id=edu.mit.privatekit) | [Apple Store](https://apps.apple.com/us/app/private-kit-prototype/id1501903733)
+**Downloads for COVID Safe Paths:** [Google Play](https://play.google.com/store/apps/details?id=edu.mit.privatekit) | [Apple Store](https://apps.apple.com/us/app/private-kit-prototype/id1501903733)
 
 # Development Overview
 
