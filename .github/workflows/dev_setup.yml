@@ -16,15 +16,32 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
       - run: CI=true ./dev_setup.sh -ni
 
-      - run: ./__tests__/dev_setup.test.sh
+      - run: yarn && yarn run test:dev_setup
 
   test-mac:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
       - run: CI=true ./dev_setup.sh -ni
 
-      - run: ./__tests__/dev_setup.test.sh
+      - run: yarn && yarn run test:dev_setup
+
