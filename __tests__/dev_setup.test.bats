@@ -70,13 +70,13 @@ function found_exe() {
 }
 
 function linux_only() {
-  if [ "$OSTYPE" != "darwin"* ]; then
+  if [ "$OSTYPE" != "linux"* ]; then
     skip "Linux only test"
   fi
 }
 
 function mac_only() {
-  if [ "$OSTYPE" == "darwin"* ]; then
-    skip "Linux only test"
+  if [ "$OSTYPE" != "darwin"* ]; then
+    skip "Mac only test"
   fi
 }
