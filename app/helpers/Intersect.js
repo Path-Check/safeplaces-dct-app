@@ -168,18 +168,20 @@ function normalizeData(arr) {
   //   * Improperly sorted data (can happen after an Import)
   let result = [];
 
-  for (let i = 0; i < arr.length; i++) {
-    elem = arr[i];
-    if ('time' in elem && 'latitude' in elem && 'longitude' in elem) {
-      result.push({
-        time: Number(elem.time),
-        latitude: Number(elem.latitude),
-        longitude: Number(elem.longitude),
-      });
+  if (arr) {
+    for (let i = 0; i < arr.length; i++) {
+      let elem = arr[i];
+      if ('time' in elem && 'latitude' in elem && 'longitude' in elem) {
+        result.push({
+          time: Number(elem.time),
+          latitude: Number(elem.latitude),
+          longitude: Number(elem.longitude),
+        });
+      }
     }
-  }
 
-  result.sort((a, b) => a.time - b.time);
+    result.sort((a, b) => a.time - b.time);
+  }
   return result;
 }
 

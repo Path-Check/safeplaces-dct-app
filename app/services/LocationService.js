@@ -273,7 +273,7 @@ export default class LocationServices {
     BackgroundGeolocation.on('stop', () => {
       PushNotification.localNotification({
         title: 'Location Tracking Was Disabled',
-        message: 'Private Kit requires location services.',
+        message: 'COVID Safe Paths requires location services.',
       });
       console.log('[INFO] stop');
     });

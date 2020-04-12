@@ -26,7 +26,7 @@ import Colors from '../constants/colors';
 import LocationServices from '../services/LocationService';
 //import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
-import checkIntersect from '../helpers/Intersect';
+import { checkIntersect } from '../helpers/Intersect';
 
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import exportImage from './../assets/images/export.png';
@@ -420,14 +420,21 @@ class LocationTracking extends Component {
           translucent={true}
         />
         {this.getPulseIfNeeded()}
+
         <View style={styles.mainContainer}>
-          <View style={styles.contentContainer}>
-            {this.getMainText()}
-            <Text style={styles.subheaderText}>{this.getSubText()}</Text>
+          <View style={styles.contentAbovePulse}>
+            {this.state.currentState === StateEnum.AT_RISK &&
+              this.getMainText()}
             <Text style={styles.subsubheaderText}>{this.getSubSubText()}</Text>
+          </View>
+          <View style={styles.contentBelowPulse}>
+            {this.state.currentState !== StateEnum.AT_RISK &&
+              this.getMainText()}
+            <Text style={styles.subheaderText}>{this.getSubText()}</Text>
             {this.getCTAIfNeeded()}
           </View>
         </View>
+
         <View>
           <TouchableOpacity
             onPress={this.getMayoInfoPressed.bind(this)}
@@ -459,21 +466,40 @@ class LocationTracking extends Component {
   }
 }
 
+const PULSE_GAP = 80;
+
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
     flex: 1,
+    justifyContent: 'flex-end',
   },
   mainContainer: {
-    top: '50%',
-    flex: 1,
+    position: 'absolute',
+    // resizeMode: 'contain',
+    // aligns the center of the main container with center of pulse
+    // so that two `flex: 1` views will be have a reasonable chance at natural
+    // flex flow for above and below the pulse.
+    top: '-10%',
+    left: 0,
+    right: 0,
+    height: '100%',
+    paddingHorizontal: '12%',
+    paddingBottom: 12,
   },
-  contentContainer: {
-    width: width * 0.8,
+  contentAbovePulse: {
     flex: 1,
-    alignSelf: 'center',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingBottom: PULSE_GAP / 2,
+  },
+  contentBelowPulse: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: PULSE_GAP,
   },
   settingsContainer: {
     position: 'absolute',
@@ -483,11 +509,12 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    top: '4%',
+    top: 24,
   },
   pulseContainer: {
     position: 'absolute',
     resizeMode: 'contain',
+    height: '100%',
     top: '-13%',
     left: 0,
     right: 0,
@@ -496,10 +523,9 @@ const styles = StyleSheet.create({
   mainTextAbove: {
     textAlign: 'center',
     lineHeight: 34,
-    marginTop: -170,
-    marginBottom: 125,
+    marginBottom: 24,
     color: Colors.WHITE,
-    fontSize: 26,
+    fontSize: 28,
     fontFamily: fontFamily.primaryMedium,
   },
   mainTextBelow: {
@@ -508,9 +534,10 @@ const styles = StyleSheet.create({
     color: Colors.WHITE,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
+    marginBottom: 24,
   },
   subheaderText: {
-    marginTop: '5%',
+    marginBottom: 24,
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
@@ -518,13 +545,12 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryRegular,
   },
   subsubheaderText: {
-    marginTop: 15,
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: fontFamily.primaryLight,
-    marginBottom: '8%',
+    marginBottom: 24,
   },
   mayoInfoRow: {
     flexDirection: 'row',
