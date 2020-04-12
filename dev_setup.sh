@@ -28,15 +28,17 @@ function found_exe() {
   hash "$1" 2>/dev/null
 }
 
-if found_exe tput; then
-  if [[ "$TERM" != "" && $(tput colors) != "-1" ]]; then
-    # Get some colors we can use to spice up messages!
-    GREEN=$(tput setaf 2)
-    BLUE=$(tput setaf 4)
-    CYAN=$(tput setaf 6)
-    YELLOW=$(tput setaf 3)
-    RESET=$(tput sgr0)
-    HIGHLIGHT=$YELLOW
+if [[ "$CI" != "true" ]]; then
+  if found_exe tput; then
+    if [[ $(tput colors) != "-1" ]]; then
+      # Get some colors we can use to spice up messages!
+      GREEN=$(tput setaf 2)
+      BLUE=$(tput setaf 4)
+      CYAN=$(tput setaf 6)
+      YELLOW=$(tput setaf 3)
+      RESET=$(tput sgr0)
+      HIGHLIGHT=$YELLOW
+    fi
   fi
 fi
 
