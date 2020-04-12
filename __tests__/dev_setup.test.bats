@@ -46,6 +46,11 @@
   [ "$status" -eq 0 ]
 }
 
+@test "ios/vendor/bundle exists" {
+  run test -d ios/vendor/bundle
+  [ "$status" -eq 0 ]
+}
+
 @test "ANDROID_SDK_ROOT is set (Mac)" {
   mac_only
 
