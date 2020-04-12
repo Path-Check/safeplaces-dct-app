@@ -76,9 +76,9 @@ function ExportScreen(props) {
 
       var options = {};
       var jsonData = JSON.stringify(locationData);
-      const title = 'PrivateKit.json';
+      const title = 'COVIDSafePaths.json';
       const filename = unixtimeUTC + '.json';
-      const message = 'Here is my location log from Private Kit.';
+      const message = 'Here is my location log from COVID Safe Paths.';
       if (isPlatformiOS()) {
         var url = RNFS.DocumentDirectoryPath + '/' + filename;
         await RNFS.writeFile(url, jsonData, 'utf8')
