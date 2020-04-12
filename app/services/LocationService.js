@@ -1,11 +1,12 @@
-import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
-import { isPlatformAndroid } from '../Util';
-import languages from '../locales/languages';
-import { isLocationsNearby as areLocationsNearby } from '../helpers/Intersect';
+
 import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import { isLocationsNearby as areLocationsNearby } from '../helpers/Intersect';
+import languages from '../locales/languages';
+import { isPlatformAndroid } from '../Util';
 
 let isBackgroundGeolocationConfigured = false;
 
@@ -79,7 +80,7 @@ export class LocationData {
       }
 
       // Backfill the stationary points, if available
-      // The assumption is that if we see a gap in the data, and the 
+      // The assumption is that if we see a gap in the data, and the
       // device hasn't moved significantly, then we can fill in the missing data
       // with the current location.  This makes it easier for a health authority
       // person to have a set of locations over time, and they can manually
@@ -98,7 +99,10 @@ export class LocationData {
         // Actually do the backfill if the current point is nearby the previous
         // point and the time is within the maximum time to backfill.
         let lastRecordedTime = lastLocationArray['time'];
-        if (areCurrentPreviousNearby && unixtimeUTC - lastRecordedTime < this.maxBackfillTime) {
+        if (
+          areCurrentPreviousNearby &&
+          unixtimeUTC - lastRecordedTime < this.maxBackfillTime
+        ) {
           for (
             let newTS = lastRecordedTime + this.locationInterval;
             newTS < unixtimeUTC - this.locationInterval;
