@@ -47,6 +47,8 @@
 }
 
 @test "ios/vendor/bundle exists" {
+  mac_only
+
   run test -d ios/vendor/bundle
   [ "$status" -eq 0 ]
 }
