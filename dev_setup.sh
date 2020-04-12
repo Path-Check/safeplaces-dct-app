@@ -29,7 +29,7 @@ function found_exe() {
 }
 
 if found_exe tput; then
-  if [[ $(tput colors) != "-1" ]]; then
+  if [[ "$TERM" != "" && $(tput colors) != "-1" ]]; then
     # Get some colors we can use to spice up messages!
     GREEN=$(tput setaf 2)
     BLUE=$(tput setaf 4)
