@@ -90,11 +90,11 @@ git push origin feature/<your-feature-branch-name> # after resolving all conflic
 
 - You should see the new branch that you recently created and pushed on this page. Example - feature/your-branch-name (similar to the image shown below).
 
-  ![Image of Github branches](.github/.github/branches-page.png)
+  ![Image of Github branches](.github/branches-page.png)
 
 - Click on the "New pull request" button next to your new feature branch, and it should take you to open the pull request page (similar to the image shown below).
 
-  ![Image of Github branches](.github/.github/pull-request-page.png)
+  ![Image of Github branches](.github/pull-request-page.png)
 
 - Verify following -
 
