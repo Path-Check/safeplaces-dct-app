@@ -198,6 +198,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   fi
 
   cd ios
+  bundle config path vendor/bundle
   bundle install && bundle exec pod install --repo-update
   cd ..
 fi
