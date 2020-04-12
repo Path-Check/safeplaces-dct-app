@@ -112,16 +112,24 @@ describe('importTakeoutData', () => {
         readFile: jest
           .fn()
           .mockReturnValueOnce(
-            JSON.stringify([
-              makeTimelineObject(location1),
-              makeTimelineObject(location2),
-            ]),
+            Promise.resolve(
+              JSON.stringify({
+                timelineObjects: [
+                  makeTimelineObject(location1),
+                  makeTimelineObject(location2),
+                ],
+              }),
+            ),
           )
           .mockReturnValueOnce(
-            JSON.stringify([
-              makeTimelineObject(location3),
-              makeTimelineObject(location4),
-            ]),
+            Promise.resolve(
+              JSON.stringify({
+                timelineObjects: [
+                  makeTimelineObject(location3),
+                  makeTimelineObject(location4),
+                ],
+              }),
+            ),
           ),
         unlink: async () => {},
       };
@@ -155,16 +163,24 @@ describe('importTakeoutData', () => {
         readFile: jest
           .fn()
           .mockReturnValueOnce(
-            JSON.stringify([
-              makeTimelineObject(location1),
-              makeTimelineObject(location2),
-            ]),
+            Promise.resolve(
+              JSON.stringify({
+                timelineObjects: [
+                  makeTimelineObject(location1),
+                  makeTimelineObject(location2),
+                ],
+              }),
+            ),
           )
           .mockReturnValueOnce(
-            JSON.stringify([
-              makeTimelineObject(location3),
-              makeTimelineObject(location4),
-            ]),
+            Promise.resolve(
+              JSON.stringify({
+                timelineObjects: [
+                  makeTimelineObject(location3),
+                  makeTimelineObject(location4),
+                ],
+              }),
+            ),
           ),
         unlink: async () => {},
       };

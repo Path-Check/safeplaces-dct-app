@@ -150,7 +150,9 @@ Array [
 2. Frequency: "Export once" 
 3. File type & size: ".zip" and "1GB" 
 4. Google sends an email when the export is ready 
-5. Return here to import the archive
+5. Return here to import locations. Import options: 
+- Import from Google Drive 
+- Download from browser, then import from local phone files
         </Text>
         <View
           accessible={true}
