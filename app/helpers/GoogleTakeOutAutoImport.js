@@ -89,9 +89,34 @@ export async function importTakeoutData(filePath) {
     for (const filepath of monthlyLocationFiles) {
       console.log('[INFO] File to import:', filepath);
 
-      const isExist = await RNFS.exists(filepath);
+      const isExist = await RNFS.exists(`file://${filepath}`);
       if (isExist) {
-        const contents = await RNFS.readFile(filepath);
+        console.log('[INFO] File exists:', `file://${filepath}`);
+
+        const contents = await RNFS.readFile(`file://${filepath}`).catch(
+          err => {
+            console.log(
+              `[INFO] Caught error on opening "file://${filepath}"`,
+              err,
+            );
+            console.log(
+              `[INFO] Attempting to open file "file://${filepath}" again`,
+              err,
+            );
+
+            /**
+             * IMPORTANT!!!
+             * A temporary hack around URI generation bug in react-native-fs on android.
+             * An exception is thrown as `file://` is not in the file URI:
+             * "Error: ENOENT: No content provider:
+             *  /data/user/0/edu.mit.privatekit/cache/Takeout-2020-04-12T15:48:54.295Z/Takeout/Location History/Semantic Location History/2020/2020_APRIL.json,
+             *  open '/data/user/0/edu.mit.privatekit/cache/Takeout-2020-04-12T15:48:54.295Z/Takeout/Location History/Semantic Location History/2020/2020_APRIL.json'
+             * "
+             * @see https://github.com/itinance/react-native-fs/blob/master/android/src/main/java/com/rnfs/RNFSManager.java#L110
+             */
+            return RNFS.readFile(`file://file://${filepath}`);
+          },
+        );
 
         newLocations = [
           ...newLocations,
@@ -103,7 +128,7 @@ export async function importTakeoutData(filePath) {
       }
     }
   } catch (err) {
-    console.error('[Error] Failed to import Google Takeout', err);
+    console.log('[Error] Failed to import Google Takeout', err);
   }
   // clean up unzipped folders
   if (path) {

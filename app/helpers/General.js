@@ -48,7 +48,7 @@ export async function pickFile() {
   // Pick a single file - returns actual path on Android, file:// uri on iOS
   try {
     const res = await DocumentPicker.pick({
-      type: [DocumentPicker.types.zip],
+      type: [DocumentPicker.types.zip, DocumentPicker.types.allFiles],
       usePath: true,
     });
     return res.uri;
