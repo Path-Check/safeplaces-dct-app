@@ -16,6 +16,7 @@ import { LANG_OVERRIDE } from '../constants/storage';
 
 import en from './en.json';
 import ht from './ht.json';
+import it from './it.json';
 
 // This will fetch the user's language
 // Set up as a function so first onboarding screen can also update
@@ -56,6 +57,7 @@ i18next.init({
   resources: {
     en: { label: 'English', translation: en },
     ht: { label: 'Kreyòl ayisyen', translation: ht },
+    it: { label: 'Italian', translation: it },
   },
 });
 
