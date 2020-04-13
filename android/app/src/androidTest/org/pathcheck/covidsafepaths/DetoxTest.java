@@ -1,4 +1,4 @@
-package edu.mit.privatekit;
+package org.pathcheck.covidsafepaths;
 
 import com.wix.detox.Detox;
 
