@@ -1,8 +1,9 @@
-import * as React from 'react';
-import { StyleSheet, Dimensions, View } from 'react-native';
-import Button from './Button';
 import PropTypes from 'prop-types';
+import * as React from 'react';
+import { Dimensions, StyleSheet, View } from 'react-native';
+
 import fontFamily from '../constants/fonts';
+import Button from './Button';
 
 const width = Dimensions.get('window').width;
 

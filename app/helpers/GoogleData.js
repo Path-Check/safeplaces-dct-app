@@ -1,8 +1,8 @@
+import { LOCATION_DATA } from '../constants/storage';
 /**
  * Import a Google JSon into the Database.
  */
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { LOCATION_DATA } from '../constants/storage';
 
 function BuildLocalFormat(placeVisit) {
   return (loc = {

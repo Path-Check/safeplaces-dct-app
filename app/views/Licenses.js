@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  Platform,
+  BackHandler,
+  Dimensions,
   Image,
   Linking,
-  Dimensions,
-  BackHandler,
+  Platform,
   ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
-import packageJson from '../../package.json';
 
+import packageJson from '../../package.json';
+import foreArrow from './../assets/images/foreArrow.png';
+import licenses from './../assets/LICENSE.json';
+import languages from './../locales/languages';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import languages from './../locales/languages';
-import licenses from './../assets/LICENSE.json';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import foreArrow from './../assets/images/foreArrow.png';
 
 class LicensesScreen extends Component {
   constructor(props) {

@@ -1,11 +1,9 @@
-import 'react-native';
 import React from 'react';
-import renderer from 'react-test-renderer';
+import {render} from '@testing-library/react-native';
 import Overlap from '../Overlap';
 
 it('renders correctly', () => {
-  const tree = renderer
-    .create(<Overlap />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const {asJSON} = render(<Overlap />);
+
+  expect(asJSON()).toMatchSnapshot();
 });
