@@ -15,23 +15,23 @@ const Risk = {
  *
  * @param {{
  *   date: moment.Moment,
- *   exposureTime?: number,
+ *   exposureMinutes?: number,
  *   showMonthLabel?: boolean
  *   showToday?: boolean
  * }} param0
  */
 export const CalendarDay = ({
   date,
-  exposureTime,
+  exposureMinutes,
   showToday = false,
   showMonthLabel = false,
 }) => {
   let riskLevel = Risk.Unknown;
 
-  if (exposureTime > 0) {
+  if (exposureMinutes > 0) {
     riskLevel = Risk.Possible;
   }
-  if (exposureTime === 0) {
+  if (exposureMinutes === 0) {
     riskLevel = Risk.None;
   }
 

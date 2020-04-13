@@ -1,25 +1,30 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { CalendarDay } from '../CalendarDay';
 import moment from 'moment';
 
-const FIXED_DATE = moment('2020-04-11T22:29:02.756Z');
+import { CalendarDay } from '../CalendarDay';
+
+const FIXED_DATE = moment('2020-04-11').startOf('day');
 
 it('possible exposure matches snapshot', () => {
-  const { asJSON } = render(<CalendarDay date={FIXED_DATE} exposureTime={5} />);
+  const { asJSON } = render(
+    <CalendarDay date={FIXED_DATE} exposureMinutes={5} />,
+  );
 
   expect(asJSON()).toMatchSnapshot();
 });
 
 it('no exposure matches snapshot', () => {
-  const { asJSON } = render(<CalendarDay date={FIXED_DATE} exposureTime={5} />);
+  const { asJSON } = render(
+    <CalendarDay date={FIXED_DATE} exposureMinutes={5} />,
+  );
 
   expect(asJSON()).toMatchSnapshot();
 });
 
 it('unknown exposure matches snapshot', () => {
   const { asJSON } = render(
-    <CalendarDay date={FIXED_DATE} exposureTime={undefined} />,
+    <CalendarDay date={FIXED_DATE} exposureMinutes={undefined} />,
   );
 
   expect(asJSON()).toMatchSnapshot();

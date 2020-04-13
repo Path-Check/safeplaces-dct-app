@@ -12,8 +12,8 @@ export const BIN_DURATION = 5;
  * Format of a single history item
  *
  * @typedef {{
- *   daysAgo: number,
- *   exposureTime: number,
+ *   date: import("moment").Moment,
+ *   exposureMinutes: number,
  * }} HistoryDay
  */
 

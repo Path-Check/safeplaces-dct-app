@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BackHandler } from 'react-native';
 import { css } from '@emotion/native';
+import moment from 'moment';
 
 import languages from './../locales/languages';
 import { GetStoreData } from '../helpers/General';
@@ -119,12 +120,14 @@ function convertToDailyMinutesExposed(dayBin) {
     return null;
   }
 
+  const today = moment().startOf('day');
+
   const dailyMinutesExposed = dayBinParsed
     .slice(0, MAX_EXPOSURE_WINDOW) // last two weeks of crossing data only
     .map((binCount, i) => {
       return {
-        daysAgo: i,
-        exposureTime: binCount * BIN_DURATION,
+        date: today.subtract(i, 'days'),
+        exposureMinutes: binCount * BIN_DURATION,
       };
     });
   return dailyMinutesExposed;

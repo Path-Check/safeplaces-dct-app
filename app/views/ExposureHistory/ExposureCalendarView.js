@@ -24,8 +24,7 @@ export const ExposureCalendarView = ({ history, weeks }) => {
   /** @type {{[date: string]: number}} */
   const exposureMap = {};
   history.forEach(day => {
-    const date = moment().subtract(day.daysAgo, 'days');
-    exposureMap[getDayKey(date)] = day.exposureTime;
+    exposureMap[getDayKey(day.date)] = day.exposureMinutes;
   });
 
   return (
@@ -33,9 +32,13 @@ export const ExposureCalendarView = ({ history, weeks }) => {
       weeks={weeks}
       renderDayHeader={d => <DayOfWeek key={d}>{d}</DayOfWeek>}
       renderDay={date => {
-        const exposureTime = exposureMap[getDayKey(date)];
+        const exposureMinutes = exposureMap[getDayKey(date)];
         return (
-          <CalendarDay showToday date={date} exposureTime={exposureTime} />
+          <CalendarDay
+            showToday
+            date={date}
+            exposureMinutes={exposureMinutes}
+          />
         );
       }}
     />

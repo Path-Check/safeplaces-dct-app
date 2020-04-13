@@ -14,27 +14,27 @@ import { Typography } from '../../components/Typography';
  * @param {{history: !import('../constants/history').History}} param0
  */
 export const DetailedHistory = ({ history }) => {
-  const exposedDays = history.filter(day => day.exposureTime > 0);
+  const exposedDays = history.filter(day => day.exposureMinutes > 0);
   return (
     <>
       <ExposureCalendarView weeks={3} history={history} />
 
       <Divider />
 
-      {exposedDays.map(({ exposureTime, daysAgo }) => (
+      {exposedDays.map(({ exposureMinutes, date }) => (
         <SingleExposureDetail
-          key={daysAgo}
-          daysAgo={daysAgo}
-          exposureTime={exposureTime}
+          key={date.format()}
+          date={date}
+          exposureMinutes={exposureMinutes}
         />
       ))}
 
-      <Typography use="headline2">
+      <Typography use='headline2'>
         {languages.t('history.what_does_this_mean')}
       </Typography>
       <Typography>{languages.t('history.what_does_this_mean_para')}</Typography>
 
-      <Typography use="headline2">
+      <Typography use='headline2'>
         {languages.t('history.what_if_no_symptoms')}
       </Typography>
       <Typography>{languages.t('history.what_if_no_symptoms_para')}</Typography>

@@ -4,28 +4,32 @@ import styled from '@emotion/native';
 import { CalendarDay } from './CalendarDay';
 import languages from '../../locales/languages';
 
+const MINUTE_IN_MS = 60 * 1000;
+
 /**
  * Details for a single day exposure.
  *
  * @param {!import('../../constants/history').HistoryDay} props
  */
-export const SingleExposureDetail = ({ daysAgo, exposureTime }) => {
-  const exposureTimeHuman = moment
-    .duration(exposureTime * 60 * 1000)
+export const SingleExposureDetail = ({ date, exposureMinutes }) => {
+  const exposureTimeHumanized = moment
+    .duration(exposureMinutes * MINUTE_IN_MS)
     .humanize();
 
-  const date = moment().subtract(daysAgo, 'day');
-
   // TODO: need today, not "a few seconds ago"
-  const dateHumanized = date.startOf('day').calendar();
+  const dateHumanized = date.calendar();
 
   return (
     <Container>
-      <CalendarDay showMonthLabel date={date} exposureTime={exposureTime} />
+      <CalendarDay
+        showMonthLabel
+        date={date}
+        exposureMinutes={exposureMinutes}
+      />
       <DetailsBox>
         <Heading>{languages.t('history.possible_exposure')}</Heading>
         <SubheadingContainer>
-          <SubheadingText>{exposureTimeHuman}</SubheadingText>
+          <SubheadingText>{exposureTimeHumanized}</SubheadingText>
           <Divider />
           <SubheadingText>{dateHumanized}</SubheadingText>
         </SubheadingContainer>
