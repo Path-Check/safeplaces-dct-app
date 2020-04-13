@@ -75,7 +75,7 @@ const getBorder = ({ riskLevel, theme }) => {
   let color = 'transparent';
 
   if (riskLevel === Risk.Unknown) {
-    color = theme.borders;
+    color = theme.border;
   }
 
   if (riskLevel === Risk.Today) {

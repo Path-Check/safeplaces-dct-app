@@ -17,7 +17,7 @@ export const main = {
 
   success: Color.SUCCESS,
   warning: Color.WARNING,
-  borders: Color.GRAY_BACKGROUND,
+  border: Color.GRAY_BACKGROUND,
 };
 
 /** Inverted theme, white on violet bg. E.g. Main screen */
@@ -79,7 +79,31 @@ export const getTheme = themeName => {
 };
 
 /**
- * Configure themeable components with primary, bg and secondary colors
+ * Configures themeable sub-components with background, text (primary,
+ * secondary), button and other various theme colors.
+ *
+ * Usage:
+ *
+ * This will render a dark view, with a white heading, and a grey paragraph.
+ *
+ * ```jsx
+ * <Theme use="dark" setBackground>
+ *   <Typography use="headline2">Test</Typogrphy>
+ *   <Typography secondary>Paragraph here</Typogrphy>
+ * </Theme>
+ * ```
+ *
+ * It makes available the following `props.theme.x` properties in styled components:
+ *
+ * - background - the standard bg color
+ * - primary - the primary theme/button color on top of bakground (e.g. violet)
+ * - onPrimary - color to show on top of primary (usually white)
+ * - onPrimary - color to show on top of primary (usually white)
+ * - textPrimaryOnBackground - text color to show on background
+ * - textSecondaryOnBackground - secondary text color to show on background
+ * - warning - warning color (always orange)
+ * - success - success color (always green)
+ * - border - border/divider color (usually gray)
  *
  * @param {{
  *   use?: string,

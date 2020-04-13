@@ -11,7 +11,22 @@ export const Type = {
 };
 
 /**
- * A correctly sized, spaced and colored text element.
+ * Render a theme and visual style aware text element.
+ *
+ * It uses the theme's `text(Primary|Secondary)OnBackground` color and a set of
+ * predefined font size and line height values.
+ *
+ * Inspired by: https://material-components.github.io/material-components-web-catalog/#/component/typography
+ *
+ * Usage:
+ *
+ * ```jsx
+ * <Theme use="dark">
+ *   <Typography use="headline2">Heading</Typography>
+ *   <Typography use="body1" secondary>Paragraph text ...</Typography>
+ *   <Typography use="body2" monospace>link</Typography>
+ * </Theme>
+ * ```
  *
  * Use within a `<ThemeProvider>`
  *
