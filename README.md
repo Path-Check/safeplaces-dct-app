@@ -36,16 +36,16 @@ Please refer to `docs/Private Kit Diagram.png` for a basic overview on the seque
 
 ## Developer Setup
 
-Run the ```dev_setup.sh``` (Linux/MacOS) or ```dev_setup.bat``` (Windows) for needed tools.  Also note that it is assumed that Android Studio and/or xcode (on macOS) is set up and configured correctly to run applications in the simulator.  For Android Studio, the dev_setup script can help you, but you still may need to configure at least one android virtual device (avd) from within Android Studio first before you can run the app.
+Run the ```dev_setup.sh``` (Linux/MacOS) or ```dev_setup.bat``` (Windows) for needed tools.  It is assumed that Android Studio and/or xcode (on macOS) is set up and configured correctly to run applications in the simulator.  For Android Studio, the dev_setup script can help you, but you still may need to configure at least one android virtual device (avd) from within Android Studio first before you can run the app.
 
 ## Running
 
-Note: it's required to have ```yarn``` installed for this project, as it does a better job installing dependendies across platforms.  The dev_setup script above should have done that for you.
+```yarn``` must be installed for this project, as it does a better job installing dependendies across platforms.  The dev_setup script above should have done that for you.
 
 ### Install modules to the correct locations
 
-1. ```yarn install```
-2. ```yarn install:pod``` (macOS only, to install modules for the iOS build)
+1. ```yarn install``` (always do this after a new clone or checkout)
+2. ```yarn install:pod``` (additional step for macOS if you want to do an iOS build)
 
 ### Run the app in a simulator
 
