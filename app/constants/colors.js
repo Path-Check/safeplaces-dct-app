@@ -9,6 +9,7 @@ const colors = {
   PRIMARY_TEXT: '#000',
   GREEN: '#32A852',
   VIOLET: '#4051DB',
+  TRANSPARENT: '#00000000',
 
   // For notifications
   HIGHEST_RISK: '#e74c3c',

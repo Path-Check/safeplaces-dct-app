@@ -84,7 +84,7 @@ class LocationTracking extends Component {
     super(props);
 
     if (isPlatformAndroid()) {
-      StatusBar.setBackgroundColor('rgba(0,0,0,0)');
+      StatusBar.setBackgroundColor(Colors.TRANSPARENT);
       StatusBar.setBarStyle('light-content');
       StatusBar.setTranslucent(true);
     }
