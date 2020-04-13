@@ -38,6 +38,10 @@ export const MonthGrid = ({
   renderDayHeader,
   renderDay,
 }) => {
+  if (!renderDay || !renderDayHeader) {
+    throw new Error('renderDay and renderDayHeader are required');
+  }
+
   const headers = dayjs.localeData().weekdaysShort(); // 'mon', 'tue', ...
 
   const start = date
