@@ -1,30 +1,25 @@
 import React, { Component } from 'react';
 import {
+  BackHandler,
+  ScrollView,
   StyleSheet,
-  View,
   Text,
   TouchableOpacity,
-  ScrollView,
-  BackHandler,
-  Dimensions,
+  View,
 } from 'react-native';
+import { SvgXml } from 'react-native-svg';
+
+import googleMapsIcon from './../assets/svgs/google-maps-logo';
+import fontFamily from './../constants/fonts';
+import languages from './../locales/languages';
+import ButtonWrapper from '../components/ButtonWrapper';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import Colors from '../constants/colors';
 
 // This is the definitive listing of registered Healthcare Authorities.  To
 // register, just submit a PR against that list on Github.  Users are also
 // free to type in a non-official authority.
 //
-const authoritiesListURL =
-  'https://raw.githubusercontent.com/tripleblindmarket/safe-places/develop/healthcare-authorities.yaml';
-
-const width = Dimensions.get('window').width;
-import languages from './../locales/languages';
-import ButtonWrapper from '../components/ButtonWrapper';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import Colors from '../constants/colors';
-import fontFamily from './../constants/fonts';
-import warning from './../assets/svgs/warning';
-import googleMapsIcon from './../assets/svgs/google-maps-logo';
-import { SvgXml } from 'react-native-svg';
 
 class SettingsScreen extends Component {
   constructor(props) {
@@ -130,7 +125,7 @@ class SettingsScreen extends Component {
                   fontFamily: fontFamily.primaryBold,
                 },
               ]}>
-              {languages.t(text)}
+              {text}
             </Text>
           ) : (
             <Text
@@ -138,14 +133,12 @@ class SettingsScreen extends Component {
                 styles.settingRowText,
                 { color: color || Colors.VIOLET_TEXT },
               ]}>
-              {languages.t(text)}
+              {text}
             </Text>
           )}
           {renderIcon()}
           {subtitle ? (
-            <Text style={styles.settingsRowSubtitleText}>
-              {languages.t(subtitle)}
-            </Text>
+            <Text style={styles.settingsRowSubtitleText}>{subtitle}</Text>
           ) : null}
         </TouchableOpacity>
       </>
@@ -171,35 +164,35 @@ class SettingsScreen extends Component {
           <View style={styles.mainContainer}>
             <View style={styles.section}>
               {this.getSettingRow(
-                'label.choose_provider_title',
+                languages.t('label.choose_provider_title'),
                 this.chooseProviderScreenButtonPressed,
                 null,
                 null,
-                'label.choose_provider_subtitle',
+                languages.t('label.choose_provider_subtitle'),
               )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
-                'label.news_title',
+                languages.t('label.news_title'),
                 this.newsButtonPressed,
                 null,
                 null,
-                'label.news_subtitle',
+                languages.t('label.news_subtitle'),
               )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
-                'label.event_history_title',
+                languages.t('label.event_history_title'),
                 this.eventHistoryButtonPressed,
                 null,
                 null,
-                'label.event_history_subtitle',
+                languages.t('label.event_history_subtitle'),
               )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
-                'label.tested_positive_title',
+                languages.t('label.tested_positive_title'),
                 this.testedPositiveButtonPressed,
                 null,
                 null,
-                'label.tested_positive_subtitle',
+                languages.t('label.tested_positive_subtitle'),
               )}
             </View>
           </View>
@@ -210,10 +203,13 @@ class SettingsScreen extends Component {
           <View style={styles.fullDivider} />
           <View style={styles.mainContainer}>
             <View style={styles.section}>
-              {this.getSettingRow('label.about_title', this.aboutButtonPressed)}
+              {this.getSettingRow(
+                languages.t('label.about_title'),
+                this.aboutButtonPressed,
+              )}
               <View style={styles.divider}></View>
               {this.getSettingRow(
-                'label.legal_page_title',
+                languages.t('label.legal_page_title'),
                 this.licensesButtonPressed,
               )}
             </View>

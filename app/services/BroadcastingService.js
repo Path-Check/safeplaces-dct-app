@@ -1,9 +1,11 @@
-import { GetStoreData, SetStoreData } from '../helpers/General';
 import { Alert } from 'react-native';
-import BackgroundTimer from 'react-native-background-timer';
-import UUIDGenerator from 'react-native-uuid-generator';
-import AndroidBLEAdvertiserModule from 'react-native-ble-advertiser';
 import { NativeEventEmitter, NativeModules } from 'react-native';
+import BackgroundTimer from 'react-native-background-timer';
+import AndroidBLEAdvertiserModule from 'react-native-ble-advertiser';
+import UUIDGenerator from 'react-native-uuid-generator';
+
+import { CONTACT_DATA, MY_UUIDs } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 import { isPlatformAndroid, nowStr } from '../Util';
 
 var currentUUID = null;
@@ -52,7 +54,7 @@ function saveContact(contact) {
   // Persist this contact data in our local storage of time/uuid values
   //console.log('[Bluetooth]', nowStr(), currentUUID, 'New Device Found', contact['uuid']);
   if (isNewContact(contact)) {
-    GetStoreData('CONTACT_DATA', false).then(contactArray => {
+    GetStoreData(CONTACT_DATA, false).then(contactArray => {
       if (!contactArray) {
         contactArray = [];
       }
@@ -78,7 +80,7 @@ function saveContact(contact) {
         curated.length,
       );
 
-      SetStoreData('CONTACT_DATA', curated);
+      SetStoreData(CONTACT_DATA, curated);
     });
   }
 }
@@ -86,7 +88,7 @@ function saveContact(contact) {
 function saveMyUUID(me) {
   // Persist this contact data in our local storage of time/lat/lon values
 
-  GetStoreData('MY_UUIDs', false).then(myUUIDArray => {
+  GetStoreData(MY_UUIDs, false).then(myUUIDArray => {
     if (!myUUIDArray) {
       myUUIDArray = [];
     }
@@ -113,12 +115,12 @@ function saveMyUUID(me) {
     );
     curated.push(uuid_time);
 
-    SetStoreData('MY_UUIDs', curated);
+    SetStoreData(MY_UUIDs, curated);
   });
 }
 
 function loadLastUUIDAndBroadcast() {
-  GetStoreData('MY_UUIDs', false).then(myUUIDArray => {
+  GetStoreData(MY_UUIDs, false).then(myUUIDArray => {
     if (!myUUIDArray) {
       console.log(
         '[Bluetooth]',
@@ -238,7 +240,7 @@ export default class BroadcastingServices {
     setTimeout(
       () =>
         Alert.alert(
-          'Private Kit requires bluetooth to be enabled',
+          'COVID Safe Paths requires bluetooth to be enabled',
           'Would you like to enable Bluetooth?',
           [
             {

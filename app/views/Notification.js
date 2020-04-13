@@ -1,32 +1,22 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  Dimensions,
-  TouchableOpacity,
   BackHandler,
+  Dimensions,
   ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
-import packageJson from '../../package.json';
+import { VictoryAxis, VictoryBar, VictoryChart } from 'victory-native';
 
-import colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
-import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
-import AsyncStorage from '@react-native-community/async-storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
-import {
-  VictoryBar,
-  VictoryAxis,
-  VictoryChart,
-  VictoryTooltip,
-} from 'victory-native';
-import Colors from '../constants/colors';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import colors from '../constants/colors';
+import Colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
+import { CROSSED_PATHS } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -84,7 +74,7 @@ class NotificationScreen extends Component {
   resetState() {}
 
   getInitialState = async () => {
-    GetStoreData('CROSSED_PATHS').then(dayBin => {
+    GetStoreData(CROSSED_PATHS).then(dayBin => {
       console.log(dayBin);
 
       /* DEBUGGING TOOL -- handy for creating faux data
@@ -302,45 +292,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     overflow: 'scroll',
   },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryRegular,
-  },
   pageTitle: {
     fontSize: 24,
     fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
   },
-  headerContainer: {
-    flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
-  },
   backArrow: {
     height: 18,
     width: 18.48,
-  },
-  sectionDescription: {
-    fontSize: 16,
-    lineHeight: 24,
-    marginTop: 12,
-    overflow: 'scroll',
-    fontFamily: fontFamily.primaryRegular,
   },
   notificationsHeader: {
     backgroundColor: '#665eff',
@@ -364,14 +323,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingHorizontal: 10,
     fontFamily: fontFamily.primaryRegular,
-  },
-  notificationsTextHigh: {
-    color: colors.HIGHEST_RISK,
-    fontFamily: fontFamily.primaryBold,
-  },
-  notificationsTextMedium: {
-    color: colors.MIDDLE_RISK,
-    fontFamily: fontFamily.primaryMedium,
   },
   noExposure: {
     margin: 30,

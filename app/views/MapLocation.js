@@ -1,39 +1,11 @@
-import React, { Component } from 'react';
-
-import {
-  View,
-  Text,
-  Dimensions,
-  StyleSheet,
-  ImageBackground,
-  StatusBar,
-} from 'react-native';
-import {
-  check,
-  request,
-  PERMISSIONS,
-  RESULTS,
-  checkNotifications,
-  requestNotifications,
-} from 'react-native-permissions';
-import languages from '../locales/languages';
-import ButtonWrapper from '../components/ButtonWrapper';
-import Colors from '../constants/colors';
-import { SetStoreData } from '../helpers/General';
-import MapView, {
-  Marker,
-  PROVIDER_GOOGLE,
-  Polyline,
-  Circle,
-} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-import { isPlatformiOS } from './../Util';
+import React, { Component } from 'react';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import MapView, { Circle, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import BottomSheet from 'reanimated-bottom-sheet';
-import { SvgXml } from 'react-native-svg';
-import fontFamily from '../constants/fonts';
-import LocationServices, { LocationData } from '../services/LocationService';
 
-const width = Dimensions.get('window').width;
+import Colors from '../constants/colors';
+import { LocationData } from '../services/LocationService';
 
 const InitialRegion = {
   latitude: 35.692863,

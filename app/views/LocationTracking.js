@@ -1,54 +1,46 @@
+import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import React, { Component } from 'react';
 import {
   AppState,
-  SafeAreaView,
-  StyleSheet,
-  Linking,
-  View,
-  Text,
-  TouchableOpacity,
+  BackHandler,
   Dimensions,
   Image,
-  ScrollView,
-  BackHandler,
   ImageBackground,
+  Linking,
   StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from 'react-native-popup-menu';
-import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
-import Colors from '../constants/colors';
-import LocationServices from '../services/LocationService';
-//import BroadcastingServices from '../services/BroadcastingService';
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import PushNotification from 'react-native-push-notification';
-import exportImage from './../assets/images/export.png';
-import ButtonWrapper from '../components/ButtonWrapper';
-import { isPlatformiOS } from './../Util';
-import Pulse from 'react-native-pulse';
-import {
-  check,
   PERMISSIONS,
   RESULTS,
+  check,
   openSettings,
 } from 'react-native-permissions';
-import foreArrow from './../assets/images/foreArrow.png';
-
-import { IntersectSet } from '../helpers/Intersect';
-import { GetStoreData, SetStoreData } from '../helpers/General';
-import languages from '../locales/languages';
-
+import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
+
+import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
+import exportImage from './../assets/images/export.png';
+import foreArrow from './../assets/images/foreArrow.png';
+import BackgroundImage from './../assets/images/launchScreenBackground.png';
+import SettingsGear from './../assets/svgs/settingsGear';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
-import SettingsGear from './../assets/svgs/settingsGear';
+import { isPlatformAndroid, isPlatformiOS } from './../Util';
+import ButtonWrapper from '../components/ButtonWrapper';
+import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
+import { PARTICIPATE } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import { checkIntersect } from '../helpers/Intersect';
+import languages from '../locales/languages';
+//import BroadcastingServices from '../services/BroadcastingService';
+import BackgroundTaskServices from '../services/BackgroundTaskService';
+import LocationServices from '../services/LocationService';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -80,6 +72,12 @@ const height = Dimensions.get('window').height;
 class LocationTracking extends Component {
   constructor(props) {
     super(props);
+
+    if (isPlatformAndroid()) {
+      StatusBar.setBackgroundColor(Colors.TRANSPARENT);
+      StatusBar.setBarStyle('light-content');
+      StatusBar.setTranslucent(true);
+    }
 
     this.state = {
       appState: AppState.currentState,
@@ -128,17 +126,18 @@ class LocationTracking extends Component {
   }
 
   checkIfUserAtRisk() {
+    BackgroundTaskServices.start();
     // already set on 12h timer, but run when this screen opens too
-    this.intersect_tick();
+    checkIntersect();
 
     GetStoreData('CROSSED_PATHS').then(dayBin => {
-      if (dayBin === null) {
-        console.log("Can't find crossed paths");
-        this.setState({ currentState: StateEnum.NO_CONTACT });
-      } else {
+      dayBin = JSON.parse(dayBin);
+      if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
         console.log('Found crossed paths');
         this.setState({ currentState: StateEnum.AT_RISK });
-        // dayBinParsed = JSON.parse(dayBin);
+      } else {
+        console.log("Can't find crossed paths");
+        this.setState({ currentState: StateEnum.NO_CONTACT });
       }
     });
   }
@@ -146,7 +145,7 @@ class LocationTracking extends Component {
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    GetStoreData('PARTICIPATE')
+    GetStoreData(PARTICIPATE)
       .then(isParticipating => {
         if (isParticipating === 'true') {
           this.setState({
@@ -160,13 +159,6 @@ class LocationTracking extends Component {
         }
       })
       .catch(error => console.log(error));
-
-    let timer_intersect = setInterval(this.intersect_tick, 1000 * 60 * 60 * 12); // once every 12 hours
-    // DEBUG:  1000 * 10); // once every 10 seconds
-
-    this.setState({
-      timer_intersect,
-    });
   }
 
   findNewAuthorities() {
@@ -178,84 +170,6 @@ class LocationTracking extends Component {
     // Tapping that notification asks if they want to Add that Healthcare Authority
     // under the Settings screen.
   }
-
-  intersect_tick = () => {
-    // This function is called once every 12 hours.  It should do several things:
-
-    this.findNewAuthorities();
-
-    // Get the user's health authorities
-    GetStoreData('HEALTH_AUTHORITIES')
-      .then(authority_list => {
-        if (!authority_list) {
-          // DEBUG: Force a test list
-          // authority_list = [
-          //  {
-          //    name: 'Platte County Health',
-          //    url:
-          //      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
-          //  },
-          //];
-          return;
-        }
-
-        let name_news = [];
-
-        if (authority_list) {
-          // Pull down data from all the registered health authorities
-          for (let authority of authority_list) {
-            fetch(authority.url)
-              .then(response => response.json())
-              .then(responseJson => {
-                // Example response =
-                // { "authority_name":  "Steve's Fake Testing Organization",
-                //   "publish_date_utc": "1584924583",
-                //   "info_website": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
-                //   "concern_points":
-                //    [
-                //      { "time": 123, "latitude": 12.34, "longitude": 12.34},
-                //      { "time": 456, "latitude": 12.34, "longitude": 12.34}
-                //    ]
-                // }
-
-                // Update cache of info about the authority
-                // TODO: Add an "info_newsflash" UTC timestamp and popup a
-                //       notification if that changes, i.e. if there is a newsflash?
-                name_news.push({
-                  name: responseJson.authority_name,
-                  news_url: responseJson.info_website,
-                });
-
-                // TODO: Look at "publish_date_utc".  We should notify users if
-                //       their authority is no longer functioning.)
-
-                IntersectSet(responseJson.concern_points, dayBin => {
-                  if (dayBin !== null) {
-                    PushNotification.localNotification({
-                      title: languages.t('label.push_at_risk_title'),
-                      message: languages.t('label.push_at_risk_message'),
-                    });
-                  }
-                });
-              });
-
-            SetStoreData('AUTHORITY_NEWS', name_news)
-              .then(() => {
-                // TODO: Anything after this saves?  Background caching of
-                //       news to make it snappy?  Could be a problem in some
-                //       locales with high data costs.
-              })
-              .catch(error =>
-                console.log('Failed to save authority/news URL list'),
-              );
-          }
-        } else {
-          console.log('No authority list');
-          return;
-        }
-      })
-      .catch(error => console.log('Failed to load authority list', error));
-  };
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
@@ -294,8 +208,8 @@ class LocationTracking extends Component {
   }
 
   willParticipate = () => {
-    SetStoreData('PARTICIPATE', 'true').then(() => {
-      // Turn off bluetooth for v1
+    SetStoreData(PARTICIPATE, 'true').then(() => {
+      // Turn of bluetooth for v1
       //BroadcastingServices.start();
     });
     // Check and see if they actually authorized in the system dialog.
@@ -309,8 +223,9 @@ class LocationTracking extends Component {
         });
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
         LocationServices.stop();
-        // Turn of bluetooth for v1
+        // Turn off bluetooth for v1
         //BroadcastingServices.stop(this.props.navigation);
+        BackgroundTaskServices.stop();
         this.setState({
           isLogging: false,
         });
@@ -433,11 +348,11 @@ class LocationTracking extends Component {
   getSubText() {
     switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
-        return 'label.home_no_contact_subtext';
+        return languages.t('label.home_no_contact_subtext');
       case StateEnum.AT_RISK:
-        return 'label.home_at_risk_subtext';
+        return languages.t('label.home_at_risk_subtext');
       case StateEnum.UNKNOWN:
-        return 'label.home_unknown_subtext';
+        return languages.t('label.home_unknown_subtext');
     }
   }
   getSubSubText() {
@@ -445,7 +360,7 @@ class LocationTracking extends Component {
       case StateEnum.NO_CONTACT:
         return null;
       case StateEnum.AT_RISK:
-        return 'label.home_at_risk_subsubtext';
+        return languages.t('label.home_at_risk_subsubtext');
       case StateEnum.UNKNOWN:
         return null;
     }
@@ -462,12 +377,12 @@ class LocationTracking extends Component {
       // };
       return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
-      buttonLabel = 'label.home_next_steps';
+      buttonLabel = languages.t('label.home_next_steps');
       buttonFunction = () => {
         this.props.navigation.navigate('NotificationScreen');
       };
     } else if (this.state.currentState === StateEnum.UNKNOWN) {
-      buttonLabel = 'label.home_enable_location';
+      buttonLabel = languages.t('label.home_enable_location');
       buttonFunction = () => {
         openSettings();
       };
@@ -475,7 +390,7 @@ class LocationTracking extends Component {
     return (
       <View style={styles.buttonContainer}>
         <ButtonWrapper
-          title={languages.t(buttonLabel)}
+          title={buttonLabel}
           onPress={() => {
             buttonFunction();
           }}
@@ -501,18 +416,21 @@ class LocationTracking extends Component {
           translucent={true}
         />
         {this.getPulseIfNeeded()}
+
         <View style={styles.mainContainer}>
-          <View style={styles.contentContainer}>
-            {this.getMainText()}
-            <Text style={styles.subheaderText}>
-              {languages.t(this.getSubText())}
-            </Text>
-            <Text style={styles.subsubheaderText}>
-              {languages.t(this.getSubSubText())}
-            </Text>
+          <View style={styles.contentAbovePulse}>
+            {this.state.currentState === StateEnum.AT_RISK &&
+              this.getMainText()}
+            <Text style={styles.subsubheaderText}>{this.getSubSubText()}</Text>
+          </View>
+          <View style={styles.contentBelowPulse}>
+            {this.state.currentState !== StateEnum.AT_RISK &&
+              this.getMainText()}
+            <Text style={styles.subheaderText}>{this.getSubText()}</Text>
             {this.getCTAIfNeeded()}
           </View>
         </View>
+
         <View>
           <TouchableOpacity
             onPress={this.getMayoInfoPressed.bind(this)}
@@ -544,21 +462,40 @@ class LocationTracking extends Component {
   }
 }
 
+const PULSE_GAP = 80;
+
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
     flex: 1,
+    justifyContent: 'flex-end',
   },
   mainContainer: {
-    top: '50%',
-    flex: 1,
+    position: 'absolute',
+    // resizeMode: 'contain',
+    // aligns the center of the main container with center of pulse
+    // so that two `flex: 1` views will be have a reasonable chance at natural
+    // flex flow for above and below the pulse.
+    top: '-10%',
+    left: 0,
+    right: 0,
+    height: '100%',
+    paddingHorizontal: '12%',
+    paddingBottom: 12,
   },
-  contentContainer: {
-    width: width * 0.8,
+  contentAbovePulse: {
     flex: 1,
-    alignSelf: 'center',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingBottom: PULSE_GAP / 2,
+  },
+  contentBelowPulse: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: PULSE_GAP,
   },
   settingsContainer: {
     position: 'absolute',
@@ -568,11 +505,12 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    top: '4%',
+    top: 24,
   },
   pulseContainer: {
     position: 'absolute',
     resizeMode: 'contain',
+    height: '100%',
     top: '-13%',
     left: 0,
     right: 0,
@@ -581,10 +519,9 @@ const styles = StyleSheet.create({
   mainTextAbove: {
     textAlign: 'center',
     lineHeight: 34,
-    marginTop: -170,
-    marginBottom: 125,
+    marginBottom: 24,
     color: Colors.WHITE,
-    fontSize: 26,
+    fontSize: 28,
     fontFamily: fontFamily.primaryMedium,
   },
   mainTextBelow: {
@@ -593,9 +530,10 @@ const styles = StyleSheet.create({
     color: Colors.WHITE,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
+    marginBottom: 24,
   },
   subheaderText: {
-    marginTop: '5%',
+    marginBottom: 24,
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
@@ -603,13 +541,12 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryRegular,
   },
   subsubheaderText: {
-    marginTop: 15,
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: fontFamily.primaryLight,
-    marginBottom: '8%',
+    marginBottom: 24,
   },
   mayoInfoRow: {
     flexDirection: 'row',

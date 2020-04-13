@@ -1,31 +1,28 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { useEffect, useRef, useState } from 'react';
 import {
+  BackHandler,
+  Dimensions,
+  Image,
+  Linking,
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  Linking,
-  View,
   Text,
-  Image,
-  Dimensions,
   TouchableOpacity,
-  BackHandler,
+  View,
 } from 'react-native';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import WebView from 'react-native-webview';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import RNFetchBlob from 'rn-fetch-blob';
-import Share from 'react-native-share';
-import colors from '../constants/colors';
-import Button from '../components/Button';
-import { GetStoreData } from '../helpers/General';
-import { convertPointsToString } from '../helpers/convertPointsToString';
-import LocationServices from '../services/LocationService';
-import greenMarker from '../assets/images/user-green.png';
+
 import backArrow from '../assets/images/backArrow.png';
-import languages from '../locales/languages';
-import CustomCircle from '../helpers/customCircle';
+import greenMarker from '../assets/images/user-green.png';
+import { PUBLIC_DATA_URL } from '../constants/authorities';
+import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
+import { LOCATION_DATA } from '../constants/storage';
+import CustomCircle from '../helpers/customCircle';
+import { GetStoreData } from '../helpers/General';
+import languages from '../locales/languages';
 
 const width = Dimensions.get('window').width;
 
@@ -36,8 +33,6 @@ const base64 = RNFetchBlob.base64;
 // The dataset is now hosted on Github due to the high demand for it.  The
 // first Google Doc holding data (https://docs.google.com/spreadsheets/d/1itaohdPiAeniCXNlntNztZ_oRvjh0HsGuJXUJWET008/edit#gid=0)
 // points to this souce but no longer holds the actual data.
-const public_data =
-  'https://raw.githubusercontent.com/beoutbreakprepared/nCoV2019/master/latest_data/latestdata.csv';
 const show_button_text = languages.t('label.show_overlap');
 const overlap_true_button_text = languages.t(
   'label.overlap_found_button_label',
@@ -52,6 +47,9 @@ const INITIAL_REGION = {
   longitudeDelta: 50,
 };
 
+// TODO: This code is functionally duplicated by logic in the areLocationsNearby() function
+//  in Intersect.js.  Not cleaning up right now since for v1.0 this is unused code, but
+//  should clean this up in the future.
 function distance(lat1, lon1, lat2, lon2) {
   if (lat1 == lat2 && lon1 == lon2) {
     return 0;
@@ -93,7 +91,7 @@ function OverlapScreen() {
   }
 
   async function populateMarkers() {
-    GetStoreData('LOCATION_DATA').then(locationArrayString => {
+    GetStoreData(LOCATION_DATA).then(locationArrayString => {
       var locationArray = JSON.parse(locationArrayString);
       if (locationArray !== null) {
         var markers = [];
@@ -125,7 +123,7 @@ function OverlapScreen() {
 
   async function getInitialState() {
     try {
-      GetStoreData('LOCATION_DATA').then(locationArrayString => {
+      GetStoreData(LOCATION_DATA).then(locationArrayString => {
         const locationArray = JSON.parse(locationArrayString);
         if (locationArray !== null) {
           const { latitude, longitude } = locationArray.slice(-1)[0];
@@ -168,7 +166,7 @@ function OverlapScreen() {
         // this is much more performant.
         fileCache: true,
       })
-        .fetch('GET', public_data, {})
+        .fetch('GET', PUBLIC_DATA_URL, {})
         .then(res => {
           // the temp file path
           console.log('The file saved to ', res.path());
@@ -379,12 +377,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: fontFamily.primaryRegular,
   },
-  subHeaderTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 22,
-    padding: 5,
-  },
   main: {
     flex: 1,
     flexDirection: 'column',
@@ -418,21 +410,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
-  mainText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-
   headerContainer: {
     flexDirection: 'row',
     height: 60,

@@ -6,7 +6,7 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 - You need a Github account. You can [create one](https://github.com/signup/free) for free.
 
-- Submit an [Issue](https://github.com/tripleblindmarket/private-kit/issues) against the repo to describe the idea or problem if there is not one yet.
+- Submit an [Issue](https://github.com/tripleblindmarket/covid-safe-paths/issues) against the repo to describe the idea or problem if there is not one yet.
 
 - Describe a bug by including steps to reproduce, and the earliest version you know is affected.
 
@@ -14,8 +14,7 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 - Fork the repository on GitHub:
 
-- Visit https://github.com/tripleblindmarket/private-kit
-
+- Visit https://github.com/tripleblindmarket/covid-safe-paths
 - Click on the "Fork" button in the upper-left corner.
 
 - Clone the forked repository to your local machine:
@@ -26,8 +25,8 @@ cd ~ # get to your home directory or where ever you want to go
 
 git clone https://github.com/YOURACCOUNT/
 
-# set upstream against Private Kit repository
-git remote add upstream https://github.com/tripleblindmarket/private-kit.git
+# set upstream against COVID Safe Paths repository
+git remote add upstream https://github.com/tripleblindmarket/covid-safe-paths.git
 
 ```
 
@@ -64,11 +63,11 @@ notes to yourself. It's as simple as `git commit -m "commit message goes here"`!
 5. Rebase your feature branch with upstream/develop to avoid any code conflicts:
 
 ```bash
-# 1. Rebase Base(Private Kit) repository with fork repository - develop branch
+# 1. Rebase Base(COVID Safe Paths) repository with fork repository - develop branch
 
 git checkout develop # switch to base branch(local)
 
-git fetch upstream # fetch latest commits from "Private kit" develop branch
+git fetch upstream # fetch latest commits from "COVID Safe Paths" develop branch
 
 git rebase upstream/develop # rebase code against your forked develop branch(local)
 
@@ -82,26 +81,26 @@ git rebase develop # now rebase your feature branch(local) against develop branc
 
 git push origin feature/<your-feature-branch-name> # after resolving all conflicts, push your new feature branch to the remote forked repository
 
-# now your feature branch is ready for PR against Private Kit develop branch.
+# now your feature branch is ready for PR against COVID Safe Paths develop branch.
 ```
 
 6. Start a PR to submit your changes back to the original project:
 
-- Visit https://github.com/your-git-userid/private-kit/branches
+- Visit https://github.com/your-git-userid/covid-safe-paths/branches
 
 - You should see the new branch that you recently created and pushed on this page. Example - feature/your-branch-name (similar to the image shown below).
 
-  ![Image of Github branches](.github/.github/branches-page.png)
+  ![Image of Github branches](.github/branches-page.png)
 
 - Click on the "New pull request" button next to your new feature branch, and it should take you to open the pull request page (similar to the image shown below).
 
-  ![Image of Github branches](.github/.github/pull-request-page.png)
+  ![Image of Github branches](.github/pull-request-page.png)
 
 - Verify following -
 
-  - Base repository - tripleblindmarket/private-kit
+  - Base repository - tripleblindmarket/covid-safe-paths
   - Base branch - develop
-  - Head repository - your-git-id/private-kit
+  - Head repository - your-git-id/covid-safe-paths
   - Compare branch - feature/your-branch-name
 
 - Provide a meaningful title and description to your PR, as shown in the above image.
