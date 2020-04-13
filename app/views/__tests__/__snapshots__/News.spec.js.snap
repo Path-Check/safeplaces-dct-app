@@ -177,7 +177,7 @@ exports[`renders correctly 1`] = `
             data={
               Array [
                 Object {
-                  "name": "SafePaths News",
+                  "name": "Safe Paths News",
                   "url": "https://covidsafepaths.org/in-app-news",
                 },
               ]
@@ -285,7 +285,7 @@ exports[`renders correctly 1`] = `
                           }
                         }
                       >
-                        SafePaths News
+                        Safe Paths News
                       </Text>
                     </View>
                     <View
