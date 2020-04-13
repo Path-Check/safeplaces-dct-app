@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import * as React from 'react';
 import {
   SafeAreaView,
@@ -7,12 +8,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import PropTypes from 'prop-types';
-import backArrow from './../assets/svgs/backArrow';
-import fontFamily from '../constants/fonts';
-import Colors from '../constants/colors';
-import { isPlatformiOS } from './../Util';
 import { SvgXml } from 'react-native-svg';
+
+import backArrow from './../assets/svgs/backArrow';
+import { isPlatformiOS } from './../Util';
+import Colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 
 class NavigationBarWrapper extends React.Component {
   render() {
