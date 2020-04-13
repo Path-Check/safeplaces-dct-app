@@ -57,7 +57,7 @@ i18next.init({
   resources: {
     en: { label: 'English', translation: en },
     ht: { label: 'Kreyòl ayisyen', translation: ht },
-    it: { label: 'Italian', translation: it },
+    it: { label: 'Italiano', translation: it },
   },
 });
 
