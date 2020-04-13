@@ -67,8 +67,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
     <Theme use={hasExposure ? 'charcoal' : 'default'}>
       <NavigationBarWrapper
         title={pageTitle}
-        onBackPress={() => navigation.goBack()}
-        backgroundColor={themeBackground}>
+        onBackPress={() => navigation.goBack()}>
         <ScrollView
           contentContainerStyle={css`
             padding: 20px;

@@ -4,11 +4,14 @@ import React from 'react';
 
 import Color from './colors';
 
-/** Default theme, violet on pale violet bg. e.g. Settings */
+/** Violet on pale violet bg. e.g. Settings */
 export const defaultTheme = {
   background: Color.VIOLET_ALPHA_06,
   textPrimaryOnBackground: Color.VIOLET,
   textSecondaryOnBackground: 'rgba(64, 81, 219, 0.6)',
+
+  navBar: Color.VIOLET,
+  onNavBar: Color.WHITE,
 
   /** E.g. button bg */
   primary: Color.VIOLET_BUTTON,
@@ -17,27 +20,32 @@ export const defaultTheme = {
 
   success: Color.SUCCESS,
   warning: Color.WARNING,
-  disabled: Color.GRAY_BACKGROUND,
+  disabled: 'rgba(64, 81, 219, 0.6)',
   border: Color.VIOLET_BUTTON,
 };
 
-/** Violet theme, white on violet bg. E.g. Main screen */
+/** White on violet bg. E.g. Main screen */
 export const violet = {
   ...defaultTheme,
   background: `linear-gradient(245.21deg, ${Color.VIOLET_BUTTON} 0%, ${Color.VIOLET_BUTTON_DARK} 100%);`,
   textPrimaryOnBackground: Color.WHITE,
   textSecondaryOnBackground: 'rgba(255, 255, 255, 0.6)',
 
+  navBarBorder: Color.VIOLET, // no visible border
+
   primary: Color.WHITE,
   onPrimary: Color.VIOLET,
 };
 
-/** Dark, white on gray bg. E.g. Possible exposure mode on default screen */
+/** White on gray bg. E.g. Possible exposure mode on default screen */
 export const charcoal = {
   ...defaultTheme,
   background: Color.DARK_GRAY,
   textPrimaryOnBackground: Color.WHITE,
   textSecondaryOnBackground: Color.LIGHT_GRAY,
+
+  navBar: Color.DARK_GRAY,
+  navBarBorder: Color.DARK_GRAY, // no visible border
 
   primary: Color.WHITE,
   onPrimary: Color.DARK_GRAY,
@@ -45,22 +53,10 @@ export const charcoal = {
   disabled: '#A9AFBA',
 };
 
-/** Mono, black on white. e.g. Exposure history screen */
-export const monochrome = {
-  ...defaultTheme,
-  background: Color.WHITE,
-  textPrimaryOnBackground: Color.MONO_DARK,
-  textSecondaryOnBackground: Color.MONO_SECONDARY,
-
-  primary: Color.VIOLET_BUTTON,
-  onPrimary: Color.WHITE,
-};
-
 const THEME_MAP = {
   default: defaultTheme,
   violet,
   charcoal,
-  monochrome,
 };
 
 /** A view which uses the theme's background color */
@@ -71,7 +67,7 @@ export const ThemedBackground = styled.View`
 /**
  * Return theme config for a known theme name
  *
- * @param {'default' | 'monochrome' | 'violet' | 'charcoal'} themeName
+ * @param {'default' | 'violet' | 'charcoal'} themeName
  */
 export const getTheme = themeName => {
   const themeColors = THEME_MAP[themeName];
