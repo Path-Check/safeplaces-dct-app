@@ -17,11 +17,22 @@ export const Type = {
  * @param {{
  *   use?: string,
  *   secondary?: boolean,
+ *   monospace?: boolean,
  * }} param0
  */
-export const Typography = ({ use = 'body1', secondary, children }) => {
+export const Typography = ({
+  use = 'body1',
+  secondary,
+  monospace,
+  children,
+  ...otherProps
+}) => {
   return (
-    <ThemedText use={use} secondary={secondary}>
+    <ThemedText
+      use={use}
+      secondary={secondary}
+      monospace={monospace}
+      {...otherProps}>
       {children}
     </ThemedText>
   );
@@ -54,7 +65,8 @@ const getFontWeight = ({ use = Type.Body1 }) =>
   use.startsWith('headline') ? 'bold' : 'normal';
 
 const ThemedText = styled.Text`
-  font-family: 'IBM Plex Sans';
+  font-family: ${({ monospace }) =>
+    monospace ? 'IBM Plex Mono' : 'IBM Plex Sans'};
   font-size: ${getFontSize};
   font-weight: ${getFontWeight};
   line-height: ${getLineHeight};
