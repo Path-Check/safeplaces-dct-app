@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { BackHandler } from 'react-native';
+import { BackHandler, ScrollView } from 'react-native';
 import { css } from '@emotion/native';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import languages from './../locales/languages';
 import { GetStoreData } from '../helpers/General';
@@ -10,7 +10,6 @@ import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { CROSSED_PATHS } from '../constants/storage';
 import { MAX_EXPOSURE_WINDOW, BIN_DURATION } from '../constants/history';
 import { DetailedHistory } from './ExposureHistory/DetailedHistory';
-import { ScrollView } from 'react-native-gesture-handler';
 import { Typography } from '../components/Typography';
 import { Theme } from '../constants/themes';
 
@@ -59,7 +58,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
             padding: 20px;
             background-color: white;
           `}>
-          <Typography use='headline2'>
+          <Typography use='headline3'>
             {languages.t('history.timeline')}
           </Typography>
           {history && history.length ? (
@@ -89,12 +88,14 @@ export const ExposureHistoryScreen = ({ navigation }) => {
 };
 
 // eslint-disable-next-line no-unused-vars
-function generateFakeIntersections(days = MAX_EXPOSURE_WINDOW) {
+function generateFakeIntersections(days = MAX_EXPOSURE_WINDOW, maxBins = 50) {
   let pseudoBin = [];
   for (let i = 0; i < days; i++) {
     // Random Integer between 0-99
-    const intersections = Math.floor(Math.random() * 10);
-    console.log(intersections);
+    const intersections = Math.max(
+      Math.floor(Math.random() * maxBins - maxBins / 2),
+      0,
+    );
     pseudoBin.push(intersections);
   }
   return JSON.stringify(pseudoBin);
@@ -107,7 +108,7 @@ function generateFakeIntersections(days = MAX_EXPOSURE_WINDOW) {
  *
  * ```js
  * "[1,2,3]"  // bins exposed
- * [5]  // minutes exposed
+ * [{date: Date, exposureMinutes: 5}, ...]  // minutes exposed
  * ```
  *
  * @param {string} dayBin JSON stringified array of numbers e.g. `"[1,2,3]"`
@@ -120,13 +121,13 @@ export function convertToDailyMinutesExposed(dayBin) {
     return null;
   }
 
-  const today = moment().startOf('day');
+  const today = dayjs();
 
   const dailyMinutesExposed = dayBinParsed
     .slice(0, MAX_EXPOSURE_WINDOW) // last two weeks of crossing data only
     .map((binCount, i) => {
       return {
-        date: today.subtract(i, 'days'),
+        date: today.startOf('day').subtract(i, 'day'),
         exposureMinutes: binCount * BIN_DURATION,
       };
     });

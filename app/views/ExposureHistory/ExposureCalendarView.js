@@ -1,15 +1,14 @@
 import React from 'react';
-import moment from 'moment';
 import { DayOfWeek, CalendarDay } from './CalendarDay';
 import { MonthGrid } from './MonthGrid';
 
 /**
  * Get a date key that does not include time.
  *
- * @param {moment.Moment} date
+ * @param {import('dayjs').Dayjs} date
  */
 function getDayKey(date) {
-  return date.endOf('day').unix();
+  return date.startOf('day').unix();
 }
 
 /**

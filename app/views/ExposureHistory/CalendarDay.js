@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/native';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import Color from '../../constants/colors';
 
 const Risk = {
@@ -14,7 +14,7 @@ const Risk = {
  * Show a circular calendar day with risk level coloring.
  *
  * @param {{
- *   date: moment.Moment,
+ *   date: dayjs.Dayjs,
  *   exposureMinutes?: number,
  *   showMonthLabel?: boolean
  *   showToday?: boolean
@@ -35,7 +35,7 @@ export const CalendarDay = ({
     riskLevel = Risk.None;
   }
 
-  const today = moment();
+  const today = dayjs();
   if (showToday && today.isSame(date, 'day')) {
     riskLevel = Risk.Today;
   }

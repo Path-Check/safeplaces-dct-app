@@ -1,35 +1,54 @@
 import React from 'react';
 import styled from '@emotion/native';
-import moment from 'moment';
-import { extendMoment } from 'moment-range';
+import dayjs from 'dayjs';
+import localeData from 'dayjs/plugin/localeData';
 
-const momentRange = extendMoment(moment);
+dayjs.extend(localeData);
+
+/**
+ * Get an array of daily dates between start and end.
+ *
+ * @param {dayjs.Dayjs} start
+ * @param {dayjs.Dayjs} end
+ * @returns {dayjs.Dayjs[]}
+ */
+export function daysBetween(start, end, interval = 'day') {
+  const days = [];
+  let d = start;
+  while (d.isBefore(end, interval) || d.isSame(end, interval)) {
+    days.push(d);
+    d = d.add(1, interval);
+  }
+  return days;
+}
 
 /**
  * Render a grid of days grouped by rows of n weeks.
  *
  * @param {{
+ *   date?: dayjs.Dayjs,
  *   weeks?: number,
  *   renderDayHeader: (d: string) => import('react').ReactNode
- *   renderDay: (d: moment.Moment) => import('react').ReactNode
+ *   renderDay: (d: dayjs.Dayjs) => import('react').ReactNode
  * }} param0
  */
-export const MonthGrid = ({ weeks = 3, renderDayHeader, renderDay }) => {
-  console.log('MonthGrid locale', moment.locale());
+export const MonthGrid = ({
+  date = dayjs(),
+  weeks = 3,
+  renderDayHeader,
+  renderDay,
+}) => {
+  const headers = dayjs.localeData().weekdaysShort(); // 'mon', 'tue', ...
 
-  const headers = moment.localeData().weekdaysShort(); // 'mon', 'tue', ...
-
-  const start = moment()
+  const start = date
+    .startOf('day')
     .startOf('week')
     .subtract(weeks - 1, 'week');
 
-  const end = moment().endOf('week');
+  const end = date.startOf('day').endOf('week');
 
-  const range = momentRange.range(start, end);
-  // range.snapTo('day');
-
-  /** @type {moment.Moment[]} */
-  const days = Array.from(range.by('day'));
+  /** @type {dayjs.Dayjs[]} */
+  const days = daysBetween(start, end, 'day');
 
   return (
     <Container>

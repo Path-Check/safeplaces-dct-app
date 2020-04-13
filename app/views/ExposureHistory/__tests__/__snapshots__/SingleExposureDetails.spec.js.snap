@@ -53,7 +53,6 @@ exports[`matches snapshot 1`] = `
           Object {
             "alignContent": "center",
             "alignItems": "center",
-            "backgroundColor": "#ffc000",
             "borderBottomLeftRadius": 18,
             "borderBottomRightRadius": 18,
             "borderColor": "transparent",
@@ -90,7 +89,7 @@ exports[`matches snapshot 1`] = `
         Object {
           "borderBottomLeftRadius": 6,
           "borderBottomRightRadius": 6,
-          "borderColor": "#ffc000",
+          "borderColor": "black",
           "borderStyle": "solid",
           "borderTopLeftRadius": 6,
           "borderTopRightRadius": 6,
@@ -109,7 +108,6 @@ exports[`matches snapshot 1`] = `
       <Text
         style={
           Object {
-            "color": "#ffc000",
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": 20,
@@ -130,7 +128,6 @@ exports[`matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "black",
               "fontSize": 14,
               "fontWeight": "bold",
               "lineHeight": 20,
@@ -142,7 +139,6 @@ exports[`matches snapshot 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "black",
               "borderBottomLeftRadius": 1,
               "borderBottomRightRadius": 1,
               "borderTopLeftRadius": 1,
@@ -159,20 +155,18 @@ exports[`matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "black",
               "fontSize": 14,
               "fontWeight": "bold",
               "lineHeight": 20,
             }
           }
         >
-          Today at 12:00 AM
+          Yesterday at 12:00 AM
         </Text>
       </View>
       <Text
         style={
           Object {
-            "color": "#757677",
             "fontSize": 14,
             "lineHeight": 20,
           }

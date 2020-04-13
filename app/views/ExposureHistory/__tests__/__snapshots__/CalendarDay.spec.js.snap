@@ -151,10 +151,10 @@ exports[`unknown exposure matches snapshot 1`] = `
         Object {
           "alignContent": "center",
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFF",
           "borderBottomLeftRadius": 18,
           "borderBottomRightRadius": 18,
-          "borderColor": "#dadada",
+          "borderColor": "#DADADA",
           "borderStyle": "solid",
           "borderTopLeftRadius": 18,
           "borderTopRightRadius": 18,

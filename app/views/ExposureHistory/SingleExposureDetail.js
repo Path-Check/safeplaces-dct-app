@@ -1,8 +1,15 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import React from 'react';
 import styled from '@emotion/native';
 import { CalendarDay } from './CalendarDay';
 import languages from '../../locales/languages';
+import duration from 'dayjs/plugin/duration';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+
+dayjs.extend(relativeTime);
+dayjs.extend(duration);
+dayjs.extend(localizedFormat);
 
 const MINUTE_IN_MS = 60 * 1000;
 
@@ -12,12 +19,12 @@ const MINUTE_IN_MS = 60 * 1000;
  * @param {!import('../../constants/history').HistoryDay} props
  */
 export const SingleExposureDetail = ({ date, exposureMinutes }) => {
-  const exposureTimeHumanized = moment
+  const exposureTimeHumanized = dayjs
     .duration(exposureMinutes * MINUTE_IN_MS)
     .humanize();
 
-  // TODO: need today, not "a few seconds ago"
-  const dateHumanized = date.calendar();
+  // TODO: display today, yesterday, calendar() does not quite cut it.
+  const dateHumanized = date.format('ll');
 
   return (
     <Container>

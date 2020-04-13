@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import { SingleExposureDetail } from '../SingleExposureDetail';
 
-const FIXED_DATE = moment('2020-04-11').startOf('day');
+const FIXED_DATE = dayjs('2020-04-11').startOf('day');
 
 it('matches snapshot', () => {
   const { asJSON } = render(

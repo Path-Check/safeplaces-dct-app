@@ -12,7 +12,7 @@ export const BIN_DURATION = 5;
  * Format of a single history item
  *
  * @typedef {{
- *   date: import("moment").Moment,
+ *   date: import("dayjs").Dayjs,
  *   exposureMinutes: number,
  * }} HistoryDay
  */

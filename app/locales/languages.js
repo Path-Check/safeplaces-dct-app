@@ -1,9 +1,11 @@
+import './all-dayjs-locales';
+
 import i18next from 'i18next';
 import { Platform, NativeModules } from 'react-native';
 import { getLanguages } from 'react-native-i18n';
 import { GetStoreData } from '../helpers/General';
 import { LANG_OVERRIDE } from '../constants/storage';
-import moment from 'moment/min/moment-with-locales';
+import dayjs from 'dayjs';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 
@@ -26,8 +28,7 @@ const deviceLocale =
       NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
     : NativeModules.I18nManager.localeIdentifier;
 
-// console.warn('locale', deviceLocale);
-moment.locale([deviceLocale, 'en']);
+dayjs.locale([deviceLocale, 'en']);
 
 // This will fetch the user's language
 // Set up as a function so first onboarding screen can also update
@@ -44,10 +45,10 @@ export function findUserLang(callback) {
         console.log(res);
         userLang = res;
         i18next.changeLanguage(res);
-        moment.locale(res);
+        dayjs.locale(res);
       } else {
         i18next.changeLanguage(userLang);
-        moment.locale(userLang);
+        dayjs.locale(userLang);
       }
 
       // Run state updating callback to trigger rerender
