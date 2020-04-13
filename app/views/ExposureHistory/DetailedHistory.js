@@ -1,12 +1,10 @@
+import styled from '@emotion/native';
 import React from 'react';
 
-import styled from '@emotion/native';
-
+import { Typography } from '../../components/Typography';
 import languages from '../../locales/languages';
-
 import { ExposureCalendarView } from './ExposureCalendarView';
 import { SingleExposureDetail } from './SingleExposureDetail';
-import { Typography } from '../../components/Typography';
 
 /**
  * Detailed info when there is some exposure found
@@ -47,6 +45,6 @@ export const DetailedHistory = ({ history }) => {
 };
 
 const Divider = styled.View`
-  height: 20px;
+  height: 24px;
   width: 100%;
 `;
