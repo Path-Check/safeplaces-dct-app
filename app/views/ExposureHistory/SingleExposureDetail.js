@@ -44,14 +44,14 @@ const Container = styled.View`
 
 const DetailsBox = styled.View`
   border-radius: 6px;
-  border: 1px solid #ffc000;
+  border: 1px solid ${({ theme }) => theme.warning};
   flex: 1;
   margin-left: 14px;
   padding: 16px 16px 24px 16px;
 `;
 
 const Heading = styled.Text`
-  color: #ffc000;
+  color: ${({ theme }) => theme.warning};
   font-size: 16px;
   font-weight: bold;
   line-height: 20px;
@@ -64,7 +64,7 @@ const SubheadingContainer = styled.View`
 `;
 
 const Divider = styled.View`
-  background-color: black;
+  background-color: ${({ theme }) => theme.textPrimaryOnBackground};
   border-radius: 1px;
   height: 3px;
   margin: 0 12px;
@@ -72,13 +72,13 @@ const Divider = styled.View`
 `;
 
 const BodyText = styled.Text`
-  color: #757677;
+  color: ${({ theme }) => theme.textSecondaryOnBackground};
   font-size: 14px;
   line-height: 20px;
 `;
 
 const SubheadingText = styled(BodyText)`
-  color: black;
+  color: ${({ theme }) => theme.textPrimaryOnBackground};
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;

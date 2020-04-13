@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/native';
 import moment from 'moment';
+import Color from '../../constants/colors';
 
 const Risk = {
   Unknown: 'unknown',
@@ -56,25 +57,37 @@ const DayContainer = styled.View`
   padding: 4px;
 `;
 
-const BG_COLOR_MAP = {
-  [Risk.None]: '#41dca4',
-  [Risk.Possible]: '#ffc000',
-  [Risk.Unknown]: 'white',
-  [Risk.Today]: 'white',
+/** Get bg color from risk level and theme warning/success */
+const getBgColor = ({ riskLevel, theme }) => {
+  if (riskLevel === Risk.Possible) {
+    return theme.warning;
+  }
+
+  if (riskLevel === Risk.None) {
+    return theme.success;
+  }
+
+  return Color.WHITE;
 };
 
-const BORDER_COLOR = {
-  [Risk.Unknown]: '#dadada',
-  [Risk.Today]: 'black',
-};
+/** Get border color from theme and risk level */
+const getBorder = ({ riskLevel, theme }) => {
+  let color = 'transparent';
 
-const getBgColor = ({ riskLevel }) => BG_COLOR_MAP[riskLevel];
-const getBorderColor = ({ riskLevel }) =>
-  `1px solid ${BORDER_COLOR[riskLevel] || 'transparent'}`;
+  if (riskLevel === Risk.Unknown) {
+    color = theme.borders;
+  }
+
+  if (riskLevel === Risk.Today) {
+    color = theme.textPrimaryOnBackground;
+  }
+
+  return `1px solid ${color}`;
+};
 
 const Circle = styled.View`
   background-color: ${getBgColor};
-  border: ${getBorderColor};
+  border: ${getBorder};
   width: 36px;
   height: 36px;
   border-radius: 18px;

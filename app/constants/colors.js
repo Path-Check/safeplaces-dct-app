@@ -5,9 +5,10 @@ const colors = {
   SILVER: '#BEBEBE',
   TORCH_RED: '#F8262F',
   MISCHKA: '#E5E4E6',
-  APP_BACKGROUND: '#FFF8ED',
   PRIMARY_TEXT: '#000',
-  GREEN: '#32A852',
+  SUCCESS: '#41dca4', // Green
+  WARNING: '#ffc000', // Orange
+  VIOLET_ALPHA_06: 'rgba(105, 121, 248, 0.06)',
   VIOLET: '#4051DB',
 
   // For notifications
@@ -45,11 +46,16 @@ const colors = {
 
   BLUE_LINK: '#007AFF',
 
-  VIOLET_TEXT: '#3C4ED8',
   RED_TEXT: '#FF5656',
 
   NAV_BAR_VIOLET: '#5061E6',
   NAV_BAR_BORDER: 'rgba(189, 195, 199,0.6)',
+
+  DARK_GRAY: '#3C475B',
+  LIGHT_GRAY: '#EEEEEE',
+
+  MONO_DARK: '#202020',
+  MONO_SECONDARY: '#757677',
 };
 
 export default colors;

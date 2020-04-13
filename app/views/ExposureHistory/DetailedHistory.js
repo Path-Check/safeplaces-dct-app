@@ -6,6 +6,7 @@ import languages from '../../locales/languages';
 
 import { ExposureCalendarView } from './ExposureCalendarView';
 import { SingleExposureDetail } from './SingleExposureDetail';
+import { Typography } from '../../components/Typography';
 
 /**
  * Detailed info when there is some exposure found
@@ -20,11 +21,6 @@ export const DetailedHistory = ({ history }) => {
 
       <Divider />
 
-      {exposedDays.length === 0 && (
-        <NoExposure>
-          {languages.t('label.notifications_no_exposure')}
-        </NoExposure>
-      )}
       {exposedDays.map(({ exposureTime, daysAgo }) => (
         <SingleExposureDetail
           key={daysAgo}
@@ -33,40 +29,20 @@ export const DetailedHistory = ({ history }) => {
         />
       ))}
 
-      <Heading>{languages.t('history.what_does_this_mean')}</Heading>
-      <BodyTex>{languages.t('history.what_does_this_mean_para')}</BodyTex>
-      <Heading>{languages.t('history.what_if_no_symptoms')}</Heading>
-      <BodyTex>{languages.t('history.what_if_no_symptoms_para')}</BodyTex>
+      <Typography use="headline2">
+        {languages.t('history.what_does_this_mean')}
+      </Typography>
+      <Typography>{languages.t('history.what_does_this_mean_para')}</Typography>
+
+      <Typography use="headline2">
+        {languages.t('history.what_if_no_symptoms')}
+      </Typography>
+      <Typography>{languages.t('history.what_if_no_symptoms_para')}</Typography>
     </>
   );
 };
 
-const Heading = styled.Text`
-  font-family: 'IBM Plex Sans';
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 40px;
-  padding-top: 20px;
-  padding-bottom: 10px;
-`;
-
-const BodyTex = styled.Text`
-  font-family: 'IBM Plex Sans';
-  font-size: 15px;
-  line-height: 22px;
-  padding: 5px 0;
-  color: #6d6d73;
-`;
-
 const Divider = styled.View`
   height: 20px;
   width: 100%;
-`;
-
-const NoExposure = styled.Text`
-  margin: 0 30px;
-  color: forestgreen;
-  font-size: 20px;
-  text-align: center;
-  font-family: 'IBM Plex Sans';
 `;
