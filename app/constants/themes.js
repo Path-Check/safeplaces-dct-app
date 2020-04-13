@@ -32,7 +32,7 @@ export const inverted = {
 };
 
 /** Mono, black on white. e.g. Exposure history screen */
-export const mono = {
+export const monochrome = {
   ...main,
   background: Color.WHITE,
   textPrimaryOnBackground: Color.MONO_DARK,
@@ -56,7 +56,7 @@ export const dark = {
 const THEME_MAP = {
   main,
   inverted,
-  mono,
+  monochrome,
   dark,
 };
 
@@ -68,7 +68,7 @@ export const ThemedBackground = styled.View`
 /**
  * Return theme config for a known theme name
  *
- * @param {'main' | 'mono' | 'inverted' | 'dark'} themeName
+ * @param {'main' | 'monochrome' | 'inverted' | 'dark'} themeName
  */
 export const getTheme = themeName => {
   const themeColors = THEME_MAP[themeName];

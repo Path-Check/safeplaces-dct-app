@@ -49,7 +49,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
   };
 
   return (
-    <Theme use='mono'>
+    <Theme use='monochrome'>
       <NavigationBarWrapper
         title={languages.t('label.event_history_title')}
         onBackPress={() => navigation.goBack()}>
