@@ -46,7 +46,7 @@ exports[`no exposure matches snapshot 1`] = `
         riskLevel="possible"
         style={
           Object {
-            "color": "#fff",
+            "color": "#4051DB",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -109,7 +109,7 @@ exports[`possible exposure matches snapshot 1`] = `
         riskLevel="possible"
         style={
           Object {
-            "color": "#fff",
+            "color": "#4051DB",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -154,10 +154,10 @@ exports[`today matches snapshot 1`] = `
         Object {
           "alignContent": "center",
           "alignItems": "center",
-          "backgroundColor": "#FFF",
+          "backgroundColor": "transparent",
           "borderBottomLeftRadius": 18,
           "borderBottomRightRadius": 18,
-          "borderColor": "#DADADA",
+          "borderColor": "rgba(64, 81, 219, 0.6)",
           "borderStyle": "solid",
           "borderTopLeftRadius": 18,
           "borderTopRightRadius": 18,
@@ -172,7 +172,7 @@ exports[`today matches snapshot 1`] = `
         riskLevel="unknown"
         style={
           Object {
-            "color": "#dadada",
+            "color": "rgba(64, 81, 219, 0.6)",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -217,10 +217,10 @@ exports[`unknown exposure matches snapshot 1`] = `
         Object {
           "alignContent": "center",
           "alignItems": "center",
-          "backgroundColor": "#FFF",
+          "backgroundColor": "transparent",
           "borderBottomLeftRadius": 18,
           "borderBottomRightRadius": 18,
-          "borderColor": "#DADADA",
+          "borderColor": "rgba(64, 81, 219, 0.6)",
           "borderStyle": "solid",
           "borderTopLeftRadius": 18,
           "borderTopRightRadius": 18,
@@ -235,7 +235,7 @@ exports[`unknown exposure matches snapshot 1`] = `
         riskLevel="unknown"
         style={
           Object {
-            "color": "#dadada",
+            "color": "rgba(64, 81, 219, 0.6)",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,

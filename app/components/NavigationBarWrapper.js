@@ -52,7 +52,7 @@ const TopContainer = styled.SafeAreaView`
 
 const BottomContainer = styled.SafeAreaView`
   flex: 1;
-  background-color: white;
+  background-color: ${Colors.INTRO_WHITE_BG};
 `;
 
 const themeNavBarBorder = ({ theme }) =>
@@ -67,8 +67,8 @@ const Header = styled.View`
 
 const Title = styled.Text`
   align-self: center;
-  color: white;
-  font-family: 'Arial';
+  color: ${Colors.WHITE};
+  font-family: IBMPlexSans-Medium;
   font-size: 26px;
   position: absolute;
   text-align: center;

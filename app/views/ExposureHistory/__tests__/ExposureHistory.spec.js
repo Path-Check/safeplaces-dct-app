@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import MockDate from 'mockdate';
 
-import { convertToDailyMinutesExposed } from '../../ExposureHistory';
+import { convertToDailyMinutesExposed } from '../ExposureHistory';
 
 describe('convertToDailyMinutesExposed', () => {
   const NOW = dayjs('2020-01-09T00:00:00-08:00');

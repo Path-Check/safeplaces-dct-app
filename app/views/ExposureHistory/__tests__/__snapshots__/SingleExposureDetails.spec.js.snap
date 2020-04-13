@@ -34,7 +34,6 @@ exports[`matches snapshot 1`] = `
       <Text
         style={
           Object {
-            "color": "#707070",
             "fontFamily": "IBM Plex Sans",
             "fontSize": 9,
             "fontWeight": "bold",
@@ -71,7 +70,6 @@ exports[`matches snapshot 1`] = `
           riskLevel="possible"
           style={
             Object {
-              "color": "#fff",
               "flexBasis": 0,
               "flexGrow": 1,
               "flexShrink": 1,

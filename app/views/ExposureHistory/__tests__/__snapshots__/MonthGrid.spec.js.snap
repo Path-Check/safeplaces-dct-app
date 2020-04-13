@@ -14,8 +14,8 @@ exports[`allows specifying number of weeks 1`] = `
     style={
       Object {
         "marginBottom": 0,
-        "marginLeft": -10,
-        "marginRight": -10,
+        "marginLeft": -8,
+        "marginRight": -8,
         "marginTop": 0,
       }
     }
@@ -279,8 +279,8 @@ exports[`with input date, defaults to 3 weeks ago from that date 1`] = `
     style={
       Object {
         "marginBottom": 0,
-        "marginLeft": -10,
-        "marginRight": -10,
+        "marginLeft": -8,
+        "marginRight": -8,
         "marginTop": 0,
       }
     }
@@ -431,8 +431,8 @@ exports[`with no input date, defaults to 3 weeks ago from today 1`] = `
     style={
       Object {
         "marginBottom": 0,
-        "marginLeft": -10,
-        "marginRight": -10,
+        "marginLeft": -8,
+        "marginRight": -8,
         "marginTop": 0,
       }
     }
