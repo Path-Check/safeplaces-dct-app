@@ -1,7 +1,11 @@
 import i18next from 'i18next';
 import { getLanguages } from 'react-native-i18n';
-import { GetStoreData } from '../helpers/General';
+
 import { LANG_OVERRIDE } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
+import en from './en.json';
+import ht from './ht.json';
+import it from './it.json';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 
@@ -13,10 +17,6 @@ import { LANG_OVERRIDE } from '../constants/storage';
 // 4. Update translations as needed
 // 5. REMOVE all empty translations. e.g. "key": "", this will allow fallback to the default: English
 // 6. import xyIndex from `./xy.json` and add the language to the block at the bottom
-
-import en from './en.json';
-import ht from './ht.json';
-import it from './it.json';
 
 // This will fetch the user's language
 // Set up as a function so first onboarding screen can also update

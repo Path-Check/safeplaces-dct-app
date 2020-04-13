@@ -1,30 +1,28 @@
-import React, { Component } from 'react';
-
 import { NavigationContainer } from '@react-navigation/native';
 import {
-  createStackNavigator,
   CardStyleInterpolators,
+  createStackNavigator,
 } from '@react-navigation/stack';
-import { SafeAreaView } from 'react-native';
-import LocationTracking from './views/LocationTracking';
-import NewsScreen from './views/News';
+import React, { Component } from 'react';
+
+import { PARTICIPATE } from './constants/storage';
+import { GetStoreData } from './helpers/General';
+import AboutScreen from './views/About';
+import ChooseProviderScreen from './views/ChooseProvider';
 import ExportScreen from './views/Export';
 import ImportScreen from './views/Import';
-import OverlapScreen from './views/Overlap';
-import SettingsScreen from './views/Settings';
 import LicencesScreen from './views/Licenses';
-import NotificationScreen from './views/Notification';
+import LocationTracking from './views/LocationTracking';
 import MapLocation from './views/MapLocation';
+import NewsScreen from './views/News';
+import NotificationScreen from './views/Notification';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
-import AboutScreen from './views/About';
-import ChooseProviderScreen from './views/ChooseProvider';
-
-import { GetStoreData, SetStoreData } from './helpers/General';
-import { PARTICIPATE } from './constants/storage';
+import OverlapScreen from './views/Overlap';
+import SettingsScreen from './views/Settings';
 
 const Stack = createStackNavigator();
 
