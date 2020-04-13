@@ -9,7 +9,7 @@ import { SingleExposureDetail } from './SingleExposureDetail';
 /**
  * Detailed info when there is some exposure found
  *
- * @param {{history: !import('../constants/history').History}} param0
+ * @param {{history: !import('../../constants/history').History}} param0
  */
 export const DetailedHistory = ({ history }) => {
   const exposedDays = history.filter(day => day.exposureMinutes > 0);

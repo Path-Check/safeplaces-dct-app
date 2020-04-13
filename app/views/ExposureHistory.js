@@ -13,6 +13,8 @@ import { Theme } from '../constants/themes';
 import { GetStoreData } from '../helpers/General';
 import { DetailedHistory } from './ExposureHistory/DetailedHistory';
 
+const NO_HISTORY = [];
+
 export const ExposureHistoryScreen = ({ navigation }) => {
   const [history, setHistory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,10 +24,10 @@ export const ExposureHistoryScreen = ({ navigation }) => {
       let dayBins = await GetStoreData(CROSSED_PATHS);
       setIsLoading(false);
 
-      dayBins = generateFakeIntersections(6); // handy for creating faux data
+      // dayBins = generateFakeIntersections(6); // handy for creating faux data
 
       if (dayBins === null) {
-        setHistory(null);
+        setHistory(NO_HISTORY);
         console.log("Can't find Crossed Paths");
       } else {
         console.log('Found Crossed Paths');
@@ -58,25 +60,12 @@ export const ExposureHistoryScreen = ({ navigation }) => {
             padding: 20px;
             background-color: white;
           `}>
-          {history && history.length ? (
-            <DetailedHistory history={history} />
-          ) : isLoading ? (
+          {isLoading ? (
             <Typography use='body2'>
               {languages.t('label.loading_public_data')}
             </Typography>
           ) : (
-            <>
-              <Typography use='body1'>
-                {languages.t('label.notification_data_not_available')}
-              </Typography>
-              <Typography use='body1'>
-                {languages.t('label.notification_warning_text')}
-              </Typography>
-              <ButtonWrapper
-                onPress={() => navigation.navigate('ChooseProviderScreen', {})}
-                title={languages.t('label.notification_select_authority')}
-              />
-            </>
+            <DetailedHistory history={history} />
           )}
         </ScrollView>
       </NavigationBarWrapper>
@@ -109,13 +98,13 @@ function generateFakeIntersections(days = MAX_EXPOSURE_WINDOW, maxBins = 50) {
  * ```
  *
  * @param {string} dayBin JSON stringified array of numbers e.g. `"[1,2,3]"`
- * @returns {import('../constants/history').History | null} Array of exposed minutes per day starting at today
+ * @returns {import('../constants/history').History} Array of exposed minutes per day starting at today
  */
 export function convertToDailyMinutesExposed(dayBin) {
   let dayBinParsed = JSON.parse(dayBin);
 
   if (!dayBinParsed) {
-    return null;
+    return NO_HISTORY;
   }
 
   const today = dayjs();

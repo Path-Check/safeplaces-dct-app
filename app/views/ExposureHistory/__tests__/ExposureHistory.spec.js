@@ -14,6 +14,14 @@ describe('convertToDailyMinutesExposed', () => {
     MockDate.reset();
   });
 
+  it('returns empty array if there is null history', () => {
+    expect(convertToDailyMinutesExposed('null')).toEqual([]);
+  });
+
+  it('returns empty array if there is empty day bins', () => {
+    expect(convertToDailyMinutesExposed('[]')).toEqual([]);
+  });
+
   it('converts day bins to minutes', () => {
     expect(convertToDailyMinutesExposed('[0, 1, 2, 3, 0]')).toEqual([
       { date: expect.any(dayjs), exposureMinutes: 0 },
