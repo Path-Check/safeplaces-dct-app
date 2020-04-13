@@ -1,8 +1,8 @@
-import React from 'react';
 import { render } from '@testing-library/react-native';
+import React from 'react';
 
-import { Theme } from '../themes';
 import { Typography } from '../../components/Typography';
+import { Theme } from '../themes';
 
 it('includes extra background View if setBackground=true', () => {
   const { asJSON } = render(
@@ -20,7 +20,7 @@ it('changes text color based on theme', () => {
       <Theme use='charcoal'>
         <Typography use='body1'>Text</Typography>
       </Theme>
-      <Theme use='main'>
+      <Theme use='default'>
         <Typography use='body1'>Text</Typography>
       </Theme>
     </>,
