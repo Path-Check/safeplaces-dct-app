@@ -4,7 +4,9 @@
  * v1 - Unencrypted, simpleminded (minimal optimization).
  */
 
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import PushNotification from 'react-native-push-notification';
+
+import { isPlatformiOS } from './../Util';
 import {
   LOCATION_DATA,
   CROSSED_PATHS,
@@ -12,9 +14,7 @@ import {
   AUTHORITY_NEWS,
   LAST_CHECKED,
 } from '../constants/storage';
-import PushNotification from 'react-native-push-notification';
-
-import { isPlatformiOS } from './../Util';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
 export async function IntersectSet(concernLocationArray, completion) {
@@ -63,17 +63,9 @@ export async function IntersectSet(concernLocationArray, completion) {
     let concernArray = normalizeData(concernLocationArray);
 
     let concernTimeWindow = 1000 * 60 * 60 * 2; // +/- 2 hours window
-    let concernDistWindow = 60; // distance of concern, in feet
-
-    // At 38 degrees North latitude:
-    let ftPerLat = 364000; // 1 deg lat equals 364,000 ft
-    let ftPerLon = 288200; // 1 deg of longitude equals 288,200 ft
 
     let nowUTC = new Date().toISOString();
     let timeNow = Date.parse(nowUTC);
-
-    // Save a little CPU, no need to do sqrt()
-    let concernDistWindowSq = concernDistWindow * concernDistWindow;
 
     // Both locationArray and concernLocationArray should be in the
     // format [ { "time": 123, "latitude": 12.34, "longitude": 34.56 }]

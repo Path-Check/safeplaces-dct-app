@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
+  ActivityIndicator,
   BackHandler,
   Dimensions,
-  ActivityIndicator,
-  ScrollView,
-  SafeAreaView,
-  View,
-  TouchableOpacity,
-  Image,
+  StyleSheet,
   Text,
+  View,
 } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
 import LinearGradient from 'react-native-linear-gradient';
-
-import { GetStoreData } from '../helpers/General';
-import colors from '../constants/colors';
+import Carousel from 'react-native-snap-carousel';
 import { WebView } from 'react-native-webview';
+
 import languages from './../locales/languages';
-// import { Colors } from 'react-native/Libraries/NewAppScreen';
-import fontFamily from '../constants/fonts';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import { AUTHORITY_NEWS } from '../constants/storage';
+// import { Colors } from 'react-native/Libraries/NewAppScreen';
+import fontFamily from '../constants/fonts';
+import { GetStoreData } from '../helpers/General';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
