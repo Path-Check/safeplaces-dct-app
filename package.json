@@ -85,14 +85,22 @@
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
     "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
+    "import-sort-config": "^6.0.0",
+    "import-sort-style-module": "^6.0.0",
     "jest": "^25.1.0",
     "lint-diff": "^1.2.1",
     "lint-staged": "^10.0.9",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "1.19.1",
+    "prettier-plugin-import-sort": "0.0.3",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-version": "^4.0.0",
     "react-test-renderer": "16.9.0"
+  },
+  "importSort": {
+    ".js, .jsx, .es6, .es, .mjs, .ts, .tsx": {
+      "style": "module"
+    }
   },
   "jest": {
     "preset": "react-native",
