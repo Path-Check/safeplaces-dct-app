@@ -1,7 +1,11 @@
 import i18next from 'i18next';
 import { getLanguages } from 'react-native-i18n';
-import { GetStoreData } from '../helpers/General';
+
 import { LANG_OVERRIDE } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
+import en from './en.json';
+import ht from './ht.json';
+import it from './it.json';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 
