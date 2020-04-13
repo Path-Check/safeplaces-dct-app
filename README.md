@@ -1,6 +1,6 @@
 # COVID Safe Paths <img align="left" src="./assets/ShieldKeyHold512x512.png" data-canonical-src="./assets/ShieldKeyHold512x512.png" width="40" height="40"/> ![Android and iOS build on MacOS](https://github.com/tripleblindmarket/covid-safe-paths/workflows/Android%20and%20iOS%20build%20on%20MacOS/badge.svg)
 
-**applying the technology and philosophy of Private Kit to COVID**
+**Applying the technology and philosophy of Private Kit to COVID**
 
 Help us stop COVID-19.
 
