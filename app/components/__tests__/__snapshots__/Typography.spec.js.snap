@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`body1 is regular 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#4051DB",
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": 18,
+        "fontWeight": "normal",
+        "lineHeight": 24,
+      }
+    }
+    use="body1"
+  >
+    body1
+  </Text>
+</View>
+`;
+
+exports[`changes color based on theme 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#FFF",
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": 18,
+        "fontWeight": "normal",
+        "lineHeight": 24,
+      }
+    }
+    use="body1"
+  >
+    white
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#4051DB",
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": 18,
+        "fontWeight": "normal",
+        "lineHeight": 24,
+      }
+    }
+    use="body1"
+  >
+    violet
+  </Text>
+</View>
+`;
+
+exports[`headline1 is large and bold 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#4051DB",
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": 52,
+        "fontWeight": "bold",
+        "lineHeight": 48,
+      }
+    }
+    use="headline1"
+  >
+    headline1
+  </Text>
+</View>
+`;
