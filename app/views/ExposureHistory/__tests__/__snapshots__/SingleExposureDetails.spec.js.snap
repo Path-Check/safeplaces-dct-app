@@ -49,6 +49,7 @@ exports[`matches snapshot 1`] = `
       </Text>
       <View
         riskLevel="possible"
+        size={36}
         style={
           Object {
             "alignContent": "center",

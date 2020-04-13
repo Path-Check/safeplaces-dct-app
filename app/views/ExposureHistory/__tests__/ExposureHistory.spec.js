@@ -1,14 +1,17 @@
 import dayjs from 'dayjs';
+import MockDate from 'mockdate';
 
 import { convertToDailyMinutesExposed } from '../../ExposureHistory';
 
 describe('convertToDailyMinutesExposed', () => {
-  const NOW = dayjs('2020-04-13T04:00:00.000Z');
+  const NOW = dayjs('2020-01-09T00:00:00-08:00');
 
   beforeEach(() => {
-    jest
-      .spyOn(global.Date, 'now')
-      .mockReturnValue(new Date('2020-04-13T04:00:00.000Z').getTime());
+    MockDate.set(NOW.valueOf());
+  });
+
+  afterEach(() => {
+    MockDate.reset();
   });
 
   it('converts day bins to minutes', () => {
@@ -22,10 +25,16 @@ describe('convertToDailyMinutesExposed', () => {
   });
 
   it('converts `daysAgo` index to daily date objects', () => {
-    const history = convertToDailyMinutesExposed('[1, 1, 0]');
+    const day = convertToDailyMinutesExposed('[1, 1, 0]');
 
-    expect(history[0].date.isSame(NOW, 'day')).toBe(true);
-    expect(history[1].date.isSame(NOW.subtract(1, 'day'), 'day')).toBe(true);
-    expect(history[2].date.isSame(NOW.subtract(2, 'day'), 'day')).toBe(true);
+    const TODAY = NOW.startOf('day');
+
+    expect(day[0].date.startOf('day').format()).toBe(TODAY.format());
+    expect(day[1].date.startOf('day').format()).toBe(
+      TODAY.subtract(1, 'day').format(),
+    );
+    expect(day[2].date.startOf('day').format()).toBe(
+      TODAY.subtract(2, 'day').format(),
+    );
   });
 });

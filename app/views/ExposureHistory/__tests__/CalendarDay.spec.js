@@ -1,11 +1,20 @@
-import React from 'react';
 import { render } from '@testing-library/react-native';
 import dayjs from 'dayjs';
+import MockDate from 'mockdate';
+import React from 'react';
 
-import { CalendarDay } from '../CalendarDay';
 import { Theme } from '../../../constants/themes';
+import { CalendarDay } from '../CalendarDay';
 
-const FIXED_DATE = dayjs('2020-04-11').startOf('day');
+const FIXED_DATE = dayjs('2020-01-09T00:00:00-08:00').startOf('day');
+
+beforeEach(() => {
+  MockDate.set(FIXED_DATE.valueOf());
+});
+
+afterEach(() => {
+  MockDate.reset();
+});
 
 it('possible exposure matches snapshot', () => {
   const { asJSON } = render(
@@ -28,6 +37,16 @@ it('no exposure matches snapshot', () => {
 });
 
 it('unknown exposure matches snapshot', () => {
+  const { asJSON } = render(
+    <Theme>
+      <CalendarDay date={FIXED_DATE} exposureMinutes={undefined} />
+    </Theme>,
+  );
+
+  expect(asJSON()).toMatchSnapshot();
+});
+
+it('today matches snapshot', () => {
   const { asJSON } = render(
     <Theme>
       <CalendarDay date={FIXED_DATE} exposureMinutes={undefined} />

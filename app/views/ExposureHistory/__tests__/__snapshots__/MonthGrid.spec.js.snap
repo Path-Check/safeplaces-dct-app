@@ -161,7 +161,7 @@ exports[`allows specifying number of weeks 1`] = `
         }
       >
         <span>
-          12
+          5
         </span>
       </View>
       <View
@@ -177,7 +177,7 @@ exports[`allows specifying number of weeks 1`] = `
         }
       >
         <span>
-          13
+          6
         </span>
       </View>
       <View
@@ -193,7 +193,7 @@ exports[`allows specifying number of weeks 1`] = `
         }
       >
         <span>
-          14
+          7
         </span>
       </View>
       <View
@@ -209,7 +209,7 @@ exports[`allows specifying number of weeks 1`] = `
         }
       >
         <span>
-          15
+          8
         </span>
       </View>
       <View
@@ -225,7 +225,7 @@ exports[`allows specifying number of weeks 1`] = `
         }
       >
         <span>
-          16
+          9
         </span>
       </View>
       <View
@@ -241,7 +241,7 @@ exports[`allows specifying number of weeks 1`] = `
         }
       >
         <span>
-          17
+          10
         </span>
       </View>
       <View
@@ -257,7 +257,7 @@ exports[`allows specifying number of weeks 1`] = `
         }
       >
         <span>
-          18
+          11
         </span>
       </View>
     </View>
@@ -578,6 +578,118 @@ exports[`with no input date, defaults to 3 weeks ago from today 1`] = `
         }
       >
         <span>
+          22
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          23
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          24
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          25
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          26
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          27
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          28
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
           29
         </span>
       </View>
@@ -787,118 +899,6 @@ exports[`with no input date, defaults to 3 weeks ago from today 1`] = `
       >
         <span>
           11
-        </span>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flexBasis": "14%",
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "justifyContent": "center",
-            "minHeight": 20,
-          }
-        }
-      >
-        <span>
-          12
-        </span>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flexBasis": "14%",
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "justifyContent": "center",
-            "minHeight": 20,
-          }
-        }
-      >
-        <span>
-          13
-        </span>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flexBasis": "14%",
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "justifyContent": "center",
-            "minHeight": 20,
-          }
-        }
-      >
-        <span>
-          14
-        </span>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flexBasis": "14%",
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "justifyContent": "center",
-            "minHeight": 20,
-          }
-        }
-      >
-        <span>
-          15
-        </span>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flexBasis": "14%",
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "justifyContent": "center",
-            "minHeight": 20,
-          }
-        }
-      >
-        <span>
-          16
-        </span>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flexBasis": "14%",
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "justifyContent": "center",
-            "minHeight": 20,
-          }
-        }
-      >
-        <span>
-          17
-        </span>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flexBasis": "14%",
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "justifyContent": "center",
-            "minHeight": 20,
-          }
-        }
-      >
-        <span>
-          18
         </span>
       </View>
     </View>
