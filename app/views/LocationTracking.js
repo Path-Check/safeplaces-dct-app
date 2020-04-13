@@ -31,7 +31,7 @@ import { checkIntersect } from '../helpers/Intersect';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import exportImage from './../assets/images/export.png';
 import ButtonWrapper from '../components/ButtonWrapper';
-import { isPlatformiOS } from './../Util';
+import { isPlatformiOS, isPlatformAndroid } from './../Util';
 import Pulse from 'react-native-pulse';
 import {
   check,
@@ -82,6 +82,12 @@ const height = Dimensions.get('window').height;
 class LocationTracking extends Component {
   constructor(props) {
     super(props);
+
+    if (isPlatformAndroid()) {
+      StatusBar.setBackgroundColor('rgba(0,0,0,0)');
+      StatusBar.setBarStyle('light-content');
+      StatusBar.setTranslucent(true);
+    }
 
     this.state = {
       appState: AppState.currentState,
