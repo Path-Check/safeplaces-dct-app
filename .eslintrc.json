@@ -4,7 +4,8 @@
   "parser": "babel-eslint",
   "plugins": [
     "react",
-    "react-native"
+    "react-native",
+    "detox"
     // "json"
   ],
   "parserOptions": {

@@ -7,6 +7,9 @@
     "install:pod": "cd ios && bundle install && bundle exec pod install",
     "postinstall": "patch-package; npx react-native-jetifier",
     "postversion": "react-native-version",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "format:all": "prettier --write ./app/**/*.js",
     "test": "jest test",
     "build:e2e:ios": "detox build -c ios.sim.debug",
@@ -84,6 +87,7 @@
     "babel-jest": "^25.1.0",
     "detox": "^16.1.1",
     "eslint": "^6.8.0",
+    "eslint-plugin-detox": "^1.0.0",
     "husky": "^4.2.3",
     "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
     "import-sort-config": "^6.0.0",
@@ -116,7 +120,7 @@
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone 11 Pro"
+          "type": "iPhone 11"
         }
       },
       "android.emu.debug": {
