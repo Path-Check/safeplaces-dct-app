@@ -249,7 +249,7 @@ export function checkIntersect() {
               //    ]
               // }
               // TODO: Add an "info_exposure_url" to allow recommendations for
-              //       the health authority driectly on the Exposre History
+              //       the health authority driectly on the Exposure History
               //       page (e.g. the "What Do I Do Now?" button)
               // TODO: Add an "info_newsflash" UTC timestamp and popup a
               //       notification if that changes, i.e. if there is a newsflash?
