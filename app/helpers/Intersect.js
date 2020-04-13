@@ -5,7 +5,13 @@
  */
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { LOCATION_DATA, CROSSED_PATHS } from '../constants/storage';
+import {
+  LOCATION_DATA,
+  CROSSED_PATHS,
+  AUTHORITY_SOURCE_SETTINGS,
+  AUTHORITY_NEWS,
+  LAST_CHECKED,
+} from '../constants/storage';
 import PushNotification from 'react-native-push-notification';
 
 import { isPlatformiOS } from './../Util';
@@ -222,22 +228,16 @@ export function checkIntersect() {
   // this.findNewAuthorities(); NOT IMPLEMENTED YET
 
   // Get the user's health authorities
-  GetStoreData('AUTHORITY_SOURCE_SETTINGS')
+  GetStoreData(AUTHORITY_SOURCE_SETTINGS)
     .then(authority_list => {
       if (!authority_list) {
-        // DEBUG: Force a test list
-        // authority_list = [
-        //  {
-        //    name: 'Platte County Health',
-        //    url:
-        //      'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
-        //  },
-        //];
         console.log('No authorities', authority_list);
         return;
       }
 
       let name_news = [];
+      SetStoreData(AUTHORITY_NEWS, name_news);
+
       if (authority_list) {
         // Pull down data from all the registered health authorities
         authority_list = JSON.parse(authority_list);
@@ -256,13 +256,24 @@ export function checkIntersect() {
               //      { "time": 456, "latitude": 12.34, "longitude": 12.34}
               //    ]
               // }
-
-              // Update cache of info about the authority
+              // TODO: Add an "info_exposure_url" to allow recommendations for
+              //       the health authority driectly on the Exposre History
+              //       page (e.g. the "What Do I Do Now?" button)
               // TODO: Add an "info_newsflash" UTC timestamp and popup a
               //       notification if that changes, i.e. if there is a newsflash?
-              name_news.push({
-                name: responseJson.authority_name,
-                news_url: responseJson.info_website,
+
+              // Update cache of info about the authority
+              GetStoreData(AUTHORITY_NEWS).then(nameNewsString => {
+                let name_news = [];
+                if (nameNewsString !== null) {
+                  name_news = JSON.parse(nameNewsString);
+                }
+
+                name_news.push({
+                  name: responseJson.authority_name,
+                  news_url: responseJson.info_website,
+                });
+                SetStoreData(AUTHORITY_NEWS, name_news);
               });
 
               // TODO: Look at "publish_date_utc".  We should notify users if
@@ -278,20 +289,11 @@ export function checkIntersect() {
               });
             });
 
-          SetStoreData('AUTHORITY_NEWS', name_news)
-            .then(() => {
-              // TODO: Anything after this saves?  Background caching of
-              //       news to make it snappy?  Could be a problem in some
-              //       locales with high data costs.
-            })
-            .catch(error =>
-              console.log('Failed to save authority/news URL list', error),
-            );
+          let nowUTC = new Date().toISOString();
+          let unixtimeUTC = Date.parse(nowUTC);
+          // Last checked key is not being used atm. TODO check this to update periodically instead of every foreground activity
+          SetStoreData(LAST_CHECKED, unixtimeUTC);
         }
-        let nowUTC = new Date().toISOString();
-        let unixtimeUTC = Date.parse(nowUTC);
-        // Last checked key is not being used atm. TODO check this to update periodically instead of every foreground activity
-        SetStoreData('LAST_CHECKED', unixtimeUTC);
       } else {
         console.log('No authority list');
         return;
