@@ -24,7 +24,7 @@ Safe Paths logs your device’s location once every five minutes and stores 28 d
 
 **Downloads for COVID Safe Paths:** _coming soon!_
 
-**Downloads for COVID Safe Paths:** [Google Play](https://play.google.com/store/apps/details?id=edu.mit.privatekit) | [Apple Store](https://apps.apple.com/us/app/private-kit-prototype/id1501903733)
+**Downloads for Private Kit (technology beta):** [Google Play](https://play.google.com/store/apps/details?id=edu.mit.privatekit) | [Apple Store](https://apps.apple.com/us/app/private-kit-prototype/id1501903733)
 
 # Development Overview
 
