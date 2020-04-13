@@ -1,7 +1,7 @@
-import React from 'react';
 import styled from '@emotion/native';
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
+import React from 'react';
 
 dayjs.extend(localeData);
 
@@ -71,7 +71,7 @@ export const MonthGrid = ({
 };
 
 const Container = styled.View`
-  margin: 0 -10px; // offsets some of the percentage based cell padding
+  margin: 0 -8px; // offsets some of the percentage based cell padding
 `;
 
 const HeaderRow = styled.View`

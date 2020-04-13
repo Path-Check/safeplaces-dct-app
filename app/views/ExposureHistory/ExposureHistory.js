@@ -22,7 +22,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
     async function fetchData() {
       let dayBins = await GetStoreData(CROSSED_PATHS);
 
-      dayBins = generateFakeIntersections(6); // handy for creating faux data
+      // dayBins = generateFakeIntersections(6); // handy for creating faux data
 
       if (dayBins === null) {
         setHistory(NO_HISTORY);
