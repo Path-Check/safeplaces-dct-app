@@ -7,6 +7,7 @@ import en from './en.json';
 import es from './es.json';
 import ht from './ht.json';
 import it from './it.json';
+import ru from './ru.json';
 import zh_Hant from './zh-Hant.json';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
@@ -60,7 +61,8 @@ i18next.init({
     en: { label: 'English', translation: en },
     es: { label: 'Español', translation: es },
     ht: { label: 'Kreyòl ayisyen', translation: ht },
-    it: { label: 'Italian', translation: it },
+    it: { label: 'Italiano', translation: it },
+    ru: { label: 'Русский', translation: ru },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
   },
 });

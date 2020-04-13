@@ -44,6 +44,7 @@ module.exports = {
     'es',
     'ht',
     'it',
+    'ru',
     'zh-Hant',
   ],
   // An array of the locales in your applications
