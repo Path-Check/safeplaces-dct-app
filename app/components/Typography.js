@@ -4,6 +4,7 @@ import styled from '@emotion/native';
 export const Type = {
   Headline1: 'headline1',
   Headline2: 'headline2',
+  Headline3: 'headline3',
   Body1: 'body1',
   Body2: 'body2',
   Body3: 'body3',
@@ -41,6 +42,7 @@ export const Typography = ({
 const FONT_SIZE_MAP = {
   [Type.Headline1]: '52px',
   [Type.Headline2]: '26px',
+  [Type.Headline3]: '16px',
   [Type.Body1]: '18px',
   [Type.Body2]: '16px',
   [Type.Body3]: '15px',
@@ -51,6 +53,7 @@ const getFontSize = ({ use = Type.Body1 }) => FONT_SIZE_MAP[use];
 const LINE_HEIGHT_MAP = {
   [Type.Headline1]: '48px',
   [Type.Headline2]: '34px',
+  [Type.Headline3]: '40px',
   [Type.Body1]: '24px',
   [Type.Body2]: '22px',
   [Type.Body3]: '24px',
@@ -65,10 +68,10 @@ const getFontWeight = ({ use = Type.Body1 }) =>
   use.startsWith('headline') ? 'bold' : 'normal';
 
 const ThemedText = styled.Text`
+  color: ${getTextColor};
   font-family: ${({ monospace }) =>
     monospace ? 'IBM Plex Mono' : 'IBM Plex Sans'};
   font-size: ${getFontSize};
   font-weight: ${getFontWeight};
   line-height: ${getLineHeight};
-  color: ${getTextColor};
 `;

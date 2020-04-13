@@ -29,15 +29,19 @@ export const DetailedHistory = ({ history }) => {
         />
       ))}
 
-      <Typography use='headline2'>
+      <Typography use='headline3'>
         {languages.t('history.what_does_this_mean')}
       </Typography>
-      <Typography>{languages.t('history.what_does_this_mean_para')}</Typography>
+      <Typography use='body3'>
+        {languages.t('history.what_does_this_mean_para')}
+      </Typography>
 
-      <Typography use='headline2'>
+      <Typography use='headline3'>
         {languages.t('history.what_if_no_symptoms')}
       </Typography>
-      <Typography>{languages.t('history.what_if_no_symptoms_para')}</Typography>
+      <Typography use='body3'>
+        {languages.t('history.what_if_no_symptoms_para')}
+      </Typography>
     </>
   );
 };
