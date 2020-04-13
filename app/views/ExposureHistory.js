@@ -113,7 +113,7 @@ function generateFakeIntersections(days = MAX_EXPOSURE_WINDOW) {
  * @param {string} dayBin JSON stringified array of numbers e.g. `"[1,2,3]"`
  * @returns {import('../constants/history').History | null} Array of exposed minutes per day starting at today
  */
-function convertToDailyMinutesExposed(dayBin) {
+export function convertToDailyMinutesExposed(dayBin) {
   let dayBinParsed = JSON.parse(dayBin);
 
   if (!dayBinParsed) {
