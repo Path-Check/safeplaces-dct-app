@@ -27,19 +27,36 @@ export const DetailedHistory = ({ history }) => {
         />
       ))}
 
+      {exposedDays.length === 0 ? (
+        <>
+          <Typography use='headline3'>
+            {languages.t('label.home_no_contact_header')}
+          </Typography>
+          <Typography use='body3'>
+            {languages.t('label.home_no_contact_subtext')}
+          </Typography>
+          <Divider />
+        </>
+      ) : null}
+
       <Typography use='headline3'>
         {languages.t('history.what_does_this_mean')}
       </Typography>
       <Typography use='body3'>
         {languages.t('history.what_does_this_mean_para')}
       </Typography>
+      <Divider />
 
-      <Typography use='headline3'>
-        {languages.t('history.what_if_no_symptoms')}
-      </Typography>
-      <Typography use='body3'>
-        {languages.t('history.what_if_no_symptoms_para')}
-      </Typography>
+      {exposedDays.length ? (
+        <>
+          <Typography use='headline3'>
+            {languages.t('history.what_if_no_symptoms')}
+          </Typography>
+          <Typography use='body3'>
+            {languages.t('history.what_if_no_symptoms_para')}
+          </Typography>
+        </>
+      ) : null}
     </>
   );
 };

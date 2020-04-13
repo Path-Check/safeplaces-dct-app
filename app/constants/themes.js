@@ -1,6 +1,6 @@
-import React from 'react';
 import styled from '@emotion/native';
 import { ThemeProvider } from 'emotion-theming';
+import React from 'react';
 
 import Color from './colors';
 
@@ -17,7 +17,8 @@ export const defaultTheme = {
 
   success: Color.SUCCESS,
   warning: Color.WARNING,
-  border: Color.GRAY_BACKGROUND,
+  disabled: Color.GRAY_BACKGROUND,
+  border: Color.VIOLET_BUTTON,
 };
 
 /** Violet theme, white on violet bg. E.g. Main screen */
@@ -40,6 +41,8 @@ export const charcoal = {
 
   primary: Color.WHITE,
   onPrimary: Color.DARK_GRAY,
+
+  disabled: '#A9AFBA',
 };
 
 /** Mono, black on white. e.g. Exposure history screen */

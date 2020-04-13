@@ -1,8 +1,6 @@
 import styled from '@emotion/native';
 import React from 'react';
 
-import Color from '../../constants/colors';
-
 export const Risk = {
   Unknown: 'unknown',
   None: 'none',
@@ -35,19 +33,22 @@ export const getBgColor = ({ riskLevel, theme }) => {
     return theme.success;
   }
 
-  return Color.WHITE;
+  return 'transparent';
 };
 
 /** Get border color from theme and risk level */
-const getBorder = ({ riskLevel, theme }) => {
+const getBorderColor = ({ riskLevel, theme }) => {
   let color = 'transparent';
+
   if (riskLevel === Risk.Unknown) {
-    color = theme.border;
+    color = theme.disabled;
   }
+
   if (riskLevel === Risk.Today) {
     color = theme.textPrimaryOnBackground;
   }
-  return `1px solid ${color}`;
+
+  return color;
 };
 
 const getSize = ({ size }) => `${size}px`;
@@ -55,7 +56,7 @@ const getBorderRadius = ({ size }) => `${size / 2}px`;
 
 const Circle = styled.View`
   background-color: ${getBgColor};
-  border: ${getBorder};
+  border: 1px solid ${getBorderColor};
   width: ${getSize};
   height: ${getSize};
   border-radius: ${getBorderRadius};
@@ -64,14 +65,17 @@ const Circle = styled.View`
   flex-direction: row;
 `;
 
-const TEXT_COLOR_MAP = {
-  [Risk.None]: '#fff',
-  [Risk.Possible]: '#fff',
-  [Risk.Unknown]: '#dadada',
+/** Get border color from theme and risk level */
+const getTextColor = ({ riskLevel, theme }) => {
+  if (riskLevel === Risk.Unknown) {
+    return theme.disabled;
+  }
+
+  return theme.textPrimaryOnBackground;
 };
 
 const CircleInnerText = styled.Text`
-  color: ${({ riskLevel }) => TEXT_COLOR_MAP[riskLevel]};
+  color: ${getTextColor};
   text-align: center;
   flex: 1;
   font-size: 12px;

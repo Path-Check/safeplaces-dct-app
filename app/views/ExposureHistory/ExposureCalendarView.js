@@ -2,6 +2,7 @@ import styled, { css } from '@emotion/native';
 import React from 'react';
 
 import { Typography } from '../../components/Typography';
+import languages from '../../locales/languages';
 import { CalendarDay, DayOfWeek } from './CalendarDay';
 import { DataCircle, Risk } from './DataCircle';
 import { MonthGrid } from './MonthGrid';
@@ -47,9 +48,15 @@ export const ExposureCalendarView = ({ history, weeks }) => {
         }}
       />
       <LegendRow>
-        <LegendItem riskLevel={Risk.None}>No exposure</LegendItem>
-        <LegendItem riskLevel={Risk.Possible}>Possible exposure</LegendItem>
-        <LegendItem riskLevel={Risk.Unknown}>No data</LegendItem>
+        <LegendItem riskLevel={Risk.None}>
+          {languages.t('history.no_exposure')}
+        </LegendItem>
+        <LegendItem riskLevel={Risk.Possible}>
+          {languages.t('history.possible_exposure')}
+        </LegendItem>
+        <LegendItem riskLevel={Risk.Unknown}>
+          {languages.t('label.no_data')}
+        </LegendItem>
       </LegendRow>
     </>
   );

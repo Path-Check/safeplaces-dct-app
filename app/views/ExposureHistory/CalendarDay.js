@@ -50,7 +50,7 @@ const DayContainer = styled.View`
 `;
 
 export const DayOfWeek = styled.Text`
-  color: #707070;
+  color: ${({ theme }) => theme.textPrimaryOnBackground};
   font-family: 'IBM Plex Sans';
   font-size: 9px;
   font-weight: bold;

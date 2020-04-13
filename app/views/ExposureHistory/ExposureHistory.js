@@ -3,15 +3,14 @@ import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { BackHandler, ScrollView } from 'react-native';
 
-import languages from './../locales/languages';
-import ButtonWrapper from '../components/ButtonWrapper';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Typography } from '../components/Typography';
-import { BIN_DURATION, MAX_EXPOSURE_WINDOW } from '../constants/history';
-import { CROSSED_PATHS } from '../constants/storage';
-import { Theme } from '../constants/themes';
-import { GetStoreData } from '../helpers/General';
-import { DetailedHistory } from './ExposureHistory/DetailedHistory';
+import NavigationBarWrapper from '../../components/NavigationBarWrapper';
+import { Typography } from '../../components/Typography';
+import { BIN_DURATION, MAX_EXPOSURE_WINDOW } from '../../constants/history';
+import { CROSSED_PATHS } from '../../constants/storage';
+import { Theme, charcoal, defaultTheme } from '../../constants/themes';
+import { GetStoreData } from '../../helpers/General';
+import languages from '../../locales/languages';
+import { DetailedHistory } from './DetailedHistory';
 
 const NO_HISTORY = [];
 
@@ -22,9 +21,8 @@ export const ExposureHistoryScreen = ({ navigation }) => {
   useEffect(() => {
     async function fetchData() {
       let dayBins = await GetStoreData(CROSSED_PATHS);
-      setIsLoading(false);
 
-      // dayBins = generateFakeIntersections(6); // handy for creating faux data
+      dayBins = generateFakeIntersections(6); // handy for creating faux data
 
       if (dayBins === null) {
         setHistory(NO_HISTORY);
@@ -33,6 +31,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
         console.log('Found Crossed Paths');
         setHistory(convertToDailyMinutesExposed(dayBins));
       }
+      setIsLoading(false);
     }
 
     fetchData();
@@ -50,15 +49,31 @@ export const ExposureHistoryScreen = ({ navigation }) => {
     return true;
   };
 
+  const hasExposure = history?.length;
+
+  const pageTitle = hasExposure
+    ? languages.t('history.possible_exposure')
+    : languages.t('label.home_no_contact_header');
+
+  const themeBackground = hasExposure
+    ? charcoal.background
+    : defaultTheme.background;
+
+  const themeText = hasExposure
+    ? charcoal.textPrimaryOnBackground
+    : defaultTheme.textPrimaryOnBackground;
+
   return (
-    <Theme use='monochrome'>
+    <Theme use={hasExposure ? 'charcoal' : 'default'}>
       <NavigationBarWrapper
-        title={languages.t('label.event_history_title')}
-        onBackPress={() => navigation.goBack()}>
+        title={pageTitle}
+        onBackPress={() => navigation.goBack()}
+        backgroundColor={themeBackground}>
         <ScrollView
           contentContainerStyle={css`
             padding: 20px;
-            background-color: white;
+            background-color: ${themeBackground};
+            color: ${themeText};
           `}>
           {isLoading ? (
             <Typography use='body2'>
@@ -98,12 +113,13 @@ function generateFakeIntersections(days = MAX_EXPOSURE_WINDOW, maxBins = 50) {
  * ```
  *
  * @param {string} dayBin JSON stringified array of numbers e.g. `"[1,2,3]"`
- * @returns {import('../constants/history').History} Array of exposed minutes per day starting at today
+ * @returns {import('../../constants/history').History} Array of exposed minutes per day starting at today
  */
 export function convertToDailyMinutesExposed(dayBin) {
   let dayBinParsed = JSON.parse(dayBin);
 
   if (!dayBinParsed) {
+    console.log('Crossed Paths is null');
     return NO_HISTORY;
   }
 
