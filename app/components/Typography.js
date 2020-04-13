@@ -21,7 +21,7 @@ export const Type = {
  * Usage:
  *
  * ```jsx
- * <Theme use="dark">
+ * <Theme use="charcoal">
  *   <Typography use="headline2">Heading</Typography>
  *   <Typography use="body1" secondary>Paragraph text ...</Typography>
  *   <Typography use="body2" monospace>link</Typography>

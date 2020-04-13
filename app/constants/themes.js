@@ -4,8 +4,8 @@ import { ThemeProvider } from 'emotion-theming';
 
 import Color from './colors';
 
-/** Main theme, violet on pale violet bg. e.g. Settings */
-export const main = {
+/** Default theme, violet on pale violet bg. e.g. Settings */
+export const defaultTheme = {
   background: Color.VIOLET_ALPHA_06,
   textPrimaryOnBackground: Color.VIOLET,
   textSecondaryOnBackground: 'rgba(64, 81, 219, 0.6)',
@@ -20,9 +20,9 @@ export const main = {
   border: Color.GRAY_BACKGROUND,
 };
 
-/** Inverted theme, white on violet bg. E.g. Main screen */
-export const inverted = {
-  ...main,
+/** Violet theme, white on violet bg. E.g. Main screen */
+export const violet = {
+  ...defaultTheme,
   background: `linear-gradient(245.21deg, ${Color.VIOLET_BUTTON} 0%, ${Color.VIOLET_BUTTON_DARK} 100%);`,
   textPrimaryOnBackground: Color.WHITE,
   textSecondaryOnBackground: 'rgba(255, 255, 255, 0.6)',
@@ -31,20 +31,9 @@ export const inverted = {
   onPrimary: Color.VIOLET,
 };
 
-/** Mono, black on white. e.g. Exposure history screen */
-export const monochrome = {
-  ...main,
-  background: Color.WHITE,
-  textPrimaryOnBackground: Color.MONO_DARK,
-  textSecondaryOnBackground: Color.MONO_SECONDARY,
-
-  primary: Color.VIOLET_BUTTON,
-  onPrimary: Color.WHITE,
-};
-
-/** Dark, white on gray. E.g. Possible exposure mode on main screen */
-export const dark = {
-  ...main,
+/** Dark, white on gray bg. E.g. Possible exposure mode on default screen */
+export const charcoal = {
+  ...defaultTheme,
   background: Color.DARK_GRAY,
   textPrimaryOnBackground: Color.WHITE,
   textSecondaryOnBackground: Color.LIGHT_GRAY,
@@ -53,11 +42,22 @@ export const dark = {
   onPrimary: Color.DARK_GRAY,
 };
 
+/** Mono, black on white. e.g. Exposure history screen */
+export const monochrome = {
+  ...defaultTheme,
+  background: Color.WHITE,
+  textPrimaryOnBackground: Color.MONO_DARK,
+  textSecondaryOnBackground: Color.MONO_SECONDARY,
+
+  primary: Color.VIOLET_BUTTON,
+  onPrimary: Color.WHITE,
+};
+
 const THEME_MAP = {
-  main,
-  inverted,
+  default: defaultTheme,
+  violet,
+  charcoal,
   monochrome,
-  dark,
 };
 
 /** A view which uses the theme's background color */
@@ -68,7 +68,7 @@ export const ThemedBackground = styled.View`
 /**
  * Return theme config for a known theme name
  *
- * @param {'main' | 'monochrome' | 'inverted' | 'dark'} themeName
+ * @param {'default' | 'monochrome' | 'violet' | 'charcoal'} themeName
  */
 export const getTheme = themeName => {
   const themeColors = THEME_MAP[themeName];
@@ -84,10 +84,10 @@ export const getTheme = themeName => {
  *
  * Usage:
  *
- * This will render a dark view, with a white heading, and a grey paragraph.
+ * This will render a charcoal view, with a white heading, and a grey paragraph.
  *
  * ```jsx
- * <Theme use="dark" setBackground>
+ * <Theme use="charcoal" setBackground>
  *   <Typography use="headline2">Test</Typogrphy>
  *   <Typography secondary>Paragraph here</Typogrphy>
  * </Theme>
@@ -110,7 +110,7 @@ export const getTheme = themeName => {
  *   setBackground?: boolean,
  * }} param0
  */
-export const Theme = ({ use = 'main', setBackground = false, children }) => {
+export const Theme = ({ use = 'default', setBackground = false, children }) => {
   return (
     <ThemeProvider theme={getTheme(use)}>
       {setBackground ? (

@@ -6,7 +6,7 @@ import { Typography } from '../../components/Typography';
 
 it('includes extra background View if setBackground=true', () => {
   const { asJSON } = render(
-    <Theme use='dark' setBackground>
+    <Theme use='charcoal' setBackground>
       <Typography use='headline1'>Text</Typography>
     </Theme>,
   );
@@ -17,7 +17,7 @@ it('includes extra background View if setBackground=true', () => {
 it('changes text color based on theme', () => {
   const { asJSON } = render(
     <>
-      <Theme use='dark'>
+      <Theme use='charcoal'>
         <Typography use='body1'>Text</Typography>
       </Theme>
       <Theme use='main'>

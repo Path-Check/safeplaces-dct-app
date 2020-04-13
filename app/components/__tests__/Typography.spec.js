@@ -27,10 +27,10 @@ it('body1 is regular', () => {
 it('changes color based on theme', () => {
   const { asJSON } = render(
     <>
-      <Theme use='dark'>
+      <Theme use='charcoal'>
         <Typography use='body1'>white</Typography>
       </Theme>
-      <Theme use='main'>
+      <Theme use='default'>
         <Typography use='body1'>violet</Typography>
       </Theme>
     </>,
