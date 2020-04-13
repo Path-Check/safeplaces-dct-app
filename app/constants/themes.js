@@ -10,7 +10,9 @@ export const main = {
   textPrimaryOnBackground: Color.VIOLET,
   textSecondaryOnBackground: 'rgba(64, 81, 219, 0.6)',
 
+  /** E.g. button bg */
   primary: Color.VIOLET_BUTTON,
+  /** E.g. button text color */
   onPrimary: Color.WHITE,
 
   success: Color.SUCCESS,
@@ -58,15 +60,20 @@ const THEME_MAP = {
   dark,
 };
 
+/** A view which uses the theme's background color */
 export const ThemedBackground = styled.View`
   background-color: ${({ theme }) => theme.background};
 `;
 
-/** Return theme config for a known theme name */
-export const getTheme = t => {
-  const themeColors = THEME_MAP[t];
+/**
+ * Return theme config for a known theme name
+ *
+ * @param {'main' | 'mono' | 'inverted' | 'dark'} themeName
+ */
+export const getTheme = themeName => {
+  const themeColors = THEME_MAP[themeName];
   if (!themeColors) {
-    throw new Error(`Unknown theme ${t}`);
+    throw new Error(`Unknown theme ${themeName}`);
   }
   return themeColors;
 };
