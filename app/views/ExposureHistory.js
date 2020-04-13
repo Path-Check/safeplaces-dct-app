@@ -49,7 +49,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
   };
 
   return (
-    <Theme use="mono">
+    <Theme use='mono'>
       <NavigationBarWrapper
         title={languages.t('label.event_history_title')}
         onBackPress={() => navigation.goBack()}>
@@ -58,21 +58,21 @@ export const ExposureHistoryScreen = ({ navigation }) => {
             padding: 20px;
             background-color: white;
           `}>
-          <Typography use="headline2">
+          <Typography use='headline2'>
             {languages.t('history.timeline')}
           </Typography>
           {history && history.length ? (
             <DetailedHistory history={history} />
           ) : isLoading ? (
-            <Typography use="body2">
+            <Typography use='body2'>
               {languages.t('label.loading_public_data')}
             </Typography>
           ) : (
             <>
-              <Typography use="body1">
+              <Typography use='body1'>
                 {languages.t('label.notification_data_not_available')}
               </Typography>
-              <Typography use="body1">
+              <Typography use='body1'>
                 {languages.t('label.notification_warning_text')}
               </Typography>
               <ButtonWrapper
