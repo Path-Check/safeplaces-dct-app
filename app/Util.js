@@ -1,5 +1,5 @@
-import { Platform } from 'react-native';
 import dayjs from 'dayjs';
+import { Platform } from 'react-native';
 
 export function isPlatformiOS() {
   return Platform.OS === 'ios';

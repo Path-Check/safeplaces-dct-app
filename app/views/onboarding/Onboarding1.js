@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Text,
   Dimensions,
-  StyleSheet,
   ImageBackground,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
+
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
+import languages, { findUserLang } from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
+import NativePicker from '../../components/NativePicker';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import languages, { findUserLang } from './../../locales/languages';
-import NativePicker from '../../components/NativePicker';
-import { SetStoreData } from '../../helpers/General';
 import { LANG_OVERRIDE } from '../../constants/storage';
+import { SetStoreData } from '../../helpers/General';
 
 const width = Dimensions.get('window').width;
 
