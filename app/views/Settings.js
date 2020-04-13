@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 import {
+  BackHandler,
+  ScrollView,
   StyleSheet,
-  View,
   Text,
   TouchableOpacity,
-  ScrollView,
-  BackHandler,
+  View,
 } from 'react-native';
+import { SvgXml } from 'react-native-svg';
+
+import googleMapsIcon from './../assets/svgs/google-maps-logo';
+import fontFamily from './../constants/fonts';
+import languages from './../locales/languages';
+import ButtonWrapper from '../components/ButtonWrapper';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import Colors from '../constants/colors';
 
 // This is the definitive listing of registered Healthcare Authorities.  To
 // register, just submit a PR against that list on Github.  Users are also
 // free to type in a non-official authority.
 //
-
-import languages from './../locales/languages';
-import ButtonWrapper from '../components/ButtonWrapper';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import Colors from '../constants/colors';
-import fontFamily from './../constants/fonts';
-import warning from './../assets/svgs/warning';
-import googleMapsIcon from './../assets/svgs/google-maps-logo';
-import { SvgXml } from 'react-native-svg';
 
 class SettingsScreen extends Component {
   constructor(props) {
