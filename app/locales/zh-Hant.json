@@ -16,7 +16,6 @@
     "commitment": "承諾",
     "commitment_para": "Safe Paths安全的使用您位置資訊紀錄以及確認您與他人的互動，未經您允許，您的數據絕不會離開您手機",
     "default_news_site_name": "SafePaths 新聞",
-    "default_news_site_url": "https://covidsafepaths.org/in-app-news",
     "event_history_subtitle": "從疾病管制機構共享的數據了解您個人接觸風險",
     "event_history_title": "接觸歷史",
     "export_para_1": "如果您新冠病毒檢測結果為陽性，請您盡己所能分享您的位置歷史資訊給在地的疾病管制機構",
@@ -92,7 +91,6 @@
     "team": "團隊",
     "team_para": "我們團隊是由一群來自知名機構的傳染病學家、工程師、資料科學家、數位隱私倡導者、教授以及研究員、包含：MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young and Link Ventures.",
     "terms_of_use": "使用條款",
-    "terms_of_use_url": "https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#",
     "tested_positive_subtitle": "您的隱私資料可以被分享給疾病管制機構、背份、或者分享",
     "tested_positive_title": "分享位置歷史資訊"
   }
