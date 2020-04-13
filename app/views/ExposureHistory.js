@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { BackHandler, ScrollView } from 'react-native';
 import { css } from '@emotion/native';
 import dayjs from 'dayjs';
+import React, { useEffect, useState } from 'react';
+import { BackHandler, ScrollView } from 'react-native';
 
 import languages from './../locales/languages';
-import { GetStoreData } from '../helpers/General';
 import ButtonWrapper from '../components/ButtonWrapper';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { CROSSED_PATHS } from '../constants/storage';
-import { MAX_EXPOSURE_WINDOW, BIN_DURATION } from '../constants/history';
-import { DetailedHistory } from './ExposureHistory/DetailedHistory';
 import { Typography } from '../components/Typography';
+import { BIN_DURATION, MAX_EXPOSURE_WINDOW } from '../constants/history';
+import { CROSSED_PATHS } from '../constants/storage';
 import { Theme } from '../constants/themes';
+import { GetStoreData } from '../helpers/General';
+import { DetailedHistory } from './ExposureHistory/DetailedHistory';
 
 export const ExposureHistoryScreen = ({ navigation }) => {
   const [history, setHistory] = useState(null);
@@ -22,7 +22,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
       let dayBins = await GetStoreData(CROSSED_PATHS);
       setIsLoading(false);
 
-      // dayBins = generateFakeIntersections(6); // handy for creating faux data
+      dayBins = generateFakeIntersections(6); // handy for creating faux data
 
       if (dayBins === null) {
         setHistory(null);
@@ -58,9 +58,6 @@ export const ExposureHistoryScreen = ({ navigation }) => {
             padding: 20px;
             background-color: white;
           `}>
-          <Typography use='headline3'>
-            {languages.t('history.timeline')}
-          </Typography>
           {history && history.length ? (
             <DetailedHistory history={history} />
           ) : isLoading ? (
