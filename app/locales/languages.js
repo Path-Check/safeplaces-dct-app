@@ -59,7 +59,7 @@ i18next.init({
     en: { label: 'English', translation: en },
     ht: { label: 'Kreyòl ayisyen', translation: ht },
     it: { label: 'Italian', translation: it },
-    ru: { label: 'Russian', translation: ru },
+    ru: { label: 'Русский', translation: ru },
   },
 });
 
