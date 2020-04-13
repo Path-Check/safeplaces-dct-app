@@ -1,56 +1,46 @@
+import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import React, { Component } from 'react';
 import {
   AppState,
-  SafeAreaView,
-  StyleSheet,
-  Linking,
-  View,
-  Text,
-  TouchableOpacity,
+  BackHandler,
   Dimensions,
   Image,
-  ScrollView,
-  BackHandler,
   ImageBackground,
+  Linking,
   StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from 'react-native-popup-menu';
-import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
-import Colors from '../constants/colors';
-import LocationServices from '../services/LocationService';
-//import BroadcastingServices from '../services/BroadcastingService';
-import BackgroundTaskServices from '../services/BackgroundTaskService';
-import { checkIntersect } from '../helpers/Intersect';
-
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import exportImage from './../assets/images/export.png';
-import ButtonWrapper from '../components/ButtonWrapper';
-import { isPlatformiOS } from './../Util';
-import Pulse from 'react-native-pulse';
-import {
-  check,
   PERMISSIONS,
   RESULTS,
+  check,
   openSettings,
 } from 'react-native-permissions';
-import foreArrow from './../assets/images/foreArrow.png';
-
-import { GetStoreData, SetStoreData } from '../helpers/General';
-import languages from '../locales/languages';
-
+import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
+
+import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
+import exportImage from './../assets/images/export.png';
+import foreArrow from './../assets/images/foreArrow.png';
+import BackgroundImage from './../assets/images/launchScreenBackground.png';
+import SettingsGear from './../assets/svgs/settingsGear';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
-import SettingsGear from './../assets/svgs/settingsGear';
+import { isPlatformAndroid, isPlatformiOS } from './../Util';
+import ButtonWrapper from '../components/ButtonWrapper';
+import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import { PARTICIPATE, CROSSED_PATHS } from '../constants/storage';
+import { PARTICIPATE } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import { checkIntersect } from '../helpers/Intersect';
+import languages from '../locales/languages';
+//import BroadcastingServices from '../services/BroadcastingService';
+import BackgroundTaskServices from '../services/BackgroundTaskService';
+import LocationServices from '../services/LocationService';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -82,6 +72,12 @@ const height = Dimensions.get('window').height;
 class LocationTracking extends Component {
   constructor(props) {
     super(props);
+
+    if (isPlatformAndroid()) {
+      StatusBar.setBackgroundColor(Colors.TRANSPARENT);
+      StatusBar.setBarStyle('light-content');
+      StatusBar.setTranslucent(true);
+    }
 
     this.state = {
       appState: AppState.currentState,
