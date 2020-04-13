@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
+  ActivityIndicator,
   BackHandler,
   Dimensions,
-  ActivityIndicator,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
+import WebView from 'react-native-webview';
 
+import languages from './../locales/languages';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import WebView from 'react-native-webview';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
-import languages from './../locales/languages';
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
-
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
 
 class ImportScreen extends Component {
   constructor(props) {
