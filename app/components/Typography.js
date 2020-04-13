@@ -21,7 +21,7 @@ export const Type = {
  * }} param0
  */
 export const Typography = ({
-  use = 'body1',
+  use = Type.Body1,
   secondary,
   monospace,
   children,
