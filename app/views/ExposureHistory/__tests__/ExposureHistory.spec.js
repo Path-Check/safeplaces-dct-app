@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { convertToDailyMinutesExposed } from '../../ExposureHistory';
 
 describe('convertToDailyMinutesExposed', () => {
-  const TODAY = dayjs('2020-04-13T04:00:00.000Z');
+  const NOW = dayjs('2020-04-13T04:00:00.000Z');
 
   beforeEach(() => {
     jest
@@ -24,8 +24,8 @@ describe('convertToDailyMinutesExposed', () => {
   it('converts `daysAgo` index to daily date objects', () => {
     const history = convertToDailyMinutesExposed('[1, 1, 0]');
 
-    expect(history[0].date.isSame(TODAY, 'day')).toBe(true);
-    expect(history[1].date.isSame(TODAY.subtract(1, 'day'), 'day')).toBe(true);
-    expect(history[2].date.isSame(TODAY.subtract(2, 'day'), 'day')).toBe(true);
+    expect(history[0].date.isSame(NOW, 'day')).toBe(true);
+    expect(history[1].date.isSame(NOW.subtract(1, 'day'), 'day')).toBe(true);
+    expect(history[2].date.isSame(NOW.subtract(2, 'day'), 'day')).toBe(true);
   });
 });
