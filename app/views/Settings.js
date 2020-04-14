@@ -155,11 +155,11 @@ class SettingsScreen extends Component {
           {/* <View style={styles.spacer} /> */}
 
           <View style={styles.fullDivider} />
-          <View style={styles.mainContainer}>{this.getMapsImport()}</View>
+          {/* <View style={styles.mainContainer}>{this.getMapsImport()}</View>
           <View style={styles.fullDivider} />
 
           <View style={styles.spacer} />
-          <View style={styles.fullDivider} />
+          <View style={styles.fullDivider} /> */}
 
           <View style={styles.mainContainer}>
             <View style={styles.section}>
