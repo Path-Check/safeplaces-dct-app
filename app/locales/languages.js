@@ -5,6 +5,7 @@ import { LANG_OVERRIDE } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
 import en from './en.json';
 import es from './es.json';
+import fr from './fr.json';
 import ht from './ht.json';
 import it from './it.json';
 import ru from './ru.json';
@@ -60,6 +61,7 @@ i18next.init({
   resources: {
     en: { label: 'English', translation: en },
     es: { label: 'Español', translation: es },
+    fr: { label: 'Français', translation: fr },
     ht: { label: 'Kreyòl ayisyen', translation: ht },
     it: { label: 'Italiano', translation: it },
     ru: { label: 'Русский', translation: ru },
