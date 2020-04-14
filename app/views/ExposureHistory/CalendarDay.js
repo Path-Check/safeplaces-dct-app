@@ -10,26 +10,26 @@ import { DataCircle, Risk } from './DataCircle';
  * @param {{
  *   date: dayjs.Dayjs,
  *   exposureMinutes?: number,
- *   showMonthLabel?: boolean
- *   showToday?: boolean
+ *   showMonthLabel?: boolean,
+ *   highlightIfToday?: boolean,
  * }} param0
  */
 export const CalendarDay = ({
   date,
   exposureMinutes,
-  showToday = false,
+  highlightIfToday = false,
   showMonthLabel = false,
 }) => {
   let riskLevel = Risk.Unknown;
 
+  const today = dayjs();
+  if (highlightIfToday && today.isSame(date, 'day')) {
+    riskLevel = Risk.Today;
+  }
+
   // No risk is less important than "today"
   if (exposureMinutes === 0) {
     riskLevel = Risk.None;
-  }
-
-  const today = dayjs();
-  if (showToday && today.isSame(date, 'day')) {
-    riskLevel = Risk.Today;
   }
 
   // possible risk is more important than "today"

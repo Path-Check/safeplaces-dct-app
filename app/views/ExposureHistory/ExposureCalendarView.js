@@ -47,7 +47,7 @@ export const ExposureCalendarView = ({ history, weeks }) => {
           const exposureMinutes = exposureMap[getDayKey(date)];
           return (
             <CalendarDay
-              showToday
+              highlightIfToday
               date={date}
               exposureMinutes={exposureMinutes}
             />
