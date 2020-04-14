@@ -2,9 +2,15 @@ name: Test
 
 on:
   push:
-    branches: [develop, release-candidate, master]
+    branches:
+      - develop
+      - release-candidate
+      - master
   pull_request:
-    branches: [develop, release-candidate, master]
+    branches:
+      - develop
+      - release-candidate
+      - master
 
 jobs:
   unit-test:
