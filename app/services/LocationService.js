@@ -246,8 +246,17 @@ export default class LocationServices {
       } else {
         BackgroundGeolocation.start(); //triggers start on start event
 
-        // TODO: We reach this point on Android when location services are toggled off/on.
-        //       When this fires, check if they are off and show a Notification in the tray
+        BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
+          if (!locationServicesEnabled) {
+            PushNotification.localNotification({
+              id: '55',
+              title: languages.t('label.location_disabled_title'),
+              message: languages.t('label.location_disabled_message'),
+            });
+          } else {
+            PushNotification.cancelLocalNotifications({ id: '55' });
+          }
+        });
       }
     });
 
