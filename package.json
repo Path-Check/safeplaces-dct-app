@@ -9,7 +9,8 @@
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
     "i18n:extract": "i18next",
-    "test": "jest test"
+    "test": "jest test",
+    "test:dev_setup": "bats __tests__/dev_setup.test.bats"
   },
   "lint-staged": {
     "*.js": [
@@ -83,6 +84,7 @@
     "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
     "babel-jest": "^25.1.0",
+    "bats": "^1.1.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
     "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
