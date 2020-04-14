@@ -381,6 +381,7 @@ class LocationTracking extends Component {
       // buttonFunction = () => {
       //   this.props.navigation.navigate('NotificationScreen');
       // };
+      return;
     } else if (this.state.currentState === StateEnum.UNKNOWN) {
       buttonLabel = languages.t('label.home_enable_location');
       buttonFunction = () => {
