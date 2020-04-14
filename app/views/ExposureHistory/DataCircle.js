@@ -71,6 +71,10 @@ const getTextColor = ({ riskLevel, theme }) => {
     return theme.disabled;
   }
 
+  if (riskLevel === Risk.None || riskLevel === Risk.Possible) {
+    return theme.onPrimary;
+  }
+
   return theme.textPrimaryOnBackground;
 };
 
