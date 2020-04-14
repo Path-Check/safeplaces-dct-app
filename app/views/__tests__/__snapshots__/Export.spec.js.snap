@@ -133,7 +133,7 @@ Array [
                 }
               }
             >
-              If you test positive for COVID-19, please do your part by sharing your location history with local authorities.
+              
             </Text>
             <Text
               style={
@@ -181,7 +181,7 @@ Array [
                   }
                 }
               >
-                Share location data
+                Export Data Locally
               </Text>
               <SvgXml
                 style={

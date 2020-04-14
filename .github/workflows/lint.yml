@@ -28,4 +28,4 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      - run: ./node_modules/.bin/lint-diff origin/develop
+      - run: ./node_modules/.bin/lint-diff $GITHUB_REF
