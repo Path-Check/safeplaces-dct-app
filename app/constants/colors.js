@@ -10,6 +10,7 @@ const colors = {
   WARNING: '#ffc000', // Orange
   VIOLET_ALPHA_06: 'rgba(105, 121, 248, 0.06)',
   VIOLET: '#4051DB',
+  TRANSPARENT: 'transparent',
 
   // For notifications
   HIGHEST_RISK: '#e74c3c',
