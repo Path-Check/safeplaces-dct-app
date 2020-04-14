@@ -28,6 +28,6 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      - run: echo running on branch ${{ github.base_ref }}
+      - run: echo running lint-diff against origin/${{ github.base_ref }}
 
-      - run: ./node_modules/.bin/lint-diff ${{ github.base_ref }}
+      - run: ./node_modules/.bin/lint-diff origin/${{ github.base_ref }}
