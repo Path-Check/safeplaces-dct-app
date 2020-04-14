@@ -205,18 +205,14 @@ class NotificationScreen extends Component {
                     </View>
                   ),
                 )}
-                <Text style={styles.whatNextHeader}>What does this mean?</Text>
-                <Text style={styles.whatNextBody}>
-                  Individuals who don't exhibit symptoms can sometimes still
-                  carry the infection and infect others. Being careful about
-                  social distancing and coming in contact with large groups or
-                  at risk individuals (the elderly, those with significant other
-                  medical issues) is important to manage both your risk and the
-                  risk to others.
+                <Text style={styles.whatNextHeader}>
+                  {languages.t('label.notification_what_does_this_mean')}
                 </Text>
                 <Text style={styles.whatNextBody}>
-                  If you have no symptoms but still would like to be tested you
-                  can go to your nearest testing site.
+                  {languages.t('label.notification_safety_info')}
+                </Text>
+                <Text style={styles.whatNextBody}>
+                  {languages.t('label.notification_symptoms')}
                 </Text>
               </ScrollView>
             </>
