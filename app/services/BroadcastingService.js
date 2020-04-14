@@ -1,11 +1,12 @@
-import { GetStoreData, SetStoreData } from '../helpers/General';
 import { Alert } from 'react-native';
-import BackgroundTimer from 'react-native-background-timer';
-import UUIDGenerator from 'react-native-uuid-generator';
-import AndroidBLEAdvertiserModule from 'react-native-ble-advertiser';
 import { NativeEventEmitter, NativeModules } from 'react-native';
-import { isPlatformAndroid, nowStr } from '../Util';
+import BackgroundTimer from 'react-native-background-timer';
+import AndroidBLEAdvertiserModule from 'react-native-ble-advertiser';
+import UUIDGenerator from 'react-native-uuid-generator';
+
 import { CONTACT_DATA, MY_UUIDs } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import { isPlatformAndroid, nowStr } from '../Util';
 
 var currentUUID = null;
 var onDeviceFound = null;
@@ -239,7 +240,7 @@ export default class BroadcastingServices {
     setTimeout(
       () =>
         Alert.alert(
-          'Private Kit requires bluetooth to be enabled',
+          'COVID Safe Paths requires bluetooth to be enabled',
           'Would you like to enable Bluetooth?',
           [
             {

@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  Dimensions,
-  TouchableOpacity,
   BackHandler,
+  Dimensions,
   ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
-import packageJson from '../../package.json';
+import { VictoryAxis, VictoryBar, VictoryChart } from 'victory-native';
 
-import colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
-import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
 import AsyncStorage from '@react-native-community/async-storage';
 import { GetStoreData } from '../helpers/General';
@@ -27,7 +21,11 @@ import {
 } from 'victory-native';
 import Colors from '../constants/colors';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import colors from '../constants/colors';
+import Colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import { CROSSED_PATHS } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;

@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView, BackHandler } from 'react-native';
+import { BackHandler, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
+import team from './../assets/svgs/team';
+import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
 import { isPlatformiOS } from './../Util';
-import Colors from '../constants/colors';
-import fontFamily from './../constants/fonts';
-import team from './../assets/svgs/team';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { SvgXml } from 'react-native-svg';
 import lock from '../assets/svgs/lock';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { DEBUG_MODE, CROSSED_PATHS } from '../constants/storage';
 import { checkIntersect } from '../helpers/Intersect';
 
 const dayBinSize = 28; // Number of day in the standard day-bin array (4 weeks)
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import Colors from '../constants/colors';
 
 class AboutScreen extends Component {
   constructor(props) {

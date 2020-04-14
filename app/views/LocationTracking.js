@@ -1,56 +1,46 @@
+import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import React, { Component } from 'react';
 import {
   AppState,
-  SafeAreaView,
-  StyleSheet,
-  Linking,
-  View,
-  Text,
-  TouchableOpacity,
+  BackHandler,
   Dimensions,
   Image,
-  ScrollView,
-  BackHandler,
   ImageBackground,
+  Linking,
   StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from 'react-native-popup-menu';
-import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
-import Colors from '../constants/colors';
-import LocationServices from '../services/LocationService';
-//import BroadcastingServices from '../services/BroadcastingService';
-import BackgroundTaskServices from '../services/BackgroundTaskService';
-import { checkIntersect } from '../helpers/Intersect';
-
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import exportImage from './../assets/images/export.png';
-import ButtonWrapper from '../components/ButtonWrapper';
-import { isPlatformiOS } from './../Util';
-import Pulse from 'react-native-pulse';
-import {
-  check,
   PERMISSIONS,
   RESULTS,
+  check,
   openSettings,
 } from 'react-native-permissions';
-import foreArrow from './../assets/images/foreArrow.png';
-
-import { GetStoreData, SetStoreData } from '../helpers/General';
-import languages from '../locales/languages';
-
+import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
+
+import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
+import exportImage from './../assets/images/export.png';
+import foreArrow from './../assets/images/foreArrow.png';
+import BackgroundImage from './../assets/images/launchScreenBackground.png';
+import SettingsGear from './../assets/svgs/settingsGear';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
-import SettingsGear from './../assets/svgs/settingsGear';
+import { isPlatformAndroid, isPlatformiOS } from './../Util';
+import ButtonWrapper from '../components/ButtonWrapper';
+import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { PARTICIPATE, CROSSED_PATHS, DEBUG_MODE } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import { checkIntersect } from '../helpers/Intersect';
+import languages from '../locales/languages';
+//import BroadcastingServices from '../services/BroadcastingService';
+import BackgroundTaskServices from '../services/BackgroundTaskService';
+import LocationServices from '../services/LocationService';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -82,6 +72,12 @@ const height = Dimensions.get('window').height;
 class LocationTracking extends Component {
   constructor(props) {
     super(props);
+
+    if (isPlatformAndroid()) {
+      StatusBar.setBackgroundColor(Colors.TRANSPARENT);
+      StatusBar.setBarStyle('light-content');
+      StatusBar.setTranslucent(true);
+    }
 
     this.state = {
       appState: AppState.currentState,
@@ -425,14 +421,21 @@ class LocationTracking extends Component {
           translucent={true}
         />
         {this.getPulseIfNeeded()}
+
         <View style={styles.mainContainer}>
-          <View style={styles.contentContainer}>
-            {this.getMainText()}
+          <View style={styles.contentAbovePulse}>
+            {this.state.currentState === StateEnum.AT_RISK &&
+              this.getMainText()}
             <Text style={styles.subsubheaderText}>{this.getSubSubText()}</Text>
+          </View>
+          <View style={styles.contentBelowPulse}>
+            {this.state.currentState !== StateEnum.AT_RISK &&
+              this.getMainText()}
             <Text style={styles.subheaderText}>{this.getSubText()}</Text>
             {this.getCTAIfNeeded()}
           </View>
         </View>
+
         <View>
           <TouchableOpacity
             onPress={this.getMayoInfoPressed.bind(this)}
@@ -464,21 +467,40 @@ class LocationTracking extends Component {
   }
 }
 
+const PULSE_GAP = 80;
+
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
     flex: 1,
+    justifyContent: 'flex-end',
   },
   mainContainer: {
-    top: '50%',
-    flex: 1,
+    position: 'absolute',
+    // resizeMode: 'contain',
+    // aligns the center of the main container with center of pulse
+    // so that two `flex: 1` views will be have a reasonable chance at natural
+    // flex flow for above and below the pulse.
+    top: '-10%',
+    left: 0,
+    right: 0,
+    height: '100%',
+    paddingHorizontal: '12%',
+    paddingBottom: 12,
   },
-  contentContainer: {
-    width: width * 0.65,
+  contentAbovePulse: {
     flex: 1,
-    alignSelf: 'center',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingBottom: PULSE_GAP / 2,
+  },
+  contentBelowPulse: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: PULSE_GAP,
   },
   settingsContainer: {
     position: 'absolute',
@@ -488,11 +510,12 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    top: '9%',
+    top: 24,
   },
   pulseContainer: {
     position: 'absolute',
     resizeMode: 'contain',
+    height: '100%',
     top: '-13%',
     left: 0,
     right: 0,
@@ -501,8 +524,7 @@ const styles = StyleSheet.create({
   mainTextAbove: {
     textAlign: 'center',
     lineHeight: 34,
-    marginTop: -210,
-    marginBottom: 125,
+    marginBottom: 24,
     color: Colors.WHITE,
     fontSize: 28,
     fontFamily: fontFamily.primaryMedium,
@@ -513,9 +535,10 @@ const styles = StyleSheet.create({
     color: Colors.WHITE,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
+    marginBottom: 24,
   },
   subheaderText: {
-    marginTop: 120,
+    marginBottom: 24,
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
@@ -523,13 +546,12 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryRegular,
   },
   subsubheaderText: {
-    marginTop: -115,
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.WHITE,
     fontSize: 16,
     fontFamily: fontFamily.primaryLight,
-    marginBottom: '8%',
+    marginBottom: 24,
   },
   mayoInfoRow: {
     flexDirection: 'row',

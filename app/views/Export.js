@@ -1,36 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  BackHandler,
-  StatusBar,
-  ScrollView,
-  Platform,
-} from 'react-native';
-import PropTypes from 'prop-types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import RNFetchBlob from 'rn-fetch-blob';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import {
+  BackHandler,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import RNFS from 'react-native-fs';
-import Share from 'react-native-share';
-// import colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
-import { GetStoreData } from '../helpers/General';
-import { timeSincePoint } from '../helpers/convertPointsToString';
-import LocationServices, { LocationData } from '../services/LocationService';
-import backArrow from './../assets/images/backArrow.png';
-import { isPlatformiOS } from './../Util';
 import LinearGradient from 'react-native-linear-gradient';
-
-import Colors from '../constants/colors';
-import languages from './../locales/languages';
-import licenses from './../assets/LICENSE.json';
+import Share from 'react-native-share';
 import { SvgXml } from 'react-native-svg';
+import RNFetchBlob from 'rn-fetch-blob';
+
 import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
+import languages from './../locales/languages';
+import { isPlatformiOS } from './../Util';
+import Colors from '../constants/colors';
+// import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
+import { LocationData } from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64;
 
@@ -76,9 +70,9 @@ function ExportScreen(props) {
 
       var options = {};
       var jsonData = JSON.stringify(locationData);
-      const title = 'PrivateKit.json';
+      const title = 'COVIDSafePaths.json';
       const filename = unixtimeUTC + '.json';
-      const message = 'Here is my location log from Private Kit.';
+      const message = 'Here is my location log from COVID Safe Paths.';
       if (isPlatformiOS()) {
         var url = RNFS.DocumentDirectoryPath + '/' + filename;
         await RNFS.writeFile(url, jsonData, 'utf8')
