@@ -11,10 +11,11 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "format:all": "prettier --write ./app/**/*.js",
-    "test": "jest test",
     "build:e2e:ios": "detox build -c ios.sim.debug",
     "test:e2e:ios": "detox test -c ios.sim.debug",
-    "i18n:extract": "i18next"
+    "i18n:extract": "i18next",
+    "test": "jest test",
+    "test:dev_setup": "bats __tests__/dev_setup.test.bats"
   },
   "lint-staged": {
     "*.js": [
@@ -34,6 +35,8 @@
     ]
   },
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/native": "^10.0.27",
     "@mauron85/react-native-background-geolocation": "^0.6.3",
     "@react-native-community/async-storage": "^1.8.1",
     "@react-native-community/geolocation": "^2.0.2",
@@ -43,9 +46,10 @@
     "@react-navigation/native": "5.0.9",
     "@react-navigation/stack": "5.1.1",
     "@testing-library/react-native": "^5.0.3",
+    "dayjs": "^1.8.24",
+    "emotion-theming": "^10.0.27",
     "i18next": "^19.3.3",
     "js-yaml": "^3.13.1",
-    "moment": "^2.24.0",
     "patch-package": "^6.2.1",
     "pluralize": "^8.0.0",
     "postinstall-postinstall": "^2.0.0",
@@ -86,6 +90,7 @@
     "@react-native-community/eslint-config": "^0.0.7",
     "babel-jest": "^25.1.0",
     "detox": "^16.1.1",
+    "bats": "^1.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-detox": "^1.0.0",
     "husky": "^4.2.3",
@@ -96,6 +101,7 @@
     "lint-diff": "^1.2.1",
     "lint-staged": "^10.0.9",
     "metro-react-native-babel-preset": "^0.58.0",
+    "mockdate": "^2.0.5",
     "prettier": "1.19.1",
     "prettier-plugin-import-sort": "0.0.3",
     "react-native-svg-transformer": "^0.14.3",

@@ -28,7 +28,7 @@ class NewsScreen extends Component {
     super(props);
     let default_news = {
       name: languages.t('label.default_news_site_name'),
-      url: languages.t('label.default_news_site_url'),
+      news_url: languages.t('label.default_news_site_url'),
     };
     this.state = {
       visible: true,
@@ -62,7 +62,7 @@ class NewsScreen extends Component {
         </View>
         <WebView
           source={{
-            uri: item.item.url,
+            uri: item.item.news_url,
           }}
           containerStyle={{
             borderBottomLeftRadius: 12,

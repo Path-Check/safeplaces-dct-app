@@ -42,6 +42,7 @@ module.exports = {
     // sort alphabetically
     'en',
     'es',
+    'fr',
     'ht',
     'it',
     'ru',
