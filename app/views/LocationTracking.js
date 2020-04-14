@@ -111,7 +111,7 @@ class LocationTracking extends Component {
         switch (result) {
           case RESULTS.GRANTED:
             LocationServices.start();
-            this.checkIfUserAtRisk();
+            this.spawnIntersect();
             return;
           case RESULTS.UNAVAILABLE:
           case RESULTS.BLOCKED:
@@ -125,11 +125,13 @@ class LocationTracking extends Component {
       });
   }
 
-  checkIfUserAtRisk() {
+  spawnIntersect() {
     BackgroundTaskServices.start();
     // already set on 12h timer, but run when this screen opens too
     checkIntersect();
+  }
 
+  checkIfUserAtRisk() {
     GetStoreData('CROSSED_PATHS').then(dayBin => {
       dayBin = JSON.parse(dayBin);
       if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
@@ -145,6 +147,10 @@ class LocationTracking extends Component {
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    const { navigation } = this.props;
+    this.focusListener = navigation.addListener('focus', () => {
+      this.checkIfUserAtRisk();
+    });
     GetStoreData(PARTICIPATE)
       .then(isParticipating => {
         if (isParticipating === 'true') {
@@ -159,6 +165,7 @@ class LocationTracking extends Component {
         }
       })
       .catch(error => console.log(error));
+    this.checkIfUserAtRisk();
   }
 
   findNewAuthorities() {
@@ -173,8 +180,13 @@ class LocationTracking extends Component {
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
-    clearInterval(this.state.timer_intersect);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    try {
+      this.focusListener.remove();
+    } catch (error) {
+      //this error will appear once in a while because focusListener doesn't get called sometimes
+      console.log(error);
+    }
   }
 
   // need to check state again if new foreground event
