@@ -47,7 +47,9 @@ class SettingsScreen extends Component {
   }
 
   importButtonPressed() {
-    this.props.navigation.navigate('ImportScreen');
+    if (__DEV__) {
+      this.props.navigation.navigate('ImportScreen');
+    }
   }
 
   aboutButtonPressed() {
@@ -90,7 +92,11 @@ class SettingsScreen extends Component {
             </Text>
           </View>
           <ButtonWrapper
-            title={languages.t('label.maps_import_button_text')}
+            title={
+              __DEV__
+                ? languages.t('label.maps_import_button_text')
+                : 'Coming soon'
+            }
             onPress={this.importButtonPressed.bind(this)}
             buttonColor={Colors.VIOLET}
             bgColor={Colors.WHITE}
@@ -154,13 +160,6 @@ class SettingsScreen extends Component {
           {/* TODO FIX THIS - don't remove */}
           {/* <View style={styles.spacer} /> */}
 
-          <View style={styles.fullDivider} />
-          <View style={styles.mainContainer}>{this.getMapsImport()}</View>
-          <View style={styles.fullDivider} />
-
-          <View style={styles.spacer} />
-          <View style={styles.fullDivider} />
-
           <View style={styles.mainContainer}>
             <View style={styles.section}>
               {this.getSettingRow(
@@ -170,7 +169,7 @@ class SettingsScreen extends Component {
                 null,
                 languages.t('label.choose_provider_subtitle'),
               )}
-              <View style={styles.divider}></View>
+              <View style={styles.divider} />
               {this.getSettingRow(
                 languages.t('label.news_title'),
                 this.newsButtonPressed,
@@ -178,7 +177,7 @@ class SettingsScreen extends Component {
                 null,
                 languages.t('label.news_subtitle'),
               )}
-              <View style={styles.divider}></View>
+              <View style={styles.divider} />
               {this.getSettingRow(
                 languages.t('label.event_history_title'),
                 this.eventHistoryButtonPressed,
@@ -186,7 +185,8 @@ class SettingsScreen extends Component {
                 null,
                 languages.t('label.event_history_subtitle'),
               )}
-              <View style={styles.divider}></View>
+              <View style={styles.divider} />
+
               {this.getSettingRow(
                 languages.t('label.tested_positive_title'),
                 this.testedPositiveButtonPressed,
@@ -196,18 +196,24 @@ class SettingsScreen extends Component {
               )}
             </View>
           </View>
-          <View style={styles.fullDivider} />
 
+          <View style={styles.fullDivider} />
           <View style={styles.spacer} />
+          <View style={styles.fullDivider} />
+
+          <View style={styles.mainContainer}>{this.getMapsImport()}</View>
 
           <View style={styles.fullDivider} />
+          <View style={styles.spacer} />
+          <View style={styles.fullDivider} />
+
           <View style={styles.mainContainer}>
             <View style={styles.section}>
               {this.getSettingRow(
                 languages.t('label.about_title'),
                 this.aboutButtonPressed,
               )}
-              <View style={styles.divider}></View>
+              <View style={styles.divider} />
               {this.getSettingRow(
                 languages.t('label.legal_page_title'),
                 this.licensesButtonPressed,
