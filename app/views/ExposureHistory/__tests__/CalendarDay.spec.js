@@ -55,3 +55,23 @@ it('today matches snapshot', () => {
 
   expect(asJSON()).toMatchSnapshot();
 });
+
+it('no risk takes prio over today', () => {
+  const { asJSON } = render(
+    <Theme>
+      <CalendarDay date={FIXED_DATE} exposureMinutes={0} />
+    </Theme>,
+  );
+
+  expect(asJSON()).toMatchSnapshot();
+});
+
+it('some risk takes prio over today', () => {
+  const { asJSON } = render(
+    <Theme>
+      <CalendarDay date={FIXED_DATE} exposureMinutes={5} />
+    </Theme>,
+  );
+
+  expect(asJSON()).toMatchSnapshot();
+});
