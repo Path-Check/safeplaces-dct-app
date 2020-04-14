@@ -1,4 +1,5 @@
 import styled, { css } from '@emotion/native';
+import dayjs from 'dayjs';
 import React from 'react';
 
 import { Typography } from '../../components/Typography';
@@ -31,8 +32,14 @@ export const ExposureCalendarView = ({ history, weeks }) => {
     exposureMap[getDayKey(day.date)] = day.exposureMinutes;
   });
 
+  const lastMonth = dayjs().subtract(1, 'month');
+
+  // TODO: this could do with better i18n
+  const title = `${lastMonth.format('MMMM')}/${dayjs().format('MMMM')}`;
+
   return (
     <>
+      <Typography use='headline3'>{title}</Typography>
       <MonthGrid
         weeks={weeks}
         renderDayHeader={d => <DayOfWeek key={d}>{d}</DayOfWeek>}
