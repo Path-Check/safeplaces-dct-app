@@ -10,6 +10,8 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import googleMapsIcon from './../assets/svgs/google-maps-logo';
+// import languagesIcon from './../assets/svgs/languagesIcon';
+import checkmarkIcon from './../assets/svgs/checkmarkIcon';
 import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
 import ButtonWrapper from '../components/ButtonWrapper';
@@ -160,6 +162,40 @@ class SettingsScreen extends Component {
           {/* TODO FIX THIS - don't remove */}
           {/* <View style={styles.spacer} /> */}
 
+<<<<<<< HEAD
+=======
+          <View style={styles.fullDivider} />
+          <View style={styles.mainContainer}>
+            <View style={styles.section}>
+              {this.getSettingRow(
+                'Location Active',
+                this.testedPositiveButtonPressed,
+                checkmarkIcon,
+                null,
+                null,
+              )}
+              <View style={styles.divider} />
+              {this.getSettingRow(
+                'English',
+                this.testedPositiveButtonPressed,
+                null,
+                null,
+                null,
+              )}
+            </View>
+          </View>
+          <View style={styles.fullDivider} />
+
+          <View style={styles.spacer} />
+
+          <View style={styles.fullDivider} />
+          <View style={styles.mainContainer}>{this.getMapsImport()}</View>
+          <View style={styles.fullDivider} />
+
+          <View style={styles.spacer} />
+          <View style={styles.fullDivider} />
+
+>>>>>>> Add menu section, items, and icon files
           <View style={styles.mainContainer}>
             <View style={styles.section}>
               {this.getSettingRow(
