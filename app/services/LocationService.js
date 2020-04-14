@@ -282,8 +282,8 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('stop', () => {
       PushNotification.localNotification({
-        title: 'Location Tracking Was Disabled',
-        message: 'COVID Safe Paths requires location services.',
+        title: languages.t('label.location_disabled_title'),
+        message: languages.t('label.location_disabled_message'),
       });
       console.log('[INFO] stop');
     });
