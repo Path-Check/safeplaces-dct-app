@@ -178,7 +178,7 @@ exports[`renders correctly 1`] = `
               Array [
                 Object {
                   "name": "Safe Paths News",
-                  "url": "https://covidsafepaths.org/in-app-news",
+                  "news_url": "https://covidsafepaths.org/in-app-news",
                 },
               ]
             }
