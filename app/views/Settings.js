@@ -178,14 +178,14 @@ class SettingsScreen extends Component {
                 null,
                 languages.t('label.news_subtitle'),
               )}
-              <View style={styles.divider}></View>
+              {/* <View style={styles.divider}></View>
               {this.getSettingRow(
                 languages.t('label.event_history_title'),
                 this.eventHistoryButtonPressed,
                 null,
                 null,
                 languages.t('label.event_history_subtitle'),
-              )}
+              )} */}
               <View style={styles.divider}></View>
               {this.getSettingRow(
                 languages.t('label.tested_positive_title'),

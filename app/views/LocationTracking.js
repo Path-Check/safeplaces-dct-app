@@ -377,10 +377,10 @@ class LocationTracking extends Component {
       // };
       return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
-      buttonLabel = languages.t('label.home_next_steps');
-      buttonFunction = () => {
-        this.props.navigation.navigate('NotificationScreen');
-      };
+      // buttonLabel = languages.t('label.home_next_steps');
+      // buttonFunction = () => {
+      //   this.props.navigation.navigate('NotificationScreen');
+      // };
     } else if (this.state.currentState === StateEnum.UNKNOWN) {
       buttonLabel = languages.t('label.home_enable_location');
       buttonFunction = () => {
