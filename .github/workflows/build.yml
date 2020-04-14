@@ -9,7 +9,7 @@ on:
   pull_request:
     branches:
       - develop
-      - elease-candidate
+      - release-candidate
       - master
 
 jobs:
