@@ -1,19 +1,18 @@
 import './all-dayjs-locales';
 
-import i18next from 'i18next';
 import dayjs from 'dayjs';
-import { Platform, NativeModules } from 'react-native';
+import i18next from 'i18next';
+import { NativeModules, Platform } from 'react-native';
 import { getLanguages } from 'react-native-i18n';
 
+import { LANG_OVERRIDE } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
 import en from './en.json';
 import es from './es.json';
 import ht from './ht.json';
 import it from './it.json';
 import ru from './ru.json';
 import zh_Hant from './zh-Hant.json';
-
-import { LANG_OVERRIDE } from '../constants/storage';
-import { GetStoreData } from '../helpers/General';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 
@@ -28,9 +27,9 @@ import { GetStoreData } from '../helpers/General';
 
 const deviceLocale =
   Platform.OS === 'ios'
-    ? NativeModules.SettingsManager.settings.AppleLocale ||
+    ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
       NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
-    : NativeModules.I18nManager.localeIdentifier;
+    : NativeModules.I18nManager.localeIdentifier; // Android
 
 dayjs.locale([deviceLocale, 'en']);
 
