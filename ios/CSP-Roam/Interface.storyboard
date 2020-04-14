@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16096" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch44"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="PrivateKitTest_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <group width="1" height="0.25" alignment="left" id="wCZ-Xi-4Rs">
+                            <items>
+                                <button width="0.75" height="1" alignment="left" title="Stop Logging" id="JbQ-gf-DLF">
+                                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" type="boldSystem" pointSize="17"/>
+                                    <connections>
+                                        <action selector="trackingButton" destination="AgC-eL-Hgc" id="bLO-lu-sB5"/>
+                                    </connections>
+                                </button>
+                                <button width="40" height="40" alignment="left" verticalAlignment="center" title="i" backgroundImage="icon40x40" id="M0Z-PL-9YV">
+                                    <connections>
+                                        <action selector="info" destination="AgC-eL-Hgc" id="M6C-7e-A60"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <label alignment="left" text="No locations collected" textAlignment="left" id="L20-iq-34t">
+                            <color key="textColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" type="system" pointSize="15"/>
+                        </label>
+                        <group width="1" height="0.25" alignment="left" id="Yct-nM-pP7" userLabel="locationControlGroup">
+                            <items>
+                                <button width="0.75" height="1" alignment="left" title="Upload" id="fFl-8I-gdc">
+                                    <color key="backgroundColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" type="boldSystem" pointSize="17"/>
+                                    <connections>
+                                        <action selector="xferButton" destination="AgC-eL-Hgc" id="PpK-Pl-5mG"/>
+                                    </connections>
+                                </button>
+                                <button width="0.25" height="1" alignment="left" title="Clear" id="Xz4-FF-3bv">
+                                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" type="boldSystem" pointSize="12"/>
+                                    <connections>
+                                        <action selector="clearLocations" destination="AgC-eL-Hgc" id="VR3-Hi-a9r"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <label alignment="left" text="status" textAlignment="left" numberOfLines="8" id="Kii-VL-kXf"/>
+                        <group width="1" alignment="left" id="Ywu-Nh-sC7" userLabel="noPhoneFoundGroup">
+                            <items>
+                                <button width="0.5" alignment="left" title="Retry" id="DBE-Bb-joH">
+                                    <connections>
+                                        <action selector="retryPhoneConnect" destination="AgC-eL-Hgc" id="E62-I1-6Xw"/>
+                                    </connections>
+                                </button>
+                                <button width="0.5" alignment="left" title="Log Locs" id="pvy-pu-LKF">
+                                    <connections>
+                                        <action selector="manualLogStart" destination="AgC-eL-Hgc" id="FZF-iw-unL"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="locationControlGroup" destination="Yct-nM-pP7" id="VIw-29-0fz"/>
+                        <outlet property="locationStatus" destination="L20-iq-34t" id="YE5-eQ-3xJ"/>
+                        <outlet property="noPhoneFoundGroup" destination="Ywu-Nh-sC7" id="DoY-Id-Q4E"/>
+                        <outlet property="status" destination="Kii-VL-kXf" id="Djx-0X-ofT"/>
+                        <outlet property="trackingEnabled" destination="JbQ-gf-DLF" id="VkP-ZS-Ua4"/>
+                        <outlet property="xfer" destination="fFl-8I-gdc" id="pPK-KY-Roz"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="219.52173913043478" y="344.55357142857144"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="PrivateKitTest_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="Niz-AI-uX2">
+            <objects>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="PrivateKitTest_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="345"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon40x40" width="40" height="40"/>
+    </resources>
+</document>
