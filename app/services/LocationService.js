@@ -9,6 +9,7 @@ import languages from '../locales/languages';
 import { isPlatformAndroid } from '../Util';
 
 let isBackgroundGeolocationConfigured = false;
+const LOCATION_DISABLED_NOTIFICATION = '55';
 
 export class LocationData {
   constructor() {
@@ -249,12 +250,14 @@ export default class LocationServices {
         BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
           if (!locationServicesEnabled) {
             PushNotification.localNotification({
-              id: '55',
+              id: LOCATION_DISABLED_NOTIFICATION,
               title: languages.t('label.location_disabled_title'),
               message: languages.t('label.location_disabled_message'),
             });
           } else {
-            PushNotification.cancelLocalNotifications({ id: '55' });
+            PushNotification.cancelLocalNotifications({
+              id: LOCATION_DISABLED_NOTIFICATION,
+            });
           }
         });
       }
