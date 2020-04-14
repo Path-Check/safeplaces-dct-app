@@ -11,6 +11,7 @@ import { SvgXml } from 'react-native-svg';
 import lock from '../assets/svgs/lock';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { DEBUG_MODE, CROSSED_PATHS } from '../constants/storage';
+import { checkIntersect } from '../helpers/Intersect';
 
 class AboutScreen extends Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class AboutScreen extends Component {
       } else if (this.state.tapCount == 7) {
         // Debug mode off
 
-        // Create faux intersection data
+        // Wipe faux intersection data
         let pseudoBin = [];
         for (let i = 0; i < 28; i++) {
           pseudoBin.push(0);
@@ -75,6 +76,9 @@ class AboutScreen extends Component {
 
         this.setState({ tapCount: 0 });
         SetStoreData(DEBUG_MODE, 'false');
+
+        // Kick off intersection calculations to restore data
+        checkIntersect();
       }
     }
   };
