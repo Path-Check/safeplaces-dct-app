@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [develop]
+    branches: [develop, release-candidate, master]
   pull_request:
-    branches: [develop]
+    branches: [develop, release-candidate, master]
 
 jobs:
   build-android:
