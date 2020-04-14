@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
-import { BackHandler, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  BackHandler,
+  Dimensions,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
+import packageJson from '../../package.json';
 import team from './../assets/svgs/team';
 import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
@@ -42,7 +51,6 @@ class AboutScreen extends Component {
         onBackPress={this.backToMain.bind(this)}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.spacer} />
-
           <View style={styles.spacer} />
 
           <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
@@ -60,6 +68,37 @@ class AboutScreen extends Component {
           <Text style={styles.aboutSectionPara}>
             {languages.t('label.team_para')}
           </Text>
+
+          <View style={styles.spacer} />
+          <View style={styles.spacer} />
+
+          <View style={styles.main}>
+            <View style={styles.row}>
+              <Text style={styles.aboutSectionParaBold}>Version: </Text>
+              <Text style={styles.aboutSectionPara}>{packageJson.version}</Text>
+            </View>
+
+            <View style={styles.row}>
+              <Text style={styles.aboutSectionParaBold}>OS:</Text>
+              <Text style={styles.aboutSectionPara}>
+                {' '}
+                {Platform.OS + ' v' + Platform.Version}
+              </Text>
+            </View>
+
+            <View style={styles.row}>
+              <Text style={styles.aboutSectionParaBold}>Dimensions:</Text>
+              <Text style={styles.aboutSectionPara}>
+                {' '}
+                {Math.trunc(Dimensions.get('screen').width) +
+                  ' x ' +
+                  Math.trunc(Dimensions.get('screen').height)}
+              </Text>
+            </View>
+          </View>
+
+          <View style={styles.spacer} />
+          <View style={styles.spacer} />
         </ScrollView>
       </NavigationBarWrapper>
     );
@@ -72,7 +111,8 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: Colors.INTRO_WHITE_BG,
     paddingHorizontal: 26,
-    flex: 1,
+    // flex: 1,
+    paddingBottom: 42,
   },
   section: {
     flexDirection: 'column',
@@ -104,8 +144,21 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontFamily: fontFamily.primaryRegular,
   },
+  aboutSectionParaBold: {
+    color: Colors.VIOLET_TEXT,
+    fontSize: 16,
+    lineHeight: 22.5,
+    marginTop: 12,
+    alignSelf: 'center',
+    fontFamily: fontFamily.primaryBold,
+  },
   spacer: {
     marginVertical: '2%',
+  },
+  row: {
+    flexDirection: 'row',
+    color: Colors.PRIMARY_TEXT,
+    alignItems: 'flex-start',
   },
 });
 
