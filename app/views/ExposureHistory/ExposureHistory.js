@@ -22,7 +22,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
     async function fetchData() {
       let dayBins = await GetStoreData(CROSSED_PATHS);
 
-      // dayBins = generateFakeIntersections(6); // handy for creating faux data
+      // dayBins = generateFakeIntersections(1); // handy for creating faux data
 
       if (dayBins === null) {
         setHistory(NO_HISTORY);
@@ -49,11 +49,8 @@ export const ExposureHistoryScreen = ({ navigation }) => {
     return true;
   };
 
-  const hasExposure = history?.length;
-
-  const pageTitle = hasExposure
-    ? languages.t('history.possible_exposure')
-    : languages.t('label.home_no_contact_header');
+  const hasExposure =
+    history?.length && history.some(h => h.exposureMinutes > 0);
 
   const themeBackground = hasExposure
     ? charcoal.background
@@ -66,7 +63,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
   return (
     <Theme use={hasExposure ? 'charcoal' : 'default'}>
       <NavigationBarWrapper
-        title={pageTitle}
+        title={languages.t('label.event_history_title')}
         onBackPress={() => navigation.goBack()}>
         <ScrollView
           contentContainerStyle={css`
