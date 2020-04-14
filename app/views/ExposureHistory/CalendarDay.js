@@ -22,16 +22,17 @@ export const CalendarDay = ({
 }) => {
   let riskLevel = Risk.Unknown;
 
-  if (exposureMinutes > 0) {
-    riskLevel = Risk.Possible;
+  const today = dayjs();
+  if (showToday && today.isSame(date, 'day')) {
+    riskLevel = Risk.Today;
   }
+
   if (exposureMinutes === 0) {
     riskLevel = Risk.None;
   }
 
-  const today = dayjs();
-  if (showToday && today.isSame(date, 'day')) {
-    riskLevel = Risk.Today;
+  if (exposureMinutes > 0) {
+    riskLevel = Risk.Possible;
   }
 
   return (
