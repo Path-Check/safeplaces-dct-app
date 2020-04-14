@@ -11,7 +11,6 @@ import {
 import { VictoryAxis, VictoryBar, VictoryChart } from 'victory-native';
 
 import languages from './../locales/languages';
-import AsyncStorage from '@react-native-community/async-storage';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';

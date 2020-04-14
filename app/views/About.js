@@ -104,7 +104,7 @@ class AboutScreen extends Component {
           </Text>
 
           <View>
-            <Text style={{ marginTop: 20, color: 'red' }}>
+            <Text style={{ marginTop: 20, color: Colors.RED_TEXT }}>
               {this.state.tapCount > 3 ? 'In exposure demo mode' : null}
             </Text>
             <SvgXml
