@@ -46,7 +46,7 @@ exports[`no exposure matches snapshot 1`] = `
         riskLevel="possible"
         style={
           Object {
-            "color": "#4051DB",
+            "color": "#FFF",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -109,7 +109,7 @@ exports[`possible exposure matches snapshot 1`] = `
         riskLevel="possible"
         style={
           Object {
-            "color": "#4051DB",
+            "color": "#FFF",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
