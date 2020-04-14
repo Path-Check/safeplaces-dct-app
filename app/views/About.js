@@ -13,6 +13,8 @@ import { GetStoreData, SetStoreData } from '../helpers/General';
 import { DEBUG_MODE, CROSSED_PATHS } from '../constants/storage';
 import { checkIntersect } from '../helpers/Intersect';
 
+const dayBinSize = 28; // Number of day in the standard day-bin array (4 weeks)
+
 class AboutScreen extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +56,7 @@ class AboutScreen extends Component {
 
         // Create faux intersection data
         let pseudoBin = [];
-        for (let i = 0; i < 28; i++) {
+        for (let i = 0; i < dayBinSize; i++) {
           const intersections = Math.max(
             0,
             Math.floor(Math.random() * 50 - 20),
@@ -68,7 +70,7 @@ class AboutScreen extends Component {
 
         // Wipe faux intersection data
         let pseudoBin = [];
-        for (let i = 0; i < 28; i++) {
+        for (let i = 0; i < dayBinSize; i++) {
           pseudoBin.push(0);
         }
         let dayBin = JSON.stringify(pseudoBin);
@@ -101,19 +103,23 @@ class AboutScreen extends Component {
             {languages.t('label.commitment_para')}
           </Text>
 
-          <SvgXml
-            onPress={this.handleTapTeam.bind(this)}
-            style={
-              (styles.aboutSectionIconTeam,
-              {
-                width: 40.38,
-                height: 19,
-                marginTop: 36,
-                backgroundColor: this.state.tapCount > 3 ? 'red' : null,
-              })
-            }
-            xml={team}
-          />
+          <View>
+            <Text style={{ marginTop: 20, color: 'red' }}>
+              {this.state.tapCount > 3 ? 'In exposure demo mode' : null}
+            </Text>
+            <SvgXml
+              onPress={this.handleTapTeam}
+              style={
+                (styles.aboutSectionIconTeam,
+                {
+                  width: 40.38,
+                  height: 19,
+                  backgroundColor: this.state.tapCount > 3 ? 'red' : null,
+                })
+              }
+              xml={team}
+            />
+          </View>
           <Text style={styles.aboutSectionTitles}>
             {languages.t('label.team')}
           </Text>
