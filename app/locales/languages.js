@@ -1,4 +1,8 @@
+import './all-dayjs-locales';
+
+import dayjs from 'dayjs';
 import i18next from 'i18next';
+import { NativeModules, Platform } from 'react-native';
 import { getLanguages } from 'react-native-i18n';
 
 import { LANG_OVERRIDE } from '../constants/storage';
@@ -22,6 +26,14 @@ import zh_Hant from './zh-Hant.json';
 // 5. REMOVE all empty translations. e.g. "key": "", this will allow fallback to the default: English
 // 6. import xyIndex from `./xy.json` and add the language to the block at the bottom
 
+const deviceLocale =
+  Platform.OS === 'ios'
+    ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
+      NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
+    : NativeModules.I18nManager.localeIdentifier; // Android
+
+dayjs.locale([deviceLocale, 'en']);
+
 // This will fetch the user's language
 // Set up as a function so first onboarding screen can also update
 // ...from async language override setting
@@ -37,8 +49,10 @@ export function findUserLang(callback) {
         console.log(res);
         userLang = res;
         i18next.changeLanguage(res);
+        dayjs.locale(res);
       } else {
         i18next.changeLanguage(userLang);
+        dayjs.locale(userLang);
       }
 
       // Run state updating callback to trigger rerender

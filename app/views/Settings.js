@@ -65,7 +65,7 @@ class SettingsScreen extends Component {
   }
 
   eventHistoryButtonPressed() {
-    this.props.navigation.navigate('NotificationScreen');
+    this.props.navigation.navigate('ExposureHistoryScreen');
   }
 
   licensesButtonPressed() {

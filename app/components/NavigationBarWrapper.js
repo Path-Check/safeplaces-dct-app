@@ -1,82 +1,96 @@
+import styled from '@emotion/native';
+import { useTheme } from 'emotion-theming';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { StatusBar } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import backArrow from './../assets/svgs/backArrow';
 import { isPlatformiOS } from './../Util';
 import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
 
-class NavigationBarWrapper extends React.Component {
-  render() {
-    return (
-      <>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor={Colors.VIOLET}
-          translucent={isPlatformiOS()}
-        />
-        <SafeAreaView style={styles.topSafeAreaContainer} />
-        <SafeAreaView style={styles.bottomSafeAreaContainer}>
-          <View style={styles.headerContainer}>
-            <TouchableOpacity
-              style={styles.backArrowTouchable}
-              onPress={() => this.props.onBackPress()}>
-              <SvgXml style={styles.backArrow} xml={backArrow} />
-            </TouchableOpacity>
-            <Text style={styles.headerTitle}>{this.props.title}</Text>
-          </View>
-          {this.props.children}
-        </SafeAreaView>
-      </>
-    );
-  }
-}
+/**
+ * Navigation bar and status bar
+ *
+ * @param {{
+ *   title: string,
+ *   onBackPress: () => void,
+ * }} param0
+ */
+const NavigationBarWrapper = ({ children, title, onBackPress }) => {
+  const theme = useTheme();
 
-const styles = StyleSheet.create({
-  topSafeAreaContainer: {
-    flex: 0,
-    backgroundColor: Colors.VIOLET,
-  },
-  bottomSafeAreaContainer: {
-    flex: 1,
-    backgroundColor: Colors.INTRO_WHITE_BG,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.NAV_BAR_VIOLET,
-    backgroundColor: Colors.VIOLET,
-  },
-  headerTitle: {
-    fontSize: 26,
-    fontFamily: fontFamily.primaryMedium,
-    color: Colors.WHITE,
-    position: 'absolute',
-    alignSelf: 'center',
-    textAlign: 'center',
-    width: '100%',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 55,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-  },
-  backArrow: {
-    height: 18,
-    width: 18,
-  },
-});
+  const barColor = (theme && theme.navBar) || Colors.VIOLET;
+
+  return (
+    <>
+      <StatusBar
+        barStyle='light-content'
+        backgroundColor={barColor}
+        translucent={isPlatformiOS()}
+      />
+      <TopContainer />
+      <BottomContainer>
+        <Header>
+          <BackArrow onPress={() => onBackPress()}>
+            <BackArrowIcon xml={backArrow} />
+          </BackArrow>
+          <Title>{title}</Title>
+        </Header>
+        {children}
+      </BottomContainer>
+    </>
+  );
+};
+
+const themeNavBar = ({ theme }) => theme.navBar || Colors.VIOLET;
+
+// TODO: this breaks transitions...
+// const themeBackground = ({ theme }) =>
+//   theme.background || Colors.INTRO_WHITE_BG;
+
+const TopContainer = styled.SafeAreaView`
+  flex: 0;
+  background-color: ${themeNavBar};
+`;
+
+const BottomContainer = styled.SafeAreaView`
+  flex: 1;
+  background-color: ${Colors.INTRO_WHITE_BG};
+`;
+
+const themeNavBarBorder = ({ theme }) =>
+  theme.navBarBorder || Colors.NAV_BAR_VIOLET;
+
+const Header = styled.View`
+  background-color: ${themeNavBar};
+  border-bottom-color: ${themeNavBarBorder};
+  border-bottom-width: 1px;
+  flex-direction: row;
+`;
+
+const Title = styled.Text`
+  align-self: center;
+  color: ${Colors.WHITE};
+  font-family: IBMPlexSans-Medium;
+  font-size: 26px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+`;
+
+const BackArrow = styled.TouchableOpacity`
+  align-items: center;
+  height: 55px;
+  justify-content: center;
+  width: 60px;
+  z-index: 1;
+`;
+
+const BackArrowIcon = styled(SvgXml)`
+  height: 18px;
+  width: 18px;
+`;
 
 NavigationBarWrapper.propTypes = {
   title: PropTypes.string.isRequired,
