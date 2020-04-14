@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`no exposure matches snapshot 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    riskLevel="none"
+    size={36}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "#41dca4",
+        "borderBottomLeftRadius": 18,
+        "borderBottomRightRadius": 18,
+        "borderColor": "transparent",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 18,
+        "borderTopRightRadius": 18,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 36,
+        "width": 36,
+      }
+    }
+  >
+    <Text
+      riskLevel="none"
+      style={
+        Object {
+          "color": "#FFF",
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`possible exposure matches snapshot 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    riskLevel="possible"
+    size={36}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "#ffc000",
+        "borderBottomLeftRadius": 18,
+        "borderBottomRightRadius": 18,
+        "borderColor": "transparent",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 18,
+        "borderTopRightRadius": 18,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 36,
+        "width": 36,
+      }
+    }
+  >
+    <Text
+      riskLevel="possible"
+      style={
+        Object {
+          "color": "#FFF",
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`size is configurable (snapshot) 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    riskLevel="today"
+    size={24}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "transparent",
+        "borderBottomLeftRadius": 12,
+        "borderBottomRightRadius": 12,
+        "borderColor": "#4051DB",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 12,
+        "borderTopRightRadius": 12,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 24,
+        "width": 24,
+      }
+    }
+  >
+    <Text
+      riskLevel="today"
+      style={
+        Object {
+          "color": "#4051DB",
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`today matches snapshot 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    riskLevel="today"
+    size={36}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "transparent",
+        "borderBottomLeftRadius": 18,
+        "borderBottomRightRadius": 18,
+        "borderColor": "#4051DB",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 18,
+        "borderTopRightRadius": 18,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 36,
+        "width": 36,
+      }
+    }
+  >
+    <Text
+      riskLevel="today"
+      style={
+        Object {
+          "color": "#4051DB",
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`unknown exposure matches snapshot 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    riskLevel="unknown"
+    size={36}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "transparent",
+        "borderBottomLeftRadius": 18,
+        "borderBottomRightRadius": 18,
+        "borderColor": "rgba(64, 81, 219, 0.6)",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 18,
+        "borderTopRightRadius": 18,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 36,
+        "width": 36,
+      }
+    }
+  >
+    <Text
+      riskLevel="unknown"
+      style={
+        Object {
+          "color": "rgba(64, 81, 219, 0.6)",
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    />
+  </View>
+</View>
+`;

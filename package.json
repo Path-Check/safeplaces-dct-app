@@ -30,6 +30,8 @@
     ]
   },
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/native": "^10.0.27",
     "@mauron85/react-native-background-geolocation": "^0.6.3",
     "@react-native-community/async-storage": "^1.8.1",
     "@react-native-community/geolocation": "^2.0.2",
@@ -39,9 +41,10 @@
     "@react-navigation/native": "5.0.9",
     "@react-navigation/stack": "5.1.1",
     "@testing-library/react-native": "^5.0.3",
+    "dayjs": "^1.8.24",
+    "emotion-theming": "^10.0.27",
     "i18next": "^19.3.3",
     "js-yaml": "^3.13.1",
-    "moment": "^2.24.0",
     "patch-package": "^6.2.1",
     "pluralize": "^8.0.0",
     "postinstall-postinstall": "^2.0.0",
@@ -91,6 +94,7 @@
     "lint-diff": "^1.2.1",
     "lint-staged": "^10.0.9",
     "metro-react-native-babel-preset": "^0.58.0",
+    "mockdate": "^2.0.5",
     "prettier": "1.19.1",
     "prettier-plugin-import-sort": "0.0.3",
     "react-native-svg-transformer": "^0.14.3",

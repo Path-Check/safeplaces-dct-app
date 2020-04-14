@@ -17,6 +17,7 @@ import colors from '../constants/colors';
 import Colors from '../constants/colors';
 // import { Colors } from 'react-native/Libraries/NewAppScreen';
 import fontFamily from '../constants/fonts';
+import { AUTHORITY_NEWS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
 
 const width = Dimensions.get('window').width;
@@ -27,7 +28,7 @@ class NewsScreen extends Component {
     super(props);
     let default_news = {
       name: languages.t('label.default_news_site_name'),
-      url: languages.t('label.default_news_site_url'),
+      news_url: languages.t('label.default_news_site_url'),
     };
     this.state = {
       visible: true,
@@ -61,7 +62,7 @@ class NewsScreen extends Component {
         </View>
         <WebView
           source={{
-            uri: item.item.url,
+            uri: item.item.news_url,
           }}
           containerStyle={{
             borderBottomLeftRadius: 12,
@@ -80,23 +81,19 @@ class NewsScreen extends Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
-    GetStoreData('AUTHORITY_NEWS')
-      .then(name_news => {
-        console.log('name_news:', name_news);
-
+    GetStoreData(AUTHORITY_NEWS)
+      .then(nameNewsString => {
         // Bring in news from the various authorities.  This is
         // pulled down from the web when you subscribe to an Authority
         // on the Settings page.
         let arr = [];
 
-        // TODO: using this as test data for now without assigning
-        arr.push({
-          name: 'Haitian Ministry of Health',
-          url: 'https://wmcelroy.wixsite.com/covidhaiti/kat',
-        });
+        // Populate with subscribed news sources, with default at the tail
+        if (nameNewsString !== null) {
+          arr = JSON.parse(nameNewsString);
+        }
         arr.push(this.state.default_news);
 
-        console.log('name_news:', arr);
         this.setState({
           newsUrls: arr,
         });
