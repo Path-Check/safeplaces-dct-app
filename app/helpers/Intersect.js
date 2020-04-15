@@ -8,100 +8,65 @@ import PushNotification from 'react-native-push-notification';
 
 import { isPlatformiOS } from './../Util';
 import {
-  LOCATION_DATA,
-  CROSSED_PATHS,
-  AUTHORITY_SOURCE_SETTINGS,
   AUTHORITY_NEWS,
+  AUTHORITY_SOURCE_SETTINGS,
+  CROSSED_PATHS,
   LAST_CHECKED,
+  LOCATION_DATA,
 } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
-export async function IntersectSet(concernLocationArray, completion) {
-  GetStoreData(LOCATION_DATA).then(locationArrayString => {
-    let locationArray;
-    if (locationArrayString !== null) {
-      locationArray = JSON.parse(locationArrayString);
-    } else {
-      locationArray = [];
-    }
 
-    let dayBin = [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-    ]; // Bins for 28 days
+/**
+ * Intersects the locationArray with the concernLocationArray, putting the results
+ *   into the appropriate bins in dayBin.
+ * 
+ * @param {array} locationArray - array of the local locations 
+ * @param {array} concernLocationArray - superset array of all concerning points from health authorities
+ * @param {array} dayBin - bins to be populated with the intersection results
+ */
+function intersectSetIntoBins(locationArray, concernLocationArray, dayBin) {
+  // Sort the concernLocationArray
+  let localArray = normalizeAndSortLocations(locationArray);
+  let concernArray = normalizeAndSortLocations(concernLocationArray);
 
-    // Sort the concernLocationArray
-    let localArray = normalizeData(locationArray);
-    let concernArray = normalizeData(concernLocationArray);
+  let concernTimeWindow = 1000 * 60 * 60 * 2; // +/- 2 hours window
 
-    let concernTimeWindow = 1000 * 60 * 60 * 2; // +/- 2 hours window
+  let nowUTC = new Date().toISOString();
+  let timeNow = Date.parse(nowUTC);
 
-    let nowUTC = new Date().toISOString();
-    let timeNow = Date.parse(nowUTC);
+  // Both locationArray and concernLocationArray should be in the
+  // format [ { "time": 123, "latitude": 12.34, "longitude": 34.56 }]
 
-    // Both locationArray and concernLocationArray should be in the
-    // format [ { "time": 123, "latitude": 12.34, "longitude": 34.56 }]
+  for (let loc of localArray) {
+    let timeMin = loc.time - concernTimeWindow;
+    let timeMax = loc.time + concernTimeWindow;
 
-    for (let loc of localArray) {
-      let timeMin = loc.time - concernTimeWindow;
-      let timeMax = loc.time + concernTimeWindow;
+    let i = binarySearchForTime(concernArray, timeMin);
+    if (i < 0) i = -(i + 1);
 
-      let i = binarySearchForTime(concernArray, timeMin);
-      if (i < 0) i = -(i + 1);
+    while (i < concernArray.length && concernArray[i].time <= timeMax) {
+      if (
+        isLocationsNearby(
+          concernArray[i].latitude,
+          concernArray[i].longitude,
+          loc.latitude,
+          loc.longitude,
+        )
+      ) {
+        // Crossed path.  Bin the count of encounters by days from today.
+        let longAgo = timeNow - loc.time;
+        let daysAgo = Math.round(longAgo / (1000 * 60 * 60 * 24));
 
-      while (i < concernArray.length && concernArray[i].time <= timeMax) {
-        if (
-          isLocationsNearby(
-            concernArray[i].latitude,
-            concernArray[i].longitude,
-            loc.latitude,
-            loc.longitude,
-          )
-        ) {
-          // Crossed path.  Bin the count of encounters by days from today.
-          let longAgo = timeNow - loc.time;
-          let daysAgo = Math.round(longAgo / (1000 * 60 * 60 * 24));
-
-          dayBin[daysAgo] += 1;
-        }
-
-        i++;
+        dayBin[daysAgo] += 1;
       }
-    }
 
-    // TODO: Show in the UI!
-    console.log('Crossing results: ', dayBin);
-    SetStoreData(CROSSED_PATHS, dayBin); // TODO: Store per authority?
-    completion(dayBin);
-  });
+      i++;
+    }
+  }
+
+  return dayBin;
 }
 
 /**
@@ -159,7 +124,12 @@ export function isLocationsNearby(lat1, lon1, lat2, lon2) {
   return false;
 }
 
-function normalizeData(arr) {
+/**
+ * Performs "safety" cleanup of the data, to help ensure that we actually have location
+ *   data in the array.  Also fixes cases with extra info or values coming in as strings.
+ * @param {array} arr - array of locations in JSON format
+ */
+function normalizeAndSortLocations(arr) {
   // This fixes several issues that I found in different input data:
   //   * Values stored as strings instead of numbers
   //   * Extra info in the input
@@ -210,86 +180,147 @@ function binarySearchForTime(array, targetTime) {
   return -i - 1;
 }
 
+/**
+ * Kicks off the intersection process.  Immediately returns after starting the 
+ * background intersection.
+ */
 export function checkIntersect() {
-  // This function is called once every 12 hours.  It should do several things:
+  //  External wrapper function for kicking off the intersection logic.  Meant to be run
+  //  every 12 hours or so, but might get run more frequently, e.g. when the user
+  //  changes authority settings
+  //
+  //  simply kicks off the internal async process and returns
 
   console.log(
     'Intersect tick entering on',
     isPlatformiOS() ? 'iOS' : 'Android',
   );
-  // this.findNewAuthorities(); NOT IMPLEMENTED YET
+
+  asyncCheckIntersect().then(result => {
+    console.log('[intersect] completed: ', result);
+  });
+}
+
+/**
+ * The real intersection function.  Runs as an async, returns true if the intersection
+ *   completed.  Currently always returns true.
+ */
+async function asyncCheckIntersect() {
 
   // Get the user's health authorities
-  GetStoreData(AUTHORITY_SOURCE_SETTINGS)
-    .then(authority_list => {
-      if (!authority_list) {
-        console.log('No authorities', authority_list);
-        return;
+  let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
+  if (!authority_list) {
+    console.log('No authorities', authority_list);
+    return;
+  }
+
+  // we'll need this for the news sources from the authorities
+  let name_news = [];
+
+  if (authority_list) {
+
+    // Parse the registered health authorities
+    authority_list = JSON.parse(authority_list);
+
+    // we have at least 1 authority ... set up the dayBin for intersections to go in to
+    let dayBin = getEmptyDayBin();
+
+    // this will ultimately have the entire set of concern locations across all authorities
+    let concernResultsCombined = [];
+
+    for (const authority of authority_list) {
+      console.log('[auth] authority: ', authority);
+
+      try {
+        let response = await fetch(authority.url);
+        let responseJson = await response.json();
+
+        // Update cache of info about the authority
+        name_news.push({
+          name: responseJson.authority_name,
+          news_url: responseJson.info_website,
+        });
+
+        // TODO: Look at "publish_date_utc".  We should notify users if
+        //       their authority is no longer functioning.)
+
+        // add the current set of points to the set to be intersected later
+        //setOfConcernResults.push(normalizeAndSortLocations(responseJson.concern_points));
+        concernResultsCombined = [
+          ...concernResultsCombined,
+          ...responseJson.concern_points,
+        ];
+      } catch (error) {
+        console.log('[authority] fetch/parse error :', error);
       }
+    }
 
-      let name_news = [];
-      SetStoreData(AUTHORITY_NEWS, name_news);
+    // Set the news for the authorities found.  There's an implicit assumption that news only
+    //  comes from the configured authorities
+    SetStoreData(AUTHORITY_NEWS, name_news);
 
-      if (authority_list) {
-        // Pull down data from all the registered health authorities
-        authority_list = JSON.parse(authority_list);
-        for (const authority of authority_list) {
-          console.log('[auth]', authority);
-          fetch(authority.url)
-            .then(response => response.json())
-            .then(responseJson => {
-              // Example response =
-              // { "authority_name":  "Steve's Fake Testing Organization",
-              //   "publish_date_utc": "1584924583",
-              //   "info_website": "https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
-              //   "concern_points":
-              //    [
-              //      { "time": 123, "latitude": 12.34, "longitude": 12.34},
-              //      { "time": 456, "latitude": 12.34, "longitude": 12.34}
-              //    ]
-              // }
-              // TODO: Add an "info_exposure_url" to allow recommendations for
-              //       the health authority driectly on the Exposure History
-              //       page (e.g. the "What Do I Do Now?" button)
-              // TODO: Add an "info_newsflash" UTC timestamp and popup a
-              //       notification if that changes, i.e. if there is a newsflash?
-
-              // Update cache of info about the authority
-              GetStoreData(AUTHORITY_NEWS).then(nameNewsString => {
-                let name_news = [];
-                if (nameNewsString !== null) {
-                  name_news = JSON.parse(nameNewsString);
-                }
-
-                name_news.push({
-                  name: responseJson.authority_name,
-                  news_url: responseJson.info_website,
-                });
-                SetStoreData(AUTHORITY_NEWS, name_news);
-              });
-
-              // TODO: Look at "publish_date_utc".  We should notify users if
-              //       their authority is no longer functioning.)
-
-              IntersectSet(responseJson.concern_points, dayBin => {
-                if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
-                  PushNotification.localNotification({
-                    title: languages.t('label.push_at_risk_title'),
-                    message: languages.t('label.push_at_risk_message'),
-                  });
-                }
-              });
-            });
-
-          let nowUTC = new Date().toISOString();
-          let unixtimeUTC = Date.parse(nowUTC);
-          // Last checked key is not being used atm. TODO check this to update periodically instead of every foreground activity
-          SetStoreData(LAST_CHECKED, unixtimeUTC);
-        }
-      } else {
-        console.log('No authority list');
-        return;
+    // now, get the location data, normalize and do the intersection
+    let locationArrayString = await GetStoreData(LOCATION_DATA);
+    if (locationArrayString !== null) {
+      let locationArray = JSON.parse(locationArrayString);
+      let concernArray = concernResultsCombined;
+      dayBin = intersectSetIntoBins(locationArray, concernArray, dayBin);
+      if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
+        PushNotification.localNotification({
+          title: languages.t('label.push_at_risk_title'),
+          message: languages.t('label.push_at_risk_message'),
+        });
       }
-    })
-    .catch(error => console.log('Failed to load authority list', error));
+    }
+    console.log('Crossing results: ', dayBin);
+
+    // store the results
+    SetStoreData(CROSSED_PATHS, dayBin); // TODO: Store per authority?
+
+    // the current time is the last time checked
+    let nowUTC = new Date().toISOString();
+    let unixtimeUTC = Date.parse(nowUTC);
+    // Last checked key is not being used atm. TODO check this to update periodically instead of every foreground activity
+    SetStoreData(LAST_CHECKED, unixtimeUTC);
+  }
+
+  // looks like we did something... return true to signal OK
+  return true;
+}
+
+// simple function to get an empty dayBin array when needed.
+function getEmptyDayBin() {
+  let dayBin = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+  ]; // Bins for 28 days
+
+  return dayBin;
 }
