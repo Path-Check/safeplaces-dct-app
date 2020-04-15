@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
+    "prepare": "patch-package",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
     "postinstall": "patch-package; npx react-native-jetifier",
     "postversion": "react-native-version",
@@ -45,7 +46,7 @@
     "emotion-theming": "^10.0.27",
     "i18next": "^19.3.3",
     "js-yaml": "^3.13.1",
-    "patch-package": "^6.2.1",
+    "patch-package": "^6.2.2",
     "pluralize": "^8.0.0",
     "postinstall-postinstall": "^2.0.0",
     "prop-types": "^15.7.2",
