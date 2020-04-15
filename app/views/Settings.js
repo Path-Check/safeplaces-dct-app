@@ -18,6 +18,7 @@ import languages from './../locales/languages';
 import ButtonWrapper from '../components/ButtonWrapper';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
+// import LocationServices from '../services/LocationService';
 
 // This is the definitive listing of registered Healthcare Authorities.  To
 // register, just submit a PR against that list on Github.  Users are also
@@ -181,7 +182,7 @@ class SettingsScreen extends Component {
             <View style={styles.section}>
               {this.getSettingRow(
                 'Location Active',
-                this.testedPositiveButtonPressed,
+                this.locationToggleButtonPressed,
                 checkmarkIcon,
                 null,
                 null,
