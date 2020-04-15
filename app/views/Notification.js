@@ -89,10 +89,10 @@ class NotificationScreen extends Component {
 
       if (dayBin === null) {
         this.setState({ dataAvailable: false });
-        console.log("Can't found Crossed Paths");
+        //console.log("Can't found Crossed Paths");
       } else {
         var crossed_path_data = [];
-        console.log('Found Crossed Paths');
+        //console.log('Found Crossed Paths');
         this.setState({ dataAvailable: true });
         let dayBinParsed = JSON.parse(dayBin);
 

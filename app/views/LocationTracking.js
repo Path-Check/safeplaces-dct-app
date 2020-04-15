@@ -135,10 +135,10 @@ class LocationTracking extends Component {
     GetStoreData('CROSSED_PATHS').then(dayBin => {
       dayBin = JSON.parse(dayBin);
       if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
-        console.log('Found crossed paths');
+        //console.log('Found crossed paths');
         this.setState({ currentState: StateEnum.AT_RISK });
       } else {
-        console.log("Can't find crossed paths");
+        //console.log("Can't find crossed paths");
         this.setState({ currentState: StateEnum.NO_CONTACT });
       }
     });
