@@ -14,6 +14,7 @@ import ht from './ht.json';
 import id from './id.json';
 import it from './it.json';
 import ru from './ru.json';
+import vi from './vi.json';
 import zh_Hant from './zh-Hant.json';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
@@ -81,6 +82,7 @@ i18next.init({
     id: { label: 'Indonesia', translation: id },
     it: { label: 'Italiano', translation: it },
     ru: { label: 'Русский', translation: ru },
+    vi: { label: 'Vietnamese', translation: vi },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
   },
 });
