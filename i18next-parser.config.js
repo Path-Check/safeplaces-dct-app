@@ -45,6 +45,7 @@ module.exports = {
     'fr',
     'ht',
     'it',
+    'id',
     'ru',
     'zh-Hant',
   ],
