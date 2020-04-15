@@ -80,6 +80,16 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    UILocalNotification *_localNotification = [[UILocalNotification alloc] init];
+    _localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+    _localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    _localNotification.alertTitle = @"Private Kit Enabled";
+    _localNotification.alertBody = @"Private Kit is securely storing your GPS coordinates once every five minutes on this device.";
+    _localNotification.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication]scheduleLocalNotification:_localNotification];
+    
+  //  ***********************************************************************************//
+    
   UILocalNotification *notification = [[UILocalNotification alloc] init];
   notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
   notification.alertTitle = @"COVID Safe Paths Was Closed";
