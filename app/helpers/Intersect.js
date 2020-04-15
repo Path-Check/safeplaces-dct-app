@@ -242,7 +242,12 @@ async function asyncCheckIntersect() {
         //       their authority is no longer functioning.)
 
         // add the current set of points to the set to be intersected later
-        //setOfConcernResults.push(normalizeAndSortLocations(responseJson.concern_points));
+        //
+        // TODO:  This currently causes us to generate a single large single array from
+        //    all authorities combined together.  The ideal would be to process in chunks, so
+        //    that no matter how much data was sent by the authority, the memory footprint
+        //    doesn't get too big.
+        //
         concernResultsCombined = [
           ...concernResultsCombined,
           ...responseJson.concern_points,
