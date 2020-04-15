@@ -1,7 +1,19 @@
+import './all-dayjs-locales';
+
+import dayjs from 'dayjs';
 import i18next from 'i18next';
+import { NativeModules, Platform } from 'react-native';
 import { getLanguages } from 'react-native-i18n';
-import { GetStoreData } from '../helpers/General';
+
 import { LANG_OVERRIDE } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
+import en from './en.json';
+import es from './es.json';
+import fr from './fr.json';
+import ht from './ht.json';
+import it from './it.json';
+import ru from './ru.json';
+import zh_Hant from './zh-Hant.json';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 
@@ -14,9 +26,13 @@ import { LANG_OVERRIDE } from '../constants/storage';
 // 5. REMOVE all empty translations. e.g. "key": "", this will allow fallback to the default: English
 // 6. import xyIndex from `./xy.json` and add the language to the block at the bottom
 
-import en from './en.json';
-import ht from './ht.json';
-import it from './it.json';
+const deviceLocale =
+  Platform.OS === 'ios'
+    ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
+      NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
+    : NativeModules.I18nManager.localeIdentifier; // Android
+
+dayjs.locale([deviceLocale, 'en']);
 
 // This will fetch the user's language
 // Set up as a function so first onboarding screen can also update
@@ -33,8 +49,10 @@ export function findUserLang(callback) {
         console.log(res);
         userLang = res;
         i18next.changeLanguage(res);
+        dayjs.locale(res);
       } else {
         i18next.changeLanguage(userLang);
+        dayjs.locale(userLang);
       }
 
       // Run state updating callback to trigger rerender
@@ -56,8 +74,12 @@ i18next.init({
   fallbackLng: 'en', // If language detector fails
   resources: {
     en: { label: 'English', translation: en },
+    es: { label: 'Español', translation: es },
+    fr: { label: 'Français', translation: fr },
     ht: { label: 'Kreyòl ayisyen', translation: ht },
-    it: { label: 'Italian', translation: it },
+    it: { label: 'Italiano', translation: it },
+    ru: { label: 'Русский', translation: ru },
+    zh_Hant: { label: '繁體中文', translation: zh_Hant },
   },
 });
 

@@ -1,33 +1,28 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { useEffect, useRef, useState } from 'react';
 import {
+  BackHandler,
+  Dimensions,
+  Image,
+  Linking,
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  Linking,
-  View,
   Text,
-  Image,
-  Dimensions,
   TouchableOpacity,
-  BackHandler,
+  View,
 } from 'react-native';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import WebView from 'react-native-webview';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import RNFetchBlob from 'rn-fetch-blob';
-import Share from 'react-native-share';
-import colors from '../constants/colors';
-import Button from '../components/Button';
-import { GetStoreData } from '../helpers/General';
-import { convertPointsToString } from '../helpers/convertPointsToString';
-import LocationServices from '../services/LocationService';
-import greenMarker from '../assets/images/user-green.png';
+
 import backArrow from '../assets/images/backArrow.png';
-import languages from '../locales/languages';
-import CustomCircle from '../helpers/customCircle';
-import fontFamily from '../constants/fonts';
+import greenMarker from '../assets/images/user-green.png';
 import { PUBLIC_DATA_URL } from '../constants/authorities';
+import colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
 import { LOCATION_DATA } from '../constants/storage';
+import CustomCircle from '../helpers/customCircle';
+import { GetStoreData } from '../helpers/General';
+import languages from '../locales/languages';
 
 const width = Dimensions.get('window').width;
 

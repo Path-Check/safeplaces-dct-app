@@ -1,7 +1,7 @@
 /**
  * Checks the download folder, unzips and imports all data from Google TakeOut
  */
-import { unzip, subscribe } from 'react-native-zip-archive';
+import { subscribe, unzip } from 'react-native-zip-archive';
 import { mergeJSONWithLocalData } from '../helpers/GoogleData';
 import { Platform } from 'react-native';
 import RNFS from 'react-native-fs';

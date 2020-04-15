@@ -1,32 +1,33 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Text,
   Dimensions,
-  StyleSheet,
   ImageBackground,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import {
-  check,
-  request,
   PERMISSIONS,
   RESULTS,
+  check,
   checkNotifications,
+  request,
   requestNotifications,
 } from 'react-native-permissions';
+import { SvgXml } from 'react-native-svg';
+
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
-import languages from '../../locales/languages';
-import ButtonWrapper from '../../components/ButtonWrapper';
-import Colors from '../../constants/colors';
+import { isPlatformiOS } from './../../Util';
 import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
-import { SetStoreData } from '../../helpers/General';
-import { isPlatformiOS } from './../../Util';
-import { SvgXml } from 'react-native-svg';
+import ButtonWrapper from '../../components/ButtonWrapper';
+import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { PARTICIPATE } from '../../constants/storage';
+import { SetStoreData } from '../../helpers/General';
+import languages from '../../locales/languages';
 
 const width = Dimensions.get('window').width;
 

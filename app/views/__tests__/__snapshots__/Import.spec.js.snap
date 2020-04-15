@@ -7,7 +7,9 @@ Array [
     style={
       Object {
         "backgroundColor": "#4051DB",
-        "flex": 0,
+        "flexBasis": 0,
+        "flexGrow": 0,
+        "flexShrink": 1,
       }
     }
   />,
@@ -16,7 +18,9 @@ Array [
     style={
       Object {
         "backgroundColor": "#F7F8FF",
-        "flex": 1,
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
       }
     }
   >
