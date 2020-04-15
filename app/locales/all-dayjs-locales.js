@@ -131,3 +131,4 @@ import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/zh-hk';
 import 'dayjs/locale/zh-tw';
 import 'dayjs/locale/zh';
+import 'dayjs/locale/ml';

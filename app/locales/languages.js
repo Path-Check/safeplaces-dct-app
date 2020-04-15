@@ -12,6 +12,7 @@ import es from './es.json';
 import fr from './fr.json';
 import ht from './ht.json';
 import it from './it.json';
+import ml from './ml.json';
 import ru from './ru.json';
 import zh_Hant from './zh-Hant.json';
 
@@ -80,6 +81,7 @@ i18next.init({
     it: { label: 'Italiano', translation: it },
     ru: { label: 'Русский', translation: ru },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
+    ml: { label: 'മലയാളം', translation: ml },
   },
 });
 
