@@ -17,12 +17,11 @@ import {
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
-
 /**
  * Intersects the locationArray with the concernLocationArray, putting the results
  *   into the appropriate bins in dayBin.
- * 
- * @param {array} locationArray - array of the local locations 
+ *
+ * @param {array} locationArray - array of the local locations
  * @param {array} concernLocationArray - superset array of all concerning points from health authorities
  * @param {array} dayBin - bins to be populated with the intersection results
  */
@@ -181,7 +180,7 @@ function binarySearchForTime(array, targetTime) {
 }
 
 /**
- * Kicks off the intersection process.  Immediately returns after starting the 
+ * Kicks off the intersection process.  Immediately returns after starting the
  * background intersection.
  */
 export function checkIntersect() {
@@ -206,27 +205,25 @@ export function checkIntersect() {
  *   completed.  Currently always returns true.
  */
 async function asyncCheckIntersect() {
-
   // Get the user's health authorities
   let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
-  if (!authority_list) {
-    console.log('No authorities', authority_list);
-    return;
-  }
+  // if (!authority_list) {
+  //   console.log('No authorities', authority_list);
+  //   return;
+  // }
 
   // we'll need this for the news sources from the authorities
   let name_news = [];
 
-  if (authority_list) {
+  // we need an empty dayBin for intersections to go in to
+  let dayBin = getEmptyDayBin();
 
+  // this will ultimately have the entire set of concern locations across all authorities
+  let concernResultsCombined = [];
+
+  if (authority_list) {
     // Parse the registered health authorities
     authority_list = JSON.parse(authority_list);
-
-    // we have at least 1 authority ... set up the dayBin for intersections to go in to
-    let dayBin = getEmptyDayBin();
-
-    // this will ultimately have the entire set of concern locations across all authorities
-    let concernResultsCombined = [];
 
     for (const authority of authority_list) {
       console.log('[auth] authority: ', authority);
@@ -254,35 +251,35 @@ async function asyncCheckIntersect() {
         console.log('[authority] fetch/parse error :', error);
       }
     }
-
-    // Set the news for the authorities found.  There's an implicit assumption that news only
-    //  comes from the configured authorities
-    SetStoreData(AUTHORITY_NEWS, name_news);
-
-    // now, get the location data, normalize and do the intersection
-    let locationArrayString = await GetStoreData(LOCATION_DATA);
-    if (locationArrayString !== null) {
-      let locationArray = JSON.parse(locationArrayString);
-      let concernArray = concernResultsCombined;
-      dayBin = intersectSetIntoBins(locationArray, concernArray, dayBin);
-      if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
-        PushNotification.localNotification({
-          title: languages.t('label.push_at_risk_title'),
-          message: languages.t('label.push_at_risk_message'),
-        });
-      }
-    }
-    console.log('Crossing results: ', dayBin);
-
-    // store the results
-    SetStoreData(CROSSED_PATHS, dayBin); // TODO: Store per authority?
-
-    // the current time is the last time checked
-    let nowUTC = new Date().toISOString();
-    let unixtimeUTC = Date.parse(nowUTC);
-    // Last checked key is not being used atm. TODO check this to update periodically instead of every foreground activity
-    SetStoreData(LAST_CHECKED, unixtimeUTC);
   }
+
+  // Set the news for the authorities found.  There's an implicit assumption that news only
+  //  comes from the configured authorities
+  SetStoreData(AUTHORITY_NEWS, name_news);
+
+  // now, get the location data, normalize and do the intersection
+  let locationArrayString = await GetStoreData(LOCATION_DATA);
+  if (locationArrayString !== null) {
+    let locationArray = JSON.parse(locationArrayString);
+    let concernArray = concernResultsCombined;
+    dayBin = intersectSetIntoBins(locationArray, concernArray, dayBin);
+    if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
+      PushNotification.localNotification({
+        title: languages.t('label.push_at_risk_title'),
+        message: languages.t('label.push_at_risk_message'),
+      });
+    }
+  }
+  console.log('Crossing results: ', dayBin);
+
+  // store the results
+  SetStoreData(CROSSED_PATHS, dayBin); // TODO: Store per authority?
+
+  // the current time is the last time checked
+  let nowUTC = new Date().toISOString();
+  let unixtimeUTC = Date.parse(nowUTC);
+  // Last checked key is not being used atm. TODO check this to update periodically instead of every foreground activity
+  SetStoreData(LAST_CHECKED, unixtimeUTC);
 
   // looks like we did something... return true to signal OK
   return true;
