@@ -1,8 +1,8 @@
+/* eslint-env detox/detox, mocha */
+
 describe('Onboarding', () => {
   beforeEach(async () => {
-    console.log('reload');
     await device.reloadReactNative();
-    console.log('reloaded');
   });
 
   it('starts at onboarding step 1', async () => {
