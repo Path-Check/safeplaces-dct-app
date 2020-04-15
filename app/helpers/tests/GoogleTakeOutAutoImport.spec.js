@@ -6,11 +6,10 @@ const {
   location4,
 } = require('./fixtures/googleImport');
 
-jest.spyOn(console, 'log').mockImplementation(() => {});
-
 describe('importTakeoutData', () => {
   beforeEach(() => {
     jest.resetModules();
+    jest.spyOn(console, 'log').mockImplementation(() => {});
     jest.doMock('react-native-zip-archive', () => {
       return {
         unzip: async () => '/tmp/test',
