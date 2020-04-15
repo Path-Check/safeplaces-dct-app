@@ -2,7 +2,6 @@ node_modules/
 ios/
 android/
 patches/
-__tests__/
 package-lock.json
 yarn.lock
 package.json

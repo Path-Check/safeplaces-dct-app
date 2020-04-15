@@ -1,0 +1,907 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`allows specifying number of weeks 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginBottom": 0,
+        "marginLeft": -8,
+        "marginRight": -8,
+        "marginTop": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Sun
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Mon
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Tue
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Wed
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Thu
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Fri
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Sat
+        </span>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          5
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          6
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          7
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          8
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          9
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          10
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          11
+        </span>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`with input date, defaults to 3 weeks ago from that date 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginBottom": 0,
+        "marginLeft": -8,
+        "marginRight": -8,
+        "marginTop": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Sun
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Mon
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Tue
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Wed
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Thu
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Fri
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Sat
+        </span>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`with no input date, defaults to 3 weeks ago from today 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginBottom": 0,
+        "marginLeft": -8,
+        "marginRight": -8,
+        "marginTop": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Sun
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Mon
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Tue
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Wed
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Thu
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Fri
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          Sat
+        </span>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          22
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          23
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          24
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          25
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          26
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          27
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          28
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          29
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          30
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          31
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          1
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          2
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          3
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          4
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          5
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          6
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          7
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          8
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          9
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          10
+        </span>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "14%",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "minHeight": 20,
+          }
+        }
+      >
+        <span>
+          11
+        </span>
+      </View>
+    </View>
+  </View>
+</View>
+`;

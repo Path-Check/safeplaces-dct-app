@@ -2,29 +2,35 @@ name: Test
 
 on:
   push:
-    branches: [ develop ]
+    branches:
+      - develop
+      - release-candidate
+      - master
   pull_request:
-    branches: [ develop ]
+    branches:
+      - develop
+      - release-candidate
+      - master
 
 jobs:
   unit-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - run: node --version
+      - run: node --version
 
-    - name: Cache node_modules/
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.OS }}-yarn-cache-
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
 
-    - run: yarn --frozen-lockfile
+      - run: yarn --frozen-lockfile
 
-    - run: yarn test
-      env:
-        CI: true
+      - run: yarn test
+        env:
+          CI: true

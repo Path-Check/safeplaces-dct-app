@@ -28,6 +28,8 @@ import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { AUTHORITIES_LIST_URL } from '../constants/authorities';
+import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
+import { checkIntersect } from '../helpers/Intersect';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -64,7 +66,7 @@ class ChooseProviderScreen extends Component {
     this.fetchAuthoritiesList();
 
     // Update user settings state from async storage
-    GetStoreData('AUTHORITY_SOURCE_SETTINGS', false).then(result => {
+    GetStoreData(AUTHORITY_SOURCE_SETTINGS, false).then(result => {
       if (result !== null) {
         console.log('Retrieving settings from async storage:');
         console.log(result);
@@ -103,7 +105,7 @@ class ChooseProviderScreen extends Component {
                 : this.setState({
                     authoritiesList: [
                       {
-                        'Unable to load authorities list': [{ url: 'No URL' }],
+                        'Unable to load authorities list': [{ url: 'No URL' }], // TODO: Localize
                       },
                     ],
                   });
@@ -134,9 +136,12 @@ class ChooseProviderScreen extends Component {
         () => {
           // Add current settings state to async storage.
           SetStoreData(
-            'AUTHORITY_SOURCE_SETTINGS',
+            AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          );
+          ).then(() => {
+            // Force updates immediately.
+            checkIntersect();
+          });
         },
       );
     } else {
@@ -164,9 +169,12 @@ class ChooseProviderScreen extends Component {
         () => {
           // Add current settings state to async storage.
           SetStoreData(
-            'AUTHORITY_SOURCE_SETTINGS',
+            AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          );
+          ).then(() => {
+            // Force updates immediately.
+            checkIntersect();
+          });
         },
       );
     }
@@ -197,9 +205,12 @@ class ChooseProviderScreen extends Component {
               () => {
                 // Add current settings state to async storage.
                 SetStoreData(
-                  'AUTHORITY_SOURCE_SETTINGS',
+                  AUTHORITY_SOURCE_SETTINGS,
                   this.state.selectedAuthorities,
-                );
+                ).then(() => {
+                  // Force updates immediately.
+                  checkIntersect();
+                });
               },
             );
           },

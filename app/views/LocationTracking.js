@@ -30,7 +30,7 @@ import SettingsGear from './../assets/svgs/settingsGear';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
-import { isPlatformiOS } from './../Util';
+import { isPlatformAndroid, isPlatformiOS } from './../Util';
 import ButtonWrapper from '../components/ButtonWrapper';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -72,6 +72,12 @@ const height = Dimensions.get('window').height;
 class LocationTracking extends Component {
   constructor(props) {
     super(props);
+
+    if (isPlatformAndroid()) {
+      StatusBar.setBackgroundColor(Colors.TRANSPARENT);
+      StatusBar.setBarStyle('light-content');
+      StatusBar.setTranslucent(true);
+    }
 
     this.state = {
       appState: AppState.currentState,
@@ -371,9 +377,9 @@ class LocationTracking extends Component {
       // };
       return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
-      buttonLabel = languages.t('label.home_next_steps');
+      buttonLabel = languages.t('label.see_exposure_history');
       buttonFunction = () => {
-        this.props.navigation.navigate('NotificationScreen');
+        this.props.navigation.navigate('ExposureHistoryScreen');
       };
     } else if (this.state.currentState === StateEnum.UNKNOWN) {
       buttonLabel = languages.t('label.home_enable_location');
