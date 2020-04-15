@@ -148,7 +148,7 @@ exports[`renders correctly 1`] = `
                   ]
                 }
               >
-                Choose health authority
+                Choose data source
               </Text>
               <Text
                 style={
@@ -161,7 +161,7 @@ exports[`renders correctly 1`] = `
                   }
                 }
               >
-                To be informed of exposures you will need to subscribe to a health authority.
+                To be informed of exposures you will need to subscribe to a data source.
               </Text>
             </View>
             <View
