@@ -15,9 +15,9 @@ import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
-import { AUTHORITY_NEWS } from '../constants/storage';
 // import { Colors } from 'react-native/Libraries/NewAppScreen';
 import fontFamily from '../constants/fonts';
+import { AUTHORITY_NEWS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
 
 const width = Dimensions.get('window').width;
@@ -28,7 +28,7 @@ class NewsScreen extends Component {
     super(props);
     let default_news = {
       name: languages.t('label.default_news_site_name'),
-      url: languages.t('label.default_news_site_url'),
+      news_url: languages.t('label.default_news_site_url'),
     };
     this.state = {
       visible: true,
@@ -62,7 +62,7 @@ class NewsScreen extends Component {
         </View>
         <WebView
           source={{
-            uri: item.item.url,
+            uri: item.item.news_url,
           }}
           containerStyle={{
             borderBottomLeftRadius: 12,

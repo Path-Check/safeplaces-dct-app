@@ -1,4 +1,4 @@
-import Moment from 'moment';
+import dayjs from 'dayjs';
 import { Platform } from 'react-native';
 
 export function isPlatformiOS() {
@@ -10,7 +10,7 @@ export function isPlatformAndroid() {
 }
 
 export function nowStr() {
-  return Moment(new Date()).format('H:mm');
+  return dayjs().format('H:mm');
 }
 
 export default {
