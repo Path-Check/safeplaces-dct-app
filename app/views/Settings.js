@@ -9,9 +9,10 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import googleMapsIcon from './../assets/svgs/google-maps-logo';
-// import languagesIcon from './../assets/svgs/languagesIcon';
+// import xmarkIcon from './../assets/svgs/xmarkIcon';
 import checkmarkIcon from './../assets/svgs/checkmarkIcon';
+import googleMapsIcon from './../assets/svgs/google-maps-logo';
+import languagesIcon from './../assets/svgs/languagesIcon';
 import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
 import ButtonWrapper from '../components/ButtonWrapper';
@@ -46,6 +47,10 @@ class SettingsScreen extends Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  locationToggleButtonPressed() {
+    console.log('You did a button, congrats');
   }
 
   importButtonPressed() {
@@ -116,35 +121,42 @@ class SettingsScreen extends Component {
   }
 
   getSettingRow(text, actionListener, icon, color, subtitle) {
-    const renderIcon = () => {
-      return icon ? <SvgXml xml={icon} /> : null;
+    const renderIcon = styles => {
+      return icon ? <SvgXml xml={icon} style={styles} /> : null;
     };
     return (
       <>
         <TouchableOpacity
           onPress={actionListener.bind(this)}
           style={styles.sectionRowContainer}>
-          {subtitle ? (
-            <Text
-              style={[
-                styles.settingRowText,
-                {
-                  color: color || Colors.VIOLET_TEXT,
-                  fontFamily: fontFamily.primaryBold,
-                },
-              ]}>
-              {text}
-            </Text>
-          ) : (
-            <Text
-              style={[
-                styles.settingRowText,
-                { color: color || Colors.VIOLET_TEXT },
-              ]}>
-              {text}
-            </Text>
-          )}
-          {renderIcon()}
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            {renderIcon({
+              maxWidth: 24,
+              maxHeight: 24,
+              marginRight: 12,
+              marginTop: 2.5,
+            })}
+            {subtitle ? (
+              <Text
+                style={[
+                  styles.settingRowText,
+                  {
+                    color: color || Colors.VIOLET_TEXT,
+                    fontFamily: fontFamily.primaryBold,
+                  },
+                ]}>
+                {text}
+              </Text>
+            ) : (
+              <Text
+                style={[
+                  styles.settingRowText,
+                  { color: color || Colors.VIOLET_TEXT },
+                ]}>
+                {text}
+              </Text>
+            )}
+          </View>
           {subtitle ? (
             <Text style={styles.settingsRowSubtitleText}>{subtitle}</Text>
           ) : null}
@@ -178,7 +190,7 @@ class SettingsScreen extends Component {
               {this.getSettingRow(
                 'English',
                 this.testedPositiveButtonPressed,
-                null,
+                languagesIcon,
                 null,
                 null,
               )}
