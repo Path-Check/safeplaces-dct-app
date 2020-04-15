@@ -1,6 +1,10 @@
 {
   "root": true,
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:detox/recommended"
+  ],
   "parser": "babel-eslint",
   "plugins": [
     "react",
