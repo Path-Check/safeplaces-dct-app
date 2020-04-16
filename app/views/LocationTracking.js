@@ -38,9 +38,10 @@ import { PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
-//import BroadcastingServices from '../services/BroadcastingService';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
+
+const MAYO_COVID_URL = 'https://www.mayoclinic.org/coronavirus-covid-19';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -402,7 +403,7 @@ class LocationTracking extends Component {
   }
 
   getMayoInfoPressed() {
-    Linking.openURL(languages.t('label.home_mayo_link_URL'));
+    Linking.openURL(MAYO_COVID_URL);
   }
 
   render() {
@@ -413,7 +414,7 @@ class LocationTracking extends Component {
         <StatusBar
           barStyle='light-content'
           backgroundColor='transparent'
-          translucent={true}
+          translucent
         />
         {this.getPulseIfNeeded()}
 
@@ -438,16 +439,12 @@ class LocationTracking extends Component {
             <View style={styles.mayoInfoContainer}>
               <Text
                 style={styles.mainMayoHeader}
-                onPress={() =>
-                  Linking.openURL(languages.t('label.home_mayo_link_URL'))
-                }>
+                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
                 {languages.t('label.home_mayo_link_heading')}
               </Text>
               <Text
                 style={styles.mainMayoSubtext}
-                onPress={() =>
-                  Linking.openURL(languages.t('label.home_mayo_link_URL'))
-                }>
+                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
                 {languages.t('label.home_mayo_link_label')}
               </Text>
             </View>
