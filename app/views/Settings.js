@@ -9,16 +9,18 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-// import xmarkIcon from './../assets/svgs/xmarkIcon';
 import checkmarkIcon from './../assets/svgs/checkmarkIcon';
 import googleMapsIcon from './../assets/svgs/google-maps-logo';
 import languagesIcon from './../assets/svgs/languagesIcon';
+import xmarkIcon from './../assets/svgs/xmarkIcon';
 import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
 import ButtonWrapper from '../components/ButtonWrapper';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-// import LocationServices from '../services/LocationService';
+import { PARTICIPATE } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import LocationServices from '../services/LocationService';
 
 // This is the definitive listing of registered Healthcare Authorities.  To
 // register, just submit a PR against that list on Github.  Users are also
@@ -29,7 +31,7 @@ class SettingsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //
+      isLogging: '',
     };
   }
 
@@ -44,6 +46,20 @@ class SettingsScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    GetStoreData(PARTICIPATE)
+      .then(isParticipating => {
+        if (isParticipating === 'true') {
+          this.setState({
+            isLogging: true,
+          });
+          this.willParticipate();
+        } else {
+          this.setState({
+            isLogging: false,
+          });
+        }
+      })
+      .catch(error => console.log(error));
   }
 
   componentWillUnmount() {
@@ -51,7 +67,14 @@ class SettingsScreen extends Component {
   }
 
   locationToggleButtonPressed() {
-    console.log('You did a button, congrats');
+    this.state.isLogging ? LocationServices.stop() : LocationServices.start();
+    this.setState({
+      isLogging: !this.state.isLogging,
+    });
+    SetStoreData(PARTICIPATE, !this.state.isLogging).catch(error =>
+      console.log(error),
+    );
+    console.log(this.props.navigation.params);
   }
 
   importButtonPressed() {
@@ -181,9 +204,9 @@ class SettingsScreen extends Component {
           <View style={styles.mainContainer}>
             <View style={styles.section}>
               {this.getSettingRow(
-                'Location Active',
+                this.state.isLogging ? 'Location Active' : 'Location Inactive',
                 this.locationToggleButtonPressed,
-                checkmarkIcon,
+                this.state.isLogging ? checkmarkIcon : xmarkIcon,
                 null,
                 null,
               )}
