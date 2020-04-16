@@ -76,6 +76,10 @@ class SettingsScreen extends Component {
     this.props.navigation.navigate('ExportScreen');
   }
 
+  waypointsButtonPressed() {
+    this.props.navigation.navigate('WayPointsScreen');
+  }
+
   getMapsImport() {
     return (
       <>
@@ -151,6 +155,25 @@ class SettingsScreen extends Component {
     );
   }
 
+  getWaypointsRow() {
+    if (!__DEV__) {
+      return null
+    }
+    return this.getSettingRow(
+      'Waypoints',
+      this.waypointsButtonPressed,
+      null,
+      null,
+      'see waypoints heatmap in action')
+  }
+
+  getWaypointsDivider() {
+    if (!__DEV__) {
+      return null
+    }
+    return <View style={styles.divider} />
+  }
+
   render() {
     return (
       <NavigationBarWrapper
@@ -194,6 +217,9 @@ class SettingsScreen extends Component {
                 null,
                 languages.t('label.tested_positive_subtitle'),
               )}
+             
+              {this.getWaypointsDivider()}
+              {this.getWaypointsRow()}
             </View>
           </View>
 

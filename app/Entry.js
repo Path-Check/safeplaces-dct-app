@@ -23,6 +23,7 @@ import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
 import OverlapScreen from './views/Overlap';
 import SettingsScreen from './views/Settings';
+import WayPointsScreen from './views/WayPoints';
 
 const Stack = createStackNavigator();
 
@@ -147,6 +148,11 @@ class Entry extends Component {
           <Stack.Screen
             name='AboutScreen'
             component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='WayPointsScreen'
+            component={WayPointsScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
