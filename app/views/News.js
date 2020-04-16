@@ -155,6 +155,14 @@ class NewsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  // eslint-disable-next-line react-native/no-color-literals
+  singleNews: {
+    flexGrow: 1,
+    backgroundColor: 'rgba(255,255,255,0.6)',
+    borderRadius: 12,
+    alignSelf: 'center',
+    width: '100%',
+  },
   singleNewsHead: {
     height: 48,
     alignItems: 'center',
