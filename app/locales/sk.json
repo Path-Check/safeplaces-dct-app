@@ -27,7 +27,6 @@
     "home_enable_location":"Povoliť údaje o polohe",
     "home_mayo_link_heading":"Viac informácií o COVID-19",
     "home_mayo_link_label":"z Mayo Clinic",
-    "home_mayo_link_URL":"",
     "home_no_contact_header":"Žiadny známy kontakt",
     "home_no_contact_subtext":"Na základe dostupných dát si nebol/a v blízkosti nikoho, kto je nahlásený ako pozitívne testovaný na COVID-19.",
     "home_unknown_header":"Neznámy",
@@ -88,25 +87,13 @@
     "overlap_title":"Prezri prekrytie",
     "push_at_risk_message":"Stretol/la si sa s pacientom COVID-19",
     "push_at_risk_title":"Môžeš byť v ohrození",
-    "see_exposure_history":"",
     "settings_title":"Panel",
     "share_location_data":"Zdieľaj svoje údaje o polohe ",
     "show_overlap":"Kliknutím sa zobrazí verejný súbor údajov",
     "team":"Tím",
     "team_para":"Náš tím je zložený z konzorcia epidemiológov, inžinierov, vedcov, evanjelistov v oblasti digitálneho súkromia, profesorov a výskumníkov z uznávaných inštitúcií zahŕňajúc: MIT, Hardward, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young a Link Ventures.",
     "terms_of_use":"Podmienky používania",
-    "terms_of_use_url":"",
     "tested_positive_subtitle":"Tvoje osobné údaje môžu byť odovzdané zdravotným úradom, zálohované alebo inak zdieľané.",
     "tested_positive_title":"Zdieľaj históriu tvojej lokalizácie"
-  },
-  "history": {
-    "no_exposure": "",
-    "possible_exposure": "",
-    "possible_exposure_para": "",
-    "timeline": "",
-    "what_does_this_mean": "",
-    "what_does_this_mean_para": "",
-    "what_if_no_symptoms": "",
-    "what_if_no_symptoms_para": ""
   }
 }
