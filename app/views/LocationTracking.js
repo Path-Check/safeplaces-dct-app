@@ -203,10 +203,6 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('ImportScreen', {});
   }
 
-  overlap() {
-    this.props.navigation.navigate('OverlapScreen', {});
-  }
-
   willParticipate = () => {
     SetStoreData(PARTICIPATE, 'true').then(() => {
       // Turn of bluetooth for v1
@@ -370,11 +366,6 @@ class LocationTracking extends Component {
     let buttonLabel;
     let buttonFunction;
     if (this.state.currentState === StateEnum.NO_CONTACT) {
-      // TMP HACK FOR MI
-      // buttonLabel = 'label.home_MASSIVE_HACK';
-      // buttonFunction = () => {
-      //   this.props.navigation.navigate('MapLocation');
-      // };
       return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
       buttonLabel = languages.t('label.see_exposure_history');
