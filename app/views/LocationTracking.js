@@ -49,7 +49,7 @@ const StateEnum = {
   NO_CONTACT: 2,
 };
 
-const StateIcon = ({ title, status, size, ...props }) => {
+const StateIcon = ({ status, size }) => {
   let icon;
   switch (status) {
     case StateEnum.UNKNOWN:
@@ -67,7 +67,6 @@ const StateIcon = ({ title, status, size, ...props }) => {
   );
 };
 
-const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 class LocationTracking extends Component {
@@ -106,7 +105,7 @@ class LocationTracking extends Component {
     } else {
       locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
     }
-    let locationDisabled = true;
+
     check(locationPermission)
       .then(result => {
         switch (result) {
@@ -144,7 +143,7 @@ class LocationTracking extends Component {
   }
 
   componentDidMount() {
-    AppState.addEventListener('change', this._handleAppStateChange);
+    AppState.addEventListener('change', this.handleAppStateChange);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     GetStoreData(PARTICIPATE)
       .then(isParticipating => {
@@ -173,14 +172,14 @@ class LocationTracking extends Component {
   }
 
   componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppStateChange);
+    AppState.removeEventListener('change', this.handleAppStateChange);
     clearInterval(this.state.timer_intersect);
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
   // need to check state again if new foreground event
   // e.g. if user changed location permission
-  _handleAppStateChange = nextAppState => {
+  handleAppStateChange = nextAppState => {
     if (
       this.state.appState.match(/inactive|background/) &&
       nextAppState === 'active'
@@ -272,21 +271,6 @@ class LocationTracking extends Component {
         style={styles.settingsContainer}
         onPress={() => {
           this.props.navigation.navigate('SettingsScreen');
-          // THIS IS FOR TESTING - DELETE LATER
-          // switch (this.state.currentState) {
-          //   case StateEnum.NO_CONTACT:
-          //     this.setState({ isLogging: '', currentState: StateEnum.AT_RISK });
-          //     break;
-          //   case StateEnum.AT_RISK:
-          //     this.setState({ isLogging: '', currentState: StateEnum.UNKNOWN });
-          //     break;
-          //   case StateEnum.UNKNOWN:
-          //     this.setState({
-          //       isLogging: '',
-          //       currentState: StateEnum.NO_CONTACT,
-          //     });
-          //     break;
-          // }
         }}>
         <Image resizeMode={'contain'} />
         <SvgXml
@@ -371,11 +355,6 @@ class LocationTracking extends Component {
     let buttonLabel;
     let buttonFunction;
     if (this.state.currentState === StateEnum.NO_CONTACT) {
-      // TMP HACK FOR MI
-      // buttonLabel = 'label.home_MASSIVE_HACK';
-      // buttonFunction = () => {
-      //   this.props.navigation.navigate('MapLocation');
-      // };
       return;
     } else if (this.state.currentState === StateEnum.AT_RISK) {
       buttonLabel = languages.t('label.see_exposure_history');
