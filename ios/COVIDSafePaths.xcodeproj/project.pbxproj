@@ -351,16 +351,17 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = org.pathcheck;
 				LastUpgradeCheck = 940;
-				ORGANIZATIONNAME = Facebook;
+				ORGANIZATIONNAME = "Path Check Inc";
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = PDLZ3XQV6D;
+						DevelopmentTeam = 79Z8HUPGC3;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = PDLZ3XQV6D;
+						DevelopmentTeam = 79Z8HUPGC3;
 					};
 				};
 			};
@@ -577,7 +578,7 @@
 			baseConfigurationReference = C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = PDLZ3XQV6D;
+				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -603,7 +604,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = PDLZ3XQV6D;
+				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -625,7 +626,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = PDLZ3XQV6D;
+				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
@@ -695,7 +696,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.covidsafepaths;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
 				PRODUCT_NAME = COVIDSafePaths;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -707,7 +708,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = PDLZ3XQV6D;
+				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
@@ -777,7 +778,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.covidsafepaths;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
 				PRODUCT_NAME = COVIDSafePaths;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
