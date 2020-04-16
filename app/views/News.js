@@ -13,9 +13,8 @@ import { WebView } from 'react-native-webview';
 
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import colors from '../constants/colors';
+import { DEFAULT_NEWS_SITE_URL } from '../constants/authorities';
 import Colors from '../constants/colors';
-// import { Colors } from 'react-native/Libraries/NewAppScreen';
 import fontFamily from '../constants/fonts';
 import { AUTHORITY_NEWS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
@@ -28,7 +27,7 @@ class NewsScreen extends Component {
     super(props);
     let default_news = {
       name: languages.t('label.default_news_site_name'),
-      news_url: languages.t('label.default_news_site_url'),
+      news_url: DEFAULT_NEWS_SITE_URL,
     };
     this.state = {
       visible: true,
@@ -53,8 +52,7 @@ class NewsScreen extends Component {
     });
   }
 
-  _renderItem = item => {
-    console.log('Item', item);
+  renderItem = item => {
     return (
       <View style={styles.singleNews}>
         <View style={styles.singleNewsHead}>
@@ -78,6 +76,7 @@ class NewsScreen extends Component {
       </View>
     );
   };
+
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
@@ -106,7 +105,7 @@ class NewsScreen extends Component {
   }
 
   render() {
-    console.log('News URL -', this.state.newsUrls);
+    // console.log('News URL -', this.state.newsUrls);
     return (
       <LinearGradient
         start={{ x: 0, y: 0 }}
@@ -123,16 +122,13 @@ class NewsScreen extends Component {
             style={{ flex: 1, height: '100%' }}>
             <View
               style={{
-                backgroundColor: '#3A4CD7',
+                backgroundColor: Colors.VIOLET_BUTTON_DARK,
                 flex: 1,
                 paddingVertical: 16,
               }}>
               <Carousel
-                ref={c => {
-                  this._carousel = c;
-                }}
                 data={this.state.newsUrls}
-                renderItem={this._renderItem}
+                renderItem={this.renderItem}
                 sliderWidth={width}
                 itemWidth={width * 0.85}
                 layout={'default'}
@@ -159,29 +155,6 @@ class NewsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
-  web: {
-    width: '100%',
-    margin: 0,
-    padding: 0,
-  },
-  slide: {
-    height: 100,
-    backgroundColor: 'rgba(20,20,200,0.3)',
-  },
-  singleNews: {
-    flexGrow: 1,
-    backgroundColor: 'rgba(255,255,255,0.6)',
-    borderRadius: 12,
-    alignSelf: 'center',
-    width: '100%',
-  },
   singleNewsHead: {
     height: 48,
     alignItems: 'center',
