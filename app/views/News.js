@@ -13,7 +13,6 @@ import { WebView } from 'react-native-webview';
 
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { DEFAULT_NEWS_SITE_URL } from '../constants/authorities';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { AUTHORITY_NEWS } from '../constants/storage';
@@ -21,6 +20,8 @@ import { GetStoreData } from '../helpers/General';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+
+export const DEFAULT_NEWS_SITE_URL = 'https://covidsafepaths.org/in-app-news';
 
 class NewsScreen extends Component {
   constructor(props) {
