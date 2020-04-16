@@ -79,9 +79,9 @@ i18next.init({
     fr: { label: 'Français', translation: fr },
     ht: { label: 'Kreyòl ayisyen', translation: ht },
     it: { label: 'Italiano', translation: it },
+    ml: { label: 'മലയാളം', translation: ml },
     ru: { label: 'Русский', translation: ru },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
-    ml: { label: 'മലയാളം', translation: ml },
   },
 });
 
