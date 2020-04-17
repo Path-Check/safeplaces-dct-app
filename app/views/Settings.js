@@ -19,6 +19,48 @@ export const SettingsScreen = ({ navigation }) => {
     return true;
   };
 
+  // // Get locales list from i18next for locales menu
+  //   let localesList = [];
+  //   for (let key in languages.options.resources) {
+  //     localesList = localesList.concat({
+  //       value: key,
+  //       label: languages.options.resources[key].label,
+  //     });
+  //   }
+
+  //   this.state = {
+  //     isLogging: '',
+  //     language: findUserLang(res => {
+  //       this.setState({ language: res });
+  //     }),
+  //     localesList: localesList,
+  //   };
+
+  // GetStoreData(PARTICIPATE)
+  //     .then(isParticipating => {
+  //       if (isParticipating === 'true') {
+  //         this.setState({
+  //           isLogging: true,
+  //         });
+  //         this.willParticipate();
+  //       } else {
+  //         this.setState({
+  //           isLogging: false,
+  //         });
+  //       }
+  //     })
+  //     .catch(error => console.log(error));
+
+  // locationToggleButtonPressed() {
+  //   this.state.isLogging ? LocationServices.stop() : LocationServices.start();
+  //   this.setState({
+  //     isLogging: !this.state.isLogging,
+  //   });
+  //   SetStoreData(PARTICIPATE, !this.state.isLogging).catch(error =>
+  //     console.log(error),
+  //   );
+  // }
+
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
@@ -39,7 +81,58 @@ export const SettingsScreen = ({ navigation }) => {
             label={languages.t('label.launch_location_access')}
             icon={IconGranted}
           />
-        </Section> */}
+        </Section>
+
+        {this.getSettingRow(
+                this.state.isLogging
+                  ? languages.t('label.logging_active')
+                  : languages.t('label.logging_inactive'),
+                this.locationToggleButtonPressed,
+                this.state.isLogging ? checkmarkIcon : xmarkIcon,
+                null,
+                null,
+              )}
+              <View style={styles.divider} />
+              {this.getSettingRow(
+                selectedLabel,
+                this.aboutButtonPressed,
+                languagesIcon,
+                null,
+                null,
+              )}
+              <View
+                style={{
+                  marginTop: -65,
+                  position: 'relative',
+                  alignSelf: 'center',
+                  width: '100%',
+                  zIndex: 10,
+                  backgroundColor: 'none',
+                  paddingVertical: '5%',
+                  paddingBottom: '2%',
+                }}>
+                <NativePicker
+                  items={this.state.localesList}
+                  value={this.state.language}
+                  hidden
+                  onValueChange={itemValue => {
+                    this.setState({ language: itemValue });
+
+                    // If user picks manual lang, update and store setting
+                    languages.changeLanguage(itemValue, err => {
+                      if (err)
+                        return console.log(
+                          'something went wrong in lang change',
+                          err,
+                        );
+                    });
+
+                    SetStoreData(LANG_OVERRIDE, itemValue);
+                  }}
+                />
+              </View>
+
+        */}
 
         <Section>
           <Item
