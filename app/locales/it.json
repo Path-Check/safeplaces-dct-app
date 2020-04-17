@@ -1,8 +1,8 @@
 {
   "label": {
     "about_title": "Informazioni",
-    "authorities_add_button_label": "Aggiungi Autorità",
-    "authorities_add_url": "Aggiungi autorità via URL",
+    "authorities_add_button_label": "Aggiungi Autorità sanitaria",
+    "authorities_add_url": "Aggiungi autorità sanitaria via URL",
     "authorities_desc": "Seleziona le autorità sanitarie nella tua area per ottenere i dati sulle possibilità di esposizione.\nSeleziona un nome dal registro globale o inserisci l'indirizzo internet fornito da un'autorità sanitaria che partecipa a Safe Paths",
     "authorities_input_placeholder": "Incolla l'indirizzo qui",
     "authorities_no_sources": "Nessuna fonte di dati per ora",
@@ -14,7 +14,7 @@
     "choose_provider_subtitle": "Per essere informato sulla possibilità di esposizione devi aggiungere un'autorità sanitaria",
     "choose_provider_title": "Seleziona le autorità sanitarie",
     "commitment": "Missione",
-    "commitment_para": "Safe Paths registra dati in piena sicurezza e controlla l'intereazione con altre persone usando la tua posizione. I tuoi dati non lasceranno MAI il tuo telefono senza il tuo consenso",
+    "commitment_para": "Safe Paths registra i dati in piena sicurezza e controlla l'intereazione con altre persone usando la tua posizione. I tuoi dati non lasceranno MAI il tuo telefono senza il tuo consenso",
     "default_news_site_name": "Novità su Safe Paths",
     "event_history_subtitle": "Controlla la tua possibile esposizione sulla base delle informazioni condivise dalle autorità sanitarie",
     "event_history_title": "Storico delle esposizioni",
