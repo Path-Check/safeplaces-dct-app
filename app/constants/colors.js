@@ -11,6 +11,7 @@ const colors = {
   VIOLET_ALPHA_06: 'rgba(105, 121, 248, 0.06)',
   VIOLET: '#4051DB',
   TRANSPARENT: 'transparent',
+  DARK_ALPHA: 'rgba(0, 0, 0, 0.7)',
 
   // For notifications
   HIGHEST_RISK: '#e74c3c',

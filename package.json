@@ -41,6 +41,7 @@
     "@react-navigation/native": "5.0.9",
     "@react-navigation/stack": "5.1.1",
     "@testing-library/react-native": "^5.0.3",
+    "axios": "^0.19.2",
     "dayjs": "^1.8.24",
     "emotion-theming": "^10.0.27",
     "i18next": "^19.3.3",
