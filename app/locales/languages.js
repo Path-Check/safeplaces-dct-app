@@ -13,7 +13,9 @@ import fr from './fr.json';
 import ht from './ht.json';
 import id from './id.json';
 import it from './it.json';
+import ml from './ml.json';
 import ru from './ru.json';
+import sk from './sk.json';
 import vi from './vi.json';
 import zh_Hant from './zh-Hant.json';
 
@@ -81,7 +83,9 @@ i18next.init({
     ht: { label: 'Kreyòl ayisyen', translation: ht },
     id: { label: 'Indonesia', translation: id },
     it: { label: 'Italiano', translation: it },
+    ml: { label: 'മലയാളം', translation: ml },
     ru: { label: 'Русский', translation: ru },
+    sk: { label: 'Slovak', translation: sk },
     vi: { label: 'Vietnamese', translation: vi },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
   },
