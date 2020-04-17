@@ -49,6 +49,8 @@ PODS:
   - Permission-Notifications (2.0.10):
     - RNPermissions
   - RCTRequired (0.61.5)
+  - RCTRestart (0.0.14):
+    - React
   - RCTTypeSafety (0.61.5):
     - FBLazyVector (= 0.61.5)
     - Folly (= 2018.10.22.00)
@@ -315,6 +317,7 @@ DEPENDENCIES:
   - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways.podspec`)
   - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
+  - RCTRestart (from `../node_modules/react-native-restart`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
   - React-Core (from `../node_modules/react-native/`)
@@ -389,6 +392,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-permissions/ios/Notifications.podspec"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
+  RCTRestart:
+    :path: "../node_modules/react-native-restart"
   RCTTypeSafety:
     :path: "../node_modules/react-native/Libraries/TypeSafety"
   React:
@@ -488,6 +493,7 @@ SPEC CHECKSUMS:
   Permission-LocationAlways: 738e3b24333d52c87361804bb0a1641de014c405
   Permission-Notifications: c9eb3a2da68dc0f37a8dc67d37bd28d150c5041d
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
+  RCTRestart: 3915cac548a37703970941ca33de79a304b8b247
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
   React-Core: 688b451f7d616cc1134ac95295b593d1b5158a04
@@ -532,6 +538,6 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 11fb261d935b534dc9ac05aa6f2539671466c17f
+PODFILE CHECKSUM: f19e5d8b1188d1de3c7705e07faebaf671496b7c
 
 COCOAPODS: 1.9.1
