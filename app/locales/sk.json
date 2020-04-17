@@ -86,6 +86,7 @@
     "overlap_title":"Prezri prekrytie",
     "push_at_risk_message":"Stretol/la si sa s pacientom COVID-19",
     "push_at_risk_title":"Môžeš byť v ohrození",
+    "see_exposure_history":"Pozri si svoju históriu vystavenia sa riziku",
     "settings_title":"Panel",
     "share_location_data":"Zdieľaj svoje údaje o polohe ",
     "show_overlap":"Kliknutím sa zobrazí verejný súbor údajov",
@@ -94,5 +95,15 @@
     "terms_of_use":"Podmienky používania",
     "tested_positive_subtitle":"Tvoje osobné údaje môžu byť odovzdané zdravotným úradom, zálohované alebo inak zdieľané.",
     "tested_positive_title":"Zdieľaj históriu tvojej lokalizácie"
+  },
+  "history": {
+    "no_exposure":"Žiadne vystavenie sa riziku",
+    "possible_exposure_para":"Je možné, že si bol/a v kontakte s niekým alebo bol/a v blízkosti niekoho, kto bol pozitívne testovaný na COVID-19",
+    "possible_exposure":"Možné vystavenie sa riziku",
+    "timeline":"Časový prehľad",
+    "what_does_this_mean_para":"Na základe histórie tvojho GPS je možné, že si bol/a v kontakte alebo bol/a v blízkosti osoby, komu bol diagnostikovaný COVID-19. To neznamená, že si infikovaný/á ale môžeš byť. \\n\\nĎalšie informácie o tom ako postupovať ďalej nájdeš na webovej stránke Mayo Clinic.",
+    "what_does_this_mean":"Čo to znamená",
+    "what_if_no_symptoms_para":"Ak nemáš žiadne symptómy, ale aj tak by si sa chcel/a otestovať, navštív najbližšiu testovaciu stanicu. \\n\\nJednotlivci, ktorí nevykazujú žiadne symptómy, môžu prenášať infekciu a nakaziť iných ľudí. Buď opatrný/á pri spoločenskom dištancovaní a prichádzaní do kontaktu s veľkými skupinami ľudí alebo ohrozenými jednotlivcami (staršími osobami a osobami s vážnymi zdravotnými problémami), je dôležité, aby si zvládol/la svoje riziko aj riziko pre ostatných.",
+    "what_if_no_symptoms":"Čo ak nevykazujem žiadny symptómy?"
   }
 }
