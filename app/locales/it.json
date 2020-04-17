@@ -95,5 +95,15 @@
     "terms_of_use": "Termini per l'utilizzo",
     "tested_positive_subtitle": "I tuoi dati personali possono essere trasferiti alle autorità sanitarie, salvati o condivisi in altra maniera",
     "tested_positive_title": "Condividi lo storico delle posizioni"
+  },
+  "history": {
+    "no_exposure": "Nessuna esposizione",
+    "possible_exposure_para": "E' possibile che tu sia stato in contatto o vicino ad una persona risultata positiva al COVID-19.",
+    "possible_exposure": "Possibile esposizione",
+    "timeline": "Cronologia",
+    "what_does_this_mean_para":"In base alla tua cronologia GPS, e' possibile che tu sia stato in contatto o nelle vicinanze di una persona risultata positiva al COVID-19. Questo però non significa che tu sia infetto.\n\nPer maggiori informazioni o per sapere cosa fare, fai riferimento al sito della Mayo Clinic.",
+    "what_does_this_mean": "Cosa significa?",
+    "what_if_no_symptoms_para": "Se non hai alcun sintomo, ma vuoi comunque effettuare un test, puoi presentarti al centro più vicino.\n\nLe persone che non mostrano alcun sintomo possono, in alcune circostanze, essere ancora contagiosi. Mantieni alta l'attenzione e pratica il distanziamento sociale, evita di venire in contatto con gruppi di persone o con persone ad alto rischio (anziani o persone affette da altre patologie), è importante non solo per te, ma anche per gli altri.",
+    "what_if_no_symptoms": "E se non mostro nessun sintomo?"
   }
 }
