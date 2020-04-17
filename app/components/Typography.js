@@ -88,11 +88,7 @@ const getFontWeight = ({ use = Type.Body1 }) =>
 const ThemedText = styled.Text`
   color: ${getTextColor};
   font-family: ${({ monospace, bold }) =>
-    bold
-      ? 'IBMPlexSans-Bold'
-      : monospace
-      ? 'IBMPlexMono'
-      : 'IBMPlexSans-Regular'};
+    bold ? 'IBMPlexSans-Bold' : monospace ? 'IBMPlexMono' : 'IBMPlexSans'};
   font-size: ${getFontSize};
   font-weight: ${getFontWeight};
   line-height: ${getLineHeight};
