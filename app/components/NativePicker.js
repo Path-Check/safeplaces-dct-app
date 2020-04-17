@@ -4,12 +4,12 @@ import {
   Picker,
   Platform,
   StyleSheet,
-  Text,
-  TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import DynamicText from './DynamicText';
+import DynamicTextInput from './DynamicTextInput';
 
 // Code for the language select dropdown, for nice native handling on both iOS and Android.
 export default class NativePicker extends Component {
@@ -32,7 +32,7 @@ export default class NativePicker extends Component {
         <View style={styles.inputContainer}>
           <TouchableOpacity
             onPress={() => this.setState({ modalVisible: true })}>
-            <TextInput
+            <DynamicTextInput
               style={[styles.touchableTrigger, styles.touchableText]}
               editable={false}
               placeholder='Select language'
@@ -65,7 +65,7 @@ export default class NativePicker extends Component {
               this.setState({ modalVisible: true });
             }}
             style={styles.touchableTrigger}>
-            <Text style={styles.touchableText}>{selectedLabel}</Text>
+            <DynamicText style={styles.touchableText}>{selectedLabel}</DynamicText>
           </TouchableOpacity>
 
           <Modal
@@ -89,7 +89,7 @@ export default class NativePicker extends Component {
                 onPress={() => this.setState({ modalVisible: false })}>
                 <View style={styles.modalContainer}>
                   <View style={styles.modalContent}>
-                    <Text
+                    <DynamicText
                       style={{
                         color: '#007aff',
                         fontWeight: 'bold',
@@ -99,7 +99,7 @@ export default class NativePicker extends Component {
                       }}
                       onPress={() => this.setState({ modalVisible: false })}>
                       Done
-                    </Text>
+                    </DynamicText>
                   </View>
                   <View
                     onStartShouldSetResponder={evt => true}

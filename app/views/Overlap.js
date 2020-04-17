@@ -23,6 +23,7 @@ import { LOCATION_DATA } from '../constants/storage';
 import CustomCircle from '../helpers/customCircle';
 import { GetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
+import DynamicText from '../components/DynamicText';
 
 const width = Dimensions.get('window').width;
 
@@ -306,9 +307,9 @@ function OverlapScreen() {
           onPress={backToMain}>
           <Image style={styles.backArrow} source={backArrow} />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>
+        <DynamicText style={styles.headerTitle}>
           {languages.t('label.overlap_title')}
-        </Text>
+        </DynamicText>
       </View>
       <MapView
         ref={mapView}
@@ -343,14 +344,14 @@ function OverlapScreen() {
           onPress={downloadAndPlot}
           disabled={showButton.disabled}>
           {/* If no overlap found, change button text to say so. Temporary solution, replace with something more robust */}
-          <Text style={styles.buttonText}>{languages.t(showButton.text)}</Text>
+          <DynamicText style={styles.buttonText}>{languages.t(showButton.text)}</DynamicText>
         </TouchableOpacity>
-        <Text style={styles.sectionDescription}>
+        <DynamicText style={styles.sectionDescription}>
           {languages.t('label.overlap_para_1')}
-        </Text>
+        </DynamicText>
       </View>
       <View style={styles.footer}>
-        <Text
+        <DynamicText
           style={[
             styles.sectionFooter,
             { textAlign: 'center', paddingTop: 15, color: 'blue' },
@@ -359,7 +360,7 @@ function OverlapScreen() {
             Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
           }>
           {languages.t('label.nCoV2019_url_info')}{' '}
-        </Text>
+        </DynamicText>
       </View>
     </SafeAreaView>
   );

@@ -6,6 +6,7 @@ import BottomSheet from 'reanimated-bottom-sheet';
 
 import Colors from '../constants/colors';
 import { LocationData } from '../services/LocationService';
+import DynamicText from '../components/DynamicText';
 
 const InitialRegion = {
   latitude: 35.692863,
@@ -17,18 +18,18 @@ const InitialRegion = {
 const BSDateSectionRow = ({ prefixTitle, title }) => {
   return (
     <View style={styles.BSDateSectionRow}>
-      <Text>
-        <Text
+      <DynamicText>
+        <DynamicText
           style={{
             color: Colors.BLACK,
-          }}>{`${prefixTitle} `}</Text>
-        <Text
+          }}>{`${prefixTitle} `}</DynamicText>
+        <DynamicText
           style={{
             color: Colors.VIOLET_TEXT,
           }}>
           {title}
-        </Text>
-      </Text>
+        </DynamicText>
+      </DynamicText>
     </View>
   );
 };
@@ -139,7 +140,7 @@ class MapLocation extends Component {
 
     return (
       <View style={styles.bsMainContainer}>
-        <Text>some content</Text>
+        <DynamicText>some content</DynamicText>
         <BSDateSectionRow prefixTitle={'test'} title={'test'} />
       </View>
     );

@@ -25,6 +25,7 @@ import Colors from '../constants/colors';
 // import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { LocationData } from '../services/LocationService';
+import DynamicText from '../components/DynamicText';
 
 const base64 = RNFetchBlob.base64;
 
@@ -145,20 +146,20 @@ function ExportScreen(props) {
 
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.main}>
-              <Text style={styles.exportSectionTitles}>
+              <DynamicText style={styles.exportSectionTitles}>
                 {languages.t('label.tested_positive_title')}
-              </Text>
-              <Text style={styles.exportSectionPara}>
+              </DynamicText>
+              <DynamicText style={styles.exportSectionPara}>
                 {languages.t('label.export_para_1')}
-              </Text>
-              <Text style={styles.exportSectionPara}>
+              </DynamicText>
+              <DynamicText style={styles.exportSectionPara}>
                 {languages.t('label.export_para_2')}
-              </Text>
+              </DynamicText>
 
               <TouchableOpacity style={styles.exportButton} onPress={onShare}>
-                <Text style={styles.exportButtonText}>
+                <DynamicText style={styles.exportButtonText}>
                   {languages.t('label.share_location_data')}
-                </Text>
+                </DynamicText>
                 <SvgXml style={styles.exportIcon} xml={exportIcon} />
               </TouchableOpacity>
             </View>

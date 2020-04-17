@@ -15,6 +15,7 @@ import languages from './../locales/languages';
 import ButtonWrapper from '../components/ButtonWrapper';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
+import DynamicText from '../components/DynamicText';
 
 // This is the definitive listing of registered Healthcare Authorities.  To
 // register, just submit a PR against that list on Github.  Users are also
@@ -82,14 +83,14 @@ class SettingsScreen extends Component {
         <View style={styles.section}>
           <View style={styles.iconRowContainer}>
             <SvgXml xml={googleMapsIcon} style={{ alignSelf: 'center' }} />
-            <Text style={styles.iconRowText}>
+            <DynamicText style={styles.iconRowText}>
               {languages.t('label.maps_import_title')}
-            </Text>
+            </DynamicText>
           </View>
           <View style={styles.sectionRowContainer}>
-            <Text style={styles.settingRowText}>
+            <DynamicText style={styles.settingRowText}>
               {languages.t('label.maps_import_text')}
-            </Text>
+            </DynamicText>
           </View>
           <ButtonWrapper
             title={
@@ -104,9 +105,9 @@ class SettingsScreen extends Component {
             buttonWidth={'100%'}
           />
           <View style={styles.sectionRowContainer}>
-            <Text style={styles.settingRowNoteText}>
+            <DynamicText style={styles.settingRowNoteText}>
               {languages.t('label.maps_import_disclaimer')}
-            </Text>
+            </DynamicText>
           </View>
         </View>
       </>
@@ -123,7 +124,7 @@ class SettingsScreen extends Component {
           onPress={actionListener.bind(this)}
           style={styles.sectionRowContainer}>
           {subtitle ? (
-            <Text
+            <DynamicText
               style={[
                 styles.settingRowText,
                 {
@@ -132,19 +133,19 @@ class SettingsScreen extends Component {
                 },
               ]}>
               {text}
-            </Text>
+            </DynamicText>
           ) : (
-            <Text
+            <DynamicText
               style={[
                 styles.settingRowText,
                 { color: color || Colors.VIOLET_TEXT },
               ]}>
               {text}
-            </Text>
+            </DynamicText>
           )}
           {renderIcon()}
           {subtitle ? (
-            <Text style={styles.settingsRowSubtitleText}>{subtitle}</Text>
+            <DynamicText style={styles.settingsRowSubtitleText}>{subtitle}</DynamicText>
           ) : null}
         </TouchableOpacity>
       </>

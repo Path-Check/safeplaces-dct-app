@@ -19,6 +19,7 @@ import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
+import DynamicText from '../components/DynamicText';
 
 class LicensesScreen extends Component {
   constructor(props) {
@@ -87,13 +88,13 @@ class LicensesScreen extends Component {
           onPress={this.handleTermsOfUsePressed.bind(this)}
           style={styles.termsInfoRow}>
           <View style={styles.termsInfoContainer}>
-            <Text
+            <DynamicText
               style={styles.mainTermsHeader}
               onPress={() =>
                 Linking.openURL(languages.t('label.terms_of_use_url'))
               }>
               {languages.t('label.terms_of_use')}
-            </Text>
+            </DynamicText>
           </View>
           <View style={styles.arrowContainer}>
             <Image source={foreArrow} style={this.arrow} />

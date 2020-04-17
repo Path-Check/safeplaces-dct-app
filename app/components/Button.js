@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import colors from '../constants/colors';
+import DynamicText from './DynamicText';
 
 class Button extends React.Component {
   render() {
@@ -37,7 +38,7 @@ class Button extends React.Component {
             { height: buttonHeight },
           ]}
           onPress={onPress}>
-          <Text
+          <DynamicText
             style={[
               titleStyle ? titleStyle : styles.text,
               {
@@ -45,7 +46,7 @@ class Button extends React.Component {
               },
             ]}>
             {title}
-          </Text>
+          </DynamicText>
         </TouchableOpacity>
       </LinearGradient>
     );

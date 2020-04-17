@@ -40,6 +40,7 @@ import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
+import DynamicText from '../components/DynamicText';
 
 const MAYO_COVID_URL = 'https://www.mayoclinic.org/coronavirus-covid-19';
 
@@ -311,21 +312,21 @@ class LocationTracking extends Component {
     switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
         return (
-          <Text style={styles.mainTextBelow}>
+          <DynamicText style={styles.mainTextBelow}>
             {languages.t('label.home_no_contact_header')}
-          </Text>
+          </DynamicText>
         );
       case StateEnum.AT_RISK:
         return (
-          <Text style={styles.mainTextAbove}>
+          <DynamicText style={styles.mainTextAbove}>
             {languages.t('label.home_at_risk_header')}
-          </Text>
+          </DynamicText>
         );
       case StateEnum.UNKNOWN:
         return (
-          <Text style={styles.mainTextBelow}>
+          <DynamicText style={styles.mainTextBelow}>
             {languages.t('label.home_unknown_header')}
-          </Text>
+          </DynamicText>
         );
     }
   }
@@ -401,12 +402,12 @@ class LocationTracking extends Component {
           <View style={styles.contentAbovePulse}>
             {this.state.currentState === StateEnum.AT_RISK &&
               this.getMainText()}
-            <Text style={styles.subsubheaderText}>{this.getSubSubText()}</Text>
+            <DynamicText style={styles.subsubheaderText}>{this.getSubSubText()}</DynamicText>
           </View>
           <View style={styles.contentBelowPulse}>
             {this.state.currentState !== StateEnum.AT_RISK &&
               this.getMainText()}
-            <Text style={styles.subheaderText}>{this.getSubText()}</Text>
+            <DynamicText style={styles.subheaderText}>{this.getSubText()}</DynamicText>
             {this.getCTAIfNeeded()}
           </View>
         </View>
@@ -416,16 +417,16 @@ class LocationTracking extends Component {
             onPress={this.getMayoInfoPressed.bind(this)}
             style={styles.mayoInfoRow}>
             <View style={styles.mayoInfoContainer}>
-              <Text
+              <DynamicText
                 style={styles.mainMayoHeader}
                 onPress={() => Linking.openURL(MAYO_COVID_URL)}>
                 {languages.t('label.home_mayo_link_heading')}
-              </Text>
-              <Text
+              </DynamicText>
+              <DynamicText
                 style={styles.mainMayoSubtext}
                 onPress={() => Linking.openURL(MAYO_COVID_URL)}>
                 {languages.t('label.home_mayo_link_label')}
-              </Text>
+              </DynamicText>
             </View>
             <View style={styles.arrowContainer}>
               <Image source={foreArrow} style={this.arrow} />

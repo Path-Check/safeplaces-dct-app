@@ -20,7 +20,7 @@ import vi from './vi.json';
 import zh_Hant from './zh-Hant.json';
 import ar from './ar.json';
 import rtlLanguages from './rtl-languages';
-import { showAlert, isEmpty } from '../Util';
+import { showAlert } from '../Util';
 import ReactNativeRestart from 'react-native-restart';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
@@ -37,7 +37,7 @@ import ReactNativeRestart from 'react-native-restart';
 const deviceLocale =
   Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
-      NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
+    NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
     : NativeModules.I18nManager.localeIdentifier; // Android
 
 dayjs.locale([deviceLocale, 'en']);
@@ -102,9 +102,9 @@ export function isRtlLanguage(language, navigation) {
   }
 
   if ((I18nManager.isRTL && rtlLanguages.includes(language)) ||
-   (!I18nManager.isRTL && !rtlLanguages.includes(language)) && !isEmpty(navigation)) {
-    navigation()
-   }
+    (!I18nManager.isRTL && !rtlLanguages.includes(language))) {
+    if (navigation) navigation()
+  }
 
 }
 

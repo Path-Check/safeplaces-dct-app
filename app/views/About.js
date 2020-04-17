@@ -18,6 +18,7 @@ import { isPlatformiOS } from './../Util';
 import lock from '../assets/svgs/lock';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
+import DynamicText from '../components/DynamicText';
 
 class AboutScreen extends Component {
   constructor(props) {
@@ -54,46 +55,46 @@ class AboutScreen extends Component {
           <View style={styles.spacer} />
 
           <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
-          <Text style={styles.aboutSectionTitles}>
+          <DynamicText style={styles.aboutSectionTitles}>
             {languages.t('label.commitment')}
-          </Text>
-          <Text style={styles.aboutSectionPara}>
+          </DynamicText>
+          <DynamicText style={styles.aboutSectionPara}>
             {languages.t('label.commitment_para')}
-          </Text>
+          </DynamicText>
 
           <SvgXml style={styles.aboutSectionIconTeam} xml={team} />
-          <Text style={styles.aboutSectionTitles}>
+          <DynamicText style={styles.aboutSectionTitles}>
             {languages.t('label.team')}
-          </Text>
-          <Text style={styles.aboutSectionPara}>
+          </DynamicText>
+          <DynamicText style={styles.aboutSectionPara}>
             {languages.t('label.team_para')}
-          </Text>
+          </DynamicText>
 
           <View style={styles.spacer} />
           <View style={styles.spacer} />
 
           <View style={styles.main}>
             <View style={styles.row}>
-              <Text style={styles.aboutSectionParaBold}>Version: </Text>
-              <Text style={styles.aboutSectionPara}>{packageJson.version}</Text>
+              <DynamicText style={styles.aboutSectionParaBold}>Version: </DynamicText>
+              <DynamicText style={styles.aboutSectionPara}>{packageJson.version}</DynamicText>
             </View>
 
             <View style={styles.row}>
-              <Text style={styles.aboutSectionParaBold}>OS:</Text>
-              <Text style={styles.aboutSectionPara}>
+              <DynamicText style={styles.aboutSectionParaBold}>OS:</DynamicText>
+              <DynamicText style={styles.aboutSectionPara}>
                 {' '}
                 {Platform.OS + ' v' + Platform.Version}
-              </Text>
+              </DynamicText>
             </View>
 
             <View style={styles.row}>
-              <Text style={styles.aboutSectionParaBold}>Dimensions:</Text>
-              <Text style={styles.aboutSectionPara}>
+              <DynamicText style={styles.aboutSectionParaBold}>Dimensions:</DynamicText>
+              <DynamicText style={styles.aboutSectionPara}>
                 {' '}
                 {Math.trunc(Dimensions.get('screen').width) +
                   ' x ' +
                   Math.trunc(Dimensions.get('screen').height)}
-              </Text>
+              </DynamicText>
             </View>
           </View>
 

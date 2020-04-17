@@ -17,6 +17,7 @@ import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { LANG_OVERRIDE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
+import DynamicText from '../../components/DynamicText';
 
 const width = Dimensions.get('window').width;
 
@@ -84,9 +85,9 @@ class Onboarding extends Component {
               />
             </View>
             <View style={styles.contentContainer}>
-              <Text style={styles.mainText}>
+              <DynamicText style={styles.mainText}>
                 {languages.t('label.launch_screen1_header')}
-              </Text>
+              </DynamicText>
             </View>
             <View style={styles.footerContainer}>
               <ButtonWrapper

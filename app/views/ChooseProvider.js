@@ -8,8 +8,6 @@ import {
   Image,
   SafeAreaView,
   StyleSheet,
-  Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -35,6 +33,8 @@ import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
+import DynamicText from '../components/DynamicText';
+import DynamicTextInput from '../components/DynamicTextInput';
 
 const { SlideInMenu } = renderers;
 
@@ -226,18 +226,18 @@ class ChooseProviderScreen extends Component {
         title={languages.t('label.choose_provider_title')}
         onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
-          <Text style={styles.headerTitle}>
+          <DynamicText style={styles.headerTitle}>
             {languages.t('label.authorities_title')}
-          </Text>
-          <Text style={styles.sectionDescription}>
+          </DynamicText>
+          <DynamicText style={styles.sectionDescription}>
             {languages.t('label.authorities_desc')}
-          </Text>
+          </DynamicText>
         </View>
 
         <View style={styles.listContainer}>
           {Object.keys(this.state.selectedAuthorities).length == 0 ? (
             <>
-              <Text
+              <DynamicText
                 style={
                   (styles.sectionDescription,
                   {
@@ -248,13 +248,13 @@ class ChooseProviderScreen extends Component {
                   })
                 }>
                 {languages.t('label.authorities_no_sources')}
-              </Text>
+              </DynamicText>
               <View
                 style={[
                   styles.flatlistRowView,
                   { display: this.state.displayUrlEntry },
                 ]}>
-                <TextInput
+                <DynamicTextInput
                   onChangeText={text => {
                     this.setState({
                       urlText: text,
@@ -283,7 +283,7 @@ class ChooseProviderScreen extends Component {
                   styles.flatlistRowView,
                   { display: this.state.displayUrlEntry },
                 ]}>
-                <TextInput
+                <DynamicTextInput
                   onChangeText={text => {
                     this.setState({
                       urlText: text,
@@ -306,7 +306,7 @@ class ChooseProviderScreen extends Component {
                 data={this.state.selectedAuthorities}
                 renderItem={({ item }) => (
                   <View style={styles.flatlistRowView}>
-                    <Text style={styles.item}>{item.key}</Text>
+                    <DynamicText style={styles.item}>{item.key}</DynamicText>
                     <TouchableOpacity
                       onPress={() => this.removeAuthorityFromState(item)}>
                       <Image source={closeIcon} style={styles.closeIcon} />
@@ -329,9 +329,9 @@ class ChooseProviderScreen extends Component {
                 this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
               }
               disabled={this.state.urlEditInProgress}>
-              <Text style={styles.startLoggingButtonText}>
+              <DynamicText style={styles.startLoggingButtonText}>
                 {languages.t('label.authorities_add_button_label')}
-              </Text>
+              </DynamicText>
             </TouchableOpacity>
           </MenuTrigger>
           <MenuOptions>
@@ -348,7 +348,7 @@ class ChooseProviderScreen extends Component {
                         this.addAuthorityToState(name);
                       }}
                       disabled={this.state.authoritiesList.length === 1}>
-                      <Text style={styles.menuOptionText}>{name}</Text>
+                      <DynamicText style={styles.menuOptionText}>{name}</DynamicText>
                     </MenuOption>
                   );
                 })}
@@ -359,9 +359,9 @@ class ChooseProviderScreen extends Component {
                   urlEntryInProgress: true,
                 });
               }}>
-              <Text style={styles.menuOptionText}>
+              <DynamicText style={styles.menuOptionText}>
                 {languages.t('label.authorities_add_url')}
-              </Text>
+              </DynamicText>
             </MenuOption>
           </MenuOptions>
         </Menu>

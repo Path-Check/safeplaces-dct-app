@@ -28,6 +28,7 @@ import fontFamily from '../../constants/fonts';
 import { PARTICIPATE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
+import DynamicText from '../../components/DynamicText';
 
 const width = Dimensions.get('window').width;
 
@@ -52,7 +53,7 @@ const PermissionDescription = ({ title, status, ...props }) => {
   }
   return (
     <View style={styles.permissionContainer}>
-      <Text style={styles.permissionTitle}>{title}</Text>
+      <DynamicText style={styles.permissionTitle}>{title}</DynamicText>
       <SvgXml style={styles.permissionIcon} xml={icon} width={30} height={30} />
     </View>
   );
@@ -191,9 +192,9 @@ class Onboarding extends Component {
 
   getTitleTextView() {
     if (!this.isLocationChecked() || !this.isNotificationChecked()) {
-      return <Text style={styles.headerText}>{this.getTitleText()}</Text>;
+      return <DynamicText style={styles.headerText}>{this.getTitleText()}</DynamicText>;
     } else {
-      return <Text style={styles.bigHeaderText}>{this.getTitleText()}</Text>;
+      return <DynamicText style={styles.bigHeaderText}>{this.getTitleText()}</DynamicText>;
     }
   }
 
@@ -257,7 +258,7 @@ class Onboarding extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             {this.getTitleTextView()}
-            <Text style={styles.subheaderText}>{this.getSubtitleText()}</Text>
+            <DynamicText style={styles.subheaderText}>{this.getSubtitleText()}</DynamicText>
             <View style={styles.statusContainer}>
               {this.getLocationPermission()}
               {this.getNotificationsPermissionIfIOS()}
