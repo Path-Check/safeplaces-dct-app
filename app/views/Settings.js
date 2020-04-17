@@ -1,11 +1,22 @@
 import styled, { css } from '@emotion/native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BackHandler, ScrollView, View } from 'react-native';
 
-import languages from './../locales/languages';
+import languages, {
+  LOCALE_LIST,
+  LOCALE_NAME,
+  findUserLang,
+} from './../locales/languages';
+import checkmarkIcon from '../assets/svgs/checkmarkIcon';
+import languagesIcon from '../assets/svgs/languagesIcon';
+import xmarkIcon from '../assets/svgs/xmarkIcon';
 import { Divider } from '../components/Divider';
+import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
+import { LANG_OVERRIDE, PARTICIPATE } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import LocationServices from '../services/LocationService';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
 
@@ -19,120 +30,84 @@ export const SettingsScreen = ({ navigation }) => {
     return true;
   };
 
-  // // Get locales list from i18next for locales menu
-  //   let localesList = [];
-  //   for (let key in languages.options.resources) {
-  //     localesList = localesList.concat({
-  //       value: key,
-  //       label: languages.options.resources[key].label,
-  //     });
-  //   }
+  const [isLogging, setIsLogging] = useState(undefined);
 
-  //   this.state = {
-  //     isLogging: '',
-  //     language: findUserLang(res => {
-  //       this.setState({ language: res });
-  //     }),
-  //     localesList: localesList,
-  //   };
-
-  // GetStoreData(PARTICIPATE)
-  //     .then(isParticipating => {
-  //       if (isParticipating === 'true') {
-  //         this.setState({
-  //           isLogging: true,
-  //         });
-  //         this.willParticipate();
-  //       } else {
-  //         this.setState({
-  //           isLogging: false,
-  //         });
-  //       }
-  //     })
-  //     .catch(error => console.log(error));
-
-  // locationToggleButtonPressed() {
-  //   this.state.isLogging ? LocationServices.stop() : LocationServices.start();
-  //   this.setState({
-  //     isLogging: !this.state.isLogging,
-  //   });
-  //   SetStoreData(PARTICIPATE, !this.state.isLogging).catch(error =>
-  //     console.log(error),
-  //   );
-  // }
+  const [userLocale, setUserLocale] = useState(undefined);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+
+    // TODO: this should be a service or hook
+    GetStoreData(PARTICIPATE)
+      .then(isParticipating => setIsLogging(isParticipating === 'true'))
+      .catch(error => console.log(error));
+
+    // TODO: extract into service or hook
+    findUserLang(res => setUserLocale(res));
 
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
   }, []);
 
+  const locationToggleButtonPressed = async () => {
+    try {
+      isLogging ? LocationServices.stop() : LocationServices.start();
+      await SetStoreData(PARTICIPATE, !isLogging);
+      setIsLogging(!isLogging);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const localeChanged = async locale => {
+    setUserLocale(locale);
+
+    // If user picks manual lang, update and store setting
+    try {
+      await languages.changeLanguage(locale);
+    } catch (e) {
+      console.log('something went wrong in lang change', e);
+    }
+
+    await SetStoreData(LANG_OVERRIDE, locale);
+  };
+
   return (
     <NavigationBarWrapper
       title={languages.t('label.settings_title')}
       onBackPress={backToMain}>
       <ScrollView>
-        {/* DISABLED for Abhishek to wire up location disable/enable */}
-        {/* <Section>
+        <Section>
+          <Item
+            label={
+              isLogging
+                ? languages.t('label.logging_active')
+                : languages.t('label.logging_inactive')
+            }
+            icon={isLogging ? checkmarkIcon : xmarkIcon}
+            onPress={locationToggleButtonPressed}
+          />
           <Item
             last
-            label={languages.t('label.launch_location_access')}
-            icon={IconGranted}
+            label={LOCALE_NAME[userLocale] || 'Unknown'}
+            icon={languagesIcon}
           />
+          {/* TODO: allow picker to render custom UI, remove need for negative
+              margins */}
+          <View
+            style={css`
+              margin-top: -40px;
+              height: 40px;
+            `}>
+            <NativePicker
+              items={LOCALE_LIST}
+              value={userLocale}
+              hidden
+              onValueChange={localeChanged}
+            />
+          </View>
         </Section>
-
-        {this.getSettingRow(
-                this.state.isLogging
-                  ? languages.t('label.logging_active')
-                  : languages.t('label.logging_inactive'),
-                this.locationToggleButtonPressed,
-                this.state.isLogging ? checkmarkIcon : xmarkIcon,
-                null,
-                null,
-              )}
-              <View style={styles.divider} />
-              {this.getSettingRow(
-                selectedLabel,
-                this.aboutButtonPressed,
-                languagesIcon,
-                null,
-                null,
-              )}
-              <View
-                style={{
-                  marginTop: -65,
-                  position: 'relative',
-                  alignSelf: 'center',
-                  width: '100%',
-                  zIndex: 10,
-                  backgroundColor: 'none',
-                  paddingVertical: '5%',
-                  paddingBottom: '2%',
-                }}>
-                <NativePicker
-                  items={this.state.localesList}
-                  value={this.state.language}
-                  hidden
-                  onValueChange={itemValue => {
-                    this.setState({ language: itemValue });
-
-                    // If user picks manual lang, update and store setting
-                    languages.changeLanguage(itemValue, err => {
-                      if (err)
-                        return console.log(
-                          'something went wrong in lang change',
-                          err,
-                        );
-                    });
-
-                    SetStoreData(LANG_OVERRIDE, itemValue);
-                  }}
-                />
-              </View>
-
-        */}
 
         <Section>
           <Item
