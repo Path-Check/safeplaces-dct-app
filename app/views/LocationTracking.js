@@ -110,25 +110,6 @@ class LocationTracking extends Component {
       locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
     }
 
-<<<<<<< HEAD
-    check(locationPermission)
-      .then(result => {
-        switch (result) {
-          case RESULTS.GRANTED:
-            LocationServices.start();
-            this.checkIfUserAtRisk();
-            return;
-          case RESULTS.UNAVAILABLE:
-          case RESULTS.BLOCKED:
-            console.log('NO LOCATION');
-            LocationServices.stop();
-            this.setState({ currentState: StateEnum.UNKNOWN });
-        }
-      })
-      .catch(error => {
-        console.log('error checking location: ' + error);
-      });
-=======
     // If user has location enabled & permissions, start logging
     GetStoreData(PARTICIPATE, false).then(isParticipating => {
       if (isParticipating) {
@@ -154,7 +135,6 @@ class LocationTracking extends Component {
         LocationServices.stop();
       }
     });
->>>>>>> Add UI and backend functions for location toggle
   }
 
   checkIfUserAtRisk() {

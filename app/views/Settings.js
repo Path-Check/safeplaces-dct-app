@@ -46,8 +46,6 @@ class SettingsScreen extends Component {
       isLogging: '',
       language: findUserLang(res => {
         this.setState({ language: res });
-        console.log('langauge found in state as: ');
-        console.log(this.state.language);
       }),
       localesList: localesList,
     };
@@ -92,7 +90,6 @@ class SettingsScreen extends Component {
     SetStoreData(PARTICIPATE, !this.state.isLogging).catch(error =>
       console.log(error),
     );
-    console.log(this.props.navigation.params);
   }
 
   importButtonPressed() {
@@ -222,8 +219,6 @@ class SettingsScreen extends Component {
           {/* TODO FIX THIS - don't remove */}
           {/* <View style={styles.spacer} /> */}
 
-<<<<<<< HEAD
-=======
           <View style={styles.fullDivider} />
           <View style={styles.mainContainer}>
             <View style={styles.section}>
@@ -288,7 +283,6 @@ class SettingsScreen extends Component {
           <View style={styles.spacer} />
           <View style={styles.fullDivider} />
 
->>>>>>> Add menu section, items, and icon files
           <View style={styles.mainContainer}>
             <View style={styles.section}>
               {this.getSettingRow(
