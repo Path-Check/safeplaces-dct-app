@@ -83,6 +83,7 @@
     "@babel/runtime": "^7.8.4",
     "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
+    "@types/jest": "^25.2.1",
     "babel-jest": "^25.1.0",
     "bats": "^1.1.0",
     "eslint": "^6.8.0",
