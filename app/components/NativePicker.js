@@ -68,7 +68,10 @@ export default class NativePicker extends Component {
             onPress={() => {
               this.setState({ modalVisible: true });
             }}
-            style={styles.touchableTrigger}>
+            style={[
+              styles.touchableTrigger,
+              this.props.hidden ? styles.opacityZero : null,
+            ]}>
             <Text style={styles.touchableText}>{selectedLabel}</Text>
           </TouchableOpacity>
 
