@@ -1,10 +1,11 @@
 {
   "root": true,
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier", "prettier/react"],
   "parser": "babel-eslint",
   "plugins": [
     "react",
-    "react-native"
+    "react-native",
+    "prettier"
     // "json"
   ],
   "parserOptions": {
@@ -60,6 +61,7 @@
     "react/no-string-refs": 1, // Prevent string definitions for references and prevent referencing this.refs
     "react/prop-types": 0, // Prevent missing props validation in a React component definition
     "react/react-in-jsx-scope": 2, // Prevent missing React when using JSX
-    "react/self-closing-comp": 2 // Prevent extra closing tags for components without children
+    "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
+    "prettier/prettier": ["error"]
   }
 }
