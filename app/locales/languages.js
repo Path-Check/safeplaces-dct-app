@@ -91,4 +91,21 @@ i18next.init({
   },
 });
 
+/** The known locale list */
+export const LOCALE_LIST = Object.entries(i18next.options.resources).map(
+  ([langCode, lang]) => ({
+    value: langCode,
+    label: lang.label,
+  }),
+);
+
+/** A map of locale code to name. */
+export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
+  (output, [langCode, lang]) => {
+    output[langCode] = lang.label;
+    return output;
+  },
+  {},
+);
+
 export default i18next;
