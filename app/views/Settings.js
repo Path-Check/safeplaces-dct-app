@@ -9,12 +9,20 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
+import checkmarkIcon from './../assets/svgs/checkmarkIcon';
 import googleMapsIcon from './../assets/svgs/google-maps-logo';
+import languagesIcon from './../assets/svgs/languagesIcon';
+import xmarkIcon from './../assets/svgs/xmarkIcon';
 import fontFamily from './../constants/fonts';
-import languages from './../locales/languages';
+import languages, { findUserLang } from './../locales/languages';
 import ButtonWrapper from '../components/ButtonWrapper';
+import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
+import { PARTICIPATE } from '../constants/storage';
+import { LANG_OVERRIDE } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import LocationServices from '../services/LocationService';
 
 // This is the definitive listing of registered Healthcare Authorities.  To
 // register, just submit a PR against that list on Github.  Users are also
@@ -24,8 +32,22 @@ import Colors from '../constants/colors';
 class SettingsScreen extends Component {
   constructor(props) {
     super(props);
+
+    // Get locales list from i18next for locales menu
+    let localesList = [];
+    for (let key in languages.options.resources) {
+      localesList = localesList.concat({
+        value: key,
+        label: languages.options.resources[key].label,
+      });
+    }
+
     this.state = {
-      //
+      isLogging: '',
+      language: findUserLang(res => {
+        this.setState({ language: res });
+      }),
+      localesList: localesList,
     };
   }
 
@@ -40,10 +62,34 @@ class SettingsScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    GetStoreData(PARTICIPATE)
+      .then(isParticipating => {
+        if (isParticipating === 'true') {
+          this.setState({
+            isLogging: true,
+          });
+          this.willParticipate();
+        } else {
+          this.setState({
+            isLogging: false,
+          });
+        }
+      })
+      .catch(error => console.log(error));
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  locationToggleButtonPressed() {
+    this.state.isLogging ? LocationServices.stop() : LocationServices.start();
+    this.setState({
+      isLogging: !this.state.isLogging,
+    });
+    SetStoreData(PARTICIPATE, !this.state.isLogging).catch(error =>
+      console.log(error),
+    );
   }
 
   importButtonPressed() {
@@ -114,35 +160,42 @@ class SettingsScreen extends Component {
   }
 
   getSettingRow(text, actionListener, icon, color, subtitle) {
-    const renderIcon = () => {
-      return icon ? <SvgXml xml={icon} /> : null;
+    const renderIcon = styles => {
+      return icon ? <SvgXml xml={icon} style={styles} /> : null;
     };
     return (
       <>
         <TouchableOpacity
           onPress={actionListener.bind(this)}
           style={styles.sectionRowContainer}>
-          {subtitle ? (
-            <Text
-              style={[
-                styles.settingRowText,
-                {
-                  color: color || Colors.VIOLET_TEXT,
-                  fontFamily: fontFamily.primaryBold,
-                },
-              ]}>
-              {text}
-            </Text>
-          ) : (
-            <Text
-              style={[
-                styles.settingRowText,
-                { color: color || Colors.VIOLET_TEXT },
-              ]}>
-              {text}
-            </Text>
-          )}
-          {renderIcon()}
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            {renderIcon({
+              maxWidth: 24,
+              maxHeight: 24,
+              marginRight: 12,
+              marginTop: 2.5,
+            })}
+            {subtitle ? (
+              <Text
+                style={[
+                  styles.settingRowText,
+                  {
+                    color: color || Colors.VIOLET_TEXT,
+                    fontFamily: fontFamily.primaryBold,
+                  },
+                ]}>
+                {text}
+              </Text>
+            ) : (
+              <Text
+                style={[
+                  styles.settingRowText,
+                  { color: color || Colors.VIOLET_TEXT },
+                ]}>
+                {text}
+              </Text>
+            )}
+          </View>
           {subtitle ? (
             <Text style={styles.settingsRowSubtitleText}>{subtitle}</Text>
           ) : null}
@@ -152,6 +205,12 @@ class SettingsScreen extends Component {
   }
 
   render() {
+    // Get the prettified label for the selected language
+    const selectedItem = this.state.localesList.find(
+      i => i.value === this.state.language,
+    );
+    const selectedLabel = selectedItem ? selectedItem.label : '';
+
     return (
       <NavigationBarWrapper
         title={languages.t('label.settings_title')}
@@ -159,6 +218,70 @@ class SettingsScreen extends Component {
         <ScrollView contentContainerStyle={styles.contentContainer}>
           {/* TODO FIX THIS - don't remove */}
           {/* <View style={styles.spacer} /> */}
+
+          <View style={styles.fullDivider} />
+          <View style={styles.mainContainer}>
+            <View style={styles.section}>
+              {this.getSettingRow(
+                this.state.isLogging
+                  ? languages.t('label.logging_active')
+                  : languages.t('label.logging_inactive'),
+                this.locationToggleButtonPressed,
+                this.state.isLogging ? checkmarkIcon : xmarkIcon,
+                null,
+                null,
+              )}
+              <View style={styles.divider} />
+              {this.getSettingRow(
+                selectedLabel,
+                this.aboutButtonPressed,
+                languagesIcon,
+                null,
+                null,
+              )}
+              <View
+                style={{
+                  marginTop: -65,
+                  position: 'relative',
+                  alignSelf: 'center',
+                  width: '100%',
+                  zIndex: 10,
+                  backgroundColor: 'none',
+                  paddingVertical: '5%',
+                  paddingBottom: '2%',
+                }}>
+                <NativePicker
+                  items={this.state.localesList}
+                  value={this.state.language}
+                  hidden
+                  onValueChange={itemValue => {
+                    this.setState({ language: itemValue });
+
+                    // If user picks manual lang, update and store setting
+                    languages.changeLanguage(itemValue, err => {
+                      if (err)
+                        return console.log(
+                          'something went wrong in lang change',
+                          err,
+                        );
+                    });
+
+                    SetStoreData(LANG_OVERRIDE, itemValue);
+                  }}
+                />
+              </View>
+            </View>
+          </View>
+          <View style={styles.fullDivider} />
+
+          <View style={styles.spacer} />
+
+          <View style={styles.fullDivider} />
+          <View style={styles.mainContainer}>{this.getMapsImport()}</View>
+          <View style={styles.fullDivider} />
+
+          <View style={styles.spacer} />
+          <View style={styles.fullDivider} />
 
           <View style={styles.mainContainer}>
             <View style={styles.section}>

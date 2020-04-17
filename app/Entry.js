@@ -33,11 +33,11 @@ class Entry extends Component {
   }
 
   componentDidMount() {
-    GetStoreData(PARTICIPATE)
-      .then(isParticipating => {
-        console.log(isParticipating);
+    GetStoreData('ONBOARDING_DONE')
+      .then(onboardingDone => {
+        console.log(onboardingDone);
         this.setState({
-          initialRouteName: isParticipating,
+          initialRouteName: onboardingDone,
         });
       })
       .catch(error => console.log(error));
