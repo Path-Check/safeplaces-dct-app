@@ -66,11 +66,10 @@ export const SettingsScreen = ({ navigation }) => {
     // If user picks manual lang, update and store setting
     try {
       await languages.changeLanguage(locale);
+      await SetStoreData(LANG_OVERRIDE, locale);
     } catch (e) {
       console.log('something went wrong in lang change', e);
     }
-
-    await SetStoreData(LANG_OVERRIDE, locale);
   };
 
   return (
