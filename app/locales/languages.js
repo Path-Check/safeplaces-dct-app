@@ -2,7 +2,7 @@ import './all-dayjs-locales';
 
 import dayjs from 'dayjs';
 import i18next from 'i18next';
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform, I18nManager } from 'react-native';
 import { getLanguages } from 'react-native-i18n';
 
 import { LANG_OVERRIDE } from '../constants/storage';
@@ -18,6 +18,10 @@ import ru from './ru.json';
 import sk from './sk.json';
 import vi from './vi.json';
 import zh_Hant from './zh-Hant.json';
+import ar from './ar.json';
+import rtlLanguages from './rtl-languages';
+import { showAlert, isEmpty } from '../Util';
+import ReactNativeRestart from 'react-native-restart';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 
@@ -67,6 +71,43 @@ export function findUserLang(callback) {
   });
 }
 
+export function isRtlLanguage(language, navigation) {
+
+  if (!I18nManager.isRTL && rtlLanguages.includes(language)) {
+    showAlert(
+      null,
+      'App need to restart in order to use this language',
+      () => [
+        I18nManager.forceRTL(true),
+        ReactNativeRestart.Restart()
+      ],
+      'Restart',
+      null,
+      "Cancel"
+    )
+  }
+
+  if (I18nManager.isRTL && !rtlLanguages.includes(language)) {
+    showAlert(
+      null,
+      'App need to restart in order to use this language',
+      () => [
+        I18nManager.forceRTL(false),
+        ReactNativeRestart.Restart()
+      ],
+      'Restart',
+      null,
+      "Cancel"
+    )
+  }
+
+  if ((I18nManager.isRTL && rtlLanguages.includes(language)) ||
+   (!I18nManager.isRTL && !rtlLanguages.includes(language)) && !isEmpty(navigation)) {
+    navigation()
+   }
+
+}
+
 findUserLang();
 
 i18next.init({
@@ -88,6 +129,7 @@ i18next.init({
     sk: { label: 'Slovak', translation: sk },
     vi: { label: 'Vietnamese', translation: vi },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
+    ar: { label: 'العربية', translation: ar }
   },
 });
 

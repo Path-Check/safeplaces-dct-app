@@ -10,7 +10,7 @@ import {
 
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
-import languages, { findUserLang } from './../../locales/languages';
+import languages, { findUserLang, isRtlLanguage } from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import NativePicker from '../../components/NativePicker';
 import Colors from '../../constants/colors';
@@ -76,6 +76,10 @@ class Onboarding extends Component {
                   });
 
                   SetStoreData(LANG_OVERRIDE, itemValue);
+
+                  // Check if choosen language is RTL to restart the app in order to update RTL view
+                  isRtlLanguage(itemValue, null)
+
                 }}
               />
             </View>
@@ -88,7 +92,13 @@ class Onboarding extends Component {
               <ButtonWrapper
                 title={languages.t('label.launch_get_started')}
                 onPress={() => {
-                  this.props.navigation.replace('Onboarding2');
+                  // Check if choosen language is RTL Again in case user canceled app restarting,
+                  // and handle navigation to next page
+                  isRtlLanguage(
+                    this.state.language,
+                    () => {
+                      this.props.navigation.replace('Onboarding2')
+                    })
                 }}
                 buttonColor={Colors.VIOLET}
                 bgColor={Colors.WHITE}
