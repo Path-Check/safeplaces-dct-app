@@ -94,9 +94,10 @@ export const Section = ({ last, children }) => (
   <>
     <SectionWrapper>{children}</SectionWrapper>
 
+    <Divider />
+
     {!last && (
       <>
-        <Divider />
         <View
           style={css`
             margin: 2% 0;
