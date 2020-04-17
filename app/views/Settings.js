@@ -14,11 +14,13 @@ import googleMapsIcon from './../assets/svgs/google-maps-logo';
 import languagesIcon from './../assets/svgs/languagesIcon';
 import xmarkIcon from './../assets/svgs/xmarkIcon';
 import fontFamily from './../constants/fonts';
-import languages from './../locales/languages';
+import languages, { findUserLang } from './../locales/languages';
 import ButtonWrapper from '../components/ButtonWrapper';
+import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
+import { LANG_OVERRIDE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import LocationServices from '../services/LocationService';
 
@@ -30,8 +32,24 @@ import LocationServices from '../services/LocationService';
 class SettingsScreen extends Component {
   constructor(props) {
     super(props);
+
+    // Get locales list from i18next for locales menu
+    let localesList = [];
+    for (let key in languages.options.resources) {
+      localesList = localesList.concat({
+        value: key,
+        label: languages.options.resources[key].label,
+      });
+    }
+
     this.state = {
       isLogging: '',
+      language: findUserLang(res => {
+        this.setState({ language: res });
+        console.log('langauge found in state as: ');
+        console.log(this.state.language);
+      }),
+      localesList: localesList,
     };
   }
 
@@ -190,6 +208,12 @@ class SettingsScreen extends Component {
   }
 
   render() {
+    // Get the prettified label for the selected language
+    const selectedItem = this.state.localesList.find(
+      i => i.value === this.state.language,
+    );
+    const selectedLabel = selectedItem ? selectedItem.label : '';
+
     return (
       <NavigationBarWrapper
         title={languages.t('label.settings_title')}
@@ -204,7 +228,9 @@ class SettingsScreen extends Component {
           <View style={styles.mainContainer}>
             <View style={styles.section}>
               {this.getSettingRow(
-                this.state.isLogging ? 'Location Active' : 'Location Inactive',
+                this.state.isLogging
+                  ? languages.t('label.logging_active')
+                  : languages.t('label.logging_inactive'),
                 this.locationToggleButtonPressed,
                 this.state.isLogging ? checkmarkIcon : xmarkIcon,
                 null,
@@ -212,12 +238,43 @@ class SettingsScreen extends Component {
               )}
               <View style={styles.divider} />
               {this.getSettingRow(
-                'English',
-                this.testedPositiveButtonPressed,
+                selectedLabel,
+                this.aboutButtonPressed,
                 languagesIcon,
                 null,
                 null,
               )}
+              <View
+                style={{
+                  marginTop: -65,
+                  position: 'relative',
+                  alignSelf: 'center',
+                  width: '100%',
+                  zIndex: 10,
+                  backgroundColor: 'none',
+                  paddingVertical: '5%',
+                  paddingBottom: '2%',
+                }}>
+                <NativePicker
+                  items={this.state.localesList}
+                  value={this.state.language}
+                  hidden
+                  onValueChange={itemValue => {
+                    this.setState({ language: itemValue });
+
+                    // If user picks manual lang, update and store setting
+                    languages.changeLanguage(itemValue, err => {
+                      if (err)
+                        return console.log(
+                          'something went wrong in lang change',
+                          err,
+                        );
+                    });
+
+                    SetStoreData(LANG_OVERRIDE, itemValue);
+                  }}
+                />
+              </View>
             </View>
           </View>
           <View style={styles.fullDivider} />

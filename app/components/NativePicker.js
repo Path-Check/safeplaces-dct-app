@@ -33,7 +33,11 @@ export default class NativePicker extends Component {
           <TouchableOpacity
             onPress={() => this.setState({ modalVisible: true })}>
             <TextInput
-              style={[styles.touchableTrigger, styles.touchableText]}
+              style={[
+                styles.touchableTrigger,
+                styles.touchableText,
+                this.props.hidden ? styles.opacityZero : null,
+              ]}
               editable={false}
               placeholder='Select language'
               onChangeText={searchString => {
@@ -81,7 +85,8 @@ export default class NativePicker extends Component {
                     flex: 1,
                     backgroundColor: '#000000',
                     opacity: 0.2,
-                  }}></View>
+                  }}
+                />
               </TouchableWithoutFeedback>
             </View>
             <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
@@ -165,5 +170,8 @@ const styles = StyleSheet.create({
     color: '#4051DB',
     textAlign: 'center',
     textTransform: 'uppercase',
+  },
+  opacityZero: {
+    opacity: 0,
   },
 });
