@@ -19,6 +19,7 @@ export const SettingsItem = ({ label, onPress, description, icon, last }) => {
   return (
     <>
       <Container onPress={onPress}>
+        {icon && <Icon xml={icon} size={24} />}
         <Label>
           <Typography use='body1'>{label}</Typography>
           {description && (
@@ -32,7 +33,6 @@ export const SettingsItem = ({ label, onPress, description, icon, last }) => {
             </Typography>
           )}
         </Label>
-        {icon && <SvgXml xml={icon} height={32} />}
       </Container>
       {!last && <Divider />}
     </>
@@ -48,4 +48,11 @@ const Container = styled.TouchableOpacity`
 const Label = styled.View`
   flex: 1;
   justify-content: center;
+`;
+
+const Icon = styled(SvgXml)`
+  max-width: 24px;
+  max-height: 24px;
+  margin-right: 12px;
+  margin-top: 2.5px;
 `;
