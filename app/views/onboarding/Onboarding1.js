@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
@@ -38,6 +39,17 @@ class Onboarding extends Component {
     });
   }
 
+  handleLocaleChange = async language => {
+    try {
+      // If user picks manual lang, update and store setting
+      await languages.changeLanguage(language);
+      await SetStoreData(LANG_OVERRIDE, language);
+      this.setState({ language });
+    } catch (err) {
+      console.log('something went wrong in lang change', err);
+    }
+  };
+
   render() {
     return (
       <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
@@ -47,7 +59,7 @@ class Onboarding extends Component {
           <StatusBar
             barStyle='light-content'
             backgroundColor='transparent'
-            translucent={true}
+            translucent
           />
           <View style={styles.mainContainer}>
             <View
@@ -60,21 +72,15 @@ class Onboarding extends Component {
               <NativePicker
                 items={LOCALE_LIST}
                 value={this.state.language}
-                onValueChange={(itemValue, itemIndex) => {
-                  this.setState({ language: itemValue });
-
-                  // If user picks manual lang, update and store setting
-                  languages.changeLanguage(itemValue, (err, t) => {
-                    if (err)
-                      return console.log(
-                        'something went wrong in lang change',
-                        err,
-                      );
-                  });
-
-                  SetStoreData(LANG_OVERRIDE, itemValue);
-                }}
-              />
+                onValueChange={this.handleLocaleChange}>
+                {({ label, openPicker }) => (
+                  <TouchableOpacity
+                    onPress={openPicker}
+                    style={styles.languageSelector}>
+                    <Text style={styles.languageSelectorText}>{label}</Text>
+                  </TouchableOpacity>
+                )}
+              </NativePicker>
             </View>
             <View style={styles.contentContainer}>
               <Text style={styles.mainText}>
@@ -128,6 +134,19 @@ const styles = StyleSheet.create({
     bottom: 0,
     marginBottom: '10%',
     alignSelf: 'center',
+  },
+  languageSelector: {
+    backgroundColor: Colors.WHITE,
+    opacity: 0.4,
+    paddingVertical: 4,
+    paddingHorizontal: 11,
+    borderRadius: 100,
+  },
+  languageSelectorText: {
+    fontSize: 12,
+    color: Colors.VIOLET,
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
 });
 

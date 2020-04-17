@@ -61,12 +61,11 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   const localeChanged = async locale => {
-    setUserLocale(locale);
-
     // If user picks manual lang, update and store setting
     try {
       await languages.changeLanguage(locale);
       await SetStoreData(LANG_OVERRIDE, locale);
+      setUserLocale(locale);
     } catch (e) {
       console.log('something went wrong in lang change', e);
     }
@@ -87,25 +86,19 @@ export const SettingsScreen = ({ navigation }) => {
             icon={isLogging ? checkmarkIcon : xmarkIcon}
             onPress={locationToggleButtonPressed}
           />
-          <Item
-            last
-            label={LOCALE_NAME[userLocale] || 'Unknown'}
-            icon={languagesIcon}
-          />
-          {/* TODO: allow picker to render custom UI, remove need for negative
-              margins */}
-          <View
-            style={css`
-              margin-top: -40px;
-              height: 40px;
-            `}>
-            <NativePicker
-              items={LOCALE_LIST}
-              value={userLocale}
-              hidden
-              onValueChange={localeChanged}
-            />
-          </View>
+          <NativePicker
+            items={LOCALE_LIST}
+            value={userLocale}
+            onValueChange={localeChanged}>
+            {({ label, openPicker }) => (
+              <Item
+                last
+                label={label || 'Unknown'}
+                icon={languagesIcon}
+                onPress={openPicker}
+              />
+            )}
+          </NativePicker>
         </Section>
 
         <Section>
