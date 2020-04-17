@@ -40,7 +40,7 @@ export const GoogleMapsImport = ({ navigation }) => {
       />
 
       <ParagraphContainer>
-        <Typography use='body2' secondary monospace>
+        <Typography use='body3' secondary monospace>
           {languages.t('label.maps_import_disclaimer')}
         </Typography>
       </ParagraphContainer>
@@ -50,11 +50,13 @@ export const GoogleMapsImport = ({ navigation }) => {
 
 const TitleRow = styled.View`
   flex-direction: row;
+  align-items: center;
   padding-top: 18px;
 `;
 
 const Title = styled(Typography)`
   font-size: 21px;
+  margin-left: 8px;
 `;
 
 const ParagraphContainer = styled.View`
