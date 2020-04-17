@@ -1,5 +1,5 @@
-import * as React from 'react';
 import styled from '@emotion/native';
+import * as React from 'react';
 
 export const Type = {
   Headline1: 'headline1',
@@ -34,12 +34,14 @@ export const Type = {
  *   use?: string,
  *   secondary?: boolean,
  *   monospace?: boolean,
+ *   bold?: boolean,
  * }} param0
  */
 export const Typography = ({
   use = Type.Body1,
   secondary,
   monospace,
+  bold,
   children,
   ...otherProps
 }) => {
@@ -48,6 +50,7 @@ export const Typography = ({
       use={use}
       secondary={secondary}
       monospace={monospace}
+      bold={bold}
       {...otherProps}>
       {children}
     </ThemedText>
@@ -84,8 +87,12 @@ const getFontWeight = ({ use = Type.Body1 }) =>
 
 const ThemedText = styled.Text`
   color: ${getTextColor};
-  font-family: ${({ monospace }) =>
-    monospace ? 'IBM Plex Mono' : 'IBM Plex Sans'};
+  font-family: ${({ monospace, bold }) =>
+    bold
+      ? 'IBMPlexSans-Bold'
+      : monospace
+      ? 'IBMPlexMono'
+      : 'IBMPlexSans-Regular'};
   font-size: ${getFontSize};
   font-weight: ${getFontWeight};
   line-height: ${getLineHeight};
