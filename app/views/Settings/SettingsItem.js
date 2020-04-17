@@ -1,4 +1,4 @@
-import styled from '@emotion/native';
+import styled, { css } from '@emotion/native';
 import React from 'react';
 import { SvgXml } from 'react-native-svg';
 
@@ -20,11 +20,14 @@ export const SettingsItem = ({ label, onPress, description, icon, last }) => {
     <>
       <Container onPress={onPress}>
         <Label>
-          <Typography bold={description} use='body1'>
-            {label}
-          </Typography>
+          <Typography use='body1'>{label}</Typography>
           {description && (
-            <Typography use='body2' secondary>
+            <Typography
+              use='body3'
+              secondary
+              style={css`
+                margin-top: 4px;
+              `}>
               {description}
             </Typography>
           )}
