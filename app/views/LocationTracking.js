@@ -203,10 +203,6 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('ImportScreen', {});
   }
 
-  overlap() {
-    this.props.navigation.navigate('OverlapScreen', {});
-  }
-
   willParticipate = () => {
     SetStoreData(PARTICIPATE, 'true').then(() => {
       // Turn of bluetooth for v1
