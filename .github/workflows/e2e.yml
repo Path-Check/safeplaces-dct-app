@@ -49,5 +49,5 @@ jobs:
       - name: Build artifact for End to End testing
           run: yarn build:e2e:ios
 
-      - name: Test IOS
+      - name: Run end to end tests for iOS
           run: yarn test:e2e:ios
