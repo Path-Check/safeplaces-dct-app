@@ -10,7 +10,10 @@ import {
 
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
-import languages, { findUserLang } from './../../locales/languages';
+import languages, {
+  LOCALE_LIST,
+  findUserLang,
+} from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import NativePicker from '../../components/NativePicker';
 import Colors from '../../constants/colors';
@@ -24,21 +27,15 @@ class Onboarding extends Component {
   constructor(props) {
     super(props);
 
-    // Get locales list from i18next for locales menu
-    let localesList = [];
-    for (let key in languages.options.resources) {
-      localesList = localesList.concat({
-        value: key,
-        label: languages.options.resources[key].label,
-      });
-    }
-
     this.state = {
-      language: findUserLang(res => {
-        this.setState({ language: res });
-      }),
-      localesList: localesList,
+      language: undefined,
     };
+  }
+
+  componentDidMount() {
+    findUserLang(res => {
+      this.setState({ language: res });
+    });
   }
 
   render() {
@@ -61,7 +58,7 @@ class Onboarding extends Component {
                 zIndex: 10,
               }}>
               <NativePicker
-                items={this.state.localesList}
+                items={LOCALE_LIST}
                 value={this.state.language}
                 onValueChange={(itemValue, itemIndex) => {
                   this.setState({ language: itemValue });
