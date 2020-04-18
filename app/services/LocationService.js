@@ -9,6 +9,7 @@ import languages from '../locales/languages';
 import { isPlatformAndroid } from '../Util';
 
 let isBackgroundGeolocationConfigured = false;
+const LOCATION_DISABLED_NOTIFICATION = '55';
 
 export class LocationData {
   constructor() {
@@ -246,8 +247,19 @@ export default class LocationServices {
       } else {
         BackgroundGeolocation.start(); //triggers start on start event
 
-        // TODO: We reach this point on Android when location services are toggled off/on.
-        //       When this fires, check if they are off and show a Notification in the tray
+        BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
+          if (!locationServicesEnabled) {
+            PushNotification.localNotification({
+              id: LOCATION_DISABLED_NOTIFICATION,
+              title: languages.t('label.location_disabled_title'),
+              message: languages.t('label.location_disabled_message'),
+            });
+          } else {
+            PushNotification.cancelLocalNotifications({
+              id: LOCATION_DISABLED_NOTIFICATION,
+            });
+          }
+        });
       }
     });
 
@@ -273,8 +285,8 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('stop', () => {
       PushNotification.localNotification({
-        title: 'Location Tracking Was Disabled',
-        message: 'COVID Safe Paths requires location services.',
+        title: languages.t('label.location_disabled_title'),
+        message: languages.t('label.location_disabled_message'),
       });
       console.log('[INFO] stop');
     });
