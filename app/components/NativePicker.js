@@ -37,7 +37,7 @@ export default class NativePicker extends Component {
   }
 
   render() {
-    const renderUI = this.props.children;
+    const renderLabel = this.props.children;
     const openPicker = () => {
       this.setState({ modalVisible: true });
     };
@@ -50,7 +50,7 @@ export default class NativePicker extends Component {
     if (Platform.OS === 'android') {
       return (
         <View>
-          {renderUI({
+          {renderLabel({
             value: selectedItem?.value,
             label: selectedLabel,
             openPicker,
@@ -75,7 +75,7 @@ export default class NativePicker extends Component {
     } else {
       return (
         <>
-          {renderUI({
+          {renderLabel({
             value: selectedItem?.value,
             label: selectedLabel,
             openPicker,
