@@ -55,18 +55,21 @@ class AboutScreen extends Component {
   }
 
   handleTapTeam = () => {
-    this.setState({ tapCount: this.state.tapCount + 1 });
-    if (this.state.tapCount >= 3) {
-      if (this.state.tapCount == 3) {
-        enableDebugMode();
-      } else if (this.state.tapCount == 7) {
-        this.setState({ tapCount: 0 });
-        disableDebugMode();
+    // debug builds only until we have feature flagging.
+    if (__DEV__) {
+      this.setState({ tapCount: this.state.tapCount + 1 });
+      if (this.state.tapCount >= 3) {
+        if (this.state.tapCount == 3) {
+          enableDebugMode();
+        } else if (this.state.tapCount == 7) {
+          this.setState({ tapCount: 0 });
+          disableDebugMode();
+        }
       }
     }
   };
 
-  handleDebugModePress = () => {
+  handleExitDebugModePress = () => {
     this.setState({ tapCount: 0 });
     disableDebugMode();
   };
@@ -101,8 +104,16 @@ class AboutScreen extends Component {
               stroke={this.state.tapCount > 3 ? 'red' : undefined}
             />
             {this.state.tapCount > 3 && (
-              <TouchableOpacity onPress={this.handleDebugModePress}>
-                <Text style={{ color: Colors.RED_TEXT, marginLeft: 12 }}>
+              <TouchableOpacity onPress={this.handleExitDebugModePress}>
+                <Text
+                  style={{
+                    color: Colors.RED_TEXT,
+                    marginLeft: 12,
+                    borderRadius: 4,
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    paddingHorizontal: 8,
+                    paddingVertical: 2,
+                  }}>
                   In exposure demo mode, tap to disable
                 </Text>
               </TouchableOpacity>
