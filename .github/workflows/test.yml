@@ -90,3 +90,9 @@ jobs:
 
       - name: Run end to end tests for iOS
         run: yarn test:e2e:ios
+
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v1
+        with:
+          name: iOS Detox Screenshots
+          path: artifacts/*
