@@ -12,8 +12,19 @@ jest.mock('../../helpers/General', () => {
   };
 });
 
+let BACKUP_LOCALE_LIST;
+
 beforeEach(() => {
   jest.spyOn(languages, 'findUserLang').mockResolvedValue('en');
+  BACKUP_LOCALE_LIST = languages.LOCALE_LIST;
+  languages.LOCALE_LIST = [
+    { label: 'English', value: 'en' },
+    { label: 'Test', value: 'test' },
+  ];
+});
+
+afterEach(() => {
+  languages.LOCALE_LIST = BACKUP_LOCALE_LIST;
 });
 
 jest.useFakeTimers();
