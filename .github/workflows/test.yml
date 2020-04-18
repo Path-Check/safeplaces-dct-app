@@ -61,9 +61,7 @@ jobs:
 
       - name: Install Node Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
-
-      - run: yarn --frozen-lockfile
+        run: yarn --frozen-lockfile
 
       - name: Cache ruby gems
         uses: actions/cache@v1
