@@ -170,7 +170,7 @@ exports[`renders correctly 1`] = `
           />
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -222,173 +222,135 @@ exports[`renders correctly 1`] = `
               </Text>
             </View>
           </View>
-          <View
-            style={
-              Object {
-                "height": 40,
-                "marginTop": -40,
-              }
-            }
+          <Modal
+            animationType="slide"
+            hardwareAccelerated={false}
+            transparent={true}
+            visible={false}
           >
-            <View>
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                }
+              }
+            >
               <View
                 accessible={true}
                 focusable={true}
-                isTVSelectable={true}
                 style={
                   Object {
-                    "backgroundColor": "#ffffff",
-                    "borderRadius": 100,
-                    "opacity": 0,
-                    "paddingHorizontal": 11,
-                    "paddingVertical": 4,
+                    "backgroundColor": "#000000",
+                    "flex": 1,
+                    "opacity": 0.2,
                   }
                 }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "flex": 1,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                focusable={true}
               >
-                <Text
-                  style={
-                    Object {
-                      "color": "#4051DB",
-                      "fontSize": 12,
-                      "textAlign": "center",
-                      "textTransform": "uppercase",
-                    }
-                  }
-                >
-                  
-                </Text>
-              </View>
-              <Modal
-                animationType="slide"
-                hardwareAccelerated={false}
-                transparent={true}
-                visible={false}
-              >
-                <View
-                  style={
-                    Object {
-                      "flex": 2,
-                    }
-                  }
-                >
-                  <View
-                    accessible={true}
-                    focusable={true}
+                <View>
+                  <Text
                     style={
                       Object {
-                        "backgroundColor": "#000000",
-                        "flex": 1,
-                        "opacity": 0.2,
+                        "color": "#007aff",
+                        "fontWeight": "bold",
+                        "marginRight": 22,
+                        "marginTop": 16,
+                        "textAlign": "right",
                       }
                     }
-                  />
-                </View>
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "flex": 1,
-                    }
-                  }
-                >
-                  <View
-                    accessible={true}
-                    focusable={true}
                   >
-                    <View>
-                      <Text
-                        style={
+                    Done
+                  </Text>
+                </View>
+                <View>
+                  <View>
+                    <RCTPicker
+                      items={
+                        Array [
                           Object {
-                            "color": "#007aff",
-                            "fontWeight": "bold",
-                            "marginRight": 22,
-                            "marginTop": 16,
-                            "textAlign": "right",
-                          }
-                        }
-                      >
-                        Done
-                      </Text>
-                    </View>
-                    <View>
-                      <View>
-                        <RCTPicker
-                          items={
-                            Array [
-                              Object {
-                                "label": "English",
-                                "textColor": undefined,
-                                "value": "en",
-                              },
-                              Object {
-                                "label": "Español",
-                                "textColor": undefined,
-                                "value": "es",
-                              },
-                              Object {
-                                "label": "Français",
-                                "textColor": undefined,
-                                "value": "fr",
-                              },
-                              Object {
-                                "label": "Kreyòl ayisyen",
-                                "textColor": undefined,
-                                "value": "ht",
-                              },
-                              Object {
-                                "label": "Indonesia",
-                                "textColor": undefined,
-                                "value": "id",
-                              },
-                              Object {
-                                "label": "Italiano",
-                                "textColor": undefined,
-                                "value": "it",
-                              },
-                              Object {
-                                "label": "മലയാളം",
-                                "textColor": undefined,
-                                "value": "ml",
-                              },
-                              Object {
-                                "label": "Русский",
-                                "textColor": undefined,
-                                "value": "ru",
-                              },
-                              Object {
-                                "label": "Slovak",
-                                "textColor": undefined,
-                                "value": "sk",
-                              },
-                              Object {
-                                "label": "Vietnamese",
-                                "textColor": undefined,
-                                "value": "vi",
-                              },
-                              Object {
-                                "label": "繁體中文",
-                                "textColor": undefined,
-                                "value": "zh_Hant",
-                              },
-                            ]
-                          }
-                          selectedIndex={0}
-                          style={
-                            Array [
-                              Object {
-                                "height": 216,
-                              },
-                              undefined,
-                            ]
-                          }
-                        />
-                      </View>
-                    </View>
+                            "label": "English",
+                            "textColor": undefined,
+                            "value": "en",
+                          },
+                          Object {
+                            "label": "Español",
+                            "textColor": undefined,
+                            "value": "es",
+                          },
+                          Object {
+                            "label": "Français",
+                            "textColor": undefined,
+                            "value": "fr",
+                          },
+                          Object {
+                            "label": "Kreyòl ayisyen",
+                            "textColor": undefined,
+                            "value": "ht",
+                          },
+                          Object {
+                            "label": "Indonesia",
+                            "textColor": undefined,
+                            "value": "id",
+                          },
+                          Object {
+                            "label": "Italiano",
+                            "textColor": undefined,
+                            "value": "it",
+                          },
+                          Object {
+                            "label": "മലയാളം",
+                            "textColor": undefined,
+                            "value": "ml",
+                          },
+                          Object {
+                            "label": "Русский",
+                            "textColor": undefined,
+                            "value": "ru",
+                          },
+                          Object {
+                            "label": "Slovak",
+                            "textColor": undefined,
+                            "value": "sk",
+                          },
+                          Object {
+                            "label": "Vietnamese",
+                            "textColor": undefined,
+                            "value": "vi",
+                          },
+                          Object {
+                            "label": "繁體中文",
+                            "textColor": undefined,
+                            "value": "zh_Hant",
+                          },
+                        ]
+                      }
+                      selectedIndex={0}
+                      style={
+                        Array [
+                          Object {
+                            "height": 216,
+                          },
+                          undefined,
+                        ]
+                      }
+                    />
                   </View>
                 </View>
-              </Modal>
+              </View>
             </View>
-          </View>
+          </Modal>
         </View>
         <View
           style={
