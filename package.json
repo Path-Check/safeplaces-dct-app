@@ -8,6 +8,7 @@
     "postinstall": "patch-package; npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
+    "detox-setup": "detox clean-framework-cache && detox build-framework-cache",
     "build:e2e:android": "detox build -c android.emu.release",
     "test:e2e:android": "detox test -c android.emu.release",
     "build:e2e:ios": "detox build -c ios.sim.debug",
