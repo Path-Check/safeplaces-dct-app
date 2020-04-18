@@ -1,5 +1,4 @@
 import EnableLocation from './pages/EnableLocation.po.js';
-/* eslint-env detox/detox, mocha */
 import Onboarding1 from './pages/Onboarding1.po.js';
 import Onboarding2 from './pages/Onboarding2.po.js';
 import Onboarding3 from './pages/Onboarding3.po.js';

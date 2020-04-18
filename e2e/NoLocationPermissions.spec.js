@@ -1,4 +1,3 @@
-// /* eslint-env detox/detox, mocha */
 import { navigateThroughOnboarding } from './helpers/onboarding';
 import FinishSetup from './pages/FinishSetup.po.js';
 
@@ -13,9 +12,7 @@ describe('Location set to `never` and notifications `true` set', () => {
 
   it('Displays an error page about missing location permissions', async () => {
     await FinishSetup.isOnScreen();
-    await FinishSetup.takeScreenshot(
-      'Finish Setup Screen With No Location Perms',
-    );
+    await FinishSetup.takeScreenshot();
     await FinishSetup.tapButton();
     await device.takeScreenshot('No Location Permissions');
   });

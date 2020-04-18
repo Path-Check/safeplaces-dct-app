@@ -1,4 +1,3 @@
-// /* eslint-env detox/detox, mocha */
 import { navigateThroughOnboarding } from './helpers/onboarding';
 import FinishSetup from './pages/FinishSetup.po.js';
 
