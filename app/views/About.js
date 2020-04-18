@@ -8,21 +8,19 @@ import {
   Text,
   View,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SvgXml } from 'react-native-svg';
 
 import packageJson from '../../package.json';
 import team from './../assets/svgs/team';
 import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
-import { isPlatformiOS } from './../Util';
 import lock from '../assets/svgs/lock';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import { CROSSED_PATHS, DEBUG_MODE } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
-import { checkIntersect } from '../helpers/Intersect';
-
-const dayBinSize = 28; // Number of day in the standard day-bin array (4 weeks)
+import { DEBUG_MODE } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
+import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
 
 class AboutScreen extends Component {
   constructor(props) {
@@ -60,38 +58,17 @@ class AboutScreen extends Component {
     this.setState({ tapCount: this.state.tapCount + 1 });
     if (this.state.tapCount >= 3) {
       if (this.state.tapCount == 3) {
-        // Debug mode on
-        SetStoreData(DEBUG_MODE, 'true');
-
-        // Create faux intersection data
-        let pseudoBin = [];
-        for (let i = 0; i < dayBinSize; i++) {
-          const intersections = Math.max(
-            0,
-            Math.floor(Math.random() * 50 - 20),
-          );
-          pseudoBin.push(intersections);
-        }
-        let dayBin = JSON.stringify(pseudoBin);
-        SetStoreData(CROSSED_PATHS, dayBin);
+        enableDebugMode();
       } else if (this.state.tapCount == 7) {
-        // Debug mode off
-
-        // Wipe faux intersection data
-        let pseudoBin = [];
-        for (let i = 0; i < dayBinSize; i++) {
-          pseudoBin.push(0);
-        }
-        let dayBin = JSON.stringify(pseudoBin);
-        SetStoreData(CROSSED_PATHS, dayBin);
-
         this.setState({ tapCount: 0 });
-        SetStoreData(DEBUG_MODE, 'false');
-
-        // Kick off intersection calculations to restore data
-        checkIntersect();
+        disableDebugMode();
       }
     }
+  };
+
+  handleDebugModePress = () => {
+    this.setState({ tapCount: 0 });
+    disableDebugMode();
   };
 
   render() {
@@ -111,22 +88,25 @@ class AboutScreen extends Component {
             {languages.t('label.commitment_para')}
           </Text>
 
-          <View>
-            <Text style={{ marginTop: 20, color: Colors.RED_TEXT }}>
-              {this.state.tapCount > 3 ? 'In exposure demo mode' : null}
-            </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignContent: 'center',
+              marginTop: 36,
+            }}>
             <SvgXml
               onPress={this.handleTapTeam}
-              style={
-                (styles.aboutSectionIconTeam,
-                {
-                  width: 40.38,
-                  height: 19,
-                  backgroundColor: this.state.tapCount > 3 ? 'red' : null,
-                })
-              }
+              style={styles.aboutSectionIconTeam}
               xml={team}
+              stroke={this.state.tapCount > 3 ? 'red' : undefined}
             />
+            {this.state.tapCount > 3 && (
+              <TouchableOpacity onPress={this.handleDebugModePress}>
+                <Text style={{ color: Colors.RED_TEXT, marginLeft: 12 }}>
+                  In exposure demo mode, tap to disable
+                </Text>
+              </TouchableOpacity>
+            )}
           </View>
           <Text style={styles.aboutSectionTitles}>
             {languages.t('label.team')}
@@ -180,11 +160,9 @@ const styles = StyleSheet.create({
     // flex: 1,
     paddingBottom: 42,
   },
-  section: {
-    flexDirection: 'column',
-    width: '87.5%',
-    alignSelf: 'center',
-    backgroundColor: Colors.WHITE,
+  aboutSectionIconTeam: {
+    width: 40.38,
+    height: 19,
   },
   aboutSectionIconLock: {
     width: 20,
