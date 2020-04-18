@@ -1,16 +1,15 @@
 {
   "name": "covidsafepaths",
-  "version": "0.9.2",
+  "version": "0.9.4",
   "private": true,
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
     "postinstall": "patch-package; npx react-native-jetifier",
     "postversion": "react-native-version",
-    "start": "react-native start",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
     "format:all": "prettier --write ./app/**/*.js",
+    "build:e2e:android": "detox build -c android.emu.release",
+    "test:e2e:android": "detox test -c android.emu.release",
     "build:e2e:ios": "detox build -c ios.sim.debug",
     "test:e2e:ios": "detox test -c ios.sim.debug",
     "i18n:extract": "i18next",
@@ -48,9 +47,10 @@
     "@testing-library/react-native": "^5.0.3",
     "dayjs": "^1.8.24",
     "emotion-theming": "^10.0.27",
+    "eslint-plugin-detox": "^1.0.0",
     "i18next": "^19.3.3",
     "js-yaml": "^3.13.1",
-    "patch-package": "^6.2.1",
+    "patch-package": "^6.2.2",
     "pluralize": "^8.0.0",
     "postinstall-postinstall": "^2.0.0",
     "prop-types": "^15.7.2",
@@ -88,9 +88,10 @@
     "@babel/runtime": "^7.8.4",
     "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
+    "@types/jest": "^25.2.1",
     "babel-jest": "^25.1.0",
-    "detox": "^16.1.1",
     "bats": "^1.1.0",
+    "detox": "^16.1.1",
     "eslint": "^6.8.0",
     "eslint-plugin-detox": "^1.0.0",
     "husky": "^4.2.3",
@@ -122,8 +123,8 @@
   "detox": {
     "configurations": {
       "ios.sim.debug": {
-        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone 11"
