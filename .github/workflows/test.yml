@@ -35,7 +35,7 @@ jobs:
         env:
           CI: true
 
-  build-ios:
+  e2e-ios:
     runs-on: macOS-latest
     # while this job doesn't depend on the previous job explicitly
     # this will force them not to run in parallel. If they're run in parallel,

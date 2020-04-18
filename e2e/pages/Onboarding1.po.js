@@ -3,17 +3,17 @@ const screenText = 'The way back to normal starts here.';
 const screenshotText = 'First Onboarding Page';
 
 class Onboarding1 {
-  tapButton = async () => {
+  async tapButton() {
     await element(by.label(buttonlabel)).tap();
-  };
+  }
 
-  isOnScreen = async () => {
-    await expect(element(by.text(screenText))).toBeVisible();
-  };
-
-  takeScreenshot = async () => {
+  async takeScreenshot() {
     await device.takeScreenshot(screenshotText);
-  };
+  }
+
+  async isOnScreen() {
+    await expect(element(by.text(screenText))).toBeVisible();
+  }
 }
 
 export default new Onboarding1();

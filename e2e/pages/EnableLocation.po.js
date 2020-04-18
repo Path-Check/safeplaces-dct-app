@@ -3,17 +3,17 @@ const screenshotText = 'Enable Location Page';
 const screenShotWithMenuText = 'Location Permissions Dialog';
 
 class EnableLocation {
-  tapButton = async () => {
+  async tapButton() {
     await element(by.label(buttonlabel)).tap();
-  };
+  }
 
-  takeScreenshot = async () => {
+  async takeScreenshot() {
     await device.takeScreenshot(screenshotText);
-  };
+  }
 
-  takeMenuScreenshot = async () => {
+  async takeMenuScreenshot() {
     await device.takeScreenshot(screenShotWithMenuText);
-  };
+  }
 }
 
 export default new EnableLocation();

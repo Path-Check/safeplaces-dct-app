@@ -71,3 +71,6 @@ ios/vendor/bundle/*
 
 # Screenshots
 artifacts/*
+
+# VSCode
+.vscode/*
