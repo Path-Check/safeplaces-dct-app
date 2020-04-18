@@ -95,4 +95,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: iOS Detox Screenshots
-          path: artifacts/*
+          path: e2e/artifacts

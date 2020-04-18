@@ -70,7 +70,7 @@ ios/Podfile.lock
 ios/vendor/bundle/*
 
 # Screenshots
-artifacts/*
+e2e/artifacts/*
 
 # VSCode
 .vscode/*
