@@ -46,6 +46,7 @@ module.exports = {
     'ht',
     'it',
     'id',
+    'ro',
     'ru',
     'sk',
     'vi',

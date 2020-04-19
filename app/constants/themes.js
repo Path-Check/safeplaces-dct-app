@@ -21,7 +21,7 @@ export const defaultTheme = {
   success: Color.SUCCESS,
   warning: Color.WARNING,
   disabled: 'rgba(64, 81, 219, 0.6)',
-  border: Color.VIOLET_BUTTON,
+  border: Color.DIVIDER,
 };
 
 /** White on violet bg. E.g. Main screen */

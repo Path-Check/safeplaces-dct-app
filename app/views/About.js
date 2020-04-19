@@ -8,23 +8,26 @@ import {
   Text,
   View,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SvgXml } from 'react-native-svg';
 
 import packageJson from '../../package.json';
 import team from './../assets/svgs/team';
 import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
-import { isPlatformiOS } from './../Util';
 import lock from '../assets/svgs/lock';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import DynamicText from '../components/DynamicText';
+import { DEBUG_MODE } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
+import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
 
 class AboutScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //
+      tapCount: 0, // tracks number of taps, for debugging
     };
   }
 
@@ -33,17 +36,44 @@ class AboutScreen extends Component {
   }
 
   handleBackPress = () => {
+    this.setState({ tapCount: 0 });
     this.backToMain();
     return true;
   };
 
   componentDidMount() {
+    GetStoreData(DEBUG_MODE).then(dbgMode => {
+      if (dbgMode == 'true') {
+        this.setState({ tapCount: 4 });
+      }
+    });
+
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
+
+  handleTapTeam = () => {
+    // debug builds only until we have feature flagging.
+    if (__DEV__) {
+      this.setState({ tapCount: this.state.tapCount + 1 });
+      if (this.state.tapCount >= 3) {
+        if (this.state.tapCount == 3) {
+          enableDebugMode();
+        } else if (this.state.tapCount == 7) {
+          this.setState({ tapCount: 0 });
+          disableDebugMode();
+        }
+      }
+    }
+  };
+
+  handleExitDebugModePress = () => {
+    this.setState({ tapCount: 0 });
+    disableDebugMode();
+  };
 
   render() {
     return (
@@ -62,7 +92,34 @@ class AboutScreen extends Component {
             {languages.t('label.commitment_para')}
           </DynamicText>
 
-          <SvgXml style={styles.aboutSectionIconTeam} xml={team} />
+          <View
+            style={{
+              flexDirection: 'row',
+              alignContent: 'center',
+              marginTop: 36,
+            }}>
+            <SvgXml
+              onPress={this.handleTapTeam}
+              style={styles.aboutSectionIconTeam}
+              xml={team}
+              stroke={this.state.tapCount > 3 ? 'red' : undefined}
+            />
+            {this.state.tapCount > 3 && (
+              <TouchableOpacity onPress={this.handleExitDebugModePress}>
+                <DynamicText
+                  style={{
+                    color: Colors.RED_TEXT,
+                    marginLeft: 12,
+                    borderRadius: 4,
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    paddingHorizontal: 8,
+                    paddingVertical: 2,
+                  }}>
+                  In exposure demo mode, tap to disable
+                </DynamicText>
+              </TouchableOpacity>
+            )}
+          </View>
           <DynamicText style={styles.aboutSectionTitles}>
             {languages.t('label.team')}
           </DynamicText>
@@ -115,16 +172,9 @@ const styles = StyleSheet.create({
     // flex: 1,
     paddingBottom: 42,
   },
-  section: {
-    flexDirection: 'column',
-    width: '87.5%',
-    alignSelf: 'center',
-    backgroundColor: Colors.WHITE,
-  },
   aboutSectionIconTeam: {
     width: 40.38,
     height: 19,
-    marginTop: 36,
   },
   aboutSectionIconLock: {
     width: 20,

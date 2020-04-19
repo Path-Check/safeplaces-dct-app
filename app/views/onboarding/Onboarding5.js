@@ -176,6 +176,7 @@ class Onboarding extends Component {
       this.requestNotification();
     } else {
       SetStoreData(PARTICIPATE, 'true'); // replaces "start" button
+      SetStoreData('ONBOARDING_DONE', true);
       this.props.navigation.replace('LocationTrackingScreen');
     }
   }
