@@ -123,8 +123,8 @@ export default class NativePicker extends Component {
                     </DynamicText>
                   </View>
                   <View
-                    onStartShouldSetResponder={evt => true}
-                    onResponderReject={evt => { }}>
+                    onStartShouldSetResponder={() => true}
+                    onResponderReject={() => { }}>
                     <Picker
                       selectedValue={this.props.value}
                       onValueChange={this.props.onValueChange}>

@@ -4,7 +4,6 @@ import {
   ImageBackground,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
@@ -12,8 +11,7 @@ import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
 import languages, {
   LOCALE_LIST,
-  findUserLang,
-  languageDirectionHandler
+  findUserLang
 } from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import NativePicker from '../../components/NativePicker';

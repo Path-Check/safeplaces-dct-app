@@ -5,8 +5,7 @@ import { BackHandler, ScrollView, View } from 'react-native';
 import languages, {
   LOCALE_LIST,
   LOCALE_NAME,
-  findUserLang,
-  languageDirectionHandler,
+  findUserLang
 } from './../locales/languages';
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
