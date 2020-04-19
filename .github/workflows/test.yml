@@ -166,14 +166,13 @@ jobs:
 
       - run: brew install applesimutils
 
-      - name: Create iPhone SE sim
-        run: |
-        | xcrun simctl list devicetypes
-        | xcrun simctl list runtimes
-        | xcrun simctl create "iPhone SE (2nd generation)" \
-        |   com.apple.CoreSimulator.SimDeviceType.iPhone-SE--2nd-generation- \
-        |   com.apple.CoreSimulator.SimRuntime.iOS-13-4
-        | xcrun simctl list
+      - run: xcrun simctl list devicetypes
+
+      - run: xcrun simctl list runtimes
+
+      - run: xcrun simctl create "iPhone SE (2nd generation)" com.apple.CoreSimulator.SimDeviceType.iPhone-SE--2nd-generation-  com.apple.CoreSimulator.SimRuntime.iOS-13-4
+
+      - run: xcrun simctl list
 
       # - uses: actions/download-artifact@master
       #   with:
