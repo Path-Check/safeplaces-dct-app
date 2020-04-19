@@ -3,10 +3,9 @@ import './all-dayjs-locales';
 import dayjs from 'dayjs';
 import i18next from 'i18next';
 import { NativeModules, Platform } from 'react-native';
-import { getLanguages } from 'react-native-i18n';
 
 import { LANG_OVERRIDE } from '../constants/storage';
-import { GetStoreData } from '../helpers/General';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 import en from './en.json';
 import es from './es.json';
 import fr from './fr.json';
@@ -31,44 +30,49 @@ import zh_Hant from './zh-Hant.json';
 // 5. REMOVE all empty translations. e.g. "key": "", this will allow fallback to the default: English
 // 6. import xyIndex from `./xy.json` and add the language to the block at the bottom
 
-const deviceLocale =
-  Platform.OS === 'ios'
-    ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
-      NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
-    : NativeModules.I18nManager.localeIdentifier; // Android
+// detect and set device locale to i18n and dates
+setLocale(getDeviceLocale());
 
-dayjs.locale([deviceLocale, 'en']);
+// detect user override and set i18n and date locales
+getUserLocaleOverride().then(locale => locale && setLocale(locale));
 
-// This will fetch the user's language
-// Set up as a function so first onboarding screen can also update
-// ...from async language override setting
-export function findUserLang(callback) {
-  let userLang = undefined;
-  getLanguages().then(languages => {
-    userLang = languages[0].split('-')[0]; // ['en-US' will become 'en']
-
-    // If the user specified a language override, use it instead
-    GetStoreData(LANG_OVERRIDE).then(res => {
-      if (typeof res === 'string') {
-        console.log('Found user language override:');
-        console.log(res);
-        userLang = res;
-        i18next.changeLanguage(res);
-        dayjs.locale(res);
-      } else {
-        i18next.changeLanguage(userLang);
-        dayjs.locale(userLang);
-      }
-
-      // Run state updating callback to trigger rerender
-      typeof callback === 'function' ? callback(userLang) : null;
-
-      return userLang;
-    });
-  });
+/** Fetch the user language override, if any */
+export async function getUserLocaleOverride() {
+  return await GetStoreData(LANG_OVERRIDE);
 }
 
-findUserLang();
+/** Get the device locale (normalized) */
+export function getDeviceLocale() {
+  return normalizeLocale(
+    Platform.OS === 'ios'
+      ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
+          NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
+      : NativeModules.I18nManager.localeIdentifier, // Android
+  );
+}
+
+/**
+ * @param {string} fullLocale
+ */
+function normalizeLocale(fullLocale) {
+  const [first] = fullLocale.split('-');
+  return first;
+}
+
+async function setLocale(fullLocale) {
+  const locale = normalizeLocale(fullLocale);
+  dayjs.locale([locale, 'en']);
+  return await i18next.changeLanguage(locale);
+}
+
+export async function setUserLocaleOverride(fullLocale) {
+  let locale = normalizeLocale(fullLocale);
+  await setLocale(locale);
+  if (locale === getDeviceLocale()) {
+    locale = undefined;
+  }
+  await SetStoreData(LANG_OVERRIDE, locale);
+}
 
 i18next.init({
   interpolation: {
