@@ -36,7 +36,10 @@ class Button extends React.Component {
             buttonStyle ? buttonStyle : styles.container,
             { height: buttonHeight },
           ]}
-          onPress={onPress}>
+          onPress={onPress}
+          accessible
+          accessibilityLabel={title}
+          accessibilityRole='button'>
           <Text
             style={[
               titleStyle ? titleStyle : styles.text,
