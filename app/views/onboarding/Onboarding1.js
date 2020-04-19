@@ -60,6 +60,7 @@ class Onboarding extends Component {
                 zIndex: 10,
               }}>
               <NativePicker
+                languagePicker // pass picker type to handle RTL checking because we can reuse this picker for any type not language picker only
                 items={LOCALE_LIST}
                 value={this.state.language}
                 onValueChange={(itemValue, itemIndex) => {
@@ -76,9 +77,6 @@ class Onboarding extends Component {
 
                   SetStoreData(LANG_OVERRIDE, itemValue);
 
-                  // Check if choosen language is RTL to restart the app in order to update RTL view
-                  isRtlLanguage(itemValue, null)
-
                 }}
               />
             </View>
@@ -90,15 +88,7 @@ class Onboarding extends Component {
             <View style={styles.footerContainer}>
               <ButtonWrapper
                 title={languages.t('label.launch_get_started')}
-                onPress={() => {
-                  // Check if choosen language is RTL Again in case user canceled app restarting,
-                  // and handle navigation to next page
-                  isRtlLanguage(
-                    this.state.language,
-                    () => {
-                      this.props.navigation.replace('Onboarding2')
-                    })
-                }}
+                onPress={() => this.props.navigation.replace('Onboarding2')}
                 buttonColor={Colors.VIOLET}
                 bgColor={Colors.WHITE}
               />

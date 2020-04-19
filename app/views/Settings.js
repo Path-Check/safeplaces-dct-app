@@ -6,6 +6,7 @@ import languages, {
   LOCALE_LIST,
   LOCALE_NAME,
   findUserLang,
+  isRtlLanguage,
 } from './../locales/languages';
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
@@ -25,14 +26,15 @@ export const SettingsScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const handleBackPress = () => {
-    backToMain();
-    return true;
-  };
-
   const [isLogging, setIsLogging] = useState(undefined);
 
   const [userLocale, setUserLocale] = useState(undefined);
+
+  const handleBackPress = () => {
+    backToMain()
+    return true;
+  };
+
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
@@ -67,6 +69,7 @@ export const SettingsScreen = ({ navigation }) => {
     try {
       await languages.changeLanguage(locale);
       await SetStoreData(LANG_OVERRIDE, locale);
+
     } catch (e) {
       console.log('something went wrong in lang change', e);
     }
@@ -100,6 +103,7 @@ export const SettingsScreen = ({ navigation }) => {
               height: 40px;
             `}>
             <NativePicker
+              languagePicker
               items={LOCALE_LIST}
               value={userLocale}
               hidden

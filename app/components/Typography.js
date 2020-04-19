@@ -1,5 +1,6 @@
 import styled from '@emotion/native';
 import * as React from 'react';
+import { I18nManager } from 'react-native';
 
 export const Type = {
   Headline1: 'headline1',
@@ -93,6 +94,7 @@ const getFontFamily = ({ use, monospace, bold }) =>
     : 'IBMPlexSans';
 
 const ThemedText = styled.Text`
+  writingDirection: ${I18nManager.isRTL ? 'rtl' : 'ltr'};
   color: ${getTextColor};
   font-family: ${getFontFamily};
   font-size: ${getFontSize};
