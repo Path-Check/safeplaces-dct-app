@@ -1,6 +1,6 @@
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
   SafeAreaView,
@@ -19,36 +19,19 @@ import RNFetchBlob from 'rn-fetch-blob';
 
 import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
-import languages from './../locales/languages';
 import { isPlatformiOS } from './../Util';
 import Colors from '../constants/colors';
-// import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { LocationData } from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64;
 
-function ExportScreen(props) {
-  const { shareButtonDisabled } = props;
-  const [pointStats, setPointStats] = useState(false);
-  const [buttonDisabled, setButtonDisabled] = useState(shareButtonDisabled);
-  const { navigate } = useNavigation();
-
+function ExportScreen({ navigation }) {
+  const { t } = useTranslation();
   function handleBackPress() {
-    props.navigation.goBack();
+    navigation.goBack();
     return true;
   }
-
-  useFocusEffect(
-    React.useCallback(() => {
-      const locationData = new LocationData();
-      locationData.getPointStats().then(pointStats => {
-        setPointStats(pointStats);
-        setButtonDisabled(pointStats.pointCount === 0);
-      });
-      return () => {};
-    }, []),
-  );
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
@@ -59,7 +42,7 @@ function ExportScreen(props) {
   });
 
   function backToMain() {
-    props.navigation.goBack();
+    navigation.goBack();
   }
 
   async function onShare() {
@@ -68,15 +51,15 @@ function ExportScreen(props) {
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
 
-      var options = {};
-      var jsonData = JSON.stringify(locationData);
+      let options = {};
+      let jsonData = JSON.stringify(locationData);
       const title = 'COVIDSafePaths.json';
       const filename = unixtimeUTC + '.json';
       const message = 'Here is my location log from COVID Safe Paths.';
       if (isPlatformiOS()) {
-        var url = RNFS.DocumentDirectoryPath + '/' + filename;
+        const url = RNFS.DocumentDirectoryPath + '/' + filename;
         await RNFS.writeFile(url, jsonData, 'utf8')
-          .then(success => {
+          .then(() => {
             options = {
               activityItemSources: [
                 {
@@ -146,18 +129,18 @@ function ExportScreen(props) {
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.main}>
               <Text style={styles.exportSectionTitles}>
-                {languages.t('label.tested_positive_title')}
+                {t('label.tested_positive_title')}
               </Text>
               <Text style={styles.exportSectionPara}>
-                {languages.t('label.export_para_1')}
+                {t('label.export_para_1')}
               </Text>
               <Text style={styles.exportSectionPara}>
-                {languages.t('label.export_para_2')}
+                {t('label.export_para_2')}
               </Text>
 
               <TouchableOpacity style={styles.exportButton} onPress={onShare}>
                 <Text style={styles.exportButtonText}>
-                  {languages.t('label.share_location_data')}
+                  {t('label.share_location_data')}
                 </Text>
                 <SvgXml style={styles.exportIcon} xml={exportIcon} />
               </TouchableOpacity>

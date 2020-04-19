@@ -2,6 +2,7 @@ import './all-dayjs-locales';
 
 import dayjs from 'dayjs';
 import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
 import { NativeModules, Platform } from 'react-native';
 
 import { LANG_OVERRIDE } from '../constants/storage';
@@ -74,28 +75,31 @@ export async function setUserLocaleOverride(fullLocale) {
   await SetStoreData(LANG_OVERRIDE, locale);
 }
 
-i18next.init({
-  interpolation: {
-    // React already does escaping
-    escapeValue: false,
-  },
-  lng: 'en', // 'en' | 'es',
-  fallbackLng: 'en', // If language detector fails
-  resources: {
-    en: { label: 'English', translation: en },
-    es: { label: 'Español', translation: es },
-    fr: { label: 'Français', translation: fr },
-    ht: { label: 'Kreyòl ayisyen', translation: ht },
-    id: { label: 'Indonesia', translation: id },
-    it: { label: 'Italiano', translation: it },
-    ml: { label: 'മലയാളം', translation: ml },
-    ro: { label: 'Română', translation: ro },
-    ru: { label: 'Русский', translation: ru },
-    sk: { label: 'Slovak', translation: sk },
-    vi: { label: 'Vietnamese', translation: vi },
-    zh_Hant: { label: '繁體中文', translation: zh_Hant },
-  },
-});
+i18next
+  // so that prettier lists plugins on single line
+  .use(initReactI18next)
+  .init({
+    interpolation: {
+      // React already does escaping
+      escapeValue: false,
+    },
+    lng: 'en', // 'en' | 'es',
+    fallbackLng: 'en', // If language detector fails
+    resources: {
+      en: { label: 'English', translation: en },
+      es: { label: 'Español', translation: es },
+      fr: { label: 'Français', translation: fr },
+      ht: { label: 'Kreyòl ayisyen', translation: ht },
+      id: { label: 'Indonesia', translation: id },
+      it: { label: 'Italiano', translation: it },
+      ml: { label: 'മലയാളം', translation: ml },
+      ro: { label: 'Română', translation: ro },
+      ru: { label: 'Русский', translation: ru },
+      sk: { label: 'Slovak', translation: sk },
+      vi: { label: 'Vietnamese', translation: vi },
+      zh_Hant: { label: '繁體中文', translation: zh_Hant },
+    },
+  });
 
 /** The known locale list */
 export const LOCALE_LIST = Object.entries(i18next.options.resources).map(
