@@ -45,7 +45,11 @@ module.exports = {
     'fr',
     'ht',
     'it',
+    'id',
+    'ro',
     'ru',
+    'sk',
+    'vi',
     'zh-Hant',
   ],
   // An array of the locales in your applications

@@ -23,8 +23,6 @@ export const ExposureHistoryScreen = ({ navigation }) => {
     async function fetchData() {
       let dayBins = await GetStoreData(CROSSED_PATHS);
 
-      // dayBins = generateFakeIntersections(1); // handy for creating faux data
-
       if (dayBins === null) {
         setHistory(NO_HISTORY);
         console.log("Can't find Crossed Paths");
@@ -84,20 +82,6 @@ export const ExposureHistoryScreen = ({ navigation }) => {
     </Theme>
   );
 };
-
-// eslint-disable-next-line no-unused-vars
-function generateFakeIntersections(days = MAX_EXPOSURE_WINDOW, maxBins = 50) {
-  let pseudoBin = [];
-  for (let i = 0; i < days; i++) {
-    // Random Integer between 0-99
-    const intersections = Math.max(
-      Math.floor(Math.random() * maxBins - maxBins / 2),
-      0,
-    );
-    pseudoBin.push(intersections);
-  }
-  return JSON.stringify(pseudoBin);
-}
 
 /**
  * Convert the daily "bins" payload to an array of daily minutes of exposure.

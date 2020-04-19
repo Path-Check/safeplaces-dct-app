@@ -23,7 +23,10 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 cd ~ # get to your home directory or where ever you want to go
 
-git clone https://github.com/YOURACCOUNT/
+git clone https://github.com/YOURACCOUNT/covid-safe-paths
+
+# change into the newly created directory
+cd covid-safe-paths
 
 # set upstream against COVID Safe Paths repository
 git remote add upstream https://github.com/tripleblindmarket/covid-safe-paths.git

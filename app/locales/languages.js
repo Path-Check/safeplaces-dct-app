@@ -11,8 +11,13 @@ import en from './en.json';
 import es from './es.json';
 import fr from './fr.json';
 import ht from './ht.json';
+import id from './id.json';
 import it from './it.json';
+import ml from './ml.json';
+import ro from './ro.json';
 import ru from './ru.json';
+import sk from './sk.json';
+import vi from './vi.json';
 import zh_Hant from './zh-Hant.json';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
@@ -77,10 +82,32 @@ i18next.init({
     es: { label: 'Español', translation: es },
     fr: { label: 'Français', translation: fr },
     ht: { label: 'Kreyòl ayisyen', translation: ht },
+    id: { label: 'Indonesia', translation: id },
     it: { label: 'Italiano', translation: it },
+    ml: { label: 'മലയാളം', translation: ml },
+    ro: { label: 'Română', translation: ro },
     ru: { label: 'Русский', translation: ru },
+    sk: { label: 'Slovak', translation: sk },
+    vi: { label: 'Vietnamese', translation: vi },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
   },
 });
+
+/** The known locale list */
+export const LOCALE_LIST = Object.entries(i18next.options.resources).map(
+  ([langCode, lang]) => ({
+    value: langCode,
+    label: lang.label,
+  }),
+);
+
+/** A map of locale code to name. */
+export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
+  (output, [langCode, lang]) => {
+    output[langCode] = lang.label;
+    return output;
+  },
+  {},
+);
 
 export default i18next;
