@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16096" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch44"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
     </dependencies>
     <scenes>
@@ -16,6 +16,9 @@
                                 <button width="0.75" height="1" alignment="left" title="Stop Logging" id="JbQ-gf-DLF">
                                     <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="boldSystem" pointSize="17"/>
+                                    <variation key="device=watch40mm">
+                                        <fontDescription key="font" type="boldSystem" pointSize="16"/>
+                                    </variation>
                                     <connections>
                                         <action selector="trackingButton" destination="AgC-eL-Hgc" id="bLO-lu-sB5"/>
                                     </connections>
@@ -36,6 +39,9 @@
                                 <button width="0.75" height="1" alignment="left" title="Upload" id="fFl-8I-gdc">
                                     <color key="backgroundColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="boldSystem" pointSize="17"/>
+                                    <variation key="device=watch40mm">
+                                        <fontDescription key="font" type="boldSystem" pointSize="16"/>
+                                    </variation>
                                     <connections>
                                         <action selector="xferButton" destination="AgC-eL-Hgc" id="PpK-Pl-5mG"/>
                                     </connections>
@@ -43,6 +49,9 @@
                                 <button width="0.25" height="1" alignment="left" title="Clear" id="Xz4-FF-3bv">
                                     <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="boldSystem" pointSize="12"/>
+                                    <variation key="device=watch40mm">
+                                        <fontDescription key="font" type="boldSystem" pointSize="10"/>
+                                    </variation>
                                     <connections>
                                         <action selector="clearLocations" destination="AgC-eL-Hgc" id="VR3-Hi-a9r"/>
                                     </connections>
@@ -53,11 +62,17 @@
                         <group width="1" alignment="left" id="Ywu-Nh-sC7" userLabel="noPhoneFoundGroup">
                             <items>
                                 <button width="0.5" alignment="left" title="Retry" id="DBE-Bb-joH">
+                                    <variation key="device=watch40mm">
+                                        <fontDescription key="font" type="system" pointSize="14"/>
+                                    </variation>
                                     <connections>
                                         <action selector="retryPhoneConnect" destination="AgC-eL-Hgc" id="E62-I1-6Xw"/>
                                     </connections>
                                 </button>
                                 <button width="0.5" alignment="left" title="Log Locs" id="pvy-pu-LKF">
+                                    <variation key="device=watch40mm">
+                                        <fontDescription key="font" type="system" pointSize="14"/>
+                                    </variation>
                                     <connections>
                                         <action selector="manualLogStart" destination="AgC-eL-Hgc" id="FZF-iw-unL"/>
                                     </connections>
@@ -75,7 +90,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="219.52173913043478" y="344.55357142857144"/>
+            <point key="canvasLocation" x="215" y="345"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

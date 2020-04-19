@@ -199,6 +199,8 @@ func sendLocsToPhone (_ locs: [LocData]) -> Bool {
     var locsCopy = [LocData]()
     var sendError = false
     var sendErrorMsg = ""
+    let aJSONEncoder = JSONEncoder()
+    aJSONEncoder.outputFormatting = .sortedKeys   // struct elements go out in order
     ws.dispatchSemaphore.wait()  // block possible concurrent access to locs in another thread
     locsCopy = locs
     ws.dispatchSemaphore.signal()
@@ -206,18 +208,15 @@ func sendLocsToPhone (_ locs: [LocData]) -> Bool {
     if (phoneSession.activationState == .activated) && phoneSession.isReachable {
         if locs.count > 0 {
             var resultStatus: String!
-            for loc in locsCopy {
-                var locStr: String!
-                locStr = String(format: "{\"latitude\":%.15f,\"longitude\":%.15f,\"time\":%.0f}", loc.latitude, loc.longitude, loc.msSince1970UTC)
-                phoneSession.sendMessage(["location" : locStr!], replyHandler: nil, errorHandler: {
-                    (error: Error) in print("\(#function) Error: \(error.localizedDescription)")
-                                    sendError = true
-                                    sendErrorMsg = error.localizedDescription
+            do {
+                let jsonString = try aJSONEncoder.encode(locsCopy)
+                phoneSession.sendMessage(["location" : String(data: jsonString, encoding: .utf8)!], replyHandler: nil, errorHandler: {
+                    (error: Error) in sendError = true
+                                      sendErrorMsg = error.localizedDescription
                     })
-                if sendError {
-                    ws.status = "xfer error: " + sendErrorMsg
-                    break
-                }
+            } catch {
+                sendError = true
+                sendErrorMsg = "Unable to convert locations into JSON"   // supremely unlikely
             }
             resultStatus = sendError ? "Error on xmit to iPhone: \(sendErrorMsg)" : "\(locs.count) location" + (locs.count > 1 ? "s" : "") + " sent to iPhone"
             postNotificationOnMainQueueAsync(name: .statusDidChange, object: resultStatus)
