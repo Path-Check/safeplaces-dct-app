@@ -384,11 +384,11 @@ export function enableDebugMode() {
   let pseudoBin = [];
   for (let i = 0; i < DAY_BIN_SIZE; i++) {
     let intersections = Math.max(0, Math.floor(Math.random() * 50 - 20)) * 60 *1000;  // in millis
-    if (intersections< -15 * 60 * 1000) intersections=0;   // about 25% of negative will be set to 0
-    if (intersections<0) intersections = -1;  // all other negatives force to -1 
+    if (intersections==0 && Math.random()<0.3) intersections=-1;   // about 25% of negative will be set to 0
     pseudoBin.push(intersections);
   }
   let dayBin = JSON.stringify(pseudoBin);
+  console.log(dayBin);
   SetStoreData(CROSSED_PATHS, dayBin);
 }
 
