@@ -132,6 +132,11 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
+
+        // detox e2e testing
+        testBuildType System.getProperty('testBuildType', 'debug')
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
         versionCode 22
         versionName "0.9.4"
     }
@@ -208,6 +213,7 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    androidTestImplementation('com.wix:detox:+')  // detox: e2e testing
 }
 
  // Just to fix the app start crash error

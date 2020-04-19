@@ -1,6 +1,6 @@
-import React from 'react';
 import { render } from '@testing-library/react-native';
 import dayjs from 'dayjs';
+import React from 'react';
 
 import { SingleExposureDetail } from '../SingleExposureDetail';
 

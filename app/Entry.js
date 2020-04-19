@@ -20,7 +20,7 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
-import SettingsScreen from './views/Settings';
+import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();
 
@@ -33,11 +33,11 @@ class Entry extends Component {
   }
 
   componentDidMount() {
-    GetStoreData(PARTICIPATE)
-      .then(isParticipating => {
-        console.log(isParticipating);
+    GetStoreData('ONBOARDING_DONE')
+      .then(onboardingDone => {
+        console.log(onboardingDone);
         this.setState({
-          initialRouteName: isParticipating,
+          initialRouteName: onboardingDone,
         });
       })
       .catch(error => console.log(error));

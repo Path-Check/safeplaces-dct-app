@@ -1,291 +1,182 @@
-import React, { Component } from 'react';
-import {
-  BackHandler,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { SvgXml } from 'react-native-svg';
+import styled, { css } from '@emotion/native';
+import React, { useEffect, useState } from 'react';
+import { BackHandler, ScrollView, View } from 'react-native';
 
-import googleMapsIcon from './../assets/svgs/google-maps-logo';
-import fontFamily from './../constants/fonts';
-import languages from './../locales/languages';
-import ButtonWrapper from '../components/ButtonWrapper';
+import languages, {
+  LOCALE_LIST,
+  LOCALE_NAME,
+  findUserLang,
+} from './../locales/languages';
+import checkmarkIcon from '../assets/svgs/checkmarkIcon';
+import languagesIcon from '../assets/svgs/languagesIcon';
+import xmarkIcon from '../assets/svgs/xmarkIcon';
+import { Divider } from '../components/Divider';
+import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
+import { LANG_OVERRIDE, PARTICIPATE } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import LocationServices from '../services/LocationService';
+import { GoogleMapsImport } from './Settings/GoogleMapsImport';
+import { SettingsItem as Item } from './Settings/SettingsItem';
 
-// This is the definitive listing of registered Healthcare Authorities.  To
-// register, just submit a PR against that list on Github.  Users are also
-// free to type in a non-official authority.
-//
+export const SettingsScreen = ({ navigation }) => {
+  const backToMain = () => {
+    navigation.goBack();
+  };
 
-class SettingsScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      //
-    };
-  }
-
-  backToMain() {
-    this.props.navigation.goBack();
-  }
-
-  handleBackPress = () => {
-    this.backToMain();
+  const handleBackPress = () => {
+    backToMain();
     return true;
   };
 
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-  }
+  const [isLogging, setIsLogging] = useState(undefined);
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-  }
+  const [userLocale, setUserLocale] = useState(undefined);
 
-  importButtonPressed() {
-    if (__DEV__) {
-      this.props.navigation.navigate('ImportScreen');
-    }
-  }
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
-  aboutButtonPressed() {
-    this.props.navigation.navigate('AboutScreen');
-  }
+    // TODO: this should be a service or hook
+    GetStoreData(PARTICIPATE)
+      .then(isParticipating => setIsLogging(isParticipating === 'true'))
+      .catch(error => console.log(error));
 
-  chooseProviderScreenButtonPressed() {
-    this.props.navigation.navigate('ChooseProviderScreen');
-  }
+    // TODO: extract into service or hook
+    findUserLang(res => setUserLocale(res));
 
-  newsButtonPressed() {
-    this.props.navigation.navigate('NewsScreen');
-  }
-
-  eventHistoryButtonPressed() {
-    this.props.navigation.navigate('ExposureHistoryScreen');
-  }
-
-  licensesButtonPressed() {
-    this.props.navigation.navigate('LicensesScreen');
-  }
-
-  testedPositiveButtonPressed() {
-    this.props.navigation.navigate('ExportScreen');
-  }
-
-  getMapsImport() {
-    return (
-      <>
-        <View style={styles.section}>
-          <View style={styles.iconRowContainer}>
-            <SvgXml xml={googleMapsIcon} style={{ alignSelf: 'center' }} />
-            <Text style={styles.iconRowText}>
-              {languages.t('label.maps_import_title')}
-            </Text>
-          </View>
-          <View style={styles.sectionRowContainer}>
-            <Text style={styles.settingRowText}>
-              {languages.t('label.maps_import_text')}
-            </Text>
-          </View>
-          <ButtonWrapper
-            title={
-              __DEV__
-                ? languages.t('label.maps_import_button_text')
-                : 'Coming soon'
-            }
-            onPress={this.importButtonPressed.bind(this)}
-            buttonColor={Colors.VIOLET}
-            bgColor={Colors.WHITE}
-            borderColor={Colors.VIOLET}
-            buttonWidth={'100%'}
-          />
-          <View style={styles.sectionRowContainer}>
-            <Text style={styles.settingRowNoteText}>
-              {languages.t('label.maps_import_disclaimer')}
-            </Text>
-          </View>
-        </View>
-      </>
-    );
-  }
-
-  getSettingRow(text, actionListener, icon, color, subtitle) {
-    const renderIcon = () => {
-      return icon ? <SvgXml xml={icon} /> : null;
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
-    return (
+  }, []);
+
+  const locationToggleButtonPressed = async () => {
+    try {
+      isLogging ? LocationServices.stop() : LocationServices.start();
+      await SetStoreData(PARTICIPATE, !isLogging);
+      setIsLogging(!isLogging);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const localeChanged = async locale => {
+    setUserLocale(locale);
+
+    // If user picks manual lang, update and store setting
+    try {
+      await languages.changeLanguage(locale);
+      await SetStoreData(LANG_OVERRIDE, locale);
+    } catch (e) {
+      console.log('something went wrong in lang change', e);
+    }
+  };
+
+  return (
+    <NavigationBarWrapper
+      title={languages.t('label.settings_title')}
+      onBackPress={backToMain}>
+      <ScrollView>
+        <Section>
+          <Item
+            label={
+              isLogging
+                ? languages.t('label.logging_active')
+                : languages.t('label.logging_inactive')
+            }
+            icon={isLogging ? checkmarkIcon : xmarkIcon}
+            onPress={locationToggleButtonPressed}
+          />
+          <Item
+            last
+            label={LOCALE_NAME[userLocale] || 'Unknown'}
+            icon={languagesIcon}
+          />
+          {/* TODO: allow picker to render custom UI, remove need for negative
+              margins */}
+          <View
+            style={css`
+              margin-top: -40px;
+              height: 40px;
+            `}>
+            <NativePicker
+              items={LOCALE_LIST}
+              value={userLocale}
+              hidden
+              onValueChange={localeChanged}
+            />
+          </View>
+        </Section>
+
+        <Section>
+          <Item
+            label={languages.t('label.choose_provider_title')}
+            description={languages.t('label.choose_provider_subtitle')}
+            onPress={() => navigation.navigate('ChooseProviderScreen')}
+          />
+          <Item
+            label={languages.t('label.news_title')}
+            description={languages.t('label.news_subtitle')}
+            onPress={() => navigation.navigate('NewsScreen')}
+          />
+          <Item
+            label={languages.t('label.event_history_title')}
+            description={languages.t('label.event_history_subtitle')}
+            onPress={() => navigation.navigate('ExposureHistoryScreen')}
+          />
+          <Item
+            label={languages.t('label.tested_positive_title')}
+            description={languages.t('label.tested_positive_subtitle')}
+            onPress={() => navigation.navigate('ExportScreen')}
+            last
+          />
+        </Section>
+
+        <Section>
+          <GoogleMapsImport navigation={navigation} />
+        </Section>
+
+        <Section last>
+          <Item
+            label={languages.t('label.about_title')}
+            onPress={() => navigation.navigate('AboutScreen')}
+          />
+          <Item
+            label={languages.t('label.legal_page_title')}
+            onPress={() => navigation.navigate('LicensesScreen')}
+            last
+          />
+        </Section>
+      </ScrollView>
+    </NavigationBarWrapper>
+  );
+};
+
+/**
+ * Render a white section with blue spacer at the bottom (unless `last == true`)
+ *
+ * @param {{last?: boolean}} param0
+ */
+export const Section = ({ last, children }) => (
+  <>
+    <SectionWrapper>{children}</SectionWrapper>
+
+    <Divider />
+
+    {!last && (
       <>
-        <TouchableOpacity
-          onPress={actionListener.bind(this)}
-          style={styles.sectionRowContainer}>
-          {subtitle ? (
-            <Text
-              style={[
-                styles.settingRowText,
-                {
-                  color: color || Colors.VIOLET_TEXT,
-                  fontFamily: fontFamily.primaryBold,
-                },
-              ]}>
-              {text}
-            </Text>
-          ) : (
-            <Text
-              style={[
-                styles.settingRowText,
-                { color: color || Colors.VIOLET_TEXT },
-              ]}>
-              {text}
-            </Text>
-          )}
-          {renderIcon()}
-          {subtitle ? (
-            <Text style={styles.settingsRowSubtitleText}>{subtitle}</Text>
-          ) : null}
-        </TouchableOpacity>
+        <View
+          style={css`
+            margin: 2% 0;
+          `}
+        />
+        <Divider />
       </>
-    );
-  }
+    )}
+  </>
+);
 
-  render() {
-    return (
-      <NavigationBarWrapper
-        title={languages.t('label.settings_title')}
-        onBackPress={this.backToMain.bind(this)}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          {/* TODO FIX THIS - don't remove */}
-          {/* <View style={styles.spacer} /> */}
-
-          <View style={styles.mainContainer}>
-            <View style={styles.section}>
-              {this.getSettingRow(
-                languages.t('label.choose_provider_title'),
-                this.chooseProviderScreenButtonPressed,
-                null,
-                null,
-                languages.t('label.choose_provider_subtitle'),
-              )}
-              <View style={styles.divider} />
-              {this.getSettingRow(
-                languages.t('label.news_title'),
-                this.newsButtonPressed,
-                null,
-                null,
-                languages.t('label.news_subtitle'),
-              )}
-              <View style={styles.divider} />
-              {this.getSettingRow(
-                languages.t('label.event_history_title'),
-                this.eventHistoryButtonPressed,
-                null,
-                null,
-                languages.t('label.event_history_subtitle'),
-              )}
-              <View style={styles.divider} />
-
-              {this.getSettingRow(
-                languages.t('label.tested_positive_title'),
-                this.testedPositiveButtonPressed,
-                null,
-                null,
-                languages.t('label.tested_positive_subtitle'),
-              )}
-            </View>
-          </View>
-
-          <View style={styles.fullDivider} />
-          <View style={styles.spacer} />
-          <View style={styles.fullDivider} />
-
-          <View style={styles.mainContainer}>{this.getMapsImport()}</View>
-
-          <View style={styles.fullDivider} />
-          <View style={styles.spacer} />
-          <View style={styles.fullDivider} />
-
-          <View style={styles.mainContainer}>
-            <View style={styles.section}>
-              {this.getSettingRow(
-                languages.t('label.about_title'),
-                this.aboutButtonPressed,
-              )}
-              <View style={styles.divider} />
-              {this.getSettingRow(
-                languages.t('label.legal_page_title'),
-                this.licensesButtonPressed,
-              )}
-            </View>
-          </View>
-          <View style={styles.fullDivider} />
-        </ScrollView>
-      </NavigationBarWrapper>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flexDirection: 'column',
-    width: '100%',
-    backgroundColor: Colors.WHITE,
-  },
-  section: {
-    flexDirection: 'column',
-    width: '87.5%',
-    alignSelf: 'center',
-    backgroundColor: Colors.WHITE,
-  },
-  settingsRowSubtitleText: {
-    width: '87.5%',
-    fontSize: 16,
-    color: Colors.VIOLET_TEXT,
-    backgroundColor: Colors.WHITE,
-    fontFamily: fontFamily.primary,
-  },
-  sectionRowContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    paddingVertical: '5%',
-    backgroundColor: Colors.WHITE,
-  },
-  iconRowContainer: {
-    flexDirection: 'row',
-    paddingTop: '4%',
-  },
-  settingRowText: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 18,
-    fontFamily: fontFamily.primaryRegular,
-  },
-  settingRowNoteText: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 14,
-    opacity: 0.6,
-    fontFamily: fontFamily.primaryItalic,
-  },
-  iconRowText: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 21,
-    paddingLeft: 10,
-    alignSelf: 'center',
-    fontFamily: fontFamily.primaryRegular,
-  },
-  divider: {
-    backgroundColor: Colors.DIVIDER,
-    height: 1.5,
-  },
-  fullDivider: {
-    backgroundColor: Colors.DIVIDER,
-    height: 1,
-    width: '100%',
-  },
-  spacer: {
-    marginVertical: '2%',
-  },
-});
-
-export default SettingsScreen;
+const SectionWrapper = styled.View`
+  background-color: ${Colors.WHITE};
+  padding: 0px 6.25%;
+`;

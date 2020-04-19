@@ -15,6 +15,7 @@ import id from './id.json';
 import it from './it.json';
 import ml from './ml.json';
 import pl from './pl.json';
+import ro from './ro.json';
 import ru from './ru.json';
 import sk from './sk.json';
 import vi from './vi.json';
@@ -86,11 +87,29 @@ i18next.init({
     it: { label: 'Italiano', translation: it },
     ml: { label: 'മലയാളം', translation: ml },
     pl: { label: 'Polski', translation: pl },
+    ro: { label: 'Română', translation: ro },
     ru: { label: 'Русский', translation: ru },
     sk: { label: 'Slovak', translation: sk },
     vi: { label: 'Vietnamese', translation: vi },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
   },
 });
+
+/** The known locale list */
+export const LOCALE_LIST = Object.entries(i18next.options.resources).map(
+  ([langCode, lang]) => ({
+    value: langCode,
+    label: lang.label,
+  }),
+);
+
+/** A map of locale code to name. */
+export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
+  (output, [langCode, lang]) => {
+    output[langCode] = lang.label;
+    return output;
+  },
+  {},
+);
 
 export default i18next;
