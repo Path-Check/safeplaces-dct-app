@@ -36,13 +36,8 @@
 		20AC4CF4D9674FAE82C8A429 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5A05B8E61DC402E8753A057 /* IBMPlexMono-ExtraLightItalic.ttf */; };
 		293BC1167944469E848E4DD3 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5DFB90A472F4881A3C888C3 /* IBMPlexSans-ThinItalic.ttf */; };
 		2C883891512048299ECF6B38 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E872D3374DDA4AA29E3D8511 /* IBMPlexSans-Thin.ttf */; };
-<<<<<<< HEAD
-<<<<<<< HEAD
 		34A5C37263064483A4CE9CD0 /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A0C1C57CED4660822FE560 /* IBMPlexMono-Medium.ttf */; };
 		3E00DDF4468A44729E5166A6 /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5680E099CE1F48BEB8D6431B /* IBMPlexMono-Light.ttf */; };
-=======
-=======
->>>>>>> cdaf92d32e545d31586e24854fd03acd35567f8b
 		52C63EA4244A2ECC00ADC652 /* PushNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = 52C63E95244A2ECC00ADC652 /* PushNotificationPayload.apns */; };
 		52C63EA5244A2ECC00ADC652 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C63E96244A2ECC00ADC652 /* ComplicationController.swift */; };
 		52C63EA6244A2ECC00ADC652 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C63E97244A2ECC00ADC652 /* InterfaceController.swift */; };
@@ -57,10 +52,6 @@
 		52C63EAF244A2ECC00ADC652 /* icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C63EA1244A2ECC00ADC652 /* icon40x40.png */; };
 		52C63EB0244A2ECC00ADC652 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C63EA2244A2ECC00ADC652 /* Info.plist */; };
 		52C63EB1244A2ECC00ADC652 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C63EA3244A2ECC00ADC652 /* Interface.storyboard */; };
-<<<<<<< HEAD
->>>>>>> Added WatchKit and WatchKit extension groups
-=======
->>>>>>> cdaf92d32e545d31586e24854fd03acd35567f8b
 		64ACB99B89554C468148CCD6 /* IBMPlexSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 450B58D199444B7D8DEE6A0A /* IBMPlexSans-Italic.ttf */; };
 		6AC7DD482BBC4DC885AC2555 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20E5EE8E6065465F9558DCDB /* IBMPlexMono-SemiBoldItalic.ttf */; };
 		6CC5A2D6F48947AF987F41A7 /* IBMPlexMono-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D1446DDD4674BFAA520C0E8 /* IBMPlexMono-ExtraLight.ttf */; };
@@ -141,13 +132,8 @@
 		41038D978FEE48AD9709F232 /* IBMPlexSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Light.ttf"; path = "../app/assets/fonts/IBMPlexSans-Light.ttf"; sourceTree = "<group>"; };
 		425FC7942F9E4A7282551030 /* IBMPlexMono-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-BoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		450B58D199444B7D8DEE6A0A /* IBMPlexSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Italic.ttf"; path = "../app/assets/fonts/IBMPlexSans-Italic.ttf"; sourceTree = "<group>"; };
-<<<<<<< HEAD
-<<<<<<< HEAD
 		53A0C1C57CED4660822FE560 /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Medium.ttf"; path = "../app/assets/fonts/IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
 		542F7FB7FF534DC2A7D428AE /* IBMPlexSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; name = IBMPlexSans.ttf; path = ../app/assets/fonts/IBMPlexSans.ttf; sourceTree = "<group>"; };
-=======
-=======
->>>>>>> cdaf92d32e545d31586e24854fd03acd35567f8b
 		52C63E95244A2ECC00ADC652 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		52C63E96244A2ECC00ADC652 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		52C63E97244A2ECC00ADC652 /* InterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
@@ -163,7 +149,6 @@
 		52C63EA2244A2ECC00ADC652 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52C63EA3244A2ECC00ADC652 /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
 		542F7FB7FF534DC2A7D428AE /* IBMPlexSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Regular.ttf"; path = "../app/assets/fonts/IBMPlexSans-Regular.ttf"; sourceTree = "<group>"; };
->>>>>>> Added WatchKit and WatchKit extension groups
 		556FEC0379104674A3837885 /* IBMPlexSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-MediumItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-MediumItalic.ttf"; sourceTree = "<group>"; };
 		5680E099CE1F48BEB8D6431B /* IBMPlexMono-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Light.ttf"; path = "../app/assets/fonts/IBMPlexMono-Light.ttf"; sourceTree = "<group>"; };
 		56E8CDA04E244E24A9781CA8 /* IBMPlexSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-SemiBoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -550,8 +535,6 @@
 				C6C206E93BCA4543A72FA246 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */,
 				2C883891512048299ECF6B38 /* IBMPlexSans-Thin.ttf in Resources */,
 				293BC1167944469E848E4DD3 /* IBMPlexSans-ThinItalic.ttf in Resources */,
-<<<<<<< HEAD
-<<<<<<< HEAD
 				90A6277721DD42F5B7295A01 /* IBMPlexMono-Bold.ttf in Resources */,
 				9E1C1DF4CA144CFABCE81B53 /* IBMPlexMono-BoldItalic.ttf in Resources */,
 				6CC5A2D6F48947AF987F41A7 /* IBMPlexMono-ExtraLight.ttf in Resources */,
@@ -566,14 +549,8 @@
 				6AC7DD482BBC4DC885AC2555 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */,
 				9CC78FF1CEE94C2E8C5EC4E4 /* IBMPlexMono-Thin.ttf in Resources */,
 				F14D1224D0C74D6CB30CC2A4 /* IBMPlexMono-ThinItalic.ttf in Resources */,
-=======
 				52C63EA8244A2ECC00ADC652 /* Assets.xcassets in Resources */,
 				52C63EA4244A2ECC00ADC652 /* PushNotificationPayload.apns in Resources */,
->>>>>>> Added WatchKit and WatchKit extension groups
-=======
-				52C63EA8244A2ECC00ADC652 /* Assets.xcassets in Resources */,
-				52C63EA4244A2ECC00ADC652 /* PushNotificationPayload.apns in Resources */,
->>>>>>> cdaf92d32e545d31586e24854fd03acd35567f8b
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
