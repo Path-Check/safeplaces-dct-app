@@ -68,8 +68,11 @@ class ChooseProviderScreen extends Component {
     // Update user settings state from async storage
     GetStoreData(AUTHORITY_SOURCE_SETTINGS, false).then(result => {
       if (result !== null) {
-        console.log('Retrieving settings from async storage:');
+        console.log('Steve Retrieving settings from async storage:');
         console.log(result);
+        result.push({ key: 'test', url: 'http://gpll.org' });
+        result.push({ key: 'test2', url: 'http://gpll.org' });
+        result.push({ key: 'test3', url: 'http://gpll.org' });
         this.setState({
           selectedAuthorities: result,
         });
@@ -389,7 +392,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   listContainer: {
-    flex: 3,
+    flex: 1,
     flexDirection: 'column',
     textAlignVertical: 'top',
     justifyContent: 'flex-start',
@@ -452,8 +455,8 @@ const styles = StyleSheet.create({
     width: 18.48,
   },
   sectionDescription: {
-    fontSize: 18,
-    lineHeight: 24,
+    fontSize: 16,
+    lineHeight: 22,
     marginTop: 12,
     overflow: 'scroll',
     color: Colors.VIOLET_TEXT,

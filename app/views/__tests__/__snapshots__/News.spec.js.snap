@@ -111,6 +111,7 @@ exports[`renders correctly 1`] = `
               "color": "#FFF",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 26,
+              "paddingHorizontal": 20,
               "position": "absolute",
               "textAlign": "center",
               "width": "100%",
@@ -285,7 +286,9 @@ exports[`renders correctly 1`] = `
                         style={
                           Object {
                             "fontFamily": "IBMPlexSans-SemiBold",
-                            "fontSize": 18,
+                            "fontSize": 16,
+                            "paddingHorizontal": 5,
+                            "textAlign": "center",
                           }
                         }
                       >

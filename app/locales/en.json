@@ -102,9 +102,9 @@
     "logging_inactive": "Location Inactive"
   },
   "history": {
-    "no_exposure": "No exposure",
+    "no_exposure": "No known",
     "possible_exposure_para": "It is possible you were in contact with or close to someone who tested positive for COVID-19",
-    "possible_exposure": "Possible exposure",
+    "possible_exposure": "Possible",
     "timeline": "Timeline",
     "what_does_this_mean_para": "Based on your GPS history, it is possible that you may have been in contact with or close to somebody who was diagnosed with COVID-19. This does not mean you are infected but that you might be.\n\nFor further information on what you should do you can refer to the Mayo Clinic’s website.",
     "what_does_this_mean": "What does this mean?",
