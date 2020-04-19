@@ -74,3 +74,4 @@ e2e/artifacts/*
 
 # VSCode
 .vscode/*
+ios/COVIDSafePaths.xcodeproj/project.pbxproj
