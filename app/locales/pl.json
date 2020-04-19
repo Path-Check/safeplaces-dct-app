@@ -30,6 +30,8 @@
     "home_no_contact_subtext": "W oparciu o dostępne dane nie znalazłeś się w pobliżu nikogo, kto miałby pozytywny wynik testu na obecność COVID-19.",
     "home_unknown_header": "Nieznany",
     "home_unknown_subtext": "Nie możemy stwierdzić, czy jesteś zagrożony, dopóki nie umożliwiasz aplikacji dostępu do Twojej lokalizacji.",
+    "home_setting_off_header": "Nieznana",
+    "home_setting_off_subtext": "Nie możemy stwierdzić, czy jesteś zagrożony, chyba że włączysz historię lokalizacji na ekranie ustawień.",
     "import_step_1": "1. Zaloguj się do swojego konta Google i pobierz historię lokalizacji",
     "import_step_2": "2. Po pobraniu historii lokalizacji otwórz ponownie ten ekran. Dane zostaną zaimportowane automatycznie.",
     "import_title": "Importuj lokalizację",
@@ -94,7 +96,9 @@
     "team_para": "Nasz zespół składa się z konsorcjum epidemiologów, inżynierów, naukowców, cyfrowych ewangelistów prywatności, profesorów i badaczy z uznanych instytucji, w tym: MIT, Hardvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young oraz Link Ventures.",
     "terms_of_use": "Warunki korzystania",
     "tested_positive_subtitle": "Twoje dane prywatne mogą być przekazywane do instytucji zdrowia, archiwizowane lub w inny sposób udostępniane.",
-    "tested_positive_title": "Udostępnij historię lokalizacji"
+    "tested_positive_title": "Udostępnij historię lokalizacji",
+    "logging_active": "Lokalizacja Aktywna",
+    "logging_inactive": "Lokalizacja Nieaktywna"
   },
   "history": {
     "no_exposure": "Brak narażenia",
