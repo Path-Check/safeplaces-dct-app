@@ -12,8 +12,8 @@
     "build:e2e:android": "detox build -c android.emu.release",
     "test:e2e:android": "detox test -c android.emu.release",
     "build:e2e:ios": "detox build -c iphone11.sim",
-    "test:e2e:iphone11": "detox test -c iphone11.sim",
-    "test:e2e:iphone-se": "detox test -c iphone-se.sim",
+    "test:e2e:iphone11": "detox test -c iphone11.sim --loglevel=warn",
+    "test:e2e:iphone-se": "detox test -c iphone-se.sim --loglevel=warn",
     "i18n:extract": "i18next",
     "test": "jest test",
     "test:dev_setup": "bats __tests__/dev_setup.test.bats"
