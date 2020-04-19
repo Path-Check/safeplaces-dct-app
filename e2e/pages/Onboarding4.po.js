@@ -1,7 +1,7 @@
 const buttonlabel = 'Set up my phone';
 const screenText =
   "You're in complete control. Data is only saved on your phone.";
-const screenshotText = 'Fourth Onboarding Page';
+const screenshotText = 'Onboarding - Page 4';
 
 class Onboarding4 {
   async tapButton() {

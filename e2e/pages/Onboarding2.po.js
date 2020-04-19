@@ -1,7 +1,7 @@
 const buttonlabel = 'Next';
 const screenText =
   'Get notified if you cross paths with someone later diagnosed for COVID-19.';
-const screenshotText = 'Second Onboarding Page';
+const screenshotText = 'Onboarding - Page 2';
 
 class Onboarding2 {
   async tapButton() {

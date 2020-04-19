@@ -1,6 +1,6 @@
 const buttonlabel = 'Get Started';
 const screenText = 'The way back to normal starts here.';
-const screenshotText = 'First Onboarding Page';
+const screenshotText = 'Onboarding - Page 1';
 
 class Onboarding1 {
   async tapButton() {

@@ -1,7 +1,7 @@
 const buttonlabel = 'Next';
 const screenText =
   'If you test positive, you can choose to donate your data anonymously';
-const screenshotText = 'Third Onboarding Page';
+const screenshotText = 'Onboarding - Page 3';
 
 class Onboarding3 {
   async tapButton() {
