@@ -1,4 +1,3 @@
-import Yaml from 'js-yaml';
 import React, { Component } from 'react';
 import {
   Alert,
@@ -8,6 +7,7 @@ import {
   Image,
   SafeAreaView,
   StyleSheet,
+  Switch,
   Text,
   TextInput,
   TouchableOpacity,
@@ -21,20 +21,18 @@ import {
   renderers,
   withMenuContext,
 } from 'react-native-popup-menu';
-import RNFetchBlob from 'rn-fetch-blob';
 
 import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 import colors from '../constants/colors';
-import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
+import HCAService from '../services/HCAService';
 
 const { SlideInMenu } = renderers;
 
@@ -49,6 +47,7 @@ class ChooseProviderScreen extends Component {
       urlEntryInProgress: false,
       urlText: '',
       authoritiesList: [],
+      isAuthorityFilterActive: false,
     };
   }
 
@@ -63,16 +62,12 @@ class ChooseProviderScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    this.fetchAuthoritiesList();
+    this.fetchAuthoritiesList(this.state.isAuthorityFilterActive);
 
-    // Update user settings state from async storage
-    GetStoreData(AUTHORITY_SOURCE_SETTINGS, false).then(result => {
-      if (result !== null) {
-        console.log('Retrieving settings from async storage:');
-        console.log(result);
-        this.setState({
-          selectedAuthorities: result,
-        });
+    HCAService.getUserAuthorityList().then(authorities => {
+      // Update user settings state from async storage
+      if (authorities) {
+        this.setState({ selectedAuthorities: authorities });
       } else {
         console.log('No stored authority settings.');
       }
@@ -83,38 +78,22 @@ class ChooseProviderScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  fetchAuthoritiesList() {
-    try {
-      RNFetchBlob.config({
-        // add this option that makes response data to be stored as a file,
-        // this is much more performant.
-        fileCache: true,
-      })
-        .fetch('GET', AUTHORITIES_LIST_URL, {
-          //some headers ..
-        })
-        .then(result => {
-          RNFetchBlob.fs.readFile(result.path(), 'utf8').then(list => {
-            // If unable to load the file, change state to display error in appropriate menu
-            let parsedFile = Yaml.safeLoad(list).Authorities;
-            {
-              parsedFile !== undefined
-                ? this.setState({
-                    authoritiesList: parsedFile,
-                  })
-                : this.setState({
-                    authoritiesList: [
-                      {
-                        'Unable to load authorities list': [{ url: 'No URL' }], // TODO: Localize
-                      },
-                    ],
-                  });
-            }
-          });
-        });
-    } catch (error) {
-      console.log(error);
+  /**
+   *
+   * @param {boolean} filterByGPSHistory - used to filter the list of HCAs based on the
+   * 28 day location history of the user
+   * @returns void
+   */
+  async fetchAuthoritiesList(filterByGPSHistory) {
+    let authoritiesList = [];
+
+    if (filterByGPSHistory) {
+      authoritiesList = await HCAService.getAuthoritiesFromUserLocHistory();
+    } else {
+      authoritiesList = await HCAService.getAuthoritiesList();
     }
+
+    this.setState({ authoritiesList });
   }
 
   // Add selected authorities to state, for display in the FlatList
@@ -218,6 +197,11 @@ class ChooseProviderScreen extends Component {
       ],
       { cancelable: false },
     );
+  }
+
+  async filterAuthoritesByGPSHistory(isAuthorityFilterActive) {
+    await this.fetchAuthoritiesList(isAuthorityFilterActive);
+    this.setState({ isAuthorityFilterActive });
   }
 
   render() {
@@ -335,6 +319,15 @@ class ChooseProviderScreen extends Component {
             </TouchableOpacity>
           </MenuTrigger>
           <MenuOptions>
+            <View style={styles.authorityFilter}>
+              <Text style={styles.authorityFilterText}>
+                {languages.t('label.filter_authorities_by_gps_history')}
+              </Text>
+              <Switch
+                onValueChange={val => this.filterAuthoritesByGPSHistory(val)}
+                value={this.state.isAuthorityFilterActive}
+              />
+            </View>
             {this.state.authoritiesList === undefined
               ? null
               : this.state.authoritiesList.map(item => {
@@ -445,7 +438,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     fontFamily: fontFamily.primaryBold,
-    color: Colors.VIOLET_TEXT,
+    color: colors.VIOLET_TEXT,
   },
   backArrow: {
     height: 18,
@@ -456,8 +449,18 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     overflow: 'scroll',
-    color: Colors.VIOLET_TEXT,
+    color: colors.VIOLET_TEXT,
     fontFamily: fontFamily.primaryRegular,
+  },
+  authorityFilter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  authorityFilterText: {
+    padding: 10,
+    fontSize: 16,
+    color: colors.VIOLET_TEXT,
   },
   menuOptionText: {
     fontFamily: fontFamily.primaryRegular,

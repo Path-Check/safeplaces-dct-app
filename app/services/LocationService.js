@@ -23,15 +23,15 @@ export class LocationData {
     this.maxBackfillTime = 60000 * 60 * 24; // Time (in milliseconds).  60000 * 60 * 8 = 24 hours
   }
 
-  getLocationData() {
-    return GetStoreData(LOCATION_DATA).then(locationArrayString => {
-      let locationArray = [];
-      if (locationArrayString !== null) {
-        locationArray = JSON.parse(locationArrayString);
-      }
+  async getLocationData() {
+    const locationArrayString = await GetStoreData(LOCATION_DATA);
+    let locationArray = [];
 
-      return locationArray;
-    });
+    if (locationArrayString !== null) {
+      locationArray = JSON.parse(locationArrayString);
+    }
+
+    return locationArray;
   }
 
   async getPointStats() {
@@ -133,12 +133,83 @@ export class LocationData {
       SetStoreData(LOCATION_DATA, curated);
     });
   }
+
+  /**
+   * Validates that `point` has both a latitude and longitude field
+   * @param {*} point - Object to validate
+   */
+  isValidPoint(point) {
+    if (!point.latitude && !point.latitude === 0) {
+      console.error('`point` param must have a latitude field');
+      return false;
+    }
+
+    if (!point.longitude && !point.longitude === 0) {
+      console.error('`point` param must have a longitude field');
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Validates that an object is a valid geographic bounding box.
+   * A valid box has a `ne` and `sw` field that each contain a valid GPS point
+   * @param {*} region - Object to validate
+   */
+  isValidBoundingBox(region) {
+    if (!region.ne || !this.isValidPoint(region.ne)) {
+      console.error(`invalid 'ne' field for bounding box: ${region.ne}`);
+      return false;
+    }
+
+    if (!region.sw || !this.isValidPoint(region.sw)) {
+      console.error(`invalid 'ne' field for bounding box: ${region.sw}`);
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Returns the most recent point of location data for a user.
+   * This is the last item in the location data array.
+   */
+  async getMostRecentUserLoc() {
+    const locData = await this.getLocationData();
+    return locData[locData.length - 1];
+  }
+
+  /**
+   * Given a GPS coordinate, check if it is within the bounding
+   * box of a region.
+   * @param {*} point - Object with a `latitude` and `longitude` field
+   * @param {*} region - Object with a `ne` and `sw` field that each contain a GPS point
+   */
+  isPointInBoundingBox(point, region) {
+    if (!this.isValidPoint(point) || !this.isValidBoundingBox(region)) {
+      return false;
+    } else {
+      const { latitude: pointLat, longitude: pointLon } = point;
+      const { latitude: neLat, longitude: neLon } = region.ne;
+      const { latitude: swLat, longitude: swLon } = region.sw;
+
+      const [latMax, latMin] = neLat > swLat ? [neLat, swLat] : [swLat, neLat];
+      const [lonMax, lonMin] = neLon > swLon ? [neLon, swLon] : [swLon, neLon];
+
+      return (
+        pointLat < latMax &&
+        pointLat > latMin &&
+        pointLon < lonMax &&
+        pointLon > lonMin
+      );
+    }
+  }
 }
 
 export default class LocationServices {
   static start() {
     const locationData = new LocationData();
-
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
     if (isBackgroundGeolocationConfigured) {

@@ -9,14 +9,13 @@ import PushNotification from 'react-native-push-notification';
 import { isPlatformiOS } from './../Util';
 import {
   AUTHORITY_NEWS,
-  AUTHORITY_SOURCE_SETTINGS,
   CROSSED_PATHS,
   LAST_CHECKED,
   LOCATION_DATA,
 } from '../constants/storage';
-import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
+import HCAService from '../services/HCAService';
 
 export async function IntersectSet(concernLocationArray, completion) {
   GetStoreData(LOCATION_DATA).then(locationArrayString => {
@@ -218,10 +217,11 @@ export function checkIntersect() {
     'Intersect tick entering on',
     isPlatformiOS() ? 'iOS' : 'Android',
   );
-  // this.findNewAuthorities(); NOT IMPLEMENTED YET
+
+  HCAService.findNewAuthorities();
 
   // Get the user's health authorities
-  GetStoreData(AUTHORITY_SOURCE_SETTINGS)
+  HCAService.getUserAuthorityList()
     .then(authority_list => {
       if (!authority_list) {
         console.log('No authorities', authority_list);
@@ -235,7 +235,6 @@ export function checkIntersect() {
         // Pull down data from all the registered health authorities
         authority_list = JSON.parse(authority_list);
         for (const authority of authority_list) {
-          console.log('[auth]', authority);
           fetch(authority.url)
             .then(response => response.json())
             .then(responseJson => {
@@ -293,37 +292,4 @@ export function checkIntersect() {
       }
     })
     .catch(error => console.log('Failed to load authority list', error));
-}
-
-/** Number of day in the standard day-bin array (4 weeks) */
-const DAY_BIN_SIZE = 28;
-
-/** Set the app into debug mode */
-export function enableDebugMode() {
-  SetStoreData(DEBUG_MODE, 'true');
-
-  // Create faux intersection data
-  let pseudoBin = [];
-  for (let i = 0; i < DAY_BIN_SIZE; i++) {
-    const intersections = Math.max(0, Math.floor(Math.random() * 50 - 20));
-    pseudoBin.push(intersections);
-  }
-  let dayBin = JSON.stringify(pseudoBin);
-  SetStoreData(CROSSED_PATHS, dayBin);
-}
-
-/** Restore the app from debug mode */
-export function disableDebugMode() {
-  // Wipe faux intersection data
-  let pseudoBin = [];
-  for (let i = 0; i < DAY_BIN_SIZE; i++) {
-    pseudoBin.push(0);
-  }
-  let dayBin = JSON.stringify(pseudoBin);
-  SetStoreData(CROSSED_PATHS, dayBin);
-
-  SetStoreData(DEBUG_MODE, 'false');
-
-  // Kick off intersection calculations to restore data
-  checkIntersect();
 }
