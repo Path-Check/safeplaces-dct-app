@@ -36,8 +36,25 @@
 		20AC4CF4D9674FAE82C8A429 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5A05B8E61DC402E8753A057 /* IBMPlexMono-ExtraLightItalic.ttf */; };
 		293BC1167944469E848E4DD3 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5DFB90A472F4881A3C888C3 /* IBMPlexSans-ThinItalic.ttf */; };
 		2C883891512048299ECF6B38 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E872D3374DDA4AA29E3D8511 /* IBMPlexSans-Thin.ttf */; };
+<<<<<<< HEAD
 		34A5C37263064483A4CE9CD0 /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A0C1C57CED4660822FE560 /* IBMPlexMono-Medium.ttf */; };
 		3E00DDF4468A44729E5166A6 /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5680E099CE1F48BEB8D6431B /* IBMPlexMono-Light.ttf */; };
+=======
+		52C63EA4244A2ECC00ADC652 /* PushNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = 52C63E95244A2ECC00ADC652 /* PushNotificationPayload.apns */; };
+		52C63EA5244A2ECC00ADC652 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C63E96244A2ECC00ADC652 /* ComplicationController.swift */; };
+		52C63EA6244A2ECC00ADC652 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C63E97244A2ECC00ADC652 /* InterfaceController.swift */; };
+		52C63EA7244A2ECC00ADC652 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C63E98244A2ECC00ADC652 /* NotificationController.swift */; };
+		52C63EA8244A2ECC00ADC652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C63E99244A2ECC00ADC652 /* Assets.xcassets */; };
+		52C63EA9244A2ECC00ADC652 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C63E9A244A2ECC00ADC652 /* Common.swift */; };
+		52C63EAA244A2ECC00ADC652 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C63E9B244A2ECC00ADC652 /* ExtensionDelegate.swift */; };
+		52C63EAB244A2ECC00ADC652 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C63E9C244A2ECC00ADC652 /* Info.plist */; };
+		52C63EAC244A2ECC00ADC652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C63E9E244A2ECC00ADC652 /* Assets.xcassets */; };
+		52C63EAD244A2ECC00ADC652 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 52C63E9F244A2ECC00ADC652 /* README.md */; };
+		52C63EAE244A2ECC00ADC652 /* CSP-Watch-Roam-Overview.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C63EA0244A2ECC00ADC652 /* CSP-Watch-Roam-Overview.png */; };
+		52C63EAF244A2ECC00ADC652 /* icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C63EA1244A2ECC00ADC652 /* icon40x40.png */; };
+		52C63EB0244A2ECC00ADC652 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C63EA2244A2ECC00ADC652 /* Info.plist */; };
+		52C63EB1244A2ECC00ADC652 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C63EA3244A2ECC00ADC652 /* Interface.storyboard */; };
+>>>>>>> Added WatchKit and WatchKit extension groups
 		64ACB99B89554C468148CCD6 /* IBMPlexSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 450B58D199444B7D8DEE6A0A /* IBMPlexSans-Italic.ttf */; };
 		6AC7DD482BBC4DC885AC2555 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20E5EE8E6065465F9558DCDB /* IBMPlexMono-SemiBoldItalic.ttf */; };
 		6CC5A2D6F48947AF987F41A7 /* IBMPlexMono-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D1446DDD4674BFAA520C0E8 /* IBMPlexMono-ExtraLight.ttf */; };
@@ -118,8 +135,26 @@
 		41038D978FEE48AD9709F232 /* IBMPlexSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Light.ttf"; path = "../app/assets/fonts/IBMPlexSans-Light.ttf"; sourceTree = "<group>"; };
 		425FC7942F9E4A7282551030 /* IBMPlexMono-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-BoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		450B58D199444B7D8DEE6A0A /* IBMPlexSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Italic.ttf"; path = "../app/assets/fonts/IBMPlexSans-Italic.ttf"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		53A0C1C57CED4660822FE560 /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Medium.ttf"; path = "../app/assets/fonts/IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
 		542F7FB7FF534DC2A7D428AE /* IBMPlexSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; name = IBMPlexSans.ttf; path = ../app/assets/fonts/IBMPlexSans.ttf; sourceTree = "<group>"; };
+=======
+		52C63E95244A2ECC00ADC652 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		52C63E96244A2ECC00ADC652 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		52C63E97244A2ECC00ADC652 /* InterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		52C63E98244A2ECC00ADC652 /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		52C63E99244A2ECC00ADC652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52C63E9A244A2ECC00ADC652 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		52C63E9B244A2ECC00ADC652 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		52C63E9C244A2ECC00ADC652 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52C63E9E244A2ECC00ADC652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52C63E9F244A2ECC00ADC652 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		52C63EA0244A2ECC00ADC652 /* CSP-Watch-Roam-Overview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CSP-Watch-Roam-Overview.png"; sourceTree = "<group>"; };
+		52C63EA1244A2ECC00ADC652 /* icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon40x40.png; sourceTree = "<group>"; };
+		52C63EA2244A2ECC00ADC652 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52C63EA3244A2ECC00ADC652 /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
+		542F7FB7FF534DC2A7D428AE /* IBMPlexSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Regular.ttf"; path = "../app/assets/fonts/IBMPlexSans-Regular.ttf"; sourceTree = "<group>"; };
+>>>>>>> Added WatchKit and WatchKit extension groups
 		556FEC0379104674A3837885 /* IBMPlexSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-MediumItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-MediumItalic.ttf"; sourceTree = "<group>"; };
 		5680E099CE1F48BEB8D6431B /* IBMPlexMono-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Light.ttf"; path = "../app/assets/fonts/IBMPlexMono-Light.ttf"; sourceTree = "<group>"; };
 		56E8CDA04E244E24A9781CA8 /* IBMPlexSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-SemiBoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -307,6 +342,34 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		52C63E94244A2ECC00ADC652 /* CSP-Roam Extension */ = {
+			isa = PBXGroup;
+			children = (
+				52C63E95244A2ECC00ADC652 /* PushNotificationPayload.apns */,
+				52C63E96244A2ECC00ADC652 /* ComplicationController.swift */,
+				52C63E97244A2ECC00ADC652 /* InterfaceController.swift */,
+				52C63E98244A2ECC00ADC652 /* NotificationController.swift */,
+				52C63E99244A2ECC00ADC652 /* Assets.xcassets */,
+				52C63E9A244A2ECC00ADC652 /* Common.swift */,
+				52C63E9B244A2ECC00ADC652 /* ExtensionDelegate.swift */,
+				52C63E9C244A2ECC00ADC652 /* Info.plist */,
+			);
+			path = "CSP-Roam Extension";
+			sourceTree = "<group>";
+		};
+		52C63E9D244A2ECC00ADC652 /* CSP-Roam */ = {
+			isa = PBXGroup;
+			children = (
+				52C63E9E244A2ECC00ADC652 /* Assets.xcassets */,
+				52C63E9F244A2ECC00ADC652 /* README.md */,
+				52C63EA0244A2ECC00ADC652 /* CSP-Watch-Roam-Overview.png */,
+				52C63EA1244A2ECC00ADC652 /* icon40x40.png */,
+				52C63EA2244A2ECC00ADC652 /* Info.plist */,
+				52C63EA3244A2ECC00ADC652 /* Interface.storyboard */,
+			);
+			path = "CSP-Roam";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +386,8 @@
 				08445F4524283A40008754AC /* GoogleMaps.framework */,
 				08445F4324283A2F008754AC /* GoogleMapsBase.framework */,
 				13B07FAE1A68108700A75B9A /* COVIDSafePaths */,
+				52C63E9D244A2ECC00ADC652 /* CSP-Roam */,
+				52C63E94244A2ECC00ADC652 /* CSP-Roam Extension */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* COVIDSafePathsTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -455,20 +520,28 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				52C63EAF244A2ECC00ADC652 /* icon40x40.png in Resources */,
 				0076A257761B4FE184D4FAFE /* IBMPlexSans-Bold.ttf in Resources */,
+				52C63EAD244A2ECC00ADC652 /* README.md in Resources */,
 				AF045FF4B6E94ED3810484D7 /* IBMPlexSans-BoldItalic.ttf in Resources */,
 				D6F8E4798A8D4C7FA7A6D4DD /* IBMPlexSans-ExtraLight.ttf in Resources */,
 				7BE9CC19E97E417F8D85CDFA /* IBMPlexSans-ExtraLightItalic.ttf in Resources */,
+				52C63EB0244A2ECC00ADC652 /* Info.plist in Resources */,
 				64ACB99B89554C468148CCD6 /* IBMPlexSans-Italic.ttf in Resources */,
 				D2E57BD070F047E58DC57231 /* IBMPlexSans-Light.ttf in Resources */,
 				D5B6EB5D4B314ACFADAAEFE9 /* IBMPlexSans-LightItalic.ttf in Resources */,
+				52C63EAB244A2ECC00ADC652 /* Info.plist in Resources */,
 				0F130FE6EA784DA193120BEF /* IBMPlexSans-Medium.ttf in Resources */,
 				C0BDDBE3FFC54A77A26D7C1B /* IBMPlexSans-MediumItalic.ttf in Resources */,
 				0F6F6B8B939044F396202EE1 /* IBMPlexSans.ttf in Resources */,
 				A711F93C56DC413B99F63636 /* IBMPlexSans-SemiBold.ttf in Resources */,
+				52C63EAC244A2ECC00ADC652 /* Assets.xcassets in Resources */,
+				52C63EB1244A2ECC00ADC652 /* Interface.storyboard in Resources */,
+				52C63EAE244A2ECC00ADC652 /* CSP-Watch-Roam-Overview.png in Resources */,
 				C6C206E93BCA4543A72FA246 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */,
 				2C883891512048299ECF6B38 /* IBMPlexSans-Thin.ttf in Resources */,
 				293BC1167944469E848E4DD3 /* IBMPlexSans-ThinItalic.ttf in Resources */,
+<<<<<<< HEAD
 				90A6277721DD42F5B7295A01 /* IBMPlexMono-Bold.ttf in Resources */,
 				9E1C1DF4CA144CFABCE81B53 /* IBMPlexMono-BoldItalic.ttf in Resources */,
 				6CC5A2D6F48947AF987F41A7 /* IBMPlexMono-ExtraLight.ttf in Resources */,
@@ -483,6 +556,10 @@
 				6AC7DD482BBC4DC885AC2555 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */,
 				9CC78FF1CEE94C2E8C5EC4E4 /* IBMPlexMono-Thin.ttf in Resources */,
 				F14D1224D0C74D6CB30CC2A4 /* IBMPlexMono-ThinItalic.ttf in Resources */,
+=======
+				52C63EA8244A2ECC00ADC652 /* Assets.xcassets in Resources */,
+				52C63EA4244A2ECC00ADC652 /* PushNotificationPayload.apns in Resources */,
+>>>>>>> Added WatchKit and WatchKit extension groups
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,9 +658,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C63EA7244A2ECC00ADC652 /* NotificationController.swift in Sources */,
+				52C63EA6244A2ECC00ADC652 /* InterfaceController.swift in Sources */,
+				52C63EAA244A2ECC00ADC652 /* ExtensionDelegate.swift in Sources */,
 				0835F8922441054A00E95AE3 /* RNBackgroundFetch+AppDelegate.m in Sources */,
+				52C63EA5244A2ECC00ADC652 /* ComplicationController.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				52C63EA9244A2ECC00ADC652 /* Common.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +696,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -639,6 +722,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0DA5F38AAA9DAD3DC7E25DFE /* Pods-COVIDSafePathsTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
