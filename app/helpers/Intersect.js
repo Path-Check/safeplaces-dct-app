@@ -14,6 +14,7 @@ import {
   LAST_CHECKED,
   LOCATION_DATA,
 } from '../constants/storage';
+import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
@@ -292,4 +293,37 @@ export function checkIntersect() {
       }
     })
     .catch(error => console.log('Failed to load authority list', error));
+}
+
+/** Number of day in the standard day-bin array (4 weeks) */
+const DAY_BIN_SIZE = 28;
+
+/** Set the app into debug mode */
+export function enableDebugMode() {
+  SetStoreData(DEBUG_MODE, 'true');
+
+  // Create faux intersection data
+  let pseudoBin = [];
+  for (let i = 0; i < DAY_BIN_SIZE; i++) {
+    const intersections = Math.max(0, Math.floor(Math.random() * 50 - 20));
+    pseudoBin.push(intersections);
+  }
+  let dayBin = JSON.stringify(pseudoBin);
+  SetStoreData(CROSSED_PATHS, dayBin);
+}
+
+/** Restore the app from debug mode */
+export function disableDebugMode() {
+  // Wipe faux intersection data
+  let pseudoBin = [];
+  for (let i = 0; i < DAY_BIN_SIZE; i++) {
+    pseudoBin.push(0);
+  }
+  let dayBin = JSON.stringify(pseudoBin);
+  SetStoreData(CROSSED_PATHS, dayBin);
+
+  SetStoreData(DEBUG_MODE, 'false');
+
+  // Kick off intersection calculations to restore data
+  checkIntersect();
 }
