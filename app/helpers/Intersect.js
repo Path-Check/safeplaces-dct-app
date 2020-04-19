@@ -4,9 +4,16 @@
  * v1 - Unencrypted, simpleminded (minimal optimization).
  */
 
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
 import PushNotification from 'react-native-push-notification';
 
 import { isPlatformiOS } from './../Util';
+import {
+  CONCERN_TIME_WINDOW_MINUTES,
+  DEFAULT_EXPOSURE_PERIOD_MINUTES,
+  MAX_EXPOSURE_WINDOW_DAYS,
+} from '../constants/history';
 import {
   AUTHORITY_NEWS,
   AUTHORITY_SOURCE_SETTINGS,
@@ -18,54 +25,106 @@ import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
 /**
- * Intersects the locationArray with the concernLocationArray, putting the results
- *   into the appropriate bins in dayBin.
+ * Intersects the locationArray with the concernLocationArray, returning the results
+ *   as a dayBin array.
  *
- * @param {array} locationArray - array of the local locations
- * @param {array} concernLocationArray - superset array of all concerning points from health authorities
- * @param {array} dayBin - bins to be populated with the intersection results
+ * @param {array} localArray - array of the local locations.  Assumed to have been sorted and normalized
+ * @param {array} concernArray - superset array of all concerning points from health authorities.  Assumed to have been sorted and normalized
+ * @param {int} numDayBins - (optional) number of bins in the array returned
+ * @param {int} concernTimeWindowMS - (optional) window of time to use when determining an exposure
+ * @param {int} defaultExposurePeriodMS - (optional) the default exposure period to use when necessary when an exposure is found
  */
-function intersectSetIntoBins(locationArray, concernLocationArray, dayBin) {
-  // Sort the concernLocationArray
-  let localArray = normalizeAndSortLocations(locationArray);
-  let concernArray = normalizeAndSortLocations(concernLocationArray);
+export function intersectSetIntoBins(
+  localArray,
+  concernArray,
+  numDayBins = MAX_EXPOSURE_WINDOW_DAYS,
+  concernTimeWindowMS = 1000 * 60 * CONCERN_TIME_WINDOW_MINUTES,
+  defaultExposurePeriodMS = DEFAULT_EXPOSURE_PERIOD_MINUTES * 60 * 1000,
+) {
+  // useful for time calcs
+  dayjs.extend(duration);
 
-  let concernTimeWindow = 1000 * 60 * 60 * 2; // +/- 2 hours window
+  // generate an array with the asked for number of day bins
+  const dayBins = getEmptyLocationBins(numDayBins);
 
-  let nowUTC = new Date().toISOString();
-  let timeNow = Date.parse(nowUTC);
+  //for (let loc of localArray) {
+  for (let i = 0; i < localArray.length; i++) {
+    let currentLocation = localArray[i];
 
-  // Both locationArray and concernLocationArray should be in the
-  // format [ { "time": 123, "latitude": 12.34, "longitude": 34.56 }]
+    // The current day is 0 days ago (in otherwords, bin 0).  
+    // Figure out how many days ago the current location was.
+    // Note that we're basing this off midnight in the user's current timezone.
+    let midnight = dayjs().startOf('day').valueOf();
+    let daysAgo = 0;
+    if (currentLocation.time < midnight) {
+      let longAgoFromMidnight = midnight - currentLocation.time;
+      daysAgo = Math.floor(longAgoFromMidnight / dayjs.duration(1,'day').asMilliseconds()) + 1;
+    }
 
-  for (let loc of localArray) {
-    let timeMin = loc.time - concernTimeWindow;
-    let timeMax = loc.time + concernTimeWindow;
+    // if we're before the number of days to bin, we can go on without to the next location
+    if (daysAgo >= numDayBins) continue;
 
-    let i = binarySearchForTime(concernArray, timeMin);
-    if (i < 0) i = -(i + 1);
+    // timeMin and timeMax set from the concern time window
+    // These define the window of time that is considered an intersection of concern.
+    // The idea is that if this location (lat,lon) is in the concernLocationArray from
+    //   the time starting from this location's recorded minus the concernTimeWindow time up
+    //   to this locations recorded time, then it is a location of concern.
+    let timeMin = currentLocation.time - concernTimeWindowMS;
+    let timeMax = currentLocation.time;
 
-    while (i < concernArray.length && concernArray[i].time <= timeMax) {
+    // now find the index in the concernArray that starts with timeMin (if one exists)
+    //
+    // TODO:  There's probably an optimization that could be done if the locationArray
+    //          increased in time only a small amount, since the index we found
+    //          in the concernArray is probably already close to where we want to be.
+    let j = binarySearchForTime(concernArray, timeMin);
+    // we don't really if the exact timestamp wasn't found, so just take the j value as the index to start 
+    if (j < 0) j = -(j + 1);
+
+    // starting at the now known index that corresponds to the beginning of the
+    // location time window, go through all of the concernArray's time-locations
+    // to see if there are actually any intersections of concern.  Stop when
+    // we get past the timewindow.
+    while (j < concernArray.length && concernArray[j].time <= timeMax) {
       if (
-        isLocationsNearby(
-          concernArray[i].latitude,
-          concernArray[i].longitude,
-          loc.latitude,
-          loc.longitude,
+        areLocationsNearby(
+          concernArray[j].latitude,
+          concernArray[j].longitude,
+          currentLocation.latitude,
+          currentLocation.longitude,
         )
       ) {
-        // Crossed path.  Bin the count of encounters by days from today.
-        let longAgo = timeNow - loc.time;
-        let daysAgo = Math.round(longAgo / (1000 * 60 * 60 * 24));
+        // Crossed path.  Add the exposure time to the appropriate day bin.
 
-        dayBin[daysAgo] += 1;
+        // Check to see if this is the first exposure for this bin.  If so, reset the exposure time to 0
+        // to remove any offset from the no exposure negative default
+        if (dayBins[daysAgo]<0) dayBins[daysAgo]=0;
+
+        // How long was the possible concern time?
+        //    = the amount of time from the current locations time to the next location time
+        // or = if that calculated time is not possible or too large, use the defaultExposurePeriodMS
+        let exposurePeriod = defaultExposurePeriodMS;
+        if (i < localArray.length - 1) {
+          let timeWindow = localArray[i + 1].time - currentLocation.time;
+          if (timeWindow < defaultExposurePeriodMS * 2) {
+            // not over 2x the default, so should be OK
+            exposurePeriod = timeWindow;
+          }
+        }
+
+        // now add the exposure period to the bin
+        dayBins[daysAgo] += exposurePeriod;
+
+        // Since we've counted the current location time period, we can now break the loop for
+        // this time period and go on to the next location
+        break;
       }
 
-      i++;
+      j++;
     }
   }
 
-  return dayBin;
+  return dayBins;
 }
 
 /**
@@ -78,7 +137,7 @@ function intersectSetIntoBins(locationArray, concernLocationArray, dayBin) {
  * @param {number} lon2 - location 2 longitude
  * @return {boolean} true if the two locations meet the criteria for nearby
  */
-export function isLocationsNearby(lat1, lon1, lat2, lon2) {
+export function areLocationsNearby(lat1, lon1, lat2, lon2) {
   let nearbyDistance = 20; // in meters, anything closer is "nearby"
 
   // these numbers from https://en.wikipedia.org/wiki/Decimal_degrees
@@ -126,9 +185,10 @@ export function isLocationsNearby(lat1, lon1, lat2, lon2) {
 /**
  * Performs "safety" cleanup of the data, to help ensure that we actually have location
  *   data in the array.  Also fixes cases with extra info or values coming in as strings.
+ * 
  * @param {array} arr - array of locations in JSON format
  */
-function normalizeAndSortLocations(arr) {
+export function normalizeAndSortLocations(arr) {
   // This fixes several issues that I found in different input data:
   //   * Values stored as strings instead of numbers
   //   * Extra info in the input
@@ -152,6 +212,7 @@ function normalizeAndSortLocations(arr) {
   return result;
 }
 
+// Basic binary search.  Assumes a sorted array.
 function binarySearchForTime(array, targetTime) {
   // Binary search:
   //   array = sorted array
@@ -181,15 +242,14 @@ function binarySearchForTime(array, targetTime) {
 
 /**
  * Kicks off the intersection process.  Immediately returns after starting the
- * background intersection.
+ * background intersection.  Typically would be run about every 12 hours, but
+ * but might get run more frequently, e.g. when the user changes authority settings
+ *
+ * TODO: This call kicks off the intersection, as well as getting basic info
+ *        from the authority (e.g. the news url) since we get that in the same call.
+ *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
 export function checkIntersect() {
-  //  External wrapper function for kicking off the intersection logic.  Meant to be run
-  //  every 12 hours or so, but might get run more frequently, e.g. when the user
-  //  changes authority settings
-  //
-  //  simply kicks off the internal async process and returns
-
   console.log(
     'Intersect tick entering on',
     isPlatformiOS() ? 'iOS' : 'Android',
@@ -201,128 +261,102 @@ export function checkIntersect() {
 }
 
 /**
- * The real intersection function.  Runs as an async, returns true if the intersection
- *   completed.  Currently always returns true.
+ * Async run of the intersection.  Also saves off the news sources that the authories specified,
+ *    since that comes from the authorities in the same download.
+ *
+ * Returns the array of day bins (mostly for debugging purposes)
  */
 async function asyncCheckIntersect() {
-  // Get the user's health authorities
-  let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
-  // if (!authority_list) {
-  //   console.log('No authorities', authority_list);
-  //   return;
-  // }
-
-  // we'll need this for the news sources from the authorities
+  // Set up the empty set of dayBins for intersections, and the array for the news urls
+  let dayBins = getEmptyLocationBins();
   let name_news = [];
 
-  // we need an empty dayBin for intersections to go in to
-  let dayBin = getEmptyDayBin();
+  // get the saved set of locations for the user, normalize and sort
+  let locationArray = normalizeAndSortLocations(await getSavedLocationArray());
 
-  // this will ultimately have the entire set of concern locations across all authorities
-  let concernResultsCombined = [];
+  // get the health authorities
+  let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
 
   if (authority_list) {
     // Parse the registered health authorities
     authority_list = JSON.parse(authority_list);
 
     for (const authority of authority_list) {
-      console.log('[auth] authority: ', authority);
-
       try {
-        let response = await fetch(authority.url);
-        let responseJson = await response.json();
+        let responseJson = await retrieveUrlAsJson(authority.url);
 
-        // Update cache of info about the authority
+        // Update the news array with the info from the authority
         name_news.push({
           name: responseJson.authority_name,
           news_url: responseJson.info_website,
         });
 
-        // TODO: Look at "publish_date_utc".  We should notify users if
-        //       their authority is no longer functioning.)
+        // intersect the users location with the locations from the authority
+        let tempDayBin = intersectSetIntoBins(
+          locationArray,
+          normalizeAndSortLocations(responseJson.concern_points),
+        );
 
-        // add the current set of points to the set to be intersected later
-        //
-        // TODO:  This currently causes us to generate a single large single array from
-        //    all authorities combined together.  The ideal would be to process in chunks, so
-        //    that no matter how much data was sent by the authority, the memory footprint
-        //    doesn't get too big.
-        //
-        concernResultsCombined = [
-          ...concernResultsCombined,
-          ...responseJson.concern_points,
-        ];
+        // update each day's bin with the result from the intersection
+        dayBins = dayBins.map(
+          (currentValue, i) => currentValue + tempDayBin[i],
+        );
       } catch (error) {
+        // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
+        //       Should do better than this.
         console.log('[authority] fetch/parse error :', error);
       }
     }
   }
 
-  // Set the news for the authorities found.  There's an implicit assumption that news only
-  //  comes from the configured authorities
+  // Store the news arary for the authorities found.
   SetStoreData(AUTHORITY_NEWS, name_news);
 
-  // now, get the location data, normalize and do the intersection
-  let locationArrayString = await GetStoreData(LOCATION_DATA);
-  if (locationArrayString !== null) {
-    let locationArray = JSON.parse(locationArrayString);
-    let concernArray = concernResultsCombined;
-    dayBin = intersectSetIntoBins(locationArray, concernArray, dayBin);
-    if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
-      PushNotification.localNotification({
-        title: languages.t('label.push_at_risk_title'),
-        message: languages.t('label.push_at_risk_message'),
-      });
-    }
-  }
-  console.log('Crossing results: ', dayBin);
+  // if any of the bins are > 0, tell the user
+  if (dayBins.some(a => a > 0)) notifyUserOfRisk();
 
   // store the results
-  SetStoreData(CROSSED_PATHS, dayBin); // TODO: Store per authority?
+  SetStoreData(CROSSED_PATHS, dayBins); // TODO: Store per authority?
 
-  // the current time is the last time checked
-  let nowUTC = new Date().toISOString();
-  let unixtimeUTC = Date.parse(nowUTC);
-  // Last checked key is not being used atm. TODO check this to update periodically instead of every foreground activity
+  // save off the current time as the last checked time
+  let unixtimeUTC = dayjs().valueOf();
   SetStoreData(LAST_CHECKED, unixtimeUTC);
 
-  // looks like we did something... return true to signal OK
-  return true;
+  return dayBins;
 }
 
-// simple function to get an empty dayBin array when needed.
-function getEmptyDayBin() {
-  let dayBin = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-  ]; // Bins for 28 days
+export function getEmptyLocationBins(exposureWindowDays = MAX_EXPOSURE_WINDOW_DAYS) {
+  return new Array(exposureWindowDays).fill(-1);
+}
 
-  return dayBin;
+/**
+ * Notify the user that they are possibly at risk
+ */
+function notifyUserOfRisk() {
+  PushNotification.localNotification({
+    title: languages.t('label.push_at_risk_title'),
+    message: languages.t('label.push_at_risk_message'),
+  });
+}
+
+/**
+ * Return Json retrieved from a URL
+ *
+ * @param {*} url
+ */
+async function retrieveUrlAsJson(url) {
+  let response = await fetch(url);
+  let responseJson = await response.json();
+  return responseJson;
+}
+
+/**
+ * Gets the currently saved locations as a location array
+ */
+async function getSavedLocationArray() {
+  let locationArrayString = await GetStoreData(LOCATION_DATA);
+  if (locationArrayString !== null) {
+    return JSON.parse(locationArrayString);
+  }
+  return [];
 }
