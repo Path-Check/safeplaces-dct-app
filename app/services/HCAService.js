@@ -139,27 +139,10 @@ class HCAService {
    * @returns {Array} List of health care authorities
    */
   async getAuthoritiesInCurrentLoc() {
-    const locHelper = new LocationData();
-    const mostRecentUserLoc = await locHelper.getMostRecentUserLoc();
+    const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();
     const authorities = await this.getAuthoritiesList();
 
     return authorities.filter(authority =>
-      this.isPointInAuthorityBounds(mostRecentUserLoc, authority),
-    );
-  }
-
-  /**
-   * Check if the current GPS location for a user is within the
-   * GPS bounding box of any Health Care Authorities
-   *
-   * @returns {boolean}
-   */
-  async isUserGPSInAuthorityBounds() {
-    const locHelper = new LocationData();
-    const mostRecentUserLoc = await locHelper.getMostRecentUserLoc();
-    const authorities = await this.getAuthoritiesList();
-
-    return authorities.some(authority =>
       this.isPointInAuthorityBounds(mostRecentUserLoc, authority),
     );
   }
@@ -182,6 +165,25 @@ class HCAService {
   }
 
   /**
+   * Gets the most recent location of the user and returns a list of
+   * all Healthcare Authorities whose bounds contain the user's current location,
+   * filtering out any Authorities the user has already subscribed to.
+   *
+   * @returns {Array} - List of Healthcare Authorities
+   */
+  async getNewAuthoritiesInUserLoc() {
+    const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();
+    const authoritiesList = await this.getAuthoritiesList();
+    const userAuthorities = await this.getUserAuthorityList();
+
+    return authoritiesList.filter(
+      authority =>
+        this.isPointInAuthorityBounds(mostRecentUserLoc, authority) &&
+        !userAuthorities.includes(authority),
+    );
+  }
+
+  /**
    * Prompt a user to add a Health Authority if they
    * 1. Have not saved a single health authority yet
    * 2. Are currently in the GPS bounds of one or more health authorities
@@ -189,10 +191,9 @@ class HCAService {
    * This alert will redirect a user to the `ChooseProvider` screen.
    */
   async findNewAuthorities() {
-    const hasAuthorities = await this.hasSavedAuthorities();
-    const isInAuthorityBounds = await this.isUserGPSInAuthorityBounds();
+    const newAuthorities = await this.getNewAuthoritiesInUserLoc();
 
-    if (!hasAuthorities && isInAuthorityBounds) {
+    if (newAuthorities.length > 0) {
       this.alertAddNewAuthorityFromLoc();
     }
   }
