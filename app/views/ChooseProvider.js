@@ -68,7 +68,7 @@ class ChooseProviderScreen extends Component {
     // Update user settings state from async storage
     GetStoreData(AUTHORITY_SOURCE_SETTINGS, false).then(result => {
       if (result !== null) {
-        console.log('Steve Retrieving settings from async storage:');
+        console.log('Retrieving settings from async storage:');
         console.log(result);
         result.push({ key: 'test', url: 'http://gpll.org' });
         result.push({ key: 'test2', url: 'http://gpll.org' });
