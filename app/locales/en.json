@@ -64,6 +64,8 @@
     "location_disabled_title": "Location Tracking Was Disabled",
     "location_enabled_message": "COVID Safe Paths is securely storing your GPS coordinates once every five minutes on this device.",
     "location_enabled_title": "COVID Safe Paths Enabled",
+    "location_stopped_message": "Stopped",
+    "location_stopped_at_user_request_message": "Stopped at user request",
     "maps_import_button_text": "Import past locations",
     "maps_import_disclaimer": "Safe Paths has no affiliation with Google and never shares your data.",
     "maps_import_text": "To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.",
