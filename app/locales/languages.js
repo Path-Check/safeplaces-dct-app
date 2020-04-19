@@ -2,11 +2,14 @@ import './all-dayjs-locales';
 
 import dayjs from 'dayjs';
 import i18next from 'i18next';
-import { NativeModules, Platform, I18nManager } from 'react-native';
+import { I18nManager, NativeModules, Platform } from 'react-native';
 import { getLanguages } from 'react-native-i18n';
+import ReactNativeRestart from 'react-native-restart';
 
 import { LANG_OVERRIDE } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
+import { showAlert } from '../Util';
+import ar from './ar.json';
 import en from './en.json';
 import es from './es.json';
 import fr from './fr.json';
@@ -15,14 +18,11 @@ import id from './id.json';
 import it from './it.json';
 import ml from './ml.json';
 import ro from './ro.json';
+import rtlLanguages from './rtl-languages';
 import ru from './ru.json';
 import sk from './sk.json';
 import vi from './vi.json';
 import zh_Hant from './zh-Hant.json';
-import ar from './ar.json';
-import rtlLanguages from './rtl-languages';
-import { showAlert } from '../Util';
-import ReactNativeRestart from 'react-native-restart';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 
@@ -38,7 +38,7 @@ import ReactNativeRestart from 'react-native-restart';
 const deviceLocale =
   Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
-    NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
+      NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
     : NativeModules.I18nManager.localeIdentifier; // Android
 
 dayjs.locale([deviceLocale, 'en']);
@@ -72,21 +72,18 @@ export function findUserLang(callback) {
   });
 }
 
+// This function is for checking/change current app direction
 export function languageDirectionHandler(language, navigation) {
-
   // check if is not rtl and user choose rtl language
   if (!I18nManager.isRTL && rtlLanguages.includes(language)) {
     showAlert(
       null,
       'App need to restart in order to use this language',
-      () => [
-        I18nManager.forceRTL(true),
-        ReactNativeRestart.Restart()
-      ],
+      () => [I18nManager.forceRTL(true), ReactNativeRestart.Restart()],
       'Restart',
       null,
-      "Cancel"
-    )
+      'Cancel',
+    );
   }
 
   // check if is rtl and user choose ltr language
@@ -94,22 +91,20 @@ export function languageDirectionHandler(language, navigation) {
     showAlert(
       null,
       'App need to restart in order to use this language',
-      () => [
-        I18nManager.forceRTL(false),
-        ReactNativeRestart.Restart()
-      ],
+      () => [I18nManager.forceRTL(false), ReactNativeRestart.Restart()],
       'Restart',
       null,
-      "Cancel"
-    )
+      'Cancel',
+    );
   }
 
   // check for no language direction change
-  if ((I18nManager.isRTL && rtlLanguages.includes(language)) ||
-    (!I18nManager.isRTL && !rtlLanguages.includes(language))) {
-    if (navigation) navigation()
+  if (
+    (I18nManager.isRTL && rtlLanguages.includes(language)) ||
+    (!I18nManager.isRTL && !rtlLanguages.includes(language))
+  ) {
+    if (navigation) navigation();
   }
-
 }
 
 findUserLang();
@@ -134,7 +129,7 @@ i18next.init({
     sk: { label: 'Slovak', translation: sk },
     vi: { label: 'Vietnamese', translation: vi },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
-    ar: { label: 'العربية', translation: ar }
+    ar: { label: 'العربية', translation: ar },
   },
 });
 
