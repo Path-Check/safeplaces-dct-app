@@ -8,6 +8,9 @@ import { GetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 import { LocationData } from './LocationService';
 
+/**
+ * Singleton class to interact with health care authority data
+ */
 class HCAService {
   /**
    * Fetches the raw YAML file containing a list of all
@@ -105,7 +108,7 @@ class HCAService {
    * A `bounds` contains a `ne` and `sw` object that each
    * have a valid GPS point containing `longitude` and `latitude` keys.
    */
-  getAuthorityBoundingBox(authority) {
+  getAuthorityBounds(authority) {
     const authorityName = Object.keys(authority)[0];
     const boundsKey = authority[authorityName][1];
     return boundsKey && boundsKey['bounds'];
@@ -119,7 +122,7 @@ class HCAService {
    */
   isPointInAuthorityBounds(point, authority) {
     const locHelper = new LocationData();
-    const bounds = this.getAuthorityBoundingBox(authority);
+    const bounds = this.getAuthorityBounds(authority);
 
     if (bounds) {
       return locHelper.isPointInBoundingBox(point, bounds);

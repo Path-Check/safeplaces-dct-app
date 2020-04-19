@@ -1,4 +1,4 @@
-import { mockValidHCAList, mockValidHCAYaml } from '../__mocks__/mockHCA';
+import * as mockHCA from '../__mocks__/mockHCA';
 import {
   mockNullUserLocHistory,
   mockUserLocHistory,
@@ -9,7 +9,7 @@ import { LocationData } from '../LocationService';
 jest.mock('rn-fetch-blob', () => {
   return {
     fs: {
-      readFile: () => mockValidHCAYaml,
+      readFile: () => mockHCA.validYaml,
     },
   };
 });
@@ -19,11 +19,10 @@ describe('HCAService', () => {
     it('Given a successful reseponse, returns a list of health care authorities with a valid schema', async () => {
       jest
         .spyOn(HCAService, 'fetchAuthoritiesYaml')
-        .mockResolvedValueOnce({ path: () => '../__mocks__/mockHCA.yaml' });
+        .mockResolvedValueOnce({ path: () => '' });
 
       const authorities = await HCAService.getAuthoritiesList();
-      const authority = authorities[0];
-      const testAuthority = authority['Test Authority'];
+      const testAuthority = authorities[0]['Test Authority'];
 
       expect(testAuthority[0]['url']).toBe(
         'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
@@ -52,7 +51,7 @@ describe('HCAService', () => {
     it('returns true when the user has saved a health care authority', async () => {
       jest
         .spyOn(HCAService, 'getUserAuthorityList')
-        .mockResolvedValue(mockValidHCAList);
+        .mockResolvedValue(mockHCA.validParsed);
 
       await expect(HCAService.hasSavedAuthorities()).resolves.toBe(true);
     });
@@ -62,7 +61,7 @@ describe('HCAService', () => {
     beforeAll(() => {
       jest
         .spyOn(HCAService, 'getAuthoritiesList')
-        .mockResolvedValue(mockValidHCAList);
+        .mockResolvedValue(mockHCA.validParsed);
     });
 
     it('returns a list of authorities whose bounds include the current GPS location of the user', async () => {
@@ -72,7 +71,7 @@ describe('HCAService', () => {
         .mockReturnValue(mockUserLocHistory);
 
       const authorities = await HCAService.getAuthoritiesInCurrentLoc();
-      expect(authorities[0]).toEqual(mockValidHCAList[0]);
+      expect(authorities[0]).toEqual(mockHCA.validParsed[0]);
     });
 
     it('returns an empty array if no authorities bounds include the current GPS location of the user', async () => {
@@ -91,7 +90,7 @@ describe('HCAService', () => {
     beforeAll(() => {
       jest
         .spyOn(HCAService, 'getAuthoritiesList')
-        .mockResolvedValue(mockValidHCAList);
+        .mockResolvedValue(mockHCA.validParsed);
     });
 
     it('returns true if the user is in the bounding box of an authority', async () => {
@@ -119,7 +118,7 @@ describe('HCAService', () => {
     beforeAll(() => {
       jest
         .spyOn(HCAService, 'getAuthoritiesList')
-        .mockResolvedValue(mockValidHCAList);
+        .mockResolvedValue(mockHCA.validParsed);
     });
 
     it('returns true if the user was in the bounding box of an authority in the past 28 days', async () => {
@@ -129,7 +128,7 @@ describe('HCAService', () => {
         .mockReturnValue(mockUserLocHistory);
 
       const authorities = await HCAService.getAuthoritiesFromUserLocHistory();
-      expect(authorities[0]).toEqual(mockValidHCAList[0]);
+      expect(authorities[0]).toEqual(mockHCA.validParsed[0]);
     });
 
     it('returns false if the user was not in the bounding box of any authority in the past 28 days', async () => {
@@ -141,6 +140,83 @@ describe('HCAService', () => {
       await expect(
         HCAService.getAuthoritiesFromUserLocHistory(),
       ).resolves.toEqual([]);
+    });
+  });
+
+  describe('findNewAuthorities()', () => {
+    let alertSpy;
+
+    beforeEach(() => {
+      alertSpy = jest.spyOn(HCAService, 'alertAddNewAuthorityFromLoc');
+    });
+
+    it('does not prompt the user when they have already saved an HCA', async () => {
+      jest.spyOn(HCAService, 'hasSavedAuthorities').mockResolvedValueOnce(true);
+      jest
+        .spyOn(HCAService, 'isUserGPSInAuthorityBounds')
+        .mockResolvedValueOnce(true);
+
+      await HCAService.findNewAuthorities();
+
+      expect(alertSpy).toHaveBeenCalledTimes(0);
+    });
+
+    it('does not prompt the user when they are not in the bounds of any authority', async () => {
+      jest
+        .spyOn(HCAService, 'hasSavedAuthorities')
+        .mockResolvedValueOnce(false);
+      jest
+        .spyOn(HCAService, 'isUserGPSInAuthorityBounds')
+        .mockResolvedValueOnce(false);
+
+      await HCAService.findNewAuthorities();
+
+      expect(alertSpy).toHaveBeenCalledTimes(0);
+    });
+
+    it('prompts the user only when they have not saved an authority and are in the bounds of an authority', async () => {
+      jest
+        .spyOn(HCAService, 'hasSavedAuthorities')
+        .mockResolvedValueOnce(false);
+      jest
+        .spyOn(HCAService, 'isUserGPSInAuthorityBounds')
+        .mockResolvedValueOnce(true);
+
+      await HCAService.findNewAuthorities();
+
+      expect(alertSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('getAuthorityBounds()', () => {
+    it('returns undefined if the authority does not have a `bounds` key', () => {
+      expect(
+        HCAService.getAuthorityBounds(mockHCA.invalidParsedNoBounds),
+      ).toEqual(undefined);
+    });
+
+    it('returns the `bounds` key that is in the second index of authority values array', () => {
+      const bounds = {
+        ne: { latitude: 36.42025904738132, longitude: -121.93670068664551 },
+        sw: { latitude: 38.29988330010084, longitude: -123.2516993133545 },
+      };
+      expect(HCAService.getAuthorityBounds(mockHCA.validParsed[0])).toEqual(
+        bounds,
+      );
+    });
+  });
+
+  describe('getAuthorityUrl()', () => {
+    it('returns undefined if the authority does not have a `url` key', () => {
+      expect(HCAService.getAuthorityUrl(mockHCA.invalidParsedNoBounds)).toEqual(
+        undefined,
+      );
+    });
+
+    it('returns the `url` key that is in the first index of authority values array', () => {
+      const url =
+        'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json';
+      expect(HCAService.getAuthorityUrl(mockHCA.validParsed[0])).toEqual(url);
     });
   });
 });
