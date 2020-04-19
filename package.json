@@ -11,8 +11,9 @@
     "detox-setup": "detox clean-framework-cache && detox build-framework-cache",
     "build:e2e:android": "detox build -c android.emu.release",
     "test:e2e:android": "detox test -c android.emu.release",
-    "build:e2e:ios": "detox build -c ios.sim.debug",
-    "test:e2e:ios": "detox test -c ios.sim.debug",
+    "build:e2e:ios": "detox build -c iphone11.sim",
+    "test:e2e:iphone11": "detox test -c iphone11.sim",
+    "test:e2e:iphone-se": "detox test -c iphone-se.sim",
     "i18n:extract": "i18next",
     "test": "jest test",
     "test:dev_setup": "bats __tests__/dev_setup.test.bats"
@@ -125,7 +126,7 @@
       "rootDir": "./e2e/artifacts/"
     },
     "configurations": {
-      "ios.sim.debug": {
+      "iphone11.sim": {
         "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
@@ -133,20 +134,12 @@
           "type": "iPhone 11"
         }
       },
-      "android.emu.debug": {
-        "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
-        "build": "cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && cd ..",
-        "type": "android.emulator",
+      "iphone-se.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
         "device": {
-          "avdName": "pixel-2"
-        }
-      },
-      "android.emu.release": {
-        "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
-        "build": "cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && cd ..",
-        "type": "android.emulator",
-        "device": {
-          "avdName": "pixel-2"
+          "type": "iPhone SE (2nd generation)"
         }
       }
     },
