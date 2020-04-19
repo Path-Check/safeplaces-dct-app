@@ -93,7 +93,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
+          path: ios/build/Build/Products/Release-iphonesimulator/
 
   e2e-iphone11:
     runs-on: macOS-latest
@@ -128,6 +128,8 @@ jobs:
         with:
           name: e2e-ios-bin
           path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
+
+      - run: ls ios/build/Build/Products/Release-iphonesimulator/
 
       - run: yarn test:e2e:iphone11
 
@@ -166,15 +168,19 @@ jobs:
 
       - run: brew install applesimutils
 
+      - run: applesimutils --list
+
       - uses: actions/download-artifact@master
         with:
           name: e2e-ios-bin
           path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
 
-      - run: yarn test:e2e:iphone-se
+      - run: ls ios/build/Build/Products/Release-iphonesimulator
 
-      - name: Upload Screenshots
-        uses: actions/upload-artifact@v1
-        with:
-          name: iPhone SE screenshots
-          path: e2e/artifacts
+      # - run: yarn test:e2e:iphone-se
+
+      # - name: Upload Screenshots
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: iPhone SE screenshots
+      #     path: e2e/artifacts
