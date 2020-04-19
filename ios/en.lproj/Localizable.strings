@@ -1,5 +1,5 @@
-/* Title of notification when app is closed on iOS */
-"ios.closed_alert_title" = "COVID Safe Paths Was Closed";
-
-/* Body text of notification when app is closed on iOS */
+/* * Body text of notification when app is closed on iOS */
 "ios.closed_alert_text" = "COVID Safe Paths requires to be running.";
+/* Copyright © 2020 Path Check Inc. All rights reserved.
+* Title of notification when app is closed on iOS */
+"ios.closed_alert_title" = "COVID Safe Paths Was Closed";
