@@ -6,7 +6,7 @@ import languages, {
   LOCALE_LIST,
   LOCALE_NAME,
   findUserLang,
-  isRtlLanguage,
+  languageDirectionHandler,
 } from './../locales/languages';
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';

@@ -13,7 +13,7 @@ import BackgroundOverlayImage from './../../assets/images/launchScreenBackground
 import languages, {
   LOCALE_LIST,
   findUserLang,
-  isRtlLanguage
+  languageDirectionHandler
 } from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import NativePicker from '../../components/NativePicker';

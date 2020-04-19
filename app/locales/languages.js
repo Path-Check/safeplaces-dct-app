@@ -72,8 +72,9 @@ export function findUserLang(callback) {
   });
 }
 
-export function isRtlLanguage(language, navigation) {
+export function languageDirectionHandler(language, navigation) {
 
+  // check if is not rtl and user choose rtl language
   if (!I18nManager.isRTL && rtlLanguages.includes(language)) {
     showAlert(
       null,
@@ -88,6 +89,7 @@ export function isRtlLanguage(language, navigation) {
     )
   }
 
+  // check if is rtl and user choose ltr language
   if (I18nManager.isRTL && !rtlLanguages.includes(language)) {
     showAlert(
       null,
@@ -102,6 +104,7 @@ export function isRtlLanguage(language, navigation) {
     )
   }
 
+  // check for no language direction change
   if ((I18nManager.isRTL && rtlLanguages.includes(language)) ||
     (!I18nManager.isRTL && !rtlLanguages.includes(language))) {
     if (navigation) navigation()
