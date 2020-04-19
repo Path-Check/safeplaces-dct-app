@@ -373,16 +373,13 @@ async function getSavedLocationArray() {
   return [];
 }
 
-/** Number of day in the standard day-bin array (4 weeks) */
-const DAY_BIN_SIZE = 28;
-
 /** Set the app into debug mode */
 export function enableDebugMode() {
   SetStoreData(DEBUG_MODE, 'true');
 
   // Create faux intersection data
   let pseudoBin = [];
-  for (let i = 0; i < DAY_BIN_SIZE; i++) {
+  for (let i = 0; i < MAX_EXPOSURE_WINDOW_DAYS; i++) {
     let intersections = Math.max(0, Math.floor(Math.random() * 50 - 20)) * 60 *1000;  // in millis
     if (intersections==0 && Math.random()<0.3) intersections=-1;   // about 25% of negative will be set to 0
     pseudoBin.push(intersections);
