@@ -51,18 +51,27 @@ export function intersectSetIntoBins(
   for (let i = 0; i < localArray.length; i++) {
     let currentLocation = localArray[i];
 
-    // The current day is 0 days ago (in otherwords, bin 0).  
+    // The current day is 0 days ago (in otherwords, bin 0).
     // Figure out how many days ago the current location was.
     // Note that we're basing this off midnight in the user's current timezone.
-    let midnight = dayjs().startOf('day').valueOf();
+    let midnight = dayjs()
+      .startOf('day')
+      .valueOf();
     let daysAgo = 0;
     if (currentLocation.time < midnight) {
       let longAgoFromMidnight = midnight - currentLocation.time;
-      daysAgo = Math.floor(longAgoFromMidnight / dayjs.duration(1,'day').asMilliseconds()) + 1;
+      daysAgo =
+        Math.floor(
+          longAgoFromMidnight / dayjs.duration(1, 'day').asMilliseconds(),
+        ) + 1;
     }
 
     // if we're before the number of days to bin, we can go on without to the next location
     if (daysAgo >= numDayBins) continue;
+
+    // Check to see if this is the first exposure for this bin.  If so, reset the exposure time to 0
+    // to indicate that we do actually have some data for this day
+    if (dayBins[daysAgo] < 0) dayBins[daysAgo] = 0;
 
     // timeMin and timeMax set from the concern time window
     // These define the window of time that is considered an intersection of concern.
@@ -78,7 +87,7 @@ export function intersectSetIntoBins(
     //          increased in time only a small amount, since the index we found
     //          in the concernArray is probably already close to where we want to be.
     let j = binarySearchForTime(concernArray, timeMin);
-    // we don't really if the exact timestamp wasn't found, so just take the j value as the index to start 
+    // we don't really if the exact timestamp wasn't found, so just take the j value as the index to start
     if (j < 0) j = -(j + 1);
 
     // starting at the now known index that corresponds to the beginning of the
@@ -95,10 +104,6 @@ export function intersectSetIntoBins(
         )
       ) {
         // Crossed path.  Add the exposure time to the appropriate day bin.
-
-        // Check to see if this is the first exposure for this bin.  If so, reset the exposure time to 0
-        // to remove any offset from the no exposure negative default
-        if (dayBins[daysAgo]<0) dayBins[daysAgo]=0;
 
         // How long was the possible concern time?
         //    = the amount of time from the current locations time to the next location time
@@ -185,7 +190,7 @@ export function areLocationsNearby(lat1, lon1, lat2, lon2) {
 /**
  * Performs "safety" cleanup of the data, to help ensure that we actually have location
  *   data in the array.  Also fixes cases with extra info or values coming in as strings.
- * 
+ *
  * @param {array} arr - array of locations in JSON format
  */
 export function normalizeAndSortLocations(arr) {
@@ -297,10 +302,14 @@ async function asyncCheckIntersect() {
           normalizeAndSortLocations(responseJson.concern_points),
         );
 
-        // update each day's bin with the result from the intersection
-        dayBins = dayBins.map(
-          (currentValue, i) => currentValue + tempDayBin[i],
-        );
+        // Update each day's bin with the result from the intersection.  To keep the
+        //  difference between no data (==-1) and exposure data (>=0), there
+        //  are a total of 3 cases to consider.
+        dayBins = dayBins.map((currentValue, i) => {
+          if (currentValue < 0) return tempDayBin[i];
+          if (tempDayBin[i] < 0) return currentValue;
+          return currentValue + tempDayBin[i];
+        });
       } catch (error) {
         // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
         //       Should do better than this.
@@ -325,7 +334,9 @@ async function asyncCheckIntersect() {
   return dayBins;
 }
 
-export function getEmptyLocationBins(exposureWindowDays = MAX_EXPOSURE_WINDOW_DAYS) {
+export function getEmptyLocationBins(
+  exposureWindowDays = MAX_EXPOSURE_WINDOW_DAYS,
+) {
   return new Array(exposureWindowDays).fill(-1);
 }
 

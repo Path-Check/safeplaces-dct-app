@@ -182,10 +182,18 @@ describe('intersectSetIntoBins', () => {
     let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
 
     let expectedBins = getEmptyLocationBins();
-    expectedBins[0] = dayjs.duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes').asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
-    expectedBins[3] = dayjs.duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes').asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
-    expectedBins[7] = dayjs.duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes').asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
-    expectedBins[10] = dayjs.duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes').asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[0] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[3] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[7] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[10] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
 
     expect(resultBins).toEqual(expectedBins);
   });
@@ -247,6 +255,10 @@ describe('intersectSetIntoBins', () => {
 
     let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
     let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
+    expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[10] = 0; // expect 0 (not -1) becuase we have location data for this bin
 
     expect(resultBins).toEqual(expectedBins);
   });
@@ -309,6 +321,10 @@ describe('intersectSetIntoBins', () => {
 
     let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
     let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
+    expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[10] = 0; // expect 0 (not -1) becuase we have location data for this bin
 
     expect(resultBins).toEqual(expectedBins);
   });
@@ -356,10 +372,14 @@ describe('intersectSetIntoBins', () => {
     let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
     let expectedBins = getEmptyLocationBins();
 
-    expectedBins[0] = dayjs.duration(30 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes').asMilliseconds(); // 2100000 - expect 30 minutes + 5 minutes for the final data point that takes the default
-    expectedBins[3] = dayjs.duration(30 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes').asMilliseconds(); // expect 30 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[0] = dayjs
+      .duration(30 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 2100000 - expect 30 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[3] = dayjs
+      .duration(30 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // expect 30 minutes + 5 minutes for the final data point that takes the default
 
-    console.log('[test]', resultBins, ' ', expectedBins);
+    //console.log('[test]', resultBins, ' ', expectedBins);
 
     //expect(resultBins.every((value, i) => value == expectedBins[i])).toBe(true);
     expect(resultBins).toEqual(expectedBins);
@@ -411,8 +431,12 @@ describe('intersectSetIntoBins', () => {
     let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
     let expectedBins = getEmptyLocationBins();
 
-    expectedBins[0] = dayjs.duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes').asMilliseconds(); // 3900000 expect 60 minutes + 5 minutes for the final data point that takes the default
-    expectedBins[3] = dayjs.duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes').asMilliseconds(); // 3900000 expect 60 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[0] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 3900000 expect 60 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[3] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 3900000 expect 60 minutes + 5 minutes for the final data point that takes the default
 
     expect(resultBins).toEqual(expectedBins);
   });
@@ -475,9 +499,15 @@ describe('intersectSetIntoBins', () => {
     );
     let expectedBins = getEmptyLocationBins(21);
 
-    expectedBins[0] = dayjs.duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes').asMilliseconds();   // 3960000 - Should end up counting 66 minutes total at loconcoria (60 minutes, plus the one at the current moment @ the 6 minute default)
-    expectedBins[3] = dayjs.duration(6 * DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes').asMilliseconds();   // 5 * 6 * 60 * 1000; // Should end up counting 30 minutes exposure for munich (5 exposures, 6 minutes each)
-    expectedBins[17] = dayjs.duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes').asMilliseconds();   // 3960000 - Should end up counting 66 minutes total at kansascity (60 minutes, plus the one at the current moment @ the 6 minute default)
+    expectedBins[0] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
+      .asMilliseconds(); // 3960000 - Should end up counting 66 minutes total at loconcoria (60 minutes, plus the one at the current moment @ the 6 minute default)
+    expectedBins[3] = dayjs
+      .duration(6 * DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 5 * 6 * 60 * 1000; // Should end up counting 30 minutes exposure for munich (5 exposures, 6 minutes each)
+    expectedBins[17] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
+      .asMilliseconds(); // 3960000 - Should end up counting 66 minutes total at kansascity (60 minutes, plus the one at the current moment @ the 6 minute default)
 
     expect(resultBins).toEqual(expectedBins);
   });
