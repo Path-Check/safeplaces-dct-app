@@ -1,4 +1,0 @@
-{
-    "prettier.configPath": ".prettierrc.js",
-    "prettier.packageManager": "yarn"
-}
