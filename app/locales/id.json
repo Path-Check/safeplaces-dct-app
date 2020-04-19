@@ -1,4 +1,14 @@
 {
+  "history": {
+    "no_exposure": "Tidak ada paparan",
+    "possible_exposure": "Kemungkinan Terpapar",
+    "possible_exposure_para": "Mungkin saja Anda berhubungan atau dekat dengan seseorang yang positif COVID-19",
+    "timeline": "Linimasa",
+    "what_does_this_mean": "Apa artinya ini?",
+    "what_does_this_mean_para": "Berdasarkan riwayat GPS Anda, ada kemungkinan bahwa Anda telah melakukan kontak dengan atau dekat dengan seseorang yang didiagnosis COVID-19. Ini tidak berarti Anda terinfeksi tetapi Anda mungkin terinfeksi.\n\nUntuk informasi lebih lanjut tentang apa yang harus Anda lakukan, Anda dapat merujuk ke situs web Mayo Clinic.",
+    "what_if_no_symptoms": "Bagaimana jika saya tidak menunjukkan gejala?",
+    "what_if_no_symptoms_para": "Jika Anda tidak memiliki gejala tetapi masih ingin diuji, Anda dapat pergi ke fasilitas pengujian terdekat.\n\n Individu yang tidak menunjukkan gejala kadang-kadang masih dapat mengalami infeksi dan menginfeksi orang lain. Berhati-hati dengan jarak sosial dan melakukan kontak dengan kelompok besar atau individu yang berisiko (orang tua, mereka yang memiliki masalah medis lainnya) adalah penting untuk mengelola risiko Anda dan risiko terhadap orang lain."
+  },
   "label": {
     "about_title": "Tentang",
     "authorities_add_button_label": "Tambah Sumber Terpercaya",
@@ -18,8 +28,6 @@
     "default_news_site_name": "Berita Safe Paths",
     "event_history_subtitle": "Pahami paparan pribadi Anda berdasarkan informasi yang dibagikan oleh otoritas kesehatan.",
     "event_history_title": "Riwayat paparan",
-    "export_para_1": "Jika Anda dinyatakan positif COVID-19, Bertanggung Jawablah dengan membagikan riwayat lokasi Anda dengan otoritas kesehatan.",
-    "export_para_2": "Lokasi yang dibagikan berupa tempat dan waktu, tidak ada informasi tambahan yang lain",
     "home_at_risk_header": "Anda Mungkin Terpapar",
     "home_at_risk_subsubtext": "Ini tidak berarti Anda terinfeksi.",
     "home_at_risk_subtext": "Berdasarkan riwayat GPS Anda, ada kemungkinan Anda melakukan kontak atau dekat dengan seseorang yang didiagnosis dengan COVID-19.",
@@ -30,8 +38,6 @@
     "home_no_contact_subtext": "Berdasarkan data yang tersedia Anda belum berada di dekat orang yang dilaporkan positif untuk COVID-19.",
     "home_unknown_header": "Tidak dikenal",
     "home_unknown_subtext": "Kami tidak dapat memberi tahu apakah Anda berisiko atau tidak, kecuali Anda mengizinkan aplikasi untuk mengakses lokasi Anda.",
-    "import_step_1": "1. Masuk ke Akun Google Anda dan Unduh Riwayat Lokasi Anda",
-    "import_step_2": "2. Setelah diunduh, buka layar ini lagi. Data akan diimpor secara otomatis.",
     "import_title": "Impor Data Lokasi",
     "latest_news": "Berita Terbaru",
     "launch_done_header": "Selesai",
@@ -82,7 +88,6 @@
     "notifications_no_exposure": "Tidak ada data paparan COVID-19 untuk dua minggu terakhir.",
     "overlap_found_button_label": "Data Publik Dimuat",
     "overlap_no_results_button_label": "Data Publik Dimuat",
-    "overlap_para_1": "Jejak hijau menunjukkan riwayat lokasi Anda\n\nLingkaran ungu muda mewakili dataset publik",
     "overlap_title": "Periksa Overlap",
     "push_at_risk_message": "Anda telah berpapasan dengan pasien COVID-19",
     "push_at_risk_title": "Anda mungkin berisiko",
@@ -95,15 +100,5 @@
     "terms_of_use": "Syarat Penggunaan",
     "tested_positive_subtitle": "Data pribadi Anda dapat ditransfer ke otoritas kesehatan, dicadangkan, atau dibagikan lain.",
     "tested_positive_title": "Bagikan riwayat lokasi"
-  },
-  "history": {
-    "no_exposure": "Tidak ada paparan",
-    "possible_exposure_para": "Mungkin saja Anda berhubungan atau dekat dengan seseorang yang positif COVID-19",
-    "possible_exposure": "Kemungkinan Terpapar",
-    "timeline": "Linimasa",
-    "what_does_this_mean_para": "Berdasarkan riwayat GPS Anda, ada kemungkinan bahwa Anda telah melakukan kontak dengan atau dekat dengan seseorang yang didiagnosis COVID-19. Ini tidak berarti Anda terinfeksi tetapi Anda mungkin terinfeksi.\n\nUntuk informasi lebih lanjut tentang apa yang harus Anda lakukan, Anda dapat merujuk ke situs web Mayo Clinic.",
-    "what_does_this_mean": "Apa artinya ini?",
-    "what_if_no_symptoms_para": "Jika Anda tidak memiliki gejala tetapi masih ingin diuji, Anda dapat pergi ke fasilitas pengujian terdekat.\n\n Individu yang tidak menunjukkan gejala kadang-kadang masih dapat mengalami infeksi dan menginfeksi orang lain. Berhati-hati dengan jarak sosial dan melakukan kontak dengan kelompok besar atau individu yang berisiko (orang tua, mereka yang memiliki masalah medis lainnya) adalah penting untuk mengelola risiko Anda dan risiko terhadap orang lain.",
-    "what_if_no_symptoms": "Bagaimana jika saya tidak menunjukkan gejala?"
   }
 }
