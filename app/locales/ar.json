@@ -30,6 +30,8 @@
     "home_no_contact_subtext": "استنادًا إلى البيانات المتاحة ، لم تكن بالقرب من أي شخص تم الإبلاغ عنه إيجابيًا بـ COVID-19",
     "home_unknown_header": "Unknown",
     "home_unknown_subtext": "We can’t tell if you’re at risk unless you enable the app to access your location.",
+    "home_setting_off_header": "Unknown",
+    "home_setting_off_subtext": "We can’t tell if you’re at risk unless you enable location history in the settings screen.",
     "import_step_1": "1. Login to your Google Account and Download your Location History",
     "import_step_2": "2. After downloaded, open this screen again. The data will import automatically.",
     "import_title": "Import Locations",
@@ -95,7 +97,9 @@
     "terms_of_use": "Terms of use",
     "terms_of_use_url": "https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#",
     "tested_positive_subtitle": "Your private data can be transferred to health authorities, backed up, or otherwise shared.",
-    "tested_positive_title": "Share location history"
+    "tested_positive_title": "Share location history",
+    "logging_active": "Location Active",
+    "logging_inactive": "Location Inactive"
   },
   "history": {
     "no_exposure": "No exposure",

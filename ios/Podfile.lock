@@ -23,9 +23,9 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - Permission-LocationAlways (2.1.2):
+  - Permission-LocationAlways (2.0.10):
     - RNPermissions
-  - Permission-Notifications (2.1.2):
+  - Permission-Notifications (2.0.10):
     - RNPermissions
   - RCTRequired (0.61.5)
   - RCTRestart (0.0.14):
@@ -247,11 +247,11 @@ PODS:
     - React-Core
   - RNBackgroundFetch (3.0.4):
     - React
-  - RNCAsyncStorage (1.9.0):
+  - RNCAsyncStorage (1.8.1):
     - React
   - RNCMaskedView (0.1.5):
     - React
-  - RNCPushNotificationIOS (1.1.1):
+  - RNCPushNotificationIOS (1.1.0):
     - React
   - RNFS (2.16.6):
     - React
@@ -259,15 +259,15 @@ PODS:
     - React
   - RNI18n (2.0.15):
     - React
-  - RNPermissions (2.1.2):
+  - RNPermissions (2.0.10):
     - React
-  - RNReanimated (1.8.0):
+  - RNReanimated (1.7.1):
     - React
   - RNScreens (2.0.0-alpha.12):
     - React
-  - RNShare (3.2.0):
+  - RNShare (3.1.2):
     - React
-  - RNSVG (12.1.0):
+  - RNSVG (12.0.3):
     - React
   - RNZipArchive (5.0.2):
     - React
@@ -456,8 +456,8 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  Permission-LocationAlways: 5f8a9ffe42bc2df8962cd955354cf57cb0663411
-  Permission-Notifications: 2f2ff1d01fe7677c3858c8f0a0bd3f3accdbb6bb
+  Permission-LocationAlways: 738e3b24333d52c87361804bb0a1641de014c405
+  Permission-Notifications: c9eb3a2da68dc0f37a8dc67d37bd28d150c5041d
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTRestart: 3915cac548a37703970941ca33de79a304b8b247
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
@@ -488,21 +488,21 @@ SPEC CHECKSUMS:
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNBackgroundFetch: 388cf1595934d22fed275b8db9b48a28bb4eb7b6
-  RNCAsyncStorage: 453cd7c335ec9ba3b877e27d02238956b76f3268
+  RNCAsyncStorage: e0dd7c8a36543b4ef84969acd9f8aceba3a92dc2
   RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
-  RNCPushNotificationIOS: a0b6894f4ad9b93d9dac467fdf4d055660ac8a0d
+  RNCPushNotificationIOS: ec3e8c17cda6a92a0bb97a53ec5ecf5771d94d21
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
-  RNPermissions: a96580116f7894146552e92b000ac30bf1661947
-  RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
+  RNPermissions: 1008d3511fee0e25739cf81c4af0d1b2248f1053
+  RNReanimated: 4e102df74a9674fa943e05f97f3362b6e44d0b48
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
-  RNShare: 13f1b72aab353c3092b30dce99d212871bb2a8a1
-  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
+  RNShare: c19dbe4a7224098cd3cfc4d3b92c886ca817b3f0
+  RNSVG: 7e16ddfc6e00d5aa69c9eb83e699bcce5dcb85d4
   RNZipArchive: ab51bc004a31657f34010254a9182014c6a81217
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 8210ab026428e53d909db91142f627bb251c5dc8
+PODFILE CHECKSUM: 6c5722e85f3b0971f441b4523e43eedd3e6c6416
 
 COCOAPODS: 1.9.1
