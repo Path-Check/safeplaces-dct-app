@@ -52,6 +52,11 @@ exports[`renders correctly 1`] = `
             "height": 55,
             "justifyContent": "center",
             "opacity": 1,
+            "transform": Array [
+              Object {
+                "rotateY": "0deg",
+              },
+            ],
             "width": 60,
             "zIndex": 1,
           }
@@ -178,12 +183,17 @@ exports[`renders correctly 1`] = `
       >
         <Text
           style={
-            Object {
-              "color": "#E5E4E6",
-              "fontFamily": "IBMPlexSans-Bold",
-              "fontSize": 20,
-              "textAlign": "left",
-            }
+            Array [
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#E5E4E6",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 20,
+                "textAlign": "left",
+              },
+            ]
           }
         >
           Terms of use
@@ -193,7 +203,13 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "alignSelf": "center",
+            "paddingLeft": 20,
             "paddingRight": 20,
+            "transform": Array [
+              Object {
+                "rotateY": "0deg",
+              },
+            ],
           }
         }
       >

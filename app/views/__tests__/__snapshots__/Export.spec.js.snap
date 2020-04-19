@@ -112,38 +112,53 @@ Array [
           >
             <Text
               style={
-                Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans-Medium",
-                  "fontSize": 26,
-                  "marginTop": 9,
-                }
+                Array [
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#FFF",
+                    "fontFamily": "IBMPlexSans-Medium",
+                    "fontSize": 26,
+                    "marginTop": 9,
+                  },
+                ]
               }
             >
               Share location history
             </Text>
             <Text
               style={
-                Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "lineHeight": 22.5,
-                  "marginTop": 22,
-                }
+                Array [
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#FFF",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 18,
+                    "lineHeight": 22.5,
+                    "marginTop": 22,
+                  },
+                ]
               }
             >
               If you test positive for COVID-19, please do your part by sharing your location history with local authorities.
             </Text>
             <Text
               style={
-                Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "lineHeight": 22.5,
-                  "marginTop": 22,
-                }
+                Array [
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#FFF",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 18,
+                    "lineHeight": 22.5,
+                    "marginTop": 22,
+                  },
+                ]
               }
             >
               Location is shared as a simple list of times and places, no additional information.
@@ -174,11 +189,16 @@ Array [
             >
               <Text
                 style={
-                  Object {
-                    "color": "#4051DB",
-                    "fontFamily": "IBMPlexSans-Medium",
-                    "fontSize": 20,
-                  }
+                  Array [
+                    Object {
+                      "writingDirection": "ltr",
+                    },
+                    Object {
+                      "color": "#4051DB",
+                      "fontFamily": "IBMPlexSans-Medium",
+                      "fontSize": 20,
+                    },
+                  ]
                 }
               >
                 Share location data

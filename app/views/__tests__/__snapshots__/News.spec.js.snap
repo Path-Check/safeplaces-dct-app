@@ -79,6 +79,11 @@ exports[`renders correctly 1`] = `
               "height": 55,
               "justifyContent": "center",
               "opacity": 1,
+              "transform": Array [
+                Object {
+                  "rotateY": "0deg",
+                },
+              ],
               "width": 60,
               "zIndex": 1,
             }
@@ -283,10 +288,15 @@ exports[`renders correctly 1`] = `
                     >
                       <Text
                         style={
-                          Object {
-                            "fontFamily": "IBMPlexSans-SemiBold",
-                            "fontSize": 18,
-                          }
+                          Array [
+                            Object {
+                              "writingDirection": "ltr",
+                            },
+                            Object {
+                              "fontFamily": "IBMPlexSans-SemiBold",
+                              "fontSize": 18,
+                            },
+                          ]
                         }
                       >
                         Safe Paths News
