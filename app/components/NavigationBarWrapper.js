@@ -2,7 +2,7 @@ import styled from '@emotion/native';
 import { useTheme } from 'emotion-theming';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, I18nManager } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import backArrow from './../assets/svgs/backArrow';
@@ -33,7 +33,9 @@ const NavigationBarWrapper = ({ children, title, onBackPress }) => {
       <BottomContainer>
         <Header>
           <BackArrow onPress={() => onBackPress()}>
-            <BackArrowIcon xml={backArrow} />
+            <BackArrowIcon 
+            
+            xml={backArrow} />
           </BackArrow>
           <Title>{title}</Title>
         </Header>
@@ -83,6 +85,7 @@ const BackArrow = styled.TouchableOpacity`
   align-items: center;
   height: 55px;
   justify-content: center;
+  transform: ${I18nManager.isRTL ? 'rotateY(180deg)' : 'rotateY(0deg)'};
   width: 60px;
   z-index: 1;
 `;

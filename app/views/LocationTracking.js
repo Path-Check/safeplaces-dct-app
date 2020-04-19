@@ -12,6 +12,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  I18nManager,
 } from 'react-native';
 import {
   PERMISSIONS,
@@ -591,8 +592,10 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryRegular,
   },
   arrowContainer: {
+    transform: I18nManager.isRTL ? [{rotateY: '180deg'}] : [{rotateY: '0deg'}],
     alignSelf: 'center',
     paddingRight: 20,
+    paddingLeft: 20
   },
 });
 
