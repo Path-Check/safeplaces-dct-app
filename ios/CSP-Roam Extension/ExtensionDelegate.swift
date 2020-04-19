@@ -110,13 +110,13 @@ extension ExtensionDelegate: CLLocationManagerDelegate {
             currentLocation = locations.last!    // last location is most recent
             locData.latitude = currentLocation.coordinate.latitude
             locData.longitude = currentLocation.coordinate.longitude
-            locData.msSince1970UTC = (currentLocation.timestamp.timeIntervalSince1970 * 1000.0).rounded()
+            locData.time = (currentLocation.timestamp.timeIntervalSince1970 * 1000.0).rounded()
             if numSavedLocs == 0  { // always save first loc
                 savingLoc = true
             } else {
                 // applying temporal filtering only, spatial filtering is provided by .distanceFilter specified above in applicationDidFinishLaunching
-                let lastLocTime = ws.savedLocs[numSavedLocs-1].msSince1970UTC
-                let currentLocTime = locData.msSince1970UTC
+                let lastLocTime = ws.savedLocs[numSavedLocs-1].time
+                let currentLocTime = locData.time
                 if (currentLocTime - lastLocTime) > updateTimeInterval {  // ignore any locs in past 5 minutes
                     savingLoc = true
                 }
@@ -126,7 +126,7 @@ extension ExtensionDelegate: CLLocationManagerDelegate {
                 ws.savedLocs.append(locData)
                 ws.dispatchSemaphore.signal()  // release semaphore
                 let locView = String(format: "%d: %.3f,%.3f %.0fm", ws.savedLocs.count, locData.latitude, locData.longitude, currentLocation.horizontalAccuracy.rounded())
-                postNotificationOnMainQueueAsync(name: .locationDidArrive, object: locView)
+                postNotificationOnMainQueueAsync(name: .locationDidArrive, object: locView)  // show user logged point
             }
         }
     }

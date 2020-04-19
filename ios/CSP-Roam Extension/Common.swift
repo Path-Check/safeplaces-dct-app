@@ -10,14 +10,14 @@ import Foundation
 import CoreLocation
 import WatchConnectivity
 
-struct LocData {
+struct LocData: Codable {
     var latitude: Double
     var longitude: Double
-    var msSince1970UTC: Double
+    var time: Double  // ms since 1970 UTC
     init() {
         latitude = 0
         longitude = 0
-        msSince1970UTC = 0
+        time = 0
     }
 }
 

@@ -14,8 +14,11 @@ Communication with the paired iPhone relies on the Watch Connectivity Framework.
 
 Location data flows only from the watch to the phone app.  The paired phone app implements a WCSessionDelegate (see Apple's [Watch Connectivity Framework](https://developer.apple.com/documentation/watchconnectivity/wcsessiondelegate)), with the data arriving via the callback:
 `func session(WCSession, didReceiveMessage: [String : Any])`
-in the AppDelegate.  Per the Watch Connectivity Framework conventions, each message arrives as a Swift Dictionary, where the key is `"location"` and the value is a string representation of the location matching the JSON format used in the app: 
-`{"latitude":44.423323044841595,"longitude":-73.19002795875869,"time":1586528873207}`
+in the AppDelegate.  Per the Watch Connectivity Framework conventions, each message arrives as a Swift Dictionary, where the key is `"location"` and the value is a string representation of the locations matching the JSON format used in the iOS app.  E.g. 3 locations appear as:
+`[{"latitude":44.433276180915664,"longitude":-73.12025206383574,"time":1586280652163},
+  {"latitude":44.4333901343521,"longitude":-73.12012488045465,"time":1586280665158},
+  {"latitude":44.43336352230702,"longitude":-73.12010557309917,"time":1586280686181}]`
+  in the callback.
 
 The AppDelegate also implements: `func sessionDidDeactivate(_ session: WCSession) {session.activate()}`
 to reconnect with the paired watch after it returns from a disconnnected state.
