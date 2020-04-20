@@ -8,6 +8,11 @@
     "postinstall": "patch-package; npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
+    "detox-setup": "detox clean-framework-cache && detox build-framework-cache",
+    "build:e2e:android": "detox build -c android.emu.release",
+    "test:e2e:android": "detox test -c android.emu.release",
+    "build:e2e:ios": "detox build -c ios.sim.debug",
+    "test:e2e:ios": "detox test -c ios.sim.debug",
     "i18n:extract": "i18next",
     "test": "jest test",
     "test:dev_setup": "bats __tests__/dev_setup.test.bats"
@@ -86,7 +91,9 @@
     "@types/jest": "^25.2.1",
     "babel-jest": "^25.1.0",
     "bats": "^1.1.0",
+    "detox": "^16.1.1",
     "eslint": "^6.8.0",
+    "eslint-plugin-detox": "^1.0.0",
     "husky": "^4.2.3",
     "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
     "import-sort-config": "^6.0.0",
@@ -112,5 +119,37 @@
     "setupFiles": [
       "./jestSetupFile.js"
     ]
+  },
+  "detox": {
+    "artifacts": {
+      "rootDir": "./e2e/artifacts/"
+    },
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 11"
+        }
+      },
+      "android.emu.debug": {
+        "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
+        "build": "cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && cd ..",
+        "type": "android.emulator",
+        "device": {
+          "avdName": "pixel-2"
+        }
+      },
+      "android.emu.release": {
+        "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
+        "build": "cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && cd ..",
+        "type": "android.emulator",
+        "device": {
+          "avdName": "pixel-2"
+        }
+      }
+    },
+    "test-runner": "jest"
   }
 }
