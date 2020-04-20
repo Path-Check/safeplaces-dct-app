@@ -55,19 +55,16 @@ export function intersectSetIntoBins(
     // The current day is 0 days ago (in otherwords, bin 0).
     // Figure out how many days ago the current location was.
     // Note that we're basing this off midnight in the user's current timezone.
-    let midnight = dayjs()
-      .startOf('day')
-      .valueOf();
+    // Also using the dayjs subtract method, which should take timezone and
+    //   daylight savings into account.
+    let midnight = dayjs().startOf('day');
     let daysAgo = 0;
-    if (currentLocation.time < midnight) {
-      let longAgoFromMidnight = midnight - currentLocation.time;
-      daysAgo =
-        Math.floor(
-          longAgoFromMidnight / dayjs.duration(1, 'day').asMilliseconds(),
-        ) + 1;
+    while (currentLocation.time < midnight.valueOf() && daysAgo < numDayBins) {
+      midnight = midnight.subtract(1, 'day');
+      daysAgo++;
     }
 
-    // if we're before the number of days to bin, we can go on without to the next location
+    // if this location's date is earlier than the number of days to bin, we can skip it
     if (daysAgo >= numDayBins) continue;
 
     // Check to see if this is the first exposure for this bin.  If so, reset the exposure time to 0
@@ -380,8 +377,9 @@ export function enableDebugMode() {
   // Create faux intersection data
   let pseudoBin = [];
   for (let i = 0; i < MAX_EXPOSURE_WINDOW_DAYS; i++) {
-    let intersections = Math.max(0, Math.floor(Math.random() * 50 - 20)) * 60 *1000;  // in millis
-    if (intersections==0 && Math.random()<0.3) intersections=-1;   // about 25% of negative will be set to 0
+    let intersections =
+      Math.max(0, Math.floor(Math.random() * 50 - 20)) * 60 * 1000; // in millis
+    if (intersections == 0 && Math.random() < 0.3) intersections = -1; // about 30% of negative will be set as no data
     pseudoBin.push(intersections);
   }
   let dayBin = JSON.stringify(pseudoBin);

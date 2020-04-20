@@ -13,8 +13,14 @@ import {
   normalizeAndSortLocations,
 } from '../Intersect';
 
-//const TEST_MOMENT_MS = dayjs('2020-04-17T16:00:00.000Z').valueOf();
-TEST_MOMENT = dayjs('2020-04-17T16:00:00.000Z');
+// Base moment used in all tests.
+// This is SUPER hacky ... it will effectively ensure that tests run near noon (unless otherwise offset)
+//
+// TODO: Do better than this.  Find something that properly allows for mocking times and timezones (and actually works)
+//
+const TEST_MOMENT = dayjs('2020-04-17T14:00:00.000Z')
+  .startOf('day')
+  .add(12, 'hours');
 
 /**
  * locations used in testing.  Set up as a single object to help simplify test setup.
@@ -98,11 +104,9 @@ const TEST_LOCATIONS = {
 };
 
 /**
- *   Testing the intersect function.  Multiple cases covered.
+ *   Intersect tests with empty location sets.  Multiple cases covered.
  */
-
 describe('intersect with empty sets', () => {
-
   beforeEach(() => {
     MockDate.set(TEST_MOMENT.valueOf());
   });
@@ -112,25 +116,29 @@ describe('intersect with empty sets', () => {
   });
 
   /**
-   * Simplest case, empty data, 
+   * Simplest case, empty data, should be no results in all bins
    */
-  it('empty locations vs empty concern locations has empty result', () => {
-    let emptyLocations = [];
-    let emptyConcernLocations = [];
-    let resultBins = intersectSetIntoBins(
-      emptyLocations,
-      emptyConcernLocations,
-    );
-    expect(resultBins.every(a => a == -1)).toBe(true);
+  it('empty locations vs empty concern locations has no data result', () => {
+    let baseLocations = [];
+    let concernLocations = [];
+
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
+
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let expectedBins = getEmptyLocationBins();
+
+    expect(resultBins).toEqual(expectedBins);
   });
 
   /**
-   * Empty locations, some concern locations
+   * Empty locations, some concern locations 
    */
-  it('empty locations vs real concern locations has empty result', () => {
-    let emptyLocations = [];
-    
-    // same locations for the concern array, at the same times
+  it('empty locations vs real concern locations has no data result', () => {
+    let baseLocations = [];
+
+    // a few concern locations, going back a while
     let concernLocations = [
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.kansascity.concern,
@@ -138,60 +146,104 @@ describe('intersect with empty sets', () => {
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.hammerfest.concern,
-        TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.hobart.concern,
-        TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(7, 'days')
+          .valueOf(),
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.munich.concern,
-        TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(10, 'days')
+          .valueOf(),
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.laconcordia.concern,
-        TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(17, 'days')
+          .valueOf(),
       ),
     ];
-    let resultBins = intersectSetIntoBins(
-      emptyLocations,
-      concernLocations,
-    );
-    expect(resultBins.every(a => a == -1)).toBe(true);
+
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
+
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let expectedBins = getEmptyLocationBins();
+
+    expect(resultBins).toEqual(expectedBins);
   });
 
-  it('locations vs empty concern locations has empty result', () => {
-    let emptyLocations = [];
-    let emptyConcernLocations = [];
-    let resultBins = intersectSetIntoBins(
-      emptyLocations,
-      emptyConcernLocations,
-    );
-    expect(resultBins.every(a => a == -1)).toBe(true);
+  /**
+   * This checks having locaitons, but the health authority is returning
+   *   no locations of concern.  Should get "0" in bins with location data
+   */
+  it('locations vs empty concern locations has correct concern result', () => {
+    // a few base locations, going back a while
+    let baseLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.concern,
+        TEST_MOMENT.valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hammerfest.concern,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hobart.concern,
+        TEST_MOMENT.clone()
+          .subtract(7, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.concern,
+        TEST_MOMENT.clone()
+          .subtract(10, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.concern,
+        TEST_MOMENT.clone()
+          .subtract(17, 'days')
+          .valueOf(),
+      ),
+    ];
+
+    // no concern locations
+    let concernLocations = [];
+
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
+
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let expectedBins = getEmptyLocationBins();
+    expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[10] = 0; // expect 0 (not -1) becuase we have location data for this bin
+
+    expect(resultBins).toEqual(expectedBins);
   });
-
-
-
 });
 
 
-// describe('intersect with fixed locations and times', () => {
-
-
-// });
-
-
-// describe('instersect at interesting time slices'), () => {
-
-
-
-// }
-
-describe('intersectSetIntoBins', () => {
+/**
+ * More realistic tests, where there are locations and concern locations
+ */
+describe('intersect at fixed locations and times', () => {
   dayjs.extend(duration);
 
   beforeEach(() => {
-    //MockDate.set(TEST_MOMENT_MS.valueOf());
+    MockDate.set(TEST_MOMENT.valueOf());
   });
 
   afterEach(() => {
@@ -199,27 +251,10 @@ describe('intersectSetIntoBins', () => {
   });
 
   /**
-   * Simplest case, empty data
-   */
-  it('intersect of empty locations produces bins with no intersections', () => {
-    let emptyLocations = [];
-    let emptyConcernLocations = [];
-    let resultBins = intersectSetIntoBins(
-      emptyLocations,
-      emptyConcernLocations,
-    );
-    expect(resultBins.every(a => a == -1)).toBe(true);
-  });
-
-  /**
    * Exact matches in the baseLocations and the concernLocations
    */
-  it('intersect of known location intersections at default intervals has known result', () => {
+  it('exact intersect has known result', () => {
     // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
-
-    let TEST_MOMENT = dayjs('2020-04-17T16:00:00.000Z');
-    MockDate.set(TEST_MOMENT.valueOf());
-
     let baseLocations = [
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.kansascity.base,
@@ -228,19 +263,27 @@ describe('intersectSetIntoBins', () => {
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.hammerfest.base,
         //TEST_MOMENT_MS - 3 * 24 * 60 * 60 * 1000,
-        TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.hobart.base,
-        TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(7, 'days')
+          .valueOf(),
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.munich.base,
-        TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(10, 'days')
+          .valueOf(),
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.laconcordia.base,
-        TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(17, 'days')
+          .valueOf(),
       ),
     ];
     // same locations for the concern array, at the same times
@@ -251,19 +294,27 @@ describe('intersectSetIntoBins', () => {
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.hammerfest.concern,
-        TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.hobart.concern,
-        TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(7, 'days')
+          .valueOf(),
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.munich.concern,
-        TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(10, 'days')
+          .valueOf(),
       ),
       ...generateBackfillLocationArray(
         TEST_LOCATIONS.laconcordia.concern,
-        TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
+        TEST_MOMENT.clone()
+          .subtract(17, 'days')
+          .valueOf(),
       ),
     ];
 
@@ -276,333 +327,462 @@ describe('intersectSetIntoBins', () => {
     let expectedBins = getEmptyLocationBins();
     expectedBins[0] = dayjs
       .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-      .asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
+      .asMilliseconds(); // expect 60 minutes + 5 minutes for the final data point that takes the default
     expectedBins[3] = dayjs
       .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-      .asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
+      .asMilliseconds(); // expect 60 minutes + 5 minutes for the final data point that takes the default
     expectedBins[7] = dayjs
       .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-      .asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
+      .asMilliseconds(); // expect 60 minutes + 5 minutes for the final data point that takes the default
     expectedBins[10] = dayjs
       .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-      .asMilliseconds(); // 3900000 - expect 60 minutes + 5 minutes for the final data point that takes the default
+      .asMilliseconds(); // expect 60 minutes + 5 minutes for the final data point that takes the default
 
     expect(resultBins).toEqual(expectedBins);
   });
 
-  // /**
-  //  * same locations in base and concern sets, but at different times (so no concern)
-  //  */
-  // it('intersect of known location intersections at differnt times shows no concern', () => {
-  //   // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
-  //   let baseLocations = [
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.kansascity.base,
-  //       TEST_MOMENT_MS,
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.hammerfest.base,
-  //       TEST_MOMENT_MS.substract(3,'days').asMilliseconds(),   // - dayjs.duration(3, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.hobart.base,
-  //       TEST_MOMENT_MS.subtract(7, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.base,
-  //       TEST_MOMENT_MS.substract(10, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.base,
-  //       TEST_MOMENT_MS.substract(17, 'days').asMilliseconds(),
-  //     ),
-  //   ];
-  //   // LOOK SHARP ... the locations are in a different order (so at different times)
-  //   let concernLocations = [
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.hammerfest.concern,
-  //       TEST_MOMENT_MS,
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.concern,
-  //       TEST_MOMENT_MS.subtract(3, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.kansascity.concern,
-  //       TEST_MOMENT_MS.substract(7, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.hobart.concern,
-  //       TEST_MOMENT_MS.substract(10, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.concern,
-  //       TEST_MOMENT_MS.substract(17, 'days').asMilliseconds(),
-  //     ),
-  //   ];
+  /**
+   * same locations in base and concern sets, but at different times (so no concern)
+   */
+  it('differing times (nothing in common) shows no concern', () => {
+    // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
+    let baseLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.base,
+        TEST_MOMENT.valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hammerfest.base,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(), // - dayjs.duration(3, 'days').asMilliseconds(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hobart.base,
+        TEST_MOMENT.clone()
+          .subtract(7, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.base,
+        TEST_MOMENT.clone()
+          .subtract(10, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.base,
+        TEST_MOMENT.clone()
+          .subtract(17, 'days')
+          .valueOf(),
+      ),
+    ];
+    // LOOK SHARP ... the locations are in a different order (so at different times)
+    let concernLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hammerfest.concern,
+        TEST_MOMENT.valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.concern,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.concern,
+        TEST_MOMENT.clone()
+          .subtract(7, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hobart.concern,
+        TEST_MOMENT.clone()
+          .subtract(10, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.concern,
+        TEST_MOMENT.clone()
+          .subtract(17, 'days')
+          .valueOf(),
+      ),
+    ];
 
-  //   // normalize and sort
-  //   baseLocations = normalizeAndSortLocations(baseLocations);
-  //   concernLocations = normalizeAndSortLocations(concernLocations);
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
 
-  //   let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
-  //   let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
-  //   expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
-  //   expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
-  //   expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
-  //   expectedBins[10] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
+    expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[10] = 0; // expect 0 (not -1) becuase we have location data for this bin
 
-  //   expect(resultBins).toEqual(expectedBins);
-  // });
+    expect(resultBins).toEqual(expectedBins);
+  });
 
-  // /**
-  //  * same general locations and times, but distance apart in each is just over the threshold, so no concern
-  //  */
-  // it('intersect of known location intersections with distances slightly over the threshold shows no concern', () => {
-  //   // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
-  //   let baseLocations = [
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.kansascity.base,
-  //       TEST_MOMENT_MS,
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.hammerfest.base,
-  //       TEST_MOMENT_MS - dayjs.duration(3, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.hobart.base,
-  //       TEST_MOMENT_MS - dayjs.duration(7, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.base,
-  //       TEST_MOMENT_MS - dayjs.duration(10, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.base,
-  //       TEST_MOMENT_MS - dayjs.duration(17, 'days').asMilliseconds(),
-  //     ),
-  //   ];
+  /**
+   * same general locations and times, but distance apart in each is just over the threshold, so no concern
+   */
+  it('distances slightly over the threshold shows no concern', () => {
+    // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
+    let baseLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.base,
+        TEST_MOMENT.valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hammerfest.base,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hobart.base,
+        TEST_MOMENT.clone()
+          .subtract(7, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.base,
+        TEST_MOMENT.clone()
+          .subtract(10, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.base,
+        TEST_MOMENT.clone()
+          .subtract(17, 'days')
+          .valueOf(),
+      ),
+    ];
 
-  //   // same locations for the concern array
-  //   let concernLocations = [
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.hammerfest.no_concern,
-  //       TEST_MOMENT_MS,
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.no_concern,
-  //       TEST_MOMENT_MS - dayjs.duration(3, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.kansascity.no_concern,
-  //       TEST_MOMENT_MS - dayjs.duration(7, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.hobart.no_concern,
-  //       TEST_MOMENT_MS - dayjs.duration(10, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.no_concern,
-  //       TEST_MOMENT_MS - dayjs.duration(17, 'days').asMilliseconds(),
-  //     ),
-  //   ];
+    // same locations for the concern array
+    let concernLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hammerfest.no_concern,
+        TEST_MOMENT.valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.no_concern,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.no_concern,
+        TEST_MOMENT.clone()
+          .subtract(7, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hobart.no_concern,
+        TEST_MOMENT.clone()
+          .subtract(10, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.no_concern,
+        TEST_MOMENT.clone()
+          .subtract(17, 'days')
+          .valueOf(),
+      ),
+    ];
 
-  //   // normalize and sort
-  //   baseLocations = normalizeAndSortLocations(baseLocations);
-  //   concernLocations = normalizeAndSortLocations(concernLocations);
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
 
-  //   let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
-  //   let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
-  //   expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
-  //   expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
-  //   expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
-  //   expectedBins[10] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
+    expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
+    expectedBins[10] = 0; // expect 0 (not -1) becuase we have location data for this bin
 
-  //   expect(resultBins).toEqual(expectedBins);
-  // });
+    expect(resultBins).toEqual(expectedBins);
+  });
 
-  // /**
-  //  * specific test with two locations, with times offset to cross beyond the max offset window,
-  //  * so should be only partial overlaps.
-  //  */
-  // it('intersect of known location intersections offset in time show correct partial overlaps ', () => {
-  //   // 2 locations
-  //   let baseLocations = [
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.base,
-  //       TEST_MOMENT_MS,
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.base,
-  //       TEST_MOMENT_MS - dayjs.duration(3, 'days').asMilliseconds(),
-  //     ),
-  //   ];
+  /**
+   * specific test with two locations, with times offset to cross beyond the max offset window,
+   * so should be only partial overlaps.
+   */
+  it('offset in time shows correct partial overlaps ', () => {
+    // 2 locations
+    let baseLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.base,
+        TEST_MOMENT.valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.base,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+      ),
+    ];
 
-  //   // same locations for the concern array, the first is offset back 30 minutes over the offset window, the second
-  //   //   is offset 30 minutes forward
-  //   let concernLocations = [
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.concern,
-  //       TEST_MOMENT_MS -
-  //         dayjs
-  //           .duration(CONCERN_TIME_WINDOW_MINUTES, 'minutes')
-  //           .asMilliseconds() -
-  //         dayjs.duration(30, 'minutes').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.concern,
-  //       TEST_MOMENT_MS -
-  //         dayjs.duration(3, 'days').asMilliseconds() +
-  //         dayjs.duration(30, 'minutes').asMilliseconds(),
-  //     ),
-  //   ];
+    // same locations for the concern array, the first is offset back 30 minutes over the offset window, the second
+    //   is offset 30 minutes forward
+    let concernLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.concern,
+        TEST_MOMENT.clone()
+          .subtract(CONCERN_TIME_WINDOW_MINUTES + 30, 'minutes')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.concern,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .add(30, 'minutes')
+          .valueOf(),
+      ),
+    ];
 
-  //   // normalize and sort
-  //   baseLocations = normalizeAndSortLocations(baseLocations);
-  //   concernLocations = normalizeAndSortLocations(concernLocations);
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
 
-  //   let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
-  //   let expectedBins = getEmptyLocationBins();
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let expectedBins = getEmptyLocationBins();
 
-  //   expectedBins[0] = dayjs
-  //     .duration(30 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-  //     .asMilliseconds(); // 2100000 - expect 30 minutes + 5 minutes for the final data point that takes the default
-  //   expectedBins[3] = dayjs
-  //     .duration(30 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-  //     .asMilliseconds(); // expect 30 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[0] = dayjs
+      .duration(30 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 2100000 - expect 30 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[3] = dayjs
+      .duration(30 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // expect 30 minutes + 5 minutes for the final data point that takes the default
 
-  //   //console.log('[test]', resultBins, ' ', expectedBins);
+    expect(resultBins).toEqual(expectedBins);
+  });
 
-  //   //expect(resultBins.every((value, i) => value == expectedBins[i])).toBe(true);
-  //   expect(resultBins).toEqual(expectedBins);
-  // });
+  /**
+   * specific test with two locations, and the concern data has multiple matches in the timeframes
+   * of concern.  This verifies we're not double counting exposures in this case
+   */
+  it('is not double counting exposure times with multiple results for a location', () => {
+    // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
+    let baseLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.base,
+        TEST_MOMENT.valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.base,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+      ),
+    ];
 
-  // /**
-  //  * specific test with two locations, and the concern data has multiple matches in the timeframes
-  //  * of concern.  This verifies we're not double counting exposures in this case
-  //  */
-  // it('intersect is not double counting exposure times with multiple results for a location', () => {
-  //   // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
-  //   let baseLocations = [
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.base,
-  //       TEST_MOMENT_MS,
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.base,
-  //       TEST_MOMENT_MS - dayjs.duration(3, 'days').asMilliseconds(), // 3 * 24 * 60 * 60 * 1000,
-  //     ),
-  //   ];
+    // locations with a fair amount of expected overlap
+    let concernLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.concern,
+        TEST_MOMENT.valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.concern,
+        TEST_MOMENT.clone()
+          .subtract(3, 'minutes')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.concern,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.concern,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .subtract(12, 'minutes')
+          .valueOf(),
+      ),
+    ];
 
-  //   // locations with a fair amount of expected overlap
-  //   let concernLocations = [
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.concern,
-  //       TEST_MOMENT_MS,
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.concern,
-  //       TEST_MOMENT_MS - dayjs.duration(3, 'minutes').asMilliseconds(), // same location, data offset by 3 minutes (so lots of duplicates)
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.concern,
-  //       TEST_MOMENT_MS - dayjs.duration(3, 'days').asMilliseconds(), //  3 * 24 * 60 * 60 * 1000,
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.concern,
-  //       TEST_MOMENT_MS -
-  //         dayjs.duration(3, 'days').asMilliseconds() -
-  //         dayjs.duration(12, 'minutes').asMilliseconds(), // 3 * 24 * 60 * 60 * 1000 - 12 * 60 * 1000,
-  //     ),
-  //   ];
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
 
-  //   // normalize and sort
-  //   baseLocations = normalizeAndSortLocations(baseLocations);
-  //   concernLocations = normalizeAndSortLocations(concernLocations);
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let expectedBins = getEmptyLocationBins();
 
-  //   let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
-  //   let expectedBins = getEmptyLocationBins();
+    expectedBins[0] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 3900000 expect 60 minutes + 5 minutes for the final data point that takes the default
+    expectedBins[3] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 3900000 expect 60 minutes + 5 minutes for the final data point that takes the default
 
-  //   expectedBins[0] = dayjs
-  //     .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-  //     .asMilliseconds(); // 3900000 expect 60 minutes + 5 minutes for the final data point that takes the default
-  //   expectedBins[3] = dayjs
-  //     .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-  //     .asMilliseconds(); // 3900000 expect 60 minutes + 5 minutes for the final data point that takes the default
+    expect(resultBins).toEqual(expectedBins);
+  });
 
-  //   expect(resultBins).toEqual(expectedBins);
-  // });
+  /**
+   * specific test with two locations, with altered defaults.  more dayBins, shorter backfill times
+   */
+  it('is counting non-standard intervals correctly', () => {
+    // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
+    let baseLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.base,
+        TEST_MOMENT.valueOf(),
+        dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
+        dayjs.duration(4, 'minutes').asMilliseconds(), // 1000 * 60 * 4  backfill interval is 4 minutes
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.base,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+        dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
+        dayjs.duration(15, 'minutes').asMilliseconds(), //1000 * 60 * 15 backfill interval is 15 minutes, or a total of 5 location points
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.base,
+        TEST_MOMENT.valueOf() - dayjs.duration(17, 'days').asMilliseconds(), // 17 * 24 * 60 * 60 * 1000,
+      ),
+    ];
 
-  // /**
-  //  * specific test with two locations, with altered defaults.  more dayBins, shorter backfill times
-  //  */
-  // it('intersect is counting non-standard intervals correctly', () => {
-  //   // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
-  //   let baseLocations = [
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.base,
-  //       TEST_MOMENT_MS,
-  //       dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
-  //       dayjs.duration(4, 'minutes').asMilliseconds(), // 1000 * 60 * 4  backfill interval is 4 minutes
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.base,
-  //       TEST_MOMENT_MS - 3 * 24 * 60 * 60 * 1000,
-  //       dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
-  //       dayjs.duration(15, 'minutes').asMilliseconds(), //1000 * 60 * 15 backfill interval is 15 minutes, or a total of 5 location points
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.kansascity.base,
-  //       TEST_MOMENT_MS - dayjs.duration(17, 'days').asMilliseconds(), // 17 * 24 * 60 * 60 * 1000,
-  //     ),
-  //   ];
+    // same locations for the concern array, the first is offset back 30 minutes over the offset window, the second
+    //   is offset 30 minutes forward
+    let concernLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.laconcordia.concern,
+        TEST_MOMENT.valueOf(),
+        dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
+        dayjs.duration(1, 'minutes').asMilliseconds(), //1000 * 60 * 1 backfill interval is 1 minute
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.munich.concern,
+        TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.concern,
+        TEST_MOMENT.clone()
+          .subtract(17, 'days')
+          .valueOf(),
+      ),
+    ];
 
-  //   // same locations for the concern array, the first is offset back 30 minutes over the offset window, the second
-  //   //   is offset 30 minutes forward
-  //   let concernLocations = [
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.laconcordia.concern,
-  //       TEST_MOMENT_MS,
-  //       dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
-  //       dayjs.duration(1, 'minutes').asMilliseconds(), //1000 * 60 * 1 backfill interval is 1 minute
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.munich.concern,
-  //       TEST_MOMENT_MS - dayjs.duration(3, 'days').asMilliseconds(),
-  //     ),
-  //     ...generateBackfillLocationArray(
-  //       TEST_LOCATIONS.kansascity.concern,
-  //       TEST_MOMENT_MS - dayjs.duration(17, 'days').asMilliseconds(), // 17 * 24 * 60 * 60 * 1000,
-  //     ),
-  //   ];
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
 
-  //   // normalize and sort
-  //   baseLocations = normalizeAndSortLocations(baseLocations);
-  //   concernLocations = normalizeAndSortLocations(concernLocations);
+    let resultBins = intersectSetIntoBins(
+      baseLocations,
+      concernLocations,
+      21, // override to 21 dayBins
+      dayjs.duration(CONCERN_TIME_WINDOW_MINUTES, 'minutes').asMilliseconds(), // setting the concern time window
+      dayjs
+        .duration(DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
+        .asMilliseconds(), //override the exposure period to 1 minute longer that the default
+    );
+    let expectedBins = getEmptyLocationBins(21);
 
-  //   let resultBins = intersectSetIntoBins(
-  //     baseLocations,
-  //     concernLocations,
-  //     21, // override to 21 dayBins
-  //     dayjs.duration(CONCERN_TIME_WINDOW_MINUTES, 'minutes').asMilliseconds(), // setting the concern time window
-  //     dayjs
-  //       .duration(DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
-  //       .asMilliseconds(), //override the exposure period to 1 minute longer that the default
-  //   );
-  //   let expectedBins = getEmptyLocationBins(21);
+    expectedBins[0] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
+      .asMilliseconds(); // 3960000 - Should end up counting 66 minutes total at loconcoria (60 minutes, plus the one at the current moment @ the 6 minute default)
+    expectedBins[3] = dayjs
+      .duration(6 * DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // 5 * 6 * 60 * 1000; // Should end up counting 30 minutes exposure for munich (5 exposures, 6 minutes each)
+    expectedBins[17] = dayjs
+      .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
+      .asMilliseconds(); // 3960000 - Should end up counting 66 minutes total at kansascity (60 minutes, plus the one at the current moment @ the 6 minute default)
 
-  //   expectedBins[0] = dayjs
-  //     .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
-  //     .asMilliseconds(); // 3960000 - Should end up counting 66 minutes total at loconcoria (60 minutes, plus the one at the current moment @ the 6 minute default)
-  //   expectedBins[3] = dayjs
-  //     .duration(6 * DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-  //     .asMilliseconds(); // 5 * 6 * 60 * 1000; // Should end up counting 30 minutes exposure for munich (5 exposures, 6 minutes each)
-  //   expectedBins[17] = dayjs
-  //     .duration(60 + DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
-  //     .asMilliseconds(); // 3960000 - Should end up counting 66 minutes total at kansascity (60 minutes, plus the one at the current moment @ the 6 minute default)
+    expect(resultBins).toEqual(expectedBins);
+  });
+});
 
-  //   expect(resultBins).toEqual(expectedBins);
-  // });
+/**
+ * These are tests running at interesting times, such as near midnight or at a 
+ *   daylight savings change.  
+ * 
+ * TODO: daylight savings not yet tested
+ */
+describe('instersect at interesting times', () => {
+  dayjs.extend(duration);
+
+  afterEach(() => {
+    MockDate.reset();
+  });
+
+  /**
+   * Overlaps crossing midnight - should add into two different bins
+   */
+  it('is counting intersections spanning midnight into the proper bins', () => {
+    //
+    // TODO: Do better than this way of setting the time
+    //
+    //  Another SUPER hacky solution.  This ensures that the the datetime evaluation
+    //    will for sure appear to be 12:31am when the code executes
+    //
+    const THIS_TEST_MOMENT = TEST_MOMENT.startOf('day').add(31, 'minutes');
+    MockDate.set(THIS_TEST_MOMENT.valueOf());
+
+    // 2 locations ... the time period will span midnight
+    let baseLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.base,
+        THIS_TEST_MOMENT.valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hammerfest.base,
+        //TEST_MOMENT_MS - 3 * 24 * 60 * 60 * 1000,
+        THIS_TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+      ),
+    ];
+    // same locations, still spanning midnight
+    let concernLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.concern,
+        THIS_TEST_MOMENT.valueOf(),
+      ),
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.hammerfest.concern,
+        THIS_TEST_MOMENT.clone()
+          .subtract(3, 'days')
+          .valueOf(),
+      ),
+    ];
+
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
+
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+
+    let expectedBins = getEmptyLocationBins();
+    expectedBins[0] = dayjs
+      .duration(30 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // expect 30 minutes + 5 minutes for "today"
+    expectedBins[1] = dayjs.duration(30, 'minutes').asMilliseconds(); // expect 30 minutes for "yesterday"
+    expectedBins[3] = dayjs
+      .duration(30 + DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
+      .asMilliseconds(); // expect 30 minutes + 5 minutes (same as before)
+    expectedBins[4] = dayjs.duration(30, 'minutes').asMilliseconds(); // expect 30 minutes (same as before)
+
+    expect(resultBins).toEqual(expectedBins);
+  });
+
+  /**
+   * A daylight savings time change should cause either a 23 or 25 hour day.
+   *
+   * TODO: Once we've figured out a good way to mock the timezone and DST, make this test work
+   */
+  //it('is not affectd by daylight saving changes', () => {
+  //
+  // TODO: Implement this test.  Note that until we figure out a good way to mock both the
+  //        timezone as well as DST, this test can't be done in a meaningful way.
+  //
+  //});
 });
 
 /**
