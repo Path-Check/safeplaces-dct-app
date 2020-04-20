@@ -33,8 +33,8 @@ import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
-import DynamicText from '../components/DynamicText';
-import DynamicTextInput from '../components/DynamicTextInput';
+import { Typography } from '../components/Typography';
+import { DynamicTextInput } from '../components/DynamicTextInput';
 
 const { SlideInMenu } = renderers;
 
@@ -226,18 +226,18 @@ class ChooseProviderScreen extends Component {
         title={languages.t('label.choose_provider_title')}
         onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
-          <DynamicText style={styles.headerTitle}>
+          <Typography style={styles.headerTitle}>
             {languages.t('label.authorities_title')}
-          </DynamicText>
-          <DynamicText style={styles.sectionDescription}>
+          </Typography>
+          <Typography style={styles.sectionDescription}>
             {languages.t('label.authorities_desc')}
-          </DynamicText>
+          </Typography>
         </View>
 
         <View style={styles.listContainer}>
           {Object.keys(this.state.selectedAuthorities).length == 0 ? (
             <>
-              <DynamicText
+              <Typography
                 style={
                   (styles.sectionDescription,
                   {
@@ -248,7 +248,7 @@ class ChooseProviderScreen extends Component {
                   })
                 }>
                 {languages.t('label.authorities_no_sources')}
-              </DynamicText>
+              </Typography>
               <View
                 style={[
                   styles.flatlistRowView,
@@ -306,7 +306,7 @@ class ChooseProviderScreen extends Component {
                 data={this.state.selectedAuthorities}
                 renderItem={({ item }) => (
                   <View style={styles.flatlistRowView}>
-                    <DynamicText style={styles.item}>{item.key}</DynamicText>
+                    <Typography style={styles.item}>{item.key}</Typography>
                     <TouchableOpacity
                       onPress={() => this.removeAuthorityFromState(item)}>
                       <Image source={closeIcon} style={styles.closeIcon} />
@@ -329,9 +329,9 @@ class ChooseProviderScreen extends Component {
                 this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
               }
               disabled={this.state.urlEditInProgress}>
-              <DynamicText style={styles.startLoggingButtonText}>
+              <Typography style={styles.startLoggingButtonText}>
                 {languages.t('label.authorities_add_button_label')}
-              </DynamicText>
+              </Typography>
             </TouchableOpacity>
           </MenuTrigger>
           <MenuOptions>
@@ -348,7 +348,7 @@ class ChooseProviderScreen extends Component {
                         this.addAuthorityToState(name);
                       }}
                       disabled={this.state.authoritiesList.length === 1}>
-                      <DynamicText style={styles.menuOptionText}>{name}</DynamicText>
+                      <Typography style={styles.menuOptionText}>{name}</Typography>
                     </MenuOption>
                   );
                 })}
@@ -359,9 +359,9 @@ class ChooseProviderScreen extends Component {
                   urlEntryInProgress: true,
                 });
               }}>
-              <DynamicText style={styles.menuOptionText}>
+              <Typography style={styles.menuOptionText}>
                 {languages.t('label.authorities_add_url')}
-              </DynamicText>
+              </Typography>
             </MenuOption>
           </MenuOptions>
         </Menu>

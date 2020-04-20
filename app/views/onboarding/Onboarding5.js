@@ -28,7 +28,7 @@ import fontFamily from '../../constants/fonts';
 import { PARTICIPATE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
-import DynamicText from '../../components/DynamicText';
+import { Typography } from '../../components/Typography';
 
 const width = Dimensions.get('window').width;
 
@@ -53,7 +53,7 @@ const PermissionDescription = ({ title, status, ...props }) => {
   }
   return (
     <View style={styles.permissionContainer}>
-      <DynamicText style={styles.permissionTitle}>{title}</DynamicText>
+      <Typography style={styles.permissionTitle}>{title}</Typography>
       <SvgXml style={styles.permissionIcon} xml={icon} width={30} height={30} />
     </View>
   );
@@ -193,9 +193,9 @@ class Onboarding extends Component {
 
   getTitleTextView() {
     if (!this.isLocationChecked() || !this.isNotificationChecked()) {
-      return <DynamicText style={styles.headerText}>{this.getTitleText()}</DynamicText>;
+      return <Typography style={styles.headerText}>{this.getTitleText()}</Typography>;
     } else {
-      return <DynamicText style={styles.bigHeaderText}>{this.getTitleText()}</DynamicText>;
+      return <Typography style={styles.bigHeaderText}>{this.getTitleText()}</Typography>;
     }
   }
 
@@ -259,7 +259,7 @@ class Onboarding extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             {this.getTitleTextView()}
-            <DynamicText style={styles.subheaderText}>{this.getSubtitleText()}</DynamicText>
+            <Typography style={styles.subheaderText}>{this.getSubtitleText()}</Typography>
             <View style={styles.statusContainer}>
               {this.getLocationPermission()}
               {this.getNotificationsPermissionIfIOS()}

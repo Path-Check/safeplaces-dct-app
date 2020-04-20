@@ -8,8 +8,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import DynamicText from './DynamicText';
-import DynamicTextInput from './DynamicTextInput';
+import { Typography } from './Typography';
+import { DynamicTextInput } from './DynamicTextInput';
 import { languageDirectionHandler } from '../locales/languages';
 
 // Code for the language select dropdown, for nice native handling on both iOS and Android.
@@ -73,7 +73,7 @@ export default class NativePicker extends Component {
               styles.touchableTrigger,
               this.props.hidden ? styles.opacityZero : null,
             ]}>
-            <DynamicText style={styles.touchableText}>{selectedLabel}</DynamicText>
+            <Typography style={styles.touchableText}>{selectedLabel}</Typography>
           </TouchableOpacity>
 
           <Modal
@@ -107,7 +107,7 @@ export default class NativePicker extends Component {
                 }>
                 <View style={styles.modalContainer}>
                   <View style={styles.modalContent}>
-                    <DynamicText
+                    <Typography
                       style={{
                         color: '#007aff',
                         fontWeight: 'bold',
@@ -120,7 +120,7 @@ export default class NativePicker extends Component {
                         else this.setState({ modalVisible: false })
                       }}>
                       Done
-                    </DynamicText>
+                    </Typography>
                   </View>
                   <View
                     onStartShouldSetResponder={() => true}

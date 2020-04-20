@@ -1,6 +1,6 @@
 import styled from '@emotion/native';
 import * as React from 'react';
-import { I18nManager } from 'react-native';
+import languages from '../locales/languages';
 
 export const Type = {
   Headline1: 'headline1',
@@ -80,6 +80,8 @@ const LINE_HEIGHT_MAP = {
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
 
+const getCurrentDirection = () => languages.dir();
+
 const getTextColor = ({ theme, secondary = false }) =>
   secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;
 
@@ -94,7 +96,7 @@ const getFontFamily = ({ use, monospace, bold }) =>
     : 'IBMPlexSans';
 
 const ThemedText = styled.Text`
-  writingDirection: ${I18nManager.isRTL ? 'rtl' : 'ltr'};
+  writingDirection: ${getCurrentDirection};
   color: ${getTextColor};
   font-family: ${getFontFamily};
   font-size: ${getFontSize};

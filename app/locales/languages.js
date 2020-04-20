@@ -7,7 +7,7 @@ import { getLanguages } from 'react-native-i18n';
 import ReactNativeRestart from 'react-native-restart';
 
 import { LANG_OVERRIDE } from '../constants/storage';
-import { GetStoreData } from '../helpers/General';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 import { showAlert } from '../Util';
 import ar from './ar.json';
 import en from './en.json';
@@ -38,7 +38,7 @@ import zh_Hant from './zh-Hant.json';
 const deviceLocale =
   Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
-      NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
+    NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
     : NativeModules.I18nManager.localeIdentifier; // Android
 
 dayjs.locale([deviceLocale, 'en']);
@@ -72,39 +72,43 @@ export function findUserLang(callback) {
   });
 }
 
+export async function localeChanged(locale) {
+
+  // If user picks manual lang, update and store setting
+  try {
+    await i18next.changeLanguage(locale);
+    await SetStoreData(LANG_OVERRIDE, locale);
+
+  } catch (e) {
+    console.log('something went wrong in lang change', e);
+  }
+}
+
 // This function is for checking/change current app direction
 export function languageDirectionHandler(language, navigation) {
+
   // check if is not rtl and user choose rtl language
-  if (!I18nManager.isRTL && rtlLanguages.includes(language)) {
+  if (i18next.dir() !== i18next.dir(language)) {
     showAlert(
       null,
-      'App need to restart in order to use this language',
-      () => [I18nManager.forceRTL(true), ReactNativeRestart.Restart()],
-      'Restart',
+      i18next.t('label.language_change_alert_title'),
+      () => [
+        localeChanged(language),
+        I18nManager.forceRTL(i18next.dir(language) === 'rtl' ? true : false),
+        ReactNativeRestart.Restart()
+      ],
+      i18next.t('label.language_change_alert_proced'),
       null,
-      'Cancel',
+      i18next.t('label.language_change_alert_cancel'),
     );
   }
-
-  // check if is rtl and user choose ltr language
-  if (I18nManager.isRTL && !rtlLanguages.includes(language)) {
-    showAlert(
-      null,
-      'App need to restart in order to use this language',
-      () => [I18nManager.forceRTL(false), ReactNativeRestart.Restart()],
-      'Restart',
-      null,
-      'Cancel',
-    );
+  else {
+    localeChanged(language)
+    if (navigation) {
+      navigation();
+    }
   }
 
-  // check for no language direction change
-  if (
-    (I18nManager.isRTL && rtlLanguages.includes(language)) ||
-    (!I18nManager.isRTL && !rtlLanguages.includes(language))
-  ) {
-    if (navigation) navigation();
-  }
 }
 
 findUserLang();

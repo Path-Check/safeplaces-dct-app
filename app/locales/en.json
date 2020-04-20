@@ -99,7 +99,10 @@
     "tested_positive_subtitle": "Your private data can be transferred to health authorities, backed up, or otherwise shared.",
     "tested_positive_title": "Share location history",
     "logging_active": "Location Active",
-    "logging_inactive": "Location Inactive"
+    "logging_inactive": "Location Inactive",
+    "language_change_alert_title": "App need to restart in order to use this language",
+    "language_change_alert_proced": "Restart",
+    "language_change_alert_cancel": "Cancel"
   },
   "history": {
     "no_exposure": "No exposure",

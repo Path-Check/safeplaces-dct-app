@@ -13,7 +13,7 @@ import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
-import DynamicText from '../../components/DynamicText';
+import { Typography } from '../../components/Typography';
 
 const width = Dimensions.get('window').width;
 
@@ -30,12 +30,12 @@ const Onboarding = props => {
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
-        <DynamicText style={styles.headerText}>
+        <Typography style={styles.headerText}>
           {languages.t('label.launch_screen4_header')}
-        </DynamicText>
-        <DynamicText style={styles.subheaderText}>
+        </Typography>
+        <Typography style={styles.subheaderText}>
           {languages.t('label.launch_screen4_subheader')}
-        </DynamicText>
+        </Typography>
       </View>
       <View style={styles.footerContainer}>
         <ButtonWrapper

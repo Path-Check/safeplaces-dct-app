@@ -4,7 +4,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import colors from '../constants/colors';
-import DynamicText from './DynamicText';
+import { Typography } from './Typography';
 
 class Button extends React.Component {
   render() {
@@ -41,7 +41,7 @@ class Button extends React.Component {
           accessible
           accessibilityLabel={title}
           accessibilityRole='button'>
-          <DynamicText
+          <Typography
             style={[
               titleStyle ? titleStyle : styles.text,
               {
@@ -49,7 +49,7 @@ class Button extends React.Component {
               },
             ]}>
             {title}
-          </DynamicText>
+          </Typography>
         </TouchableOpacity>
       </LinearGradient>
     );

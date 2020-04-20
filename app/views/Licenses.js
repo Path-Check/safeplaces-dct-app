@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import {
   BackHandler,
-  Dimensions,
   Image,
   Linking,
-  Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
-  I18nManager,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 
@@ -20,7 +16,7 @@ import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import DynamicText from '../components/DynamicText';
+import Typography from '../components/Typography';
 
 class LicensesScreen extends Component {
   constructor(props) {
@@ -89,13 +85,13 @@ class LicensesScreen extends Component {
           onPress={this.handleTermsOfUsePressed.bind(this)}
           style={styles.termsInfoRow}>
           <View style={styles.termsInfoContainer}>
-            <DynamicText
+            <Typography
               style={styles.mainTermsHeader}
               onPress={() =>
                 Linking.openURL(languages.t('label.terms_of_use_url'))
               }>
               {languages.t('label.terms_of_use')}
-            </DynamicText>
+            </Typography>
           </View>
           <View style={styles.arrowContainer}>
             <Image source={foreArrow} style={this.arrow} />
@@ -156,7 +152,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryBold,
   },
   arrowContainer: {
-    transform: I18nManager.isRTL ? [{rotateY: '180deg'}] : [{rotateY: '0deg'}],
+    transform: languages.dir() === 'rtl' ? [{rotateY: '180deg'}] : [{rotateY: '0deg'}],
     alignSelf: 'center',
     paddingRight: 20,
     paddingLeft: 20

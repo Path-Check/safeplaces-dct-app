@@ -12,7 +12,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  I18nManager,
 } from 'react-native';
 import {
   PERMISSIONS,
@@ -41,7 +40,7 @@ import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
-import DynamicText from '../components/DynamicText';
+import { Typography } from '../components/Typography';
 
 const MAYO_COVID_URL = 'https://www.mayoclinic.org/coronavirus-covid-19';
 
@@ -341,21 +340,21 @@ class LocationTracking extends Component {
     switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
         return (
-          <DynamicText style={styles.mainTextBelow}>
+          <Typography style={styles.mainTextBelow}>
             {languages.t('label.home_no_contact_header')}
-          </DynamicText>
+          </Typography>
         );
       case StateEnum.AT_RISK:
         return (
-          <DynamicText style={styles.mainTextAbove}>
+          <Typography style={styles.mainTextAbove}>
             {languages.t('label.home_at_risk_header')}
-          </DynamicText>
+          </Typography>
         );
       case StateEnum.UNKNOWN:
         return (
-          <DynamicText style={styles.mainTextBelow}>
+          <Typography style={styles.mainTextBelow}>
             {languages.t('label.home_unknown_header')}
-          </DynamicText>
+          </Typography>
         );
       case StateEnum.SETTING_OFF:
         return (
@@ -446,12 +445,12 @@ class LocationTracking extends Component {
           <View style={styles.contentAbovePulse}>
             {this.state.currentState === StateEnum.AT_RISK &&
               this.getMainText()}
-            <DynamicText style={styles.subsubheaderText}>{this.getSubSubText()}</DynamicText>
+            <Typography style={styles.subsubheaderText}>{this.getSubSubText()}</Typography>
           </View>
           <View style={styles.contentBelowPulse}>
             {this.state.currentState !== StateEnum.AT_RISK &&
               this.getMainText()}
-            <DynamicText style={styles.subheaderText}>{this.getSubText()}</DynamicText>
+            <Typography style={styles.subheaderText}>{this.getSubText()}</Typography>
             {this.getCTAIfNeeded()}
           </View>
         </View>
@@ -461,16 +460,16 @@ class LocationTracking extends Component {
             onPress={this.getMayoInfoPressed.bind(this)}
             style={styles.mayoInfoRow}>
             <View style={styles.mayoInfoContainer}>
-              <DynamicText
+              <Typography
                 style={styles.mainMayoHeader}
                 onPress={() => Linking.openURL(MAYO_COVID_URL)}>
                 {languages.t('label.home_mayo_link_heading')}
-              </DynamicText>
-              <DynamicText
+              </Typography>
+              <Typography
                 style={styles.mainMayoSubtext}
                 onPress={() => Linking.openURL(MAYO_COVID_URL)}>
                 {languages.t('label.home_mayo_link_label')}
-              </DynamicText>
+              </Typography>
             </View>
             <View style={styles.arrowContainer}>
               <Image source={foreArrow} style={this.arrow} />
@@ -592,7 +591,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryRegular,
   },
   arrowContainer: {
-    transform: I18nManager.isRTL ? [{rotateY: '180deg'}] : [{rotateY: '0deg'}],
+    transform: languages.dir() === 'rtl' ? [{rotateY: '180deg'}] : [{rotateY: '0deg'}],
     alignSelf: 'center',
     paddingRight: 20,
     paddingLeft: 20

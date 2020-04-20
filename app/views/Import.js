@@ -14,7 +14,7 @@ import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
-import DynamicText from '../components/DynamicText';
+import { Typography } from '../components/Typography';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -56,12 +56,12 @@ class ImportScreen extends Component {
         onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
           <View style={styles.subHeaderTitle}>
-            <DynamicText style={styles.sectionDescription}>
+            <Typography style={styles.sectionDescription}>
               {languages.t('label.import_step_1')}
-            </DynamicText>
-            <DynamicText style={styles.sectionDescription}>
+            </Typography>
+            <Typography style={styles.sectionDescription}>
               {languages.t('label.import_step_2')}
-            </DynamicText>
+            </Typography>
           </View>
           <View style={styles.web}>
             <WebView
@@ -85,7 +85,7 @@ class ImportScreen extends Component {
               renderError={errorName => {
                 if (counter >= 1) {
                   <View style={styles.sectionDescription}>
-                    <DynamicText>Error Occurred while importing file {errorName}</DynamicText>
+                    <Typography>Error Occurred while importing file {errorName}</Typography>
                   </View>;
                 }
               }}

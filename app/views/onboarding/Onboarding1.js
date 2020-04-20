@@ -19,7 +19,7 @@ import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { LANG_OVERRIDE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
-import DynamicText from '../../components/DynamicText';
+import { Typography } from '../../components/Typography';
 
 const width = Dimensions.get('window').width;
 
@@ -64,24 +64,27 @@ class Onboarding extends Component {
                 onValueChange={(itemValue, itemIndex) => {
                   this.setState({ language: itemValue });
 
-                  // If user picks manual lang, update and store setting
-                  languages.changeLanguage(itemValue, (err, t) => {
-                    if (err)
-                      return console.log(
-                        'something went wrong in lang change',
-                        err,
-                      );
-                  });
+                  if (languages.dir() === languages.dir(itemValue)) {
+                    // If user picks manual lang, update and store setting
+                    languages.changeLanguage(itemValue, (err, t) => {
+                      if (err)
+                        return console.log(
+                          'something went wrong in lang change',
+                          err,
+                        );
+                    });
 
-                  SetStoreData(LANG_OVERRIDE, itemValue);
+                    SetStoreData(LANG_OVERRIDE, itemValue);
+                  }
+
 
                 }}
               />
             </View>
             <View style={styles.contentContainer}>
-              <DynamicText style={styles.mainText}>
+              <Typography style={styles.mainText}>
                 {languages.t('label.launch_screen1_header')}
-              </DynamicText>
+              </Typography>
             </View>
             <View style={styles.footerContainer}>
               <ButtonWrapper

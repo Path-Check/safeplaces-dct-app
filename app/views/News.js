@@ -17,7 +17,7 @@ import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { AUTHORITY_NEWS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
-import DynamicText from '../components/DynamicText';
+import { Typography } from '../components/Typography';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -58,7 +58,7 @@ class NewsScreen extends Component {
     return (
       <View style={styles.singleNews}>
         <View style={styles.singleNewsHead}>
-          <DynamicText style={styles.singleNewsHeadText}>{item.item.name}</DynamicText>
+          <Typography style={styles.singleNewsHeadText}>{item.item.name}</Typography>
         </View>
         <WebView
           source={{

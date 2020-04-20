@@ -64,13 +64,15 @@ export const SettingsScreen = ({ navigation }) => {
   const localeChanged = async locale => {
     setUserLocale(locale);
 
-    // If user picks manual lang, update and store setting
-    try {
-      await languages.changeLanguage(locale);
-      await SetStoreData(LANG_OVERRIDE, locale);
+    if (languages.dir() === languages.dir(locale)) {
+      // If user picks manual lang, update and store setting
+      try {
+        await languages.changeLanguage(locale);
+        await SetStoreData(LANG_OVERRIDE, locale);
 
-    } catch (e) {
-      console.log('something went wrong in lang change', e);
+      } catch (e) {
+        console.log('something went wrong in lang change', e);
+      }
     }
   };
 

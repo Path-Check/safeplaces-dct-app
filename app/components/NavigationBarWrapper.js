@@ -2,12 +2,13 @@ import styled from '@emotion/native';
 import { useTheme } from 'emotion-theming';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { StatusBar, I18nManager } from 'react-native';
+import { StatusBar } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import backArrow from './../assets/svgs/backArrow';
 import { isPlatformiOS } from './../Util';
 import Colors from '../constants/colors';
+import languages from '../locales/languages';
 
 /**
  * Navigation bar and status bar
@@ -64,6 +65,8 @@ const BottomContainer = styled.SafeAreaView`
 const themeNavBarBorder = ({ theme }) =>
   theme.navBarBorder || Colors.NAV_BAR_VIOLET;
 
+const getCurrentDirection = () => languages.dir() === 'rtl' ? 'rotateY(180deg)' : 'rotateY(0deg)';
+
 const Header = styled.View`
   background-color: ${themeNavBar};
   border-bottom-color: ${themeNavBarBorder};
@@ -85,7 +88,7 @@ const BackArrow = styled.TouchableOpacity`
   align-items: center;
   height: 55px;
   justify-content: center;
-  transform: ${I18nManager.isRTL ? 'rotateY(180deg)' : 'rotateY(0deg)'};
+  transform: ${getCurrentDirection};
   width: 60px;
   z-index: 1;
 `;
