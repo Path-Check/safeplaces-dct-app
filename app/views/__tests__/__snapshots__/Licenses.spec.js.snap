@@ -183,18 +183,17 @@ exports[`renders correctly 1`] = `
       >
         <Text
           style={
-            Array [
-              Object {
-                "writingDirection": "ltr",
-              },
-              Object {
-                "color": "#E5E4E6",
-                "fontFamily": "IBMPlexSans-Bold",
-                "fontSize": 20,
-                "textAlign": "left",
-              },
-            ]
+            Object {
+              "color": "#E5E4E6",
+              "fontFamily": "IBMPlexSans-Bold",
+              "fontSize": 20,
+              "fontWeight": "normal",
+              "lineHeight": 24,
+              "textAlign": "left",
+              "writingDirection": "ltr",
+            }
           }
+          use="body1"
         >
           Terms of use
         </Text>

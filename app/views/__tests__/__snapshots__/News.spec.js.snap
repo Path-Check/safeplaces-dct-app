@@ -288,16 +288,15 @@ exports[`renders correctly 1`] = `
                     >
                       <Text
                         style={
-                          Array [
-                            Object {
-                              "writingDirection": "ltr",
-                            },
-                            Object {
-                              "fontFamily": "IBMPlexSans-SemiBold",
-                              "fontSize": 18,
-                            },
-                          ]
+                          Object {
+                            "fontFamily": "IBMPlexSans-SemiBold",
+                            "fontSize": 18,
+                            "fontWeight": "normal",
+                            "lineHeight": 24,
+                            "writingDirection": "ltr",
+                          }
                         }
+                        use="body1"
                       >
                         Safe Paths News
                       </Text>

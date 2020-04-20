@@ -122,37 +122,33 @@ Array [
       >
         <Text
           style={
-            Array [
-              Object {
-                "writingDirection": "ltr",
-              },
-              Object {
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginTop": 12,
-                "textAlignVertical": "center",
-              },
-            ]
+            Object {
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "lineHeight": 24,
+              "marginTop": 12,
+              "textAlignVertical": "center",
+              "writingDirection": "ltr",
+            }
           }
+          use="body1"
         >
           1. Login to your Google Account and Download your Location History
         </Text>
         <Text
           style={
-            Array [
-              Object {
-                "writingDirection": "ltr",
-              },
-              Object {
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginTop": 12,
-                "textAlignVertical": "center",
-              },
-            ]
+            Object {
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "lineHeight": 24,
+              "marginTop": 12,
+              "textAlignVertical": "center",
+              "writingDirection": "ltr",
+            }
           }
+          use="body1"
         >
           2. After downloaded, open this screen again. The data will import automatically.
         </Text>

@@ -16,7 +16,7 @@ import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import Typography from '../components/Typography';
+import { Typography } from '../components/Typography';
 
 class LicensesScreen extends Component {
   constructor(props) {

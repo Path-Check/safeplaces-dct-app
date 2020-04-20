@@ -254,18 +254,18 @@ exports[`renders correctly 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Object {
-                        "writingDirection": "ltr",
-                      },
-                      Object {
-                        "color": "#4051DB",
-                        "fontSize": 12,
-                        "textAlign": "center",
-                        "textTransform": "uppercase",
-                      },
-                    ]
+                    Object {
+                      "color": "#4051DB",
+                      "fontFamily": "IBMPlexSans",
+                      "fontSize": 12,
+                      "fontWeight": "normal",
+                      "lineHeight": 24,
+                      "textAlign": "center",
+                      "textTransform": "uppercase",
+                      "writingDirection": "ltr",
+                    }
                   }
+                  use="body1"
                 >
                   
                 </Text>
@@ -310,19 +310,19 @@ exports[`renders correctly 1`] = `
                     <View>
                       <Text
                         style={
-                          Array [
-                            Object {
-                              "writingDirection": "ltr",
-                            },
-                            Object {
-                              "color": "#007aff",
-                              "fontWeight": "bold",
-                              "marginRight": 22,
-                              "marginTop": 16,
-                              "textAlign": "right",
-                            },
-                          ]
+                          Object {
+                            "color": "#007aff",
+                            "fontFamily": "IBMPlexSans",
+                            "fontSize": 18,
+                            "fontWeight": "bold",
+                            "lineHeight": 24,
+                            "marginRight": 22,
+                            "marginTop": 16,
+                            "textAlign": "right",
+                            "writingDirection": "ltr",
+                          }
                         }
+                        use="body1"
                       >
                         Done
                       </Text>
@@ -882,25 +882,18 @@ exports[`renders correctly 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Object {
-                        "writingDirection": "ltr",
-                      },
-                      Array [
-                        Object {
-                          "color": "#ffffff",
-                          "fontFamily": "IBMPlexSans-SemiBold",
-                          "fontSize": 16,
-                          "letterSpacing": 0,
-                          "lineHeight": 19,
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#4051DB",
-                        },
-                      ],
-                    ]
+                    Object {
+                      "color": "#4051DB",
+                      "fontFamily": "IBMPlexSans-SemiBold",
+                      "fontSize": 16,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0,
+                      "lineHeight": 19,
+                      "textAlign": "center",
+                      "writingDirection": "ltr",
+                    }
                   }
+                  use="body1"
                 >
                   Import past locations
                 </Text>
