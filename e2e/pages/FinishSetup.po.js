@@ -1,3 +1,4 @@
+/* eslint-disable */
 const buttonlabel = 'Finish Setup';
 const screenText = 'All finished';
 const screenshotText = 'Finish Setup Page';
@@ -12,6 +13,7 @@ class EnableLocation {
   }
 
   async isOnScreen() {
+    // eslint-disable-next-line jest/no-standalone-expect
     await expect(element(by.text(screenText))).toBeVisible();
   }
 }
