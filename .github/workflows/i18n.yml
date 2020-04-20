@@ -27,7 +27,7 @@ jobs:
 
       - run: curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
 
-      - run: lokalise2 file upload --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml $UPLOAD_FLAGS
+      - run: ./bin/lokalise2 file upload --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml $UPLOAD_FLAGS
 
       # - name: upload ios/en.lproj/InfoPlist.strings
       #   run: lokalise2 file upload --file ios/en.lproj/InfoPlist.strings $UPLOAD_FLAGS
