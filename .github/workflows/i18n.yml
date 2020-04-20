@@ -20,20 +20,12 @@ jobs:
   lokalise-upload:
     runs-on: ubuntu-latest
     env:
-      UPLOAD_FLAGS: --lang-iso=en --project-id=${{ secrets.LOKALISE_PROJECT_ID }} --token=${{ secrets.LOKALISE_TOKEN }} --cleanup-mode --replace-modified --include-path
+      UPLOAD_FLAGS: --lang-iso=en --cleanup-mode --replace-modified --include-path --detect-icu-plurals --apply-tm --convert-placeholders --project-id=${{ secrets.LOKALISE_PROJECT_ID }} --token=${{ secrets.LOKALISE_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
 
       - run: curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
 
-      - run: ./bin/lokalise2 file upload --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml $UPLOAD_FLAGS
-
-      # - name: upload ios/en.lproj/InfoPlist.strings
-      #   run: lokalise2 file upload --file ios/en.lproj/InfoPlist.strings $UPLOAD_FLAGS
-
-      # - name: upload ios/en.lproj/Localizable.strings
-      #   run: lokalise2 file upload --file ios/en.lproj/Localizable.strings $UPLOAD_FLAGS
-
-      # - name: upload android/app/src/main/res/values/strings.xml
-      #   run: lokalise2 file upload --file android/app/src/main/res/values/strings.xml $UPLOAD_FLAGS
+      - name: upload English files
+        run: ./bin/lokalise2 file upload --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml $UPLOAD_FLAGS
