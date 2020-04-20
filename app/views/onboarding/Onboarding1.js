@@ -13,6 +13,7 @@ import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
 import languages, {
   LOCALE_LIST,
+  getDeviceLocale,
   getUserLocaleOverride,
   setUserLocaleOverride,
 } from './../../locales/languages';
@@ -28,7 +29,7 @@ class Onboarding extends Component {
     super(props);
 
     this.state = {
-      language: undefined,
+      locale: getDeviceLocale(),
     };
   }
 
@@ -70,7 +71,7 @@ class Onboarding extends Component {
               }}>
               <NativePicker
                 items={LOCALE_LIST}
-                value={this.state.language}
+                value={this.state.locale || 'en'}
                 onValueChange={this.onLocaleChange}>
                 {({ label, openPicker }) => (
                   <TouchableOpacity

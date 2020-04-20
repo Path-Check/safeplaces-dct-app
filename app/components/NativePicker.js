@@ -44,17 +44,14 @@ export default class NativePicker extends Component {
     const selectedItem = this.props.items.find(
       i => i.value === this.props.value,
     );
-    const selectedLabel = selectedItem ? selectedItem.label : '';
+    const label = selectedItem?.label || '';
+    const value = selectedItem?.value;
 
     // iOS and Android Pickers behave differently, handled below
     if (Platform.OS === 'android') {
       return (
         <View>
-          {renderLabel({
-            value: selectedItem?.value,
-            label: selectedLabel,
-            openPicker,
-          })}
+          {renderLabel({ value, label, openPicker })}
           <Picker
             selectedValue={this.props.value}
             onValueChange={this.props.onValueChange}
@@ -75,11 +72,7 @@ export default class NativePicker extends Component {
     } else {
       return (
         <>
-          {renderLabel({
-            value: selectedItem?.value,
-            label: selectedLabel,
-            openPicker,
-          })}
+          {renderLabel({ value, label, openPicker })}
           <Modal
             animationType='slide'
             transparent

@@ -32,12 +32,6 @@ import zh_Hant from './zh-Hant.json';
 // 5. REMOVE all empty translations. e.g. "key": "", this will allow fallback to the default: English
 // 6. import xyIndex from `./xy.json` and add the language to the block at the bottom
 
-// detect and set device locale to i18n and dates
-setLocale(getDeviceLocale());
-
-// detect user override and set i18n and date locales
-getUserLocaleOverride().then(locale => locale && setLocale(locale));
-
 /** Fetch the user language override, if any */
 export async function getUserLocaleOverride() {
   return await GetStoreData(LANG_OVERRIDE);
@@ -114,5 +108,11 @@ export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
   },
   {},
 );
+
+// detect and set device locale to i18n and dates
+setLocale(getDeviceLocale());
+
+// detect user override and set i18n and date locales
+getUserLocaleOverride().then(locale => locale && setLocale(locale));
 
 export default i18next;
