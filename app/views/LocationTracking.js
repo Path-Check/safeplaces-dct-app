@@ -595,10 +595,6 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryRegular,
   },
   arrowContainer: {
-    transform:
-      languages.dir() === 'rtl'
-        ? [{ rotateY: '180deg' }]
-        : [{ rotateY: '0deg' }],
     alignSelf: 'center',
     paddingRight: 20,
     paddingLeft: 20,

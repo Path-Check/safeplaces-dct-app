@@ -63,14 +63,12 @@ export const SettingsScreen = ({ navigation }) => {
   const localeChanged = async locale => {
     setUserLocale(locale);
 
-    if (languages.dir() === languages.dir(locale)) {
-      // If user picks manual lang, update and store setting
-      try {
-        await languages.changeLanguage(locale);
-        await SetStoreData(LANG_OVERRIDE, locale);
-      } catch (e) {
-        console.log('something went wrong in lang change', e);
-      }
+    // If user picks manual lang, update and store setting
+    try {
+      await languages.changeLanguage(locale);
+      await SetStoreData(LANG_OVERRIDE, locale);
+    } catch (e) {
+      console.log('something went wrong in lang change', e);
     }
   };
 
@@ -102,7 +100,6 @@ export const SettingsScreen = ({ navigation }) => {
               height: 40px;
             `}>
             <NativePicker
-              languagePicker
               items={LOCALE_LIST}
               value={userLocale}
               hidden

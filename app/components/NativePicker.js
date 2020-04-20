@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 
-import { languageDirectionHandler } from '../locales/languages';
 import { DynamicTextInput } from './DynamicTextInput';
 import { Typography } from './Typography';
 
@@ -86,14 +85,7 @@ export default class NativePicker extends Component {
             <View style={{ flex: 2 }}>
               <TouchableWithoutFeedback
                 style={{ flex: 1, backgroundColor: '#000000', opacity: 0.4 }}
-                onPress={() => {
-                  // check if its a language picker we check for RTL to update the view
-                  if (this.props.languagePicker)
-                    languageDirectionHandler(this.props.value, () =>
-                      this.setState({ modalVisible: false }),
-                    );
-                  else this.setState({ modalVisible: false });
-                }}>
+                onPress={() => this.setState({ modalVisible: false })}>
                 <View
                   style={{
                     flex: 1,
@@ -105,13 +97,7 @@ export default class NativePicker extends Component {
             </View>
             <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
               <TouchableWithoutFeedback
-                onPress={() => {
-                  if (this.props.languagePicker)
-                    languageDirectionHandler(this.props.value, () =>
-                      this.setState({ modalVisible: false }),
-                    );
-                  else this.setState({ modalVisible: false });
-                }}>
+                onPress={() => this.setState({ modalVisible: false })}>
                 <View style={styles.modalContainer}>
                   <View style={styles.modalContent}>
                     <Typography
@@ -122,13 +108,7 @@ export default class NativePicker extends Component {
                         marginTop: 16,
                         marginRight: 22,
                       }}
-                      onPress={() => {
-                        if (this.props.languagePicker)
-                          languageDirectionHandler(this.props.value, () =>
-                            this.setState({ modalVisible: false }),
-                          );
-                        else this.setState({ modalVisible: false });
-                      }}>
+                      onPress={() => this.setState({ modalVisible: false })}>
                       Done
                     </Typography>
                   </View>

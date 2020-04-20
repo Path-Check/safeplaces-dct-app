@@ -2,13 +2,13 @@ import './all-dayjs-locales';
 
 import dayjs from 'dayjs';
 import i18next from 'i18next';
-import { I18nManager, NativeModules, Platform } from 'react-native';
+import { initReactI18next } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+import { NativeModules, Platform } from 'react-native';
 import { getLanguages } from 'react-native-i18n';
-import ReactNativeRestart from 'react-native-restart';
 
 import { LANG_OVERRIDE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { showAlert } from '../Util';
 import ar from './ar.json';
 import en from './en.json';
 import es from './es.json';
@@ -73,43 +73,14 @@ export function findUserLang(callback) {
   });
 }
 
-export async function localeChanged(locale) {
-  // If user picks manual lang, update and store setting
-  try {
-    await i18next.changeLanguage(locale);
-    await SetStoreData(LANG_OVERRIDE, locale);
-  } catch (e) {
-    console.log('something went wrong in lang change', e);
-  }
-}
-
-// This function is for checking/change current app direction
-export function languageDirectionHandler(language, navigation) {
-  // check if is not rtl and user choose rtl language
-  if (i18next.dir() !== i18next.dir(language)) {
-    showAlert(
-      null,
-      i18next.t('label.language_change_alert_title'),
-      () => [
-        localeChanged(language),
-        I18nManager.forceRTL(i18next.dir(language) === 'rtl' ? true : false),
-        ReactNativeRestart.Restart(),
-      ],
-      i18next.t('label.language_change_alert_proced'),
-      null,
-      i18next.t('label.language_change_alert_cancel'),
-    );
-  } else {
-    localeChanged(language);
-    if (navigation) {
-      navigation();
-    }
-  }
+export function useDirHook() {
+  const { i18n } = useTranslation();
+  return i18n.dir();
 }
 
 findUserLang();
 
-i18next.init({
+i18next.use(initReactI18next).init({
   interpolation: {
     // React already does escaping
     escapeValue: false,

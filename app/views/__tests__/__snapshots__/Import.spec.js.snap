@@ -51,11 +51,6 @@ Array [
             "height": 55,
             "justifyContent": "center",
             "opacity": 1,
-            "transform": Array [
-              Object {
-                "rotateY": "0deg",
-              },
-            ],
             "width": 60,
             "zIndex": 1,
           }

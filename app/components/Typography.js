@@ -1,5 +1,7 @@
 import styled from '@emotion/native';
+import { css } from '@emotion/native/dist/native.cjs.prod';
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import languages from '../locales/languages';
 
@@ -44,11 +46,22 @@ export const Typography = ({
   secondary,
   monospace,
   bold,
+  style,
   children,
   ...otherProps
 }) => {
+  const { i18n } = useTranslation();
+
+  let getCurrentDirection = () => i18n.dir();
+
   return (
     <ThemedText
+      style={[
+        style,
+        css`
+          writing-direction: ${getCurrentDirection()};
+        `,
+      ]}
       use={use}
       secondary={secondary}
       monospace={monospace}
@@ -81,8 +94,6 @@ const LINE_HEIGHT_MAP = {
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
 
-const getCurrentDirection = () => languages.dir();
-
 const getTextColor = ({ theme, secondary = false }) =>
   secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;
 
@@ -97,7 +108,6 @@ const getFontFamily = ({ use, monospace, bold }) =>
     : 'IBMPlexSans';
 
 const ThemedText = styled.Text`
-  writing-direction: ${getCurrentDirection};
   color: ${getTextColor};
   font-family: ${getFontFamily};
   font-size: ${getFontSize};

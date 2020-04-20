@@ -58,13 +58,11 @@ class Onboarding extends Component {
                 zIndex: 10,
               }}>
               <NativePicker
-                languagePicker // pass picker type to handle RTL checking because we can reuse this picker for any type not language picker only
                 items={LOCALE_LIST}
                 value={this.state.language}
                 onValueChange={(itemValue, itemIndex) => {
                   this.setState({ language: itemValue });
 
-                  if (languages.dir() === languages.dir(itemValue)) {
                     // If user picks manual lang, update and store setting
                     languages.changeLanguage(itemValue, (err) => {
                       if (err)
@@ -75,8 +73,6 @@ class Onboarding extends Component {
                     });
 
                     SetStoreData(LANG_OVERRIDE, itemValue);
-                  }
-
 
                 }}
               />

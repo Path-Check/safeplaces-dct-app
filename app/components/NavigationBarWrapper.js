@@ -8,7 +8,6 @@ import { SvgXml } from 'react-native-svg';
 import backArrow from './../assets/svgs/backArrow';
 import { isPlatformiOS } from './../Util';
 import Colors from '../constants/colors';
-import languages from '../locales/languages';
 
 /**
  * Navigation bar and status bar
@@ -63,9 +62,6 @@ const BottomContainer = styled.SafeAreaView`
 const themeNavBarBorder = ({ theme }) =>
   theme.navBarBorder || Colors.NAV_BAR_VIOLET;
 
-const getCurrentDirection = () =>
-  languages.dir() === 'rtl' ? 'rotateY(180deg)' : 'rotateY(0deg)';
-
 const Header = styled.View`
   background-color: ${themeNavBar};
   border-bottom-color: ${themeNavBarBorder};
@@ -87,7 +83,6 @@ const BackArrow = styled.TouchableOpacity`
   align-items: center;
   height: 55px;
   justify-content: center;
-  transform: ${getCurrentDirection};
   width: 60px;
   z-index: 1;
 `;
