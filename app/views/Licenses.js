@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  Platform,
+  BackHandler,
+  Dimensions,
   Image,
   Linking,
-  Dimensions,
-  BackHandler,
+  Platform,
   ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
-import packageJson from '../../package.json';
 
+import foreArrow from './../assets/images/foreArrow.png';
+import licenses from './../assets/LICENSE.json';
+import languages from './../locales/languages';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import languages from './../locales/languages';
-import licenses from './../assets/LICENSE.json';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import foreArrow from './../assets/images/foreArrow.png';
 
 class LicensesScreen extends Component {
   constructor(props) {
@@ -71,26 +70,6 @@ class LicensesScreen extends Component {
         title={languages.t('label.legal_page_title')}
         onBackPress={this.backToMain.bind(this)}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View style={styles.main}>
-            <View style={styles.row}>
-              <Text style={styles.valueName}>Version: </Text>
-              <Text style={styles.value}>{packageJson.version}</Text>
-            </View>
-
-            <View style={styles.row}>
-              <Text style={styles.valueSmall}>
-                OS:
-                {Platform.OS + ' v' + Platform.Version};
-                {Math.trunc(Dimensions.get('screen').width) +
-                  ' x ' +
-                  Math.trunc(Dimensions.get('screen').height)}
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.spacer} />
-          <View style={styles.spacer} />
-
           <View style={{ flex: 4 }}>
             <WebView
               originWhitelist={['*']}

@@ -1,17 +1,18 @@
 import React from 'react';
 import {
-  View,
-  Text,
   Dimensions,
-  StyleSheet,
   ImageBackground,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
+
 import BackgroundImage from './../../assets/images/launchScreen1.png';
-import languages from '../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
+import languages from '../../locales/languages';
 
 const width = Dimensions.get('window').width;
 

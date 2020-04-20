@@ -23,9 +23,12 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 cd ~ # get to your home directory or where ever you want to go
 
-git clone https://github.com/YOURACCOUNT/
+git clone https://github.com/YOURACCOUNT/covid-safe-paths
 
-# set upstream against Private Kit repository
+# change into the newly created directory
+cd covid-safe-paths
+
+# set upstream against COVID Safe Paths repository
 git remote add upstream https://github.com/tripleblindmarket/covid-safe-paths.git
 
 ```
@@ -63,11 +66,11 @@ notes to yourself. It's as simple as `git commit -m "commit message goes here"`!
 5. Rebase your feature branch with upstream/develop to avoid any code conflicts:
 
 ```bash
-# 1. Rebase Base(Private Kit) repository with fork repository - develop branch
+# 1. Rebase Base(COVID Safe Paths) repository with fork repository - develop branch
 
 git checkout develop # switch to base branch(local)
 
-git fetch upstream # fetch latest commits from "Private kit" develop branch
+git fetch upstream # fetch latest commits from "COVID Safe Paths" develop branch
 
 git rebase upstream/develop # rebase code against your forked develop branch(local)
 
@@ -81,7 +84,7 @@ git rebase develop # now rebase your feature branch(local) against develop branc
 
 git push origin feature/<your-feature-branch-name> # after resolving all conflicts, push your new feature branch to the remote forked repository
 
-# now your feature branch is ready for PR against Private Kit develop branch.
+# now your feature branch is ready for PR against COVID Safe Paths develop branch.
 ```
 
 6. Start a PR to submit your changes back to the original project:
@@ -90,11 +93,11 @@ git push origin feature/<your-feature-branch-name> # after resolving all conflic
 
 - You should see the new branch that you recently created and pushed on this page. Example - feature/your-branch-name (similar to the image shown below).
 
-  ![Image of Github branches](.github/.github/branches-page.png)
+  ![Image of Github branches](.github/branches-page.png)
 
 - Click on the "New pull request" button next to your new feature branch, and it should take you to open the pull request page (similar to the image shown below).
 
-  ![Image of Github branches](.github/.github/pull-request-page.png)
+  ![Image of Github branches](.github/pull-request-page.png)
 
 - Verify following -
 

@@ -1,0 +1,31 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - develop
+      - release-candidate
+      - master
+  pull_request:
+    branches:
+      - develop
+      - release-candidate
+      - master
+
+jobs:
+  diffs-pass-eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - run: yarn --frozen-lockfile
+
+      - run: ./node_modules/.bin/lint-diff origin/${{ github.base_ref }}

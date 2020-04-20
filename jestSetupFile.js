@@ -1,4 +1,11 @@
 import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock';
+import { NativeModules } from 'react-native';
+
+// Device locale mocks
+NativeModules.SettingsManager = NativeModules.SettingsManager || {
+  settings: { AppleLocale: 'en_US' },
+  I18nManager: { localeIdentifier: 'en_US' },
+};
 
 // Silence YellowBox useNativeDriver warning
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
@@ -10,7 +17,6 @@ jest.mock(
 );
 jest.mock('react-native-share', () => 'Share');
 jest.mock('rn-fetch-blob', () => 'Blob');
-jest.mock('react-native-maps', () => 'MapView');
 jest.mock('react-native-background-timer', () => 'BackgroundTimer');
 jest.mock('react-native-popup-menu', () => ({
   Menu: 'Menu',

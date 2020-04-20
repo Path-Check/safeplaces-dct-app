@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Text,
   Dimensions,
-  StyleSheet,
   ImageBackground,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
+
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
+import languages, {
+  LOCALE_LIST,
+  findUserLang,
+} from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
+import NativePicker from '../../components/NativePicker';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import languages, { findUserLang } from './../../locales/languages';
-import NativePicker from '../../components/NativePicker';
+import { LANG_OVERRIDE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 
 const width = Dimensions.get('window').width;
@@ -22,21 +27,15 @@ class Onboarding extends Component {
   constructor(props) {
     super(props);
 
-    // Get locales list from i18next for locales menu
-    let localesList = [];
-    for (let key in languages.options.resources) {
-      localesList = localesList.concat({
-        value: key,
-        label: languages.options.resources[key].label,
-      });
-    }
-
     this.state = {
-      language: findUserLang(res => {
-        this.setState({ language: res });
-      }),
-      localesList: localesList,
+      language: undefined,
     };
+  }
+
+  componentDidMount() {
+    findUserLang(res => {
+      this.setState({ language: res });
+    });
   }
 
   render() {
@@ -59,7 +58,7 @@ class Onboarding extends Component {
                 zIndex: 10,
               }}>
               <NativePicker
-                items={this.state.localesList}
+                items={LOCALE_LIST}
                 value={this.state.language}
                 onValueChange={(itemValue, itemIndex) => {
                   this.setState({ language: itemValue });
@@ -73,7 +72,7 @@ class Onboarding extends Component {
                       );
                   });
 
-                  SetStoreData('LANG_OVERRIDE', itemValue);
+                  SetStoreData(LANG_OVERRIDE, itemValue);
                 }}
               />
             </View>
@@ -129,11 +128,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     marginBottom: '10%',
     alignSelf: 'center',
-  },
-  menuOptionText: {
-    fontWeight: 'normal',
-    fontSize: 14,
-    padding: 10,
   },
 });
 

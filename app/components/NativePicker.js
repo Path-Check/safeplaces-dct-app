@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  TouchableWithoutFeedback,
-  Picker,
   Modal,
+  Picker,
   Platform,
   StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 
 // Code for the language select dropdown, for nice native handling on both iOS and Android.
@@ -23,7 +23,6 @@ export default class NativePicker extends Component {
   render() {
     // iOS and Android Pickers behave differently, handled below
     if (Platform.OS === 'android') {
-
       const selectedItem = this.props.items.find(
         i => i.value === this.props.value,
       );
@@ -34,8 +33,11 @@ export default class NativePicker extends Component {
           <TouchableOpacity
             onPress={() => this.setState({ modalVisible: true })}>
             <TextInput
-              style={[styles.touchableTrigger, styles.touchableText]}
-
+              style={[
+                styles.touchableTrigger,
+                styles.touchableText,
+                this.props.hidden ? styles.opacityZero : null,
+              ]}
               editable={false}
               placeholder='Select language'
               onChangeText={searchString => {
@@ -66,7 +68,10 @@ export default class NativePicker extends Component {
             onPress={() => {
               this.setState({ modalVisible: true });
             }}
-            style={styles.touchableTrigger}>
+            style={[
+              styles.touchableTrigger,
+              this.props.hidden ? styles.opacityZero : null,
+            ]}>
             <Text style={styles.touchableText}>{selectedLabel}</Text>
           </TouchableOpacity>
 
@@ -83,7 +88,8 @@ export default class NativePicker extends Component {
                     flex: 1,
                     backgroundColor: '#000000',
                     opacity: 0.2,
-                  }}></View>
+                  }}
+                />
               </TouchableWithoutFeedback>
             </View>
             <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
@@ -168,5 +174,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textTransform: 'uppercase',
   },
-
+  opacityZero: {
+    opacity: 0,
+  },
 });
