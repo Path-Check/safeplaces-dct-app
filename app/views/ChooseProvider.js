@@ -70,9 +70,6 @@ class ChooseProviderScreen extends Component {
       if (result !== null) {
         console.log('Retrieving settings from async storage:');
         console.log(result);
-        result.push({ key: 'test', url: 'http://gpll.org' });
-        result.push({ key: 'test2', url: 'http://gpll.org' });
-        result.push({ key: 'test3', url: 'http://gpll.org' });
         this.setState({
           selectedAuthorities: result,
         });
