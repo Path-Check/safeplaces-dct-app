@@ -4688,11 +4688,6 @@ husky@^4.2.3:
     slash "^3.0.0"
     which-pm-runs "^1.0.0"
 
-i18n-js@3.0.11:
-  version "3.0.11"
-  resolved "https://registry.yarnpkg.com/i18n-js/-/i18n-js-3.0.11.tgz#f9e96bdb641c5b9d6be12759d7c422089987ef02"
-  integrity sha512-v7dG3kYJTQTyox3NqDabPDE/ZotWntyMI9kh4cYi+XlCSnsIR+KBTS2opPyObL8WndnklcLzbNU92FP/mLge3Q==
-
 i18next-parser@tstirrat/i18next-parser#guard-plural-rule:
   version "1.0.2"
   resolved "https://codeload.github.com/tstirrat/i18next-parser/tar.gz/acc3ca4ef2cde07c5879043036ed6076d840cfcd"
@@ -7822,13 +7817,6 @@ react-native-gesture-handler@^1.6.1:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.4"
     prop-types "^15.7.2"
-
-react-native-i18n@^2.0.15:
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-2.0.15.tgz#09b5a9836116fa7dbd0054c46e2d1014c1ef3c65"
-  integrity sha512-V8VwUP0TLda3oJvgt5tdnFaOV7WXPhTjCTLO7sXI3C2SHggSbD4bCUryMzNJhesimJidH21V2Owvj4zAylHoQQ==
-  dependencies:
-    i18n-js "3.0.11"
 
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
