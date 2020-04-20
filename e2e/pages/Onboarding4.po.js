@@ -1,3 +1,4 @@
+/* eslint-disable */
 const buttonlabel = 'Set up my phone';
 const screenText =
   "You're in complete control. Data is only saved on your phone.";
@@ -13,6 +14,7 @@ class Onboarding4 {
   }
 
   async isOnScreen() {
+    // eslint-disable-next-line jest/no-standalone-expect
     await expect(element(by.text(screenText))).toBeVisible();
   }
 }
