@@ -391,7 +391,7 @@ export function enableDebugMode() {
 export function disableDebugMode() {
   // Wipe faux intersection data
   let pseudoBin = [];
-  for (let i = 0; i < DAY_BIN_SIZE; i++) {
+  for (let i = 0; i < MAX_EXPOSURE_WINDOW_DAYS; i++) {
     pseudoBin.push(0);
   }
   let dayBin = JSON.stringify(pseudoBin);
