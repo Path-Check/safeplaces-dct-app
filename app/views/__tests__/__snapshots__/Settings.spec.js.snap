@@ -321,59 +321,9 @@ exports[`renders correctly 1`] = `
                                 "value": "en",
                               },
                               Object {
-                                "label": "Español",
+                                "label": "Other",
                                 "textColor": undefined,
-                                "value": "es",
-                              },
-                              Object {
-                                "label": "Français",
-                                "textColor": undefined,
-                                "value": "fr",
-                              },
-                              Object {
-                                "label": "Kreyòl ayisyen",
-                                "textColor": undefined,
-                                "value": "ht",
-                              },
-                              Object {
-                                "label": "Indonesia",
-                                "textColor": undefined,
-                                "value": "id",
-                              },
-                              Object {
-                                "label": "Italiano",
-                                "textColor": undefined,
-                                "value": "it",
-                              },
-                              Object {
-                                "label": "മലയാളം",
-                                "textColor": undefined,
-                                "value": "ml",
-                              },
-                              Object {
-                                "label": "Română",
-                                "textColor": undefined,
-                                "value": "ro",
-                              },
-                              Object {
-                                "label": "Русский",
-                                "textColor": undefined,
-                                "value": "ru",
-                              },
-                              Object {
-                                "label": "Slovak",
-                                "textColor": undefined,
-                                "value": "sk",
-                              },
-                              Object {
-                                "label": "Vietnamese",
-                                "textColor": undefined,
-                                "value": "vi",
-                              },
-                              Object {
-                                "label": "繁體中文",
-                                "textColor": undefined,
-                                "value": "zh_Hant",
+                                "value": "ot",
                               },
                             ]
                           }
