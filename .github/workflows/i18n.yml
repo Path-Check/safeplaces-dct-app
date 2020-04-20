@@ -9,12 +9,12 @@ on:
       - ios/en.lproj/*.strings
       - android/app/src/main/res/values/strings.xml
   # for testing
-  pull_request:
-    branches: [develop]
-    paths:
-      - app/locales/en.json
-      - ios/en.lproj/*.strings
-      - android/app/src/main/res/values/strings.xml
+  # pull_request:
+  #   branches: [develop]
+  #   paths:
+  #     - app/locales/en.json
+  #     - ios/en.lproj/*.strings
+  #     - android/app/src/main/res/values/strings.xml
 
 jobs:
   lokalise-upload:
