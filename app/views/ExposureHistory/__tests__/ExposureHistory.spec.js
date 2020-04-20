@@ -23,7 +23,9 @@ describe('convertToDailyMinutesExposed', () => {
   });
 
   it('converts day bins to minutes', () => {
-    expect(convertToDailyMinutesExposed('[0, 1, 2, 3, 0]')).toEqual([
+    expect(
+      convertToDailyMinutesExposed('[0, 300000, 600000, 900000, 0]'),
+    ).toEqual([
       { date: expect.any(dayjs), exposureMinutes: 0 },
       { date: expect.any(dayjs), exposureMinutes: 5 },
       { date: expect.any(dayjs), exposureMinutes: 10 },
