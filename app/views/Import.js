@@ -1,111 +1,116 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
-  ActivityIndicator,
-  BackHandler,
   Dimensions,
+  Linking,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import WebView from 'react-native-webview';
 
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
+import { pickFile } from '../helpers/General';
+import {
+  InvalidFileExtensionError,
+  NoRecentLocationsError,
+  importTakeoutData,
+} from '../helpers/GoogleTakeOutAutoImport';
 
 const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
 
-class ImportScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { visible: true };
-    // Autoimports if user has downloaded
-    SearchAndImport();
+const makeImportResults = (label = '', error = false) => ({
+  error,
+  label,
+});
+
+const ImportScreen = props => {
+  const {
+    navigation: { goBack },
+  } = props;
+  const [importResults, setImportResults] = useState(makeImportResults());
+
+  async function importPickFile() {
+    try {
+      // reset info message
+      setImportResults(makeImportResults());
+
+      const filePath = await pickFile();
+      if (filePath) {
+        const newLocations = await importTakeoutData(filePath);
+        if (newLocations.length) {
+          setImportResults(makeImportResults('label.import_success'));
+        } else {
+          setImportResults(makeImportResults('label.import_already_imported'));
+        }
+      }
+    } catch (err) {
+      if (err instanceof NoRecentLocationsError) {
+        setImportResults(
+          makeImportResults('label.import_no_recent_locations', true),
+        );
+      } else if (err instanceof InvalidFileExtensionError) {
+        setImportResults(
+          makeImportResults('label.import_invalid_file_format', true),
+        );
+      } else {
+        setImportResults(makeImportResults('label.import_error', true));
+      }
+    }
   }
 
-  backToMain() {
-    this.props.navigation.goBack();
-  }
-
-  handleBackPress = () => {
-    this.props.navigation.goBack();
-    return true;
-  };
-
-  hideSpinner() {
-    this.setState({ visible: false });
-  }
-
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-  }
-
-  render() {
-    let counter = 0;
-    return (
-      <NavigationBarWrapper
-        title={languages.t('label.import_title')}
-        onBackPress={this.backToMain.bind(this)}>
-        <View style={styles.main}>
-          <View style={styles.subHeaderTitle}>
-            <Text style={styles.sectionDescription}>
-              {languages.t('label.import_step_1')}
+  return (
+    <NavigationBarWrapper
+      title={languages.t('label.import_title')}
+      onBackPress={goBack}>
+      <View style={styles.main}>
+        <View style={styles.subHeaderTitle}>
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.import_step_1')}
+          </Text>
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.import_step_2')}
+          </Text>
+          <Text style={styles.sectionDescription}>
+            {languages.t('label.import_step_3')}
+          </Text>
+          <TouchableOpacity
+            testID='google-takeout-link'
+            onPress={() =>
+              Linking.openURL(
+                'https://takeout.google.com/settings/takeout/custom/location_history',
+              )
+            }
+            style={styles.buttonTouchable}>
+            <Text style={styles.buttonText}>
+              {languages.t('label.import_takeout').toUpperCase()}
             </Text>
-            <Text style={styles.sectionDescription}>
-              {languages.t('label.import_step_2')}
+          </TouchableOpacity>
+          <TouchableOpacity
+            testID='google-takeout-import-btn'
+            onPress={importPickFile}
+            style={styles.buttonTouchable}>
+            <Text style={styles.buttonText}>
+              {languages.t('label.import_title').toUpperCase()}
             </Text>
-          </View>
-          <View style={styles.web}>
-            <WebView
-              source={{
-                uri:
-                  'https://takeout.google.com/settings/takeout/custom/location_history',
-              }}
-              onLoad={() => this.hideSpinner()}
-              // Reload once on error to workaround chromium regression for Android
-              // Chromiumn Bug :: https://bugs.chromium.org/p/chromium/issues/detail?id=1023678
-              ref={ref => {
-                this.webView = ref;
-              }}
-              onError={() => {
-                console.log(counter);
-                if (counter === 0) {
-                  this.webView.reload();
-                }
-                counter++;
-              }}
-              renderError={errorName => {
-                if (counter >= 1) {
-                  <View style={styles.sectionDescription}>
-                    <Text>Error Occurred while importing file {errorName}</Text>
-                  </View>;
-                }
-              }}
-              style={{ marginTop: 15 }}
-            />
-            {this.state.visible && (
-              <ActivityIndicator
-                style={{
-                  position: 'absolute',
-                  top: height / 2,
-                  left: width / 2,
-                }}
-                size='large'
-              />
-            )}
-          </View>
+          </TouchableOpacity>
+
+          {importResults.label ? (
+            <Text
+              style={{
+                ...styles.importResults,
+                ...(importResults?.error ? styles.importResultsError : {}),
+              }}>
+              {languages.t(importResults.label)}
+            </Text>
+          ) : null}
         </View>
-      </NavigationBarWrapper>
-    );
-  }
-}
+      </View>
+    </NavigationBarWrapper>
+  );
+};
 
 const styles = StyleSheet.create({
   // Container covers the entire screen
@@ -121,25 +126,69 @@ const styles = StyleSheet.create({
     fontSize: 22,
     padding: 5,
   },
-  web: {
-    flex: 1,
-    width: '100%',
-  },
   main: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    textAlignVertical: 'top',
     paddingLeft: 20,
     paddingRight: 20,
     width: '100%',
+    alignSelf: 'center',
+  },
+  buttonTouchable: {
+    borderRadius: 12,
+    backgroundColor: colors.VIOLET,
+    height: 52,
+    alignSelf: 'center',
+    width: width * 0.7866,
+    marginTop: 30,
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontFamily: fontFamily.primarySemiBold,
+    fontSize: 14,
+    lineHeight: 19,
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: colors.WHITE,
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    height: 60,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(189, 195, 199,0.6)',
+    alignItems: 'center',
+  },
+  backArrowTouchable: {
+    width: 60,
+    height: 60,
+    paddingTop: 21,
+    paddingLeft: 20,
+  },
+  backArrow: {
+    height: 18,
+    width: 18.48,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontFamily: fontFamily.primaryRegular,
   },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
-    textAlignVertical: 'center',
     marginTop: 12,
     fontFamily: fontFamily.primaryRegular,
+  },
+  importResults: {
+    fontSize: 12,
+    lineHeight: 20,
+    marginTop: 10,
+    textAlign: 'center',
+    fontFamily: fontFamily.primaryRegular,
+    color: colors.VIOLET_TEXT,
+  },
+  importResultsError: {
+    color: colors.RED_TEXT,
   },
 });
 export default ImportScreen;

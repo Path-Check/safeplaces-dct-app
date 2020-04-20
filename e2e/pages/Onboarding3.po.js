@@ -1,3 +1,4 @@
+/* eslint-disable */
 const buttonlabel = 'Next';
 const screenText =
   'If you test positive, you can choose to donate your data anonymously';
@@ -13,6 +14,7 @@ class Onboarding3 {
   }
 
   async isOnScreen() {
+    // eslint-disable-next-line jest/no-standalone-expect
     await expect(element(by.text(screenText))).toBeVisible();
   }
 }
