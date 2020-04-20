@@ -23,9 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: brew tap lokalise/cli-2
-
-      - run: brew install lokalise2
+      - run: curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
 
       - name: upload app/locales/en.json
         run: lokalise2 file upload --file app/locales/en.json --lang-iso=en --project-id=${{ secrets.LOKALISE_PROJECT_ID }} --token=${{ secrets.LOKALISE_TOKEN }}
