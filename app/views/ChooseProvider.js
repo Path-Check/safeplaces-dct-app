@@ -23,7 +23,7 @@ import {
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import colors from '../constants/colors';
+import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
 import { SetStoreData } from '../helpers/General';
@@ -376,7 +376,7 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '96%',
     alignSelf: 'center',
-    backgroundColor: colors.WHITE,
+    backgroundColor: Colors.WHITE,
   },
   startLoggingButtonTouchable: {
     borderRadius: 12,
@@ -397,14 +397,14 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     fontFamily: fontFamily.primaryBold,
-    color: colors.VIOLET_TEXT,
+    color: Colors.VIOLET_TEXT,
   },
   sectionDescription: {
     fontSize: 18,
     lineHeight: 24,
     marginTop: 12,
     overflow: 'scroll',
-    color: colors.VIOLET_TEXT,
+    color: Colors.VIOLET_TEXT,
     fontFamily: fontFamily.primaryRegular,
   },
   authorityFilter: {
@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
   authorityFilterText: {
     padding: 10,
     fontSize: 16,
-    color: colors.VIOLET_TEXT,
+    color: Colors.VIOLET_TEXT,
   },
   menuOptionText: {
     fontFamily: fontFamily.primaryRegular,

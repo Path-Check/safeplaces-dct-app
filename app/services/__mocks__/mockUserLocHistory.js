@@ -6,9 +6,6 @@ export const mockNullUserLocHistory = [
   },
 ];
 
-/**
- * TODO: Make this bigger
- */
 export const mockUserLocHistory = [
   {
     latitude: 38.421998333333335,

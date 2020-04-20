@@ -1,5 +1,4 @@
 import Yaml from 'js-yaml';
-import { Alert } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import RNFetchBlob from 'rn-fetch-blob';
 

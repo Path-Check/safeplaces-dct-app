@@ -34,7 +34,7 @@ import { isPlatformAndroid, isPlatformiOS } from './../Util';
 import ButtonWrapper from '../components/ButtonWrapper';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import { PARTICIPATE } from '../constants/storage';
+import { CROSSED_PATHS, DEBUG_MODE, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -139,18 +139,23 @@ class LocationTracking extends Component {
 
   checkIfUserAtRisk() {
     BackgroundTaskServices.start();
-    // already set on 12h timer, but run when this screen opens too
-    checkIntersect();
 
-    GetStoreData('CROSSED_PATHS').then(dayBin => {
-      dayBin = JSON.parse(dayBin);
-      if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
-        console.log('Found crossed paths');
-        this.setState({ currentState: StateEnum.AT_RISK });
-      } else {
-        console.log("Can't find crossed paths");
-        this.setState({ currentState: StateEnum.NO_CONTACT });
+    GetStoreData(DEBUG_MODE).then(dbgMode => {
+      if (dbgMode != 'true') {
+        // already set on 12h timer, but run when this screen opens too
+        checkIntersect();
       }
+
+      GetStoreData(CROSSED_PATHS).then(dayBin => {
+        dayBin = JSON.parse(dayBin);
+        if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
+          console.log('Found crossed paths');
+          this.setState({ currentState: StateEnum.AT_RISK });
+        } else {
+          console.log("Can't find crossed paths");
+          this.setState({ currentState: StateEnum.NO_CONTACT });
+        }
+      });
     });
 
     // If the user has location tracking disabled, set enum to match
@@ -242,36 +247,6 @@ class LocationTracking extends Component {
           isLogging: false,
         });
       }
-    });
-  };
-
-  // TODO: Can we delete this?
-  news() {
-    this.props.navigation.navigate('NewsScreen', {});
-  }
-
-  // TODO: Can we delete this?
-  licenses() {
-    this.props.navigation.navigate('LicensesScreen', {});
-  }
-
-  // TODO: Can we delete this?
-  settings() {
-    this.props.navigation.navigate('SettingsScreen', {});
-  }
-
-  // TODO: Can we delete this?
-  notifications() {
-    this.props.navigation.navigate('NotificationScreen', {});
-  }
-
-  // TODO: Can we delete this?
-  setOptOut = () => {
-    LocationServices.stop(this.props.navigation);
-    // Turn of bluetooth for v1
-    //BroadcastingServices.stop(this.props.navigation);
-    this.setState({
-      isLogging: false,
     });
   };
 
