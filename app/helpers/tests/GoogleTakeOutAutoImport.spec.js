@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 import { makeTimelineObject } from './GoogleTakeoutUtils';
 const {
   location1,
@@ -188,5 +190,27 @@ describe('importTakeoutData', () => {
     const { importTakeoutData } = require('../GoogleTakeOutAutoImport');
     const newLocations = await importTakeoutData('file://tmp/test.zip');
     expect(newLocations.length).toEqual(0);
+  });
+});
+
+describe('getFilenamesForLatest2Months', () => {
+  it('correctly returns files for last 2 months', () => {
+    const {
+      getFilenamesForLatest2Months,
+    } = require('../GoogleTakeOutAutoImport');
+    expect(
+      getFilenamesForLatest2Months('', dayjs(new Date(2020, 3, 18))),
+    ).toEqual([
+      `/Takeout/Location History/Semantic Location History/2020/2020_MARCH.json`,
+      `/Takeout/Location History/Semantic Location History/2020/2020_APRIL.json`,
+    ]);
+
+    // account for the January edge case
+    expect(
+      getFilenamesForLatest2Months('', dayjs(new Date(2020, 0, 18))),
+    ).toEqual([
+      `/Takeout/Location History/Semantic Location History/2019/2019_DECEMBER.json`,
+      `/Takeout/Location History/Semantic Location History/2020/2020_JANUARY.json`,
+    ]);
   });
 });

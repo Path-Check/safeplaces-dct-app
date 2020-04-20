@@ -1,11 +1,12 @@
+import dayjs from 'dayjs';
+import { Platform } from 'react-native';
+import RNFS from 'react-native-fs';
 /**
  * Checks the download folder, unzips and imports all data from Google TakeOut
  */
 import { subscribe, unzip } from 'react-native-zip-archive';
-import { mergeJSONWithLocalData } from '../helpers/GoogleData';
-import { Platform } from 'react-native';
-import RNFS from 'react-native-fs';
 
+import { mergeJSONWithLocalData } from '../helpers/GoogleData';
 export class NoRecentLocationsError extends Error {}
 export class InvalidFileExtensionError extends Error {}
 
@@ -31,14 +32,12 @@ const MONTHS = [
  * especially the case when we are in the early days of the current month.
  * @returns {string[]} - array of files for latest 2 months from google takeout archive
  */
-export function getFilenamesForLatest2Months(rootPath) {
-  const now = new Date();
-  const previousMonth = new Date();
-  previousMonth.setMonth(now.getMonth() - 1);
+export function getFilenamesForLatest2Months(rootPath, now) {
+  const previousMonth = dayjs(now).subtract(1, 'month');
 
   return [previousMonth, now].map(date => {
-    const year = date.getFullYear();
-    const monthStr = MONTHS[date.getMonth()];
+    const year = date.year();
+    const monthStr = MONTHS[date.month()];
     return (
       `${rootPath}/Takeout/Location History/Semantic Location History/${year}/` +
       `${year}_${monthStr}.json`
@@ -85,7 +84,7 @@ export async function importTakeoutData(filePath) {
 
     console.log(`[INFO] Unzip Completed for ${path}`);
 
-    const monthlyLocationFiles = getFilenamesForLatest2Months(path);
+    const monthlyLocationFiles = getFilenamesForLatest2Months(path, dayjs());
     for (const filepath of monthlyLocationFiles) {
       console.log('[INFO] File to import:', filepath);
 
