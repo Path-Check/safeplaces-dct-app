@@ -3,6 +3,8 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 target 'COVIDSafePaths' do
   # Pods for COVIDSafePaths
+  project 'COVIDSafePaths.xcodeproj'
+
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -39,15 +41,6 @@ target 'COVIDSafePaths' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-
-
-
-  # React Native Maps dependencies
-  rn_maps_path = '../node_modules/react-native-maps'
-  pod 'react-native-google-maps', :path => rn_maps_path
-  pod 'GoogleMaps'
-  pod 'Google-Maps-iOS-Utils'
-
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 

@@ -1,5 +1,5 @@
-import * as React from 'react';
 import styled from '@emotion/native';
+import * as React from 'react';
 
 export const Type = {
   Headline1: 'headline1',
@@ -34,12 +34,14 @@ export const Type = {
  *   use?: string,
  *   secondary?: boolean,
  *   monospace?: boolean,
+ *   bold?: boolean,
  * }} param0
  */
 export const Typography = ({
   use = Type.Body1,
   secondary,
   monospace,
+  bold,
   children,
   ...otherProps
 }) => {
@@ -48,6 +50,7 @@ export const Typography = ({
       use={use}
       secondary={secondary}
       monospace={monospace}
+      bold={bold}
       {...otherProps}>
       {children}
     </ThemedText>
@@ -79,13 +82,19 @@ const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
 const getTextColor = ({ theme, secondary = false }) =>
   secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;
 
-const getFontWeight = ({ use = Type.Body1 }) =>
-  use.startsWith('headline') ? 'bold' : 'normal';
+const getFontWeight = ({ use = Type.Body1, bold }) =>
+  use.startsWith('headline') || bold ? 'bold' : 'normal';
+
+const getFontFamily = ({ use, monospace, bold }) =>
+  use.startsWith('headline') || bold
+    ? 'IBMPlexSans-Bold'
+    : monospace
+    ? 'IBMPlexMono'
+    : 'IBMPlexSans';
 
 const ThemedText = styled.Text`
   color: ${getTextColor};
-  font-family: ${({ monospace }) =>
-    monospace ? 'IBM Plex Mono' : 'IBM Plex Sans'};
+  font-family: ${getFontFamily};
   font-size: ${getFontSize};
   font-weight: ${getFontWeight};
   line-height: ${getLineHeight};
