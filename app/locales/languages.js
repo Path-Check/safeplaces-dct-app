@@ -14,6 +14,7 @@ import ht from './ht.json';
 import id from './id.json';
 import it from './it.json';
 import ml from './ml.json';
+import nl from './nl.json';
 import ro from './ro.json';
 import ru from './ru.json';
 import sk from './sk.json';
@@ -89,6 +90,7 @@ i18next.init({
     ru: { label: 'Русский', translation: ru },
     sk: { label: 'Slovak', translation: sk },
     vi: { label: 'Vietnamese', translation: vi },
+    nl: { label: 'Nederlands', translation: nl },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
   },
 });
