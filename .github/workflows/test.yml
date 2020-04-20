@@ -40,7 +40,7 @@ jobs:
     # while this job doesn't depend on the previous job explicitly
     # this will force them not to run in parallel. If they're run in parallel,
     # the node_modules caches will conflict
-    # needs: unit-test
+    needs: unit-test
     timeout-minutes: 15
     env:
       DEVELOPER_DIR: /Applications/Xcode_11.4.app
@@ -129,13 +129,13 @@ jobs:
           name: e2e-ios-bin
           path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
 
-      # - run: yarn test:e2e:iphone11
+      - run: yarn test:e2e:iphone11
 
-      # - name: Upload Screenshots
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: iPhone 11 screenshots
-      #     path: e2e/artifacts
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v1
+        with:
+          name: iPhone 11 screenshots
+          path: e2e/artifacts
 
   e2e-iphone-se:
     runs-on: macOS-latest
@@ -166,9 +166,9 @@ jobs:
 
       - run: brew install applesimutils
 
-      - run: xcrun simctl list devicetypes
+      # - run: xcrun simctl list devicetypes
 
-      - run: xcrun simctl list runtimes
+      # - run: xcrun simctl list runtimes
 
       - run: xcrun simctl create "iPhone SE" com.apple.CoreSimulator.SimDeviceType.iPhone-SE com.apple.CoreSimulator.SimRuntime.iOS-13-4
 
