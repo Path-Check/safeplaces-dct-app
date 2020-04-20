@@ -9,7 +9,6 @@ import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { WAYPOINTS_API } from '../constants/apis';
 import Colors from '../constants/colors';
 import CustomCircle from '../helpers/customCircle';
-import { LocationData } from '../services/LocationService';
 
 const InitialRegion = {
   latitude: 35.692863,
@@ -71,12 +70,12 @@ class WayPointsScreen extends Component {
   async postWayPoints(latitude, longitude) {
     // Comment out to fake location data for now until we have
     // minimu 2 required
-    // const locationData = [
-    //   { latitude: 40.703271, longitude: -74.053579 },
-    //   { latitude: 37.7118, longitude: -121.864 },
-    // ];
-    const locationService = new LocationData();
-    const locationData = await locationService.getLocationData();
+    const locationData = [
+      { latitude: 40.703271, longitude: -74.053579 },
+      { latitude: 37.7118, longitude: -121.864 },
+    ];
+    // const locationService = new LocationData();
+    // const locationData = await locationService.getLocationData();
     if (locationData.length > 1) {
       // has location data, proceed with upload
       const postData = [];
