@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import {
   Dimensions,
+  Linking,
   StyleSheet,
-  View,
   Text,
   TouchableOpacity,
-  Linking,
+  View,
 } from 'react-native';
 
+import languages from './../locales/languages';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import {
-  importTakeoutData,
-  NoRecentLocationsError,
-  InvalidFileExtensionError,
-} from '../helpers/GoogleTakeOutAutoImport';
-import languages from './../locales/languages';
 import { pickFile } from '../helpers/General';
+import {
+  InvalidFileExtensionError,
+  NoRecentLocationsError,
+  importTakeoutData,
+} from '../helpers/GoogleTakeOutAutoImport';
 
 const width = Dimensions.get('window').width;
-
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
 
 const makeImportResults = (label = '', error = false) => ({
   error,

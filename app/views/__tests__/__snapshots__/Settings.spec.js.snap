@@ -356,6 +356,11 @@ exports[`renders correctly 1`] = `
                                 "value": "nl",
                               },
                               Object {
+                                "label": "Polski",
+                                "textColor": undefined,
+                                "value": "pl",
+                              },
+                              Object {
                                 "label": "Română",
                                 "textColor": undefined,
                                 "value": "ro",

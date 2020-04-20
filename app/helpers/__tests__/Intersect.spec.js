@@ -133,7 +133,7 @@ describe('intersect with empty sets', () => {
   });
 
   /**
-   * Empty locations, some concern locations 
+   * Empty locations, some concern locations
    */
   it('empty locations vs real concern locations has no data result', () => {
     let baseLocations = [];
@@ -234,7 +234,6 @@ describe('intersect with empty sets', () => {
     expect(resultBins).toEqual(expectedBins);
   });
 });
-
 
 /**
  * More realistic tests, where there are locations and concern locations
@@ -700,9 +699,9 @@ describe('intersect at fixed locations and times', () => {
 });
 
 /**
- * These are tests running at interesting times, such as near midnight or at a 
- *   daylight savings change.  
- * 
+ * These are tests running at interesting times, such as near midnight or at a
+ *   daylight savings change.
+ *
  * TODO: daylight savings not yet tested
  */
 describe('instersect at interesting times', () => {
