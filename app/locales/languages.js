@@ -16,6 +16,7 @@ import it from './it.json';
 import ml from './ml.json';
 import nl from './nl.json';
 import pl from './pl.json';
+import pt_BR from './pt_BR.json'
 import ro from './ro.json';
 import ru from './ru.json';
 import sk from './sk.json';
@@ -89,6 +90,7 @@ i18next.init({
     ml: { label: 'മലയാളം', translation: ml },
     nl: { label: 'Nederlands', translation: nl },
     pl: { label: 'Polski', translation: pl },
+    pt_BR: { label: 'Português do Brasil', translation: pt_BR },
     ro: { label: 'Română', translation: ro },
     ru: { label: 'Русский', translation: ru },
     sk: { label: 'Slovak', translation: sk },
