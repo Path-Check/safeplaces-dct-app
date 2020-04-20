@@ -24,7 +24,9 @@ import RNFetchBlob from 'rn-fetch-blob';
 import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
+import { DynamicTextInput } from '../components/DynamicTextInput';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
@@ -33,8 +35,6 @@ import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
-import { Typography } from '../components/Typography';
-import { DynamicTextInput } from '../components/DynamicTextInput';
 
 const { SlideInMenu } = renderers;
 
@@ -348,7 +348,9 @@ class ChooseProviderScreen extends Component {
                         this.addAuthorityToState(name);
                       }}
                       disabled={this.state.authoritiesList.length === 1}>
-                      <Typography style={styles.menuOptionText}>{name}</Typography>
+                      <Typography style={styles.menuOptionText}>
+                        {name}
+                      </Typography>
                     </MenuOption>
                   );
                 })}

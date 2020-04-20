@@ -37,7 +37,7 @@ import zh_Hant from './zh-Hant.json';
 const deviceLocale =
   Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
-    NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
+      NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
     : NativeModules.I18nManager.localeIdentifier; // Android
 
 dayjs.locale([deviceLocale, 'en']);
@@ -72,12 +72,10 @@ export function findUserLang(callback) {
 }
 
 export async function localeChanged(locale) {
-
   // If user picks manual lang, update and store setting
   try {
     await i18next.changeLanguage(locale);
     await SetStoreData(LANG_OVERRIDE, locale);
-
   } catch (e) {
     console.log('something went wrong in lang change', e);
   }
@@ -85,7 +83,6 @@ export async function localeChanged(locale) {
 
 // This function is for checking/change current app direction
 export function languageDirectionHandler(language, navigation) {
-
   // check if is not rtl and user choose rtl language
   if (i18next.dir() !== i18next.dir(language)) {
     showAlert(
@@ -94,20 +91,18 @@ export function languageDirectionHandler(language, navigation) {
       () => [
         localeChanged(language),
         I18nManager.forceRTL(i18next.dir(language) === 'rtl' ? true : false),
-        ReactNativeRestart.Restart()
+        ReactNativeRestart.Restart(),
       ],
       i18next.t('label.language_change_alert_proced'),
       null,
       i18next.t('label.language_change_alert_cancel'),
     );
-  }
-  else {
-    localeChanged(language)
+  } else {
+    localeChanged(language);
     if (navigation) {
       navigation();
     }
   }
-
 }
 
 findUserLang();
@@ -120,6 +115,7 @@ i18next.init({
   lng: 'en', // 'en' | 'es',
   fallbackLng: 'en', // If language detector fails
   resources: {
+    ar: { label: 'العربية', translation: ar },
     en: { label: 'English', translation: en },
     es: { label: 'Español', translation: es },
     fr: { label: 'Français', translation: fr },
@@ -132,7 +128,6 @@ i18next.init({
     sk: { label: 'Slovak', translation: sk },
     vi: { label: 'Vietnamese', translation: vi },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
-    ar: { label: 'العربية', translation: ar },
   },
 });
 

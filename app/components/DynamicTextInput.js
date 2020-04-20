@@ -1,5 +1,6 @@
 // Custome Text handling RTL and LTR text direction
 import styled from '@emotion/native';
+
 import languages from '../locales/languages';
 
 // Themes to be added
@@ -7,5 +8,5 @@ import languages from '../locales/languages';
 const getCurrentDirection = () => languages.dir();
 
 export const DynamicTextInput = styled.TextInput`
-writingDirection: ${getCurrentDirection};
+  writing-direction: ${getCurrentDirection};
 `;

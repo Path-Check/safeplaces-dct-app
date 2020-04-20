@@ -17,8 +17,8 @@ import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
 import lock from '../assets/svgs/lock';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import Colors from '../constants/colors';
 import { Typography } from '../components/Typography';
+import Colors from '../constants/colors';
 import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
 import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
@@ -132,8 +132,12 @@ class AboutScreen extends Component {
 
           <View style={styles.main}>
             <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>Version: </Typography>
-              <Typography style={styles.aboutSectionPara}>{packageJson.version}</Typography>
+              <Typography style={styles.aboutSectionParaBold}>
+                Version:{' '}
+              </Typography>
+              <Typography style={styles.aboutSectionPara}>
+                {packageJson.version}
+              </Typography>
             </View>
 
             <View style={styles.row}>
@@ -145,7 +149,9 @@ class AboutScreen extends Component {
             </View>
 
             <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>Dimensions:</Typography>
+              <Typography style={styles.aboutSectionParaBold}>
+                Dimensions:
+              </Typography>
               <Typography style={styles.aboutSectionPara}>
                 {' '}
                 {Math.trunc(Dimensions.get('screen').width) +

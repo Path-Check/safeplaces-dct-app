@@ -8,9 +8,10 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { Typography } from './Typography';
-import { DynamicTextInput } from './DynamicTextInput';
+
 import { languageDirectionHandler } from '../locales/languages';
+import { DynamicTextInput } from './DynamicTextInput';
+import { Typography } from './Typography';
 
 // Code for the language select dropdown, for nice native handling on both iOS and Android.
 export default class NativePicker extends Component {
@@ -73,7 +74,9 @@ export default class NativePicker extends Component {
               styles.touchableTrigger,
               this.props.hidden ? styles.opacityZero : null,
             ]}>
-            <Typography style={styles.touchableText}>{selectedLabel}</Typography>
+            <Typography style={styles.touchableText}>
+              {selectedLabel}
+            </Typography>
           </TouchableOpacity>
 
           <Modal
@@ -85,10 +88,12 @@ export default class NativePicker extends Component {
                 style={{ flex: 1, backgroundColor: '#000000', opacity: 0.4 }}
                 onPress={() => {
                   // check if its a language picker we check for RTL to update the view
-                  if (this.props.languagePicker) languageDirectionHandler(this.props.value, () => this.setState({ modalVisible: false }))
-                  else this.setState({ modalVisible: false })
-                }
-                }>
+                  if (this.props.languagePicker)
+                    languageDirectionHandler(this.props.value, () =>
+                      this.setState({ modalVisible: false }),
+                    );
+                  else this.setState({ modalVisible: false });
+                }}>
                 <View
                   style={{
                     flex: 1,
@@ -101,10 +106,12 @@ export default class NativePicker extends Component {
             <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
               <TouchableWithoutFeedback
                 onPress={() => {
-                  if (this.props.languagePicker) languageDirectionHandler(this.props.value, () => this.setState({ modalVisible: false }))
-                  else this.setState({ modalVisible: false })
-                }
-                }>
+                  if (this.props.languagePicker)
+                    languageDirectionHandler(this.props.value, () =>
+                      this.setState({ modalVisible: false }),
+                    );
+                  else this.setState({ modalVisible: false });
+                }}>
                 <View style={styles.modalContainer}>
                   <View style={styles.modalContent}>
                     <Typography
@@ -116,15 +123,18 @@ export default class NativePicker extends Component {
                         marginRight: 22,
                       }}
                       onPress={() => {
-                        if (this.props.languagePicker) languageDirectionHandler(this.props.value, () => this.setState({ modalVisible: false }))
-                        else this.setState({ modalVisible: false })
+                        if (this.props.languagePicker)
+                          languageDirectionHandler(this.props.value, () =>
+                            this.setState({ modalVisible: false }),
+                          );
+                        else this.setState({ modalVisible: false });
                       }}>
                       Done
                     </Typography>
                   </View>
                   <View
                     onStartShouldSetResponder={() => true}
-                    onResponderReject={() => { }}>
+                    onResponderReject={() => {}}>
                     <Picker
                       selectedValue={this.props.value}
                       onValueChange={this.props.onValueChange}>

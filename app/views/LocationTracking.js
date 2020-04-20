@@ -32,6 +32,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import { isPlatformAndroid, isPlatformiOS } from './../Util';
 import ButtonWrapper from '../components/ButtonWrapper';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { CROSSED_PATHS, DEBUG_MODE, PARTICIPATE } from '../constants/storage';
@@ -40,7 +41,6 @@ import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
-import { Typography } from '../components/Typography';
 
 const MAYO_COVID_URL = 'https://www.mayoclinic.org/coronavirus-covid-19';
 
@@ -445,12 +445,16 @@ class LocationTracking extends Component {
           <View style={styles.contentAbovePulse}>
             {this.state.currentState === StateEnum.AT_RISK &&
               this.getMainText()}
-            <Typography style={styles.subsubheaderText}>{this.getSubSubText()}</Typography>
+            <Typography style={styles.subsubheaderText}>
+              {this.getSubSubText()}
+            </Typography>
           </View>
           <View style={styles.contentBelowPulse}>
             {this.state.currentState !== StateEnum.AT_RISK &&
               this.getMainText()}
-            <Typography style={styles.subheaderText}>{this.getSubText()}</Typography>
+            <Typography style={styles.subheaderText}>
+              {this.getSubText()}
+            </Typography>
             {this.getCTAIfNeeded()}
           </View>
         </View>
@@ -591,10 +595,13 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryRegular,
   },
   arrowContainer: {
-    transform: languages.dir() === 'rtl' ? [{rotateY: '180deg'}] : [{rotateY: '0deg'}],
+    transform:
+      languages.dir() === 'rtl'
+        ? [{ rotateY: '180deg' }]
+        : [{ rotateY: '0deg' }],
     alignSelf: 'center',
     paddingRight: 20,
-    paddingLeft: 20
+    paddingLeft: 20,
   },
 });
 

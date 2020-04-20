@@ -34,9 +34,7 @@ const NavigationBarWrapper = ({ children, title, onBackPress }) => {
       <BottomContainer>
         <Header>
           <BackArrow onPress={() => onBackPress()}>
-            <BackArrowIcon 
-            
-            xml={backArrow} />
+            <BackArrowIcon xml={backArrow} />
           </BackArrow>
           <Title>{title}</Title>
         </Header>
@@ -65,7 +63,8 @@ const BottomContainer = styled.SafeAreaView`
 const themeNavBarBorder = ({ theme }) =>
   theme.navBarBorder || Colors.NAV_BAR_VIOLET;
 
-const getCurrentDirection = () => languages.dir() === 'rtl' ? 'rotateY(180deg)' : 'rotateY(0deg)';
+const getCurrentDirection = () =>
+  languages.dir() === 'rtl' ? 'rotateY(180deg)' : 'rotateY(0deg)';
 
 const Header = styled.View`
   background-color: ${themeNavBar};

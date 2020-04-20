@@ -21,11 +21,11 @@ import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
 import languages from './../locales/languages';
 import { isPlatformiOS } from './../Util';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 // import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { LocationData } from '../services/LocationService';
-import { Typography } from '../components/Typography';
 
 const base64 = RNFetchBlob.base64;
 

@@ -14,9 +14,9 @@ import foreArrow from './../assets/images/foreArrow.png';
 import licenses from './../assets/LICENSE.json';
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import { Typography } from '../components/Typography';
 
 class LicensesScreen extends Component {
   constructor(props) {
@@ -152,10 +152,13 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryBold,
   },
   arrowContainer: {
-    transform: languages.dir() === 'rtl' ? [{rotateY: '180deg'}] : [{rotateY: '0deg'}],
+    transform:
+      languages.dir() === 'rtl'
+        ? [{ rotateY: '180deg' }]
+        : [{ rotateY: '0deg' }],
     alignSelf: 'center',
     paddingRight: 20,
-    paddingLeft: 20
+    paddingLeft: 20,
   },
 });
 

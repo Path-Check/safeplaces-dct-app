@@ -11,10 +11,10 @@ import WebView from 'react-native-webview';
 
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
-import { Typography } from '../components/Typography';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -85,7 +85,9 @@ class ImportScreen extends Component {
               renderError={errorName => {
                 if (counter >= 1) {
                   <View style={styles.sectionDescription}>
-                    <Typography>Error Occurred while importing file {errorName}</Typography>
+                    <Typography>
+                      Error Occurred while importing file {errorName}
+                    </Typography>
                   </View>;
                 }
               }}

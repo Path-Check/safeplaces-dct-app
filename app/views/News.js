@@ -13,11 +13,11 @@ import { WebView } from 'react-native-webview';
 
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { AUTHORITY_NEWS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
-import { Typography } from '../components/Typography';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -58,7 +58,9 @@ class NewsScreen extends Component {
     return (
       <View style={styles.singleNews}>
         <View style={styles.singleNewsHead}>
-          <Typography style={styles.singleNewsHeadText}>{item.item.name}</Typography>
+          <Typography style={styles.singleNewsHeadText}>
+            {item.item.name}
+          </Typography>
         </View>
         <WebView
           source={{

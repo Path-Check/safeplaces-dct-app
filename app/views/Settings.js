@@ -5,7 +5,7 @@ import { BackHandler, ScrollView, View } from 'react-native';
 import languages, {
   LOCALE_LIST,
   LOCALE_NAME,
-  findUserLang
+  findUserLang,
 } from './../locales/languages';
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
@@ -30,10 +30,9 @@ export const SettingsScreen = ({ navigation }) => {
   const [userLocale, setUserLocale] = useState(undefined);
 
   const handleBackPress = () => {
-    backToMain()
+    backToMain();
     return true;
   };
-
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
@@ -69,7 +68,6 @@ export const SettingsScreen = ({ navigation }) => {
       try {
         await languages.changeLanguage(locale);
         await SetStoreData(LANG_OVERRIDE, locale);
-
       } catch (e) {
         console.log('something went wrong in lang change', e);
       }

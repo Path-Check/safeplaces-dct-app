@@ -1,5 +1,6 @@
 import styled from '@emotion/native';
 import * as React from 'react';
+
 import languages from '../locales/languages';
 
 export const Type = {
