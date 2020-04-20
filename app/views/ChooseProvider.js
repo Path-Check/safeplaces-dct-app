@@ -194,9 +194,16 @@ class ChooseProviderScreen extends Component {
     );
   }
 
+  async toggleFilterAuthoritesByGPSHistory() {
+    console.log('toggle!' + this.state.isAuthorityFilterActive);
+    this.filterAuthoritesByGPSHistory({
+      val: !this.state.isAuthorityFilterActive,
+    });
+  }
+
   async filterAuthoritesByGPSHistory(isAuthorityFilterActive) {
-    await this.fetchAuthoritiesList(isAuthorityFilterActive);
-    this.setState({ isAuthorityFilterActive });
+    await this.fetchAuthoritiesList(isAuthorityFilterActive.val);
+    this.setState({ isAuthorityFilterActive: isAuthorityFilterActive.val });
   }
 
   render() {
@@ -271,7 +278,7 @@ class ChooseProviderScreen extends Component {
                   value={this.state.urlText}
                   autoFocus={this.state.urlEntryInProgress}
                   style={[styles.item, styles.textInput]}
-                  placeholder='Paste your URL here'
+                  placeholder={languages.t('label.enter_authority_url')}
                   onSubmitEditing={() =>
                     this.addCustomUrlToState(this.state.urlText)
                   }
@@ -314,15 +321,19 @@ class ChooseProviderScreen extends Component {
             </TouchableOpacity>
           </MenuTrigger>
           <MenuOptions>
-            <View style={styles.authorityFilter}>
+            <TouchableOpacity
+              style={styles.authorityFilter}
+              onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
               <Text style={styles.authorityFilterText}>
                 {languages.t('label.filter_authorities_by_gps_history')}
               </Text>
               <Switch
-                onValueChange={val => this.filterAuthoritesByGPSHistory(val)}
+                onValueChange={val =>
+                  this.filterAuthoritesByGPSHistory({ val })
+                }
                 value={this.state.isAuthorityFilterActive}
               />
-            </View>
+            </TouchableOpacity>
             {this.state.authoritiesList === undefined
               ? null
               : this.state.authoritiesList.map(item => {
@@ -410,7 +421,11 @@ const styles = StyleSheet.create({
   authorityFilter: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    paddingHorizontal: 5,
+    backgroundColor: Colors.LIGHT_GRAY,
+    borderTopWidth: 3,
+    borderTopColor: Colors.DIVIDER,
+    justifyContent: 'space-between',
   },
   authorityFilterText: {
     padding: 10,
