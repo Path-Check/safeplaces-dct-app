@@ -86,11 +86,11 @@ i18next.init({
     id: { label: 'Indonesia', translation: id },
     it: { label: 'Italiano', translation: it },
     ml: { label: 'മലയാളം', translation: ml },
+    nl: { label: 'Nederlands', translation: nl },
     ro: { label: 'Română', translation: ro },
     ru: { label: 'Русский', translation: ru },
     sk: { label: 'Slovak', translation: sk },
     vi: { label: 'Vietnamese', translation: vi },
-    nl: { label: 'Nederlands', translation: nl },
     zh_Hant: { label: '繁體中文', translation: zh_Hant },
   },
 });
