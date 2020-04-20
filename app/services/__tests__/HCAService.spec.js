@@ -119,7 +119,7 @@ describe('HCAService', () => {
     let alertSpy;
 
     beforeEach(() => {
-      alertSpy = jest.spyOn(HCAService, 'alertAddNewAuthorityFromLoc');
+      alertSpy = jest.spyOn(HCAService, 'pushAddNewAuthoritesFromLoc');
     });
 
     it('does not prompt the user there are no new authorities', async () => {

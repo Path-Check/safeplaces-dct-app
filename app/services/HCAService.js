@@ -1,5 +1,6 @@
 import Yaml from 'js-yaml';
 import { Alert } from 'react-native';
+import PushNotification from 'react-native-push-notification';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import { AUTHORITIES_LIST_URL } from '../constants/authorities';
@@ -72,22 +73,14 @@ class HCAService {
    * @param {*} navigate - react-navigation function to change the current stack screen
    * @returns {void}
    */
-  async alertAddNewAuthorityFromLoc() {
+  async pushAddNewAuthoritesFromLoc() {
     const authorities = await this.getAuthoritiesInCurrentLoc();
     const numAuthories = authorities.length;
 
-    const title = languages.t('label.authorities_none_saved');
-    const msg = languages.t('label.authorities_num_in_area', { numAuthories });
-
-    const noBtn = { text: 'No', style: 'cancel' };
-    const yesBtn = {
-      text: 'Yes',
-      onPress: () => navigate('ChooseProviderScreen', {}), // TODO: Pull in a navigate function
-    };
-
-    const btns = [noBtn, yesBtn];
-
-    Alert.alert(title, msg, btns);
+    PushNotification.localNotification({
+      title: languages.t('label.authorities_new_in_area'),
+      message: languages.t('label.authorities_num_in_area', { numAuthories }),
+    });
   }
 
   /**
@@ -184,17 +177,16 @@ class HCAService {
   }
 
   /**
-   * Prompt a user to add a Health Authority if they
-   * 1. Have not saved a single health authority yet
-   * 2. Are currently in the GPS bounds of one or more health authorities
+   * Prompt a user to add a Health Authority if they are in the bounds
+   * of a healthcare authority that they have not yet subscribed to.
    *
-   * This alert will redirect a user to the `ChooseProvider` screen.
+   * This will trigger a push notification.
    */
   async findNewAuthorities() {
     const newAuthorities = await this.getNewAuthoritiesInUserLoc();
 
     if (newAuthorities.length > 0) {
-      this.alertAddNewAuthorityFromLoc();
+      this.pushAddNewAuthoritesFromLoc();
     }
   }
 }

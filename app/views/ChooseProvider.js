@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import {
   Alert,
   BackHandler,
-  Dimensions,
   FlatList,
   Image,
-  SafeAreaView,
   StyleSheet,
   Switch,
   Text,
@@ -22,7 +20,6 @@ import {
   withMenuContext,
 } from 'react-native-popup-menu';
 
-import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
@@ -36,8 +33,6 @@ import HCAService from '../services/HCAService';
 
 const { SlideInMenu } = renderers;
 
-const width = Dimensions.get('window').width;
-
 class ChooseProviderScreen extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +42,7 @@ class ChooseProviderScreen extends Component {
       urlEntryInProgress: false,
       urlText: '',
       authoritiesList: [],
-      isAuthorityFilterActive: false,
+      isAuthorityFilterActive: true,
     };
   }
 
@@ -364,14 +359,6 @@ class ChooseProviderScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
   main: {
     flex: 2,
     flexDirection: 'column',
@@ -391,16 +378,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: colors.WHITE,
   },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
-  value: {
-    fontSize: 20,
-    fontWeight: '200',
-  },
   startLoggingButtonTouchable: {
     borderRadius: 12,
     backgroundColor: '#665eff',
@@ -417,32 +394,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
-
-  buttonTouchable: {
-    borderRadius: 12,
-    backgroundColor: '#665eff',
-    height: 52,
-    alignSelf: 'center',
-    width: width * 0.7866,
-    marginTop: 30,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: fontFamily.primaryBold,
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: '#ffffff',
-  },
   headerTitle: {
     fontSize: 24,
     fontFamily: fontFamily.primaryBold,
     color: colors.VIOLET_TEXT,
-  },
-  backArrow: {
-    height: 18,
-    width: 18.48,
   },
   sectionDescription: {
     fontSize: 18,
