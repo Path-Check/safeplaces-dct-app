@@ -285,96 +285,72 @@ exports[`renders correctly 1`] = `
                             "value": "en",
                           },
                           Object {
-                            "color": "#007aff",
-                            "fontWeight": "bold",
-                            "marginRight": 22,
-                            "marginTop": 16,
-                            "textAlign": "right",
-                          }
-                        }
-                      >
-                        Done
-                      </Text>
-                    </View>
-                    <View>
-                      <View>
-                        <RCTPicker
-                          items={
-                            Array [
-                              Object {
-                                "label": "English",
-                                "textColor": undefined,
-                                "value": "en",
-                              },
-                              Object {
-                                "label": "Español",
-                                "textColor": undefined,
-                                "value": "es",
-                              },
-                              Object {
-                                "label": "Français",
-                                "textColor": undefined,
-                                "value": "fr",
-                              },
-                              Object {
-                                "label": "Kreyòl ayisyen",
-                                "textColor": undefined,
-                                "value": "ht",
-                              },
-                              Object {
-                                "label": "Indonesia",
-                                "textColor": undefined,
-                                "value": "id",
-                              },
-                              Object {
-                                "label": "Italiano",
-                                "textColor": undefined,
-                                "value": "it",
-                              },
-                              Object {
-                                "label": "മലയാളം",
-                                "textColor": undefined,
-                                "value": "ml",
-                              },
-                              Object {
-                                "label": "Română",
-                                "textColor": undefined,
-                                "value": "ro",
-                              },
-                              Object {
-                                "label": "Русский",
-                                "textColor": undefined,
-                                "value": "ru",
-                              },
-                              Object {
-                                "label": "Slovak",
-                                "textColor": undefined,
-                                "value": "sk",
-                              },
-                              Object {
-                                "label": "Vietnamese",
-                                "textColor": undefined,
-                                "value": "vi",
-                              },
-                              Object {
-                                "label": "繁體中文",
-                                "textColor": undefined,
-                                "value": "zh_Hant",
-                              },
-                            ]
-                          }
-                          selectedIndex={0}
-                          style={
-                            Array [
-                              Object {
-                                "height": 216,
-                              },
-                              undefined,
-                            ]
-                          }
-                        />
-                      </View>
-                    </View>
+                            "label": "Español",
+                            "textColor": undefined,
+                            "value": "es",
+                          },
+                          Object {
+                            "label": "Français",
+                            "textColor": undefined,
+                            "value": "fr",
+                          },
+                          Object {
+                            "label": "Kreyòl ayisyen",
+                            "textColor": undefined,
+                            "value": "ht",
+                          },
+                          Object {
+                            "label": "Indonesia",
+                            "textColor": undefined,
+                            "value": "id",
+                          },
+                          Object {
+                            "label": "Italiano",
+                            "textColor": undefined,
+                            "value": "it",
+                          },
+                          Object {
+                            "label": "മലയാളം",
+                            "textColor": undefined,
+                            "value": "ml",
+                          },
+                          Object {
+                            "label": "Română",
+                            "textColor": undefined,
+                            "value": "ro",
+                          },
+                          Object {
+                            "label": "Русский",
+                            "textColor": undefined,
+                            "value": "ru",
+                          },
+                          Object {
+                            "label": "Slovak",
+                            "textColor": undefined,
+                            "value": "sk",
+                          },
+                          Object {
+                            "label": "Vietnamese",
+                            "textColor": undefined,
+                            "value": "vi",
+                          },
+                          Object {
+                            "label": "繁體中文",
+                            "textColor": undefined,
+                            "value": "zh_Hant",
+                          },
+                        ]
+                      }
+                      selectedIndex={0}
+                      style={
+                        Array [
+                          Object {
+                            "height": 216,
+                          },
+                          undefined,
+                        ]
+                      }
+                    />
                   </View>
                 </View>
               </View>
