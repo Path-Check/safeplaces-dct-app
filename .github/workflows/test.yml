@@ -170,19 +170,19 @@ jobs:
 
       - run: xcrun simctl list runtimes
 
-      - run: xcrun simctl create "iPhone SE (2nd generation)" com.apple.CoreSimulator.SimDeviceType.iPhone-SE--2nd-generation-  com.apple.CoreSimulator.SimRuntime.iOS-13-4
+      - run: xcrun simctl create "iPhone SE (2nd generation)" com.apple.CoreSimulator.SimDeviceType.iPhone-SE com.apple.CoreSimulator.SimRuntime.iOS-13-4
 
       - run: xcrun simctl list
 
-      # - uses: actions/download-artifact@master
-      #   with:
-      #     name: e2e-ios-bin
-      #     path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
+      - uses: actions/download-artifact@master
+        with:
+          name: e2e-ios-bin
+          path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
 
-      # - run: yarn test:e2e:iphone-se
+      - run: yarn test:e2e:iphone-se
 
-      # - name: Upload Screenshots
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: iPhone SE screenshots
-      #     path: e2e/artifacts
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v1
+        with:
+          name: iPhone SE screenshots
+          path: e2e/artifacts
