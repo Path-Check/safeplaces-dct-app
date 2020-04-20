@@ -4,9 +4,17 @@ on:
   # upload strings merged into develop
   push:
     branches: [develop]
+    paths:
+      - app/locales/en.json
+      - ios/en.lproj/*.strings
+      - android/app/src/main/res/values/strings.xml
   # for testing
-  # pull_request:
-  #   branches: [develop]
+  pull_request:
+    branches: [develop]
+    paths:
+      - app/locales/en.json
+      - ios/en.lproj/*.strings
+      - android/app/src/main/res/values/strings.xml
 
 jobs:
   lokalise-upload:
@@ -30,4 +38,3 @@ jobs:
 
       - name: upload android/app/src/main/res/values/strings.xml
         run: lokalise2 file upload --file android/app/src/main/res/values/strings.xml --lang-iso=en --project-id=${{ secrets.LOKALISE_PROJECT_ID }} --token=${{ secrets.LOKALISE_TOKEN }}
-
