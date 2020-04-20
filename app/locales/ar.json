@@ -99,7 +99,10 @@
     "tested_positive_subtitle": "يمكن نقل بياناتك الخاصة إلى السلطات الصحية أو نسخها احتياطيًا أو مشاركتها بأي طريقة أخرى",
     "tested_positive_title": "مشاركة سجل تتبع الموقع",
     "logging_active": " خدمة تتبع الموقع مفعلة",
-    "logging_inactive": "خدمة تتبع الموقع غير مفعلة"
+    "logging_inactive": "خدمة تتبع الموقع غير مفعلة",
+    "language_change_alert_title": "يحتاج التطبيق إلى إعادة التشغيل لاستخدام هذه اللغة",
+    "language_change_alert_proced": "إعادة التشغيل",
+    "language_change_alert_cancel": "إلغاء"
   },
   "history": {
     "no_exposure": "لم يتم التعرض",

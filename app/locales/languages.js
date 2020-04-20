@@ -18,7 +18,6 @@ import id from './id.json';
 import it from './it.json';
 import ml from './ml.json';
 import ro from './ro.json';
-import rtlLanguages from './rtl-languages';
 import ru from './ru.json';
 import sk from './sk.json';
 import vi from './vi.json';
