@@ -74,11 +74,11 @@ class HCAService {
    */
   async pushAddNewAuthoritesFromLoc() {
     const authorities = await this.getAuthoritiesInCurrentLoc();
-    const numAuthories = authorities.length;
+    const numAuthorities = authorities.length;
 
     PushNotification.localNotification({
       title: languages.t('label.authorities_new_in_area'),
-      message: languages.t('label.authorities_num_in_area', { numAuthories }),
+      message: languages.t('label.authorities_num_in_area', { numAuthorities }),
     });
   }
 
