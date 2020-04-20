@@ -170,7 +170,7 @@ jobs:
 
       - run: xcrun simctl list runtimes
 
-      - run: xcrun simctl create "iPhone SE (2nd generation)" com.apple.CoreSimulator.SimDeviceType.iPhone-SE com.apple.CoreSimulator.SimRuntime.iOS-13-4
+      - run: xcrun simctl create "iPhone SE" com.apple.CoreSimulator.SimDeviceType.iPhone-SE com.apple.CoreSimulator.SimRuntime.iOS-13-4
 
       - run: xcrun simctl list
 

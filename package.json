@@ -148,7 +148,7 @@
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone SE (2nd generation)"
+          "type": "iPhone SE"
         }
       }
     },
