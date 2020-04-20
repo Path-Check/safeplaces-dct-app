@@ -40,6 +40,7 @@
   [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
   // [REQUIRED] Register BackgroundFetch
     [[TSBackgroundFetch sharedInstance] didFinishLaunching];
+  
   return YES;
 }
 
@@ -80,16 +81,27 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    UILocalNotification *_localNotification = [[UILocalNotification alloc] init];
-    _localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
-    _localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    _localNotification.alertTitle = @"COVID Safe Paths";
-    _localNotification.alertBody = @"COVID Safe Paths is securely storing your GPS coordinates once every five minutes on this device.";
-    _localNotification.soundName = UILocalNotificationDefaultSoundName;
-    [[UIApplication sharedApplication]scheduleLocalNotification:_localNotification];
+  //Show local notifiation at first time only.
+  if(![[NSUserDefaults standardUserDefaults] boolForKey:@"NotificationAtFirstTimeOnly"]) {
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]){
+      //Checking local notification permission or not.
+      UIUserNotificationSettings *grantedSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+      if (grantedSettings.types != UIUserNotificationTypeNone){
+        // Set local notification.
+        UILocalNotification *_localNotification = [[UILocalNotification alloc] init];
+        _localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+        _localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        _localNotification.alertTitle = @"COVID Safe Paths";
+        _localNotification.alertBody = @"COVID Safe Paths is securely storing your GPS coordinates once every five minutes on this device.";
+        _localNotification.soundName = UILocalNotificationDefaultSoundName;
+        [[UIApplication sharedApplication]scheduleLocalNotification:_localNotification];
+      }
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotificationAtFirstTimeOnly"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
     
   //  ***********************************************************************************//
-    
   UILocalNotification *notification = [[UILocalNotification alloc] init];
   notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
   notification.alertTitle = @"COVID Safe Paths Was Closed";
