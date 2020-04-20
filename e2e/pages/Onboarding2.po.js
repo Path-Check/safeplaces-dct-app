@@ -1,3 +1,4 @@
+/* eslint-disable */
 const buttonlabel = 'Next';
 const screenText =
   'Get notified if you cross paths with someone later diagnosed for COVID-19.';
@@ -13,6 +14,7 @@ class Onboarding2 {
   }
 
   async isOnScreen() {
+    // eslint-disable-next-line jest/no-standalone-expect
     await expect(element(by.text(screenText))).toBeVisible();
   }
 }

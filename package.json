@@ -11,8 +11,10 @@
     "detox-setup": "detox clean-framework-cache && detox build-framework-cache",
     "build:e2e:android": "detox build -c android.emu.release",
     "test:e2e:android": "detox test -c android.emu.release",
-    "build:e2e:ios": "detox build -c ios.sim.debug",
-    "test:e2e:ios": "detox test -c ios.sim.debug",
+    "build:e2e:ios": "detox build -c iphone11.sim",
+    "test:e2e:iphone11": "detox test -c iphone11.sim --loglevel=warn",
+    "test:e2e:iphone-se": "detox test -c iphone-se.sim --loglevel=warn",
+    "test:e2e:iphone8": "detox test -c iphone8.sim --loglevel=warn",
     "i18n:extract": "i18next",
     "test": "jest test",
     "test:dev_setup": "bats __tests__/dev_setup.test.bats"
@@ -60,6 +62,7 @@
     "react-native-background-fetch": "^3.0.4",
     "react-native-background-timer": "^2.2.0",
     "react-native-ble-advertiser": "0.0.10",
+    "react-native-document-picker": "github:rparet/react-native-document-picker",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-i18n": "^2.0.15",
@@ -89,11 +92,13 @@
     "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
     "@types/jest": "^25.2.1",
+    "@testing-library/react-native": "^5.0.3",
     "babel-jest": "^25.1.0",
     "bats": "^1.1.0",
     "detox": "^16.1.1",
     "eslint": "^6.8.0",
     "eslint-plugin-detox": "^1.0.0",
+    "eslint-plugin-jest": "^23.8.2",
     "husky": "^4.2.3",
     "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
     "import-sort-config": "^6.0.0",
@@ -125,7 +130,7 @@
       "rootDir": "./e2e/artifacts/"
     },
     "configurations": {
-      "ios.sim.debug": {
+      "iphone11.sim": {
         "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
@@ -133,20 +138,20 @@
           "type": "iPhone 11"
         }
       },
-      "android.emu.debug": {
-        "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
-        "build": "cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && cd ..",
-        "type": "android.emulator",
+      "iphone8.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
         "device": {
-          "avdName": "pixel-2"
+          "type": "iPhone 8"
         }
       },
-      "android.emu.release": {
-        "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
-        "build": "cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && cd ..",
-        "type": "android.emulator",
+      "iphone-se.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
         "device": {
-          "avdName": "pixel-2"
+          "type": "iPhone SE"
         }
       }
     },
