@@ -333,6 +333,11 @@ exports[`renders correctly 1`] = `
                           items={
                             Array [
                               Object {
+                                "label": "العربية",
+                                "textColor": undefined,
+                                "value": "ar",
+                              },
+                              Object {
                                 "label": "English",
                                 "textColor": undefined,
                                 "value": "en",
@@ -368,6 +373,16 @@ exports[`renders correctly 1`] = `
                                 "value": "ml",
                               },
                               Object {
+                                "label": "Nederlands",
+                                "textColor": undefined,
+                                "value": "nl",
+                              },
+                              Object {
+                                "label": "Polski",
+                                "textColor": undefined,
+                                "value": "pl",
+                              },
+                              Object {
                                 "label": "Română",
                                 "textColor": undefined,
                                 "value": "ro",
@@ -391,11 +406,6 @@ exports[`renders correctly 1`] = `
                                 "label": "繁體中文",
                                 "textColor": undefined,
                                 "value": "zh_Hant",
-                              },
-                              Object {
-                                "label": "العربية",
-                                "textColor": undefined,
-                                "value": "ar",
                               },
                             ]
                           }
