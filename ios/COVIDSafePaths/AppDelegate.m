@@ -80,8 +80,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 - (void)applicationWillTerminate:(UIApplication *)application {
   UILocalNotification *notification = [[UILocalNotification alloc] init];
   notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
-  notification.alertTitle = @"COVID Safe Paths Was Closed";
-  notification.alertBody = @"COVID Safe Paths requires to be running.";
+  notification.alertTitle = NSLocalizedString(@"ios.app_closed_alert_title", @"Title of notification when app is closed");
+  notification.alertBody = NSLocalizedString(@"ios.app_closed_alert_text", @"Body text of notification when app is closed");
   notification.timeZone = [NSTimeZone defaultTimeZone];
   notification.soundName = UILocalNotificationDefaultSoundName;
   notification.applicationIconBadgeNumber = 0;

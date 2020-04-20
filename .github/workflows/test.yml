@@ -34,3 +34,155 @@ jobs:
       - run: yarn test
         env:
           CI: true
+
+  e2e-ios-build:
+    runs-on: macOS-latest
+    # while this job doesn't depend on the previous job explicitly
+    # this will force them not to run in parallel. If they're run in parallel,
+    # the node_modules caches will conflict
+    needs: unit-test
+    timeout-minutes: 15
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_11.4.app
+    steps:
+      - uses: actions/checkout@master
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - name: Rebuild detox
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: yarn detox-setup
+
+      - name: Install Node Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Cache ruby gems
+        uses: actions/cache@v1
+        with:
+          path: ios/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install ruby gems (including Cocoapods)
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+        working-directory: ./ios
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v1
+        with:
+          path: ios/Pods
+          key: ${{ runner.OS }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-pods-
+
+      - run: pod install --repo-update
+        working-directory: ./ios
+
+      - run: yarn build:e2e:ios
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: e2e-ios-bin
+          path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
+
+  e2e-iphone11:
+    runs-on: macOS-latest
+    needs: e2e-ios-build
+    timeout-minutes: 15
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_11.4.app
+    steps:
+      - uses: actions/checkout@master
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - name: Rebuild detox
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: yarn detox-setup
+
+      - name: Install Node Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - run: brew tap wix/brew
+
+      - run: brew install applesimutils
+
+      - uses: actions/download-artifact@master
+        with:
+          name: e2e-ios-bin
+          path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
+
+      - run: yarn test:e2e:iphone11
+
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v1
+        with:
+          name: iPhone 11 screenshots
+          path: e2e/artifacts
+
+  e2e-iphone-se:
+    runs-on: macOS-latest
+    needs: e2e-ios-build
+    timeout-minutes: 15
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_11.4.app
+    steps:
+      - uses: actions/checkout@master
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - name: Rebuild detox
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: yarn detox-setup
+
+      - name: Install Node Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - run: brew tap wix/brew
+
+      - run: brew install applesimutils
+
+      # - run: xcrun simctl list devicetypes
+
+      # - run: xcrun simctl list runtimes
+
+      - run: xcrun simctl create "iPhone SE" com.apple.CoreSimulator.SimDeviceType.iPhone-SE com.apple.CoreSimulator.SimRuntime.iOS-13-4
+
+      - run: xcrun simctl list
+
+      - uses: actions/download-artifact@master
+        with:
+          name: e2e-ios-bin
+          path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
+
+      - run: yarn test:e2e:iphone-se
+
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v1
+        with:
+          name: iPhone SE screenshots
+          path: e2e/artifacts

@@ -68,3 +68,9 @@ ios/Podfile.lock
 
 # Ruby gems
 ios/vendor/bundle/*
+
+# Screenshots
+e2e/artifacts/*
+
+# VSCode
+.vscode/*
