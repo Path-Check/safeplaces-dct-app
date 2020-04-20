@@ -96,7 +96,7 @@ const getFontFamily = ({ use, monospace, bold }) =>
     : 'IBMPlexSans';
 
 const ThemedText = styled.Text`
-  writingDirection: ${getCurrentDirection};
+  writing-direction: ${getCurrentDirection};
   color: ${getTextColor};
   font-family: ${getFontFamily};
   font-size: ${getFontSize};

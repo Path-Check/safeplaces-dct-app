@@ -66,7 +66,7 @@ class Onboarding extends Component {
 
                   if (languages.dir() === languages.dir(itemValue)) {
                     // If user picks manual lang, update and store setting
-                    languages.changeLanguage(itemValue, (err, t) => {
+                    languages.changeLanguage(itemValue, (err) => {
                       if (err)
                         return console.log(
                           'something went wrong in lang change',
