@@ -13,14 +13,13 @@ import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
 import languages, {
   LOCALE_LIST,
-  findUserLang,
+  getUserLocaleOverride,
+  setUserLocaleOverride,
 } from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import NativePicker from '../../components/NativePicker';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import { LANG_OVERRIDE } from '../../constants/storage';
-import { SetStoreData } from '../../helpers/General';
 
 const width = Dimensions.get('window').width;
 
@@ -34,19 +33,19 @@ class Onboarding extends Component {
   }
 
   componentDidMount() {
-    findUserLang(res => {
-      this.setState({ language: res });
+    getUserLocaleOverride(locale => {
+      this.setState({ locale });
     });
   }
 
-  handleLocaleChange = async language => {
-    try {
-      // If user picks manual lang, update and store setting
-      await languages.changeLanguage(language);
-      await SetStoreData(LANG_OVERRIDE, language);
-      this.setState({ language });
-    } catch (err) {
-      console.log('something went wrong in lang change', err);
+  onLocaleChange = async locale => {
+    if (locale) {
+      try {
+        await setUserLocaleOverride(locale);
+        this.setState({ locale });
+      } catch (err) {
+        console.log('Something went wrong in language change', err);
+      }
     }
   };
 
@@ -72,7 +71,7 @@ class Onboarding extends Component {
               <NativePicker
                 items={LOCALE_LIST}
                 value={this.state.language}
-                onValueChange={this.handleLocaleChange}>
+                onValueChange={this.onLocaleChange}>
                 {({ label, openPicker }) => (
                   <TouchableOpacity
                     onPress={openPicker}
