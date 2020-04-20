@@ -48,6 +48,7 @@ module.exports = {
     'id',
     'nl',
     'pl',
+    'pt-br',
     'ro',
     'ru',
     'sk',
