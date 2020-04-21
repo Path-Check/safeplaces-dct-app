@@ -84,6 +84,7 @@ exports[`renders correctly 1`] = `
             "color": "#FFF",
             "fontFamily": "IBMPlexSans-Medium",
             "fontSize": 26,
+            "paddingHorizontal": 20,
             "position": "absolute",
             "textAlign": "center",
             "width": "100%",
@@ -328,79 +329,14 @@ exports[`renders correctly 1`] = `
                           items={
                             Array [
                               Object {
-                                "label": "العربية",
-                                "textColor": undefined,
-                                "value": "ar",
-                              },
-                              Object {
                                 "label": "English",
                                 "textColor": undefined,
                                 "value": "en",
                               },
                               Object {
-                                "label": "Español",
+                                "label": "Other",
                                 "textColor": undefined,
-                                "value": "es",
-                              },
-                              Object {
-                                "label": "Français",
-                                "textColor": undefined,
-                                "value": "fr",
-                              },
-                              Object {
-                                "label": "Kreyòl ayisyen",
-                                "textColor": undefined,
-                                "value": "ht",
-                              },
-                              Object {
-                                "label": "Indonesia",
-                                "textColor": undefined,
-                                "value": "id",
-                              },
-                              Object {
-                                "label": "Italiano",
-                                "textColor": undefined,
-                                "value": "it",
-                              },
-                              Object {
-                                "label": "മലയാളം",
-                                "textColor": undefined,
-                                "value": "ml",
-                              },
-                              Object {
-                                "label": "Nederlands",
-                                "textColor": undefined,
-                                "value": "nl",
-                              },
-                              Object {
-                                "label": "Polski",
-                                "textColor": undefined,
-                                "value": "pl",
-                              },
-                              Object {
-                                "label": "Română",
-                                "textColor": undefined,
-                                "value": "ro",
-                              },
-                              Object {
-                                "label": "Русский",
-                                "textColor": undefined,
-                                "value": "ru",
-                              },
-                              Object {
-                                "label": "Slovak",
-                                "textColor": undefined,
-                                "value": "sk",
-                              },
-                              Object {
-                                "label": "Vietnamese",
-                                "textColor": undefined,
-                                "value": "vi",
-                              },
-                              Object {
-                                "label": "繁體中文",
-                                "textColor": undefined,
-                                "value": "zh_Hant",
+                                "value": "ot",
                               },
                             ]
                           }

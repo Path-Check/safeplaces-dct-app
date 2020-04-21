@@ -2,11 +2,6 @@ import styled, { css } from '@emotion/native';
 import React, { useEffect, useState } from 'react';
 import { BackHandler, ScrollView, View } from 'react-native';
 
-import languages, {
-  LOCALE_LIST,
-  LOCALE_NAME,
-  findUserLang,
-} from './../locales/languages';
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
 import xmarkIcon from '../assets/svgs/xmarkIcon';
@@ -14,8 +9,14 @@ import { Divider } from '../components/Divider';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import { LANG_OVERRIDE, PARTICIPATE } from '../constants/storage';
+import { PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import languages, {
+  LOCALE_LIST,
+  LOCALE_NAME,
+  getUserLocaleOverride,
+  setUserLocaleOverride,
+} from '../locales/languages';
 import LocationServices from '../services/LocationService';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
@@ -43,7 +44,7 @@ export const SettingsScreen = ({ navigation }) => {
       .catch(error => console.log(error));
 
     // TODO: extract into service or hook
-    findUserLang(res => setUserLocale(res));
+    getUserLocaleOverride().then(locale => setUserLocale(locale));
 
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
@@ -61,12 +62,10 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   const localeChanged = async locale => {
-    setUserLocale(locale);
-
     // If user picks manual lang, update and store setting
     try {
-      await languages.changeLanguage(locale);
-      await SetStoreData(LANG_OVERRIDE, locale);
+      await setUserLocaleOverride(locale);
+      setUserLocale(locale);
     } catch (e) {
       console.log('something went wrong in lang change', e);
     }

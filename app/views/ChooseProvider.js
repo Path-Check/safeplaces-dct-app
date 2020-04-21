@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   listContainer: {
-    flex: 3,
+    flex: 1,
     flexDirection: 'column',
     textAlignVertical: 'top',
     justifyContent: 'flex-start',
@@ -454,8 +454,8 @@ const styles = StyleSheet.create({
     width: 18.48,
   },
   sectionDescription: {
-    fontSize: 18,
-    lineHeight: 24,
+    fontSize: 16,
+    lineHeight: 22,
     marginTop: 12,
     overflow: 'scroll',
     color: Colors.VIOLET_TEXT,

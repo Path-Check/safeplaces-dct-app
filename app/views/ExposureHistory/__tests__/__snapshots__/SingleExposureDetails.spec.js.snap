@@ -113,7 +113,7 @@ exports[`matches snapshot 1`] = `
           }
         }
       >
-        Possible exposure
+        Possible
       </Text>
       <View
         style={
