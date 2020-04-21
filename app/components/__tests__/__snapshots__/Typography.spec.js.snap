@@ -18,6 +18,7 @@ exports[`body1 is regular 1`] = `
         "fontSize": 18,
         "fontWeight": "normal",
         "lineHeight": 24,
+        "writingDirection": "ltr",
       }
     }
     use="body1"
@@ -45,6 +46,7 @@ exports[`changes color based on theme 1`] = `
         "fontSize": 18,
         "fontWeight": "normal",
         "lineHeight": 24,
+        "writingDirection": "ltr",
       }
     }
     use="body1"
@@ -59,6 +61,7 @@ exports[`changes color based on theme 1`] = `
         "fontSize": 18,
         "fontWeight": "normal",
         "lineHeight": 24,
+        "writingDirection": "ltr",
       }
     }
     use="body1"
@@ -86,6 +89,7 @@ exports[`headline1 is large and bold 1`] = `
         "fontSize": 52,
         "fontWeight": "bold",
         "lineHeight": 48,
+        "writingDirection": "ltr",
       }
     }
     use="headline1"

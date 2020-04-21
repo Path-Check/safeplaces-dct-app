@@ -3,13 +3,13 @@ import {
   Dimensions,
   Linking,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { pickFile } from '../helpers/General';
@@ -67,15 +67,15 @@ const ImportScreen = props => {
       onBackPress={goBack}>
       <View style={styles.main}>
         <View style={styles.subHeaderTitle}>
-          <Text style={styles.sectionDescription}>
+          <Typography style={styles.sectionDescription}>
             {languages.t('label.import_step_1')}
-          </Text>
-          <Text style={styles.sectionDescription}>
+          </Typography>
+          <Typography style={styles.sectionDescription}>
             {languages.t('label.import_step_2')}
-          </Text>
-          <Text style={styles.sectionDescription}>
+          </Typography>
+          <Typography style={styles.sectionDescription}>
             {languages.t('label.import_step_3')}
-          </Text>
+          </Typography>
           <TouchableOpacity
             testID='google-takeout-link'
             onPress={() =>
@@ -84,27 +84,27 @@ const ImportScreen = props => {
               )
             }
             style={styles.buttonTouchable}>
-            <Text style={styles.buttonText}>
+            <Typography style={styles.buttonText}>
               {languages.t('label.import_takeout').toUpperCase()}
-            </Text>
+            </Typography>
           </TouchableOpacity>
           <TouchableOpacity
             testID='google-takeout-import-btn'
             onPress={importPickFile}
             style={styles.buttonTouchable}>
-            <Text style={styles.buttonText}>
+            <Typography style={styles.buttonText}>
               {languages.t('label.import_title').toUpperCase()}
-            </Text>
+            </Typography>
           </TouchableOpacity>
 
           {importResults.label ? (
-            <Text
+            <Typography
               style={{
                 ...styles.importResults,
                 ...(importResults?.error ? styles.importResultsError : {}),
               }}>
               {languages.t(importResults.label)}
-            </Text>
+            </Typography>
           ) : null}
         </View>
       </View>
