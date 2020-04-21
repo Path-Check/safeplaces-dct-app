@@ -1,9 +1,7 @@
 import styled from '@emotion/native';
 import { css } from '@emotion/native/dist/native.cjs.prod';
 import * as React from 'react';
-import { useTranslation } from 'react-i18next';
-
-import languages from '../locales/languages';
+import { useLanguageDirection } from '../locales/languages';
 
 export const Type = {
   Headline1: 'headline1',
@@ -50,16 +48,14 @@ export const Typography = ({
   children,
   ...otherProps
 }) => {
-  const { i18n } = useTranslation();
-
-  let getCurrentDirection = () => i18n.dir();
+  
 
   return (
     <ThemedText
       style={[
         style,
         css`
-          writing-direction: ${getCurrentDirection()};
+        writing-direction: ${useLanguageDirection()};
         `,
       ]}
       use={use}

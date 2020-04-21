@@ -8,7 +8,7 @@ import { NativeModules, Platform } from 'react-native';
 import { getLanguages } from 'react-native-i18n';
 
 import { LANG_OVERRIDE } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import { GetStoreData } from '../helpers/General';
 import ar from './ar.json';
 import en from './en.json';
 import es from './es.json';
@@ -73,7 +73,7 @@ export function findUserLang(callback) {
   });
 }
 
-export function useDirHook() {
+export function useLanguageDirection() {
   const { i18n } = useTranslation();
   return i18n.dir();
 }
