@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
@@ -14,6 +15,7 @@ import languages, {
   LOCALE_LIST,
   getUserLocaleOverride,
   setUserLocaleOverride,
+  supportedDeviceLanguageOrEnglish,
 } from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import NativePicker from '../../components/NativePicker';
@@ -27,7 +29,7 @@ class Onboarding extends Component {
     super(props);
 
     this.state = {
-      language: undefined,
+      locale: supportedDeviceLanguageOrEnglish(),
     };
   }
 
@@ -43,7 +45,7 @@ class Onboarding extends Component {
         await setUserLocaleOverride(locale);
         this.setState({ locale });
       } catch (err) {
-        console.log('something went wrong in lang change', err);
+        console.log('Something went wrong in language change', err);
       }
     }
   };
@@ -69,9 +71,16 @@ class Onboarding extends Component {
               }}>
               <NativePicker
                 items={LOCALE_LIST}
-                value={this.state.locale || 'en'}
-                onValueChange={this.onLocaleChange}
-              />
+                value={this.state.locale}
+                onValueChange={this.onLocaleChange}>
+                {({ label, openPicker }) => (
+                  <TouchableOpacity
+                    onPress={openPicker}
+                    style={styles.languageSelector}>
+                    <Text style={styles.languageSelectorText}>{label}</Text>
+                  </TouchableOpacity>
+                )}
+              </NativePicker>
             </View>
             <View style={styles.contentContainer}>
               <Text style={styles.mainText}>
@@ -125,6 +134,23 @@ const styles = StyleSheet.create({
     bottom: 0,
     marginBottom: '10%',
     alignSelf: 'center',
+  },
+  // eslint-disable-next-line react-native/no-color-literals
+  languageSelector: {
+    // alpha needs to be in the bg color otherwise it fades the contained text
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    paddingVertical: 4,
+    paddingHorizontal: 11,
+    borderRadius: 100,
+  },
+  languageSelectorText: {
+    fontSize: 12,
+    color: Colors.VIOLET,
+    paddingVertical: 4,
+    paddingHorizontal: 11,
+    opacity: 1,
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
 });
 
