@@ -16,6 +16,7 @@ import {
 } from '../constants/history';
 import {
   AUTHORITY_NEWS,
+  AUTHORITY_SOURCE_SETTINGS,
   CROSSED_PATHS,
   LAST_CHECKED,
   LOCATION_DATA,
@@ -23,7 +24,6 @@ import {
 import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
-import HCAService from '../services/HCAService';
 
 /**
  * Intersects the locationArray with the concernLocationArray, returning the results
@@ -278,7 +278,7 @@ async function asyncCheckIntersect() {
   let locationArray = normalizeAndSortLocations(await getSavedLocationArray());
 
   // get the health authorities
-  let authority_list = await HCAService.getUserAuthorityList();
+  let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
 
   if (authority_list) {
     // Parse the registered health authorities
