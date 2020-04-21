@@ -79,6 +79,7 @@ i18next.init({
   },
   lng: 'en', // 'en' | 'es',
   fallbackLng: 'en', // If language detector fails
+  returnEmptyString: false,
   resources: {
     en: { label: 'English', translation: en },
     es: { label: 'Español', translation: es },
