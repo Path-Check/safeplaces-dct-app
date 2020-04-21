@@ -1,5 +1,8 @@
 import styled from '@emotion/native';
+import { css } from '@emotion/native/dist/native.cjs.prod';
 import * as React from 'react';
+
+import { useLanguageDirection } from '../locales/languages';
 
 export const Type = {
   Headline1: 'headline1',
@@ -42,11 +45,18 @@ export const Typography = ({
   secondary,
   monospace,
   bold,
+  style,
   children,
   ...otherProps
 }) => {
   return (
     <ThemedText
+      style={[
+        style,
+        css`
+          writing-direction: ${useLanguageDirection()};
+        `,
+      ]}
       use={use}
       secondary={secondary}
       monospace={monospace}

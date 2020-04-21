@@ -2,10 +2,13 @@ import './all-dayjs-locales';
 
 import dayjs from 'dayjs';
 import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { NativeModules, Platform } from 'react-native';
 
 import { LANG_OVERRIDE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import ar from './ar.json';
 import en from './en.json';
 import es from './es.json';
 import fr from './fr.json';
@@ -56,6 +59,11 @@ async function setLocale(locale) {
   return await i18next.changeLanguage(locale);
 }
 
+export function useLanguageDirection() {
+  const { i18n } = useTranslation();
+  return i18n.dir();
+}
+
 export async function setUserLocaleOverride(locale) {
   await setLocale(locale);
   if (locale === supportedDeviceLanguageOrEnglish()) {
@@ -64,7 +72,7 @@ export async function setUserLocaleOverride(locale) {
   await SetStoreData(LANG_OVERRIDE, locale);
 }
 
-i18next.init({
+i18next.use(initReactI18next).init({
   interpolation: {
     // React already does escaping
     escapeValue: false,
@@ -73,6 +81,7 @@ i18next.init({
   fallbackLng: 'en', // If language detector fails
   returnEmptyString: false,
   resources: {
+    ar: { label: 'العربية', translation: ar },
     en: { label: 'English', translation: en },
     es: { label: 'Español', translation: es },
     fr: { label: 'Français', translation: fr },

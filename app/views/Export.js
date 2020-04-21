@@ -21,6 +21,7 @@ import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
 import languages from './../locales/languages';
 import { isPlatformiOS } from './../Util';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 // import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -145,20 +146,20 @@ function ExportScreen(props) {
 
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.main}>
-              <Text style={styles.exportSectionTitles}>
+              <Typography style={styles.exportSectionTitles}>
                 {languages.t('label.tested_positive_title')}
-              </Text>
-              <Text style={styles.exportSectionPara}>
+              </Typography>
+              <Typography style={styles.exportSectionPara}>
                 {languages.t('label.export_para_1')}
-              </Text>
-              <Text style={styles.exportSectionPara}>
+              </Typography>
+              <Typography style={styles.exportSectionPara}>
                 {languages.t('label.export_para_2')}
-              </Text>
+              </Typography>
 
               <TouchableOpacity style={styles.exportButton} onPress={onShare}>
-                <Text style={styles.exportButtonText}>
+                <Typography style={styles.exportButtonText}>
                   {languages.t('label.share_location_data')}
-                </Text>
+                </Typography>
                 <SvgXml style={styles.exportIcon} xml={exportIcon} />
               </TouchableOpacity>
             </View>

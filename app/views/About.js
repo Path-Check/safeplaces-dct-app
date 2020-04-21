@@ -17,6 +17,7 @@ import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
 import lock from '../assets/svgs/lock';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
@@ -84,12 +85,12 @@ class AboutScreen extends Component {
           <View style={styles.spacer} />
 
           <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
-          <Text style={styles.aboutSectionTitles}>
+          <Typography style={styles.aboutSectionTitles}>
             {languages.t('label.commitment')}
-          </Text>
-          <Text style={styles.aboutSectionPara}>
+          </Typography>
+          <Typography style={styles.aboutSectionPara}>
             {languages.t('label.commitment_para')}
-          </Text>
+          </Typography>
 
           <View
             style={{
@@ -105,7 +106,7 @@ class AboutScreen extends Component {
             />
             {this.state.tapCount > 3 && (
               <TouchableOpacity onPress={this.handleExitDebugModePress}>
-                <Text
+                <Typography
                   style={{
                     color: Colors.RED_TEXT,
                     marginLeft: 12,
@@ -115,42 +116,48 @@ class AboutScreen extends Component {
                     paddingVertical: 2,
                   }}>
                   In exposure demo mode, tap to disable
-                </Text>
+                </Typography>
               </TouchableOpacity>
             )}
           </View>
-          <Text style={styles.aboutSectionTitles}>
+          <Typography style={styles.aboutSectionTitles}>
             {languages.t('label.team')}
-          </Text>
-          <Text style={styles.aboutSectionPara}>
+          </Typography>
+          <Typography style={styles.aboutSectionPara}>
             {languages.t('label.team_para')}
-          </Text>
+          </Typography>
 
           <View style={styles.spacer} />
           <View style={styles.spacer} />
 
           <View style={styles.main}>
             <View style={styles.row}>
-              <Text style={styles.aboutSectionParaBold}>Version: </Text>
-              <Text style={styles.aboutSectionPara}>{packageJson.version}</Text>
+              <Typography style={styles.aboutSectionParaBold}>
+                Version:{' '}
+              </Typography>
+              <Typography style={styles.aboutSectionPara}>
+                {packageJson.version}
+              </Typography>
             </View>
 
             <View style={styles.row}>
-              <Text style={styles.aboutSectionParaBold}>OS:</Text>
-              <Text style={styles.aboutSectionPara}>
+              <Typography style={styles.aboutSectionParaBold}>OS:</Typography>
+              <Typography style={styles.aboutSectionPara}>
                 {' '}
                 {Platform.OS + ' v' + Platform.Version}
-              </Text>
+              </Typography>
             </View>
 
             <View style={styles.row}>
-              <Text style={styles.aboutSectionParaBold}>Dimensions:</Text>
-              <Text style={styles.aboutSectionPara}>
+              <Typography style={styles.aboutSectionParaBold}>
+                Dimensions:
+              </Typography>
+              <Typography style={styles.aboutSectionPara}>
                 {' '}
                 {Math.trunc(Dimensions.get('screen').width) +
                   ' x ' +
                   Math.trunc(Dimensions.get('screen').height)}
-              </Text>
+              </Typography>
             </View>
           </View>
 

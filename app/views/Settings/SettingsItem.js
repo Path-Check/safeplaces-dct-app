@@ -4,6 +4,7 @@ import { SvgXml } from 'react-native-svg';
 
 import { Divider } from '../../components/Divider';
 import { Typography } from '../../components/Typography';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Render a single tappable settings item with optional description and icon.
@@ -16,10 +17,28 @@ import { Typography } from '../../components/Typography';
  * }} param0
  */
 export const SettingsItem = ({ label, onPress, description, icon, last }) => {
+
+  const { i18n } = useTranslation()
+
+  let getCurrentMarginDirection = () =>
+    i18n.dir() === 'rtl' ? 'margin-left: 12px;' : 'margin-right: 12px;';
+
+  let getCurrentRowDirection = () =>
+    i18n.dir() === 'rtl' ? 'row-reverse' : 'row';
+
   return (
     <>
-      <Container onPress={onPress}>
-        {icon && <Icon xml={icon} size={24} />}
+      <Container
+        style={css`
+        flex-direction: ${getCurrentRowDirection()};
+        `}
+        onPress={onPress}>
+        {icon && <Icon
+          xml={icon}
+          style={css`
+         ${getCurrentMarginDirection()};
+       `}
+          size={24} />}
         <Label>
           <Typography use='body1'>{label}</Typography>
           {description && (
@@ -39,8 +58,9 @@ export const SettingsItem = ({ label, onPress, description, icon, last }) => {
   );
 };
 
+
+
 const Container = styled.TouchableOpacity`
-  flex-direction: row;
   padding: 18px 0;
   align-items: center;
 `;
@@ -53,6 +73,5 @@ const Label = styled.View`
 const Icon = styled(SvgXml)`
   max-width: 24px;
   max-height: 24px;
-  margin-right: 12px;
   margin-top: 2.5px;
 `;

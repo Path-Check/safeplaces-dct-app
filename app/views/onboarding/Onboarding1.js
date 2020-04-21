@@ -4,7 +4,6 @@ import {
   ImageBackground,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -21,6 +20,7 @@ import ButtonWrapper from '../../components/ButtonWrapper';
 import NativePicker from '../../components/NativePicker';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
+import { Typography } from '../../components/Typography';
 
 const width = Dimensions.get('window').width;
 
@@ -77,22 +77,20 @@ class Onboarding extends Component {
                   <TouchableOpacity
                     onPress={openPicker}
                     style={styles.languageSelector}>
-                    <Text style={styles.languageSelectorText}>{label}</Text>
+                    <Typography style={styles.languageSelectorText}>{label}</Typography>
                   </TouchableOpacity>
                 )}
               </NativePicker>
             </View>
             <View style={styles.contentContainer}>
-              <Text style={styles.mainText}>
+              <Typography style={styles.mainText}>
                 {languages.t('label.launch_screen1_header')}
-              </Text>
+              </Typography>
             </View>
             <View style={styles.footerContainer}>
               <ButtonWrapper
                 title={languages.t('label.launch_get_started')}
-                onPress={() => {
-                  this.props.navigation.replace('Onboarding2');
-                }}
+                onPress={() => this.props.navigation.replace('Onboarding2')}
                 buttonColor={Colors.VIOLET}
                 bgColor={Colors.WHITE}
               />
