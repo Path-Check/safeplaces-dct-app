@@ -172,7 +172,7 @@ exports[`renders correctly 1`] = `
           />
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -221,142 +221,99 @@ exports[`renders correctly 1`] = `
                 }
                 use="body1"
               >
-                Unknown
+                English
               </Text>
             </View>
           </View>
-          <View
-            style={
-              Object {
-                "height": 40,
-                "marginTop": -40,
-              }
-            }
+          <Modal
+            animationType="slide"
+            hardwareAccelerated={false}
+            transparent={true}
+            visible={false}
           >
-            <View>
+            <View
+              style={
+                Object {
+                  "flex": 2,
+                }
+              }
+            >
               <View
                 accessible={true}
                 focusable={true}
-                isTVSelectable={true}
                 style={
                   Object {
-                    "backgroundColor": "#ffffff",
-                    "borderRadius": 100,
-                    "opacity": 0,
-                    "paddingHorizontal": 11,
-                    "paddingVertical": 4,
+                    "backgroundColor": "#000000",
+                    "flex": 1,
+                    "opacity": 0.2,
                   }
                 }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "flex": 1,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                focusable={true}
               >
-                <Text
-                  style={
-                    Object {
-                      "color": "#4051DB",
-                      "fontFamily": "IBMPlexSans",
-                      "fontSize": 12,
-                      "fontWeight": "normal",
-                      "lineHeight": 24,
-                      "textAlign": "center",
-                      "textTransform": "uppercase",
-                      "writingDirection": "ltr",
-                    }
-                  }
-                  use="body1"
-                >
-                  
-                </Text>
-              </View>
-              <Modal
-                animationType="slide"
-                hardwareAccelerated={false}
-                transparent={true}
-                visible={false}
-              >
-                <View
-                  style={
-                    Object {
-                      "flex": 2,
-                    }
-                  }
-                >
-                  <View
-                    accessible={true}
-                    focusable={true}
+                <View>
+                  <Text
                     style={
                       Object {
-                        "backgroundColor": "#000000",
-                        "flex": 1,
-                        "opacity": 0.2,
+                        "color": "#007aff",
+                        "fontFamily": "IBMPlexSans",
+                        "fontSize": 18,
+                        "fontWeight": "bold",
+                        "lineHeight": 24,
+                        "marginRight": 22,
+                        "marginTop": 16,
+                        "textAlign": "right",
+                        "writingDirection": "ltr",
                       }
                     }
-                  />
-                </View>
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "flex": 1,
-                    }
-                  }
-                >
-                  <View
-                    accessible={true}
-                    focusable={true}
+                    use="body1"
                   >
-                    <View>
-                      <Text
-                        style={
+                    Done
+                  </Text>
+                </View>
+                <View>
+                  <View>
+                    <RCTPicker
+                      items={
+                        Array [
                           Object {
-                            "color": "#007aff",
-                            "fontFamily": "IBMPlexSans",
-                            "fontSize": 18,
-                            "fontWeight": "bold",
-                            "lineHeight": 24,
-                            "marginRight": 22,
-                            "marginTop": 16,
-                            "textAlign": "right",
-                            "writingDirection": "ltr",
-                          }
-                        }
-                        use="body1"
-                      >
-                        Done
-                      </Text>
-                    </View>
-                    <View>
-                      <View>
-                        <RCTPicker
-                          items={
-                            Array [
-                              Object {
-                                "label": "English",
-                                "textColor": undefined,
-                                "value": "en",
-                              },
-                              Object {
-                                "label": "Other",
-                                "textColor": undefined,
-                                "value": "ot",
-                              },
-                            ]
-                          }
-                          selectedIndex={0}
-                          style={
-                            Array [
-                              Object {
-                                "height": 216,
-                              },
-                              undefined,
-                            ]
-                          }
-                        />
-                      </View>
-                    </View>
+                            "label": "English",
+                            "textColor": undefined,
+                            "value": "en",
+                          },
+                          Object {
+                            "label": "Other",
+                            "textColor": undefined,
+                            "value": "ot",
+                          },
+                        ]
+                      }
+                      selectedIndex={0}
+                      style={
+                        Array [
+                          Object {
+                            "height": 216,
+                          },
+                          undefined,
+                        ]
+                      }
+                    />
                   </View>
                 </View>
-              </Modal>
+              </View>
             </View>
-          </View>
+          </Modal>
         </View>
         <View
           style={
