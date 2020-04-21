@@ -109,7 +109,7 @@ export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
   {},
 );
 
-// detect and set device locale to i18n and dates
+// detect and set device locale to i18n and dates, must go after i18next.init()
 setLocale(getDeviceLocale());
 
 // detect user override and set i18n and date locales
