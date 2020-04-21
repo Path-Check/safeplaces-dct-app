@@ -13,9 +13,9 @@ import { PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages, {
   LOCALE_LIST,
-  LOCALE_NAME,
   getUserLocaleOverride,
   setUserLocaleOverride,
+  supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
 import LocationServices from '../services/LocationService';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
@@ -33,7 +33,9 @@ export const SettingsScreen = ({ navigation }) => {
 
   const [isLogging, setIsLogging] = useState(undefined);
 
-  const [userLocale, setUserLocale] = useState(undefined);
+  const [userLocale, setUserLocale] = useState(
+    supportedDeviceLanguageOrEnglish(),
+  );
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
@@ -44,7 +46,7 @@ export const SettingsScreen = ({ navigation }) => {
       .catch(error => console.log(error));
 
     // TODO: extract into service or hook
-    getUserLocaleOverride().then(locale => setUserLocale(locale));
+    getUserLocaleOverride().then(locale => locale && setUserLocale(locale));
 
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
@@ -86,25 +88,19 @@ export const SettingsScreen = ({ navigation }) => {
             icon={isLogging ? checkmarkIcon : xmarkIcon}
             onPress={locationToggleButtonPressed}
           />
-          <Item
-            last
-            label={LOCALE_NAME[userLocale] || 'Unknown'}
-            icon={languagesIcon}
-          />
-          {/* TODO: allow picker to render custom UI, remove need for negative
-              margins */}
-          <View
-            style={css`
-              margin-top: -40px;
-              height: 40px;
-            `}>
-            <NativePicker
-              items={LOCALE_LIST}
-              value={userLocale}
-              hidden
-              onValueChange={localeChanged}
-            />
-          </View>
+          <NativePicker
+            items={LOCALE_LIST}
+            value={userLocale}
+            onValueChange={localeChanged}>
+            {({ label, openPicker }) => (
+              <Item
+                last
+                label={label || languages.t('label.home_unknown_header')}
+                icon={languagesIcon}
+                onPress={openPicker}
+              />
+            )}
+          </NativePicker>
         </Section>
 
         <Section>
