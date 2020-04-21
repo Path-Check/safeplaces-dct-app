@@ -13,6 +13,7 @@ import { PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages, {
   LOCALE_LIST,
+  getSupportedLanguageFromDeviceLocale,
   getUserLocaleOverride,
   setUserLocaleOverride,
 } from '../locales/languages';
@@ -32,7 +33,9 @@ export const SettingsScreen = ({ navigation }) => {
 
   const [isLogging, setIsLogging] = useState(undefined);
 
-  const [userLocale, setUserLocale] = useState(undefined);
+  const [userLocale, setUserLocale] = useState(
+    getSupportedLanguageFromDeviceLocale(),
+  );
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);

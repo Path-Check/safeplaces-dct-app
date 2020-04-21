@@ -13,7 +13,7 @@ import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
 import languages, {
   LOCALE_LIST,
-  getDeviceLocale,
+  getSupportedLanguageFromDeviceLocale,
   getUserLocaleOverride,
   setUserLocaleOverride,
 } from './../../locales/languages';
@@ -29,7 +29,7 @@ class Onboarding extends Component {
     super(props);
 
     this.state = {
-      locale: getDeviceLocale(),
+      locale: getSupportedLanguageFromDeviceLocale(),
     };
   }
 

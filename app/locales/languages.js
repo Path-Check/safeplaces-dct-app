@@ -45,6 +45,11 @@ export function getDeviceLocale() {
     : NativeModules.I18nManager.localeIdentifier; // Android
 }
 
+export function getLanguageFromLocale(locale) {
+  const [languageCode] = toIETFLanguageTag(locale).split('-');
+  return languageCode;
+}
+
 /**
  * Convert ISO language `en_US` to IETF `en-us` for dayjs
  *
@@ -108,6 +113,20 @@ export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
   },
   {},
 );
+
+/** Find a compatible supported i18n language from a given locale */
+function getSupportedLanguageFromLocale(locale, fallback = 'en') {
+  const langCode = getLanguageFromLocale(locale);
+  const found = Object.keys(LOCALE_NAME).find(
+    l => l === langCode || l === locale,
+  );
+  return found || fallback;
+}
+
+/** Find compatible supported i18n language from device locale */
+export function getSupportedLanguageFromDeviceLocale(fallback = 'en') {
+  return getSupportedLanguageFromLocale(getDeviceLocale(), fallback);
+}
 
 // detect and set device locale to i18n and dates, must go after i18next.init()
 setLocale(getDeviceLocale());
