@@ -108,7 +108,7 @@ export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
 );
 
 /** Get the device locale e.g. en_US */
-function getDeviceLocale() {
+export function getDeviceLocale() {
   return Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
         NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
