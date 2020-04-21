@@ -2,7 +2,7 @@ import styled from '@emotion/native';
 import { useTheme } from 'emotion-theming';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { StatusBar } from 'react-native';
+import { Dimensions, StatusBar } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import backArrow from './../assets/svgs/backArrow';
@@ -17,6 +17,8 @@ import Colors from '../constants/colors';
  *   onBackPress: () => void,
  * }} param0
  */
+const widthScale = Math.min(Dimensions.get('window').width / 400, 1.0);
+
 const NavigationBarWrapper = ({ children, title, onBackPress }) => {
   const theme = useTheme();
 
@@ -73,8 +75,9 @@ const Title = styled.Text`
   align-self: center;
   color: ${Colors.WHITE};
   font-family: IBMPlexSans-Medium;
-  font-size: 26px;
+  font-size: ${26 * widthScale + 'px'};
   position: absolute;
+  padding-horizontal: 20;
   text-align: center;
   width: 100%;
 `;
