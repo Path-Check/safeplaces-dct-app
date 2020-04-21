@@ -13,9 +13,9 @@ import { PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages, {
   LOCALE_LIST,
-  getSupportedLanguageFromDeviceLocale,
   getUserLocaleOverride,
   setUserLocaleOverride,
+  supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
 import LocationServices from '../services/LocationService';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
@@ -34,7 +34,7 @@ export const SettingsScreen = ({ navigation }) => {
   const [isLogging, setIsLogging] = useState(undefined);
 
   const [userLocale, setUserLocale] = useState(
-    getSupportedLanguageFromDeviceLocale(),
+    supportedDeviceLanguageOrEnglish(),
   );
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export const SettingsScreen = ({ navigation }) => {
       .catch(error => console.log(error));
 
     // TODO: extract into service or hook
-    getUserLocaleOverride().then(locale => setUserLocale(locale));
+    getUserLocaleOverride().then(locale => locale && setUserLocale(locale));
 
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);

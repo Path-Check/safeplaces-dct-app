@@ -37,14 +37,6 @@ export async function getUserLocaleOverride() {
   return await GetStoreData(LANG_OVERRIDE);
 }
 
-/** Get the device locale e.g. en_US */
-export function getDeviceLocale() {
-  return Platform.OS === 'ios'
-    ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
-        NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
-    : NativeModules.I18nManager.localeIdentifier; // Android
-}
-
 export function getLanguageFromLocale(locale) {
   const [languageCode] = toIETFLanguageTag(locale).split('-');
   return languageCode;
@@ -66,7 +58,7 @@ async function setLocale(locale) {
 
 export async function setUserLocaleOverride(locale) {
   await setLocale(locale);
-  if (locale === getDeviceLocale()) {
+  if (locale === supportedDeviceLanguageOrEnglish()) {
     locale = undefined;
   }
   await SetStoreData(LANG_OVERRIDE, locale);
@@ -115,24 +107,33 @@ export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
   {},
 );
 
-/** Find a compatible supported i18n language from a given locale */
-function getSupportedLanguageFromLocale(locale, fallback = 'en') {
-  const langCode = getLanguageFromLocale(locale);
+/** Get the device locale e.g. en_US */
+function getDeviceLocale() {
+  return Platform.OS === 'ios'
+    ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
+        NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
+    : NativeModules.I18nManager.localeIdentifier; // Android
+}
+
+/**
+ * Find compatible supported i18n language
+ *
+ * e.g. device locale `en_AU` would find `en`
+ *      device locale `pt_BR` would find `pt-BR`
+ */
+export function supportedDeviceLanguageOrEnglish() {
+  const locale = getDeviceLocale(); // en_US
+  const langCode = getLanguageFromLocale(locale); // en
   const found = Object.keys(LOCALE_NAME).find(
-    l => l === langCode || l === locale,
+    l => l === langCode || toIETFLanguageTag(l) === toIETFLanguageTag(locale),
   );
-  return found || fallback;
+  return found || 'en';
 }
 
-/** Find compatible supported i18n language from device locale */
-export function getSupportedLanguageFromDeviceLocale(fallback = 'en') {
-  return getSupportedLanguageFromLocale(getDeviceLocale(), fallback);
-}
+// detect and set device locale, must go after i18next.init()
+setLocale(supportedDeviceLanguageOrEnglish());
 
-// detect and set device locale to i18n and dates, must go after i18next.init()
-setLocale(getDeviceLocale());
-
-// detect user override and set i18n and date locales
+// detect user override
 getUserLocaleOverride().then(locale => locale && setLocale(locale));
 
 export default i18next;
