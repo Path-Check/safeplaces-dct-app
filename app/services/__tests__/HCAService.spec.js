@@ -1,4 +1,6 @@
+// eslint-disable-next-line jest/no-mocks-import
 import * as mockHCA from '../__mocks__/mockHCA';
+// eslint-disable-next-line jest/no-mocks-import
 import {
   mockNullUserLocHistory,
   mockUserLocHistory,
