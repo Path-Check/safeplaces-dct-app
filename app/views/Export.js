@@ -7,7 +7,6 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -27,7 +26,7 @@ import { LocationData } from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64;
 
-function ExportScreen({ navigation }) {
+export const ExportScreen = ({ navigation }) => {
   const { t } = useTranslation();
   function handleBackPress() {
     navigation.goBack();
@@ -98,6 +97,7 @@ function ExportScreen({ navigation }) {
           console.log(err.message, err.code);
         });
       if (isPlatformiOS()) {
+        // eslint-disable-next-line no-undef
         await RNFS.unlink(url);
       }
     } catch (error) {
@@ -151,7 +151,7 @@ function ExportScreen({ navigation }) {
       </SafeAreaView>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   // Container covers the entire screen
@@ -235,5 +235,3 @@ ExportScreen.propTypes = {
 ExportScreen.defaultProps = {
   shareButtonDisabled: true,
 };
-
-export default ExportScreen;

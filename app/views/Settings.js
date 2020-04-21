@@ -96,7 +96,7 @@ export const SettingsScreen = ({ navigation }) => {
             {({ label, openPicker }) => (
               <Item
                 last
-                label={label || languages.t('label.home_unknown_header')}
+                label={label || t('label.home_unknown_header')}
                 icon={languagesIcon}
                 onPress={openPicker}
               />
