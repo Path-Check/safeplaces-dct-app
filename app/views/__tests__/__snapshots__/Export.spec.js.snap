@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Export /> renders correctly 1`] = `
+exports[`<ExportScreen /> renders correctly 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
