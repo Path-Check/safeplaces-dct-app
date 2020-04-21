@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import colors from '../constants/colors';
+import { Typography } from './Typography';
 
 class Button extends React.Component {
   render() {
@@ -36,8 +37,11 @@ class Button extends React.Component {
             buttonStyle ? buttonStyle : styles.container,
             { height: buttonHeight },
           ]}
-          onPress={onPress}>
-          <Text
+          onPress={onPress}
+          accessible
+          accessibilityLabel={title}
+          accessibilityRole='button'>
+          <Typography
             style={[
               titleStyle ? titleStyle : styles.text,
               {
@@ -45,7 +49,7 @@ class Button extends React.Component {
               },
             ]}>
             {title}
-          </Text>
+          </Typography>
         </TouchableOpacity>
       </LinearGradient>
     );

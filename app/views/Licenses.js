@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import {
   BackHandler,
-  Dimensions,
   Image,
   Linking,
-  Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -17,6 +14,7 @@ import foreArrow from './../assets/images/foreArrow.png';
 import licenses from './../assets/LICENSE.json';
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 
@@ -87,13 +85,13 @@ class LicensesScreen extends Component {
           onPress={this.handleTermsOfUsePressed.bind(this)}
           style={styles.termsInfoRow}>
           <View style={styles.termsInfoContainer}>
-            <Text
+            <Typography
               style={styles.mainTermsHeader}
               onPress={() =>
                 Linking.openURL(languages.t('label.terms_of_use_url'))
               }>
               {languages.t('label.terms_of_use')}
-            </Text>
+            </Typography>
           </View>
           <View style={styles.arrowContainer}>
             <Image source={foreArrow} style={this.arrow} />
@@ -156,6 +154,7 @@ const styles = StyleSheet.create({
   arrowContainer: {
     alignSelf: 'center',
     paddingRight: 20,
+    paddingLeft: 20,
   },
 });
 

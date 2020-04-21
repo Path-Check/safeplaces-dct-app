@@ -14,10 +14,11 @@ exports[`body1 is regular 1`] = `
     style={
       Object {
         "color": "#4051DB",
-        "fontFamily": "IBM Plex Sans",
+        "fontFamily": "IBMPlexSans",
         "fontSize": 18,
         "fontWeight": "normal",
         "lineHeight": 24,
+        "writingDirection": "ltr",
       }
     }
     use="body1"
@@ -41,10 +42,11 @@ exports[`changes color based on theme 1`] = `
     style={
       Object {
         "color": "#FFF",
-        "fontFamily": "IBM Plex Sans",
+        "fontFamily": "IBMPlexSans",
         "fontSize": 18,
         "fontWeight": "normal",
         "lineHeight": 24,
+        "writingDirection": "ltr",
       }
     }
     use="body1"
@@ -55,10 +57,11 @@ exports[`changes color based on theme 1`] = `
     style={
       Object {
         "color": "#4051DB",
-        "fontFamily": "IBM Plex Sans",
+        "fontFamily": "IBMPlexSans",
         "fontSize": 18,
         "fontWeight": "normal",
         "lineHeight": 24,
+        "writingDirection": "ltr",
       }
     }
     use="body1"
@@ -82,10 +85,11 @@ exports[`headline1 is large and bold 1`] = `
     style={
       Object {
         "color": "#4051DB",
-        "fontFamily": "IBM Plex Sans",
+        "fontFamily": "IBMPlexSans-Bold",
         "fontSize": 52,
         "fontWeight": "bold",
         "lineHeight": 48,
+        "writingDirection": "ltr",
       }
     }
     use="headline1"

@@ -8,22 +8,26 @@ import {
   Text,
   View,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SvgXml } from 'react-native-svg';
 
 import packageJson from '../../package.json';
 import team from './../assets/svgs/team';
 import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
-import { isPlatformiOS } from './../Util';
 import lock from '../assets/svgs/lock';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
+import { DEBUG_MODE } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
+import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
 
 class AboutScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //
+      tapCount: 0, // tracks number of taps, for debugging
     };
   }
 
@@ -32,17 +36,44 @@ class AboutScreen extends Component {
   }
 
   handleBackPress = () => {
+    this.setState({ tapCount: 0 });
     this.backToMain();
     return true;
   };
 
   componentDidMount() {
+    GetStoreData(DEBUG_MODE).then(dbgMode => {
+      if (dbgMode == 'true') {
+        this.setState({ tapCount: 4 });
+      }
+    });
+
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
+
+  handleTapTeam = () => {
+    // debug builds only until we have feature flagging.
+    if (__DEV__) {
+      this.setState({ tapCount: this.state.tapCount + 1 });
+      if (this.state.tapCount >= 3) {
+        if (this.state.tapCount == 3) {
+          enableDebugMode();
+        } else if (this.state.tapCount == 7) {
+          this.setState({ tapCount: 0 });
+          disableDebugMode();
+        }
+      }
+    }
+  };
+
+  handleExitDebugModePress = () => {
+    this.setState({ tapCount: 0 });
+    disableDebugMode();
+  };
 
   render() {
     return (
@@ -54,46 +85,79 @@ class AboutScreen extends Component {
           <View style={styles.spacer} />
 
           <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
-          <Text style={styles.aboutSectionTitles}>
+          <Typography style={styles.aboutSectionTitles}>
             {languages.t('label.commitment')}
-          </Text>
-          <Text style={styles.aboutSectionPara}>
+          </Typography>
+          <Typography style={styles.aboutSectionPara}>
             {languages.t('label.commitment_para')}
-          </Text>
+          </Typography>
 
-          <SvgXml style={styles.aboutSectionIconTeam} xml={team} />
-          <Text style={styles.aboutSectionTitles}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignContent: 'center',
+              marginTop: 36,
+            }}>
+            <SvgXml
+              onPress={this.handleTapTeam}
+              style={styles.aboutSectionIconTeam}
+              xml={team}
+              stroke={this.state.tapCount > 3 ? 'red' : undefined}
+            />
+            {this.state.tapCount > 3 && (
+              <TouchableOpacity onPress={this.handleExitDebugModePress}>
+                <Typography
+                  style={{
+                    color: Colors.RED_TEXT,
+                    marginLeft: 12,
+                    borderRadius: 4,
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    paddingHorizontal: 8,
+                    paddingVertical: 2,
+                  }}>
+                  In exposure demo mode, tap to disable
+                </Typography>
+              </TouchableOpacity>
+            )}
+          </View>
+          <Typography style={styles.aboutSectionTitles}>
             {languages.t('label.team')}
-          </Text>
-          <Text style={styles.aboutSectionPara}>
+          </Typography>
+          <Typography style={styles.aboutSectionPara}>
             {languages.t('label.team_para')}
-          </Text>
+          </Typography>
 
           <View style={styles.spacer} />
           <View style={styles.spacer} />
 
           <View style={styles.main}>
             <View style={styles.row}>
-              <Text style={styles.aboutSectionParaBold}>Version: </Text>
-              <Text style={styles.aboutSectionPara}>{packageJson.version}</Text>
+              <Typography style={styles.aboutSectionParaBold}>
+                Version:{' '}
+              </Typography>
+              <Typography style={styles.aboutSectionPara}>
+                {packageJson.version}
+              </Typography>
             </View>
 
             <View style={styles.row}>
-              <Text style={styles.aboutSectionParaBold}>OS:</Text>
-              <Text style={styles.aboutSectionPara}>
+              <Typography style={styles.aboutSectionParaBold}>OS:</Typography>
+              <Typography style={styles.aboutSectionPara}>
                 {' '}
                 {Platform.OS + ' v' + Platform.Version}
-              </Text>
+              </Typography>
             </View>
 
             <View style={styles.row}>
-              <Text style={styles.aboutSectionParaBold}>Dimensions:</Text>
-              <Text style={styles.aboutSectionPara}>
+              <Typography style={styles.aboutSectionParaBold}>
+                Dimensions:
+              </Typography>
+              <Typography style={styles.aboutSectionPara}>
                 {' '}
                 {Math.trunc(Dimensions.get('screen').width) +
                   ' x ' +
                   Math.trunc(Dimensions.get('screen').height)}
-              </Text>
+              </Typography>
             </View>
           </View>
 
@@ -114,16 +178,9 @@ const styles = StyleSheet.create({
     // flex: 1,
     paddingBottom: 42,
   },
-  section: {
-    flexDirection: 'column',
-    width: '87.5%',
-    alignSelf: 'center',
-    backgroundColor: Colors.WHITE,
-  },
   aboutSectionIconTeam: {
     width: 40.38,
     height: 19,
-    marginTop: 36,
   },
   aboutSectionIconLock: {
     width: 20,

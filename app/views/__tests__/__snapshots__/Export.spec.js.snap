@@ -116,9 +116,13 @@ Array [
                   "color": "#FFF",
                   "fontFamily": "IBMPlexSans-Medium",
                   "fontSize": 26,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
                   "marginTop": 9,
+                  "writingDirection": "ltr",
                 }
               }
+              use="body1"
             >
               Share location history
             </Text>
@@ -128,10 +132,13 @@ Array [
                   "color": "#FFF",
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 18,
+                  "fontWeight": "normal",
                   "lineHeight": 22.5,
                   "marginTop": 22,
+                  "writingDirection": "ltr",
                 }
               }
+              use="body1"
             >
               If you test positive for COVID-19, please do your part by sharing your location history with local authorities.
             </Text>
@@ -141,10 +148,13 @@ Array [
                   "color": "#FFF",
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 18,
+                  "fontWeight": "normal",
                   "lineHeight": 22.5,
                   "marginTop": 22,
+                  "writingDirection": "ltr",
                 }
               }
+              use="body1"
             >
               Location is shared as a simple list of times and places, no additional information.
             </Text>
@@ -178,8 +188,12 @@ Array [
                     "color": "#4051DB",
                     "fontFamily": "IBMPlexSans-Medium",
                     "fontSize": 20,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "writingDirection": "ltr",
                   }
                 }
+                use="body1"
               >
                 Share location data
               </Text>
