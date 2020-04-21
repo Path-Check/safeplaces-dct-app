@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 
 import { makeTimelineObject } from './GoogleTakeoutUtils';
+
 const {
   location1,
   location2,

@@ -7,6 +7,7 @@ import RNFS from 'react-native-fs';
 import { subscribe, unzip } from 'react-native-zip-archive';
 
 import { mergeJSONWithLocalData } from '../helpers/GoogleData';
+
 export class NoRecentLocationsError extends Error {}
 export class InvalidFileExtensionError extends Error {}
 

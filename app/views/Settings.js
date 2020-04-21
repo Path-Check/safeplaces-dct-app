@@ -2,11 +2,6 @@ import styled, { css } from '@emotion/native';
 import React, { useEffect, useState } from 'react';
 import { BackHandler, ScrollView, View } from 'react-native';
 
-import languages, {
-  LOCALE_LIST,
-  LOCALE_NAME,
-  findUserLang,
-} from './../locales/languages';
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
 import xmarkIcon from '../assets/svgs/xmarkIcon';
@@ -14,8 +9,14 @@ import { Divider } from '../components/Divider';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import { LANG_OVERRIDE, PARTICIPATE } from '../constants/storage';
+import { PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import languages, {
+  LOCALE_LIST,
+  getUserLocaleOverride,
+  setUserLocaleOverride,
+  supportedDeviceLanguageOrEnglish,
+} from '../locales/languages';
 import LocationServices from '../services/LocationService';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
@@ -32,7 +33,9 @@ export const SettingsScreen = ({ navigation }) => {
 
   const [isLogging, setIsLogging] = useState(undefined);
 
-  const [userLocale, setUserLocale] = useState(undefined);
+  const [userLocale, setUserLocale] = useState(
+    supportedDeviceLanguageOrEnglish(),
+  );
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
@@ -43,7 +46,7 @@ export const SettingsScreen = ({ navigation }) => {
       .catch(error => console.log(error));
 
     // TODO: extract into service or hook
-    findUserLang(res => setUserLocale(res));
+    getUserLocaleOverride().then(locale => locale && setUserLocale(locale));
 
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
@@ -61,12 +64,10 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   const localeChanged = async locale => {
-    setUserLocale(locale);
-
     // If user picks manual lang, update and store setting
     try {
-      await languages.changeLanguage(locale);
-      await SetStoreData(LANG_OVERRIDE, locale);
+      await setUserLocaleOverride(locale);
+      setUserLocale(locale);
     } catch (e) {
       console.log('something went wrong in lang change', e);
     }
@@ -87,25 +88,19 @@ export const SettingsScreen = ({ navigation }) => {
             icon={isLogging ? checkmarkIcon : xmarkIcon}
             onPress={locationToggleButtonPressed}
           />
-          <Item
-            last
-            label={LOCALE_NAME[userLocale] || 'Unknown'}
-            icon={languagesIcon}
-          />
-          {/* TODO: allow picker to render custom UI, remove need for negative
-              margins */}
-          <View
-            style={css`
-              margin-top: -40px;
-              height: 40px;
-            `}>
-            <NativePicker
-              items={LOCALE_LIST}
-              value={userLocale}
-              hidden
-              onValueChange={localeChanged}
-            />
-          </View>
+          <NativePicker
+            items={LOCALE_LIST}
+            value={userLocale}
+            onValueChange={localeChanged}>
+            {({ label, openPicker }) => (
+              <Item
+                last
+                label={label || languages.t('label.home_unknown_header')}
+                icon={languagesIcon}
+                onPress={openPicker}
+              />
+            )}
+          </NativePicker>
         </Section>
 
         <Section>
