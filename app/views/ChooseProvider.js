@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {
-   Alert,
+  Alert,
   BackHandler,
-  Dimensions,
   FlatList,
   Image,
-  SafeAreaView,
   StyleSheet,
   Switch,
   TouchableOpacity,
@@ -25,7 +23,6 @@ import saveIcon from './../assets/images/saveIcon.png';
 import { DynamicTextInput } from '../components/DynamicTextInput';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
-import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
@@ -327,9 +324,9 @@ class ChooseProviderScreen extends Component {
             <TouchableOpacity
               style={styles.authorityFilter}
               onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
-              <Text style={styles.authorityFilterText}>
+              <Typography style={styles.authorityFilterText}>
                 {languages.t('label.filter_authorities_by_gps_history')}
-              </Text>
+              </Typography>
               <Switch
                 onValueChange={val =>
                   this.filterAuthoritesByGPSHistory({ val })
