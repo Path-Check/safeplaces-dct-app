@@ -172,7 +172,9 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   singleNewsHeadText: {
-    fontSize: 18,
+    fontSize: 16,
+    textAlign: 'center',
+    paddingHorizontal: 5,
     fontFamily: fontFamily.primarySemiBold,
   },
 });
