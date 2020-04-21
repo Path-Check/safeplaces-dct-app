@@ -1,45 +1,40 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
+  ActivityIndicator,
   BackHandler,
   Dimensions,
-  ActivityIndicator,
-  ScrollView,
-  SafeAreaView,
-  View,
-  TouchableOpacity,
-  Image,
+  StyleSheet,
   Text,
+  View,
 } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
 import LinearGradient from 'react-native-linear-gradient';
-
-import { GetStoreData } from '../helpers/General';
-import colors from '../constants/colors';
+import Carousel from 'react-native-snap-carousel';
 import { WebView } from 'react-native-webview';
+
 import languages from './../locales/languages';
-// import { Colors } from 'react-native/Libraries/NewAppScreen';
-import fontFamily from '../constants/fonts';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import NetInfo from '@react-native-community/netinfo';
+import fontFamily from '../constants/fonts';
+import { AUTHORITY_NEWS } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+
+export const DEFAULT_NEWS_SITE_URL = 'https://covidsafepaths.org/in-app-news';
 
 class NewsScreen extends Component {
   constructor(props) {
     super(props);
     let default_news = {
-      name: 'Safe Paths News', // TODO: translate
-      url: 'https://privatekit.mit.edu',
+      name: languages.t('label.default_news_site_name'),
+      news_url: DEFAULT_NEWS_SITE_URL,
     };
-
     this.state = {
       visible: true,
       default_news: default_news,
       newsUrls: [default_news, default_news],
       current_page: 0,
-      enable_webview_cache: false,
     };
   }
 
@@ -58,29 +53,21 @@ class NewsScreen extends Component {
     });
   }
 
-  handleConnectionInfoChange = () => {
-    NetInfo.fetch().then(state => {
-      if (!state.isConnected) {
-        this.setState({ enable_webview_cache: true });
-      }
-    });
-  };
-  _renderItem = item => {
-    console.log('Item', item);
+  renderItem = item => {
     return (
       <View style={styles.singleNews}>
         <View style={styles.singleNewsHead}>
           <Text style={styles.singleNewsHeadText}>{item.item.name}</Text>
         </View>
         <WebView
-          cacheEnabled={this.state.enable_webview_cache}
           source={{
-            uri: item.item.url,
+            uri: item.item.news_url,
           }}
           containerStyle={{
             borderBottomLeftRadius: 12,
             borderBottomRightRadius: 12,
           }}
+          cacheEnabled
           onLoad={() =>
             this.setState({
               visible: false,
@@ -90,26 +77,23 @@ class NewsScreen extends Component {
       </View>
     );
   };
+
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    this.handleConnectionInfoChange();
-    GetStoreData('AUTHORITY_NEWS')
-      .then(name_news => {
-        console.log('name_news:', name_news);
 
+    GetStoreData(AUTHORITY_NEWS)
+      .then(nameNewsString => {
         // Bring in news from the various authorities.  This is
         // pulled down from the web when you subscribe to an Authority
         // on the Settings page.
         let arr = [];
 
-        // TODO: using this as test data for now without assigning
-        arr.push({
-          name: 'Haitian Ministry of Health',
-          url: 'https://wmcelroy.wixsite.com/covidhaiti/kat',
-        });
+        // Populate with subscribed news sources, with default at the tail
+        if (nameNewsString !== null) {
+          arr = JSON.parse(nameNewsString);
+        }
         arr.push(this.state.default_news);
 
-        console.log('name_news:', arr);
         this.setState({
           newsUrls: arr,
         });
@@ -122,7 +106,7 @@ class NewsScreen extends Component {
   }
 
   render() {
-    console.log('News URL -', this.state.newsUrls);
+    // console.log('News URL -', this.state.newsUrls);
     return (
       <LinearGradient
         start={{ x: 0, y: 0 }}
@@ -139,16 +123,13 @@ class NewsScreen extends Component {
             style={{ flex: 1, height: '100%' }}>
             <View
               style={{
-                backgroundColor: '#3A4CD7',
+                backgroundColor: Colors.VIOLET_BUTTON_DARK,
                 flex: 1,
                 paddingVertical: 16,
               }}>
               <Carousel
-                ref={c => {
-                  this._carousel = c;
-                }}
                 data={this.state.newsUrls}
-                renderItem={this._renderItem}
+                renderItem={this.renderItem}
                 sliderWidth={width}
                 itemWidth={width * 0.85}
                 layout={'default'}
@@ -175,27 +156,7 @@ class NewsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
-  web: {
-    width: '100%',
-    margin: 0,
-    padding: 0,
-  },
-  slideContainer: {
-    height: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  slide: {
-    height: 100,
-    backgroundColor: 'rgba(20,20,200,0.3)',
-  },
+  // eslint-disable-next-line react-native/no-color-literals
   singleNews: {
     flexGrow: 1,
     backgroundColor: 'rgba(255,255,255,0.6)',
@@ -211,7 +172,9 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   singleNewsHeadText: {
-    fontSize: 18,
+    fontSize: 16,
+    textAlign: 'center',
+    paddingHorizontal: 5,
     fontFamily: fontFamily.primarySemiBold,
   },
 });

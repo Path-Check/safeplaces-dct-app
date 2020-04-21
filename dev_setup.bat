@@ -83,12 +83,22 @@ pause > nul
 call RefreshEnv.cmd
 cls
 echo.
+echo Yarn will now be installed.
+echo Press SPACE to continue.
+pause > nul
+echo.
+cmd /c choco install yarn
+echo.
+echo Press SPACE to continue.
+pause > nul
+cls
+echo.
 echo React Native will now be installed.
 echo Press SPACE to continue.
 pause > nul
 echo.
-cmd /c npm install -g react-native-cli
-cmd /c npm install
+cmd /c yarn global add react-native-cli
+cmd /c yarn
 echo.
 echo.
 echo Press SPACE to continue.

@@ -1,0 +1,110 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - develop
+      - release-candidate
+      - master
+  pull_request:
+    branches:
+      - develop
+      - release-candidate
+      - master
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - run: yarn --frozen-lockfile
+
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Increase max file watchers
+        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+      - name: Bundle JS
+        run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
+
+      - name: Build APK (gradle)
+        run: ./gradlew assembleDebug --no-daemon
+        working-directory: ./android
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: Debug APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+  build-ios:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Set XCode Version
+        run: sudo xcode-select -s /Applications/Xcode_11.app
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - run: yarn --frozen-lockfile
+
+      - name: Cache ruby gems
+        uses: actions/cache@v1
+        with:
+          path: ios/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install ruby gems (including Cocoapods)
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+        working-directory: ./ios
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v1
+        with:
+          path: ios/Pods
+          key: ${{ runner.OS }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-pods-
+
+      - run: pod install --repo-update
+        working-directory: ./ios
+
+      - name: Bundle iOS JS
+        run: npx react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios --verbose
+      # - name: Build App
+      #   # xcodebuild -workspace COVIDSafePaths.xcworkspace -configuration Debug -scheme COVIDSafePaths
+      #   # xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme COVIDSafePaths archive -archivePath COVIDSafePaths.xcarchive -allowProvisioningUpdates
+      #   # xcodebuild -exportArchive -archivePath ./COVIDSafePaths.xcarchive -exportPath . -exportOptionsPlist COVIDSafePaths/Info.plist
+      #   run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme COVIDSafePaths archive -archivePath COVIDSafePaths.xcarchive -allowProvisioningUpdates
+      #   working-directory: ./ios
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: Debug IPA
+      #     path: ios/build/

@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  Platform,
-  Dimensions,
   BackHandler,
+  Dimensions,
+  Image,
+  Linking,
+  Platform,
   ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
-import packageJson from '../../package.json';
 
+import foreArrow from './../assets/images/foreArrow.png';
+import licenses from './../assets/LICENSE.json';
+import languages from './../locales/languages';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import languages from './../locales/languages';
-import licenses from './../assets/LICENSE.json';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
 
 class LicensesScreen extends Component {
   constructor(props) {
@@ -30,6 +33,10 @@ class LicensesScreen extends Component {
     this.backToMain();
     return true;
   };
+
+  handleTermsOfUsePressed() {
+    Linking.openURL(languages.t('label.terms_of_use_url'));
+  }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -48,7 +55,7 @@ class LicensesScreen extends Component {
     for (var i = 0; i < licenses.terms_and_licenses.length; i++) {
       var element = licenses.terms_and_licenses[i];
 
-      result += '<B>' + element.name + '</B><P>';
+      result += '<H2>' + element.name + '</H2><P>';
       result += element.text.replace(/\n/g, '<br/>');
       result += '<hr/>';
     }
@@ -63,26 +70,6 @@ class LicensesScreen extends Component {
         title={languages.t('label.legal_page_title')}
         onBackPress={this.backToMain.bind(this)}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View style={styles.main}>
-            <View style={styles.row}>
-              <Text style={styles.valueName}>Version: </Text>
-              <Text style={styles.value}>{packageJson.version}</Text>
-            </View>
-
-            <View style={styles.row}>
-              <Text style={styles.valueSmall}>
-                OS:
-                {Platform.OS + ' v' + Platform.Version};
-                {Math.trunc(Dimensions.get('screen').width) +
-                  ' x ' +
-                  Math.trunc(Dimensions.get('screen').height)}
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.spacer} />
-          <View style={styles.spacer} />
-
           <View style={{ flex: 4 }}>
             <WebView
               originWhitelist={['*']}
@@ -96,6 +83,22 @@ class LicensesScreen extends Component {
             />
           </View>
         </ScrollView>
+        <TouchableOpacity
+          onPress={this.handleTermsOfUsePressed.bind(this)}
+          style={styles.termsInfoRow}>
+          <View style={styles.termsInfoContainer}>
+            <Text
+              style={styles.mainTermsHeader}
+              onPress={() =>
+                Linking.openURL(languages.t('label.terms_of_use_url'))
+              }>
+              {languages.t('label.terms_of_use')}
+            </Text>
+          </View>
+          <View style={styles.arrowContainer}>
+            <Image source={foreArrow} style={this.arrow} />
+          </View>
+        </TouchableOpacity>
       </NavigationBarWrapper>
     );
   }
@@ -132,6 +135,27 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fontFamily.primaryMedium,
     marginTop: 9,
+  },
+  termsInfoRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: Colors.SILVER,
+  },
+  termsInfoContainer: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignContent: 'flex-end',
+    padding: 15,
+  },
+  mainTermsHeader: {
+    textAlign: 'left',
+    color: Colors.MISCHKA,
+    fontSize: 20,
+    fontFamily: fontFamily.primaryBold,
+  },
+  arrowContainer: {
+    alignSelf: 'center',
+    paddingRight: 20,
   },
 });
 

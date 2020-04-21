@@ -1,40 +1,42 @@
+import Yaml from 'js-yaml';
 import React, { Component } from 'react';
 import {
+  Alert,
+  BackHandler,
+  Dimensions,
+  FlatList,
+  Image,
   SafeAreaView,
   StyleSheet,
-  View,
   Text,
-  Image,
-  TouchableOpacity,
-  BackHandler,
-  FlatList,
-  Alert,
   TextInput,
-  Dimensions,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import Yaml from 'js-yaml';
-import RNFetchBlob from 'rn-fetch-blob';
 import {
   Menu,
-  MenuOptions,
   MenuOption,
+  MenuOptions,
   MenuTrigger,
   renderers,
   withMenuContext,
 } from 'react-native-popup-menu';
-const { SlideInMenu } = renderers;
-import { GetStoreData, SetStoreData } from '../helpers/General';
-import colors from '../constants/colors';
-import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
+import RNFetchBlob from 'rn-fetch-blob';
+
 import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
-import languages from '../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { AUTHORITIES_LIST_URL } from '../constants/authorities';
+import colors from '../constants/colors';
+import Colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
+import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import { checkIntersect } from '../helpers/Intersect';
+import languages from '../locales/languages';
 
-const authoritiesListURL =
-  'https://raw.githubusercontent.com/tripleblindmarket/safe-places/develop/healthcare-authorities.yaml';
+const { SlideInMenu } = renderers;
 
 const width = Dimensions.get('window').width;
 
@@ -64,7 +66,7 @@ class ChooseProviderScreen extends Component {
     this.fetchAuthoritiesList();
 
     // Update user settings state from async storage
-    GetStoreData('AUTHORITY_SOURCE_SETTINGS', false).then(result => {
+    GetStoreData(AUTHORITY_SOURCE_SETTINGS, false).then(result => {
       if (result !== null) {
         console.log('Retrieving settings from async storage:');
         console.log(result);
@@ -88,7 +90,7 @@ class ChooseProviderScreen extends Component {
         // this is much more performant.
         fileCache: true,
       })
-        .fetch('GET', authoritiesListURL, {
+        .fetch('GET', AUTHORITIES_LIST_URL, {
           //some headers ..
         })
         .then(result => {
@@ -103,7 +105,7 @@ class ChooseProviderScreen extends Component {
                 : this.setState({
                     authoritiesList: [
                       {
-                        'Unable to load authorities list': [{ url: 'No URL' }],
+                        'Unable to load authorities list': [{ url: 'No URL' }], // TODO: Localize
                       },
                     ],
                   });
@@ -134,9 +136,12 @@ class ChooseProviderScreen extends Component {
         () => {
           // Add current settings state to async storage.
           SetStoreData(
-            'AUTHORITY_SOURCE_SETTINGS',
+            AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          );
+          ).then(() => {
+            // Force updates immediately.
+            checkIntersect();
+          });
         },
       );
     } else {
@@ -164,9 +169,12 @@ class ChooseProviderScreen extends Component {
         () => {
           // Add current settings state to async storage.
           SetStoreData(
-            'AUTHORITY_SOURCE_SETTINGS',
+            AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          );
+          ).then(() => {
+            // Force updates immediately.
+            checkIntersect();
+          });
         },
       );
     }
@@ -197,9 +205,12 @@ class ChooseProviderScreen extends Component {
               () => {
                 // Add current settings state to async storage.
                 SetStoreData(
-                  'AUTHORITY_SOURCE_SETTINGS',
+                  AUTHORITY_SOURCE_SETTINGS,
                   this.state.selectedAuthorities,
-                );
+                ).then(() => {
+                  // Force updates immediately.
+                  checkIntersect();
+                });
               },
             );
           },
@@ -378,7 +389,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   listContainer: {
-    flex: 3,
+    flex: 1,
     flexDirection: 'column',
     textAlignVertical: 'top',
     justifyContent: 'flex-start',
@@ -392,10 +403,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
-  },
-  valueName: {
-    fontSize: 20,
-    fontWeight: '800',
   },
   value: {
     fontSize: 20,
@@ -435,44 +442,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
-  mainText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
-  smallText: {
-    fontSize: 10,
-    lineHeight: 24,
-    fontWeight: '400',
-    textAlignVertical: 'center',
-    padding: 20,
-  },
   headerTitle: {
     fontSize: 24,
     fontFamily: fontFamily.primaryBold,
     color: Colors.VIOLET_TEXT,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
   },
   backArrow: {
     height: 18,
     width: 18.48,
   },
   sectionDescription: {
-    fontSize: 18,
-    lineHeight: 24,
+    fontSize: 16,
+    lineHeight: 22,
     marginTop: 12,
     overflow: 'scroll',
     color: Colors.VIOLET_TEXT,

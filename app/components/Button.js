@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import colors from '../constants/colors';
 import LinearGradient from 'react-native-linear-gradient';
-import PropTypes from 'prop-types';
+
+import colors from '../constants/colors';
 
 class Button extends React.Component {
   render() {
@@ -35,7 +36,10 @@ class Button extends React.Component {
             buttonStyle ? buttonStyle : styles.container,
             { height: buttonHeight },
           ]}
-          onPress={onPress}>
+          onPress={onPress}
+          accessible
+          accessibilityLabel={title}
+          accessibilityRole='button'>
           <Text
             style={[
               titleStyle ? titleStyle : styles.text,

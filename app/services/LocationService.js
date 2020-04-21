@@ -1,23 +1,30 @@
-import { GetStoreData, SetStoreData } from '../helpers/General';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import { Alert, Linking } from 'react-native';
-import { PERMISSIONS, check, RESULTS, request } from 'react-native-permissions';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
-import { isPlatformAndroid } from '../Util';
-import languages from '../locales/languages';
 
-let instanceCount = 0;
+import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import { areLocationsNearby } from '../helpers/Intersect';
+import languages from '../locales/languages';
+import { isPlatformAndroid } from '../Util';
+
+let isBackgroundGeolocationConfigured = false;
+const LOCATION_DISABLED_NOTIFICATION = '55';
 
 export class LocationData {
   constructor() {
+    // The desired location interval, and the minimum acceptable interval
     this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
-    // DEBUG: Reduce Time intervall for faster debugging
-    // this.locationInterval = 5000;
+
+    // minLocationSaveInterval should be shorter than the locationInterval (to avoid strange skips)
+    this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
+
+    // Maximum time that we will backfill for missing data
+    this.maxBackfillTime = 60000 * 60 * 24; // Time (in milliseconds).  60000 * 60 * 8 = 24 hours
   }
 
   getLocationData() {
-    return GetStoreData('LOCATION_DATA').then(locationArrayString => {
+    return GetStoreData(LOCATION_DATA).then(locationArrayString => {
       let locationArray = [];
       if (locationArrayString !== null) {
         locationArray = JSON.parse(locationArrayString);
@@ -51,9 +58,19 @@ export class LocationData {
     // Persist this location data in our local storage of time/lat/lon values
     this.getLocationData().then(locationArray => {
       // Always work in UTC, not the local time in the locationData
-      let nowUTC = new Date().toISOString();
-      let unixtimeUTC = Date.parse(nowUTC);
+      let unixtimeUTC = Math.floor(location['time']);
       let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
+
+      // Verify that at least the minimum amount of time between saves has passed
+      // This ensures that no matter how fast GPS coords are delivered, saving
+      // does not happen any faster than the minLocationSaveInterval
+      if (locationArray.length >= 1) {
+        let lastSaveTime = locationArray[locationArray.length - 1]['time'];
+        if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
+          //console.log('[INFO] Discarding point (too soon):', unixtimeUTC);
+          return;
+        }
+      }
 
       // Curate the list of points, only keep the last 28 days
       let curated = [];
@@ -64,31 +81,56 @@ export class LocationData {
       }
 
       // Backfill the stationary points, if available
+      // The assumption is that if we see a gap in the data, and the
+      // device hasn't moved significantly, then we can fill in the missing data
+      // with the current location.  This makes it easier for a health authority
+      // person to have a set of locations over time, and they can manually
+      // redact the time frames that aren't correct.
       if (curated.length >= 1) {
         let lastLocationArray = curated[curated.length - 1];
-        let lastTS = lastLocationArray['time'];
-        for (
-          ;
-          lastTS < unixtimeUTC - this.locationInterval;
-          lastTS += this.locationInterval
+
+        let areCurrentPreviousNearby = areLocationsNearby(
+          lastLocationArray['latitude'],
+          lastLocationArray['longitude'],
+          location['latitude'],
+          location['longitude'],
+        );
+        //console.log('[INFO] nearby:', nearby);
+
+        // Actually do the backfill if the current point is nearby the previous
+        // point and the time is within the maximum time to backfill.
+        let lastRecordedTime = lastLocationArray['time'];
+        if (
+          areCurrentPreviousNearby &&
+          unixtimeUTC - lastRecordedTime < this.maxBackfillTime
         ) {
-          curated.push(JSON.parse(JSON.stringify(lastLocationArray)));
+          for (
+            let newTS = lastRecordedTime + this.locationInterval;
+            newTS < unixtimeUTC - this.locationInterval;
+            newTS += this.locationInterval
+          ) {
+            let lat_lon_time = {
+              latitude: lastLocationArray['latitude'],
+              longitude: lastLocationArray['longitude'],
+              time: newTS,
+            };
+            //console.log('[INFO] backfill location:', lat_lon_time);
+            curated.push(lat_lon_time);
+          }
         }
       }
 
       // Save the location using the current lat-lon and the
-      // calculated UTC time (maybe a few milliseconds off from
-      // when the GPS data was collected, but that's unimportant
-      // for what we are doing.)
-      console.log('[GPS] Saving point:', locationArray.length);
+      // recorded GPS timestamp
       let lat_lon_time = {
         latitude: location['latitude'],
         longitude: location['longitude'],
         time: unixtimeUTC,
       };
       curated.push(lat_lon_time);
+      console.log('[INFO] saved location:', lat_lon_time);
 
-      SetStoreData('LOCATION_DATA', curated);
+      SetStoreData(LOCATION_DATA, curated);
     });
   }
 }
@@ -97,8 +139,9 @@ export default class LocationServices {
   static start() {
     const locationData = new LocationData();
 
-    instanceCount += 1;
-    if (instanceCount > 1) {
+    // handles edge cases around Android where start might get called again even though
+    // the service is already created.  Make sure the listeners are still bound and exit
+    if (isBackgroundGeolocationConfigured) {
       BackgroundGeolocation.start();
       return;
     }
@@ -167,34 +210,12 @@ export default class LocationServices {
       });
     }
 
-    BackgroundGeolocation.on('stationary', stationaryLocation => {
-      // handle stationary locations here
-      // Actions.sendLocation(stationaryLocation);
-      BackgroundGeolocation.startTask(taskKey => {
-        // execute long running task
-        // eg. ajax post location
-        // IMPORTANT: task has to be ended by endTask
-
-        // For capturing stationaryLocation. Note that it hasn't been
-        // tested as I couldn't produce stationaryLocation callback in emulator
-        // but since the plugin documentation mentions it, no reason to keep
-        // it empty I believe.
-        locationData.saveLocation(stationaryLocation);
-        BackgroundGeolocation.endTask(taskKey);
-      });
-      console.log('[INFO] stationaryLocation:', stationaryLocation);
-    });
-
     BackgroundGeolocation.on('error', error => {
       console.log('[ERROR] BackgroundGeolocation error:', error);
     });
 
     BackgroundGeolocation.on('start', () => {
       console.log('[INFO] BackgroundGeolocation service has been started');
-    });
-
-    BackgroundGeolocation.on('stop', () => {
-      console.log('[INFO] BackgroundGeolocation service has been stopped');
     });
 
     BackgroundGeolocation.on('authorization', status => {
@@ -226,8 +247,19 @@ export default class LocationServices {
       } else {
         BackgroundGeolocation.start(); //triggers start on start event
 
-        // TODO: We reach this point on Android when location services are toggled off/on.
-        //       When this fires, check if they are off and show a Notification in the tray
+        BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
+          if (!locationServicesEnabled) {
+            PushNotification.localNotification({
+              id: LOCATION_DISABLED_NOTIFICATION,
+              title: languages.t('label.location_disabled_title'),
+              message: languages.t('label.location_disabled_message'),
+            });
+          } else {
+            PushNotification.cancelLocalNotifications({
+              id: LOCATION_DISABLED_NOTIFICATION,
+            });
+          }
+        });
       }
     });
 
@@ -253,8 +285,8 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('stop', () => {
       PushNotification.localNotification({
-        title: 'Location Tracking Was Disabled',
-        message: 'Private Kit requires location services.',
+        title: languages.t('label.location_disabled_title'),
+        message: languages.t('label.location_disabled_message'),
       });
       console.log('[INFO] stop');
     });
@@ -277,6 +309,7 @@ export default class LocationServices {
       );
 
       BackgroundGeolocation.start(); //triggers start on start event
+      isBackgroundGeolocationConfigured = true;
 
       if (!status.locationServicesEnabled) {
         // we need to set delay or otherwise alert may not be shown
@@ -328,15 +361,10 @@ export default class LocationServices {
         //   1000,
         // );
       }
-      // else if (!status.isRunning) {
-      // } // commented as it was not being used
     });
-
-    // you can also just start without checking for status
-    // BackgroundGeolocation.start();
   }
 
-  static stop(nav) {
+  static stop() {
     // unregister all event listeners
     PushNotification.localNotification({
       title: languages.t('label.location_disabled_title'),
@@ -344,8 +372,9 @@ export default class LocationServices {
     });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
-    instanceCount -= 1;
-    SetStoreData('PARTICIPATE', 'false').then(() => {
+
+    isBackgroundGeolocationConfigured = false;
+    SetStoreData(PARTICIPATE, 'false').then(() => {
       // nav.navigate('LocationTrackingScreen', {});
     });
   }

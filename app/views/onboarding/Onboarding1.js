@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Text,
   Dimensions,
-  StyleSheet,
   ImageBackground,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
+import languages, {
+  LOCALE_LIST,
+  getUserLocaleOverride,
+  setUserLocaleOverride,
+  supportedDeviceLanguageOrEnglish,
+} from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
+import NativePicker from '../../components/NativePicker';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import languages, { findUserLang } from './../../locales/languages';
-import NativePicker from '../../components/NativePicker';
-import { SetStoreData } from '../../helpers/General';
 
 const width = Dimensions.get('window').width;
 
@@ -22,22 +28,27 @@ class Onboarding extends Component {
   constructor(props) {
     super(props);
 
-    // Get locales list from i18next for locales menu
-    let localesList = [];
-    for (let key in languages.options.resources) {
-      localesList = localesList.concat({
-        value: key,
-        label: languages.options.resources[key].label,
-      });
-    }
-
     this.state = {
-      language: findUserLang(res => {
-        this.setState({ language: res });
-      }),
-      localesList: localesList,
+      locale: supportedDeviceLanguageOrEnglish(),
     };
   }
+
+  componentDidMount() {
+    getUserLocaleOverride(locale => {
+      this.setState({ locale });
+    });
+  }
+
+  onLocaleChange = async locale => {
+    if (locale) {
+      try {
+        await setUserLocaleOverride(locale);
+        this.setState({ locale });
+      } catch (err) {
+        console.log('Something went wrong in language change', err);
+      }
+    }
+  };
 
   render() {
     return (
@@ -48,7 +59,7 @@ class Onboarding extends Component {
           <StatusBar
             barStyle='light-content'
             backgroundColor='transparent'
-            translucent={true}
+            translucent
           />
           <View style={styles.mainContainer}>
             <View
@@ -59,23 +70,17 @@ class Onboarding extends Component {
                 zIndex: 10,
               }}>
               <NativePicker
-                items={this.state.localesList}
-                value={this.state.language}
-                onValueChange={(itemValue, itemIndex) => {
-                  this.setState({ language: itemValue });
-
-                  // If user picks manual lang, update and store setting
-                  languages.changeLanguage(itemValue, (err, t) => {
-                    if (err)
-                      return console.log(
-                        'something went wrong in lang change',
-                        err,
-                      );
-                  });
-
-                  SetStoreData('LANG_OVERRIDE', itemValue);
-                }}
-              />
+                items={LOCALE_LIST}
+                value={this.state.locale}
+                onValueChange={this.onLocaleChange}>
+                {({ label, openPicker }) => (
+                  <TouchableOpacity
+                    onPress={openPicker}
+                    style={styles.languageSelector}>
+                    <Text style={styles.languageSelectorText}>{label}</Text>
+                  </TouchableOpacity>
+                )}
+              </NativePicker>
             </View>
             <View style={styles.contentContainer}>
               <Text style={styles.mainText}>
@@ -130,10 +135,22 @@ const styles = StyleSheet.create({
     marginBottom: '10%',
     alignSelf: 'center',
   },
-  menuOptionText: {
-    fontWeight: 'normal',
-    fontSize: 14,
-    padding: 10,
+  // eslint-disable-next-line react-native/no-color-literals
+  languageSelector: {
+    // alpha needs to be in the bg color otherwise it fades the contained text
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    paddingVertical: 4,
+    paddingHorizontal: 11,
+    borderRadius: 100,
+  },
+  languageSelectorText: {
+    fontSize: 12,
+    color: Colors.VIOLET,
+    paddingVertical: 4,
+    paddingHorizontal: 11,
+    opacity: 1,
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
 });
 

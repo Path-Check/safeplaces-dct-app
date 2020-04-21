@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-// import _ from 'lodash';
+import DocumentPicker from 'react-native-document-picker';
 
 /**
  * Get Data from Store
@@ -41,5 +41,22 @@ export async function SetStoreData(key, item) {
     return await AsyncStorage.setItem(key, item);
   } catch (error) {
     console.log(error.message);
+  }
+}
+
+export async function pickFile() {
+  // Pick a single file - returns actual path on Android, file:// uri on iOS
+  try {
+    const res = await DocumentPicker.pick({
+      type: [DocumentPicker.types.zip, DocumentPicker.types.allFiles],
+      usePath: true,
+    });
+    return res.uri;
+  } catch (err) {
+    if (DocumentPicker.isCancel(err)) {
+      // User cancelled the picker, exit any dialogs or menus and move on
+    } else {
+      throw err;
+    }
   }
 }

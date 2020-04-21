@@ -42,7 +42,9 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "backgroundColor": "#4051DB",
-          "flex": 0,
+          "flexBasis": 0,
+          "flexGrow": 0,
+          "flexShrink": 1,
         }
       }
     />
@@ -51,7 +53,9 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "backgroundColor": "#F7F8FF",
-          "flex": 1,
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
         }
       }
     >
@@ -107,6 +111,7 @@ exports[`renders correctly 1`] = `
               "color": "#FFF",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 26,
+              "paddingHorizontal": 20,
               "position": "absolute",
               "textAlign": "center",
               "width": "100%",
@@ -177,12 +182,8 @@ exports[`renders correctly 1`] = `
             data={
               Array [
                 Object {
-                  "name": "Haitian Ministry of Health",
-                  "url": "https://wmcelroy.wixsite.com/covidhaiti/kat",
-                },
-                Object {
                   "name": "Safe Paths News",
-                  "url": "https://privatekit.mit.edu",
+                  "news_url": "https://covidsafepaths.org/in-app-news",
                 },
               ]
             }
@@ -285,105 +286,9 @@ exports[`renders correctly 1`] = `
                         style={
                           Object {
                             "fontFamily": "IBMPlexSans-SemiBold",
-                            "fontSize": 18,
-                          }
-                        }
-                      >
-                        Haitian Ministry of Health
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Array [
-                          Object {
-                            "flex": 1,
-                            "overflow": "hidden",
-                          },
-                          Object {
-                            "borderBottomLeftRadius": 12,
-                            "borderBottomRightRadius": 12,
-                          },
-                        ]
-                      }
-                    >
-                      <RNCWebView
-                        cacheEnabled={false}
-                        javaScriptEnabled={true}
-                        messagingEnabled={false}
-                        source={
-                          Object {
-                            "uri": "https://wmcelroy.wixsite.com/covidhaiti/kat",
-                          }
-                        }
-                        style={
-                          Array [
-                            Object {
-                              "flex": 1,
-                              "overflow": "hidden",
-                            },
-                            Object {
-                              "backgroundColor": "#ffffff",
-                            },
-                            undefined,
-                          ]
-                        }
-                        useSharedProcessPool={true}
-                      />
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "flexDirection": "row",
-                    },
-                    null,
-                  ]
-                }
-              >
-                <View
-                  pointerEvents="box-none"
-                  style={
-                    Object {
-                      "opacity": 0.7,
-                      "transform": Array [
-                        Object {
-                          "scale": 0.9,
-                        },
-                      ],
-                      "width": 637.5,
-                    }
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignSelf": "center",
-                        "backgroundColor": "rgba(255,255,255,0.6)",
-                        "borderRadius": 12,
-                        "flexGrow": 1,
-                        "width": "100%",
-                      }
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "borderBottomWidth": 3,
-                          "height": 48,
-                          "justifyContent": "center",
-                          "marginBottom": 0,
-                        }
-                      }
-                    >
-                      <Text
-                        style={
-                          Object {
-                            "fontFamily": "IBMPlexSans-SemiBold",
-                            "fontSize": 18,
+                            "fontSize": 16,
+                            "paddingHorizontal": 5,
+                            "textAlign": "center",
                           }
                         }
                       >
@@ -405,12 +310,12 @@ exports[`renders correctly 1`] = `
                       }
                     >
                       <RNCWebView
-                        cacheEnabled={false}
+                        cacheEnabled={true}
                         javaScriptEnabled={true}
                         messagingEnabled={false}
                         source={
                           Object {
-                            "uri": "https://privatekit.mit.edu",
+                            "uri": "https://covidsafepaths.org/in-app-news",
                           }
                         }
                         style={
