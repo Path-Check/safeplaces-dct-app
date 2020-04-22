@@ -38,6 +38,12 @@ Please refer to `docs/Private Kit Diagram.png` for a basic overview on the seque
 
 Run the ```dev_setup.sh``` (Linux/MacOS) or ```dev_setup.bat``` (Windows) for needed tools.  It is assumed that Android Studio and/or xcode (on macOS) is set up and configured correctly to run applications in the simulator.  For Android Studio, the dev_setup script can help you, but you still may need to configure at least one android virtual device (avd) from within Android Studio first before you can run the app.
 
+### Configure background-geolocation SDK
+Create a file named ```local.properties``` in /android directory with an environment variable pointing to the android SDK:
+* For windows add: ```sdk.dir = C:\\Users\\USERNAME\\AppData\\Local\\Android\\sdk```
+* For macOS add: ```sdk.dir = /Users/USERNAME/Library/Android/sdk```
+* For linux add: ```sdk.dir = /home/USERNAME/Android/Sdk```
+
 ## Running
 
 ```yarn``` must be installed for this project, as it does a better job installing dependendies across platforms.  The dev_setup script above should have done that for you.
