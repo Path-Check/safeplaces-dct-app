@@ -73,6 +73,7 @@ const LegendRow = styled.View`
   flex-direction: row;
   justify-content: center;
   margin-top: 16px;
+  flex-wrap: wrap;
 `;
 
 const LegendItem = ({ children, riskLevel }) => {
