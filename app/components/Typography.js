@@ -87,7 +87,7 @@ const LINE_HEIGHT_MAP = {
   [Type.Body1]: '24px',
   [Type.Body2]: '22px',
   [Type.Body3]: '24px',
-  [Type.Button]: '200%',
+  [Type.Button]: '40px',
 };
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
