@@ -186,7 +186,6 @@ class LocationTracking extends Component {
         } else {
           this.setState({
             isLogging: false,
-            currentState: StateEnum.SETTING_OFF,
           });
         }
       })
