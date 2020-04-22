@@ -1,4 +1,5 @@
 {
+  "Done": "Fatto",
   "history": {
     "no_exposure": "Nessuna esposizione",
     "possible_exposure": "Possibile esposizione",
@@ -41,8 +42,10 @@
     "home_setting_off_subtext": "Non possiamo darti informazioni sull'esposizione al virus se non attivi la localizzazione.",
     "home_unknown_header": "Sconosciuto",
     "home_unknown_subtext": "Non è possibile sapere se sei stato esposto se non permetti alla app di accedere alla tua posizione",
-    "import_step_1": "1. Fai Login nel tuo account Google e scarica lo storico delle tue posizioni",
-    "import_step_2": "2. Dopo il download, apri di nuovo questa schermata. I dati saranno importati automaticamente",
+    "import_step_1": "Aggiungere lo storico delle localizzazioni da Google ti aiuta ad avere piu informazioni sulle tue posizioni passate.",
+    "import_step_2": "Prima di importare i dati, devi effettuare il 'Take out' dei dati dal sito di Google.",
+    "import_step_3": "Apri il sito di Google Takeout ed effettua l'export dei tuoi dati di posizione seguendo i seguenti step:\n1. Metodo di recapito: \"Aggiungi a Drive\"\n Frequenza: \"Esporta un archivio\"\n3. Tipo di file e dimensioni: \".zip\" e \"1GB\"\n4. Google ti invierà un messaggio via email al termine dell'esportazione.\n5. Ritorna in questa schermata per effettuare l'importazione dei dati.\n- Importa da Google Drive\n- Scarica con il browser e poi importa manualmente.\n Ti consigliamo l'uso del WiFi in quanto il file potrebbe essere di grandi dimensioni.",
+    "import_takeout": "Visita Google Takeout",
     "import_title": "Importa posizioni",
     "latest_news": "Ultime novità",
     "launch_done_header": "Fatto!",
