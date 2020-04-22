@@ -42,7 +42,7 @@ export default class EulaModal extends Component {
           transparent
           visible={this.state.modalVisible}>
           <View style={styles.container}>
-            <View style={{ flex: 6, padding: 30 }}>
+            <View style={{ flex: 6, padding: 25 }}>
               <TouchableOpacity
                 onPress={() => this.setState({ modalVisible: false })}>
                 <Image source={closeIcon} style={styles.closeIcon} />
@@ -74,9 +74,14 @@ export default class EulaModal extends Component {
               </Text>
               <ButtonWrapper
                 title='Continue'
-                buttonColor={Colors.VIOLET}
-                bgColor={Colors.WHITE}
+                buttonColor={
+                  this.state.boxChecked ? Colors.VIOLET : Colors.GRAY_BUTTON
+                }
+                bgColor={
+                  this.state.boxChecked ? Colors.WHITE : Colors.LIGHT_GRAY
+                }
                 buttonWidth={'100%'}
+                disabled={!this.state.boxChecked}
               />
             </View>
           </View>
@@ -97,22 +102,9 @@ const styles = StyleSheet.create({
   },
   ctaBox: {
     flex: 2,
-    padding: 30,
+    padding: 25,
     justifyContent: 'space-between',
     backgroundColor: Colors.VIOLET_BUTTON,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryBold,
-    color: Colors.VIOLET_TEXT,
-  },
-  sectionDescription: {
-    fontSize: 16,
-    lineHeight: 22,
-    marginTop: 12,
-    overflow: 'scroll',
-    color: Colors.VIOLET_TEXT,
-    fontFamily: fontFamily.primaryRegular,
   },
   closeIcon: {
     width: 20,
