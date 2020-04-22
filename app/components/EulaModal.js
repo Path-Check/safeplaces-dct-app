@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import Markdown from 'react-native-markdown-display';
 
 import boxCheckedIcon from './../assets/images/boxCheckedIcon.png';
 import boxUncheckedIcon from './../assets/images/boxUncheckedIcon.png';
@@ -15,9 +16,28 @@ import closeIcon from './../assets/images/closeIcon.png';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
 // import { Typography } from './Typography';
-import fontFamily from '../constants/fonts';
 import languages from '../locales/languages';
 import ButtonWrapper from './ButtonWrapper';
+
+const EulaCopy = `## EULA and legal things
+
+Text here
+
+yes its text
+
+many lines
+
+to
+
+test
+
+scrolling
+
+- hey
+- look
+- its
+- a
+- list`;
 
 export default class EulaModal extends Component {
   constructor(props) {
@@ -42,13 +62,13 @@ export default class EulaModal extends Component {
           transparent
           visible={this.state.modalVisible}>
           <View style={styles.container}>
-            <View style={{ flex: 6, padding: 25 }}>
+            <View style={{ flex: 6, padding: 25, paddingBottom: 0 }}>
               <TouchableOpacity
                 onPress={() => this.setState({ modalVisible: false })}>
                 <Image source={closeIcon} style={styles.closeIcon} />
               </TouchableOpacity>
               <ScrollView>
-                <Text>EULA texts</Text>
+                <Markdown>{EulaCopy}</Markdown>
               </ScrollView>
             </View>
             <View style={styles.ctaBox}>
@@ -109,6 +129,7 @@ const styles = StyleSheet.create({
   closeIcon: {
     width: 20,
     height: 20,
+    marginBottom: 6,
     opacity: 0.7,
     alignSelf: 'flex-end',
   },
