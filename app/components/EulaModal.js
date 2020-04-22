@@ -19,28 +19,6 @@ import Colors from '../constants/colors';
 import languages from '../locales/languages';
 import ButtonWrapper from './ButtonWrapper';
 
-// Delete this when actual EULA is available - just use the translation
-// ...function in place of EulaCopy in the Markdown tag
-const EulaCopy = `## EULA and legal things
-
-Text here
-
-yes its text
-
-many lines
-
-to
-
-test
-
-scrolling
-
-- hey
-- look
-- its
-- a
-- list`;
-
 export default class EulaModal extends Component {
   constructor(props) {
     super(props);
@@ -71,7 +49,7 @@ export default class EulaModal extends Component {
               </TouchableOpacity>
               <ScrollView>
                 <Markdown style={{ body: { color: Colors.DARK_GRAY } }}>
-                  {EulaCopy}
+                  {languages.t('markdown.eula')}
                 </Markdown>
               </ScrollView>
             </View>
@@ -90,14 +68,14 @@ export default class EulaModal extends Component {
                   style={{ width: 25, height: 25, marginRight: 10 }}
                 />
                 <Text style={styles.checkboxText}>
-                  I accept the licensing agreement
+                  {languages.t('label.eula_checkbox')}
                 </Text>
               </TouchableOpacity>
               <Text style={styles.smallDescriptionText}>
-                *You must accept in order to use Safe Paths
+                {languages.t('label.eula_message')}
               </Text>
               <ButtonWrapper
-                title='Continue'
+                title={languages.t('label.eula_continue')}
                 buttonColor={
                   this.state.boxChecked ? Colors.VIOLET : Colors.GRAY_BUTTON
                 }

@@ -98,7 +98,10 @@
     "logging_inactive": "Location Inactive",
     "language_change_alert_title": "App need to restart in order to use this language",
     "language_change_alert_proced": "Restart",
-    "language_change_alert_cancel": "Cancel"
+    "language_change_alert_cancel": "Cancel",
+    "eula_checkbox": "I accept the licensing agreement",
+    "eula_message": "*You must accept in order to use Safe Paths",
+    "eula_continue": "Continue"
   },
   "history": {
     "no_exposure": "No known",
@@ -109,5 +112,8 @@
     "what_does_this_mean": "What does this mean?",
     "what_if_no_symptoms_para": "If you have no symptoms but still would like to be tested you can go to your nearest testing site.\n\nIndividuals who don't exhibit symptoms can sometimes still carry the infection and infect others. Being careful about social distancing and coming in contact with large groups or at risk individuals (the elderly, those with significant other medical issues) is important to manage both your risk and the risk to others.",
     "what_if_no_symptoms": "What if I’m not showing symptoms?"
+  },
+  "markdown": {
+    "eula": "## EULA and legal things \n \nText here \n \nyes its text \n \nmany lines \n \nto \n \ntest \n \nscrolling \n \n- hey \n- look \n- its \n- a \n- list"
   }
 }
