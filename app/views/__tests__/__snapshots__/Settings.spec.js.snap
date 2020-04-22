@@ -371,6 +371,59 @@ exports[`renders correctly 1`] = `
                 see waypoints heatmap in action
               </Text>
             </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#A5AFFB",
+                  "height": 1.5,
+                }
+              }
+            />
+            <View
+              accessible={true}
+              focusable={true}
+              isTVSelectable={true}
+              style={
+                Object {
+                  "backgroundColor": "#FFF",
+                  "flexDirection": "column",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingVertical": "5%",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#3C4ED8",
+                      "fontFamily": "IBMPlexSans",
+                      "fontSize": 18,
+                    },
+                    Object {
+                      "color": "#3C4ED8",
+                      "fontFamily": "IBMPlexSans-Bold",
+                    },
+                  ]
+                }
+              >
+                Captcha
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "backgroundColor": "#FFF",
+                    "color": "#3C4ED8",
+                    "fontFamily": undefined,
+                    "fontSize": 16,
+                    "width": "87.5%",
+                  }
+                }
+              >
+                Try out captcha on mobile
+              </Text>
+            </View>
           </View>
         </View>
         <View

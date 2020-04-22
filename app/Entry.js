@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { PARTICIPATE } from './constants/storage';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
+import CaptchaScreen from './views/Captcha';
 import ChooseProviderScreen from './views/ChooseProvider';
 import ExportScreen from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
@@ -141,6 +142,11 @@ class Entry extends Component {
           <Stack.Screen
             name='WayPointsScreen'
             component={WayPointsScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='CaptchaScreen'
+            component={CaptchaScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
