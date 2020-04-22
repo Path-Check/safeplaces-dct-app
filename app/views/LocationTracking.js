@@ -31,7 +31,7 @@ import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import { isPlatformAndroid, isPlatformiOS } from './../Util';
-import ButtonWrapper from '../components/ButtonWrapper';
+import { Button } from '../components/Button';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -413,13 +413,11 @@ class LocationTracking extends Component {
     }
     return (
       <View style={styles.buttonContainer}>
-        <ButtonWrapper
-          title={buttonLabel}
+        <Button
+          label={buttonLabel}
           onPress={() => {
             buttonFunction();
           }}
-          buttonColor={Colors.BLUE_BUTTON}
-          bgColor={Colors.WHITE}
         />
       </View>
     );

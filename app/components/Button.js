@@ -1,85 +1,44 @@
-import PropTypes from 'prop-types';
+import styled from '@emotion/native';
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
-import colors from '../constants/colors';
 import { Typography } from './Typography';
 
-class Button extends React.Component {
-  render() {
-    const {
-      title,
-      onPress,
-      buttonColor = colors.WHITE,
-      bgColor = colors.DODGER_BLUE,
-      toBgColor = bgColor,
-      titleStyle,
-      buttonStyle,
-      buttonHeight = 54,
-      borderColor,
-    } = this.props;
-    return (
-      <LinearGradient
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        colors={[bgColor, toBgColor]}
-        style={[
-          buttonStyle ? buttonStyle : styles.container,
-          {
-            height: buttonHeight,
-            borderWidth: borderColor ? 2 : 0,
-            borderColor: borderColor,
-          },
-        ]}>
-        <TouchableOpacity
-          style={[
-            buttonStyle ? buttonStyle : styles.container,
-            { height: buttonHeight },
-          ]}
-          onPress={onPress}
-          accessible
-          accessibilityLabel={title}
-          accessibilityRole='button'>
-          <Typography
-            style={[
-              titleStyle ? titleStyle : styles.text,
-              {
-                color: buttonColor,
-              },
-            ]}>
-            {title}
-          </Typography>
-        </TouchableOpacity>
-      </LinearGradient>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 8,
-    borderRadius: 12,
-  },
-  text: {
-    textAlign: 'center',
-    height: 28,
-    fontSize: 20,
-  },
-});
-
-Button.propTypes = {
-  title: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-  buttonColor: PropTypes.string,
-  bgColor: PropTypes.string,
-  toBgColor: PropTypes.string,
-  titleStyle: PropTypes.object,
-  buttonStyle: PropTypes.object,
-  borderColor: PropTypes.string,
+/**
+ * @param {{
+ *   label: string,
+ *   icon: React.ReactNode,
+ *   onPress: () => void,
+ * }} param0
+ */
+export const Button = ({ title, icon, onPress }) => {
+  return (
+    <Container
+      onPress={onPress}
+      accessible
+      accessibilityLabel={title}
+      accessibilityRole='button'
+      hasIcon={!!icon}>
+      <Typography use='button'>{title}</Typography>
+      {icon}
+    </Container>
+  );
 };
 
-export default Button;
+const themePrimary = ({ theme }) => theme.primary;
+const themeOnPrimary = ({ theme }) => theme.onPrimary;
+const getBorderColor = ({ theme, secondary }) =>
+  secondary ? theme.primary : 'transparent';
+
+const getJustifyContent = ({ hasIcon }) =>
+  hasIcon ? 'space-between' : 'center';
+
+const Container = styled.TouchableOpacity`
+  background-color: ${themePrimary};
+  color: ${themeOnPrimary};
+  height: 72px;
+  border: 1px solid ${getBorderColor};
+  padding: 16px;
+  border-radius: 8px;
+  flex-direction: row;
+  justify-content: ${getJustifyContent};
+`;

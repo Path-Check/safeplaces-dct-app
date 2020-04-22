@@ -11,6 +11,7 @@ export const Type = {
   Body1: 'body1',
   Body2: 'body2',
   Body3: 'body3',
+  Button: 'button',
 };
 
 /**
@@ -74,6 +75,7 @@ const FONT_SIZE_MAP = {
   [Type.Body1]: '18px',
   [Type.Body2]: '16px',
   [Type.Body3]: '15px',
+  [Type.Button]: '20px',
 };
 
 const getFontSize = ({ use = Type.Body1 }) => FONT_SIZE_MAP[use];
@@ -85,6 +87,7 @@ const LINE_HEIGHT_MAP = {
   [Type.Body1]: '24px',
   [Type.Body2]: '22px',
   [Type.Body3]: '24px',
+  [Type.Button]: '200%',
 };
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
@@ -93,10 +96,12 @@ const getTextColor = ({ theme, secondary = false }) =>
   secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;
 
 const getFontWeight = ({ use = Type.Body1, bold }) =>
-  use.startsWith('headline') || bold ? 'bold' : 'normal';
+  use.startsWith('headline') || use.startsWith('button') || bold
+    ? 'bold'
+    : 'normal';
 
 const getFontFamily = ({ use, monospace, bold }) =>
-  use.startsWith('headline') || bold
+  use.startsWith('headline') || use.startsWith('button') || bold
     ? 'IBMPlexSans-Bold'
     : monospace
     ? 'IBMPlexMono'

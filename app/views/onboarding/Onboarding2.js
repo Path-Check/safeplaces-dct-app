@@ -4,16 +4,15 @@ import {
   ImageBackground,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
 import BackgroundImage from './../../assets/images/launchScreen2.png';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import { Button } from '../../components/Button';
+import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
-import { Typography } from '../../components/Typography';
 
 const width = Dimensions.get('window').width;
 
@@ -23,7 +22,7 @@ const Onboarding = props => {
       <StatusBar
         barStyle='dark-content'
         backgroundColor='transparent'
-        translucent={true}
+        translucent
       />
       <ImageBackground
         source={BackgroundImage}
@@ -38,13 +37,11 @@ const Onboarding = props => {
         </Typography>
       </View>
       <View style={styles.footerContainer}>
-        <ButtonWrapper
-          title={languages.t('label.launch_next')}
+        <Button
+          label={languages.t('label.launch_next')}
           onPress={() => {
             props.navigation.replace('Onboarding3');
           }}
-          buttonColor={Colors.WHITE}
-          bgColor={Colors.VIOLET_BUTTON}
         />
       </View>
     </View>

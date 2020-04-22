@@ -3,9 +3,8 @@ import React from 'react';
 import { SvgXml } from 'react-native-svg';
 
 import googleMapsIcon from '../../assets/svgs/google-maps-logo';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 import languages from '../../locales/languages';
 
 export const GoogleMapsImport = ({ navigation }) => {
@@ -26,13 +25,9 @@ export const GoogleMapsImport = ({ navigation }) => {
         </Typography>
       </ParagraphContainer>
 
-      <ButtonWrapper
-        title={languages.t('label.maps_import_button_text')}
+      <Button
+        label={languages.t('label.maps_import_button_text')}
         onPress={importPressed}
-        buttonColor={Colors.VIOLET}
-        bgColor={Colors.WHITE}
-        borderColor={Colors.VIOLET}
-        buttonWidth={'100%'}
       />
 
       <ParagraphContainer>

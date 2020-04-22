@@ -4,7 +4,6 @@ import {
   ImageBackground,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import {
@@ -22,13 +21,13 @@ import { isPlatformiOS } from './../../Util';
 import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import { Button } from '../../components/Button';
+import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { PARTICIPATE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
-import { Typography } from '../../components/Typography';
 
 const width = Dimensions.get('window').width;
 
@@ -193,9 +192,15 @@ class Onboarding extends Component {
 
   getTitleTextView() {
     if (!this.isLocationChecked() || !this.isNotificationChecked()) {
-      return <Typography style={styles.headerText}>{this.getTitleText()}</Typography>;
+      return (
+        <Typography style={styles.headerText}>{this.getTitleText()}</Typography>
+      );
     } else {
-      return <Typography style={styles.bigHeaderText}>{this.getTitleText()}</Typography>;
+      return (
+        <Typography style={styles.bigHeaderText}>
+          {this.getTitleText()}
+        </Typography>
+      );
     }
   }
 
@@ -259,7 +264,9 @@ class Onboarding extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             {this.getTitleTextView()}
-            <Typography style={styles.subheaderText}>{this.getSubtitleText()}</Typography>
+            <Typography style={styles.subheaderText}>
+              {this.getSubtitleText()}
+            </Typography>
             <View style={styles.statusContainer}>
               {this.getLocationPermission()}
               {this.getNotificationsPermissionIfIOS()}
@@ -267,11 +274,9 @@ class Onboarding extends Component {
             </View>
           </View>
           <View style={styles.footerContainer}>
-            <ButtonWrapper
-              title={this.getButtonText()}
+            <Button
+              label={this.getButtonText()}
               onPress={this.buttonPressed.bind(this)}
-              buttonColor={Colors.VIOLET}
-              bgColor={Colors.WHITE}
             />
           </View>
         </View>
