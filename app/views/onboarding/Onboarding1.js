@@ -21,6 +21,7 @@ import NativePicker from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
+import { Theme } from '../../constants/themes';
 
 const width = Dimensions.get('window').width;
 
@@ -52,52 +53,56 @@ class Onboarding extends Component {
 
   render() {
     return (
-      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+      <Theme use='violet'>
         <ImageBackground
-          source={BackgroundOverlayImage}
+          source={BackgroundImage}
           style={styles.backgroundImage}>
-          <StatusBar
-            barStyle='light-content'
-            backgroundColor='transparent'
-            translucent
-          />
-          <View style={styles.mainContainer}>
-            <View
-              style={{
-                paddingTop: 60,
-                position: 'absolute',
-                alignSelf: 'center',
-                zIndex: 10,
-              }}>
-              <NativePicker
-                items={LOCALE_LIST}
-                value={this.state.locale}
-                onValueChange={this.onLocaleChange}>
-                {({ label, openPicker }) => (
-                  <TouchableOpacity
-                    onPress={openPicker}
-                    style={styles.languageSelector}>
-                    <Typography style={styles.languageSelectorText}>
-                      {label}
-                    </Typography>
-                  </TouchableOpacity>
-                )}
-              </NativePicker>
+          <ImageBackground
+            source={BackgroundOverlayImage}
+            style={styles.backgroundImage}>
+            <StatusBar
+              barStyle='light-content'
+              backgroundColor='transparent'
+              translucent
+            />
+            <View style={styles.mainContainer}>
+              <View
+                style={{
+                  paddingTop: 60,
+                  position: 'absolute',
+                  alignSelf: 'center',
+                  zIndex: 10,
+                }}>
+                <NativePicker
+                  items={LOCALE_LIST}
+                  value={this.state.locale}
+                  onValueChange={this.onLocaleChange}>
+                  {({ label, openPicker }) => (
+                    <TouchableOpacity
+                      onPress={openPicker}
+                      style={styles.languageSelector}>
+                      <Typography style={styles.languageSelectorText}>
+                        {label}
+                      </Typography>
+                    </TouchableOpacity>
+                  )}
+                </NativePicker>
+              </View>
+              <View style={styles.contentContainer}>
+                <Typography style={styles.mainText}>
+                  {languages.t('label.launch_screen1_header')}
+                </Typography>
+              </View>
+              <View style={styles.footerContainer}>
+                <Button
+                  label={languages.t('label.launch_get_started')}
+                  onPress={() => this.props.navigation.replace('Onboarding2')}
+                />
+              </View>
             </View>
-            <View style={styles.contentContainer}>
-              <Typography style={styles.mainText}>
-                {languages.t('label.launch_screen1_header')}
-              </Typography>
-            </View>
-            <View style={styles.footerContainer}>
-              <Button
-                label={languages.t('label.launch_get_started')}
-                onPress={() => this.props.navigation.replace('Onboarding2')}
-              />
-            </View>
-          </View>
+          </ImageBackground>
         </ImageBackground>
-      </ImageBackground>
+      </Theme>
     );
   }
 }

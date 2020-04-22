@@ -26,6 +26,7 @@ export const GoogleMapsImport = ({ navigation }) => {
       </ParagraphContainer>
 
       <Button
+        secondary
         label={languages.t('label.maps_import_button_text')}
         onPress={importPressed}
       />

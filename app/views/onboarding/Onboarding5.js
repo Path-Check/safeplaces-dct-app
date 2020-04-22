@@ -26,6 +26,7 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { PARTICIPATE } from '../../constants/storage';
+import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 
@@ -37,7 +38,7 @@ const PermissionStatusEnum = {
   DENIED: 2,
 };
 
-const PermissionDescription = ({ title, status, ...props }) => {
+const PermissionDescription = ({ title, status }) => {
   let icon;
   switch (status) {
     case PermissionStatusEnum.UNKNOWN:
@@ -217,12 +218,12 @@ class Onboarding extends Component {
   getLocationPermission() {
     return (
       <>
-        <View style={styles.divider}></View>
+        <View style={styles.divider} />
         <PermissionDescription
           title={languages.t('label.launch_location_access')}
           status={this.state.locationPermission}
         />
-        <View style={styles.divider}></View>
+        <View style={styles.divider} />
       </>
     );
   }
@@ -235,7 +236,7 @@ class Onboarding extends Component {
             title={languages.t('label.launch_notification_access')}
             status={this.state.notificationPermission}
           />
-          <View style={styles.divider}></View>
+          <View style={styles.divider} />
         </>
       );
     }
@@ -254,33 +255,37 @@ class Onboarding extends Component {
 
   render() {
     return (
-      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor='transparent'
-          translucent={true}
-        />
+      <Theme use='violet'>
+        <ImageBackground
+          source={BackgroundImage}
+          style={styles.backgroundImage}>
+          <StatusBar
+            barStyle='light-content'
+            backgroundColor='transparent'
+            translucent
+          />
 
-        <View style={styles.mainContainer}>
-          <View style={styles.contentContainer}>
-            {this.getTitleTextView()}
-            <Typography style={styles.subheaderText}>
-              {this.getSubtitleText()}
-            </Typography>
-            <View style={styles.statusContainer}>
-              {this.getLocationPermission()}
-              {this.getNotificationsPermissionIfIOS()}
-              <View style={styles.spacer}></View>
+          <View style={styles.mainContainer}>
+            <View style={styles.contentContainer}>
+              {this.getTitleTextView()}
+              <Typography style={styles.subheaderText}>
+                {this.getSubtitleText()}
+              </Typography>
+              <View style={styles.statusContainer}>
+                {this.getLocationPermission()}
+                {this.getNotificationsPermissionIfIOS()}
+                <View style={styles.spacer} />
+              </View>
+            </View>
+            <View style={styles.footerContainer}>
+              <Button
+                label={this.getButtonText()}
+                onPress={this.buttonPressed.bind(this)}
+              />
             </View>
           </View>
-          <View style={styles.footerContainer}>
-            <Button
-              label={this.getButtonText()}
-              onPress={this.buttonPressed.bind(this)}
-            />
-          </View>
-        </View>
-      </ImageBackground>
+        </ImageBackground>
+      </Theme>
     );
   }
 }
