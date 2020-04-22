@@ -3,8 +3,11 @@ import PushNotification from 'react-native-push-notification';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import { AUTHORITIES_LIST_URL } from '../constants/authorities';
-import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
-import { GetStoreData } from '../helpers/General';
+import {
+  AUTHORITY_SOURCE_SETTINGS,
+  HCA_AUTO_SUBSCRIPTION,
+} from '../constants/storage';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 import { LocationData } from './LocationService';
 
@@ -187,6 +190,49 @@ class HCAService {
     if (newAuthorities.length > 0) {
       this.pushAddNewAuthoritesFromLoc();
     }
+  }
+
+  /**
+   * Checks if the user has explicitly approved or denied the auto subscribe
+   * feature. When pulling from async storage, if the key has not yet been set,
+   * the value will be null.
+   *
+   * @returns boolean
+   */
+  async hasUserSetSubscription() {
+    const permission = await GetStoreData(HCA_AUTO_SUBSCRIPTION, true);
+
+    if (permission === null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  /**
+   * Check if the user has opted in to auto subscribe to new Healthcare
+   * Authorities in their area.
+   *
+   * @returns boolean (if value is set in storege)
+   */
+  async isAutosubscriptionEnabled() {
+    return (await GetStoreData(HCA_AUTO_SUBSCRIPTION, true)) === 'true';
+  }
+
+  /**
+   * Enable auto subscription to new Healthcare Authorities in the user's area.
+   * @returns void
+   */
+  async enableAutoSubscription() {
+    await SetStoreData(HCA_AUTO_SUBSCRIPTION, true);
+  }
+
+  /**
+   * Disable auto subscription to new Healthcare Authorities in the user's area.
+   * @returns void
+   */
+  async disableAutoSubscription() {
+    await SetStoreData(HCA_AUTO_SUBSCRIPTION, false);
   }
 }
 

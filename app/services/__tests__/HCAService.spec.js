@@ -1,3 +1,8 @@
+import {
+  AUTHORITY_SOURCE_SETTINGS,
+  HCA_AUTO_SUBSCRIPTION,
+} from '../../constants/storage';
+import * as storageHelpers from '../../helpers/General';
 // eslint-disable-next-line jest/no-mocks-import
 import * as mockHCA from '../__mocks__/mockHCA';
 // eslint-disable-next-line jest/no-mocks-import
@@ -211,6 +216,63 @@ describe('HCAService', () => {
       jest.spyOn(HCAService, 'getUserAuthorityList').mockResolvedValueOnce([]);
 
       await expect(HCAService.getNewAuthoritiesInUserLoc()).resolves.toEqual(
+        mockHCA.validParsed,
+      );
+    });
+  });
+
+  describe('hasUserSetSubscription()', () => {
+    it('returns false if the user has not set a subcription status yet', async () => {
+      await expect(HCAService.hasUserSetSubscription()).resolves.toBe(false);
+    });
+
+    it('returns true if the user has not set a subcription status - either true or false', async () => {
+      await storageHelpers.SetStoreData(HCA_AUTO_SUBSCRIPTION, true);
+      await expect(HCAService.hasUserSetSubscription()).resolves.toBe(true);
+
+      await storageHelpers.SetStoreData(HCA_AUTO_SUBSCRIPTION, false);
+      await expect(HCAService.hasUserSetSubscription()).resolves.toBe(true);
+    });
+  });
+
+  describe('isAutosubscriptionEnabled()', () => {
+    it('returns false if the user has not enabled auto subscription', async () => {
+      await storageHelpers.SetStoreData(HCA_AUTO_SUBSCRIPTION, false);
+      await expect(HCAService.isAutosubscriptionEnabled()).resolves.toBe(false);
+    });
+
+    it('returns true if the user has enabled auto subscription', async () => {
+      await storageHelpers.SetStoreData(HCA_AUTO_SUBSCRIPTION, true);
+      await expect(HCAService.isAutosubscriptionEnabled()).resolves.toBe(true);
+    });
+  });
+
+  describe('enableAutoSubscription()', () => {
+    it('sets `HCA_AUTO_SUBSCRIPTION` to "true" in storage', async () => {
+      await HCAService.enableAutoSubscription();
+      await expect(
+        storageHelpers.GetStoreData(HCA_AUTO_SUBSCRIPTION),
+      ).resolves.toBe('true');
+    });
+  });
+
+  describe('disableAutoSubscription()', () => {
+    it('sets `HCA_AUTO_SUBSCRIPTION` to "false" in storage', async () => {
+      await HCAService.disableAutoSubscription();
+      await expect(
+        storageHelpers.GetStoreData(HCA_AUTO_SUBSCRIPTION),
+      ).resolves.toBe('false');
+    });
+  });
+
+  describe('getUserAuthorityList()', () => {
+    it('returns the list of Health Care Authorities that a user has saved', async () => {
+      await storageHelpers.SetStoreData(
+        AUTHORITY_SOURCE_SETTINGS,
+        mockHCA.validParsed,
+      );
+
+      await expect(HCAService.getUserAuthorityList()).resolves.toBe(
         mockHCA.validParsed,
       );
     });

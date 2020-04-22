@@ -35,7 +35,6 @@ class Entry extends Component {
   componentDidMount() {
     GetStoreData('ONBOARDING_DONE')
       .then(onboardingDone => {
-        console.log(onboardingDone);
         this.setState({
           initialRouteName: onboardingDone,
         });
@@ -47,7 +46,7 @@ class Entry extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName='InitialScreen'
+          initialRouteName='Onboarding1'
           screenOptions={{
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             cardStyle: {

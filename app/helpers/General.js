@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import DocumentPicker from 'react-native-document-picker';
 
 /**
- * Get Data from Store
+ * Get data from store
 
  *
  * @param {string} key
@@ -25,7 +25,6 @@ export async function GetStoreData(key, isString = true) {
 
 /**
  * Set data from store
-
  *
  * @param {string} key
  * @param {object} item
