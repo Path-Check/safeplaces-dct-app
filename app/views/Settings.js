@@ -1,4 +1,5 @@
 import styled, { css } from '@emotion/native';
+import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import React, { useEffect, useState } from 'react';
 import { BackHandler, ScrollView, View } from 'react-native';
 
@@ -17,6 +18,7 @@ import languages, {
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
+import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
@@ -32,12 +34,14 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   const [isLogging, setIsLogging] = useState(undefined);
+  const [isBGLocationLogging, setBGLocationLogging] = useState(false);
 
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
 
   useEffect(() => {
+    willParticipate();
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
     // TODO: this should be a service or hook
@@ -53,11 +57,49 @@ export const SettingsScreen = ({ navigation }) => {
     };
   }, []);
 
+  // on load setting page, this method will check whether we have remove location permission from app settings.
+  // It will set status "Location Active" only if permission is granted./*tested properly on android device*/
+  const willParticipate = () => {
+    SetStoreData(PARTICIPATE, 'true').then(() => {
+      // Turn of bluetooth for v1
+      //BroadcastingServices.start();
+    });
+    // Check and see if they actually authorized in the system dialog.
+    // If not, stop services and set the state to !isLogging
+    // Fixes tripleblindmarket/private-kit#129
+    BackgroundGeolocation.checkStatus(({ authorization }) => {
+      if (authorization === BackgroundGeolocation.AUTHORIZED) {
+        LocationServices.start();
+        setBGLocationLogging(true);
+        setIsLogging(true);
+      } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
+        LocationServices.stop();
+        setBGLocationLogging(false);
+        setIsLogging(false);
+        BackgroundTaskServices.stop();
+      }
+    });
+  };
+
+  // this is called when you click on device permission dialog "DENY" & "ALLOW"{ /*tested properly on android device*/}
+  const checkBackgroundStatus = async () => {
+    BackgroundGeolocation.on('authorization', status => {
+      // when you accept the permission
+      if (status === BackgroundGeolocation.AUTHORIZED) {
+        setIsLogging(true);
+      } else {
+        setIsLogging(false);
+      }
+    });
+  };
+
   const locationToggleButtonPressed = async () => {
     try {
       isLogging ? LocationServices.stop() : LocationServices.start();
       await SetStoreData(PARTICIPATE, !isLogging);
       setIsLogging(!isLogging);
+      setBGLocationLogging(true);
+      checkBackgroundStatus();
     } catch (e) {
       console.log(e);
     }
@@ -72,7 +114,6 @@ export const SettingsScreen = ({ navigation }) => {
       console.log('something went wrong in lang change', e);
     }
   };
-
   return (
     <NavigationBarWrapper
       title={languages.t('label.settings_title')}
@@ -81,11 +122,11 @@ export const SettingsScreen = ({ navigation }) => {
         <Section>
           <Item
             label={
-              isLogging
+              isLogging && isBGLocationLogging
                 ? languages.t('label.logging_active')
                 : languages.t('label.logging_inactive')
             }
-            icon={isLogging ? checkmarkIcon : xmarkIcon}
+            icon={isLogging && isBGLocationLogging ? checkmarkIcon : xmarkIcon}
             onPress={locationToggleButtonPressed}
           />
           <NativePicker
