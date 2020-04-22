@@ -16,7 +16,6 @@ import languages, {
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from './../../locales/languages';
-import ButtonWrapper from '../../components/ButtonWrapper';
 import EulaModal from '../../components/EulaModal';
 import NativePicker from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
@@ -91,7 +90,11 @@ class Onboarding extends Component {
               </Typography>
             </View>
             <View style={styles.footerContainer}>
-              <EulaModal />
+              <EulaModal
+                continueFunction={() =>
+                  this.props.navigation.replace('Onboarding2')
+                }
+              />
             </View>
           </View>
         </ImageBackground>

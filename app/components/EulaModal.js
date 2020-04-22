@@ -19,6 +19,8 @@ import Colors from '../constants/colors';
 import languages from '../locales/languages';
 import ButtonWrapper from './ButtonWrapper';
 
+// Delete this when actual EULA is available - just use the translation
+// ...function in place of EulaCopy in the Markdown tag
 const EulaCopy = `## EULA and legal things
 
 Text here
@@ -62,13 +64,15 @@ export default class EulaModal extends Component {
           transparent
           visible={this.state.modalVisible}>
           <View style={styles.container}>
-            <View style={{ flex: 6, padding: 25, paddingBottom: 0 }}>
+            <View style={{ flex: 7, padding: 25, paddingBottom: 0 }}>
               <TouchableOpacity
                 onPress={() => this.setState({ modalVisible: false })}>
                 <Image source={closeIcon} style={styles.closeIcon} />
               </TouchableOpacity>
               <ScrollView>
-                <Markdown>{EulaCopy}</Markdown>
+                <Markdown style={{ body: { color: Colors.DARK_GRAY } }}>
+                  {EulaCopy}
+                </Markdown>
               </ScrollView>
             </View>
             <View style={styles.ctaBox}>
@@ -102,6 +106,10 @@ export default class EulaModal extends Component {
                 }
                 buttonWidth={'100%'}
                 disabled={!this.state.boxChecked}
+                onPress={() => {
+                  this.setState({ modalVisible: false });
+                  this.props.continueFunction();
+                }}
               />
             </View>
           </View>
