@@ -38,7 +38,7 @@ class Entry extends Component {
       .then(onboardingDone => {
         console.log(onboardingDone);
         this.setState({
-          initialRouteName: false,
+          initialRouteName: onboardingDone,
         });
       })
       .catch(error => console.log(error));
