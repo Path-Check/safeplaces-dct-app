@@ -90,7 +90,7 @@ const ImportScreen = props => {
             }
             style={styles.buttonTouchable}>
             <Typography style={styles.buttonText}>
-              {languages.t('label.import_takeout')}
+              {languages.t('import.google.visit_button_text')}
             </Typography>
           </TouchableOpacity>
           <TouchableOpacity

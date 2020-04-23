@@ -18,7 +18,8 @@
       "instructions_detailed": "Visit Google Takeout and export your Location History using the following settings: \n1. Delivery method: \"Add to Drive\" \n2. Frequency: \"Export once\" \n3. File type &amp; size: \".zip\" and \"1GB\"\n4. Google sends an email when the export is ready \n5. Return here to import locations. Import options:\n- Import from Google Drive\n- Download from browser, then import from local phone files. \nMake sure to be on WiFi network as files can be big.",
       "instructions_first": "Adding location data from Google will give you a head start on building your recent locations.",
       "instructions_second": "Before you can import, you must first \"Take out\" your location data from Google.",
-      "title": "Google Maps"
+      "title": "Google Maps",
+      "visit_button_text": "Visit Google Takeout"
     },
     "subtitle": "To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.",
     "title": "Import Locations"
@@ -54,7 +55,6 @@
     "home_setting_off_subtext": "We can’t tell if you’re at risk unless you enable location history in the settings screen.",
     "home_unknown_header": "Unknown",
     "home_unknown_subtext": "We can’t tell if you’re at risk unless you enable the app to access your location.",
-    "import_takeout": "Visit Google Takeout",
     "latest_news": "Latest News",
     "launch_done_header": "All finished",
     "launch_done_subheader": "You’re ready to roll. Remember, you can always update your preferences later.",
