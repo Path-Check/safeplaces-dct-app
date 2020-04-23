@@ -17,6 +17,7 @@ import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import languages from '../locales/languages';
 import ButtonWrapper from './ButtonWrapper';
+import { Checkbox } from './Checkbox';
 
 export const EulaModal = props => {
   const [modalVisible, setModalVisibility] = useState(false);
@@ -43,17 +44,10 @@ export const EulaModal = props => {
             </ScrollView>
           </View>
           <View style={styles.ctaBox}>
-            <TouchableOpacity
-              style={{ flexDirection: 'row' }}
-              onPress={() => toggleCheckbox(!boxChecked)}>
-              <Image
-                source={boxChecked === true ? boxCheckedIcon : boxUncheckedIcon}
-                style={{ width: 25, height: 25, marginRight: 10 }}
-              />
-              <Text style={styles.checkboxText}>
-                {languages.t('label.eula_checkbox')}
-              </Text>
-            </TouchableOpacity>
+            <Checkbox
+              onPressFunction={() => toggleCheckbox(!boxChecked)}
+              boxChecked={boxChecked}
+            />
             <Text style={styles.smallDescriptionText}>
               {languages.t('label.eula_message')}
             </Text>
