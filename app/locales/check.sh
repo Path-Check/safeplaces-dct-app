@@ -3,7 +3,7 @@
 # respective PR
 
 #!/bin/bash
-set -e
+set -ex
 
 echo "Running i18next-parser"
 yarn i18n:extract

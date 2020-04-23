@@ -15,7 +15,7 @@ on:
       - android/app/src/main/res/values/strings.xml
 
 jobs:
-  # Only run on a merge into develop, uploads all changed keys to Lokalised
+  # Only run on a final merge into develop, uploads all changed keys to Lokalised
   lokalise-upload:
     if: github.event_name == 'push' && github.ref == 'develop'
     runs-on: ubuntu-latest
