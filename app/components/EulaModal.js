@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Markdown from 'react-native-markdown-display';
@@ -6,7 +7,6 @@ import Markdown from 'react-native-markdown-display';
 import closeIcon from './../assets/images/closeIcon.png';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
-import languages from '../locales/languages';
 import ButtonWrapper from './ButtonWrapper';
 import { Checkbox } from './Checkbox';
 import { Typography } from './Typography';
@@ -14,11 +14,12 @@ import { Typography } from './Typography';
 export const EulaModal = props => {
   const [modalVisible, setModalVisibility] = useState(false);
   const [boxChecked, toggleCheckbox] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <>
       <ButtonWrapper
-        title={languages.t('label.launch_get_started')}
+        title={t('label.launch_get_started')}
         onPress={() => setModalVisibility(true)}
         buttonColor={Colors.VIOLET}
         bgColor={Colors.WHITE}
@@ -31,7 +32,7 @@ export const EulaModal = props => {
             </TouchableOpacity>
             <ScrollView>
               <Markdown style={{ body: { color: Colors.DARK_GRAY } }}>
-                {languages.t('markdown.eula')}
+                {t('markdown.eula')}
               </Markdown>
             </ScrollView>
           </View>
@@ -41,10 +42,10 @@ export const EulaModal = props => {
               boxChecked={boxChecked}
             />
             <Typography style={styles.smallDescriptionText}>
-              {languages.t('label.eula_message')}
+              {t('label.eula_message')}
             </Typography>
             <ButtonWrapper
-              title={languages.t('label.eula_continue')}
+              title={t('label.eula_continue')}
               buttonColor={boxChecked ? Colors.VIOLET : Colors.GRAY_BUTTON}
               bgColor={boxChecked ? Colors.WHITE : Colors.LIGHT_GRAY}
               buttonWidth={'100%'}
