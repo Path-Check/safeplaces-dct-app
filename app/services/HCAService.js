@@ -61,8 +61,6 @@ class HCAService {
    */
   async appendToAuthorityList(newAuthorities) {
     const authorities = (await this.getUserAuthorityList()) || [];
-    console.log(authorities);
-    console.log(newAuthorities);
     await SetStoreData(AUTHORITY_SOURCE_SETTINGS, [
       ...authorities,
       ...newAuthorities,
@@ -253,7 +251,6 @@ class HCAService {
    * @returns {void}
    */
   async enableAutoSubscription() {
-    console.log('enableAutoSubscription');
     await SetStoreData(HCA_AUTO_SUBSCRIPTION, true);
   }
 
@@ -262,7 +259,6 @@ class HCAService {
    * @returns {void}
    */
   async disableAutoSubscription() {
-    console.log('disableAutoSubscription');
     await SetStoreData(HCA_AUTO_SUBSCRIPTION, false);
   }
 }
