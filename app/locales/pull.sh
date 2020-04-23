@@ -20,27 +20,27 @@ if ! found_exe lokalise2; then
   fi
 fi
 
-echo "Downloading iOS *.strings"
-lokalise2 file download \
-  --add-newline-eof \
-  --export-empty-as skip \
-  --format strings \
-  --include-description \
-  --original-filenames \
-  --unzip-to=ios \
-  --export-sort=a_z \
-  --config .lokalise.yml
+# echo "Downloading iOS *.strings"
+# lokalise2 file download \
+#   --add-newline-eof \
+#   --export-empty-as skip \
+#   --format strings \
+#   --include-description \
+#   --original-filenames \
+#   --unzip-to=ios \
+#   --export-sort=a_z \
+#   --config .lokalise.yml
 
-echo "Downloading Android strings.xml"
-lokalise2 file download \
-  --add-newline-eof \
-  --export-empty-as skip \
-  --format xml \
-  --include-description \
-  --original-filenames \
-  --unzip-to=android/app/src/main/res \
-  --export-sort=a_z \
-  --config .lokalise.yml
+# echo "Downloading Android strings.xml"
+# lokalise2 file download \
+#   --add-newline-eof \
+#   --export-empty-as skip \
+#   --format xml \
+#   --include-description \
+#   --original-filenames \
+#   --unzip-to=android/app/src/main/res \
+#   --export-sort=a_z \
+#   --config .lokalise.yml
 
 echo "Downloading i18next *.json files"
 lokalise2 file download \
@@ -54,4 +54,5 @@ lokalise2 file download \
   --original-filenames=false \
   --unzip-to=app \
   --indentation=2sp \
+  --json-unescaped-slashes \
   --config .lokalise.yml
