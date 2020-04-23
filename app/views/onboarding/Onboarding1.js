@@ -94,6 +94,7 @@ class Onboarding extends Component {
                 continueFunction={() =>
                   this.props.navigation.replace('Onboarding2')
                 }
+                selectedLocale={this.state.locale}
               />
             </View>
           </View>

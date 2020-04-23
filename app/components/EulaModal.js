@@ -5,6 +5,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Markdown from 'react-native-markdown-display';
 
 import closeIcon from './../assets/images/closeIcon.png';
+import { eula_en } from './../locales/eula/eula_en';
+import { eula_es } from './../locales/eula/eula_es';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import ButtonWrapper from './ButtonWrapper';
@@ -15,6 +17,17 @@ export const EulaModal = props => {
   const [modalVisible, setModalVisibility] = useState(false);
   const [boxChecked, toggleCheckbox] = useState(false);
   const { t } = useTranslation();
+
+  // Pull the EULA in the correct language, with en as fallback
+  let eulaText = eula_en;
+  const eulaLanguages = {
+    en: eula_en,
+    es: eula_es,
+  };
+
+  eulaLanguages[props.selectedLocale] !== undefined
+    ? (eulaText = eulaLanguages[props.selectedLocale])
+    : console.log('Lang not found, reverting to en');
 
   return (
     <>
@@ -32,7 +45,7 @@ export const EulaModal = props => {
             </TouchableOpacity>
             <ScrollView>
               <Markdown style={{ body: { color: Colors.DARK_GRAY } }}>
-                {t('onboarding.eula')}
+                {eulaText}
               </Markdown>
             </ScrollView>
           </View>
