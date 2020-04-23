@@ -1,6 +1,6 @@
 export default `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<rect width="25" height="25" fill="url(#pattern0)" stroke="white" strokeWidth=".1"/>
+<rect width="25" height="25" fill="url(#pattern0)"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0" transform="scale(0.00333333)"/>
