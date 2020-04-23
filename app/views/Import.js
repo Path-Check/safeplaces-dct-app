@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Trans } from 'react-i18next';
 import {
   Dimensions,
   Linking,
@@ -64,19 +65,35 @@ const ImportScreen = props => {
 
   return (
     <NavigationBarWrapper
-      title={languages.t('label.import_title')}
+      title={languages.t('import.title')}
       onBackPress={goBack}>
       <ScrollView style={styles.main}>
         <View style={styles.subHeaderTitle}>
-          <Typography style={styles.sectionDescription}>
-            {languages.t('label.import_step_1')}
-          </Typography>
-          <Typography style={styles.sectionDescription}>
-            {languages.t('label.import_step_2')}
-          </Typography>
-          <Typography style={styles.sectionDescription}>
-            {languages.t('label.import_step_3')}
-          </Typography>
+          {/* eslint-disable react-native/no-raw-text */}
+          <Trans i18nKey='import.google.instructions'>
+            <Typography style={styles.sectionDescription}>
+              Adding location data from Google will give you a head start on
+              building your recent locations.
+            </Typography>
+            <Typography style={styles.sectionDescription}>
+              Before you can import, you must first &quot;Take out&quot; your
+              location data from Google.
+            </Typography>
+            <Typography style={styles.sectionDescription}>
+              Visit Google Takeout and export your Location History using
+              following settings: <br />
+              1. Delivery method: &quot;Add to Drive&quot; <br />
+              2. Frequency: &quot;Export once&quot; <br />
+              3. File type &amp; size: &quot;.zip&quot; and &quot;1GB&quot;{' '}
+              <br />
+              4. Google sends an email when the export is ready <br />
+              5. Return here to import locations. Import options: <br />
+              - Import from Google Drive <br />- Download from browser, then
+              import from local phone files. <br />
+              Make sure to be on WiFi network as files can be big.
+            </Typography>
+          </Trans>
+          {/* eslint-enable react-native/no-raw-text */}
           <TouchableOpacity
             testID='google-takeout-link'
             onPress={() =>
@@ -86,7 +103,7 @@ const ImportScreen = props => {
             }
             style={styles.buttonTouchable}>
             <Typography style={styles.buttonText}>
-              {languages.t('label.import_takeout').toUpperCase()}
+              {languages.t('label.import_takeout')}
             </Typography>
           </TouchableOpacity>
           <TouchableOpacity
@@ -94,7 +111,7 @@ const ImportScreen = props => {
             onPress={importPickFile}
             style={styles.buttonTouchable}>
             <Typography style={styles.buttonText}>
-              {languages.t('label.import_title').toUpperCase()}
+              {languages.t('import.title')}
             </Typography>
           </TouchableOpacity>
 

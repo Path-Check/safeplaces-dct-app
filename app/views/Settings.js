@@ -121,8 +121,8 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
           />
           <Item
-            label={t('label.tested_positive_title')}
-            description={t('label.tested_positive_subtitle')}
+            label={t('share.title')}
+            description={t('share.subtitle')}
             onPress={() => navigation.navigate('ExportScreen')}
             last
           />

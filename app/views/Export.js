@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   BackHandler,
   SafeAreaView,
@@ -130,18 +130,30 @@ export const ExportScreen = ({ navigation }) => {
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.main}>
               <Typography style={styles.exportSectionTitles}>
-                {t('label.tested_positive_title')}
+                <Trans i18nKey='share.title'>Share location history</Trans>
               </Typography>
-              <Typography style={styles.exportSectionPara}>
-                {t('label.export_para_1')}
-              </Typography>
-              <Typography style={styles.exportSectionPara}>
-                {t('label.export_para_2')}
-              </Typography>
+              <Trans i18nKey='share.paragraph'>
+                <Typography
+                  style={styles.exportSectionPara}
+                  // eslint-disable-next-line react-native/no-raw-text
+                >
+                  If you test positive for COVID-19, please do your part by
+                  sharing your location history with local authorities.
+                </Typography>
+                <Typography
+                  style={styles.exportSectionPara}
+                  // eslint-disable-next-line react-native/no-raw-text
+                >
+                  Location is shared as a simple list of times and places, no
+                  additional information.
+                </Typography>
+              </Trans>
 
               <TouchableOpacity style={styles.exportButton} onPress={onShare}>
                 <Typography style={styles.exportButtonText}>
-                  {t('label.share_location_data')}
+                  <Trans i18nKey='share.share_button'>
+                    Share location data
+                  </Trans>
                 </Typography>
                 <SvgXml style={styles.exportIcon} xml={exportIcon} />
               </TouchableOpacity>
