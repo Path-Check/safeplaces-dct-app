@@ -22,6 +22,7 @@ import { isPlatformiOS } from './../Util';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
+import { Theme } from '../constants/themes';
 import { LocationData } from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64;
@@ -106,7 +107,7 @@ export const ExportScreen = ({ navigation }) => {
   }
 
   return (
-    <>
+    <Theme use='violet'>
       <StatusBar
         barStyle='light-content'
         backgroundColor={Colors.VIOLET_BUTTON}
@@ -129,11 +130,12 @@ export const ExportScreen = ({ navigation }) => {
 
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.main}>
-              <Typography style={styles.exportSectionTitles}>
-                <Trans i18nKey='share.title'>Share location history</Trans>
+              <Typography use='headline2' style={styles.exportSectionTitles}>
+                {t('share.title')}
               </Typography>
-              <Trans i18nKey='share.paragraph'>
+              <Trans i18nKey='share.paragraphs'>
                 <Typography
+                  use='body1'
                   style={styles.exportSectionPara}
                   // eslint-disable-next-line react-native/no-raw-text
                 >
@@ -141,6 +143,7 @@ export const ExportScreen = ({ navigation }) => {
                   sharing your location history with local authorities.
                 </Typography>
                 <Typography
+                  use='body1'
                   style={styles.exportSectionPara}
                   // eslint-disable-next-line react-native/no-raw-text
                 >
@@ -151,9 +154,7 @@ export const ExportScreen = ({ navigation }) => {
 
               <TouchableOpacity style={styles.exportButton} onPress={onShare}>
                 <Typography style={styles.exportButtonText}>
-                  <Trans i18nKey='share.share_button'>
-                    Share location data
-                  </Trans>
+                  {t('share.button_text')}
                 </Typography>
                 <SvgXml style={styles.exportIcon} xml={exportIcon} />
               </TouchableOpacity>
@@ -161,7 +162,7 @@ export const ExportScreen = ({ navigation }) => {
           </ScrollView>
         </LinearGradient>
       </SafeAreaView>
-    </>
+    </Theme>
   );
 };
 
@@ -196,24 +197,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 26,
   },
-  row: {
-    flexDirection: 'row',
-    color: Colors.PRIMARY_TEXT,
-    alignItems: 'flex-start',
-  },
-
   exportSectionTitles: {
-    color: Colors.WHITE,
-    fontSize: 26,
-    fontFamily: fontFamily.primaryMedium,
     marginTop: 9,
+    fontWeight: 'normal',
+    fontFamily: fontFamily.primaryMedium,
   },
   exportSectionPara: {
-    color: Colors.WHITE,
-    fontSize: 18,
-    lineHeight: 22.5,
     marginTop: 22,
-    fontFamily: fontFamily.primaryRegular,
   },
 
   exportButton: {

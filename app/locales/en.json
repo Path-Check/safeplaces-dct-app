@@ -98,8 +98,8 @@
     "terms_of_use_url": "https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#"
   },
   "share": {
-    "paragraph": "<0>If you test positive for COVID-19, please do your part by sharing your location history with local authorities.</0><1>Location is shared as a simple list of times and places, no additional information.</1>",
-    "share_button": "Share location data",
+    "button_text": "Share location data",
+    "paragraphs": "<0>If you test positive for COVID-19, please do your part by sharing your location history with local authorities.</0><1>Location is shared as a simple list of times and places, no additional information.</1>",
     "subtitle": "Your private data can be transferred to health authorities, backed up, or otherwise shared.",
     "title": "Share location history"
   }
