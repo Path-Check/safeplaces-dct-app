@@ -366,9 +366,15 @@ export default class LocationServices {
 
   static stop() {
     // unregister all event listeners
+    let notificationText = '';
+    if (isBackgroundGeolocationConfigured) {
+      notificationText = languages.t('label.location_stopped_message');
+    } else {
+      notificationText = languages.t('label.location_disabled_message');
+    }
     PushNotification.localNotification({
       title: languages.t('label.location_disabled_title'),
-      message: languages.t('label.location_disabled_message'),
+      message: notificationText,
     });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();

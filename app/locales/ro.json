@@ -90,6 +90,7 @@
     "team_para": "Echipa noastră este formata dintr-un consorțiu de epidemiologi, ingineri, oameni de stiință de date, promotori a siguranței datelor personale, cat si profesori și cercetatori de la instituții cu reputație, ce includ: MIT, Harvard, Clinica Mayo, TripleBlind, EyeNetra, Ernst & Young și Link Ventures.",
     "terms_of_use": "Termeni de folosire",
     "tested_positive_subtitle": "Locațiile vizitate pot fi trimise autoritaților medicale, pot fi salvate ca rezervă, sau pot fi împărțite cu terți.",
-    "tested_positive_title": "Exportă istoricul locațiilor"
+    "tested_positive_title": "Exportă istoricul locațiilor",
+    "location_stopped_message": "Serviciile de localizare s-au oprit la cererea utilizatorului"
   }
 }

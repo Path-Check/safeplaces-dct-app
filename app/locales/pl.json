@@ -98,7 +98,8 @@
     "tested_positive_subtitle": "Twoje dane prywatne mogą być przekazywane do instytucji zdrowia, archiwizowane lub w inny sposób udostępniane.",
     "tested_positive_title": "Udostępnij historię lokalizacji",
     "logging_active": "Lokalizacja Aktywna",
-    "logging_inactive": "Lokalizacja Nieaktywna"
+    "logging_inactive": "Lokalizacja Nieaktywna",
+    "location_stopped_message": "Usługi lokalizacyjne zatrzymane na żądanie użytkownika"
   },
   "history": {
     "no_exposure": "Brak narażenia",

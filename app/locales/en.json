@@ -98,7 +98,8 @@
     "logging_inactive": "Location Inactive",
     "language_change_alert_title": "App need to restart in order to use this language",
     "language_change_alert_proced": "Restart",
-    "language_change_alert_cancel": "Cancel"
+    "language_change_alert_cancel": "Cancel",
+    "location_stopped_message": "Location Services stopped at user request"
   },
   "history": {
     "no_exposure": "No known",

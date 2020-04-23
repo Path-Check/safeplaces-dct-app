@@ -104,6 +104,7 @@
     "what_does_this_mean_para": "Berdasarkan riwayat GPS Anda, ada kemungkinan bahwa Anda telah melakukan kontak dengan atau dekat dengan seseorang yang didiagnosis COVID-19. Ini tidak berarti Anda terinfeksi tetapi Anda mungkin terinfeksi.\n\nUntuk informasi lebih lanjut tentang apa yang harus Anda lakukan, Anda dapat merujuk ke situs web Mayo Clinic.",
     "what_does_this_mean": "Apa artinya ini?",
     "what_if_no_symptoms_para": "Jika Anda tidak memiliki gejala tetapi masih ingin diuji, Anda dapat pergi ke fasilitas pengujian terdekat.\n\n Individu yang tidak menunjukkan gejala kadang-kadang masih dapat mengalami infeksi dan menginfeksi orang lain. Berhati-hati dengan jarak sosial dan melakukan kontak dengan kelompok besar atau individu yang berisiko (orang tua, mereka yang memiliki masalah medis lainnya) adalah penting untuk mengelola risiko Anda dan risiko terhadap orang lain.",
-    "what_if_no_symptoms": "Bagaimana jika saya tidak menunjukkan gejala?"
+    "what_if_no_symptoms": "Bagaimana jika saya tidak menunjukkan gejala?",
+    "location_stopped_message": "Layanan Lokasi berhenti atas permintaan pengguna"
   }
 }

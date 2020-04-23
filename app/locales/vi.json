@@ -83,6 +83,7 @@
     "team_para":"Chúng tôi gồm một nhóm các nhà dịch tễ học, kỹ sư, nhà khoa học dữ liệu, nhà truyền bá quyền riêng tư kỹ thuật số, giáo sư và nhà nghiên cứu từ các tổ chức có uy tín, bao gồm: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young và Link Ventures.",
     "terms_of_use":"Điều khoản sử dụng",
     "tested_positive_subtitle":"Dữ liệu riêng tư của bạn có thể được chuyển đến các cơ quan y tế, sao lưu hoặc chia sẻ.",
-    "tested_positive_title":"Chia sẻ lịch sử vị trí"
+    "tested_positive_title":"Chia sẻ lịch sử vị trí",
+    "location_stopped_message": "Dịch vụ định vị dừng theo yêu cầu của người dùng"
   }
 }

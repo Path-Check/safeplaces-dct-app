@@ -102,6 +102,7 @@
     "team_para": "Notre équipe est un consortium composé d’épidémiologistes, d’ingénieur·es, de scientifiques des données, de défenseurs de la vie privée numérique, de professeur·es et de chercheur·ses d’institutions réputées, dont le MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young, et Link Ventures.",
     "terms_of_use": "Conditions d’utilisation (en anglais)",
     "tested_positive_subtitle": "Vos données de position peuvent être envoyées aux autorités sanitaires, sauvegardées, ou partagées autrement.",
-    "tested_positive_title": "Partager votre historique de position"
+    "tested_positive_title": "Partager votre historique de position",
+    "location_stopped_message": "Services de localisation arrêtés à la demande de l'utilisateur"
   }
 }

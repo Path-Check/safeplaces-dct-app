@@ -94,7 +94,8 @@
     "team_para":"Náš tím je zložený z konzorcia epidemiológov, inžinierov, vedcov, evanjelistov v oblasti digitálneho súkromia, profesorov a výskumníkov z uznávaných inštitúcií zahŕňajúc: MIT, Hardward, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young a Link Ventures.",
     "terms_of_use":"Podmienky používania",
     "tested_positive_subtitle":"Tvoje osobné údaje môžu byť odovzdané zdravotným úradom, zálohované alebo inak zdieľané.",
-    "tested_positive_title":"Zdieľaj históriu tvojej lokalizácie"
+    "tested_positive_title":"Zdieľaj históriu tvojej lokalizácie",
+    "location_stopped_message": "Služby určovania polohy boli zastavené na žiadosť používateľa"
   },
   "history": {
     "no_exposure":"Žiadne vystavenie sa riziku",

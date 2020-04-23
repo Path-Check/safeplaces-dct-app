@@ -90,6 +90,7 @@
     "team_para": "Il nostro team è composto da un consorzio di epidemiologi, ingegneri, data scientist, esperti di privacy digitale, professori e ricercatori dalle più importanti istituzioni, incluse: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young e Link Ventures",
     "terms_of_use": "Termini per l'utilizzo",
     "tested_positive_subtitle": "I tuoi dati personali possono essere trasferiti alle autorità sanitarie, salvati o condivisi in altra maniera",
-    "tested_positive_title": "Condividi lo storico delle posizioni"
+    "tested_positive_title": "Condividi lo storico delle posizioni",
+    "location_stopped_message": "Servizi di localizzazione fermati su richiesta dell'utente"
   }
 }
