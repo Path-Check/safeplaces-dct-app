@@ -111,7 +111,7 @@
     "what_if_no_symptoms": "What if I’m not showing symptoms?"
   },
   "version_update": {
-    "push_notification_title": "Application is outdate",
+    "push_notification_title": "Application is outdated",
     "push_notification_message": "Please update your application",
     "alert_label": "COVID Safe Paths is outdated",
     "alert_sublabel": "Update to a new version?",
