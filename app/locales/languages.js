@@ -72,6 +72,25 @@ export async function setUserLocaleOverride(locale) {
   await SetStoreData(LANG_OVERRIDE, locale);
 }
 
+/** Languages only available in dev builds. */
+const DEV_LANGUAGES = __DEV__
+  ? {
+      ar: { label: 'العربية', translation: ar },
+      es: { label: 'Español', translation: es },
+      fr: { label: 'Français', translation: fr },
+      id: { label: 'Indonesia', translation: id },
+      it: { label: 'Italiano', translation: it },
+      ml: { label: 'മലയാളം', translation: ml },
+      nl: { label: 'Nederlands', translation: nl },
+      pl: { label: 'Polski', translation: pl },
+      ro: { label: 'Română', translation: ro },
+      ru: { label: 'Русский', translation: ru },
+      sk: { label: 'Slovak', translation: sk },
+      vi: { label: 'Vietnamese', translation: vi },
+      zh_Hant: { label: '繁體中文', translation: zh_Hant },
+    }
+  : {};
+
 i18next.use(initReactI18next).init({
   interpolation: {
     // React already does escaping
@@ -81,21 +100,9 @@ i18next.use(initReactI18next).init({
   fallbackLng: 'en', // If language detector fails
   returnEmptyString: false,
   resources: {
-    ar: { label: 'العربية', translation: ar },
     en: { label: 'English', translation: en },
-    es: { label: 'Español', translation: es },
-    fr: { label: 'Français', translation: fr },
     ht: { label: 'Kreyòl ayisyen', translation: ht },
-    id: { label: 'Indonesia', translation: id },
-    it: { label: 'Italiano', translation: it },
-    ml: { label: 'മലയാളം', translation: ml },
-    nl: { label: 'Nederlands', translation: nl },
-    pl: { label: 'Polski', translation: pl },
-    ro: { label: 'Română', translation: ro },
-    ru: { label: 'Русский', translation: ru },
-    sk: { label: 'Slovak', translation: sk },
-    vi: { label: 'Vietnamese', translation: vi },
-    zh_Hant: { label: '繁體中文', translation: zh_Hant },
+    ...DEV_LANGUAGES,
   },
 });
 
