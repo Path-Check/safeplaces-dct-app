@@ -19,6 +19,7 @@
     "test:e2e:iphone-se": "detox test -c iphone-se.sim --loglevel=warn",
     "test:e2e:iphone8": "detox test -c iphone8.sim --loglevel=warn",
     "i18n:extract": "i18next",
+    "i18n:pull": "./app/locales/pull.sh",
     "test": "jest test",
     "update-snapshots": "jest --updateSnapshot",
     "test:dev_setup": "bats __tests__/dev_setup.test.bats"
