@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
-import {
-  Image,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Markdown from 'react-native-markdown-display';
 
-import boxCheckedIcon from './../assets/images/boxCheckedIcon.png';
-import boxUncheckedIcon from './../assets/images/boxUncheckedIcon.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import languages from '../locales/languages';
 import ButtonWrapper from './ButtonWrapper';
 import { Checkbox } from './Checkbox';
+import { Typography } from './Typography';
 
 export const EulaModal = props => {
   const [modalVisible, setModalVisibility] = useState(false);
@@ -48,9 +40,9 @@ export const EulaModal = props => {
               onPressFunction={() => toggleCheckbox(!boxChecked)}
               boxChecked={boxChecked}
             />
-            <Text style={styles.smallDescriptionText}>
+            <Typography style={styles.smallDescriptionText}>
               {languages.t('label.eula_message')}
-            </Text>
+            </Typography>
             <ButtonWrapper
               title={languages.t('label.eula_continue')}
               buttonColor={boxChecked ? Colors.VIOLET : Colors.GRAY_BUTTON}

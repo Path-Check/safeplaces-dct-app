@@ -1,10 +1,11 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 import boxCheckedIcon from './../assets/images/boxCheckedIcon.png';
 import boxUncheckedIcon from './../assets/images/boxUncheckedIcon.png';
 import Colors from '../constants/colors';
 import languages from '../locales/languages';
+import { Typography } from './Typography';
 
 export const Checkbox = props => {
   return (
@@ -15,9 +16,9 @@ export const Checkbox = props => {
         source={props.boxChecked === true ? boxCheckedIcon : boxUncheckedIcon}
         style={{ width: 25, height: 25, marginRight: 10 }}
       />
-      <Text style={styles.checkboxText}>
+      <Typography style={styles.checkboxText}>
         {languages.t('label.eula_checkbox')}
-      </Text>
+      </Typography>
     </TouchableOpacity>
   );
 };
