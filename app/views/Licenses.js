@@ -118,5 +118,3 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
 });
-
-export default LicensesScreen;
