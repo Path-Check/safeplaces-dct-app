@@ -107,12 +107,12 @@ i18next.use(initReactI18next).init({
 });
 
 /** The known locale list */
-export const LOCALE_LIST = Object.entries(i18next.options.resources).map(
-  ([langCode, lang]) => ({
+export const LOCALE_LIST = Object.entries(i18next.options.resources)
+  .map(([langCode, lang]) => ({
     value: langCode,
     label: lang.label,
-  }),
-);
+  }))
+  .sort((a, b) => a.value > b.value);
 
 /** A map of locale code to name. */
 export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
