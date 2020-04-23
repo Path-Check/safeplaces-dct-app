@@ -11,7 +11,7 @@ import ChooseProviderScreen from './views/ChooseProvider';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
-import LicencesScreen from './views/Licenses';
+import { LicencesScreen } from './views/Licenses';
 import LocationTracking from './views/LocationTracking';
 import NewsScreen from './views/News';
 import Onboarding1 from './views/onboarding/Onboarding1';
