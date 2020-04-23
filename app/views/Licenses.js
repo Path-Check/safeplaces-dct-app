@@ -16,6 +16,7 @@ import licenses from './../assets/LICENSE.json';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
+import { Theme } from '../constants/themes';
 
 const TERMS_OF_USE_URL =
   'https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#';
@@ -79,20 +80,20 @@ export const LicensesScreen = ({ navigation }) => {
           />
         </View>
       </ScrollView>
-      <TouchableOpacity
-        onPress={handleTermsOfUsePressed}
-        style={styles.termsInfoRow}>
-        <View style={styles.termsInfoContainer}>
+      <Theme use='charcoal'>
+        <TouchableOpacity
+          onPress={handleTermsOfUsePressed}
+          style={styles.termsInfoRow}>
           <Typography
             use='headline2'
             onPress={() => Linking.openURL(TERMS_OF_USE_URL)}>
             {t('label.terms_of_use')}
           </Typography>
-        </View>
-        <View style={styles.arrowContainer}>
-          <Image source={foreArrow} />
-        </View>
-      </TouchableOpacity>
+          <View style={styles.arrowContainer}>
+            <Image source={foreArrow} />
+          </View>
+        </TouchableOpacity>
+      </Theme>
     </NavigationBarWrapper>
   );
 };
@@ -109,11 +110,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: Colors.SILVER,
-  },
-  termsInfoContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignContent: 'flex-end',
     padding: 15,
   },
   arrowContainer: {
