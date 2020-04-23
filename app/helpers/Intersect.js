@@ -120,10 +120,29 @@ export function intersectSetIntoBins(
         // now add the exposure period to the bin
         dayBins[daysAgo] += exposurePeriod;
 
+<<<<<<< HEAD
         // Identify if this is a new intersection
         if (!hasExistingIntersection(currentLocation, concernArray[j])) {
           addNewIntersection(currentLocation, concernArray[j]);
           newIntersections += 1;
+=======
+        // Identify if this is a new intersection by checking the crossedPaths property of the current location against the infected location j
+        if (
+          !('crossedPaths' in currentLocation) ||
+          !currentLocation['crossedPaths'].some(
+            crossedPaths =>
+              crossedPaths.time == concernArray[j].time &&
+              crossedPaths.latitude == concernArray[j].latitude &&
+              crossedPaths.longitude == concernArray[j].longitude,
+          )
+        ) {
+          newIntersections = addNewIntersection(
+            localArray,
+            i,
+            concernArray[j],
+            newIntersections,
+          );
+>>>>>>> 29537a4... Record where user has crossed paths
         }
 
         // Since we've counted the current location time period, we can now break the loop for
@@ -135,10 +154,17 @@ export function intersectSetIntoBins(
     }
   }
 
+<<<<<<< HEAD
   // Updates crossedPaths field within location data if a user has crossed paths with a new infected case
   if (newIntersections > 0) SetStoreData(LOCATION_DATA, localArray);
 
   return { bins: dayBins, newIntersections };
+=======
+  // Updates 'crossedPaths' field within location data if a user has crossed paths with infected case
+  if (newIntersections > 0) SetStoreData(LOCATION_DATA, localArray);
+
+  return { tempDayBin: dayBins, newIntersections };
+>>>>>>> 29537a4... Record where user has crossed paths
 }
 
 /**
@@ -217,9 +243,16 @@ export function normalizeAndSortLocations(arr) {
           time: Number(elem.time),
           latitude: Number(elem.latitude),
           longitude: Number(elem.longitude),
+<<<<<<< HEAD
           crossedPaths: elem.crossedPaths ? [...elem.crossedPaths] : [],
         };
 
+=======
+        };
+
+        if ('crossedPaths' in elem) data.crossedPaths = elem.crossedPaths;
+
+>>>>>>> 29537a4... Record where user has crossed paths
         result.push(data);
       }
     }
@@ -322,12 +355,19 @@ async function asyncCheckIntersect() {
         });
 
         // intersect the users location with the locations from the authority
+<<<<<<< HEAD
         let { bins, newIntersections } = intersectSetIntoBins(
+=======
+        let { tempDayBin, newIntersections } = intersectSetIntoBins(
+>>>>>>> 29537a4... Record where user has crossed paths
           locationArray,
           normalizeAndSortLocations(responseJson.concern_points),
         );
 
+<<<<<<< HEAD
         let tempDayBin = bins;
+=======
+>>>>>>> 29537a4... Record where user has crossed paths
         newIntersectionsCount += newIntersections;
 
         // Update each day's bin with the result from the intersection.  To keep the
@@ -436,6 +476,7 @@ export function disableDebugMode() {
 /**
  * Records where user has crossed paths to avoid repeated notifications or checking
  *
+<<<<<<< HEAD
  * @param {object} currentLocation - The user's location
  * @param {object} concernLocation - The infected location
  */
@@ -460,4 +501,19 @@ function hasExistingIntersection(currentLocation, concernLocation) {
         crossedPaths.longitude == concernLocation.longitude,
     )
   );
+=======
+ * @param {array} localArray - Array of user locations
+ * @param {number} i - Index of current location in the localArray
+ * @param {array} infectedLocation - Array of infected locations
+ * @param {number} newIntersections - Counter of new intersections found
+ */
+function addNewIntersection(localArray, i, infectedLocation, newIntersections) {
+  console.log('New intersection');
+
+  if ('crossedPaths' in localArray[i])
+    localArray[i]['crossedPaths'].push(infectedLocation);
+  else localArray[i]['crossedPaths'] = [infectedLocation];
+
+  return newIntersections + 1;
+>>>>>>> 29537a4... Record where user has crossed paths
 }
