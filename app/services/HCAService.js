@@ -267,4 +267,6 @@ class HCAService {
   }
 }
 
-export default new HCAService();
+const singleton = new HCAService();
+
+export { singleton as HCAService };

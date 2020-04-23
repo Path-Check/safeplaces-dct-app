@@ -29,7 +29,7 @@ import fontFamily from '../../constants/fonts';
 import { PARTICIPATE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
-import HCAService from '../../services/HCAService';
+import { HCAService } from '../../services/HCAService';
 
 const width = Dimensions.get('window').width;
 

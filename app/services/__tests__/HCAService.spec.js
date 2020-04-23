@@ -10,7 +10,7 @@ import {
   mockNullUserLocHistory,
   mockUserLocHistory,
 } from '../__mocks__/mockUserLocHistory';
-import HCAService from '../HCAService';
+import { HCAService } from '../HCAService';
 import { LocationData } from '../LocationService';
 
 jest.mock('rn-fetch-blob', () => {
