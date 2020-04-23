@@ -23,7 +23,7 @@ import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
 import ButtonWrapper from '../../components/ButtonWrapper';
-import { Typography } from '../../components/Typography';
+import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { PARTICIPATE } from '../../constants/storage';
@@ -42,7 +42,7 @@ const PermissionStatusEnum = {
 const StepEnum = {
   LOCATION: 0,
   NOTIFICATIONS: 1,
-  HCASUBSCRIPTION: 2,
+  HCA_SUBSCRIPTION: 2,
   DONE: 3,
 };
 
@@ -81,7 +81,7 @@ class Onboarding extends Component {
 
   componentDidMount() {
     this.checkLocationStatus();
-    this.checkNotificationStatus();
+    isPlatformiOS() && this.checkNotificationStatus();
     this.checkSubsriptionStatus();
   }
 
@@ -93,32 +93,45 @@ class Onboarding extends Component {
     return this.state.notificationPermission !== PermissionStatusEnum.UNKNOWN;
   }
 
-  isAuthSubscriptionChecked() {
-    return this.state.authSubscriptionStatus !== PermissionStatusEnum.UNKNOWN;
+  /**
+   * Helper method to determine the next step for permission requests.
+   * In general there is a linear flow, but because Android does not
+   * require permission for notifications, we skip the notifications
+   * step on Android.
+   *
+   * @returns StepEnum
+   */
+  getNextStep() {
+    switch (this.state.currentStep) {
+      case StepEnum.LOCATION:
+        return isPlatformiOS()
+          ? StepEnum.NOTIFICATIONS
+          : StepEnum.HCA_SUBSCRIPTION;
+      case StepEnum.NOTIFICATIONS:
+        return StepEnum.HCA_SUBSCRIPTION;
+      case StepEnum.HCA_SUBSCRIPTION:
+        return StepEnum.DONE;
+    }
   }
 
   checkLocationStatus() {
-    // NEED TO TEST ON ANNDROID
-    let locationPermission;
-    if (isPlatformiOS()) {
-      locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
-    } else {
-      locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
-    }
+    // NEED TO TEST ON ANDROID
+    const nextStep = this.getNextStep(StepEnum.LOCATION);
+    const locationPermission = this.getLocationPermissionSetting();
 
     check(locationPermission)
       .then(result => {
         switch (result) {
           case RESULTS.GRANTED:
             this.setState({
-              currentStep: StepEnum.NOTIFICATIONS,
+              currentStep: nextStep,
               locationPermission: PermissionStatusEnum.GRANTED,
             });
             break;
           case RESULTS.UNAVAILABLE:
           case RESULTS.BLOCKED:
             this.setState({
-              currentStep: StepEnum.NOTIFICATIONS,
+              currentStep: nextStep,
               locationPermission: PermissionStatusEnum.DENIED,
             });
             break;
@@ -130,18 +143,20 @@ class Onboarding extends Component {
   }
 
   checkNotificationStatus() {
+    const nextStep = this.getNextStep(StepEnum.NOTIFICATIONS);
+
     checkNotifications().then(({ status }) => {
       switch (status) {
         case RESULTS.GRANTED:
           this.setState({
-            currentStep: StepEnum.HCASUBSCRIPTION,
+            currentStep: nextStep,
             notificationPermission: PermissionStatusEnum.GRANTED,
           });
           break;
         case RESULTS.UNAVAILABLE:
         case RESULTS.BLOCKED:
           this.setState({
-            currentStep: StepEnum.HCASUBSCRIPTION,
+            currentStep: nextStep,
             notificationPermission: PermissionStatusEnum.DENIED,
           });
           break;
@@ -152,6 +167,7 @@ class Onboarding extends Component {
   async checkSubsriptionStatus() {
     const hasUserSetSubscription = await HCAService.hasUserSetSubscription();
     const isEnabled = await HCAService.isAutosubscriptionEnabled();
+    const nextStep = this.getNextStep(StepEnum.HCA_SUBSCRIPTION);
 
     // Only update state if the user has already set their subscription status
     if (hasUserSetSubscription) {
@@ -160,34 +176,35 @@ class Onboarding extends Component {
         : PermissionStatusEnum.DENIED;
 
       this.setState({
-        currentStep: StepEnum.DONE,
+        currentStep: nextStep,
         authSubscriptionStatus: permission,
       });
     }
   }
 
-  requestLocation() {
-    // NEED TO TEST ON ANNDROID
-    let locationPermission;
+  getLocationPermissionSetting() {
+    return isPlatformiOS()
+      ? PERMISSIONS.IOS.LOCATION_ALWAYS
+      : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+  }
 
-    if (isPlatformiOS()) {
-      locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
-    } else {
-      locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
-    }
+  requestLocation() {
+    // NEED TO TEST ON ANDROID
+    const nextStep = this.getNextStep(StepEnum.LOCATION);
+    const locationPermission = this.getLocationPermissionSetting();
 
     request(locationPermission).then(result => {
       switch (result) {
         case RESULTS.GRANTED:
           this.setState({
-            currentStep: StepEnum.NOTIFICATIONS,
+            currentStep: nextStep,
             locationPermission: PermissionStatusEnum.GRANTED,
           });
           break;
         case RESULTS.UNAVAILABLE:
         case RESULTS.BLOCKED:
           this.setState({
-            currentStep: StepEnum.NOTIFICATIONS,
+            currentStep: nextStep,
             locationPermission: PermissionStatusEnum.DENIED,
           });
           break;
@@ -196,18 +213,20 @@ class Onboarding extends Component {
   }
 
   requestNotification() {
+    const nextStep = this.getNextStep(StepEnum.NOTIFICATIONS);
+
     requestNotifications(['alert', 'badge', 'sound']).then(({ status }) => {
       switch (status) {
         case RESULTS.GRANTED:
           this.setState({
-            currentStep: StepEnum.HCASUBSCRIPTION,
+            currentStep: nextStep,
             notificationPermission: PermissionStatusEnum.GRANTED,
           });
           break;
         case RESULTS.UNAVAILABLE:
         case RESULTS.BLOCKED:
           this.setState({
-            currentStep: StepEnum.HCASUBSCRIPTION,
+            currentStep: nextStep,
             notificationPermission: PermissionStatusEnum.DENIED,
           });
           break;
@@ -216,9 +235,10 @@ class Onboarding extends Component {
   }
 
   async requestHCASubscription() {
+    const nextStep = this.getNextStep(StepEnum.HCA_SUBSCRIPTION);
     await HCAService.enableAutoSubscription();
     this.setState({
-      currentStep: StepEnum.DONE,
+      currentStep: nextStep,
       authSubscriptionStatus: PermissionStatusEnum.GRANTED,
     });
   }
@@ -230,23 +250,24 @@ class Onboarding extends Component {
    */
   skipCurrentStep() {
     const status = PermissionStatusEnum.DENIED;
+    const nextStep = this.getNextStep(this.state.currentStep);
 
     switch (this.state.currentStep) {
       case StepEnum.LOCATION:
         this.setState({
-          currentStep: StepEnum.NOTIFICATIONS,
+          currentStep: nextStep,
           locationPermission: status,
         });
         break;
       case StepEnum.NOTIFICATIONS:
         this.setState({
-          currentStep: StepEnum.HCASUBSCRIPTION,
+          currentStep: nextStep,
           notificationPermission: status,
         });
         break;
-      case StepEnum.HCASUBSCRIPTION:
+      case StepEnum.HCA_SUBSCRIPTION:
         this.setState({
-          currentStep: StepEnum.DONE,
+          currentStep: nextStep,
           authSubscriptionStatus: status,
         });
         break;
@@ -261,8 +282,8 @@ class Onboarding extends Component {
       case StepEnum.NOTIFICATIONS:
         this.requestNotification();
         break;
-      case StepEnum.HCASUBSCRIPTION:
-        this.isAuthSubscriptionChecked();
+      case StepEnum.HCA_SUBSCRIPTION:
+        this.requestHCASubscription();
         break;
       case StepEnum.DONE:
         SetStoreData(PARTICIPATE, 'true');
@@ -277,7 +298,7 @@ class Onboarding extends Component {
         return languages.t('label.launch_location_header');
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_notif_header');
-      case StepEnum.HCASUBSCRIPTION:
+      case StepEnum.HCA_SUBSCRIPTION:
         return 'Healthcare Authorities will give us the local data to know if you cross paths with an infected person.';
       case StepEnum.DONE:
         return languages.t('label.launch_done_header');
@@ -293,7 +314,11 @@ class Onboarding extends Component {
       style = styles.headerText;
     }
 
-    return <Typography style={style}>{this.getTitleText()}</Typography>;
+    return (
+      <Typography style={style} use={Type.Headline2}>
+        {this.getTitleText()}
+      </Typography>
+    );
   }
 
   getSubtitleText() {
@@ -302,7 +327,7 @@ class Onboarding extends Component {
         return languages.t('label.launch_location_subheader');
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_notif_subheader');
-      case StepEnum.HCASUBSCRIPTION:
+      case StepEnum.HCA_SUBSCRIPTION:
         return 'Automatically subscribe to receive the latest updates from Health Authorities in your area.';
       case StepEnum.DONE:
         return languages.t('label.launch_done_subheader');
@@ -341,7 +366,7 @@ class Onboarding extends Component {
     return (
       <>
         <PermissionDescription
-          title={'Health Authority Subscription'}
+          title={'Health authority subscription'}
           status={this.state.authSubscriptionStatus}
         />
         <View style={styles.divider} />
@@ -355,7 +380,7 @@ class Onboarding extends Component {
         return languages.t('label.launch_enable_location');
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_enable_notif');
-      case StepEnum.HCASUBSCRIPTION:
+      case StepEnum.HCA_SUBSCRIPTION:
         return 'Subscribe';
       case StepEnum.DONE:
         return languages.t('label.launch_finish_set_up');
@@ -428,8 +453,8 @@ const styles = StyleSheet.create({
   bigHeaderText: {
     color: Colors.WHITE,
     fontSize: 52,
-    lineHeight: 48.5,
-    paddingTop: 52 - 48.5, // lineHeight hack
+    lineHeight: 47.5,
+    paddingTop: 52 - 47.5, // lineHeight hack
     width: width * 0.7,
     fontFamily: fontFamily.primaryMedium,
   },
