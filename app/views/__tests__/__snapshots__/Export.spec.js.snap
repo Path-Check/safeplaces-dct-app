@@ -1,7 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Export /> renders correctly 1`] = `
-Array [
+exports[`<ExportScreen /> renders correctly 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
@@ -10,7 +18,7 @@ Array [
         "flex": 0,
       }
     }
-  />,
+  />
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
@@ -59,13 +67,6 @@ Array [
           accessible={true}
           focusable={true}
           isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
             Object {
               "alignItems": "center",
@@ -162,13 +163,6 @@ Array [
               accessible={true}
               focusable={true}
               isTVSelectable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
                 Object {
                   "alignItems": "center",
@@ -214,6 +208,6 @@ Array [
         </View>
       </RCTScrollView>
     </BVLinearGradient>
-  </RCTSafeAreaView>,
-]
+  </RCTSafeAreaView>
+</View>
 `;

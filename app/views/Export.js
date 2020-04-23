@@ -1,13 +1,12 @@
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -19,37 +18,20 @@ import RNFetchBlob from 'rn-fetch-blob';
 
 import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
-import languages from './../locales/languages';
 import { isPlatformiOS } from './../Util';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-// import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { LocationData } from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64;
 
-function ExportScreen(props) {
-  const { shareButtonDisabled } = props;
-  const [pointStats, setPointStats] = useState(false);
-  const [buttonDisabled, setButtonDisabled] = useState(shareButtonDisabled);
-  const { navigate } = useNavigation();
-
+export const ExportScreen = ({ navigation }) => {
+  const { t } = useTranslation();
   function handleBackPress() {
-    props.navigation.goBack();
+    navigation.goBack();
     return true;
   }
-
-  useFocusEffect(
-    React.useCallback(() => {
-      const locationData = new LocationData();
-      locationData.getPointStats().then(pointStats => {
-        setPointStats(pointStats);
-        setButtonDisabled(pointStats.pointCount === 0);
-      });
-      return () => {};
-    }, []),
-  );
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
@@ -60,7 +42,7 @@ function ExportScreen(props) {
   });
 
   function backToMain() {
-    props.navigation.goBack();
+    navigation.goBack();
   }
 
   async function onShare() {
@@ -69,15 +51,15 @@ function ExportScreen(props) {
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
 
-      var options = {};
-      var jsonData = JSON.stringify(locationData);
+      let options = {};
+      let jsonData = JSON.stringify(locationData);
       const title = 'COVIDSafePaths.json';
       const filename = unixtimeUTC + '.json';
       const message = 'Here is my location log from COVID Safe Paths.';
       if (isPlatformiOS()) {
-        var url = RNFS.DocumentDirectoryPath + '/' + filename;
+        const url = RNFS.DocumentDirectoryPath + '/' + filename;
         await RNFS.writeFile(url, jsonData, 'utf8')
-          .then(success => {
+          .then(() => {
             options = {
               activityItemSources: [
                 {
@@ -115,6 +97,7 @@ function ExportScreen(props) {
           console.log(err.message, err.code);
         });
       if (isPlatformiOS()) {
+        // eslint-disable-next-line no-undef
         await RNFS.unlink(url);
       }
     } catch (error) {
@@ -147,18 +130,18 @@ function ExportScreen(props) {
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.main}>
               <Typography style={styles.exportSectionTitles}>
-                {languages.t('label.tested_positive_title')}
+                {t('label.tested_positive_title')}
               </Typography>
               <Typography style={styles.exportSectionPara}>
-                {languages.t('label.export_para_1')}
+                {t('label.export_para_1')}
               </Typography>
               <Typography style={styles.exportSectionPara}>
-                {languages.t('label.export_para_2')}
+                {t('label.export_para_2')}
               </Typography>
 
               <TouchableOpacity style={styles.exportButton} onPress={onShare}>
                 <Typography style={styles.exportButtonText}>
-                  {languages.t('label.share_location_data')}
+                  {t('label.share_location_data')}
                 </Typography>
                 <SvgXml style={styles.exportIcon} xml={exportIcon} />
               </TouchableOpacity>
@@ -168,7 +151,7 @@ function ExportScreen(props) {
       </SafeAreaView>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   // Container covers the entire screen
@@ -252,5 +235,3 @@ ExportScreen.propTypes = {
 ExportScreen.defaultProps = {
   shareButtonDisabled: true,
 };
-
-export default ExportScreen;

@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
-import ExportScreen from './views/Export';
+import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
 import LicencesScreen from './views/Licenses';

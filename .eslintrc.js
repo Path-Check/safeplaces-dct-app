@@ -48,7 +48,7 @@ module.exports = {
     strict: [2, 'global'], // require or disallow strict mode directives
     'react-native/no-color-literals': 1, // Detect StyleSheet rules and inline styles containing color literals instead of variables
     'react-native/no-inline-styles': 0, // For keeping styles away from the logic, we can switch it to 1 in future
-    'react-native/no-raw-text': 1, // This is to make sure everything is translated in the app
+    'react-native/no-raw-text': ['error', { skip: ['Trans'] }], // This is to make sure everything is translated in the app
     'react-native/no-unused-styles': 1, // Detect StyleSheet rules which are not used in your React components
     'react/jsx-boolean-value': 2, // Enforce boolean attributes notation in JSX (fixable)
     'react/jsx-key': 2, // Report missing key props in iterators/collection literals
