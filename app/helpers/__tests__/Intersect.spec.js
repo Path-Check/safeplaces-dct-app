@@ -126,7 +126,7 @@ describe('intersect with empty sets', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
     let expectedBins = getEmptyLocationBins();
 
     expect(resultBins).toEqual(expectedBins);
@@ -174,7 +174,7 @@ describe('intersect with empty sets', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
     let expectedBins = getEmptyLocationBins();
 
     expect(resultBins).toEqual(expectedBins);
@@ -224,7 +224,7 @@ describe('intersect with empty sets', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
     let expectedBins = getEmptyLocationBins();
     expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
     expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -321,7 +321,7 @@ describe('intersect at fixed locations and times', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
 
     let expectedBins = getEmptyLocationBins();
     expectedBins[0] = dayjs
@@ -411,7 +411,7 @@ describe('intersect at fixed locations and times', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
     let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
     expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
     expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -493,7 +493,7 @@ describe('intersect at fixed locations and times', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
     let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
     expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
     expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -544,7 +544,7 @@ describe('intersect at fixed locations and times', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
     let expectedBins = getEmptyLocationBins();
 
     expectedBins[0] = dayjs
@@ -607,7 +607,7 @@ describe('intersect at fixed locations and times', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
     let expectedBins = getEmptyLocationBins();
 
     expectedBins[0] = dayjs
@@ -681,7 +681,7 @@ describe('intersect at fixed locations and times', () => {
       dayjs
         .duration(DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
         .asMilliseconds(), //override the exposure period to 1 minute longer that the default
-    );
+    ).bins;
     let expectedBins = getEmptyLocationBins(21);
 
     expectedBins[0] = dayjs
@@ -756,7 +756,7 @@ describe('instersect at interesting times', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
 
     let expectedBins = getEmptyLocationBins();
     expectedBins[0] = dayjs

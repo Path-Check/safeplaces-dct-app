@@ -150,7 +150,7 @@ export function intersectSetIntoBins(
   // Updates 'crossedPaths' field within location data if a user has crossed paths with infected case
   if (newIntersections > 0) SetStoreData(LOCATION_DATA, localArray);
 
-  return { tempDayBin: dayBins, newIntersections };
+  return { bins: dayBins, newIntersections };
 }
 
 /**
@@ -335,11 +335,12 @@ async function asyncCheckIntersect() {
         });
 
         // intersect the users location with the locations from the authority
-        let { tempDayBin, newIntersections } = intersectSetIntoBins(
+        let { bins, newIntersections } = intersectSetIntoBins(
           locationArray,
           normalizeAndSortLocations(responseJson.concern_points),
         );
 
+        let tempDayBin = bins;
         newIntersectionsCount += newIntersections;
 
         // Update each day's bin with the result from the intersection.  To keep the
