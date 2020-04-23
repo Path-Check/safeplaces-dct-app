@@ -80,6 +80,10 @@ class SettingsScreen extends Component {
     this.props.navigation.navigate('WayPointsScreen');
   }
 
+  captchaButtonPressed() {
+    this.props.navigation.navigate('CaptchaScreen');
+  }
+
   getMapsImport() {
     return (
       <>
@@ -157,21 +161,35 @@ class SettingsScreen extends Component {
 
   getWaypointsRow() {
     if (!__DEV__) {
-      return null
+      return null;
     }
     return this.getSettingRow(
       'Waypoints',
       this.waypointsButtonPressed,
       null,
       null,
-      'see waypoints heatmap in action')
+      'see waypoints heatmap in action',
+    );
   }
 
-  getWaypointsDivider() {
+  getCaptchaRow() {
     if (!__DEV__) {
-      return null
+      return null;
     }
-    return <View style={styles.divider} />
+    return this.getSettingRow(
+      'Captcha',
+      this.captchaButtonPressed,
+      null,
+      null,
+      'Try out captcha on mobile',
+    );
+  }
+
+  getDubugDivider() {
+    if (!__DEV__) {
+      return null;
+    }
+    return <View style={styles.divider} />;
   }
 
   render() {
@@ -217,9 +235,11 @@ class SettingsScreen extends Component {
                 null,
                 languages.t('label.tested_positive_subtitle'),
               )}
-             
-              {this.getWaypointsDivider()}
+
+              {this.getDubugDivider()}
               {this.getWaypointsRow()}
+              {this.getDubugDivider()}
+              {this.getCaptchaRow()}
             </View>
           </View>
 
