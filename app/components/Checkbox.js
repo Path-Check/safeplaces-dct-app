@@ -19,7 +19,7 @@ export const Checkbox = props => {
         style={{ width: 25, height: 25, marginRight: 10 }}
       />
       <Typography style={styles.checkboxText}>
-        {t('label.eula_checkbox')}
+        {t('onboarding.eula_checkbox')}
       </Typography>
     </TouchableOpacity>
   );

@@ -32,7 +32,7 @@ export const EulaModal = props => {
             </TouchableOpacity>
             <ScrollView>
               <Markdown style={{ body: { color: Colors.DARK_GRAY } }}>
-                {t('markdown.eula')}
+                {t('onboarding.eula')}
               </Markdown>
             </ScrollView>
           </View>
@@ -42,10 +42,10 @@ export const EulaModal = props => {
               boxChecked={boxChecked}
             />
             <Typography style={styles.smallDescriptionText}>
-              {t('label.eula_message')}
+              {t('onboarding.eula_message')}
             </Typography>
             <ButtonWrapper
-              title={t('label.eula_continue')}
+              title={t('onboarding.eula_continue')}
               buttonColor={boxChecked ? Colors.VIOLET : Colors.GRAY_BUTTON}
               bgColor={boxChecked ? Colors.WHITE : Colors.LIGHT_GRAY}
               buttonWidth={'100%'}
