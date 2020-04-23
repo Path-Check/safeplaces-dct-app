@@ -8,14 +8,5 @@ set -e
 echo "yarn i18n:extract"
 yarn i18n:extract
 
-echo "Checking for blank keys"
+echo "Checking for blank keys. Correct any that appear in this list:"
 ! grep "\"\"" app/locales/en.json
-
-if [ $? -ne 0 ]; then
-  fail "This change introduces i18n keys that have no translations!"
-fi
-
-function fail() {
-  echo -e "\e[31m$1\e[0m"
-  exit 1
-}
