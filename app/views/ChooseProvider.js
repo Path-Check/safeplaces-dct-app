@@ -240,11 +240,13 @@ class ChooseProviderScreen extends Component {
           <Typography style={styles.sectionDescription}>
             {languages.t('label.authorities_desc')}
           </Typography>
-          <TouchableOpacity>
+          <TouchableOpacity style={styles.autoSubcribe}>
             <CheckBox
               rightText={languages.t('label.auto_subscribe_checkbox')}
               isChecked={this.state.isAutoSubscribed}
               onClick={() => this.toggleAutoSubscribe()}
+              rightTextStyle={styles.checkboxText}
+              checkBoxColor={Colors.DARK_GRAY}
             />
           </TouchableOpacity>
         </View>
@@ -496,6 +498,12 @@ const styles = StyleSheet.create({
   },
   textInput: {
     marginLeft: 10,
+  },
+  autoSubcribe: {
+    paddingTop: 10,
+  },
+  checkboxText: {
+    color: Colors.VIOLET_TEXT,
   },
 });
 

@@ -90,7 +90,7 @@ class HCAService {
     PushNotification.localNotification({
       title: languages.t('label.authorities_new_in_area_title'),
       message: languages.t('label.authorities_new_in_area_msg', {
-        numAuthorities,
+        count: numAuthorities,
       }),
     });
   }
@@ -106,10 +106,10 @@ class HCAService {
   async pushAlertNewSubscribedAuthorities(numAuthorities) {
     PushNotification.localNotification({
       title: languages.t('label.authorities_new_subcription_title', {
-        numAuthorities,
+        count: numAuthorities,
       }),
       message: languages.t('label.authorities_new_subcription_msg', {
-        numAuthorities,
+        count: numAuthorities,
       }),
     });
   }
