@@ -33,9 +33,6 @@ jobs:
   # Run on PRs, checks for any added keys that are missing in the app/locales/en.json file
   no-missing-keys:
     runs-on: ubuntu-latest
-    env:
-      UPLOAD_FLAGS: --lang-iso=en --cleanup-mode --replace-modified --include-path --detect-icu-plurals --apply-tm --convert-placeholders --project-id=${{ secrets.LOKALISE_PROJECT_ID }} --token=${{ secrets.LOKALISE_TOKEN }}
-
     steps:
       - uses: actions/checkout@master
 
