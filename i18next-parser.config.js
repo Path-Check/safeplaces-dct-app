@@ -52,7 +52,7 @@ module.exports = {
     'ru',
     'sk',
     'vi',
-    'zh-Hant',
+    'zh_Hant',
   ],
   // An array of the locales in your applications
 
