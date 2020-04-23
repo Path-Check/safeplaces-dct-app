@@ -45,7 +45,7 @@ lokalise2 file download \
 echo "Downloading i18next *.json files"
 lokalise2 file download \
   --add-newline-eof \
-  --export-empty-as skip \
+  --export-empty-as=skip \
   --format json \
   --include-description \
   --plural-format=json_string \
@@ -53,4 +53,5 @@ lokalise2 file download \
   --bundle-structure "locales/%LANG_ISO%.json" \
   --original-filenames=false \
   --unzip-to=app \
+  --indentation=2sp \
   --config .lokalise.yml
