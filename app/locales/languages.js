@@ -66,9 +66,6 @@ export function useLanguageDirection() {
 
 export async function setUserLocaleOverride(locale) {
   await setLocale(locale);
-  if (locale === supportedDeviceLanguageOrEnglish()) {
-    locale = undefined;
-  }
   await SetStoreData(LANG_OVERRIDE, locale);
 }
 
