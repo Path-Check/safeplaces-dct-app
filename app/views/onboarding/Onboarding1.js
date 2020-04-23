@@ -16,7 +16,7 @@ import languages, {
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from './../../locales/languages';
-import EulaModal from '../../components/EulaModal';
+import { EulaModal } from '../../components/EulaModal';
 import NativePicker from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
