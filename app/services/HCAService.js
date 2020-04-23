@@ -88,8 +88,10 @@ class HCAService {
    */
   async pushAlertNewAuthoritesFromLoc(numAuthorities) {
     PushNotification.localNotification({
-      title: languages.t('label.authorities_new_in_area'),
-      message: languages.t('label.authorities_num_in_area', { numAuthorities }),
+      title: languages.t('label.authorities_new_in_area_title'),
+      message: languages.t('label.authorities_new_in_area_msg', {
+        numAuthorities,
+      }),
     });
   }
 
@@ -103,10 +105,12 @@ class HCAService {
    */
   async pushAlertNewSubscribedAuthorities(numAuthorities) {
     PushNotification.localNotification({
-      title: 'test~',
-      message: `new: ${numAuthorities}`,
-      // title: languages.t('label.authorities_new_in_area'),
-      // message: languages.t('label.authorities_num_in_area', { numAuthorities }),
+      title: languages.t('label.authorities_new_subcription_title', {
+        numAuthorities,
+      }),
+      message: languages.t('label.authorities_new_subcription_msg', {
+        numAuthorities,
+      }),
     });
   }
 

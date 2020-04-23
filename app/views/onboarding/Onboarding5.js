@@ -299,7 +299,7 @@ class Onboarding extends Component {
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_notif_header');
       case StepEnum.HCA_SUBSCRIPTION:
-        return 'Healthcare Authorities will give us the local data to know if you cross paths with an infected person.';
+        return languages.t('label.launch_notif_authority_header');
       case StepEnum.DONE:
         return languages.t('label.launch_done_header');
     }
@@ -328,7 +328,7 @@ class Onboarding extends Component {
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_notif_subheader');
       case StepEnum.HCA_SUBSCRIPTION:
-        return 'Automatically subscribe to receive the latest updates from Healthcare Authorities in your area.';
+        return languages.t('label.launch_authority_subheader');
       case StepEnum.DONE:
         return languages.t('label.launch_done_subheader');
     }
@@ -366,7 +366,7 @@ class Onboarding extends Component {
     return (
       <>
         <PermissionDescription
-          title={'Health authority subscription'}
+          title={languages.t('label.launch_authority_access')}
           status={this.state.authSubscriptionStatus}
         />
         <View style={styles.divider} />
@@ -391,7 +391,9 @@ class Onboarding extends Component {
     if (this.state.currentStep !== StepEnum.DONE) {
       return (
         <TouchableOpacity onPress={this.skipCurrentStep.bind(this)}>
-          <Typography style={styles.skipThisStepBtn}>Skip this step</Typography>
+          <Typography style={styles.skipThisStepBtn}>
+            {languages.t('label.skip_this_step')}
+          </Typography>
         </TouchableOpacity>
       );
     }

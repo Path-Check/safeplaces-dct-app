@@ -242,9 +242,7 @@ class ChooseProviderScreen extends Component {
           </Typography>
           <TouchableOpacity>
             <CheckBox
-              rightText={
-                'Automatically subscribe to all new local Health Authorities'
-              }
+              rightText={languages.t('label.auto_subscribe_checkbox')}
               isChecked={this.state.isAutoSubscribed}
               onClick={() => this.toggleAutoSubscribe()}
             />
