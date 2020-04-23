@@ -328,7 +328,7 @@ class Onboarding extends Component {
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_notif_subheader');
       case StepEnum.HCA_SUBSCRIPTION:
-        return 'Automatically subscribe to receive the latest updates from Health Authorities in your area.';
+        return 'Automatically subscribe to receive the latest updates from Healthcare Authorities in your area.';
       case StepEnum.DONE:
         return languages.t('label.launch_done_subheader');
     }

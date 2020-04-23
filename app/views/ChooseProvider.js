@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import CheckBox from 'react-native-check-box';
 import {
   Menu,
   MenuOption,
@@ -43,6 +44,7 @@ class ChooseProviderScreen extends Component {
       urlText: '',
       authoritiesList: [],
       isAuthorityFilterActive: true,
+      isAutoSubscribed: false,
     };
   }
 
@@ -55,22 +57,30 @@ class ChooseProviderScreen extends Component {
     return true;
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    this.fetchAuthoritiesList(this.state.isAuthorityFilterActive);
-
-    HCAService.getUserAuthorityList().then(authorities => {
-      // Update user settings state from async storage
-      if (authorities) {
-        this.setState({ selectedAuthorities: authorities });
-      } else {
-        console.log('No stored authority settings.');
-      }
-    });
+    await this.fetchAuthoritiesList(this.state.isAuthorityFilterActive);
+    await this.fetchUserAuthorities();
+    await this.fetchAutoSubcribeStatus();
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  async fetchUserAuthorities() {
+    const selectedAuthorities = await HCAService.getUserAuthorityList();
+
+    if (selectedAuthorities) {
+      this.setState({ selectedAuthorities });
+    } else {
+      console.log('No stored authority settings.');
+    }
+  }
+
+  async fetchAutoSubcribeStatus() {
+    const isAutoSubscribed = await HCAService.isAutosubscriptionEnabled();
+    this.setState({ isAutoSubscribed });
   }
 
   /**
@@ -194,8 +204,7 @@ class ChooseProviderScreen extends Component {
     );
   }
 
-  async toggleFilterAuthoritesByGPSHistory() {
-    console.log('toggle!' + this.state.isAuthorityFilterActive);
+  toggleFilterAuthoritesByGPSHistory() {
     this.filterAuthoritesByGPSHistory({
       val: !this.state.isAuthorityFilterActive,
     });
@@ -204,6 +213,19 @@ class ChooseProviderScreen extends Component {
   async filterAuthoritesByGPSHistory(isAuthorityFilterActive) {
     await this.fetchAuthoritiesList(isAuthorityFilterActive.val);
     this.setState({ isAuthorityFilterActive: isAuthorityFilterActive.val });
+  }
+
+  async toggleAutoSubscribe() {
+    this.setState(
+      prevState => ({
+        isAutoSubscribed: !prevState.isAutoSubscribed,
+      }),
+      async () => {
+        this.state.isAutoSubscribed
+          ? await HCAService.enableAutoSubscription()
+          : await HCAService.disableAutoSubscription();
+      },
+    );
   }
 
   render() {
@@ -218,6 +240,15 @@ class ChooseProviderScreen extends Component {
           <Typography style={styles.sectionDescription}>
             {languages.t('label.authorities_desc')}
           </Typography>
+          <TouchableOpacity>
+            <CheckBox
+              rightText={
+                'Automatically subscribe to all new local Health Authorities'
+              }
+              isChecked={this.state.isAutoSubscribed}
+              onClick={() => this.toggleAutoSubscribe()}
+            />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.listContainer}>

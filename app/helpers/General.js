@@ -3,7 +3,6 @@ import DocumentPicker from 'react-native-document-picker';
 
 /**
  * Get data from store
-
  *
  * @param {string} key
  * @param {boolean} isString

@@ -23,11 +23,8 @@ class HCAService {
    */
   async fetchAuthoritiesYaml() {
     return await RNFetchBlob.config({
-      // store response data as a file for performance increase
       fileCache: true,
-    }).fetch('GET', AUTHORITIES_LIST_URL, {
-      //some headers ..
-    });
+    }).fetch('GET', AUTHORITIES_LIST_URL);
   }
 
   /**
@@ -57,6 +54,22 @@ class HCAService {
   }
 
   /**
+   * Takes an array of one or more authorities and adds it to the list
+   * in storage that the user is subscribed to.
+   * @param {newAuthorities} Array healthcare authoritiy objects
+   * @returns void
+   */
+  async appendToAuthorityList(newAuthorities) {
+    const authorities = (await this.getUserAuthorityList()) || [];
+    console.log(authorities);
+    console.log(newAuthorities);
+    await SetStoreData(AUTHORITY_SOURCE_SETTINGS, [
+      ...authorities,
+      ...newAuthorities,
+    ]);
+  }
+
+  /**
    * Checks if a user has saved any Health Care Authorities
    *
    * @returns {boolean}
@@ -67,18 +80,13 @@ class HCAService {
   }
 
   /**
-   * Prompt a user to add a new Health Care Authority. Includes information
-   * on the number of Authorities in their current location.
+   * Alerts a user that there are new Healthcare Authorities in their region.
+   * Includes information on the number of Authorities in their current location.
    *
-   * Redirects to the 'ChooseProviderScreen' is a user presses 'Yes'.
-   *
-   * @param {*} navigate - react-navigation function to change the current stack screen
+   * @param {numAuthorities} Number number of new authorities
    * @returns {void}
    */
-  async pushAddNewAuthoritesFromLoc() {
-    const authorities = await this.getAuthoritiesInCurrentLoc();
-    const numAuthorities = authorities.length;
-
+  async pushAlertNewAuthoritesFromLoc(numAuthorities) {
     PushNotification.localNotification({
       title: languages.t('label.authorities_new_in_area'),
       message: languages.t('label.authorities_num_in_area', { numAuthorities }),
@@ -86,8 +94,25 @@ class HCAService {
   }
 
   /**
+   * Alerts a user that they have been subscribed to new Healthcare Authorities
+   * in their region. Includes information on the number of Authorities in
+   * their current location.
+   *
+   * @param {numAuthorities} Number number of new authorities
+   * @returns {void}
+   */
+  async pushAlertNewSubscribedAuthorities(numAuthorities) {
+    PushNotification.localNotification({
+      title: 'test~',
+      message: `new: ${numAuthorities}`,
+      // title: languages.t('label.authorities_new_in_area'),
+      // message: languages.t('label.authorities_num_in_area', { numAuthorities }),
+    });
+  }
+
+  /**
    * Returns the `url` value for an authority
-   * @param {*} authority
+   * @param {authority} Authority Healthcare Authority object
    * @returns {string}
    */
   getAuthorityUrl(authority) {
@@ -98,8 +123,8 @@ class HCAService {
 
   /**
    * Returns the `bounds` value for an authority
-   * @param {*} authority
-   * @returns {*} Object containing a `bounds` key.
+   * @param {authority} Authority Healthcare Authority object
+   * @returns {Object} contains a `bounds` key.
    * A `bounds` contains a `ne` and `sw` object that each
    * have a valid GPS point containing `longitude` and `latitude` keys.
    */
@@ -111,9 +136,9 @@ class HCAService {
 
   /**
    * Checks if a given point is inside the bounds of the given authority
-   * @param {*} point Object containing a `latitude` and `longitude` field
-   * @param {*} authority
-   * @returns boolean
+   * @param {point} Object contains a `latitude` and `longitude` field
+   * @param {authority} Authority Healthcare Authority object
+   * @returns {boolean}
    */
   isPointInAuthorityBounds(point, authority) {
     const locHelper = new LocationData();
@@ -124,22 +149,6 @@ class HCAService {
     } else {
       return false;
     }
-  }
-
-  /**
-   * Iterates over the GPS regions for all Health Care Authorities
-   * and returns a list of the authorities whose regions include
-   * the current GPS location of the user.
-   *
-   * @returns {Array} List of health care authorities
-   */
-  async getAuthoritiesInCurrentLoc() {
-    const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();
-    const authorities = await this.getAuthoritiesList();
-
-    return authorities.filter(authority =>
-      this.isPointInAuthorityBounds(mostRecentUserLoc, authority),
-    );
   }
 
   /**
@@ -164,7 +173,7 @@ class HCAService {
    * all Healthcare Authorities whose bounds contain the user's current location,
    * filtering out any Authorities the user has already subscribed to.
    *
-   * @returns {Array} - List of Healthcare Authorities
+   * @returns {Array} list of Healthcare Authorities
    */
   async getNewAuthoritiesInUserLoc() {
     const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();
@@ -179,16 +188,32 @@ class HCAService {
   }
 
   /**
+   * Subscribes a user to the provided list of authorities
+   * @param {newAuthorities} Array array of healthcare authorities
+   * @returns {void}
+   */
+  async subscribeToNewAuthorities(newAuthorities) {
+    await this.appendToAuthorityList(newAuthorities);
+    this.pushAlertNewSubscribedAuthorities(newAuthorities.length);
+  }
+
+  /**
    * Prompt a user to add a Health Authority if they are in the bounds
    * of a healthcare authority that they have not yet subscribed to.
    *
    * This will trigger a push notification.
+   *
+   * @returns {void}
    */
   async findNewAuthorities() {
     const newAuthorities = await this.getNewAuthoritiesInUserLoc();
 
     if (newAuthorities.length > 0) {
-      this.pushAddNewAuthoritesFromLoc();
+      if (this.isAutosubscriptionEnabled()) {
+        await this.subscribeToNewAuthorities(newAuthorities);
+      } else {
+        await this.pushAlertNewAuthoritesFromLoc(newAuthorities.length);
+      }
     }
   }
 
@@ -197,7 +222,7 @@ class HCAService {
    * feature. When pulling from async storage, if the key has not yet been set,
    * the value will be null.
    *
-   * @returns boolean
+   * @returns {boolean}
    */
   async hasUserSetSubscription() {
     const permission = await GetStoreData(HCA_AUTO_SUBSCRIPTION, true);
@@ -213,7 +238,7 @@ class HCAService {
    * Check if the user has opted in to auto subscribe to new Healthcare
    * Authorities in their area.
    *
-   * @returns boolean (if value is set in storege)
+   * @returns {boolean}
    */
   async isAutosubscriptionEnabled() {
     return (await GetStoreData(HCA_AUTO_SUBSCRIPTION, true)) === 'true';
@@ -221,17 +246,19 @@ class HCAService {
 
   /**
    * Enable auto subscription to new Healthcare Authorities in the user's area.
-   * @returns void
+   * @returns {void}
    */
   async enableAutoSubscription() {
+    console.log('enableAutoSubscription');
     await SetStoreData(HCA_AUTO_SUBSCRIPTION, true);
   }
 
   /**
    * Disable auto subscription to new Healthcare Authorities in the user's area.
-   * @returns void
+   * @returns {void}
    */
   async disableAutoSubscription() {
+    console.log('disableAutoSubscription');
     await SetStoreData(HCA_AUTO_SUBSCRIPTION, false);
   }
 }

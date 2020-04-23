@@ -64,35 +64,6 @@ describe('HCAService', () => {
     });
   });
 
-  describe('getAuthoritiesInCurrentLoc()', () => {
-    beforeAll(() => {
-      jest
-        .spyOn(HCAService, 'getAuthoritiesList')
-        .mockResolvedValue(mockHCA.validParsed);
-    });
-
-    it('returns a list of authorities whose bounds include the current GPS location of the user', async () => {
-      // Returns a point within the bounding box of an authority
-      jest
-        .spyOn(LocationData.prototype, 'getLocationData')
-        .mockReturnValue(mockUserLocHistory);
-
-      const authorities = await HCAService.getAuthoritiesInCurrentLoc();
-      expect(authorities[0]).toEqual(mockHCA.validParsed[0]);
-    });
-
-    it('returns an empty array if no authorities bounds include the current GPS location of the user', async () => {
-      // Returns a point outside the bounding box of any authority
-      jest
-        .spyOn(LocationData.prototype, 'getLocationData')
-        .mockReturnValue(mockNullUserLocHistory);
-
-      await expect(HCAService.getAuthoritiesInCurrentLoc()).resolves.toEqual(
-        [],
-      );
-    });
-  });
-
   describe('getAuthoritiesFromUserLocHistory()', () => {
     beforeAll(() => {
       jest
@@ -126,7 +97,7 @@ describe('HCAService', () => {
     let alertSpy;
 
     beforeEach(() => {
-      alertSpy = jest.spyOn(HCAService, 'pushAddNewAuthoritesFromLoc');
+      alertSpy = jest.spyOn(HCAService, 'pushAlertNewAuthoritesFromLoc');
     });
 
     it('does not prompt the user there are no new authorities', async () => {
