@@ -9,4 +9,4 @@ echo "Running i18next-parser"
 yarn i18n:extract
 
 echo "Checking for blank keys"
-grep -r '""' app/locales/en.json
+! grep "\"\"" app/locales/en.json
