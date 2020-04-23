@@ -79,24 +79,6 @@ class Onboarding extends Component {
     );
   };
 
-  renderNextButton = () => {
-    return this.hasAuthorities() ? (
-      <ButtonWrapper
-        title={languages.t('label.launch_next')}
-        onPress={this.onButtonPress}
-        buttonColor={Colors.VIOLET}
-        bgColor={Colors.WHITE}
-      />
-    ) : (
-      <ButtonWrapper
-        title={languages.t('label.launch_next')}
-        onPress={() => {}}
-        buttonColor={Colors.VIOLET}
-        bgColor={Colors.SILVER}
-      />
-    );
-  };
-
   render() {
     return (
       <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
@@ -107,10 +89,10 @@ class Onboarding extends Component {
         />
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <Typography style={styles.headerText}>
+            <Typography testID='Header' style={styles.headerText}>
               {languages.t('label.choose_provider_title')}
             </Typography>
-            <Typography style={styles.subheaderText}>
+            <Typography testID='Subheader' style={styles.subheaderText}>
               {languages.t('label.choose_provider_subtitle')}
             </Typography>
             <View style={styles.spacer} />
@@ -129,7 +111,13 @@ class Onboarding extends Component {
               bgColor={Colors.WHITE}
             />
             <View style={styles.spacer} />
-            {this.renderNextButton()}
+            <ButtonWrapper
+              testID='NextButton'
+              title={languages.t('label.launch_next')}
+              onPress={this.onButtonPress}
+              buttonColor={Colors.VIOLET}
+              bgColor={Colors.WHITE}
+            />
           </View>
         </View>
       </ImageBackground>

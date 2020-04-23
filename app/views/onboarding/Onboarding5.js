@@ -75,6 +75,7 @@ class Onboarding extends Component {
             )}
             <View style={styles.spacer} />
             <ButtonWrapper
+              testID='NextBtn'
               title={
                 this.hasLocationData()
                   ? languages.t('label.launch_next')
