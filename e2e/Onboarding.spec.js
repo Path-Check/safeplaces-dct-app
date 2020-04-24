@@ -1,3 +1,4 @@
+/* eslint-disable jest/expect-expect */
 import EnableLocation from './pages/EnableLocation.po.js';
 import Onboarding1 from './pages/Onboarding1.po.js';
 import Onboarding2 from './pages/Onboarding2.po.js';

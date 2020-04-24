@@ -1,11 +1,12 @@
 /* eslint-disable jest/expect-expect */
+/* eslint-disable jest/expect-expect */
 import { navigateThroughOnboarding } from './helpers/onboarding';
 import FinishSetup from './pages/FinishSetup.po.js';
 
-describe('Location set to `never` and notifications `true` set', () => {
+describe('Auto subscription disabled', () => {
   beforeAll(async () => {
-    const permissions = { location: 'never', notifications: 'YES' };
-    const autoSubscribe = true;
+    const permissions = { location: 'always', notifications: 'YES' };
+    const autoSubscribe = false;
     await navigateThroughOnboarding(permissions, autoSubscribe);
   });
 

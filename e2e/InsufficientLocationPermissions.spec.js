@@ -1,13 +1,12 @@
+/* eslint-disable jest/expect-expect */
 import { navigateThroughOnboarding } from './helpers/onboarding';
 import FinishSetup from './pages/FinishSetup.po.js';
 
 describe('Location set to `inuse` and notifications `true` set', () => {
   beforeAll(async () => {
-    await device.launchApp({
-      permissions: { location: 'inuse', notifications: 'YES' },
-      newInstance: true,
-    });
-    await navigateThroughOnboarding();
+    const permissions = { location: 'inuse', notifications: 'YES' };
+    const autoSubscribe = true;
+    await navigateThroughOnboarding(permissions, autoSubscribe);
   });
 
   it('Displays an error page about missing location permissions', async () => {
