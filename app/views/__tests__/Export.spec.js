@@ -1,13 +1,11 @@
-import { TouchableOpacity } from 'react-native';
+import { render } from '@testing-library/react-native';
 import React from 'react';
-import renderer, { create } from 'react-test-renderer';
-import Export from '../Export';
 
-describe('<Export />', () => {
+import { ExportScreen } from '../Export';
+
+describe('<ExportScreen />', () => {
   it('renders correctly', () => {
-    const tree = renderer
-      .create(<Export />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { asJSON } = render(<ExportScreen />);
+    expect(asJSON()).toMatchSnapshot();
   });
 });

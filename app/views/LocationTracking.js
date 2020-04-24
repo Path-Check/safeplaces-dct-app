@@ -32,9 +32,10 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import { isPlatformAndroid, isPlatformiOS } from './../Util';
 import ButtonWrapper from '../components/ButtonWrapper';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import { PARTICIPATE } from '../constants/storage';
+import { CROSSED_PATHS, DEBUG_MODE, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -139,18 +140,23 @@ class LocationTracking extends Component {
 
   checkIfUserAtRisk() {
     BackgroundTaskServices.start();
-    // already set on 12h timer, but run when this screen opens too
-    checkIntersect();
 
-    GetStoreData('CROSSED_PATHS').then(dayBin => {
-      dayBin = JSON.parse(dayBin);
-      if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
-        console.log('Found crossed paths');
-        this.setState({ currentState: StateEnum.AT_RISK });
-      } else {
-        console.log("Can't find crossed paths");
-        this.setState({ currentState: StateEnum.NO_CONTACT });
+    GetStoreData(DEBUG_MODE).then(dbgMode => {
+      if (dbgMode != 'true') {
+        // already set on 12h timer, but run when this screen opens too
+        checkIntersect();
       }
+
+      GetStoreData(CROSSED_PATHS).then(dayBin => {
+        dayBin = JSON.parse(dayBin);
+        if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
+          console.log('Found crossed paths');
+          this.setState({ currentState: StateEnum.AT_RISK });
+        } else {
+          console.log("Can't find crossed paths");
+          this.setState({ currentState: StateEnum.NO_CONTACT });
+        }
+      });
     });
 
     // If the user has location tracking disabled, set enum to match
@@ -334,21 +340,21 @@ class LocationTracking extends Component {
     switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
         return (
-          <Text style={styles.mainTextBelow}>
+          <Typography style={styles.mainTextBelow}>
             {languages.t('label.home_no_contact_header')}
-          </Text>
+          </Typography>
         );
       case StateEnum.AT_RISK:
         return (
-          <Text style={styles.mainTextAbove}>
+          <Typography style={styles.mainTextAbove}>
             {languages.t('label.home_at_risk_header')}
-          </Text>
+          </Typography>
         );
       case StateEnum.UNKNOWN:
         return (
-          <Text style={styles.mainTextBelow}>
+          <Typography style={styles.mainTextBelow}>
             {languages.t('label.home_unknown_header')}
-          </Text>
+          </Typography>
         );
       case StateEnum.SETTING_OFF:
         return (
@@ -439,12 +445,16 @@ class LocationTracking extends Component {
           <View style={styles.contentAbovePulse}>
             {this.state.currentState === StateEnum.AT_RISK &&
               this.getMainText()}
-            <Text style={styles.subsubheaderText}>{this.getSubSubText()}</Text>
+            <Typography style={styles.subsubheaderText}>
+              {this.getSubSubText()}
+            </Typography>
           </View>
           <View style={styles.contentBelowPulse}>
             {this.state.currentState !== StateEnum.AT_RISK &&
               this.getMainText()}
-            <Text style={styles.subheaderText}>{this.getSubText()}</Text>
+            <Typography style={styles.subheaderText}>
+              {this.getSubText()}
+            </Typography>
             {this.getCTAIfNeeded()}
           </View>
         </View>
@@ -454,16 +464,16 @@ class LocationTracking extends Component {
             onPress={this.getMayoInfoPressed.bind(this)}
             style={styles.mayoInfoRow}>
             <View style={styles.mayoInfoContainer}>
-              <Text
+              <Typography
                 style={styles.mainMayoHeader}
                 onPress={() => Linking.openURL(MAYO_COVID_URL)}>
                 {languages.t('label.home_mayo_link_heading')}
-              </Text>
-              <Text
+              </Typography>
+              <Typography
                 style={styles.mainMayoSubtext}
                 onPress={() => Linking.openURL(MAYO_COVID_URL)}>
                 {languages.t('label.home_mayo_link_label')}
-              </Text>
+              </Typography>
             </View>
             <View style={styles.arrowContainer}>
               <Image source={foreArrow} style={this.arrow} />
@@ -587,6 +597,7 @@ const styles = StyleSheet.create({
   arrowContainer: {
     alignSelf: 'center',
     paddingRight: 20,
+    paddingLeft: 20,
   },
 });
 

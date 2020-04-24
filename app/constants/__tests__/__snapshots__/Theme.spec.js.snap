@@ -14,10 +14,11 @@ exports[`changes text color based on theme 1`] = `
     style={
       Object {
         "color": "#FFF",
-        "fontFamily": "IBM Plex Sans",
+        "fontFamily": "IBMPlexSans",
         "fontSize": 18,
         "fontWeight": "normal",
         "lineHeight": 24,
+        "writingDirection": "ltr",
       }
     }
     use="body1"
@@ -28,10 +29,11 @@ exports[`changes text color based on theme 1`] = `
     style={
       Object {
         "color": "#4051DB",
-        "fontFamily": "IBM Plex Sans",
+        "fontFamily": "IBMPlexSans",
         "fontSize": 18,
         "fontWeight": "normal",
         "lineHeight": 24,
+        "writingDirection": "ltr",
       }
     }
     use="body1"
@@ -62,10 +64,11 @@ exports[`includes extra background View if setBackground=true 1`] = `
       style={
         Object {
           "color": "#FFF",
-          "fontFamily": "IBM Plex Sans",
+          "fontFamily": "IBMPlexSans-Bold",
           "fontSize": 52,
           "fontWeight": "bold",
           "lineHeight": 48,
+          "writingDirection": "ltr",
         }
       }
       use="headline1"

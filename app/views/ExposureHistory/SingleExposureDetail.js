@@ -1,11 +1,12 @@
-import dayjs from 'dayjs';
-import React from 'react';
 import styled from '@emotion/native';
-import { CalendarDay } from './CalendarDay';
-import languages from '../../locales/languages';
+import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import React from 'react';
+
+import languages from '../../locales/languages';
+import { CalendarDay } from './CalendarDay';
 
 dayjs.extend(relativeTime);
 dayjs.extend(duration);

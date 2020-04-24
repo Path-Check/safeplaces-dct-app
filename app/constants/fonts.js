@@ -1,5 +1,3 @@
-import { isPlatformiOS } from './../Util';
-
 const fontFamily = {
   primaryBold: 'IBMPlexSans-Bold',
   primaryBoldItalic: 'IBMPlexSans-BoldItalic',
@@ -10,7 +8,7 @@ const fontFamily = {
   primaryLightItalic: 'IBMPlexSans-LightItalic',
   primaryMedium: 'IBMPlexSans-Medium',
   primaryMediumItalic: 'IBMPlexSans-MediumItalic',
-  primaryRegular: isPlatformiOS() ? 'IBMPlexSans' : 'IBMPlexSans-Regular',
+  primaryRegular: 'IBMPlexSans',
   primarySemiBold: 'IBMPlexSans-SemiBold',
   primarySemiBoldItalic: 'IBMPlexSans-SemiBoldItalic',
   primaryThin: 'IBMPlexSans-Thin',

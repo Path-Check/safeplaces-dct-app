@@ -1,8 +1,8 @@
-import React from 'react';
 import { render } from '@testing-library/react-native';
+import React from 'react';
 
-import { Typography } from '../Typography';
 import { Theme } from '../../constants/themes';
+import { Typography } from '../Typography';
 
 it('headline1 is large and bold', () => {
   const { asJSON } = render(

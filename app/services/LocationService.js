@@ -4,7 +4,7 @@ import PushNotification from 'react-native-push-notification';
 
 import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { isLocationsNearby as areLocationsNearby } from '../helpers/Intersect';
+import { areLocationsNearby } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import { isPlatformAndroid } from '../Util';
 

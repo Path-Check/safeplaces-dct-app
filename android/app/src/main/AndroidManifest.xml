@@ -45,7 +45,7 @@
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_name"
             android:value="covidsafepaths_kit_notification_channel"/>
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_description"
-            android:value="Handle all local notifications"/>
+            android:value="@string/notification_channel_description"/>
         <!-- Change the resource name to your App's accent color - or any other color you want -->
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
             android:resource="@android:color/white"/>

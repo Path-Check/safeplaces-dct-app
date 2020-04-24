@@ -5,11 +5,10 @@ import {
 } from '@react-navigation/stack';
 import React, { Component } from 'react';
 
-import { PARTICIPATE } from './constants/storage';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
-import ExportScreen from './views/Export';
+import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
 import LicencesScreen from './views/Licenses';
@@ -20,7 +19,8 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
-import SettingsScreen from './views/Settings';
+import Onboarding6 from './views/onboarding/Onboarding6';
+import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();
 
@@ -90,6 +90,11 @@ class Entry extends Component {
           <Stack.Screen
             name='Onboarding5'
             component={Onboarding5}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Onboarding6'
+            component={Onboarding6}
             options={{ headerShown: false }}
           />
           <Stack.Screen
