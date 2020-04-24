@@ -56,8 +56,9 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
             <SafeAreaView style={{ backgroundColor: Colors.VIOLET_BUTTON }}>
               <View style={styles.ctaBox}>
                 <Checkbox
-                  onPressFunction={() => toggleCheckbox(!boxChecked)}
-                  boxChecked={boxChecked}
+                  label={t('onboarding.eula_checkbox')}
+                  onPress={() => toggleCheckbox(!boxChecked)}
+                  checked={boxChecked}
                 />
                 <Typography style={styles.smallDescriptionText}>
                   {t('onboarding.eula_message')}
