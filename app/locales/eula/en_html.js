@@ -21,13 +21,13 @@ export default `
 <body>
     <p><strong>Terms of Use</strong></p>
     <p><strong>Last Updated Date: April 23, 2020</strong></p>
-    <p>PLEASE READ THIS TERMS OF USE AGREEMENT (THE &ldquo;TERMS
-            OF USE&rdquo; </strong>OR &ldquo;AGREEMENT&rdquo;
-                    ) CAREFULLY. &nbsp;THE SAFE PATH MOBILE APPLICATION (THE &ldquo;APPLICATION&rdquo;
+    <p>PLEASE READ THIS TERMS OF USE AGREEMENT (THE “TERMS
+            OF USE” </strong>OR “AGREEMENT”
+                    ) CAREFULLY. &nbsp;THE SAFE PATH MOBILE APPLICATION (THE “APPLICATION”
             </strong>), AND THE FEATURES AND INFORMATION IN IT ARE
-            CONTROLLED BY PATH CHECK, INC. (&ldquo;PCI</strong>&rdquo;).
+            CONTROLLED BY PATH CHECK, INC. (“PCI</strong>”).
             &nbsp;THESE TERMS OF USE GOVERN THE USE OF THE APPLICATION AND APPLY TO ALL USERS USING THE APPLICATION IN
-            ANY WAY, INCLUDING THE FEATURES THEREIN. BY CLICKING ON THE &ldquo;I ACCEPT&rdquo; BUTTON AND/OR DOWNLOADING
+            ANY WAY, INCLUDING THE FEATURES THEREIN. BY CLICKING ON THE “I ACCEPT” BUTTON AND/OR DOWNLOADING
             THE APPLICATION, YOU REPRESENT THAT (1) YOU HAVE READ, UNDERSTAND, AND AGREE TO BE BOUND BY THE TERMS OF
             USE, (2) YOU ARE OF LEGAL AGE TO FORM A BINDING CONTRACT WITH PCI, AND (3) YOU HAVE THE AUTHORITY TO ENTER
             INTO THE TERMS OF USE. &nbsp;IF YOU DO NOT AGREE TO BE BOUND BY THE TERMS OF USE,
@@ -48,31 +48,31 @@ export default `
             INTERNATIONAL SALE OF GOODS IS EXPRESSLY EXCLUDED FROM THIS AGREEMENT. </strong></p>
     <p>PLEASE NOTE THAT <strong>THIS AGREEMENT IS SUBJECT TO CHANGE BY PCI
             IN ITS SOLE DISCRETION AT ANY TIME</strong>. &nbsp;When changes are made, PCI will make a new
-            copy of the Terms of Use available within the Application. &nbsp;We will also update the &ldquo;Last
-            Updated&rdquo; date at the top of the Terms of Use. &nbsp;Your continued use of the Application after a
+            copy of the Terms of Use available within the Application. &nbsp;We will also update the “Last
+            Updated” date at the top of the Terms of Use. &nbsp;Your continued use of the Application after a
             change to the Terms of Use is made constitutes acceptance. &nbsp;PLEASE REGULARLY CHECK THE APPLICATION TO
             VIEW THE MOST CURRENT TERMS.</p>
     <p><strong>1. USE OF THE APPLICATION.</strong>&nbsp;
         </strong></p>
     <p><strong>1.1 Definitions</strong>. &nbsp;As used in
             these Terms of Use, the following definitions apply:</p>
-    <p><strong>&ldquo;App User</strong>&rdquo; means an
+    <p><strong>“App User</strong>” means an
             individual natural person who has downloaded the Application under these Terms of Use.</p>
-    <p><strong>&ldquo;Location History</strong>&rdquo;
+    <p><strong>“Location History</strong>”
             means location data collected from an App User&rsquo;s mobile device leveraging GPS, Bluetooth and/or other
             features or software, that the App User elects to have recorded and stored within the Application installed
             on the App User&rsquo;s mobile device.</p>
-    <p><strong>&ldquo;Publicly Available Safe Places Data</strong>
-            &rdquo; means anonymized maps of public places where individuals diagnosed with Covid-19 have
+    <p><strong>“Publicly Available Safe Places Data</strong>
+            ” means anonymized maps of public places where individuals diagnosed with Covid-19 have
             visited and data files of times they visited such places, as compiled and created by a third party, and made
             available via such third party&rsquo;s Third Party Safe Places Web App.</p>
-    <p><strong>&ldquo;Safe Places Software</strong>&rdquo;
+    <p><strong>“Safe Places Software</strong>”
             means open-source software, available at </strong><span class="c8"><a class="c11"
                 href="https://www.google.com/url?q=https://github.com/tripleblindmarket/safe-places&amp;sa=D&amp;ust=1587722145899000">https://github.com/tripleblindmarket/safe-places</a></strong>
                         , that facilitates contact tracing and related tasks, and is designed for use by third parties,
             such as government agencies. </span></p>
-    <p><strong>&ldquo;Third Party Safe Places Web App</strong>
-            &rdquo; means a web-based application owned and operated by a third party, such as a government
+    <p><strong>“Third Party Safe Places Web App</strong>
+            ” means a web-based application owned and operated by a third party, such as a government
             agency, that employs Safe Places Software to, among other things, publish Publicly Available Safe Places
             Data.</p>
     <p><strong>1.2 Application Features and Functionality.</strong>
@@ -95,20 +95,20 @@ export default `
         </strong><span class="c8"><a class="c11"
                 href="https://www.google.com/url?q=https://github.com/tripleblindmarket/covid-safe-paths/blob/develop/LICENSE&amp;sa=D&amp;ust=1587722145900000">https://github.com/tripleblindmarket/covid-safe-paths/blob/develop/LICENSE</a></strong>
                         . &nbsp;Furthermore, with respect to any Application accessed through or downloaded from the
-            Apple App Store (an&nbsp;&ldquo;App Store Sourced Application&rdquo;</strong>
+            Apple App Store (an&nbsp;“App Store Sourced Application”</strong>
                       ), you will only use the App Store Sourced Application (a) on an Apple-branded product that runs
-            the iOS (Apple&rsquo;s proprietary operating system) and (b) as permitted by the &ldquo;Usage Rules&rdquo;
+            the iOS (Apple&rsquo;s proprietary operating system) and (b) as permitted by the “Usage Rules”
             set forth in the Apple App Store Terms of Service. Notwithstanding the first sentence in this section, with
-            respect to any Application accessed through or downloaded from the Google Play store (a &ldquo;
-            Google Play Sourced Application</strong>&rdquo;), you may have additional
+            respect to any Application accessed through or downloaded from the Google Play store (a “
+            Google Play Sourced Application</strong>”), you may have additional
             license rights with respect to use of the Application on a shared basis within your designated family
             group.</p>
     <p id="h.gjdgxs"><strong>1.4 Updates.</strong>&nbsp;
             You understand that to keep the Application most useful for App Users and to accommodate bug fixes and other
             technological changes, PCI may make updates to the Application after you download the Application.
             &nbsp;These updates will be made available to App Users from the third party from whom you received the
-            Application license, e.g., the Apple App Store or Google Play (each, an &ldquo;App Store
-            &rdquo;</strong>). &nbsp;You will have the ability, at your
+            Application license, e.g., the Apple App Store or Google Play (each, an “App Store
+            ”</strong>). &nbsp;You will have the ability, at your
             option, to download any updates to the Application that we make freely available through such channels.
             &nbsp;We do not require you to install any updates in order for you to continue using the Application after
             we make such updates available. &nbsp;This is because we do not retain any information about you when you
@@ -159,7 +159,7 @@ export default `
             consequences that may result because you have released or shared information, through the Application or
             otherwise, with a third party. &nbsp;</p>
     <p><strong>4. FEEDBACK</strong>. &nbsp;If you provide
-            PCI with any ideas, suggestions, documents, and/or proposals (&ldquo;Feedback&rdquo;
+            PCI with any ideas, suggestions, documents, and/or proposals (“Feedback”
             </strong>) via email or another means, you do so at your
             own risk and you acknowledge and agree that PCI has no obligations (including without limitation obligations
             of confidentiality) with respect to such Feedback. &nbsp;You represent and warrant that you have all rights
@@ -189,8 +189,8 @@ export default `
             forth herein.</p>
     <p><strong>7. INDEMNIFICATION. &nbsp;</strong>You
             agree to indemnify and hold PCI, its parents, subsidiaries, affiliates, officers, employees, volunteers,
-            agents, partners, suppliers, and licensors (each, a &ldquo;PCI Party
-                      &rdquo; and collectively, the &ldquo;PCI Parties&rdquo;
+            agents, partners, suppliers, and licensors (each, a “PCI Party
+                      ” and collectively, the “PCI Parties”
                       ) harmless from any losses, costs, liabilities and expenses (including reasonable
             attorneys&rsquo; fees) relating to or arising out of any and all of the following: (a) your use of, or
             inability to use the Application; (b) your violation of this Agreement; (c) your violation of any rights of
@@ -205,7 +205,7 @@ export default `
     <p><strong>8. DISCLAIMER OF WARRANTIES AND CONDITIONS.</strong></p>
     <p><strong>8.1 As Is.</strong>&nbsp;YOU EXPRESSLY
             UNDERSTAND AND AGREE THAT TO THE EXTENT PERMITTED BY APPLICABLE LAW, YOUR USE OF THE APPLICATION IS AT YOUR
-            SOLE RISK, AND THE APPLICATION IS PROVIDED ON AN &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo; BASIS,
+            SOLE RISK, AND THE APPLICATION IS PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS,
             WITH ALL FAULTS. &nbsp;THE PCI PARTIES EXPRESSLY DISCLAIM ALL WARRANTIES, REPRESENTATIONS, AND CONDITIONS OF
             ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OR CONDITIONS OF
             MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARISING FROM USE OF THE APPLICATION.
@@ -224,7 +224,7 @@ export default `
             EFFECTIVENESS, REPUTATION AND OTHER CHARACTERISTICS THEREOF.</p>
     <p><strong>(d) </strong>NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN,
             OBTAINED FROM PCI OR THROUGH THE APPLICATION WILL CREATE ANY WARRANTY NOT EXPRESSLY MADE HEREIN.</p>
-    <p><strong>(e) </strong>FROM TIME TO TIME, PCI MAY OFFER NEW &ldquo;BETA&rdquo;
+    <p><strong>(e) </strong>FROM TIME TO TIME, PCI MAY OFFER NEW “BETA”
             FEATURES OR TOOLS WITH WHICH ITS USERS MAY EXPERIMENT. &nbsp;SUCH FEATURES OR TOOLS ARE OFFERED SOLELY FOR
             EXPERIMENTAL PURPOSES AND WITHOUT ANY WARRANTY OF ANY KIND, AND MAY BE MODIFIED OR DISCONTINUED AT
             PCI&rsquo;S SOLE DISCRETION. &nbsp;THE PROVISIONS OF THIS SECTION APPLY WITH FULL FORCE TO SUCH FEATURES OR
@@ -316,8 +316,8 @@ export default `
             other countries do so at their own risk and are responsible for use in compliance with local law.</strong></p>
     <p id="h.30j0zll"><strong>13. DISPUTE RESOLUTION.</strong>
             &nbsp; <strong>Please read the following
-            arbitration agreement in this Section (&ldquo;Arbitration Agreement
-            &rdquo;) carefully.&nbsp; It requires U.S. users to arbitrate disputes with PCI and limits the
+            arbitration agreement in this Section (“Arbitration Agreement
+            ”) carefully.&nbsp; It requires U.S. users to arbitrate disputes with PCI and limits the
             manner in which you can seek relief from us. &nbsp;</strong></p>
     <p id="h.1fob9te"><strong>13.1 Applicability of Arbitration
             Agreement</strong>.&nbsp;You agree that any dispute, claim, or
@@ -412,17 +412,17 @@ export default `
             electronically satisfy any legal requirement that such communications would satisfy if it were to be in
             writing. &nbsp;The foregoing does not affect your statutory rights, including but not limited to the
             Electronic Signatures in Global and National Commerce Act at 15 U.S.C. &sect;7001 et seq.
-            (&ldquo;E-Sign&rdquo;).</p>
+            (“E-Sign”).</p>
     <p><strong>14.2 Release.</strong>&nbsp; You hereby
             release the PCI Parties and their successors from claims, demands, any and all losses, damages, rights, and
             actions of any kind, including personal injuries, death, and property damage, that is either directly or
             indirectly related to or arises from any interactions with or conduct of operators of Third Party Safe
             Places Web Apps, healthcare providers, governmental agencies, of any kind arising in connection with or as a
             result of this Agreement or your use of the Application. &nbsp;If you are a California resident, you hereby
-            waive California Civil Code Section 1542, which states, &ldquo;A general release does not extend to claims
+            waive California Civil Code Section 1542, which states, “A general release does not extend to claims
             that the creditor or releasing party does not know or suspect to exist in his or her favor at the time of
             executing the release and that, if known by him or her, would have materially affected his or her settlement
-            with the debtor or released party.&rdquo; &nbsp;The foregoing release does not apply to any claims, demands,
+            with the debtor or released party.” &nbsp;The foregoing release does not apply to any claims, demands,
             or any losses, damages, rights and actions of any kind, including personal injuries, death or property
             damage for any unconscionable commercial practice by a PCI Party or for such party&rsquo;s fraud, deception,
             false, promise, misrepresentation or concealment, suppression or omission of any material fact in connection
@@ -470,8 +470,8 @@ export default `
             countries, or (b) to anyone on the U.S. Treasury Department&rsquo;s list of Specially Designated Nationals
             or the U.S. Department of Commerce&rsquo;s Denied Person&rsquo;s List or Entity List. By using the
             Application, you represent and warrant that (y) you are not located in a country that is subject to a U.S.
-            Government embargo, or that has been designated by the U.S. Government as a &ldquo;terrorist
-            supporting&rdquo; country and (z) you are not listed on any U.S. Government list of prohibited or restricted
+            Government embargo, or that has been designated by the U.S. Government as a “terrorist
+            supporting” country and (z) you are not listed on any U.S. Government list of prohibited or restricted
             parties. You also will not use the Application for any purpose prohibited by U.S. law, including the
             development, design, manufacture or production of missiles, nuclear, chemical or biological weapons.
             &nbsp;You acknowledge and agree that products, services or technology provided by PCI are subject to the
