@@ -37,14 +37,17 @@ export const DetailedHistory = ({ history }) => {
           </Typography>
           <Divider />
         </>
-      ) : null}
+      ) : (
+        <>
+          <Typography use='headline3'>
+            {languages.t('history.what_does_this_mean')}
+          </Typography>
+          <Typography use='body3'>
+            {languages.t('history.what_does_this_mean_para')}
+          </Typography>
+        </>
+      )}
 
-      <Typography use='headline3'>
-        {languages.t('history.what_does_this_mean')}
-      </Typography>
-      <Typography use='body3'>
-        {languages.t('history.what_does_this_mean_para')}
-      </Typography>
       <Divider />
 
       {exposedDays.length ? (
