@@ -371,15 +371,13 @@ export default class LocationServices {
         PushNotification.localNotification({
           id: LOCATION_DISABLED_NOTIFICATION,
           title: languages.t('label.location_disabled_title'),
-          message: languages.t('label.location_stopped_message'),
+          message: languages.t('label.location_disabled_message'),
         });
       } else {
         PushNotification.localNotification({
           id: LOCATION_DISABLED_NOTIFICATION,
           title: languages.t('label.location_disabled_title'),
-          message: languages.t(
-            'label.location_stopped_at_user_request_message',
-          ),
+          message: languages.t('label.location_stopped_message'),
         });
       }
     });
