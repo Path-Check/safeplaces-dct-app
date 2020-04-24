@@ -18,6 +18,7 @@ class Button extends React.Component {
       buttonStyle,
       buttonHeight = 54,
       borderColor,
+      disabled,
     } = this.props;
     return (
       <LinearGradient
@@ -40,7 +41,8 @@ class Button extends React.Component {
           onPress={onPress}
           accessible
           accessibilityLabel={title}
-          accessibilityRole='button'>
+          accessibilityRole='button'
+          disabled={disabled}>
           <Typography
             style={[
               titleStyle ? titleStyle : styles.text,
