@@ -102,7 +102,6 @@
   "onboarding": {
     "eula_checkbox": "I accept the licensing agreement",
     "eula_message": "*You must accept in order to use Safe Paths",
-    "eula_continue": "Continue",
-    "eula": "## EULA and legal things \n \nText here \n \nyes its text \n \nmany lines \n \nto \n \ntest \n \nscrolling \n \n- hey \n- look \n- its \n- a \n- list"
+    "eula_continue": "Continue"
   }
 }
