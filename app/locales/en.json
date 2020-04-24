@@ -103,5 +103,13 @@
     "eula_checkbox": "I accept the licensing agreement",
     "eula_message": "*You must accept in order to use Safe Paths",
     "eula_continue": "Continue"
+  },
+  "version_update": {
+    "push_notification_title": "Application is outdated",
+    "push_notification_message": "Please update your application",
+    "alert_label": "COVID Safe Paths is outdated",
+    "alert_sublabel": "Update to a new version?",
+    "update": "Update",
+    "later": "Later"
   }
 }
