@@ -4,6 +4,7 @@ import Onboarding2 from './pages/Onboarding2.po.js';
 import Onboarding3 from './pages/Onboarding3.po.js';
 import Onboarding4 from './pages/Onboarding4.po.js';
 import Onboarding5 from './pages/Onboarding5.po.js';
+import SignEula from './pages/SignEula.po.js';
 
 describe('Onboarding visual appearance', () => {
   it('Navigates through the onboarding without visual regression', async () => {
@@ -14,6 +15,10 @@ describe('Onboarding visual appearance', () => {
     await Onboarding1.isOnScreen();
     await Onboarding1.takeScreenshot();
     await Onboarding1.tapButton();
+
+    await SignEula.sign();
+    await SignEula.takeScreenshot();
+    await SignEula.tapButton();
 
     await Onboarding2.isOnScreen();
     await Onboarding2.takeScreenshot();
