@@ -398,7 +398,6 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '96%',
     alignSelf: 'center',
-    backgroundColor: colors.WHITE,
   },
   row: {
     flex: 1,

@@ -93,7 +93,7 @@ Array [
         Import Locations
       </Text>
     </View>
-    <View
+    <RCTScrollView
       style={
         Object {
           "alignSelf": "center",
@@ -106,60 +106,62 @@ Array [
         }
       }
     >
-      <View
-        style={
-          Object {
-            "fontSize": 22,
-            "fontWeight": "bold",
-            "padding": 5,
-            "textAlign": "center",
-          }
-        }
-      >
-        <Text
+      <View>
+        <View
           style={
             Object {
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 16,
-              "fontWeight": "normal",
-              "lineHeight": 24,
-              "marginTop": 12,
-              "writingDirection": "ltr",
+              "fontSize": 22,
+              "fontWeight": "bold",
+              "padding": 5,
+              "paddingBottom": 20,
+              "textAlign": "center",
             }
           }
-          use="body1"
         >
-          Adding location data from Google will give you a head start on building your recent locations.
-        </Text>
-        <Text
-          style={
-            Object {
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 16,
-              "fontWeight": "normal",
-              "lineHeight": 24,
-              "marginTop": 12,
-              "writingDirection": "ltr",
+          <Text
+            style={
+              Object {
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 16,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "marginTop": 12,
+                "writingDirection": "ltr",
+              }
             }
-          }
-          use="body1"
-        >
-          Before you can import, you must first 'Take out' your location data from Google.
-        </Text>
-        <Text
-          style={
-            Object {
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 16,
-              "fontWeight": "normal",
-              "lineHeight": 24,
-              "marginTop": 12,
-              "writingDirection": "ltr",
+            use="body1"
+          >
+            Adding location data from Google will give you a head start on building your recent locations.
+          </Text>
+          <Text
+            style={
+              Object {
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 16,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "marginTop": 12,
+                "writingDirection": "ltr",
+              }
             }
-          }
-          use="body1"
-        >
-          Visit Google Takeout and export your Location History using following settings: 
+            use="body1"
+          >
+            Before you can import, you must first 'Take out' your location data from Google.
+          </Text>
+          <Text
+            style={
+              Object {
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 16,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "marginTop": 12,
+                "writingDirection": "ltr",
+              }
+            }
+            use="body1"
+          >
+            Visit Google Takeout and export your Location History using following settings: 
 1. Delivery method: "Add to Drive" 
 2. Frequency: "Export once" 
 3. File type & size: ".zip" and "1GB" 
@@ -167,95 +169,96 @@ Array [
 5. Return here to import locations. Import options: 
 - Import from Google Drive 
 - Download from browser, then import from local phone files. Make sure to be on WiFi network as files can be big.
-        </Text>
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignSelf": "center",
-              "backgroundColor": "#4051DB",
-              "borderRadius": 12,
-              "height": 52,
-              "justifyContent": "center",
-              "marginTop": 30,
-              "opacity": 1,
-              "width": 589.9499999999999,
-            }
-          }
-          testID="google-takeout-link"
-        >
-          <Text
+          </Text>
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "color": "#FFF",
-                "fontFamily": "IBMPlexSans-SemiBold",
-                "fontSize": 14,
-                "fontWeight": "normal",
-                "letterSpacing": 0,
-                "lineHeight": 19,
-                "textAlign": "center",
-                "writingDirection": "ltr",
+                "alignSelf": "center",
+                "backgroundColor": "#4051DB",
+                "borderRadius": 12,
+                "height": 52,
+                "justifyContent": "center",
+                "marginTop": 30,
+                "opacity": 1,
+                "width": 589.9499999999999,
               }
             }
-            use="body1"
+            testID="google-takeout-link"
           >
-            VISIT GOOGLE TAKEOUT
-          </Text>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignSelf": "center",
-              "backgroundColor": "#4051DB",
-              "borderRadius": 12,
-              "height": 52,
-              "justifyContent": "center",
-              "marginTop": 30,
-              "opacity": 1,
-              "width": 589.9499999999999,
-            }
-          }
-          testID="google-takeout-import-btn"
-        >
-          <Text
+            <Text
+              style={
+                Object {
+                  "color": "#FFF",
+                  "fontFamily": "IBMPlexSans-SemiBold",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0,
+                  "lineHeight": 19,
+                  "textAlign": "center",
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              VISIT GOOGLE TAKEOUT
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "color": "#FFF",
-                "fontFamily": "IBMPlexSans-SemiBold",
-                "fontSize": 14,
-                "fontWeight": "normal",
-                "letterSpacing": 0,
-                "lineHeight": 19,
-                "textAlign": "center",
-                "writingDirection": "ltr",
+                "alignSelf": "center",
+                "backgroundColor": "#4051DB",
+                "borderRadius": 12,
+                "height": 52,
+                "justifyContent": "center",
+                "marginTop": 30,
+                "opacity": 1,
+                "width": 589.9499999999999,
               }
             }
-            use="body1"
+            testID="google-takeout-import-btn"
           >
-            IMPORT LOCATIONS
-          </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#FFF",
+                  "fontFamily": "IBMPlexSans-SemiBold",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0,
+                  "lineHeight": 19,
+                  "textAlign": "center",
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              IMPORT LOCATIONS
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
+    </RCTScrollView>
   </RCTSafeAreaView>,
 ]
 `;

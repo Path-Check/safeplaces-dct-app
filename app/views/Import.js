@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   Dimensions,
   Linking,
+  ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -65,7 +66,7 @@ const ImportScreen = props => {
     <NavigationBarWrapper
       title={languages.t('label.import_title')}
       onBackPress={goBack}>
-      <View style={styles.main}>
+      <ScrollView style={styles.main}>
         <View style={styles.subHeaderTitle}>
           <Typography style={styles.sectionDescription}>
             {languages.t('label.import_step_1')}
@@ -107,7 +108,7 @@ const ImportScreen = props => {
             </Typography>
           ) : null}
         </View>
-      </View>
+      </ScrollView>
     </NavigationBarWrapper>
   );
 };
@@ -125,6 +126,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 22,
     padding: 5,
+    paddingBottom: 20,
   },
   main: {
     flex: 1,
