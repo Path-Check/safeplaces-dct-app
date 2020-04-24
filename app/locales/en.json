@@ -109,5 +109,13 @@
     "what_does_this_mean": "What does this mean?",
     "what_if_no_symptoms_para": "If you have no symptoms but still would like to be tested you can go to your nearest testing site.\n\nIndividuals who don't exhibit symptoms can sometimes still carry the infection and infect others. Being careful about social distancing and coming in contact with large groups or at risk individuals (the elderly, those with significant other medical issues) is important to manage both your risk and the risk to others.",
     "what_if_no_symptoms": "What if I’m not showing symptoms?"
+  },
+  "version_update": {
+    "push_notification_title": "Application is outdated",
+    "push_notification_message": "Please update your application",
+    "alert_label": "COVID Safe Paths is outdated",
+    "alert_sublabel": "Update to a new version?",
+    "update": "Update",
+    "later": "Later"
   }
 }
