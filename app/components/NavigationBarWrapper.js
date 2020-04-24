@@ -69,6 +69,7 @@ const Header = styled.View`
   border-bottom-color: ${themeNavBarBorder};
   border-bottom-width: 1px;
   flex-direction: row;
+  padding-vertical: 10;
 `;
 
 const Title = styled.Text`
