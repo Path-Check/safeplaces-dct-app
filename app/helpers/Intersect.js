@@ -260,7 +260,11 @@ export function checkIntersect() {
   );
 
   asyncCheckIntersect().then(result => {
-    console.log('[intersect] completed: ', result);
+    if (result === null) {
+      console.log('[intersect] skipped');
+    } else {
+      console.log('[intersect] completed: ', result);
+    }
   });
 }
 
@@ -273,7 +277,7 @@ export function checkIntersect() {
 async function asyncCheckIntersect() {
 
   // first things first ... is it time to actually try the intersection?
-  let last_checked_ms = await GetStoreData(LAST_CHECKED);
+  let last_checked_ms =Number(await GetStoreData(LAST_CHECKED));
   if (last_checked_ms + MIN_CHECK_INTERSECT_INTERVAL * 60 * 1000 > dayjs().valueOf()) return null;
 
   // Set up the empty set of dayBins for intersections, and the array for the news urls
