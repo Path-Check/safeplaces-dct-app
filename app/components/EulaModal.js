@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,13 +18,65 @@ const EULA_FILES = {
   ht: ht_html,
 };
 
+const webViewScrollDetection = `
+  // Returns a function, that, as long as it continues to be invoked, will not
+  // be triggered. The function will be called after it stops being called for
+  // N milliseconds. If 'immediate' is passed, trigger the function on the
+  // leading edge, instead of the trailing.
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
+
+  function scrollHandler() {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      window.ReactNativeWebView.postMessage('end');
+    } else {
+      window.ReactNativeWebView.postMessage('scroll');
+    }
+  }
+
+  setTimeout(() => {
+    window.addEventListener('scroll', debounce(scrollHandler, 150));
+  }, 300);
+  true;
+`;
+
 export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const [modalVisible, setModalVisibility] = useState(false);
   const [boxChecked, toggleCheckbox] = useState(false);
+  const [hasScrolledToEnd, setScrolledToEnd] = useState();
   const { t } = useTranslation();
+
+  // reset the scroll check if language changes
+  useEffect(() => {
+    setScrolledToEnd(false);
+  }, [selectedLocale]);
+
+  /**
+   * Set scrolled to end when end reached, and never untoggle it if scrolling
+   * back up
+   */
+  const handleWebViewMessage = event => {
+    if (!hasScrolledToEnd && event.nativeEvent.data === 'end') {
+      setScrolledToEnd(true);
+    }
+  };
 
   // Pull the EULA in the correct language, with en as fallback
   const html = EULA_FILES[selectedLocale] || en_html;
+
+  const canContinue = boxChecked && hasScrolledToEnd;
 
   return (
     <>
@@ -41,7 +93,13 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
               <TouchableOpacity onPress={() => setModalVisibility(false)}>
                 <Image source={closeIcon} style={styles.closeIcon} />
               </TouchableOpacity>
-              <WebView style={{ flex: 1 }} source={{ html }} />
+              <WebView
+                style={{ flex: 1 }}
+                source={{ html }}
+                onMessage={handleWebViewMessage}
+                javaScriptEnabled
+                injectedJavaScript={webViewScrollDetection}
+              />
             </View>
           </SafeAreaView>
           <Theme use='violet'>
@@ -57,10 +115,10 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                 </Typography>
                 <ButtonWrapper
                   title={t('onboarding.eula_continue')}
-                  buttonColor={boxChecked ? Colors.VIOLET : Colors.GRAY_BUTTON}
-                  bgColor={boxChecked ? Colors.WHITE : Colors.LIGHT_GRAY}
+                  buttonColor={canContinue ? Colors.VIOLET : Colors.GRAY_BUTTON}
+                  bgColor={canContinue ? Colors.WHITE : Colors.LIGHT_GRAY}
                   buttonWidth={'100%'}
-                  disabled={!boxChecked}
+                  disabled={!canContinue}
                   onPress={() => {
                     setModalVisibility(false);
                     continueFunction();
