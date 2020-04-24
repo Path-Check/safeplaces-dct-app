@@ -95,12 +95,30 @@
     "team": "Team",
     "team_para": "Our team is composed of a consortium of epidemiologists, engineers, data scientists, digital privacy evangelists, professors and researchers from reputable institutions, including: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young and Link Ventures.",
     "terms_of_use": "Terms of use",
-    "terms_of_use_url": "https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#"
+    "terms_of_use_url": "https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#",
+    "tested_positive_subtitle": "Your private data can be transferred to health authorities, backed up, or otherwise shared.",
+    "tested_positive_title": "Share location history",
+    "language_change_alert_title": "App need to restart in order to use this language",
+    "language_change_alert_proced": "Restart",
+    "language_change_alert_cancel": "Cancel"
   },
   "share": {
     "button_text": "Share location data",
     "paragraphs": "<0>If you test positive for COVID-19, please do your part by sharing your location history with local authorities.</0><1>Location is shared as a simple list of times and places, no additional information.</1>",
     "subtitle": "Your private data can be transferred to health authorities, backed up, or otherwise shared.",
     "title": "Share location history"
+  },
+  "onboarding": {
+    "eula_checkbox": "I accept the licensing agreement",
+    "eula_message": "*You must accept in order to use Safe Paths",
+    "eula_continue": "Continue"
+  },
+  "version_update": {
+    "push_notification_title": "Application is outdated",
+    "push_notification_message": "Please update your application",
+    "alert_label": "COVID Safe Paths is outdated",
+    "alert_sublabel": "Update to a new version?",
+    "update": "Update",
+    "later": "Later"
   }
 }

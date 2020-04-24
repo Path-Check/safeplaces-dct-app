@@ -128,9 +128,11 @@ export const SettingsScreen = ({ navigation }) => {
           />
         </Section>
 
-        <Section>
-          <GoogleMapsImport navigation={navigation} />
-        </Section>
+        {__DEV__ && (
+          <Section>
+            <GoogleMapsImport navigation={navigation} />
+          </Section>
+        )}
 
         <Section last>
           <Item

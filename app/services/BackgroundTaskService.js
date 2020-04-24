@@ -1,8 +1,7 @@
 import BackgroundFetch from 'react-native-background-fetch';
 
+import { INTERSECT_INTERVAL } from '../constants/history';
 import { checkIntersect } from '../helpers/Intersect';
-
-const INTERSECT_INTERVAL = 60 * 12; // 12 Hours, the value is received in minutes
 
 export function executeTask() {
   checkIntersect();
