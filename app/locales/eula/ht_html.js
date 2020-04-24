@@ -7,18 +7,14 @@ export default `
         content="width=device-width, initial-scale=1.0">
 
   <style>
-    ol {
-      counter-reset: item
-    }
+      html {
+        font-size: 12px;
+      }
 
-    li {
-      display: block
-    }
-
-    li:before {
-      content: counters(item, ".") " ";
-      counter-increment: item
-    }
+      ol, ul {
+        padding-left: 5px;
+        margin-left: 5px;
+      }
   </style>
 </head>
 

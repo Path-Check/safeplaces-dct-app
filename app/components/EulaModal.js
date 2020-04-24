@@ -39,7 +39,7 @@ const webViewScrollDetection = `
   };
 
   function scrollHandler() {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 30) {
       window.ReactNativeWebView.postMessage('end');
     } else {
       window.ReactNativeWebView.postMessage('scroll');
@@ -76,7 +76,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   // Pull the EULA in the correct language, with en as fallback
   const html = EULA_FILES[selectedLocale] || en_html;
 
-  const canContinue = boxChecked && hasScrolledToEnd;
+  const canContinue = boxChecked; // && hasScrolledToEnd;
 
   return (
     <>
@@ -89,7 +89,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
           <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 7, paddingHorizontal: 25, paddingBottom: 0 }}>
+            <View style={{ flex: 7, paddingHorizontal: 5, paddingBottom: 0 }}>
               <TouchableOpacity onPress={() => setModalVisibility(false)}>
                 <Image source={closeIcon} style={styles.closeIcon} />
               </TouchableOpacity>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WHITE,
   },
   ctaBox: {
-    padding: 25,
+    padding: 15,
     paddingTop: 0,
     backgroundColor: Colors.VIOLET_BUTTON,
   },
