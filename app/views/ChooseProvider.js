@@ -82,6 +82,9 @@ class ChooseProviderScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     // set the LAST_CHECKED time to 0, so the intersection will kick off
     SetStoreData(LAST_CHECKED, 0);
+
+    // Force update, this will download any changed Healthcare Authorities
+    checkIntersect();
   }
 
   fetchAuthoritiesList() {
@@ -139,10 +142,7 @@ class ChooseProviderScreen extends Component {
           SetStoreData(
             AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          ).then(() => {
-            // Force updates immediately.
-            checkIntersect();
-          });
+          );
         },
       );
     } else {
@@ -172,10 +172,7 @@ class ChooseProviderScreen extends Component {
           SetStoreData(
             AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          ).then(() => {
-            // Force updates immediately.
-            checkIntersect();
-          });
+          );
         },
       );
     }
@@ -208,10 +205,7 @@ class ChooseProviderScreen extends Component {
                 SetStoreData(
                   AUTHORITY_SOURCE_SETTINGS,
                   this.state.selectedAuthorities,
-                ).then(() => {
-                  // Force updates immediately.
-                  checkIntersect();
-                });
+                );
               },
             );
           },
