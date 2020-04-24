@@ -106,6 +106,7 @@ class AboutScreen extends Component {
             {this.state.tapCount > 3 && (
               <TouchableOpacity onPress={this.handleExitDebugModePress}>
                 <Typography
+                  // eslint-disable-next-line react-native/no-color-literals
                   style={{
                     color: Colors.RED_TEXT,
                     marginLeft: 12,

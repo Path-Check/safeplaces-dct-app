@@ -72,5 +72,11 @@ module.exports = {
         'react-native/no-raw-text': 0,
       },
     },
+    {
+      files: ['e2e/**/*.js'], // Or *.test.js
+      rules: {
+        'jest/expect-expect': 0, // these files do expectations inside page objects
+      },
+    },
   ],
 };
