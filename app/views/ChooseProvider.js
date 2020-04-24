@@ -51,7 +51,7 @@ class ChooseProviderScreen extends Component {
       urlText: '',
       authoritiesList: [],
       regexExpressionForURL: new RegExp(
-        '/^(http://www.|https://www.|http://|https://)?[-a-zA-Z0-9]+([-.]{1}[-a-zA-Z0-9]+)*.[-a-zA-Z0-9]{2,5}(:[0-9]{1,5})?(/.*)?$/gm',
+        /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[-a-zA-Z0-9]+([\-\.]{1}[-a-zA-Z0-9]+)*\.[-a-zA-Z0-9]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
       ),
     };
   }
@@ -183,9 +183,26 @@ class ChooseProviderScreen extends Component {
     );
   }
 
+  entryExceededCharacterLimitPopUp() {
+    Alert.alert(
+      languages.t('label.entry_exceeded_character_limit'),
+      languages.t('label.please_try_again_message'),
+      [
+        {
+          text: languages.t('label.proceed_message'),
+          onPress: () => console.log('Error message noted by user'),
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false },
+    );
+  }
+
   updateUrlText(text) {
+    text = text.trim();
     if (text.length >= this.state.textLimit) {
       text = text.substring(0, this.state.textLimit);
+      this.entryExceededCharacterLimitPopUp();
       console.log(
         'URL must be ' +
           this.state.textLimit +
