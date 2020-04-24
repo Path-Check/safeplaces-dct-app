@@ -37,6 +37,5 @@ export default class BackgroundTaskServices {
 
   static stop() {
     BackgroundFetch.stop();
-    BSCount--;
   }
 }
