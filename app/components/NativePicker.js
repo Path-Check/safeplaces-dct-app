@@ -3,11 +3,11 @@ import {
   Modal,
   Picker,
   Platform,
-  Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
+import { Typography } from '../components/Typography';
 import languages from '../locales/languages';
 
 /**
@@ -95,7 +95,7 @@ export default class NativePicker extends Component {
                 onPress={() => this.setState({ modalVisible: false })}>
                 <View>
                   <View>
-                    <Text
+                    <Typography
                       style={{
                         color: '#007aff',
                         fontWeight: 'bold',
@@ -105,7 +105,7 @@ export default class NativePicker extends Component {
                       }}
                       onPress={() => this.setState({ modalVisible: false })}>
                       {languages.t('Done')}
-                    </Text>
+                    </Typography>
                   </View>
                   <View
                     onStartShouldSetResponder={() => true}

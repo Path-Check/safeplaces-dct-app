@@ -2,10 +2,13 @@ import './all-dayjs-locales';
 
 import dayjs from 'dayjs';
 import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { NativeModules, Platform } from 'react-native';
 
 import { LANG_OVERRIDE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import ar from './ar.json';
 import en from './en.json';
 import es from './es.json';
 import fr from './fr.json';
@@ -56,15 +59,36 @@ async function setLocale(locale) {
   return await i18next.changeLanguage(locale);
 }
 
+export function useLanguageDirection() {
+  const { i18n } = useTranslation();
+  return i18n.dir();
+}
+
 export async function setUserLocaleOverride(locale) {
   await setLocale(locale);
-  if (locale === supportedDeviceLanguageOrEnglish()) {
-    locale = undefined;
-  }
   await SetStoreData(LANG_OVERRIDE, locale);
 }
 
-i18next.init({
+/** Languages only available in dev builds. */
+const DEV_LANGUAGES = __DEV__
+  ? {
+      ar: { label: 'العربية', translation: ar },
+      es: { label: 'Español', translation: es },
+      fr: { label: 'Français', translation: fr },
+      id: { label: 'Indonesia', translation: id },
+      it: { label: 'Italiano', translation: it },
+      ml: { label: 'മലയാളം', translation: ml },
+      nl: { label: 'Nederlands', translation: nl },
+      pl: { label: 'Polski', translation: pl },
+      ro: { label: 'Română', translation: ro },
+      ru: { label: 'Русский', translation: ru },
+      sk: { label: 'Slovak', translation: sk },
+      vi: { label: 'Vietnamese', translation: vi },
+      zh_Hant: { label: '繁體中文', translation: zh_Hant },
+    }
+  : {};
+
+i18next.use(initReactI18next).init({
   interpolation: {
     // React already does escaping
     escapeValue: false,
@@ -74,29 +98,18 @@ i18next.init({
   returnEmptyString: false,
   resources: {
     en: { label: 'English', translation: en },
-    es: { label: 'Español', translation: es },
-    fr: { label: 'Français', translation: fr },
     ht: { label: 'Kreyòl ayisyen', translation: ht },
-    id: { label: 'Indonesia', translation: id },
-    it: { label: 'Italiano', translation: it },
-    ml: { label: 'മലയാളം', translation: ml },
-    nl: { label: 'Nederlands', translation: nl },
-    pl: { label: 'Polski', translation: pl },
-    ro: { label: 'Română', translation: ro },
-    ru: { label: 'Русский', translation: ru },
-    sk: { label: 'Slovak', translation: sk },
-    vi: { label: 'Vietnamese', translation: vi },
-    zh_Hant: { label: '繁體中文', translation: zh_Hant },
+    ...DEV_LANGUAGES,
   },
 });
 
 /** The known locale list */
-export const LOCALE_LIST = Object.entries(i18next.options.resources).map(
-  ([langCode, lang]) => ({
+export const LOCALE_LIST = Object.entries(i18next.options.resources)
+  .map(([langCode, lang]) => ({
     value: langCode,
     label: lang.label,
-  }),
-);
+  }))
+  .sort((a, b) => a.value > b.value);
 
 /** A map of locale code to name. */
 export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(

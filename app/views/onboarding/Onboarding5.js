@@ -4,7 +4,6 @@ import {
   ImageBackground,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import {
@@ -18,16 +17,17 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
-import { isPlatformiOS } from './../../Util';
 import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
 import ButtonWrapper from '../../components/ButtonWrapper';
+import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { PARTICIPATE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
+import { isPlatformiOS } from '../../Util';
 
 const width = Dimensions.get('window').width;
 
@@ -37,7 +37,7 @@ const PermissionStatusEnum = {
   DENIED: 2,
 };
 
-const PermissionDescription = ({ title, status, ...props }) => {
+const PermissionDescription = ({ title, status }) => {
   let icon;
   switch (status) {
     case PermissionStatusEnum.UNKNOWN:
@@ -52,7 +52,7 @@ const PermissionDescription = ({ title, status, ...props }) => {
   }
   return (
     <View style={styles.permissionContainer}>
-      <Text style={styles.permissionTitle}>{title}</Text>
+      <Typography style={styles.permissionTitle}>{title}</Typography>
       <SvgXml style={styles.permissionIcon} xml={icon} width={30} height={30} />
     </View>
   );
@@ -192,9 +192,20 @@ class Onboarding extends Component {
 
   getTitleTextView() {
     if (!this.isLocationChecked() || !this.isNotificationChecked()) {
-      return <Text style={styles.headerText}>{this.getTitleText()}</Text>;
+      return (
+        <Typography
+          style={styles.headerText}
+          use={Type.Headline2}
+          testID='Header'>
+          {this.getTitleText()}
+        </Typography>
+      );
     } else {
-      return <Text style={styles.bigHeaderText}>{this.getTitleText()}</Text>;
+      return (
+        <Typography style={styles.bigHeaderText} use={Type.Headline1}>
+          {this.getTitleText()}
+        </Typography>
+      );
     }
   }
 
@@ -211,12 +222,12 @@ class Onboarding extends Component {
   getLocationPermission() {
     return (
       <>
-        <View style={styles.divider}></View>
+        <View style={styles.divider} />
         <PermissionDescription
           title={languages.t('label.launch_location_access')}
           status={this.state.locationPermission}
         />
-        <View style={styles.divider}></View>
+        <View style={styles.divider} />
       </>
     );
   }
@@ -229,7 +240,7 @@ class Onboarding extends Component {
             title={languages.t('label.launch_notification_access')}
             status={this.state.notificationPermission}
           />
-          <View style={styles.divider}></View>
+          <View style={styles.divider} />
         </>
       );
     }
@@ -252,17 +263,19 @@ class Onboarding extends Component {
         <StatusBar
           barStyle='light-content'
           backgroundColor='transparent'
-          translucent={true}
+          translucent
         />
 
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             {this.getTitleTextView()}
-            <Text style={styles.subheaderText}>{this.getSubtitleText()}</Text>
+            <Typography style={styles.subheaderText}>
+              {this.getSubtitleText()}
+            </Typography>
             <View style={styles.statusContainer}>
               {this.getLocationPermission()}
               {this.getNotificationsPermissionIfIOS()}
-              <View style={styles.spacer}></View>
+              <View style={styles.spacer} />
             </View>
           </View>
           <View style={styles.footerContainer}>
@@ -297,17 +310,13 @@ const styles = StyleSheet.create({
   },
   bigHeaderText: {
     color: Colors.WHITE,
-    fontSize: 52,
     lineHeight: 48.5,
     paddingTop: 52 - 48.5, // lineHeight hack
     width: width * 0.7,
-    fontFamily: fontFamily.primaryMedium,
   },
   headerText: {
     color: Colors.WHITE,
-    fontSize: 26,
     width: width * 0.8,
-    fontFamily: fontFamily.primaryMedium,
   },
   subheaderText: {
     marginTop: '3%',

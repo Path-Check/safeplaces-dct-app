@@ -4,7 +4,6 @@ import {
   ImageBackground,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -17,8 +16,9 @@ import languages, {
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from './../../locales/languages';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import { EulaModal } from '../../components/EulaModal';
 import NativePicker from '../../components/NativePicker';
+import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 
@@ -34,8 +34,10 @@ class Onboarding extends Component {
   }
 
   componentDidMount() {
-    getUserLocaleOverride(locale => {
-      this.setState({ locale });
+    getUserLocaleOverride().then(locale => {
+      if (locale) {
+        this.setState({ locale });
+      }
     });
   }
 
@@ -77,24 +79,24 @@ class Onboarding extends Component {
                   <TouchableOpacity
                     onPress={openPicker}
                     style={styles.languageSelector}>
-                    <Text style={styles.languageSelectorText}>{label}</Text>
+                    <Typography style={styles.languageSelectorText}>
+                      {label}
+                    </Typography>
                   </TouchableOpacity>
                 )}
               </NativePicker>
             </View>
             <View style={styles.contentContainer}>
-              <Text style={styles.mainText}>
+              <Typography style={styles.mainText}>
                 {languages.t('label.launch_screen1_header')}
-              </Text>
+              </Typography>
             </View>
             <View style={styles.footerContainer}>
-              <ButtonWrapper
-                title={languages.t('label.launch_get_started')}
-                onPress={() => {
-                  this.props.navigation.replace('Onboarding2');
-                }}
-                buttonColor={Colors.VIOLET}
-                bgColor={Colors.WHITE}
+              <EulaModal
+                continueFunction={() =>
+                  this.props.navigation.replace('Onboarding2')
+                }
+                selectedLocale={this.state.locale}
               />
             </View>
           </View>

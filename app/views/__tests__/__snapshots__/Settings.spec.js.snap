@@ -153,6 +153,7 @@ exports[`renders correctly 1`] = `
                     "fontSize": 18,
                     "fontWeight": "normal",
                     "lineHeight": 24,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body1"
@@ -215,6 +216,7 @@ exports[`renders correctly 1`] = `
                     "fontSize": 18,
                     "fontWeight": "normal",
                     "lineHeight": 24,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body1"
@@ -265,12 +267,17 @@ exports[`renders correctly 1`] = `
                     style={
                       Object {
                         "color": "#007aff",
+                        "fontFamily": "IBMPlexSans",
+                        "fontSize": 18,
                         "fontWeight": "bold",
+                        "lineHeight": 24,
                         "marginRight": 22,
                         "marginTop": 16,
                         "textAlign": "right",
+                        "writingDirection": "ltr",
                       }
                     }
+                    use="body1"
                   >
                     Done
                   </Text>
@@ -378,6 +385,7 @@ exports[`renders correctly 1`] = `
                     "fontSize": 18,
                     "fontWeight": "normal",
                     "lineHeight": 24,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body1"
@@ -393,6 +401,7 @@ exports[`renders correctly 1`] = `
                     "fontWeight": "normal",
                     "lineHeight": 24,
                     "marginTop": 4,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body3"
@@ -442,6 +451,7 @@ exports[`renders correctly 1`] = `
                     "fontSize": 18,
                     "fontWeight": "normal",
                     "lineHeight": 24,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body1"
@@ -457,6 +467,7 @@ exports[`renders correctly 1`] = `
                     "fontWeight": "normal",
                     "lineHeight": 24,
                     "marginTop": 4,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body3"
@@ -506,6 +517,7 @@ exports[`renders correctly 1`] = `
                     "fontSize": 18,
                     "fontWeight": "normal",
                     "lineHeight": 24,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body1"
@@ -521,6 +533,7 @@ exports[`renders correctly 1`] = `
                     "fontWeight": "normal",
                     "lineHeight": 24,
                     "marginTop": 4,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body3"
@@ -570,6 +583,7 @@ exports[`renders correctly 1`] = `
                     "fontSize": 18,
                     "fontWeight": "normal",
                     "lineHeight": 24,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body1"
@@ -585,6 +599,7 @@ exports[`renders correctly 1`] = `
                     "fontWeight": "normal",
                     "lineHeight": 24,
                     "marginTop": 4,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body3"
@@ -660,6 +675,7 @@ exports[`renders correctly 1`] = `
                   "fontWeight": "normal",
                   "lineHeight": 24,
                   "marginLeft": 8,
+                  "writingDirection": "ltr",
                 }
               }
               use="body1"
@@ -684,6 +700,7 @@ exports[`renders correctly 1`] = `
                   "fontSize": 16,
                   "fontWeight": "normal",
                   "lineHeight": 22,
+                  "writingDirection": "ltr",
                 }
               }
               use="body2"
@@ -763,20 +780,18 @@ exports[`renders correctly 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Object {
-                        "color": "#ffffff",
-                        "fontFamily": "IBMPlexSans-SemiBold",
-                        "fontSize": 16,
-                        "letterSpacing": 0,
-                        "lineHeight": 19,
-                        "textAlign": "center",
-                      },
-                      Object {
-                        "color": "#4051DB",
-                      },
-                    ]
+                    Object {
+                      "color": "#4051DB",
+                      "fontFamily": "IBMPlexSans-SemiBold",
+                      "fontSize": 16,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0,
+                      "lineHeight": 19,
+                      "textAlign": "center",
+                      "writingDirection": "ltr",
+                    }
                   }
+                  use="body1"
                 >
                   Import past locations
                 </Text>
@@ -802,6 +817,7 @@ exports[`renders correctly 1`] = `
                   "fontSize": 15,
                   "fontWeight": "normal",
                   "lineHeight": 24,
+                  "writingDirection": "ltr",
                 }
               }
               use="body3"
@@ -880,6 +896,7 @@ exports[`renders correctly 1`] = `
                     "fontSize": 18,
                     "fontWeight": "normal",
                     "lineHeight": 24,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body1"
@@ -929,6 +946,7 @@ exports[`renders correctly 1`] = `
                     "fontSize": 18,
                     "fontWeight": "normal",
                     "lineHeight": 24,
+                    "writingDirection": "ltr",
                   }
                 }
                 use="body1"

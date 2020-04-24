@@ -1,8 +1,11 @@
 {
   "name": "covidsafepaths",
-  "version": "0.9.4",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "yarn && react-native start",
+    "run-android": "react-native run-android",
+    "run-ios": "react-native run-ios",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
     "postinstall": "patch-package; npx react-native-jetifier",
@@ -17,6 +20,7 @@
     "test:e2e:iphone8": "detox test -c iphone8.sim --loglevel=warn",
     "i18n:extract": "i18next",
     "test": "jest test",
+    "update-snapshots": "jest --updateSnapshot",
     "test:dev_setup": "bats __tests__/dev_setup.test.bats"
   },
   "lint-staged": {
@@ -57,6 +61,7 @@
     "postinstall-postinstall": "^2.0.0",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
+    "react-i18next": "^11.3.5",
     "react-native": "0.61.5",
     "react-native-app-intro-slider": "^3.0.0",
     "react-native-background-fetch": "^3.0.4",
@@ -90,8 +95,8 @@
     "@babel/runtime": "^7.8.4",
     "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
-    "@types/jest": "^25.2.1",
     "@testing-library/react-native": "^5.0.3",
+    "@types/jest": "^25.2.1",
     "babel-jest": "^25.1.0",
     "bats": "^1.1.0",
     "detox": "^16.1.1",

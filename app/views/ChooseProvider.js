@@ -6,10 +6,7 @@ import {
   Dimensions,
   FlatList,
   Image,
-  SafeAreaView,
   StyleSheet,
-  Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -26,12 +23,14 @@ import RNFetchBlob from 'rn-fetch-blob';
 import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
+import { DynamicTextInput } from '../components/DynamicTextInput';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
+import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -81,6 +80,11 @@ class ChooseProviderScreen extends Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    // set the LAST_CHECKED time to 0, so the intersection will kick off
+    SetStoreData(LAST_CHECKED, 0);
+
+    // Force update, this will download any changed Healthcare Authorities
+    checkIntersect();
   }
 
   fetchAuthoritiesList() {
@@ -138,10 +142,7 @@ class ChooseProviderScreen extends Component {
           SetStoreData(
             AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          ).then(() => {
-            // Force updates immediately.
-            checkIntersect();
-          });
+          );
         },
       );
     } else {
@@ -171,10 +172,7 @@ class ChooseProviderScreen extends Component {
           SetStoreData(
             AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          ).then(() => {
-            // Force updates immediately.
-            checkIntersect();
-          });
+          );
         },
       );
     }
@@ -207,10 +205,7 @@ class ChooseProviderScreen extends Component {
                 SetStoreData(
                   AUTHORITY_SOURCE_SETTINGS,
                   this.state.selectedAuthorities,
-                ).then(() => {
-                  // Force updates immediately.
-                  checkIntersect();
-                });
+                );
               },
             );
           },
@@ -226,18 +221,18 @@ class ChooseProviderScreen extends Component {
         title={languages.t('label.choose_provider_title')}
         onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
-          <Text style={styles.headerTitle}>
+          <Typography style={styles.headerTitle}>
             {languages.t('label.authorities_title')}
-          </Text>
-          <Text style={styles.sectionDescription}>
+          </Typography>
+          <Typography style={styles.sectionDescription}>
             {languages.t('label.authorities_desc')}
-          </Text>
+          </Typography>
         </View>
 
         <View style={styles.listContainer}>
           {Object.keys(this.state.selectedAuthorities).length == 0 ? (
             <>
-              <Text
+              <Typography
                 style={
                   (styles.sectionDescription,
                   {
@@ -248,13 +243,13 @@ class ChooseProviderScreen extends Component {
                   })
                 }>
                 {languages.t('label.authorities_no_sources')}
-              </Text>
+              </Typography>
               <View
                 style={[
                   styles.flatlistRowView,
                   { display: this.state.displayUrlEntry },
                 ]}>
-                <TextInput
+                <DynamicTextInput
                   onChangeText={text => {
                     this.setState({
                       urlText: text,
@@ -283,7 +278,7 @@ class ChooseProviderScreen extends Component {
                   styles.flatlistRowView,
                   { display: this.state.displayUrlEntry },
                 ]}>
-                <TextInput
+                <DynamicTextInput
                   onChangeText={text => {
                     this.setState({
                       urlText: text,
@@ -306,7 +301,7 @@ class ChooseProviderScreen extends Component {
                 data={this.state.selectedAuthorities}
                 renderItem={({ item }) => (
                   <View style={styles.flatlistRowView}>
-                    <Text style={styles.item}>{item.key}</Text>
+                    <Typography style={styles.item}>{item.key}</Typography>
                     <TouchableOpacity
                       onPress={() => this.removeAuthorityFromState(item)}>
                       <Image source={closeIcon} style={styles.closeIcon} />
@@ -329,9 +324,9 @@ class ChooseProviderScreen extends Component {
                 this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
               }
               disabled={this.state.urlEditInProgress}>
-              <Text style={styles.startLoggingButtonText}>
+              <Typography style={styles.startLoggingButtonText}>
                 {languages.t('label.authorities_add_button_label')}
-              </Text>
+              </Typography>
             </TouchableOpacity>
           </MenuTrigger>
           <MenuOptions>
@@ -348,7 +343,9 @@ class ChooseProviderScreen extends Component {
                         this.addAuthorityToState(name);
                       }}
                       disabled={this.state.authoritiesList.length === 1}>
-                      <Text style={styles.menuOptionText}>{name}</Text>
+                      <Typography style={styles.menuOptionText}>
+                        {name}
+                      </Typography>
                     </MenuOption>
                   );
                 })}
@@ -359,9 +356,9 @@ class ChooseProviderScreen extends Component {
                   urlEntryInProgress: true,
                 });
               }}>
-              <Text style={styles.menuOptionText}>
+              <Typography style={styles.menuOptionText}>
                 {languages.t('label.authorities_add_url')}
-              </Text>
+              </Typography>
             </MenuOption>
           </MenuOptions>
         </Menu>
@@ -396,7 +393,6 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '96%',
     alignSelf: 'center',
-    backgroundColor: colors.WHITE,
   },
   row: {
     flex: 1,
