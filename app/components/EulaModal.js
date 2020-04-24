@@ -1,29 +1,21 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Image,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import WebView from 'react-native-webview';
 
 import closeIcon from '../assets/images/closeIcon.png';
-import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
+import en_html from '../locales/eula/en_html';
+import ht_html from '../locales/eula/ht_html';
 import ButtonWrapper from './ButtonWrapper';
 import { Checkbox } from './Checkbox';
 import { Typography } from './Typography';
 
-const eula_en = <Text>English</Text>;
-
-const EULA_LANGUAGES = {
-  en: eula_en,
-  ht: <Text>Haitian</Text>,
+const EULA_FILES = {
+  en: en_html,
+  ht: ht_html,
 };
 
 export const EulaModal = ({ selectedLocale, continueFunction }) => {
@@ -32,7 +24,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const { t } = useTranslation();
 
   // Pull the EULA in the correct language, with en as fallback
-  const eulaText = EULA_LANGUAGES[selectedLocale] || eula_en;
+  const html = EULA_FILES[selectedLocale] || en_html;
 
   return (
     <>
@@ -49,7 +41,14 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
               <TouchableOpacity onPress={() => setModalVisibility(false)}>
                 <Image source={closeIcon} style={styles.closeIcon} />
               </TouchableOpacity>
-              <ScrollView>{eulaText}</ScrollView>
+              <WebView
+                style={{ flex: 1 }}
+                source={{ html }}
+                originWhitelist={['*']}
+                allowFileAccess
+                domStorageEnabled
+                javaScriptEnabled
+              />
             </View>
           </SafeAreaView>
           <Theme use='violet'>
@@ -89,8 +88,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
+    color: Colors.PRIMARY_TEXT,
+    backgroundColor: Colors.WHITE,
   },
   ctaBox: {
     padding: 25,
