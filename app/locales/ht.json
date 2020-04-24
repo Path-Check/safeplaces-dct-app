@@ -28,7 +28,8 @@
     "default_news_site_name": "Nouvèl sou Chase Kowona (\"Safe Paths\")",
     "event_history_subtitle": "Konprann ekspozisyon pèsonèl ou daprè enfòmasyon Otorite a pataje.",
     "event_history_title": "Lis ekspozisyon",
-    "export_para": "{\"one\": \"Si ou teste pozitif pou Kowonaviris, tanpri fè pati pa ou a nan pataje lis lokalizasyon ou ak otorite lokal yo.\", \"other\": \"Lokalizasyon ou yo ap pataje sou fòm yon senp lis lè ak zòn, pap gen okenn enfòmasyon anplis ki prale. \"",
+    "export_para_1": "Si ou teste pozitif pou Kowonaviris, tanpri fè pati pa ou a nan pataje lis lokalizasyon ou ak otorite lokal yo.",
+    "export_para_2": "Lokalizasyon ou yo ap pataje sou fòm yon senp lis lè ak zòn, pap gen okenn enfòmasyon anplis ki prale.",
     "home_at_risk_header": "Ou ka gen risk",
     "home_at_risk_subsubtext": "Sa pa vle di ou enfekte.",
     "home_at_risk_subtext": "Daprè done disponib yo, ou te kwaze chemen ak yon moun ki te teste pozitif pou Kowonaviris.",
@@ -109,8 +110,12 @@
     "team": "Ekip",
     "team_para": "Ekip nou an konpoze de yon group ki genyen ladanl epidemyolojis, enjenyè, syantis done, evanjeliS vi prive dijital, pwofesè ak chèchè nan anpil gran enstitisyon nan mond lan, tankou: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young ak Link Ventures.",
     "terms_of_use": "Règleman itilizasyon",
-    "terms_of_use_url": "https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#",
     "tested_positive_subtitle": "Done prive ou kapab transfere a Otorite a, konsève, oubyen pataje.",
     "tested_positive_title": "Pataje lis lokalizasyon"
+  },
+  "onboarding": {
+    "eula_checkbox": "Mwen aksepte akò lisans la",
+    "eula_message": "*Ou dwe aksepte pou itilize Safe Paths 'Chase Kowona",
+    "eula_continue": "Kontinye"
   }
 }
