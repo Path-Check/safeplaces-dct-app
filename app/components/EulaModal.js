@@ -58,10 +58,15 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const [hasScrolledToEnd, setScrolledToEnd] = useState();
   const { t } = useTranslation();
 
+  // reset the scroll check if language changes
   useEffect(() => {
     setScrolledToEnd(false);
   }, [selectedLocale]);
 
+  /**
+   * Set scrolled to end when end reached, and never untoggle it if scrolling
+   * back up
+   */
   const handleWebViewMessage = event => {
     if (!hasScrolledToEnd && event.nativeEvent.data === 'end') {
       setScrolledToEnd(true);
