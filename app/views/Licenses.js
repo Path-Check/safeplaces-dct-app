@@ -45,13 +45,13 @@ class LicensesScreen extends Component {
   }
 
   getLicenses() {
-    var result = '<html>';
+    let result = '<html>';
     result +=
       '<style>  html, body { font-size: 40px; margin: 0; padding: 0; } </style>';
     result += '<body>';
 
-    for (var i = 0; i < licenses.terms_and_licenses.length; i++) {
-      var element = licenses.terms_and_licenses[i];
+    for (let i = 0; i < licenses.terms_and_licenses.length; i++) {
+      let element = licenses.terms_and_licenses[i];
 
       result += '<H2>' + element.name + '</H2><P>';
       result += element.text.replace(/\n/g, '<br/>');
@@ -110,29 +110,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.INTRO_WHITE_BG,
     paddingHorizontal: 26,
     flex: 1,
-  },
-  row: {
-    flexDirection: 'row',
-    color: Colors.PRIMARY_TEXT,
-    alignItems: 'flex-start',
-  },
-  valueName: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 20,
-    fontFamily: fontFamily.primaryMedium,
-    marginTop: 9,
-  },
-  value: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 20,
-    fontFamily: fontFamily.primaryMedium,
-    marginTop: 9,
-  },
-  valueSmall: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 16,
-    fontFamily: fontFamily.primaryMedium,
-    marginTop: 9,
   },
   termsInfoRow: {
     flexDirection: 'row',

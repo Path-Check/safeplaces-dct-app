@@ -65,4 +65,12 @@ module.exports = {
     'react/react-in-jsx-scope': 2, // Prevent missing React when using JSX
     'react/self-closing-comp': 2, // Prevent extra closing tags for components without children
   },
+  overrides: [
+    {
+      files: ['*.spec.js'], // Or *.test.js
+      rules: {
+        'react-native/no-raw-text': 0,
+      },
+    },
+  ],
 };
