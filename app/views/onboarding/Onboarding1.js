@@ -18,9 +18,9 @@ import languages, {
 } from './../../locales/languages';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import NativePicker from '../../components/NativePicker';
+import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import { Typography } from '../../components/Typography';
 
 const width = Dimensions.get('window').width;
 
@@ -77,7 +77,9 @@ class Onboarding extends Component {
                   <TouchableOpacity
                     onPress={openPicker}
                     style={styles.languageSelector}>
-                    <Typography style={styles.languageSelectorText}>{label}</Typography>
+                    <Typography style={styles.languageSelectorText}>
+                      {label}
+                    </Typography>
                   </TouchableOpacity>
                 )}
               </NativePicker>

@@ -3,6 +3,7 @@ import Onboarding1 from './pages/Onboarding1.po.js';
 import Onboarding2 from './pages/Onboarding2.po.js';
 import Onboarding3 from './pages/Onboarding3.po.js';
 import Onboarding4 from './pages/Onboarding4.po.js';
+import Onboarding5 from './pages/Onboarding5.po.js';
 
 describe('Onboarding visual appearance', () => {
   it('Navigates through the onboarding without visual regression', async () => {
@@ -25,6 +26,10 @@ describe('Onboarding visual appearance', () => {
     await Onboarding4.isOnScreen();
     await Onboarding4.takeScreenshot();
     await Onboarding4.tapButton();
+
+    await Onboarding5.isOnScreen();
+    await Onboarding5.takeScreenshot();
+    await Onboarding5.tapButton();
 
     await EnableLocation.takeScreenshot();
     await EnableLocation.tapButton();
