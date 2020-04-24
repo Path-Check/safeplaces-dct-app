@@ -1,8 +1,10 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'PrivateKit' do
-  # Pods for PrivateKit
+target 'COVIDSafePaths' do
+  # Pods for COVIDSafePaths
+  project 'COVIDSafePaths.xcodeproj'
+
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -22,6 +24,12 @@ target 'PrivateKit' do
   pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
   pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
 
+
+  permissions_path = '../node_modules/react-native-permissions/ios'
+
+  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
+  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
+
   pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
   pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
   pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
@@ -34,9 +42,10 @@ target 'PrivateKit' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
-  target 'PrivateKitTests' do
+
+  target 'COVIDSafePathsTests' do
     inherit! :search_paths
     # Pods for testing
   end

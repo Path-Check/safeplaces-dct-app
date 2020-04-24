@@ -1,38 +1,164 @@
 {
-  "name": "privatekit",
-  "version": "0.0.3",
+  "name": "covidsafepaths",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint ."
+    "start": "yarn && react-native start",
+    "run-android": "react-native run-android",
+    "run-ios": "react-native run-ios",
+    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
+    "install:pod": "cd ios && bundle install && bundle exec pod install",
+    "postinstall": "patch-package; npx react-native-jetifier",
+    "postversion": "react-native-version",
+    "format:all": "prettier --write ./app/**/*.js",
+    "detox-setup": "detox clean-framework-cache && detox build-framework-cache",
+    "build:e2e:android": "detox build -c android.emu.release",
+    "test:e2e:android": "detox test -c android.emu.release",
+    "build:e2e:ios": "detox build -c iphone11.sim",
+    "test:e2e:iphone11": "detox test -c iphone11.sim --loglevel=warn",
+    "test:e2e:iphone-se": "detox test -c iphone-se.sim --loglevel=warn",
+    "test:e2e:iphone8": "detox test -c iphone8.sim --loglevel=warn",
+    "i18n:extract": "i18next",
+    "test": "jest test",
+    "update-snapshots": "jest --updateSnapshot",
+    "test:dev_setup": "bats __tests__/dev_setup.test.bats"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "lint-diff HEAD",
+      "git add --force"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "rnpm": {
+    "assets": [
+      "app/assets/fonts"
+    ]
   },
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/native": "^10.0.27",
     "@mauron85/react-native-background-geolocation": "^0.6.3",
+    "@react-native-community/async-storage": "^1.8.1",
+    "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "0.1.5",
+    "@react-native-community/push-notification-ios": "^1.1.0",
+    "@react-native-community/viewpager": "^3.3.0",
     "@react-navigation/native": "5.0.9",
     "@react-navigation/stack": "5.1.1",
-    "lodash": "4.17.15",
+    "@testing-library/react-native": "^5.0.3",
+    "dayjs": "^1.8.24",
+    "emotion-theming": "^10.0.27",
+    "i18next": "^19.3.3",
+    "js-yaml": "^3.13.1",
+    "patch-package": "^6.2.2",
+    "pluralize": "^8.0.0",
+    "postinstall-postinstall": "^2.0.0",
+    "prop-types": "^15.7.2",
     "react": "16.9.0",
+    "react-i18next": "^11.3.5",
     "react-native": "0.61.5",
-    "react-native-gesture-handler": "~1.5.0",
+    "react-native-app-intro-slider": "^3.0.0",
+    "react-native-background-fetch": "^3.0.4",
+    "react-native-background-timer": "^2.2.0",
+    "react-native-ble-advertiser": "0.0.10",
+    "react-native-document-picker": "github:rparet/react-native-document-picker",
+    "react-native-fs": "^2.16.6",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-maps": "0.27.1",
+    "react-native-permissions": "^2.0.10",
+    "react-native-popup-menu": "^0.15.7",
+    "react-native-pulse": "^1.0.7",
+    "react-native-push-notification": "^3.1.9",
+    "react-native-reanimated": "^1.7.1",
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
-    "react-native-webview": "^8.1.2"
+    "react-native-share": "^3.1.0",
+    "react-native-snap-carousel": "^3.8.1",
+    "react-native-splash-screen": "^3.2.0",
+    "react-native-svg": "^12.0.3",
+    "react-native-uuid-generator": "^6.1.1",
+    "react-native-webview": "^8.1.2",
+    "react-native-zip-archive": "^5.0.1",
+    "reanimated-bottom-sheet": "^1.0.0-alpha.19",
+    "rn-fetch-blob": "^0.12.0",
+    "victory-native": "^34.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "@babel/runtime": "^7.8.4",
+    "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
+    "@testing-library/react-native": "^5.0.3",
+    "@types/jest": "^25.2.1",
     "babel-jest": "^25.1.0",
+    "bats": "^1.1.0",
+    "detox": "^16.1.1",
     "eslint": "^6.8.0",
+    "eslint-plugin-detox": "^1.0.0",
+    "eslint-plugin-jest": "^23.8.2",
+    "husky": "^4.2.3",
+    "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
+    "import-sort-config": "^6.0.0",
+    "import-sort-style-module": "^6.0.0",
     "jest": "^25.1.0",
+    "lint-diff": "^1.2.1",
+    "lint-staged": "^10.0.9",
     "metro-react-native-babel-preset": "^0.58.0",
+    "mockdate": "^2.0.5",
+    "prettier": "1.19.1",
+    "prettier-plugin-import-sort": "0.0.3",
+    "react-native-svg-transformer": "^0.14.3",
+    "react-native-version": "^4.0.0",
     "react-test-renderer": "16.9.0"
   },
+  "importSort": {
+    ".js, .jsx, .es6, .es, .mjs, .ts, .tsx": {
+      "style": "module"
+    }
+  },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": [
+      "./jestSetupFile.js"
+    ]
+  },
+  "detox": {
+    "artifacts": {
+      "rootDir": "./e2e/artifacts/"
+    },
+    "configurations": {
+      "iphone11.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 11"
+        }
+      },
+      "iphone8.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 8"
+        }
+      },
+      "iphone-se.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone SE"
+        }
+      }
+    },
+    "test-runner": "jest"
   }
 }

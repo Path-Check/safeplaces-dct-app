@@ -1,0 +1,31 @@
+name: i18n
+
+on:
+  # upload strings merged into develop
+  push:
+    branches: [develop]
+    paths:
+      - app/locales/en.json
+      - ios/en.lproj/*.strings
+      - android/app/src/main/res/values/strings.xml
+  # for testing
+  # pull_request:
+  #   branches: [develop]
+  #   paths:
+  #     - app/locales/en.json
+  #     - ios/en.lproj/*.strings
+  #     - android/app/src/main/res/values/strings.xml
+
+jobs:
+  lokalise-upload:
+    runs-on: ubuntu-latest
+    env:
+      UPLOAD_FLAGS: --lang-iso=en --cleanup-mode --replace-modified --include-path --detect-icu-plurals --apply-tm --convert-placeholders --project-id=${{ secrets.LOKALISE_PROJECT_ID }} --token=${{ secrets.LOKALISE_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
+
+      - name: upload English files
+        run: ./bin/lokalise2 file upload --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml $UPLOAD_FLAGS
