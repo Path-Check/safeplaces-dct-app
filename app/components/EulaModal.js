@@ -39,7 +39,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
           <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 7, padding: 25, paddingBottom: 0 }}>
+            <View style={{ flex: 7, paddingHorizontal: 25, paddingBottom: 0 }}>
               <TouchableOpacity onPress={() => setModalVisibility(false)}>
                 <Image source={closeIcon} style={styles.closeIcon} />
               </TouchableOpacity>
