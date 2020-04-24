@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import Markdown from 'react-native-markdown-display';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import closeIcon from '../assets/images/closeIcon.png';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
-import { eula_en } from '../locales/eula/eula_en';
-import { eula_ht } from '../locales/eula/eula_ht';
 import ButtonWrapper from './ButtonWrapper';
 import { Checkbox } from './Checkbox';
 import { Typography } from './Typography';
 
+const eula_en = <Text>English</Text>;
+
 const EULA_LANGUAGES = {
   en: eula_en,
-  ht: eula_ht,
+  ht: <Text>Haitian</Text>,
 };
 
 export const EulaModal = ({ selectedLocale, continueFunction }) => {
@@ -43,11 +49,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
               <TouchableOpacity onPress={() => setModalVisibility(false)}>
                 <Image source={closeIcon} style={styles.closeIcon} />
               </TouchableOpacity>
-              <ScrollView>
-                <Markdown style={{ body: { color: Colors.DARK_GRAY } }}>
-                  {eulaText}
-                </Markdown>
-              </ScrollView>
+              <ScrollView>{eulaText}</ScrollView>
             </View>
           </SafeAreaView>
           <Theme use='violet'>
