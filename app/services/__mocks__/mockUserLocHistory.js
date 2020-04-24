@@ -18,3 +18,8 @@ export const mockUserLocHistory = [
     time: 1586145111983,
   },
 ];
+
+export const mockNullMostRecentUserLoc = mockNullUserLocHistory[0];
+
+export const mockMostRecentUserLoc =
+  mockUserLocHistory[mockUserLocHistory.length - 1];

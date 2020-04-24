@@ -4,9 +4,13 @@ import FinishSetup from './pages/FinishSetup.po.js';
 
 describe('Location set to `inuse` and notifications `true` set', () => {
   beforeAll(async () => {
-    const permissions = { location: 'inuse', notifications: 'YES' };
-    const autoSubscribe = true;
-    await navigateThroughOnboarding(permissions, autoSubscribe);
+    // const permissions = { location: 'inuse', notifications: 'YES' };
+    // await navigateThroughOnboarding(permissions);
+    await device.launchApp({
+      permissions: { location: 'inuse', notifications: 'YES' },
+      newInstance: true,
+    });
+    await navigateThroughOnboarding();
   });
 
   it('Displays an error page about missing location permissions', async () => {

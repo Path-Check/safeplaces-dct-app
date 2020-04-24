@@ -28,7 +28,7 @@
     "default_news_site_name": "Nouvèl sou Chase Kowona (\"Safe Paths\")",
     "event_history_subtitle": "Konprann ekspozisyon pèsonèl ou daprè enfòmasyon Otorite a pataje.",
     "event_history_title": "Lis ekspozisyon",
-    "export_para_1": "Si ou teste pozitif pou Kowonaviris, tanpri fè pati pa ou a nan pataje lis lokalizasyon ou ak otorite lokal yo.", 
+    "export_para_1": "Si ou teste pozitif pou Kowonaviris, tanpri fè pati pa ou a nan pataje lis lokalizasyon ou ak otorite lokal yo.",
     "export_para_2": "Lokalizasyon ou yo ap pataje sou fòm yon senp lis lè ak zòn, pap gen okenn enfòmasyon anplis ki prale.",
     "home_at_risk_header": "Ou ka gen risk",
     "home_at_risk_subsubtext": "Sa pa vle di ou enfekte.",
@@ -112,5 +112,10 @@
     "terms_of_use": "Règleman itilizasyon",
     "tested_positive_subtitle": "Done prive ou kapab transfere a Otorite a, konsève, oubyen pataje.",
     "tested_positive_title": "Pataje lis lokalizasyon"
+  },
+  "onboarding": {
+    "eula_checkbox": "Mwen aksepte akò lisans la",
+    "eula_message": "*Ou dwe aksepte pou itilize Safe Paths 'Chase Kowona",
+    "eula_continue": "Kontinye"
   }
 }

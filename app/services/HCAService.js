@@ -146,11 +146,7 @@ class HCAService {
     const locHelper = new LocationData();
     const bounds = this.getAuthorityBounds(authority);
 
-    if (bounds) {
-      return locHelper.isPointInBoundingBox(point, bounds);
-    } else {
-      return false;
-    }
+    return bounds && locHelper.isPointInBoundingBox(point, bounds);
   }
 
   /**
@@ -194,7 +190,7 @@ class HCAService {
    * @param {newAuthorities} Array array of healthcare authorities
    * @returns {void}
    */
-  async subscribeToNewAuthorities(newAuthorities) {
+  async pushAlertNewSubscriptions(newAuthorities) {
     await this.appendToAuthorityList(newAuthorities);
     this.pushAlertNewSubscribedAuthorities(newAuthorities.length);
   }
@@ -212,7 +208,7 @@ class HCAService {
 
     if (newAuthorities.length > 0) {
       if (this.isAutosubscriptionEnabled()) {
-        await this.subscribeToNewAuthorities(newAuthorities);
+        await this.pushAlertNewSubscriptions(newAuthorities);
       } else {
         await this.pushAlertNewAuthoritesFromLoc(newAuthorities.length);
       }

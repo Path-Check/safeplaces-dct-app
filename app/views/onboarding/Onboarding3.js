@@ -70,11 +70,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: Colors.VIOLET,
-    fontSize: 26,
     width: width * 0.75,
-    fontFamily: fontFamily.primaryMedium,
-    lineHeight: 26 * 1.1,
-    paddingTop: 26 * 1.1 - 26,
   },
   subheaderText: {
     marginTop: '6%',

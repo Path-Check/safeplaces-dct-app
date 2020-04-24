@@ -7,6 +7,8 @@ import * as storageHelpers from '../../helpers/General';
 import * as mockHCA from '../__mocks__/mockHCA';
 // eslint-disable-next-line jest/no-mocks-import
 import {
+  mockMostRecentUserLoc,
+  mockNullMostRecentUserLoc,
   mockNullUserLocHistory,
   mockUserLocHistory,
 } from '../__mocks__/mockUserLocHistory';
@@ -51,31 +53,33 @@ describe('HCAService', () => {
 
   describe('hasSavedAuthorities()', () => {
     it('returns false when the user has not saved any health care authorities yet', async () => {
-      jest.spyOn(HCAService, 'getUserAuthorityList').mockResolvedValue(false);
+      jest
+        .spyOn(HCAService, 'getUserAuthorityList')
+        .mockResolvedValueOnce(false);
       await expect(HCAService.hasSavedAuthorities()).resolves.toBe(false);
     });
 
     it('returns true when the user has saved a health care authority', async () => {
       jest
         .spyOn(HCAService, 'getUserAuthorityList')
-        .mockResolvedValue(mockHCA.validParsed);
+        .mockResolvedValueOnce(mockHCA.validParsed);
 
       await expect(HCAService.hasSavedAuthorities()).resolves.toBe(true);
     });
   });
 
   describe('getAuthoritiesFromUserLocHistory()', () => {
-    beforeAll(() => {
+    beforeEach(() => {
       jest
         .spyOn(HCAService, 'getAuthoritiesList')
-        .mockResolvedValue(mockHCA.validParsed);
+        .mockResolvedValueOnce(mockHCA.validParsed);
     });
 
     it('returns true if the user was in the bounding box of an authority in the past 28 days', async () => {
       // Returns a point within the bounding box of an authority
       jest
         .spyOn(LocationData.prototype, 'getLocationData')
-        .mockReturnValue(mockUserLocHistory);
+        .mockReturnValueOnce(mockUserLocHistory);
 
       const authorities = await HCAService.getAuthoritiesFromUserLocHistory();
       expect(authorities[0]).toEqual(mockHCA.validParsed[0]);
@@ -85,7 +89,7 @@ describe('HCAService', () => {
       // Returns a point outside the bounding box of any authority
       jest
         .spyOn(LocationData.prototype, 'getLocationData')
-        .mockReturnValue(mockNullUserLocHistory);
+        .mockReturnValueOnce(mockNullUserLocHistory);
 
       await expect(
         HCAService.getAuthoritiesFromUserLocHistory(),
@@ -94,10 +98,47 @@ describe('HCAService', () => {
   });
 
   describe('findNewAuthorities()', () => {
-    let alertSpy;
+    let autoSubscribeAlertSpy, newAuthoritiesAlertSpy;
 
     beforeEach(() => {
-      alertSpy = jest.spyOn(HCAService, 'pushAlertNewAuthoritesFromLoc');
+      autoSubscribeAlertSpy = jest.spyOn(
+        HCAService,
+        'pushAlertNewSubscriptions',
+      );
+
+      newAuthoritiesAlertSpy = jest.spyOn(
+        HCAService,
+        'pushAlertNewSubscriptions',
+      );
+    });
+
+    afterEach(() => {
+      autoSubscribeAlertSpy.mockClear();
+      newAuthoritiesAlertSpy.mockClear();
+    });
+
+    describe('when there are new authorities', () => {
+      beforeEach(() => {
+        jest
+          .spyOn(HCAService, 'getNewAuthoritiesInUserLoc')
+          .mockResolvedValueOnce(mockHCA.validParsed);
+      });
+
+      it('when auto subscribed, alerts the user to their new authorities', async () => {
+        jest
+          .spyOn(HCAService, 'isAutosubscriptionEnabled')
+          .mockResolvedValueOnce(true);
+        await HCAService.findNewAuthorities();
+        expect(autoSubscribeAlertSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('when not auto subscribed, alerts the user to new authorities available for subscription', async () => {
+        jest
+          .spyOn(HCAService, 'isAutosubscriptionEnabled')
+          .mockResolvedValueOnce(false);
+        await HCAService.findNewAuthorities();
+        expect(newAuthoritiesAlertSpy).toHaveBeenCalledTimes(1);
+      });
     });
 
     it('does not prompt the user there are no new authorities', async () => {
@@ -105,15 +146,8 @@ describe('HCAService', () => {
         .spyOn(HCAService, 'getNewAuthoritiesInUserLoc')
         .mockResolvedValueOnce([]);
       await HCAService.findNewAuthorities();
-      expect(alertSpy).toHaveBeenCalledTimes(0);
-    });
-
-    it('prompts the user when there are new authorities in their current location', async () => {
-      jest
-        .spyOn(HCAService, 'getNewAuthoritiesInUserLoc')
-        .mockResolvedValueOnce(mockHCA.validParsed);
-      await HCAService.findNewAuthorities();
-      expect(alertSpy).toHaveBeenCalledTimes(1);
+      expect(autoSubscribeAlertSpy).toHaveBeenCalledTimes(0);
+      expect(newAuthoritiesAlertSpy).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -150,7 +184,7 @@ describe('HCAService', () => {
   });
 
   describe('getNewAuthoritiesInUserLoc()', () => {
-    beforeAll(() => {
+    beforeEach(() => {
       jest
         .spyOn(HCAService, 'getAuthoritiesList')
         .mockResolvedValueOnce(mockHCA.validParsed);
@@ -158,8 +192,8 @@ describe('HCAService', () => {
 
     it('returns an empty array if there are no authorities in the area', async () => {
       jest
-        .spyOn(LocationData.prototype, 'getLocationData')
-        .mockReturnValue(mockNullUserLocHistory);
+        .spyOn(LocationData.prototype, 'getMostRecentUserLoc')
+        .mockReturnValueOnce(mockNullMostRecentUserLoc);
       jest.spyOn(HCAService, 'getUserAuthorityList').mockResolvedValueOnce([]);
 
       await expect(HCAService.getNewAuthoritiesInUserLoc()).resolves.toEqual(
@@ -169,8 +203,8 @@ describe('HCAService', () => {
 
     it('filters out authorities the user has already subscribed to', async () => {
       jest
-        .spyOn(LocationData.prototype, 'getLocationData')
-        .mockReturnValue(mockUserLocHistory);
+        .spyOn(LocationData.prototype, 'getMostRecentUserLoc')
+        .mockReturnValueOnce(mockMostRecentUserLoc);
       jest
         .spyOn(HCAService, 'getUserAuthorityList')
         .mockResolvedValueOnce(mockHCA.validParsed);
@@ -182,8 +216,8 @@ describe('HCAService', () => {
 
     it('returns an array of new authorities that the user has not subscribed to and are within their current location', async () => {
       jest
-        .spyOn(LocationData.prototype, 'getLocationData')
-        .mockReturnValue(mockUserLocHistory);
+        .spyOn(LocationData.prototype, 'getMostRecentUserLoc')
+        .mockReturnValueOnce(mockMostRecentUserLoc);
       jest.spyOn(HCAService, 'getUserAuthorityList').mockResolvedValueOnce([]);
 
       await expect(HCAService.getNewAuthoritiesInUserLoc()).resolves.toEqual(
@@ -243,9 +277,26 @@ describe('HCAService', () => {
         mockHCA.validParsed,
       );
 
-      await expect(HCAService.getUserAuthorityList()).resolves.toBe(
+      await expect(HCAService.getUserAuthorityList()).resolves.toEqual(
         mockHCA.validParsed,
       );
+    });
+  });
+
+  describe('appendToAuthorityList()', () => {
+    it('gets the existing authority list, appends the new authorities, and saves the new list back to storage', async () => {
+      jest
+        .spyOn(HCAService, 'getUserAuthorityList')
+        .mockResolvedValueOnce(mockHCA.validParsed);
+
+      await HCAService.appendToAuthorityList(mockHCA.validParsed);
+
+      const newAuthorityList = await HCAService.getUserAuthorityList();
+
+      expect(newAuthorityList.length).toBe(mockHCA.validParsed.length + 1);
+
+      // Doesn't overwrite existing elements
+      expect(newAuthorityList[0]).toEqual(mockHCA.validParsed[0]);
     });
   });
 });

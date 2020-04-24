@@ -25,8 +25,7 @@ import { DynamicTextInput } from '../components/DynamicTextInput';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Type, Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
-import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
+import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -66,6 +65,11 @@ class ChooseProviderScreen extends Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    // set the LAST_CHECKED time to 0, so the intersection will kick off
+    SetStoreData(LAST_CHECKED, 0);
+
+    // Force update, this will download any changed Healthcare Authorities
+    checkIntersect();
   }
 
   async fetchUserAuthorities() {
@@ -122,10 +126,7 @@ class ChooseProviderScreen extends Component {
           SetStoreData(
             AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          ).then(() => {
-            // Force updates immediately.
-            checkIntersect();
-          });
+          );
         },
       );
     } else {
@@ -155,10 +156,7 @@ class ChooseProviderScreen extends Component {
           SetStoreData(
             AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          ).then(() => {
-            // Force updates immediately.
-            checkIntersect();
-          });
+          );
         },
       );
     }
@@ -191,10 +189,7 @@ class ChooseProviderScreen extends Component {
                 SetStoreData(
                   AUTHORITY_SOURCE_SETTINGS,
                   this.state.selectedAuthorities,
-                ).then(() => {
-                  // Force updates immediately.
-                  checkIntersect();
-                });
+                );
               },
             );
           },
