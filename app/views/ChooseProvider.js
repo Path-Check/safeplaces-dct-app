@@ -46,9 +46,13 @@ class ChooseProviderScreen extends Component {
     this.state = {
       selectedAuthorities: [],
       displayUrlEntry: 'none',
+      textLimit: 8000,
       urlEntryInProgress: false,
       urlText: '',
       authoritiesList: [],
+      regexExpressionForURL: new RegExp(
+        '/^(http://www.|https://www.|http://|https://)?[-a-zA-Z0-9]+([-.]{1}[-a-zA-Z0-9]+)*.[-a-zA-Z0-9]{2,5}(:[0-9]{1,5})?(/.*)?$/gm',
+      ),
     };
   }
 
@@ -149,13 +153,59 @@ class ChooseProviderScreen extends Component {
     }
   }
 
+  createInvalidTextPopUp() {
+    Alert.alert(
+      languages.t('label.invalid_entry_message'),
+      languages.t('label.please_try_again_message'),
+      [
+        {
+          text: languages.t('label.proceed_message'),
+          onPress: () => console.log('Error message noted by user'),
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false },
+    );
+  }
+
+  entryAlreadyUsedTextPopUp() {
+    Alert.alert(
+      languages.t('label.entry_already_used'),
+      languages.t('label.please_try_again_message'),
+      [
+        {
+          text: languages.t('label.proceed_message'),
+          onPress: () => console.log('Error message noted by user'),
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false },
+    );
+  }
+
+  updateUrlText(text) {
+    if (text.length >= this.state.textLimit) {
+      text = text.substring(0, this.state.textLimit);
+      console.log(
+        'URL must be ' +
+          this.state.textLimit +
+          ' or less character(s) to be considered',
+      );
+    }
+    this.setState({
+      urlText: text,
+    });
+  }
+
   addCustomUrlToState(urlInput) {
-    if (urlInput === '') {
-      console.log('URL input was empty, not saving');
+    if (!urlInput.match(this.state.regexExpressionForURL)) {
+      console.log('URL did not meet URL format, not saving');
+      this.createInvalidTextPopUp();
     } else if (
       this.state.selectedAuthorities.findIndex(x => x.url === urlInput) != -1
     ) {
       console.log('URL input was duplicate, not saving');
+      this.entryAlreadyUsedTextPopUp();
     } else {
       this.setState(
         {
@@ -220,6 +270,8 @@ class ChooseProviderScreen extends Component {
     );
   }
 
+  //limitTextLength(text, count) // Being added
+
   render() {
     return (
       <NavigationBarWrapper
@@ -256,9 +308,7 @@ class ChooseProviderScreen extends Component {
                 ]}>
                 <DynamicTextInput
                   onChangeText={text => {
-                    this.setState({
-                      urlText: text,
-                    });
+                    this.updateUrlText(text);
                   }}
                   value={this.state.urlText}
                   autoFocus={this.state.urlEntryInProgress}
@@ -285,9 +335,7 @@ class ChooseProviderScreen extends Component {
                 ]}>
                 <DynamicTextInput
                   onChangeText={text => {
-                    this.setState({
-                      urlText: text,
-                    });
+                    this.updateUrlText(text);
                   }}
                   value={this.state.urlText}
                   autoFocus={this.state.urlEntryInProgress}
