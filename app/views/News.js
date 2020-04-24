@@ -1,197 +1,185 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
+  ActivityIndicator,
+  BackHandler,
+  Dimensions,
   StyleSheet,
-  ScrollView,
-  Linking,
-  View,
   Text,
-  Alert
+  View,
 } from 'react-native';
-
-import colors from "../constants/colors";
+import LinearGradient from 'react-native-linear-gradient';
+import Carousel from 'react-native-snap-carousel';
 import { WebView } from 'react-native-webview';
-import Button from "../components/Button";
-import NegButton from "../components/NegButton";
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
+
+import languages from './../locales/languages';
+import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
+import Colors from '../constants/colors';
+import fontFamily from '../constants/fonts';
+import { AUTHORITY_NEWS } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
+export const DEFAULT_NEWS_SITE_URL = 'https://covidsafepaths.org/in-app-news';
 
 class NewsScreen extends Component {
-    constructor(props) {
-        super(props);
-    }
-    componentDidMount() {
+  constructor(props) {
+    super(props);
+    let default_news = {
+      name: languages.t('label.default_news_site_name'),
+      news_url: DEFAULT_NEWS_SITE_URL,
+    };
+    this.state = {
+      visible: true,
+      default_news: default_news,
+      newsUrls: [default_news, default_news],
+      current_page: 0,
+    };
+  }
 
-        /*BackgroundGeolocation.on('location', (location) => {
+  backToMain() {
+    this.props.navigation.goBack();
+  }
 
+  handleBackPress = () => {
+    this.props.navigation.goBack();
+    return true;
+  };
 
-            GetStoreData('LOCATION_DATA')
-            .then(locationArray => {
-                var locationData;
+  hideSpinner() {
+    this.setState({
+      visible: false,
+    });
+  }
 
-                if (locationArray !== null) {
-                  locationData = JSON.parse(locationArray);
-                } else {
-                  locationData = [];
-                }
+  renderItem = item => {
+    return (
+      <View style={styles.singleNews}>
+        <View style={styles.singleNewsHead}>
+          <Typography style={styles.singleNewsHeadText}>
+            {item.item.name}
+          </Typography>
+        </View>
+        <WebView
+          source={{
+            uri: item.item.news_url,
+          }}
+          containerStyle={{
+            borderBottomLeftRadius: 12,
+            borderBottomRightRadius: 12,
+          }}
+          cacheEnabled
+          onLoad={() =>
+            this.setState({
+              visible: false,
+            })
+          }
+        />
+      </View>
+    );
+  };
 
-                locationData.push(location);
-                SetStoreData('LOCATION_DATA', locationData);
-            });
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
-            // to perform long running operation on iOS
-            // you need to create background task
-            BackgroundGeolocation.startTask(taskKey => {
-                // execute long running task
-                // eg. ajax post location
-                // IMPORTANT: task has to be ended by endTask
-                BackgroundGeolocation.endTask(taskKey);
-            });
-        });
+    GetStoreData(AUTHORITY_NEWS)
+      .then(nameNewsString => {
+        // Bring in news from the various authorities.  This is
+        // pulled down from the web when you subscribe to an Authority
+        // on the Settings page.
+        let arr = [];
 
-        BackgroundGeolocation.on('stationary', (stationaryLocation) => {
-            // handle stationary locations here
-            // Actions.sendLocation(stationaryLocation);
-            console.log('[INFO] stationaryLocation:', stationaryLocation);
-        });
-
-        BackgroundGeolocation.on('error', (error) => {
-        console.log('[ERROR] BackgroundGeolocation error:', error);
-        });
-
-        BackgroundGeolocation.on('start', () => {
-        console.log('[INFO] BackgroundGeolocation service has been started');
-        });
-
-        BackgroundGeolocation.on('stop', () => {
-        console.log('[INFO] BackgroundGeolocation service has been stopped');
-        });
-
-        BackgroundGeolocation.on('authorization', (status) => {
-        console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
-        if (status !== BackgroundGeolocation.AUTHORIZED) {
-            // we need to set delay or otherwise alert may not be shown
-            setTimeout(() =>
-            Alert.alert('App requires location tracking permission', 'Would you like to open app settings?', [
-                { text: 'Yes', onPress: () => BackgroundGeolocation.showAppSettings() },
-                { text: 'No', onPress: () => console.log('No Pressed'), style: 'cancel' }
-            ]), 1000);
+        // Populate with subscribed news sources, with default at the tail
+        if (nameNewsString !== null) {
+          arr = JSON.parse(nameNewsString);
         }
+        arr.push(this.state.default_news);
+
+        this.setState({
+          newsUrls: arr,
         });
+      })
+      .catch(error => console.log(error));
+  }
 
-        BackgroundGeolocation.on('background', () => {
-        console.log('[INFO] App is in background');
-        });
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
 
-        BackgroundGeolocation.on('foreground', () => {
-        console.log('[INFO] App is in foreground');
-        });
+  render() {
+    // console.log('News URL -', this.state.newsUrls);
+    return (
+      <LinearGradient
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
+        style={{ flex: 1, height: '100%' }}>
+        <NavigationBarWrapper
+          title={languages.t('label.latest_news')}
+          onBackPress={this.backToMain.bind(this)}>
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
+            style={{ flex: 1, height: '100%' }}>
+            <View
+              style={{
+                backgroundColor: Colors.VIOLET_BUTTON_DARK,
+                flex: 1,
+                paddingVertical: 16,
+              }}>
+              <Carousel
+                data={this.state.newsUrls}
+                renderItem={this.renderItem}
+                sliderWidth={width}
+                itemWidth={width * 0.85}
+                layout={'default'}
+                scrollEnabled
+              />
 
-        BackgroundGeolocation.on('abort_requested', () => {
-        console.log('[INFO] Server responded with 285 Updates Not Required');
-
-        // Here we can decide whether we want stop the updates or not.
-        // If you've configured the server to return 285, then it means the server does not require further update.
-        // So the normal thing to do here would be to `BackgroundGeolocation.stop()`.
-        // But you might be counting on it to receive location updates in the UI, so you could just reconfigure and set `url` to null.
-        });
-
-        BackgroundGeolocation.on('http_authorization', () => {
-        console.log('[INFO] App needs to authorize the http requests');
-        });
-
-        // you can also just start without checking for status
-        // BackgroundGeolocation.start();*/
-    }
-
-    componentWillUnmount() {
-        // unregister all event listeners
-        BackgroundGeolocation.removeAllListeners();
-    }
-
-    render() {
-        return (
-        <>
-            <View style={styles.main}>
-                <View style={styles.headerTitle}>
-                        <Text style={styles.sectionDescription, {fontSize: 22, marginTop: 8}}>Latest News:</Text>
-                </View>
-                <View style={styles.web}>
-                    <WebView
-                        source= {{ uri: 'https://www.cdc.gov/coronavirus/2019-ncov/about/index.html' }}
-                        style= {{ marginTop: 15, marginLeft: 15}}
-                    />
-                </View>
+              {this.state.visible && (
+                <ActivityIndicator
+                  style={{
+                    position: 'absolute',
+                    top: height / 2,
+                    left: width / 2,
+                  }}
+                  size='large'
+                  color='black'
+                />
+              )}
             </View>
-            <View style={styles.footer}>
-                <Text style={styles.sectionDescription, { textAlign: 'center', paddingTop: 15 }}>For more information visit the Private Kit hompage:</Text>
-                <Text style={styles.sectionDescription, { color: 'blue', textAlign: 'center' }} onPress={() => Linking.openURL('https://privatekit.mit.edu')}>privatekit.mit.edu</Text>
-            </View>
-        </>
-        )
-    }
+          </LinearGradient>
+        </NavigationBarWrapper>
+      </LinearGradient>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    // Container covers the entire screen
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: colors.PRIMARY_TEXT,
-        backgroundColor: colors.APP_BACKGROUND,
-    },
-    headerTitle: {
-        textAlign: 'center',
-        fontWeight: "bold",
-        fontSize: 38,
-        padding: 0
-    },
-    subHeaderTitle: {
-        textAlign: 'center',
-        fontWeight: "bold",
-        fontSize: 22,
-        padding: 5
-    },
-    web: {
-        flex: 1,
-        width: "95%"
-    },
-    main: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: "95%"
-    },
-    block: {
-      margin: 20,
-      width: "100%"
-    },
-    topView: {
-        flex: 1,
-    },
-    footer: {
-        textAlign: 'center',
-        fontSize: 12,
-        fontWeight: '600',
-        padding: 4,
-        paddingBottom: 10
-    },
-    intro: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-    },
-    sectionDescription: {
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: '400',
-      marginTop: 20,
-      marginLeft: 10,
-      marginRight: 10
-    }
-  });
+  // eslint-disable-next-line react-native/no-color-literals
+  singleNews: {
+    flexGrow: 1,
+    backgroundColor: 'rgba(255,255,255,0.6)',
+    borderRadius: 12,
+    alignSelf: 'center',
+    width: '100%',
+  },
+  singleNewsHead: {
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: 3,
+    marginBottom: 0,
+  },
+  singleNewsHeadText: {
+    fontSize: 16,
+    textAlign: 'center',
+    paddingHorizontal: 5,
+    fontFamily: fontFamily.primarySemiBold,
+  },
+});
 
 export default NewsScreen;

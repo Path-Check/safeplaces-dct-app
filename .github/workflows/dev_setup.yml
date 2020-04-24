@@ -1,0 +1,73 @@
+name: Dev setup
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - 'dev_setup.sh'
+  pull_request:
+    branches: [develop]
+    paths:
+      - 'dev_setup.sh'
+
+jobs:
+  test-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - run: CI=true ./dev_setup.sh -ni
+
+      - run: yarn && yarn run test:dev_setup
+
+      - name: Bundle JS
+        run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
+
+      - name: Build APK (gradle)
+        run: ./gradlew assembleDebug --no-daemon
+        working-directory: ./android
+
+  test-mac:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - name: Cache ruby gems
+        uses: actions/cache@v1
+        with:
+          path: ios/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v1
+        with:
+          path: ios/Pods
+          key: ${{ runner.OS }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-pods-
+
+      - run: CI=true ./dev_setup.sh -ni
+
+      - run: yarn && yarn run test:dev_setup
+
+      - name: Bundle iOS JS
+        run: npx react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios --verbose
+
