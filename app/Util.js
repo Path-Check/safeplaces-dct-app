@@ -13,6 +13,11 @@ export function nowStr() {
   return dayjs().format('H:mm');
 }
 
+export const isVersionGreater = (source, target) =>
+  source
+    .split('.')
+    .some((val, index) => parseInt(val) > parseInt(target.split('.')[index]));
+
 export default {
   isPlatformiOS,
   isPlatformAndroid,
