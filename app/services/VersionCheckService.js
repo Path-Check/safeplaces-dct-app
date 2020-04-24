@@ -1,13 +1,20 @@
+import Yaml from 'js-yaml';
 import { Alert, Linking } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import PushNotification from 'react-native-push-notification';
 
 import { version as currentVersion } from '../../package.json';
-import { APPSTORE_URL, PLAYSTORE_URL, VERSION_URL } from '../constants/urls';
+import {
+  APPSTORE_URL,
+  PLAYSTORE_URL,
+  VERSION_URL,
+  YAML_LATEST_VERSION_KEY,
+  YAML_MANDATORY_VERSION_KEY,
+} from '../constants/versionCheck';
 import languages from '../locales/languages';
 import { isPlatformiOS, isVersionGreater } from '../Util';
 
-const POLL_INTERVAL = 60 * 60 * 1000; //one hour
+const POLL_INTERVAL = 24 * 60 * 60 * 1000; //one day
 
 const updateLink = isPlatformiOS() ? APPSTORE_URL : PLAYSTORE_URL;
 let isPollStarted = false;
@@ -38,9 +45,10 @@ export default class VersionCheckService {
     let mandatoryVersion, latestVersion;
     try {
       const response = await fetch(VERSION_URL);
-      const { mandatory_version, version } = await response.json();
-      mandatoryVersion = mandatory_version;
-      latestVersion = version;
+      const responseText = await response.text();
+      const parsedFile = Yaml.safeLoad(responseText);
+      mandatoryVersion = parsedFile[YAML_MANDATORY_VERSION_KEY];
+      latestVersion = parsedFile[YAML_LATEST_VERSION_KEY];
     } catch (err) {
       console.log(err);
       return;
