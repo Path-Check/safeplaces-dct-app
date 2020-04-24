@@ -20,7 +20,6 @@ import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
 import Onboarding6 from './views/onboarding/Onboarding6';
-import Onboarding7 from './views/onboarding/Onboarding7';
 import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();
@@ -96,11 +95,6 @@ class Entry extends Component {
           <Stack.Screen
             name='Onboarding6'
             component={Onboarding6}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='Onboarding7'
-            component={Onboarding7}
             options={{ headerShown: false }}
           />
           <Stack.Screen
