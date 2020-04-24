@@ -1,6 +1,6 @@
 /* eslint-disable */
 const buttonLabel = 'Next';
-const screenTitle = 'Header';
+const screenTitleTestId = 'Header';
 const screenSubtitle = 'Subheader';
 const screenshotText = 'Onboarding - Page 6';
 
