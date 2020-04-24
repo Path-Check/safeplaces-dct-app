@@ -1,6 +1,6 @@
 /* eslint-disable */
 const buttonLabel = 'Next';
-const screenTitle = 'Header';
+const screenTitleTestId = 'Header';
 const screenSubtitle = 'Subheader';
 const screenshotText = 'Onboarding - Page 5';
 
@@ -15,7 +15,7 @@ class Onboarding5 {
 
   async isOnScreen() {
     // eslint-disable-next-line jest/no-standalone-expect
-    await expect(element(by.id(screenTitle))).toBeVisible();
+    await expect(element(by.id(screenTitleTestId))).toBeVisible();
     await expect(element(by.id(screenSubtitle))).toBeVisible();
   }
 }

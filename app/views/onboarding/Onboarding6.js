@@ -193,7 +193,10 @@ class Onboarding extends Component {
   getTitleTextView() {
     if (!this.isLocationChecked() || !this.isNotificationChecked()) {
       return (
-        <Typography style={styles.headerText} use={Type.Headline2}>
+        <Typography
+          style={styles.headerText}
+          use={Type.Headline2}
+          testID='Header'>
           {this.getTitleText()}
         </Typography>
       );
