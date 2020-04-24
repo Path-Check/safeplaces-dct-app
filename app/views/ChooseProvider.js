@@ -6,7 +6,6 @@ import {
   Dimensions,
   FlatList,
   Image,
-  SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -81,8 +80,8 @@ class ChooseProviderScreen extends Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    // save off the current time as the last checked time
-  SetStoreData(LAST_CHECKED, 0);
+    // set the LAST_CHECKED time to 0, so the intersection will kick off
+    SetStoreData(LAST_CHECKED, 0);
   }
 
   fetchAuthoritiesList() {
