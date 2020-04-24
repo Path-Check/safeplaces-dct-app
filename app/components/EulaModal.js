@@ -5,12 +5,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Markdown from 'react-native-markdown-display';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import closeIcon from './../assets/images/closeIcon.png';
-import { eula_en } from './../locales/eula/eula_en';
-import { eula_ht } from './../locales/eula/eula_ht';
+import closeIcon from '../assets/images/closeIcon.png';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
+import { eula_en } from '../locales/eula/eula_en';
+import { eula_ht } from '../locales/eula/eula_ht';
 import ButtonWrapper from './ButtonWrapper';
 import { Checkbox } from './Checkbox';
 import { Typography } from './Typography';
