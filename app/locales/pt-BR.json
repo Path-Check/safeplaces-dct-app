@@ -1,12 +1,13 @@
 {
   "history": {
     "no_exposure": "Sem exposição conhecida",
-    "possible_exposure": "Exposição possível",
     "possible_exposure_para": "É possível que você tenha tido proximidade ou contato com uma pessoa que testou positivo para COVID-19",
-    "what_does_this_mean": "O que isso significa?",
+    "possible_exposure": "Exposição possível",
+    "timeline": "Linha do tempo",
     "what_does_this_mean_para": "Baseado no seu histórico de localização por GPS, é possível que você tenha estado próximo ou em contato com alguém diagnosticado com COVID-19. Isso não significa, necessariamente, que você tenha se infectado, apesar de ser possível.\n\nPara mais orientações, consulte o site da Mayo Clinic (site em inglês).",
-    "what_if_no_symptoms": "E se eu não tiver sintomas?",
-    "what_if_no_symptoms_para": "Caso queira fazer um teste, você pode verificar a disponibilidade em sua região para testes em pessoas assintomáticas.\n\nPessoas sem sintomas também podem transmitir a doença. Cuidados quanto ao distanciamento social, evitar aglomerações ou contato com grupos de risco (idosos e aqueles com problemas de saúde) são importantes para diminuir o seu risco e o dos outros."
+    "what_does_this_mean": "O que isso significa?",
+    "what_if_no_symptoms_para": "Caso queira fazer um teste, você pode verificar a disponibilidade em sua região para testes em pessoas assintomáticas.\n\nPessoas sem sintomas também podem transmitir a doença. Cuidados quanto ao distanciamento social, evitar aglomerações ou contato com grupos de risco (idosos e aqueles com problemas de saúde) são importantes para diminuir o seu risco e o dos outros.",
+    "what_if_no_symptoms": "E se eu não tiver sintomas?"
   },
   "label": {
     "about_title": "Sobre",
@@ -93,18 +94,6 @@
     "terms_of_use": "Termos de uso",
     "terms_of_use_url": "https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#",
     "tested_positive_subtitle": "Seus dados privados podem ser transferidos para autoridades de saúde, salvos em backup, ou compartilhados.",
-    "tested_positive_title": "Compartilhar histórico de localização",
-    "logging_active": "Localização Ativa",
-    "logging_inactive": "Localização Inativa"
-  },
-  "history": {
-    "no_exposure": "Sem exposição conhecida",
-    "possible_exposure_para": "É possível que você tenha tido proximidade ou contato com uma pessoa que testou positivo para COVID-19",
-    "possible_exposure": "Exposição possível",
-    "timeline": "Linha do tempo",
-    "what_does_this_mean_para": "Baseado no seu histórico de localização por GPS, é possível que você tenha estado próximo ou em contato com alguém diagnosticado com COVID-19. Isso não significa, necessariamente, que você tenha se infectado, apesar de ser possível.\n\nPara mais orientações, consulte o site da Mayo Clinic (site em inglês).",
-    "what_does_this_mean": "O que isso significa?",
-    "what_if_no_symptoms_para": "Caso queira fazer um teste, você pode verificar a disponibilidade em sua região para testes em pessoas assintomáticas.\n\nPessoas sem sintomas também podem transmitir a doença. Cuidados quanto ao distanciamento social, evitar aglomerações ou contato com grupos de risco (idosos e aqueles com problemas de saúde) são importantes para diminuir o seu risco e o dos outros.",
-    "what_if_no_symptoms": "E se eu não tiver sintomas?"
+    "tested_positive_title": "Compartilhar histórico de localização"
   }
 }
