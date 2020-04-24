@@ -41,14 +41,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
               <TouchableOpacity onPress={() => setModalVisibility(false)}>
                 <Image source={closeIcon} style={styles.closeIcon} />
               </TouchableOpacity>
-              <WebView
-                style={{ flex: 1 }}
-                source={{ html }}
-                originWhitelist={['*']}
-                allowFileAccess
-                domStorageEnabled
-                javaScriptEnabled
-              />
+              <WebView style={{ flex: 1 }} source={{ html }} />
             </View>
           </SafeAreaView>
           <Theme use='violet'>
