@@ -11,7 +11,7 @@ import ChooseProviderScreen from './views/ChooseProvider';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
-import LicencesScreen from './views/Licenses';
+import { LicensesScreen } from './views/Licenses';
 import LocationTracking from './views/LocationTracking';
 import NewsScreen from './views/News';
 import Onboarding1 from './views/onboarding/Onboarding1';
@@ -123,7 +123,7 @@ class Entry extends Component {
           />
           <Stack.Screen
             name='LicensesScreen'
-            component={LicencesScreen}
+            component={LicensesScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
