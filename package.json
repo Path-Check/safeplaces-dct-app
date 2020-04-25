@@ -19,8 +19,8 @@
     "test:e2e:iphone-se": "detox test -c iphone-se.sim --loglevel=warn",
     "test:e2e:iphone8": "detox test -c iphone8.sim --loglevel=warn",
     "i18n:extract": "i18next",
-    "test": "jest test",
-    "update-snapshots": "jest --updateSnapshot",
+    "test": "jest --config=./jest/config.js",
+    "update-snapshots": "jest --config=./jest/config.js --updateSnapshot",
     "test:dev_setup": "bats __tests__/dev_setup.test.bats"
   },
   "lint-staged": {
@@ -123,12 +123,6 @@
       "style": "module"
     }
   },
-  "jest": {
-    "preset": "react-native",
-    "setupFiles": [
-      "./jestSetupFile.js"
-    ]
-  },
   "detox": {
     "artifacts": {
       "rootDir": "./e2e/artifacts/"
@@ -159,6 +153,7 @@
         }
       }
     },
+    "runner-config": "./jest/detox.config.js",
     "test-runner": "jest"
   }
 }
