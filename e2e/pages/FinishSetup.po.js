@@ -3,7 +3,7 @@ const buttonlabel = 'Finish Setup';
 const screenText = 'All finished';
 const screenshotText = 'Finish Setup Page';
 
-class EnableLocation {
+class FinishSetup {
   async tapButton() {
     await element(by.label(buttonlabel)).tap();
   }
@@ -18,4 +18,4 @@ class EnableLocation {
   }
 }
 
-export default new EnableLocation();
+export default new FinishSetup();

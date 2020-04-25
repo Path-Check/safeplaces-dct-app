@@ -5,7 +5,7 @@ const screenText =
 const skipStep = 'Skip this step';
 
 class EnableAuthoritySubscription {
-  async tapButton() {
+  async enable() {
     await element(by.label(buttonlabel)).tap();
   }
 

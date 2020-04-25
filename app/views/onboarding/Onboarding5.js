@@ -114,70 +114,61 @@ class Onboarding extends Component {
     }
   }
 
-  checkLocationStatus() {
-    // NEED TO TEST ON ANDROID
+  async checkLocationStatus() {
     const nextStep = this.getNextStep(StepEnum.LOCATION);
-    const locationPermission = this.getLocationPermissionSetting();
+    const setting = this.getLocationPermissionSetting();
+    const status = await check(setting);
 
-    check(locationPermission)
-      .then(result => {
-        switch (result) {
-          case RESULTS.GRANTED:
-            this.setState({
-              currentStep: nextStep,
-              locationPermission: PermissionStatusEnum.GRANTED,
-            });
-            break;
-          case RESULTS.UNAVAILABLE:
-          case RESULTS.BLOCKED:
-            this.setState({
-              currentStep: nextStep,
-              locationPermission: PermissionStatusEnum.DENIED,
-            });
-            break;
-        }
-      })
-      .catch(error => {
-        console.log('error checking location: ' + error);
-      });
+    switch (status) {
+      case RESULTS.GRANTED:
+        this.setState({
+          currentStep: nextStep,
+          locationPermission: PermissionStatusEnum.GRANTED,
+        });
+        break;
+      case RESULTS.BLOCKED:
+        this.setState({
+          currentStep: nextStep,
+          locationPermission: PermissionStatusEnum.DENIED,
+        });
+        break;
+    }
   }
 
-  checkNotificationStatus() {
+  async checkNotificationStatus() {
     const nextStep = this.getNextStep(StepEnum.NOTIFICATIONS);
+    const { status } = await checkNotifications();
 
-    checkNotifications().then(({ status }) => {
-      switch (status) {
-        case RESULTS.GRANTED:
-          this.setState({
-            currentStep: nextStep,
-            notificationPermission: PermissionStatusEnum.GRANTED,
-          });
-          break;
-        case RESULTS.UNAVAILABLE:
-        case RESULTS.BLOCKED:
-          this.setState({
-            currentStep: nextStep,
-            notificationPermission: PermissionStatusEnum.DENIED,
-          });
-          break;
-      }
-    });
+    switch (status) {
+      case RESULTS.GRANTED:
+        this.setState({
+          currentStep: nextStep,
+          notificationPermission: PermissionStatusEnum.GRANTED,
+        });
+        break;
+      case RESULTS.BLOCKED:
+        this.setState({
+          currentStep: nextStep,
+          notificationPermission: PermissionStatusEnum.DENIED,
+        });
+        break;
+    }
   }
 
   async checkSubsriptionStatus() {
-    const hasUserSetSubscription = await HCAService.hasUserSetSubscription();
-    const isEnabled = await HCAService.isAutosubscriptionEnabled();
     const nextStep = this.getNextStep(StepEnum.HCA_SUBSCRIPTION);
+    const hasUserSetSubscription = await HCAService.hasUserSetSubscription();
 
     // Only update state if the user has already set their subscription status
     if (hasUserSetSubscription) {
-      const permission = isEnabled
+      const isEnabled = await HCAService.isAutosubscriptionEnabled();
+      const authSubscriptionStatus = isEnabled
         ? PermissionStatusEnum.GRANTED
         : PermissionStatusEnum.DENIED;
 
       this.setState({
         currentStep: nextStep,
-        authSubscriptionStatus: permission,
+        authSubscriptionStatus,
       });
     }
   }
@@ -188,55 +179,51 @@ class Onboarding extends Component {
       : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
   }
 
-  requestLocation() {
-    // NEED TO TEST ON ANDROID
+  async requestLocation() {
     const nextStep = this.getNextStep(StepEnum.LOCATION);
     const locationPermission = this.getLocationPermissionSetting();
+    const status = await request(locationPermission);
 
-    request(locationPermission).then(result => {
-      switch (result) {
-        case RESULTS.GRANTED:
-          this.setState({
-            currentStep: nextStep,
-            locationPermission: PermissionStatusEnum.GRANTED,
-          });
-          break;
-        case RESULTS.UNAVAILABLE:
-        case RESULTS.BLOCKED:
-          this.setState({
-            currentStep: nextStep,
-            locationPermission: PermissionStatusEnum.DENIED,
-          });
-          break;
-      }
-    });
+    switch (status) {
+      case RESULTS.GRANTED:
+        this.setState({
+          currentStep: nextStep,
+          locationPermission: PermissionStatusEnum.GRANTED,
+        });
+        break;
+      case RESULTS.BLOCKED:
+        this.setState({
+          currentStep: nextStep,
+          locationPermission: PermissionStatusEnum.DENIED,
+        });
+        break;
+    }
   }
 
-  requestNotification() {
+  async requestNotification() {
     const nextStep = this.getNextStep(StepEnum.NOTIFICATIONS);
+    const { status } = await requestNotifications(['alert', 'badge', 'sound']);
 
-    requestNotifications(['alert', 'badge', 'sound']).then(({ status }) => {
-      switch (status) {
-        case RESULTS.GRANTED:
-          this.setState({
-            currentStep: nextStep,
-            notificationPermission: PermissionStatusEnum.GRANTED,
-          });
-          break;
-        case RESULTS.UNAVAILABLE:
-        case RESULTS.BLOCKED:
-          this.setState({
-            currentStep: nextStep,
-            notificationPermission: PermissionStatusEnum.DENIED,
-          });
-          break;
-      }
-    });
+    switch (status) {
+      case RESULTS.GRANTED:
+        this.setState({
+          currentStep: nextStep,
+          notificationPermission: PermissionStatusEnum.GRANTED,
+        });
+        break;
+      case RESULTS.BLOCKED:
+        this.setState({
+          currentStep: nextStep,
+          notificationPermission: PermissionStatusEnum.DENIED,
+        });
+        break;
+    }
   }
 
   async requestHCASubscription() {
     const nextStep = this.getNextStep(StepEnum.HCA_SUBSCRIPTION);
     await HCAService.enableAutoSubscription();
+
     this.setState({
       currentStep: nextStep,
       authSubscriptionStatus: PermissionStatusEnum.GRANTED,
@@ -348,8 +335,8 @@ class Onboarding extends Component {
   }
 
   getNotificationsPermissionIfIOS() {
-    if (isPlatformiOS()) {
-      return (
+    return (
+      isPlatformiOS() && (
         <>
           <PermissionDescription
             title={languages.t('label.launch_notification_access')}
@@ -357,9 +344,8 @@ class Onboarding extends Component {
           />
           <View style={styles.divider} />
         </>
-      );
-    }
-    return;
+      )
+    );
   }
 
   getAuthSubscriptionStatus() {

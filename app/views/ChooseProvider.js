@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import CheckBox from 'react-native-check-box';
 import {
   Menu,
   MenuOption,
@@ -21,6 +20,7 @@ import {
 
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
+import { Checkbox } from '../components/Checkbox';
 import { DynamicTextInput } from '../components/DynamicTextInput';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Type, Typography } from '../components/Typography';
@@ -236,12 +236,10 @@ class ChooseProviderScreen extends Component {
             {languages.t('label.authorities_desc')}
           </Typography>
           <TouchableOpacity style={styles.autoSubcribe}>
-            <CheckBox
-              rightText={languages.t('label.auto_subscribe_checkbox')}
-              isChecked={this.state.isAutoSubscribed}
-              onClick={() => this.toggleAutoSubscribe()}
-              rightTextStyle={styles.checkboxText}
-              checkBoxColor={Colors.DARK_GRAY}
+            <Checkbox
+              label={languages.t('label.auto_subscribe_checkbox')}
+              checked={this.state.isAutoSubscribed}
+              onPress={() => this.toggleAutoSubscribe()}
             />
           </TouchableOpacity>
         </View>
@@ -481,10 +479,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   autoSubcribe: {
-    paddingTop: 10,
-  },
-  checkboxText: {
-    color: Colors.VIOLET_TEXT,
+    paddingTop: 25,
   },
   noDataSourceText: {
     textAlign: 'center',

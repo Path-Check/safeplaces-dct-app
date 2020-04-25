@@ -114,7 +114,7 @@ class HCAService {
 
   /**
    * Returns the `url` value for an authority
-   * @param {authority} Authority Healthcare Authority object
+   * @param Authority Healthcare Authority object
    * @returns {string}
    */
   getAuthorityUrl(authority) {
@@ -126,9 +126,7 @@ class HCAService {
   /**
    * Returns the `bounds` value for an authority
    * @param {authority} Authority Healthcare Authority object
-   * @returns {Object} contains a `bounds` key.
-   * A `bounds` contains a `ne` and `sw` object that each
-   * have a valid GPS point containing `longitude` and `latitude` keys.
+   * @returns {{bounds: {ne: {latitude: number, longitude: number}}, {sw: {latitude: number, longitude: number}}}}
    */
   getAuthorityBounds(authority) {
     const authorityName = Object.keys(authority)[0];
@@ -146,6 +144,7 @@ class HCAService {
     const locHelper = new LocationData();
     const bounds = this.getAuthorityBounds(authority);
 
+    this.getAuthoritiesFromUserLocHistory();
     return bounds && locHelper.isPointInBoundingBox(point, bounds);
   }
 
@@ -154,7 +153,7 @@ class HCAService {
    * if there is any GPS point in the user's full 28-day location history
    * that is within the bounds of the authority.
    *
-   * @returns {Array} List of health care authorities
+   * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} List of health care authorities
    */
   async getAuthoritiesFromUserLocHistory() {
     const locHelper = new LocationData();
@@ -171,7 +170,7 @@ class HCAService {
    * all Healthcare Authorities whose bounds contain the user's current location,
    * filtering out any Authorities the user has already subscribed to.
    *
-   * @returns {Array} list of Healthcare Authorities
+   * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} list of Healthcare Authorities
    */
   async getNewAuthoritiesInUserLoc() {
     const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();

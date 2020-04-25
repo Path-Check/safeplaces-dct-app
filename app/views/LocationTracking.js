@@ -258,6 +258,10 @@ class LocationTracking extends Component {
     return BackgroundImage;
   }
 
+  settings() {
+    this.props.navigation.navigate('SettingsScreen', {});
+  }
+
   getSettings() {
     return (
       <TouchableOpacity
