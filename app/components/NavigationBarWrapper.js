@@ -28,8 +28,8 @@ const NavigationBarWrapper = ({ children, title, onBackPress }) => {
     <>
       <StatusBar
         barStyle='light-content'
-        backgroundColor={barColor}
-        translucent={isPlatformiOS()}
+        backgroundColor={isPlatformiOS() ? barColor : 'transparent'}
+        translucent
       />
       <TopContainer />
       <BottomContainer>
@@ -63,12 +63,21 @@ const BottomContainer = styled.SafeAreaView`
 const themeNavBarBorder = ({ theme }) =>
   theme.navBarBorder || Colors.NAV_BAR_VIOLET;
 
-const Header = styled.View`
-  background-color: ${themeNavBar};
-  border-bottom-color: ${themeNavBarBorder};
-  border-bottom-width: 1px;
-  flex-direction: row;
-`;
+// Add header padding on Android
+const Header = isPlatformiOS()
+  ? styled.View`
+      background-color: ${themeNavBar};
+      border-bottom-color: ${themeNavBarBorder};
+      border-bottom-width: 1px;
+      flex-direction: row;
+    `
+  : styled.View`
+      background-color: ${themeNavBar};
+      border-bottom-color: ${themeNavBarBorder};
+      border-bottom-width: 1px;
+      padding-top: 10px;
+      flex-direction: row;
+    `;
 
 const Title = styled.Text`
   align-self: center;
