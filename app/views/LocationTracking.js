@@ -11,6 +11,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableHighlight,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -461,25 +462,24 @@ class LocationTracking extends Component {
 
         {/* eslint-disable-next-line react-native/no-color-literals */}
         <SafeAreaView style={{ backgroundColor: 'rgba(0, 0, 0, .07)' }}>
-          <TouchableOpacity
+          <TouchableHighlight
             onPress={this.getMayoInfoPressed.bind(this)}
-            style={styles.mayoInfoRow}>
-            <View style={styles.mayoInfoContainer}>
-              <Typography
-                style={styles.mainMayoHeader}
-                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                {languages.t('label.home_mayo_link_heading')}
-              </Typography>
-              <Typography
-                style={styles.mainMayoSubtext}
-                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                {languages.t('label.home_mayo_link_label')}
-              </Typography>
+            style={styles.mayoInfoRow}
+            underlayColor='rgba(0, 0, 0, .1)'>
+            <View style={{ flexDirection: 'row', flex: 1 }}>
+              <View style={styles.mayoInfoContainer}>
+                <Typography style={styles.mainMayoHeader}>
+                  {languages.t('label.home_mayo_link_heading')}
+                </Typography>
+                <Typography style={styles.mainMayoSubtext}>
+                  {languages.t('label.home_mayo_link_label')}
+                </Typography>
+              </View>
+              <View style={styles.arrowContainer}>
+                <Image source={foreArrow} style={this.arrow} />
+              </View>
             </View>
-            <View style={styles.arrowContainer}>
-              <Image source={foreArrow} style={this.arrow} />
-            </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
         </SafeAreaView>
         {this.getSettings()}
       </ImageBackground>
@@ -582,15 +582,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignContent: 'flex-end',
     padding: 20,
+    flex: 1,
   },
   mainMayoHeader: {
-    textAlign: 'left',
     color: Colors.MISCHKA,
     fontSize: 18,
-    fontFamily: fontFamily.primaryBold,
+    fontFamily: fontFamily.primaryMedium,
   },
   mainMayoSubtext: {
-    textAlign: 'left',
     color: Colors.MISCHKA,
     fontSize: 18,
     fontFamily: fontFamily.primaryRegular,
