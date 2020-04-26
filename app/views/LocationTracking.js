@@ -7,6 +7,7 @@ import {
   Image,
   ImageBackground,
   Linking,
+  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
@@ -26,7 +27,7 @@ import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import exportImage from './../assets/images/export.png';
 import foreArrow from './../assets/images/foreArrow.png';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import SettingsGear from './../assets/svgs/settingsGear';
+import settingsIcon from './../assets/svgs/settingsIcon';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
@@ -304,9 +305,10 @@ class LocationTracking extends Component {
         <Image resizeMode={'contain'} />
         <SvgXml
           style={styles.stateIcon}
-          xml={SettingsGear}
+          xml={settingsIcon}
           width={32}
           height={32}
+          color='white'
         />
       </TouchableOpacity>
     );
@@ -440,7 +442,6 @@ class LocationTracking extends Component {
           translucent
         />
         {this.getPulseIfNeeded()}
-
         <View style={styles.mainContainer}>
           <View style={styles.contentAbovePulse}>
             {this.state.currentState === StateEnum.AT_RISK &&
@@ -459,7 +460,8 @@ class LocationTracking extends Component {
           </View>
         </View>
 
-        <View>
+        {/* eslint-disable-next-line react-native/no-color-literals */}
+        <SafeAreaView style={{ backgroundColor: 'rgba(0, 0, 0, .07)' }}>
           <TouchableOpacity
             onPress={this.getMayoInfoPressed.bind(this)}
             style={styles.mayoInfoRow}>
@@ -479,7 +481,7 @@ class LocationTracking extends Component {
               <Image source={foreArrow} style={this.arrow} />
             </View>
           </TouchableOpacity>
-        </View>
+        </SafeAreaView>
         {this.getSettings()}
       </ImageBackground>
     );
