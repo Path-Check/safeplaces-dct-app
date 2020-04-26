@@ -47,18 +47,17 @@ const NavigationBarWrapper = ({ children, title, onBackPress }) => {
 
 const themeNavBar = ({ theme }) => theme.navBar || Colors.VIOLET;
 
-// TODO: this breaks transitions...
-// const themeBackground = ({ theme }) =>
-//   theme.background || Colors.INTRO_WHITE_BG;
-
 const TopContainer = styled.SafeAreaView`
   flex: 0;
   background-color: ${themeNavBar};
 `;
 
+const themeBackground = ({ theme }) =>
+  theme.background || Colors.INTRO_WHITE_BG;
+
 const BottomContainer = styled.SafeAreaView`
   flex: 1;
-  background-color: ${Colors.INTRO_WHITE_BG};
+  background-color: ${themeBackground};
 `;
 
 const themeNavBarBorder = ({ theme }) =>
