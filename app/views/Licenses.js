@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
   Image,
@@ -12,46 +13,45 @@ import { WebView } from 'react-native-webview';
 
 import foreArrow from './../assets/images/foreArrow.png';
 import licenses from './../assets/LICENSE.json';
-import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
+import { Theme } from '../constants/themes';
 
-class LicensesScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
+const TERMS_OF_USE_URL =
+  'https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#';
 
-  backToMain() {
-    this.props.navigation.goBack();
-  }
+export const LicensesScreen = ({ navigation }) => {
+  const { t } = useTranslation();
 
-  handleBackPress = () => {
-    this.backToMain();
+  const backToMain = () => {
+    navigation.goBack();
+  };
+
+  const handleBackPress = () => {
+    backToMain();
     return true;
   };
 
-  handleTermsOfUsePressed() {
-    Linking.openURL(languages.t('label.terms_of_use_url'));
-  }
+  const handleTermsOfUsePressed = () => {
+    Linking.openURL(TERMS_OF_USE_URL);
+  };
 
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-  }
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+    };
+  });
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-  }
-
-  getLicenses() {
-    var result = '<html>';
+  function getLicenses() {
+    let result = '<html>';
     result +=
       '<style>  html, body { font-size: 40px; margin: 0; padding: 0; } </style>';
     result += '<body>';
 
-    for (var i = 0; i < licenses.terms_and_licenses.length; i++) {
-      var element = licenses.terms_and_licenses[i];
+    for (let i = 0; i < licenses.terms_and_licenses.length; i++) {
+      const element = licenses.terms_and_licenses[i];
 
       result += '<H2>' + element.name + '</H2><P>';
       result += element.text.replace(/\n/g, '<br/>');
@@ -62,48 +62,43 @@ class LicensesScreen extends Component {
     return result;
   }
 
-  render() {
-    return (
-      <NavigationBarWrapper
-        title={languages.t('label.legal_page_title')}
-        onBackPress={this.backToMain.bind(this)}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View style={{ flex: 4 }}>
-            <WebView
-              originWhitelist={['*']}
-              source={{
-                html: this.getLicenses(),
-              }}
-              style={{
-                marginTop: 15,
-                backgroundColor: Colors.INTRO_WHITE_BG,
-              }}
-            />
-          </View>
-        </ScrollView>
+  return (
+    <NavigationBarWrapper
+      title={t('label.legal_page_title')}
+      onBackPress={backToMain}>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={{ flex: 4 }}>
+          <WebView
+            originWhitelist={['*']}
+            source={{
+              html: getLicenses(),
+            }}
+            style={{
+              marginTop: 15,
+              backgroundColor: Colors.INTRO_WHITE_BG,
+            }}
+          />
+        </View>
+      </ScrollView>
+      <Theme use='charcoal'>
         <TouchableOpacity
-          onPress={this.handleTermsOfUsePressed.bind(this)}
+          onPress={handleTermsOfUsePressed}
           style={styles.termsInfoRow}>
-          <View style={styles.termsInfoContainer}>
-            <Typography
-              style={styles.mainTermsHeader}
-              onPress={() =>
-                Linking.openURL(languages.t('label.terms_of_use_url'))
-              }>
-              {languages.t('label.terms_of_use')}
-            </Typography>
-          </View>
+          <Typography
+            use='headline2'
+            onPress={() => Linking.openURL(TERMS_OF_USE_URL)}>
+            {t('label.terms_of_use')}
+          </Typography>
           <View style={styles.arrowContainer}>
-            <Image source={foreArrow} style={this.arrow} />
+            <Image source={foreArrow} />
           </View>
         </TouchableOpacity>
-      </NavigationBarWrapper>
-    );
-  }
-}
+      </Theme>
+    </NavigationBarWrapper>
+  );
+};
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
   contentContainer: {
     flexDirection: 'column',
     width: '100%',
@@ -111,45 +106,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 26,
     flex: 1,
   },
-  row: {
-    flexDirection: 'row',
-    color: Colors.PRIMARY_TEXT,
-    alignItems: 'flex-start',
-  },
-  valueName: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 20,
-    fontFamily: fontFamily.primaryMedium,
-    marginTop: 9,
-  },
-  value: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 20,
-    fontFamily: fontFamily.primaryMedium,
-    marginTop: 9,
-  },
-  valueSmall: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 16,
-    fontFamily: fontFamily.primaryMedium,
-    marginTop: 9,
-  },
   termsInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: Colors.SILVER,
-  },
-  termsInfoContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignContent: 'flex-end',
     padding: 15,
-  },
-  mainTermsHeader: {
-    textAlign: 'left',
-    color: Colors.MISCHKA,
-    fontSize: 20,
-    fontFamily: fontFamily.primaryBold,
   },
   arrowContainer: {
     alignSelf: 'center',
@@ -157,5 +118,3 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
 });
-
-export default LicensesScreen;

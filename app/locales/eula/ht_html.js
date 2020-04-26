@@ -353,7 +353,7 @@ export default `
 </p>
 <p><strong>9. LIMITASYON RESPONSABLITE.</strong></p>
 <p>
-  <strong>1.1</strong> Limit responsabilite nou de sèten domaj. OU KONPRANN AK
+  <strong>9.1</strong> Limit responsabilite nou de sèten domaj. OU KONPRANN AK
   dakò KI PA GEN EVÈNMAN PATI pati PCI YON RESPONSAB POU NENPT PÈS POU PROFIT,
   BLIJI PÈSONÈL, DANJE PWOPRIYETE, MOVE MALADI, ENFMASYON OSWA DONE, DANI
   INDIRÈT, ENSIDANS, ESPESYAL, OSWA DWA, OSWA DANYE oswa domaj OSWA KOTE POU
@@ -370,7 +370,7 @@ export default `
   ki te koze pa yon fwis PCI pati a oswa yon fo reprezantasyon FRAUDULENT.
 </p>
 <p>
-  <strong>1.2</strong> Kap sou Responsabilite. POU PWOJÈ maksimòm PEMISYE POU
+  <strong>9.2</strong> Kap sou Responsabilite. POU PWOJÈ maksimòm PEMISYE POU
   LWA, KI KOTE POU NENPAY NENPOT POU KONTW CONCH KI GENYEN LA, RESPONSABLITE NOU
   POU OU pou nenpòt domaj ki soti nan oswa ki gen rapò ak kondisyon sa yo pou
   itilize (pou nenpòt ki koz toutbon menm jan ak fòm nan AKSYON an), yo pral nan
@@ -380,19 +380,19 @@ export default `
   ki gen rapò ak kondisyon sa yo sèvi ak.
 </p>
 <p>
-  <strong>1.3</strong> Done ou. EKSEPTE pou OBLIGASYON PCI a PWOTEJE DONE
+  <strong>9.3</strong> Done ou. EKSEPTE pou OBLIGASYON PCI a PWOTEJE DONE
   PÈSONÈL OU jan li te etabli nan règleman prive PCI a, PCI sipoze pa gen okenn
   responsablite pou tan an, DELETION, MIS-livrezon oswa echèk magazen nenpòt ki
   kontni (ki enkli istwa lokasyon ou), itilizatè kominikasyon oswa anviwònman
   pèsonalizasyon.
 </p>
 <p>
-  <strong>1.4</strong> Baz negosyasyon an. Limit nan domaj ki etabli anwo yo se
+  <strong>9.4</strong> Baz negosyasyon an. Limit nan domaj ki etabli anwo yo se
   eleman fondamantal de baz la nan PAPA ant PCI ak ou.
 </p>
-<p><strong>2. KONSÈY.</strong></p>
+<p><strong>10. KONSÈY.</strong></p>
 <p>
-  <strong>2.1 Vyolasyon</strong>. Si PCI vin okouran nenpòt vyolasyon posib ke
+  <strong>10.1 Vyolasyon</strong>. Si PCI vin okouran nenpòt vyolasyon posib ke
   ou nan Akò sa a, PCI rezève dwa pou envestige vyolasyon sa yo. Si, kòm yon
   rezilta nan ankèt la, psi kwè ke gen aktivite kriminèl ki te fèt, PCI rezève
   dwa pou refere ka a, epi pou kolabore ak, nenpòt ak tout otorite legal ki
@@ -405,43 +405,43 @@ export default `
   oswa lòt ofisyèl gouvènman yo, kòm psi, nan. sèl diskresyon li kwè ke li
   nesesè oswa apwopriye.
 </p>
-<p><strong>3. Regleman ak sispansyon.</strong></p>
+<p><strong>11. Regleman ak sispansyon.</strong></p>
 <p>
-  <strong>3.1 Regleman.</strong> Akò sa a kòmanse nan dat la lè ou aksepte yo
+  <strong>11.1 Regleman.</strong> Akò sa a kòmanse nan dat la lè ou aksepte yo
   (jan sa dekri nan pre-an pi wo a) epi rete nan tout fòs ak efè pandan w ap
   itilize aplikasyon an, sòf si sispann pi bonè nan akò ak sa a Akò.
 </p>
 <p>
-  <strong>3.2 Itilize Anvan.</strong> Malgre sa ki endike anwo la a, ou rekonèt
+  <strong>11.2 Itilize Anvan.</strong> Malgre sa ki endike anwo la a, ou rekonèt
   epi mwen dakò ke Akò sa a te kòmanse nan pi bonè pou rive nan (a) dat ou te
   itilize Aplikasyon an oswa (b) dat ou te aksepte Kontra sa a epi w ap rete nan
   tout fòs ou pandan wap itilize. Aplikasyon an, sòf si li te sispann pi bonè
   dapre Akò sa a.
 </p>
 <p>
-  <strong>3.3 Revokasyon ou.</strong> Si ou vle mete fen nan Akò sa a, ou ka fè
+  <strong>11.3 Revokasyon ou.</strong> Si ou vle mete fen nan Akò sa a, ou ka fè
   sa pa efase aplikasyon an soti nan aparèy mobil ou.
 </p>
 <p>
-  <strong>3.4 Efè Termination</strong>. Fen nan akò sa a egzije pou ou efase
+  <strong>11.4 Efè Termination</strong>. Fen nan akò sa a egzije pou ou efase
   aplikasyon an ak sispann tout itilize nan li. Tout dispozisyon ki nan akò sa a
   ki pa nati yo ta dwe siviv, va siviv mete fen, ki gen ladan san limit,
   dispozisyon pwopriyetè, avètisman garanti, ak limitasyon de responsablite.
 </p>
 <p>
-  <strong>4. Itilizatè entènasyonal yo.</strong> Aplikasyon an fèt sèlman pou
+  <strong>12. Itilizatè entènasyonal yo.</strong> Aplikasyon an fèt sèlman pou
   itilize nan Etazini nan Amerik la. Psi pa fè okenn reprezantasyon ki
   aplikasyon an fonksyonèl nan lòt kote. Moun ki gen aksè oswa ki itilize
   aplikasyon an nan lòt peyi yo fè sa sou pwòp risk yo epi yo responsab pou
   itilize an konfòmite ak lwa lokal yo.
 </p>
 <p>
-  <strong>5. Rezolisyon dispit.</strong> Tanpri li akò arbitraj sa a nan Seksyon
+  <strong>13. Rezolisyon dispit.</strong> Tanpri li akò arbitraj sa a nan Seksyon
   sa a ("Akò Abitraj") avèk anpil atansyon. Li mande pou itilizatè Ameriken
   abitraj diskisyon avèk psi epi limite fason ou ka chèche sekou nan men nou.
 </p>
 <p>
-  <strong>5.1 Aplikablite nan Abitraj Akò.</strong> Ou dakò ke nenpòt dispit,
+  <strong>13.1 Aplikablite nan Abitraj Akò.</strong> Ou dakò ke nenpòt dispit,
   reklamasyon, oswa demann pou soulajman ki gen rapò nan nenpòt fason pou aksè
   ou oswa pou sèvi ak aplikasyon an oswa nan nenpòt ki aspè nan relasyon ou ak
   psi, yo pral rezoud pa abitraj obligatwa, olye ke nan tribinal, eksepte ke (1
@@ -454,7 +454,7 @@ export default `
   efektif akò sa a oswa nenpòt vèsyon anvan akò sa a.
 </p>
 <p>
-  <strong>5.2 Règ Abitraj ak Forum.</strong> Lwa sou Abitraj Federal la gouvène
+  <strong>13.2 Règ Abitraj ak Forum.</strong> Lwa sou Abitraj Federal la gouvène
   entèpretasyon ak ranfòsman akò sa a sou Abitraj. Pou kòmanse yon pwosedi
   abitraj, ou dwe voye yon lèt pou mande abitraj epi dekri konfli ou oswa
   reklamasyon ou oswa demann soulajman pou ajan ki anrejistre nou an, Samuel
@@ -482,7 +482,7 @@ export default `
   medyatè a ka antre nan nenpòt ki tribinal ki gen konpetans jiridiksyon.
 </p>
 <p>
-  <strong>5.3 Otorite nan abitrè.</strong> Medyatè a dwe gen otorite eksklizif
+  <strong>13.3 Otorite nan abitrè.</strong> Medyatè a dwe gen otorite eksklizif
   pou (a) detèmine sijè ki abòde lan ak aplikabite nan Akò sa a Abitraj ak (b)
   rezoud nenpòt dispit ki gen rapò ak entèpretasyon, aplikabilite, aplikab, oswa
   fòmasyon sa a Arbitraj Akò ki gen ladan, men pa limite a, nenpòt ki afirmasyon
@@ -500,7 +500,7 @@ export default `
   genyen. Prim nan medyatè a se final ak obligatwa pou ou ak pou nou.
 </p>
 <p>
-  <strong>5.4 Egzanpsyon pou jijman jiri.</strong> OU AK PCI SE RENSEYE KÈK DWA
+  <strong>13.4 Egzanpsyon pou jijman jiri.</strong> OU AK PCI SE RENSEYE KÈK DWA
   KONSTITISYONÈL AK STATWA POU VOJE NAN TRIBINAL AK YON JIJANS AN devan yon Jij
   oswa yon jiri. Oumenm ak PCI se olye pou chwazi tout diskisyon, reklamasyon,
   oswa demann pou soulajman yo dwe rezoud nan abitraj dapre Akò sou Abitraj sa
@@ -511,7 +511,7 @@ export default `
   limite.
 </p>
 <p>
-  <strong>5.5 Egzanpsyon pou Sekou Klas oswa Lòt ki pa Peye-endividyalize.</strong>
+  <strong>13.5 Egzanpsyon pou Sekou Klas oswa Lòt ki pa Peye-endividyalize.</strong>
   Tout diskisyon, reklamasyon, ak Demann pou soulajman nan domèn AKIT ARBITRE sa
   a dwe abrite sou yon baz endividyèl epi yo pa sou yon klas oswa baz kolektif,
   SÈLMAN POU gen soulajman endividyèl, ak reklamasyon nan plis pase yon kliyan
@@ -524,7 +524,7 @@ export default `
   pou sekou yo dwe abitraj.
 </p>
 <p>
-  <strong>5.6 Dwa 30-Jou yo chwazi pou soti.</strong> Ou gen dwa pou ou pa
+  <strong>13.6 Dwa 30-Jou yo chwazi pou soti.</strong> Ou gen dwa pou ou pa
   patisipe nan dispozisyon ki nan Kontra Abitraj sa a pa voye yon avi alekri sou
   desizyon ou a patisipe soti nan: legal@pathcheck.org, nan lespas 30 jou apre
   premye vin sijè a sa a Abitraj Akò. Avi ou a dwe enkli non ou ak adrès ou,
@@ -535,28 +535,28 @@ export default `
   tan kap vini an, avèk nou.
 </p>
 <p>
-  <strong>5.7 Divisibilite.</strong> Eksepte jan yo prevwa nan souseksyon 13.5,
+  <strong>13.7 Divisibilite.</strong> Eksepte jan yo prevwa nan souseksyon 13.5,
   si nenpòt pati oswa pati nan akò sa a Abitraj yo te jwenn anba lalwa a yo dwe
   valab oswa ki pa ka ranfòse, Lè sa a, tankou yon pati espesifik oswa pati va
   gen ki pa gen fòs ak efè epi yo pral koupe ak rès la nan Abitraj la. Akò va
   kontinye nan fòs plen ak efè.
 </p>
 <p>
-  <strong>5.8 Siviv nan Akò.</strong> Akò sa a Abitraj ap siviv mete fen nan
+  <strong>13.8 Siviv nan Akò.</strong> Akò sa a Abitraj ap siviv mete fen nan
   relasyon ou a ak psi.
 </p>
 <p>
-  <strong>5.9 Modifikasyon.</strong> Malgre nenpòt dispozisyon ki nan Kontra
+  <strong>13.9 Modifikasyon.</strong> Malgre nenpòt dispozisyon ki nan Kontra
   sa-a nan kontrè a, nou dakò ke si PCI fè nenpòt ki chanjman materyèl nan lavni
   sa a Abitraj Akò, ou ka rejte ki chanjman nan trant (30) jou de chanjman sa yo
   vin efektif pa ekri PCI nan adrès sa a: Path Check, Inc. PO Box 441621,
   Somerville, MA 02144
 </p>
 <p>
-  <strong>6. DISPOZISYON JENERAL YO<br /> </strong>
+  <strong>14. DISPOZISYON JENERAL YO<br /> </strong>
 </p>
 <p>
-  <strong>6.1 Kominikasyon elektwonik.</strong> Kominikasyon ant ou menm ak PCI
+  <strong>14.1 Kominikasyon elektwonik.</strong> Kominikasyon ant ou menm ak PCI
   ka pran plas atravè mwayen elektwonik, si ou voye yon imèl PCI, oswa si PCI
   poste avi nan Aplikasyon an oswa atravè mizajou yo te fè nan Aplikasyon an
   annakò avèk sa a Regleman pou Itilize oswa kominike avèk ou via- lapòs. Pou
@@ -568,7 +568,7 @@ export default `
   Komès Nasyonal nan 15 US.C. §7001 et seq. ("E-Siyen").
 </p>
 <p>
-  <strong>6.2 Lansman.</strong> Ou fin divilge Pèmi yo PCI ak siksesè yo soti
+  <strong>14.2 Lansman.</strong> Ou fin divilge Pèmi yo PCI ak siksesè yo soti
   nan reklamasyon, demand, nenpòt ak tout pèt, domaj, dwa, ak aksyon nenpòt
   kalite, ki gen ladan blesi pèsonèl, lanmò, ak domaj pwopriyete, ki se swa
   dirèkteman oswa endirèkteman ki gen rapò ak oswa rive soti nan nenpòt ki
@@ -588,61 +588,61 @@ export default `
   Aplikasyon an bay la anba a.
 </p>
 <p>
-  <strong>6.3 Plasman.</strong> Akò sa a, ak dwa ou yo ak obligasyon ki anba la
+  <strong>14.3 Plasman.</strong> Akò sa a, ak dwa ou yo ak obligasyon ki anba la
   a, pa ka asiyen, soutretan, delege oswa otreman transfere pa ou san ou pa
   konsantman PCI anvan ekri, ak nenpòt tantativ tantasyon, tretman, delegasyon,
   oswa transfè an vyolasyon sa ki ekri pi wo a pral nil epi yo anile. .
 </p>
 <p>
-  <strong>6.4 Fòs majè.</strong> PCI pa dwe responsab pou okenn reta oswa echèk
+  <strong>14.4 Fòs majè.</strong> PCI pa dwe responsab pou okenn reta oswa echèk
   nan fè rezilta ki soti nan kòz deyò kontwòl rezonab li yo, ki gen ladan, men
   pa limite a, zak Bondye a, lagè, teworis, revòlt, embargos, zak otorite sivil
   oswa militè, dife, inondasyon ,. aksidan, grèv oswa mank fasilite transpò,
   gaz, enèji, travay oswa materyèl.
 </p>
 <p>
-  <strong>6.5 Kesyon, Plent, Reklamasyon.</strong> Si ou gen nenpòt kesyon,
+  <strong>14.5 Kesyon, Plent, Reklamasyon.</strong> Si ou gen nenpòt kesyon,
   plent oswa reklamasyon ki gen rapò ak Aplikasyon an, tanpri kontakte nou nan:
   <a href="mailto:support@pathcheck.org"><span class="underline">support@pathcheck.org</span></a>.
 </p>
 <p>
-  <strong>6.6 Eksklizif Venue.</strong> Nan mezi pati yo gen pèmisyon dapre Akò
+  <strong>14.6 Eksklizif Venue.</strong> Nan mezi pati yo gen pèmisyon dapre Akò
   sa a pou kòmanse yon litij nan yon tribinal, tou de ou menm ak PCI dakò ke
   tout reklamasyon ak diskisyon ki rive soti nan oswa ki gen rapò ak sa a Akò
   pral plede sèlman nan tribinal yo leta oswa federal ki sitiye nan Boston,
   Massachusetts.
 </p>
 <p>
-  <strong>6.7 Lwa sou Gouvènman</strong> TÈM YO AK NENPT AKSYON KI KI TE RELIJE
+  <strong>14.7 Lwa sou Gouvènman</strong> TÈM YO AK NENPT AKSYON KI KI TE RELIJE
   A ANREJE AK INTERPRETE PA AK LWA NAN LWA COMMONWEALTH OF MASSACHUSETTS, ki
   konsistan avèk Lwa sou Arbitraj FEDERAL, san bay efè sou nenpòt prensip ki bay
   APLIKASYON LWA POU YON LDT JURISDIKSYON. KONVANSYON Nasyonzini an sou KONTRA
   POU VANN entènasyonal la nan machandiz pa aplike pou akò sa a.
 </p>
 <p>
-  <strong>6.8 Chwa langaj.</strong> Li se vle eksprime pati yo ke Akò sa a ak
+  <strong>14.8 Chwa langaj.</strong> Li se vle eksprime pati yo ke Akò sa a ak
   tout dokiman ki gen rapò ak yo te trase moute nan lang angle.
 </p>
 <p>
-  <strong>6.9 Avi.</strong> Ou ka remèt yon avi bay PCI nan adrès sa a: Path
+  <strong>14.9 Avi.</strong> Ou ka remèt yon avi bay PCI nan adrès sa a: Path
   Check, Inc. PO Box 441621, Somerville MA 02144. Yo dwe konsidere yon avi konsa
   lè yo resevwa pa PCI pa yon lèt bay pa sèvis livrezon lannwit ke yo rekonèt
   nasyonalman oswa lapòs premye pòs klas pre-peye nan nan adrès ki pi wo a.
 </p>
 <p>
-  <strong>6.10 Renonsyasyon.</strong> Nenpòt egzanpsyon oswa echèk nan ranfòse
+  <strong>14.10 Renonsyasyon.</strong> Nenpòt egzanpsyon oswa echèk nan ranfòse
   nenpòt dispozisyon nan kontra sa-a nan yon sèl okazyon pa pral jije yon
   egzansyon nan nenpòt ki lòt pwovizyon oswa nan dispozisyon sa a sou nenpòt ki
   lòt okazyon.
 </p>
 <p>
-  <strong>6.11 Divisibilite</strong>. Si nenpòt pòsyon nan Kontra sa-a se fèt
+  <strong>14.11 Divisibilite</strong>. Si nenpòt pòsyon nan Kontra sa-a se fèt
   valab oswa ki pa aplikab, yo dwe entèprete pòsyon sa a nan yon fason yo
   reflete, kòm prèske ke posib, entansyon orijinal la nan pati yo, ak pòsyon ki
   rete yo ap rete nan tout fòs ak efè.
 </p>
 <p>
-  <strong>6.12 Ekspòtasyon kontwòl.</strong> Ou pa ka itilize, ekspòtasyon,
+  <strong>14.12 Ekspòtasyon kontwòl.</strong> Ou pa ka itilize, ekspòtasyon,
   enpòte, oswa transfere Aplikasyon an eksepte jan otorize pa lalwa Etazini, lwa
   yo nan jiridiksyon an nan ki ou te jwenn Pwopriyete PCI, ak nenpòt lòt lwa ki
   aplikab yo. An patikilye, men san limit, Aplikasyon an pa ka ekspòte oswa
@@ -663,7 +663,7 @@ export default `
   règleman sa yo.
 </p>
 <p>
-  <strong>6.13 Jwenn aksè ak telechaje aplikasyon an soti nan iTunes.</strong>
+  <strong>14.13 Jwenn aksè ak telechaje aplikasyon an soti nan iTunes.</strong>
   Sa ki annapre yo aplike a nenpòt ki App Store Sourcing Aplikasyon jwenn aksè a
   oswa telechaje soti nan Apple App Store:
 </p>
@@ -752,14 +752,14 @@ export default `
   </li>
 </ol>
 <p>
-  <strong>6.14 Plent Konsomatè.</strong> An akò avèk Kòd Sivil Kalifòni §1789.3,
+  <strong>14.14 Plent Konsomatè.</strong> An akò avèk Kòd Sivil Kalifòni §1789.3,
   ou ka rapòte plent bay Inite a Asistans Plent nan Divizyon Sèvis pou Konsomatè
   nan Depatman Kalifòni nan Zafè Konsomatè nan Kalifòni lè w kontakte yo alekri
   nan 1625 North Market Blvd., Suite N 112, Sacramento, CA 95834, oswa pa
   telefòn nan (800) 952-5210.
 </p>
 <p>
-  <strong>6.15 Tout Akò.</strong> Akò sa a se akò final, konplè ak eksklizif de
+  <strong>14.15 Tout Akò.</strong> Akò sa a se akò final, konplè ak eksklizif de
   pati yo ki gen rapò ak matyè a nan sa a ak ranplase ak melanje tout diskisyon
   anvan ant pati yo ki gen rapò ak matyè sa yo.
 </p>
