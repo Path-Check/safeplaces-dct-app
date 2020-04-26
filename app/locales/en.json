@@ -1,13 +1,4 @@
 {
-  "history": {
-    "no_exposure": "No exposure",
-    "possible_exposure": "Possible exposure",
-    "possible_exposure_para": "It is possible you were in contact with or close to someone who tested positive for COVID-19",
-    "what_does_this_mean": "What does this mean?",
-    "what_does_this_mean_para": "Based on your GPS history, it is possible that you may have been in contact with or close to somebody who was diagnosed with COVID-19. This does not mean you are infected but that you might be.\n\nFor further information on what you should do you can refer to the Mayo Clinic’s website.",
-    "what_if_no_symptoms": "What if I’m not showing symptoms?",
-    "what_if_no_symptoms_para": "If you have no symptoms but still would like to be tested you can go to your nearest testing site.\n\nIndividuals who don't exhibit symptoms can sometimes still carry the infection and infect others. Being careful about social distancing and coming in contact with large groups or at risk individuals (the elderly, those with significant other medical issues) is important to manage both your risk and the risk to others."
-  },
   "label": {
     "about_title": "About",
     "authorities_add_button_label": "Add Trusted Source",
@@ -91,11 +82,8 @@
     "team": "Team",
     "team_para": "Our team is composed of a consortium of epidemiologists, engineers, data scientists, digital privacy evangelists, professors and researchers from reputable institutions, including: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young and Link Ventures.",
     "terms_of_use": "Terms of use",
-    "terms_of_use_url": "https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#",
     "tested_positive_subtitle": "Your private data can be transferred to health authorities, backed up, or otherwise shared.",
     "tested_positive_title": "Share location history",
-    "logging_active": "Location Active",
-    "logging_inactive": "Location Inactive",
     "language_change_alert_title": "App need to restart in order to use this language",
     "language_change_alert_proced": "Restart",
     "language_change_alert_cancel": "Cancel"
@@ -109,5 +97,18 @@
     "what_does_this_mean": "What does this mean?",
     "what_if_no_symptoms_para": "If you have no symptoms but still would like to be tested you can go to your nearest testing site.\n\nIndividuals who don't exhibit symptoms can sometimes still carry the infection and infect others. Being careful about social distancing and coming in contact with large groups or at risk individuals (the elderly, those with significant other medical issues) is important to manage both your risk and the risk to others.",
     "what_if_no_symptoms": "What if I’m not showing symptoms?"
+  },
+  "onboarding": {
+    "eula_checkbox": "I accept the licensing agreement",
+    "eula_message": "*You must accept in order to use Safe Paths",
+    "eula_continue": "Continue"
+  },
+  "version_update": {
+    "push_notification_title": "Application is outdated",
+    "push_notification_message": "Please update your application",
+    "alert_label": "COVID Safe Paths is outdated",
+    "alert_sublabel": "Update to a new version?",
+    "update": "Update",
+    "later": "Later"
   }
 }

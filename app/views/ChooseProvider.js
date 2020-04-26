@@ -6,7 +6,6 @@ import {
   Dimensions,
   FlatList,
   Image,
-  SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -31,7 +30,7 @@ import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import { AUTHORITY_SOURCE_SETTINGS } from '../constants/storage';
+import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -81,6 +80,11 @@ class ChooseProviderScreen extends Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    // set the LAST_CHECKED time to 0, so the intersection will kick off
+    SetStoreData(LAST_CHECKED, 0);
+
+    // Force update, this will download any changed Healthcare Authorities
+    checkIntersect();
   }
 
   fetchAuthoritiesList() {
@@ -138,10 +142,7 @@ class ChooseProviderScreen extends Component {
           SetStoreData(
             AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          ).then(() => {
-            // Force updates immediately.
-            checkIntersect();
-          });
+          );
         },
       );
     } else {
@@ -171,10 +172,7 @@ class ChooseProviderScreen extends Component {
           SetStoreData(
             AUTHORITY_SOURCE_SETTINGS,
             this.state.selectedAuthorities,
-          ).then(() => {
-            // Force updates immediately.
-            checkIntersect();
-          });
+          );
         },
       );
     }
@@ -207,10 +205,7 @@ class ChooseProviderScreen extends Component {
                 SetStoreData(
                   AUTHORITY_SOURCE_SETTINGS,
                   this.state.selectedAuthorities,
-                ).then(() => {
-                  // Force updates immediately.
-                  checkIntersect();
-                });
+                );
               },
             );
           },

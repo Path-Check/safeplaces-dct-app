@@ -1,6 +1,4 @@
 /* eslint-disable */
-const screenText =
-  'If you test positive, you can choose to donate your data anonymously';
 const screenshotText = 'Onboarding - Page 3';
 
 class Onboarding3 {
