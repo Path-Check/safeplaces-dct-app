@@ -302,13 +302,7 @@ class LocationTracking extends Component {
         }}>
         {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
         <Image resizeMode={'contain'} />
-        <SvgXml
-          style={styles.stateIcon}
-          xml={settingsIcon}
-          width={32}
-          height={32}
-          color='white'
-        />
+        <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
       </TouchableOpacity>
     );
   }
@@ -526,7 +520,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     marginTop: '14%',
-    marginRight: '5%',
+    marginRight: '7%',
     alignSelf: 'flex-end',
   },
   buttonContainer: {
