@@ -24,7 +24,7 @@ let languageStrings = {};
       });
 
       it('Allows the user to go to the Home page but shows a notification that location is required', async () => {
-        await Home.hasNoKnownContact(languageStrings);
+        // await Home.hasLocationDisabled(languageStrings);
         await Home.takeScreenshot();
       });
 

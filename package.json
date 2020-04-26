@@ -131,7 +131,7 @@
           "shouldTakeAutomaticSnapshots": true,
           "takeWhen": {
             "testStart": false,
-            "testDone": true
+            "testDone": false
           }
         }
       }
