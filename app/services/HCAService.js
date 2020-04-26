@@ -81,15 +81,13 @@ class HCAService {
    * Alerts a user that there are new Healthcare Authorities in their region.
    * Includes information on the number of Authorities in their current location.
    *
-   * @param {numAuthorities} Number number of new authorities
+   * @param {count}
    * @returns {void}
    */
-  async pushAlertNewAuthoritesFromLoc(numAuthorities) {
+  async pushAlertNewAuthoritesFromLoc(count) {
     PushNotification.localNotification({
-      title: languages.t('label.authorities_new_in_area_title'),
-      message: languages.t('label.authorities_new_in_area_msg', {
-        count: numAuthorities,
-      }),
+      title: languages.t('label.authorities_new_in_area_title', { count }),
+      message: languages.t('label.authorities_new_in_area_msg', { count }),
     });
   }
 
@@ -98,17 +96,13 @@ class HCAService {
    * in their region. Includes information on the number of Authorities in
    * their current location.
    *
-   * @param {numAuthorities} Number number of new authorities
+   * @param {numAuthorities}
    * @returns {void}
    */
-  async pushAlertNewSubscribedAuthorities(numAuthorities) {
+  async pushAlertNewSubscribedAuthorities(count) {
     PushNotification.localNotification({
-      title: languages.t('label.authorities_new_subcription_title', {
-        count: numAuthorities,
-      }),
-      message: languages.t('label.authorities_new_subcription_msg', {
-        count: numAuthorities,
-      }),
+      title: languages.t('label.authorities_new_subcription_title', { count }),
+      message: languages.t('label.authorities_new_subcription_msg', { count }),
     });
   }
 
@@ -206,7 +200,7 @@ class HCAService {
     const newAuthorities = await this.getNewAuthoritiesInUserLoc();
 
     if (newAuthorities.length > 0) {
-      if (this.isAutosubscriptionEnabled()) {
+      if (this.isAutosubscriptionEnabled() === false) {
         await this.pushAlertNewSubscriptions(newAuthorities);
       } else {
         await this.pushAlertNewAuthoritesFromLoc(newAuthorities.length);
