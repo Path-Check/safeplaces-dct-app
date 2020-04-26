@@ -6,15 +6,15 @@ on:
       - develop
       - release-candidate
       - master
-    paths:
-    - '!e2e/**'
+    # paths:
+    # - '!e2e/**'
   pull_request:
     branches:
       - develop
       - release-candidate
       - master
-    paths:
-    - '!e2e/**'
+    # paths:
+    # - '!e2e/**'
 
 jobs:
   build-android:
