@@ -46,7 +46,7 @@ const StepEnum = {
   DONE: 3,
 };
 
-const PermissionDescription = ({ title, status, ...props }) => {
+const PermissionDescription = ({ title, status }) => {
   let icon;
   switch (status) {
     case PermissionStatusEnum.UNKNOWN:
@@ -99,10 +99,11 @@ class Onboarding extends Component {
    * require permission for notifications, we skip the notifications
    * step on Android.
    *
-   * @returns StepEnum
+   * @param {currentStep} StepEnum
+   * @returns {StepEnum}
    */
-  getNextStep() {
-    switch (this.state.currentStep) {
+  getNextStep(currentStep) {
+    switch (currentStep) {
       case StepEnum.LOCATION:
         return isPlatformiOS()
           ? StepEnum.NOTIFICATIONS
@@ -139,8 +140,12 @@ class Onboarding extends Component {
     const nextStep = this.getNextStep(StepEnum.NOTIFICATIONS);
     const { status } = await checkNotifications();
 
+    console.log(status);
+
     switch (status) {
       case RESULTS.GRANTED:
+        console.log('setting state!');
+        console.log(nextStep);
         this.setState({
           currentStep: nextStep,
           notificationPermission: PermissionStatusEnum.GRANTED,
@@ -173,6 +178,10 @@ class Onboarding extends Component {
     }
   }
 
+  /**
+   * Gets the respective location permissions settings string
+   * for the user's current device.
+   *   */
   getLocationPermissionSetting() {
     return isPlatformiOS()
       ? PERMISSIONS.IOS.LOCATION_ALWAYS
@@ -233,7 +242,7 @@ class Onboarding extends Component {
   /**
    * Allows the user to skip over a given step by setting the
    * permission for that step to `DENIED`
-   * @param {StepEnum} step
+   * @returns {StepEnum}
    */
   skipCurrentStep() {
     const status = PermissionStatusEnum.DENIED;
