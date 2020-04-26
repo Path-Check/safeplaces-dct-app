@@ -164,7 +164,7 @@ Array [
             Visit Google Takeout and export your Location History using the following settings: 
 1. Delivery method: "Add to Drive" 
 2. Frequency: "Export once" 
-3. File type &amp; size: ".zip" and "1GB"
+3. File type & size: ".zip" and "1GB"
 4. Google sends an email when the export is ready 
 5. Return here to import locations. Import options:
 - Import from Google Drive
