@@ -5,7 +5,7 @@
   "scripts": {
     "start": "yarn && react-native start",
     "run-android": "react-native run-android",
-    "run-ios": "react-native run-ios",
+    "run-ios": "yarn install:pod && react-native run-ios",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
     "postinstall": "patch-package; npx react-native-jetifier",
@@ -20,8 +20,8 @@
     "test:e2e:iphone8": "detox test -c iphone8.sim --loglevel=warn",
     "i18n:extract": "i18next",
     "i18n:check": "./app/locales/check.sh",
-    "test": "jest test",
-    "update-snapshots": "jest --updateSnapshot",
+    "test": "jest --config=./jest/config.js",
+    "update-snapshots": "jest --config=./jest/config.js --updateSnapshot",
     "test:dev_setup": "bats __tests__/dev_setup.test.bats"
   },
   "lint-staged": {
@@ -124,15 +124,18 @@
       "style": "module"
     }
   },
-  "jest": {
-    "preset": "react-native",
-    "setupFiles": [
-      "./jestSetupFile.js"
-    ]
-  },
   "detox": {
     "artifacts": {
-      "rootDir": "./e2e/artifacts/"
+      "rootDir": "./e2e/artifacts/",
+      "plugins": {
+        "screenshot": {
+          "shouldTakeAutomaticSnapshots": true,
+          "takeWhen": {
+            "testStart": false,
+            "testDone": false
+          }
+        }
+      }
     },
     "configurations": {
       "iphone11.sim": {
@@ -160,6 +163,7 @@
         }
       }
     },
+    "runner-config": "./jest/detox.config.js",
     "test-runner": "jest"
   }
 }

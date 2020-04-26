@@ -5,22 +5,22 @@ import Onboarding4 from '../pages/Onboarding4.po.js';
 import Onboarding5 from '../pages/Onboarding5.po.js';
 import SignEula from '../pages/SignEula.po.js';
 
-export const navigateThroughOnboarding = async () => {
-  await Onboarding1.isOnScreen();
-  await Onboarding1.tapButton();
+export const navigateThroughOnboarding = async languageStrings => {
+  await Onboarding1.isOnScreen(languageStrings);
+  await Onboarding1.tapButton(languageStrings);
 
-  await SignEula.sign();
-  await SignEula.tapButton();
+  await SignEula.sign(languageStrings);
+  await SignEula.tapButton(languageStrings);
 
-  await Onboarding2.isOnScreen();
-  await Onboarding2.tapButton();
+  await Onboarding2.isOnScreen(languageStrings);
+  await Onboarding2.tapButton(languageStrings);
 
-  await Onboarding3.isOnScreen();
-  await Onboarding3.tapButton();
+  await Onboarding3.isOnScreen(languageStrings);
+  await Onboarding3.tapButton(languageStrings);
 
-  await Onboarding4.isOnScreen();
-  await Onboarding4.tapButton();
+  await Onboarding4.isOnScreen(languageStrings);
+  await Onboarding4.tapButton(languageStrings);
 
-  await Onboarding5.isOnScreen();
-  await Onboarding5.tapButton();
+  await Onboarding5.isOnScreen(languageStrings);
+  await Onboarding5.finishSetup(languageStrings);
 };
