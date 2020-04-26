@@ -125,7 +125,16 @@
   },
   "detox": {
     "artifacts": {
-      "rootDir": "./e2e/artifacts/"
+      "rootDir": "./e2e/artifacts/",
+      "plugins": {
+        "screenshot": {
+          "shouldTakeAutomaticSnapshots": true,
+          "takeWhen": {
+            "testStart": false,
+            "testDone": true
+          }
+        }
+      }
     },
     "configurations": {
       "iphone11.sim": {
@@ -149,7 +158,7 @@
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone SE"
+          "type": "iPhone SE (2nd generation)"
         }
       }
     },

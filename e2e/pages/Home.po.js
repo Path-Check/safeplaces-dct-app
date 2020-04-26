@@ -10,9 +10,6 @@ class Home {
     await expect(
       element(by.label(languageStrings.label.home_no_contact_header)),
     ).toBeVisible();
-    await expect(
-      element(by.label(languageStrings.label.home_no_contact_subtext)),
-    ).toBeVisible();
   }
 
   async hasLocationDisabled(languageStrings) {
