@@ -1,19 +1,19 @@
 /* eslint-disable */
-const buttonlabel = 'Get Started';
-const screenText = 'The way back to normal starts here.';
 const screenshotText = 'Onboarding - Page 1';
 
 class Onboarding1 {
-  async tapButton() {
-    await element(by.label(buttonlabel)).tap();
+  async tapButton(languageStrings) {
+    await element(by.label(languageStrings.label.launch_get_started)).tap();
   }
 
   async takeScreenshot() {
     await device.takeScreenshot(screenshotText);
   }
 
-  async isOnScreen() {
-    await expect(element(by.text(screenText))).toBeVisible();
+  async isOnScreen(languageStrings) {
+    await expect(
+      element(by.label(languageStrings.label.launch_screen1_header)),
+    ).toBeVisible();
   }
 }
 
