@@ -13,11 +13,5 @@ module.exports = {
         ios: null,
       },
     },
-    'react-native-splash-screen': {
-      platforms: {
-        android: undefined,
-        ios: null,
-      },
-    },
   },
 };
