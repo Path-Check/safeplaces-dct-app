@@ -5,7 +5,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 import {
   AUTHORITY_SOURCE_SETTINGS,
-  HCA_AUTO_SUBSCRIPTION,
+  ENABLE_HCA_AUTO_SUBSCRIPTION,
 } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
@@ -39,7 +39,7 @@ class HCAService {
       const list = await RNFetchBlob.fs.readFile(result.path(), 'utf8');
       authorities = Yaml.safeLoad(list).Authorities;
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
 
     return authorities;
@@ -81,11 +81,11 @@ class HCAService {
    * Alerts a user that there are new Healthcare Authorities in their region.
    * Includes information on the number of Authorities in their current location.
    *
-   * @param {count}
+   * @param {count} number new authorities
    * @returns {void}
    */
   async pushAlertNewAuthoritesFromLoc(count) {
-    PushNotification.localNotification({
+    await PushNotification.localNotification({
       title: languages.t('label.authorities_new_in_area_title', { count }),
       message: languages.t('label.authorities_new_in_area_msg', { count }),
     });
@@ -96,11 +96,11 @@ class HCAService {
    * in their region. Includes information on the number of Authorities in
    * their current location.
    *
-   * @param {numAuthorities}
+   * @param {count} number new authorities
    * @returns {void}
    */
   async pushAlertNewSubscribedAuthorities(count) {
-    PushNotification.localNotification({
+    await PushNotification.localNotification({
       title: languages.t('label.authorities_new_subcription_title', { count }),
       message: languages.t('label.authorities_new_subcription_msg', { count }),
     });
@@ -138,7 +138,6 @@ class HCAService {
     const locHelper = new LocationData();
     const bounds = this.getAuthorityBounds(authority);
 
-    this.getAuthoritiesFromUserLocHistory();
     return bounds && locHelper.isPointInBoundingBox(point, bounds);
   }
 
@@ -150,8 +149,7 @@ class HCAService {
    * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} List of health care authorities
    */
   async getAuthoritiesFromUserLocHistory() {
-    const locHelper = new LocationData();
-    const locData = await locHelper.getLocationData();
+    const locData = await new LocationData().getLocationData();
     const authorities = await this.getAuthoritiesList();
 
     return authorities.filter(authority =>
@@ -185,7 +183,7 @@ class HCAService {
    */
   async pushAlertNewSubscriptions(newAuthorities) {
     await this.appendToAuthorityList(newAuthorities);
-    this.pushAlertNewSubscribedAuthorities(newAuthorities.length);
+    await this.pushAlertNewSubscribedAuthorities(newAuthorities.length);
   }
 
   /**
@@ -200,7 +198,7 @@ class HCAService {
     const newAuthorities = await this.getNewAuthoritiesInUserLoc();
 
     if (newAuthorities.length > 0) {
-      if (this.isAutosubscriptionEnabled() === false) {
+      if (this.isAutosubscriptionEnabled()) {
         await this.pushAlertNewSubscriptions(newAuthorities);
       } else {
         await this.pushAlertNewAuthoritesFromLoc(newAuthorities.length);
@@ -216,7 +214,7 @@ class HCAService {
    * @returns {boolean}
    */
   async hasUserSetSubscription() {
-    const permission = await GetStoreData(HCA_AUTO_SUBSCRIPTION, true);
+    const permission = await GetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, true);
 
     if (permission === null) {
       return false;
@@ -232,7 +230,7 @@ class HCAService {
    * @returns {boolean}
    */
   async isAutosubscriptionEnabled() {
-    return (await GetStoreData(HCA_AUTO_SUBSCRIPTION, true)) === 'true';
+    return (await GetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, true)) === 'true';
   }
 
   /**
@@ -240,7 +238,7 @@ class HCAService {
    * @returns {void}
    */
   async enableAutoSubscription() {
-    await SetStoreData(HCA_AUTO_SUBSCRIPTION, true);
+    await SetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, true);
   }
 
   /**
@@ -248,7 +246,7 @@ class HCAService {
    * @returns {void}
    */
   async disableAutoSubscription() {
-    await SetStoreData(HCA_AUTO_SUBSCRIPTION, false);
+    await SetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, false);
   }
 }
 

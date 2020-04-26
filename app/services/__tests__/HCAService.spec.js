@@ -1,6 +1,6 @@
 import {
   AUTHORITY_SOURCE_SETTINGS,
-  HCA_AUTO_SUBSCRIPTION,
+  ENABLE_HCA_AUTO_SUBSCRIPTION,
 } from '../../constants/storage';
 import * as storageHelpers from '../../helpers/General';
 // eslint-disable-next-line jest/no-mocks-import
@@ -43,9 +43,13 @@ describe('HCAService', () => {
     });
 
     it('Given an unsuccessful response, returns an empty array', async () => {
-      jest.spyOn(HCAService, 'fetchAuthoritiesYaml').mockImplementation(() => {
-        throw new Error();
-      });
+      console.error = jest.fn(); // Supress error log
+
+      jest
+        .spyOn(HCAService, 'fetchAuthoritiesYaml')
+        .mockImplementationOnce(() => {
+          throw new Error();
+        });
 
       await expect(HCAService.getAuthoritiesList()).resolves.toEqual([]);
     });
@@ -72,7 +76,7 @@ describe('HCAService', () => {
     beforeEach(() => {
       jest
         .spyOn(HCAService, 'getAuthoritiesList')
-        .mockResolvedValueOnce(mockHCA.validParsed);
+        .mockResolvedValue(mockHCA.validParsed);
     });
 
     it('returns true if the user was in the bounding box of an authority in the past 28 days', async () => {
@@ -187,7 +191,7 @@ describe('HCAService', () => {
     beforeEach(() => {
       jest
         .spyOn(HCAService, 'getAuthoritiesList')
-        .mockResolvedValueOnce(mockHCA.validParsed);
+        .mockResolvedValue(mockHCA.validParsed);
     });
 
     it('returns an empty array if there are no authorities in the area', async () => {
@@ -232,40 +236,40 @@ describe('HCAService', () => {
     });
 
     it('returns true if the user has not set a subcription status - either true or false', async () => {
-      await storageHelpers.SetStoreData(HCA_AUTO_SUBSCRIPTION, true);
+      await storageHelpers.SetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, true);
       await expect(HCAService.hasUserSetSubscription()).resolves.toBe(true);
 
-      await storageHelpers.SetStoreData(HCA_AUTO_SUBSCRIPTION, false);
+      await storageHelpers.SetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, false);
       await expect(HCAService.hasUserSetSubscription()).resolves.toBe(true);
     });
   });
 
   describe('isAutosubscriptionEnabled()', () => {
     it('returns false if the user has not enabled auto subscription', async () => {
-      await storageHelpers.SetStoreData(HCA_AUTO_SUBSCRIPTION, false);
+      await storageHelpers.SetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, false);
       await expect(HCAService.isAutosubscriptionEnabled()).resolves.toBe(false);
     });
 
     it('returns true if the user has enabled auto subscription', async () => {
-      await storageHelpers.SetStoreData(HCA_AUTO_SUBSCRIPTION, true);
+      await storageHelpers.SetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, true);
       await expect(HCAService.isAutosubscriptionEnabled()).resolves.toBe(true);
     });
   });
 
   describe('enableAutoSubscription()', () => {
-    it('sets `HCA_AUTO_SUBSCRIPTION` to "true" in storage', async () => {
+    it('sets `ENABLE_HCA_AUTO_SUBSCRIPTION` to "true" in storage', async () => {
       await HCAService.enableAutoSubscription();
       await expect(
-        storageHelpers.GetStoreData(HCA_AUTO_SUBSCRIPTION),
+        storageHelpers.GetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION),
       ).resolves.toBe('true');
     });
   });
 
   describe('disableAutoSubscription()', () => {
-    it('sets `HCA_AUTO_SUBSCRIPTION` to "false" in storage', async () => {
+    it('sets `ENABLE_HCA_AUTO_SUBSCRIPTION` to "false" in storage', async () => {
       await HCAService.disableAutoSubscription();
       await expect(
-        storageHelpers.GetStoreData(HCA_AUTO_SUBSCRIPTION),
+        storageHelpers.GetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION),
       ).resolves.toBe('false');
     });
   });

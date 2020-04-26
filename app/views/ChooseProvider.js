@@ -23,7 +23,7 @@ import saveIcon from './../assets/images/saveIcon.png';
 import { Checkbox } from '../components/Checkbox';
 import { DynamicTextInput } from '../components/DynamicTextInput';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Type, Typography } from '../components/Typography';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { SetStoreData } from '../helpers/General';
@@ -229,10 +229,10 @@ class ChooseProviderScreen extends Component {
         title={languages.t('label.choose_provider_title')}
         onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
-          <Typography style={styles.headerTitle} use={Type.Headline2}>
+          <Typography style={styles.headerTitle} use={'headline2'}>
             {languages.t('label.authorities_title')}
           </Typography>
-          <Typography style={styles.sectionDescription} use={Type.Body1}>
+          <Typography style={styles.sectionDescription} use={'body1'}>
             {languages.t('label.authorities_desc')}
           </Typography>
           <TouchableOpacity style={styles.autoSubcribe}>
@@ -249,7 +249,7 @@ class ChooseProviderScreen extends Component {
             <>
               <Typography
                 style={[styles.sectionDescription, styles.noDataSourceText]}
-                use={Type.Headline2}>
+                use={'headline2'}>
                 {languages.t('label.authorities_no_sources')}
               </Typography>
               <View
@@ -309,7 +309,7 @@ class ChooseProviderScreen extends Component {
                 data={this.state.selectedAuthorities}
                 renderItem={({ item }) => (
                   <View style={styles.flatlistRowView}>
-                    <Typography style={styles.item} use={Type.Body3}>
+                    <Typography style={styles.item} use={'body3'}>
                       {item.key}
                     </Typography>
                     <TouchableOpacity
@@ -336,7 +336,7 @@ class ChooseProviderScreen extends Component {
               disabled={this.state.urlEditInProgress}>
               <Typography
                 style={styles.startLoggingButtonText}
-                use={Type.Body1}
+                use={'body1'}
                 bold>
                 {languages.t('label.authorities_add_button_label')}
               </Typography>
@@ -346,7 +346,7 @@ class ChooseProviderScreen extends Component {
             <TouchableOpacity
               style={styles.authorityFilter}
               onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
-              <Typography style={styles.authorityFilterText} use={Type.Body2}>
+              <Typography style={styles.authorityFilterText} use={'body2'}>
                 {languages.t('label.filter_authorities_by_gps_history')}
               </Typography>
               <Switch
@@ -369,9 +369,7 @@ class ChooseProviderScreen extends Component {
                         this.addAuthorityToState(name);
                       }}
                       disabled={this.state.authoritiesList.length === 1}>
-                      <Typography
-                        style={styles.menuOptionText}
-                        use={Type.Body2}>
+                      <Typography style={styles.menuOptionText} use={'body2'}>
                         {name}
                       </Typography>
                     </MenuOption>
@@ -384,7 +382,7 @@ class ChooseProviderScreen extends Component {
                   urlEntryInProgress: true,
                 });
               }}>
-              <Typography style={styles.menuOptionText} use={Type.Body2}>
+              <Typography style={styles.menuOptionText} use={'body2'}>
                 {languages.t('label.authorities_add_url')}
               </Typography>
             </MenuOption>

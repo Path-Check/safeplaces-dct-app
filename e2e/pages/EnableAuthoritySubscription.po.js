@@ -1,4 +1,4 @@
-const buttonlabel = 'Subscribe';
+const buttonlabel = 'Enable auto subscription';
 const screenshotText = 'Authority Subscription Page';
 const screenText =
   'Automatically subscribe to receive the latest updates from Healthcare Authorities in your area.';

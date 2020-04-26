@@ -276,9 +276,9 @@ export function checkIntersect() {
  */
 async function asyncCheckIntersect() {
   // first things first ... is it time to actually try the intersection?
-  let last_checked_ms = Number(await GetStoreData(LAST_CHECKED));
+  let lastCheckedMs = Number(await GetStoreData(LAST_CHECKED));
   if (
-    last_checked_ms + MIN_CHECK_INTERSECT_INTERVAL * 60 * 1000 >
+    lastCheckedMs + MIN_CHECK_INTERSECT_INTERVAL * 60 * 1000 >
     dayjs().valueOf()
   )
     return null;

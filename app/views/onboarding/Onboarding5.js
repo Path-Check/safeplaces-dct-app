@@ -376,7 +376,7 @@ class Onboarding extends Component {
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_enable_notif');
       case StepEnum.HCA_SUBSCRIPTION:
-        return 'Subscribe';
+        return languages.t('label.launch_enable_auto_subscription');
       case StepEnum.DONE:
         return languages.t('label.launch_finish_set_up');
     }
