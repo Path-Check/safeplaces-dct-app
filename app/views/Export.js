@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
   SafeAreaView,
@@ -133,24 +133,12 @@ export const ExportScreen = ({ navigation }) => {
               <Typography use='headline2' style={styles.exportSectionTitles}>
                 {t('share.title')}
               </Typography>
-              <Trans i18nKey='share.paragraphs'>
-                <Typography
-                  use='body1'
-                  style={styles.exportSectionPara}
-                  // eslint-disable-next-line react-native/no-raw-text
-                >
-                  If you test positive for COVID-19, please do your part by
-                  sharing your location history with local authorities.
-                </Typography>
-                <Typography
-                  use='body1'
-                  style={styles.exportSectionPara}
-                  // eslint-disable-next-line react-native/no-raw-text
-                >
-                  Location is shared as a simple list of times and places, no
-                  additional information.
-                </Typography>
-              </Trans>
+              <Typography use='body1' style={styles.exportSectionPara}>
+                {t('share.paragraph_first')}
+              </Typography>
+              <Typography use='body1' style={styles.exportSectionPara}>
+                {t('share.paragraph_second')}
+              </Typography>
 
               <TouchableOpacity style={styles.exportButton} onPress={onShare}>
                 <Typography style={styles.exportButtonText}>

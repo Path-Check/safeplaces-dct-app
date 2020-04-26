@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Trans } from 'react-i18next';
 import {
   Modal,
   Picker,
@@ -9,6 +8,7 @@ import {
 } from 'react-native';
 
 import { Typography } from '../components/Typography';
+import languages from '../locales/languages';
 
 /**
  * Native dropdown that abstracts away the UI differences for iOS and Android.
@@ -104,7 +104,7 @@ export default class NativePicker extends Component {
                         marginRight: 22,
                       }}
                       onPress={() => this.setState({ modalVisible: false })}>
-                      <Trans i18nKey='common.done'>Done</Trans>
+                      {languages.t('common.done')}
                     </Typography>
                   </View>
                   <View
