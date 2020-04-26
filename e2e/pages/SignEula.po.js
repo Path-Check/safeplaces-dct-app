@@ -1,15 +1,13 @@
 /* eslint-disable */
-const buttonlabel = 'Continue';
-const signCheckboxLabel = 'I accept the licensing agreement';
 const screenshotText = 'EULA Accept Page';
 
 class SignEula {
-  async tapButton() {
-    await element(by.label(buttonlabel)).tap();
+  async tapButton(languageStrings) {
+    await element(by.label(languageStrings.onboarding.eula_continue)).tap();
   }
 
-  async sign() {
-    await element(by.text(signCheckboxLabel)).tap();
+  async sign(languageStrings) {
+    await element(by.text(languageStrings.onboarding.eula_checkbox)).tap();
   }
 
   async takeScreenshot() {

@@ -275,10 +275,13 @@ export function checkIntersect() {
  * Returns the array of day bins (mostly for debugging purposes)
  */
 async function asyncCheckIntersect() {
-
   // first things first ... is it time to actually try the intersection?
-  let last_checked_ms =Number(await GetStoreData(LAST_CHECKED));
-  if (last_checked_ms + MIN_CHECK_INTERSECT_INTERVAL * 60 * 1000 > dayjs().valueOf()) return null;
+  let last_checked_ms = Number(await GetStoreData(LAST_CHECKED));
+  if (
+    last_checked_ms + MIN_CHECK_INTERSECT_INTERVAL * 60 * 1000 >
+    dayjs().valueOf()
+  )
+    return null;
 
   // Set up the empty set of dayBins for intersections, and the array for the news urls
   let dayBins = getEmptyLocationBins();
