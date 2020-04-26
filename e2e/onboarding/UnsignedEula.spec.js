@@ -13,18 +13,12 @@ let languageStrings = {};
           language: locale,
           locale,
         },
-        permissions: { location: 'always', notifications: 'NO' },
+        permissions: { location: 'always', notifications: 'YES' },
       });
       languageStrings = getLanguageStrings(locale);
     });
 
     describe('Cannot continue without signing the EULA', () => {
-      beforeAll(async () => {
-        await device.launchApp({
-          newInstance: true,
-        });
-      });
-
       it('Does not allow the user to proceed', async () => {
         await Onboarding1.isOnScreen(languageStrings);
         await Onboarding1.tapButton(languageStrings);

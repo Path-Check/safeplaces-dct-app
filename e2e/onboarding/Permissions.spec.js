@@ -1,6 +1,6 @@
 import { getLanguageStrings } from '../helpers/language';
 import { navigateThroughOnboarding } from '../helpers/onboarding';
-import FinishSetup from '../pages/FinishSetup.po.js';
+import Home from '../pages/Home.po.js';
 
 let languageStrings = {};
 
@@ -23,10 +23,8 @@ let languageStrings = {};
       });
 
       it('Successfully completes device setup', async () => {
-        await FinishSetup.isOnScreen(languageStrings);
-        await FinishSetup.takeScreenshot();
-        await FinishSetup.tapButton(languageStrings);
-        await device.takeScreenshot('Post Setup');
+        await Home.hasNoKnownContact(languageStrings);
+        await Home.takeScreenshot();
       });
 
       afterAll(async () => {

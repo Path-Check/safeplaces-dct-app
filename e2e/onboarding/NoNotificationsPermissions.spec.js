@@ -1,6 +1,6 @@
 import { getLanguageStrings } from '../helpers/language';
 import { navigateThroughOnboarding } from '../helpers/onboarding';
-import FinishSetup from '../pages/FinishSetup.po.js';
+import Home from '../pages/Home.po.js';
 
 let languageStrings = {};
 
@@ -23,11 +23,9 @@ let languageStrings = {};
         await navigateThroughOnboarding(languageStrings);
       });
 
-      it('Allows the user to proceed', async () => {
-        await FinishSetup.isOnScreen(languageStrings);
-        await FinishSetup.takeScreenshot();
-        await FinishSetup.tapButton(languageStrings);
-        await device.takeScreenshot('No Notification Permissions');
+      it('Allows the user to go to the Home page and does not display a notification', async () => {
+        await Home.hasNoKnownContact(languageStrings);
+        await Home.takeScreenshot();
       });
     });
 

@@ -1,5 +1,4 @@
 import { getLanguageStrings } from '../helpers/language';
-import EnableLocation from '../pages/EnableLocation.po.js';
 import Onboarding1 from '../pages/Onboarding1.po.js';
 import Onboarding2 from '../pages/Onboarding2.po.js';
 import Onboarding3 from '../pages/Onboarding3.po.js';
@@ -46,11 +45,9 @@ let languageStrings = {};
 
         await Onboarding5.isOnScreen(languageStrings);
         await Onboarding5.takeScreenshot();
-        await Onboarding5.tapButton(languageStrings);
 
-        await EnableLocation.takeScreenshot();
-        await EnableLocation.tapButton(languageStrings);
-        await EnableLocation.takeMenuScreenshot();
+        await Onboarding5.enableLocation(languageStrings);
+        await Onboarding5.takeMenuScreenshot();
       });
 
       afterAll(async () => {

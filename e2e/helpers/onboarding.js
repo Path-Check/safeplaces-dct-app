@@ -22,5 +22,5 @@ export const navigateThroughOnboarding = async languageStrings => {
   await Onboarding4.tapButton(languageStrings);
 
   await Onboarding5.isOnScreen(languageStrings);
-  await Onboarding5.tapButton(languageStrings);
+  await Onboarding5.finishSetup(languageStrings);
 };

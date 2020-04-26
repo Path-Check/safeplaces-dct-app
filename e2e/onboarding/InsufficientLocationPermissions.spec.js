@@ -1,6 +1,6 @@
 import { getLanguageStrings } from '../helpers/language';
 import { navigateThroughOnboarding } from '../helpers/onboarding';
-import FinishSetup from '../pages/FinishSetup.po.js';
+import Home from '../pages/Home.po.js';
 
 let languageStrings = {};
 
@@ -23,11 +23,10 @@ let languageStrings = {};
         await navigateThroughOnboarding(languageStrings);
       });
 
-      it('Displays an error page about missing location permissions', async () => {
-        await FinishSetup.isOnScreen(languageStrings);
-        await FinishSetup.takeScreenshot();
-        await FinishSetup.tapButton(languageStrings);
-        await device.takeScreenshot('No Location Permissions');
+      it('Allows the user to go to the Home page but shows a notification that location is required', async () => {
+        await Home.hasNoKnownContact(languageStrings);
+        await Home.hasLocationHistoryDisabled(languageStrings);
+        await Home.takeScreenshot();
       });
 
       afterAll(async () => {
