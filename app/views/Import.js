@@ -114,13 +114,6 @@ const ImportScreen = props => {
 };
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
   subHeaderTitle: {
     textAlign: 'center',
     fontWeight: 'bold',
@@ -153,27 +146,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     textAlign: 'center',
     color: colors.WHITE,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
-  },
-  backArrow: {
-    height: 18,
-    width: 18.48,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryRegular,
   },
   sectionDescription: {
     fontSize: 16,
