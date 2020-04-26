@@ -27,7 +27,7 @@ import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import exportImage from './../assets/images/export.png';
 import foreArrow from './../assets/images/foreArrow.png';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import settingsIcon from './../assets/svgs/settingsIcon';
+import SettingsGear from './../assets/svgs/settingsGear';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
@@ -305,10 +305,9 @@ class LocationTracking extends Component {
         <Image resizeMode={'contain'} />
         <SvgXml
           style={styles.stateIcon}
-          xml={settingsIcon}
+          xml={SettingsGear}
           width={32}
           height={32}
-          color='white'
         />
       </TouchableOpacity>
     );
