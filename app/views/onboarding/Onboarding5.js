@@ -23,9 +23,8 @@ import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
 import ButtonWrapper from '../../components/ButtonWrapper';
-import { Type, Typography } from '../../components/Typography';
+import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
-import fontFamily from '../../constants/fonts';
 import { PARTICIPATE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
@@ -62,7 +61,9 @@ const PermissionDescription = ({ title, status }) => {
 
   return (
     <View style={styles.permissionContainer}>
-      <Typography style={styles.permissionTitle}>{title}</Typography>
+      <Typography style={styles.permissionTitle} use={'body2'}>
+        {title}
+      </Typography>
       <SvgXml style={styles.permissionIcon} xml={icon} width={30} height={30} />
     </View>
   );
@@ -140,12 +141,8 @@ class Onboarding extends Component {
     const nextStep = this.getNextStep(StepEnum.NOTIFICATIONS);
     const { status } = await checkNotifications();
 
-    console.log(status);
-
     switch (status) {
       case RESULTS.GRANTED:
-        console.log('setting state!');
-        console.log(nextStep);
         this.setState({
           currentStep: nextStep,
           notificationPermission: PermissionStatusEnum.GRANTED,
@@ -302,32 +299,51 @@ class Onboarding extends Component {
   }
 
   getTitleTextView() {
-    let style;
-
-    if (this.state.currentStep === StepEnum.DONE) {
-      style = styles.bigHeaderText;
-    } else {
-      style = styles.headerText;
-    }
+    const use =
+      this.state.currentStep === StepEnum.DONE ? 'headline1' : 'headline2';
 
     return (
-      <Typography style={style} use={Type.Headline2} testID='Header'>
+      <Typography style={styles.headerText} use={use} testID='Header'>
         {this.getTitleText()}
       </Typography>
     );
   }
 
   getSubtitleText() {
+    let style, text;
+
     switch (this.state.currentStep) {
       case StepEnum.LOCATION:
-        return languages.t('label.launch_location_subheader');
+        [style, text] = [
+          styles.subheaderText,
+          languages.t('label.launch_location_subheader'),
+        ];
+        break;
       case StepEnum.NOTIFICATIONS:
-        return languages.t('label.launch_notif_subheader');
+        [style, text] = [
+          styles.subheaderText,
+          languages.t('label.launch_notif_subheader'),
+        ];
+        break;
       case StepEnum.HCA_SUBSCRIPTION:
-        return languages.t('label.launch_authority_subheader');
+        [style, text] = [
+          styles.subheaderTextWide,
+          languages.t('label.launch_authority_subheader'),
+        ];
+        break;
       case StepEnum.DONE:
-        return languages.t('label.launch_done_subheader');
+        [style, text] = [
+          styles.subheaderText,
+          languages.t('label.launch_done_subheader'),
+        ];
+        break;
     }
+
+    return (
+      <Typography style={style} use={'body3'}>
+        {text}
+      </Typography>
+    );
   }
 
   getLocationPermission() {
@@ -386,7 +402,7 @@ class Onboarding extends Component {
     if (this.state.currentStep !== StepEnum.DONE) {
       return (
         <TouchableOpacity onPress={this.skipCurrentStep.bind(this)}>
-          <Typography style={styles.skipThisStepBtn}>
+          <Typography style={styles.skipThisStepBtn} use={'body1'}>
             {languages.t('label.skip_this_step')}
           </Typography>
         </TouchableOpacity>
@@ -406,9 +422,7 @@ class Onboarding extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             {this.getTitleTextView()}
-            <Typography style={styles.subheaderText}>
-              {this.getSubtitleText()}
-            </Typography>
+            {this.getSubtitleText()}
             {this.getSkipStepButton()}
             <View style={styles.statusContainer}>
               {this.getLocationPermission()}
@@ -447,26 +461,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
   },
-  bigHeaderText: {
-    color: Colors.WHITE,
-    fontSize: 52,
-    lineHeight: 47.5,
-    paddingTop: 52 - 47.5, // lineHeight hack
-    width: width * 0.7,
-    fontFamily: fontFamily.primaryMedium,
-  },
   headerText: {
     color: Colors.WHITE,
-    fontSize: 26,
-    width: width * 0.8,
-    fontFamily: fontFamily.primaryMedium,
   },
   subheaderText: {
-    marginTop: '3%',
     color: Colors.WHITE,
-    fontSize: 15,
+    marginTop: '3%',
     width: width * 0.55,
-    fontFamily: fontFamily.primaryRegular,
+  },
+  subheaderTextWide: {
+    color: Colors.WHITE,
+    marginTop: '3%',
+    width: width * 0.8,
   },
   statusContainer: {
     marginTop: '5%',
@@ -491,9 +497,9 @@ const styles = StyleSheet.create({
   },
   permissionTitle: {
     color: Colors.WHITE,
-    fontSize: 16,
     alignSelf: 'center',
-    fontFamily: fontFamily.primaryRegular,
+    marginRight: 8,
+    flex: 1,
   },
   permissionIcon: {
     alignSelf: 'center',
