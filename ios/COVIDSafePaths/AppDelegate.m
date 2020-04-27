@@ -100,17 +100,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotificationAtFirstTimeOnly"];
     [[NSUserDefaults standardUserDefaults] synchronize];
   }
-    
-  //  ***********************************************************************************//
-  UILocalNotification *notification = [[UILocalNotification alloc] init];
-  notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
-  notification.alertTitle = @"COVID Safe Paths Was Closed";
-  notification.alertBody = @"COVID Safe Paths requires to be running.";
-  notification.timeZone = [NSTimeZone defaultTimeZone];
-  notification.soundName = UILocalNotificationDefaultSoundName;
-  notification.applicationIconBadgeNumber = 0;
-
-  [RNCPushNotificationIOS didReceiveLocalNotification:notification];
 }
 
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
