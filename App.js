@@ -4,7 +4,7 @@ import SplashScreen from 'react-native-splash-screen';
 
 import { Theme } from './app/constants/themes';
 import Entry from './app/Entry';
-import { FlagsProvider, flags } from './app/helpers/flags';
+import { FlagsProvider, buildTimeFlags } from './app/helpers/flags';
 import VersionCheckService from './app/services/VersionCheckService';
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
   }, []);
 
   return (
-    <FlagsProvider flags={flags}>
+    <FlagsProvider flags={buildTimeFlags}>
       <MenuProvider>
         <Theme use='default'>
           <Entry />

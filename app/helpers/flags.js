@@ -1,5 +1,5 @@
 import createFlags from 'flag';
-import Config from 'react-native-config';
+import env from 'react-native-config';
 
 const { FlagsProvider, Flag, useFlag, useFlags } = createFlags();
 
@@ -23,6 +23,6 @@ export function parseFlags(envConfig) {
     }, {});
 }
 
-export const flags = parseFlags(Config);
+export const buildTimeFlags = parseFlags(env);
 
 export { FlagsProvider, Flag, useFlag, useFlags };
