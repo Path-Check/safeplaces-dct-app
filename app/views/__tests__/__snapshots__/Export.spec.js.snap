@@ -118,12 +118,12 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                   "fontFamily": "IBMPlexSans-Medium",
                   "fontSize": 26,
                   "fontWeight": "normal",
-                  "lineHeight": 24,
+                  "lineHeight": 34,
                   "marginTop": 9,
                   "writingDirection": "ltr",
                 }
               }
-              use="body1"
+              use="headline2"
             >
               Share location history
             </Text>
@@ -134,7 +134,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 18,
                   "fontWeight": "normal",
-                  "lineHeight": 22.5,
+                  "lineHeight": 24,
                   "marginTop": 22,
                   "writingDirection": "ltr",
                 }
@@ -150,7 +150,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 18,
                   "fontWeight": "normal",
-                  "lineHeight": 22.5,
+                  "lineHeight": 24,
                   "marginTop": 22,
                   "writingDirection": "ltr",
                 }

@@ -1,21 +1,20 @@
 /* eslint-disable */
-const buttonlabel = 'Set up my phone';
-const screenText =
-  "You're in complete control. Data is only saved on your phone.";
 const screenshotText = 'Onboarding - Page 4';
 
 class Onboarding4 {
-  async tapButton() {
-    await element(by.label(buttonlabel)).tap();
+  async tapButton(languageStrings) {
+    await element(by.label(languageStrings.label.launch_set_up_phone)).tap();
   }
 
   async takeScreenshot() {
     await device.takeScreenshot(screenshotText);
   }
 
-  async isOnScreen() {
+  async isOnScreen(languageStrings) {
     // eslint-disable-next-line jest/no-standalone-expect
-    await expect(element(by.text(screenText))).toBeVisible();
+    await expect(
+      element(by.text(languageStrings.label.launch_screen4_header)),
+    ).toBeVisible();
   }
 }
 

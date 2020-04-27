@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 
+import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import Button from './Button';
 
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     letterSpacing: 0,
     textAlign: 'center',
-    color: '#ffffff',
+    color: colors.WHITE,
   },
   buttonContainer: {
     flexDirection: 'row',

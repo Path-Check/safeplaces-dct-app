@@ -8,10 +8,10 @@ import { CONTACT_DATA, MY_UUIDs } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { isPlatformAndroid, nowStr } from '../Util';
 
-var currentUUID = null;
-var onDeviceFound = null;
-var onBTStatusChange = null;
-var lastSeen = {};
+let currentUUID = null;
+let onDeviceFound = null;
+let onBTStatusChange = null;
+let lastSeen = {};
 
 const c5_MINS = 1000 * 60 * 5;
 const c28_DAYS = 1000 * 60 * 60 * 24 * 28;
@@ -24,7 +24,7 @@ const MANUFACTURER_DATA = [12, 23, 56];
  * Check if the contact is new in the last 5 mins.
  */
 function isNewContact(contact) {
-  var nowLocal = new Date().getTime();
+  let nowLocal = new Date().getTime();
   if (
     lastSeen[contact['uuid']] &&
     lastSeen[contact['uuid']] > nowLocal - c5_MINS
@@ -60,13 +60,13 @@ function saveContact(contact) {
       }
 
       // Always work in UTC, not the local time in the contactData
-      var nowUTC = new Date().toISOString();
-      var unixtimeUTC = Date.parse(nowUTC);
+      let nowUTC = new Date().toISOString();
+      let unixtimeUTC = Date.parse(nowUTC);
 
       // Curate the list of contacts, only keep the last 28 days
       let curated = filterAfter(contactArray, unixtimeUTC - c28_DAYS);
 
-      var uuid_time = {
+      let uuid_time = {
         uuid: contact['uuid'],
         time: unixtimeUTC,
       };
@@ -94,13 +94,13 @@ function saveMyUUID(me) {
     }
 
     // Always work in UTC, not the local time in the contactData
-    var nowUTC = new Date().toISOString();
-    var unixtimeUTC = Date.parse(nowUTC);
+    let nowUTC = new Date().toISOString();
+    let unixtimeUTC = Date.parse(nowUTC);
 
     // Curate the list of points, only keep the last 28 days
     let curated = filterAfter(myUUIDArray, unixtimeUTC - c28_DAYS);
 
-    var uuid_time = {
+    let uuid_time = {
       uuid: me['uuid'],
       time: unixtimeUTC,
     };
@@ -128,7 +128,7 @@ function loadLastUUIDAndBroadcast() {
         myUUIDArray[myUUIDArray.length - 1].uuid,
         'Loading last uuid',
       );
-      var lastUUID = myUUIDArray[myUUIDArray.length - 1].uuid;
+      let lastUUID = myUUIDArray[myUUIDArray.length - 1].uuid;
       broadcast(lastUUID);
     } else {
       generateNewUUIDAndBroadcast();
@@ -295,7 +295,7 @@ export default class BroadcastingServices {
             BroadcastingServices.askBTActive();
           }
         })
-        .catch(error => {
+        .catch(() => {
           console.log('[Bluetooth]', nowStr(), currentUUID, 'BT Not Enabled');
         });
     }
@@ -321,7 +321,7 @@ export default class BroadcastingServices {
             BroadcastingServices.stopAndClearCallbacks();
           }
         })
-        .catch(error => {
+        .catch(() => {
           console.log('[Bluetooth]', nowStr(), currentUUID, 'BT Not Enabled');
         });
     }
