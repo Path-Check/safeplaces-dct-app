@@ -1,18 +1,12 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { useEffect } from 'react';
+import Config from 'react-native-config';
 import { MenuProvider } from 'react-native-popup-menu';
 import SplashScreen from 'react-native-splash-screen';
 
 import { Theme } from './app/constants/themes';
 import Entry from './app/Entry';
 import VersionCheckService from './app/services/VersionCheckService';
+import { FlagsProvider, parseFlags } from './flags';
 
 const App = () => {
   useEffect(() => {
@@ -20,12 +14,17 @@ const App = () => {
     VersionCheckService.start();
   }, []);
 
+  console.log('config', Config);
+  console.log('flags', parseFlags(Config));
+
   return (
-    <MenuProvider>
-      <Theme use='default'>
-        <Entry />
-      </Theme>
-    </MenuProvider>
+    <FlagsProvider flags={parseFlags(Config)}>
+      <MenuProvider>
+        <Theme use='default'>
+          <Entry />
+        </Theme>
+      </MenuProvider>
+    </FlagsProvider>
   );
 };
 
