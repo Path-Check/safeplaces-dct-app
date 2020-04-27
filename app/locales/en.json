@@ -63,7 +63,7 @@
     "loading_public_data": "loading data...",
     "location_disabled_message": "Please enable location access for Safe Paths.",
     "location_disabled_title": "Device location disabled",
-    "location_enabled_message": "Safe Paths is securely recording your location.",
+    "location_enabled_message": "Safe Paths is anonymously recording your location.",
     "location_enabled_title": "Device location Enabled",
     "location_stopped_message": "Stopped at user request",
     "logging_active": "Location Active",
