@@ -1,11 +1,10 @@
-import { getLanguageStrings } from '../helpers/language';
+import { languages } from '../helpers/language';
 import { navigateThroughOnboarding } from '../helpers/onboarding';
 import Home from '../pages/Home.po.js';
 
-let languageStrings = {};
-
-['en-US', 'ht-HT'].forEach(locale => {
-  describe(`No Location Permissions test suite in ${locale}`, () => {
+describe.each(languages)(
+  `No Location Permissions test suite in %s`,
+  (locale, languageStrings) => {
     beforeAll(async () => {
       await device.launchApp({
         newInstance: true,
@@ -15,8 +14,8 @@ let languageStrings = {};
         },
         permissions: { location: 'never', notifications: 'YES' },
       });
-      languageStrings = getLanguageStrings(locale);
     });
+
     describe('Location set to `never` and notifications `true` set', () => {
       beforeAll(async () => {
         await navigateThroughOnboarding(languageStrings);
@@ -32,5 +31,5 @@ let languageStrings = {};
       await device.uninstallApp();
       await device.installApp();
     });
-  });
-});
+  },
+);

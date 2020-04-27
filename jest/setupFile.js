@@ -33,7 +33,7 @@ jest.mock('@react-navigation/native', () => {
   return {
     createAppContainer: jest
       .fn()
-      .mockReturnValue(function NavigationContainer(props) {
+      .mockReturnValue(function NavigationContainer() {
         return null;
       }),
     createDrawerNavigator: jest.fn(),

@@ -1,11 +1,12 @@
+import EnableAuthoritySubscription from '../pages/EnableAuthoritySubscription.po.js';
+import FinishSetup from '../pages/FinishSetup.po.js';
 import Onboarding1 from '../pages/Onboarding1.po.js';
 import Onboarding2 from '../pages/Onboarding2.po.js';
 import Onboarding3 from '../pages/Onboarding3.po.js';
 import Onboarding4 from '../pages/Onboarding4.po.js';
-import Onboarding5 from '../pages/Onboarding5.po.js';
 import SignEula from '../pages/SignEula.po.js';
 
-export const navigateThroughOnboarding = async languageStrings => {
+export const navigateThroughPermissions = async languageStrings => {
   await Onboarding1.isOnScreen(languageStrings);
   await Onboarding1.tapButton(languageStrings);
 
@@ -20,7 +21,23 @@ export const navigateThroughOnboarding = async languageStrings => {
 
   await Onboarding4.isOnScreen(languageStrings);
   await Onboarding4.tapButton(languageStrings);
+};
 
-  await Onboarding5.isOnScreen(languageStrings);
-  await Onboarding5.finishSetup(languageStrings);
+export const navigateThroughOnboarding = async (
+  languageStrings,
+  isAutoSubcribe = true,
+) => {
+  await navigateThroughPermissions(languageStrings);
+
+  await EnableAuthoritySubscription.isOnScreen(languageStrings);
+
+  if (isAutoSubcribe) {
+    await EnableAuthoritySubscription.enable(languageStrings);
+  } else {
+    await EnableAuthoritySubscription.skipStep(languageStrings);
+  }
+
+  await FinishSetup.isOnScreen(languageStrings);
+  await FinishSetup.takeScreenshot(languageStrings);
+  await FinishSetup.tapButton(languageStrings);
 };

@@ -1,7 +1,7 @@
 /* eslint-disable */
 const screenshotText = 'Finish Setup Page';
 
-class EnableLocation {
+class FinishSetup {
   async tapButton(languageStrings) {
     await element(by.label(languageStrings.label.launch_finish_set_up)).tap();
   }
@@ -18,4 +18,4 @@ class EnableLocation {
   }
 }
 
-export default new EnableLocation();
+export default new FinishSetup();
