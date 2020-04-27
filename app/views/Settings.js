@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
+import { Flag } from '../../flags';
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
 import xmarkIcon from '../assets/svgs/xmarkIcon';
@@ -103,7 +104,6 @@ export const SettingsScreen = ({ navigation }) => {
             )}
           </NativePicker>
         </Section>
-
         <Section>
           <Item
             label={t('label.choose_provider_title')}
@@ -128,11 +128,14 @@ export const SettingsScreen = ({ navigation }) => {
           />
         </Section>
 
-        {__DEV__ && (
-          <Section>
-            <GoogleMapsImport navigation={navigation} />
-          </Section>
-        )}
+        <Flag
+          name={['google_import']}
+          render={() => (
+            <Section>
+              <GoogleMapsImport navigation={navigation} />
+            </Section>
+          )}
+        />
 
         <Section last>
           <Item
