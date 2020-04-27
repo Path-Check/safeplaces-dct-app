@@ -1,18 +1,21 @@
-const buttonlabel = 'Enable Notifications';
-const screenshotText = 'Enable Notifications Page';
-const screenShotWithMenuText = 'Notifications Permissions Dialog';
-
 class EnableNotifications {
-  async tapButton() {
-    await element(by.label(buttonlabel)).tap();
+  async tapButton(languageStrings) {
+    await element(by.label(languageStrings.label.launch_enable_notif)).tap();
   }
 
   async takeScreenshot() {
-    await device.takeScreenshot(screenshotText);
+    await device.takeScreenshot('Enable Notifications Page');
   }
 
   async takeMenuScreenshot() {
-    await device.takeScreenshot(screenShotWithMenuText);
+    await device.takeScreenshot('Notifications Permissions Dialog');
+  }
+
+  async isOnScreen(languageStrings) {
+    // eslint-disable-next-line jest/no-standalone-expect
+    await expect(
+      element(by.text(languageStrings.label.launch_notif_header)),
+    ).toBeVisible();
   }
 }
 

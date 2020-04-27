@@ -1,25 +1,23 @@
-const buttonlabel = 'Enable auto subscription';
-const screenshotText = 'Authority Subscription Page';
-const screenText =
-  'Automatically subscribe to receive the latest updates from Healthcare Authorities in your area.';
-const skipStep = 'Skip this step';
-
 class EnableAuthoritySubscription {
-  async enable() {
-    await element(by.label(buttonlabel)).tap();
+  async enable(languageStrings) {
+    await element(
+      by.label(languageStrings.label.launch_enable_auto_subscription),
+    ).tap();
   }
 
-  async skipStep() {
-    await element(by.text(skipStep).tap());
+  async skipStep(languageStrings) {
+    await element(by.text(languageStrings.label.skip_this_step).tap());
   }
 
   async takeScreenshot() {
-    await device.takeScreenshot(screenshotText);
+    await device.takeScreenshot('Authority Subscription Page');
   }
 
-  async isOnScreen() {
+  async isOnScreen(languageStrings) {
     // eslint-disable-next-line jest/no-standalone-expect
-    await expect(element(by.text(screenText))).toBeVisible();
+    await expect(
+      element(by.text(languageStrings.label.launch_authority_header)),
+    ).toBeVisible();
   }
 }
 

@@ -771,17 +771,8 @@ describe('instersect at interesting times', () => {
     expect(resultBins).toEqual(expectedBins);
   });
 
-  /**
-   * A daylight savings time change should cause either a 23 or 25 hour day.
-   *
-   * TODO: Once we've figured out a good way to mock the timezone and DST, make this test work
-   */
-  //it('is not affectd by daylight saving changes', () => {
-  //
-  // TODO: Implement this test.  Note that until we figure out a good way to mock both the
-  //        timezone as well as DST, this test can't be done in a meaningful way.
-  //
-  //});
+  // A daylight savings time change should cause either a 23 or 25 hour day.
+  // TODO: Once we've figured out a good way to mock the timezone and DST, make this test work
 });
 
 /**
