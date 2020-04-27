@@ -55,7 +55,8 @@ class NewsScreen extends Component {
 
   renderItem = item => {
     return (
-      <View style={styles.singleNews}>
+      // <View style={styles.singleNews}>
+      <>
         <View style={styles.singleNewsHead}>
           <Typography style={styles.singleNewsHeadText}>
             {item.item.name}
@@ -69,6 +70,7 @@ class NewsScreen extends Component {
             borderBottomLeftRadius: 12,
             borderBottomRightRadius: 12,
           }}
+          style={{ flex: 1, width: '100%' }}
           cacheEnabled
           onLoad={() =>
             this.setState({
@@ -76,7 +78,8 @@ class NewsScreen extends Component {
             })
           }
         />
-      </View>
+      </>
+      //  </View>
     );
   };
 
@@ -168,10 +171,14 @@ const styles = StyleSheet.create({
   },
   singleNewsHead: {
     height: 48,
+    backgroundColor: 'rgba(255,255,255,0.6)',
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     borderBottomWidth: 3,
     marginBottom: 0,
+    width: '100%',
   },
   singleNewsHeadText: {
     fontSize: 16,
