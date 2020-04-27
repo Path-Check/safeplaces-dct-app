@@ -196,8 +196,6 @@ PODS:
     - React
   - react-native-geolocation (2.0.2):
     - React
-  - react-native-maps (0.27.1):
-    - React
   - react-native-safe-area-context (0.6.0):
     - React
   - react-native-splash-screen (3.2.0):
@@ -301,7 +299,6 @@ DEPENDENCIES:
   - react-native-background-timer (from `../node_modules/react-native-background-timer`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
-  - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-uuid-generator (from `../node_modules/react-native-uuid-generator`)
@@ -381,8 +378,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-document-picker"
   react-native-geolocation:
     :path: "../node_modules/@react-native-community/geolocation"
-  react-native-maps:
-    :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
@@ -465,7 +460,6 @@ SPEC CHECKSUMS:
   react-native-background-timer: 1f7d560647b40e6a60b01c452ba29c54bf581fc4
   react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
-  react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-safe-area-context: d288138da2c800caa111f9352e9333f186a06ead
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-uuid-generator: 82ffa2a1cac94242ebed52c4dedc5044d3412717
