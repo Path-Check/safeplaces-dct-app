@@ -1,4 +1,5 @@
 import createFlags from 'flag';
+import Config from 'react-native-config';
 
 const { FlagsProvider, Flag, useFlag, useFlags } = createFlags();
 
@@ -11,7 +12,7 @@ const { FlagsProvider, Flag, useFlag, useFlags } = createFlags();
  *
  * @param {{[key: string]: string}} envConfig
  */
-function parseFlags(envConfig) {
+export function parseFlags(envConfig) {
   return Object.entries(envConfig)
     .filter(([key]) => key.toLowerCase().startsWith('flag'))
     .reduce((flags, [key, value]) => {
@@ -22,4 +23,6 @@ function parseFlags(envConfig) {
     }, {});
 }
 
-export { FlagsProvider, Flag, useFlag, useFlags, parseFlags };
+export const flags = parseFlags(Config);
+
+export { FlagsProvider, Flag, useFlag, useFlags };

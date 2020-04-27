@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
-import { Flag } from '../../flags';
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
 import xmarkIcon from '../assets/svgs/xmarkIcon';
@@ -12,6 +11,7 @@ import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
+import { Flag } from '../helpers/flags';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
