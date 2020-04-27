@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import DocumentPicker from 'react-native-document-picker';
+import RNFS from 'react-native-fs'
 
 /**
  * Get Data from Store
@@ -51,6 +52,10 @@ export async function pickFile() {
       type: [DocumentPicker.types.zip, DocumentPicker.types.allFiles],
       usePath: true,
     });
+    console.log('pickFile=', res);
+    // const stat = await RNFS.stat(decodeURIComponent(res.uri));
+    // console.log('stat', stat);
+
     return res.uri;
   } catch (err) {
     if (DocumentPicker.isCancel(err)) {

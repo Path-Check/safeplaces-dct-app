@@ -39,8 +39,10 @@ const ImportScreen = props => {
       setImportResults(makeImportResults());
 
       const filePath = await pickFile();
+      console.log('filePath', filePath);
       if (filePath) {
         const newLocations = await importTakeoutData(filePath);
+        console.log('newLocations', newLocations);
         if (newLocations.length) {
           setImportResults(makeImportResults('label.import_success'));
         } else {
@@ -57,6 +59,7 @@ const ImportScreen = props => {
           makeImportResults('label.import_invalid_file_format', true),
         );
       } else {
+        console.log('[ERROR] Failed to import locations', err);
         setImportResults(makeImportResults('label.import_error', true));
       }
     }
