@@ -34,7 +34,6 @@ class Entry extends Component {
   componentDidMount() {
     GetStoreData('ONBOARDING_DONE')
       .then(onboardingDone => {
-        console.log(onboardingDone);
         this.setState({
           initialRouteName: onboardingDone,
         });

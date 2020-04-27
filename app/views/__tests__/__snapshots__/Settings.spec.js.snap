@@ -389,7 +389,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body1"
               >
-                Choose health authority
+                Choose Health Authority
               </Text>
               <Text
                 secondary={true}
@@ -405,7 +405,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body3"
               >
-                To be informed of exposures you will need to subscribe to a health authority.
+                To be informed of exposures you will need to subscribe to a Health Authority.
               </Text>
             </View>
           </View>

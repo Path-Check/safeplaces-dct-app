@@ -1,11 +1,10 @@
-import { getLanguageStrings } from '../helpers/language';
+import { languages } from '../helpers/language';
 import { navigateThroughOnboarding } from '../helpers/onboarding';
 import Home from '../pages/Home.po.js';
 
-let languageStrings = {};
-
-['en-US', 'ht-HT'].forEach(locale => {
-  describe(`Insufficient Permissions test suite in ${locale}`, () => {
+describe.each(languages)(
+  `Insufficient Permissions test suite in %s`,
+  (locale, languageStrings) => {
     beforeAll(async () => {
       await device.launchApp({
         newInstance: true,
@@ -15,7 +14,6 @@ let languageStrings = {};
         },
         permissions: { location: 'inuse', notifications: 'YES' },
       });
-      languageStrings = getLanguageStrings(locale);
     });
 
     describe('Location set to `inuse` and notifications `true` set', () => {
@@ -33,5 +31,5 @@ let languageStrings = {};
         await device.installApp();
       });
     });
-  });
-});
+  },
+);

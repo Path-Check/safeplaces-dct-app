@@ -13,6 +13,13 @@ class EnableLocation {
   async takeMenuScreenshot() {
     await device.takeScreenshot(screenShotWithMenuText);
   }
+
+  async isOnScreen(languageStrings) {
+    // eslint-disable-next-line jest/no-standalone-expect
+    await expect(
+      element(by.text(languageStrings.label.launch_location_header)),
+    ).toBeVisible();
+  }
 }
 
 export default new EnableLocation();
