@@ -105,7 +105,7 @@ export default class NativePicker extends Component {
                         marginRight: 22,
                       }}
                       onPress={() => this.setState({ modalVisible: false })}>
-                      {languages.t('Done')}
+                      {languages.t('common.done')}
                     </Typography>
                   </View>
                   <View
