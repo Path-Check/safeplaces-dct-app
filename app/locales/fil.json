@@ -37,7 +37,12 @@
     "launch_notif_header": "Kayo ay makakatanggao ng abiso o paalala kung sakali mang kayo ay may nakahalubilo na maysakit",
     "launch_notif_subheader": "Ang aming hihilingin lang sa inyo bilang abala ay kung may panganib, maari po lamang na ito ay ibahagi nyo sa amin.",
     "launch_notification_access": "Payagan ang mga notipikasyon",
-    "launch_screen2_header": "Iyong maabisuhan kung ikaw ay cross landas na may isang tao sa ibang pagkakataon nasuri para sa COVID-19."
+    "launch_screen2_header": "Iyong maabisuhan kung ikaw ay cross landas na may isang tao sa ibang pagkakataon nasuri para sa COVID-19.",
+    "launch_screen2_subheader": "Ang kaalaman ay kapangyarihan.",
+    "legal_page_title": "Legal",
+    "loading_public_data": "Naglo-load ng datos ...",
+    "news_title": "Pinakabagong balita",
+    "no_data": "Walang datos"
   },
   "onboarding": {
     "eula_checkbox": "Tinatanggap ko ang kasunduan nito.",
