@@ -1,6 +1,7 @@
 /* eslint-disable jest/expect-expect */
 import { languages } from '../helpers/language';
 import { navigateThroughOnboarding } from '../helpers/onboarding';
+import Home from '../pages/Home.po.js';
 
 describe.each(languages)(
   `Healthcare Authority auto subscription in %s`,
@@ -16,9 +17,19 @@ describe.each(languages)(
       });
     });
 
-    it('Shows auto subscription as unset', async () => {
-      await navigateThroughOnboarding(languageStrings);
-      await device.takeScreenshot('No Auto Subscription');
+    describe('When skipping the auto subscribe step', () => {
+      beforeAll(async () => {
+        await navigateThroughOnboarding(languageStrings);
+      });
+
+      it('Shows auto subscribe as unset', async () => {
+        await Home.takeScreenshot();
+      });
+    });
+
+    afterAll(async () => {
+      await device.uninstallApp();
+      await device.installApp();
     });
   },
 );
