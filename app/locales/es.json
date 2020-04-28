@@ -3,11 +3,20 @@
     "no_exposure": "No ha habido contacto",
     "possible_exposure": "Posible",
     "possible_exposure_para": "Es posible que hayas estado en contacto o cerca de alguien que ha dado positivo en COVID-19.",
-    "timeline": "Cronograma",
     "what_does_this_mean": "¿Qué significa esto?",
-    "what_does_this_mean_para": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19. Esto no significa que te hayas infectado, pero sí que podrías estarlo.\\n\\nPara obtener más información sobre lo que debes hacer, puedes consultar el sitio web de Mayo Clinic.",
+    "what_does_this_mean_para": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19. Esto no significa que te hayas infectado, pero sí que podrías estarlo.\n\nPara obtener más información sobre lo que debes hacer, puedes consultar el sitio web de Mayo Clinic.",
     "what_if_no_symptoms": "¿Qué pasa si no tengo síntomas?",
-    "what_if_no_symptoms_para": "Si no tienes síntomas pero quieres hacerte la prueba, puedes ir al punto de pruebas más cercano. \\n\\nLas personas sin síntomas también pueden tener el COVID e infectar a otros. Respetar el distanciamiento social y evitar el contacto con grupos grandes o personas en riesgo (ancianos, personas con otros problemas médicos) es importante para controlar tanto tú riesgo como el de los demás."
+    "what_if_no_symptoms_para": "Si no tienes síntomas pero quieres hacerte la prueba, puedes ir al punto de pruebas más cercano. \n\nLas personas sin síntomas también pueden tener el COVID e infectar a otros. Respetar el distanciamiento social y evitar el contacto con grupos grandes o personas en riesgo (ancianos, personas con otros problemas médicos) es importante para controlar tanto tú riesgo como el de los demás."
+  },
+  "import": {
+    "button_text": "Importar ubicaciones",
+    "google": {
+      "disclaimer": "Safe Paths no está afiliado con Google y nunca compartirá tus datos.",
+      "title": "Google Maps",
+      "visit_button_text": "Accede a Google Takeout"
+    },
+    "subtitle": "Para saber si has estado con alguien con COVID-19 antes de descargar esta app, puedes importar tu historial personal de ubicaciones.",
+    "title": "Importar historial"
   },
   "label": {
     "about_title": "Acerca de",
@@ -21,14 +30,13 @@
     "authorities_removal_alert_proceed": "Adelante",
     "authorities_removal_alert_title": "Eliminar organismo",
     "authorities_title": "Fuentes de datos fiables",
-    "choose_provider_subtitle": "Para informarte de posibles contactos, debes suscribirte a una autoridad sanitaria. ",
+    "choose_provider_subtitle": "Para informarte de posibles contactos, debes suscribirte a una autoridad sanitaria.",
     "choose_provider_title": "Elegir autoridades sanitarias",
     "commitment": "Compromiso",
     "commitment_para": "Safe Paths registra de forma segura tu ubicación y encuentra posibles contactos con el COVID. Tus datos NUNCA salen de tu dispositivo sin tu consentimiento.",
     "default_news_site_name": "Noticias de Safe Paths",
     "event_history_subtitle": "Entiende tu exposición al COVID-19 según los datos publicados por las autoridades sanitarias.",
     "event_history_title": "Historial de exposición",
-    "export_para": "{\"one\": \"Si eres positivo en COVID-19, contribuye compartiendo su historial de ubicaciones con las autoridades locales\", \"other\": \"La ubicación se comparte como una simple lista de lugares y momentos, sin información personal.\"}",
     "home_at_risk_header": "Puedes haberte expuesto al COVID",
     "home_at_risk_subsubtext": "Esto no implica que te hayas infectado.",
     "home_at_risk_subtext": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19.",
@@ -41,12 +49,6 @@
     "home_setting_off_subtext": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",
     "home_unknown_header": "Desconocido",
     "home_unknown_subtext": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",
-    "import_step": "{\"one\": \"Agregar datos de ubicación de Google ayudará a elaborar tu historial de ubicaciones recientes\", \"other\": \"Antes de poder importar, primero debes 'Extraer' tus datos de ubicación de Google\".}",
-    "import_takeout": "Accede a Google Takeout",
-    "import_title": "Importar historial",
-    "language_change_alert_cancel": "Cancelar",
-    "language_change_alert_proced": "Reiniciar",
-    "language_change_alert_title": "La aplicación debe reiniciarse para usar este idioma",
     "latest_news": "Últimas noticias",
     "launch_done_header": "Ya estás listo",
     "launch_done_subheader": "Preparados para comenzar. Recuerda que puedes cambiar tus preferencias más tarde.",
@@ -77,10 +79,6 @@
     "location_enabled_title": "COVID Safe Paths habilitado",
     "logging_active": "Localización activada",
     "logging_inactive": "Localización desactivada",
-    "maps_import_button_text": "Importar ubicaciones",
-    "maps_import_disclaimer": "Safe Paths no está afiliado con Google y nunca compartirá tus datos.",
-    "maps_import_text": "Para saber si has estado con alguien con COVID-19 antes de descargar esta app, puedes importar tu historial personal de ubicaciones.",
-    "maps_import_title": "Google Maps",
     "news_subtitle": "Novedades sobre el COVID-19 de tus autoridades sanitarias y noticias en general.",
     "news_title": "Últimas Noticias",
     "no_data": "No hay datos",
@@ -88,12 +86,15 @@
     "push_at_risk_title": "Puedes estar en riesgo",
     "see_exposure_history": "Ver historial de exposición",
     "settings_title": "Panel de control",
-    "share_location_data": "Comparte tus datos",
     "team": "Equipo",
     "team_para": "El equipo se compone de un consorcio de epidemiólogos, ingenieros, analistas de datos, defensores de la privacidad digital, profesores y investigadores de instituciones reconocidas como MIT, Harvard, la Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young y Link Ventures.",
-    "terms_of_use": "Condiciones de uso",
-    "terms_of_use_url": "https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#",
-    "tested_positive_subtitle": "Puedes compartir tus datos con las autoridades sanitarias u otros agentes, o guardar una copia de seguridad",
-    "tested_positive_title": "Compartir ubicaciones"
+    "terms_of_use": "Condiciones de uso"
+  },
+  "share": {
+    "button_text": "Comparte tus datos",
+    "paragraph_first": "Si has dado positivo en COVID-19, ayuda a las autoridades locales compartiendo tu historial de ubicaciones.",
+    "paragraph_second": "Tu historial se envía como una simple lista de ubicaciones en el tiempo, sin revelar datos personales.",
+    "subtitle": "Puedes compartir tus datos con las autoridades sanitarias u otros agentes, o guardar una copia de seguridad",
+    "title": "Compartir ubicaciones"
   }
 }
