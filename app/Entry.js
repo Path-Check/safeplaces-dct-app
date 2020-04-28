@@ -1,13 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
-import {
-  CardStyleInterpolators,
-  createStackNavigator,
-} from '@react-navigation/stack';
+import { CardStyleInterpolators } from '@react-navigation/stack';
 import React, { Component } from 'react';
+import { enableScreens } from 'react-native-screens';
+import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import { PARTICIPATE } from './constants/storage';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
+import AssessmentScreen from './views/assessment/Assessment';
+import AssessmentTestScreen from './views/assessment/AssessmentTest';
 import ChooseProviderScreen from './views/ChooseProvider';
 import ExportScreen from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
@@ -24,7 +25,9 @@ import Onboarding5 from './views/onboarding/Onboarding5';
 import OverlapScreen from './views/Overlap';
 import SettingsScreen from './views/Settings';
 
-const Stack = createStackNavigator();
+enableScreens();
+
+const Stack = createNativeStackNavigator();
 
 class Entry extends Component {
   constructor(props) {
@@ -49,7 +52,7 @@ class Entry extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName='InitialScreen'
+          initialRouteName='AssessmentTestScreen'
           screenOptions={{
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             cardStyle: {
@@ -148,6 +151,15 @@ class Entry extends Component {
             name='AboutScreen'
             component={AboutScreen}
             options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='AssessmentScreen'
+            component={AssessmentScreen}
+            options={{ stackPresentation: 'modal', headerShown: false }}
+          />
+          <Stack.Screen
+            name='AssessmentTestScreen'
+            component={AssessmentTestScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>

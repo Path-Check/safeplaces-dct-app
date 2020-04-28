@@ -2,6 +2,7 @@ import './all-dayjs-locales';
 
 import dayjs from 'dayjs';
 import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
 import { NativeModules, Platform } from 'react-native';
 import { getLanguages } from 'react-native-i18n';
 
@@ -67,7 +68,7 @@ export function findUserLang(callback) {
 
 findUserLang();
 
-i18next.init({
+i18next.use(initReactI18next).init({
   interpolation: {
     // React already does escaping
     escapeValue: false,
