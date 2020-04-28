@@ -28,7 +28,8 @@
       "visit_button_text": "Visit Google Takeout",
       "already_imported":"Provided Takeout file has already been imported.",
       "no_recent_locations": "Takeout doesn't have any recent locations.",
-      "invalid_file_format": "Provided file format is not supported. \nSupported formats: \".zip\"."
+      "invalid_file_format": "Provided file format is not supported. \nSupported formats: \".zip\".",
+      "file_open_error": "Could not open the file. \nPlease, make sure the file is opened from Google Drive"
     },
     "success":"Recent locations has been successfully imported!",
     "error":"Something went wrong while importing your data.",

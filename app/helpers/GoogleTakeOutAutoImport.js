@@ -10,6 +10,7 @@ import { mergeJSONWithLocalData } from '../helpers/GoogleData';
 
 export class NoRecentLocationsError extends Error {}
 export class InvalidFileExtensionError extends Error {}
+export class EmptyFilePathError extends Error {}
 
 const ZIP_EXT_CHECK_REGEX = /\.zip$/;
 let progress;
@@ -49,6 +50,9 @@ export function getFilenamesForLatest2Months(rootPath, now) {
 // Imports any Takeout location data
 // Currently works for Google Takeout Location data
 export async function importTakeoutData(filePath) {
+  if (!filePath) {
+    throw new EmptyFilePathError();
+  }
   let unifiedPath = filePath;
 
   if (Platform.OS === 'ios') {

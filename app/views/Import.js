@@ -16,6 +16,7 @@ import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { pickFile } from '../helpers/General';
 import {
+  EmptyFilePathError,
   InvalidFileExtensionError,
   NoRecentLocationsError,
   importTakeoutData,
@@ -41,28 +42,35 @@ const ImportScreen = props => {
       setImportResults(makeImportResults());
 
       const filePath = await pickFile();
-      console.log('filePath', filePath);
-      if (filePath) {
-        const newLocations = await importTakeoutData(filePath);
-        console.log('newLocations', newLocations);
-        if (newLocations.length) {
-          setImportResults(makeImportResults('label.import_success'));
-        } else {
-          setImportResults(makeImportResults('label.import_already_imported'));
-        }
+
+      const newLocations = await importTakeoutData(filePath);
+
+      if (newLocations.length) {
+        setImportResults(makeImportResults('import.success'));
+      } else {
+        setImportResults(makeImportResults('import.google.already_imported'));
       }
     } catch (err) {
       if (err instanceof NoRecentLocationsError) {
         setImportResults(
-          makeImportResults('label.import_no_recent_locations', true),
+          makeImportResults('import.google.no_recent_locations', true),
         );
       } else if (err instanceof InvalidFileExtensionError) {
         setImportResults(
-          makeImportResults('label.import_invalid_file_format', true),
+          makeImportResults('import.google.invalid_file_format', true),
+        );
+      } else if (err instanceof EmptyFilePathError) {
+        /**
+         * If the imported file is opened from other than Google Drive folder,
+         * filepath is returned as null. Leaving a message to ensure import file
+         * is located on Google Drive.
+         */
+        setImportResults(
+          makeImportResults('import.google.file_open_error', true),
         );
       } else {
         console.log('[ERROR] Failed to import locations', err);
-        setImportResults(makeImportResults('label.import_error', true));
+        setImportResults(makeImportResults('import.error', true));
       }
     }
   }

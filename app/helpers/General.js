@@ -49,7 +49,6 @@ export async function pickFile() {
       type: [DocumentPicker.types.zip, DocumentPicker.types.allFiles],
       usePath: true,
     });
-
     return res.uri;
   } catch (err) {
     if (DocumentPicker.isCancel(err)) {
