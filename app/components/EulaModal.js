@@ -4,7 +4,7 @@ import { Modal, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 
-import close from '../assets/svgs/close.png';
+import close from '../assets/svgs/close';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import en_html from '../locales/eula/en_html';
