@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Dimensions,
   Linking,
+  ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -27,6 +29,7 @@ const makeImportResults = (label = '', error = false) => ({
 });
 
 const ImportScreen = props => {
+  const { t } = useTranslation();
   const {
     navigation: { goBack },
   } = props;
@@ -63,19 +66,21 @@ const ImportScreen = props => {
 
   return (
     <NavigationBarWrapper
-      title={languages.t('label.import_title')}
+      title={languages.t('import.title')}
       onBackPress={goBack}>
-      <View style={styles.main}>
+      <ScrollView style={styles.main}>
         <View style={styles.subHeaderTitle}>
           <Typography style={styles.sectionDescription}>
-            {languages.t('label.import_step_1')}
+            {t('import.google.instructions_first')}
+          </Typography>
+          {/* eslint-disable react/no-unescaped-entities */}
+          <Typography style={styles.sectionDescription}>
+            {t('import.google.instructions_second')}
           </Typography>
           <Typography style={styles.sectionDescription}>
-            {languages.t('label.import_step_2')}
+            {t('import.google.instructions_detailed')}
           </Typography>
-          <Typography style={styles.sectionDescription}>
-            {languages.t('label.import_step_3')}
-          </Typography>
+          {/* eslint-enable react/no-unescaped-entities */}
           <TouchableOpacity
             testID='google-takeout-link'
             onPress={() =>
@@ -85,7 +90,7 @@ const ImportScreen = props => {
             }
             style={styles.buttonTouchable}>
             <Typography style={styles.buttonText}>
-              {languages.t('label.import_takeout').toUpperCase()}
+              {languages.t('import.google.visit_button_text')}
             </Typography>
           </TouchableOpacity>
           <TouchableOpacity
@@ -93,7 +98,7 @@ const ImportScreen = props => {
             onPress={importPickFile}
             style={styles.buttonTouchable}>
             <Typography style={styles.buttonText}>
-              {languages.t('label.import_title').toUpperCase()}
+              {languages.t('import.title')}
             </Typography>
           </TouchableOpacity>
 
@@ -107,24 +112,18 @@ const ImportScreen = props => {
             </Typography>
           ) : null}
         </View>
-      </View>
+      </ScrollView>
     </NavigationBarWrapper>
   );
 };
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
   subHeaderTitle: {
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 22,
     padding: 5,
+    paddingBottom: 20,
   },
   main: {
     flex: 1,
@@ -151,27 +150,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     textAlign: 'center',
     color: colors.WHITE,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
-  },
-  backArrow: {
-    height: 18,
-    width: 18.48,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryRegular,
   },
   sectionDescription: {
     fontSize: 16,

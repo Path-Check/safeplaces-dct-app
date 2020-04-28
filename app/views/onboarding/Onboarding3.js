@@ -4,16 +4,15 @@ import {
   ImageBackground,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
 import BackgroundImage from './../../assets/images/launchScreen3.png';
 import ButtonWrapper from '../../components/ButtonWrapper';
+import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
-import { Typography } from '../../components/Typography';
 
 const width = Dimensions.get('window').width;
 
@@ -23,14 +22,14 @@ const Onboarding = props => {
       <StatusBar
         barStyle='dark-content'
         backgroundColor='transparent'
-        translucent={true}
+        translucent
       />
       <ImageBackground
         source={BackgroundImage}
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
-        <Typography style={styles.headerText}>
+        <Typography style={styles.headerText} use={Type.Headline2}>
           {languages.t('label.launch_screen3_header')}
         </Typography>
         <Typography style={styles.subheaderText}>
@@ -71,9 +70,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: Colors.VIOLET,
-    fontSize: 26,
     width: width * 0.75,
-    fontFamily: fontFamily.primaryMedium,
   },
   subheaderText: {
     marginTop: '6%',

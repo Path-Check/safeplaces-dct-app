@@ -17,7 +17,10 @@ jest.mock(
 );
 jest.mock('react-native-share', () => 'Share');
 jest.mock('rn-fetch-blob', () => 'Blob');
-jest.mock('react-native-background-timer', () => 'BackgroundTimer');
+jest.mock('react-native-background-timer', () => ({
+  runBackgroundTimer: () => {},
+  stopBackgroundTimer: () => {},
+}));
 jest.mock('react-native-popup-menu', () => ({
   Menu: 'Menu',
   MenuProvider: 'MenuProvider',
@@ -30,7 +33,7 @@ jest.mock('@react-navigation/native', () => {
   return {
     createAppContainer: jest
       .fn()
-      .mockReturnValue(function NavigationContainer(props) {
+      .mockReturnValue(function NavigationContainer() {
         return null;
       }),
     createDrawerNavigator: jest.fn(),

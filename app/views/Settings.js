@@ -1,5 +1,6 @@
 import styled, { css } from '@emotion/native';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
@@ -11,7 +12,7 @@ import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import languages, {
+import {
   LOCALE_LIST,
   getUserLocaleOverride,
   setUserLocaleOverride,
@@ -22,6 +23,12 @@ import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
 
 export const SettingsScreen = ({ navigation }) => {
+  const { t } = useTranslation();
+  const [isLogging, setIsLogging] = useState(undefined);
+  const [userLocale, setUserLocale] = useState(
+    supportedDeviceLanguageOrEnglish(),
+  );
+
   const backToMain = () => {
     navigation.goBack();
   };
@@ -30,12 +37,6 @@ export const SettingsScreen = ({ navigation }) => {
     backToMain();
     return true;
   };
-
-  const [isLogging, setIsLogging] = useState(undefined);
-
-  const [userLocale, setUserLocale] = useState(
-    supportedDeviceLanguageOrEnglish(),
-  );
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
@@ -75,15 +76,15 @@ export const SettingsScreen = ({ navigation }) => {
 
   return (
     <NavigationBarWrapper
-      title={languages.t('label.settings_title')}
+      title={t('label.settings_title')}
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
           <Item
             label={
               isLogging
-                ? languages.t('label.logging_active')
-                : languages.t('label.logging_inactive')
+                ? t('label.logging_active')
+                : t('label.logging_inactive')
             }
             icon={isLogging ? checkmarkIcon : xmarkIcon}
             onPress={locationToggleButtonPressed}
@@ -95,7 +96,7 @@ export const SettingsScreen = ({ navigation }) => {
             {({ label, openPicker }) => (
               <Item
                 last
-                label={label || languages.t('label.home_unknown_header')}
+                label={label || t('label.home_unknown_header')}
                 icon={languagesIcon}
                 onPress={openPicker}
               />
@@ -105,39 +106,41 @@ export const SettingsScreen = ({ navigation }) => {
 
         <Section>
           <Item
-            label={languages.t('label.choose_provider_title')}
-            description={languages.t('label.choose_provider_subtitle')}
+            label={t('label.choose_provider_title')}
+            description={t('label.choose_provider_subtitle')}
             onPress={() => navigation.navigate('ChooseProviderScreen')}
           />
           <Item
-            label={languages.t('label.news_title')}
-            description={languages.t('label.news_subtitle')}
+            label={t('label.news_title')}
+            description={t('label.news_subtitle')}
             onPress={() => navigation.navigate('NewsScreen')}
           />
           <Item
-            label={languages.t('label.event_history_title')}
-            description={languages.t('label.event_history_subtitle')}
+            label={t('label.event_history_title')}
+            description={t('label.event_history_subtitle')}
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
           />
           <Item
-            label={languages.t('label.tested_positive_title')}
-            description={languages.t('label.tested_positive_subtitle')}
+            label={t('share.title')}
+            description={t('share.subtitle')}
             onPress={() => navigation.navigate('ExportScreen')}
             last
           />
         </Section>
 
-        <Section>
-          <GoogleMapsImport navigation={navigation} />
-        </Section>
+        {__DEV__ && (
+          <Section>
+            <GoogleMapsImport navigation={navigation} />
+          </Section>
+        )}
 
         <Section last>
           <Item
-            label={languages.t('label.about_title')}
+            label={t('label.about_title')}
             onPress={() => navigation.navigate('AboutScreen')}
           />
           <Item
-            label={languages.t('label.legal_page_title')}
+            label={t('label.legal_page_title')}
             onPress={() => navigation.navigate('LicensesScreen')}
             last
           />

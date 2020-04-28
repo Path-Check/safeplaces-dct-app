@@ -26,7 +26,7 @@ import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import exportImage from './../assets/images/export.png';
 import foreArrow from './../assets/images/foreArrow.png';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import SettingsGear from './../assets/svgs/settingsGear';
+import settingsIcon from './../assets/svgs/settingsIcon';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
@@ -193,16 +193,6 @@ class LocationTracking extends Component {
       .catch(error => console.log(error));
   }
 
-  findNewAuthorities() {
-    // TODO: This should pull down the Healtcare Authorities list (see Settings.js)
-    // Then it should look at the GPS extent box of each authority and (if any
-    // of the GPS coordinates change) pop-up a notification that is basically:
-    //    There is a new "Healthcare Authority" for an area where you have
-    //    been.
-    // Tapping that notification asks if they want to Add that Healthcare Authority
-    // under the Settings screen.
-  }
-
   componentWillUnmount() {
     AppState.removeEventListener('change', this.handleAppStateChange);
     clearInterval(this.state.timer_intersect);
@@ -261,36 +251,15 @@ class LocationTracking extends Component {
     });
   };
 
-  news() {
-    this.props.navigation.navigate('NewsScreen', {});
-  }
-
-  licenses() {
-    this.props.navigation.navigate('LicensesScreen', {});
-  }
-
-  settings() {
-    this.props.navigation.navigate('SettingsScreen', {});
-  }
-
-  notifications() {
-    this.props.navigation.navigate('NotificationScreen', {});
-  }
-
-  setOptOut = () => {
-    LocationServices.stop(this.props.navigation);
-    // Turn of bluetooth for v1
-    //BroadcastingServices.stop(this.props.navigation);
-    this.setState({
-      isLogging: false,
-    });
-  };
-
   getBackground() {
     if (this.state.currentState === StateEnum.AT_RISK) {
       return BackgroundImageAtRisk;
     }
     return BackgroundImage;
+  }
+
+  settings() {
+    this.props.navigation.navigate('SettingsScreen', {});
   }
 
   getSettings() {
@@ -302,12 +271,7 @@ class LocationTracking extends Component {
         }}>
         {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
         <Image resizeMode={'contain'} />
-        <SvgXml
-          style={styles.stateIcon}
-          xml={SettingsGear}
-          width={32}
-          height={32}
-        />
+        <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
       </TouchableOpacity>
     );
   }
@@ -525,7 +489,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     marginTop: '14%',
-    marginRight: '5%',
+    marginRight: '7%',
     alignSelf: 'flex-end',
   },
   buttonContainer: {
