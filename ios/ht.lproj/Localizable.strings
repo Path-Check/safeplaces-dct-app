@@ -1,0 +1,4 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "Chase Kowona (\"Safe Paths\") mande poul fonksyone";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "Chase Kowona (\"Safe Paths\") te fèmen";

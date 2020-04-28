@@ -23,7 +23,7 @@ import ro from './ro.json';
 import ru from './ru.json';
 import sk from './sk.json';
 import vi from './vi.json';
-import zh_Hant from './zh-Hant.json';
+import zh_Hant from './zh_Hant.json';
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 
