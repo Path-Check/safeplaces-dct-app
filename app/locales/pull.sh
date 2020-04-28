@@ -53,8 +53,10 @@ lokalise2 file download \
   --export-empty-as=skip \
   --format json \
   --include-description \
-  --plural-format=json_string \
+  --plural-format=i18next \
+  --placeholder-format=i18n \
   --export-sort=a_z \
+  --replace-breaks=false \
   --bundle-structure "locales/%LANG_ISO%.json" \
   --original-filenames=false \
   --unzip-to=app \
