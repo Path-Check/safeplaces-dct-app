@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import Colors from '../../constants/colors';
 import i18n from '../../locales/languages';
 import { isPlatformiOS } from '../../Util';
+import AssessmentCaptcha from './AssessmentCaptcha';
 import AssessmentEndCaregiver from './AssessmentEndCaregiver';
 import AssessmentEndDistancing from './AssessmentEndDistancing';
 import AssessmentEndEmergency from './AssessmentEndEmergency';
@@ -146,6 +147,16 @@ const Assessment = ({ navigation }) => {
       <Stack.Screen
         component={AssessmentEndShare}
         name='EndShare'
+        options={{
+          ...screenOptions,
+          headerStyle: {
+            backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+          },
+        }}
+      />
+       <Stack.Screen
+        component={AssessmentCaptcha}
+        name='AssessmentCaptcha'
         options={{
           ...screenOptions,
           headerStyle: {

@@ -27,7 +27,10 @@
     "share_location_title": "Anonymized Location Data",
     "share_location_description": "Share anonymized location for the past 14 days with your local healthcare authority.",
     "share_cta_skip": "No thanks, I don't want to share data",
-    "share_cta": "Share Anonymized Data"
+    "share_cta": "Share Anonymized Data",
+    "captcha_title": "Please confirm human",
+    "captcha_description": "To protect against abuse from automated systems like bots, please check the box below to confirm you're a real person...",
+    "captcha_cta": "Submit"
   },
   "label": {
     "about_title": "About",

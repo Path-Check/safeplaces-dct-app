@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
@@ -8,30 +8,20 @@ import AssessmentEnd from './AssessmentEnd';
 import AssessmentOption from './AssessmentOption';
 
 /** @type {React.FunctionComponent<{}>} */
-const AssessmentEndShare = ({ navigation }) => {
+const AssessmentCaptcha = () => {
   let { t } = useTranslation();
   let [a, setA] = useState(true);
   let [b, setB] = useState(true);
   return (
     <AssessmentEnd
-      ctaAction={() => {
-        navigation.push('AssessmentCaptcha');
-      }}
-      ctaTitle={t('assessment.share_cta')}
-      description={
-        <Trans i18nKey='assessment.share_description'>
-          <Text />
-          <Text style={{ fontFamily: Fonts.primaryBold }} />
-          <Text style={{ fontFamily: Fonts.primaryBold }} />
-        </Trans>
-      }
+      ctaAction={() => {}}
+      ctaTitle={t('assessment.captcha_cta')}
+      description=''
       footer={
-        <TouchableOpacity>
-          <Text style={styles.skip}>{t('assessment.share_cta_skip')}</Text>
-        </TouchableOpacity>
+        <View/>
       }
       image={require('../../assets/images/illustration-screening-data-sharing.png')}
-      title={t('assessment.share_title')}>
+      title={t('assessment.captcha_title')}>
       <AssessmentOption
         onSelect={() => setA(a => !a)}
         option={{
@@ -56,7 +46,7 @@ const AssessmentEndShare = ({ navigation }) => {
   );
 };
 
-export default AssessmentEndShare;
+export default AssessmentCaptcha;
 
 const styles = StyleSheet.create({
   skip: {
