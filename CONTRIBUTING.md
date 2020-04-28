@@ -2,7 +2,9 @@
 
 We welcome participation in an open project. We want to make it as easy as possible for people to work together, so please follow these guidelines to prepare and submit a pull request.
 
-## How to prepare
+- Filtering by [good first issues](https://github.com/tripleblindmarket/covid-safe-paths/labels/good%20first%20issue) is the recommended way to begin contributing to the project
+
+## Create A New Issue
 
 - You need a Github account. You can [create one](https://github.com/signup/free) for free.
 
