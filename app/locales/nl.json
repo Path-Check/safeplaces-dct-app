@@ -1,24 +1,4 @@
 {
-  "_display_name": "Nederlands",
-  "history": {
-    "no_exposure": "Geen blootstelling",
-    "possible_exposure": "Mogelijk",
-    "possible_exposure_para": "Het is mogelijk dat u contact heeft gehad met of in de buurt bent geweest met iemand die positief heeft getest op COVID-19",
-    "what_does_this_mean": "Wat betekent dit?",
-    "what_does_this_mean_para": "Uit uw GPS-geschiedenis blijkt dat u mogelijk in contact bent geweest met iemand met de diagnose COVID-19. Het kan dat u niet geïnfecteerd bent, maar dit is niet zeker. Voor verdere informatie kunt u het beste naar de website van het RIVM.",
-    "what_if_no_symptoms": "Wat als ik geen symptomen vertoon?",
-    "what_if_no_symptoms_para": "Personen die geen symptomen vertonen, kunnen soms nog steeds de infectie dragen en anderen infecteren. Wees voorzichtig met sociale zaken en neem altijd 1.5 meter afstand. Wees extra voorzichtig met individuen met een risico (ouderen en personen met andere medische problemen). Het is belangrijk om zowel uw risico als het risico voor anderen te beperken. Voor meer informatie kunt u naar de website van het RIVM."
-  },
-  "import": {
-    "button_text": "Importeer eerdere locaties",
-    "google": {
-      "disclaimer": "COVID Safe Paths is niet aangesloten bij Google en zal nooit uw data delen.",
-      "title": "Google Maps",
-      "visit_button_text": "Ga naar Google Takeout"
-    },
-    "subtitle": "Importeer uw locatie geschiedenis om te zien of u in contact bent geweest met een COVID-19 besmet persoon, voordat u deze applicatie gebruikte.",
-    "title": "Importeer locaties"
-  },
   "label": {
     "about_title": "Informatie",
     "authorities_add_button_label": "Voeg een vertrouwde bron toe",
@@ -46,10 +26,10 @@
     "home_mayo_link_label": "van de Mayo Clinic (Verenigde Staten)",
     "home_no_contact_header": "Geen bekend contact",
     "home_no_contact_subtext": "Op basis van beschikbare gegevens bent u nog nooit in de buurt van iemand geweest met de diagnose COVID-19.",
-    "home_setting_off_header": "Onbekend",
-    "home_setting_off_subtext": "We kunnen niet zeggen of u risico loopt, tenzij u de app toegang geeft tot uw locatie op het instellingen scherm.",
     "home_unknown_header": "Onbekend",
     "home_unknown_subtext": "We kunnen niet zeggen of u risico loopt, tenzij u de app toegang geeft tot uw locatie.",
+    "home_setting_off_header": "Onbekend",
+    "home_setting_off_subtext": "We kunnen niet zeggen of u risico loopt, tenzij u de app toegang geeft tot uw locatie op het instellingen scherm.",
     "latest_news": "Laatste nieuws",
     "launch_done_header": "Klaar voor gebruik",
     "launch_done_subheader": "U kunt altijd uw instellingen op een later moment nog kan aanpassen.",
@@ -78,8 +58,6 @@
     "location_disabled_title": "Het traceren van locatie is uitgeschakeld",
     "location_enabled_message": "COVID Safe Paths slaat uw GPS-coördinaten eens in de vijf minuten veilig op dit apparaat op.",
     "location_enabled_title": "COVID Safe Paths ingeschakeld",
-    "logging_active": "Locatie actief",
-    "logging_inactive": "Locatie inactief",
     "news_subtitle": "Lees meer over de laatste COVID-19 nieuws op de website van uw gezondheidsinstantie.",
     "news_title": "Laatste nieuws",
     "no_data": "Geen gegevens",
@@ -89,24 +67,46 @@
     "settings_title": "Dashboard",
     "team": "Team",
     "team_para": "Ons team bestaat uit een consortium van epidemiologen, ingenieurs, data wetenschappers, digitale privacy-evangelisten, professoren en onderzoekers van gerenommeerde instellingen, waaronder: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young en Link Ventures.",
-    "terms_of_use": "Gebruiksvoorwaarden"
+    "terms_of_use": "Gebruiksvoorwaarden",
+    "logging_active": "Locatie actief",
+    "logging_inactive": "Locatie inactief"
+  },
+  "history": {
+    "no_exposure": "Geen blootstelling",
+    "possible_exposure_para": "Het is mogelijk dat u contact heeft gehad met of in de buurt bent geweest met iemand die positief heeft getest op COVID-19",
+    "possible_exposure": "Mogelijk",
+    "what_does_this_mean_para": "Uit uw GPS-geschiedenis blijkt dat u mogelijk in contact bent geweest met iemand met de diagnose COVID-19. Het kan dat u niet geïnfecteerd bent, maar dit is niet zeker. Voor verdere informatie kunt u het beste naar de website van het RIVM.",
+    "what_does_this_mean": "Wat betekent dit?",
+    "what_if_no_symptoms_para": "Personen die geen symptomen vertonen, kunnen soms nog steeds de infectie dragen en anderen infecteren. Wees voorzichtig met sociale zaken en neem altijd 1.5 meter afstand. Wees extra voorzichtig met individuen met een risico (ouderen en personen met andere medische problemen). Het is belangrijk om zowel uw risico als het risico voor anderen te beperken. Voor meer informatie kunt u naar de website van het RIVM.",
+    "what_if_no_symptoms": "Wat als ik geen symptomen vertoon?"
+  },
+  "version_update": {
+    "push_notification_title": "Applicatie is verouderd",
+    "push_notification_message": "Update uw applicatie",
+    "alert_label": "COVID Safe Paths is verouderd",
+    "alert_sublabel": "Update naar een nieuwe versie?",
+    "update": "Update",
+    "later": "Later"
   },
   "onboarding": {
     "eula_checkbox": "Ik accepteer de licentieovereenkomst",
-    "eula_continue": "Ga verder",
-    "eula_message": "U moet accepteren om Safe Paths te gebruiken"
+    "eula_message": "U moet accepteren om Safe Paths te gebruiken",
+    "eula_continue": "Ga verder"
+  },
+  "import": {
+    "button_text": "Importeer eerdere locaties",
+    "google": {
+      "disclaimer": "COVID Safe Paths is niet aangesloten bij Google en zal nooit uw data delen.",
+      "title": "Google Maps",
+      "visit_button_text": "Ga naar Google Takeout"
+    },
+    "subtitle": "Importeer uw locatie geschiedenis om te zien of u in contact bent geweest met een COVID-19 besmet persoon, voordat u deze applicatie gebruikte.",
+    "title": "Importeer locaties"
   },
   "share": {
     "button_text": "Deel uw locatie gegevens",
     "subtitle": "Uw privégegevens kunnen worden overgedragen aan gezondheidsautoriteiten, een back-up worden gemaakt of anderszins worden gedeeld.",
     "title": "Deel locatie geschiedenis"
   },
-  "version_update": {
-    "alert_label": "COVID Safe Paths is verouderd",
-    "alert_sublabel": "Update naar een nieuwe versie?",
-    "later": "Later",
-    "push_notification_message": "Update uw applicatie",
-    "push_notification_title": "Applicatie is verouderd",
-    "update": "Update"
-  }
+  "_display_name": "Nederlands"
 }

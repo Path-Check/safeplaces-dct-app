@@ -1,14 +1,4 @@
 {
-  "_display_name": "Tiếng Việt",
-  "import": {
-    "button_text": "Nhập lịch sử di chuyển trước đây",
-    "google": {
-      "disclaimer": "Safe Paths không liên kết với Google và không bao giờ chia sẻ dữ liệu của bạn.",
-      "title": "Bản đồ Google"
-    },
-    "subtitle": "Để biết bạn có tiếp xúc với người bị nhiễm COVID-19 trước khi bạn bắt đầu sử dụng Ứng dụng này hay không, bạn có thể nhập lịch sử vị trí trước đó của mình.",
-    "title": "Nhập các vị trí địa điểm"
-  },
   "label": {
     "about_title": "Giới thiệu",
     "authorities_add_button_label": "Thêm nguồn thông tin tin cậy",
@@ -76,11 +66,21 @@
     "team_para": "Chúng tôi gồm một nhóm các nhà dịch tễ học, kỹ sư, nhà khoa học dữ liệu, nhà truyền bá quyền riêng tư kỹ thuật số, giáo sư và nhà nghiên cứu từ các tổ chức có uy tín, bao gồm: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young và Link Ventures.",
     "terms_of_use": "Điều khoản sử dụng"
   },
+  "import": {
+    "button_text": "Nhập lịch sử di chuyển trước đây",
+    "google": {
+      "disclaimer": "Safe Paths không liên kết với Google và không bao giờ chia sẻ dữ liệu của bạn.",
+      "title": "Bản đồ Google"
+    },
+    "subtitle": "Để biết bạn có tiếp xúc với người bị nhiễm COVID-19 trước khi bạn bắt đầu sử dụng Ứng dụng này hay không, bạn có thể nhập lịch sử vị trí trước đó của mình.",
+    "title": "Nhập các vị trí địa điểm"
+  },
   "share": {
     "button_text": "Chia sẻ dữ liệu vị trí",
     "paragraph_first": "Nếu kết quả kiểm tra của bạn dương tính với COVID-19, bạn nên chia sẻ lịch sử vị trí của mình với cơ quan có thẩm quyền tại địa phương",
     "paragraph_second": "Vị trí được chia sẻ dưới dạng danh sách đơn giản gồm thời gian và toạ độ, không bao gồm các thông tin cá nhân khác",
     "subtitle": "Dữ liệu riêng tư của bạn có thể được chuyển đến các cơ quan y tế, sao lưu hoặc chia sẻ.",
     "title": "Chia sẻ lịch sử vị trí"
-  }
+  },
+  "_display_name": "Tiếng Việt"
 }

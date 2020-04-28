@@ -1,24 +1,4 @@
 {
-  "_display_name": "Español",
-  "history": {
-    "no_exposure": "No ha habido contacto",
-    "possible_exposure": "Posible",
-    "possible_exposure_para": "Es posible que hayas estado en contacto o cerca de alguien que ha dado positivo en COVID-19.",
-    "what_does_this_mean": "¿Qué significa esto?",
-    "what_does_this_mean_para": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19. Esto no significa que te hayas infectado, pero sí que podrías estarlo.\n\nPara obtener más información sobre lo que debes hacer, puedes consultar el sitio web de Mayo Clinic.",
-    "what_if_no_symptoms": "¿Qué pasa si no tengo síntomas?",
-    "what_if_no_symptoms_para": "Si no tienes síntomas pero quieres hacerte la prueba, puedes ir al punto de pruebas más cercano. \n\nLas personas sin síntomas también pueden tener el COVID e infectar a otros. Respetar el distanciamiento social y evitar el contacto con grupos grandes o personas en riesgo (ancianos, personas con otros problemas médicos) es importante para controlar tanto tú riesgo como el de los demás."
-  },
-  "import": {
-    "button_text": "Importar ubicaciones",
-    "google": {
-      "disclaimer": "Safe Paths no está afiliado con Google y nunca compartirá tus datos.",
-      "title": "Google Maps",
-      "visit_button_text": "Accede a Google Takeout"
-    },
-    "subtitle": "Para saber si has estado con alguien con COVID-19 antes de descargar esta app, puedes importar tu historial personal de ubicaciones.",
-    "title": "Importar historial"
-  },
   "label": {
     "about_title": "Acerca de",
     "authorities_add_button_label": "Añadir fuente de datos fiable",
@@ -46,10 +26,10 @@
     "home_mayo_link_label": "de expertos de la Mayo Clinic",
     "home_no_contact_header": "No ha habido contacto",
     "home_no_contact_subtext": "Según los datos disponibles, no has estado cerca de nadie que haya dado positivo en COVID-19.",
-    "home_setting_off_header": "Desconocido",
-    "home_setting_off_subtext": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",
     "home_unknown_header": "Desconocido",
     "home_unknown_subtext": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",
+    "home_setting_off_header": "Desconocido",
+    "home_setting_off_subtext": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",
     "latest_news": "Últimas noticias",
     "launch_done_header": "Ya estás listo",
     "launch_done_subheader": "Preparados para comenzar. Recuerda que puedes cambiar tus preferencias más tarde.",
@@ -78,8 +58,6 @@
     "location_disabled_title": "Registro de ubicación desactivado",
     "location_enabled_message": "COVID Safe Paths está registrando en tu dispositivo tus coordenadas GPS cada 5 minutos de forma segura.",
     "location_enabled_title": "COVID Safe Paths habilitado",
-    "logging_active": "Localización activada",
-    "logging_inactive": "Localización desactivada",
     "news_subtitle": "Novedades sobre el COVID-19 de tus autoridades sanitarias y noticias en general.",
     "news_title": "Últimas Noticias",
     "no_data": "No hay datos",
@@ -89,7 +67,28 @@
     "settings_title": "Panel de control",
     "team": "Equipo",
     "team_para": "El equipo se compone de un consorcio de epidemiólogos, ingenieros, analistas de datos, defensores de la privacidad digital, profesores y investigadores de instituciones reconocidas como MIT, Harvard, la Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young y Link Ventures.",
-    "terms_of_use": "Condiciones de uso"
+    "terms_of_use": "Condiciones de uso",
+    "logging_active": "Localización activada",
+    "logging_inactive": "Localización desactivada"
+  },
+  "history": {
+    "no_exposure": "No ha habido contacto",
+    "possible_exposure_para": "Es posible que hayas estado en contacto o cerca de alguien que ha dado positivo en COVID-19.",
+    "possible_exposure": "Posible",
+    "what_does_this_mean_para": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19. Esto no significa que te hayas infectado, pero sí que podrías estarlo.\n\nPara obtener más información sobre lo que debes hacer, puedes consultar el sitio web de Mayo Clinic.",
+    "what_does_this_mean": "¿Qué significa esto?",
+    "what_if_no_symptoms_para": "Si no tienes síntomas pero quieres hacerte la prueba, puedes ir al punto de pruebas más cercano. \n\nLas personas sin síntomas también pueden tener el COVID e infectar a otros. Respetar el distanciamiento social y evitar el contacto con grupos grandes o personas en riesgo (ancianos, personas con otros problemas médicos) es importante para controlar tanto tú riesgo como el de los demás.",
+    "what_if_no_symptoms": "¿Qué pasa si no tengo síntomas?"
+  },
+  "import": {
+    "button_text": "Importar ubicaciones",
+    "google": {
+      "disclaimer": "Safe Paths no está afiliado con Google y nunca compartirá tus datos.",
+      "title": "Google Maps",
+      "visit_button_text": "Accede a Google Takeout"
+    },
+    "subtitle": "Para saber si has estado con alguien con COVID-19 antes de descargar esta app, puedes importar tu historial personal de ubicaciones.",
+    "title": "Importar historial"
   },
   "share": {
     "button_text": "Comparte tus datos",
@@ -97,5 +96,6 @@
     "paragraph_second": "Tu historial se envía como una simple lista de ubicaciones en el tiempo, sin revelar datos personales.",
     "subtitle": "Puedes compartir tus datos con las autoridades sanitarias u otros agentes, o guardar una copia de seguridad",
     "title": "Compartir ubicaciones"
-  }
+  },
+  "_display_name": "Español"
 }

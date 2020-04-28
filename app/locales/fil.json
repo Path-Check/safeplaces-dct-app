@@ -1,8 +1,4 @@
 {
-  "_display_name": "Filipino",
-  "import": {
-    "title": "Mag-import ng lokasyon"
-  },
   "label": {
     "about_title": "Tungkol",
     "authorities_add_button_label": "Magdagdag ng Pinagkakatiwalaang Pinagmulan",
@@ -23,8 +19,8 @@
     "home_mayo_link_heading": "Karagdagang impormasyon tungkol sa Covid-19",
     "home_mayo_link_label": "mula sa Mayo Clinic",
     "home_no_contact_header": "Walang nakahalubilo na nagkasakit o may sakit na.",
-    "home_setting_off_header": "Hindi kilala",
     "home_unknown_header": "Hindi kilala",
+    "home_setting_off_header": "Hindi kilala",
     "latest_news": "Pinakabagong Balita",
     "launch_done_header": "Tapos na.",
     "launch_enable_location": "Paganahin ang Lokasyon",
@@ -39,16 +35,20 @@
     "launch_notification_access": "Payagan ang mga notipikasyon",
     "launch_screen2_header": "Iyong maabisuhan kung ikaw ay cross landas na may isang tao sa ibang pagkakataon nasuri para sa COVID-19."
   },
+  "version_update": {
+    "push_notification_title": "Ang aplikasyon ay luma na",
+    "push_notification_message": "Mangyaring i-update ang iyong COVID Safe Paths Software.",
+    "alert_label": "Ang COVID Safe Paths bersyon ay luma na",
+    "alert_sublabel": "Mag-update sa bagong bersyon?",
+    "update": "I-update",
+    "later": "Kalaunan"
+  },
   "onboarding": {
     "eula_checkbox": "Tinatanggap ko ang kasunduan nito.",
     "eula_continue": "Ituloy"
   },
-  "version_update": {
-    "alert_label": "Ang COVID Safe Paths bersyon ay luma na",
-    "alert_sublabel": "Mag-update sa bagong bersyon?",
-    "later": "Kalaunan",
-    "push_notification_message": "Mangyaring i-update ang iyong COVID Safe Paths Software.",
-    "push_notification_title": "Ang aplikasyon ay luma na",
-    "update": "I-update"
-  }
+  "import": {
+    "title": "Mag-import ng lokasyon"
+  },
+  "_display_name": "Filipino"
 }

@@ -1,15 +1,4 @@
 {
-  "_display_name": "Français",
-  "import": {
-    "button_text": "Importer les positions passées",
-    "google": {
-      "disclaimer": "L’application Safe Paths n’est pas affiliée à Google et ne partage jamais vos données.",
-      "title": "Google Maps",
-      "visit_button_text": "Accédez à Google Takeout"
-    },
-    "subtitle": "Vous pouvez importer votre historique personnel de position pour voir si vous avez croisé une personne infectée avant d’avoir téléchargé cette application.",
-    "title": "Importer les positions"
-  },
   "label": {
     "about_title": "À propos",
     "authorities_add_button_label": "Ajouter une source de confiance",
@@ -37,10 +26,10 @@
     "home_mayo_link_label": "de l’ONG Mayo Clinic (en anglais)",
     "home_no_contact_header": "Pas de contacts connus",
     "home_no_contact_subtext": "D’après les données disponibles, vous n’avez pas été à proximité de porteur·ses du COVID-19.",
-    "home_setting_off_header": "Pas de données",
-    "home_setting_off_subtext": "Nous ne pouvons déterminer si vous êtes à risque si vous n’autorisez pas l’application à accéder à votre position.",
     "home_unknown_header": "Pas de données",
     "home_unknown_subtext": "Il est nécessaire d’autoriser l’application à accéder à votre position pour déterminer les risques d’exposition.",
+    "home_setting_off_header": "Pas de données",
+    "home_setting_off_subtext": "Nous ne pouvons déterminer si vous êtes à risque si vous n’autorisez pas l’application à accéder à votre position.",
     "latest_news": "Dernières nouvelles",
     "launch_done_header": "Terminé",
     "launch_done_subheader": "Tout est prêt. Rappelez vous que vous pouvez toujours revenir ajuster vos préférences.",
@@ -79,11 +68,22 @@
     "team_para": "Notre équipe est un consortium composé d’épidémiologistes, d’ingénieur·es, de scientifiques des données, de défenseurs de la vie privée numérique, de professeur·es et de chercheur·ses d’institutions réputées, dont le MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young, et Link Ventures.",
     "terms_of_use": "Conditions d’utilisation (en anglais)"
   },
+  "import": {
+    "button_text": "Importer les positions passées",
+    "google": {
+      "disclaimer": "L’application Safe Paths n’est pas affiliée à Google et ne partage jamais vos données.",
+      "title": "Google Maps",
+      "visit_button_text": "Accédez à Google Takeout"
+    },
+    "subtitle": "Vous pouvez importer votre historique personnel de position pour voir si vous avez croisé une personne infectée avant d’avoir téléchargé cette application.",
+    "title": "Importer les positions"
+  },
   "share": {
     "button_text": "Partager les données de position",
     "paragraph_first": "Si vous êtes diagnostiqué·e positif·ve à la COVID-19, partager votre historique de positions avec les autorités locales contribuera à endiguer la maladie.",
     "paragraph_second": "L’historique partagé est une simple liste de lieux et de dates, sans informations supplémentaires.",
     "subtitle": "Vos données de position peuvent être envoyées aux autorités sanitaires, sauvegardées, ou partagées autrement.",
     "title": "Partager votre historique de position"
-  }
+  },
+  "_display_name": "Français"
 }
