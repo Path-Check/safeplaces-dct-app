@@ -7,12 +7,14 @@ on:
       - app/locales/en.json
       - ios/en.lproj/*.strings
       - android/app/src/main/res/values/strings.xml
+      - .github/workflows/*.yml
   pull_request:
     branches: [develop]
     paths:
       - app/locales/en.json
       - ios/en.lproj/*.strings
       - android/app/src/main/res/values/strings.xml
+      - .github/workflows/*.yml
 
 jobs:
   # Only run on a final merge into develop, uploads all changed keys to Lokalised
