@@ -120,22 +120,10 @@ export function intersectSetIntoBins(
         // now add the exposure period to the bin
         dayBins[daysAgo] += exposurePeriod;
 
-        // Identify if this is a new intersection by checking the crossedPaths property of the current location against the infected location j
-        if (
-          !('crossedPaths' in currentLocation) ||
-          !currentLocation['crossedPaths'].some(
-            crossedPaths =>
-              crossedPaths.time == concernArray[j].time &&
-              crossedPaths.latitude == concernArray[j].latitude &&
-              crossedPaths.longitude == concernArray[j].longitude,
-          )
-        ) {
-          newIntersections = addNewIntersection(
-            localArray,
-            i,
-            concernArray[j],
-            newIntersections,
-          );
+        // Identify if this is a new intersection
+        if (!hasExistingIntersection(currentLocation, concernArray[j])) {
+          addNewIntersection(currentLocation, concernArray[j]);
+          newIntersections += 1;
         }
 
         // Since we've counted the current location time period, we can now break the loop for
@@ -147,7 +135,7 @@ export function intersectSetIntoBins(
     }
   }
 
-  // Updates 'crossedPaths' field within location data if a user has crossed paths with infected case
+  // Updates crossedPaths field within location data if a user has crossed paths with a new infected case
   if (newIntersections > 0) SetStoreData(LOCATION_DATA, localArray);
 
   return { bins: dayBins, newIntersections };
@@ -229,9 +217,8 @@ export function normalizeAndSortLocations(arr) {
           time: Number(elem.time),
           latitude: Number(elem.latitude),
           longitude: Number(elem.longitude),
+          crossedPaths: elem.crossedPaths ? [...elem.crossedPaths] : [],
         };
-
-        if ('crossedPaths' in elem) data.crossedPaths = elem.crossedPaths;
 
         result.push(data);
       }
@@ -449,17 +436,28 @@ export function disableDebugMode() {
 /**
  * Records where user has crossed paths to avoid repeated notifications or checking
  *
- * @param {array} localArray - Array of user locations
- * @param {number} i - Index of current location in the localArray
- * @param {array} infectedLocation - Array of infected locations
- * @param {number} newIntersections - Counter of new intersections found
+ * @param {object} currentLocation - The user's location
+ * @param {object} concernLocation - The infected location
  */
-function addNewIntersection(localArray, i, infectedLocation, newIntersections) {
-  console.log('New intersection');
+function addNewIntersection(currentLocation, infectedLocation) {
+  if ('crossedPaths' in currentLocation)
+    currentLocation['crossedPaths'].push(infectedLocation);
+}
 
-  if ('crossedPaths' in localArray[i])
-    localArray[i]['crossedPaths'].push(infectedLocation);
-  else localArray[i]['crossedPaths'] = [infectedLocation];
-
-  return newIntersections + 1;
+/**
+ * Check if intersection has already been identified
+ *
+ * @param {object} currentLocation - The user's location
+ * @param {object} concernLocation - The infected location
+ */
+function hasExistingIntersection(currentLocation, concernLocation) {
+  return (
+    'crossedPaths' in currentLocation &&
+    currentLocation['crossedPaths'].some(
+      crossedPaths =>
+        crossedPaths.time == concernLocation.time &&
+        crossedPaths.latitude == concernLocation.latitude &&
+        crossedPaths.longitude == concernLocation.longitude,
+    )
+  );
 }
