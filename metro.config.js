@@ -6,6 +6,10 @@
  */
 
 module.exports = {
+  resolver: {
+    // react-native-local-resource
+    assetExts: ['html'],
+  },
   transformer: {
     getTransformOptions: async () => ({
       transform: {
