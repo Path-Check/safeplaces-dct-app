@@ -27,7 +27,7 @@ fi
 
 echo "Uploading English base files"
 lokalise2 file upload \
-  --file=app/locales/en.json,app/locales/eula/en.html,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml \
+  --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml \
   --lang-iso=en \
   --cleanup-mode \
   --replace-modified \
@@ -35,4 +35,16 @@ lokalise2 file upload \
   --detect-icu-plurals \
   --apply-tm \
   --convert-placeholders \
-  --token=$LOKALISE_TOKEN
+  --config .lokalise.yml --token=$LOKALISE_TOKEN
+
+echo "Uploading Documents (e.g. EULA)"
+lokalise2 file upload \
+  --file=app/locales/eula/en.html \
+  --lang-iso=en \
+  --cleanup-mode \
+  --replace-modified \
+  --include-path \
+  --detect-icu-plurals \
+  --apply-tm \
+  --convert-placeholders \
+  --project-id=565995355ea89e2a5f2926.77486458 --token=$LOKALISE_TOKEN
