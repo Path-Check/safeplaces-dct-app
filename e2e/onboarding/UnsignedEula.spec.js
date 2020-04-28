@@ -1,11 +1,10 @@
-import { getLanguageStrings } from '../helpers/language';
+import { languages } from '../helpers/language';
 import Onboarding1 from '../pages/Onboarding1.po.js';
 import SignEula from '../pages/SignEula.po.js';
 
-let languageStrings = {};
-
-['en-US', 'ht-HT'].forEach(locale => {
-  describe(`No Notifications test suite in ${locale}`, () => {
+describe.each(languages)(
+  `No Notifications test suite in %s`,
+  (locale, languageStrings) => {
     beforeAll(async () => {
       await device.launchApp({
         newInstance: true,
@@ -15,7 +14,6 @@ let languageStrings = {};
         },
         permissions: { location: 'always', notifications: 'YES' },
       });
-      languageStrings = getLanguageStrings(locale);
     });
 
     describe('Cannot continue without signing the EULA', () => {
@@ -32,5 +30,5 @@ let languageStrings = {};
         await device.installApp();
       });
     });
-  });
-});
+  },
+);

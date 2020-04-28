@@ -1,13 +1,23 @@
 {
-  "Done": "Fatto",
+  "_display_name": "Italiano",
   "history": {
-    "no_exposure": "Nessuna esposizione",
-    "possible_exposure": "Possibile esposizione",
+    "no_exposure": "Non noto",
+    "possible_exposure": "Possibile",
     "possible_exposure_para": "E' possibile che tu sia stato in contatto o vicino ad una persona risultata positiva al COVID-19.",
     "what_does_this_mean": "Cosa significa?",
     "what_does_this_mean_para": "In base alla tua cronologia GPS, è possibile che tu sia stato in contatto o nelle vicinanze di una persona risultata positiva al COVID-19. Questo però non significa che tu sia infetto.\n\nPer maggiori informazioni o per sapere cosa fare, fai riferimento al sito della Mayo Clinic.",
     "what_if_no_symptoms": "E se non mostro nessun sintomo?",
     "what_if_no_symptoms_para": "Se non hai alcun sintomo, ma vuoi comunque effettuare un test, puoi presentarti al centro più vicino.\n\nLe persone che non mostrano alcun sintomo possono, in alcune circostanze, essere ancora contagiosi. Mantieni alta l'attenzione e pratica il distanziamento sociale, evita di venire in contatto con gruppi di persone o con persone ad alto rischio (anziani o persone affette da altre patologie), è importante non solo per te, ma anche per gli altri."
+  },
+  "import": {
+    "button_text": "Importa lo storico delle posizioni",
+    "google": {
+      "disclaimer": "Safe Paths non ha alcuna affiliazione a Google e non condivide mai i tuoi dati",
+      "title": "Google Maps",
+      "visit_button_text": "Visita Google Takeout"
+    },
+    "subtitle": "Per capire se hai incontrato qualcuno con COVID-19 prima di scaricare questa app, puoi importare lo storico delle tue posizioni",
+    "title": "Importa posizioni"
   },
   "label": {
     "about_title": "Informazioni",
@@ -28,8 +38,6 @@
     "default_news_site_name": "Novità su Safe Paths",
     "event_history_subtitle": "Controlla la tua possibile esposizione sulla base delle informazioni condivise dalle istituzioni sanitarie",
     "event_history_title": "Storico delle esposizioni",
-    "export_para_1": "Se risulti COVID-19 positivo, per favore aiutaci condividendo lo storico delle tue posizioni con le istituzioni sanitarie.",
-    "export_para_2": "La tua posizione è condivisa come una semplice lista di orari e luoghi, senza nessuna informazione aggiuntiva.",
     "home_at_risk_header": "Potresti esser stato esposto",
     "home_at_risk_subsubtext": "Questo non significa che tu sia infetto",
     "home_at_risk_subtext": "Sulla base del tuo storico GPS, è possibile che tu sia venuto a contatto o sia nelle vicinanze di qualcuno con diagnosi di COVID-19",
@@ -42,11 +50,6 @@
     "home_setting_off_subtext": "Non possiamo darti informazioni sull'esposizione al virus se non attivi la localizzazione.",
     "home_unknown_header": "Sconosciuto",
     "home_unknown_subtext": "Non è possibile sapere se sei stato esposto se non permetti alla app di accedere alla tua posizione",
-    "import_step_1": "Aggiungere lo storico delle localizzazioni da Google ti aiuta ad avere piu informazioni sulle tue posizioni passate.",
-    "import_step_2": "Prima di importare i dati, devi effettuare il 'Take out' dei dati dal sito di Google.",
-    "import_step_3": "Apri il sito di Google Takeout ed effettua l'export dei tuoi dati di posizione seguendo i seguenti step:\n1. Metodo di recapito: \"Aggiungi a Drive\"\n Frequenza: \"Esporta un archivio\"\n3. Tipo di file e dimensioni: \".zip\" e \"1GB\"\n4. Google ti invierà un messaggio via email al termine dell'esportazione.\n5. Ritorna in questa schermata per effettuare l'importazione dei dati.\n- Importa da Google Drive\n- Scarica con il browser e poi importa manualmente.\n Ti consigliamo l'uso del WiFi in quanto il file potrebbe essere di grandi dimensioni.",
-    "import_takeout": "Visita Google Takeout",
-    "import_title": "Importa posizioni",
     "latest_news": "Ultime novità",
     "launch_done_header": "Fatto!",
     "launch_done_subheader": "Sei pronto. Ricorda, puoi sempre modificare le impostazioni più tardi.",
@@ -77,10 +80,6 @@
     "location_enabled_title": "COVID Safe Paths è abilitato",
     "logging_active": "Localizzazione attiva",
     "logging_inactive": "Localizzazione disattiva",
-    "maps_import_button_text": "Importa lo storico delle posizioni",
-    "maps_import_disclaimer": "Safe Paths non ha alcuna affiliazione a Google e non condivide mai i tuoi dati",
-    "maps_import_text": "Per capire se hai incontrato qualcuno con COVID-19 prima di scaricare questa app, puoi importare lo storico delle tue posizioni",
-    "maps_import_title": "Google Maps",
     "news_subtitle": "Leggi gli aggiornamenti su COVID-19 da parte delle tue istituzioni sanitarie e nel mondo",
     "news_title": "Ultime novità",
     "no_data": "Nessun dato",
@@ -88,11 +87,28 @@
     "push_at_risk_title": "Potresti essere a rischio di esposizione",
     "see_exposure_history": "Visualizza lo storico delle esposizioni",
     "settings_title": "Settaggi",
-    "share_location_data": "Condividi i tuoi dati GPS",
     "team": "Team",
     "team_para": "Il nostro team è composto da un consorzio di epidemiologi, ingegneri, data scientist, esperti di privacy digitale, professori e ricercatori dalle più importanti istituzioni, incluse: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young e Link Ventures",
-    "terms_of_use": "Termini per l'utilizzo",
-    "tested_positive_subtitle": "I tuoi dati personali possono essere trasferiti alle istituzioni sanitarie, salvati o condivisi in altra maniera",
-    "tested_positive_title": "Condividi lo storico delle posizioni"
+    "terms_of_use": "Termini per l'utilizzo"
+  },
+  "onboarding": {
+    "eula_checkbox": "Accetto il contratto di licenza",
+    "eula_continue": "Continua",
+    "eula_message": "* È necessario accettare per utilizzare Safe Paths"
+  },
+  "share": {
+    "button_text": "Condividi i tuoi dati GPS",
+    "paragraph_first": "Se risulti COVID-19 positivo, per favore aiutaci condividendo lo storico delle tue posizioni con le autorità sanitarie",
+    "paragraph_second": "La tua posizione è condivisa come una semplice lista di orari e luoghi, senza nessuna informazione aggiuntiva",
+    "subtitle": "I tuoi dati personali possono essere trasferiti alle istituzioni sanitarie, salvati o condivisi in altra maniera",
+    "title": "Condividi lo storico delle posizioni"
+  },
+  "version_update": {
+    "alert_label": "COVID Safe Paths non è aggiornata",
+    "alert_sublabel": "Vuoi aggiornare ad una nuova versione?",
+    "later": "Più tardi",
+    "push_notification_message": "Per favore aggiorna l'applicazione",
+    "push_notification_title": "L'applicazione non è aggiornata",
+    "update": "Aggiorna"
   }
 }

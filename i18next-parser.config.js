@@ -2,7 +2,7 @@ module.exports = {
   contextSeparator: '_',
   // Key separator used in your translation keys
 
-  createOldCatalogs: true,
+  createOldCatalogs: false,
   // Save the \_old files
 
   defaultNamespace: 'default',
@@ -38,24 +38,8 @@ module.exports = {
   lineEnding: 'auto',
   // Control the line ending. See options at https://github.com/ryanve/eol
 
-  locales: [
-    // sort alphabetically
-    'en',
-    'es',
-    'fr',
-    'ht',
-    'it',
-    'id',
-    'nl',
-    'pl',
-    'pt_BR',
-    'ro',
-    'ru',
-    'sk',
-    'vi',
-    'zh-Hant',
-  ],
-  // An array of the locales in your applications
+  // Only en needs to be extracted and uploaded to lokalise. Lokalise will add/trim keys in other languages
+  locales: ['en'],
 
   namespaceSeparator: ':',
   // Namespace separator used in your translation keys
@@ -81,6 +65,6 @@ module.exports = {
   // Whether to use the keys as the default value; ex. "Hello": "Hello", "World": "World"
   // The option `defaultValue` will not work if this is set to true
 
-  verbose: true,
+  verbose: false,
   // Display info about the parsing including some stats
 };

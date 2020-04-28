@@ -1,12 +1,23 @@
 {
+  "_display_name": "Portugues do Brasil",
   "history": {
     "no_exposure": "Sem exposição conhecida",
-    "possible_exposure_para": "É possível que você tenha tido proximidade ou contato com uma pessoa que testou positivo para COVID-19",
     "possible_exposure": "Exposição possível",
-    "what_does_this_mean_para": "Baseado no seu histórico de localização por GPS, é possível que você tenha estado próximo ou em contato com alguém diagnosticado com COVID-19. Isso não significa, necessariamente, que você tenha se infectado, apesar de ser possível.\n\nPara mais orientações, consulte o site da Mayo Clinic (site em inglês).",
+    "possible_exposure_para": "É possível que você tenha tido proximidade ou contato com uma pessoa que testou positivo para COVID-19",
     "what_does_this_mean": "O que isso significa?",
-    "what_if_no_symptoms_para": "Caso queira fazer um teste, você pode verificar a disponibilidade em sua região para testes em pessoas assintomáticas.\n\nPessoas sem sintomas também podem transmitir a doença. Cuidados quanto ao distanciamento social, evitar aglomerações ou contato com grupos de risco (idosos e aqueles com problemas de saúde) são importantes para diminuir o seu risco e o dos outros.",
-    "what_if_no_symptoms": "E se eu não tiver sintomas?"
+    "what_does_this_mean_para": "Baseado no seu histórico de localização por GPS, é possível que você tenha estado próximo ou em contato com alguém diagnosticado com COVID-19. Isso não significa, necessariamente, que você tenha se infectado, apesar de ser possível.\n\nPara mais orientações, consulte o site da Mayo Clinic (site em inglês).",
+    "what_if_no_symptoms": "E se eu não tiver sintomas?",
+    "what_if_no_symptoms_para": "Caso queira fazer um teste, você pode verificar a disponibilidade em sua região para testes em pessoas assintomáticas.\n\nPessoas sem sintomas também podem transmitir a doença. Cuidados quanto ao distanciamento social, evitar aglomerações ou contato com grupos de risco (idosos e aqueles com problemas de saúde) são importantes para diminuir o seu risco e o dos outros."
+  },
+  "import": {
+    "button_text": "Importar localizações anteriores",
+    "google": {
+      "disclaimer": "Safe Paths não tem ligação com Google e nunca compartilha os seus dados.",
+      "title": "Google Maps",
+      "visit_button_text": "Visite Google Takeout"
+    },
+    "subtitle": "Para saber se você encontrou com alguém com COVID-19 antes de instalar esse aplicativo, você pode importar seu histórico de localizações pessoais.",
+    "title": "Importar Localizações"
   },
   "label": {
     "about_title": "Sobre",
@@ -27,8 +38,6 @@
     "default_news_site_name": "Notícias Safe Paths",
     "event_history_subtitle": "Entenda a sua exposição pessoal a partir de informações compartilhadas com as autoridades de saúde.",
     "event_history_title": "Histórico de exposição",
-    "export_para_1": "Se você testou positivo para COVID-19, faça a sua parte, compartilhe o seu histórico de localização com as autoridades locais de saúde.",
-    "export_para_2": "O histórico de localização é uma simples lista de locais e horários, sem compartilhamento de outras informações.",
     "home_at_risk_header": "Você pode estar exposto.",
     "home_at_risk_subsubtext": "Isso não quer dizer que você está infectado.",
     "home_at_risk_subtext": "Baseado no seu histórico de localização por GPS, é possível que você tenha estado próximo ou em contato com alguém com COVID-19.",
@@ -41,11 +50,6 @@
     "home_setting_off_subtext": "Não é possível verificar se você está em risco se não permitir o uso do histórico de localização nas configurações.",
     "home_unknown_header": "Desconhecido",
     "home_unknown_subtext": "Não é possível verificar se você está em risco se não permitir que o aplicativo acesse a sua localização.",
-    "import_step_1": "Adicionar dados de localização do Google irá te ajudar a construir seu histórico recente de localização.",
-    "import_step_2": "Para importar, você precisa primeiro exportar os seus dados de localização do Google.",
-    "import_step_3": "Visite Google Takeout e exporte seu Histórico de Localização com a seguinte configuração: \n1. Método de envio: \"Adicionar ao Google Drive\" \n2. Frequência: \"Exportar uma vez\" \n3. Tipo e tamanho do arquivo: \".zip\" e \"1GB\" \n4. Google enviará um email quando a exportação for concluída \n5. Retorne aqui para importar localizações. Opções de importação: \n- Importe do Google Drive \n- Baixe do navegador para os arquivos locais do celular, e então importe. Deve estar conectado em WiFi já que os arquivos podem ser grandes.",
-    "import_takeout": "Visite Google Takeout",
-    "import_title": "Importar Localizações",
     "latest_news": "Últimas Notícias",
     "launch_done_header": "Tudo pronto",
     "launch_done_subheader": "Você está pronto para começar. Lembre-se, você sempre poderá alterar suas preferências, quando quiser.",
@@ -76,10 +80,6 @@
     "location_enabled_title": "COVID Safe Paths Habilitado",
     "logging_active": "Localização Ativa",
     "logging_inactive": "Localização Inativa",
-    "maps_import_button_text": "Importar localizações anteriores",
-    "maps_import_disclaimer": "Safe Paths não tem ligação com Google e nunca compartilha os seus dados.",
-    "maps_import_text": "Para saber se você encontrou com alguém com COVID-19 antes de instalar esse aplicativo, você pode importar seu histórico de localizações pessoais.",
-    "maps_import_title": "Google Maps",
     "news_subtitle": "Leia as últimas atualizações sobre COVID de sua autoridade de saúde e em geral.",
     "news_title": "Últimas notícias",
     "no_data": "Sem dados",
@@ -87,11 +87,13 @@
     "push_at_risk_title": "Você pode estar em risco",
     "see_exposure_history": "Veja seu histórico de exposição",
     "settings_title": "Painel de controle",
-    "share_location_data": "Compartilhar dados de localização",
     "team": "Equipe",
     "team_para": "Nossa equipe é formada por epidemiologistas, engenheiros, cientistas de dados, especialistas em privacidade digital, professores e pesquisadores de instituições renomadas, como: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young, e Link Ventures.",
-    "terms_of_use": "Termos de uso",
-    "tested_positive_subtitle": "Seus dados privados podem ser transferidos para autoridades de saúde, salvos em backup, ou compartilhados.",
-    "tested_positive_title": "Compartilhar histórico de localização"
+    "terms_of_use": "Termos de uso"
+  },
+  "share": {
+    "button_text": "Compartilhar dados de localização",
+    "subtitle": "Seus dados privados podem ser transferidos para autoridades de saúde, salvos em backup, ou compartilhados.",
+    "title": "Compartilhar histórico de localização"
   }
 }
