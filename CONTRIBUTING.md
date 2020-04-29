@@ -69,6 +69,7 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 # if you've already done this it will fail, that's fine:
 git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 
+# ensure you are on your feature/fix branch
 git checkout feature/my-feature
 
 # get latest upstream branches e.g. upstream/develop
