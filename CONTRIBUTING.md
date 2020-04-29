@@ -45,7 +45,7 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
   
   git pull upstream/develop # make sure you have the latest code from upstream
   
-  git push origin develop # optional, push these changes to your fork's develop branch
+  git push origin develop # optional, push these changes to YOUR fork's develop branch
   ```
 2. Create the branch. Name the branch something to reflect what you are doing.
   ```
@@ -68,7 +68,8 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 ```bash
 git fetch upstream # fetch latest branches from "COVID Safe Paths" repo
 
-git merge upstream/develop # merge latest develop code into your local branch, this will create a single merge commit
+# merge latest develop code into your local branch, this will always create a single merge commit
+git merge upstream/develop --no-ff
 
 # you may need to resolve conflicts. Once finished resolving conflicts:
 
