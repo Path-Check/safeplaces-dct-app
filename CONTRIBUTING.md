@@ -63,19 +63,24 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 4. Document code! Comments are good. More comments are better. :)
 5. Make commits as you desire. Ultimately they will be squashed, so make notes to yourself. It's as simple as `git commit -m "commit message goes here"`!
 
-### Merge your feature branch with upstream/develop to get the latest changes.
+### Merge upstream/develop into your branch to get the latest changes.
 
 ```bash
-git fetch upstream # fetch latest branches from "COVID Safe Paths" repo
+# if you've already done this it will fail, that's fine:
+git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 
-# merge latest develop code into your local branch, this will always create a single merge commit
+git checkout feature/my-feature
+
+# get latest upstream branches e.g. upstream/develop
+git fetch upstream
+
+# merge upstream/develop into your local branch, this will always create a single merge commit
 git merge upstream/develop --no-ff
 
-# you may need to resolve conflicts. Once finished resolving conflicts:
+# you may need to resolve conflicts. If so, resolve them and commit the merge:
+git commit
 
-git commit # this will pre-fill the commit message with details of the merge from develop
-
-# push your changes up to your branch
+# push your changes up to your branch again
 git push -u origin
 
 # now your feature branch is ready for PR against COVID Safe Paths develop branch.
@@ -151,6 +156,8 @@ _Advanced users may install the `hub` gem and use the [`hub pull-request` comman
 - A team member will review the pull request, request change or approve and merge into the `develop` branch.
 
 ## Reviewing Pull Requests
+
+- If you are using VS Code, use the [GitHub PR extension](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github), which will allow you to checkout and run anyone's PR with ease.
 
 - Open the PR on Github. At the top of the PR page is a number which identifies it -123 and the name of the author's branch -branch-name. Copy down both of these.
 
