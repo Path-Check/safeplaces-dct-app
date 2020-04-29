@@ -44,6 +44,8 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
   git checkout develop # you want to branch from the latest 'develop' branch
   
   git pull upstream/develop # make sure you have the latest code from upstream
+  
+  git push origin develop # optional, push these changes to your fork's develop branch
   ```
 2. Create the branch. Name the branch something to reflect what you are doing.
   ```
@@ -64,7 +66,7 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 ### Merge your feature branch with upstream/develop to get the latest changes.
 
 ```bash
-git fetch upstream # fetch latest commits from "COVID Safe Paths" develop branch
+git fetch upstream # fetch latest branches from "COVID Safe Paths" repo
 
 git merge upstream/develop # merge latest develop code into your local branch, this will create a single merge commit
 
