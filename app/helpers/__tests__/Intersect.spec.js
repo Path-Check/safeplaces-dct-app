@@ -126,10 +126,14 @@ describe('intersect with empty sets', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
+    let { bins, newIntersections } = intersectSetIntoBins(
+      baseLocations,
+      concernLocations,
+    );
     let expectedBins = getEmptyLocationBins();
 
-    expect(resultBins).toEqual(expectedBins);
+    expect(bins).toEqual(expectedBins);
+    expect(newIntersections).toBe(0);
   });
 
   /**
@@ -174,10 +178,14 @@ describe('intersect with empty sets', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
+    let { bins, newIntersections } = intersectSetIntoBins(
+      baseLocations,
+      concernLocations,
+    );
     let expectedBins = getEmptyLocationBins();
 
-    expect(resultBins).toEqual(expectedBins);
+    expect(bins).toEqual(expectedBins);
+    expect(newIntersections).toBe(0);
   });
 
   /**
@@ -224,14 +232,19 @@ describe('intersect with empty sets', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let resultBins = intersectSetIntoBins(baseLocations, concernLocations).bins;
+    let { bins, newIntersections } = intersectSetIntoBins(
+      baseLocations,
+      concernLocations,
+    );
+
     let expectedBins = getEmptyLocationBins();
     expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
     expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
     expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
     expectedBins[10] = 0; // expect 0 (not -1) becuase we have location data for this bin
 
-    expect(resultBins).toEqual(expectedBins);
+    expect(bins).toEqual(expectedBins);
+    expect(newIntersections).toBe(0);
   });
 });
 
@@ -696,6 +709,40 @@ describe('intersect at fixed locations and times', () => {
 
     expect(resultBins).toEqual(expectedBins);
   });
+
+  /**
+   * Test checks for new intersections and repeated intersections for a given matching locations
+   */
+  it('new intersections and identfied intersections', () => {
+    // 13 location data seperated 5 minutes a part
+    let baseLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.base,
+        TEST_MOMENT.valueOf(),
+      ),
+    ];
+
+    let concernLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.concern,
+        TEST_MOMENT.valueOf(),
+      ),
+    ];
+
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
+
+    let { newIntersections } = intersectSetIntoBins(
+      baseLocations,
+      concernLocations,
+    );
+    expect(newIntersections).toBe(13);
+
+    newIntersections = intersectSetIntoBins(baseLocations, concernLocations)
+      .newIntersections;
+    expect(newIntersections).toBe(0);
+  });
 });
 
 /**
@@ -816,8 +863,8 @@ describe('areLocationsNearby', () => {
 function generateBackfillLocationArray(
   location,
   startTimeMS,
-  backfillTimeMS = 1000 * 60 * 60,
-  backfillIntervalMS = 1000 * 60 * 5,
+  backfillTimeMS = 1000 * 60 * 60, // 1 hour
+  backfillIntervalMS = 1000 * 60 * 5, // 5 minutes
 ) {
   let ar = [];
   for (
