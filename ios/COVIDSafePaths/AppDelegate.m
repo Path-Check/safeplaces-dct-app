@@ -12,7 +12,6 @@
 #import <React/RCTRootView.h>
 #import <RNCPushNotificationIOS.h>
 #import <UserNotifications/UserNotifications.h>
-#import <GoogleMaps/GoogleMaps.h>
 #import <react-native-splash-screen/RNSplashScreen.h>
 #import <TSBackgroundFetch/TSBackgroundFetch.h>
 
@@ -20,7 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [GMSServices provideAPIKey:@"AIzaSyB0-TLHy-0Nmed6rYG1IkvwqVtjAKHV9lk"];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"COVIDSafePaths"
@@ -33,10 +31,10 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  
+
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
-  
+
   [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
   // [REQUIRED] Register BackgroundFetch
     [[TSBackgroundFetch sharedInstance] didFinishLaunching];
@@ -91,8 +89,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
         UILocalNotification *_localNotification = [[UILocalNotification alloc] init];
         _localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
         _localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        _localNotification.alertTitle = @"COVID Safe Paths";
-        _localNotification.alertBody = @"COVID Safe Paths is securely storing your GPS coordinates once every five minutes on this device.";
+        _localNotification.alertTitle = NSLocalizedString(@"ios.app_closed_alert_title", @"Title of notification when app is closed");
+        _localNotification.alertBody = NSLocalizedString(@"ios.app_closed_alert_text", @"Body text of notification when app is closed");
         _localNotification.soundName = UILocalNotificationDefaultSoundName;
         [[UIApplication sharedApplication]scheduleLocalNotification:_localNotification];
       }

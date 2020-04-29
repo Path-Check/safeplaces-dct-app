@@ -1,7 +1,15 @@
-## Description
+<!-- ## Description -->
 
-Description of what the PR does, includeing a fixed issue with Resolves #{issue number}
+<!-- Description of what the PR does -->
 
-## How to test
+#### Linked issues:
 
-Description of how to validate or test this PR
+<!-- Add issues here e.g.: Fixes #1234 -->
+
+#### Screenshots:
+
+<!-- If you're changing visuals, add a screenshot here -->
+
+#### How to test
+
+<!-- Description of how to validate or test this PR -->

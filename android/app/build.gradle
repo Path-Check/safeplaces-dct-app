@@ -132,8 +132,13 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-        versionCode 20
-        versionName "0.9.2"
+
+        // detox e2e testing
+        testBuildType System.getProperty('testBuildType', 'debug')
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        versionCode 25
+        versionName "1.0.1"
     }
     splits {
         abi {
@@ -161,7 +166,7 @@ android {
                 project.logger.lifecycle('Could not find release key')
             }
         }
-        
+
     }
     buildTypes {
         debug {
@@ -193,13 +198,10 @@ android {
 
 dependencies {
     implementation project(':react-native-reanimated')
-    implementation project(':react-native-gesture-handler')
-    implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"
 
-    compile project(':react-native-fs')
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
@@ -208,13 +210,7 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-
-    implementation(project(':react-native-maps')){
-       exclude group: 'com.google.android.gms', module: 'play-services-base'
-       exclude group: 'com.google.android.gms', module: 'play-services-maps'
-    }
-    implementation 'com.google.android.gms:play-services-base:10.0.1'
-    implementation 'com.google.android.gms:play-services-maps:10.0.1'
+    androidTestImplementation('com.wix:detox:+')  // detox: e2e testing
 }
 
  // Just to fix the app start crash error

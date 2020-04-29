@@ -23,7 +23,10 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 cd ~ # get to your home directory or where ever you want to go
 
-git clone https://github.com/YOURACCOUNT/
+git clone https://github.com/YOURACCOUNT/covid-safe-paths
+
+# change into the newly created directory
+cd covid-safe-paths
 
 # set upstream against COVID Safe Paths repository
 git remote add upstream https://github.com/tripleblindmarket/covid-safe-paths.git
@@ -124,7 +127,7 @@ git rebase develop
 git push -f
 ```
 
-- Documentation on [create a Pull Request (PR) on Github](https://help.github.com/articles/using-pull-requests/) for review and merging.
+- Documentation on how to [create a Pull Request (PR) on Github](https://help.github.com/articles/using-pull-requests/) for review and merging.
 
 **Note**: Even if you have write access, do not work directly on `master` or push directly to `develop`! All work is done against `develop` reviewed and merged via PRs, and ultimately `develop` gets merged into `master` for tagged code releases.
 
@@ -140,13 +143,13 @@ This project utilizes the [Jest](https://jestjs.io/) testing framework to test t
 
 ### Adding new components/tests
 
-When adding new components to the project, make sure to add at least snapshot test. The test files are located in the `__tests__` directory at the same level as the component you are testing. For instance, if you are adding a new view called `TestView` under the `views` directory, you would add a `TestView.spec.js` file in the `views/__tests__` directory.
+When adding new components to the project, make sure to add at least a snapshot test. The test files are located in the `__tests__` directory at the same level as the component you are testing. For instance, if you are adding a new view called `TestView` under the `views` directory, you would add a `TestView.spec.js` file in the `views/__tests__` directory.
 
-After making your changes and adding a new test file, make sure to run `yarn test` to make sure you don't have any test failures.
+After making your changes and adding a new test file, run `yarn test` to make sure you don't have any test failures.
 
 ### Snapshot failures
 
-The most common failure you will most likely run into is a snapshot failure. [Snapshot testing](https://jestjs.io/docs/en/snapshot-testing) ensures that a component renders the same output after it has been modified. If you receive a snapshot failure, check the differences in the snapshot failure to make sure they are expected changes. If they are all expected changes then you just need to update the snapshot by running `yarn test -u`. This will update the snapshot file so you can commit the changes.
+The most common failure you will run into is a snapshot failure. [Snapshot testing](https://jestjs.io/docs/en/snapshot-testing) ensures that a component renders the same output after it has been modified. If you receive a snapshot failure, check the differences in the snapshot failure to make sure they are expected changes. If they are all expected changes then you just need to update the snapshot by running `yarn test -u`. This will update the snapshot file so you can commit the changes.
 
 ### Mocking modules
 
@@ -164,15 +167,9 @@ When writing tests for components that use installed packages, we usually don't 
 
 _Advanced users may install the `hub` gem and use the [`hub pull-request` command](https://github.com/defunkt/hub#git-pull-request)._
 
-- If not done in commit messages (which you really should do), reference and
+- If not done in commit messages (which you really should do), reference and update your issue with the code changes. But _please do not close the issue yourself_.
 
-update your issue with the code changes. But \_please do not close the issue
-
-yourself\_.
-
-- A team member will review the pull request, request change or approve and
-
-merge into the `develop` branch.
+- A team member will review the pull request, request change or approve and merge into the `develop` branch.
 
 ## Reviewing Pull Requests
 
