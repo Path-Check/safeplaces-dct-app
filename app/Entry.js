@@ -12,6 +12,7 @@ import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
+import LocationController from './views/LocationController';
 import LocationTracking from './views/LocationTracking';
 import NewsScreen from './views/News';
 import Onboarding1 from './views/onboarding/Onboarding1';
@@ -55,7 +56,7 @@ class Entry extends Component {
           {this.state.initialRouteName === 'true' ? (
             <Stack.Screen
               name='InitialScreen'
-              component={LocationTracking}
+              component={LocationController}
               options={{ headerShown: false }}
             />
           ) : (
@@ -92,7 +93,7 @@ class Entry extends Component {
           />
           <Stack.Screen
             name='LocationTrackingScreen'
-            component={LocationTracking}
+            component={LocationController}
             options={{ headerShown: false }}
           />
           <Stack.Screen

@@ -29,6 +29,7 @@ import { PARTICIPATE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { HCAService } from '../../services/HCAService';
+import LocationServices from '../../services/LocationService';
 
 const width = Dimensions.get('window').width;
 
@@ -281,6 +282,8 @@ class Onboarding extends Component {
       case StepEnum.DONE:
         SetStoreData(PARTICIPATE, 'true');
         SetStoreData('ONBOARDING_DONE', true);
+        // start location service here
+        LocationServices.start();
         this.props.navigation.replace('LocationTrackingScreen');
     }
   }
