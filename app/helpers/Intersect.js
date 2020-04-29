@@ -30,6 +30,8 @@ import languages from '../locales/languages';
  * Intersects the locationArray with the concernLocationArray, returning the results
  *   as a dayBin array.
  *
+ * NOTE: localArray items can be mutated on each run
+ *
  * @param {array} localArray - array of the local locations.  Assumed to have been sorted and normalized
  * @param {array} concernArray - superset array of all concerning points from health authorities.  Assumed to have been sorted and normalized
  * @param {int} numDayBins - (optional) number of bins in the array returned
