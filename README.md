@@ -38,13 +38,6 @@ Please refer to `docs/Private Kit Diagram.png` for a basic overview on the seque
 
 Run the ```dev_setup.sh``` (Linux/MacOS) or ```dev_setup.bat``` (Windows) for needed tools.  It is assumed that Android Studio and/or xcode (on macOS) is set up and configured correctly to run applications in the simulator.  For Android Studio, the dev_setup script can help you, but you still may need to configure at least one android virtual device (avd) from within Android Studio first before you can run the app.
 
-### iOS Configuration - First Time Setup
-
-1. pod install in `ios` directory
-2. Open `.workspace` file in the iOS directory and run `build`
-3. If you have any trouble with packages not round, try `react-native link` from project directory.
-4. Look at running commands below.
-
 ## Running
 
 ```yarn``` must be installed for this project, as it does a better job installing dependendies across platforms.  The dev_setup script above should have done that for you.
@@ -62,7 +55,7 @@ npx react-native run-android
 ```
 or (on macOS only)
 ```
-npx react-native run-ios --simulator="iPhone 8 Plus"
+npx react-native run-ios
 ```
 
 NOTE: In some cases, these procedures can lead to the error `Failed to load bundle - Could not connect to development server`. In these cases, kill all other react-native processes and try it again.

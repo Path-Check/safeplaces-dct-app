@@ -1,0 +1,54 @@
+{
+  "_display_name": "Filipino",
+  "import": {
+    "title": "Mag-import ng lokasyon"
+  },
+  "label": {
+    "about_title": "Tungkol",
+    "authorities_add_button_label": "Magdagdag ng Pinagkakatiwalaang Pinagmulan",
+    "authorities_add_url": "Magdagdag ng awtoridad sa pamamagitan ng URL",
+    "authorities_input_placeholder": "I-paste ang iyong URL dito",
+    "authorities_no_sources": "Wala pang mapagkukunan ng data",
+    "authorities_removal_alert_cancel": "Magkansela",
+    "authorities_removal_alert_proceed": "Ituloy",
+    "authorities_removal_alert_title": "Tanggalin ang awtoridad",
+    "authorities_title": "Pinagkakatiwalaang mga mapagkukunan",
+    "choose_provider_title": "Pumili ng awtoridad sa kalusugan",
+    "commitment": "Pangako",
+    "default_news_site_name": "Safe Paths Balita",
+    "event_history_title": "Kasaysayan ng paglalantad",
+    "home_at_risk_header": "Ikaw ay Maaaring Malantad",
+    "home_at_risk_subsubtext": "Hindi ito nangangahulugang ikaw ay nahawaan.",
+    "home_enable_location": "Paganahin ang Lokasyon gamit ang Data",
+    "home_mayo_link_heading": "Karagdagang impormasyon tungkol sa Covid-19",
+    "home_mayo_link_label": "mula sa Mayo Clinic",
+    "home_no_contact_header": "Walang nakahalubilo na nagkasakit o may sakit na.",
+    "home_setting_off_header": "Hindi kilala",
+    "home_unknown_header": "Hindi kilala",
+    "latest_news": "Pinakabagong Balita",
+    "launch_done_header": "Tapos na.",
+    "launch_enable_location": "Paganahin ang Lokasyon",
+    "launch_enable_notif": "Paganahin ang notipikasyon",
+    "launch_finish_set_up": "Tapos na ang Pag-setup",
+    "launch_get_started": "Magsimula",
+    "launch_location_access": "Pag-access sa lokasyon",
+    "launch_location_subheader": "Walang kailangan ipag-alala dahil ang mga impormasyong iyong inilagay ay dito lamang mananatili sa iyong aparato maaliban na lamang kung bibigyan nyo ng pahintulot na ipamahagi ito sa iba.",
+    "launch_next": "Susunod",
+    "launch_notif_header": "Kayo ay makakatanggao ng abiso o paalala kung sakali mang kayo ay may nakahalubilo na maysakit",
+    "launch_notif_subheader": "Ang aming hihilingin lang sa inyo bilang abala ay kung may panganib, maari po lamang na ito ay ibahagi nyo sa amin.",
+    "launch_notification_access": "Payagan ang mga notipikasyon",
+    "launch_screen2_header": "Iyong maabisuhan kung ikaw ay cross landas na may isang tao sa ibang pagkakataon nasuri para sa COVID-19."
+  },
+  "onboarding": {
+    "eula_checkbox": "Tinatanggap ko ang kasunduan nito.",
+    "eula_continue": "Ituloy"
+  },
+  "version_update": {
+    "alert_label": "Ang COVID Safe Paths bersyon ay luma na",
+    "alert_sublabel": "Mag-update sa bagong bersyon?",
+    "later": "Kalaunan",
+    "push_notification_message": "Mangyaring i-update ang iyong COVID Safe Paths Software.",
+    "push_notification_title": "Ang aplikasyon ay luma na",
+    "update": "I-update"
+  }
+}

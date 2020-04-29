@@ -1,0 +1,5 @@
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. Tutti i diritti riservati.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "La cronologia delle tue posizioni sarà salvata sul dispositivo e condivisa con gli altri solo se vorrai.";
+"NSLocationAlwaysUsageDescription" = "La cronologia delle tue posizioni sarà salvata sul dispositivo e condivisa con gli altri solo se vorrai.";
+"NSLocationWhenInUseUsageDescription" = "La cronologia delle tue posizioni sarà salvata sul dispositivo e condivisa con gli altri solo se vorrai.";
+"NSMotionUsageDescription" = "Utilizziamo l'accelerometro per un'accurata cronologia delle posizioni.";

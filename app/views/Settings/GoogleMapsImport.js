@@ -19,15 +19,15 @@ export const GoogleMapsImport = ({ navigation }) => {
     <>
       <TitleRow>
         <SvgXml xml={googleMapsIcon} />
-        <Title use='body1'>{t('label.maps_import_title')}</Title>
+        <Title use='body1'>{t('import.google.title')}</Title>
       </TitleRow>
 
       <ParagraphContainer>
-        <Typography use='body2'>{t('label.maps_import_text')}</Typography>
+        <Typography use='body2'>{t('import.subtitle')}</Typography>
       </ParagraphContainer>
 
       <ButtonWrapper
-        title={t('label.maps_import_button_text')}
+        title={t('import.button_text')}
         onPress={importPressed}
         buttonColor={Colors.VIOLET}
         bgColor={Colors.WHITE}
@@ -37,7 +37,7 @@ export const GoogleMapsImport = ({ navigation }) => {
 
       <ParagraphContainer>
         <Typography use='body3' secondary monospace>
-          {t('label.maps_import_disclaimer')}
+          {t('import.google.disclaimer')}
         </Typography>
       </ParagraphContainer>
     </>

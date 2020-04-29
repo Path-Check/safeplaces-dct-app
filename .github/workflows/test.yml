@@ -132,6 +132,7 @@ jobs:
       - run: yarn test:e2e:iphone11
 
       - name: Upload Screenshots
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: iPhone 11 screenshots
@@ -182,6 +183,7 @@ jobs:
       - run: yarn test:e2e:iphone-se
 
       - name: Upload Screenshots
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: iPhone SE screenshots
