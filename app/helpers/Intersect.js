@@ -300,9 +300,6 @@ async function asyncCheckIntersect() {
   let name_news = [];
   let newIntersectionsCount = 0; // keep track of new interactions
 
-  // get the saved set of locations for the user, normalize and sort
-  let locationArray = normalizeAndSortLocations(await getSavedLocationArray());
-
   // get the health authorities
   let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
 
@@ -313,6 +310,11 @@ async function asyncCheckIntersect() {
     for (const authority of authority_list) {
       try {
         let responseJson = await retrieveUrlAsJson(authority.url);
+
+        // get the saved set of locations for the user, normalize and sort
+        let locationArray = normalizeAndSortLocations(
+          await getSavedLocationArray(),
+        );
 
         // Update the news array with the info from the authority
         name_news.push({
@@ -325,6 +327,9 @@ async function asyncCheckIntersect() {
           locationArray,
           normalizeAndSortLocations(responseJson.concern_points),
         );
+
+        // Updates crossedPaths field within location data if a user has crossed paths with a new infected case
+        if (newIntersections > 0) SetStoreData(LOCATION_DATA, locationArray);
 
         let tempDayBin = bins;
         newIntersectionsCount += newIntersections;
