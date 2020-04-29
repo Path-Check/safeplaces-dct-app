@@ -39,17 +39,15 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 
 ### Create a branch 
 
-Always create a new branch based on the *latest* `upstream/develop`. Name the branch something to reflect what you are doing. For example, if you want to add a new icon, a branch name you could use:
-
-1. Get the latest `upstream/develop`:
+1. Always create a new branch from the latest `upstream/develop`:
 
   ```bash
-  git checkout develop # you want to branch from the main 'develop' branch
+  git checkout develop # you want to branch from the latest 'develop' branch
   
   git pull upstream/develop # make sure you have the latest code from upstream
   ```
 
-1. Create the branch
+1. Create the branch. Name the branch something to reflect what you are doing.
 
   ```
   git checkout -b "feature/new-icon" develop # new branch created!
@@ -105,6 +103,7 @@ git push -u origin
 
 - Provide a meaningful title and description to your PR, as shown in the above image.
 - Provide Issue ID on PR description to link/close the issue upon PR merged.
+- If you are changing visuals, please provide screenshots so the PR reviewer can see what you've done without running it in the app.
 
 ## Helpful resources on Git
 
