@@ -226,13 +226,6 @@ if ! found_exe yarn; then
   echo "${GREEN}Yarn installed!${RESET}"
 fi
 
-if ! found_exe react-native; then
-  echo "${BLUE}Installing React Native tool...${RESET}"
-  yarn global add react-native-cli
-  yarn
-  echo "${GREEN}React Native tools installed!${RESET}"
-fi
-
 git config commit.template ./.gitmessage
 
 echo "${GREEN}You are now ready to go!${RESET}"
