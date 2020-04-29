@@ -442,7 +442,7 @@ export default class LocationServices {
         PushNotification.localNotification({
           id: LOCATION_DISABLED_NOTIFICATION,
           title: languages.t('label.location_disabled_title'),
-          message: languages.t('label.label.location_disabled_message'),
+          message: languages.t('label.location_disabled_message'),
         });
       } else {
         PushNotification.localNotification({
