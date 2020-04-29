@@ -61,11 +61,11 @@ const AssessmentQuestion = ({
       <View style={styles.containerInner}>
         <View style={styles.header}>
           <Text style={styles.title}>{question.question_text}</Text>
-          {question.question_description && (
+          {question.question_description ? (
             <Text style={styles.description}>
               {question.question_description}
             </Text>
-          )}
+          ) : null}
         </View>
         <ScrollView style={{ flex: 1, padding: 20 }}>
           {[SCREEN_TYPE_CHEKCBOX, SCREEN_TYPE_RADIO, SCREEN_TYPE_DATE].includes(
