@@ -235,13 +235,15 @@ class ChooseProviderScreen extends Component {
           <Typography style={styles.sectionDescription} use={'body1'}>
             {languages.t('label.authorities_desc')}
           </Typography>
-          <TouchableOpacity style={styles.autoSubcribe}>
-            <Checkbox
-              label={languages.t('label.auto_subscribe_checkbox')}
-              checked={this.state.isAutoSubscribed}
-              onPress={() => this.toggleAutoSubscribe()}
-            />
-          </TouchableOpacity>
+          {__DEV__ && (
+            <TouchableOpacity style={styles.autoSubcribe}>
+              <Checkbox
+                label={languages.t('label.auto_subscribe_checkbox')}
+                checked={this.state.isAutoSubscribed}
+                onPress={() => this.toggleAutoSubscribe()}
+              />
+            </TouchableOpacity>
+          )}
         </View>
 
         <View style={styles.listContainer}>
