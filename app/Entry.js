@@ -8,7 +8,6 @@ import { PARTICIPATE } from './constants/storage';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import AssessmentScreen from './views/assessment/Assessment';
-import AssessmentTestScreen from './views/assessment/AssessmentTest';
 import ChooseProviderScreen from './views/ChooseProvider';
 import ExportScreen from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
@@ -145,10 +144,6 @@ class Entry extends Component {
             name='AssessmentScreen'
             component={AssessmentScreen}
             options={{ stackPresentation: 'modal', headerShown: false }}
-          />
-          <Stack.Screen
-            name='AssessmentTestScreen'
-            component={AssessmentTestScreen}
           />
           <Stack.Screen
             name='WayPointsScreen'

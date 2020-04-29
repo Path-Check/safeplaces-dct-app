@@ -5,6 +5,7 @@ import {
   Dimensions,
   Image,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -18,52 +19,54 @@ import AssessmentButton from './AssessmentButton';
 
 /** @type {React.FunctionComponent<{}>} */
 const WIDTH = Dimensions.get('window').width;
-const HEIGHT = 40;
+const HEIGHT = WIDTH * (300 / 375);
 
 const AssessmentCaptcha = () => {
   let { t } = useTranslation();
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        reiszeMode='cover'
-        source={require('../../assets/images/illustration-screening-data-sharing.png')}
-        style={{ width: WIDTH, height: HEIGHT }}
-      />
-      <Text style={styles.title}>{t('assessment.captcha_title')}</Text>
-      <Text style={styles.description}>
-        {t('assessment.captcha_description')}
-      </Text>
+      <ScrollView style={styles.scrollView}>
+        <Image
+          reiszeMode='cover'
+          source={require('../../assets/images/illustration-screening-data-sharing.png')}
+          style={{ width: WIDTH, height: HEIGHT }}
+        />
+        <Text style={styles.title}>{t('assessment.captcha_title')}</Text>
+        <Text style={styles.description}>
+          {t('assessment.captcha_description')}
+        </Text>
 
-      <HCaptcha
-        uri={CATCHA_URL}
-        onMessage={event => {
-          if (event && event.nativeEvent.data) {
-            if (
-              ['cancel', 'error', 'expired'].includes(event.nativeEvent.data)
-            ) {
-              console.log('Verified code failed');
-              Alert.alert(
-                'Captcha Response',
-                `captcha ${event.nativeEvent.data}`,
-                [
+        <HCaptcha
+          style={styles.captcha}
+          uri={CATCHA_URL}
+          onMessage={event => {
+            if (event && event.nativeEvent.data) {
+              if (
+                ['cancel', 'error', 'expired'].includes(event.nativeEvent.data)
+              ) {
+                console.log('Verified code failed');
+                Alert.alert(
+                  'Captcha Response',
+                  `captcha ${event.nativeEvent.data}`,
+                  [
+                    {
+                      text: 'OK',
+                    },
+                  ],
+                );
+              } else {
+                console.log('Verified code received', event.nativeEvent.data);
+                Alert.alert('Captcha Response', 'response received', [
                   {
                     text: 'OK',
                   },
-                ],
-              );
-            } else {
-              console.log('Verified code received', event.nativeEvent.data);
-              Alert.alert('Captcha Response', 'response received', [
-                {
-                  text: 'OK',
-                },
-              ]);
+                ]);
+              }
             }
-          }
-        }}
-      />
-
+          }}
+        />
+      </ScrollView>
       <View style={styles.footer}>
         <AssessmentButton
           onPress={() => {}}
@@ -81,6 +84,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.ASSESSMENT_BACKGROUND,
   },
+  scrollView: {
+    flex: 1,
+  },
   title: {
     fontFamily: Fonts.primaryBold,
     fontSize: 30,
@@ -94,6 +100,9 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginBottom: 10,
     paddingHorizontal: 20,
+  },
+  captcha: {
+    minHeight: 600,
   },
   footer: {
     padding: 20,
