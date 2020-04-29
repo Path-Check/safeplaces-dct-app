@@ -10,6 +10,7 @@ import Colors from '../../constants/colors';
 import i18n from '../../locales/languages';
 import { isPlatformiOS } from '../../Util';
 import AssessmentCaptcha from './AssessmentCaptcha';
+import { AnswersContext, SurveyContext } from './AssessmentContext';
 import AssessmentEndCaregiver from './AssessmentEndCaregiver';
 import AssessmentEndDistancing from './AssessmentEndDistancing';
 import AssessmentEndEmergency from './AssessmentEndEmergency';
@@ -83,7 +84,7 @@ const Assessment = ({ navigation }) => {
         }}
         onChange={value => {
           let { question } = route.params;
-          answers.current[question.id] = value;
+          answers.current[question.question_key] = value;
         }}
       />
     ),
@@ -107,85 +108,90 @@ const Assessment = ({ navigation }) => {
       ),
   };
   return (
-    <Stack.Navigator
-      initialRouteName='Question'
-      screenOptions={{
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        cardStyle: {
-          backgroundColor: 'transparent',
-        },
-      }}>
-      <Stack.Screen
-        component={QuestionScreen}
-        initialParams={{
-          answers: answers.current,
-          question: agreeQuestion,
-          option: agreeOption,
-        }}
-        name='Question'
-        options={screenOptions}
-      />
-      <Stack.Screen
-        component={AssessmentEndCaregiver}
-        name={SCRENE_TYPE_CAREGIVER}
-        options={{
-          ...screenOptions,
-          headerStyle: {
-            backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
-          },
-        }}
-      />
-      <Stack.Screen
-        component={AssessmentEndDistancing}
-        name={SCRENE_TYPE_DISTANCING}
-        options={{
-          ...screenOptions,
-          headerStyle: {
-            backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
-          },
-        }}
-      />
-      <Stack.Screen
-        component={AssessmentEndEmergency}
-        name={SCREEN_TYPE_EMERGENCY}
-        options={{
-          ...screenOptions,
-          headerStyle: {
-            backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND_DANGER,
-          },
-        }}
-      />
-      <Stack.Screen
-        component={AssessmentEndIsolate}
-        name={SCREEN_TYPE_ISOLATE}
-        options={{
-          ...screenOptions,
-          headerStyle: {
-            backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
-          },
-        }}
-      />
-      <Stack.Screen
-        component={AssessmentEndShare}
-        name='EndShare'
-        options={{
-          ...screenOptions,
-          headerStyle: {
-            backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
-          },
-        }}
-      />
-      <Stack.Screen
-        component={AssessmentCaptcha}
-        name='AssessmentCaptcha'
-        options={{
-          ...screenOptions,
-          headerStyle: {
-            backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
-          },
-        }}
-      />
-    </Stack.Navigator>
+    <SurveyContext.Provider value={survey}>
+      {/* Since answers.current is on object, it won't trigger context updates
+      when mutated, but that's ok — just trying to avoid prop drilling.*/}
+      <AnswersContext.Provider value={answers.current}>
+        <Stack.Navigator
+          initialRouteName='Question'
+          screenOptions={{
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            cardStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}>
+          <Stack.Screen
+            component={QuestionScreen}
+            initialParams={{
+              question: agreeQuestion,
+              option: agreeOption,
+            }}
+            name='Question'
+            options={screenOptions}
+          />
+          <Stack.Screen
+            component={AssessmentEndCaregiver}
+            name={SCRENE_TYPE_CAREGIVER}
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+              },
+            }}
+          />
+          <Stack.Screen
+            component={AssessmentEndDistancing}
+            name={SCRENE_TYPE_DISTANCING}
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+              },
+            }}
+          />
+          <Stack.Screen
+            component={AssessmentEndEmergency}
+            name={SCREEN_TYPE_EMERGENCY}
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND_DANGER,
+              },
+            }}
+          />
+          <Stack.Screen
+            component={AssessmentEndIsolate}
+            name={SCREEN_TYPE_ISOLATE}
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+              },
+            }}
+          />
+          <Stack.Screen
+            component={AssessmentEndShare}
+            name='EndShare'
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+              },
+            }}
+          />
+          <Stack.Screen
+            component={AssessmentCaptcha}
+            name='AssessmentCaptcha'
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+              },
+            }}
+          />
+        </Stack.Navigator>
+      </AnswersContext.Provider>
+    </SurveyContext.Provider>
   );
 };
 
@@ -212,10 +218,10 @@ function getQuestion(survey, key) {
 function onNextQuestion({ answers, navigation, route, survey }) {
   /** @type {{ question: SurveyQuestion }} */
   const { question } = route.params;
-  const response = answers.current[question.id];
+  const response = answers.current[question.question_key];
   let nextKey =
     survey.questions[survey.questions.indexOf(question) + 1].question_key;
-  if (question.id === 'AGREE_QUESTION') {
+  if (question.question_key === 'AGREE_QUESTION') {
     if (response.some(r => r.value === 'DISAGREE')) {
       return showAgreeAlert();
     }
@@ -237,7 +243,6 @@ function onNextQuestion({ answers, navigation, route, survey }) {
     return;
   }
   navigation.push(`Question`, {
-    answers: answers.current,
     ...nextQuestion,
   });
 }
@@ -422,10 +427,9 @@ const createSurvey = () => ({
 
 /** @type {SurveyQuestion} */
 const agreeQuestion = {
-  id: 'AGREE_QUESTION',
   option_key: 'COVID_AGREE_OPTION',
   question_description: i18n.t('assessment.agree_question_description'),
-  question_key: '',
+  question_key: 'AGREE_QUESTION',
   question_text: i18n.t('assessment.agree_question_text'),
   question_type: 'TEXT',
   required: true,

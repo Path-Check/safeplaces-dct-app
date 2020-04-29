@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
@@ -16,14 +16,16 @@ import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import HCaptcha from '../../services/CaptchaService';
 import AssessmentButton from './AssessmentButton';
+import { AnswersContext, SurveyContext } from './AssessmentContext';
 
 /** @type {React.FunctionComponent<{}>} */
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = WIDTH * (300 / 375);
 
-const AssessmentCaptcha = () => {
+const AssessmentCaptcha = ({ navigation }) => {
   let { t } = useTranslation();
-
+  const survey = useContext(SurveyContext);
+  const answers = useContext(AnswersContext);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -69,7 +71,24 @@ const AssessmentCaptcha = () => {
       </ScrollView>
       <View style={styles.footer}>
         <AssessmentButton
-          onPress={() => {}}
+          onPress={() => {
+            const state = navigation.dangerouslyGetState();
+            const questionKeys = survey.questions.map(q => q.question_key);
+            // Extract the keys from navigation stack because the user might
+            // have answered a question, pressed back, changed answer, ended up on a different question
+            // rendering that answer no longer valid
+            const questionKeysFinal = state.routes
+              .filter(r => r.params && r.params.question)
+              .map(r => r.params.question.question_key)
+              // Remove injected questions (agreement, etc)
+              .filter(k => questionKeys.includes(k));
+            const response = questionKeysFinal.map(question_key => ({
+              question_key,
+              response: answers[question_key].map(r => r.value),
+            }));
+            // TODO: POST to server
+            console.log(response);
+          }}
           title={t('assessment.captcha_cta')}
         />
       </View>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -10,6 +10,7 @@ import {
   SCREEN_TYPE_RADIO,
 } from './Assessment';
 import AssessmentButton from './AssessmentButton';
+import { AnswersContext } from './AssessmentContext';
 import AssessmentOption from './AssessmentOption';
 
 /**
@@ -19,20 +20,14 @@ import AssessmentOption from './AssessmentOption';
  */
 
 /** @type {React.FunctionComponent<{
- *   answers: SurveyAnswers
  *   onNext: () => void;
  *   onChange: (value: { index: number, value: string }[]) => void;
  *   option: SurveyOption
  *   question: SurveyQuestion
  * }>} */
-const AssessmentQuestion = ({
-  answers,
-  onNext,
-  onChange,
-  option,
-  question,
-}) => {
+const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
   const { t } = useTranslation();
+  const answers = useContext(AnswersContext);
   const [selectedValues, setSelectedValues] = useState(
     answers[question.id] || [],
   );
