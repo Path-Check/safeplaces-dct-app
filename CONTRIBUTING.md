@@ -23,13 +23,13 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 cd ~ # get to your home directory or where ever you want to go
 
-git clone https://github.com/YOURACCOUNT/covid-safe-paths
+git clone git@github.com:YOURACCOUNT/covid-safe-paths.git
 
 # change into the newly created directory
 cd covid-safe-paths
 
 # set upstream against COVID Safe Paths repository
-git remote add upstream https://github.com/tripleblindmarket/covid-safe-paths.git
+git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 
 ```
 
@@ -37,57 +37,54 @@ git remote add upstream https://github.com/tripleblindmarket/covid-safe-paths.gi
 
 ## Make Changes
 
-1. Create a branch based on the `develop` branch on your forked repository. Name the branch something to reflect what you are doing. For example, if you want to add a new icon, a branch name you could use:
+### Create a branch 
+
+Always create a new branch based on the *latest* `upstream/develop`. Name the branch something to reflect what you are doing. For example, if you want to add a new icon, a branch name you could use:
+
+1. Get the latest `upstream/develop`:
+
+  ```bash
+  git checkout develop # you want to branch from the main 'develop' branch
+  
+  git pull upstream/develop # make sure you have the latest code from upstream
+  ```
+
+1. Create the branch
+
+  ```
+  git checkout -b "feature/new-icon" develop # new branch created!
+  
+  "or"
+  
+  git checkout -b "fix/new-icon" develop # new branch created!
+
+  "or"
+
+  git checkout -b "release/new-icon" develop # new branch created!
+  ```
+
+1. Stick to the coding style and patterns that are used already.
+1. Document code! Comments are good. More comments are better. :)
+1. Make commits as you desire. Ultimately they will be squashed, so make notes to yourself. It's as simple as `git commit -m "commit message goes here"`!
+
+### Merge your feature branch with upstream/develop to get the latest changes.
 
 ```bash
-git checkout develop # you want to branch from the main 'develop' branch
-
-git pull # make sure you have the latest code when you start the branch
-
-git checkout -b "feature/new-icon" develop # new branch created!
-
-"or"
-
-git checkout -b "fix/new-icon" develop # new branch created!
-
-"or"
-
-git checkout -b "release/new-icon" develop # new branch created!
-```
-
-2. Stick to the coding style and patterns that are used already.
-
-3. Document code! Comments are good. More comments are better. :)
-
-4. Make commits as you desire. Ultimately they will be squashed, so make
-
-notes to yourself. It's as simple as `git commit -m "commit message goes here"`!
-
-5. Rebase your feature branch with upstream/develop to avoid any code conflicts:
-
-```bash
-# 1. Rebase Base(COVID Safe Paths) repository with fork repository - develop branch
-
-git checkout develop # switch to base branch(local)
-
 git fetch upstream # fetch latest commits from "COVID Safe Paths" develop branch
 
-git rebase upstream/develop # rebase code against your forked develop branch(local)
+git merge upstream/develop # merge latest develop code into your local branch, this will create a single merge commit
 
-git push -f origin develop # push rebased code after resolving conflicts to forked develop branch(remote)
+# you may need to resolve conflicts. Once finished resolving conflicts:
 
-# 2. Rebase feature branch(local) with develop branch(local)
+git commit # this will pre-fill the commit message with details of the merge from develop
 
-git checkout <feature-branch-name-you-created> # switch back to original feature branch(local) you are working
-
-git rebase develop # now rebase your feature branch(local) against develop branch(local)
-
-git push origin feature/<your-feature-branch-name> # after resolving all conflicts, push your new feature branch to the remote forked repository
+# push your changes up to your branch
+git push -u origin
 
 # now your feature branch is ready for PR against COVID Safe Paths develop branch.
 ```
 
-6. Start a PR to submit your changes back to the original project:
+### Start a PR to submit your changes back to the original project:
 
 - Visit https://github.com/your-git-userid/covid-safe-paths/branches
 
@@ -110,22 +107,6 @@ git push origin feature/<your-feature-branch-name> # after resolving all conflic
 - Provide Issue ID on PR description to link/close the issue upon PR merged.
 
 ## Helpful resources on Git
-
-- Git commands:
-
-```
-git checkout develop
-
-git fetch
-
-git reset --hard origin/develop
-
-git checkout <your_branch_name>
-
-git rebase develop
-
-git push -f
-```
 
 - Documentation on how to [create a Pull Request (PR) on Github](https://help.github.com/articles/using-pull-requests/) for review and merging.
 
