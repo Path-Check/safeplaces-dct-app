@@ -1,9 +1,11 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
+import axios from 'axios';
 import React, { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Button, Text, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
+import { SURVEY_GET_API } from '../../constants/apis';
 import Colors from '../../constants/colors';
 import i18n from '../../locales/languages';
 import { isPlatformiOS } from '../../Util';
@@ -16,7 +18,7 @@ import AssessmentEndShare from './AssessmentEndShare';
 import AssessmentQuestion from './AssessmentQuestion';
 
 /**
- * @typedef {"CHECKBOX" | "RADIO" | "END_CAREGIVER" | "END_DISTANCING" | "END_EMERGENCY" | "END_ISOLATE" } SurveyScreen
+ * @typedef {"Checkbox" | "Radio" | "END_CAREGIVER" | "END_DISTANCING" | "END_EMERGENCY" | "END_ISOLATE" } SurveyScreen
  *
  * @typedef {{
  *   options: SurveyOption[]
@@ -48,11 +50,20 @@ import AssessmentQuestion from './AssessmentQuestion';
 
 const Stack = createNativeStackNavigator();
 
+export const SCREEN_TYPE_RADIO = 'Radio';
+export const SCREEN_TYPE_CHEKCBOX = 'Checkbox';
+export const SCREEN_TYPE_ALERT = 'ALERT';
+export const SCRENE_TYPE_911 = '911';
+
 const Assessment = ({ navigation }) => {
   const { t } = useTranslation();
   /** @type {React.MutableRefObject<SurveyAnswers>} */
   const answers = useRef({});
-  const [survey] = useState(createSurvey);
+
+  // Use this line if use statically defined survey
+  // const [survey] = useState(createSurvey);
+  // Use this line if use server driven survey
+  const [survey, loading] = useSurveyAsync();
   const QuestionScreen = useMemo(
     () => ({ navigation, route }) => (
       <AssessmentQuestion
@@ -242,7 +253,7 @@ const createSurvey = () => ({
       question_text: 'Have you been diagnosed with covid?',
       question_type: 'TEXT',
       required: false,
-      screen_type: 'RADIO',
+      screen_type: SCREEN_TYPE_RADIO,
     },
     {
       id: '2a',
@@ -251,7 +262,7 @@ const createSurvey = () => ({
       question_text: 'When were you diagnosed?',
       question_type: 'DATE',
       required: false,
-      screen_type: 'RADIO',
+      screen_type: SCREEN_TYPE_RADIO,
     },
     {
       id: '3',
@@ -260,7 +271,7 @@ const createSurvey = () => ({
       question_text: 'Check all that apply',
       question_type: 'MULTI',
       required: false,
-      screen_type: 'CHECKBOX',
+      screen_type: SCREEN_TYPE_CHEKCBOX,
     },
     {
       conditions: [
@@ -287,7 +298,7 @@ const createSurvey = () => ({
       question_text: 'Choose your ending',
       question_type: 'TEXT',
       required: false,
-      screen_type: 'RADIO',
+      screen_type: SCREEN_TYPE_RADIO,
     },
     // END
     {
@@ -405,7 +416,7 @@ const agreeQuestion = {
   question_text: i18n.t('assessment.agree_question_text'),
   question_type: 'TEXT',
   required: true,
-  screen_type: 'RADIO',
+  screen_type: SCREEN_TYPE_RADIO,
 };
 
 /** @type {SurveyOption} */
@@ -432,4 +443,26 @@ function showAgreeAlert() {
       { cancelable: false },
     );
   });
+}
+
+function useSurveyAsync() {
+  const [result, setResult] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    async function fetchSurvey() {
+      try {
+        setLoading(true);
+        const response = await axios.get(SURVEY_GET_API);
+        const survey = await response.data.data[0];
+        console.log(survey);
+        setResult(survey);
+      } catch (error) {
+        setLoading(false);
+      }
+    }
+    fetchSurvey();
+  }, []);
+
+  return [result, loading];
 }

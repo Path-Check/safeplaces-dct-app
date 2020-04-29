@@ -7,6 +7,7 @@ import Icon from '../../assets/svgs/check';
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import { isPlatformAndroid, isPlatformiOS } from '../../Util';
+import { SCREEN_TYPE_CHEKCBOX, SCREEN_TYPE_RADIO } from './Assessment';
 
 /**
  * @typedef { import("./Assessment").SurveyAnswers } SurveyAnswers
@@ -18,11 +19,12 @@ import { isPlatformAndroid, isPlatformiOS } from '../../Util';
  *   onSelect: (value: string) => void;
  *   option: SurveyOptionValue;
  *   selected: boolean;
- *   type: Extract<SurveyScreen, 'CHECKBOX' | 'RADIO'>
+ *   type: Extract<SurveyScreen, 'Checkbox' | 'Radio'>
  * }>} */
 const AssessmentOption = ({ answer, onSelect, option, selected, type }) => {
-  const isDate = option.value === 'DATE';
-  const showIndicator = type === 'CHECKBOX' || (type === 'RADIO' && !isDate);
+  const isDate = option.value === 'Date';
+  const showIndicator =
+    type === SCREEN_TYPE_CHEKCBOX || (type === SCREEN_TYPE_RADIO && !isDate);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState(() =>
     (isDate && selected && answer) ? new Date(answer.value) : null,
@@ -42,7 +44,7 @@ const AssessmentOption = ({ answer, onSelect, option, selected, type }) => {
     <Fragment>
       <TouchableOpacity
         onPress={() => {
-          if (option.value === 'DATE') {
+          if (option.value === 'Date') {
             let date = new Date();
             setDate(date);
             setShowDatePicker(true);
@@ -59,7 +61,7 @@ const AssessmentOption = ({ answer, onSelect, option, selected, type }) => {
                   styles.indicator,
                   selected && styles.indicatorSelected,
                 ]}>
-                {selected && type === 'CHECKBOX' && (
+                {selected && type === SCREEN_TYPE_CHEKCBOX && (
                   <SvgXml
                     height={INDICATOR_WIDTH * 0.5}
                     style={styles.indicatorIcon}
@@ -67,7 +69,7 @@ const AssessmentOption = ({ answer, onSelect, option, selected, type }) => {
                     xml={Icon}
                   />
                 )}
-                {selected && type === 'RADIO' && (
+                {selected && type === SCREEN_TYPE_RADIO && (
                   <View style={styles.indicatorIconRadio} />
                 )}
               </View>
