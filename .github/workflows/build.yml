@@ -6,11 +6,15 @@ on:
       - develop
       - release-candidate
       - master
+      # TODO: Remove before PR to upstream
+      - self-reporting
   pull_request:
     branches:
       - develop
       - release-candidate
       - master
+      # TODO: Remove before PR to upstream
+      - self-reporting
 
 jobs:
   build-android:

@@ -76,6 +76,14 @@ class SettingsScreen extends Component {
     this.props.navigation.navigate('ExportScreen');
   }
 
+  waypointsButtonPressed() {
+    this.props.navigation.navigate('WayPointsScreen');
+  }
+
+  surveyButtonPressed() {
+    this.props.navigation.navigate('AssessmentScreen');
+  }
+
   getMapsImport() {
     return (
       <>
@@ -151,6 +159,39 @@ class SettingsScreen extends Component {
     );
   }
 
+  getWaypointsRow() {
+    if (!__DEV__) {
+      return null;
+    }
+    return this.getSettingRow(
+      'Waypoints',
+      this.waypointsButtonPressed,
+      null,
+      null,
+      'see waypoints heatmap in action',
+    );
+  }
+
+  getSurveyRow() {
+    if (!__DEV__) {
+      return null;
+    }
+    return this.getSettingRow(
+      'Survey',
+      this.surveyButtonPressed,
+      null,
+      null,
+      'Self reporting survey',
+    );
+  }
+
+  getDebugDivider() {
+    if (!__DEV__) {
+      return null;
+    }
+    return <View style={styles.divider} />;
+  }
+
   render() {
     return (
       <NavigationBarWrapper
@@ -194,6 +235,11 @@ class SettingsScreen extends Component {
                 null,
                 languages.t('label.tested_positive_subtitle'),
               )}
+
+              {this.getDebugDivider()}
+              {this.getWaypointsRow()}
+              {this.getDebugDivider()}
+              {this.getSurveyRow()}
             </View>
           </View>
 

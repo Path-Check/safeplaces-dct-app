@@ -22,7 +22,7 @@ const Onboarding = props => {
       <StatusBar
         barStyle='dark-content'
         backgroundColor='transparent'
-        translucent={true}
+        translucent
       />
       <ImageBackground
         source={BackgroundImage}
@@ -40,7 +40,7 @@ const Onboarding = props => {
         <ButtonWrapper
           title={languages.t('label.launch_next')}
           onPress={() => {
-            props.navigation.replace('Onboarding4');
+            props.navigation.push('Onboarding4');
           }}
           buttonColor={Colors.WHITE}
           bgColor={Colors.VIOLET_BUTTON}

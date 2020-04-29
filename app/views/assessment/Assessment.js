@@ -154,7 +154,7 @@ const Assessment = ({ navigation }) => {
           },
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         component={AssessmentCaptcha}
         name='AssessmentCaptcha'
         options={{

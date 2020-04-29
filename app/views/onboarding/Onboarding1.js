@@ -50,7 +50,7 @@ class Onboarding extends Component {
           <StatusBar
             barStyle='light-content'
             backgroundColor='transparent'
-            translucent={true}
+            translucent
           />
           <View style={styles.mainContainer}>
             <View
@@ -88,7 +88,7 @@ class Onboarding extends Component {
               <ButtonWrapper
                 title={languages.t('label.launch_get_started')}
                 onPress={() => {
-                  this.props.navigation.replace('Onboarding2');
+                  this.props.navigation.push('Onboarding2');
                 }}
                 buttonColor={Colors.VIOLET}
                 bgColor={Colors.WHITE}

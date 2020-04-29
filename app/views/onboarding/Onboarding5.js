@@ -175,7 +175,7 @@ class Onboarding extends Component {
       this.requestNotification();
     } else {
       SetStoreData(PARTICIPATE, 'true'); // replaces "start" button
-      this.props.navigation.replace('LocationTrackingScreen');
+      this.props.navigation.push('LocationTrackingScreen');
     }
   }
 
@@ -210,12 +210,12 @@ class Onboarding extends Component {
   getLocationPermission() {
     return (
       <>
-        <View style={styles.divider}></View>
+        <View style={styles.divider} />
         <PermissionDescription
           title={languages.t('label.launch_location_access')}
           status={this.state.locationPermission}
         />
-        <View style={styles.divider}></View>
+        <View style={styles.divider} />
       </>
     );
   }
@@ -228,7 +228,7 @@ class Onboarding extends Component {
             title={languages.t('label.launch_notification_access')}
             status={this.state.notificationPermission}
           />
-          <View style={styles.divider}></View>
+          <View style={styles.divider} />
         </>
       );
     }
@@ -251,7 +251,7 @@ class Onboarding extends Component {
         <StatusBar
           barStyle='light-content'
           backgroundColor='transparent'
-          translucent={true}
+          translucent
         />
 
         <View style={styles.mainContainer}>
@@ -261,7 +261,7 @@ class Onboarding extends Component {
             <View style={styles.statusContainer}>
               {this.getLocationPermission()}
               {this.getNotificationsPermissionIfIOS()}
-              <View style={styles.spacer}></View>
+              <View style={styles.spacer} />
             </View>
           </View>
           <View style={styles.footerContainer}>
