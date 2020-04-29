@@ -140,34 +140,6 @@ class LocationTracking extends Component {
 
   checkIfUserAtRisk() {
     BackgroundTaskServices.start();
-
-    GetStoreData(DEBUG_MODE).then(dbgMode => {
-      if (dbgMode != 'true') {
-        // already set on 12h timer, but run when this screen opens too
-        checkIntersect();
-      }
-
-      GetStoreData(CROSSED_PATHS).then(dayBin => {
-        dayBin = JSON.parse(dayBin);
-        if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
-          console.log('Found crossed paths');
-          this.setState({ currentState: StateEnum.AT_RISK });
-        } else {
-          //need to check location enable/disable
-          GetStoreData(PARTICIPATE, false).then(isParticipating => {
-            if (isParticipating === false) {
-              this.setState({
-                currentState: StateEnum.SETTING_OFF,
-              });
-            } else {
-              console.log("Can't find crossed paths");
-              this.setState({ currentState: StateEnum.NO_CONTACT });
-            }
-          });
-        }
-      });
-    });
-
     // If the user has location tracking disabled, set enum to match
     GetStoreData(PARTICIPATE, false).then(isParticipating => {
       if (isParticipating === false) {
@@ -175,6 +147,29 @@ class LocationTracking extends Component {
           currentState: StateEnum.SETTING_OFF,
         });
       }
+      //Location enable
+      else {
+        this.crossPathCheck();
+      }
+    });
+  }
+  //Due to Issue 646 moved below code from checkIfUserAtRisk function
+  crossPathCheck() {
+    GetStoreData(DEBUG_MODE).then(dbgMode => {
+      if (dbgMode != 'true') {
+        // already set on 12h timer, but run when this screen opens too
+        checkIntersect();
+      }
+      GetStoreData(CROSSED_PATHS).then(dayBin => {
+        dayBin = JSON.parse(dayBin);
+        if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
+          console.log('Found crossed paths');
+          this.setState({ currentState: StateEnum.AT_RISK });
+        } else {
+          console.log("Can't find crossed paths");
+          this.setState({ currentState: StateEnum.NO_CONTACT });
+        }
+      });
     });
   }
 
