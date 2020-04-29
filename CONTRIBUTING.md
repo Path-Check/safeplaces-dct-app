@@ -40,15 +40,12 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 ### Create a branch 
 
 1. Always create a new branch from the latest `upstream/develop`:
-
   ```bash
   git checkout develop # you want to branch from the latest 'develop' branch
   
   git pull upstream/develop # make sure you have the latest code from upstream
   ```
-
-1. Create the branch. Name the branch something to reflect what you are doing.
-
+2. Create the branch. Name the branch something to reflect what you are doing.
   ```
   git checkout -b "feature/new-icon" develop # new branch created!
   
@@ -60,10 +57,9 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 
   git checkout -b "release/new-icon" develop # new branch created!
   ```
-
-1. Stick to the coding style and patterns that are used already.
-1. Document code! Comments are good. More comments are better. :)
-1. Make commits as you desire. Ultimately they will be squashed, so make notes to yourself. It's as simple as `git commit -m "commit message goes here"`!
+3. Stick to the coding style and patterns that are used already.
+4. Document code! Comments are good. More comments are better. :)
+5. Make commits as you desire. Ultimately they will be squashed, so make notes to yourself. It's as simple as `git commit -m "commit message goes here"`!
 
 ### Merge your feature branch with upstream/develop to get the latest changes.
 
