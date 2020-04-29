@@ -1,12 +1,11 @@
-import Yaml from 'js-yaml';
 import React, { Component } from 'react';
 import {
   Alert,
   BackHandler,
-  Dimensions,
   FlatList,
   Image,
   StyleSheet,
+  Switch,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -18,26 +17,21 @@ import {
   renderers,
   withMenuContext,
 } from 'react-native-popup-menu';
-import RNFetchBlob from 'rn-fetch-blob';
 
-import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
+import { Checkbox } from '../components/Checkbox';
 import { DynamicTextInput } from '../components/DynamicTextInput';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
-import { AUTHORITIES_LIST_URL } from '../constants/authorities';
-import colors from '../constants/colors';
 import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
+import { HCAService } from '../services/HCAService';
 
 const { SlideInMenu } = renderers;
-
-const width = Dimensions.get('window').width;
 
 class ChooseProviderScreen extends Component {
   constructor(props) {
@@ -48,6 +42,8 @@ class ChooseProviderScreen extends Component {
       urlEntryInProgress: false,
       urlText: '',
       authoritiesList: [],
+      isAuthorityFilterActive: false,
+      isAutoSubscribed: false,
     };
   }
 
@@ -60,22 +56,11 @@ class ChooseProviderScreen extends Component {
     return true;
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    this.fetchAuthoritiesList();
-
-    // Update user settings state from async storage
-    GetStoreData(AUTHORITY_SOURCE_SETTINGS, false).then(result => {
-      if (result !== null) {
-        console.log('Retrieving settings from async storage:');
-        console.log(result);
-        this.setState({
-          selectedAuthorities: result,
-        });
-      } else {
-        console.log('No stored authority settings.');
-      }
-    });
+    await this.fetchAuthoritiesList(this.state.isAuthorityFilterActive);
+    await this.fetchUserAuthorities();
+    __DEV__ && (await this.fetchAutoSubcribeStatus());
   }
 
   componentWillUnmount() {
@@ -87,38 +72,37 @@ class ChooseProviderScreen extends Component {
     checkIntersect();
   }
 
-  fetchAuthoritiesList() {
-    try {
-      RNFetchBlob.config({
-        // add this option that makes response data to be stored as a file,
-        // this is much more performant.
-        fileCache: true,
-      })
-        .fetch('GET', AUTHORITIES_LIST_URL, {
-          //some headers ..
-        })
-        .then(result => {
-          RNFetchBlob.fs.readFile(result.path(), 'utf8').then(list => {
-            // If unable to load the file, change state to display error in appropriate menu
-            let parsedFile = Yaml.safeLoad(list).Authorities;
-            {
-              parsedFile !== undefined
-                ? this.setState({
-                    authoritiesList: parsedFile,
-                  })
-                : this.setState({
-                    authoritiesList: [
-                      {
-                        'Unable to load authorities list': [{ url: 'No URL' }], // TODO: Localize
-                      },
-                    ],
-                  });
-            }
-          });
-        });
-    } catch (error) {
-      console.log(error);
+  async fetchUserAuthorities() {
+    const selectedAuthorities = await HCAService.getUserAuthorityList();
+
+    if (selectedAuthorities) {
+      this.setState({ selectedAuthorities });
+    } else {
+      console.log('No stored authority settings.');
     }
+  }
+
+  async fetchAutoSubcribeStatus() {
+    const isAutoSubscribed = await HCAService.isAutosubscriptionEnabled();
+    this.setState({ isAutoSubscribed });
+  }
+
+  /**
+   *
+   * @param {boolean} filterByGPSHistory - used to filter the list of HCAs based on the
+   * 28 day location history of the user
+   * @returns void
+   */
+  async fetchAuthoritiesList(filterByGPSHistory) {
+    let authoritiesList = [];
+
+    if (filterByGPSHistory) {
+      authoritiesList = await HCAService.getAuthoritiesFromUserLocHistory();
+    } else {
+      authoritiesList = await HCAService.getAuthoritiesList();
+    }
+
+    this.setState({ authoritiesList });
   }
 
   // Add selected authorities to state, for display in the FlatList
@@ -215,33 +199,59 @@ class ChooseProviderScreen extends Component {
     );
   }
 
+  toggleFilterAuthoritesByGPSHistory() {
+    this.filterAuthoritesByGPSHistory({
+      val: !this.state.isAuthorityFilterActive,
+    });
+  }
+
+  async filterAuthoritesByGPSHistory(isAuthorityFilterActive) {
+    await this.fetchAuthoritiesList(isAuthorityFilterActive.val);
+    this.setState({ isAuthorityFilterActive: isAuthorityFilterActive.val });
+  }
+
+  async toggleAutoSubscribe() {
+    this.setState(
+      prevState => ({
+        isAutoSubscribed: !prevState.isAutoSubscribed,
+      }),
+      async () => {
+        this.state.isAutoSubscribed
+          ? await HCAService.enableAutoSubscription()
+          : await HCAService.disableAutoSubscription();
+      },
+    );
+  }
+
   render() {
     return (
       <NavigationBarWrapper
         title={languages.t('label.choose_provider_title')}
         onBackPress={this.backToMain.bind(this)}>
         <View style={styles.main}>
-          <Typography style={styles.headerTitle}>
+          <Typography style={styles.headerTitle} use={'headline2'}>
             {languages.t('label.authorities_title')}
           </Typography>
-          <Typography style={styles.sectionDescription}>
+          <Typography style={styles.sectionDescription} use={'body1'}>
             {languages.t('label.authorities_desc')}
           </Typography>
+          {__DEV__ && (
+            <TouchableOpacity style={styles.autoSubcribe}>
+              <Checkbox
+                label={languages.t('label.auto_subscribe_checkbox')}
+                checked={this.state.isAutoSubscribed}
+                onPress={() => this.toggleAutoSubscribe()}
+              />
+            </TouchableOpacity>
+          )}
         </View>
 
         <View style={styles.listContainer}>
           {Object.keys(this.state.selectedAuthorities).length == 0 ? (
             <>
               <Typography
-                style={
-                  (styles.sectionDescription,
-                  {
-                    textAlign: 'center',
-                    fontSize: 24,
-                    paddingTop: 30,
-                    color: '#dd0000',
-                  })
-                }>
+                style={[styles.sectionDescription, styles.noDataSourceText]}
+                use={'headline2'}>
                 {languages.t('label.authorities_no_sources')}
               </Typography>
               <View
@@ -287,7 +297,7 @@ class ChooseProviderScreen extends Component {
                   value={this.state.urlText}
                   autoFocus={this.state.urlEntryInProgress}
                   style={[styles.item, styles.textInput]}
-                  placeholder='Paste your URL here'
+                  placeholder={languages.t('label.enter_authority_url')}
                   onSubmitEditing={() =>
                     this.addCustomUrlToState(this.state.urlText)
                   }
@@ -301,7 +311,9 @@ class ChooseProviderScreen extends Component {
                 data={this.state.selectedAuthorities}
                 renderItem={({ item }) => (
                   <View style={styles.flatlistRowView}>
-                    <Typography style={styles.item}>{item.key}</Typography>
+                    <Typography style={styles.item} use={'body3'}>
+                      {item.key}
+                    </Typography>
                     <TouchableOpacity
                       onPress={() => this.removeAuthorityFromState(item)}>
                       <Image source={closeIcon} style={styles.closeIcon} />
@@ -324,12 +336,30 @@ class ChooseProviderScreen extends Component {
                 this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
               }
               disabled={this.state.urlEditInProgress}>
-              <Typography style={styles.startLoggingButtonText}>
+              <Typography
+                style={styles.startLoggingButtonText}
+                use={'body1'}
+                bold>
                 {languages.t('label.authorities_add_button_label')}
               </Typography>
             </TouchableOpacity>
           </MenuTrigger>
           <MenuOptions>
+            {__DEV__ && (
+              <TouchableOpacity
+                style={styles.authorityFilter}
+                onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
+                <Typography style={styles.authorityFilterText} use={'body2'}>
+                  {languages.t('label.filter_authorities_by_gps_history')}
+                </Typography>
+                <Switch
+                  onValueChange={val =>
+                    this.filterAuthoritesByGPSHistory({ val })
+                  }
+                  value={this.state.isAuthorityFilterActive}
+                />
+              </TouchableOpacity>
+            )}
             {this.state.authoritiesList === undefined
               ? null
               : this.state.authoritiesList.map(item => {
@@ -343,7 +373,7 @@ class ChooseProviderScreen extends Component {
                         this.addAuthorityToState(name);
                       }}
                       disabled={this.state.authoritiesList.length === 1}>
-                      <Typography style={styles.menuOptionText}>
+                      <Typography style={styles.menuOptionText} use={'body2'}>
                         {name}
                       </Typography>
                     </MenuOption>
@@ -356,7 +386,7 @@ class ChooseProviderScreen extends Component {
                   urlEntryInProgress: true,
                 });
               }}>
-              <Typography style={styles.menuOptionText}>
+              <Typography style={styles.menuOptionText} use={'body2'}>
                 {languages.t('label.authorities_add_url')}
               </Typography>
             </MenuOption>
@@ -368,14 +398,6 @@ class ChooseProviderScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
   main: {
     flex: 2,
     flexDirection: 'column',
@@ -393,16 +415,7 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '96%',
     alignSelf: 'center',
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
-  value: {
-    fontSize: 20,
-    fontWeight: '200',
+    backgroundColor: Colors.WHITE,
   },
   startLoggingButtonTouchable: {
     borderRadius: 12,
@@ -413,51 +426,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   startLoggingButtonText: {
-    fontFamily: fontFamily.primaryBold,
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: '#ffffff',
-  },
-
-  buttonTouchable: {
-    borderRadius: 12,
-    backgroundColor: '#665eff',
-    height: 52,
-    alignSelf: 'center',
-    width: width * 0.7866,
-    marginTop: 30,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: fontFamily.primaryBold,
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
     textAlign: 'center',
     color: '#ffffff',
   },
   headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryBold,
     color: Colors.VIOLET_TEXT,
   },
-  backArrow: {
-    height: 18,
-    width: 18.48,
-  },
   sectionDescription: {
-    fontSize: 16,
-    lineHeight: 22,
     marginTop: 12,
     overflow: 'scroll',
     color: Colors.VIOLET_TEXT,
-    fontFamily: fontFamily.primaryRegular,
+  },
+  authorityFilter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 5,
+    backgroundColor: Colors.LIGHT_GRAY,
+    borderTopWidth: 3,
+    borderTopColor: Colors.DIVIDER,
+    justifyContent: 'space-between',
+  },
+  authorityFilterText: {
+    padding: 10,
+    color: Colors.VIOLET_TEXT,
   },
   menuOptionText: {
-    fontFamily: fontFamily.primaryRegular,
-    fontSize: 14,
     padding: 10,
   },
   flatlistRowView: {
@@ -469,8 +462,6 @@ const styles = StyleSheet.create({
     borderColor: '#999999',
   },
   item: {
-    fontFamily: fontFamily.primaryRegular,
-    fontSize: 16,
     padding: 10,
     maxWidth: '90%',
   },
@@ -488,6 +479,13 @@ const styles = StyleSheet.create({
   },
   textInput: {
     marginLeft: 10,
+  },
+  autoSubcribe: {
+    paddingTop: 25,
+  },
+  noDataSourceText: {
+    textAlign: 'center',
+    paddingTop: 30,
   },
 });
 

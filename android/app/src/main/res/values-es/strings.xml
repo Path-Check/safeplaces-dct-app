@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Channel label for notifications shown in App > Notifications > Safe Paths -->
+  <string name="notification_channel_description">Configurar notificaciones locales</string>
+</resources>

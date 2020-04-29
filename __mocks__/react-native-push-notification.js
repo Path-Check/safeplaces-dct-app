@@ -4,4 +4,5 @@ export default {
   onNotification: jest.fn(),
   addEventListener: jest.fn(),
   requestPermissions: jest.fn(),
+  localNotification: jest.fn(),
 };

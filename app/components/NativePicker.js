@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import { Typography } from '../components/Typography';
+import Colors from '../constants/colors';
 import languages from '../locales/languages';
 
 /**
@@ -79,32 +80,32 @@ export default class NativePicker extends Component {
             visible={this.state.modalVisible}>
             <View style={{ flex: 2 }}>
               <TouchableWithoutFeedback
-                style={{ flex: 1, backgroundColor: '#000000', opacity: 0.4 }}
+                style={{ flex: 1, backgroundColor: Colors.BLACK, opacity: 0.4 }}
                 onPress={() => this.setState({ modalVisible: false })}>
                 <View
                   style={{
                     flex: 1,
-                    backgroundColor: '#000000',
+                    backgroundColor: Colors.BLACK,
                     opacity: 0.2,
                   }}
                 />
               </TouchableWithoutFeedback>
             </View>
-            <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
+            <View style={{ flex: 1, backgroundColor: Colors.WHITE }}>
               <TouchableWithoutFeedback
                 onPress={() => this.setState({ modalVisible: false })}>
                 <View>
                   <View>
                     <Typography
                       style={{
-                        color: '#007aff',
+                        color: Colors.BLUE_LINK,
                         fontWeight: 'bold',
                         textAlign: 'right',
                         marginTop: 16,
                         marginRight: 22,
                       }}
                       onPress={() => this.setState({ modalVisible: false })}>
-                      {languages.t('Done')}
+                      {languages.t('common.done')}
                     </Typography>
                   </View>
                   <View
