@@ -469,9 +469,7 @@ function useSurveyAsync() {
     async function fetchSurvey() {
       try {
         setLoading(true);
-        const response = await axios.get(SURVEY_GET_API);
-        const survey =
-          response.data.data.length > 0 ? response.data.data[0] : [];
+        const survey = await axios.get(SURVEY_GET_API);
         setResult(survey);
       } catch (error) {
         setLoading(false);

@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import axios from 'axios';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
@@ -11,7 +12,7 @@ import {
   View,
 } from 'react-native';
 
-import { CATCHA_URL } from '../../constants/apis';
+import { CATCHA_URL, SURVEY_POST_API } from '../../constants/apis';
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import HCaptcha from '../../services/CaptchaService';
@@ -26,6 +27,8 @@ const AssessmentCaptcha = ({ navigation }) => {
   let { t } = useTranslation();
   const survey = useContext(SurveyContext);
   const answers = useContext(AnswersContext);
+  const [token, setToken] = useState(null);
+  const disableButton = token == null;
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -59,11 +62,7 @@ const AssessmentCaptcha = ({ navigation }) => {
                 );
               } else {
                 console.log('Verified code received', event.nativeEvent.data);
-                Alert.alert('Captcha Response', 'response received', [
-                  {
-                    text: 'OK',
-                  },
-                ]);
+                setToken(event.nativeEvent.data);
               }
             }
           }}
@@ -71,6 +70,7 @@ const AssessmentCaptcha = ({ navigation }) => {
       </ScrollView>
       <View style={styles.footer}>
         <AssessmentButton
+          disabled={disableButton}
           onPress={() => {
             const state = navigation.dangerouslyGetState();
             const questionKeys = survey.questions.map(q => q.question_key);
@@ -88,6 +88,17 @@ const AssessmentCaptcha = ({ navigation }) => {
             }));
             // TODO: POST to server
             console.log(response);
+
+            axios
+              .post(SURVEY_POST_API, response, {
+                headers: { Authorization: 'Basic ' + token },
+              })
+              .then(response => {
+                console.log(`Survey post succeeded: ${response}`);
+              })
+              .catch(error => {
+                console.error(`Survey post Failed, ${error}`);
+              });
           }}
           title={t('assessment.captcha_cta')}
         />

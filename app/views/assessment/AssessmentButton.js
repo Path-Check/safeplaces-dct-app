@@ -12,15 +12,21 @@ import Fonts from '../../constants/fonts';
  *   color?: string;
  *   onPress: () => void;
  *   title: string;
+ *   disabled: boolean;
  * }>} */
-const AssessmentButton = ({ color, onPress, title }) => {
+const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
+  let backgroundColor = color
+    ? color
+    : (disabled
+    ? Colors.GRAY_BUTTON
+    : Colors.ASSESSMENT_CTA);
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} disabled={disabled}>
       <View
         style={[
           styles.cta,
           {
-            backgroundColor: color ? color : Colors.ASSESSMENT_CTA,
+            backgroundColor: backgroundColor,
           },
         ]}>
         <Text style={styles.ctaText}>{title}</Text>
