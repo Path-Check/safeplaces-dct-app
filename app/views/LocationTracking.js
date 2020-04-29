@@ -153,8 +153,17 @@ class LocationTracking extends Component {
           console.log('Found crossed paths');
           this.setState({ currentState: StateEnum.AT_RISK });
         } else {
-          console.log("Can't find crossed paths");
-          this.setState({ currentState: StateEnum.NO_CONTACT });
+          //need to check location enable/disable
+          GetStoreData(PARTICIPATE, false).then(isParticipating => {
+            if (isParticipating === false) {
+              this.setState({
+                currentState: StateEnum.SETTING_OFF,
+              });
+            } else {
+              console.log("Can't find crossed paths");
+              this.setState({ currentState: StateEnum.NO_CONTACT });
+            }
+          });
         }
       });
     });
