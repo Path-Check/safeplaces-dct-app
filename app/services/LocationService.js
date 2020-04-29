@@ -1,5 +1,6 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import { Alert } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
@@ -141,10 +142,15 @@ export default class LocationServices {
 
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
-    if (isBackgroundGeolocationConfigured) {
-      BackgroundGeolocation.start();
-      return;
-    }
+    let result = BackgroundGeolocation.checkStatus(({ isRunning }) => {
+      if (isRunning) {
+        BackgroundGeolocation.start();
+        return true;
+      } else {
+        return false;
+      }
+    });
+    if (result) return;
 
     PushNotification.configure({
       // (required) Called when a remote or local notification is opened or received
@@ -199,8 +205,9 @@ export default class LocationServices {
       });
     });
 
-    if (isPlatformAndroid()) {
+    if (LocationServices.isheadlessAlreadyRunning() && isPlatformAndroid()) {
       // This feature only is present on Android.
+
       BackgroundGeolocation.headlessTask(async event => {
         // Application was shutdown, but the headless mechanism allows us
         // to capture events in the background.  (On Android, at least)
@@ -225,40 +232,77 @@ export default class LocationServices {
 
       if (status !== BackgroundGeolocation.AUTHORIZED) {
         // we need to set delay or otherwise alert may not be shown
-        // setTimeout(
-        //   () =>
-        //     Alert.alert(
-        //       languages.t('label.require_location_information_title'),
-        //       languages.t('label.require_location_information_message'),
-        //       [
-        //         {
-        //           text: languages.t('label.yes'),
-        //           onPress: () => BackgroundGeolocation.showAppSettings(),
-        //         },
-        //         {
-        //           text: languages.t('label.no'),
-        //           onPress: () => console.log('No Pressed'),
-        //           style: 'cancel',
-        //         },
-        //       ],
-        //     ),
-        //   1000,
-        // );
+        setTimeout(
+          () =>
+            Alert.alert(
+              languages.t('label.require_location_information_title'),
+              languages.t('label.require_location_information_message'),
+              [
+                {
+                  text: languages.t('label.yes'),
+                  onPress: () => BackgroundGeolocation.showAppSettings(),
+                },
+                {
+                  text: languages.t('label.no'),
+                  onPress: () => {
+                    console.log('No Pressed'),
+                      (isBackgroundGeolocationConfigured = false);
+                  },
+                  style: 'cancel',
+                },
+              ],
+            ),
+          1000,
+        );
       } else {
         BackgroundGeolocation.start(); //triggers start on start event
 
         BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
           if (!locationServicesEnabled) {
-            PushNotification.localNotification({
-              id: LOCATION_DISABLED_NOTIFICATION,
-              title: languages.t('label.location_disabled_title'),
-              message: languages.t('label.location_disabled_message'),
-            });
-          } else {
-            PushNotification.cancelLocalNotifications({
-              id: LOCATION_DISABLED_NOTIFICATION,
-            });
+            //we need to set delay or otherwise alert may not be shown
+            setTimeout(
+              () =>
+                Alert.alert(
+                  languages.t('label.require_location_services_title'),
+                  languages.t('label.require_location_services_message'),
+                  [
+                    {
+                      text: languages.t('label.yes'),
+                      onPress: () => {
+                        if (isPlatformAndroid()) {
+                          // showLocationSettings() only works for android
+                          BackgroundGeolocation.showLocationSettings();
+                        } else {
+                          // eslint-disable-next-line
+                          Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS //nolint
+                        }
+                      },
+                    },
+                    {
+                      text: languages.t('label.no'),
+                      onPress: () => {
+                        console.log('No Pressed'),
+                          (isBackgroundGeolocationConfigured = false);
+                      },
+                      style: 'cancel',
+                    },
+                  ],
+                ),
+              1000,
+            );
           }
+
+          //          if (!locationServicesEnabled) {
+          //            PushNotification.localNotification({
+          //              id: LOCATION_DISABLED_NOTIFICATION,
+          //              title: languages.t('label.location_disabled_title'),
+          //              message: languages.t('label.location_disabled_message'),
+          //            });
+          //          } else {
+          //            PushNotification.cancelLocalNotifications({
+          //              id: LOCATION_DISABLED_NOTIFICATION,
+          //            });
+          //          }
         });
       }
     });
@@ -284,10 +328,6 @@ export default class LocationServices {
     });
 
     BackgroundGeolocation.on('stop', () => {
-      PushNotification.localNotification({
-        title: languages.t('label.location_disabled_title'),
-        message: languages.t('label.location_disabled_message'),
-      });
       console.log('[INFO] stop');
     });
 
@@ -312,60 +352,75 @@ export default class LocationServices {
       isBackgroundGeolocationConfigured = true;
 
       if (!status.locationServicesEnabled) {
-        // we need to set delay or otherwise alert may not be shown
-        // setTimeout(
-        //   () =>
-        //     Alert.alert(
-        //       languages.t('label.require_location_services_title'),
-        //       languages.t('label.require_location_services_message'),
-        //       [
-        //         {
-        //           text: languages.t('label.yes'),
-        //           onPress: () => {
-        //             if (isPlatformAndroid()) {
-        //               // showLocationSettings() only works for android
-        //               BackgroundGeolocation.showLocationSettings();
-        //             } else {
-        //               Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
-        //             }
-        //           },
-        //         },
-        //         {
-        //           text: languages.t('label.no'),
-        //           onPress: () => console.log('No Pressed'),
-        //           style: 'cancel',
-        //         },
-        //       ],
-        //     ),
-        //   1000,
-        // );
+        //we need to set delay or otherwise alert may not be shown
+        setTimeout(
+          () =>
+            Alert.alert(
+              languages.t('label.require_location_services_title'),
+              languages.t('label.require_location_services_message'),
+              [
+                {
+                  text: languages.t('label.yes'),
+                  onPress: () => {
+                    if (isPlatformAndroid()) {
+                      // showLocationSettings() only works for android
+                      BackgroundGeolocation.showLocationSettings();
+                    } else {
+                      // eslint-disable-next-line
+                      Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
+                    }
+                  },
+                },
+                {
+                  text: languages.t('label.no'),
+                  onPress: () => {
+                    console.log('No Pressed'), LocationServices.stop();
+                  },
+                  style: 'cancel',
+                },
+              ],
+            ),
+          1000,
+        );
       } else if (!status.authorization) {
         // we need to set delay or otherwise alert may not be shown
-        // setTimeout(
-        //   () =>
-        //     Alert.alert(
-        //       languages.t('label.require_location_information_title'),
-        //       languages.t('label.require_location_information_message'),
-        //       [
-        //         {
-        //           text: languages.t('label.yes'),
-        //           onPress: () => BackgroundGeolocation.showAppSettings(),
-        //         },
-        //         {
-        //           text: languages.t('label.no'),
-        //           onPress: () => console.log('No Pressed'),
-        //           style: 'cancel',
-        //         },
-        //       ],
-        //     ),
-        //   1000,
-        // );
+        setTimeout(
+          () =>
+            Alert.alert(
+              languages.t('label.require_location_information_title'),
+              languages.t('label.require_location_information_message'),
+              [
+                {
+                  text: languages.t('label.yes'),
+                  onPress: () => BackgroundGeolocation.showAppSettings(),
+                },
+                {
+                  text: languages.t('label.no'),
+                  onPress: () => {
+                    console.log('No Pressed'), LocationServices.stop();
+                    //                     Settings.setIsLogging(false);
+                  },
+                  style: 'cancel',
+                },
+              ],
+            ),
+          1000,
+        );
       }
+    });
+  }
+
+  static isheadlessAlreadyRunning() {
+    return BackgroundGeolocation.getConfig(config => {
+      if (!config.stopOnTerminate && config.notificationsEnabled) return true;
     });
   }
 
   static stop() {
     // unregister all event listeners
+    BackgroundGeolocation.removeAllListeners();
+    BackgroundGeolocation.stop();
+
     BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
       if (!locationServicesEnabled) {
         PushNotification.localNotification({
@@ -381,12 +436,9 @@ export default class LocationServices {
         });
       }
     });
-    BackgroundGeolocation.removeAllListeners();
-    BackgroundGeolocation.stop();
-
     isBackgroundGeolocationConfigured = false;
     SetStoreData(PARTICIPATE, 'false').then(() => {
-      // nav.navigate('LocationTrackingScreen', {});
+      //nav.navigate('LocationTrackingScreen', {});
     });
   }
 }
