@@ -4,7 +4,11 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
-import { SCREEN_TYPE_CHEKCBOX, SCREEN_TYPE_RADIO } from './Assessment';
+import {
+  SCREEN_TYPE_CHEKCBOX,
+  SCREEN_TYPE_DATE,
+  SCREEN_TYPE_RADIO,
+} from './Assessment';
 import AssessmentButton from './AssessmentButton';
 import AssessmentOption from './AssessmentOption';
 
@@ -64,12 +68,13 @@ const AssessmentQuestion = ({
           )}
         </View>
         <ScrollView style={{ flex: 1, padding: 20 }}>
-          {[SCREEN_TYPE_CHEKCBOX, SCREEN_TYPE_RADIO].includes(
+          {[SCREEN_TYPE_CHEKCBOX, SCREEN_TYPE_RADIO, SCREEN_TYPE_DATE].includes(
             question.screen_type,
           ) &&
             option.values.map((option, index) => (
               <AssessmentOption
                 answer={selectedValues.find(v => v.index === index)}
+                index={index}
                 key={option.value}
                 onSelect={value => onSelectHandler(value, index)}
                 option={option}

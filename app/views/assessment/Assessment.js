@@ -18,7 +18,7 @@ import AssessmentEndShare from './AssessmentEndShare';
 import AssessmentQuestion from './AssessmentQuestion';
 
 /**
- * @typedef {"Checkbox" | "Radio" | "END_CAREGIVER" | "END_DISTANCING" | "END_EMERGENCY" | "END_ISOLATE" } SurveyScreen
+ * @typedef {"Checkbox" | "Date" | Radio" | "Caregiver" | "Distancing" | "Emergency" | "Isolate" } SurveyScreen
  *
  * @typedef {{
  *   options: SurveyOption[]
@@ -52,18 +52,28 @@ const Stack = createNativeStackNavigator();
 
 export const SCREEN_TYPE_RADIO = 'Radio';
 export const SCREEN_TYPE_CHEKCBOX = 'Checkbox';
-export const SCREEN_TYPE_ALERT = 'ALERT';
-export const SCRENE_TYPE_911 = '911';
+export const SCREEN_TYPE_DATE = 'Date';
+
+export const SCRENE_TYPE_CAREGIVER = 'Caregiver';
+export const SCRENE_TYPE_DISTANCING = 'Distancing';
+export const SCREEN_TYPE_EMERGENCY = 'Emergency';
+export const SCREEN_TYPE_ISOLATE = 'Isolate';
+
+const END_ROUTES = [
+  SCRENE_TYPE_CAREGIVER,
+  SCRENE_TYPE_DISTANCING,
+  SCREEN_TYPE_EMERGENCY,
+  SCREEN_TYPE_ISOLATE,
+];
 
 const Assessment = ({ navigation }) => {
   const { t } = useTranslation();
   /** @type {React.MutableRefObject<SurveyAnswers>} */
   const answers = useRef({});
-
   // Use this line if use statically defined survey
-  // const [survey] = useState(createSurvey);
+  const [survey] = useState(createSurvey);
   // Use this line if use server driven survey
-  const [survey, loading] = useSurveyAsync();
+  // const [survey] = useSurveyAsync();
   const QuestionScreen = useMemo(
     () => ({ navigation, route }) => (
       <AssessmentQuestion
@@ -117,7 +127,7 @@ const Assessment = ({ navigation }) => {
       />
       <Stack.Screen
         component={AssessmentEndCaregiver}
-        name='END_CAREGIVER'
+        name={SCRENE_TYPE_CAREGIVER}
         options={{
           ...screenOptions,
           headerStyle: {
@@ -127,7 +137,7 @@ const Assessment = ({ navigation }) => {
       />
       <Stack.Screen
         component={AssessmentEndDistancing}
-        name='END_DISTANCING'
+        name={SCRENE_TYPE_DISTANCING}
         options={{
           ...screenOptions,
           headerStyle: {
@@ -137,7 +147,7 @@ const Assessment = ({ navigation }) => {
       />
       <Stack.Screen
         component={AssessmentEndEmergency}
-        name='END_EMERGENCY'
+        name={SCREEN_TYPE_EMERGENCY}
         options={{
           ...screenOptions,
           headerStyle: {
@@ -147,7 +157,7 @@ const Assessment = ({ navigation }) => {
       />
       <Stack.Screen
         component={AssessmentEndIsolate}
-        name='END_ISOLATE'
+        name={SCREEN_TYPE_ISOLATE}
         options={{
           ...screenOptions,
           headerStyle: {
@@ -220,7 +230,10 @@ function onNextQuestion({ answers, navigation, route, survey }) {
   }
   let nextQuestion = getQuestion(survey, nextKey);
   if (nextQuestion.question.question_type === 'END') {
-    navigation.push(nextQuestion.question.screen_type);
+    if (END_ROUTES.includes(nextQuestion.question.screen_type))
+      navigation.push(nextQuestion.question.screen_type);
+    // If screen_type does not have a specific route,
+    // push the generic end screen (still needs to be created)
     return;
   }
   navigation.push(`Question`, {
@@ -262,7 +275,7 @@ const createSurvey = () => ({
       question_text: 'When were you diagnosed?',
       question_type: 'DATE',
       required: false,
-      screen_type: SCREEN_TYPE_RADIO,
+      screen_type: SCREEN_TYPE_DATE,
     },
     {
       id: '3',
@@ -308,7 +321,7 @@ const createSurvey = () => ({
       question_text: '',
       question_type: 'END',
       required: false,
-      screen_type: 'END_CAREGIVER',
+      screen_type: SCRENE_TYPE_CAREGIVER,
     },
     {
       id: 'end_distancing',
@@ -317,7 +330,7 @@ const createSurvey = () => ({
       question_text: '',
       question_type: 'END',
       required: false,
-      screen_type: 'END_DISTANCING',
+      screen_type: SCRENE_TYPE_DISTANCING,
     },
     {
       id: 'end_emergency',
@@ -326,7 +339,7 @@ const createSurvey = () => ({
       question_text: '',
       question_type: 'END',
       required: false,
-      screen_type: 'END_EMERGENCY',
+      screen_type: SCREEN_TYPE_EMERGENCY,
     },
     {
       id: 'end_isolate',
@@ -335,7 +348,7 @@ const createSurvey = () => ({
       question_text: '',
       question_type: 'END',
       required: false,
-      screen_type: 'END_ISOLATE',
+      screen_type: SCREEN_TYPE_ISOLATE,
     },
   ],
   options: [
@@ -448,7 +461,6 @@ function showAgreeAlert() {
 function useSurveyAsync() {
   const [result, setResult] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-
   React.useEffect(() => {
     async function fetchSurvey() {
       try {
@@ -463,6 +475,5 @@ function useSurveyAsync() {
     }
     fetchSurvey();
   }, []);
-
   return [result, loading];
 }

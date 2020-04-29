@@ -7,7 +7,11 @@ import Icon from '../../assets/svgs/check';
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import { isPlatformAndroid, isPlatformiOS } from '../../Util';
-import { SCREEN_TYPE_CHEKCBOX, SCREEN_TYPE_RADIO } from './Assessment';
+import {
+  SCREEN_TYPE_CHEKCBOX,
+  SCREEN_TYPE_DATE,
+  SCREEN_TYPE_RADIO,
+} from './Assessment';
 
 /**
  * @typedef { import("./Assessment").SurveyAnswers } SurveyAnswers
@@ -16,15 +20,27 @@ import { SCREEN_TYPE_CHEKCBOX, SCREEN_TYPE_RADIO } from './Assessment';
 
 /** @type {React.FunctionComponent<{
  *   answer?: SurveyAnswers[0][0];
+ *   index: number;
  *   onSelect: (value: string) => void;
  *   option: SurveyOptionValue;
  *   selected: boolean;
- *   type: Extract<SurveyScreen, 'Checkbox' | 'Radio'>
+ *   type: Extract<SurveyScreen, 'Checkbox' | 'Date' | 'Radio'>
  * }>} */
-const AssessmentOption = ({ answer, onSelect, option, selected, type }) => {
-  const isDate = option.value === 'Date';
+const AssessmentOption = ({
+  answer,
+  index,
+  onSelect,
+  option,
+  selected,
+  type,
+}) => {
+  // The API doesn't have a defined way to know a specific option is a date,
+  // we just assume the first option is the date picker when type is SCREEN_TYPE_DATE
+  const isDate = type === SCREEN_TYPE_DATE && index === 0;
   const showIndicator =
-    type === SCREEN_TYPE_CHEKCBOX || (type === SCREEN_TYPE_RADIO && !isDate);
+    type === SCREEN_TYPE_CHEKCBOX ||
+    type === SCREEN_TYPE_RADIO ||
+    type === SCREEN_TYPE_DATE;
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState(() =>
     (isDate && selected && answer) ? new Date(answer.value) : null,
@@ -44,7 +60,7 @@ const AssessmentOption = ({ answer, onSelect, option, selected, type }) => {
     <Fragment>
       <TouchableOpacity
         onPress={() => {
-          if (option.value === 'Date') {
+          if (isDate) {
             let date = new Date();
             setDate(date);
             setShowDatePicker(true);
@@ -69,17 +85,18 @@ const AssessmentOption = ({ answer, onSelect, option, selected, type }) => {
                     xml={Icon}
                   />
                 )}
-                {selected && type === SCREEN_TYPE_RADIO && (
-                  <View style={styles.indicatorIconRadio} />
-                )}
+                {selected &&
+                  (type === SCREEN_TYPE_RADIO || type === SCREEN_TYPE_DATE) && (
+                    <View style={styles.indicatorIconRadio} />
+                  )}
               </View>
             )}
             <Text style={styles.title}>{label}</Text>
           </View>
           <View style={styles.content}>
-            {option.description && (
+            {option.description ? (
               <Text style={styles.description}>{option.description}</Text>
-            )}
+            ) : null}
           </View>
         </View>
       </TouchableOpacity>
