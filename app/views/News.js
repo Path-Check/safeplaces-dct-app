@@ -55,7 +55,6 @@ class NewsScreen extends Component {
 
   renderItem = item => {
     return (
-      // <View style={styles.singleNews}>
       <>
         <View style={styles.singleNewsHead}>
           <Typography style={styles.singleNewsHeadText}>
@@ -70,7 +69,7 @@ class NewsScreen extends Component {
             borderBottomLeftRadius: 12,
             borderBottomRightRadius: 12,
           }}
-          style={{ flex: 1, width: '100%' }}
+          style={!this.state.visible ? { flex: 0, height: 1 } : { flex: 1 }}
           cacheEnabled
           onLoad={() =>
             this.setState({
@@ -79,7 +78,6 @@ class NewsScreen extends Component {
           }
         />
       </>
-      //  </View>
     );
   };
 
