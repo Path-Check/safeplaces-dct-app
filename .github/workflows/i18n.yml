@@ -47,7 +47,7 @@ jobs:
           LOKALISE_TOKEN: ${{ secrets.LOKALISE_TOKEN }}
 
   # Run on PRs, checks for any added keys that are missing in the app/locales/en.json file
-  no-missing-keys:
+  check-i18n:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
