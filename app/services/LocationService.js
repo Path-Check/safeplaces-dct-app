@@ -427,20 +427,20 @@ export default class LocationServices {
     BackgroundGeolocation.stop();
 
     BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
-      if (!locationServicesEnabled) {
-        PushNotification.localNotification({
-          id: LOCATION_DISABLED_NOTIFICATION,
-          title: languages.t('label.location_disabled_title'),
-          message: languages.t('label.location_disabled_message'),
-        });
-      } else {
-        PushNotification.localNotification({
-          id: LOCATION_DISABLED_NOTIFICATION,
-          title: languages.t('label.location_disabled_title'),
-          message: languages.t('label.location_stopped_message'),
-        });
-      }
+      LocationServices.notifyDisabledLocation(locationServicesEnabled);
     });
     SetStoreData(PARTICIPATE, 'false');
+  }
+
+  static notifyDisabledLocation(locationServicesEnabled) {
+    const message = locationServicesEnabled
+      ? languages.t('label.location_disabled_message')
+      : languages.t('label.location_stopped_message');
+
+    PushNotification.localNotification({
+      id: LOCATION_DISABLED_NOTIFICATION,
+      title: languages.t('label.location_disabled_title'),
+      message,
+    });
   }
 }
