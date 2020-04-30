@@ -21,7 +21,7 @@
     "button_text": "Importa lo storico delle posizioni",
     "google": {
       "disclaimer": "Safe Paths non ha alcuna affiliazione a Google e non condivide mai i tuoi dati.",
-      "instructions_detailed": "Visita Google Takeout ed esporta la tua Cronologia delle posizioni utilizzando le seguenti impostazioni: \n 1. Metodo di consegna: \"Aggiungi a Drive\" \n 2. Frequenza: \"Esporta una volta\" \n 3. Tipo e dimensione del file: \".zip\" e \"1 GB\" \n 4. Google ti invierà un'email quando l'esportazione è pronta \n 5. Ritorna qui per importare le posizioni. Opzioni d'importazione: \n - Importa da Google Drive \n - Scarica dal browser, quindi importa il file dal tuo telefono. Assicurati di avere una connessione Wi-Fi attiva, poiché i file possono essere di grandi dimensioni.",
+      "instructions_detailed": "Visita Google Takeout ed esporta la tua Cronologia delle posizioni utilizzando le seguenti impostazioni: \n1. Metodo di consegna: \"Aggiungi a Drive\" \n2. Frequenza: \"Esporta una volta\" \n3. Tipo e dimensione del file: \".zip\" e \"1 GB\" \n4. Google ti invierà un'email quando l'esportazione è pronta \n5. Ritorna qui per importare le posizioni. Opzioni d'importazione: \n- Importa da Google Drive \n- Scarica dal browser, quindi importa il file dal tuo telefono. Assicurati di avere una connessione Wi-Fi attiva, poiché i file possono essere di grandi dimensioni.",
       "instructions_first": "L'aggiunta dei dati di localizzazione di Google ti aiuterà a costruzione un primo storico delle tue posizioni recenti.",
       "instructions_second": "Prima di poter importare i dati, devi effettuare il \"Take out\" dello storico delle tue geolocalizzazioni da Google.",
       "title": "Google Maps",
