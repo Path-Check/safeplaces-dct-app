@@ -4,6 +4,7 @@ import {
   BackHandler,
   FlatList,
   Image,
+  ScrollView,
   StyleSheet,
   Switch,
   TouchableOpacity,
@@ -228,100 +229,105 @@ class ChooseProviderScreen extends Component {
       <NavigationBarWrapper
         title={languages.t('label.choose_provider_title')}
         onBackPress={this.backToMain.bind(this)}>
-        <View style={styles.main}>
-          <Typography style={styles.headerTitle} use={'headline2'}>
-            {languages.t('label.authorities_title')}
-          </Typography>
-          <Typography style={styles.sectionDescription} use={'body1'}>
-            {languages.t('label.authorities_desc')}
-          </Typography>
-          {__DEV__ && (
-            <TouchableOpacity style={styles.autoSubcribe}>
-              <Checkbox
-                label={languages.t('label.auto_subscribe_checkbox')}
-                checked={this.state.isAutoSubscribed}
-                onPress={() => this.toggleAutoSubscribe()}
-              />
-            </TouchableOpacity>
-          )}
-        </View>
+        <ScrollView>
+          <View style={styles.main}>
+            <Typography style={styles.headerTitle} use={'headline2'}>
+              {languages.t('label.authorities_title')}
+            </Typography>
+            <Typography style={styles.sectionDescription} use={'body1'}>
+              {languages.t('label.authorities_desc')}
+            </Typography>
+            {__DEV__ && (
+              <TouchableOpacity style={styles.autoSubcribe}>
+                <Checkbox
+                  label={languages.t('label.auto_subscribe_checkbox')}
+                  checked={this.state.isAutoSubscribed}
+                  onPress={() => this.toggleAutoSubscribe()}
+                />
+              </TouchableOpacity>
+            )}
+          </View>
 
-        <View style={styles.listContainer}>
-          {Object.keys(this.state.selectedAuthorities).length == 0 ? (
-            <>
-              <Typography
-                style={[styles.sectionDescription, styles.noDataSourceText]}
-                use={'headline2'}>
-                {languages.t('label.authorities_no_sources')}
-              </Typography>
-              <View
-                style={[
-                  styles.flatlistRowView,
-                  { display: this.state.displayUrlEntry },
-                ]}>
-                <DynamicTextInput
-                  onChangeText={text => {
-                    this.setState({
-                      urlText: text,
-                    });
-                  }}
-                  value={this.state.urlText}
-                  autoFocus={this.state.urlEntryInProgress}
-                  style={[styles.item, styles.textInput]}
-                  placeholder={languages.t(
-                    'label.authorities_input_placeholder',
+          <View style={styles.listContainer}>
+            {Object.keys(this.state.selectedAuthorities).length == 0 ? (
+              <>
+                <Typography
+                  style={[styles.sectionDescription, styles.noDataSourceText]}
+                  use={'headline2'}>
+                  {languages.t('label.authorities_no_sources')}
+                </Typography>
+                <View
+                  style={[
+                    styles.flatlistRowView,
+                    { display: this.state.displayUrlEntry },
+                  ]}>
+                  <DynamicTextInput
+                    onChangeText={text => {
+                      this.setState({
+                        urlText: text,
+                      });
+                    }}
+                    value={this.state.urlText}
+                    autoFocus={this.state.urlEntryInProgress}
+                    style={[styles.item, styles.textInput]}
+                    placeholder={languages.t(
+                      'label.authorities_input_placeholder',
+                    )}
+                  />
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.addCustomUrlToState(this.state.urlText)
+                    }>
+                    <Image source={saveIcon} style={styles.saveIcon} />
+                  </TouchableOpacity>
+                </View>
+              </>
+            ) : (
+              <>
+                <View
+                  style={[
+                    styles.flatlistRowView,
+                    { display: this.state.displayUrlEntry },
+                  ]}>
+                  <DynamicTextInput
+                    onChangeText={text => {
+                      this.setState({
+                        urlText: text,
+                      });
+                    }}
+                    value={this.state.urlText}
+                    autoFocus={this.state.urlEntryInProgress}
+                    style={[styles.item, styles.textInput]}
+                    placeholder={languages.t('label.enter_authority_url')}
+                    onSubmitEditing={() =>
+                      this.addCustomUrlToState(this.state.urlText)
+                    }
+                  />
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.addCustomUrlToState(this.state.urlText)
+                    }>
+                    <Image source={saveIcon} style={styles.saveIcon} />
+                  </TouchableOpacity>
+                </View>
+                <FlatList
+                  data={this.state.selectedAuthorities}
+                  renderItem={({ item }) => (
+                    <View style={styles.flatlistRowView}>
+                      <Typography style={styles.item} use={'body3'}>
+                        {item.key}
+                      </Typography>
+                      <TouchableOpacity
+                        onPress={() => this.removeAuthorityFromState(item)}>
+                        <Image source={closeIcon} style={styles.closeIcon} />
+                      </TouchableOpacity>
+                    </View>
                   )}
                 />
-                <TouchableOpacity
-                  onPress={() => this.addCustomUrlToState(this.state.urlText)}>
-                  <Image source={saveIcon} style={styles.saveIcon} />
-                </TouchableOpacity>
-              </View>
-            </>
-          ) : (
-            <>
-              <View
-                style={[
-                  styles.flatlistRowView,
-                  { display: this.state.displayUrlEntry },
-                ]}>
-                <DynamicTextInput
-                  onChangeText={text => {
-                    this.setState({
-                      urlText: text,
-                    });
-                  }}
-                  value={this.state.urlText}
-                  autoFocus={this.state.urlEntryInProgress}
-                  style={[styles.item, styles.textInput]}
-                  placeholder={languages.t('label.enter_authority_url')}
-                  onSubmitEditing={() =>
-                    this.addCustomUrlToState(this.state.urlText)
-                  }
-                />
-                <TouchableOpacity
-                  onPress={() => this.addCustomUrlToState(this.state.urlText)}>
-                  <Image source={saveIcon} style={styles.saveIcon} />
-                </TouchableOpacity>
-              </View>
-              <FlatList
-                data={this.state.selectedAuthorities}
-                renderItem={({ item }) => (
-                  <View style={styles.flatlistRowView}>
-                    <Typography style={styles.item} use={'body3'}>
-                      {item.key}
-                    </Typography>
-                    <TouchableOpacity
-                      onPress={() => this.removeAuthorityFromState(item)}>
-                      <Image source={closeIcon} style={styles.closeIcon} />
-                    </TouchableOpacity>
-                  </View>
-                )}
-              />
-            </>
-          )}
-        </View>
-
+              </>
+            )}
+          </View>
+        </ScrollView>
         <Menu
           name='AuthoritiesMenu'
           renderer={SlideInMenu}
