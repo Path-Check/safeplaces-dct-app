@@ -11,7 +11,7 @@ import {
   SCREEN_TYPE_CHEKCBOX,
   SCREEN_TYPE_DATE,
   SCREEN_TYPE_RADIO,
-} from './Assessment';
+} from './constants';
 
 /**
  * @typedef { import("./Assessment").SurveyAnswers } SurveyAnswers

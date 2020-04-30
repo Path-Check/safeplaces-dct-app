@@ -19,16 +19,17 @@ import HCaptcha from '../../services/CaptchaService';
 import AssessmentButton from './AssessmentButton';
 import { AnswersContext, SurveyContext } from './AssessmentContext';
 
-/** @type {React.FunctionComponent<{}>} */
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = WIDTH * (300 / 375);
 
+/** @type {React.FunctionComponent<{}>} */
 const AssessmentCaptcha = ({ navigation }) => {
   let { t } = useTranslation();
   const survey = useContext(SurveyContext);
   const answers = useContext(AnswersContext);
   const [token, setToken] = useState(null);
-  const disableButton = token == null;
+  const [isLoading, setIsLoading] = useState(false);
+  const buttonDisabled = token === null || isLoading;
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -70,8 +71,9 @@ const AssessmentCaptcha = ({ navigation }) => {
       </ScrollView>
       <View style={styles.footer}>
         <AssessmentButton
-          disabled={disableButton}
+          disabled={buttonDisabled}
           onPress={() => {
+            setIsLoading(true);
             const state = navigation.dangerouslyGetState();
             const questionKeys = survey.questions.map(q => q.question_key);
             // Extract the keys from navigation stack because the user might
@@ -86,18 +88,18 @@ const AssessmentCaptcha = ({ navigation }) => {
               question_key,
               response: answers[question_key].map(r => r.value),
             }));
-            // TODO: POST to server
-            console.log(response);
-
+            // TODO: Loading state / disable button
             axios
               .post(SURVEY_POST_API, response, {
                 headers: { Authorization: 'Basic ' + token },
               })
               .then(response => {
                 console.log(`Survey post succeeded: ${response}`);
+                navigation.replace('EndComplete');
               })
               .catch(error => {
                 console.error(`Survey post Failed, ${error}`);
+                setIsLoading(false);
               });
           }}
           title={t('assessment.captcha_cta')}
