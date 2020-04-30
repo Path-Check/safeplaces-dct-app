@@ -114,11 +114,7 @@ Generating a release build is an optional step in the development process.
 
 ### Debugging
 
-[React Native ships with a debugging tool](https://reactnative.dev/docs/debugging#accessing-the-in-app-developer-menu) that allows you to inspect code, set debugging breakpoints, and more. Each platform has a different command to open the debugger.
-
-**Android:** `⌘D`
-
-**iOS:** `⌘M`
+[react-native-debugger](https://github.com/jhen0409/react-native-debugger) is recommended. This tool will provide visibility of the JSX hierarchy, breakpoint usage, monitoring of network calls, and other common debugging tasks.
 
 ## Testing
 
@@ -132,7 +128,7 @@ To run the unit tests:
 yarn test --watch
 ```
 
-To update the snapshots:
+[Snapshot testing](https://jestjs.io/docs/en/snapshot-testing) is used as a quick way to verify that the UI has not changed. To update the snapshots:
 
 ```
 yarn update-snapshots
@@ -156,7 +152,9 @@ yarn test:e2e:iphone{11, -se, 8}
 
 Mobile devices come in many different shapes and sizes - it is important to test your code on a variety of simulators to ensure it looks correct on all device types.
 
-Before pushing up code, it is recommended to manually test your code on the following devices to verify tha:
+Before pushing up code, it is recommended to manually test your code on the following devices:
 
-- Nexus 4
-- iPhone 8
+- Nexus 4 (smaller screen)
+- iPhone 8 (smaller screen)
+- Pixel 3 XL (larger screen)
+- iPhone 11 (screen w/ notch)
