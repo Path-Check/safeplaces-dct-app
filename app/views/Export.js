@@ -22,6 +22,7 @@ import { isPlatformiOS } from './../Util';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
+import { Theme } from '../constants/themes';
 import { LocationData } from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64;
@@ -106,7 +107,7 @@ export const ExportScreen = ({ navigation }) => {
   }
 
   return (
-    <>
+    <Theme use='violet'>
       <StatusBar
         barStyle='light-content'
         backgroundColor={Colors.VIOLET_BUTTON}
@@ -129,19 +130,19 @@ export const ExportScreen = ({ navigation }) => {
 
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.main}>
-              <Typography style={styles.exportSectionTitles}>
-                {t('label.tested_positive_title')}
+              <Typography use='headline2' style={styles.exportSectionTitles}>
+                {t('share.title')}
               </Typography>
-              <Typography style={styles.exportSectionPara}>
-                {t('label.export_para_1')}
+              <Typography use='body1' style={styles.exportSectionPara}>
+                {t('share.paragraph_first')}
               </Typography>
-              <Typography style={styles.exportSectionPara}>
-                {t('label.export_para_2')}
+              <Typography use='body1' style={styles.exportSectionPara}>
+                {t('share.paragraph_second')}
               </Typography>
 
               <TouchableOpacity style={styles.exportButton} onPress={onShare}>
                 <Typography style={styles.exportButtonText}>
-                  {t('label.share_location_data')}
+                  {t('share.button_text')}
                 </Typography>
                 <SvgXml style={styles.exportIcon} xml={exportIcon} />
               </TouchableOpacity>
@@ -149,7 +150,7 @@ export const ExportScreen = ({ navigation }) => {
           </ScrollView>
         </LinearGradient>
       </SafeAreaView>
-    </>
+    </Theme>
   );
 };
 
@@ -184,24 +185,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 26,
   },
-  row: {
-    flexDirection: 'row',
-    color: Colors.PRIMARY_TEXT,
-    alignItems: 'flex-start',
-  },
-
   exportSectionTitles: {
-    color: Colors.WHITE,
-    fontSize: 26,
-    fontFamily: fontFamily.primaryMedium,
     marginTop: 9,
+    fontWeight: 'normal',
+    fontFamily: fontFamily.primaryMedium,
   },
   exportSectionPara: {
-    color: Colors.WHITE,
-    fontSize: 18,
-    lineHeight: 22.5,
     marginTop: 22,
-    fontFamily: fontFamily.primaryRegular,
   },
 
   exportButton: {
