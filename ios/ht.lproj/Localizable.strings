@@ -2,3 +2,8 @@
 "ios.app_closed_alert_text" = "Chase Kowona (\"Safe Paths\") mande poul fonksyone";
 /* Title of notification when app is closed on iOS */
 "ios.app_closed_alert_title" = "Chase Kowona (\"Safe Paths\") te fèmen";
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. Tout dwa rezève.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Lis lokalizasyon ou pral anrejistre sou aparèy ou a, e yo ap pataje selman si ou chwazi pou ou fè sa.";
+"NSLocationAlwaysUsageDescription" = "Lis lokalizasyon ou pral anrejistre sou aparèy ou a, e yo ap pataje selman si ou chwazi pou ou fè sa.";
+"NSLocationWhenInUseUsageDescription" = "Lis lokalizasyon ou pral anrejistre sou aparèy ou a, e yo ap pataje selman si ou chwazi pou ou fè sa.";
+"NSMotionUsageDescription" = "Nou itilize akseleromèt ou a pou lis lokaliszasyon an egzat";
