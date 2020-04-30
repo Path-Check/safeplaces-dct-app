@@ -1,5 +1,5 @@
 {
-  "_display_name": "Slovak",
+  "_display_name": "Slovenčina",
   "about": {
     "dimensions": "Rozmery:",
     "operating_system_abbr": "OS:",
@@ -21,11 +21,13 @@
     "button_text": "Importovať históriu polôh",
     "google": {
       "disclaimer": "Safe Paths nemá žiadne prepojenie s Google a nikdy nezdieľa tvoje údaje.",
+      "instructions_detailed": "Navštív Google Takeout a exportuj históriu polôh pomocou nasledujúcich nastavení: \n1. Spôsob doručenia: \"Pridať do Google Drive\"\n2. Frekvencia: \"Exportovať raz\"\n3. Typ a veľkosť súboru: \".zip\" a \"1GB\"\n4. Google ti pošle email, keď je export dát hotový\n5. Vráť sa sem a importuj sem svoje polohy. Možnosti importovania:\n- Importovať z Google Drive\n- Stiahnuť z prehliadača a následne importovať zo súborov tvojho telefónu. Uisti sa, že si prihlásený na WiFi, keďže súbory môžu byť objemné. ",
+      "instructions_first": "Pridaním údajov o polohe od spoločnosti Google získaš náskok pri vytváraní tvojich nedávnych polôh.",
       "instructions_second": "Skôr než budeš môcť importovať svoje dáta, musíš najskôr \"vybrať\" údaje o svojej polohe od spoločnosti Google.",
       "title": "Google Maps",
       "visit_button_text": "Navštív Google Takeout"
     },
-    "subtitle": "Ak chceš zistiť, či si sa stretol/la s niekým, kto má COVID-19 pred stiahnutím tejto aplikácie, môžeš importovať tvoju osobnú históriu geografických polôh.",
+    "subtitle": "Ak chceš zistiť pred stiahnutím tejto aplikácie, či si sa stretol/la s niekým, komu bol diagnostikovaný COVID-19, môžeš importovať svoju históriu geografických polôh.",
     "title": "Importovať polohy"
   },
   "label": {
@@ -34,6 +36,14 @@
     "authorities_add_url": "Pridať úrad prostredníctvom URL",
     "authorities_desc": "Ak chceš získať údaje o tvojom vystavení sa riziku, vyber dôveryhodné zdravotné úrady v tvojej oblasti. Vyber meno z globálneho registra alebo zadaj webovú adresu poskytnutú orgánom, ktorú implementoval Safe Paths.",
     "authorities_input_placeholder": "Sem vlož tvoje URL",
+    "authorities_new_in_area_msg_0": "Prihlásiť sa na odber informácií od nového dôveryhodného zdravotného úradu v tvojej lokalite",
+    "authorities_new_in_area_msg_3": "Prihlásiť sa na odber informácií od nových dôveryhodných zdravotných úradov v tvojej lokalite",
+    "authorities_new_subcription_msg_0": "Prihlásil/a si sa na odber informácií od nového zdravotného úradu v tvojej lokalite",
+    "authorities_new_subcription_msg_3": "Prihlásil/a si sa na odber informácií od nových zdravotných úradov v tvojej lokalite",
+    "authorities_new_in_area_title_0": "Nový zdravotný úrad",
+    "authorities_new_subcription_title_0": "Nový odber",
+    "authorities_new_subcription_title_3": "Nové odbery",
+    "authorities_new_in_area_title_3": "Nové zdravotné úrady",
     "authorities_no_sources": "Zatiaľ žiadny zdroj údajov",
     "authorities_removal_alert_cancel": "Ukončiť",
     "authorities_removal_alert_desc": "Si si istý/á, že chceš odstrániť zdroj údajov tohto úradu?",
@@ -88,12 +98,14 @@
     "launch_screen4_header": "Máš všetko pod úplnou kontrolou. Údaje sú uložené iba na tvojom telefóne.",
     "launch_screen4_subheader": "Ak si testovaný/á pozitívne, môžeš sa sám/a rozhodnúť, či budeš zdieľať svoje dáta.",
     "launch_set_up_phone": "Nastaviť môj telefón",
-    "legal_page_title": "Legálny",
+    "legal_page_title": "Právne oznámenie\n",
     "loading_public_data": "Dáta sa načítavajú",
     "location_disabled_message": "COVID Safe Paths vyžaduje lokalizačné služby.",
     "location_disabled_title": "Sledovanie polohy bolo deaktivované.",
     "location_enabled_message": "COVID Safe Paths bezpečne ukladá vaše GPS súradnice každých päť minút.",
     "location_enabled_title": "COVID Safe Paths bol povolený",
+    "logging_active": "Aktívna poloha",
+    "logging_inactive": "Neaktívna poloha",
     "news_subtitle": "Prečítaj si informácie o najnovších aktualizáciách týkajúcich sa COVID-19 od vášho zdravotného úradu a vo všeobecnosti.",
     "news_title": "Najnovšie oznámenia",
     "no_data": "Žiadne údaje",
@@ -108,21 +120,22 @@
   },
   "onboarding": {
     "eula_checkbox": "Súhlasím s licenčnou zmluvou",
-    "eula_continue": "Pokračovať"
+    "eula_continue": "Pokračovať",
+    "eula_message": "Musíš prijať podmienky používania na to, aby si mohol používať Safe Paths"
   },
   "share": {
-    "button_text": "Zdieľaj svoje údaje o polohe",
+    "button_text": "Zdieľať svoje údaje o polohe",
     "paragraph_first": "Ak si testovaný/á pozitívne na COVID-19, prosím, prispej zdieľaním svojej polohy so všetkými miestnymi orgánmi.",
     "paragraph_second": "Poloha je zdieľaná ako jednoduchý zoznam časov a miest, bez akýchkoľvek ďalších informácií.",
     "subtitle": "Tvoje osobné údaje môžu byť odovzdané zdravotným úradom, zálohované alebo inak zdieľané.",
     "title": "Zdieľaj históriu tvojej lokalizácie"
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths je zastaraný",
+    "alert_label": "Aplikácia COVID Safe Paths je neaktuálna",
     "alert_sublabel": "Aktualizovať na novú verziu?",
     "later": "Neskôr",
     "push_notification_message": "Prosím, aktualizuj si aplikáciu",
-    "push_notification_title": "Aplikácia je zastaraná",
+    "push_notification_title": "Aplikácia je neaktuálna",
     "update": "Aktualizovať"
   }
 }
