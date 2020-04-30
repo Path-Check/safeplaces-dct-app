@@ -140,13 +140,26 @@ class LocationTracking extends Component {
 
   checkIfUserAtRisk() {
     BackgroundTaskServices.start();
-
+    // If the user has location tracking disabled, set enum to match
+    GetStoreData(PARTICIPATE, false).then(isParticipating => {
+      if (isParticipating === false) {
+        this.setState({
+          currentState: StateEnum.SETTING_OFF,
+        });
+      }
+      //Location enable
+      else {
+        this.crossPathCheck();
+      }
+    });
+  }
+  //Due to Issue 646 moved below code from checkIfUserAtRisk function
+  crossPathCheck() {
     GetStoreData(DEBUG_MODE).then(dbgMode => {
       if (dbgMode != 'true') {
         // already set on 12h timer, but run when this screen opens too
         checkIntersect();
       }
-
       GetStoreData(CROSSED_PATHS).then(dayBin => {
         dayBin = JSON.parse(dayBin);
         if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
@@ -157,15 +170,6 @@ class LocationTracking extends Component {
           this.setState({ currentState: StateEnum.NO_CONTACT });
         }
       });
-    });
-
-    // If the user has location tracking disabled, set enum to match
-    GetStoreData(PARTICIPATE, false).then(isParticipating => {
-      if (isParticipating === false) {
-        this.setState({
-          currentState: StateEnum.SETTING_OFF,
-        });
-      }
     });
   }
 
