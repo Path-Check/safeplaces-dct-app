@@ -79,7 +79,7 @@ const FONT_SIZE_MAP = {
 const getFontSize = ({ use = Type.Body1 }) => FONT_SIZE_MAP[use];
 
 const LINE_HEIGHT_MAP = {
-  [Type.Headline1]: '48px',
+  [Type.Headline1]: '52px',
   [Type.Headline2]: '34px',
   [Type.Headline3]: '40px',
   [Type.Body1]: '24px',
