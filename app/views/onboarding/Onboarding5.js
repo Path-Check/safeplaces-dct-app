@@ -287,7 +287,10 @@ class Onboarding extends Component {
         this.requestHCASubscription();
         break;
       case StepEnum.DONE:
-        SetStoreData(PARTICIPATE, 'true');
+        SetStoreData(
+          PARTICIPATE,
+          this.state.locationPermission === PermissionStatusEnum.GRANTED,
+        );
         SetStoreData('ONBOARDING_DONE', true);
         this.props.navigation.replace('LocationTrackingScreen');
     }

@@ -9,7 +9,7 @@
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
     "lint": "eslint ./",
-    "postinstall": "patch-package; npx react-native-jetifier",
+    "postinstall": "patch-package && npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
     "detox-setup": "detox clean-framework-cache && detox build-framework-cache",
@@ -91,6 +91,7 @@
     "react-native-zip-archive": "^5.0.1",
     "reanimated-bottom-sheet": "^1.0.0-alpha.19",
     "rn-fetch-blob": "^0.12.0",
+    "semver": "^7.3.2",
     "victory-native": "^34.1.0"
   },
   "devDependencies": {
