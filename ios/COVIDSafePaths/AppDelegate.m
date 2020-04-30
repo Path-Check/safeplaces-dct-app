@@ -78,25 +78,40 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
  [RNCPushNotificationIOS didReceiveLocalNotification:notification];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
+-(BOOL) isFirstTimeClosing {
   //Show local notifiation at first time only.
-  if(![[NSUserDefaults standardUserDefaults] boolForKey:@"NotificationAtFirstTimeOnly"]) {
-    if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]){
-      //Checking local notification permission or not.
-      UIUserNotificationSettings *grantedSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-      if (grantedSettings.types != UIUserNotificationTypeNone){
-        // Set local notification.
-        UILocalNotification *_localNotification = [[UILocalNotification alloc] init];
-        _localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
-        _localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        _localNotification.alertTitle = NSLocalizedString(@"ios.app_closed_alert_title", @"Title of notification when app is closed");
-        _localNotification.alertBody = NSLocalizedString(@"ios.app_closed_alert_text", @"Body text of notification when app is closed");
-        _localNotification.soundName = UILocalNotificationDefaultSoundName;
-        [[UIApplication sharedApplication]scheduleLocalNotification:_localNotification];
-      }
-    }
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotificationAtFirstTimeOnly"];
+  if(![[NSUserDefaults standardUserDefaults] boolForKey:@"cxfed_NotificationAtFirstTimeOnly"]) {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"cxfed_NotificationAtFirstTimeOnly"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    return TRUE;
+  }
+  return FALSE;
+}
+
+-(BOOL) hasNotificationPermissions {
+  //Checking local notification permission or not.
+  UIUserNotificationSettings *grantedSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+  if (grantedSettings.types != UIUserNotificationTypeNone){
+    return TRUE;
+  }
+  return FALSE;
+}
+
+-(void) notifThatWeAreStillTracking {
+  // Set local notification.
+  UILocalNotification *_localNotification = [[UILocalNotification alloc] init];
+  _localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+  _localNotification.timeZone = [NSTimeZone defaultTimeZone];
+  _localNotification.alertTitle = NSLocalizedString(@"ios.app_closed_alert_title", @"Title of notification when app is closed");
+  _localNotification.alertBody = NSLocalizedString(@"ios.app_closed_alert_text", @"Body text of notification when app is closed");
+  _localNotification.soundName = UILocalNotificationDefaultSoundName;
+  [[UIApplication sharedApplication]scheduleLocalNotification:_localNotification];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+  if([self isFirstTimeClosing] && [self hasNotificationPermissions]) {
+    // Show local notification at first time only when app quit.
+    [self notifThatWeAreStillTracking];
   }
 }
 
