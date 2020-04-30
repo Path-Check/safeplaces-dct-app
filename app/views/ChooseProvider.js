@@ -271,9 +271,6 @@ class ChooseProviderScreen extends Component {
                   placeholder={languages.t(
                     'label.authorities_input_placeholder',
                   )}
-                  onSubmitEditing={() =>
-                    this.addCustomUrlToState(this.state.urlText)
-                  }
                 />
                 <TouchableOpacity
                   onPress={() => this.addCustomUrlToState(this.state.urlText)}>
