@@ -285,6 +285,7 @@ class LocationTracking extends Component {
       return (
         <View style={styles.pulseContainer}>
           <Pulse
+            style={this.getPulseStyle()}
             image={{ exportImage }}
             color={Colors.PULSE_WHITE}
             numPulses={3}
@@ -302,6 +303,20 @@ class LocationTracking extends Component {
         <StateIcon size={height} status={this.state.currentState} />
       </View>
     );
+  }
+
+  //Change pulse location on a few problematic devices.
+  getPulseStyle() {
+    if (height > 900) return { top: '29%' };
+    //Samsung S10
+    else if (height > 750) return { top: '23%' };
+    //Pixel 3 XL
+    else if (height > 700) return { top: '22%' };
+    //XIAOMI MI 8 Lite, Samsung A50
+    else if (height < 550) return { top: '13%' };
+    //Nexus S
+    else if (height < 600) return { top: '16%' };
+    else return { top: '20.5%' };
   }
 
   getMainText() {
