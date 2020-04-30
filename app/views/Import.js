@@ -46,18 +46,26 @@ const ImportScreen = props => {
       const newLocations = await importTakeoutData(filePath);
 
       if (newLocations.length) {
-        setImportResults(makeImportResults('import.success'));
+        setImportResults(makeImportResults(languages.t('import.success')));
       } else {
-        setImportResults(makeImportResults('import.google.already_imported'));
+        setImportResults(
+          makeImportResults(languages.t('import.google.already_imported')),
+        );
       }
     } catch (err) {
       if (err instanceof NoRecentLocationsError) {
         setImportResults(
-          makeImportResults('import.google.no_recent_locations', true),
+          makeImportResults(
+            languages.t('import.google.no_recent_locations'),
+            true,
+          ),
         );
       } else if (err instanceof InvalidFileExtensionError) {
         setImportResults(
-          makeImportResults('import.google.invalid_file_format', true),
+          makeImportResults(
+            languages.t('import.google.invalid_file_format'),
+            true,
+          ),
         );
       } else if (err instanceof EmptyFilePathError) {
         /**
@@ -66,11 +74,11 @@ const ImportScreen = props => {
          * is located on Google Drive.
          */
         setImportResults(
-          makeImportResults('import.google.file_open_error', true),
+          makeImportResults(languages.t('import.google.file_open_error'), true),
         );
       } else {
         console.log('[ERROR] Failed to import locations', err);
-        setImportResults(makeImportResults('import.error', true));
+        setImportResults(makeImportResults(languages.t('import.error'), true));
       }
     }
   }
@@ -119,7 +127,7 @@ const ImportScreen = props => {
                 ...styles.importResults,
                 ...(importResults?.error ? styles.importResultsError : {}),
               }}>
-              {languages.t(importResults.label)}
+              {importResults.label}
             </Typography>
           ) : null}
         </View>
