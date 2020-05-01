@@ -2,11 +2,7 @@ import BackgroundGeolocation from '@mauron85/react-native-background-geolocation
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 
-import {
-  CROSSED_PATHS,
-  LOCATION_DATA,
-  PARTICIPATE,
-} from '../constants/storage';
+import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { areLocationsNearby } from '../helpers/Intersect';
 import languages from '../locales/languages';
