@@ -29,7 +29,6 @@ import { PARTICIPATE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { HCAService } from '../../services/HCAService';
-import LocationServices from '../../services/LocationService';
 
 const width = Dimensions.get('window').width;
 
