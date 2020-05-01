@@ -2,11 +2,7 @@ import BackgroundGeolocation from '@mauron85/react-native-background-geolocation
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 
-import {
-  CROSSED_PATHS,
-  LOCATION_DATA,
-  PARTICIPATE,
-} from '../constants/storage';
+import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { areLocationsNearby } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -18,7 +14,7 @@ const LOCATION_DISABLED_NOTIFICATION = '55';
 export class LocationData {
   constructor() {
     // The desired location interval, and the minimum acceptable interval
-    this.locationInterval = 100; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+    this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
 
     // minLocationSaveInterval should be shorter than the locationInterval (to avoid strange skips)
     this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
@@ -216,9 +212,7 @@ export default class LocationServices {
     const locationData = new LocationData();
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
-    //BackgroundGeolocation.start();
     if (isBackgroundGeolocationConfigured) {
-      //console.log("If condition BackgroundGeolocation START!!")
       BackgroundGeolocation.start();
       return;
     }
@@ -322,11 +316,9 @@ export default class LocationServices {
         //   1000,
         // );
       } else {
-        //console.log("right before start");
         BackgroundGeolocation.start(); //triggers start on start event
 
         BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
-          //BackgroundGeolocation.start();
           if (!locationServicesEnabled) {
             PushNotification.localNotification({
               id: LOCATION_DISABLED_NOTIFICATION,
@@ -375,7 +367,6 @@ export default class LocationServices {
     });
 
     BackgroundGeolocation.checkStatus(status => {
-      console.log('actually doing something');
       console.log(
         '[INFO] BackgroundGeolocation service is running',
         status.isRunning,
@@ -454,9 +445,9 @@ export default class LocationServices {
     BackgroundGeolocation.stop();
 
     isBackgroundGeolocationConfigured = false;
-    // SetStoreData(PARTICIPATE, 'false').then(() => {
-    //   // nav.navigate('LocationTrackingScreen', {});
-    // });
+    SetStoreData(PARTICIPATE, 'false').then(() => {
+      // nav.navigate('LocationTrackingScreen', {});
+    });
   }
 
   static getCrossedPaths() {
