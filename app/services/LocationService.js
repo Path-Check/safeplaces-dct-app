@@ -59,10 +59,8 @@ export class LocationData {
   }
 
   saveLocation(location) {
-    console.log('inside save location');
     // Persist this location data in our local storage of time/lat/lon values
     this.getLocationData().then(locationArray => {
-      console.log('inside getLocationData');
       // Always work in UTC, not the local time in the locationData
       let unixtimeUTC = Math.floor(location['time']);
       let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
@@ -215,8 +213,6 @@ export class LocationData {
 
 export default class LocationServices {
   static start() {
-    console.log('inside location services START----!');
-
     const locationData = new LocationData();
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
@@ -392,7 +388,6 @@ export default class LocationServices {
         '[INFO] BackgroundGeolocation auth status: ' + status.authorization,
       );
 
-      console.log('right before start');
       BackgroundGeolocation.start(); //triggers start on start event
       isBackgroundGeolocationConfigured = true;
 
@@ -450,7 +445,6 @@ export default class LocationServices {
   }
 
   static stop() {
-    console.log('Location service stop!!!!!');
     // unregister all event listeners
     PushNotification.localNotification({
       title: languages.t('label.location_disabled_title'),
@@ -465,9 +459,9 @@ export default class LocationServices {
     // });
   }
 
-  static async checkStatus() {
-    const crossedPaths = await new Promise(resolve => {
-      GetStoreData(CROSSED_PATHS).then(async dayBin => {
+  static getCrossedPaths() {
+    return new Promise(resolve => {
+      GetStoreData(CROSSED_PATHS).then(dayBin => {
         dayBin = JSON.parse(dayBin);
         if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
           console.log('Found crossed paths');
@@ -478,39 +472,56 @@ export default class LocationServices {
         }
       });
     });
-    let prom = new Promise(resolve => {
-      // If the user closed or opened
+  }
+  static getParticpating() {
+    return new Promise(resolve => {
       GetStoreData(PARTICIPATE, false).then(isParticipating => {
-        if (isParticipating == false) {
-          resolve({
-            canTrack: false,
-            reason: 'USER_OFF',
-          });
-        }
-      });
-      BackgroundGeolocation.checkStatus(status => {
-        if (status.locationServicesEnabled) {
-          if (status.authorization === BackgroundGeolocation.AUTHORIZED) {
-            resolve({
-              canTrack: true,
-              reason: '',
-            });
-          } else {
-            resolve({
-              canTrack: false,
-              reason: 'NOT_AUTHORIZED',
-            });
-          }
-        } else {
-          resolve({
-            canTrack: false,
-            reason: 'LOCATION_OFF',
-          });
-        }
+        resolve(isParticipating);
       });
     });
-    const status = await prom;
-    status.crossedPaths = crossedPaths;
-    return status;
+  }
+
+  static getBackgroundGeoStatus() {
+    return new Promise(resolve => {
+      BackgroundGeolocation.checkStatus(status => {
+        resolve(status);
+      });
+    });
+  }
+
+  static async checkStatus() {
+    const crossedPaths = await this.getCrossedPaths();
+    const particpating = await this.getParticpating();
+
+    if (!particpating) {
+      return {
+        canTrack: false,
+        reason: 'USER_OFF',
+        crossedPaths: crossedPaths,
+      };
+    }
+
+    const status = await this.getBackgroundGeoStatus();
+    if (!status.locationServicesEnabled) {
+      return {
+        canTrack: false,
+        reason: 'LOCATION_OFF',
+        crossedPaths: crossedPaths,
+      };
+    }
+
+    if (status.authorization != BackgroundGeolocation.AUTHORIZED) {
+      return {
+        canTrack: false,
+        reason: 'NOT_AUTHORIZED',
+        crossedPaths: crossedPaths,
+      };
+    }
+
+    return {
+      canTrack: true,
+      reason: '',
+      crossedPaths: crossedPaths,
+    };
   }
 }

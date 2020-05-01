@@ -282,8 +282,6 @@ class Onboarding extends Component {
       case StepEnum.DONE:
         SetStoreData(PARTICIPATE, 'true');
         SetStoreData('ONBOARDING_DONE', true);
-        // start location service here
-        LocationServices.start();
         this.props.navigation.replace('LocationTrackingScreen');
     }
   }
