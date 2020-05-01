@@ -92,15 +92,15 @@ export default class LocationController extends Component {
 
     if (canTrack) {
       if (crossedPaths) {
-        page = ExposurePage();
+        page = <ExposurePage />;
       } else {
-        page = DefaultPage();
+        page = <DefaultPage />;
       }
     } else {
       if (reason === 'USER_OFF') {
-        page = OffPage();
+        page = <OffPage />;
       } else {
-        page = UnknownPage();
+        page = <UnknownPage />;
       }
     }
 

@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   Dimensions,
@@ -18,12 +19,10 @@ import MayoInfo from './MayoInfo';
 import styles from './style';
 
 const buttonLabel = languages.t('label.see_exposure_history');
-const buttonFunction = () => {
-  this.props.navigation.navigate('ExposureHistoryScreen');
-};
 const size = Dimensions.get('window').height;
 
 const ExposurePage = () => {
+  const navigation = useNavigation();
   return (
     <ImageBackground
       source={BackgroundImageAtRisk}
@@ -59,7 +58,7 @@ const ExposurePage = () => {
             <ButtonWrapper
               title={buttonLabel}
               onPress={() => {
-                buttonFunction();
+                navigation.navigate('ExposureHistoryScreen');
               }}
               buttonColor={Colors.BLUE_BUTTON}
               bgColor={Colors.WHITE}

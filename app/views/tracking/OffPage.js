@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   Dimensions,
@@ -18,12 +19,10 @@ import MayoInfo from './MayoInfo';
 import styles from './style';
 
 const buttonLabel = languages.t('label.home_enable_location');
-const buttonFunction = () => {
-  this.props.navigation.navigate('SettingsScreen', {});
-};
 const size = Dimensions.get('window').height;
 
-const OffPage = () => {
+export default function OffPage() {
+  const navigation = useNavigation();
   return (
     <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
       <StatusBar
@@ -56,7 +55,7 @@ const OffPage = () => {
             <ButtonWrapper
               title={buttonLabel}
               onPress={() => {
-                buttonFunction();
+                navigation.navigate('SettingsScreen', {});
               }}
               buttonColor={Colors.BLUE_BUTTON}
               bgColor={Colors.WHITE}
@@ -67,6 +66,4 @@ const OffPage = () => {
       {MayoInfo()}
     </ImageBackground>
   );
-};
-
-export default OffPage;
+}
