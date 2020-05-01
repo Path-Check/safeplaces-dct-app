@@ -23,6 +23,7 @@
     "i18n:extract": "i18next",
     "i18n:pull": "./app/locales/pull.sh",
     "test": "jest --config=./jest/config.js",
+    "test:watch": "jest --config=./jest/config.js --watch",
     "update-snapshots": "jest --config=./jest/config.js --updateSnapshot",
     "test:dev_setup": "bats __tests__/dev_setup.test.bats"
   },
