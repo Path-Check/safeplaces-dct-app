@@ -277,7 +277,7 @@ export default class LocationServices {
     });
 
     if (
-      LocationServices.isheadlessAlreadyRunning() === true &&
+      LocationServices.isHeadlessTaskRunning() === true &&
       isPlatformAndroid()
     ) {
       // This feature only is present on Android.
@@ -409,7 +409,9 @@ export default class LocationServices {
     });
   }
 
-  static async isheadlessAlreadyRunning() {
+  static async isHeadlessTaskRunning() {
+    // the android version of the app can log when the app is closed
+    // this method returns weather or not this has been previously been done
     return new Promise((resolve, reject) => {
       BackgroundGeolocation.getConfig((config, error) => {
         if (error) {
