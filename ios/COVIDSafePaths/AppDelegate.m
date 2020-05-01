@@ -38,7 +38,6 @@
   [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
   // [REQUIRED] Register BackgroundFetch
     [[TSBackgroundFetch sharedInstance] didFinishLaunching];
-  
   return YES;
 }
 
