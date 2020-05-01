@@ -7,6 +7,7 @@ import {
   Image,
   ImageBackground,
   Linking,
+  NativeModules,
   StatusBar,
   StyleSheet,
   Text,
@@ -35,8 +36,17 @@ import ButtonWrapper from '../components/ButtonWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import { CROSSED_PATHS, DEBUG_MODE, PARTICIPATE } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import {
+  CROSSED_PATHS,
+  DEBUG_MODE,
+  LOCATION_DATA,
+  PARTICIPATE,
+} from '../constants/storage';
+import {
+  GetStoreData,
+  RemoveStoreData,
+  SetStoreData,
+} from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
@@ -195,6 +205,16 @@ class LocationTracking extends Component {
         }
       })
       .catch(error => console.log(error));
+
+    GetStoreData(LOCATION_DATA, false).then(locations => {
+      if (Array.isArray(locations) && locations.length > 0) {
+        NativeModules.SecureStorageManager.migrateExistingLocations(
+          locations,
+        ).then(() => {
+          RemoveStoreData(LOCATION_DATA);
+        });
+      }
+    });
   }
 
   componentWillUnmount() {

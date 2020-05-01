@@ -79,7 +79,7 @@ describe('HCAService', () => {
         .mockResolvedValue(mockHCA.validParsed);
     });
 
-    it('returns true if the user was in the bounding box of an authority in the past 28 days', async () => {
+    it('returns true if the user was in the bounding box of an authority in the past 14 days', async () => {
       // Returns a point within the bounding box of an authority
       jest
         .spyOn(LocationData.prototype, 'getLocationData')
@@ -89,7 +89,7 @@ describe('HCAService', () => {
       expect(authorities[0]).toEqual(mockHCA.validParsed[0]);
     });
 
-    it('returns false if the user was not in the bounding box of any authority in the past 28 days', async () => {
+    it('returns false if the user was not in the bounding box of any authority in the past 14 days', async () => {
       // Returns a point outside the bounding box of any authority
       jest
         .spyOn(LocationData.prototype, 'getLocationData')
