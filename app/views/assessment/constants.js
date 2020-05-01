@@ -5,7 +5,7 @@ export const OPTION_VALUE_AGREE = 'AGREE';
 export const OPTION_VALUE_DISAGREE = 'DISAGREE';
 
 export const SCREEN_TYPE_RADIO = 'Radio';
-export const SCREEN_TYPE_CHEKCBOX = 'Checkbox';
+export const SCREEN_TYPE_CHECKBOX = 'Checkbox';
 export const SCREEN_TYPE_DATE = 'Date';
 export const SCREEN_TYPE_END = 'End';
 

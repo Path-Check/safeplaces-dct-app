@@ -8,7 +8,7 @@ import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import { isPlatformAndroid, isPlatformiOS } from '../../Util';
 import {
-  SCREEN_TYPE_CHEKCBOX,
+  SCREEN_TYPE_CHECKBOX,
   SCREEN_TYPE_DATE,
   SCREEN_TYPE_RADIO,
 } from './constants';
@@ -38,7 +38,7 @@ const AssessmentOption = ({
   // we just assume the first option is the date picker when type is SCREEN_TYPE_DATE
   const isDate = type === SCREEN_TYPE_DATE && index === 0;
   const showIndicator =
-    type === SCREEN_TYPE_CHEKCBOX ||
+    type === SCREEN_TYPE_CHECKBOX ||
     type === SCREEN_TYPE_RADIO ||
     type === SCREEN_TYPE_DATE;
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -77,7 +77,7 @@ const AssessmentOption = ({
                   styles.indicator,
                   selected && styles.indicatorSelected,
                 ]}>
-                {selected && type === SCREEN_TYPE_CHEKCBOX && (
+                {selected && type === SCREEN_TYPE_CHECKBOX && (
                   <SvgXml
                     height={INDICATOR_WIDTH * 0.5}
                     style={styles.indicatorIcon}

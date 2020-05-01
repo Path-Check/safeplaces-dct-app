@@ -9,7 +9,7 @@ import { AnswersContext } from './AssessmentContext';
 import AssessmentOption from './AssessmentOption';
 import {
   QUESTION_TYPE_MULTI,
-  SCREEN_TYPE_CHEKCBOX,
+  SCREEN_TYPE_CHECKBOX,
   SCREEN_TYPE_DATE,
   SCREEN_TYPE_RADIO,
 } from './constants';
@@ -74,7 +74,7 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
               </View>
             ) : null}
             {[
-              SCREEN_TYPE_CHEKCBOX,
+              SCREEN_TYPE_CHECKBOX,
               SCREEN_TYPE_RADIO,
               SCREEN_TYPE_DATE,
             ].includes(question.screen_type) &&

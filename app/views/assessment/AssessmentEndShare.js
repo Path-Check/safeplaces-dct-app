@@ -4,9 +4,9 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
-import { SCREEN_TYPE_CHEKCBOX } from './Assessment';
 import AssessmentEnd from './AssessmentEnd';
 import AssessmentOption from './AssessmentOption';
+import { SCREEN_TYPE_CHECKBOX } from './constants';
 
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentEndShare = ({ navigation }) => {
@@ -41,7 +41,7 @@ const AssessmentEndShare = ({ navigation }) => {
           value: 'a',
         }}
         selected={a}
-        type={SCREEN_TYPE_CHEKCBOX}
+        type={SCREEN_TYPE_CHECKBOX}
       />
       <AssessmentOption
         onSelect={() => setB(b => !b)}
@@ -51,7 +51,7 @@ const AssessmentEndShare = ({ navigation }) => {
           value: 'b',
         }}
         selected={b}
-        type={SCREEN_TYPE_CHEKCBOX}
+        type={SCREEN_TYPE_CHECKBOX}
       />
     </AssessmentEnd>
   );
