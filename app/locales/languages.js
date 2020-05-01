@@ -9,6 +9,7 @@ import { NativeModules, Platform } from 'react-native';
 import { LANG_OVERRIDE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import ar from './ar.json';
+import da from './da.json';
 import en from './en.json';
 import es from './es.json';
 import fil from './fil.json';
