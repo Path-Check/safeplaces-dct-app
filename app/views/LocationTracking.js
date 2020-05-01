@@ -395,59 +395,57 @@ class LocationTracking extends Component {
 
   render() {
     return (
-      <View style={styles.backgroundImage}>
-        <ImageBackground
-          source={this.getBackground()}
-          style={styles.backgroundImage}>
-          <StatusBar
-            barStyle='light-content'
-            backgroundColor='transparent'
-            translucent
-          />
-          {this.getPulseIfNeeded()}
+      <ImageBackground
+        source={this.getBackground()}
+        style={styles.backgroundImage}>
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent
+        />
+        {this.getPulseIfNeeded()}
 
-          <View style={styles.mainContainer}>
-            <View style={styles.contentAbovePulse}>
-              {this.state.currentState === StateEnum.AT_RISK &&
-                this.getMainText()}
-              <Typography style={styles.subsubheaderText}>
-                {this.getSubSubText()}
+        <View style={styles.mainContainer}>
+          <View style={styles.contentAbovePulse}>
+            {this.state.currentState === StateEnum.AT_RISK &&
+              this.getMainText()}
+            <Typography style={styles.subsubheaderText}>
+              {this.getSubSubText()}
+            </Typography>
+          </View>
+          <View style={styles.contentBelowPulse}>
+            {this.state.currentState !== StateEnum.AT_RISK &&
+              this.getMainText()}
+            <Typography style={styles.subheaderText}>
+              {this.getSubText()}
+            </Typography>
+            {this.getCTAIfNeeded()}
+          </View>
+        </View>
+
+        <View>
+          <TouchableOpacity
+            onPress={this.getMayoInfoPressed.bind(this)}
+            style={styles.mayoInfoRow}>
+            <View style={styles.mayoInfoContainer}>
+              <Typography
+                style={styles.mainMayoHeader}
+                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
+                {languages.t('label.home_mayo_link_heading')}
+              </Typography>
+              <Typography
+                style={styles.mainMayoSubtext}
+                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
+                {languages.t('label.home_mayo_link_label')}
               </Typography>
             </View>
-            <View style={styles.contentBelowPulse}>
-              {this.state.currentState !== StateEnum.AT_RISK &&
-                this.getMainText()}
-              <Typography style={styles.subheaderText}>
-                {this.getSubText()}
-              </Typography>
-              {this.getCTAIfNeeded()}
+            <View style={styles.arrowContainer}>
+              <Image source={foreArrow} style={this.arrow} />
             </View>
-          </View>
-
-          <View>
-            <TouchableOpacity
-              onPress={this.getMayoInfoPressed.bind(this)}
-              style={styles.mayoInfoRow}>
-              <View style={styles.mayoInfoContainer}>
-                <Typography
-                  style={styles.mainMayoHeader}
-                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                  {languages.t('label.home_mayo_link_heading')}
-                </Typography>
-                <Typography
-                  style={styles.mainMayoSubtext}
-                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                  {languages.t('label.home_mayo_link_label')}
-                </Typography>
-              </View>
-              <View style={styles.arrowContainer}>
-                <Image source={foreArrow} style={this.arrow} />
-              </View>
-            </TouchableOpacity>
-          </View>
-        </ImageBackground>
+          </TouchableOpacity>
+        </View>
         {this.getSettings()}
-      </View>
+      </ImageBackground>
     );
   }
 }
