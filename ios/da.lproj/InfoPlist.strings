@@ -1,0 +1,5 @@
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. Alle rettigheder forbeholdes.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Din placeringshistorik gemmes på din enhed og deles kun med andre, hvis du vælger at gøre det.";
+"NSLocationAlwaysUsageDescription" = "Din placeringshistorik gemmes på din enhed og deles kun med andre, hvis du vælger at gøre det.";
+"NSLocationWhenInUseUsageDescription" = "Din placeringshistorik gemmes på din enhed og deles kun med andre, hvis du vælger at gøre det.";
+"NSMotionUsageDescription" = "Vi bruger dit accelerometer til nøjagtig placeringshistorik.";
