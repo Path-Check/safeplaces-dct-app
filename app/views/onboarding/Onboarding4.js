@@ -9,7 +9,7 @@ import {
 
 import BackgroundImage from './../../assets/images/launchScreen1.png';
 import { Button } from '../../components/Button';
-import { Typography } from '../../components/Typography';
+import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
@@ -29,7 +29,7 @@ const Onboarding = props => {
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
-        <Typography style={styles.headerText}>
+        <Typography style={styles.headerText} use={Type.Headline2}>
           {languages.t('label.launch_screen4_header')}
         </Typography>
         <Typography style={styles.subheaderText}>
@@ -68,11 +68,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: Colors.VIOLET,
-    fontSize: 26,
     width: width * 0.7,
-    fontFamily: fontFamily.primaryMedium,
-    lineHeight: 26 * 1.1,
-    paddingTop: 26 * 1.1 - 26,
   },
   subheaderText: {
     marginTop: '6%',

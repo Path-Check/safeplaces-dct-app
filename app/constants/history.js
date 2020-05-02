@@ -15,6 +15,17 @@ export const DEFAULT_EXPOSURE_PERIOD_MINUTES = 5;
 export const CONCERN_TIME_WINDOW_MINUTES = 4 * 60; // 4 hours, in minutes
 
 /**
+ * The value in minutes of how frequently we should check intersection data if
+ *    there has been no change to the authorities
+ */
+export const MIN_CHECK_INTERSECT_INTERVAL = 6 * 60;
+
+/**
+ * The value in minutes for the background task service to register for firing
+ */
+export const INTERSECT_INTERVAL = 60 * 12; // 12 Hours, the value is received in minutes
+
+/**
  * Format of a single history item
  *
  * @typedef {{

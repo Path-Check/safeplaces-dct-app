@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 
-import languages from './../locales/languages';
 import { Button } from '../components/Button';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
@@ -9,6 +9,7 @@ import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { pickFile } from '../helpers/General';
 import {
+  EmptyFilePathError,
   InvalidFileExtensionError,
   NoRecentLocationsError,
   importTakeoutData,
@@ -20,58 +21,63 @@ const makeImportResults = (label = '', error = false) => ({
 });
 
 const ImportScreen = props => {
+  const { t } = useTranslation();
   const {
     navigation: { goBack },
   } = props;
-  const [importResults, setImportResults] = useState(makeImportResults());
-
+  const [importResults, _setImportResults] = useState(makeImportResults());
+  const setImportResults = (...args) =>
+    _setImportResults(makeImportResults(...args));
   async function importPickFile() {
     try {
       // reset info message
-      setImportResults(makeImportResults());
+      setImportResults();
 
       const filePath = await pickFile();
-      if (filePath) {
-        const newLocations = await importTakeoutData(filePath);
-        if (newLocations.length) {
-          setImportResults(makeImportResults('label.import_success'));
-        } else {
-          setImportResults(makeImportResults('label.import_already_imported'));
-        }
+
+      const newLocations = await importTakeoutData(filePath);
+
+      if (newLocations.length) {
+        setImportResults(t('import.success'));
+      } else {
+        setImportResults(t('import.google.already_imported'));
       }
     } catch (err) {
       if (err instanceof NoRecentLocationsError) {
-        setImportResults(
-          makeImportResults('label.import_no_recent_locations', true),
-        );
+        setImportResults(t('import.google.no_recent_locations'), true);
       } else if (err instanceof InvalidFileExtensionError) {
-        setImportResults(
-          makeImportResults('label.import_invalid_file_format', true),
-        );
+        setImportResults(t('import.google.invalid_file_format'), true);
+      } else if (err instanceof EmptyFilePathError) {
+        /**
+         * If the imported file is opened from other than Google Drive folder,
+         * filepath is returned as null. Leaving a message to ensure import file
+         * is located on Google Drive.
+         */
+        setImportResults(t('import.google.file_open_error'), true);
       } else {
-        setImportResults(makeImportResults('label.import_error', true));
+        console.log('[ERROR] Failed to import locations', err);
+        setImportResults(t('import.error'), true);
       }
     }
   }
 
   return (
-    <NavigationBarWrapper
-      title={languages.t('label.import_title')}
-      onBackPress={goBack}>
-      <View style={styles.main}>
+    <NavigationBarWrapper title={t('import.title')} onBackPress={goBack}>
+      <ScrollView style={styles.main}>
         <View style={styles.subHeaderTitle}>
           <Typography style={styles.sectionDescription}>
-            {languages.t('label.import_step_1')}
+            {t('import.google.instructions_first')}
+          </Typography>
+          {/* eslint-disable react/no-unescaped-entities */}
+          <Typography style={styles.sectionDescription}>
+            {t('import.google.instructions_second')}
           </Typography>
           <Typography style={styles.sectionDescription}>
-            {languages.t('label.import_step_2')}
-          </Typography>
-          <Typography style={styles.sectionDescription}>
-            {languages.t('label.import_step_3')}
+            {t('import.google.instructions_detailed')}
           </Typography>
 
           <Button
-            label={languages.t('label.import_takeout')}
+            label={t('import.google.visit_button_text')}
             testID='google-takeout-link'
             onPress={() =>
               Linking.openURL(
@@ -81,7 +87,7 @@ const ImportScreen = props => {
           />
 
           <Button
-            label={languages.t('label.import_title')}
+            label={t('import.google.visit_button_text')}
             testID='google-takeout-import-btn'
             onPress={importPickFile}
           />
@@ -92,11 +98,11 @@ const ImportScreen = props => {
                 ...styles.importResults,
                 ...(importResults?.error ? styles.importResultsError : {}),
               }}>
-              {languages.t(importResults.label)}
+              {importResults.label}
             </Typography>
           ) : null}
         </View>
-      </View>
+      </ScrollView>
     </NavigationBarWrapper>
   );
 };
@@ -107,6 +113,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 22,
     padding: 5,
+    paddingBottom: 20,
   },
   main: {
     flex: 1,

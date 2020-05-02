@@ -33,12 +33,11 @@ export const SettingsScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const handleBackPress = () => {
-    backToMain();
-    return true;
-  };
-
   useEffect(() => {
+    const handleBackPress = () => {
+      navigation.goBack();
+      return true;
+    };
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
     // TODO: this should be a service or hook
@@ -52,7 +51,7 @@ export const SettingsScreen = ({ navigation }) => {
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
-  }, []);
+  }, [navigation]);
 
   const locationToggleButtonPressed = async () => {
     try {
@@ -121,16 +120,18 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
           />
           <Item
-            label={t('label.tested_positive_title')}
-            description={t('label.tested_positive_subtitle')}
+            label={t('share.title')}
+            description={t('share.subtitle')}
             onPress={() => navigation.navigate('ExportScreen')}
             last
           />
         </Section>
 
-        <Section>
-          <GoogleMapsImport navigation={navigation} />
-        </Section>
+        {__DEV__ && (
+          <Section>
+            <GoogleMapsImport navigation={navigation} />
+          </Section>
+        )}
 
         <Section last>
           <Item

@@ -1,19 +1,13 @@
-import LocationService, { LocationData } from '../LocationService';
 import * as General from '../../helpers/General';
+import { LocationData } from '../LocationService';
 
 function mockGetStoreData(data) {
   General.GetStoreData = () => {
-    return new Promise((resolve, reject) => {
-      process.nextTick(() =>
-        resolve(data)
-      );
+    return new Promise(resolve => {
+      process.nextTick(() => resolve(data));
     });
   };
-};
-
-function mockSetStoreData(name, data) {
-  return General.SetStoreData = jest.fn();
-};
+}
 
 describe('LocationData class', () => {
   let locationData;
@@ -23,7 +17,7 @@ describe('LocationData class', () => {
   });
 
   it('has the correct time interval', () => {
-    expect(locationData.locationInterval).toBe(60000*5);
+    expect(locationData.locationInterval).toBe(60000 * 5);
   });
 
   it('parses the location data', async () => {
@@ -34,7 +28,7 @@ describe('LocationData class', () => {
     expect(data.length).toBe(5);
   });
 
-  it('parses the location data', async () => {
+  it('parses the location data point stats', async () => {
     mockGetStoreData('[2,4,6,8,10]');
 
     const data = await locationData.getPointStats();
@@ -43,4 +37,4 @@ describe('LocationData class', () => {
     expect(data.lastPoint).toBe(10);
     expect(data.pointCount).toBe(5);
   });
-})
+});
