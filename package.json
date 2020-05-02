@@ -1,6 +1,6 @@
 {
   "name": "covidsafepaths",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "start": "yarn && react-native start",
@@ -9,7 +9,7 @@
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
     "lint": "eslint ./",
-    "postinstall": "patch-package; npx react-native-jetifier",
+    "postinstall": "patch-package && npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
     "detox-setup": "detox clean-framework-cache && detox build-framework-cache",
@@ -23,6 +23,7 @@
     "i18n:extract": "i18next",
     "i18n:pull": "./app/locales/pull.sh",
     "test": "jest --config=./jest/config.js",
+    "test:watch": "jest --config=./jest/config.js --watch",
     "update-snapshots": "jest --config=./jest/config.js --updateSnapshot",
     "test:dev_setup": "bats __tests__/dev_setup.test.bats"
   },
@@ -91,6 +92,7 @@
     "react-native-zip-archive": "^5.0.1",
     "reanimated-bottom-sheet": "^1.0.0-alpha.19",
     "rn-fetch-blob": "^0.12.0",
+    "semver": "^7.3.2",
     "victory-native": "^34.1.0"
   },
   "devDependencies": {
@@ -106,6 +108,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-detox": "^1.0.0",
     "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-react-hooks": "^4.0.0",
     "husky": "^4.2.3",
     "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
     "import-sort-config": "^6.0.0",
