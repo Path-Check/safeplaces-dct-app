@@ -19,6 +19,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
 import { isPlatformiOS } from './../Util';
+import { Button } from '../components/Button';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -140,12 +141,11 @@ export const ExportScreen = ({ navigation }) => {
                 {t('share.paragraph_second')}
               </Typography>
 
-              <TouchableOpacity style={styles.exportButton} onPress={onShare}>
-                <Typography style={styles.exportButtonText}>
-                  {t('share.button_text')}
-                </Typography>
-                <SvgXml style={styles.exportIcon} xml={exportIcon} />
-              </TouchableOpacity>
+              <Button
+                label={t('share.button_text')}
+                icon={exportIcon}
+                onPress={onShare}
+              />
             </View>
           </ScrollView>
         </LinearGradient>
@@ -192,25 +192,6 @@ const styles = StyleSheet.create({
   },
   exportSectionPara: {
     marginTop: 22,
-  },
-
-  exportButton: {
-    backgroundColor: Colors.WHITE,
-    flexDirection: 'row',
-    height: 64,
-    borderRadius: 8,
-    marginTop: 48,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  exportButtonText: {
-    color: Colors.VIOLET,
-    fontSize: 20,
-    fontFamily: fontFamily.primaryMedium,
-  },
-  exportIcon: {
-    width: 16,
-    height: 21,
   },
   main: {
     flex: 1,

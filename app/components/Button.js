@@ -1,6 +1,7 @@
 import styled from '@emotion/native';
 import { ThemeProvider } from 'emotion-theming';
 import * as React from 'react';
+import { SvgXml } from 'react-native-svg';
 
 import { Typography } from './Typography';
 
@@ -8,7 +9,7 @@ import { Typography } from './Typography';
  * @param {{
  *   label: string;
  *   secondary?: boolean;
- *   icon?: React.ReactNode;
+ *   icon?: string;
  *   onPress: () => void;
  *   disabled?: boolean;
  * }} param0
@@ -27,7 +28,7 @@ export const Button = ({ label, secondary, icon, onPress, disabled }) => {
         <Typography use='button' secondary={secondary} disabled={disabled}>
           {label}
         </Typography>
-        {icon ? icon : null}
+        {icon ? <Icon xml={icon} /> : null}
       </ThemeProvider>
     </Container>
   );
@@ -62,3 +63,5 @@ const Container = styled.TouchableOpacity`
   align-items: center;
   width: 100%;
 `;
+
+const Icon = styled(SvgXml)``;
