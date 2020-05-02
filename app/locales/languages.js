@@ -74,6 +74,7 @@ export async function setUserLocaleOverride(locale) {
 const DEV_LANGUAGES = __DEV__
   ? {
       ar: { label: ar._display_name, translation: ar },
+      da: { label: da._display_name, translation: da },
       es: { label: es._display_name, translation: es },
       fil: { label: fil._display_name, translation: fil },
       fr: { label: fr._display_name, translation: fr },
