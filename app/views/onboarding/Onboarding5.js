@@ -22,6 +22,7 @@ import { isPlatformiOS } from './../../Util';
 import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
+import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { PARTICIPATE } from '../../constants/storage';
@@ -445,6 +446,12 @@ class Onboarding extends Component {
                 <View style={styles.spacer} />
               </View>
             </View>
+          </View>
+          <View style={styles.footerContainer}>
+            <Button
+              label={this.getButtonText()}
+              onPress={this.buttonPressed.bind(this)}
+            />
           </View>
         </ImageBackground>
       </Theme>

@@ -87,7 +87,7 @@ const ImportScreen = props => {
           />
 
           <Button
-            label={t('import.google.visit_button_text')}
+            label={t('import.title')}
             testID='google-takeout-import-btn'
             onPress={importPickFile}
           />
