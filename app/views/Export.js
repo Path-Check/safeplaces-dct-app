@@ -19,6 +19,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
 import { isPlatformiOS } from './../Util';
+import { IconButton } from '../components/IconButton';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -121,11 +122,12 @@ export const ExportScreen = ({ navigation }) => {
           colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
           style={{ flex: 1, height: '100%' }}>
           <View style={styles.headerContainer}>
-            <TouchableOpacity
-              style={styles.backArrowTouchable}
-              onPress={() => backToMain()}>
-              <SvgXml style={styles.backArrow} xml={close} />
-            </TouchableOpacity>
+            <IconButton
+              icon={close}
+              size={18}
+              onPress={() => backToMain()}
+              accessibilityLabel='Close'
+            />
           </View>
 
           <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -165,19 +167,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.VIOLET_BUTTON_DARK,
   },
   headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 55,
-    justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 1,
-  },
-  backArrow: {
-    height: 18,
-    width: 18,
+    flexDirection: 'row',
+    height: 55,
+    justifyContent: 'flex-end',
+    paddingHorizontal: 26,
   },
   contentContainer: {
     flexDirection: 'column',

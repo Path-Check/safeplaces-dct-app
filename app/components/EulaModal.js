@@ -90,7 +90,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
           <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 7, paddingHorizontal: 5, paddingBottom: 0 }}>
+            <View style={{ flex: 7, paddingHorizontal: 5 }}>
               <IconButton
                 icon={close}
                 size={20}
@@ -154,7 +154,8 @@ const styles = StyleSheet.create({
   },
   closeIcon: {
     marginBottom: 6,
-    opacity: 0.7,
+    marginRight: 8,
+    // opacity: 0.7,
     alignSelf: 'flex-end',
   },
   smallDescriptionText: {
