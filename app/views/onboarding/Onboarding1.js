@@ -9,6 +9,7 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
+import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
 import languages, {
   LOCALE_LIST,
   getUserLocaleOverride,
@@ -58,48 +59,52 @@ class Onboarding extends Component {
         <ImageBackground
           source={BackgroundImage}
           style={styles.backgroundImage}>
-          <StatusBar
-            barStyle='light-content'
-            backgroundColor='transparent'
-            translucent
-          />
-          <View style={styles.mainContainer}>
-            <View
-              style={{
-                paddingTop: 60,
-                position: 'absolute',
-                alignSelf: 'center',
-                zIndex: 10,
-              }}>
-              <NativePicker
-                items={LOCALE_LIST}
-                value={this.state.locale}
-                onValueChange={this.onLocaleChange}>
-                {({ label, openPicker }) => (
-                  <TouchableOpacity
-                    onPress={openPicker}
-                    style={styles.languageSelector}>
-                    <Typography style={styles.languageSelectorText}>
-                      {label}
-                    </Typography>
-                  </TouchableOpacity>
-                )}
-              </NativePicker>
+          <ImageBackground
+            source={BackgroundOverlayImage}
+            style={styles.backgroundImage}>
+            <StatusBar
+              barStyle='light-content'
+              backgroundColor='transparent'
+              translucent
+            />
+            <View style={styles.mainContainer}>
+              <View
+                style={{
+                  paddingTop: 60,
+                  position: 'absolute',
+                  alignSelf: 'center',
+                  zIndex: 10,
+                }}>
+                <NativePicker
+                  items={LOCALE_LIST}
+                  value={this.state.locale}
+                  onValueChange={this.onLocaleChange}>
+                  {({ label, openPicker }) => (
+                    <TouchableOpacity
+                      onPress={openPicker}
+                      style={styles.languageSelector}>
+                      <Typography style={styles.languageSelectorText}>
+                        {label}
+                      </Typography>
+                    </TouchableOpacity>
+                  )}
+                </NativePicker>
+              </View>
+              <View style={styles.contentContainer}>
+                <Typography style={styles.mainText}>
+                  {languages.t('label.launch_screen1_header')}
+                </Typography>
+              </View>
+              <View style={styles.footerContainer}>
+                <EulaModal
+                  continueFunction={() =>
+                    this.props.navigation.replace('Onboarding2')
+                  }
+                  selectedLocale={this.state.locale}
+                />
+              </View>
             </View>
-            <View style={styles.contentContainer}>
-              <Typography style={styles.mainText}>
-                {languages.t('label.launch_screen1_header')}
-              </Typography>
-            </View>
-            <View style={styles.footerContainer}>
-              <EulaModal
-                continueFunction={() =>
-                  this.props.navigation.replace('Onboarding2')
-                }
-                selectedLocale={this.state.locale}
-              />
-            </View>
-          </View>
+          </ImageBackground>
         </ImageBackground>
       </Theme>
     );
