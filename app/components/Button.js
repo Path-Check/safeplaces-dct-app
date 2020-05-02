@@ -14,7 +14,14 @@ import { Typography } from './Typography';
  *   disabled?: boolean;
  * }} param0
  */
-export const Button = ({ label, secondary, icon, onPress, disabled }) => {
+export const Button = ({
+  label,
+  secondary,
+  icon,
+  onPress,
+  disabled,
+  ...otherProps
+}) => {
   return (
     <Container
       onPress={onPress}
@@ -23,7 +30,8 @@ export const Button = ({ label, secondary, icon, onPress, disabled }) => {
       accessibilityRole='button'
       hasIcon={!!icon}
       secondary={secondary}
-      disabled={disabled}>
+      disabled={disabled}
+      {...otherProps}>
       <ThemeProvider theme={invertTextColors}>
         <Typography use='button' secondary={secondary} disabled={disabled}>
           {label}

@@ -142,6 +142,7 @@ export const ExportScreen = ({ navigation }) => {
               </Typography>
 
               <Button
+                style={styles.exportButton}
                 label={t('share.button_text')}
                 icon={exportIcon}
                 onPress={onShare}
@@ -192,6 +193,9 @@ const styles = StyleSheet.create({
   },
   exportSectionPara: {
     marginTop: 22,
+  },
+  exportButton: {
+    marginTop: 48,
   },
   main: {
     flex: 1,
