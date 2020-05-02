@@ -95,6 +95,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                 icon={close}
                 size={20}
                 style={styles.closeIcon}
+                accessibilityLabel='Close'
                 onPress={() => setModalVisibility(false)}
               />
               <WebView

@@ -4,9 +4,25 @@ import { SvgXml } from 'react-native-svg';
 
 import { themeTextColor } from '../constants/themes';
 
-export const IconButton = ({ icon, label, secondary, size, ...otherProps }) => {
+/**
+ * A theme aware icon button
+ *
+ * @param {{
+ *   icon: SvgXml;
+ *   accessibilityLabel: string;
+ *   secondary?: boolean;
+ *   size?: number;
+ * }} param0
+ */
+export const IconButton = ({
+  icon,
+  accessibilityLabel,
+  secondary,
+  size,
+  ...otherProps
+}) => {
   return (
-    <Container accessibilityLabel={label} {...otherProps}>
+    <Container accessibilityLabel={accessibilityLabel} {...otherProps}>
       <Icon
         xml={icon}
         secondary={secondary}
