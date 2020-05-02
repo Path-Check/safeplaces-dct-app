@@ -92,8 +92,12 @@ const LINE_HEIGHT_MAP = {
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
 
-const getTextColor = ({ theme, secondary = false }) =>
-  secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;
+const getTextColor = ({ theme, secondary, disabled }) =>
+  disabled
+    ? 'black' // TODO!
+    : secondary
+    ? theme.textSecondaryOnBackground
+    : theme.textPrimaryOnBackground;
 
 const getFontWeight = ({ use = Type.Body1, bold }) =>
   use.startsWith('headline') || use.startsWith('button') || bold

@@ -6,13 +6,14 @@ import { Typography } from './Typography';
 
 /**
  * @param {{
- *   label: string,
- *   secondary?: boolean,
- *   icon?: React.ReactNode,
- *   onPress: () => void,
+ *   label: string;
+ *   secondary?: boolean;
+ *   icon?: React.ReactNode;
+ *   onPress: () => void;
+ *   disabled?: boolean;
  * }} param0
  */
-export const Button = ({ label, secondary, icon, onPress }) => {
+export const Button = ({ label, secondary, icon, onPress, disabled }) => {
   return (
     <Container
       onPress={onPress}
@@ -20,9 +21,10 @@ export const Button = ({ label, secondary, icon, onPress }) => {
       accessibilityLabel={label}
       accessibilityRole='button'
       hasIcon={!!icon}
-      secondary={secondary}>
+      secondary={secondary}
+      disabled={disabled}>
       <ThemeProvider theme={invertTextColors}>
-        <Typography use='button' secondary={secondary}>
+        <Typography use='button' secondary={secondary} disabled={disabled}>
           {label}
         </Typography>
         {icon ? icon : null}
@@ -39,15 +41,16 @@ const invertTextColors = theme => {
   };
 };
 
-const themePrimary = ({ theme, secondary }) =>
-  secondary ? 'transparent' : theme.primary;
+const themePrimary = ({ theme, secondary, disabled }) =>
+  disabled ? theme.disabled : secondary ? 'transparent' : theme.primary;
+
 const getBorderColor = ({ theme, secondary }) =>
   secondary ? theme.primary : 'transparent';
 
 const getJustifyContent = ({ hasIcon }) =>
   hasIcon ? 'space-between' : 'center';
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
   background-color: ${themePrimary};
   height: 72px;
   border: 2px solid ${getBorderColor};
@@ -57,4 +60,5 @@ const Container = styled.View`
   justify-content: ${getJustifyContent};
   align-content: center;
   align-items: center;
+  width: 100%;
 `;

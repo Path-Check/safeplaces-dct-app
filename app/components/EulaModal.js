@@ -9,7 +9,7 @@ import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import en_html from '../locales/eula/en_html';
 import ht_html from '../locales/eula/ht_html';
-import ButtonWrapper from './ButtonWrapper';
+import { Button } from './Button';
 import { Checkbox } from './Checkbox';
 import { Typography } from './Typography';
 
@@ -80,11 +80,9 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
 
   return (
     <>
-      <ButtonWrapper
-        title={t('label.launch_get_started')}
+      <Button
+        label={t('label.launch_get_started')}
         onPress={() => setModalVisibility(true)}
-        buttonColor={Colors.VIOLET}
-        bgColor={Colors.WHITE}
       />
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
@@ -113,11 +111,8 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                 <Typography style={styles.smallDescriptionText}>
                   {t('onboarding.eula_message')}
                 </Typography>
-                <ButtonWrapper
-                  title={t('onboarding.eula_continue')}
-                  buttonColor={canContinue ? Colors.VIOLET : Colors.GRAY_BUTTON}
-                  bgColor={canContinue ? Colors.WHITE : Colors.LIGHT_GRAY}
-                  buttonWidth={'100%'}
+                <Button
+                  label={t('onboarding.eula_continue')}
                   disabled={!canContinue}
                   onPress={() => {
                     setModalVisibility(false);

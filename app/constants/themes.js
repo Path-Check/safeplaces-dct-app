@@ -35,6 +35,7 @@ export const violet = {
 
   primary: Color.WHITE,
   onPrimary: Color.VIOLET,
+  disabled: 'gray', // TODO
 };
 
 /** White on gray bg. E.g. Possible exposure mode on default screen */
