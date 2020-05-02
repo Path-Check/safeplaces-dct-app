@@ -33,12 +33,11 @@ export const SettingsScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const handleBackPress = () => {
-    backToMain();
-    return true;
-  };
-
   useEffect(() => {
+    const handleBackPress = () => {
+      navigation.goBack();
+      return true;
+    };
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
     // TODO: this should be a service or hook
@@ -52,7 +51,7 @@ export const SettingsScreen = ({ navigation }) => {
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
-  }, []);
+  }, [navigation]);
 
   const locationToggleButtonPressed = async () => {
     try {
