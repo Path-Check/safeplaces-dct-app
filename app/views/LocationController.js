@@ -34,12 +34,13 @@ export default class LocationController extends Component {
       location: {
         canTrack: true,
         reason: '',
-        crossedPaths: false,
+        hasPotentialExposure: false,
       },
     };
   }
 
   componentDidMount() {
+    console.log('mounting component');
     this.updateStateInfo();
     // refresh state if user backgrounds app
     AppState.addEventListener('change', () => {
@@ -87,11 +88,11 @@ export default class LocationController extends Component {
   render() {
     const canTrack = this.state.location.canTrack;
     const reason = this.state.location.reason;
-    const crossedPaths = this.state.location.crossedPaths;
+    const hasPotentialExposure = this.state.location.hasPotentialExposure;
     let page;
 
     if (canTrack) {
-      if (crossedPaths) {
+      if (hasPotentialExposure) {
         page = <ExposurePage />;
       } else {
         page = <DefaultPage />;

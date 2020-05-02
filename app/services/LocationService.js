@@ -15,6 +15,12 @@ import { isPlatformAndroid } from '../Util';
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION = '55';
 
+const Reason = {
+  LOCATION_OFF: 'LOCATION_OFF',
+  NOT_AUTHORIZED: 'NOT_AUTHORIZED',
+  USER_OFF: 'USER_OFF',
+};
+
 export class LocationData {
   constructor() {
     // The desired location interval, and the minimum acceptable interval
@@ -454,11 +460,11 @@ export default class LocationServices {
     });
   }
 
-  static getCrossedPaths() {
+  static getHasPotentialExposure() {
     return new Promise(resolve => {
       GetStoreData(CROSSED_PATHS).then(dayBin => {
         dayBin = JSON.parse(dayBin);
-        if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
+        if (dayBin !== null && dayBin.some(exposure => exposure > 0)) {
           console.log('Found crossed paths');
           resolve(true);
         } else {
@@ -485,14 +491,14 @@ export default class LocationServices {
   }
 
   static async checkStatus() {
-    const crossedPaths = await this.getCrossedPaths();
+    const hasPotentialExposure = await this.getHasPotentialExposure();
     const particpating = await this.getParticpating();
 
     if (!particpating) {
       return {
         canTrack: false,
-        reason: 'USER_OFF',
-        crossedPaths: crossedPaths,
+        reason: Reason.USER_OFF,
+        hasPotentialExposure: hasPotentialExposure,
       };
     }
 
@@ -500,23 +506,23 @@ export default class LocationServices {
     if (!status.locationServicesEnabled) {
       return {
         canTrack: false,
-        reason: 'LOCATION_OFF',
-        crossedPaths: crossedPaths,
+        reason: Reason.LOCATION_OFF,
+        hasPotentialExposure: hasPotentialExposure,
       };
     }
 
     if (status.authorization != BackgroundGeolocation.AUTHORIZED) {
       return {
         canTrack: false,
-        reason: 'NOT_AUTHORIZED',
-        crossedPaths: crossedPaths,
+        reason: Reason.NOT_AUTHORIZED,
+        hasPotentialExposure: hasPotentialExposure,
       };
     }
 
     return {
       canTrack: true,
       reason: '',
-      crossedPaths: crossedPaths,
+      hasPotentialExposure: hasPotentialExposure,
     };
   }
 }
