@@ -7,6 +7,7 @@ import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
 import xmarkIcon from '../assets/svgs/xmarkIcon';
 import { Divider } from '../components/Divider';
+import { Feature } from '../components/Feature';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
@@ -102,7 +103,6 @@ export const SettingsScreen = ({ navigation }) => {
             )}
           </NativePicker>
         </Section>
-
         <Section>
           <Item
             label={t('label.choose_provider_title')}
@@ -127,11 +127,11 @@ export const SettingsScreen = ({ navigation }) => {
           />
         </Section>
 
-        {__DEV__ && (
+        <Feature name='google_import'>
           <Section>
             <GoogleMapsImport navigation={navigation} />
           </Section>
-        )}
+        </Feature>
 
         <Section last>
           <Item
