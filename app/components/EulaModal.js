@@ -155,7 +155,6 @@ const styles = StyleSheet.create({
   closeIcon: {
     marginBottom: 6,
     marginRight: 8,
-    // opacity: 0.7,
     alignSelf: 'flex-end',
   },
   smallDescriptionText: {
