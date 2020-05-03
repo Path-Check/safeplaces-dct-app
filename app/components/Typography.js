@@ -11,7 +11,6 @@ export const Type = {
   Body1: 'body1',
   Body2: 'body2',
   Body3: 'body3',
-  Button: 'button',
 };
 
 /**
@@ -75,7 +74,6 @@ const FONT_SIZE_MAP = {
   [Type.Body1]: '18px',
   [Type.Body2]: '16px',
   [Type.Body3]: '15px',
-  [Type.Button]: '20px',
 };
 
 const getFontSize = ({ use = Type.Body1 }) => FONT_SIZE_MAP[use];
@@ -87,32 +85,27 @@ const LINE_HEIGHT_MAP = {
   [Type.Body1]: '24px',
   [Type.Body2]: '22px',
   [Type.Body3]: '24px',
-  [Type.Button]: '40px',
 };
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
 
-const getTextColor = ({ theme, secondary, disabled }) =>
-  disabled
-    ? 'black' // TODO!
-    : secondary
-    ? theme.textSecondaryOnBackground
-    : theme.textPrimaryOnBackground;
+const getTextColor = ({ theme, secondary }) =>
+  secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;
+
+const getTextOpacity = ({ disabled }) => (disabled ? '0.25' : '1');
 
 const getFontWeight = ({ use = Type.Body1, bold }) =>
-  use.startsWith('headline') || use.startsWith('button') || bold
-    ? 'bold'
-    : 'normal';
+  use.startsWith('headline') || bold ? 'bold' : 'normal';
 
-const getFontFamily = ({ use, monospace, bold }) =>
-  use.startsWith('headline') || use.startsWith('button') || bold
-    ? 'IBMPlexSans-Bold'
-    : monospace
-    ? 'IBMPlexMono'
-    : 'IBMPlexSans';
+const getFontFamily = ({ use, monospace, bold }) => {
+  if (use.startsWith('headline') || bold) return 'IBMPlexSans-Bold';
+  if (monospace) return 'IBMPlexMono';
+  return 'IBMPlexSans';
+};
 
 const ThemedText = styled.Text`
   color: ${getTextColor};
+  opacity: ${getTextOpacity};
   font-family: ${getFontFamily};
   font-size: ${getFontSize};
   font-weight: ${getFontWeight};

@@ -30,6 +30,7 @@ import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { HCAService } from '../../services/HCAService';
+import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
@@ -447,7 +448,7 @@ class Onboarding extends Component {
               </View>
             </View>
           </View>
-          <View style={styles.footerContainer}>
+          <View style={sharedStyles.footerContainer}>
             <Button
               label={this.getButtonText()}
               onPress={this.buttonPressed.bind(this)}
@@ -498,12 +499,6 @@ const styles = StyleSheet.create({
   },
   spacer: {
     marginVertical: '5%',
-  },
-  footerContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: '10%',
-    alignSelf: 'center',
   },
   permissionContainer: {
     flexDirection: 'row',

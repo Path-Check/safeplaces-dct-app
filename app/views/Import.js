@@ -77,6 +77,7 @@ const ImportScreen = props => {
           </Typography>
 
           <Button
+            small
             label={t('import.google.visit_button_text')}
             testID='google-takeout-link'
             onPress={() =>
@@ -87,6 +88,7 @@ const ImportScreen = props => {
           />
 
           <Button
+            small
             label={t('import.title')}
             testID='google-takeout-import-btn'
             onPress={importPickFile}

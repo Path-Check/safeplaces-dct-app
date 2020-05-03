@@ -13,6 +13,7 @@ import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
+import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
@@ -36,7 +37,7 @@ const Onboarding = props => {
           {languages.t('label.launch_screen2_subheader')}
         </Typography>
       </View>
-      <View style={styles.footerContainer}>
+      <View style={sharedStyles.footerContainer}>
         <Button
           label={languages.t('label.launch_next')}
           onPress={() => {
@@ -76,12 +77,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     width: width * 0.8,
     fontFamily: fontFamily.primaryRegular,
-  },
-  footerContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: '10%',
-    alignSelf: 'center',
   },
 });
 

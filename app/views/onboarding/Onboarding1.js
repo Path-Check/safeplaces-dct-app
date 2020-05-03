@@ -22,6 +22,7 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
+import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
@@ -95,7 +96,7 @@ class Onboarding extends Component {
                   {languages.t('label.launch_screen1_header')}
                 </Typography>
               </View>
-              <View style={styles.footerContainer}>
+              <View style={sharedStyles.footerContainer}>
                 <EulaModal
                   continueFunction={() =>
                     this.props.navigation.replace('Onboarding2')
@@ -135,12 +136,6 @@ const styles = StyleSheet.create({
     color: Colors.WHITE,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
-  },
-  footerContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: '10%',
-    alignSelf: 'center',
   },
   // eslint-disable-next-line react-native/no-color-literals
   languageSelector: {

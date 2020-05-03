@@ -20,6 +20,7 @@ export const Button = ({
   icon,
   onPress,
   disabled,
+  small,
   ...otherProps
 }) => {
   return (
@@ -31,11 +32,12 @@ export const Button = ({
       hasIcon={!!icon}
       secondary={secondary}
       disabled={disabled}
+      small={small}
       {...otherProps}>
       <ThemeProvider theme={invertTextColors}>
-        <Typography use='button' secondary={secondary} disabled={disabled}>
+        <Label secondary={secondary} disabled={disabled}>
           {label}
-        </Typography>
+        </Label>
         {icon ? <Icon xml={icon} /> : null}
       </ThemeProvider>
     </Container>
@@ -59,9 +61,11 @@ const getBorderColor = ({ theme, secondary }) =>
 const getJustifyContent = ({ hasIcon }) =>
   hasIcon ? 'space-between' : 'center';
 
+const getButtonHeight = ({ small }) => (small ? '48px' : '72px');
+
 const Container = styled.TouchableOpacity`
   background-color: ${themePrimary};
-  height: 72px;
+  height: ${getButtonHeight};
   border: 2px solid ${getBorderColor};
   padding: 16px;
   border-radius: 8px;
@@ -72,4 +76,17 @@ const Container = styled.TouchableOpacity`
   width: 100%;
 `;
 
-const Icon = styled(SvgXml)``;
+const getFontSize = ({ small }) => (small ? '14px' : '20px');
+
+const getLineHeight = ({ small }) => (small ? '21px' : '40px');
+
+const Label = styled(Typography)`
+  font-family: IBMPlexSans-Medium;
+  font-size: ${getFontSize};
+  line-height: ${getLineHeight};
+  font-weight: normal;
+`;
+
+const Icon = styled(SvgXml)`
+  margin-right: 8px; // for visual alignment
+`;
