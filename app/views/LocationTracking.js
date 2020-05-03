@@ -295,6 +295,7 @@ class LocationTracking extends Component {
           height={30}
           color='white'
         />
+        {/*eslint-disable-next-line react-native/no-raw-text */}
         <Typography use={'body3'} style={styles.featureFlagText}>
           Feature Flags
         </Typography>
@@ -522,8 +523,8 @@ const styles = StyleSheet.create({
   featureFlagsContainer: {
     position: 'absolute',
     top: 0,
-    left: 25,
-    marginTop: '14%',
+    left: 20,
+    marginTop: '12%',
     marginRight: '7%',
     alignSelf: 'flex-end',
   },
@@ -534,6 +535,8 @@ const styles = StyleSheet.create({
     color: Colors.WHITE,
     width: '50%',
     textAlign: 'center',
+    lineHeight: 15,
+    paddingTop: 5,
   },
   buttonContainer: {
     top: 24,

@@ -3,7 +3,7 @@ import 'react-native';
 import { act, render } from '@testing-library/react-native';
 import React from 'react';
 
-import { FlagsProvider } from '../../helpers/flags';
+import { FlagsContext } from '../../helpers/flags';
 import * as languages from '../../locales/languages';
 import { SettingsScreen } from '../Settings';
 
@@ -14,6 +14,8 @@ jest.mock('../../helpers/General', () => {
 });
 
 jest.useFakeTimers();
+
+const mockSetFlags = jest.fn();
 
 let BACKUP_LOCALE_LIST;
 let BACKUP_LOCALE_NAME;
@@ -37,10 +39,11 @@ afterEach(() => {
 });
 
 it('renders correctly', async () => {
+  const mockFlags = { google_import: true };
   const { asJSON } = render(
-    <FlagsProvider flags={{ google_import: true }}>
+    <FlagsContext.Provider value={[mockFlags, mockSetFlags]}>
       <SettingsScreen />
-    </FlagsProvider>,
+    </FlagsContext.Provider>,
   );
 
   await act(async () => {
@@ -51,10 +54,11 @@ it('renders correctly', async () => {
 });
 
 it('renders correctly (without google import flag)', async () => {
+  const mockFlags = {};
   const { asJSON } = render(
-    <FlagsProvider flags={{}}>
+    <FlagsContext.Provider value={[mockFlags, mockSetFlags]}>
       <SettingsScreen />
-    </FlagsProvider>,
+    </FlagsContext.Provider>,
   );
 
   await act(async () => {

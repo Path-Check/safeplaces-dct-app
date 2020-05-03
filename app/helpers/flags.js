@@ -1,7 +1,5 @@
-import createFlags from 'flag';
+import React, { useContext } from 'react';
 import env from 'react-native-config';
-
-const { FlagsProvider, Flag, useFlag, useFlags } = createFlags();
 
 /**
  * Normalizes flags:
@@ -25,4 +23,17 @@ export function parseFlags(envConfig) {
 
 export const buildTimeFlags = parseFlags(env);
 
-export { FlagsProvider, Flag, useFlag, useFlags };
+export const FlagsContext = React.createContext([buildTimeFlags, () => {}]);
+
+/**
+ * Custom hook that can be used to fetch the list of all flags,
+ * and to set the value for a particular flag.
+ */
+export function useFlags() {
+  const [flags, setFlags] = useContext(FlagsContext);
+
+  const setFlag = (flagName, flagVal) =>
+    setFlags({ ...flags, [flagName]: flagVal });
+
+  return [flags, setFlag];
+}

@@ -1,28 +1,24 @@
-import React from 'react';
-
-import { Flag } from '../helpers/flags';
+import { useFlags } from '../helpers/flags';
 
 /**
- * Small wrapper around `<Flag />` which makes the default case easier:
  *
  * Usage:
  *
  * ```
- * <Feature name="google_import" fallback={() => <hr />}>
+ * <FeatureFlag name="google_import">
  *   <FeatureUi />
- * </Feature>
+ * </FeatureFlag>
  * ```
  *
  * @param {{
  *   name: string;
- *   fallback?: () => import('react').ReactNode;
+ *   fallback?: import('react').ReactNode;
  *   children: import('react').ReactNode;
  * }} param0
  */
-export const Feature = ({ name, fallback, children }) => {
-  const keyPath = name.split('.');
+export const FeatureFlag = ({ name, children, fallback }) => {
+  const [flags] = useFlags();
+  const fallbackRender = fallback || null;
 
-  return (
-    <Flag name={keyPath} render={() => children} fallbackRender={fallback} />
-  );
+  return flags[name] ? children : fallbackRender;
 };

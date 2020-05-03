@@ -2,76 +2,72 @@ import { render } from '@testing-library/react-native';
 import React from 'react';
 import { Text } from 'react-native';
 
-import { FlagsProvider } from '../../helpers/flags';
-import { Feature } from '../Feature';
+import { FlagsContext } from '../../helpers/flags';
+import { FeatureFlag } from '../Feature';
+
+const mockSetFlags = jest.fn();
 
 it('renders feature if the flag is enabled', () => {
+  const mockFlags = { feature1: true };
+
   const { asJSON } = render(
-    <FlagsProvider flags={{ feature1: true }}>
-      <Feature name='feature1'>
+    <FlagsContext.Provider value={[mockFlags, mockSetFlags]}>
+      <FeatureFlag name='feature1'>
         <Text>feature1</Text>
-      </Feature>
-    </FlagsProvider>,
+      </FeatureFlag>
+    </FlagsContext.Provider>,
   );
 
   expect(asJSON()).toMatchSnapshot();
 });
 
-it('allows dotted notation in the feature name', () => {
+it('does not render if the flag value is falsy', () => {
+  const mockFlags = { feature1: {} };
   const { asJSON } = render(
-    <FlagsProvider flags={{ feature1: { child: true } }}>
-      <Feature name='feature1.child'>
+    <FlagsContext.Provider value={[mockFlags, mockSetFlags]}>
+      <FeatureFlag name='feature1.child'>
         <Text>feature1.child</Text>
-      </Feature>
-    </FlagsProvider>,
-  );
-
-  expect(asJSON()).toMatchSnapshot();
-});
-
-it('does not render if dotted notation key path is falsy', () => {
-  const { asJSON } = render(
-    <FlagsProvider flags={{ feature1: {} }}>
-      <Feature name='feature1.child'>
-        <Text>feature1.child</Text>
-      </Feature>
-    </FlagsProvider>,
+      </FeatureFlag>
+    </FlagsContext.Provider>,
   );
 
   expect(asJSON()).toMatchSnapshot();
 });
 
 it('omits feature if the flag is disabled', () => {
+  const mockFlags = { feature1: false };
   const { asJSON } = render(
-    <FlagsProvider flags={{ feature1: false }}>
-      <Feature name='feature1'>
+    <FlagsContext.Provider value={[mockFlags, mockSetFlags]}>
+      <FeatureFlag name='feature1'>
         <Text>feature1</Text>
-      </Feature>
-    </FlagsProvider>,
+      </FeatureFlag>
+    </FlagsContext.Provider>,
   );
 
   expect(asJSON()).toMatchSnapshot();
 });
 
 it('omits feature if the flag is missing', () => {
+  const mockFlags = {};
   const { asJSON } = render(
-    <FlagsProvider flags={{}}>
-      <Feature name='feature1'>
+    <FlagsContext.Provider value={[mockFlags, mockSetFlags]}>
+      <FeatureFlag name='feature1'>
         <Text>feature1</Text>
-      </Feature>
-    </FlagsProvider>,
+      </FeatureFlag>
+    </FlagsContext.Provider>,
   );
 
   expect(asJSON()).toMatchSnapshot();
 });
 
 it('renders the fallback instead, if the flag is disabled/omitted', () => {
+  const mockFlags = { feature1: false };
   const { asJSON } = render(
-    <FlagsProvider flags={{ feature1: false }}>
-      <Feature name='feature1' fallback={() => <Text>Old UI</Text>}>
+    <FlagsContext.Provider value={[mockFlags, mockSetFlags]}>
+      <FeatureFlag name='feature1' fallback={<Text>Old UI</Text>}>
         <Text>feature1</Text>
-      </Feature>
-    </FlagsProvider>,
+      </FeatureFlag>
+    </FlagsContext.Provider>,
   );
 
   expect(asJSON()).toMatchSnapshot();
