@@ -26,6 +26,7 @@ import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import exportImage from './../assets/images/export.png';
 import foreArrow from './../assets/images/foreArrow.png';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
+import flagIcon from './../assets/svgs/flag';
 import settingsIcon from './../assets/svgs/settingsIcon';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
@@ -266,7 +267,7 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('SettingsScreen', {});
   }
 
-  getSettings() {
+  getSettingsBtn() {
     return (
       <TouchableOpacity
         style={styles.settingsContainer}
@@ -276,6 +277,27 @@ class LocationTracking extends Component {
         {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
         <Image resizeMode={'contain'} />
         <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
+      </TouchableOpacity>
+    );
+  }
+
+  getFeatureFlagsBtn() {
+    return (
+      <TouchableOpacity
+        style={styles.featureFlagsContainer}
+        onPress={() => {
+          this.props.navigation.navigate('FeatureFlagsScreen');
+        }}>
+        <SvgXml
+          style={styles.featureFlagIcon}
+          xml={flagIcon}
+          width={30}
+          height={30}
+          color='white'
+        />
+        <Typography use={'body3'} style={styles.featureFlagText}>
+          Feature Flags
+        </Typography>
       </TouchableOpacity>
     );
   }
@@ -448,7 +470,8 @@ class LocationTracking extends Component {
             </View>
           </TouchableOpacity>
         </View>
-        {this.getSettings()}
+        {this.getSettingsBtn()}
+        {this.getFeatureFlagsBtn()}
       </ImageBackground>
     );
   }
@@ -495,6 +518,22 @@ const styles = StyleSheet.create({
     marginTop: '14%',
     marginRight: '7%',
     alignSelf: 'flex-end',
+  },
+  featureFlagsContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 25,
+    marginTop: '14%',
+    marginRight: '7%',
+    alignSelf: 'flex-end',
+  },
+  featureFlagIcon: {
+    marginLeft: 12.5,
+  },
+  featureFlagText: {
+    color: Colors.WHITE,
+    width: '50%',
+    textAlign: 'center',
   },
   buttonContainer: {
     top: 24,
