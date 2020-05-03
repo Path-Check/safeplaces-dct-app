@@ -8,6 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      ENVFILE: .env.release
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -76,7 +78,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: android/app/build/outputs/apk/release/app-release-unsigned-signed.apk
           asset_name: app-release-${{ github.ref }}.apk
           asset_content_type: application/zip
