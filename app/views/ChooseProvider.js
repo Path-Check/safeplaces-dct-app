@@ -33,7 +33,9 @@ import { HCAService } from '../services/HCAService';
 
 const { SlideInMenu } = renderers;
 
-class ChooseProviderScreen extends Component {
+export const CHOOSE_PROVIDER_SCREEN_NAME = 'ChooseProviderScreen';
+
+class ChooseProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -489,4 +491,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withMenuContext(ChooseProviderScreen);
+export const ChooseProviderScreen = withMenuContext(ChooseProvider);

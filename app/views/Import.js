@@ -28,7 +28,9 @@ const makeImportResults = (label = '', error = false) => ({
   label,
 });
 
-const ImportScreen = props => {
+export const IMPORT_SCREEN_NAME = 'ImportScreen';
+
+export const ImportScreen = props => {
   const { t } = useTranslation();
   const {
     navigation: { goBack },
@@ -172,4 +174,3 @@ const styles = StyleSheet.create({
     color: colors.RED_TEXT,
   },
 });
-export default ImportScreen;

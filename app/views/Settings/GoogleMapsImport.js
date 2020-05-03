@@ -7,12 +7,13 @@ import googleMapsIcon from '../../assets/svgs/google-maps-logo';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
+import { IMPORT_SCREEN_NAME } from '../Import';
 
 export const GoogleMapsImport = ({ navigation }) => {
   const { t } = useTranslation();
 
   const importPressed = () => {
-    navigation.navigate('ImportScreen');
+    navigation.navigate(IMPORT_SCREEN_NAME);
   };
 
   return (

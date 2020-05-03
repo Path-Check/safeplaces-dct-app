@@ -21,6 +21,8 @@ import { Theme } from '../constants/themes';
 const TERMS_OF_USE_URL =
   'https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#';
 
+export const LICENSES_SCREEN_NAME = 'LicensesScreen';
+
 export const LicensesScreen = ({ navigation }) => {
   const { t } = useTranslation();
 

@@ -26,13 +26,13 @@
       "instructions_second": "Before you can import, you must first \"Take out\" your location data from Google.",
       "title": "Google Maps",
       "visit_button_text": "Visit Google Takeout",
-      "already_imported":"Provided Takeout file has already been imported.",
+      "already_imported": "Provided Takeout file has already been imported.",
       "no_recent_locations": "Takeout doesn't have any recent locations.",
       "invalid_file_format": "Provided file format is not supported. \nSupported formats: \".zip\".",
       "file_open_error": "Could not open the file. \nPlease, make sure the file is opened from Google Drive"
     },
-    "success":"Recent locations has been successfully imported!",
-    "error":"Something went wrong while importing your data.",
+    "success": "Recent locations has been successfully imported!",
+    "error": "Something went wrong while importing your data.",
     "subtitle": "To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.",
     "title": "Import Locations"
   },

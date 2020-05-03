@@ -21,10 +21,13 @@ import NativePicker from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
+import { ONBOARDING2_SCREEN_NAME } from './Onboarding2';
 
 const width = Dimensions.get('window').width;
 
-class Onboarding extends Component {
+export const ONBOARDING1_SCREEN_NAME = 'Onboarding1';
+
+export class Onboarding1 extends Component {
   constructor(props) {
     super(props);
 
@@ -94,7 +97,7 @@ class Onboarding extends Component {
             <View style={styles.footerContainer}>
               <EulaModal
                 continueFunction={() =>
-                  this.props.navigation.replace('Onboarding2')
+                  this.props.navigation.replace(ONBOARDING2_SCREEN_NAME)
                 }
                 selectedLocale={this.state.locale}
               />
@@ -155,5 +158,3 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
 });
-
-export default Onboarding;

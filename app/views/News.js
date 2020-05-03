@@ -22,8 +22,9 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 export const DEFAULT_NEWS_SITE_URL = 'https://covidsafepaths.org/in-app-news';
+export const NEWS_SCREEN_NAME = 'NewsScreen';
 
-class NewsScreen extends Component {
+export class NewsScreen extends Component {
   constructor(props) {
     super(props);
     let default_news = {
@@ -180,5 +181,3 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primarySemiBold,
   },
 });
-
-export default NewsScreen;

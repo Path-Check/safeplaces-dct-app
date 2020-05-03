@@ -41,6 +41,10 @@ import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
+import { EXPORT_SCREEN_NAME } from './Export';
+import { EXPOSURE_HISTORY_SCREEN_NAME } from './ExposureHistory/ExposureHistory';
+import { IMPORT_SCREEN_NAME } from './Import';
+import { SETTINGS_SCREEN_NAME } from './Settings';
 
 const MAYO_COVID_URL = 'https://www.mayoclinic.org/coronavirus-covid-19';
 
@@ -74,7 +78,9 @@ const StateIcon = ({ status, size }) => {
 
 const height = Dimensions.get('window').height;
 
-class LocationTracking extends Component {
+export const LOCATION_TRACKING_SCREEN_NAME = 'LocationTrackingScreen';
+
+export class LocationTracking extends Component {
   constructor(props) {
     super(props);
 
@@ -222,11 +228,11 @@ class LocationTracking extends Component {
   };
 
   export() {
-    this.props.navigation.navigate('ExportScreen', {});
+    this.props.navigation.navigate(EXPORT_SCREEN_NAME, {});
   }
 
   import() {
-    this.props.navigation.navigate('ImportScreen', {});
+    this.props.navigation.navigate(IMPORT_SCREEN_NAME, {});
   }
 
   willParticipate = () => {
@@ -263,7 +269,7 @@ class LocationTracking extends Component {
   }
 
   settings() {
-    this.props.navigation.navigate('SettingsScreen', {});
+    this.props.navigation.navigate(SETTINGS_SCREEN_NAME, {});
   }
 
   getSettings() {
@@ -271,7 +277,7 @@ class LocationTracking extends Component {
       <TouchableOpacity
         style={styles.settingsContainer}
         onPress={() => {
-          this.props.navigation.navigate('SettingsScreen');
+          this.props.navigation.navigate(SETTINGS_SCREEN_NAME);
         }}>
         {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
         <Image resizeMode={'contain'} />
@@ -366,7 +372,7 @@ class LocationTracking extends Component {
     } else if (this.state.currentState === StateEnum.AT_RISK) {
       buttonLabel = languages.t('label.see_exposure_history');
       buttonFunction = () => {
-        this.props.navigation.navigate('ExposureHistoryScreen');
+        this.props.navigation.navigate(EXPOSURE_HISTORY_SCREEN_NAME);
       };
     } else if (this.state.currentState === StateEnum.UNKNOWN) {
       buttonLabel = languages.t('label.home_enable_location');
@@ -568,5 +574,3 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
 });
-
-export default LocationTracking;

@@ -13,10 +13,13 @@ import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
+import { ONBOARDING5_SCREEN_NAME } from './Onboarding5';
 
 const width = Dimensions.get('window').width;
 
-const Onboarding = props => {
+export const ONBOARDING4_SCREEN_NAME = 'Onboarding4';
+
+export const Onboarding4 = props => {
   return (
     <View style={styles.mainContainer}>
       <StatusBar
@@ -40,7 +43,7 @@ const Onboarding = props => {
         <ButtonWrapper
           title={languages.t('label.launch_set_up_phone')}
           onPress={() => {
-            props.navigation.replace('Onboarding5');
+            props.navigation.replace(ONBOARDING5_SCREEN_NAME);
           }}
           buttonColor={Colors.WHITE}
           bgColor={Colors.VIOLET_BUTTON}
@@ -86,5 +89,3 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
-
-export default Onboarding;

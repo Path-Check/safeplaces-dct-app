@@ -19,8 +19,16 @@ import {
   supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
 import LocationServices from '../services/LocationService';
+import { ABOUT_SCREEN_NAME } from './About';
+import { CHOOSE_PROVIDER_SCREEN_NAME } from './ChooseProvider';
+import { EXPORT_SCREEN_NAME } from './Export';
+import { EXPOSURE_HISTORY_SCREEN_NAME } from './ExposureHistory/ExposureHistory';
+import { LICENSES_SCREEN_NAME } from './Licenses';
+import { NEWS_SCREEN_NAME } from './News';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
+
+export const SETTINGS_SCREEN_NAME = 'SettingsScreen';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -107,22 +115,22 @@ export const SettingsScreen = ({ navigation }) => {
           <Item
             label={t('label.choose_provider_title')}
             description={t('label.choose_provider_subtitle')}
-            onPress={() => navigation.navigate('ChooseProviderScreen')}
+            onPress={() => navigation.navigate(CHOOSE_PROVIDER_SCREEN_NAME)}
           />
           <Item
             label={t('label.news_title')}
             description={t('label.news_subtitle')}
-            onPress={() => navigation.navigate('NewsScreen')}
+            onPress={() => navigation.navigate(NEWS_SCREEN_NAME)}
           />
           <Item
             label={t('label.event_history_title')}
             description={t('label.event_history_subtitle')}
-            onPress={() => navigation.navigate('ExposureHistoryScreen')}
+            onPress={() => navigation.navigate(EXPOSURE_HISTORY_SCREEN_NAME)}
           />
           <Item
             label={t('share.title')}
             description={t('share.subtitle')}
-            onPress={() => navigation.navigate('ExportScreen')}
+            onPress={() => navigation.navigate(EXPORT_SCREEN_NAME)}
             last
           />
         </Section>
@@ -136,11 +144,11 @@ export const SettingsScreen = ({ navigation }) => {
         <Section last>
           <Item
             label={t('label.about_title')}
-            onPress={() => navigation.navigate('AboutScreen')}
+            onPress={() => navigation.navigate(ABOUT_SCREEN_NAME)}
           />
           <Item
             label={t('label.legal_page_title')}
-            onPress={() => navigation.navigate('LicensesScreen')}
+            onPress={() => navigation.navigate(LICENSES_SCREEN_NAME)}
             last
           />
         </Section>

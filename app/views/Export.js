@@ -27,6 +27,8 @@ import { LocationData } from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64;
 
+export const EXPORT_SCREEN_NAME = 'ExportScreen';
+
 export const ExportScreen = ({ navigation }) => {
   const { t } = useTranslation();
   function handleBackPress() {

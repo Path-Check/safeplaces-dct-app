@@ -29,6 +29,7 @@ import { PARTICIPATE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { HCAService } from '../../services/HCAService';
+import { LOCATION_TRACKING_SCREEN_NAME } from '../LocationTracking';
 
 const width = Dimensions.get('window').width;
 
@@ -44,6 +45,8 @@ const StepEnum = {
   HCA_SUBSCRIPTION: 2,
   DONE: 3,
 };
+
+export const ONBOARDING5_SCREEN_NAME = 'Onboarding5';
 
 const PermissionDescription = ({ title, status }) => {
   let icon;
@@ -69,7 +72,7 @@ const PermissionDescription = ({ title, status }) => {
   );
 };
 
-class Onboarding extends Component {
+export class Onboarding5 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -292,7 +295,7 @@ class Onboarding extends Component {
           this.state.locationPermission === PermissionStatusEnum.GRANTED,
         );
         SetStoreData('ONBOARDING_DONE', true);
-        this.props.navigation.replace('LocationTrackingScreen');
+        this.props.navigation.replace(LOCATION_TRACKING_SCREEN_NAME);
     }
   }
 
@@ -520,5 +523,3 @@ const styles = StyleSheet.create({
     paddingTop: 15,
   },
 });
-
-export default Onboarding;

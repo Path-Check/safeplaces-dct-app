@@ -22,7 +22,9 @@ import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
 import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
 
-class AboutScreen extends Component {
+export const ABOUT_SCREEN_NAME = 'AboutScreen';
+
+export class AboutScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -219,5 +221,3 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 });
-
-export default AboutScreen;

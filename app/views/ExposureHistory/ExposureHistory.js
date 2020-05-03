@@ -15,6 +15,8 @@ import { DetailedHistory } from './DetailedHistory';
 
 const NO_HISTORY = [];
 
+export const EXPOSURE_HISTORY_SCREEN_NAME = 'ExposureHistoryScreen';
+
 export const ExposureHistoryScreen = ({ navigation }) => {
   const [history, setHistory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
