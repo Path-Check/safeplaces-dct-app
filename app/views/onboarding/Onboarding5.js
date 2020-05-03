@@ -46,7 +46,7 @@ const StepEnum = {
   DONE: 3,
 };
 
-export const ONBOARDING5_SCREEN_NAME = 'Onboarding5';
+export const ONBOARDING5_SCREEN_NAME = 'Onboarding5Screen';
 
 const PermissionDescription = ({ title, status }) => {
   let icon;
@@ -72,7 +72,7 @@ const PermissionDescription = ({ title, status }) => {
   );
 };
 
-export class Onboarding5 extends Component {
+export class Onboarding5Screen extends Component {
   constructor(props) {
     super(props);
     this.state = {

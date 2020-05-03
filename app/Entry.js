@@ -22,28 +22,28 @@ import { IMPORT_SCREEN_NAME, ImportScreen } from './views/Import';
 import { LICENSES_SCREEN_NAME, LicensesScreen } from './views/Licenses';
 import {
   LOCATION_TRACKING_SCREEN_NAME,
-  LocationTracking,
+  LocationTrackingScreen,
 } from './views/LocationTracking';
 import { NEWS_SCREEN_NAME, NewsScreen } from './views/News';
 import {
   ONBOARDING1_SCREEN_NAME,
-  Onboarding1,
+  Onboarding1Screen,
 } from './views/onboarding/Onboarding1';
 import {
   ONBOARDING2_SCREEN_NAME,
-  Onboarding2,
+  Onboarding2Screen,
 } from './views/onboarding/Onboarding2';
 import {
   ONBOARDING3_SCREEN_NAME,
-  Onboarding3,
+  Onboarding3Screen,
 } from './views/onboarding/Onboarding3';
 import {
   ONBOARDING4_SCREEN_NAME,
-  Onboarding4,
+  Onboarding4Screen,
 } from './views/onboarding/Onboarding4';
 import {
   ONBOARDING5_SCREEN_NAME,
-  Onboarding5,
+  Onboarding5Screen,
 } from './views/onboarding/Onboarding5';
 import { SETTINGS_SCREEN_NAME, SettingsScreen } from './views/Settings';
 
@@ -75,7 +75,9 @@ class Entry extends Component {
   }
 
   getInitalComponent() {
-    return this.state.isOnboardingComplete ? LocationTracking : Onboarding1;
+    return this.state.isOnboardingComplete
+      ? LocationTrackingScreen
+      : Onboarding1Screen;
   }
 
   render() {
@@ -94,32 +96,32 @@ class Entry extends Component {
           />
           <Stack.Screen
             name={ONBOARDING1_SCREEN_NAME}
-            component={Onboarding1}
+            component={Onboarding1Screen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
             name={ONBOARDING2_SCREEN_NAME}
-            component={Onboarding2}
+            component={Onboarding2Screen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
             name={ONBOARDING3_SCREEN_NAME}
-            component={Onboarding3}
+            component={Onboarding3Screen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
             name={ONBOARDING4_SCREEN_NAME}
-            component={Onboarding4}
+            component={Onboarding4Screen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
             name={ONBOARDING5_SCREEN_NAME}
-            component={Onboarding5}
+            component={Onboarding5Screen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
             name={LOCATION_TRACKING_SCREEN_NAME}
-            component={LocationTracking}
+            component={LocationTrackingScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

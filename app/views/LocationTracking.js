@@ -78,9 +78,9 @@ const StateIcon = ({ status, size }) => {
 
 const height = Dimensions.get('window').height;
 
-export const LOCATION_TRACKING_SCREEN_NAME = 'LocationTrackingScreen';
+export const LOCATION_TRACKING_SCREEN_NAME = 'LocationTracking';
 
-export class LocationTracking extends Component {
+export class LocationTrackingScreen extends Component {
   constructor(props) {
     super(props);
 

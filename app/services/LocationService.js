@@ -446,7 +446,7 @@ export default class LocationServices {
 
     isBackgroundGeolocationConfigured = false;
     SetStoreData(PARTICIPATE, 'false').then(() => {
-      // nav.navigate('LocationTrackingScreen', {});
+      // nav.navigate('LocationTracking', {});
     });
   }
 }

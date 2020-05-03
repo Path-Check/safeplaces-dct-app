@@ -17,9 +17,9 @@ import { ONBOARDING4_SCREEN_NAME } from './Onboarding4';
 
 const width = Dimensions.get('window').width;
 
-export const ONBOARDING3_SCREEN_NAME = 'Onboarding3';
+export const ONBOARDING3_SCREEN_NAME = 'Onboarding3Screen';
 
-export const Onboarding3 = props => {
+export const Onboarding3Screen = props => {
   return (
     <View style={styles.mainContainer}>
       <StatusBar

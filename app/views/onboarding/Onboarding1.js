@@ -25,9 +25,9 @@ import { ONBOARDING2_SCREEN_NAME } from './Onboarding2';
 
 const width = Dimensions.get('window').width;
 
-export const ONBOARDING1_SCREEN_NAME = 'Onboarding1';
+export const ONBOARDING1_SCREEN_NAME = 'Onboarding1Screen';
 
-export class Onboarding1 extends Component {
+export class Onboarding1Screen extends Component {
   constructor(props) {
     super(props);
 
