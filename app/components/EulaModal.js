@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Modal, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 
-import closeIcon from '../assets/images/closeIcon.png';
+import close from '../assets/svgs/close';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import en_html from '../locales/eula/en_html';
 import ht_html from '../locales/eula/ht_html';
 import ButtonWrapper from './ButtonWrapper';
 import { Checkbox } from './Checkbox';
+import { IconButton } from './IconButton';
 import { Typography } from './Typography';
 
 const EULA_FILES = {
@@ -89,10 +90,14 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
           <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 7, paddingHorizontal: 5, paddingBottom: 0 }}>
-              <TouchableOpacity onPress={() => setModalVisibility(false)}>
-                <Image source={closeIcon} style={styles.closeIcon} />
-              </TouchableOpacity>
+            <View style={{ flex: 7, paddingHorizontal: 5 }}>
+              <IconButton
+                icon={close}
+                size={20}
+                style={styles.closeIcon}
+                accessibilityLabel='Close'
+                onPress={() => setModalVisibility(false)}
+              />
               <WebView
                 style={{ flex: 1 }}
                 source={{ html }}
@@ -148,10 +153,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.VIOLET_BUTTON,
   },
   closeIcon: {
-    width: 20,
-    height: 20,
     marginBottom: 6,
-    opacity: 0.7,
+    marginRight: 8,
     alignSelf: 'flex-end',
   },
   smallDescriptionText: {
