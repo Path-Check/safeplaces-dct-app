@@ -28,10 +28,11 @@ fi
 echo "Downloading iOS *.strings"
 lokalise2 file download \
   --add-newline-eof \
-  --export-empty-as skip \
+  --export-empty-as=skip \
   --format strings \
   --include-description \
   --original-filenames \
+  --placeholder-format=ios \
   --unzip-to=ios \
   --export-sort=a_z \
   --config .lokalise.yml --token=$LOKALISE_TOKEN

@@ -3120,6 +3120,11 @@ dedent@^0.7.0:
   resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.7.0.tgz#2495ddbaf6eb874abb0e1be9df22d2e5a544326c"
   integrity sha1-JJXduvbrh0q7Dhvp3yLS5aVEMmw=
 
+deep-computed@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/deep-computed/-/deep-computed-0.2.0.tgz#493170520e96fc7a971b36289744d3646c00d573"
+  integrity sha512-KLnX3qEoMZP+McYQSEfvLyHCkzuISoDG6zznkJcwVqLqTG3u0K3hJnfqp9WYSRYJxDEx3gs47XJVwDu8QwjGRQ==
+
 deep-is@~0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
@@ -3595,6 +3600,11 @@ eslint-plugin-react-hooks@^2.0.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.5.1.tgz#4ef5930592588ce171abeb26f400c7fbcbc23cd0"
   integrity sha512-Y2c4b55R+6ZzwtTppKwSmK/Kar8AdLiC2f9NADCuxbcTgPPg41Gyqa6b9GppgXSvCtkRw43ZE86CT5sejKC6/g==
+
+eslint-plugin-react-hooks@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.0.0.tgz#81196b990043cde339e25c6662aeebe32ac52d01"
+  integrity sha512-YKBY+kilK5wrwIdQnCF395Ya6nDro3EAMoe+2xFkmyklyhF16fH83TrQOo9zbZIDxBsXFgBbywta/0JKRNFDkw==
 
 eslint-plugin-react-native-globals@^0.1.1:
   version "0.1.2"
@@ -4185,6 +4195,16 @@ find-yarn-workspace-root@^1.2.1:
   dependencies:
     fs-extra "^4.0.3"
     micromatch "^3.1.4"
+
+flag@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/flag/-/flag-4.4.0.tgz#03e4fc623348c4edf5db20c491b37e09fed0e125"
+  integrity sha512-dDqpnanBhtjcD+BLkYy4KDuv98MpIj1nU2CYHhh1c2FMRbiG3rqI7vfKE0jyJVsuN1HcduhwRhaqEgJjhvZvDw==
+  dependencies:
+    deep-computed "^0.2.0"
+    invariant "^2.2.4"
+    lodash "^4.17.11"
+    useful-types "^0.4.0"
 
 flat-cache@^2.0.1:
   version "2.0.1"
@@ -7811,6 +7831,11 @@ react-native-ble-advertiser@0.0.10:
   resolved "https://registry.yarnpkg.com/react-native-ble-advertiser/-/react-native-ble-advertiser-0.0.10.tgz#1ab85d2a944f3f0eed3beddc4ce76ae5edecf8ce"
   integrity sha512-4l8Tkb2ki7RwSwh11dARQS1Hs7qRuexRvHZ0Mv6TbrqAA15gij0TKf5IUTueeML6rVqnsV8VykJ2aHuvjsAjfw==
 
+react-native-config@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.0.0.tgz#fada8f79996db1eadcee9e221afd713c91f677e5"
+  integrity sha512-ZydFNkGgjPCgJ4nDDGxuoMSsz4HACJH6TyYEDeefnzGW3XS/HXxdiW8SOaOD8B0WACQJHM028ypnwhexJ7hhsA==
+
 "react-native-document-picker@github:rparet/react-native-document-picker":
   version "3.2.0"
   resolved "https://codeload.github.com/rparet/react-native-document-picker/tar.gz/e71a56183c49c3d967b00abaa9ee7327ef4c376b"
@@ -9540,6 +9565,11 @@ use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
+
+useful-types@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/useful-types/-/useful-types-0.4.0.tgz#b858dd3705013050e411b9ac431659227d207cef"
+  integrity sha512-ugsfWi6blP6Strp00QOsNmGa7xiNFKJMp+1hbyoD3TA+QS3lbDdeeqE6oFYaVUFaVsQukxyWB1574NcKqrnUsQ==
 
 utf8-byte-length@^1.0.1:
   version "1.0.4"

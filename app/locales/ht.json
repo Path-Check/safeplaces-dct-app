@@ -1,5 +1,10 @@
 {
   "_display_name": "Kreyòl ayisyen",
+  "about": {
+    "dimensions": "Dimansyon:",
+    "operating_system_abbr": "OS:",
+    "version": "Vesyon:"
+  },
   "history": {
     "no_exposure": "Pa gen kontak",
     "possible_exposure": "Posib",
@@ -90,6 +95,11 @@
     "team": "Ekip",
     "team_para": "Ekip nou an konpoze de yon group ki genyen ladanl epidemyolojis, enjenyè, syantis done, evanjeliS vi prive dijital, pwofesè ak chèchè nan anpil gran enstitisyon nan mond lan, tankou: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young ak Link Ventures.",
     "terms_of_use": "Règleman itilizasyon"
+  },
+  "onboarding": {
+    "eula_checkbox": "Mwen aksepte akò lisans la",
+    "eula_continue": "Kontinye",
+    "eula_message": "* Ou dwe aksepte pou itilize Safe Paths 'Chase Kowona"
   },
   "share": {
     "button_text": "Pataje done lokalizasyon",
