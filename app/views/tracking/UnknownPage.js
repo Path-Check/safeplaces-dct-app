@@ -9,24 +9,24 @@ import {
 import { openSettings } from 'react-native-permissions';
 import { SvgXml } from 'react-native-svg';
 
-import BackgroundImage from './../../assets/images/launchScreenBackground.png';
+import backgroundImage from './../../assets/images/launchScreenBackground.png';
 import StateUnknown from './../../assets/svgs/stateUnknown';
 import { Typography } from './../../components/Typography';
 import Colors from './../../constants/colors';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import languages from '../../locales/languages';
-import MayoInfo from './MayoInfo';
-import styles from './style';
+import { MayoInfo } from './MayoInfo';
+import { styles } from './style';
 
 const buttonLabel = languages.t('label.home_enable_location');
-const buttonFunction = () => {
+const handleEnableLocationPress = () => {
   openSettings();
 };
 const size = Dimensions.get('window').height;
 
-const UnknownPage = () => {
+export const UnknownPage = () => {
   return (
-    <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
       <StatusBar
         barStyle='light-content'
         backgroundColor='transparent'
@@ -57,7 +57,7 @@ const UnknownPage = () => {
             <ButtonWrapper
               title={buttonLabel}
               onPress={() => {
-                buttonFunction();
+                handleEnableLocationPress();
               }}
               buttonColor={Colors.BLUE_BUTTON}
               bgColor={Colors.WHITE}
@@ -65,9 +65,7 @@ const UnknownPage = () => {
           </View>
         </View>
       </View>
-      {MayoInfo()}
+      <MayoInfo />
     </ImageBackground>
   );
 };
-
-export default UnknownPage;

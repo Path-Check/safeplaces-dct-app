@@ -9,24 +9,22 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import BackgroundImageAtRisk from './../../assets/images/backgroundAtRisk.png';
+import backgroundImage from './../../assets/images/launchScreenBackground.png';
 import StateAtRisk from './../../assets/svgs/stateAtRisk';
 import { Typography } from './../../components/Typography';
 import Colors from './../../constants/colors';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import languages from '../../locales/languages';
-import MayoInfo from './MayoInfo';
-import styles from './style';
+import { MayoInfo } from './MayoInfo';
+import { styles } from './style';
 
-const buttonLabel = languages.t('label.see_exposure_history');
+const buttonLabel = languages.t('label.home_enable_location');
 const size = Dimensions.get('window').height;
 
-const ExposurePage = () => {
+export const ExposurePage = () => {
   const navigation = useNavigation();
   return (
-    <ImageBackground
-      source={BackgroundImageAtRisk}
-      style={styles.backgroundImage}>
+    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
       <StatusBar
         barStyle='light-content'
         backgroundColor='transparent'
@@ -66,9 +64,7 @@ const ExposurePage = () => {
           </View>
         </View>
       </View>
-      {MayoInfo()}
+      <MayoInfo />
     </ImageBackground>
   );
 };
-
-export default ExposurePage;

@@ -4,19 +4,19 @@ import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
 
 import exportImage from './../../assets/images/export.png';
-import BackgroundImage from './../../assets/images/launchScreenBackground.png';
+import backgroundImage from './../../assets/images/launchScreenBackground.png';
 import StateNoContact from './../../assets/svgs/stateNoContact';
 import { Typography } from './../../components/Typography';
 import Colors from './../../constants/colors';
 import languages from '../../locales/languages';
-import MayoInfo from './MayoInfo';
-import styles from './style';
+import { MayoInfo } from './MayoInfo';
+import { styles } from './style';
 
 const size = Dimensions.get('window').height;
 
-const DefaultPage = () => {
+export const DefaultPage = () => {
   return (
-    <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
       <StatusBar
         barStyle='light-content'
         backgroundColor='transparent'
@@ -37,6 +37,7 @@ const DefaultPage = () => {
           height={size ? size : 80}
         />
       </View>
+
       <View style={styles.mainContainer}>
         <View style={styles.contentAbovePulse} />
         <View style={styles.contentBelowPulse}>
@@ -48,9 +49,7 @@ const DefaultPage = () => {
           </Typography>
         </View>
       </View>
-      {MayoInfo()}
+      <MayoInfo />
     </ImageBackground>
   );
 };
-
-export default DefaultPage;

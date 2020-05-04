@@ -9,22 +9,22 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import BackgroundImage from './../../assets/images/launchScreenBackground.png';
+import backgroundImage from './../../assets/images/launchScreenBackground.png';
 import StateUnknown from './../../assets/svgs/stateUnknown';
 import { Typography } from './../../components/Typography';
 import Colors from './../../constants/colors';
 import ButtonWrapper from '../../components/ButtonWrapper';
 import languages from '../../locales/languages';
-import MayoInfo from './MayoInfo';
-import styles from './style';
+import { MayoInfo } from './MayoInfo';
+import { styles } from './style';
 
 const buttonLabel = languages.t('label.home_enable_location');
 const size = Dimensions.get('window').height;
 
-export default function OffPage() {
+export const OffPage = () => {
   const navigation = useNavigation();
   return (
-    <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
       <StatusBar
         barStyle='light-content'
         backgroundColor='transparent'
@@ -63,7 +63,7 @@ export default function OffPage() {
           </View>
         </View>
       </View>
-      {MayoInfo()}
+      <MayoInfo />
     </ImageBackground>
   );
-}
+};

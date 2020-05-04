@@ -491,6 +491,7 @@ export default class LocationServices {
   }
 
   static async checkStatus() {
+    console.log('inside chekc STATUS');
     const hasPotentialExposure = await this.getHasPotentialExposure();
     const particpating = await this.getParticpating();
 
@@ -504,6 +505,7 @@ export default class LocationServices {
 
     const status = await this.getBackgroundGeoStatus();
     if (!status.locationServicesEnabled) {
+      console.log('locationServicesEnabled disabled');
       return {
         canTrack: false,
         reason: Reason.LOCATION_OFF,
@@ -512,6 +514,7 @@ export default class LocationServices {
     }
 
     if (status.authorization != BackgroundGeolocation.AUTHORIZED) {
+      console.log('not AUTHORIZED');
       return {
         canTrack: false,
         reason: Reason.NOT_AUTHORIZED,
@@ -519,6 +522,7 @@ export default class LocationServices {
       };
     }
 
+    console.log('can track');
     return {
       canTrack: true,
       reason: '',

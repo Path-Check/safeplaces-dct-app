@@ -5,7 +5,7 @@ import fontFamily from './../../constants/fonts';
 
 const PULSE_GAP = 80;
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: '100%',
@@ -117,5 +117,3 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
 });
-
-export default styles;
