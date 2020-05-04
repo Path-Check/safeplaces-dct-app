@@ -42,7 +42,7 @@ class ChooseProviderScreen extends Component {
       urlEntryInProgress: false,
       urlText: '',
       authoritiesList: [],
-      isAuthorityFilterActive: true,
+      isAuthorityFilterActive: false,
       isAutoSubscribed: false,
     };
   }
@@ -60,7 +60,7 @@ class ChooseProviderScreen extends Component {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     await this.fetchAuthoritiesList(this.state.isAuthorityFilterActive);
     await this.fetchUserAuthorities();
-    await this.fetchAutoSubcribeStatus();
+    __DEV__ && (await this.fetchAutoSubcribeStatus());
   }
 
   componentWillUnmount() {
@@ -235,13 +235,15 @@ class ChooseProviderScreen extends Component {
           <Typography style={styles.sectionDescription} use={'body1'}>
             {languages.t('label.authorities_desc')}
           </Typography>
-          <TouchableOpacity style={styles.autoSubcribe}>
-            <Checkbox
-              label={languages.t('label.auto_subscribe_checkbox')}
-              checked={this.state.isAutoSubscribed}
-              onPress={() => this.toggleAutoSubscribe()}
-            />
-          </TouchableOpacity>
+          {__DEV__ && (
+            <TouchableOpacity style={styles.autoSubcribe}>
+              <Checkbox
+                label={languages.t('label.auto_subscribe_checkbox')}
+                checked={this.state.isAutoSubscribed}
+                onPress={() => this.toggleAutoSubscribe()}
+              />
+            </TouchableOpacity>
+          )}
         </View>
 
         <View style={styles.listContainer}>
@@ -343,19 +345,21 @@ class ChooseProviderScreen extends Component {
             </TouchableOpacity>
           </MenuTrigger>
           <MenuOptions>
-            <TouchableOpacity
-              style={styles.authorityFilter}
-              onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
-              <Typography style={styles.authorityFilterText} use={'body2'}>
-                {languages.t('label.filter_authorities_by_gps_history')}
-              </Typography>
-              <Switch
-                onValueChange={val =>
-                  this.filterAuthoritesByGPSHistory({ val })
-                }
-                value={this.state.isAuthorityFilterActive}
-              />
-            </TouchableOpacity>
+            {__DEV__ && (
+              <TouchableOpacity
+                style={styles.authorityFilter}
+                onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
+                <Typography style={styles.authorityFilterText} use={'body2'}>
+                  {languages.t('label.filter_authorities_by_gps_history')}
+                </Typography>
+                <Switch
+                  onValueChange={val =>
+                    this.filterAuthoritesByGPSHistory({ val })
+                  }
+                  value={this.state.isAuthorityFilterActive}
+                />
+              </TouchableOpacity>
+            )}
             {this.state.authoritiesList === undefined
               ? null
               : this.state.authoritiesList.map(item => {

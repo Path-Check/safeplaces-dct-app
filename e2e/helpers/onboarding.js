@@ -23,20 +23,8 @@ export const navigateThroughPermissions = async languageStrings => {
   await Onboarding4.tapButton(languageStrings);
 };
 
-export const navigateThroughOnboarding = async (
-  languageStrings,
-  isAutoSubcribe = true,
-) => {
+export const navigateThroughOnboarding = async languageStrings => {
   await navigateThroughPermissions(languageStrings);
-
-  await EnableAuthoritySubscription.isOnScreen(languageStrings);
-
-  if (isAutoSubcribe) {
-    await EnableAuthoritySubscription.enable(languageStrings);
-  } else {
-    await EnableAuthoritySubscription.skipStep(languageStrings);
-  }
-
   await FinishSetup.isOnScreen(languageStrings);
   await FinishSetup.takeScreenshot(languageStrings);
   await FinishSetup.tapButton(languageStrings);

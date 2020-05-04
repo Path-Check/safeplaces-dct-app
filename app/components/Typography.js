@@ -2,6 +2,7 @@ import styled from '@emotion/native';
 import { css } from '@emotion/native/dist/native.cjs.prod';
 import * as React from 'react';
 
+import { themeTextColor } from '../constants/themes';
 import { useLanguageDirection } from '../locales/languages';
 
 export const Type = {
@@ -79,7 +80,7 @@ const FONT_SIZE_MAP = {
 const getFontSize = ({ use = Type.Body1 }) => FONT_SIZE_MAP[use];
 
 const LINE_HEIGHT_MAP = {
-  [Type.Headline1]: '48px',
+  [Type.Headline1]: '52px',
   [Type.Headline2]: '34px',
   [Type.Headline3]: '40px',
   [Type.Body1]: '24px',
@@ -88,9 +89,6 @@ const LINE_HEIGHT_MAP = {
 };
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
-
-const getTextColor = ({ theme, secondary = false }) =>
-  secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;
 
 const getFontWeight = ({ use = Type.Body1, bold }) =>
   use.startsWith('headline') || bold ? 'bold' : 'normal';
@@ -103,7 +101,7 @@ const getFontFamily = ({ use, monospace, bold }) =>
     : 'IBMPlexSans';
 
 const ThemedText = styled.Text`
-  color: ${getTextColor};
+  color: ${themeTextColor};
   font-family: ${getFontFamily};
   font-size: ${getFontSize};
   font-weight: ${getFontWeight};

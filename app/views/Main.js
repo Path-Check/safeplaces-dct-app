@@ -1,4 +1,5 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import {
   AppState,
@@ -12,15 +13,18 @@ import { SvgXml } from 'react-native-svg';
 
 import settingsIcon from './../assets/svgs/settingsIcon';
 import { isPlatformAndroid } from './../Util';
+import { Feature } from '../components/Feature';
 import Colors from '../constants/colors';
 import LocationServices, { Reason } from '../services/LocationService';
+import LocationTracking from './LocationTracking';
 import { DefaultPage } from './tracking/DefaultPage';
 import { ExposurePage } from './tracking/ExposurePage';
 import { OffPage } from './tracking/OffPage';
 import { styles } from './tracking/style';
 import { UnknownPage } from './tracking/UnknownPage';
 
-export const Main = props => {
+const Main = () => {
+  const navigation = useNavigation();
   if (isPlatformAndroid()) {
     StatusBar.setBackgroundColor(Colors.TRANSPARENT);
     StatusBar.setBarStyle('light-content');
@@ -38,10 +42,8 @@ export const Main = props => {
       <TouchableOpacity
         style={styles.settingsContainer}
         onPress={() => {
-          props.navigation.navigate('SettingsScreen');
+          navigation.navigate('SettingsScreen');
         }}>
-        {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
-        <Image />
         <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
       </TouchableOpacity>
     );
@@ -64,7 +66,7 @@ export const Main = props => {
       updateStateInfo();
     });
     // refresh state if settings change
-    const unsubscribe = props.navigation.addListener('focus', () => {
+    const unsubscribe = navigation.addListener('focus', () => {
       updateStateInfo();
     });
     // handle back press
@@ -100,3 +102,15 @@ export const Main = props => {
     </View>
   );
 };
+
+const MainNavigate = props => {
+  return (
+    <Feature
+      name='location_refactor'
+      fallback={() => <LocationTracking {...props} />}>
+      <Main />
+    </Feature>
+  );
+};
+
+export { Main, MainNavigate };

@@ -120,3 +120,9 @@ export const Theme = ({ use = 'default', setBackground = false, children }) => {
     </ThemeProvider>
   );
 };
+
+/**
+ * @param {{theme: defaultTheme, secondary?: boolean}} param0
+ */
+export const themeTextColor = ({ theme, secondary }) =>
+  secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;
