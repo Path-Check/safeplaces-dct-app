@@ -35,18 +35,18 @@ export const ExposureHistoryScreen = ({ navigation }) => {
 
     fetchData();
 
+    const handleBackPress = () => {
+      navigation.goBack();
+      return true;
+    };
+
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
     // teardown code
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
-  }, []);
-
-  const handleBackPress = () => {
-    navigation.goBack();
-    return true;
-  };
+  }, [navigation]);
 
   const hasExposure =
     history?.length && history.some(h => h.exposureMinutes > 0);

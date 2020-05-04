@@ -19,15 +19,21 @@
   },
   "import": {
     "button_text": "Importa lo storico delle posizioni",
+    "error": "Si è verificato un errore durante l'importazione dei dati.",
     "google": {
+      "already_imported": "Il file Takeout fornito è già stato importato.",
       "disclaimer": "Safe Paths non ha alcuna affiliazione a Google e non condivide mai i tuoi dati.",
-      "instructions_detailed": "Visita Google Takeout ed esporta la tua Cronologia delle posizioni utilizzando le seguenti impostazioni: \n1. Metodo di consegna: \"Aggiungi a Drive\" \n2. Frequenza: \"Esporta una volta\" \n3. Tipo e dimensione del file: \".zip\" e \"1 GB\" \n4. Google ti invierà un'email quando l'esportazione è pronta \n5. Ritorna qui per importare le posizioni. Opzioni d'importazione: \n- Importa da Google Drive \n- Scarica dal browser, quindi importa il file dal tuo telefono. Assicurati di avere una connessione Wi-Fi attiva, poiché i file possono essere di grandi dimensioni.",
+      "file_open_error": "Impossibile aprire il file. \nAssicurati che il file sia aperto da Google Drive",
+      "instructions_detailed": "Visita Google Takeout ed esporta la tua Cronologia delle posizioni utilizzando le seguenti impostazioni: \n1. Metodo di consegna: \"Aggiungi a Drive\" \n2. Frequenza: \"Esporta una volta\" \n3. Tipo e dimensione del file: \".zip\" e \"1 GB\" \n4. Google ti invierà un'email quando l'esportazione è pronta \n5. Ritorna qui per importare le posizioni",
       "instructions_first": "L'aggiunta dei dati di localizzazione di Google ti aiuterà a costruzione un primo storico delle tue posizioni recenti.",
       "instructions_second": "Prima di poter importare i dati, devi effettuare il \"Take out\" dello storico delle tue geolocalizzazioni da Google.",
+      "invalid_file_format": "Il formato del file fornito non è supportato. \nFormati supportati: \".zip\".",
+      "no_recent_locations": "Takeout non ha posizioni recenti.",
       "title": "Google Maps",
       "visit_button_text": "Visita Google Takeout"
     },
     "subtitle": "Per capire se hai incontrato una persona positiva al COVID-19 prima di scaricare questa applicazione, puoi importare lo storico delle tue posizioni.",
+    "success": "Le posizioni recenti sono state importate con successo!",
     "title": "Importa posizioni"
   },
   "label": {
