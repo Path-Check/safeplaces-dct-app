@@ -13,7 +13,7 @@ import { SvgXml } from 'react-native-svg';
 import settingsIcon from './../assets/svgs/settingsIcon';
 import { isPlatformAndroid } from './../Util';
 import Colors from '../constants/colors';
-import LocationServices from '../services/LocationService';
+import LocationServices, { Reason } from '../services/LocationService';
 import { DefaultPage } from './tracking/DefaultPage';
 import { ExposurePage } from './tracking/ExposurePage';
 import { OffPage } from './tracking/OffPage';
@@ -86,7 +86,7 @@ export const LocationController = props => {
       page = <DefaultPage />;
     }
   } else {
-    if (location.reason === 'USER_OFF') {
+    if (location.reason === Reason.USER_OFF) {
       page = <OffPage />;
     } else {
       page = <UnknownPage />;

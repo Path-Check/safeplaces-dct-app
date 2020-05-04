@@ -15,7 +15,7 @@ import { isPlatformAndroid } from '../Util';
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION = '55';
 
-const Reason = {
+export const Reason = {
   LOCATION_OFF: 'LOCATION_OFF',
   NOT_AUTHORIZED: 'NOT_AUTHORIZED',
   USER_OFF: 'USER_OFF',
@@ -459,7 +459,6 @@ export default class LocationServices {
       // nav.navigate('LocationTrackingScreen', {});
     });
   }
-
   static getHasPotentialExposure() {
     return new Promise(resolve => {
       GetStoreData(CROSSED_PATHS).then(dayBin => {
