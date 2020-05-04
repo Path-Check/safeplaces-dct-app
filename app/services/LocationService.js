@@ -2,13 +2,24 @@ import BackgroundGeolocation from '@mauron85/react-native-background-geolocation
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 
-import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
-import { areLocationsNearby } from '../helpers/Intersect';
+import {
+  LOCATION_DATA,
+  PARTICIPATE
+} from '../constants/storage';
+import {
+  GetStoreData,
+  SetStoreData
+} from '../helpers/General';
+import {
+  areLocationsNearby
+} from '../helpers/Intersect';
 import languages from '../locales/languages';
-import { isPlatformAndroid } from '../Util';
+import {
+  isPlatformAndroid
+} from '../Util';
 
 let isBackgroundGeolocationConfigured = false;
+var isNotifiedAfterSwipeNotificaiton = false; 
 const LOCATION_DISABLED_NOTIFICATION = '55';
 
 export class LocationData {
@@ -105,9 +116,7 @@ export class LocationData {
           unixtimeUTC - lastRecordedTime < this.maxBackfillTime
         ) {
           for (
-            let newTS = lastRecordedTime + this.locationInterval;
-            newTS < unixtimeUTC - this.locationInterval;
-            newTS += this.locationInterval
+            let newTS = lastRecordedTime + this.locationInterval; newTS < unixtimeUTC - this.locationInterval; newTS += this.locationInterval
           ) {
             let lat_lon_time = {
               latitude: lastLocationArray['latitude'],
@@ -190,9 +199,18 @@ export class LocationData {
     if (!this.isValidPoint(point) || !this.isValidBoundingBox(region)) {
       return false;
     } else {
-      const { latitude: pointLat, longitude: pointLon } = point;
-      const { latitude: neLat, longitude: neLon } = region.ne;
-      const { latitude: swLat, longitude: swLon } = region.sw;
+      const {
+        latitude: pointLat,
+        longitude: pointLon
+      } = point;
+      const {
+        latitude: neLat,
+        longitude: neLon
+      } = region.ne;
+      const {
+        latitude: swLat,
+        longitude: swLon
+      } = region.sw;
 
       const [latMax, latMin] = neLat > swLat ? [neLat, swLat] : [swLat, neLat];
       const [lonMax, lonMin] = neLon > swLon ? [neLon, swLon] : [swLon, neLon];
@@ -219,7 +237,7 @@ export default class LocationServices {
 
     PushNotification.configure({
       // (required) Called when a remote or local notification is opened or received
-      onNotification: function(notification) {
+      onNotification: function (notification) {
         console.log('NOTIFICATION:', notification);
         // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
         notification.finish(PushNotificationIOS.FetchResult.NoData);
@@ -282,10 +300,12 @@ export default class LocationServices {
     }
 
     BackgroundGeolocation.on('error', error => {
+      isNotifiedAfterSwipeNotificaiton = false;
       console.log('[ERROR] BackgroundGeolocation error:', error);
     });
 
     BackgroundGeolocation.on('start', () => {
+      isNotifiedAfterSwipeNotificaiton = false;
       console.log('[INFO] BackgroundGeolocation service has been started');
     });
 
@@ -316,9 +336,13 @@ export default class LocationServices {
         //   1000,
         // );
       } else {
-        BackgroundGeolocation.start(); //triggers start on start event
+        if (!status.isRunning) {
+          BackgroundGeolocation.start(); //triggers start on start event
+        }
 
-        BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
+        BackgroundGeolocation.checkStatus(({
+          locationServicesEnabled
+        }) => {
           if (!locationServicesEnabled) {
             PushNotification.localNotification({
               id: LOCATION_DISABLED_NOTIFICATION,
@@ -378,8 +402,10 @@ export default class LocationServices {
       console.log(
         '[INFO] BackgroundGeolocation auth status: ' + status.authorization,
       );
+      if (!status.isRunning) {
+        BackgroundGeolocation.start(); //triggers start on start event
+      }
 
-      BackgroundGeolocation.start(); //triggers start on start event
       isBackgroundGeolocationConfigured = true;
 
       if (!status.locationServicesEnabled) {
@@ -434,13 +460,26 @@ export default class LocationServices {
       }
     });
   }
-
   static stop() {
     // unregister all event listeners
-    PushNotification.localNotification({
-      title: languages.t('label.location_disabled_title'),
-      message: languages.t('label.location_disabled_message'),
+    BackgroundGeolocation.checkStatus(({
+      locationServicesEnabled
+    }) => {
+      if (!locationServicesEnabled.isRunning) {
+        if(Platform.OS === "ios" && isNotifiedAfterSwipeNotificaiton == true) {
+          // For iOS only, Already showed notification when swipe notification.
+          // So no need show notification again.
+          return;
+        }
+        isNotifiedAfterSwipeNotificaiton = true; 
+        PushNotification.localNotification({
+          id: LOCATION_DISABLED_NOTIFICATION,
+          title: languages.t('label.location_disabled_title'),
+          message: languages.t('label.location_disabled_message'),
+        });
+      }
     });
+
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
 
