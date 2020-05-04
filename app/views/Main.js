@@ -20,7 +20,7 @@ import { OffPage } from './tracking/OffPage';
 import { styles } from './tracking/style';
 import { UnknownPage } from './tracking/UnknownPage';
 
-export const LocationController = props => {
+export const Main = props => {
   if (isPlatformAndroid()) {
     StatusBar.setBackgroundColor(Colors.TRANSPARENT);
     StatusBar.setBarStyle('light-content');
