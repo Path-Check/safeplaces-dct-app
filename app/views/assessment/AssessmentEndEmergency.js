@@ -1,20 +1,28 @@
-import React, { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { Linking, Text } from 'react-native';
 
 import Colors from '../../constants/colors';
-import { MetaContext } from './AssessmentContext';
+import Fonts from '../../constants/fonts';
 import AssessmentEnd from './AssessmentEnd';
 
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentEndEmergency = () => {
   let { t } = useTranslation();
-  let { dismiss } = useContext(MetaContext);
   return (
     <AssessmentEnd
-      ctaAction={dismiss}
+      ctaAction={() => {
+        // TODO: This would need to be localized per country
+        Linking.openURL('tel:911');
+      }}
       ctaColor={Colors.ASSESSMENT_DANGER}
       ctaTitle={t('assessment.emergency_cta')}
-      description={t('assessment.emergency_description')}
+      description={
+        <Trans i18nKey='assessment.emergency_description'>
+          <Text />
+          <Text style={{ fontFamily: Fonts.primaryBold }} />
+        </Trans>
+      }
       image={require('../../assets/images/illustration-screening-end-911.png')}
       title={t('assessment.emergency_title')}
     />
