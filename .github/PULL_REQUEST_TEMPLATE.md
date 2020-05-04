@@ -1,4 +1,6 @@
-<!-- ## Description -->
+<!-- Please read https://github.com/tripleblindmarket/covid-safe-paths/wiki/Pull-Request-Best-Practices for recommended best practices before opening your first pull request -->
+
+#### Description:
 
 <!-- Description of what the PR does -->
 
@@ -10,6 +12,6 @@
 
 <!-- If you're changing visuals, add a screenshot here -->
 
-#### How to test
+#### How to test:
 
 <!-- Description of how to validate or test this PR -->

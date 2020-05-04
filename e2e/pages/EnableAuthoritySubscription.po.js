@@ -6,7 +6,7 @@ class EnableAuthoritySubscription {
   }
 
   async skipStep(languageStrings) {
-    await element(by.text(languageStrings.label.skip_this_step).tap());
+    await element(by.text(languageStrings.label.skip_this_step)).tap();
   }
 
   async takeScreenshot() {
