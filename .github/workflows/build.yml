@@ -77,8 +77,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Build APK (gradle)
-        run: ./gradlew assembleRelease --no-daemon
+      - run: ./gradlew bundleRelease --no-daemon
         working-directory: ./android
 
 
