@@ -2,6 +2,7 @@ import styled from '@emotion/native';
 import { css } from '@emotion/native/dist/native.cjs.prod';
 import * as React from 'react';
 
+import { themeTextColor } from '../constants/themes';
 import { useLanguageDirection } from '../locales/languages';
 
 export const Type = {
@@ -89,9 +90,6 @@ const LINE_HEIGHT_MAP = {
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
 
-const getTextColor = ({ theme, secondary }) =>
-  secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;
-
 const getTextOpacity = ({ disabled }) => (disabled ? '0.25' : '1');
 
 const getFontWeight = ({ use = Type.Body1, bold }) =>
@@ -104,7 +102,7 @@ const getFontFamily = ({ use, monospace, bold }) => {
 };
 
 const ThemedText = styled.Text`
-  color: ${getTextColor};
+  color: ${themeTextColor};
   opacity: ${getTextOpacity};
   font-family: ${getFontFamily};
   font-size: ${getFontSize};

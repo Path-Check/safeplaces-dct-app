@@ -3,6 +3,7 @@ import 'react-native';
 import { act, render } from '@testing-library/react-native';
 import React from 'react';
 
+import { FlagsProvider } from '../../helpers/flags';
 import * as languages from '../../locales/languages';
 import { SettingsScreen } from '../Settings';
 
@@ -36,7 +37,25 @@ afterEach(() => {
 });
 
 it('renders correctly', async () => {
-  const { asJSON } = render(<SettingsScreen />);
+  const { asJSON } = render(
+    <FlagsProvider flags={{ google_import: true }}>
+      <SettingsScreen />
+    </FlagsProvider>,
+  );
+
+  await act(async () => {
+    jest.runAllTimers();
+  });
+
+  await expect(asJSON()).toMatchSnapshot();
+});
+
+it('renders correctly (without google import flag)', async () => {
+  const { asJSON } = render(
+    <FlagsProvider flags={{}}>
+      <SettingsScreen />
+    </FlagsProvider>,
+  );
 
   await act(async () => {
     jest.runAllTimers();
