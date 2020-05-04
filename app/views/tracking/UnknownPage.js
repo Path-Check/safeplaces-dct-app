@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Dimensions,
   ImageBackground,
@@ -14,17 +15,16 @@ import StateUnknown from './../../assets/svgs/stateUnknown';
 import { Typography } from './../../components/Typography';
 import Colors from './../../constants/colors';
 import ButtonWrapper from '../../components/ButtonWrapper';
-import languages from '../../locales/languages';
 import { MayoInfo } from './MayoInfo';
 import { styles } from './style';
 
-const buttonLabel = languages.t('label.home_enable_location');
-const handleEnableLocationPress = () => {
-  openSettings();
-};
-const size = Dimensions.get('window').height;
-
 export const UnknownPage = () => {
+  const { t } = useTranslation();
+  const buttonLabel = t('label.home_enable_location');
+  const handleEnableLocationPress = () => {
+    openSettings();
+  };
+  const size = Dimensions.get('window').height;
   return (
     <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
       <StatusBar
@@ -48,10 +48,10 @@ export const UnknownPage = () => {
         </View>
         <View style={styles.contentBelowPulse}>
           <Text style={styles.mainTextBelow}>
-            {languages.t('label.home_unknown_header')}
+            {t('label.home_unknown_header')}
           </Text>
           <Typography style={styles.subheaderText}>
-            {languages.t('label.home_unknown_subtext')}
+            {t('label.home_unknown_subtext')}
           </Typography>
           <View style={styles.buttonContainer}>
             <ButtonWrapper
