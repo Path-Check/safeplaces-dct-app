@@ -91,7 +91,7 @@ const AssessmentCaptcha = ({ navigation }) => {
             // TODO: Loading state / disable button
             axios
               .post(SURVEY_POST_API, response, {
-                headers: { Authorization: 'Basic ' + token },
+                headers: { Authorization: `Basic ${token}` },
               })
               .then(response => {
                 console.log(`Survey post succeeded: ${response}`);

@@ -1,16 +1,20 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
-import axios from 'axios';
-import React, { useMemo, useRef } from 'react';
+// import axios from 'axios';
+import React, { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Button, Text, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
-import { SURVEY_GET_API } from '../../constants/apis';
+// import { SURVEY_GET_API } from '../../constants/apis';
 import Colors from '../../constants/colors';
 import i18n from '../../locales/languages';
 import { isPlatformiOS } from '../../Util';
 import AssessmentCaptcha from './AssessmentCaptcha';
-import { AnswersContext, SurveyContext } from './AssessmentContext';
+import {
+  AnswersContext,
+  MetaContext,
+  SurveyContext,
+} from './AssessmentContext';
 import AssessmentEndCaregiver from './AssessmentEndCaregiver';
 import AssessmentEndComplete from './AssessmentEndComplete';
 import AssessmentEndDistancing from './AssessmentEndDistancing';
@@ -29,6 +33,7 @@ import {
   SCREEN_TYPE_END,
   SCREEN_TYPE_ISOLATE,
 } from './constants';
+import survey_en from './survey.en.json';
 
 /**
  * @typedef {"Checkbox" | "Date" | Radio" | "EndCaregiver" | "EndDistancing" | "EndEmergency" | "EndIsolate" } SurveyScreen
@@ -60,16 +65,19 @@ import {
  * @typedef {{ [key: string]: { index: number, value: string }[] }} SurveyAnswers
  */
 
+/** @type {{ [key: string]: Survey }} */
+const surveys = {
+  en: survey_en,
+};
+
 const Stack = createNativeStackNavigator();
 
 const Assessment = ({ navigation }) => {
   const { t } = useTranslation();
   /** @type {React.MutableRefObject<SurveyAnswers>} */
   const answers = useRef({});
-  // Use this line if use statically defined survey
-  // const [survey] = useState(createSurvey);
-  // Use this line if use server driven survey
-  const [survey] = useSurveyAsync();
+  const survey = useSurvey();
+  // const [survey] = useSurveyAsync();
   const QuestionScreen = useMemo(
     () => ({ navigation, route }) => (
       <AssessmentQuestion
@@ -84,6 +92,15 @@ const Assessment = ({ navigation }) => {
       />
     ),
     [answers, survey],
+  );
+  const meta = useMemo(
+    () => ({
+      completeRoute: 'EndShare',
+      dismiss: () => {
+        navigation.goBack();
+      },
+    }),
+    [navigation],
   );
   const screenOptions = {
     headerBackTitle: 'Back',
@@ -103,96 +120,108 @@ const Assessment = ({ navigation }) => {
       ),
   };
   return (
-    <SurveyContext.Provider value={survey}>
-      {/* Since answers.current is on object, it won't trigger context updates
+    <MetaContext.Provider value={meta}>
+      <SurveyContext.Provider value={survey}>
+        {/* Since answers.current is on object, it won't trigger context updates
       when mutated, but that's ok — just trying to avoid prop drilling.*/}
-      <AnswersContext.Provider value={answers.current}>
-        <Stack.Navigator
-          initialRouteName='Start'
-          screenOptions={{
-            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-            cardStyle: {
-              backgroundColor: 'transparent',
-            },
-          }}>
-          <Stack.Screen
-            component={AssessmentStart}
-            name='Start'
-            options={screenOptions}
-          />
-          <Stack.Screen
-            component={QuestionScreen}
-            name='Question'
-            options={screenOptions}
-          />
-          <Stack.Screen
-            component={AssessmentEndComplete}
-            name='EndComplete'
-            options={screenOptions}
-          />
-          <Stack.Screen
-            component={AssessmentEndCaregiver}
-            name={SCREEN_TYPE_CAREGIVER}
-            options={{
-              ...screenOptions,
-              headerStyle: {
-                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+        <AnswersContext.Provider value={answers.current}>
+          <Stack.Navigator
+            initialRouteName='Start'
+            screenOptions={{
+              cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+              cardStyle: {
+                backgroundColor: 'transparent',
               },
-            }}
-          />
-          <Stack.Screen
-            component={AssessmentEndDistancing}
-            name={SCREEN_TYPE_DISTANCING}
-            options={{
-              ...screenOptions,
-              headerStyle: {
-                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
-              },
-            }}
-          />
-          <Stack.Screen
-            component={AssessmentEndEmergency}
-            name={SCREEN_TYPE_EMERGENCY}
-            options={{
-              ...screenOptions,
-              headerStyle: {
-                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND_DANGER,
-              },
-            }}
-          />
-          <Stack.Screen
-            component={AssessmentEndIsolate}
-            name={SCREEN_TYPE_ISOLATE}
-            options={{
-              ...screenOptions,
-              headerStyle: {
-                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
-              },
-            }}
-          />
-          <Stack.Screen
-            component={AssessmentEndShare}
-            name='EndShare'
-            options={{
-              ...screenOptions,
-              headerStyle: {
-                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
-              },
-            }}
-          />
-          <Stack.Screen
-            component={AssessmentCaptcha}
-            name='AssessmentCaptcha'
-            options={{
-              ...screenOptions,
-              headerStyle: {
-                backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
-              },
-            }}
-          />
-        </Stack.Navigator>
-      </AnswersContext.Provider>
-    </SurveyContext.Provider>
+            }}>
+            <Stack.Screen
+              component={AssessmentStart}
+              name='Start'
+              options={{
+                ...screenOptions,
+                headerStyle: {
+                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                },
+              }}
+            />
+            <Stack.Screen
+              component={QuestionScreen}
+              name='Question'
+              options={screenOptions}
+            />
+            <Stack.Screen
+              component={AssessmentEndComplete}
+              name='EndComplete'
+              options={{
+                ...screenOptions,
+                headerStyle: {
+                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                },
+              }}
+            />
+            <Stack.Screen
+              component={AssessmentEndShare}
+              name='EndShare'
+              options={{
+                ...screenOptions,
+                headerStyle: {
+                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                },
+              }}
+            />
+            <Stack.Screen
+              component={AssessmentCaptcha}
+              name='Captcha'
+              options={{
+                ...screenOptions,
+                headerStyle: {
+                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                },
+              }}
+            />
+            <Stack.Screen
+              component={AssessmentEndCaregiver}
+              name={SCREEN_TYPE_CAREGIVER}
+              options={{
+                ...screenOptions,
+                headerStyle: {
+                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                },
+              }}
+            />
+            <Stack.Screen
+              component={AssessmentEndDistancing}
+              name={SCREEN_TYPE_DISTANCING}
+              options={{
+                ...screenOptions,
+                headerStyle: {
+                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                },
+              }}
+            />
+            <Stack.Screen
+              component={AssessmentEndEmergency}
+              name={SCREEN_TYPE_EMERGENCY}
+              options={{
+                ...screenOptions,
+                headerStyle: {
+                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND_DANGER,
+                },
+              }}
+            />
+            <Stack.Screen
+              component={AssessmentEndIsolate}
+              name={SCREEN_TYPE_ISOLATE}
+              options={{
+                ...screenOptions,
+                headerStyle: {
+                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                },
+              }}
+            />
+          </Stack.Navigator>
+        </AnswersContext.Provider>
+      </SurveyContext.Provider>
+    </MetaContext.Provider>
   );
 };
 
@@ -260,20 +289,27 @@ function showAgreeAlert() {
   });
 }
 
-function useSurveyAsync() {
-  const [result, setResult] = React.useState(require('./survey.json'));
-  const [loading, setLoading] = React.useState(false);
-  React.useEffect(() => {
-    async function fetchSurvey() {
-      try {
-        setLoading(true);
-        const survey = await axios.get(SURVEY_GET_API);
-        setResult(survey.data);
-      } catch (error) {
-        setLoading(false);
-      }
-    }
-    // fetchSurvey();
-  }, []);
-  return [result, loading];
+function useSurvey() {
+  let [survey] = useState(() => {
+    return surveys[i18n.language] || survey_en;
+  });
+  return survey;
 }
+
+// function useSurveyAsync() {
+//   const [result, setResult] = React.useState(null);
+//   const [loading, setLoading] = React.useState(false);
+//   React.useEffect(() => {
+//     async function fetchSurvey() {
+//       try {
+//         setLoading(true);
+//         const survey = await axios.get(SURVEY_GET_API);
+//         setResult(survey.data);
+//       } catch (error) {
+//         setLoading(false);
+//       }
+//     }
+//     fetchSurvey();
+//   }, []);
+//   return [result, loading];
+// }

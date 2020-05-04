@@ -16,7 +16,7 @@ const AssessmentEndShare = ({ navigation }) => {
   return (
     <AssessmentEnd
       ctaAction={() => {
-        navigation.push('AssessmentCaptcha');
+        navigation.push('Captcha');
       }}
       ctaTitle={t('assessment.share_cta')}
       description={
@@ -27,7 +27,10 @@ const AssessmentEndShare = ({ navigation }) => {
         </Trans>
       }
       footer={
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.push('EndComplete');
+          }}>
           <Text style={styles.skip}>{t('assessment.share_cta_skip')}</Text>
         </TouchableOpacity>
       }

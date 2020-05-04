@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Text } from 'react-native';
+import { Image, Text, View } from 'react-native';
 
 import Fonts from '../../constants/fonts';
 import i18n from '../../locales/languages';
@@ -37,6 +37,23 @@ const AssessmentStart = ({ navigation }) => {
         </Trans>
       }
       image={require('../../assets/images/illustration-screening-start.png')}
+      pretitle={
+        <View
+          style={{
+            alignItems: 'flex-end',
+            flexDirection: 'row',
+            marginBottom: 10,
+          }}>
+          <Image
+            source={require('../../assets/images/logo-cdc.png')}
+            style={{ width: 47, height: 29, marginRight: 10 }}
+          />
+          <Image
+            source={require('../../assets/images/logo-mit-media-lab.png')}
+            style={{ width: 58, height: 32 }}
+          />
+        </View>
+      }
       title={t('assessment.start_title')}
     />
   );

@@ -27,6 +27,7 @@ const HEIGHT = WIDTH * (300 / 375);
  *   description: ReactNode;
  *   footer: ReactNode;
  *   image: string;
+ *   pretitle: ReactNode;
  *   title: string;
  * }>} */
 const AssessmentShare = ({
@@ -37,6 +38,7 @@ const AssessmentShare = ({
   children,
   footer,
   image,
+  pretitle,
   title,
 }) => {
   return (
@@ -44,6 +46,7 @@ const AssessmentShare = ({
       <ScrollView style={styles.scrollView}>
         <Image source={image} style={{ width: WIDTH, height: HEIGHT }} />
         <View style={styles.scrollViewContent}>
+          {pretitle}
           <Text
             style={[styles.title, { color: ctaColor ? ctaColor : undefined }]}>
             {title}

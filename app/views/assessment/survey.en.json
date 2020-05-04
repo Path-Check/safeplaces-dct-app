@@ -108,33 +108,41 @@
     {
       "conditions": [
         {
-          "jump_to_key": "end_distancing",
+          "jump_to_key": "end_isolate",
           "response": "0"
         },
         {
-          "jump_to_key": "end_distancing",
+          "jump_to_key": "end_isolate",
           "response": "1"
         },
         {
-          "jump_to_key": "end_distancing",
+          "jump_to_key": "end_isolate",
           "response": "2"
         },
         {
-          "jump_to_key": "10a",
+          "jump_to_key": "end_isolate",
           "response": "3"
+        },
+        {
+          "jump_to_key": "end_isolate",
+          "response": "4"
+        },
+        {
+          "jump_to_key": "end_isolate",
+          "response": "5"
+        },
+        {
+          "jump_to_key": "end_isolate",
+          "response": "6"
+        },
+        {
+          "jump_to_key": "end_distancing",
+          "response": "7"
         }
       ],
       "option_key": "option_10",
       "question_key": "10",
       "question_text": "Do you have one or more of the following symptoms?",
-      "question_type": "MULTI",
-      "required": false,
-      "screen_type": "Checkbox"
-    },
-    {
-      "option_key": "option_10a",
-      "question_key": "10a",
-      "question_text": "Do you have one or more of the following?",
       "question_type": "MULTI",
       "required": false,
       "screen_type": "Checkbox"
@@ -370,7 +378,7 @@
       "key": "option_10",
       "values": [
         {
-          "label": "Fever",
+          "label": "Fever or feeling feverish (chills, sweating)",
           "value": "0"
         },
         {
@@ -378,41 +386,28 @@
           "value": "1"
         },
         {
-          "label": "Shortness of breath (mild)",
-          "value": "2"
-        },
-        {
-          "label": "Other",
-          "value": "3"
-        }
-      ]
-    },
-    {
-      "key": "option_10a",
-      "values": [
-        {
-          "label": "Runny or stuffy nose",
-          "value": "0"
-        },
-        {
           "label": "Sore throat",
-          "value": "1"
-        },
-        {
-          "label": "Muscle aches, body aches, or headache",
           "value": "2"
         },
         {
-          "label": "Tiredness or fatigue",
+          "label": "Muscle aches or body aches",
           "value": "3"
         },
         {
-          "label": "Nausea, vomiting, or diarrhea",
+          "label": "Vomiting or diarrhea",
           "value": "4"
         },
         {
-          "label": "Other",
+          "label": "Change in smell or taste",
           "value": "5"
+        },
+        {
+          "label": "Shortness of breath (mild, chest feels tight when you take a deep breath)",
+          "value": "6"
+        },
+        {
+          "label": "None of the above",
+          "value": "7"
         }
       ]
     },

@@ -166,6 +166,8 @@ const styles = StyleSheet.create({
     width: INDICATOR_WIDTH * 0.5,
   },
   title: {
+    flex: 1,
+    flexWrap: 'wrap',
     fontFamily: Fonts.primarySemiBold,
     fontSize: 20,
   },
