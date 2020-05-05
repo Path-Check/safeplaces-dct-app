@@ -12,7 +12,7 @@ import io.realm.Realm;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import org.pathcheck.covidsafepaths.bridge.RealmPackage;
-import org.pathcheck.covidsafepaths.storage.RealmWrapper;
+import org.pathcheck.covidsafepaths.storage.SecureStorage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -56,7 +56,7 @@ public class MainApplication extends Application implements ReactApplication {
     Realm.init(this);
     initializeGeolocationTransformer();
     // Ignore assignment. Creating to begin heavy encryption work
-    RealmWrapper wrapper = RealmWrapper.INSTANCE;
+    SecureStorage wrapper = SecureStorage.INSTANCE;
   }
 
   /**
@@ -89,7 +89,7 @@ public class MainApplication extends Application implements ReactApplication {
     BackgroundGeolocationFacade.setLocationTransform((context, location) -> {
 
       // Save Location in encrypted realm db
-      RealmWrapper.INSTANCE.saveDeviceLocation(location);
+      SecureStorage.INSTANCE.saveDeviceLocation(location);
 
       // Always return null. We never want to store data in the libraries SQLite DB
       return null;

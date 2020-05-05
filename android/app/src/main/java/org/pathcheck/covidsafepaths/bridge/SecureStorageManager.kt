@@ -7,7 +7,7 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.ReadableArray
 import org.pathcheck.covidsafepaths.storage.Location.Companion.SOURCE_GOOGLE
 import org.pathcheck.covidsafepaths.storage.Location.Companion.SOURCE_MIGRATION
-import org.pathcheck.covidsafepaths.storage.RealmWrapper
+import org.pathcheck.covidsafepaths.storage.SecureStorage
 
 class SecureStorageManager(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
@@ -17,16 +17,16 @@ class SecureStorageManager(reactContext: ReactApplicationContext) : ReactContext
 
   @ReactMethod
   fun getLocations(promise: Promise) {
-    RealmWrapper.getLocations(promise)
+    SecureStorage.getLocations(promise)
   }
 
   @ReactMethod
   fun importGoogleLocations(locations: ReadableArray, promise: Promise) {
-    RealmWrapper.importLocations(locations, SOURCE_GOOGLE, promise)
+    SecureStorage.importLocations(locations, SOURCE_GOOGLE, promise)
   }
 
   @ReactMethod
   fun migrateExistingLocations(locations: ReadableArray, promise: Promise) {
-    RealmWrapper.importLocations(locations, SOURCE_MIGRATION, promise)
+    SecureStorage.importLocations(locations, SOURCE_MIGRATION, promise)
   }
 }
