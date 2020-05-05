@@ -1,83 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, StyleSheet, View } from 'react-native';
+import loadLocalResource from 'react-native-local-resource';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 
 import close from '../assets/svgs/close';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
-import en_html from '../locales/eula/en_html';
-import ht_html from '../locales/eula/ht_html';
+import en from '../locales/eula/en.html';
+import ht from '../locales/eula/ht.html';
 import ButtonWrapper from './ButtonWrapper';
 import { Checkbox } from './Checkbox';
 import { IconButton } from './IconButton';
 import { Typography } from './Typography';
 
-const EULA_FILES = {
-  en: en_html,
-  ht: ht_html,
-};
-
-const webViewScrollDetection = `
-  // Returns a function, that, as long as it continues to be invoked, will not
-  // be triggered. The function will be called after it stops being called for
-  // N milliseconds. If 'immediate' is passed, trigger the function on the
-  // leading edge, instead of the trailing.
-  function debounce(func, wait, immediate) {
-    var timeout;
-    return function() {
-      var context = this, args = arguments;
-      var later = function() {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      };
-      var callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) func.apply(context, args);
-    };
-  };
-
-  function scrollHandler() {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 30) {
-      window.ReactNativeWebView.postMessage('end');
-    } else {
-      window.ReactNativeWebView.postMessage('scroll');
-    }
-  }
-
-  setTimeout(() => {
-    window.addEventListener('scroll', debounce(scrollHandler, 150));
-  }, 300);
-  true;
-`;
+const EULA_FILES = { en, ht };
 
 export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const [modalVisible, setModalVisibility] = useState(false);
   const [boxChecked, toggleCheckbox] = useState(false);
-  const [hasScrolledToEnd, setScrolledToEnd] = useState();
+  const [html, setHtml] = useState(undefined);
   const { t } = useTranslation();
 
-  // reset the scroll check if language changes
-  useEffect(() => {
-    setScrolledToEnd(false);
-  }, [selectedLocale]);
-
-  /**
-   * Set scrolled to end when end reached, and never untoggle it if scrolling
-   * back up
-   */
-  const handleWebViewMessage = event => {
-    if (!hasScrolledToEnd && event.nativeEvent.data === 'end') {
-      setScrolledToEnd(true);
-    }
-  };
-
   // Pull the EULA in the correct language, with en as fallback
-  const html = EULA_FILES[selectedLocale] || en_html;
+  const eulaPath = EULA_FILES[selectedLocale] || en;
 
-  const canContinue = boxChecked; // && hasScrolledToEnd;
+  // Load the EULA from disk
+  useEffect(() => {
+    const loadEula = async () => {
+      setHtml(await loadLocalResource(eulaPath));
+    };
+    loadEula();
+  }, [selectedLocale, setHtml, eulaPath]);
+
+  const canContinue = boxChecked;
 
   return (
     <>
@@ -98,13 +55,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                 accessibilityLabel='Close'
                 onPress={() => setModalVisibility(false)}
               />
-              <WebView
-                style={{ flex: 1 }}
-                source={{ html }}
-                onMessage={handleWebViewMessage}
-                javaScriptEnabled
-                injectedJavaScript={webViewScrollDetection}
-              />
+              {html && <WebView style={{ flex: 1 }} source={{ html }} />}
             </View>
           </SafeAreaView>
           <Theme use='violet'>
