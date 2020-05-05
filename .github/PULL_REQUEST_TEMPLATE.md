@@ -1,4 +1,4 @@
-<!-- Please read https://github.com/tripleblindmarket/covid-safe-paths/wiki/Pull-Request-Best-Practices for recommended best practices before opening your first pull request -->
+<!-- Please read https://github.com/Path-Check/covid-safe-paths/wiki/Pull-Request-Best-Practices for recommended best practices before opening your first pull request -->
 
 #### Description:
 
