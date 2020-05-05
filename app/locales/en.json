@@ -19,21 +19,21 @@
   },
   "import": {
     "button_text": "Import past locations",
+    "error": "Something went wrong while importing your data.",
     "google": {
+      "already_imported": "Provided Takeout file has already been imported.",
       "disclaimer": "Safe Paths has no affiliation with Google and never shares your data.",
+      "file_open_error": "Could not open the file. \nPlease, make sure the file is opened from Google Drive",
       "instructions_detailed": "Visit Google Takeout and export your Location History using the following settings: \n1. Delivery method: \"Add to Drive\" \n2. Frequency: \"Export once\" \n3. File type & size: \".zip\" and \"1GB\"\n4. Google sends an email when the export is ready \n5. Return here to import locations from Google Drive",
       "instructions_first": "Adding location data from Google will give you a head start on building your recent locations.",
       "instructions_second": "Before you can import, you must first \"Take out\" your location data from Google.",
-      "title": "Google Maps",
-      "visit_button_text": "Visit Google Takeout",
-      "already_imported":"Provided Takeout file has already been imported.",
-      "no_recent_locations": "Takeout doesn't have any recent locations.",
       "invalid_file_format": "Provided file format is not supported. \nSupported formats: \".zip\".",
-      "file_open_error": "Could not open the file. \nPlease, make sure the file is opened from Google Drive"
+      "no_recent_locations": "Takeout doesn't have any recent locations.",
+      "title": "Google Maps",
+      "visit_button_text": "Visit Google Takeout"
     },
-    "success":"Recent locations has been successfully imported!",
-    "error":"Something went wrong while importing your data.",
     "subtitle": "To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.",
+    "success": "Recent locations has been successfully imported!",
     "title": "Import Locations"
   },
   "label": {

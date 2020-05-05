@@ -1,0 +1,4 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "يتطلب تشغيل COVID Safe Paths.";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "تم إغلاق COVID Safe Paths";
