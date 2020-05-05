@@ -1,8 +1,8 @@
-<!-- Required: read https://github.com/Path-Check/covid-safe-paths/wiki/Pull-Request-Best-Practices for recommended best practices before opening your first pull request.  PR's raised not following those guidelines will not be approved and will require rework, so you might as well start off right -->
+<!-- Required: read https://github.com/Path-Check/covid-safe-paths/wiki/Pull-Request-Best-Practices for recommended best practices before opening your first pull request.  PR's raised not following those guidelines will require rework, so you might as well start off right -->
 
 #### Description:
 
-<!-- Description of what the PR does.  YOUR PR WILL BE REJECTED WITHOUT A DESCRIPTION -->
+<!-- Description of what the PR does.  YOUR PR WILL BE REJECTED IF YOU DO NOT HAVE A DESCRIPTION -->
 
 #### Linked issues:
 
