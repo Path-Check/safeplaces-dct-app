@@ -33,7 +33,6 @@ export const UnknownPage = () => {
         translucent
       />
       <View style={styles.pulseContainer}>
-        <Text>Testdsfafasfsdafasfsadf</Text>
         <SvgXml
           xml={StateUnknown}
           width={size ? size : 80}
