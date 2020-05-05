@@ -90,7 +90,7 @@ const LINE_HEIGHT_MAP = {
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
 
-const getTextOpacity = ({ disabled }) => (disabled ? '0.25' : '1');
+const getTextOpacity = ({ disabled }) => (disabled ? '0.25' : null);
 
 const getFontWeight = ({ use = Type.Body1, bold }) =>
   use.startsWith('headline') || bold ? 'bold' : 'normal';
