@@ -44,7 +44,7 @@ const ImportScreen = props => {
       const filePath = await pickFile();
       if (filePath) {
         await importTakeoutData(filePath);
-        setImportResults(makeImportResults('label.import_success'));
+        setImportResults(t('label.import_success'));
       }
     } catch (err) {
       if (err instanceof NoRecentLocationsError) {
