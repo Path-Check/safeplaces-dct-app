@@ -30,7 +30,6 @@ object SecureStorage {
   fun importLocations(locations: ReadableArray, source: Int, promise: Promise) {
     Thread(Runnable {
       val ready = readyCountdown.await(10, SECONDS)
-
       if (!ready) {
         promise.reject(java.lang.Exception("Failed to get Realm instance with encryption"))
         return@Runnable
