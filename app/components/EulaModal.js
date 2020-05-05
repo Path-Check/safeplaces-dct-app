@@ -80,7 +80,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const canContinue = boxChecked; // && hasScrolledToEnd;
 
   return (
-    <>
+    <Theme use='default'>
       <Button
         label={t('label.launch_get_started')}
         onPress={() => setModalVisibility(true)}
@@ -129,7 +129,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
           </Theme>
         </View>
       </Modal>
-    </>
+    </Theme>
   );
 };
 

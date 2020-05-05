@@ -381,14 +381,13 @@ class LocationTracking extends Component {
       };
     }
     return (
-      <View style={styles.buttonContainer}>
-        <Button
-          label={buttonLabel}
-          onPress={() => {
-            buttonFunction();
-          }}
-        />
-      </View>
+      <Button
+        label={buttonLabel}
+        onPress={() => {
+          buttonFunction();
+        }}
+        style={styles.buttonContainer}
+      />
     );
   }
 
@@ -497,7 +496,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    top: 24,
+    marginTop: 24,
   },
   pulseContainer: {
     position: 'absolute',

@@ -35,7 +35,7 @@ export const Button = ({
       small={small}
       {...otherProps}>
       <ThemeProvider theme={invertTextColors}>
-        <Label secondary={secondary} disabled={disabled}>
+        <Label small={small} secondary={secondary} disabled={disabled}>
           {label}
         </Label>
         {icon ? <Icon xml={icon} /> : null}
@@ -61,19 +61,17 @@ const getBorderColor = ({ theme, secondary }) =>
 const getJustifyContent = ({ hasIcon }) =>
   hasIcon ? 'space-between' : 'center';
 
-const getButtonHeight = ({ small }) => (small ? '48px' : '72px');
-
 const Container = styled.TouchableOpacity`
   background-color: ${themePrimary};
-  height: ${getButtonHeight};
+  height: ${({ small }) => (small ? '48px' : '72px')};
   border: 2px solid ${getBorderColor};
-  padding: 16px;
+  padding: ${({ small }) => (small ? '14px' : '16px')};
   border-radius: 8px;
   flex-direction: row;
   justify-content: ${getJustifyContent};
   align-content: center;
   align-items: center;
-  width: 100%;
+  align-self: stretch;
 `;
 
 const getFontSize = ({ small }) => (small ? '14px' : '20px');
