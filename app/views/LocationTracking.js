@@ -383,9 +383,7 @@ class LocationTracking extends Component {
     return (
       <Button
         label={buttonLabel}
-        onPress={() => {
-          buttonFunction();
-        }}
+        onPress={() => buttonFunction()}
         style={styles.buttonContainer}
       />
     );
@@ -497,6 +495,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 24,
+    height: 54, // fixes overlaying buttons on really small screens
   },
   pulseContainer: {
     position: 'absolute',

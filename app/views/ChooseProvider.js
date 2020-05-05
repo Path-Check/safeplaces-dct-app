@@ -335,11 +335,14 @@ class ChooseProviderScreen extends Component {
           <Menu
             name='AuthoritiesMenu'
             renderer={SlideInMenu}
-            style={{ flex: 1, justifyContent: 'center' }}>
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              paddingHorizontal: 12,
+            }}>
             <MenuTrigger>
               <Button
                 label={languages.t('label.authorities_add_button_label')}
-                style={styles.startLoggingButtonTouchable}
                 onPress={() =>
                   this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
                 }
@@ -419,18 +422,6 @@ const styles = StyleSheet.create({
     width: '96%',
     alignSelf: 'center',
     backgroundColor: Colors.WHITE,
-  },
-  startLoggingButtonTouchable: {
-    borderRadius: 12,
-    backgroundColor: '#665eff',
-    height: 52,
-    alignSelf: 'center',
-    width: '79%',
-    justifyContent: 'center',
-  },
-  startLoggingButtonText: {
-    textAlign: 'center',
-    color: '#ffffff',
   },
   headerTitle: {
     color: Colors.VIOLET_TEXT,

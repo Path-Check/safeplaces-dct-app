@@ -80,31 +80,33 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const canContinue = boxChecked; // && hasScrolledToEnd;
 
   return (
-    <Theme use='default'>
+    <>
       <Button
         label={t('label.launch_get_started')}
         onPress={() => setModalVisibility(true)}
       />
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
-          <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 7, paddingHorizontal: 5 }}>
-              <IconButton
-                icon={close}
-                size={20}
-                style={styles.closeIcon}
-                accessibilityLabel='Close'
-                onPress={() => setModalVisibility(false)}
-              />
-              <WebView
-                style={{ flex: 1 }}
-                source={{ html }}
-                onMessage={handleWebViewMessage}
-                javaScriptEnabled
-                injectedJavaScript={webViewScrollDetection}
-              />
-            </View>
-          </SafeAreaView>
+          <Theme use='default'>
+            <SafeAreaView style={{ flex: 1 }}>
+              <View style={{ flex: 7, paddingHorizontal: 5 }}>
+                <IconButton
+                  icon={close}
+                  size={20}
+                  style={styles.closeIcon}
+                  accessibilityLabel='Close'
+                  onPress={() => setModalVisibility(false)}
+                />
+                <WebView
+                  style={{ flex: 1 }}
+                  source={{ html }}
+                  onMessage={handleWebViewMessage}
+                  javaScriptEnabled
+                  injectedJavaScript={webViewScrollDetection}
+                />
+              </View>
+            </SafeAreaView>
+          </Theme>
           <Theme use='violet'>
             <SafeAreaView style={{ backgroundColor: Colors.VIOLET_BUTTON }}>
               <View style={styles.ctaBox}>
@@ -129,7 +131,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
           </Theme>
         </View>
       </Modal>
-    </Theme>
+    </>
   );
 };
 
