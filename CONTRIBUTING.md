@@ -57,7 +57,7 @@ git remote add upstream git@github.com:Path-Check/covid-safe-paths.git
   ```bash
   git checkout develop # you want to branch from the latest 'develop' branch
   
-  git pull upstream/develop # make sure you have the latest code from upstream
+  git pull upstream develop # make sure you have the latest code from upstream
   
   git push origin develop # optional, push these changes to YOUR fork's develop branch
   ```
