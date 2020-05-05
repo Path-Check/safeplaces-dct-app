@@ -32,7 +32,6 @@ export const ExposurePage = () => {
         translucent
       />
       <View style={styles.pulseContainer}>
-        <Text>Testdsfafasfsdafasfsadf</Text>
         <SvgXml
           xml={StateAtRisk}
           width={size ? size : 80}
