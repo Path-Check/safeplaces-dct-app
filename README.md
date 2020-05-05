@@ -55,7 +55,7 @@ Safe Paths logs your device’s location once every five minutes and stores 28 d
 
 # Development Overview
 
-![Android and iOS build on MacOS](https://github.com/tripleblindmarket/covid-safe-paths/workflows/Android%20and%20iOS%20build%20on%20MacOS/badge.svg)
+![Android and iOS build on MacOS](https://github.com/Path-Check/covid-safe-paths/workflows/Android%20and%20iOS%20build%20on%20MacOS/badge.svg)
 
 _Safe Paths_ is a built on [React Native](https://reactnative.dev/docs/getting-started) v0.61.5
 
