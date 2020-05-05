@@ -65,6 +65,7 @@ const Container = styled.TouchableOpacity`
   background-color: ${themePrimary};
   height: ${({ small }) => (small ? '48px' : '72px')};
   border: 2px solid ${getBorderColor};
+  padding-horizontal: ${({ small }) => (small ? '14px' : '16px')};
   border-radius: 8px;
   flex-direction: row;
   justify-content: ${getJustifyContent};
