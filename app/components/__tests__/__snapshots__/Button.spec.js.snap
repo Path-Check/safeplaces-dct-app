@@ -33,10 +33,7 @@ exports[`allows small override 1`] = `
         "height": 48,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingBottom": 14,
-        "paddingLeft": 14,
-        "paddingRight": 14,
-        "paddingTop": 14,
+        "paddingHorizontal": 14,
       }
     }
   >
@@ -93,10 +90,7 @@ exports[`changes color based on theme 1`] = `
         "height": 72,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingBottom": 16,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 16,
+        "paddingHorizontal": 16,
       }
     }
   >
@@ -139,10 +133,7 @@ exports[`changes color based on theme 1`] = `
         "height": 72,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingBottom": 16,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 16,
+        "paddingHorizontal": 16,
       }
     }
   >
@@ -185,10 +176,7 @@ exports[`changes color based on theme 1`] = `
         "height": 72,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingBottom": 16,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 16,
+        "paddingHorizontal": 16,
       }
     }
   >
@@ -244,10 +232,7 @@ exports[`renders a violet 72px button on default theme 1`] = `
         "height": 72,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingBottom": 16,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 16,
+        "paddingHorizontal": 16,
       }
     }
   >
@@ -303,10 +288,7 @@ exports[`renders an icon and space-between if supplied 1`] = `
         "height": 72,
         "justifyContent": "space-between",
         "opacity": 1,
-        "paddingBottom": 16,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 16,
+        "paddingHorizontal": 16,
       }
     }
   >
@@ -370,10 +352,7 @@ exports[`renders different color for secondary 1`] = `
         "height": 72,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingBottom": 16,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 16,
+        "paddingHorizontal": 16,
       }
     }
   >

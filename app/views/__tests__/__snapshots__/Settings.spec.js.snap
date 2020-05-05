@@ -1482,10 +1482,7 @@ exports[`renders correctly 1`] = `
                 "height": 72,
                 "justifyContent": "center",
                 "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
+                "paddingHorizontal": 16,
               }
             }
           >

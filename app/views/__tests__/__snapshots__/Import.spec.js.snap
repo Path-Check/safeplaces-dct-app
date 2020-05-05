@@ -195,11 +195,9 @@ Array [
                 "flexDirection": "row",
                 "height": 48,
                 "justifyContent": "center",
+                "marginTop": 24,
                 "opacity": 1,
-                "paddingBottom": 14,
-                "paddingLeft": 14,
-                "paddingRight": 14,
-                "paddingTop": 14,
+                "paddingHorizontal": 14,
               }
             }
             testID="google-takeout-link"
@@ -248,11 +246,9 @@ Array [
                 "flexDirection": "row",
                 "height": 48,
                 "justifyContent": "center",
+                "marginTop": 24,
                 "opacity": 1,
-                "paddingBottom": 14,
-                "paddingLeft": 14,
-                "paddingRight": 14,
-                "paddingTop": 14,
+                "paddingHorizontal": 14,
               }
             }
             testID="google-takeout-import-btn"
