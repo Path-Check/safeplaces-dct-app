@@ -121,6 +121,10 @@ class LocationTracking extends Component {
                 LocationServices.start();
                 this.checkIfUserAtRisk();
                 return;
+              case RESULTS.DENIED:
+                LocationServices.stop();
+                this.checkIfUserAtRisk();
+                return;
               case RESULTS.UNAVAILABLE:
               case RESULTS.BLOCKED:
                 console.log('NO LOCATION');

@@ -2,7 +2,9 @@ import styled, { css } from '@emotion/native';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
+import { PERMISSIONS, RESULTS, check } from 'react-native-permissions';
 
+import { isPlatformiOS } from './../Util';
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
 import xmarkIcon from '../assets/svgs/xmarkIcon';
@@ -40,7 +42,7 @@ export const SettingsScreen = ({ navigation }) => {
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
+    checkLocationState();
     // TODO: this should be a service or hook
     GetStoreData(PARTICIPATE)
       .then(isParticipating => setIsLogging(isParticipating === 'true'))
@@ -53,6 +55,29 @@ export const SettingsScreen = ({ navigation }) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
   }, []);
+
+  const checkLocationState = () => {
+    // NEED TO TEST ON ANDROID
+    let locationPermission;
+    if (isPlatformiOS()) {
+      locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
+    } else {
+      locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+    }
+
+    // If user has location enabled & permissions, start logging
+    check(locationPermission)
+      .then(result => {
+        // console.log("test21 :" + result);
+        switch (result) {
+          case RESULTS.DENIED:
+            setIsLogging(false);
+        }
+      })
+      .catch(error => {
+        console.log('error checking location: ' + error);
+      });
+  };
 
   const locationToggleButtonPressed = async () => {
     try {
