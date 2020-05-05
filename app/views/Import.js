@@ -85,6 +85,7 @@ const ImportScreen = props => {
                 'https://takeout.google.com/settings/takeout/custom/location_history',
               )
             }
+            style={{ marginTop: 24 }}
           />
 
           <Button
@@ -92,6 +93,7 @@ const ImportScreen = props => {
             label={t('import.title')}
             testID='google-takeout-import-btn'
             onPress={importPickFile}
+            style={{ marginTop: 24 }}
           />
 
           {importResults.label ? (
