@@ -60,10 +60,10 @@ class QRScan extends Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     this.unsubscribeFocus = this.props.navigation.addListener('focus', () => {
-      this.scanQR();
+      this.processRouteParams();
     });
     this.unsubscribeState = this.props.navigation.addListener('state', () => {
-      this.scanQR();
+      this.processRouteParams();
     });
   }
 
@@ -73,22 +73,34 @@ class QRScan extends Component {
     this.unsubscribeState();
   }
 
-  scanQR() {
+  processRouteParams() {
     const {
       latitudeInteger,
       latitudeFraction,
       longitudeInteger,
       longitudeFraction,
     } = this.props.route.params;
-    const isValidInteger = num => {
-      const regex = /^\d+?$/;
-      return typeof num === 'string' && regex.test(num);
-    };
+    this.saveCoordinates(
+      latitudeInteger,
+      latitudeFraction,
+      longitudeInteger,
+      longitudeFraction,
+    );
+  }
+
+  saveCoordinates(
+    latitudeInteger,
+    latitudeFraction,
+    longitudeInteger,
+    longitudeFraction,
+  ) {
     if (
-      (isValidInteger(latitudeInteger),
-      isValidInteger(latitudeFraction),
-      isValidInteger(longitudeInteger),
-      isValidInteger(longitudeFraction))
+      this.isValidCoordinates(
+        latitudeInteger,
+        latitudeFraction,
+        longitudeInteger,
+        longitudeFraction,
+      )
     ) {
       const latitudeParsed = Number(`${latitudeInteger}.${latitudeFraction}`);
       const longitudeParsed = Number(
@@ -103,6 +115,24 @@ class QRScan extends Component {
     } else {
       this.setState({ currentState: StateEnum.SCAN_FAIL });
     }
+  }
+
+  isValidCoordinates(
+    latitudeInteger,
+    latitudeFraction,
+    longitudeInteger,
+    longitudeFraction,
+  ) {
+    const isValidInteger = num => {
+      const regex = /^\d+?$/;
+      return typeof num === 'string' && regex.test(num);
+    };
+    return (
+      isValidInteger(latitudeInteger) &&
+      isValidInteger(latitudeFraction) &&
+      isValidInteger(longitudeInteger) &&
+      isValidInteger(longitudeFraction)
+    );
   }
 
   handleBackPress = () => {
