@@ -22,13 +22,15 @@ import { isPlatformiOS } from './../../Util';
 import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { PARTICIPATE } from '../../constants/storage';
+import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { HCAService } from '../../services/HCAService';
+import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
@@ -287,7 +289,10 @@ class Onboarding extends Component {
         this.requestHCASubscription();
         break;
       case StepEnum.DONE:
-        SetStoreData(PARTICIPATE, 'true');
+        SetStoreData(
+          PARTICIPATE,
+          this.state.locationPermission === PermissionStatusEnum.GRANTED,
+        );
         SetStoreData('ONBOARDING_DONE', true);
         this.props.navigation.replace('LocationTrackingScreen');
     }
@@ -420,35 +425,37 @@ class Onboarding extends Component {
 
   render() {
     return (
-      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor='transparent'
-          translucent
-        />
+      <Theme use='violet'>
+        <ImageBackground
+          source={BackgroundImage}
+          style={styles.backgroundImage}>
+          <StatusBar
+            barStyle='light-content'
+            backgroundColor='transparent'
+            translucent
+          />
 
-        <View style={styles.mainContainer}>
-          <View style={styles.contentContainer}>
-            {this.getTitleTextView()}
-            {this.getSubtitleText()}
-            {this.getSkipStepButton()}
-            <View style={styles.statusContainer}>
-              {this.getLocationPermission()}
-              {this.getNotificationsPermissionIfIOS()}
-              {__DEV__ && this.getAuthSubscriptionStatus()}
-              <View style={styles.spacer} />
+          <View style={styles.mainContainer}>
+            <View style={styles.contentContainer}>
+              {this.getTitleTextView()}
+              {this.getSubtitleText()}
+              {this.getSkipStepButton()}
+              <View style={styles.statusContainer}>
+                {this.getLocationPermission()}
+                {this.getNotificationsPermissionIfIOS()}
+                {__DEV__ && this.getAuthSubscriptionStatus()}
+                <View style={styles.spacer} />
+              </View>
             </View>
           </View>
-          <View style={styles.footerContainer}>
-            <ButtonWrapper
-              title={this.getButtonText()}
+          <View style={sharedStyles.footerContainer}>
+            <Button
+              label={this.getButtonText()}
               onPress={this.buttonPressed.bind(this)}
-              buttonColor={Colors.VIOLET}
-              bgColor={Colors.WHITE}
             />
           </View>
-        </View>
-      </ImageBackground>
+        </ImageBackground>
+      </Theme>
     );
   }
 }
@@ -492,12 +499,6 @@ const styles = StyleSheet.create({
   },
   spacer: {
     marginVertical: '5%',
-  },
-  footerContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: '10%',
-    alignSelf: 'center',
   },
   permissionContainer: {
     flexDirection: 'row',

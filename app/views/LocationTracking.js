@@ -31,11 +31,12 @@ import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import { isPlatformAndroid, isPlatformiOS } from './../Util';
-import ButtonWrapper from '../components/ButtonWrapper';
+import { Button } from '../components/Button';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { CROSSED_PATHS, DEBUG_MODE, PARTICIPATE } from '../constants/storage';
+import { Theme } from '../constants/themes';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -140,13 +141,26 @@ class LocationTracking extends Component {
 
   checkIfUserAtRisk() {
     BackgroundTaskServices.start();
-
+    // If the user has location tracking disabled, set enum to match
+    GetStoreData(PARTICIPATE, false).then(isParticipating => {
+      if (isParticipating === false) {
+        this.setState({
+          currentState: StateEnum.SETTING_OFF,
+        });
+      }
+      //Location enable
+      else {
+        this.crossPathCheck();
+      }
+    });
+  }
+  //Due to Issue 646 moved below code from checkIfUserAtRisk function
+  crossPathCheck() {
     GetStoreData(DEBUG_MODE).then(dbgMode => {
       if (dbgMode != 'true') {
         // already set on 12h timer, but run when this screen opens too
         checkIntersect();
       }
-
       GetStoreData(CROSSED_PATHS).then(dayBin => {
         dayBin = JSON.parse(dayBin);
         if (dayBin !== null && dayBin.reduce((a, b) => a + b, 0) > 0) {
@@ -157,15 +171,6 @@ class LocationTracking extends Component {
           this.setState({ currentState: StateEnum.NO_CONTACT });
         }
       });
-    });
-
-    // If the user has location tracking disabled, set enum to match
-    GetStoreData(PARTICIPATE, false).then(isParticipating => {
-      if (isParticipating === false) {
-        this.setState({
-          currentState: StateEnum.SETTING_OFF,
-        });
-      }
     });
   }
 
@@ -376,16 +381,11 @@ class LocationTracking extends Component {
       };
     }
     return (
-      <View style={styles.buttonContainer}>
-        <ButtonWrapper
-          title={buttonLabel}
-          onPress={() => {
-            buttonFunction();
-          }}
-          buttonColor={Colors.BLUE_BUTTON}
-          bgColor={Colors.WHITE}
-        />
-      </View>
+      <Button
+        label={buttonLabel}
+        onPress={() => buttonFunction()}
+        style={styles.buttonContainer}
+      />
     );
   }
 
@@ -394,58 +394,59 @@ class LocationTracking extends Component {
   }
 
   render() {
+    const hasPossibleExposure = this.state.currentState === StateEnum.AT_RISK;
     return (
-      <ImageBackground
-        source={this.getBackground()}
-        style={styles.backgroundImage}>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor='transparent'
-          translucent
-        />
-        {this.getPulseIfNeeded()}
+      <Theme use={hasPossibleExposure ? 'charcoal' : 'violet'}>
+        <ImageBackground
+          source={this.getBackground()}
+          style={styles.backgroundImage}>
+          <StatusBar
+            barStyle='light-content'
+            backgroundColor='transparent'
+            translucent
+          />
+          {this.getPulseIfNeeded()}
 
-        <View style={styles.mainContainer}>
-          <View style={styles.contentAbovePulse}>
-            {this.state.currentState === StateEnum.AT_RISK &&
-              this.getMainText()}
-            <Typography style={styles.subsubheaderText}>
-              {this.getSubSubText()}
-            </Typography>
-          </View>
-          <View style={styles.contentBelowPulse}>
-            {this.state.currentState !== StateEnum.AT_RISK &&
-              this.getMainText()}
-            <Typography style={styles.subheaderText}>
-              {this.getSubText()}
-            </Typography>
-            {this.getCTAIfNeeded()}
-          </View>
-        </View>
-
-        <View>
-          <TouchableOpacity
-            onPress={this.getMayoInfoPressed.bind(this)}
-            style={styles.mayoInfoRow}>
-            <View style={styles.mayoInfoContainer}>
-              <Typography
-                style={styles.mainMayoHeader}
-                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                {languages.t('label.home_mayo_link_heading')}
-              </Typography>
-              <Typography
-                style={styles.mainMayoSubtext}
-                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                {languages.t('label.home_mayo_link_label')}
+          <View style={styles.mainContainer}>
+            <View style={styles.contentAbovePulse}>
+              {hasPossibleExposure && this.getMainText()}
+              <Typography style={styles.subsubheaderText}>
+                {this.getSubSubText()}
               </Typography>
             </View>
-            <View style={styles.arrowContainer}>
-              <Image source={foreArrow} style={this.arrow} />
+            <View style={styles.contentBelowPulse}>
+              {!hasPossibleExposure && this.getMainText()}
+              <Typography style={styles.subheaderText}>
+                {this.getSubText()}
+              </Typography>
+              {this.getCTAIfNeeded()}
             </View>
-          </TouchableOpacity>
-        </View>
-        {this.getSettings()}
-      </ImageBackground>
+          </View>
+
+          <View>
+            <TouchableOpacity
+              onPress={this.getMayoInfoPressed.bind(this)}
+              style={styles.mayoInfoRow}>
+              <View style={styles.mayoInfoContainer}>
+                <Typography
+                  style={styles.mainMayoHeader}
+                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
+                  {languages.t('label.home_mayo_link_heading')}
+                </Typography>
+                <Typography
+                  style={styles.mainMayoSubtext}
+                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
+                  {languages.t('label.home_mayo_link_label')}
+                </Typography>
+              </View>
+              <View style={styles.arrowContainer}>
+                <Image source={foreArrow} style={this.arrow} />
+              </View>
+            </TouchableOpacity>
+          </View>
+          {this.getSettings()}
+        </ImageBackground>
+      </Theme>
     );
   }
 }
@@ -493,7 +494,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    top: 24,
+    marginTop: 24,
+    height: 54, // fixes overlaying buttons on really small screens
   },
   pulseContainer: {
     position: 'absolute',
