@@ -2,9 +2,11 @@ import BackgroundGeolocation from '@mauron85/react-native-background-geolocation
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 
+import { LOCATION_INTERVAL, MAX_BACKFILL_TIME } from '../constants/location';
 import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { areLocationsNearby } from '../helpers/Intersect';
+import { retryTillDesiredAccuracyMet } from '../helpers/location';
 import languages from '../locales/languages';
 import { isPlatformAndroid } from '../Util';
 
@@ -13,14 +15,12 @@ const LOCATION_DISABLED_NOTIFICATION = '55';
 
 export class LocationData {
   constructor() {
-    // The desired location interval, and the minimum acceptable interval
-    this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+    this.locationInterval = LOCATION_INTERVAL;
 
     // minLocationSaveInterval should be shorter than the locationInterval (to avoid strange skips)
     this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
 
-    // Maximum time that we will backfill for missing data
-    this.maxBackfillTime = 60000 * 60 * 24; // Time (in milliseconds).  60000 * 60 * 8 = 24 hours
+    this.maxBackfillTime = MAX_BACKFILL_TIME;
   }
 
   async getLocationData() {
@@ -249,7 +249,7 @@ export default class LocationServices {
       stopOnStillActivity: false,
     });
 
-    BackgroundGeolocation.on('location', location => {
+    BackgroundGeolocation.on('location', initialLocation => {
       // handle your locations here
       /* SAMPLE OF LOCATION DATA OBJECT
                 {
@@ -261,12 +261,14 @@ export default class LocationServices {
             */
       // to perform long running operation on iOS
       // you need to create background task
-      BackgroundGeolocation.startTask(taskKey => {
-        // execute long running task
-        // eg. ajax post location
-        // IMPORTANT: task has to be ended by endTask
-        locationData.saveLocation(location);
-        BackgroundGeolocation.endTask(taskKey);
+      retryTillDesiredAccuracyMet(initialLocation, location => {
+        BackgroundGeolocation.startTask(taskKey => {
+          // execute long running task
+          // eg. ajax post location
+          // IMPORTANT: task has to be ended by endTask
+          locationData.saveLocation(location);
+          BackgroundGeolocation.endTask(taskKey);
+        });
       });
     });
 
