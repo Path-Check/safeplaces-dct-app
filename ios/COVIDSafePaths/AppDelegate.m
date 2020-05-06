@@ -14,6 +14,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import <react-native-splash-screen/RNSplashScreen.h>
 #import <TSBackgroundFetch/TSBackgroundFetch.h>
+#import <React/RCTLinkingManager.h>
 
 @implementation AppDelegate
 
@@ -117,6 +118,13 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
 {
   completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
+}
+
+- (BOOL)application:(UIApplication *)application
+   openURL:(NSURL *)url
+   options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [RCTLinkingManager application:application openURL:url options:options];
 }
 
 @end
