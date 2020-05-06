@@ -4,7 +4,6 @@ import {
   BackHandler,
   Dimensions,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -13,6 +12,7 @@ import { WebView } from 'react-native-webview';
 
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { AUTHORITY_NEWS } from '../constants/storage';
@@ -33,7 +33,7 @@ class NewsScreen extends Component {
     this.state = {
       visible: true,
       default_news: default_news,
-      newsUrls: [default_news, default_news],
+      newsUrls: [],
       current_page: 0,
     };
   }
@@ -57,7 +57,9 @@ class NewsScreen extends Component {
     return (
       <View style={styles.singleNews}>
         <View style={styles.singleNewsHead}>
-          <Text style={styles.singleNewsHeadText}>{item.item.name}</Text>
+          <Typography style={styles.singleNewsHeadText}>
+            {item.item.name}
+          </Typography>
         </View>
         <WebView
           source={{
@@ -172,7 +174,9 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   singleNewsHeadText: {
-    fontSize: 18,
+    fontSize: 16,
+    textAlign: 'center',
+    paddingHorizontal: 5,
     fontFamily: fontFamily.primarySemiBold,
   },
 });

@@ -1,0 +1,4 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "COVID സെയ്ഫ് പാത്ത് പ്രവർത്തിപ്പിക്കേണ്ടതുണ്ട്.";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "COVID സെയ്ഫ് പാത്ത് പ്രവർത്തനം നിർത്തി";

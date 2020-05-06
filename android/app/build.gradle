@@ -1,5 +1,12 @@
 apply plugin: "com.android.application"
 
+project.ext.envConfigFiles = [
+    debug: ".env",
+    release: ".env.release",
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 import com.android.build.OutputFile
 
 /**
@@ -117,7 +124,7 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  * on project.ext.react, JavaScript will not be compiled to Hermes Bytecode
  * and the benefits of using Hermes will therefore be sharply reduced.
  */
-def enableHermes = project.ext.react.get("enableHermes", false);
+def enableHermes = project.ext.react.get("enableHermes", false)
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -132,8 +139,13 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-        versionCode 22
-        versionName "0.9.4"
+
+        // detox e2e testing
+        testBuildType System.getProperty('testBuildType', 'debug')
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        versionCode 25
+        versionName "1.0.1"
     }
     splits {
         abi {
@@ -161,7 +173,6 @@ android {
                 project.logger.lifecycle('Could not find release key')
             }
         }
-        
     }
     buildTypes {
         debug {
@@ -186,59 +197,52 @@ android {
                 output.versionCodeOverride =
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
-
         }
     }
 }
 
 dependencies {
+    // loading html files
+    compile project(':react-native-local-resource')
     implementation project(':react-native-reanimated')
-    implementation project(':react-native-gesture-handler')
-    implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"
 
-    compile project(':react-native-fs')
-
     if (enableHermes) {
-        def hermesPath = "../../node_modules/hermes-engine/android/";
+        def hermesPath = "../../node_modules/hermes-engine/android/"
         debugImplementation files(hermesPath + "hermes-debug.aar")
         releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
         implementation jscFlavor
     }
-
-    implementation(project(':react-native-maps')){
-       exclude group: 'com.google.android.gms', module: 'play-services-base'
-       exclude group: 'com.google.android.gms', module: 'play-services-maps'
-    }
-    implementation 'com.google.android.gms:play-services-base:10.0.1'
-    implementation 'com.google.android.gms:play-services-maps:10.0.1'
+    androidTestImplementation('com.wix:detox:+')  // detox: e2e testing
 }
 
- // Just to fix the app start crash error
- allprojects {
+allprojects {
     repositories {
-    //start here
-    configurations.all {
- resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-   def requested = details.requested
-       if (requested.group == 'com.google.android.gms') {
-          details.useVersion '12.0.1'
-       }
-       if (requested.group == 'com.google.firebase') {
-          details.useVersion '12.0.1'
-         }
-       }
-     }
-    //end
-     jcenter()
-       maven {
-         url "https://maven.google.com"
-       }
-     }
- }
+        configurations.all {
+            // Fixes dependency conflict between react-native-local-assets and
+            // @mauron85/react-native-background-geolocation
+            exclude group: "commons-io", module: "commons-io"
+
+            // To fix the app start crash error
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                def requested = details.requested
+                if (requested.group == 'com.google.android.gms') {
+                    details.useVersion '12.0.1'
+                }
+                if (requested.group == 'com.google.firebase') {
+                    details.useVersion '12.0.1'
+                }
+            }
+        }
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+    }
+}
 
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use

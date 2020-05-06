@@ -1,0 +1,5 @@
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. All rights reserved.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Your location history will be saved on your device, and only shared with others if you choose to do so.";
+"NSLocationAlwaysUsageDescription" = "Your location history will be saved on your device, and only shared with others if you choose to do so.";
+"NSLocationWhenInUseUsageDescription" = "Your location history will be saved on your device, and only shared with others if you choose to do so.";
+"NSMotionUsageDescription" = "We use your accelerometer for accurate location history.";

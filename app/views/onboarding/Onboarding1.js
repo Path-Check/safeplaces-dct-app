@@ -4,19 +4,25 @@ import {
   ImageBackground,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
-import languages, { findUserLang } from './../../locales/languages';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import languages, {
+  LOCALE_LIST,
+  getUserLocaleOverride,
+  setUserLocaleOverride,
+  supportedDeviceLanguageOrEnglish,
+} from './../../locales/languages';
+import { EulaModal } from '../../components/EulaModal';
 import NativePicker from '../../components/NativePicker';
+import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import { LANG_OVERRIDE } from '../../constants/storage';
-import { SetStoreData } from '../../helpers/General';
+import { Theme } from '../../constants/themes';
+import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
@@ -24,79 +30,84 @@ class Onboarding extends Component {
   constructor(props) {
     super(props);
 
-    // Get locales list from i18next for locales menu
-    let localesList = [];
-    for (let key in languages.options.resources) {
-      localesList = localesList.concat({
-        value: key,
-        label: languages.options.resources[key].label,
-      });
-    }
-
     this.state = {
-      language: findUserLang(res => {
-        this.setState({ language: res });
-      }),
-      localesList: localesList,
+      locale: supportedDeviceLanguageOrEnglish(),
     };
   }
 
+  componentDidMount() {
+    getUserLocaleOverride().then(locale => {
+      if (locale) {
+        this.setState({ locale });
+      }
+    });
+  }
+
+  onLocaleChange = async locale => {
+    if (locale) {
+      try {
+        await setUserLocaleOverride(locale);
+        this.setState({ locale });
+      } catch (err) {
+        console.log('Something went wrong in language change', err);
+      }
+    }
+  };
+
   render() {
     return (
-      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+      <Theme use='violet'>
         <ImageBackground
-          source={BackgroundOverlayImage}
+          source={BackgroundImage}
           style={styles.backgroundImage}>
-          <StatusBar
-            barStyle='light-content'
-            backgroundColor='transparent'
-            translucent
-          />
-          <View style={styles.mainContainer}>
-            <View
-              style={{
-                paddingTop: 60,
-                position: 'absolute',
-                alignSelf: 'center',
-                zIndex: 10,
-              }}>
-              <NativePicker
-                items={this.state.localesList}
-                value={this.state.language}
-                onValueChange={(itemValue, itemIndex) => {
-                  this.setState({ language: itemValue });
-
-                  // If user picks manual lang, update and store setting
-                  languages.changeLanguage(itemValue, (err, t) => {
-                    if (err)
-                      return console.log(
-                        'something went wrong in lang change',
-                        err,
-                      );
-                  });
-
-                  SetStoreData(LANG_OVERRIDE, itemValue);
-                }}
-              />
+          <ImageBackground
+            source={BackgroundOverlayImage}
+            style={styles.backgroundImage}>
+            <StatusBar
+              barStyle='light-content'
+              backgroundColor='transparent'
+              translucent
+            />
+            <View style={styles.mainContainer}>
+              <View
+                style={{
+                  paddingTop: 60,
+                  position: 'absolute',
+                  alignSelf: 'center',
+                  zIndex: 10,
+                }}>
+                <NativePicker
+                  items={LOCALE_LIST}
+                  value={this.state.locale}
+                  onValueChange={this.onLocaleChange}>
+                  {({ label, openPicker }) => (
+                    <TouchableOpacity
+                      onPress={openPicker}
+                      style={styles.languageSelector}>
+                      <Typography style={styles.languageSelectorText}>
+                        {label}
+                      </Typography>
+                    </TouchableOpacity>
+                  )}
+                </NativePicker>
+              </View>
+              <View style={styles.contentContainer}>
+                <Typography style={styles.mainText}>
+                  {languages.t('label.launch_screen1_header')}
+                </Typography>
+              </View>
+              <View style={sharedStyles.footerContainer}>
+                <EulaModal
+                  continueFunction={() =>
+                    this.props.navigation.replace('Onboarding2')
+                  }
+                  selectedLocale={this.state.locale}
+                />
+              </View>
             </View>
-            <View style={styles.contentContainer}>
-              <Text style={styles.mainText}>
-                {languages.t('label.launch_screen1_header')}
-              </Text>
-            </View>
-            <View style={styles.footerContainer}>
-              <ButtonWrapper
-                title={languages.t('label.launch_get_started')}
-                onPress={() => {
-                  this.props.navigation.push('Onboarding2');
-                }}
-                buttonColor={Colors.VIOLET}
-                bgColor={Colors.WHITE}
-              />
-            </View>
-          </View>
+          </ImageBackground>
         </ImageBackground>
-      </ImageBackground>
+      </Theme>
     );
   }
 }
@@ -126,11 +137,22 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
   },
-  footerContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: '10%',
-    alignSelf: 'center',
+  // eslint-disable-next-line react-native/no-color-literals
+  languageSelector: {
+    // alpha needs to be in the bg color otherwise it fades the contained text
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    paddingVertical: 4,
+    paddingHorizontal: 11,
+    borderRadius: 100,
+  },
+  languageSelectorText: {
+    fontSize: 12,
+    color: Colors.VIOLET,
+    paddingVertical: 4,
+    paddingHorizontal: 11,
+    opacity: 1,
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
 });
 

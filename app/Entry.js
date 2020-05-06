@@ -1,18 +1,17 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { CardStyleInterpolators } from '@react-navigation/stack';
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from '@react-navigation/stack';
 import React, { Component } from 'react';
-import { enableScreens } from 'react-native-screens';
-import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
-import { PARTICIPATE } from './constants/storage';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
-import AssessmentScreen from './views/assessment/Assessment';
 import ChooseProviderScreen from './views/ChooseProvider';
-import ExportScreen from './views/Export';
+import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
-import LicencesScreen from './views/Licenses';
+import { LicensesScreen } from './views/Licenses';
 import LocationTracking from './views/LocationTracking';
 import NewsScreen from './views/News';
 import Onboarding1 from './views/onboarding/Onboarding1';
@@ -20,12 +19,9 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
-import SettingsScreen from './views/Settings';
-import WayPointsScreen from './views/WayPoints';
+import { SettingsScreen } from './views/Settings';
 
-enableScreens();
-
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 class Entry extends Component {
   constructor(props) {
@@ -36,11 +32,10 @@ class Entry extends Component {
   }
 
   componentDidMount() {
-    GetStoreData(PARTICIPATE)
-      .then(isParticipating => {
-        console.log(isParticipating);
+    GetStoreData('ONBOARDING_DONE')
+      .then(onboardingDone => {
         this.setState({
-          initialRouteName: isParticipating,
+          initialRouteName: onboardingDone,
         });
       })
       .catch(error => console.log(error));
@@ -127,7 +122,7 @@ class Entry extends Component {
           />
           <Stack.Screen
             name='LicensesScreen'
-            component={LicencesScreen}
+            component={LicensesScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
@@ -138,16 +133,6 @@ class Entry extends Component {
           <Stack.Screen
             name='AboutScreen'
             component={AboutScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='AssessmentScreen'
-            component={AssessmentScreen}
-            options={{ stackPresentation: 'modal', headerShown: false }}
-          />
-          <Stack.Screen
-            name='WayPointsScreen'
-            component={WayPointsScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
