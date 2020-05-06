@@ -19,6 +19,7 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
+import QRScanScreen from './views/QRScan';
 import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();
@@ -42,8 +43,16 @@ class Entry extends Component {
   }
 
   render() {
+    const linking = {
+      enabled: true,
+      prefixes: ['safepaths://'],
+      config: {
+        QRScanScreen:
+          'qr/:latitudeInteger/:latitudeFraction/:longitudeInteger/:longitudeFraction',
+      },
+    };
     return (
-      <NavigationContainer>
+      <NavigationContainer linking={linking}>
         <Stack.Navigator
           initialRouteName='InitialScreen'
           screenOptions={{
@@ -52,6 +61,11 @@ class Entry extends Component {
               backgroundColor: 'transparent', // prevent white flash on Android
             },
           }}>
+          <Stack.Screen
+            name='QRScanScreen'
+            component={QRScanScreen}
+            options={{ headerShown: false }}
+          />
           {this.state.initialRouteName === 'true' ? (
             <Stack.Screen
               name='InitialScreen'
