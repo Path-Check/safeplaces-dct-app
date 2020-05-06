@@ -4,6 +4,7 @@ import * as General from '../../helpers/General';
 import { LocationData, Reason } from '../LocationService';
 import LocationServices from '../LocationService';
 
+// TODO(https://pathcheck.atlassian.net/browse/SAF-193): fix global mutation
 function mockGetStoreData(data) {
   General.GetStoreData = () => {
     return new Promise(resolve => {

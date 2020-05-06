@@ -46,7 +46,8 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    top: 24,
+    marginTop: 24,
+    height: 54, // fixes overlaying buttons on really small screens
   },
   pulseContainer: {
     position: 'absolute',

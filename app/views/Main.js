@@ -14,7 +14,9 @@ import { SvgXml } from 'react-native-svg';
 import settingsIcon from './../assets/svgs/settingsIcon';
 import { isPlatformAndroid } from './../Util';
 import { Feature } from '../components/Feature';
+import { IconButton } from '../components/IconButton';
 import Colors from '../constants/colors';
+import { Theme } from '../constants/themes';
 import LocationServices, { Reason } from '../services/LocationService';
 import LocationTracking from './LocationTracking';
 import { ExposurePage } from './main/ExposurePage';
@@ -39,13 +41,17 @@ const Main = () => {
 
   const SettingsIcon = () => {
     return (
-      <TouchableOpacity
-        style={styles.settingsContainer}
-        onPress={() => {
-          navigation.navigate('SettingsScreen');
-        }}>
-        <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
-      </TouchableOpacity>
+      <Theme use='violet'>
+        <IconButton
+          style={styles.settingsContainer}
+          icon={settingsIcon}
+          size={30}
+          onPress={() => {
+            navigation.navigate('SettingsScreen');
+          }}
+          label='default'
+        />
+      </Theme>
     );
   };
 

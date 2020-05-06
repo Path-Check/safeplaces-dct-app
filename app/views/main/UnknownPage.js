@@ -12,9 +12,9 @@ import { SvgXml } from 'react-native-svg';
 
 import backgroundImage from './../../assets/images/launchScreenBackground.png';
 import StateUnknown from '../../assets/svgs/stateUnknown';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
+import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
@@ -26,45 +26,44 @@ export const UnknownPage = () => {
   };
   const size = Dimensions.get('window').height;
   return (
-    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor='transparent'
-        translucent
-      />
-      <View style={styles.pulseContainer}>
-        <SvgXml
-          xml={StateUnknown}
-          width={size ? size : 80}
-          height={size ? size : 80}
+    <Theme use='violet'>
+      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent
         />
-      </View>
-
-      <View style={styles.mainContainer}>
-        <View style={styles.contentAbovePulse}>
-          <Typography style={styles.mainTextAbove} />
-          <Typography style={styles.subsubheaderText} />
+        <View style={styles.pulseContainer}>
+          <SvgXml
+            xml={StateUnknown}
+            width={size ? size : 80}
+            height={size ? size : 80}
+          />
         </View>
-        <View style={styles.contentBelowPulse}>
-          <Text style={styles.mainTextBelow}>
-            {t('label.home_unknown_header')}
-          </Text>
-          <Typography style={styles.subheaderText}>
-            {t('label.home_unknown_subtext')}
-          </Typography>
-          <View style={styles.buttonContainer}>
-            <ButtonWrapper
-              title={buttonLabel}
-              onPress={() => {
-                handleEnableLocationPress();
-              }}
-              buttonColor={Colors.BLUE_BUTTON}
-              bgColor={Colors.WHITE}
-            />
+
+        <View style={styles.mainContainer}>
+          <View style={styles.contentAbovePulse}>
+            <Typography style={styles.mainTextAbove} />
+            <Typography style={styles.subsubheaderText} />
+          </View>
+          <View style={styles.contentBelowPulse}>
+            <Text style={styles.mainTextBelow}>
+              {t('label.home_unknown_header')}
+            </Text>
+            <Typography style={styles.subheaderText}>
+              {t('label.home_unknown_subtext')}
+            </Typography>
+            <View style={styles.buttonContainer}>
+              <Button
+                label={buttonLabel}
+                onPress={() => handleEnableLocationPress()}
+                style={styles.buttonContainer}
+              />
+            </View>
           </View>
         </View>
-      </View>
-      <MayoButton />
-    </ImageBackground>
+        <MayoButton />
+      </ImageBackground>
+    </Theme>
   );
 };
