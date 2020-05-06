@@ -61,11 +61,6 @@ class Entry extends Component {
               backgroundColor: 'transparent', // prevent white flash on Android
             },
           }}>
-          <Stack.Screen
-            name='QRScanScreen'
-            component={QRScanScreen}
-            options={{ headerShown: false }}
-          />
           {this.state.initialRouteName === 'true' ? (
             <Stack.Screen
               name='InitialScreen'
@@ -147,6 +142,11 @@ class Entry extends Component {
           <Stack.Screen
             name='AboutScreen'
             component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='QRScanScreen'
+            component={QRScanScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
