@@ -17,6 +17,7 @@ import io.realm.kotlin.where
 import org.pathcheck.covidsafepaths.MainApplication
 import org.pathcheck.covidsafepaths.util.getCutoffTimestamp
 import java.security.SecureRandom
+import java.util.UUID
 
 class RealmSecureStorage(inMemory: Boolean?) {
   constructor(): this(false)
@@ -44,7 +45,7 @@ class RealmSecureStorage(inMemory: Boolean?) {
         .addModule(SafePathsRealmModule())
 
     if (inMemory != null && inMemory) {
-      builder.name("in-memory.realm").inMemory()
+      builder.name(UUID.randomUUID().toString()).inMemory()
     } else {
       builder.name("safepaths.realm")
     }

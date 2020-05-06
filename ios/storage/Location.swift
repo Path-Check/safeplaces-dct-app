@@ -49,11 +49,11 @@ class Location: Object {
     location.time = Int(backgroundLocation.time.timeIntervalSince1970)
     location.latitude = backgroundLocation.latitude.doubleValue
     location.longitude = backgroundLocation.longitude.doubleValue
-    location.altitude.value = backgroundLocation.altitude.doubleValue
-    location.speed.value = backgroundLocation.speed.floatValue
-    location.accuracy.value = backgroundLocation.accuracy.floatValue
-    location.altitudeAccuracy.value = backgroundLocation.altitudeAccuracy.floatValue
-    location.bearing.value = backgroundLocation.heading.floatValue
+    location.altitude.value = backgroundLocation.altitude?.doubleValue
+    location.speed.value = backgroundLocation.speed?.floatValue
+    location.accuracy.value = backgroundLocation.accuracy?.floatValue
+    location.altitudeAccuracy.value = backgroundLocation.altitudeAccuracy?.floatValue
+    location.bearing.value = backgroundLocation.heading?.floatValue
     location.source = SOURCE_DEVICE
     return location;
   }

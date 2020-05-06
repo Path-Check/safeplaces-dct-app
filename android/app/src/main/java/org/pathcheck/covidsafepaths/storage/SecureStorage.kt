@@ -13,8 +13,8 @@ object SecureStorage {
   init {
     Thread(Runnable {
       secureStorage = RealmSecureStorage()
-      readyCountdown.countDown()
       secureStorage.trimLocations()
+      readyCountdown.countDown()
     }).start()
   }
 

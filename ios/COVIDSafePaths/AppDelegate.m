@@ -25,14 +25,14 @@
 {
   MAURBackgroundGeolocationFacade.locationTransform = ^(MAURLocation * location) {
     MAURLocation *locationToInsert = [location copy];
-    [[RealmWrapper shared] saveDeviceLocationWithBackgroundLocation:locationToInsert];
+    [[SecureStorage shared] saveDeviceLocationWithBackgroundLocation:locationToInsert];
     
     // nil out location so geolocation library doesn't save in its internval db
     location = nil;
     return location;
   };
   
-  [[RealmWrapper shared] trimLocations];
+  [[SecureStorage shared] trimLocations];
   
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge

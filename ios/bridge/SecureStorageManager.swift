@@ -16,17 +16,17 @@ class SecureStorageManager: NSObject {
   }
   
   @objc
-  func getLocations(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
-    RealmWrapper.shared.getLocations(resolve: resolve, reject: reject)
+  func getLocations(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+    SecureStorage.shared.getLocations(resolve: resolve, reject: reject)
   }
   
   @objc
-  func importGoogleLocations(_ locations: NSArray, resolve: @escaping RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
-    RealmWrapper.shared.importLocations(locations: locations, source: Location.SOURCE_GOOGLE, resolve: resolve, reject: reject)
+  func importGoogleLocations(_ locations: NSArray, resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+    SecureStorage.shared.importLocations(locations: locations, source: Location.SOURCE_GOOGLE, resolve: resolve, reject: reject)
   }
   
   @objc
-  func migrateExistingLocations(_ locations: NSArray, resolve: @escaping RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
-    RealmWrapper.shared.importLocations(locations: locations, source: Location.SOURCE_MIGRATION, resolve: resolve, reject: reject)
+  func migrateExistingLocations(_ locations: NSArray, resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+    SecureStorage.shared.importLocations(locations: locations, source: Location.SOURCE_MIGRATION, resolve: resolve, reject: reject)
   }
 }

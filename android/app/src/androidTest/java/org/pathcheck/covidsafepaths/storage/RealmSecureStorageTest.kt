@@ -7,6 +7,7 @@ import com.facebook.react.bridge.WritableNativeMap
 import com.marianhello.bgloc.data.BackgroundLocation
 import io.realm.Realm
 import io.realm.kotlin.where
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
@@ -30,6 +31,7 @@ class RealmSecureStorageTest {
     hold = secureStorage.getRealmInstance()
   }
 
+  @After
   fun tearDown() {
     hold = null
   }
@@ -63,13 +65,13 @@ class RealmSecureStorageTest {
     val backgroundLocation1 = BackgroundLocation().apply {
       latitude = 40.730610
       longitude = -73.935242
-      time = 0
+      time = location1Time
     }
-    val location2Time = System.currentTimeMillis()
+    val location2Time = location1Time + 10
     val backgroundLocation2 = BackgroundLocation().apply {
       latitude = 40.730610
       longitude = -73.935242
-      time = location1Time + 10
+      time = location2Time
     }
 
     // when
@@ -209,12 +211,11 @@ class RealmSecureStorageTest {
         assertEquals(2, (value as? ReadableArray)?.size() ?: 0)
         (value as? ReadableArray)?.getMap(0)?.let {
           assertEquals(location3Time.toDouble(), it.getDouble(Location.KEY_TIME), 0.0)
-          promiseLatch.countDown()
         } ?: fail("Result at index 0 was null")
         (value as? ReadableArray)?.getMap(1)?.let {
           assertEquals(location2Time.toDouble(), it.getDouble(Location.KEY_TIME), 0.0)
-          promiseLatch.countDown()
         } ?: fail("Result at index 0 was null")
+        promiseLatch.countDown()
       }
     }
     secureStorage.saveDeviceLocation(backgroundLocation1)
