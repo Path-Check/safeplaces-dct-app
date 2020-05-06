@@ -83,7 +83,7 @@ class RealmSecureStorageTest: XCTestCase {
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
       },
-      reject: testRejecter()
+      reject: emptyRejecter()
     )
     
     // then
@@ -123,7 +123,7 @@ class RealmSecureStorageTest: XCTestCase {
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
       },
-      reject: testRejecter()
+      reject: emptyRejecter()
     )
     
     // then
@@ -162,7 +162,7 @@ class RealmSecureStorageTest: XCTestCase {
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
       },
-      reject: testRejecter()
+      reject: emptyRejecter()
     )
     
     // then
@@ -183,8 +183,8 @@ class RealmSecureStorageTest: XCTestCase {
     secureStorage!.importLocations(
       locations: importLocations,
       source: Location.SOURCE_MIGRATION,
-      resolve: testResolver(),
-      reject: testRejecter()
+      resolve: emptyResolver(),
+      reject: emptyRejecter()
     )
     
     // when
@@ -196,19 +196,7 @@ class RealmSecureStorageTest: XCTestCase {
       XCTAssertEqual(40.730610, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_LATITUDE) as! Double)
       XCTAssertEqual(-73.935242, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_LONGITUDE) as! Double)
       XCTAssertEqual(location1Time * 1000, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_TIME) as! Int)
-    }, reject: testRejecter())
-  }
-  
-  func testResolver() -> RCTPromiseResolveBlock {
-    return { result in
-        
-    }
-  }
-  
-  func testRejecter() -> RCTPromiseRejectBlock {
-    return { code, message, error in
-      
-    }
+    }, reject: emptyRejecter())
   }
   
   func testOldLocationsTrimmed() {
@@ -230,12 +218,20 @@ class RealmSecureStorageTest: XCTestCase {
     XCTAssertNotNil(querySingleLocationByTime(time: location2Time))
   }
   
-  
-  
-  
-  
   func querySingleLocationByTime(time: Int) -> Location? {
     return secureStorage!.getRealmInstance()!.objects(Location.self).filter("\(Location.KEY_TIME)==\(time)").first
+  }
+  
+  func emptyResolver() -> RCTPromiseResolveBlock {
+    return { result in
+        
+    }
+  }
+  
+  func emptyRejecter() -> RCTPromiseRejectBlock {
+    return { code, message, error in
+      
+    }
   }
 }
 
