@@ -1,15 +1,6 @@
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import {
-  AppState,
-  BackHandler,
-  Image,
-  StatusBar,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { SvgXml } from 'react-native-svg';
+import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import settingsIcon from './../assets/svgs/settingsIcon';
 import { isPlatformAndroid } from './../Util';

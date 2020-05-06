@@ -37,6 +37,10 @@ function mockGetBackgroundGeoStatus(data) {
     .mockResolvedValueOnce(data);
 }
 
+beforeEach(() => {
+  jest.resetAllMocks();
+});
+
 describe('LocationData class', () => {
   let locationData;
 
