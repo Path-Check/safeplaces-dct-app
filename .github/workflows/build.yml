@@ -42,8 +42,7 @@ jobs:
       - name: Bundle JS
         run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
 
-      - name: Build APK (gradle)
-        run: ./gradlew assembleDebug --no-daemon
+      - run: ./gradlew assembleDebug --no-daemon
         working-directory: ./android
 
       - name: Upload APK
@@ -51,6 +50,35 @@ jobs:
         with:
           name: Debug APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
+
+  # attempt a release build, some things work in debug and not in release
+  build-android-release:
+    needs: build-android
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - run: yarn --frozen-lockfile
+
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - run: ./gradlew bundleRelease --no-daemon
+        working-directory: ./android
+
 
   build-ios:
     runs-on: macOS-latest

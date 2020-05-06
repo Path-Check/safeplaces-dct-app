@@ -1,15 +1,26 @@
 # How to contribute
 
+---
+**NOTE**
+
+As of 3-May-2020 the COVID Safe Paths repo has moved to a new location (https://github.com/Path-Check/covid-safe-paths).  If you've already set the `upstream` in your repo, GitHub's redirects will make it so things still work; However for consistency we highly recommend you change your `upstream` to point to the new repo location  e.g.
+```
+git remote add upstream git@github.com:Path-Check/covid-safe-paths.git
+```
+
+---
+
+
 We welcome participation in an open project. We want to make it as easy as possible for people to work together, so please follow these guidelines to prepare and submit a pull request.
 
-- Filtering by [good first issues](https://github.com/tripleblindmarket/covid-safe-paths/labels/good%20first%20issue) is the recommended way to begin contributing to the project
-- Localization/Language updates are handled in [Lokalise](https://lokalise.com/). More info on how to contribute [here](https://github.com/tripleblindmarket/covid-safe-paths/wiki/Localization-Contributing-Guidelines)
+- Filtering by [good first issues](https://github.com/Path-Check/covid-safe-paths/labels/good%20first%20issue) is the recommended way to begin contributing to the project
+- Localization/Language updates are handled in [Lokalise](https://lokalise.com/). More info on how to contribute [here](https://github.com/Path-Check/covid-safe-paths/wiki/Localization-Contributing-Guidelines)
 
 ## Create A New Issue
 
 - You need a Github account. You can [create one](https://github.com/signup/free) for free.
 
-- Submit an [Issue](https://github.com/tripleblindmarket/covid-safe-paths/issues) against the repo to describe the idea or problem if there is not one yet.
+- Submit an [Issue](https://github.com/Path-Check/covid-safe-paths/issues) against the repo to describe the idea or problem if there is not one yet.
 
 - Describe a bug by including steps to reproduce, and the earliest version you know is affected.
 
@@ -17,7 +28,7 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 - Fork the repository on GitHub:
 
-- Visit https://github.com/tripleblindmarket/covid-safe-paths
+- Visit https://github.com/Path-Check/covid-safe-paths
 - Click on the "Fork" button in the upper-left corner.
 
 - Clone the forked repository to your local machine:
@@ -32,7 +43,7 @@ git clone git@github.com:YOURACCOUNT/covid-safe-paths.git
 cd covid-safe-paths
 
 # set upstream against COVID Safe Paths repository
-git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
+git remote add upstream git@github.com:Path-Check/covid-safe-paths.git
 
 ```
 
@@ -46,7 +57,7 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
   ```bash
   git checkout develop # you want to branch from the latest 'develop' branch
   
-  git pull upstream/develop # make sure you have the latest code from upstream
+  git pull upstream develop # make sure you have the latest code from upstream
   
   git push origin develop # optional, push these changes to YOUR fork's develop branch
   ```
@@ -70,7 +81,7 @@ git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
 
 ```bash
 # if you've already done this it will fail, that's fine:
-git remote add upstream git@github.com:tripleblindmarket/covid-safe-paths.git
+git remote add upstream git@github.com:Path-Check/covid-safe-paths.git
 
 # ensure you are on your feature/fix branch
 git checkout feature/my-feature
@@ -104,7 +115,7 @@ git push -u origin
 
 - Verify following -
 
-  - Base repository - tripleblindmarket/covid-safe-paths
+  - Base repository - Path-Check/covid-safe-paths
   - Base branch - develop
   - Head repository - your-git-id/covid-safe-paths
   - Compare branch - feature/your-branch-name
