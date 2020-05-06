@@ -26,6 +26,11 @@ export const MIN_CHECK_INTERSECT_INTERVAL = 6 * 60;
 export const INTERSECT_INTERVAL = 60 * 12; // 12 Hours, the value is received in minutes
 
 /**
+ * The value in milliseconds to triger a notification if a user had been exposed for longer or equal to this period
+ */
+export const MIN_EXPOSURE_PERIOD_TO_NOTIFY = 10 * 60 * 1000;
+
+/**
  * Format of a single history item
  *
  * @typedef {{

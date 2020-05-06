@@ -689,6 +689,7 @@ describe('intersect at fixed locations and times', () => {
     let resultBins = intersectSetIntoBins(
       baseLocations,
       concernLocations,
+      {},
       21, // override to 21 dayBins
       dayjs.duration(CONCERN_TIME_WINDOW_MINUTES, 'minutes').asMilliseconds(), // setting the concern time window
       dayjs
@@ -710,10 +711,41 @@ describe('intersect at fixed locations and times', () => {
     expect(resultBins).toEqual(expectedBins);
   });
 
+  it('non concern locations shows no intersections', () => {
+    // 13 location data seperated 5 minutes a part
+    let baseLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.base,
+        TEST_MOMENT.valueOf(),
+      ),
+    ];
+
+    let concernLocations = [
+      ...generateBackfillLocationArray(
+        TEST_LOCATIONS.kansascity.no_concern,
+        TEST_MOMENT.valueOf(),
+      ),
+    ];
+
+    // normalize and sort
+    baseLocations = normalizeAndSortLocations(baseLocations);
+    concernLocations = normalizeAndSortLocations(concernLocations);
+
+    let intersections = {};
+
+    let { newIntersections } = intersectSetIntoBins(
+      baseLocations,
+      concernLocations,
+      intersections,
+    );
+
+    expect(newIntersections).toBe(0);
+  });
+
   /**
    * Test checks for new intersections and repeated intersections for a given matching locations
    */
-  it('new intersections and identfied intersections', () => {
+  it('concern locations shows intersections', () => {
     // 13 location data seperated 5 minutes a part
     let baseLocations = [
       ...generateBackfillLocationArray(
@@ -733,14 +765,21 @@ describe('intersect at fixed locations and times', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
+    let intersections = {};
+
     let { newIntersections } = intersectSetIntoBins(
       baseLocations,
       concernLocations,
+      intersections,
     );
-    expect(newIntersections).toBe(13);
 
-    newIntersections = intersectSetIntoBins(baseLocations, concernLocations)
-      .newIntersections;
+    expect(newIntersections).toBe(3900000);
+
+    newIntersections = intersectSetIntoBins(
+      baseLocations,
+      concernLocations,
+      intersections,
+    ).newIntersections;
     expect(newIntersections).toBe(0);
   });
 });

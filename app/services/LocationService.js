@@ -113,7 +113,6 @@ export class LocationData {
               latitude: lastLocationArray['latitude'],
               longitude: lastLocationArray['longitude'],
               time: newTS,
-              crossedPaths: [],
             };
             //console.log('[INFO] backfill location:', lat_lon_time);
             curated.push(lat_lon_time);
@@ -127,7 +126,6 @@ export class LocationData {
         latitude: location['latitude'],
         longitude: location['longitude'],
         time: unixtimeUTC,
-        crossedPaths: [],
       };
       curated.push(lat_lon_time);
       console.log('[INFO] saved location:', lat_lon_time);

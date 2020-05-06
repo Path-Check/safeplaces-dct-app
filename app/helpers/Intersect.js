@@ -14,11 +14,13 @@ import {
   DEFAULT_EXPOSURE_PERIOD_MINUTES,
   MAX_EXPOSURE_WINDOW_DAYS,
   MIN_CHECK_INTERSECT_INTERVAL,
+  MIN_EXPOSURE_PERIOD_TO_NOTIFY,
 } from '../constants/history';
 import {
   AUTHORITY_NEWS,
   AUTHORITY_SOURCE_SETTINGS,
   CROSSED_PATHS,
+  INTERSECTIONS_DATA,
   LAST_CHECKED,
   LOCATION_DATA,
 } from '../constants/storage';
@@ -34,6 +36,7 @@ import languages from '../locales/languages';
  *
  * @param {array} localArray - array of the local locations.  Assumed to have been sorted and normalized
  * @param {array} concernArray - superset array of all concerning points from health authorities.  Assumed to have been sorted and normalized
+ * @param {object} intersections - The user intersections history
  * @param {int} numDayBins - (optional) number of bins in the array returned
  * @param {int} concernTimeWindowMS - (optional) window of time to use when determining an exposure
  * @param {int} defaultExposurePeriodMS - (optional) the default exposure period to use when necessary when an exposure is found
@@ -41,6 +44,7 @@ import languages from '../locales/languages';
 export function intersectSetIntoBins(
   localArray,
   concernArray,
+  intersections = {},
   numDayBins = MAX_EXPOSURE_WINDOW_DAYS,
   concernTimeWindowMS = 1000 * 60 * CONCERN_TIME_WINDOW_MINUTES,
   defaultExposurePeriodMS = DEFAULT_EXPOSURE_PERIOD_MINUTES * 60 * 1000,
@@ -50,6 +54,8 @@ export function intersectSetIntoBins(
 
   // generate an array with the asked for number of day bins
   const dayBins = getEmptyLocationBins(numDayBins);
+
+  // keep track of new intersections by adding the exposurePeriod
   let newIntersections = 0;
 
   //for (let loc of localArray) {
@@ -123,9 +129,15 @@ export function intersectSetIntoBins(
         dayBins[daysAgo] += exposurePeriod;
 
         // Identify if this is a new intersection
-        if (!hasExistingIntersection(currentLocation, concernArray[j])) {
-          addNewIntersection(currentLocation, concernArray[j]);
-          newIntersections += 1;
+        if (
+          !hasExistingIntersection(
+            intersections,
+            currentLocation,
+            concernArray[j],
+          )
+        ) {
+          addNewIntersection(intersections, currentLocation, concernArray[j]);
+          newIntersections += exposurePeriod;
         }
 
         // Since we've counted the current location time period, we can now break the loop for
@@ -137,7 +149,7 @@ export function intersectSetIntoBins(
     }
   }
 
-  return { bins: dayBins, newIntersections };
+  return { bins: dayBins, intersections, newIntersections };
 }
 
 /**
@@ -295,10 +307,13 @@ async function asyncCheckIntersect() {
   )
     return null;
 
+  // get the saved set of locations for the user, normalize and sort
+  let locationArray = normalizeAndSortLocations(await getSavedLocationArray());
+
   // Set up the empty set of dayBins for intersections, and the array for the news urls
   let dayBins = getEmptyLocationBins();
   let name_news = [];
-  let newIntersectionsCount = 0; // keep track of new interactions
+  let newIntersectionsCount = 0; // keep track of new interactions exposure period
 
   // get the health authorities
   let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
@@ -310,11 +325,7 @@ async function asyncCheckIntersect() {
     for (const authority of authority_list) {
       try {
         let responseJson = await retrieveUrlAsJson(authority.url);
-
-        // get the saved set of locations for the user, normalize and sort
-        let locationArray = normalizeAndSortLocations(
-          await getSavedLocationArray(),
-        );
+        let intersections = await GetStoreData(INTERSECTIONS_DATA, false);
 
         // Update the news array with the info from the authority
         name_news.push({
@@ -326,13 +337,16 @@ async function asyncCheckIntersect() {
         let { bins, newIntersections } = intersectSetIntoBins(
           locationArray,
           normalizeAndSortLocations(responseJson.concern_points),
+          intersections,
         );
 
-        // Updates crossedPaths field within location data if a user has crossed paths with a new infected case
-        if (newIntersections > 0) SetStoreData(LOCATION_DATA, locationArray);
+        // Update intersection store if a user has crossed paths with a new infected case
+        if (newIntersections > 0) {
+          await SetStoreData(INTERSECTIONS_DATA, intersections);
+          newIntersectionsCount += newIntersections;
+        }
 
         let tempDayBin = bins;
-        newIntersectionsCount += newIntersections;
 
         // Update each day's bin with the result from the intersection.  To keep the
         //  difference between no data (==-1) and exposure data (>=0), there
@@ -353,8 +367,9 @@ async function asyncCheckIntersect() {
   // Store the news arary for the authorities found.
   SetStoreData(AUTHORITY_NEWS, name_news);
 
-  // if there are any recent interaction, notify user once, no need for multiple notifications at once (i think)
-  if (newIntersectionsCount > 0) notifyUserOfRisk();
+  // Notfiy the user if they have been exposed for longer than the set threshold
+  if (newIntersectionsCount >= MIN_EXPOSURE_PERIOD_TO_NOTIFY)
+    notifyUserOfRisk();
 
   // store the results
   SetStoreData(CROSSED_PATHS, dayBins); // TODO: Store per authority?
@@ -439,29 +454,40 @@ export function disableDebugMode() {
 
 /**
  * Records where user has crossed paths to avoid repeated notifications or checking
- *
+ * @param {object} intersections - The user intersections history
  * @param {object} currentLocation - The user's location
  * @param {object} concernLocation - The infected location
  */
-function addNewIntersection(currentLocation, infectedLocation) {
-  if ('crossedPaths' in currentLocation)
-    currentLocation['crossedPaths'].push(infectedLocation);
+function addNewIntersection(intersections, currentLocation, infectedLocation) {
+  let { time } = currentLocation;
+
+  if (time in intersections) {
+    intersections[time].push(infectedLocation);
+  } else {
+    intersections[time] = [infectedLocation];
+  }
 }
 
 /**
  * Check if intersection has already been identified
- *
+ * @param {object} intersections - The user intersections history
  * @param {object} currentLocation - The user's location
  * @param {object} concernLocation - The infected location
  */
-function hasExistingIntersection(currentLocation, concernLocation) {
+function hasExistingIntersection(
+  intersections,
+  currentLocation,
+  concernLocation,
+) {
+  let { time } = currentLocation;
+
   return (
-    'crossedPaths' in currentLocation &&
-    currentLocation['crossedPaths'].some(
-      crossedPaths =>
-        crossedPaths.time == concernLocation.time &&
-        crossedPaths.latitude == concernLocation.latitude &&
-        crossedPaths.longitude == concernLocation.longitude,
+    time in intersections &&
+    intersections[time].some(
+      intersection =>
+        intersection.time == concernLocation.time &&
+        intersection.latitude == concernLocation.latitude &&
+        intersection.longitude == concernLocation.longitude,
     )
   );
 }
