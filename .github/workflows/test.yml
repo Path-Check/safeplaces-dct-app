@@ -87,7 +87,7 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-pods-
 
-      - run: pod install --repo-update --verbose
+      - run: pod install --repo-update
         working-directory: ./ios
 
       - run: yarn build:e2e:ios
