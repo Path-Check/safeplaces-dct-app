@@ -40,6 +40,12 @@
         android:windowSoftInputMode="adjustResize"
         android:exported="true"
         android:launchMode="singleTask">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="safepaths" />
+        </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_name"
