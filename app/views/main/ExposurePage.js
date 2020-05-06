@@ -11,11 +11,11 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import backgroundImage from './../../assets/images/launchScreenBackground.png';
-import StateAtRisk from './../../assets/svgs/stateAtRisk';
-import { Typography } from './../../components/Typography';
-import Colors from './../../constants/colors';
+import StateAtRisk from '../../assets/svgs/stateAtRisk';
 import ButtonWrapper from '../../components/ButtonWrapper';
-import { MayoInfo } from './MayoInfo';
+import { Typography } from '../../components/Typography';
+import Colors from '../../constants/colors';
+import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
 export const ExposurePage = () => {
@@ -64,7 +64,7 @@ export const ExposurePage = () => {
           </View>
         </View>
       </View>
-      <MayoInfo />
+      <MayoButton />
     </ImageBackground>
   );
 };

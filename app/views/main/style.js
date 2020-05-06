@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from './../../constants/colors';
-import fontFamily from './../../constants/fonts';
+import Colors from '../../constants/colors';
+import fontFamily from '../../constants/fonts';
 
 const PULSE_GAP = 80;
 

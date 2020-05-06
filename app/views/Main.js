@@ -17,11 +17,11 @@ import { Feature } from '../components/Feature';
 import Colors from '../constants/colors';
 import LocationServices, { Reason } from '../services/LocationService';
 import LocationTracking from './LocationTracking';
-import { DefaultPage } from './tracking/DefaultPage';
-import { ExposurePage } from './tracking/ExposurePage';
-import { OffPage } from './tracking/OffPage';
-import { styles } from './tracking/style';
-import { UnknownPage } from './tracking/UnknownPage';
+import { ExposurePage } from './main/ExposurePage';
+import { NoKnownExposure } from './main/NoKnownExposure';
+import { OffPage } from './main/OffPage';
+import { styles } from './main/style';
+import { UnknownPage } from './main/UnknownPage';
 
 const Main = () => {
   const navigation = useNavigation();
@@ -85,7 +85,7 @@ const Main = () => {
     if (location.hasPotentialExposure) {
       page = <ExposurePage />;
     } else {
-      page = <DefaultPage />;
+      page = <NoKnownExposure />;
     }
   } else {
     if (location.reason === Reason.USER_OFF) {
@@ -106,7 +106,7 @@ const Main = () => {
 const MainNavigate = props => {
   return (
     <Feature
-      name='location_refactor'
+      name='better_location_status_checks'
       fallback={() => <LocationTracking {...props} />}>
       <Main />
     </Feature>

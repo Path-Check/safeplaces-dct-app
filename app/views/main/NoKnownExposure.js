@@ -6,13 +6,13 @@ import { SvgXml } from 'react-native-svg';
 
 import exportImage from './../../assets/images/export.png';
 import backgroundImage from './../../assets/images/launchScreenBackground.png';
-import StateNoContact from './../../assets/svgs/stateNoContact';
-import { Typography } from './../../components/Typography';
-import Colors from './../../constants/colors';
-import { MayoInfo } from './MayoInfo';
+import StateNoContact from '../../assets/svgs/stateNoContact';
+import { Typography } from '../../components/Typography';
+import Colors from '../../constants/colors';
+import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
-export const DefaultPage = () => {
+export const NoKnownExposure = () => {
   const size = Dimensions.get('window').height;
   const { t } = useTranslation();
   return (
@@ -49,7 +49,7 @@ export const DefaultPage = () => {
           </Typography>
         </View>
       </View>
-      <MayoInfo />
+      <MayoButton />
     </ImageBackground>
   );
 };

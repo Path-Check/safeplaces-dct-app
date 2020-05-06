@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { Image, Linking, TouchableOpacity, View } from 'react-native';
 
 import foreArrow from './../../assets/images/foreArrow.png';
-import { Typography } from './../../components/Typography';
+import { Typography } from '../../components/Typography';
 import { styles } from './style';
 
 const MAYO_COVID_URL = 'https://www.mayoclinic.org/coronavirus-covid-19';
 
-export const MayoInfo = () => {
+export const MayoButton = () => {
   const { t } = useTranslation();
   const onPress = () => Linking.openURL(MAYO_COVID_URL);
   return (

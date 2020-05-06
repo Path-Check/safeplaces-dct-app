@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,23 +8,20 @@ import {
   Text,
   View,
 } from 'react-native';
-import { openSettings } from 'react-native-permissions';
 import { SvgXml } from 'react-native-svg';
 
 import backgroundImage from './../../assets/images/launchScreenBackground.png';
-import StateUnknown from './../../assets/svgs/stateUnknown';
-import { Typography } from './../../components/Typography';
-import Colors from './../../constants/colors';
+import StateUnknown from '../../assets/svgs/stateUnknown';
 import ButtonWrapper from '../../components/ButtonWrapper';
-import { MayoInfo } from './MayoInfo';
+import { Typography } from '../../components/Typography';
+import Colors from '../../constants/colors';
+import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
-export const UnknownPage = () => {
+export const OffPage = () => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const buttonLabel = t('label.home_enable_location');
-  const handleEnableLocationPress = () => {
-    openSettings();
-  };
   const size = Dimensions.get('window').height;
   return (
     <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
@@ -47,16 +45,16 @@ export const UnknownPage = () => {
         </View>
         <View style={styles.contentBelowPulse}>
           <Text style={styles.mainTextBelow}>
-            {t('label.home_unknown_header')}
+            {t('label.home_setting_off_header')}
           </Text>
           <Typography style={styles.subheaderText}>
-            {t('label.home_unknown_subtext')}
+            {t('label.home_setting_off_subtext')}
           </Typography>
           <View style={styles.buttonContainer}>
             <ButtonWrapper
               title={buttonLabel}
               onPress={() => {
-                handleEnableLocationPress();
+                navigation.navigate('SettingsScreen', {});
               }}
               buttonColor={Colors.BLUE_BUTTON}
               bgColor={Colors.WHITE}
@@ -64,7 +62,7 @@ export const UnknownPage = () => {
           </View>
         </View>
       </View>
-      <MayoInfo />
+      <MayoButton />
     </ImageBackground>
   );
 };
