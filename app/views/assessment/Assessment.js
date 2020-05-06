@@ -95,7 +95,7 @@ const Assessment = ({ navigation }) => {
   );
   const meta = useMemo(
     () => ({
-      completeRoute: 'EndShare',
+      completeRoute: 'EndComplete',
       dismiss: () => {
         navigation.goBack();
       },

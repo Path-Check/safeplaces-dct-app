@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   description: {
     fontFamily: Fonts.primaryRegular,
     fontSize: 16,
-    lineHeight: 25,
+    lineHeight: 22,
     marginBottom: 10,
   },
   footer: {

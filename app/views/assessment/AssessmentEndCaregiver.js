@@ -20,7 +20,6 @@ const AssessmentEndCaregiver = ({ navigation }) => {
         <Trans i18nKey='assessment.caregiver_description'>
           <Text />
           <Text style={{ fontFamily: Fonts.primaryBold }} />
-          <Text style={{ fontFamily: Fonts.primaryBold }} />
         </Trans>
       }
       image={require('../../assets/images/illustration-screening-end-caregiver.png')}

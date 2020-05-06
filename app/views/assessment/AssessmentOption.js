@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   containerSelected: {
-    borderColor: Colors.VIOLET,
+    borderColor: Colors.ASSESSMENT_BORDER_SELECTED,
     elevation: 1,
     shadowColor: Colors.BLACK,
     shadowOffset: { height: 0, width: 0 },
@@ -155,8 +155,8 @@ const styles = StyleSheet.create({
     width: INDICATOR_WIDTH,
   },
   indicatorSelected: {
-    backgroundColor: Colors.VIOLET,
-    borderColor: Colors.VIOLET,
+    backgroundColor: Colors.ASSESSMENT_BORDER_SELECTED,
+    borderColor: Colors.ASSESSMENT_BORDER_SELECTED,
   },
   indicatorIcon: {},
   indicatorIconRadio: {

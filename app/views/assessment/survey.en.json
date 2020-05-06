@@ -100,7 +100,7 @@
       "option_key": "option_9",
       "question_key": "9",
       "question_text": "Do you have any life-threatening symptoms? Symptoms include, but are not limited to:",
-      "question_description": "Moderate to severe difficulty breathing (unable to speak full sentences)\nCoughing up blood (more than about 1 teaspoon)\nSigns of low blood pressure (feeling cold, pale, clammy skin, light-headed, too weak to stand)\nGasping for air or cannot talk without catching your breath (extremely difficult breathing), Blue-colored lips or face\nSevere and constant pain or pressure in the chest\nSevere and constant dizziness or lightheadedness\nActing confused (new or worsening)\nUnconscious or very difficult to wake up\nSlurred speech (new or worsening)\nNew seizure or seizures that won’t stop",
+      "question_description": "• Moderate to severe difficulty breathing (unable to speak full sentences)\n• Coughing up blood (more than about 1 teaspoon)\n• Signs of low blood pressure (feeling cold, pale, clammy skin, light-headed, too weak to stand)\n• Gasping for air or cannot talk without catching your breath (extremely difficult breathing), Blue-colored lips or face\n• Severe and constant pain or pressure in the chest\n• Severe and constant dizziness or lightheadedness\n• Acting confused (new or worsening)\n• Unconscious or very difficult to wake up\n• Slurred speech (new or worsening)\n• New seizure or seizures that won’t stop",
       "question_type": "TEXT",
       "required": false,
       "screen_type": "Radio"

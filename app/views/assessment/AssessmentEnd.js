@@ -21,13 +21,13 @@ const HEIGHT = WIDTH * (300 / 375);
  */
 
 /** @type {React.FunctionComponent<{
- *   ctaAction: () => void;
+ *   ctaAction?: () => void;
  *   ctaColor?: string;
- *   ctaTitle: string;
- *   description: ReactNode;
- *   footer: ReactNode;
+ *   ctaTitle?: string;
+ *   description?: ReactNode;
+ *   footer?: ReactNode;
  *   image: string;
- *   pretitle: ReactNode;
+ *   pretitle?: ReactNode;
  *   title: string;
  * }>} */
 const AssessmentShare = ({
@@ -51,17 +51,21 @@ const AssessmentShare = ({
             style={[styles.title, { color: ctaColor ? ctaColor : undefined }]}>
             {title}
           </Text>
-          <Text style={styles.description}>{description}</Text>
+          {description ? (
+            <Text style={styles.description}>{description}</Text>
+          ) : null}
           {children}
         </View>
       </ScrollView>
       <View style={styles.footer}>
         {footer}
-        <AssessmentButton
-          color={ctaColor}
-          onPress={ctaAction}
-          title={ctaTitle}
-        />
+        {ctaTitle ? (
+          <AssessmentButton
+            color={ctaColor}
+            onPress={ctaAction}
+            title={ctaTitle}
+          />
+        ) : null}
       </View>
     </SafeAreaView>
   );

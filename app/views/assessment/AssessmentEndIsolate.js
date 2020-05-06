@@ -20,7 +20,6 @@ const AssessmentEndIsolate = ({ navigation }) => {
         <Trans i18nKey='assessment.isolate_description'>
           <Text />
           <Text style={{ fontFamily: Fonts.primaryBold }} />
-          <Text style={{ fontFamily: Fonts.primaryBold }} />
         </Trans>
       }
       image={require('../../assets/images/illustration-screening-end-isolate.png')}
