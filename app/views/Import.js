@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Dimensions,
-  Linking,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 
+import { Button } from '../components/Button';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import colors from '../constants/colors';
@@ -20,8 +14,6 @@ import {
   NoRecentLocationsError,
   importTakeoutData,
 } from '../helpers/GoogleTakeOutAutoImport';
-
-const width = Dimensions.get('window').width;
 
 const makeImportResults = (label = '', error = false) => ({
   error,
@@ -83,27 +75,26 @@ const ImportScreen = props => {
           <Typography style={styles.sectionDescription}>
             {t('import.google.instructions_detailed')}
           </Typography>
-          {/* eslint-enable react/no-unescaped-entities */}
-          <TouchableOpacity
+
+          <Button
+            small
+            label={t('import.google.visit_button_text')}
             testID='google-takeout-link'
             onPress={() =>
               Linking.openURL(
                 'https://takeout.google.com/settings/takeout/custom/location_history',
               )
             }
-            style={styles.buttonTouchable}>
-            <Typography style={styles.buttonText}>
-              {t('import.google.visit_button_text')}
-            </Typography>
-          </TouchableOpacity>
-          <TouchableOpacity
+            style={{ marginTop: 24 }}
+          />
+
+          <Button
+            small
+            label={t('import.title')}
             testID='google-takeout-import-btn'
             onPress={importPickFile}
-            style={styles.buttonTouchable}>
-            <Typography style={styles.buttonText}>
-              {t('import.title')}
-            </Typography>
-          </TouchableOpacity>
+            style={{ marginTop: 24 }}
+          />
 
           {importResults.label ? (
             <Typography
@@ -136,23 +127,6 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     width: '100%',
     alignSelf: 'center',
-  },
-  buttonTouchable: {
-    borderRadius: 12,
-    backgroundColor: colors.VIOLET,
-    height: 52,
-    alignSelf: 'center',
-    width: width * 0.7866,
-    marginTop: 30,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: fontFamily.primarySemiBold,
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: colors.WHITE,
   },
   sectionDescription: {
     fontSize: 16,

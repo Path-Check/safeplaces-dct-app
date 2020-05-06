@@ -90,18 +90,20 @@ const LINE_HEIGHT_MAP = {
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
 
+const getTextOpacity = ({ disabled }) => (disabled ? '0.25' : null);
+
 const getFontWeight = ({ use = Type.Body1, bold }) =>
   use.startsWith('headline') || bold ? 'bold' : 'normal';
 
-const getFontFamily = ({ use, monospace, bold }) =>
-  use.startsWith('headline') || bold
-    ? 'IBMPlexSans-Bold'
-    : monospace
-    ? 'IBMPlexMono'
-    : 'IBMPlexSans';
+const getFontFamily = ({ use, monospace, bold }) => {
+  if (use.startsWith('headline') || bold) return 'IBMPlexSans-Bold';
+  if (monospace) return 'IBMPlexMono';
+  return 'IBMPlexSans';
+};
 
 const ThemedText = styled.Text`
   color: ${themeTextColor};
+  opacity: ${getTextOpacity};
   font-family: ${getFontFamily};
   font-size: ${getFontSize};
   font-weight: ${getFontWeight};
