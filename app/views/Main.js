@@ -8,6 +8,8 @@ import { Feature } from '../components/Feature';
 import { IconButton } from '../components/IconButton';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
+import { checkIntersect } from '../helpers/Intersect';
+import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices, { Reason } from '../services/LocationService';
 import LocationTracking from './LocationTracking';
 import { ExposurePage } from './main/ExposurePage';
@@ -46,7 +48,13 @@ const Main = () => {
     );
   };
 
+  const checkForPossibleExposure = () => {
+    BackgroundTaskServices.start();
+    checkIntersect();
+  };
+
   const updateStateInfo = async () => {
+    checkForPossibleExposure();
     const state = await LocationServices.checkStatus();
     setLocation(state);
   };
