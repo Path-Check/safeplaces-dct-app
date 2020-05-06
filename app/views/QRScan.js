@@ -74,41 +74,15 @@ class QRScan extends Component {
   }
 
   processRouteParams() {
-    const {
-      latitudeInteger,
-      latitudeFraction,
-      longitudeInteger,
-      longitudeFraction,
-    } = this.props.route.params;
-    this.saveCoordinates(
-      latitudeInteger,
-      latitudeFraction,
-      longitudeInteger,
-      longitudeFraction,
-    );
+    const { latitude, longitude } = this.props.route.params;
+    this.saveCoordinates(latitude, longitude);
   }
 
-  saveCoordinates(
-    latitudeInteger,
-    latitudeFraction,
-    longitudeInteger,
-    longitudeFraction,
-  ) {
-    if (
-      this.isValidCoordinates(
-        latitudeInteger,
-        latitudeFraction,
-        longitudeInteger,
-        longitudeFraction,
-      )
-    ) {
-      const latitudeParsed = Number(`${latitudeInteger}.${latitudeFraction}`);
-      const longitudeParsed = Number(
-        `${longitudeInteger}.${longitudeFraction}`,
-      );
+  saveCoordinates(latitude, longitude) {
+    if (this.isValidCoordinates(latitude, longitude)) {
       LocationServices.saveLocation({
-        latitude: latitudeParsed,
-        longitude: longitudeParsed,
+        latitude: Number(latitude),
+        longitude: Number(longitude),
         time: Date.now(),
       });
       this.setState({ currentState: StateEnum.SCAN_SUCCESS });
@@ -117,22 +91,12 @@ class QRScan extends Component {
     }
   }
 
-  isValidCoordinates(
-    latitudeInteger,
-    latitudeFraction,
-    longitudeInteger,
-    longitudeFraction,
-  ) {
-    const isValidInteger = num => {
-      const regex = /^\d+?$/;
+  isValidCoordinates(latitude, longitude) {
+    const isValid = num => {
+      const regex = /^(-?\d+\.?\d*|\.\d+)$/;
       return typeof num === 'string' && regex.test(num);
     };
-    return (
-      isValidInteger(latitudeInteger) &&
-      isValidInteger(latitudeFraction) &&
-      isValidInteger(longitudeInteger) &&
-      isValidInteger(longitudeFraction)
-    );
+    return isValid(latitude) && isValid(longitude);
   }
 
   handleBackPress = () => {

@@ -47,8 +47,7 @@ class Entry extends Component {
       enabled: true,
       prefixes: ['safepaths://'],
       config: {
-        QRScanScreen:
-          'qr/:latitudeInteger/:latitudeFraction/:longitudeInteger/:longitudeFraction',
+        QRScanScreen: 'qr/:latitude/:longitude',
       },
     };
     return (
