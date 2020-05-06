@@ -16,7 +16,7 @@ jest.mock('@mauron85/react-native-background-geolocation');
 
 function mockBackgroundGeolocationCheckStatus(data) {
   BackgroundGeolocation.checkStatus.mockImplementation(callback => {
-    Promise.resolve().then(callback(data));
+    callback(data);
   });
 }
 
@@ -67,29 +67,45 @@ describe('LocationData class', () => {
 });
 
 describe('LocationServices class', () => {
-  it('getHasPotentialExposure is false because dayBin in null', async () => {
-    mockGetStoreData(null);
-    const data = await LocationServices.getHasPotentialExposure();
-    expect(data).toBe(false);
+  describe('getHasPotentialExposure', () => {
+    it('return false when dayBin in null', async () => {
+      mockGetStoreData(null);
+      const data = await LocationServices.getHasPotentialExposure();
+      expect(data).toBe(false);
+    });
+    it('return true when dayBin has exposure data', async () => {
+      mockGetStoreData('[2, 3, 4]');
+      const data = await LocationServices.getHasPotentialExposure();
+      expect(data).toBe(true);
+    });
   });
 
-  it('getParticpating is true', async () => {
-    mockGetStoreData(true);
-    const data = await LocationServices.getParticpating();
-    expect(data).toBe(true);
+  describe('getParticpating', () => {
+    it('return true when location tracking is on', async () => {
+      mockGetStoreData(true);
+      const data = await LocationServices.getParticpating();
+      expect(data).toBe(true);
+    });
+    it('return false when location tracking is on', async () => {
+      mockGetStoreData(false);
+      const data = await LocationServices.getParticpating();
+      expect(data).toBe(false);
+    });
   });
 
-  it('getBackgroundGeoStatus', async () => {
-    let status = {
-      locationServicesEnabled: false,
-    };
-    mockBackgroundGeolocationCheckStatus(status);
-    const data = await LocationServices.getBackgroundGeoStatus();
-    expect(data).toBe(status);
+  describe('getBackgroundGeoStatus', () => {
+    it('return status based on phone location permissions', async () => {
+      let status = {
+        locationServicesEnabled: false,
+      };
+      mockBackgroundGeolocationCheckStatus(status);
+      const data = await LocationServices.getBackgroundGeoStatus();
+      expect(data).toBe(status);
+    });
   });
 
   describe('LocationServices checkStatus tests', () => {
-    it('particpating and potential exposure false', async () => {
+    it('return USER_OFF when particpating is false', async () => {
       mockGetHasPotentialExposure(false);
       mockGetParticpating(false);
       const data = await LocationServices.checkStatus();
@@ -101,7 +117,7 @@ describe('LocationServices class', () => {
       });
     });
 
-    it('locationServicesEnabled off', async () => {
+    it('return LOCATION_OFF when location services are off', async () => {
       mockGetHasPotentialExposure(false);
       mockGetParticpating(true);
       mockGetBackgroundGeoStatus({
@@ -116,7 +132,7 @@ describe('LocationServices class', () => {
       });
     });
 
-    it('application not authorized', async () => {
+    it('return NOT_AUTHORIZED when BackgroundGeoStatus authorization is NOT_AUTHORIZED ', async () => {
       mockGetHasPotentialExposure(false);
       mockGetParticpating(true);
       mockGetBackgroundGeoStatus({
@@ -132,7 +148,7 @@ describe('LocationServices class', () => {
       });
     });
 
-    it('authorized no exposure', async () => {
+    it('return canTrack true when particpating is true and BackgroundGeolocation is AUTHORIZED', async () => {
       mockGetHasPotentialExposure(false);
       mockGetParticpating(true);
       mockGetBackgroundGeoStatus({
@@ -147,7 +163,7 @@ describe('LocationServices class', () => {
       });
     });
 
-    it('authorized yes exposure', async () => {
+    it('return canTrack true and hasPotentialExposure true when BackgroundGeolocation AUTHORIZED', async () => {
       mockGetHasPotentialExposure(true);
       mockGetParticpating(true);
       mockGetBackgroundGeoStatus({
