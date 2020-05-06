@@ -1,13 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Dimensions,
-  ImageBackground,
-  StatusBar,
-  Text,
-  View,
-} from 'react-native';
+import { Dimensions, ImageBackground, StatusBar, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import backgroundImage from './../../assets/images/launchScreenBackground.png';
