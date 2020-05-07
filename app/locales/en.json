@@ -129,7 +129,7 @@
     "qr_scan": "Scan a QR code",
     "qr_scan_cancel": "Cancel",
     "qr_successful_subtitle": "Your location has been privately logged",
-    "qr_successful_title": "Scanned successfully",
+    "qr_successful_title": "Scanned successfully"
   },
   "onboarding": {
     "eula_checkbox": "I accept the licensing agreement",
