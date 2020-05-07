@@ -72,13 +72,14 @@ platform :android do
       validate_play_store_json_key(
         json_key: "app/json_key.json",
       )
-
+      
       upload_to_play_store(
         track: 'beta',
         json_key: "app/json_key.json",
-        aab: "app/build/outputs/apk/prod/release/app-prod-release.apk",
-        apk: "app/build/outputs/bundle/prodRelease/app-prod-release.aab",
+        apk: "app/build/outputs/apk/prod/release/app-prod-release.apk",
+        aab: "app/build/outputs/bundle/prodRelease/app-prod-release.aab",
         version_name: JS_PACKAGE['version']
       )
-  end
+
+    end
 end
