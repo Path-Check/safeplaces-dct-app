@@ -147,7 +147,7 @@ jobs:
         run: npx react-native bundle --dev false  --platform ios --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ./ && cp ./main.jsbundle $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
       
       - name: Build Staging .app file
-        run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme Staging -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4.1'
+        run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme Staging -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.3'
         working-directory: ./ios
 
       - name: Zip bundle for upload
