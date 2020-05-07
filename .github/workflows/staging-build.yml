@@ -144,7 +144,7 @@ jobs:
             ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
       
       - name: Build Staging .app file
-        run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme Staging -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.3'
+        run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme Staging -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.0'
         working-directory: ./ios
 
       - name: Bundle iOS JS
