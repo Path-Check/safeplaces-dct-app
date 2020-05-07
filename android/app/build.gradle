@@ -202,6 +202,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-permissions')
     implementation project(':react-native-camera')
     // loading html files
     compile project(':react-native-local-resource')
