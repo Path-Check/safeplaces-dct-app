@@ -162,25 +162,24 @@ jobs:
       #     name: Debug App
       #     path: ios/COVIDSafePaths-staging.app.zip
 
-      # - name: Bundle iOS JS for devices
-      #   run: | 
-      #       npx react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output $GITHUB_WORKSPACE/main.jsbundle --assets-dest $GITHUB_WORKSPACE/
-      #       cp $GITHUB_WORKSPACE/main.jsbundle $GITHUB_WORKSPACE/app/assets/
+      - name: Bundle iOS JS for devices
+        run: | 
+            npx react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output $GITHUB_WORKSPACE/main.jsbundle --assets-dest $GITHUB_WORKSPACE/app/assets/
 
-      # - name: Build iOS Staging artifact for devices
-      #   uses: maierj/fastlane-action@v1.4.0
-      #   env:
-      #     MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-      #     FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-      #     MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
-      #     SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-      #   with:
-      #     lane: 'staging'
-      #     subdirectory: 'ios'
-      #     bundle-install-path: 'vendor/bundle'
+      - name: Build iOS Staging artifact for devices
+        uses: maierj/fastlane-action@v1.4.0
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        with:
+          lane: 'staging'
+          subdirectory: 'ios'
+          bundle-install-path: 'vendor/bundle'
 
-      # - name: Upload Artifact
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: Debug App
-      #     path: ios/COVIDSafePaths-staging.ipa
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: Debug App
+          path: ios/COVIDSafePaths-staging.ipa
