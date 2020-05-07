@@ -31,7 +31,8 @@ platform :ios do
     
     APP_ID = "org.pathcheck.covid-safepaths"
     PROFILE = "match AppStore org.pathcheck.covid-safepaths"
-    # DEBUG_PROFILE = "match Development org.pathcheck.covid-safepaths"
+    DEBUG_PROFILE = "match Development org.pathcheck.covid-safepaths"
+    DEBUG_SCHEME = "Staging"
     TEAM = "79Z8HUPGC3"
     SCHEME = "COVIDSafePaths"
     WORKSPACE = "COVIDSafePaths.xcworkspace"
@@ -47,30 +48,32 @@ platform :ios do
       )
     end
 
-    # desc "Push a new debug build for eggplant testers"
-    # lane :debug do
+    desc "Push a new staging build for eggplant testers"
+    lane :staging do
 
-    #   signing_bundle_details = {
-    #     :BUNDLE_IDENTIFIER => APP_ID,
-    #     :PROVISIONING_PROFILE_SPECIFIER => DEBUG_PROFILE,
-    #     :DEVELOPMENT_TEAM => TEAM
-    #   }
+      signing_bundle_details = {
+        :BUNDLE_IDENTIFIER => APP_ID,
+        :PROVISIONING_PROFILE_SPECIFIER => DEBUG_PROFILE,
+        :DEVELOPMENT_TEAM => TEAM
+      }
 
-    #   match(
-    #     readonly: true,
-    #     keychain_name: "tech_at_safepaths_keychain",
-    #     keychain_password: "meow",
-    #     git_basic_authorization: ENV["secrets.MATCH_GIT_BASIC_AUTH"]
-    #   )
+      match(
+        readonly: true,
+        keychain_name: "tech_at_safepaths_keychain",
+        keychain_password: "meow",
+        git_basic_authorization: ENV["secrets.MATCH_GIT_BASIC_AUTH"]
+      )
 
-    #   build_ios_app(
-    #     workspace: WORKSPACE,
-    #     scheme: SCHEME,
-    #     configuration: "Debug",
-    #     silent: true,
-    #     clean: true,
-    #   )
-    # end
+      build_ios_app(
+        workspace: WORKSPACE,
+        scheme: DEBUG_SCHEME,
+        configuration: "Debug",
+        silent: true,
+        clean: true,
+        export_method: 'development',
+        output_name: "COVIDSafePaths-staging.ipa",
+      )
+    end
 
     desc "Push a new beta build to TestFlight"
     lane :beta do

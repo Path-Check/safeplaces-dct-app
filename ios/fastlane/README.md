@@ -21,6 +21,11 @@ or alternatively using `brew cask install fastlane`
 fastlane ios sync_local_certs
 ```
 
+### ios staging
+```
+fastlane ios staging
+```
+Push a new staging build for eggplant testers
 ### ios beta
 ```
 fastlane ios beta

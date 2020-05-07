@@ -143,21 +143,39 @@ jobs:
             ssh-agent -a $SSH_AUTH_SOCK > /dev/null
             ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
       
-      - name: Build Staging .app file
-        run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme Staging -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.0'
-        working-directory: ./ios
+      # - name: Build Staging .app file for simulators
+      #   run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme Staging -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.0'
+      #   working-directory: ./ios
 
-      - name: Bundle iOS JS
+      # - name: Bundle iOS JS for simulators
+      #   run: | 
+      #       npx react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output ./main.jsbundle --assets-dest ./ 
+      #       cp ./main.jsbundle $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
+
+      # - name: Zip simulator bundle for upload
+      #   run: zip -r COVIDSafePaths-staging.app.zip $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
+      #   working-directory: ./ios
+
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: Debug App
+      #     path: ios/COVIDSafePaths-staging.app.zip
+
+      - name: Bundle iOS JS for devices
         run: | 
-            npx react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output ./main.jsbundle --assets-dest ./ 
-            cp ./main.jsbundle $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
+            npx react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output ./main.jsbundle --assets-dest ./
+            cp ./main.jsbundle ./app/assets/
 
-      - name: Zip bundle for upload
-        run: zip -r COVIDSafePaths-staging.app.zip $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
-        working-directory: ./ios
+      - name: Build iOS Staging artifact for devices
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: 'staging'
+          subdirectory: 'ios'
+          bundle-install-path: 'vendor/bundle'
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
           name: Debug App
-          path: ios/COVIDSafePaths-staging.app.zip
+          path: ios/COVIDSafePaths-staging.ipa
