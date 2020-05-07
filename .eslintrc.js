@@ -3,10 +3,11 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:jest/recommended',
   ],
   parser: 'babel-eslint',
-  plugins: ['react', 'react-native', 'detox'],
+  plugins: ['react', 'react-hooks', 'react-native', 'detox'],
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
@@ -48,7 +49,7 @@ module.exports = {
     strict: [2, 'global'], // require or disallow strict mode directives
     'react-native/no-color-literals': 1, // Detect StyleSheet rules and inline styles containing color literals instead of variables
     'react-native/no-inline-styles': 0, // For keeping styles away from the logic, we can switch it to 1 in future
-    'react-native/no-raw-text': 1, // This is to make sure everything is translated in the app
+    'react-native/no-raw-text': ['error', { skip: ['Trans'] }], // This is to make sure everything is translated in the app
     'react-native/no-unused-styles': 1, // Detect StyleSheet rules which are not used in your React components
     'react/jsx-boolean-value': 2, // Enforce boolean attributes notation in JSX (fixable)
     'react/jsx-key': 2, // Report missing key props in iterators/collection literals
@@ -65,4 +66,18 @@ module.exports = {
     'react/react-in-jsx-scope': 2, // Prevent missing React when using JSX
     'react/self-closing-comp': 2, // Prevent extra closing tags for components without children
   },
+  overrides: [
+    {
+      files: ['*.spec.js'], // Or *.test.js
+      rules: {
+        'react-native/no-raw-text': 0,
+      },
+    },
+    {
+      files: ['e2e/**/*.js'], // Or *.test.js
+      rules: {
+        'jest/expect-expect': 0, // these files do expectations inside page objects
+      },
+    },
+  ],
 };

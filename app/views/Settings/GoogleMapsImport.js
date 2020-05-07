@@ -1,14 +1,15 @@
 import styled from '@emotion/native';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 
 import googleMapsIcon from '../../assets/svgs/google-maps-logo';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
-import languages from '../../locales/languages';
 
 export const GoogleMapsImport = ({ navigation }) => {
+  const { t } = useTranslation();
+
   const importPressed = () => {
     navigation.navigate('ImportScreen');
   };
@@ -17,27 +18,22 @@ export const GoogleMapsImport = ({ navigation }) => {
     <>
       <TitleRow>
         <SvgXml xml={googleMapsIcon} />
-        <Title use='body1'>{languages.t('label.maps_import_title')}</Title>
+        <Title use='body1'>{t('import.google.title')}</Title>
       </TitleRow>
 
       <ParagraphContainer>
-        <Typography use='body2'>
-          {languages.t('label.maps_import_text')}
-        </Typography>
+        <Typography use='body2'>{t('import.subtitle')}</Typography>
       </ParagraphContainer>
 
-      <ButtonWrapper
-        title={languages.t('label.maps_import_button_text')}
+      <Button
+        secondary
+        label={t('import.button_text')}
         onPress={importPressed}
-        buttonColor={Colors.VIOLET}
-        bgColor={Colors.WHITE}
-        borderColor={Colors.VIOLET}
-        buttonWidth={'100%'}
       />
 
       <ParagraphContainer>
         <Typography use='body3' secondary monospace>
-          {languages.t('label.maps_import_disclaimer')}
+          {t('import.google.disclaimer')}
         </Typography>
       </ParagraphContainer>
     </>

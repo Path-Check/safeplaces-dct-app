@@ -1,12 +1,26 @@
 # How to contribute
 
+---
+**NOTE**
+
+As of 3-May-2020 the COVID Safe Paths repo has moved to a new location (https://github.com/Path-Check/covid-safe-paths).  If you've already set the `upstream` in your repo, GitHub's redirects will make it so things still work; However for consistency we highly recommend you change your `upstream` to point to the new repo location  e.g.
+```
+git remote add upstream git@github.com:Path-Check/covid-safe-paths.git
+```
+
+---
+
+
 We welcome participation in an open project. We want to make it as easy as possible for people to work together, so please follow these guidelines to prepare and submit a pull request.
 
-## How to prepare
+- Filtering by [good first issues](https://github.com/Path-Check/covid-safe-paths/labels/good%20first%20issue) is the recommended way to begin contributing to the project
+- Localization/Language updates are handled in [Lokalise](https://lokalise.com/). More info on how to contribute [here](https://github.com/Path-Check/covid-safe-paths/wiki/Localization-Contributing-Guidelines)
+
+## Create A New Issue
 
 - You need a Github account. You can [create one](https://github.com/signup/free) for free.
 
-- Submit an [Issue](https://github.com/tripleblindmarket/covid-safe-paths/issues) against the repo to describe the idea or problem if there is not one yet.
+- Submit an [Issue](https://github.com/Path-Check/covid-safe-paths/issues) against the repo to describe the idea or problem if there is not one yet.
 
 - Describe a bug by including steps to reproduce, and the earliest version you know is affected.
 
@@ -14,7 +28,7 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 - Fork the repository on GitHub:
 
-- Visit https://github.com/tripleblindmarket/covid-safe-paths
+- Visit https://github.com/Path-Check/covid-safe-paths
 - Click on the "Fork" button in the upper-left corner.
 
 - Clone the forked repository to your local machine:
@@ -23,13 +37,13 @@ We welcome participation in an open project. We want to make it as easy as possi
 
 cd ~ # get to your home directory or where ever you want to go
 
-git clone https://github.com/YOURACCOUNT/covid-safe-paths
+git clone git@github.com:YOURACCOUNT/covid-safe-paths.git
 
 # change into the newly created directory
 cd covid-safe-paths
 
 # set upstream against COVID Safe Paths repository
-git remote add upstream https://github.com/tripleblindmarket/covid-safe-paths.git
+git remote add upstream git@github.com:Path-Check/covid-safe-paths.git
 
 ```
 
@@ -37,57 +51,57 @@ git remote add upstream https://github.com/tripleblindmarket/covid-safe-paths.gi
 
 ## Make Changes
 
-1. Create a branch based on the `develop` branch on your forked repository. Name the branch something to reflect what you are doing. For example, if you want to add a new icon, a branch name you could use:
+### Create a branch 
+
+1. Always create a new branch from the latest `upstream/develop`:
+  ```bash
+  git checkout develop # you want to branch from the latest 'develop' branch
+  
+  git pull upstream develop # make sure you have the latest code from upstream
+  
+  git push origin develop # optional, push these changes to YOUR fork's develop branch
+  ```
+2. Create the branch. Name the branch something to reflect what you are doing.
+  ```
+  git checkout -b "feature/new-icon" develop # new branch created!
+  
+  "or"
+  
+  git checkout -b "fix/new-icon" develop # new branch created!
+
+  "or"
+
+  git checkout -b "release/new-icon" develop # new branch created!
+  ```
+3. Stick to the coding style and patterns that are used already.
+4. Document code! Comments are good. More comments are better. :)
+5. Make commits as you desire. Ultimately they will be squashed, so make notes to yourself. It's as simple as `git commit -m "commit message goes here"`!
+
+### Merge upstream/develop into your branch to get the latest changes.
 
 ```bash
-git checkout develop # you want to branch from the main 'develop' branch
+# if you've already done this it will fail, that's fine:
+git remote add upstream git@github.com:Path-Check/covid-safe-paths.git
 
-git pull # make sure you have the latest code when you start the branch
+# ensure you are on your feature/fix branch
+git checkout feature/my-feature
 
-git checkout -b "feature/new-icon" develop # new branch created!
+# get latest upstream branches e.g. upstream/develop
+git fetch upstream
 
-"or"
+# merge upstream/develop into your local branch, this will always create a single merge commit
+git merge upstream/develop --no-ff
 
-git checkout -b "fix/new-icon" develop # new branch created!
+# you may need to resolve conflicts. If so, resolve them and commit the merge:
+git commit
 
-"or"
-
-git checkout -b "release/new-icon" develop # new branch created!
-```
-
-2. Stick to the coding style and patterns that are used already.
-
-3. Document code! Comments are good. More comments are better. :)
-
-4. Make commits as you desire. Ultimately they will be squashed, so make
-
-notes to yourself. It's as simple as `git commit -m "commit message goes here"`!
-
-5. Rebase your feature branch with upstream/develop to avoid any code conflicts:
-
-```bash
-# 1. Rebase Base(COVID Safe Paths) repository with fork repository - develop branch
-
-git checkout develop # switch to base branch(local)
-
-git fetch upstream # fetch latest commits from "COVID Safe Paths" develop branch
-
-git rebase upstream/develop # rebase code against your forked develop branch(local)
-
-git push -f origin develop # push rebased code after resolving conflicts to forked develop branch(remote)
-
-# 2. Rebase feature branch(local) with develop branch(local)
-
-git checkout <feature-branch-name-you-created> # switch back to original feature branch(local) you are working
-
-git rebase develop # now rebase your feature branch(local) against develop branch(local)
-
-git push origin feature/<your-feature-branch-name> # after resolving all conflicts, push your new feature branch to the remote forked repository
+# push your changes up to your branch again
+git push -u origin
 
 # now your feature branch is ready for PR against COVID Safe Paths develop branch.
 ```
 
-6. Start a PR to submit your changes back to the original project:
+### Start a PR to submit your changes back to the original project:
 
 - Visit https://github.com/your-git-userid/covid-safe-paths/branches
 
@@ -101,33 +115,18 @@ git push origin feature/<your-feature-branch-name> # after resolving all conflic
 
 - Verify following -
 
-  - Base repository - tripleblindmarket/covid-safe-paths
+  - Base repository - Path-Check/covid-safe-paths
   - Base branch - develop
   - Head repository - your-git-id/covid-safe-paths
   - Compare branch - feature/your-branch-name
 
 - Provide a meaningful title and description to your PR, as shown in the above image.
 - Provide Issue ID on PR description to link/close the issue upon PR merged.
+- If you are changing visuals, please provide screenshots so the PR reviewer can see what you've done without running it in the app.
 
 ## Helpful resources on Git
 
-- Git commands:
-
-```
-git checkout develop
-
-git fetch
-
-git reset --hard origin/develop
-
-git checkout <your_branch_name>
-
-git rebase develop
-
-git push -f
-```
-
-- Documentation on [create a Pull Request (PR) on Github](https://help.github.com/articles/using-pull-requests/) for review and merging.
+- Documentation on how to [create a Pull Request (PR) on Github](https://help.github.com/articles/using-pull-requests/) for review and merging.
 
 **Note**: Even if you have write access, do not work directly on `master` or push directly to `develop`! All work is done against `develop` reviewed and merged via PRs, and ultimately `develop` gets merged into `master` for tagged code releases.
 
@@ -143,13 +142,13 @@ This project utilizes the [Jest](https://jestjs.io/) testing framework to test t
 
 ### Adding new components/tests
 
-When adding new components to the project, make sure to add at least snapshot test. The test files are located in the `__tests__` directory at the same level as the component you are testing. For instance, if you are adding a new view called `TestView` under the `views` directory, you would add a `TestView.spec.js` file in the `views/__tests__` directory.
+When adding new components to the project, make sure to add at least a snapshot test. The test files are located in the `__tests__` directory at the same level as the component you are testing. For instance, if you are adding a new view called `TestView` under the `views` directory, you would add a `TestView.spec.js` file in the `views/__tests__` directory.
 
-After making your changes and adding a new test file, make sure to run `yarn test` to make sure you don't have any test failures.
+After making your changes and adding a new test file, run `yarn test` to make sure you don't have any test failures.
 
 ### Snapshot failures
 
-The most common failure you will most likely run into is a snapshot failure. [Snapshot testing](https://jestjs.io/docs/en/snapshot-testing) ensures that a component renders the same output after it has been modified. If you receive a snapshot failure, check the differences in the snapshot failure to make sure they are expected changes. If they are all expected changes then you just need to update the snapshot by running `yarn test -u`. This will update the snapshot file so you can commit the changes.
+The most common failure you will run into is a snapshot failure. [Snapshot testing](https://jestjs.io/docs/en/snapshot-testing) ensures that a component renders the same output after it has been modified. If you receive a snapshot failure, check the differences in the snapshot failure to make sure they are expected changes. If they are all expected changes then you just need to update the snapshot by running `yarn test -u`. This will update the snapshot file so you can commit the changes.
 
 ### Mocking modules
 
@@ -167,17 +166,13 @@ When writing tests for components that use installed packages, we usually don't 
 
 _Advanced users may install the `hub` gem and use the [`hub pull-request` command](https://github.com/defunkt/hub#git-pull-request)._
 
-- If not done in commit messages (which you really should do), reference and
+- If not done in commit messages (which you really should do), reference and update your issue with the code changes. But _please do not close the issue yourself_.
 
-update your issue with the code changes. But \_please do not close the issue
-
-yourself\_.
-
-- A team member will review the pull request, request change or approve and
-
-merge into the `develop` branch.
+- A team member will review the pull request, request change or approve and merge into the `develop` branch.
 
 ## Reviewing Pull Requests
+
+- If you are using VS Code, use the [GitHub PR extension](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github), which will allow you to checkout and run anyone's PR with ease.
 
 - Open the PR on Github. At the top of the PR page is a number which identifies it -123 and the name of the author's branch -branch-name. Copy down both of these.
 

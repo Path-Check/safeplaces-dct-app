@@ -1,4 +1,5 @@
 {
+  "_display_name": "Română",
   "history": {
     "no_exposure": "Totul ok",
     "possible_exposure": "Expunere posibilă",
@@ -7,6 +8,15 @@
     "what_does_this_mean_para": "Având în vedere istoricul dumneavoastră GPS, este posibil să vă fi intersectat cu cineva găsit pozitiv cu COVID-19. Asta nu înseamnă că sunteți sigur infectat, dar există posibilitatea reală de a fi.\n\nPentru mai multe informații, contactați Direcția de Sănătate Publică (DSP).",
     "what_if_no_symptoms": "Ce fac în cazul în care nu am simptome COVID-19?",
     "what_if_no_symptoms_para": "Dacă nu aveți simptome nu înseamna ca nu suneți un posibil purtator de virus. \n\nȘi persoanele care nu prezintă simptome pot fi purtători și pot infecta alte persoane. Din acest motiv, se recomandă distantarea socială și evitarea intrării în contact cu grupuri mari sau cu persoane cu grad mare de risc (persoane în varstă sau cu alte probleme grave de sănătate) pentru a micsora posibilitatea de a infecta alte persoane."
+  },
+  "import": {
+    "button_text": "Importa istoric locații",
+    "google": {
+      "disclaimer": "Safe Paths nu are nici o afiliere cu Google și nu dezvaluie NICIODATĂ datele dumneavoastră.",
+      "title": "Hărți Google"
+    },
+    "subtitle": "Pentru a verifica dacă v-ați intersectat cu cineva găsit pozitiv COVID-19 înainte de a fi descarcat această aplicație, puteți importa istoricul personal al locațiilor dumneavoastră.",
+    "title": "Importa Istoric"
   },
   "label": {
     "about_title": "Despre",
@@ -27,8 +37,6 @@
     "default_news_site_name": "Știri Safe Paths",
     "event_history_subtitle": "Familiarizati-vă cu expunerile dumneavoastră, luând în calcul informațiile puse la dispoziție de autoritațile de sănătate",
     "event_history_title": "Istoricul expunerilor",
-    "export_para_1": "Dacă sunteți diagnosticat pozitiv cu COVID-19, vă rugăm să împărțiți istoricul traseelor pentru a ajuta la identificarea persoanelor ce au fost posibil infectate de dumneavoastră,",
-    "export_para_2": "Traseele sunt exportate ca o listă simplă ce conține latitudine, longitudine și timpi, fără nici o altă informație de natură personală.",
     "home_at_risk_header": "Expunere Posibilă",
     "home_at_risk_subsubtext": "Atentie - nu înseamnă ca sunteți sigur infectat,",
     "home_at_risk_subtext": "Având în vedere istoricul dumneavoastră GPS, este posibil să vă fi intersectat cu cineva găsit pozitiv cu COVID-19.",
@@ -41,9 +49,6 @@
     "home_setting_off_subtext": "Nu se poate estima dacă aveți risc de expunere dacă nu activați istoricul locațiilor in configurația aplicației.",
     "home_unknown_header": "Necunoscut",
     "home_unknown_subtext": "Nu se poate estima dacă aveți risc de expunere dacă nu permiteți aplicației sa acceseze locația telefonului.",
-    "import_step_1": "1. Autentificați-vă în contul vostru Google și descarcați Istoricul Locațiilor",
-    "import_step_2": "2. Deschideți această secțiune dupa descarcare. Datele se vor importa automat.",
-    "import_title": "Importa Istoric",
     "latest_news": "Ultimele Știri",
     "launch_done_header": "Configurare finalizata",
     "launch_done_subheader": "Telefonul a fost configurat cu succes. Nu uitați că puteți oricând sa modificați preferințele.",
@@ -74,10 +79,6 @@
     "location_enabled_title": "Jurnalul Locațiilor Activat",
     "logging_active": "Jurnal Pornit",
     "logging_inactive": "Jurnal Oprit",
-    "maps_import_button_text": "Importa istoric locații",
-    "maps_import_disclaimer": "Safe Paths nu are nici o afiliere cu Google și nu dezvaluie NICIODATĂ datele dumneavoastră.",
-    "maps_import_text": "Pentru a verifica dacă v-ați intersectat cu cineva găsit pozitiv COVID-19 înainte de a fi descarcat această aplicație, puteți importa istoricul personal al locațiilor dumneavoastră.",
-    "maps_import_title": "Hărți Google",
     "news_subtitle": "Cititi ultimele actualizări despre COVID-19 de la autoritațile de sănătate și alte surse.",
     "news_title": "Ultimele știri",
     "no_data": "Lipsa date",
@@ -85,11 +86,15 @@
     "push_at_risk_title": "Factor de risc identificat",
     "see_exposure_history": "Vezi istoricul expunerilor",
     "settings_title": "Tablou de bord",
-    "share_location_data": "Trimite locațiile",
     "team": "Echipa",
     "team_para": "Echipa noastră este formata dintr-un consorțiu de epidemiologi, ingineri, oameni de stiință de date, promotori a siguranței datelor personale, cat si profesori și cercetatori de la instituții cu reputație, ce includ: MIT, Harvard, Clinica Mayo, TripleBlind, EyeNetra, Ernst & Young și Link Ventures.",
-    "terms_of_use": "Termeni de folosire",
-    "tested_positive_subtitle": "Locațiile vizitate pot fi trimise autoritaților medicale, pot fi salvate ca rezervă, sau pot fi împărțite cu terți.",
-    "tested_positive_title": "Exportă istoricul locațiilor"
+    "terms_of_use": "Termeni de folosire"
+  },
+  "share": {
+    "button_text": "Trimite locațiile",
+    "paragraph_first": "Dacă sunteți diagnosticat pozitiv cu COVID-19, vă rugăm să împărțiți istoricul traseelor pentru a ajuta la identificarea persoanelor ce au fost posibil infectate de dumneavoastră,",
+    "paragraph_second": "Traseele sunt exportate ca o listă simplă ce conține latitudine, longitudine și timpi, fără nici o altă informație de natură personală.",
+    "subtitle": "Locațiile vizitate pot fi trimise autoritaților medicale, pot fi salvate ca rezervă, sau pot fi împărțite cu terți.",
+    "title": "Exportă istoricul locațiilor"
   }
 }

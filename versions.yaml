@@ -1,0 +1,4 @@
+# Versions less than specified will receive a gentle update notification (dismissable alert only)
+upgrade version: "1.0.0"
+# Versions less than specified will receive a mandatory update notification (push + non-dismissable alert)
+mandatory upgrade version: "0.9.4"
