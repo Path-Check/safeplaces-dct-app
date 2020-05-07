@@ -149,7 +149,7 @@ jobs:
 
       - name: Bundle iOS JS
         run: | 
-            npx react-native bundle --dev false  --platform ios --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ./ 
+            npx react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output ./main.jsbundle --assets-dest ./ 
             cp ./main.jsbundle $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
 
       - name: Zip bundle for upload

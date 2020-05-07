@@ -76,9 +76,9 @@ platform :android do
       upload_to_play_store(
         track: 'beta',
         json_key: "app/json_key.json",
-        aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
-        apk: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
-        version_name: lane_context[SharedValues::VERSION_NUMBER]
+        aab: "app/build/outputs/apk/prod/release/app-prod-release.apk",
+        apk: "app/build/outputs/bundle/prodRelease/app-prod-release.aab",
+        version_name: JS_PACKAGE['version']
       )
   end
 end
