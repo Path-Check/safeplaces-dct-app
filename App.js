@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { MenuProvider } from 'react-native-popup-menu';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 
 import { Theme } from './app/constants/themes';
@@ -16,9 +17,11 @@ const App = () => {
   return (
     <FlagsProvider flags={buildTimeFlags}>
       <MenuProvider>
-        <Theme use='default'>
-          <Entry />
-        </Theme>
+        <SafeAreaProvider>
+          <Theme use='default'>
+            <Entry />
+          </Theme>
+        </SafeAreaProvider>
       </MenuProvider>
     </FlagsProvider>
   );

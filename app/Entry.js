@@ -1,12 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
-import {
-  CardStyleInterpolators,
-  createStackNavigator,
-} from '@react-navigation/stack';
+import { CardStyleInterpolators } from '@react-navigation/stack';
 import React, { Component } from 'react';
+import { enableScreens } from 'react-native-screens';
+import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
+import AssessmentScreen from './views/assessment/Assessment';
 import ChooseProviderScreen from './views/ChooseProvider';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
@@ -21,7 +21,9 @@ import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
 import { SettingsScreen } from './views/Settings';
 
-const Stack = createStackNavigator();
+enableScreens();
+
+const Stack = createNativeStackNavigator();
 
 class Entry extends Component {
   constructor(props) {
@@ -134,6 +136,11 @@ class Entry extends Component {
             name='AboutScreen'
             component={AboutScreen}
             options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='AssessmentScreen'
+            component={AssessmentScreen}
+            options={{ stackPresentation: 'modal', headerShown: false }}
           />
         </Stack.Navigator>
       </NavigationContainer>
