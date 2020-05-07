@@ -1,20 +1,18 @@
 import styled, { css } from '@emotion/native';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
 import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
 import xmarkIcon from '../assets/svgs/xmarkIcon';
 import { Divider } from '../components/Divider';
-import { Feature } from '../components/Feature';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import {
+import languages, {
   LOCALE_LIST,
   getUserLocaleOverride,
   setUserLocaleOverride,
@@ -26,21 +24,23 @@ import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
 
 export const SettingsScreen = ({ navigation }) => {
-  const { t } = useTranslation();
-  const [isLogging, setIsLogging] = useState(undefined);
-  const [userLocale, setUserLocale] = useState(
-    supportedDeviceLanguageOrEnglish(),
-  );
-
   const backToMain = () => {
     navigation.goBack();
   };
 
+  const handleBackPress = () => {
+    backToMain();
+    return true;
+  };
+
+  const [isLogging, setIsLogging] = useState(undefined);
+
+  const [userLocale, setUserLocale] = useState(
+    supportedDeviceLanguageOrEnglish(),
+  );
+
   useEffect(() => {
-    const handleBackPress = () => {
-      navigation.goBack();
-      return true;
-    };
+    checkIsLocationEnable();
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
     // TODO: this should be a service or hook
@@ -54,40 +54,32 @@ export const SettingsScreen = ({ navigation }) => {
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
-  }, [navigation]);
+  }, []);
 
-  // on load setting page, this method will check whether we have remove location permission from app settings.
-  // It will set status "Location Active" only if permission is granted./*tested properly on android device*/
-  const willParticipate = () => {
-    SetStoreData(PARTICIPATE, 'true').then(() => {
-      // Turn of bluetooth for v1
-      //BroadcastingServices.start();
-    });
-    // Check and see if they actually authorized in the system dialog.
-    // If not, stop services and set the state to !isLogging
-    // Fixes tripleblindmarket/private-kit#129
+  //Initialyy when settings page is loaded , this method will check whether we have remove location permission from app settings.
+  // It will set status "Location Active" only if permission is granted.
+  const checkIsLocationEnable = () => {
     BackgroundGeolocation.checkStatus(({ authorization }) => {
       if (authorization === BackgroundGeolocation.AUTHORIZED) {
         LocationServices.start();
-        setBGLocationLogging(true);
         setIsLogging(true);
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
         LocationServices.stop();
-        setBGLocationLogging(false);
         setIsLogging(false);
         BackgroundTaskServices.stop();
       }
     });
   };
 
-  // this is called when you click on device permission dialog "DENY" & "ALLOW"{ /*tested properly on android device*/}
-  const checkBackgroundStatus = async () => {
+  //  This method is used to track whether user has "Allow" or "Deny" location permission from system Dialog.
+  const SystemDialogPermission = async () => {
     BackgroundGeolocation.on('authorization', status => {
-      // when you accept the permission
       if (status === BackgroundGeolocation.AUTHORIZED) {
         setIsLogging(true);
+        LocationServices.start();
       } else {
         setIsLogging(false);
+        LocationServices.stop();
       }
     });
   };
@@ -97,8 +89,7 @@ export const SettingsScreen = ({ navigation }) => {
       isLogging ? LocationServices.stop() : LocationServices.start();
       await SetStoreData(PARTICIPATE, !isLogging);
       setIsLogging(!isLogging);
-      setBGLocationLogging(true);
-      checkBackgroundStatus();
+      SystemDialogPermission();
     } catch (e) {
       console.log(e);
     }
@@ -115,17 +106,17 @@ export const SettingsScreen = ({ navigation }) => {
   };
   return (
     <NavigationBarWrapper
-      title={t('label.settings_title')}
+      title={languages.t('label.settings_title')}
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
           <Item
             label={
               isLogging
-                ? t('label.logging_active')
-                : t('label.logging_inactive')
+                ? languages.t('label.logging_active')
+                : languages.t('label.logging_inactive')
             }
-            icon={isLogging && isBGLocationLogging ? checkmarkIcon : xmarkIcon}
+            icon={isLogging ? checkmarkIcon : xmarkIcon}
             onPress={locationToggleButtonPressed}
           />
           <NativePicker
@@ -135,50 +126,49 @@ export const SettingsScreen = ({ navigation }) => {
             {({ label, openPicker }) => (
               <Item
                 last
-                label={label || t('label.home_unknown_header')}
+                label={label || languages.t('label.home_unknown_header')}
                 icon={languagesIcon}
                 onPress={openPicker}
               />
             )}
           </NativePicker>
         </Section>
+
         <Section>
           <Item
-            label={t('label.choose_provider_title')}
-            description={t('label.choose_provider_subtitle')}
+            label={languages.t('label.choose_provider_title')}
+            description={languages.t('label.choose_provider_subtitle')}
             onPress={() => navigation.navigate('ChooseProviderScreen')}
           />
           <Item
-            label={t('label.news_title')}
-            description={t('label.news_subtitle')}
+            label={languages.t('label.news_title')}
+            description={languages.t('label.news_subtitle')}
             onPress={() => navigation.navigate('NewsScreen')}
           />
           <Item
-            label={t('label.event_history_title')}
-            description={t('label.event_history_subtitle')}
+            label={languages.t('label.event_history_title')}
+            description={languages.t('label.event_history_subtitle')}
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
           />
           <Item
-            label={t('share.title')}
-            description={t('share.subtitle')}
+            label={languages.t('label.tested_positive_title')}
+            description={languages.t('label.tested_positive_subtitle')}
             onPress={() => navigation.navigate('ExportScreen')}
             last
           />
         </Section>
 
-        <Feature name='google_import'>
-          <Section>
-            <GoogleMapsImport navigation={navigation} />
-          </Section>
-        </Feature>
+        <Section>
+          <GoogleMapsImport navigation={navigation} />
+        </Section>
 
         <Section last>
           <Item
-            label={t('label.about_title')}
+            label={languages.t('label.about_title')}
             onPress={() => navigation.navigate('AboutScreen')}
           />
           <Item
-            label={t('label.legal_page_title')}
+            label={languages.t('label.legal_page_title')}
             onPress={() => navigation.navigate('LicensesScreen')}
             last
           />
