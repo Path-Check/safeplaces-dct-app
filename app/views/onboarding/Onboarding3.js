@@ -41,7 +41,7 @@ const Onboarding = props => {
         <Button
           label={languages.t('label.launch_next')}
           onPress={() => {
-            props.navigation.push('Onboarding4');
+            props.navigation.replace('Onboarding4');
           }}
         />
       </View>
