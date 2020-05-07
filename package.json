@@ -1,6 +1,6 @@
 {
   "name": "covidsafepaths",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "start": "yarn && react-native start",
@@ -27,7 +27,10 @@
     "test": "jest --config=./jest/config.js",
     "test:watch": "jest --config=./jest/config.js --watch",
     "update-snapshots": "jest --config=./jest/config.js --updateSnapshot",
-    "test:dev_setup": "bats __tests__/dev_setup.test.bats"
+    "test:dev_setup": "bats __tests__/dev_setup.test.bats",
+    "version:bump:major": "version --premajor",
+    "version:bump:minor": "version --preminor",
+    "version:bump:patch": "version --prepatch"
   },
   "lint-staged": {
     "*.js": [

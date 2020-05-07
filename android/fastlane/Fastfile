@@ -1,0 +1,78 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs Android (Native) unit tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  JS_PACKAGE = load_json(json_path: "../package.json")
+
+  desc "Build a Beta APK and AAB"
+  lane :beta do
+
+    increment_version_code(
+      gradle_file_path: "../android/app/build.gradle",
+    )
+
+    increment_version_name(
+      gradle_file_path: "../android/app/build.gradle",
+      version_name: JS_PACKAGE['version']
+    )
+
+    gradle(
+      task: "assembleRelease",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.file" => ENV["secrets.SIGNING_KEY"],
+        "android.injected.signing.store.password" => ENV["secrets.KEY_STORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["secrets.KEY_ALIAS"],
+        "android.injected.signing.key.password" => ENV["secrets.KEY_PASSWORD"],
+      }
+    )
+
+    gradle(
+      task: "bundleRelease",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.file" => ENV["secrets.SIGNING_KEY"],
+        "android.injected.signing.store.password" => ENV["secrets.KEY_STORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["secrets.KEY_ALIAS"],
+        "android.injected.signing.key.password" => ENV["secrets.KEY_PASSWORD"],
+      }
+    )
+  end
+
+    desc "Upload the play store artifacts to beta track"
+    lane :play_store do
+
+      validate_play_store_json_key(
+        json_key: ENV["secrets.GOOGLE_PLAY_STORE_SECRET"]
+      )
+
+      upload_to_play_store(
+        track: 'beta',
+        json_key_data: ENV["secrets.GOOGLE_PLAY_STORE_SECRET"],
+        aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+        apk: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
+        version_name: lane_context[SharedValues::VERSION_NUMBER]
+      )
+
+      # google-play-store-upload@api-4730049544617093572-462797.iam.gserviceaccount.com
+  end
+end

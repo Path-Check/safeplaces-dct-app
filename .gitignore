@@ -68,6 +68,7 @@ ios/Podfile.lock
 
 # Ruby gems
 ios/vendor/bundle/*
+android/vendor/bundle/*
 
 # Screenshots
 e2e/artifacts/*
