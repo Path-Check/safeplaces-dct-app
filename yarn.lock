@@ -7831,6 +7831,13 @@ react-native-ble-advertiser@0.0.10:
   resolved "https://registry.yarnpkg.com/react-native-ble-advertiser/-/react-native-ble-advertiser-0.0.10.tgz#1ab85d2a944f3f0eed3beddc4ce76ae5edecf8ce"
   integrity sha512-4l8Tkb2ki7RwSwh11dARQS1Hs7qRuexRvHZ0Mv6TbrqAA15gij0TKf5IUTueeML6rVqnsV8VykJ2aHuvjsAjfw==
 
+react-native-camera@^3.24.1:
+  version "3.24.1"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.24.1.tgz#e5ddbb81a88c634cf220b039da739427e16a1d48"
+  integrity sha512-D6X4WDe6mptKwH2/0dv42NgcTpT5Wq6jHyQpmFlh4pEy8OtBmgeYg5HXPmvc0SEtXj10MG+5WQz2oCoEkITs4A==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-config@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.0.0.tgz#fada8f79996db1eadcee9e221afd713c91f677e5"
