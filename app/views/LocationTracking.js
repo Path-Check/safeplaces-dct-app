@@ -504,7 +504,9 @@ const styles = StyleSheet.create({
     top: '-13%',
     left: 0,
     right: 0,
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   mainTextAbove: {
     textAlign: 'center',
