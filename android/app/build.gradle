@@ -147,7 +147,7 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 3
+        versionCode 6
         versionName "1.0.2"
     }
     splits {
@@ -167,18 +167,19 @@ android {
         }
         release {
             // if (project.hasProperty('PRIVATEKIT_RELEASE_STORE_FILE')) {
+            //     project.logger.lifecycle('Signing app with ' + PRIVATEKIT_RELEASE_STORE_FILE)
+            //     storeFile file(PRIVATEKIT_RELEASE_STORE_FILE)
+            //     storePassword PRIVATEKIT_RELEASE_STORE_PASSWORD
+            //     keyAlias PRIVATEKIT_RELEASE_KEY_ALIAS
+            //     keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
+            if (file("./app/keystore.jks").exists()) {
                 keyAlias System.getenv("PRIVATEKIT_RELEASE_KEY_ALIAS")
                 keyPassword System.getenv("PRIVATEKIT_RELEASE_KEY_ALIAS")
                 storePassword System.getenv("PRIVATEKIT_RELEASE_STORE_PASSWORD")
-                storeFile file(System.getenv("HOME") + "/keystores/keystore.jks")
-                // project.logger.lifecycle('Signing app with ' + PRIVATEKIT_RELEASE_STORE_FILE)
-                // storeFile file(PRIVATEKIT_RELEASE_STORE_FILE)
-                // storePassword PRIVATEKIT_RELEASE_STORE_PASSWORD
-                // keyAlias PRIVATEKIT_RELEASE_KEY_ALIAS
-                // keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
-            // } else {
-            //     project.logger.lifecycle('Could not find release key')
-            // }
+                storeFile file("./app/keystore.jks")
+            } else {
+                project.logger.lifecycle('Could not find release key')
+            }
         }
     }
     buildTypes {
@@ -243,9 +244,7 @@ dependencies {
 allprojects {
     repositories {
         configurations.all {
-            // Fixes dependency conflict between react-native-local-assets and
-            // @mauron85/react-native-background-geolocation
-            // exclude group: "commons-io", module: "commons-io"
+
 
             // To fix the app start crash error
             resolutionStrategy.eachDependency { DependencyResolveDetails details ->

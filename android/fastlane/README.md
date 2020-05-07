@@ -31,11 +31,6 @@ Build a Beta APK and AAB
 fastlane android beta
 ```
 Build a Beta APK and AAB
-### android play_store
-```
-fastlane android play_store
-```
-Upload the play store artifacts to beta track
 
 ----
 
