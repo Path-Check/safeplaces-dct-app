@@ -86,6 +86,7 @@
     "react-native-popup-menu": "^0.15.7",
     "react-native-pulse": "^1.0.7",
     "react-native-push-notification": "^3.1.9",
+    "react-native-qrcode-scanner": "^1.4.1",
     "react-native-reanimated": "^1.7.1",
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
