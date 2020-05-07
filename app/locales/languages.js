@@ -9,6 +9,7 @@ import { NativeModules, Platform } from 'react-native';
 import { LANG_OVERRIDE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import ar from './ar.json';
+import da from './da.json';
 import en from './en.json';
 import es from './es.json';
 import fil from './fil.json';
@@ -73,6 +74,7 @@ export async function setUserLocaleOverride(locale) {
 const DEV_LANGUAGES = __DEV__
   ? {
       ar: { label: ar._display_name, translation: ar },
+      da: { label: da._display_name, translation: da },
       es: { label: es._display_name, translation: es },
       fil: { label: fil._display_name, translation: fil },
       fr: { label: fr._display_name, translation: fr },
