@@ -144,6 +144,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
+        missingDimensionStrategy 'react-native-camera', 'general'
+
         versionCode 25
         versionName "1.0.1"
     }
