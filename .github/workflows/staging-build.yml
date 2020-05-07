@@ -1,21 +1,91 @@
 on:
   push:
-    branches:
-      - develop
-      - release-candidate
-      - master
-  pull_request:
-    branches:
-      - develop
-      - release-candidate
-      - master
+  #   branches:
+  #     - develop
+  #     - release-candidate
+  #     - master
+  # pull_request:
+  #   branches:
+  #     - develop
+  #     - release-candidate
+  #     - master
 
 jobs:
-  build_staging_android:
-    runs-on: ubuntu-latest
+  # build_staging_android:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Cache node_modules/
+  #       uses: actions/cache@v1
+  #       id: node_cache
+  #       with:
+  #         path: node_modules
+  #         key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+  #         restore-keys: |
+  #           ${{ runner.OS }}-yarn-cache-
+
+  #     - name: Install Node Dependencies
+  #       if: steps.node_cache.outputs.cache-hit != 'true'
+  #       run: yarn --frozen-lockfile
+
+  #     - name: Setup kernel for react native, increase watchers for release versions.
+  #       run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+  #     - name: Cache gradle
+  #       uses: actions/cache@v1
+  #       with:
+  #         path: ~/.gradle/caches
+  #         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-gradle-
+
+  #     - name: Set up Ruby 2.6
+  #       uses: actions/setup-ruby@v1
+  #       with:
+  #         ruby-version: 2.6
+
+  #     - name: Install bundler for ruby package management
+  #       run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
+  #       working-directory: ./android
+
+  #     - name: Cache ruby gems
+  #       uses: actions/cache@v1
+  #       id: ruby_cache
+  #       with:
+  #         path: android/vendor/bundle
+  #         key: ${{ runner.os }}-gems-${{ hashFiles('**/android/Gemfile.lock') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-gems-
+
+  #     - name: Install Ruby Dependencies
+  #       if: steps.ruby_cache.outputs.cache-hit != 'true'
+  #       run: | 
+  #         bundle config path vendor/bundle
+  #         bundle install --jobs 4 --retry 3
+  #       working-directory: ./android
+
+  #     - name: Build android Staging artifact
+  #       uses: maierj/fastlane-action@v1.4.0
+  #       with:
+  #         lane: 'staging'
+  #         subdirectory: 'android'
+  #         bundle-install-path: 'vendor/bundle'
+
+  #     - name: Upload APK
+  #       uses: actions/upload-artifact@v1
+  #       with:
+  #         name: Debug APK
+  #         path: android/app/build/outputs/apk/staging/debug/app-staging-debug.apk
+
+  build_staging_ios:
+    runs-on: macOS-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@master
+
+      - name: Set XCode Version
+        run: sudo xcode-select -s /Applications/Xcode_11.app
 
       - name: Cache node_modules/
         uses: actions/cache@v1
@@ -30,51 +100,62 @@ jobs:
         if: steps.node_cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
 
-      - name: Setup kernel for react native, increase watchers for release versions.
-        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-
-      - name: Cache gradle
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6
-
       - name: Install bundler for ruby package management
         run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
-        working-directory: ./android
+        working-directory: ./ios
 
       - name: Cache ruby gems
         uses: actions/cache@v1
         id: ruby_cache
         with:
-          path: android/vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/android/Gemfile.lock') }}
+          path: ios/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/ios/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
 
       - name: Install Ruby Dependencies
         if: steps.ruby_cache.outputs.cache-hit != 'true'
-        run: | 
+        run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-        working-directory: ./android
+        working-directory: ./ios
 
-      - name: Build android Staging artifact
-        uses: maierj/fastlane-action@v1.4.0
+      - name: Cache CocoaPods
+        uses: actions/cache@v1
+        id: cocoapods_cache
         with:
-          lane: 'staging'
-          subdirectory: 'android'
-          bundle-install-path: 'vendor/bundle'
+          path: ios/Pods
+          key: ${{ runner.OS }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-pods-
 
-      - name: Upload APK
+      - name: Install Cocoapods
+        if: steps.cocoapods_cache.outputs.cache-hit != 'true'
+        run: pod install --repo-update
+        working-directory: ./ios
+
+      - name: Setup SSH Keys and known_hosts
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+            mkdir -p ~/.ssh
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+            ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
+
+      - name: Bundle iOS JS
+        run: npx react-native bundle --dev false  --platform ios --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ./ && cp ./main.jsbundle $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
+      
+      - name: Build Staging .app file
+        run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme Staging -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4.1'
+        working-directory: ./ios
+
+      - name: Zip bundle for upload
+        run: zip -r COVIDSafePaths-staging.app.zip $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
+        working-directory: ./ios
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: Debug APK
-          path: android/app/build/outputs/apk/staging/debug/app-staging-debug.apk
+          name: Debug App
+          path: ios/COVIDSafePaths-staging.app.zip

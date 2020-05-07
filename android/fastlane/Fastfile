@@ -44,7 +44,7 @@ platform :android do
     )
 
     gradle(
-      task: "assembleRelease",
+      task: "assembleProdRelease",
       print_command: false,
       properties: {
         "PRIVATEKIT_RELEASE_STORE_FILE" => ENV["secrets.SIGNING_KEY"],
@@ -55,7 +55,7 @@ platform :android do
     )
 
     gradle(
-      task: "bundleRelease",
+      task: "bundleProdRelease",
       print_command: false,
       properties: {
         "PRIVATEKIT_RELEASE_STORE_FILE" => ENV["secrets.SIGNING_KEY"],
