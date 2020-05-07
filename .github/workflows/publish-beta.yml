@@ -82,10 +82,15 @@ jobs:
           bundle install --jobs 4 --retry 3
         working-directory: ./android
 
+      - name: Decode Android key store
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+        run: echo $SIGNING_KEY | base64 -di > keystore.jks && cp keystore.jks app/keystore.jks && mkdir $HOME/keystores && cp keystore.jks $HOME/keystores
+        working-directory: ./android
+
       - name: Build android Beta artifact
         uses: maierj/fastlane-action@v1.4.0
         env:
-          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
@@ -94,7 +99,6 @@ jobs:
           subdirectory: 'android'
           bundle-install-path: 'vendor/bundle'
 
-      # Step 3: Decode the service account json key, needed on the next job
       - name: Decode service account key
         env:
           GOOGLE_PLAY_STORE_SECRET: ${{ secrets.GOOGLE_PLAY_STORE_SECRET }}

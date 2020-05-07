@@ -2,6 +2,7 @@ apply plugin: "com.android.application"
 
 project.ext.envConfigFiles = [
     debug: ".env",
+    staging: ".env",
     release: ".env.release",
 ]
 
@@ -84,6 +85,8 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
+    bundleInDevDebug: false,
+    bundleInStagingDebug: true,
     enableHermes: false,  // clean and rebuild if changing
 ]
 
@@ -163,15 +166,19 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('PRIVATEKIT_RELEASE_STORE_FILE')) {
-                project.logger.lifecycle('Signing app with ' + PRIVATEKIT_RELEASE_STORE_FILE)
-                storeFile file(PRIVATEKIT_RELEASE_STORE_FILE)
-                storePassword PRIVATEKIT_RELEASE_STORE_PASSWORD
-                keyAlias PRIVATEKIT_RELEASE_KEY_ALIAS
-                keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
-            } else {
-                project.logger.lifecycle('Could not find release key')
-            }
+            // if (project.hasProperty('PRIVATEKIT_RELEASE_STORE_FILE')) {
+                keyAlias System.getenv("PRIVATEKIT_RELEASE_KEY_ALIAS")
+                keyPassword System.getenv("PRIVATEKIT_RELEASE_KEY_ALIAS")
+                storePassword System.getenv("PRIVATEKIT_RELEASE_STORE_PASSWORD")
+                storeFile file(System.getenv("HOME") + "/keystores/keystore.jks")
+                // project.logger.lifecycle('Signing app with ' + PRIVATEKIT_RELEASE_STORE_FILE)
+                // storeFile file(PRIVATEKIT_RELEASE_STORE_FILE)
+                // storePassword PRIVATEKIT_RELEASE_STORE_PASSWORD
+                // keyAlias PRIVATEKIT_RELEASE_KEY_ALIAS
+                // keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
+            // } else {
+            //     project.logger.lifecycle('Could not find release key')
+            // }
         }
     }
     buildTypes {
@@ -186,6 +193,20 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        dev {
+            dimension "version"
+        }
+        staging {
+            dimension "version"
+        }
+        prod {
+            dimension "version"
+        }
+    }
+
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
