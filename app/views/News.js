@@ -31,7 +31,7 @@ class NewsScreen extends Component {
       news_url: DEFAULT_NEWS_SITE_URL,
     };
     this.state = {
-      visible: true,
+      visible: false,
       default_news: default_news,
       newsUrls: [],
       current_page: 0,
@@ -47,7 +47,7 @@ class NewsScreen extends Component {
     return true;
   };
 
-  hideSpinner() {
+  hideSpinner() { 
     this.setState({
       visible: false,
     });
@@ -70,11 +70,12 @@ class NewsScreen extends Component {
             borderBottomRightRadius: 12,
           }}
           cacheEnabled
-          onLoad={() =>
-            this.setState({
-              visible: false,
-            })
-          }
+          startInLoadingState={true} //Show loading indicator in webweb
+          // onLoad={() =>
+          //   this.setState({
+          //     visible: false,
+          //   })
+          // }
         />
       </View>
     );
@@ -85,7 +86,7 @@ class NewsScreen extends Component {
 
     GetStoreData(AUTHORITY_NEWS)
       .then(nameNewsString => {
-        // Bring in news from the various authorities.  This is
+3        // Bring in news from the various authorities.  This is
         // pulled down from the web when you subscribe to an Authority
         // on the Settings page.
         let arr = [];
@@ -135,7 +136,7 @@ class NewsScreen extends Component {
                 sliderWidth={width}
                 itemWidth={width * 0.85}
                 layout={'default'}
-                scrollEnabled
+                scrollEnabled={this.state.newsUrls.length == 1 ? false : true} // ScrollEnabled will be false if single url.
               />
 
               {this.state.visible && (
