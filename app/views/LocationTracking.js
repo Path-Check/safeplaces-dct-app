@@ -123,7 +123,6 @@ class LocationTracking extends Component {
                 return;
               case RESULTS.DENIED:
                 LocationServices.stop();
-                this.checkIfUserAtRisk();
                 return;
               case RESULTS.UNAVAILABLE:
               case RESULTS.BLOCKED:
