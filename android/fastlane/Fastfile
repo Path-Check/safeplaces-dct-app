@@ -23,7 +23,7 @@ platform :android do
 
   JS_PACKAGE = load_json(json_path: "../package.json")
 
-  desc "Build a Beta APK and AAB"
+  desc "Build a Staging APK"
   lane :staging do
     gradle(
       task: "clean assembleStagingDebug",
@@ -31,7 +31,7 @@ platform :android do
     )
   end 
 
-  desc "Build a Beta APK and AAB"
+  desc "Build a Beta AAB"
   lane :beta do
 
     increment_version_code(
@@ -43,17 +43,17 @@ platform :android do
       version_name: JS_PACKAGE['version']
     )
 
-    gradle(
-      task: "assemble",
-      build_type: "prodRelease",
-      print_command: false,
-      properties: {
-        "PRIVATEKIT_RELEASE_STORE_FILE" => ENV["secrets.SIGNING_KEY"],
-        "PRIVATEKIT_RELEASE_STORE_PASSWORD"  => ENV["secrets.KEY_STORE_PASSWORD"],
-        "PRIVATEKIT_RELEASE_KEY_ALIAS" => ENV["secrets.KEY_ALIAS"],
-        "PRIVATEKIT_RELEASE_KEY_PASSWORD" => ENV["secrets.KEY_PASSWORD"],
-      }
-    )
+    # gradle(
+    #   task: "assemble",
+    #   build_type: "prodRelease",
+    #   print_command: false,
+    #   properties: {
+    #     "PRIVATEKIT_RELEASE_STORE_FILE" => ENV["secrets.SIGNING_KEY"],
+    #     "PRIVATEKIT_RELEASE_STORE_PASSWORD"  => ENV["secrets.KEY_STORE_PASSWORD"],
+    #     "PRIVATEKIT_RELEASE_KEY_ALIAS" => ENV["secrets.KEY_ALIAS"],
+    #     "PRIVATEKIT_RELEASE_KEY_PASSWORD" => ENV["secrets.KEY_PASSWORD"],
+    #   }
+    # )
 
     gradle(
       task: "bundle",
