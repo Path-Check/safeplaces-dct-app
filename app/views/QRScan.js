@@ -7,6 +7,8 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { RNCamera } from 'react-native-camera';
+import QRCodeScanner from 'react-native-qrcode-scanner';
 import { SvgXml } from 'react-native-svg';
 
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
@@ -21,18 +23,26 @@ import languages from '../locales/languages'; // TODO internationalization
 import LocationServices from '../services/LocationService';
 
 const StateEnum = {
-  SCAN_SUCCESS: 0,
-  SCAN_FAIL: 1,
+  DEFAULT: 0,
+  SCAN_SUCCESS: 1,
+  SCAN_FAIL: 2,
+  SCAN_IN_PROGRESS: 3,
 };
 
 const StateIcon = ({ status, size }) => {
   let icon;
   switch (status) {
+    case StateEnum.DEFAULT:
+      icon = null;
+      break;
     case StateEnum.SCAN_SUCCESS:
       icon = StateNoContact;
       break;
     case StateEnum.SCAN_FAIL:
       icon = StateAtRisk;
+      break;
+    case StateEnum.SCAN_IN_PROGRESS:
+      icon = StateNoContact;
       break;
   }
   return (
@@ -53,18 +63,27 @@ class QRScan extends Component {
     }
 
     this.state = {
-      currentState: StateEnum.SCAN_SUCCESS,
+      currentState: StateEnum.DEFAULT,
     };
   }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    this.unsubscribeFocus = this.props.navigation.addListener('focus', () => {
-      this.processRouteParams();
-    });
-    this.unsubscribeState = this.props.navigation.addListener('state', () => {
-      this.processRouteParams();
-    });
+    const handleStateChange = () => {
+      if (this.props.navigation.isFocused()) {
+        this.onNavigate();
+      } else {
+        this.setState({ currentState: StateEnum.DEFAULT });
+      }
+    };
+    this.unsubscribeFocus = this.props.navigation.addListener(
+      'focus',
+      handleStateChange,
+    );
+    this.unsubscribeState = this.props.navigation.addListener(
+      'state',
+      handleStateChange,
+    );
   }
 
   componentWillUnmount() {
@@ -73,9 +92,26 @@ class QRScan extends Component {
     this.unsubscribeState();
   }
 
-  processRouteParams() {
+  onNavigate() {
     const { latitude, longitude } = this.props.route.params;
-    this.saveCoordinates(latitude, longitude);
+    if (typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
+      this.saveCoordinates(latitude, longitude);
+    } else {
+      this.setState({ currentState: StateEnum.SCAN_IN_PROGRESS });
+    }
+  }
+
+  onScanSuccess(e) {
+    const url = e && e.data;
+    const split_1 = url && url.split('/qr/');
+    const split_2 = split_1 && split_1.length === 2 && split_1[1].split('/');
+    const latitude = split_2 && split_2.length === 2 && split_2[0];
+    const longitude = split_2 && split_2.length === 2 && split_2[1];
+    if (typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
+      this.saveCoordinates(latitude, longitude);
+    } else {
+      this.setState({ currentState: StateEnum.SCAN_FAIL });
+    }
   }
 
   saveCoordinates(latitude, longitude) {
@@ -100,7 +136,7 @@ class QRScan extends Component {
   }
 
   handleBackPress = () => {
-    BackHandler.exitApp(); // works best when the goBack is async
+    this.props.navigation.goBack();
     return true;
   };
 
@@ -144,27 +180,53 @@ class QRScan extends Component {
           backgroundColor='transparent'
           translucent
         />
-        <View style={styles.iconContainer}>
-          <StateIcon size={height} status={this.state.currentState} />
-        </View>
-        <View style={styles.mainContainer}>
-          <View style={styles.content}>
-            {this.getMainText()}
-            <Typography style={styles.subheaderText}>
-              {this.getSubText()}
-            </Typography>
-            <View style={styles.buttonContainer}>
-              <ButtonWrapper
-                title='Home'
-                onPress={() => {
-                  this.props.navigation.navigate('LocationTrackingScreen', {});
-                }}
-                buttonColor={Colors.BLUE_BUTTON}
-                bgColor={Colors.WHITE}
-              />
+        {(this.state.currentState === StateEnum.SCAN_SUCCESS ||
+          this.state.currentState === StateEnum.SCAN_FAIL) && (
+          <View style={styles.iconContainer}>
+            <StateIcon size={height} status={this.state.currentState} />
+          </View>
+        )}
+        {(this.state.currentState === StateEnum.SCAN_SUCCESS ||
+          this.state.currentState === StateEnum.SCAN_FAIL) && (
+          <View style={styles.mainContainer}>
+            <View style={styles.content}>
+              {this.getMainText()}
+              <Typography style={styles.subheaderText}>
+                {this.getSubText()}
+              </Typography>
+              <View style={styles.buttonContainer}>
+                <ButtonWrapper
+                  title={languages.t('label.qr_exit')}
+                  onPress={() => {
+                    this.props.navigation.navigate(
+                      'LocationTrackingScreen',
+                      {},
+                    );
+                  }}
+                  buttonColor={Colors.BLUE_BUTTON}
+                  bgColor={Colors.WHITE}
+                />
+              </View>
             </View>
           </View>
-        </View>
+        )}
+        {this.state.currentState === StateEnum.SCAN_IN_PROGRESS && (
+          <View style={styles.qrScanContainer}>
+            <QRCodeScanner
+              onRead={this.onScanSuccess.bind(this)}
+              flashMode={RNCamera.Constants.FlashMode.torch}
+            />
+            <ButtonWrapper
+              title={languages.t('label.qr_scan_cancel')}
+              style={styles.qrCancelButton}
+              onPress={() => {
+                this.props.navigation.navigate('LocationTrackingScreen', {});
+              }}
+              buttonColor={Colors.BLUE_BUTTON}
+              bgColor={Colors.WHITE}
+            />
+          </View>
+        )}
       </ImageBackground>
     );
   }
@@ -188,6 +250,10 @@ const styles = StyleSheet.create({
     height: '90%',
     paddingHorizontal: '12%',
     paddingBottom: 12,
+  },
+  qrScanContainer: {
+    height: '100%',
+    paddingBottom: 10,
   },
   content: {
     flex: 1,

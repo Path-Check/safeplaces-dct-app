@@ -123,9 +123,12 @@
     "team": "Team",
     "team_para": "Our team is composed of a consortium of epidemiologists, engineers, data scientists, digital privacy evangelists, professors and researchers from reputable institutions, including: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young and Link Ventures.",
     "terms_of_use": "Terms of use",
+    "qr_exit": "Home",
     "qr_fail_subtitle": "Oops, something went wrong",
     "qr_fail_title": "Could not scan",
-    "qr_successful_subtitle": "Your location has been logged privately",
+    "qr_scan": "Scan a QR code",
+    "qr_scan_cancel": "Cancel",
+    "qr_successful_subtitle": "Your location has been privately logged",
     "qr_successful_title": "Scanned successfully",
   },
   "onboarding": {
