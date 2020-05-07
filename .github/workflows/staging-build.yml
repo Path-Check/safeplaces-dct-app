@@ -142,13 +142,15 @@ jobs:
             ssh-keyscan github.com >> ~/.ssh/known_hosts
             ssh-agent -a $SSH_AUTH_SOCK > /dev/null
             ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
-
-      - name: Bundle iOS JS
-        run: npx react-native bundle --dev false  --platform ios --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ./ && cp ./main.jsbundle $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
       
       - name: Build Staging .app file
         run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme Staging -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.3'
         working-directory: ./ios
+
+      - name: Bundle iOS JS
+        run: | 
+            npx react-native bundle --dev false  --platform ios --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ./ 
+            cp ./main.jsbundle $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
 
       - name: Zip bundle for upload
         run: zip -r COVIDSafePaths-staging.app.zip $HOME/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app
