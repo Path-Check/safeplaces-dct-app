@@ -210,7 +210,6 @@ export class LocationData {
 export default class LocationServices {
   static start() {
     const locationData = new LocationData();
-    this.locationData = locationData;
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
     if (isBackgroundGeolocationConfigured) {
@@ -452,6 +451,7 @@ export default class LocationServices {
   }
 
   static saveLocation(location) {
-    this.locationData.saveLocation(location);
+    const locationData = new LocationData();
+    locationData.saveLocation(location);
   }
 }
