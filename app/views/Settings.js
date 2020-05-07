@@ -126,7 +126,7 @@ export const SettingsScreen = ({ navigation }) => {
           />
           <Item
             label={t('assessment.settings_title')}
-            description={t('share.subtitle')}
+            description={t('assessment.subtitle')}
             onPress={() => navigation.navigate('AssessmentScreen')}
             last
           />
