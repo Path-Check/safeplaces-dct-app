@@ -39,10 +39,10 @@ platform :android do
       task: "assembleRelease",
       print_command: false,
       properties: {
-        "android.injected.signing.store.file" => ENV["secrets.SIGNING_KEY"],
-        "android.injected.signing.store.password" => ENV["secrets.KEY_STORE_PASSWORD"],
-        "android.injected.signing.key.alias" => ENV["secrets.KEY_ALIAS"],
-        "android.injected.signing.key.password" => ENV["secrets.KEY_PASSWORD"],
+        "PRIVATEKIT_RELEASE_STORE_FILE" => ENV["secrets.SIGNING_KEY"],
+        "PRIVATEKIT_RELEASE_STORE_PASSWORD"  => ENV["secrets.KEY_STORE_PASSWORD"],
+        "PRIVATEKIT_RELEASE_KEY_ALIAS" => ENV["secrets.KEY_ALIAS"],
+        "PRIVATEKIT_RELEASE_KEY_PASSWORD" => ENV["secrets.KEY_PASSWORD"],
       }
     )
 
@@ -50,10 +50,10 @@ platform :android do
       task: "bundleRelease",
       print_command: false,
       properties: {
-        "android.injected.signing.store.file" => ENV["secrets.SIGNING_KEY"],
-        "android.injected.signing.store.password" => ENV["secrets.KEY_STORE_PASSWORD"],
-        "android.injected.signing.key.alias" => ENV["secrets.KEY_ALIAS"],
-        "android.injected.signing.key.password" => ENV["secrets.KEY_PASSWORD"],
+        "PRIVATEKIT_RELEASE_STORE_FILE" => ENV["secrets.SIGNING_KEY"],
+        "PRIVATEKIT_RELEASE_STORE_PASSWORD"  => ENV["secrets.KEY_STORE_PASSWORD"],
+        "PRIVATEKIT_RELEASE_KEY_ALIAS" => ENV["secrets.KEY_ALIAS"],
+        "PRIVATEKIT_RELEASE_KEY_PASSWORD" => ENV["secrets.KEY_PASSWORD"],
       }
     )
   end
@@ -72,7 +72,5 @@ platform :android do
         apk: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
         version_name: lane_context[SharedValues::VERSION_NUMBER]
       )
-
-      # google-play-store-upload@api-4730049544617093572-462797.iam.gserviceaccount.com
   end
 end
