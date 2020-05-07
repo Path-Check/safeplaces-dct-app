@@ -1,8 +1,17 @@
 on:
   push:
+    branches:
+      - develop
+      - release-candidate
+      - master
+  pull_request:
+    branches:
+      - develop
+      - release-candidate
+      - master
 
 jobs:
-  deploy_android:
+  build_staging_android:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
