@@ -102,7 +102,7 @@ jobs:
       - name: Decode service account key
         env:
           GOOGLE_PLAY_STORE_SECRET: ${{ secrets.GOOGLE_PLAY_STORE_SECRET }}
-        run: echo $GOOGLE_PLAY_STORE_SECRET > | base64 di > json_key.json && cp json_key.json app/json_key.json
+        run: echo $GOOGLE_PLAY_STORE_SECRET | base64 di > json_key.json && cp json_key.json app/json_key.json
         working-directory: ./android
 
       - name: Upload to Google Play beta track
