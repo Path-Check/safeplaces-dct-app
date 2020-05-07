@@ -68,4 +68,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: Debug APK
-          path: android/app/build/outputs/apk/debug/app-staging-debug.apk
+          path: android/app/build/outputs/apk/staging/debug/app-staging-debug.apk
