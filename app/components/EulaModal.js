@@ -10,7 +10,7 @@ import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import en from '../locales/eula/en.html';
 import ht from '../locales/eula/ht.html';
-import ButtonWrapper from './ButtonWrapper';
+import { Button } from './Button';
 import { Checkbox } from './Checkbox';
 import { IconButton } from './IconButton';
 import { Typography } from './Typography';
@@ -38,26 +38,26 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
 
   return (
     <>
-      <ButtonWrapper
-        title={t('label.launch_get_started')}
+      <Button
+        label={t('label.launch_get_started')}
         onPress={() => setModalVisibility(true)}
-        buttonColor={Colors.VIOLET}
-        bgColor={Colors.WHITE}
       />
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
-          <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 7, paddingHorizontal: 5 }}>
-              <IconButton
-                icon={close}
-                size={20}
-                style={styles.closeIcon}
-                accessibilityLabel='Close'
-                onPress={() => setModalVisibility(false)}
-              />
-              {html && <WebView style={{ flex: 1 }} source={{ html }} />}
-            </View>
-          </SafeAreaView>
+          <Theme use='violet'>
+            <SafeAreaView style={{ flex: 1 }}>
+              <View style={{ flex: 7, paddingHorizontal: 5 }}>
+                <IconButton
+                  icon={close}
+                  size={20}
+                  style={styles.closeIcon}
+                  accessibilityLabel='Close'
+                  onPress={() => setModalVisibility(false)}
+                />
+                {html && <WebView style={{ flex: 1 }} source={{ html }} />}
+              </View>
+            </SafeAreaView>
+          </Theme>
           <Theme use='violet'>
             <SafeAreaView style={{ backgroundColor: Colors.VIOLET_BUTTON }}>
               <View style={styles.ctaBox}>
@@ -69,11 +69,8 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                 <Typography style={styles.smallDescriptionText}>
                   {t('onboarding.eula_message')}
                 </Typography>
-                <ButtonWrapper
-                  title={t('onboarding.eula_continue')}
-                  buttonColor={canContinue ? Colors.VIOLET : Colors.GRAY_BUTTON}
-                  bgColor={canContinue ? Colors.WHITE : Colors.LIGHT_GRAY}
-                  buttonWidth={'100%'}
+                <Button
+                  label={t('onboarding.eula_continue')}
                   disabled={!canContinue}
                   onPress={() => {
                     setModalVisibility(false);

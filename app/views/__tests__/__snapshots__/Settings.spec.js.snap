@@ -1460,94 +1460,47 @@ exports[`renders correctly 1`] = `
             </Text>
           </View>
           <View
+            accessibilityLabel="Import past locations"
+            accessibilityRole="button"
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
             style={
-              Array [
-                Object {
-                  "alignSelf": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                  "width": 600,
-                },
-                Object {
-                  "width": "100%",
-                },
-              ]
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "backgroundColor": "transparent",
+                "borderBottomLeftRadius": 8,
+                "borderBottomRightRadius": 8,
+                "borderColor": "black",
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 8,
+                "borderTopRightRadius": 8,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "height": 72,
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingHorizontal": 16,
+              }
             }
           >
-            <BVLinearGradient
-              colors={
-                Array [
-                  4294967295,
-                  4294967295,
-                ]
-              }
-              endPoint={
-                Object {
-                  "x": 1,
-                  "y": 0,
-                }
-              }
-              locations={null}
-              startPoint={
-                Object {
-                  "x": 0,
-                  "y": 0,
-                }
-              }
+            <Text
+              secondary={true}
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "borderRadius": 12,
-                    "justifyContent": "center",
-                    "paddingVertical": 8,
-                    "width": "100%",
-                  },
-                  Object {
-                    "borderColor": "#4051DB",
-                    "borderWidth": 2,
-                    "height": 54,
-                  },
-                ]
-              }
-            >
-              <View
-                accessibilityLabel="Import past locations"
-                accessibilityRole="button"
-                accessible={true}
-                focusable={true}
-                isTVSelectable={true}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "borderRadius": 12,
-                    "height": 54,
-                    "justifyContent": "center",
-                    "opacity": 1,
-                    "paddingVertical": 8,
-                    "width": "100%",
-                  }
+                Object {
+                  "fontFamily": "IBMPlexSans-Medium",
+                  "fontSize": 20,
+                  "fontWeight": "normal",
+                  "lineHeight": 40,
+                  "writingDirection": "ltr",
                 }
-              >
-                <Text
-                  style={
-                    Object {
-                      "color": "#4051DB",
-                      "fontFamily": "IBMPlexSans-SemiBold",
-                      "fontSize": 16,
-                      "fontWeight": "normal",
-                      "letterSpacing": 0,
-                      "lineHeight": 19,
-                      "textAlign": "center",
-                      "writingDirection": "ltr",
-                    }
-                  }
-                  use="body1"
-                >
-                  Import past locations
-                </Text>
-              </View>
-            </BVLinearGradient>
+              }
+              use="body1"
+            >
+              Import past locations
+            </Text>
           </View>
           <View
             style={
