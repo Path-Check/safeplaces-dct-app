@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
     marginTop: 9,
+    lineHeight: 32,
   },
   aboutSectionPara: {
     color: Colors.VIOLET_TEXT,
