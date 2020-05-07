@@ -97,6 +97,12 @@ jobs:
         run: echo $SIGNING_KEY | base64 -di > keystore.jks && cp keystore.jks app/keystore.jks && mkdir $HOME/keystores && cp keystore.jks $HOME/keystores
         working-directory: ./android
 
+      - name: Decode service account key
+        env:
+          GOOGLE_PLAY_STORE_SECRET: ${{ secrets.GOOGLE_PLAY_STORE_SECRET }}
+        run: echo $GOOGLE_PLAY_STORE_SECRET | base64 -di > json_key.json && cp json_key.json app/json_key.json
+        working-directory: ./android
+
       - name: Build android Beta artifact
         uses: maierj/fastlane-action@v1.4.0
         env:
@@ -108,18 +114,12 @@ jobs:
           subdirectory: 'android'
           bundle-install-path: 'vendor/bundle'
 
-      - name: Decode service account key
-        env:
-          GOOGLE_PLAY_STORE_SECRET: ${{ secrets.GOOGLE_PLAY_STORE_SECRET }}
-        run: echo $GOOGLE_PLAY_STORE_SECRET | base64 -di > json_key.json && cp json_key.json app/json_key.json
-        working-directory: ./android
-
-      - name: Upload to Google Play beta track
-        uses: maierj/fastlane-action@v1.4.0
-        with:
-          lane: 'play_store'
-          subdirectory: 'android'
-          bundle-install-path: 'vendor/bundle'
+      # - name: Upload to Google Play beta track
+      #   uses: maierj/fastlane-action@v1.4.0
+      #   with:
+      #     lane: 'play_store'
+      #     subdirectory: 'android'
+      #     bundle-install-path: 'vendor/bundle'
 
   # deploy_ios:
   #   runs-on: macOS-latest
