@@ -26,15 +26,12 @@ import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import exportImage from './../assets/images/export.png';
 import foreArrow from './../assets/images/foreArrow.png';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import qrCodeIcon from './../assets/svgs/qrCodeIcon';
 import settingsIcon from './../assets/svgs/settingsIcon';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import { isPlatformAndroid, isPlatformiOS } from './../Util';
 import { Button } from '../components/Button';
-import ButtonWrapper from '../components/ButtonWrapper';
-import { Feature } from '../components/Feature';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -270,18 +267,6 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('SettingsScreen', {});
   }
 
-  getScanQR() {
-    return (
-      <TouchableOpacity
-        style={styles.scanQRContainer}
-        onPress={() => {
-          this.props.navigation.navigate('QRScanScreen', {});
-        }}>
-        <SvgXml xml={qrCodeIcon} width={30} height={30} color='white' />
-      </TouchableOpacity>
-    );
-  }
-
   getSettings() {
     return (
       <TouchableOpacity
@@ -460,7 +445,6 @@ class LocationTracking extends Component {
             </TouchableOpacity>
           </View>
           {this.getSettings()}
-          <Feature name='qr_codes'>{this.getScanQR()}</Feature>
         </ImageBackground>
       </Theme>
     );
@@ -507,13 +491,6 @@ const styles = StyleSheet.create({
     top: 0,
     marginTop: '14%',
     marginRight: '7%',
-    alignSelf: 'flex-end',
-  },
-  scanQRContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 80,
-    marginTop: '14%',
     alignSelf: 'flex-end',
   },
   buttonContainer: {

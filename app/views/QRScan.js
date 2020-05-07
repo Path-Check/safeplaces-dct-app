@@ -15,7 +15,7 @@ import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import { isPlatformAndroid } from './../Util';
-import ButtonWrapper from '../components/ButtonWrapper';
+import { Button } from '../components/Button';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -93,9 +93,13 @@ class QRScan extends Component {
   }
 
   onNavigate() {
-    const { latitude, longitude } = this.props.route.params;
-    if (typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
-      this.saveCoordinates(latitude, longitude);
+    if (this.props.route && this.props.route.params) {
+      const { latitude, longitude } = this.props.route.params;
+      if (typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
+        this.saveCoordinates(latitude, longitude);
+      } else {
+        this.setState({ currentState: StateEnum.SCAN_IN_PROGRESS });
+      }
     } else {
       this.setState({ currentState: StateEnum.SCAN_IN_PROGRESS });
     }
@@ -195,16 +199,11 @@ class QRScan extends Component {
                 {this.getSubText()}
               </Typography>
               <View style={styles.buttonContainer}>
-                <ButtonWrapper
-                  title={languages.t('label.qr_exit')}
+                <Button
+                  label={languages.t('label.qr_exit')}
                   onPress={() => {
-                    this.props.navigation.navigate(
-                      'LocationTrackingScreen',
-                      {},
-                    );
+                    this.props.navigation.navigate('Main', {});
                   }}
-                  buttonColor={Colors.BLUE_BUTTON}
-                  bgColor={Colors.WHITE}
                 />
               </View>
             </View>
@@ -216,14 +215,12 @@ class QRScan extends Component {
               onRead={this.onScanSuccess.bind(this)}
               flashMode={RNCamera.Constants.FlashMode.torch}
             />
-            <ButtonWrapper
-              title={languages.t('label.qr_scan_cancel')}
+            <Button
+              label={languages.t('label.qr_scan_cancel')}
               style={styles.qrCancelButton}
               onPress={() => {
-                this.props.navigation.navigate('LocationTrackingScreen', {});
+                this.props.navigation.navigate('Main', {});
               }}
-              buttonColor={Colors.BLUE_BUTTON}
-              bgColor={Colors.WHITE}
             />
           </View>
         )}

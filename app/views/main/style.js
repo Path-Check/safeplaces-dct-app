@@ -45,6 +45,13 @@ export const styles = StyleSheet.create({
     marginRight: '7%',
     alignSelf: 'flex-end',
   },
+  scanQRContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 60,
+    marginTop: '14%',
+    alignSelf: 'flex-end',
+  },
   buttonContainer: {
     marginTop: 24,
     height: 54, // fixes overlaying buttons on really small screens
