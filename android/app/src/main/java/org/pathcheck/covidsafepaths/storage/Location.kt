@@ -9,6 +9,10 @@ import com.facebook.react.bridge.WritableMap
 import com.facebook.react.bridge.WritableNativeMap
 import io.realm.annotations.PrimaryKey
 import java.lang.Exception
+import kotlin.math.abs
+import kotlin.math.acos
+import kotlin.math.cos
+import kotlin.math.sin
 
 /*
   Realm requires a no-op constructor. Need to use var and fill will default value
@@ -43,6 +47,7 @@ open class Location(
     const val SOURCE_DEVICE = 0
     const val SOURCE_MIGRATION = 1
     const val SOURCE_GOOGLE = 2
+    const val SOURCE_ASSUMED = 3
 
     fun fromBackgroundLocation(backgroundLocation: BackgroundLocation): Location {
       return Location(
@@ -88,6 +93,60 @@ open class Location(
         // possible react type-safe issues here
         null
       }
+    }
+
+    fun createAssumedLocation(time: Long, latitude: Double, longitude: Double): Location {
+      return Location(
+          time = time,
+          latitude = latitude,
+          longitude = longitude,
+          source = SOURCE_ASSUMED
+      )
+    }
+
+    fun areLocationsNearby(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Boolean {
+      val nearbyDistance = 20 // in meters, anything closer is "nearby"
+
+      // these numbers from https://en.wikipedia.org/wiki/Decimal_degrees
+      val notNearbyInLatitude = 0.00017966 // = nearbyDistance / 111320
+      val notNearbyInLongitude23Lat = 0.00019518 // = nearbyDistance / 102470
+      val notNearbyInLongitude45Lat = 0.0002541 // = nearbyDistance / 78710
+      val notNearbyInLongitude67Lat = 0.00045981 // = nearbyDistance / 43496
+
+      val deltaLon = lon2 - lon1
+
+      // Initial checks we can do quickly.  The idea is to filter out any cases where the
+      //   difference in latitude or the difference in longitude must be larger than the
+      //   nearby distance, since this can be calculated trivially.
+      if (abs(lat2 - lat1) > notNearbyInLatitude) return false
+      if (abs(lat1) < 23) {
+        if (abs(deltaLon) > notNearbyInLongitude23Lat) return false
+      } else if (abs(lat1) < 45) {
+        if (abs(deltaLon) > notNearbyInLongitude45Lat) return false
+      } else if (abs(lat1) < 67) {
+        if (abs(deltaLon) > notNearbyInLongitude67Lat) return false
+      }
+
+      // Close enough to do a detailed calculation.  Using the the Spherical Law of Cosines method.
+      //    https://www.movable-type.co.uk/scripts/latlong.html
+      //    https://en.wikipedia.org/wiki/Spherical_law_of_cosines
+      //
+      // Calculates the distance in meters
+      val p1 = (lat1 * Math.PI) / 180
+      val p2 = (lat2 * Math.PI) / 180
+      val deltaLambda = (deltaLon * Math.PI) / 180
+      val R = 6371e3; // gives d in metres
+      val d =
+        acos(
+            sin(p1) * sin(p2) +
+                cos(p1) * cos(p2) * cos(deltaLambda)
+        ) * R
+
+      // closer than the "nearby" distance?
+      if (d < nearbyDistance) return true
+
+      // nope
+      return false
     }
   }
 }

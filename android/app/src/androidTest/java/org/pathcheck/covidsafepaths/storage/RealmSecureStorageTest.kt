@@ -59,6 +59,50 @@ class RealmSecureStorageTest {
   }
 
   @Test
+  fun saveDeviceLocationsWithAssumedLocations() {
+    // given
+    val calendar = Calendar.getInstance()
+    val newLocationTime = calendar.timeInMillis
+    val assumedLocationTime = newLocationTime - RealmSecureStorage.LOCATION_INTERVAL
+    calendar.add(Calendar.MINUTE, -11)
+    val oldLocationTime = calendar.timeInMillis
+    val oldLocation = BackgroundLocation().apply {
+      latitude = 40.730611
+      longitude = -73.935241
+      time = oldLocationTime
+    }
+    secureStorage.saveDeviceLocation(oldLocation)
+    val newLocation = BackgroundLocation().apply {
+      latitude = 40.730610
+      longitude = -73.935242
+      time = newLocationTime
+    }
+
+    // when
+    secureStorage.saveDeviceLocation(newLocation)
+
+    // then
+    querySingleLocationByTime(newLocationTime)?.let {
+      assertEquals(40.730610, it.latitude, 0.0)
+      assertEquals(-73.935242, it.longitude, 0.0)
+      assertEquals(newLocationTime, it.time)
+      assertEquals(Location.SOURCE_DEVICE, it.source)
+    } ?: fail("Result New Location returned null")
+    querySingleLocationByTime(assumedLocationTime)?.let {
+      assertEquals(40.730611, it.latitude, 0.0)
+      assertEquals(-73.935241, it.longitude, 0.0)
+      assertEquals(assumedLocationTime, it.time)
+      assertEquals(Location.SOURCE_ASSUMED, it.source)
+    } ?: fail("Result Assumed Location returned null")
+    querySingleLocationByTime(oldLocationTime)?.let {
+      assertEquals(40.730611, it.latitude, 0.0)
+      assertEquals(-73.935241, it.longitude, 0.0)
+      assertEquals(oldLocationTime, it.time)
+      assertEquals(Location.SOURCE_DEVICE, it.source)
+    } ?: fail("Result Old Location returned null")
+  }
+
+  @Test
   fun saveDeviceLocationsIgnoredIfPreviousInsertTooClose() {
     // given
     val location1Time = System.currentTimeMillis()
@@ -257,6 +301,84 @@ class RealmSecureStorageTest {
     // then
     assertNull(querySingleLocationByTime(location1Time))
     assertNotNull(querySingleLocationByTime(location2Time))
+  }
+
+  @Test
+  fun assumedLocationListGenerated() {
+    val calendar = Calendar.getInstance()
+    val newTimestamp = calendar.timeInMillis
+    calendar.add(Calendar.MINUTE, -16)
+    val oldTimestamp = calendar.timeInMillis
+    val oldLocation = Location(time = oldTimestamp, latitude = 39.09772, longitude = -94.582959)
+    val newLocation = BackgroundLocation().apply {
+      time = newTimestamp
+      latitude = 39.097769
+      longitude = -94.582937
+    }
+
+    val assumedLocations = secureStorage.createAssumedLocations(oldLocation, newLocation)
+
+    assertEquals(2, assumedLocations.size)
+    assertEquals(newTimestamp - (RealmSecureStorage.LOCATION_INTERVAL * 2), assumedLocations[1].time)
+    assertEquals(oldLocation.latitude, assumedLocations[1].latitude, 0.0)
+    assertEquals(oldLocation.longitude, assumedLocations[1].longitude, 0.0)
+    assertEquals(newTimestamp - RealmSecureStorage.LOCATION_INTERVAL, assumedLocations[0].time)
+    assertEquals(oldLocation.latitude, assumedLocations[0].latitude, 0.0)
+    assertEquals(oldLocation.longitude, assumedLocations[0].longitude, 0.0)
+  }
+
+  @Test
+  fun maxAssumedLocationListGenerated() {
+    val calendar = Calendar.getInstance()
+    val newTimestamp = calendar.timeInMillis
+    calendar.add(Calendar.DAY_OF_YEAR, -1)
+    val oldTimestamp = calendar.timeInMillis
+    val oldLocation = Location(time = oldTimestamp, latitude = 5.0, longitude = 5.0)
+    val newLocation = BackgroundLocation().apply {
+      time = newTimestamp
+      latitude = 5.0
+      longitude = 5.0
+    }
+
+    val assumedLocations = secureStorage.createAssumedLocations(oldLocation, newLocation)
+
+    assertEquals(287, assumedLocations.size)
+  }
+
+  @Test
+  fun maxAssumedLocationListEmptyIfTimeTooClose() {
+    val calendar = Calendar.getInstance()
+    val newTimestamp = calendar.timeInMillis
+    calendar.add(Calendar.MINUTE, -9)
+    val oldTimestamp = calendar.timeInMillis
+    val oldLocation = Location(time = oldTimestamp, latitude = 5.0, longitude = 5.0)
+    val newLocation = BackgroundLocation().apply {
+      time = newTimestamp
+      latitude = 5.0
+      longitude = 5.0
+    }
+
+    val assumedLocations = secureStorage.createAssumedLocations(oldLocation, newLocation)
+
+    assertEquals(0, assumedLocations.size)
+  }
+
+  @Test
+  fun assumedLocationListEmptyIfNotNearby() {
+    val calendar = Calendar.getInstance()
+    val newTimestamp = calendar.timeInMillis
+    calendar.add(Calendar.MINUTE, -16)
+    val oldTimestamp = calendar.timeInMillis
+    val oldLocation = Location(time = oldTimestamp, latitude = 5.0, longitude = 5.0)
+    val newLocation = BackgroundLocation().apply {
+      time = newTimestamp
+      latitude = -5.0
+      longitude = 5.0
+    }
+
+    val assumedLocations = secureStorage.createAssumedLocations(oldLocation, newLocation)
+
+    assertEquals(0, assumedLocations.size)
   }
 
   private fun createWritableMapLocation(latitude: Double, longitude: Double, time: Long): WritableMap {

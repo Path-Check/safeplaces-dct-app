@@ -15,6 +15,8 @@ import io.realm.Sort.ASCENDING
 import io.realm.Sort.DESCENDING
 import io.realm.kotlin.where
 import org.pathcheck.covidsafepaths.MainApplication
+import org.pathcheck.covidsafepaths.storage.Location.Companion.areLocationsNearby
+import org.pathcheck.covidsafepaths.storage.Location.Companion.createAssumedLocation
 import org.pathcheck.covidsafepaths.util.getCutoffTimestamp
 import java.security.SecureRandom
 import java.util.UUID
@@ -25,6 +27,8 @@ class RealmSecureStorage(inMemory: Boolean?) {
   companion object {
     private const val TAG = "RealmSecureStorage"
     private const val MINIMUM_TIME_INTERVAL = 60000 * 4
+    const val LOCATION_INTERVAL: Long = 60000 * 5
+    private const val MAX_BACKFILL_TIME = 60000 * 60 * 24
     private const val DAYS_TO_KEEP = 14
 
     private const val MANUALLY_KEYED_PREF_FILE_NAME = "safepaths_enc_prefs"
@@ -63,8 +67,14 @@ class RealmSecureStorage(inMemory: Boolean?) {
           .limit(1)
           .findAll()
 
-      val previousTime = realmResult.getOrNull(0)?.time ?: 0
+      val previousLocation = realmResult.getOrNull(0)
+      val previousTime = previousLocation?.time ?: 0
       if (backgroundLocation.time - previousTime > MINIMUM_TIME_INTERVAL) {
+        val assumedLocations = createAssumedLocations(previousLocation, backgroundLocation)
+        if (assumedLocations.isNotEmpty()) {
+          Log.d(TAG, "Inserting ${assumedLocations.size} assumed Location")
+        }
+        it.insert(assumedLocations)
         Log.d(TAG, "Inserting New Location")
         it.insert(Location.fromBackgroundLocation(backgroundLocation))
       } else {
@@ -127,6 +137,24 @@ class RealmSecureStorage(inMemory: Boolean?) {
 
     promise.resolve(writeableArray)
     realm.close()
+  }
+
+  fun createAssumedLocations(previousLocation: Location?, newLocation: BackgroundLocation): List<Location> {
+    val assumedLocationsToInsert = mutableListOf<Location>()
+    previousLocation?.let { previous ->
+          val isNearbyPrevious = areLocationsNearby(previous.latitude, previous.longitude, newLocation.latitude, newLocation.longitude)
+          val isTimeWithinThreshold = newLocation.time - previous.time <= MAX_BACKFILL_TIME
+          if (isNearbyPrevious && isTimeWithinThreshold) {
+            val newTimestamp = newLocation.time
+            val latestDesiredBackfill = newTimestamp - LOCATION_INTERVAL
+            val earliestDesiredBackfill = Math.max(
+                newLocation.time - MAX_BACKFILL_TIME, previous.time + LOCATION_INTERVAL
+            )
+            for (time in latestDesiredBackfill downTo earliestDesiredBackfill step LOCATION_INTERVAL) {
+              assumedLocationsToInsert.add(createAssumedLocation(time, previous.latitude, previous.longitude))
+            }
+          }}
+    return assumedLocationsToInsert
   }
 
   private fun getEncryptionKey(): ByteArray {
