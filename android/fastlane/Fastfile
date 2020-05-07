@@ -62,12 +62,12 @@ platform :android do
     lane :play_store do
 
       validate_play_store_json_key(
-        json_key: ENV["secrets.GOOGLE_PLAY_STORE_SECRET"]
+        json_key: "app/json_key.json",
       )
 
       upload_to_play_store(
         track: 'beta',
-        json_key_data: ENV["secrets.GOOGLE_PLAY_STORE_SECRET"],
+        json_key: "app/json_key.json",
         aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
         apk: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
         version_name: lane_context[SharedValues::VERSION_NUMBER]
