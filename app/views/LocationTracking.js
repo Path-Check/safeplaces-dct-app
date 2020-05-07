@@ -33,6 +33,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import { isPlatformAndroid, isPlatformiOS } from './../Util';
 import ButtonWrapper from '../components/ButtonWrapper';
+import { Feature } from '../components/Feature';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -462,7 +463,7 @@ class LocationTracking extends Component {
           </TouchableOpacity>
         </View>
         {this.getSettings()}
-        {this.getScanQR()}
+        <Feature name='qr_codes'>{this.getScanQR()}</Feature>
       </ImageBackground>
     );
   }
