@@ -169,6 +169,11 @@ jobs:
 
       - name: Build iOS Staging artifact for devices
         uses: maierj/fastlane-action@v1.4.0
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
           lane: 'staging'
           subdirectory: 'ios'
