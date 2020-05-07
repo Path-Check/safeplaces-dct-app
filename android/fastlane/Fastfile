@@ -24,6 +24,14 @@ platform :android do
   JS_PACKAGE = load_json(json_path: "../package.json")
 
   desc "Build a Beta APK and AAB"
+  lane :staging do
+    gradle(
+      task: "clean assembleStagingDebug",
+      print_command: false,
+    )
+  end 
+
+  desc "Build a Beta APK and AAB"
   lane :beta do
 
     increment_version_code(
