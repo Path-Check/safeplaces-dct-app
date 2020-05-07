@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import {
   Alert,
@@ -367,16 +368,19 @@ class ChooseProviderScreen extends Component {
                   let key = this.state.authoritiesList.indexOf(item);
 
                   return (
-                    <MenuOption
-                      key={key}
-                      onSelect={() => {
-                        this.addAuthorityToState(name);
-                      }}
-                      disabled={this.state.authoritiesList.length === 1}>
-                      <Typography style={styles.menuOptionText} use={'body2'}>
-                        {name}
-                      </Typography>
-                    </MenuOption>
+                    _.findIndex(this.state.selectedAuthorities, ['key', name]) <
+                      0 && (
+                      <MenuOption
+                        key={key}
+                        onSelect={() => {
+                          this.addAuthorityToState(name);
+                        }}
+                        disabled={this.state.authoritiesList.length === 1}>
+                        <Typography style={styles.menuOptionText} use={'body2'}>
+                          {name}
+                        </Typography>
+                      </MenuOption>
+                    )
                   );
                 })}
             <MenuOption
