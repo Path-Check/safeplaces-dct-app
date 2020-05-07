@@ -793,8 +793,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-google-maps\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
