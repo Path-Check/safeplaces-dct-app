@@ -1270,6 +1270,13 @@
     shortid "^2.2.15"
     use-subscription "^1.4.0"
 
+"@react-navigation/material-top-tabs@^5.1.15":
+  version "5.1.15"
+  resolved "https://registry.yarnpkg.com/@react-navigation/material-top-tabs/-/material-top-tabs-5.1.15.tgz#bf7bb379840036983b6ecf70266cb1b755a8671f"
+  integrity sha512-x/xF7qFJG9GYYJ92nttsIpj1fs2JisYsSLAJDo7DI19/NNHDPGoEZMlctW+nMuGzOVx0ZNu3HHnY00dztMrx/A==
+  dependencies:
+    color "^3.1.2"
+
 "@react-navigation/native@5.0.9":
   version "5.0.9"
   resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-5.0.9.tgz#bbd22928f0fbe808a96dd525ebeb9a1aa0b82900"
