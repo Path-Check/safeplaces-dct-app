@@ -213,7 +213,7 @@ class QRScan extends Component {
           <View style={styles.qrScanContainer}>
             <QRCodeScanner
               onRead={this.onScanSuccess.bind(this)}
-              flashMode={RNCamera.Constants.FlashMode.torch}
+              flashMode={RNCamera.Constants.FlashMode.off}
             />
             <Button
               label={languages.t('label.qr_scan_cancel')}
