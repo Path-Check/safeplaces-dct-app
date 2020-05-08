@@ -164,19 +164,30 @@ exports[`<ExportScreen /> renders correctly 1`] = `
               Location is shared as a simple list of times and places, no additional information.
             </Text>
             <View
+              accessibilityLabel="Share location data"
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               isTVSelectable={true}
               style={
                 Object {
+                  "alignContent": "center",
                   "alignItems": "center",
+                  "alignSelf": "stretch",
                   "backgroundColor": "#FFF",
-                  "borderRadius": 8,
+                  "borderBottomLeftRadius": 8,
+                  "borderBottomRightRadius": 8,
+                  "borderColor": "transparent",
+                  "borderStyle": "solid",
+                  "borderTopLeftRadius": 8,
+                  "borderTopRightRadius": 8,
+                  "borderWidth": 2,
                   "flexDirection": "row",
-                  "height": 64,
-                  "justifyContent": "space-around",
+                  "height": 72,
+                  "justifyContent": "space-between",
                   "marginTop": 48,
                   "opacity": 1,
+                  "paddingHorizontal": 16,
                 }
               }
             >
@@ -187,7 +198,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                     "fontFamily": "IBMPlexSans-Medium",
                     "fontSize": 20,
                     "fontWeight": "normal",
-                    "lineHeight": 24,
+                    "lineHeight": 40,
                     "writingDirection": "ltr",
                   }
                 }
@@ -198,8 +209,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
               <SvgXml
                 style={
                   Object {
-                    "height": 21,
-                    "width": 16,
+                    "marginRight": 8,
                   }
                 }
                 xml="<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>

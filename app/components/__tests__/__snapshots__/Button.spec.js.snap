@@ -1,0 +1,377 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`allows small override 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityLabel="Small"
+    accessibilityRole="button"
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "backgroundColor": "#6979F8",
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderColor": "transparent",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "borderWidth": 2,
+        "flexDirection": "row",
+        "height": 48,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingHorizontal": 14,
+      }
+    }
+  >
+    <Text
+      small={true}
+      style={
+        Object {
+          "color": "#FFF",
+          "fontFamily": "IBMPlexSans-Medium",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "lineHeight": 21,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body1"
+    >
+      Small
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`changes color based on theme 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityLabel="onDefault"
+    accessibilityRole="button"
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "backgroundColor": "#6979F8",
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderColor": "transparent",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "borderWidth": 2,
+        "flexDirection": "row",
+        "height": 72,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#FFF",
+          "fontFamily": "IBMPlexSans-Medium",
+          "fontSize": 20,
+          "fontWeight": "normal",
+          "lineHeight": 40,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body1"
+    >
+      onDefault
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="onCharcoal"
+    accessibilityRole="button"
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "backgroundColor": "#FFF",
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderColor": "transparent",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "borderWidth": 2,
+        "flexDirection": "row",
+        "height": 72,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#3C475B",
+          "fontFamily": "IBMPlexSans-Medium",
+          "fontSize": 20,
+          "fontWeight": "normal",
+          "lineHeight": 40,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body1"
+    >
+      onCharcoal
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="onViolet"
+    accessibilityRole="button"
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "backgroundColor": "#FFF",
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderColor": "transparent",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "borderWidth": 2,
+        "flexDirection": "row",
+        "height": 72,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#4051DB",
+          "fontFamily": "IBMPlexSans-Medium",
+          "fontSize": 20,
+          "fontWeight": "normal",
+          "lineHeight": 40,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body1"
+    >
+      onViolet
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`renders a violet 72px button on default theme 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityLabel="Default"
+    accessibilityRole="button"
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "backgroundColor": "#6979F8",
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderColor": "transparent",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "borderWidth": 2,
+        "flexDirection": "row",
+        "height": 72,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#FFF",
+          "fontFamily": "IBMPlexSans-Medium",
+          "fontSize": 20,
+          "fontWeight": "normal",
+          "lineHeight": 40,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body1"
+    >
+      Default
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`renders an icon and space-between if supplied 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityLabel="Button"
+    accessibilityRole="button"
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "backgroundColor": "#6979F8",
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderColor": "transparent",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "borderWidth": 2,
+        "flexDirection": "row",
+        "height": 72,
+        "justifyContent": "space-between",
+        "opacity": 1,
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#FFF",
+          "fontFamily": "IBMPlexSans-Medium",
+          "fontSize": 20,
+          "fontWeight": "normal",
+          "lineHeight": 40,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body1"
+    >
+      Button
+    </Text>
+    <SvgXml
+      style={
+        Object {
+          "marginRight": 8,
+        }
+      }
+      xml="<g />"
+    />
+  </View>
+</View>
+`;
+
+exports[`renders different color for secondary 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityLabel="Button"
+    accessibilityRole="button"
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "backgroundColor": "transparent",
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderColor": "#6979F8",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "borderWidth": 2,
+        "flexDirection": "row",
+        "height": 72,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <Text
+      secondary={true}
+      style={
+        Object {
+          "color": "#6979F8",
+          "fontFamily": "IBMPlexSans-Medium",
+          "fontSize": 20,
+          "fontWeight": "normal",
+          "lineHeight": 40,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body1"
+    >
+      Button
+    </Text>
+  </View>
+</View>
+`;

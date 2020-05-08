@@ -168,6 +168,8 @@ Array [
 5. Return here to import locations from Google Drive
           </Text>
           <View
+            accessibilityLabel="Visit Google Takeout"
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             isTVSelectable={true}
@@ -180,28 +182,34 @@ Array [
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "alignSelf": "center",
-                "backgroundColor": "#4051DB",
-                "borderRadius": 12,
-                "height": 52,
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "borderBottomLeftRadius": 8,
+                "borderBottomRightRadius": 8,
+                "borderColor": "transparent",
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 8,
+                "borderTopRightRadius": 8,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "height": 48,
                 "justifyContent": "center",
-                "marginTop": 30,
+                "marginTop": 24,
                 "opacity": 1,
-                "width": 589.9499999999999,
+                "paddingHorizontal": 14,
               }
             }
             testID="google-takeout-link"
           >
             <Text
+              small={true}
               style={
                 Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans-SemiBold",
+                  "fontFamily": "IBMPlexSans-Medium",
                   "fontSize": 14,
                   "fontWeight": "normal",
-                  "letterSpacing": 0,
-                  "lineHeight": 19,
-                  "textAlign": "center",
+                  "lineHeight": 21,
                   "writingDirection": "ltr",
                 }
               }
@@ -211,6 +219,8 @@ Array [
             </Text>
           </View>
           <View
+            accessibilityLabel="Import Locations"
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             isTVSelectable={true}
@@ -223,28 +233,34 @@ Array [
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "alignSelf": "center",
-                "backgroundColor": "#4051DB",
-                "borderRadius": 12,
-                "height": 52,
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "borderBottomLeftRadius": 8,
+                "borderBottomRightRadius": 8,
+                "borderColor": "transparent",
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 8,
+                "borderTopRightRadius": 8,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "height": 48,
                 "justifyContent": "center",
-                "marginTop": 30,
+                "marginTop": 24,
                 "opacity": 1,
-                "width": 589.9499999999999,
+                "paddingHorizontal": 14,
               }
             }
             testID="google-takeout-import-btn"
           >
             <Text
+              small={true}
               style={
                 Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans-SemiBold",
+                  "fontFamily": "IBMPlexSans-Medium",
                   "fontSize": 14,
                   "fontWeight": "normal",
-                  "letterSpacing": 0,
-                  "lineHeight": 19,
-                  "textAlign": "center",
+                  "lineHeight": 21,
                   "writingDirection": "ltr",
                 }
               }

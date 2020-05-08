@@ -34,7 +34,7 @@ describe('HCAService', () => {
       const testAuthority = authorities[0]['Test Authority'];
 
       expect(testAuthority[0]['url']).toBe(
-        'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
+        'https://raw.githack.com/Path-Check/safeplaces-frontend/develop/examples/safe-paths.json',
       );
 
       // Has a `bounds` with a `ne` and `sw` field
@@ -182,7 +182,7 @@ describe('HCAService', () => {
 
     it('returns the `url` key that is in the first index of authority values array', () => {
       const url =
-        'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json';
+        'https://raw.githack.com/Path-Check/safeplaces-frontend/develop/examples/safe-paths.json';
       expect(HCAService.getAuthorityUrl(mockHCA.validParsed[0])).toEqual(url);
     });
   });
