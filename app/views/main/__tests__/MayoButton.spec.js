@@ -16,7 +16,7 @@ it('does not render when the language is not english', async () => {
   expect(asJSON()).toMatchSnapshot();
 });
 
-it('renders when the language isenglish', async () => {
+it('renders when the language is english', async () => {
   await act(async () => {
     await setUserLocaleOverride('en');
   });

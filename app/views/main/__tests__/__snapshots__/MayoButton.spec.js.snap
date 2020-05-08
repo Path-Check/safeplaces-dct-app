@@ -12,7 +12,7 @@ exports[`does not render when the language is not english 1`] = `
 />
 `;
 
-exports[`renders when the language isenglish 1`] = `
+exports[`renders when the language is english 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
