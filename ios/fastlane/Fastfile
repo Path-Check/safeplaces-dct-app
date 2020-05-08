@@ -69,7 +69,7 @@ platform :ios do
       build_ios_app(
         workspace: WORKSPACE,
         scheme: DEBUG_SCHEME,
-        configuration: "Debug",
+        configuration: "Release",
         silent: true,
         clean: true,
         export_method: 'development',

@@ -164,8 +164,7 @@ jobs:
 
       - name: Bundle iOS JS for devices
         run: |
-            yarn react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output ./main.jsbundle --assets-dest ./
-            cp ./main.jsbundle ./app/assets/
+            yarn react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output ./main.jsbundle --assets-dest ./ios && cp ./main.jsbundle ./app/assets/
 
       - name: Build iOS Staging artifact for devices
         uses: maierj/fastlane-action@v1.4.0
