@@ -12,7 +12,6 @@ jest.mock('../../helpers/General', () => {
 });
 
 const buildTimeFlags = { flag: true };
-flagsEnv.buildTimeFlags = buildTimeFlags;
 
 it('renders default values from the flags provider', async () => {
   const { asJSON } = render(
@@ -25,15 +24,16 @@ it('renders default values from the flags provider', async () => {
 });
 
 it('renders toggle events', async () => {
-  const { getByTestId } = render(
+  flagsEnv.buildTimeFlags = buildTimeFlags;
+
+  const { getByTestId, debug } = render(
     <FlagsProvider>
       <FeatureFlagsScreen />
     </FlagsProvider>,
   );
 
   const toggle = getByTestId('flag');
-
-  await act(async () => await fireEvent.valueChange(toggle, false));
-  // debug(toggle);
-  // console.log(toggle);
+  fireEvent.valueChange(toggle, false);
+  debug(toggle);
+  expect(toggle.props.value).toBe(false);
 });
