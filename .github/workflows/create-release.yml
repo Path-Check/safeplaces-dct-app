@@ -70,7 +70,7 @@ jobs:
         id: upload-release-asset-apk
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBq_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: android/app/build/outputs/apk/release/app-release-unsigned.apk
