@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
-import qrCodeIcon from './../assets/svgs/qrCodeIcon';
 import settingsIcon from './../assets/svgs/settingsIcon';
 import { isPlatformAndroid } from './../Util';
 import { Feature } from '../components/Feature';
@@ -42,22 +41,6 @@ const Main = () => {
           size={30}
           onPress={() => {
             navigation.navigate('SettingsScreen');
-          }}
-          label='default'
-        />
-      </Theme>
-    );
-  };
-
-  const QRIcon = () => {
-    return (
-      <Theme use='violet'>
-        <IconButton
-          style={styles.scanQRContainer}
-          icon={qrCodeIcon}
-          size={30}
-          onPress={() => {
-            navigation.navigate('QRScanScreen');
           }}
           label='default'
         />
@@ -121,9 +104,6 @@ const Main = () => {
     <View style={styles.backgroundImage}>
       {page}
       <SettingsIcon />
-      <Feature name='qr_codes'>
-        <QRIcon />
-      </Feature>
     </View>
   );
 };

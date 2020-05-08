@@ -119,6 +119,13 @@ export const SettingsScreen = ({ navigation }) => {
             description={t('label.event_history_subtitle')}
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
           />
+          <Feature name='qr_codes'>
+            <Item
+              label={t('label.qr_link_title')}
+              description={t('label.qr_link_subtitle')}
+              onPress={() => navigation.navigate('QRScanScreen')}
+            />
+          </Feature>
           <Item
             label={t('share.title')}
             description={t('share.subtitle')}

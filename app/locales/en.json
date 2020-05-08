@@ -126,6 +126,8 @@
     "qr_exit": "Home",
     "qr_fail_subtitle": "Oops, something went wrong",
     "qr_fail_title": "Could not scan",
+    "qr_link_title": "Scan a QR Code",
+    "qr_link_subtitle": "You may scan a QR code to privately log a visit to a public place.",
     "qr_scan": "Scan a QR code",
     "qr_scan_cancel": "Cancel",
     "qr_successful_subtitle": "Your location has been privately logged",
