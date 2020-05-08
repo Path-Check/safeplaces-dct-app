@@ -4,13 +4,14 @@ import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import settingsIcon from './../assets/svgs/settingsIcon';
 import { isPlatformAndroid } from './../Util';
-import { Feature } from '../components/Feature';
+import { FeatureFlag } from '../components/FeatureFlag';
 import { IconButton } from '../components/IconButton';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices, { Reason } from '../services/LocationService';
+import { FeatureFlagNavButton } from './FeatureFlagToggles';
 import LocationTracking from './LocationTracking';
 import { ExposurePage } from './main/ExposurePage';
 import { NoKnownExposure } from './main/NoKnownExposure';
@@ -32,7 +33,7 @@ const Main = () => {
     hasPotentialExposure: false,
   });
 
-  const SettingsIcon = () => {
+  const SettingsNavButton = () => {
     return (
       <Theme use='violet'>
         <IconButton
@@ -103,18 +104,20 @@ const Main = () => {
   return (
     <View style={styles.backgroundImage}>
       {page}
-      <SettingsIcon />
+      <SettingsNavButton />
+      <FeatureFlagNavButton navigation={navigation} />
     </View>
   );
 };
 
 const MainNavigate = props => {
   return (
-    <Feature
+    <FeatureFlag
       name='better_location_status_checks'
-      fallback={() => <LocationTracking {...props} />}>
+      fallback={<LocationTracking {...props} />}
+      isRuntimeFlag={false}>
       <Main />
-    </Feature>
+    </FeatureFlag>
   );
 };
 

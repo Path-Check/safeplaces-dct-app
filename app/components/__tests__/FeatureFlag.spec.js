@@ -3,8 +3,10 @@ import React from 'react';
 import { Text } from 'react-native';
 
 import * as flagsEnv from '../../constants/flagsEnv';
-import { FlagsProvider } from '../../helpers/Flags';
+import * as Flags from '../../helpers/Flags';
 import { FeatureFlag } from '../FeatureFlag';
+
+const { FlagsProvider } = Flags;
 
 it('renders feature if the flag is enabled', () => {
   flagsEnv.buildTimeFlags = { feature1: true };
@@ -60,4 +62,18 @@ it('renders the fallback instead, if the flag is disabled/omitted', () => {
   );
 
   expect(asJSON()).toMatchSnapshot();
+});
+
+it('removes the flag from the list of runtime flags if `isRuntimeFlag={false}`', () => {
+  Flags.runtimeFlags = { feature1: true };
+
+  render(
+    <FlagsProvider>
+      <FeatureFlag name='feature1' isRuntimeFlag={false}>
+        <Text>feature1</Text>
+      </FeatureFlag>
+    </FlagsProvider>,
+  );
+
+  expect(Flags.runtimeFlags).toEqual({});
 });

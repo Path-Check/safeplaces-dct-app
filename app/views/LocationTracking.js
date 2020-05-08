@@ -445,7 +445,7 @@ class LocationTracking extends Component {
               </View>
             </TouchableOpacity>
           </View>
-          {this.getSettings()}
+          {this.getSettingsBtn()}
           <FeatureFlagNavButton navigation={this.props.navigation} />
         </ImageBackground>
       </Theme>
