@@ -18,9 +18,9 @@ export default function DataList({
   styleDate = {},
   titleLinesNum = 1,
 }) {
-  const isData = data.length > 0;
+  if (data.length === 0) return <ActivityIndicator size='large' />;
 
-  return isData ? (
+  return (
     <>
       {data.map(
         (
@@ -58,8 +58,6 @@ export default function DataList({
         ),
       )}
     </>
-  ) : (
-    <ActivityIndicator size='large' />
   );
 }
 

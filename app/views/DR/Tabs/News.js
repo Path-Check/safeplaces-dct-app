@@ -20,10 +20,13 @@ export default function NewsScreen({ navigation }) {
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-    fetch('https://covid-dr.appspot.com/news')
+    fetch('https://covid-dr.appspot.com/newr')
       .then(response => response.json())
       .then(data => {
         setNews(data.news);
+      })
+      .catch(() => {
+        setNews([]);
       });
 
     return () => {
