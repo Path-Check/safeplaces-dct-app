@@ -26,7 +26,6 @@ import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import exportImage from './../assets/images/export.png';
 import foreArrow from './../assets/images/foreArrow.png';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import flagIcon from './../assets/svgs/flag';
 import settingsIcon from './../assets/svgs/settingsIcon';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
@@ -42,6 +41,7 @@ import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
+import { FeatureFlagNavButton } from './FeatureFlagToggles';
 
 const MAYO_COVID_URL = 'https://www.mayoclinic.org/coronavirus-covid-19';
 
@@ -281,28 +281,6 @@ class LocationTracking extends Component {
     );
   }
 
-  getFeatureFlagsBtn() {
-    return (
-      <TouchableOpacity
-        style={styles.featureFlagsContainer}
-        onPress={() => {
-          this.props.navigation.navigate('FeatureFlagsScreen');
-        }}>
-        <SvgXml
-          style={styles.featureFlagIcon}
-          xml={flagIcon}
-          width={30}
-          height={30}
-          color='white'
-        />
-        {/*eslint-disable-next-line react-native/no-raw-text */}
-        <Typography use={'body3'} style={styles.featureFlagText}>
-          Feature Flags
-        </Typography>
-      </TouchableOpacity>
-    );
-  }
-
   getPulseIfNeeded() {
     if (this.state.currentState == StateEnum.NO_CONTACT) {
       return (
@@ -472,7 +450,7 @@ class LocationTracking extends Component {
           </TouchableOpacity>
         </View>
         {this.getSettingsBtn()}
-        {this.getFeatureFlagsBtn()}
+        <FeatureFlagNavButton navigation={this.props.navigation} />
       </ImageBackground>
     );
   }
@@ -519,24 +497,6 @@ const styles = StyleSheet.create({
     marginTop: '14%',
     marginRight: '7%',
     alignSelf: 'flex-end',
-  },
-  featureFlagsContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 20,
-    marginTop: '12%',
-    marginRight: '7%',
-    alignSelf: 'flex-end',
-  },
-  featureFlagIcon: {
-    marginLeft: 12.5,
-  },
-  featureFlagText: {
-    color: Colors.WHITE,
-    width: '50%',
-    textAlign: 'center',
-    lineHeight: 15,
-    paddingTop: 5,
   },
   buttonContainer: {
     top: 24,

@@ -10,7 +10,10 @@ import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
-import { FeatureFlagsScreen } from './views/FeatureFlags';
+import {
+  FEATURE_FLAG_SCREEN_NAME,
+  FeatureFlagsScreen,
+} from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
 import LocationTracking from './views/LocationTracking';
@@ -137,7 +140,7 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name='FeatureFlagsScreen'
+            name={FEATURE_FLAG_SCREEN_NAME}
             component={FeatureFlagsScreen}
             options={{ headerShown: false }}
           />

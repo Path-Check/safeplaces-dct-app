@@ -3,19 +3,18 @@ import 'react-native';
 import { act, render } from '@testing-library/react-native';
 import React from 'react';
 
-import { FlagsContext } from '../../helpers/flags';
+import * as flagsEnv from '../../constants/flagsEnv';
+import { FlagsProvider } from '../../helpers/Flags';
 import * as languages from '../../locales/languages';
 import { SettingsScreen } from '../Settings';
 
 jest.mock('../../helpers/General', () => {
   return {
-    GetStoreData: jest.fn().mockResolvedValue('true'),
+    GetStoreData: jest.fn().mockResolvedValue(true),
   };
 });
 
 jest.useFakeTimers();
-
-const mockSetFlags = jest.fn();
 
 let BACKUP_LOCALE_LIST;
 let BACKUP_LOCALE_NAME;
@@ -38,12 +37,13 @@ afterEach(() => {
   languages.LOCALE_NAME = BACKUP_LOCALE_NAME;
 });
 
-it('renders correctly', async () => {
-  const mockFlags = { google_import: true };
+it('renders correctly with google import flag', async () => {
+  flagsEnv.buildTimeFlags = { google_import: true };
+
   const { asJSON } = render(
-    <FlagsContext.Provider value={[mockFlags, mockSetFlags]}>
+    <FlagsProvider>
       <SettingsScreen />
-    </FlagsContext.Provider>,
+    </FlagsProvider>,
   );
 
   await act(async () => {
@@ -53,12 +53,13 @@ it('renders correctly', async () => {
   await expect(asJSON()).toMatchSnapshot();
 });
 
-it('renders correctly (without google import flag)', async () => {
-  const mockFlags = {};
+it('renders correctly without google import flag', async () => {
+  flagsEnv.buildTimeFlags = { google_import: false };
+
   const { asJSON } = render(
-    <FlagsContext.Provider value={[mockFlags, mockSetFlags]}>
+    <FlagsProvider>
       <SettingsScreen />
-    </FlagsContext.Provider>,
+    </FlagsProvider>,
   );
 
   await act(async () => {

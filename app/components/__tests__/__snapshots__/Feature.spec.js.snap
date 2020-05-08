@@ -1,18 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`does not render if the flag value is falsy 1`] = `
-<View
-  collapsable={true}
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
-/>
-`;
-
-exports[`omits feature if the flag is disabled 1`] = `
+exports[`does not render if the flag is disabled 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
