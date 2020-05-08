@@ -20,7 +20,6 @@ export const FEATURE_FLAG_SCREEN_NAME = 'FeatureFlagsScreen';
 /**
  * Icon button that redirects a user to the Feature Flags screen.
  * Note: Only renders in development mode.
- * @param {*} param0
  */
 export const FeatureFlagNavButton = ({ navigation }) => {
   if (!__DEV__) {
@@ -176,6 +175,7 @@ const styles = StyleSheet.create({
   toggleList: {
     paddingTop: 20,
     marginHorizontal: 10,
+    width: '80%',
   },
   toggleRow: {
     flexDirection: 'row',

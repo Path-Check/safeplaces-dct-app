@@ -5,7 +5,11 @@ import { runtimeFlags, useFlags } from '../helpers/Flags';
  * Usage:
  *
  * ```
- * <FeatureFlag name="google_import">
+ * <FeatureFlag
+ *  name="google_import"
+ *  fallback={<Text>Old</Text>}
+ *  isRuntimeFlag={false}
+ * >
  *   <FeatureUi />
  * </FeatureFlag>
  * ```
@@ -26,7 +30,7 @@ export const FeatureFlag = ({
   const [flags] = useFlags();
   const fallbackRender = fallback || null;
 
-  if (!isRuntimeFlag) {
+  if (!isRuntimeFlag && runtimeFlags[name]) {
     delete runtimeFlags[name];
   }
 

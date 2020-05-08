@@ -7,12 +7,23 @@ import { GetStoreData, SetStoreData } from './General';
 
 export const FlagsContext = React.createContext([buildTimeFlags, () => {}]);
 
-export const mergeFlags = (oldFlags, newFlags) =>
-  assign(oldFlags, newFlags, (objectValue, sourceValue) => {
+/**
+ * Overwrites properties of `oldFlags` with properties from `newFlags`,
+ * omitting any properties from `newFlags` that don't exist on `oldFlags`
+ *
+ * Examples:
+ *
+ * `mergeFlags({feature1: false}, {feature1: true})` becomes `{feature1: true}`
+ *
+ * `mergeFlags({feature1: false}, {feature1: true, feature2: true})` becomes `{feature1: true}`
+ */
+export const mergeFlags = (oldFlags, newFlags) => {
+  return assign(oldFlags, newFlags, (objectValue, sourceValue) => {
     if (objectValue) {
       return sourceValue;
     }
   });
+};
 
 export const FlagsProvider = ({ children }) => {
   const [flags, setFlags] = useState(buildTimeFlags);
@@ -23,7 +34,9 @@ export const FlagsProvider = ({ children }) => {
     if (storedFlags) {
       // Overwrite existing properties of `buildTimeFlags` with stored values from async storage,
       // omitting any stored value that is not present on `buildTimeFlags`.
-      setFlags(mergeFlags(buildTimeFlags, storedFlags));
+      const initialFlags = mergeFlags(buildTimeFlags, storedFlags);
+      setFlags(initialFlags);
+      await SetStoreData(FEATURE_FLAG_VALS, initialFlags);
     }
   };
 
