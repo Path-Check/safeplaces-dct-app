@@ -63,3 +63,17 @@ it('renders correctly (without google import flag)', async () => {
 
   await expect(asJSON()).toMatchSnapshot();
 });
+
+it('renders correctly (with QR codes flag)', async () => {
+  const { asJSON } = render(
+    <FlagsProvider flags={{ qr_codes: true }}>
+      <SettingsScreen />
+    </FlagsProvider>,
+  );
+
+  await act(async () => {
+    jest.runAllTimers();
+  });
+
+  await expect(asJSON()).toMatchSnapshot();
+});
