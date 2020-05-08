@@ -18,12 +18,14 @@ export default function NewsScreen({ navigation }) {
     return true;
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-    const data = await fetch(
-      'https://covid-dr.appspot.com/news',
-    ).then(response => response.json());
-    setNews(data.news);
+    fetch('https://covid-dr.appspot.com/news')
+      .then(response => response.json())
+      .then(data => {
+        setNews(data.news);
+      });
+
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };

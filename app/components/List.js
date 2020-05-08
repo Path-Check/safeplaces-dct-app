@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import {
   ActivityIndicator,
   Image,
@@ -11,8 +10,9 @@ import {
 } from 'react-native';
 
 import fontFamily from '../constants/fonts';
+
 export default function DataList({
-  data,
+  data = [],
   styleTitle = {},
   styleDescription = {},
   styleDate = {},
