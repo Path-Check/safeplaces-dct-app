@@ -7924,9 +7924,9 @@ react-native-screens@2.0.0-alpha.12:
     debounce "^1.2.0"
 
 react-native-share@^3.1.0:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.3.1.tgz#7214497147b1e061ccf8bc1562b3c6fa4b876788"
-  integrity sha512-dVIJkS/BFSljSnCqi3Uwf2r+SrP4K1Xc4kHelZsHDrzU61C0OhgMcrlxzbRj3uzmsaQJ624GkxK1t17Js0bPMA==
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.3.2.tgz#06d1d3f14ba8eeb95e7e94e4db6a286e9902bd29"
+  integrity sha512-Pvkr62TiCX511RMPL+wvy9Fofre4HQnvUT5zzgPPN3vszP/C8lUb7cmFu/8x5U14t3JQg+xW/svNK5eKNebJKw==
 
 react-native-snap-carousel@^3.8.1:
   version "3.9.0"
