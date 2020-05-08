@@ -98,15 +98,15 @@ jobs:
       - name: Bundle iOS JS
         run: npx react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios --verbose
 
-      - name: Build App
-        # xcodebuild -workspace COVIDSafePaths.xcworkspace -configuration Debug -scheme COVIDSafePaths
-        # xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme COVIDSafePaths archive -archivePath COVIDSafePaths.xcarchive -allowProvisioningUpdates
-        # xcodebuild -exportArchive -archivePath ./COVIDSafePaths.xcarchive -exportPath . -exportOptionsPlist COVIDSafePaths/Info.plist
-        run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme COVIDSafePaths archive -archivePath COVIDSafePaths.xcarchive -allowProvisioningUpdates
-        working-directory: ./ios
+#       - name: Build App
+#         # xcodebuild -workspace COVIDSafePaths.xcworkspace -configuration Debug -scheme COVIDSafePaths
+#         # xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme COVIDSafePaths archive -archivePath COVIDSafePaths.xcarchive -allowProvisioningUpdates
+#         # xcodebuild -exportArchive -archivePath ./COVIDSafePaths.xcarchive -exportPath . -exportOptionsPlist COVIDSafePaths/Info.plist
+#         run: xcodebuild -workspace COVIDSafePaths.xcworkspace -scheme COVIDSafePaths archive -archivePath COVIDSafePaths.xcarchive -allowProvisioningUpdates
+#         working-directory: ./ios
 
-      - name: Upload ArtifactiOS
-        uses: actions/upload-artifact@v1
-        with:
-          name: Debug IPA
-          path: ios/build/
+#       - name: Upload ArtifactiOS
+#         uses: actions/upload-artifact@v1
+#         with:
+#           name: Debug IPA
+#           path: ios/build/
