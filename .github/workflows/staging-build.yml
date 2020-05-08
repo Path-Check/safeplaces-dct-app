@@ -163,8 +163,9 @@ jobs:
       #     path: ios/COVIDSafePaths-staging.app.zip
 
       - name: Bundle iOS JS for devices
-        run: | 
-            npx react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output $GITHUB_WORKSPACE/app/assets/main.jsbundle --assets-dest $GITHUB_WORKSPACE/app/assets/
+        run: |
+            yarn react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output ./main.jsbundle --assets-dest ./
+            cp ./main.jsbundle ./app/assets/
 
       - name: Build iOS Staging artifact for devices
         uses: maierj/fastlane-action@v1.4.0
