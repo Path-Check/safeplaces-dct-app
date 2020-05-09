@@ -24,6 +24,14 @@ import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();
 
+const linking = {
+  enabled: true,
+  prefixes: ['safepaths://'],
+  config: {
+    QRScanScreen: 'qr/:latitude/:longitude',
+  },
+};
+
 class Entry extends Component {
   constructor(props) {
     super(props);
@@ -43,13 +51,6 @@ class Entry extends Component {
   }
 
   render() {
-    const linking = {
-      enabled: true,
-      prefixes: ['safepaths://'],
-      config: {
-        QRScanScreen: 'qr/:latitude/:longitude',
-      },
-    };
     return (
       <NavigationContainer linking={linking}>
         <Stack.Navigator
