@@ -3,7 +3,7 @@ import 'react-native';
 import { render, wait } from '@testing-library/react-native';
 import React from 'react';
 
-import QRScan from '../QRScan';
+import { QRScanScreen } from '../QRScan';
 
 it('renders correctly', async () => {
   const createTestProps = props => ({
@@ -13,7 +13,7 @@ it('renders correctly', async () => {
     ...props,
   });
   const props = createTestProps({});
-  const { asJSON } = render(<QRScan {...props} />);
+  const { asJSON } = render(<QRScanScreen {...props} />);
   await wait();
 
   expect(asJSON()).toMatchSnapshot();
