@@ -222,10 +222,6 @@ dependencies {
 allprojects {
     repositories {
         configurations.all {
-            // Fixes dependency conflict between react-native-local-assets and
-            // @mauron85/react-native-background-geolocation
-            exclude group: "commons-io", module: "commons-io"
-
             // To fix the app start crash error
             resolutionStrategy.eachDependency { DependencyResolveDetails details ->
                 def requested = details.requested
