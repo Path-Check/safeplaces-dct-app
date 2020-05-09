@@ -5,6 +5,8 @@ target 'COVIDSafePaths' do
   # Pods for COVIDSafePaths
   project 'COVIDSafePaths.xcodeproj'
 
+  pod 'Realm', :modular_headers => true
+  pod 'RealmSwift', :modular_headers => true
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
