@@ -17,6 +17,8 @@ import { Typography } from './Typography';
 
 const EULA_FILES = { en, ht };
 
+const DEFAULT_EULA_URL = 'about:blank';
+
 export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const [modalVisible, setModalVisibility] = useState(false);
   const [boxChecked, toggleCheckbox] = useState(false);
@@ -28,10 +30,14 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
 
   // Any links inside the EULA should launch a separate browser otherwise you can get stuck inside the app
   const shouldStartLoadWithRequestHandler = webViewState => {
-    if (webViewState.url != 'about:blank') {
+    let shouldLoadRequest = true;
+    if (webViewState.url !== DEFAULT_EULA_URL) {
+      // If the webpage to load isn't the EULA, load it in a separate browser
       Linking.openURL(webViewState.url);
-      return false;
-    } else return true;
+      // Don't load the page if its being handled in a separate browser
+      shouldLoadRequest = false;
+    }
+    return shouldLoadRequest;
   };
 
   // Load the EULA from disk
