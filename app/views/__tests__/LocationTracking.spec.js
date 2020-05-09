@@ -6,22 +6,6 @@ import React from 'react';
 
 import LocationTracking from '../LocationTracking';
 
-jest.mock('react-native-pulse');
-jest.mock('@mauron85/react-native-background-geolocation');
-jest.mock('../../helpers/General', () => {
-  return {
-    GetStoreData: jest
-      .fn()
-      .mockResolvedValueOnce('true')
-      .mockResolvedValueOnce('true')
-      .mockResolvedValueOnce('true')
-      .mockResolvedValueOnce('true')
-      .mockResolvedValueOnce('true')
-      .mockResolvedValueOnce(null),
-    SetStoreData: jest.fn().mockResolvedValue(jest.fn()),
-  };
-});
-
 const navigationMock = {
   addListener: jest.fn(),
 };
