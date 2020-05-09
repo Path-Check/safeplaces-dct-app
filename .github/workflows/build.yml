@@ -81,11 +81,13 @@ jobs:
         env:
           ENVFILE: .env.beta
 
+      - run: ls android/app/build/outputs/apk/release/
+
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
           name: Beta APK
-          path: android/app/build/outputs/apk/debug/app-release.apk
+          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
 
 
   build-ios:
