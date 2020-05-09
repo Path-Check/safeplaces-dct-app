@@ -23,10 +23,16 @@ export const MayoButton = () => {
       <View>
         <TouchableOpacity onPress={onPress} style={styles.mayoInfoRow}>
           <View style={styles.mayoInfoContainer}>
-            <Typography style={styles.mainMayoHeader} onPress={onPress}>
+            <Typography
+              style={styles.mainMayoHeader}
+              onPress={onPress}
+              testID='MayoLinkHeading'>
               {t('label.home_mayo_link_heading')}
             </Typography>
-            <Typography style={styles.mainMayoSubtext} onPress={onPress}>
+            <Typography
+              style={styles.mainMayoSubtext}
+              onPress={onPress}
+              testID='MayoLinkLabel'>
               {t('label.home_mayo_link_label')}
             </Typography>
           </View>
