@@ -114,8 +114,8 @@ platform :ios do
         clean: true,
       )
 
-      # upload_to_testflight(
-      #   skip_submission: true # to only upload the build
-      # ) 
+      upload_to_testflight(
+        skip_submission: true # to only upload the build
+      ) 
   end
 end

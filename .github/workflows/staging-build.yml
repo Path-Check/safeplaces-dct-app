@@ -76,7 +76,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
-          name: Debug APK
+          name: Debug APK (Android)
           path: android/app/build/outputs/apk/staging/debug/app-staging-debug.apk
 
   build_staging_ios:
@@ -181,5 +181,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: Debug App
+          name: Debug IPA file (work in progress)
           path: ios/COVIDSafePaths-staging.ipa
