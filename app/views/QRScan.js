@@ -120,13 +120,13 @@ export const QRScanScreen = ({ navigation, route }) => {
     switch (currentState) {
       case StateEnum.SCAN_SUCCESS:
         return (
-          <Typography style={styles.mainTextBelow}>
+          <Typography style={styles.mainTextBelow} use='headline2'>
             {t('qr.successful_title')}
           </Typography>
         );
       case StateEnum.SCAN_FAIL:
         return (
-          <Typography style={styles.mainTextBelow}>
+          <Typography style={styles.mainTextBelow} use='headline2'>
             {t('qr.fail_title')}
           </Typography>
         );
@@ -161,7 +161,7 @@ export const QRScanScreen = ({ navigation, route }) => {
           <View style={styles.mainContainer}>
             <View style={styles.content}>
               {getMainText()}
-              <Typography style={styles.subheaderText}>
+              <Typography style={styles.subheaderText} use='body1'>
                 {getSubText()}
               </Typography>
               <View style={styles.buttonContainer}>

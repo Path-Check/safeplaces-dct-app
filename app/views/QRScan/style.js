@@ -45,8 +45,6 @@ export const styles = StyleSheet.create({
     top: 24,
   },
   mainTextBelow: {
-    lineHeight: 34,
-    fontSize: 26,
     marginBottom: 24,
   },
   subheaderText: {
