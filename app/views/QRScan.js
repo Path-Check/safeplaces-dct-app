@@ -3,7 +3,7 @@ import { BackHandler, ImageBackground, StatusBar } from 'react-native';
 
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import { Theme } from '../constants/themes';
-import { isValidCoordinates } from '../helpers/Location';
+import { isValidCoordinates, parseQRCodeUrl } from '../helpers/Location';
 import LocationServices from '../services/LocationService';
 import { ScanComplete } from './QRScan/ScanComplete';
 import { ScanInProgress } from './QRScan/ScanInProgress';
@@ -14,12 +14,18 @@ export const QRScanScreen = ({ navigation, route }) => {
   const [currentState, setcurrentState] = useState(StateEnum.DEFAULT);
 
   const onNavigate = () => {
-    if (route && route.params) {
+    const hasRouteParams =
+      route &&
+      route.params &&
+      typeof route.params.latitude !== 'undefined' &&
+      typeof route.params.longitude !== 'undefined';
+    if (hasRouteParams) {
       const { latitude, longitude } = route.params;
-      if (typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
-        saveCoordinates(latitude, longitude);
+      const savedSuccessfully = saveCoordinates(latitude, longitude);
+      if (savedSuccessfully) {
+        setcurrentState(StateEnum.SCAN_SUCCESS);
       } else {
-        setcurrentState(StateEnum.SCAN_IN_PROGRESS);
+        setcurrentState(StateEnum.SCAN_FAIL);
       }
     } else {
       setcurrentState(StateEnum.SCAN_IN_PROGRESS);
@@ -49,26 +55,27 @@ export const QRScanScreen = ({ navigation, route }) => {
   }, [navigation]);
 
   const saveCoordinates = (latitude, longitude) => {
-    if (isValidCoordinates(latitude, longitude)) {
+    const isValid = isValidCoordinates(latitude, longitude);
+    if (isValid) {
       LocationServices.saveLocation({
         latitude: Number(latitude),
         longitude: Number(longitude),
         time: Date.now(),
       });
-      setcurrentState(StateEnum.SCAN_SUCCESS);
-    } else {
-      setcurrentState(StateEnum.SCAN_FAIL);
     }
+    return isValid;
   };
 
   const onScanSuccess = e => {
     const url = e && e.data;
-    const split_1 = url && url.split('/qr/');
-    const split_2 = split_1 && split_1.length === 2 && split_1[1].split('/');
-    const latitude = split_2 && split_2.length === 2 && split_2[0];
-    const longitude = split_2 && split_2.length === 2 && split_2[1];
+    const { latitude, longitude } = parseQRCodeUrl(url);
     if (typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
-      saveCoordinates(latitude, longitude);
+      const savedSuccessfully = saveCoordinates(latitude, longitude);
+      if (savedSuccessfully) {
+        setcurrentState(StateEnum.SCAN_SUCCESS);
+      } else {
+        setcurrentState(StateEnum.SCAN_FAIL);
+      }
     } else {
       setcurrentState(StateEnum.SCAN_FAIL);
     }
