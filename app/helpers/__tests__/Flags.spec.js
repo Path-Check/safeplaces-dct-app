@@ -24,6 +24,6 @@ describe('mergeFlags', () => {
 describe('getCleanedFlagName', () => {
   it('removes underscores and capitalizes the first letter of each flag', () => {
     const flag = 'hello_world';
-    expect(getCleanedFlagName(flag)).toBe('Hello World');
+    expect(getCleanedFlagName(flag)).toBe('Hello world');
   });
 });

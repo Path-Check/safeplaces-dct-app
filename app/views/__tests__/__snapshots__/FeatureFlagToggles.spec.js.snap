@@ -202,7 +202,7 @@ exports[`renders default values from the flags provider 1`] = `
               "width": 51,
             }
           }
-          testID="feature1"
+          testID="FOO_BAR"
           thumbTintColor="#FFF"
           tintColor="#DADADA"
           value={true}
@@ -228,7 +228,7 @@ exports[`renders default values from the flags provider 1`] = `
             }
             use="body1"
           >
-            feature1
+            FOO BAR
           </Text>
           <Text
             style={

@@ -1,6 +1,13 @@
 import env from 'react-native-config';
 
-import { parseFlags } from '../flagsEnv';
+import { getBuildtimeFlags, parseFlags } from '../flagsEnv';
+
+describe('getBuildTimeFlags', () => {
+  it('returns the parsed flags', () => {
+    // Default value from __mocks__
+    expect(getBuildtimeFlags()).toEqual({ FOO_BAR: true });
+  });
+});
 
 describe('parseFlags', () => {
   it('parses feature flags from the respective .env file into an object', () => {

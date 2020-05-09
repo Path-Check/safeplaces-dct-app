@@ -2,14 +2,18 @@ import { render } from '@testing-library/react-native';
 import React from 'react';
 import { Text } from 'react-native';
 
-import * as flagsEnv from '../../constants/flagsEnv';
-import * as Flags from '../../helpers/Flags';
+import { getBuildtimeFlags } from '../../constants/flagsEnv';
+import { FlagsProvider } from '../../helpers/Flags';
 import { FeatureFlag } from '../FeatureFlag';
 
-const { FlagsProvider } = Flags;
+jest.mock('../../constants/flagsEnv', () => {
+  return {
+    getBuildtimeFlags: jest.fn(),
+  };
+});
 
 it('renders feature if the flag is enabled', () => {
-  flagsEnv.buildTimeFlags = { feature1: true };
+  getBuildtimeFlags.mockReturnValue({ feature1: true });
 
   const { asJSON } = render(
     <FlagsProvider>
@@ -23,12 +27,12 @@ it('renders feature if the flag is enabled', () => {
 });
 
 it('does not render if the flag is disabled', () => {
-  flagsEnv.buildTimeFlags = { feature1: false };
+  getBuildtimeFlags.mockReturnValue({ feature1: false });
 
   const { asJSON } = render(
     <FlagsProvider>
-      <FeatureFlag name='feature1'>
-        <Text>feature1</Text>
+      <FeatureFlag name='feature2'>
+        <Text>feature2</Text>
       </FeatureFlag>
     </FlagsProvider>,
   );
@@ -37,12 +41,11 @@ it('does not render if the flag is disabled', () => {
 });
 
 it('omits feature if the flag is missing', () => {
-  flagsEnv.buildTimeFlags = {};
-
+  getBuildtimeFlags.mockReturnValue({});
   const { asJSON } = render(
     <FlagsProvider>
-      <FeatureFlag name='feature1'>
-        <Text>feature1</Text>
+      <FeatureFlag name='feature3'>
+        <Text>feature3</Text>
       </FeatureFlag>
     </FlagsProvider>,
   );
@@ -51,12 +54,11 @@ it('omits feature if the flag is missing', () => {
 });
 
 it('renders the fallback instead, if the flag is disabled/omitted', () => {
-  flagsEnv.buildTimeFlags = {};
-
+  getBuildtimeFlags.mockReturnValue({ feature1: false });
   const { asJSON } = render(
     <FlagsProvider>
-      <FeatureFlag name='feature1' fallback={<Text>Old UI</Text>}>
-        <Text>feature1</Text>
+      <FeatureFlag name='feature2' fallback={<Text>Old UI</Text>}>
+        <Text>feature2</Text>
       </FeatureFlag>
     </FlagsProvider>,
   );

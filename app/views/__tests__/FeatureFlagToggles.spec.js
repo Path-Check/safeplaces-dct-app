@@ -1,14 +1,8 @@
 import { act, fireEvent, render, wait } from '@testing-library/react-native';
 import React from 'react';
 
-import * as flagsEnv from '../../constants/flagsEnv';
-import * as Flags from '../../helpers/Flags';
+import { FlagsProvider } from '../../helpers/Flags';
 import { FeatureFlagsScreen } from '../FeatureFlagToggles';
-
-const { FlagsProvider } = Flags;
-const buildTimeFlags = { feature1: true };
-
-flagsEnv.buildTimeFlags = buildTimeFlags;
 
 jest.mock('../../helpers/General', () => {
   return {
@@ -26,7 +20,7 @@ it('renders default values from the flags provider', async () => {
   expect(asJSON()).toMatchSnapshot();
 });
 
-// TODO
+// TODO: issue in test lib: https://github.com/testing-library/native-testing-library/issues/46
 it.skip('renders toggle events', async () => {
   const { getByTestId } = render(
     <FlagsProvider>

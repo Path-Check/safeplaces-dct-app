@@ -1,7 +1,7 @@
 import { assign } from 'lodash';
 import React, { useContext, useEffect, useState } from 'react';
 
-import { buildTimeFlags } from '../constants/flagsEnv';
+import { getBuildtimeFlags } from '../constants/flagsEnv';
 import { FEATURE_FLAG_VALS } from '../constants/storage';
 import { GetStoreData, SetStoreData } from './General';
 
@@ -10,21 +10,20 @@ import { GetStoreData, SetStoreData } from './General';
  *
  * Example:
  *
- * `getCleanedFlagName('hello_world')` becomes `Hello World`
+ * `getCleanedFlagName('hello_world')` becomes `Hello world`
  *
  */
 export const getCleanedFlagName = name => {
-  return name
-    .split('_')
-    .reduce((acc, word) => {
-      return (
-        acc + word.charAt(0).toUpperCase() + word.slice(1, word.length) + ' '
-      );
-    }, '')
-    .slice(0, -1); // Remove trailing space
+  const withSpaces = name.replace('_', ' ');
+  return (
+    withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1, withSpaces.length)
+  );
 };
 
-export const FlagsContext = React.createContext([buildTimeFlags, () => {}]);
+export const FlagsContext = React.createContext([
+  getBuildtimeFlags(),
+  () => {},
+]);
 
 /**
  * Overwrites properties of `oldFlags` with properties from `newFlags`,
@@ -45,14 +44,15 @@ export const mergeFlags = (oldFlags, newFlags) => {
 };
 
 export const FlagsProvider = ({ children }) => {
+  const buildTimeFlags = getBuildtimeFlags();
   const [flags, setFlags] = useState(buildTimeFlags);
 
   const getInitalFlagVals = async () => {
     const storedFlags = await GetStoreData(FEATURE_FLAG_VALS, false);
 
     if (storedFlags) {
-      // Overwrite existing properties of `buildTimeFlags` with stored values from async storage,
-      // omitting any stored value that is not present on `buildTimeFlags`.
+      // Overwrite existing properties of `getBuildtimeFlags` with stored values from async storage,
+      // omitting any stored value that is not present on `getBuildtimeFlags`.
       const initialFlags = mergeFlags(buildTimeFlags, storedFlags);
       setFlags(initialFlags);
       await SetStoreData(FEATURE_FLAG_VALS, initialFlags);

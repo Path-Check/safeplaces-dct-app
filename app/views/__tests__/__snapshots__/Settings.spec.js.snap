@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly with google import flag 1`] = `
+exports[`<Settings /> renders correctly with google import flag 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -922,7 +922,7 @@ exports[`renders correctly with google import flag 1`] = `
 </View>
 `;
 
-exports[`renders correctly without google import flag 1`] = `
+exports[`<Settings /> renders correctly without google import flag 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"

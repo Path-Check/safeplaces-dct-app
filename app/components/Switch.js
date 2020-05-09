@@ -3,6 +3,7 @@ import { Switch as RNSwitch } from 'react-native';
 
 import Colors from '../constants/colors';
 
+// TODO(https://pathcheck.atlassian.net/browse/SAF-230): make theme aware
 export const Switch = ({
   onValueChange,
   value = false,

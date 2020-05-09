@@ -8,7 +8,7 @@ import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Switch } from '../components/Switch';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-import { buildTimeFlags } from '../constants/flagsEnv';
+import { getBuildtimeFlags } from '../constants/flagsEnv';
 import { DEBUG_MODE } from '../constants/storage';
 import { Theme } from '../constants/themes';
 import { getCleanedFlagName, useFlags } from '../helpers/Flags';
@@ -45,8 +45,10 @@ export const FeatureFlagNavButton = ({ navigation }) => {
 };
 
 export const FlagToggleRow = ({ name, val, onValueChange }) => {
+  const buildtimeFlags = getBuildtimeFlags();
+
   const getBuildtimeFlagVal = flagName =>
-    buildTimeFlags[flagName] ? 'On' : 'Off';
+    buildtimeFlags[flagName] ? 'On' : 'Off';
 
   return (
     <View style={styles.toggleRow}>

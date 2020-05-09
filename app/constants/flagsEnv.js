@@ -20,4 +20,4 @@ export function parseFlags(envConfig) {
     }, {});
 }
 
-export const buildTimeFlags = parseFlags(env);
+export const getBuildtimeFlags = () => parseFlags(env);
