@@ -16,6 +16,7 @@ import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import { Button } from '../components/Button';
 import { Typography } from '../components/Typography';
+import { Theme } from '../constants/themes';
 import { isValidCoordinates } from '../helpers/Location';
 import LocationServices from '../services/LocationService';
 import { styles } from './QRScan/style';
@@ -142,50 +143,54 @@ export const QRScanScreen = ({ navigation, route }) => {
   };
 
   return (
-    <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor='transparent'
-        translucent
-      />
-      {(currentState === StateEnum.SCAN_SUCCESS ||
-        currentState === StateEnum.SCAN_FAIL) && (
-        <View style={styles.iconContainer}>
-          <StateIcon size={height} status={currentState} />
-        </View>
-      )}
-      {(currentState === StateEnum.SCAN_SUCCESS ||
-        currentState === StateEnum.SCAN_FAIL) && (
-        <View style={styles.mainContainer}>
-          <View style={styles.content}>
-            {getMainText()}
-            <Typography style={styles.subheaderText}>{getSubText()}</Typography>
-            <View style={styles.buttonContainer}>
-              <Button
-                label={t('qr.exit')}
-                onPress={() => {
-                  navigation.navigate('Main', {});
-                }}
-              />
+    <Theme use='violet'>
+      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent
+        />
+        {(currentState === StateEnum.SCAN_SUCCESS ||
+          currentState === StateEnum.SCAN_FAIL) && (
+          <View style={styles.iconContainer}>
+            <StateIcon size={height} status={currentState} />
+          </View>
+        )}
+        {(currentState === StateEnum.SCAN_SUCCESS ||
+          currentState === StateEnum.SCAN_FAIL) && (
+          <View style={styles.mainContainer}>
+            <View style={styles.content}>
+              {getMainText()}
+              <Typography style={styles.subheaderText}>
+                {getSubText()}
+              </Typography>
+              <View style={styles.buttonContainer}>
+                <Button
+                  label={t('qr.exit')}
+                  onPress={() => {
+                    navigation.navigate('Main', {});
+                  }}
+                />
+              </View>
             </View>
           </View>
-        </View>
-      )}
-      {currentState === StateEnum.SCAN_IN_PROGRESS && (
-        <View style={styles.qrScanContainer}>
-          <QRCodeScanner
-            onRead={onScanSuccess}
-            flashMode={RNCamera.Constants.FlashMode.off}
-          />
-          <Button
-            label={t('qr.scan_cancel')}
-            style={styles.qrCancelButton}
-            onPress={() => {
-              navigation.navigate('Main', {});
-            }}
-          />
-        </View>
-      )}
-    </ImageBackground>
+        )}
+        {currentState === StateEnum.SCAN_IN_PROGRESS && (
+          <View style={styles.qrScanContainer}>
+            <QRCodeScanner
+              onRead={onScanSuccess}
+              flashMode={RNCamera.Constants.FlashMode.off}
+            />
+            <Button
+              label={t('qr.scan_cancel')}
+              style={styles.qrCancelButton}
+              onPress={() => {
+                navigation.navigate('Main', {});
+              }}
+            />
+          </View>
+        )}
+      </ImageBackground>
+    </Theme>
   );
 };

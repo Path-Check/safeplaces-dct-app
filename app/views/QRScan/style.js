@@ -45,19 +45,12 @@ export const styles = StyleSheet.create({
     top: 24,
   },
   mainTextBelow: {
-    textAlign: 'center',
     lineHeight: 34,
-    color: Colors.WHITE,
     fontSize: 26,
-    fontFamily: fontFamily.primaryMedium,
     marginBottom: 24,
   },
   subheaderText: {
     marginBottom: 24,
     textAlign: 'center',
-    lineHeight: 24.5,
-    color: Colors.WHITE,
-    fontSize: 18,
-    fontFamily: fontFamily.primaryRegular,
   },
 });
