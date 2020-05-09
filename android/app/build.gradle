@@ -166,16 +166,10 @@ android {
             keyPassword 'android'
         }
         release {
-            // if (project.hasProperty('PRIVATEKIT_RELEASE_STORE_FILE')) {
-            //     project.logger.lifecycle('Signing app with ' + PRIVATEKIT_RELEASE_STORE_FILE)
-            //     storeFile file(PRIVATEKIT_RELEASE_STORE_FILE)
-            //     storePassword PRIVATEKIT_RELEASE_STORE_PASSWORD
-            //     keyAlias PRIVATEKIT_RELEASE_KEY_ALIAS
-            //     keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
             if (file("./keystore.jks").exists()) {
-                keyAlias System.getenv("KEY_ALIAS")
-                keyPassword System.getenv("KEY_PASSWORD")
-                storePassword System.getenv("KEY_STORE_PASSWORD")
+                keyAlias KEY_ALIAS
+                keyPassword KEY_PASSWORD
+                storePassword KEY_STORE_PASSWORD
                 storeFile file("./keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')
