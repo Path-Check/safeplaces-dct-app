@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, StyleSheet, View } from 'react-native';
+import { Linking, Modal, StyleSheet, View } from 'react-native';
 import loadLocalResource from 'react-native-local-resource';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
@@ -25,6 +25,15 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
 
   // Pull the EULA in the correct language, with en as fallback
   const eulaPath = EULA_FILES[selectedLocale] || en;
+
+  // Any links inside the EULA should launch a separate browser otherwise you can get stuck inside the app
+  shouldStartLoadWithRequestHandler = (webViewState) => {
+    if (webViewState.url != 'about:blank') {
+      Linking.openURL(webViewState.url);
+      return false;
+    }
+    else return true;
+  };
 
   // Load the EULA from disk
   useEffect(() => {
@@ -54,7 +63,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                   accessibilityLabel='Close'
                   onPress={() => setModalVisibility(false)}
                 />
-                {html && <WebView style={{ flex: 1 }} source={{ html }} />}
+                {html && <WebView style={{ flex: 1,}} source={{ html }} onShouldStartLoadWithRequest={this.shouldStartLoadWithRequestHandler.bind(this)}/>}
               </View>
             </SafeAreaView>
           </Theme>
