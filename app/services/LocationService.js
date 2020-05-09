@@ -71,6 +71,9 @@ export class LocationData {
       let unixtimeUTC = Math.floor(location['time']);
       let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
 
+      // Remove altitude as not Required
+      let altitude = 0;
+
       // Verify that at least the minimum amount of time between saves has passed
       // This ensures that no matter how fast GPS coords are delivered, saving
       // does not happen any faster than the minLocationSaveInterval
