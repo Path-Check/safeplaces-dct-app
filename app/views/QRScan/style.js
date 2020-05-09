@@ -1,8 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from '../../constants/colors';
-import fontFamily from '../../constants/fonts';
-
 const ICON_GAP = 80;
 
 export const styles = StyleSheet.create({
