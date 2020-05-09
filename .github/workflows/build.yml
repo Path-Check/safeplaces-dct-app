@@ -39,6 +39,9 @@ jobs:
       - name: Increase max file watchers
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
+      - run: ./gradlew clean :app:connectedAndroidTest --no-daemon
+        working-directory: ./android
+
       - name: Bundle JS
         run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
 
