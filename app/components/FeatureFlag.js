@@ -8,7 +8,6 @@ import { useFlags } from '../helpers/Flags';
  * <FeatureFlag
  *  name="google_import"
  *  fallback={<Text>Old</Text>}
- *  isRuntimeFlag={false}
  * >
  *   <FeatureUi />
  * </FeatureFlag>
@@ -18,7 +17,6 @@ import { useFlags } from '../helpers/Flags';
  *   name: string;
  *   fallback?: import('react').ReactNode;
  *   children: import('react').ReactNode;
- *   isRuntimeFlag: boolean
  * }} param0
  */
 export const FeatureFlag = ({ name, children, fallback }) => {
