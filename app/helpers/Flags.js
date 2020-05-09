@@ -5,6 +5,25 @@ import { buildTimeFlags } from '../constants/flagsEnv';
 import { FEATURE_FLAG_VALS } from '../constants/storage';
 import { GetStoreData, SetStoreData } from './General';
 
+/**
+ * Converts the flag name from env into a more human readable form.
+ *
+ * Example:
+ *
+ * `getCleanedFlagName('hello_world')` becomes `Hello World`
+ *
+ */
+export const getCleanedFlagName = name => {
+  return name
+    .split('_')
+    .reduce((acc, word) => {
+      return (
+        acc + word.charAt(0).toUpperCase() + word.slice(1, word.length) + ' '
+      );
+    }, '')
+    .slice(0, -1); // Remove trailing space
+};
+
 export const FlagsContext = React.createContext([buildTimeFlags, () => {}]);
 
 /**

@@ -11,7 +11,7 @@ import Colors from '../constants/colors';
 import { buildTimeFlags } from '../constants/flagsEnv';
 import { DEBUG_MODE } from '../constants/storage';
 import { Theme } from '../constants/themes';
-import { useFlags } from '../helpers/Flags';
+import { getCleanedFlagName, useFlags } from '../helpers/Flags';
 import { GetStoreData } from '../helpers/General';
 import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
 
@@ -57,7 +57,7 @@ export const FlagToggleRow = ({ name, val, onValueChange }) => {
       />
       <View style={styles.toggleRowText}>
         <Typography use='body1' bold>
-          {`${name}`}
+          {`${getCleanedFlagName(name)}`}
         </Typography>
         <Typography use='body2'>
           Default:
