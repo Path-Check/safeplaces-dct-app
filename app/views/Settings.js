@@ -121,8 +121,8 @@ export const SettingsScreen = ({ navigation }) => {
           />
           <Feature name='qr_codes'>
             <Item
-              label={t('label.qr_link_title')}
-              description={t('label.qr_link_subtitle')}
+              label={t('qr.link_title')}
+              description={t('qr.link_subtitle')}
               onPress={() => navigation.navigate('QRScanScreen')}
             />
           </Feature>
