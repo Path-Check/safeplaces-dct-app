@@ -16,6 +16,7 @@ import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import { Button } from '../components/Button';
 import { Typography } from '../components/Typography';
+import { isValidCoordinates } from '../helpers/Location';
 import LocationServices from '../services/LocationService';
 import { styles } from './QRScan/style';
 
@@ -112,14 +113,6 @@ export const QRScanScreen = ({ navigation, route }) => {
     } else {
       setcurrentState(StateEnum.SCAN_FAIL);
     }
-  };
-
-  const isValidCoordinates = (latitude, longitude) => {
-    const isValid = num => {
-      const regex = /^(-?\d+\.?\d*|\.\d+)$/;
-      return typeof num === 'string' && regex.test(num);
-    };
-    return isValid(latitude) && isValid(longitude);
   };
 
   const getMainText = () => {
