@@ -2,7 +2,7 @@ apply plugin: "com.android.application"
 
 project.ext.envConfigFiles = [
     debug: ".env",
-    staging: ".env",
+    staging: ".env.beta",
     release: ".env.release",
 ]
 
