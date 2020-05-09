@@ -1,23 +1,25 @@
 name: i18n
 
 on:
-  # upload strings merged into develop
   push:
     branches: [develop]
     paths:
       - app/locales/en.json
       - ios/en.lproj/*.strings
       - android/app/src/main/res/values/strings.xml
-  # for testing
-  # pull_request:
-  #   branches: [develop]
-  #   paths:
-  #     - app/locales/en.json
-  #     - ios/en.lproj/*.strings
-  #     - android/app/src/main/res/values/strings.xml
+      - .github/workflows/*.yml
+  pull_request:
+    branches: [develop]
+    paths:
+      - app/locales/en.json
+      - ios/en.lproj/*.strings
+      - android/app/src/main/res/values/strings.xml
+      - .github/workflows/*.yml
 
 jobs:
+  # Only run on a final merge into develop, uploads all changed keys to Lokalised
   lokalise-upload:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     env:
       UPLOAD_FLAGS: --lang-iso=en --cleanup-mode --replace-modified --include-path --detect-icu-plurals --apply-tm --convert-placeholders --project-id=${{ secrets.LOKALISE_PROJECT_ID }} --token=${{ secrets.LOKALISE_TOKEN }}
@@ -29,3 +31,25 @@ jobs:
 
       - name: upload English files
         run: ./bin/lokalise2 file upload --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml $UPLOAD_FLAGS
+
+  # Run on PRs, checks for any added keys that are missing in the app/locales/en.json file
+  no-missing-keys:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: cached node_modules/
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - run: yarn --frozen-lockfile
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - run: yarn i18n:check
+
+

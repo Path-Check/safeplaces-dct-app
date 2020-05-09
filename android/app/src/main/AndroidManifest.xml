@@ -49,9 +49,6 @@
         <!-- Change the resource name to your App's accent color - or any other color you want -->
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
             android:resource="@android:color/white"/>
-        <meta-data
-           android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyDNplqevzMxOGNuTr_lv6NXsjzIa1PboVc"/>
 
         <service
             android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"

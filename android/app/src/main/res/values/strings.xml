@@ -1,10 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <!-- Shown on app info, app switcher, etc -->
-    <string name="app_name" translatable="false">COVID Safe Paths</string>
-
-    <!-- Shown below icon on launcher only -->
-    <string name="app_name_short" translatable="false">Safe Paths</string>
-
-    <!-- Channel label for notifications shown in App > Notifications > Safe Paths -->
-    <string name="notification_channel_description">Handle all local notifications</string>
+  <!-- Shown on app info, app switcher, etc -->
+  <string name="app_name" translatable="false">COVID Safe Paths</string>
+  <!-- Shown below icon on launcher only -->
+  <string name="app_name_short" translatable="false">Safe Paths</string>
+  <!-- Channel label for notifications shown in App > Notifications > Safe Paths -->
+  <string name="notification_channel_description">Safe Paths notifications</string>
 </resources>

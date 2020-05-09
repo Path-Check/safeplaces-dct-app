@@ -5,7 +5,6 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -107,6 +106,7 @@ class AboutScreen extends Component {
             {this.state.tapCount > 3 && (
               <TouchableOpacity onPress={this.handleExitDebugModePress}>
                 <Typography
+                  // eslint-disable-next-line react-native/no-color-literals
                   style={{
                     color: Colors.RED_TEXT,
                     marginLeft: 12,
@@ -114,6 +114,7 @@ class AboutScreen extends Component {
                     backgroundColor: 'rgba(255, 0, 0, 0.2)',
                     paddingHorizontal: 8,
                     paddingVertical: 2,
+                    // eslint-disable-next-line react-native/no-raw-text
                   }}>
                   In exposure demo mode, tap to disable
                 </Typography>
@@ -133,7 +134,7 @@ class AboutScreen extends Component {
           <View style={styles.main}>
             <View style={styles.row}>
               <Typography style={styles.aboutSectionParaBold}>
-                Version:{' '}
+                {languages.t('about.version')}
               </Typography>
               <Typography style={styles.aboutSectionPara}>
                 {packageJson.version}
@@ -141,19 +142,19 @@ class AboutScreen extends Component {
             </View>
 
             <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>OS:</Typography>
+              <Typography style={styles.aboutSectionParaBold}>
+                {languages.t('about.operating_system_abbr')}
+              </Typography>
               <Typography style={styles.aboutSectionPara}>
-                {' '}
                 {Platform.OS + ' v' + Platform.Version}
               </Typography>
             </View>
 
             <View style={styles.row}>
               <Typography style={styles.aboutSectionParaBold}>
-                Dimensions:
+                {languages.t('about.dimensions')}
               </Typography>
               <Typography style={styles.aboutSectionPara}>
-                {' '}
                 {Math.trunc(Dimensions.get('screen').width) +
                   ' x ' +
                   Math.trunc(Dimensions.get('screen').height)}

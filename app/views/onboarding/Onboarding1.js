@@ -16,7 +16,7 @@ import languages, {
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from './../../locales/languages';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import { EulaModal } from '../../components/EulaModal';
 import NativePicker from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
@@ -34,8 +34,10 @@ class Onboarding extends Component {
   }
 
   componentDidMount() {
-    getUserLocaleOverride(locale => {
-      this.setState({ locale });
+    getUserLocaleOverride().then(locale => {
+      if (locale) {
+        this.setState({ locale });
+      }
     });
   }
 
@@ -90,11 +92,11 @@ class Onboarding extends Component {
               </Typography>
             </View>
             <View style={styles.footerContainer}>
-              <ButtonWrapper
-                title={languages.t('label.launch_get_started')}
-                onPress={() => this.props.navigation.replace('Onboarding2')}
-                buttonColor={Colors.VIOLET}
-                bgColor={Colors.WHITE}
+              <EulaModal
+                continueFunction={() =>
+                  this.props.navigation.replace('Onboarding2')
+                }
+                selectedLocale={this.state.locale}
               />
             </View>
           </View>

@@ -34,9 +34,9 @@ const NavigationBarWrapper = ({ children, title, onBackPress }) => {
       <TopContainer />
       <BottomContainer>
         <Header>
-          <BackArrow onPress={() => onBackPress()}>
-            <BackArrowIcon xml={backArrow} />
-          </BackArrow>
+          <BackArrowIcon onPress={() => onBackPress()}>
+            <BackArrowSvg xml={backArrow} />
+          </BackArrowIcon>
           <Title>{title}</Title>
         </Header>
         {children}
@@ -47,42 +47,46 @@ const NavigationBarWrapper = ({ children, title, onBackPress }) => {
 
 const themeNavBar = ({ theme }) => theme.navBar || Colors.VIOLET;
 
-// TODO: this breaks transitions...
-// const themeBackground = ({ theme }) =>
-//   theme.background || Colors.INTRO_WHITE_BG;
-
 const TopContainer = styled.SafeAreaView`
   flex: 0;
   background-color: ${themeNavBar};
 `;
 
+const themeBackground = ({ theme }) =>
+  theme.background || Colors.INTRO_WHITE_BG;
+
 const BottomContainer = styled.SafeAreaView`
   flex: 1;
-  background-color: ${Colors.INTRO_WHITE_BG};
+  background-color: ${themeBackground};
 `;
 
 const themeNavBarBorder = ({ theme }) =>
   theme.navBarBorder || Colors.NAV_BAR_VIOLET;
 
 const Header = styled.View`
+  align-items: center;
   background-color: ${themeNavBar};
   border-bottom-color: ${themeNavBarBorder};
   border-bottom-width: 1px;
   flex-direction: row;
 `;
 
+const themeOnNavBar = ({ theme }) => theme.onNavBar || Colors.WHITE;
+
 const Title = styled.Text`
   align-self: center;
-  color: ${Colors.WHITE};
+  color: ${themeOnNavBar};
   font-family: IBMPlexSans-Medium;
   font-size: ${26 * widthScale + 'px'};
+  line-height: 34px;
   position: absolute;
-  padding-horizontal: 20;
+  padding-horizontal: 20px;
   text-align: center;
   width: 100%;
+  letter-spacing: -0.3px;
 `;
 
-const BackArrow = styled.TouchableOpacity`
+const BackArrowIcon = styled.TouchableOpacity`
   align-items: center;
   height: 55px;
   justify-content: center;
@@ -90,9 +94,11 @@ const BackArrow = styled.TouchableOpacity`
   z-index: 1;
 `;
 
-const BackArrowIcon = styled(SvgXml)`
+const BackArrowSvg = styled(SvgXml)`
   height: 18px;
   width: 18px;
+  color: ${Colors.WHITE};
+  opacity: 0.4;
 `;
 
 NavigationBarWrapper.propTypes = {

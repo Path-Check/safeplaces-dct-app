@@ -7,6 +7,7 @@ import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
 import xmarkIcon from '../assets/svgs/xmarkIcon';
 import { Divider } from '../components/Divider';
+import { Feature } from '../components/Feature';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
@@ -33,12 +34,11 @@ export const SettingsScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const handleBackPress = () => {
-    backToMain();
-    return true;
-  };
-
   useEffect(() => {
+    const handleBackPress = () => {
+      navigation.goBack();
+      return true;
+    };
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
     // TODO: this should be a service or hook
@@ -52,7 +52,7 @@ export const SettingsScreen = ({ navigation }) => {
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
-  }, []);
+  }, [navigation]);
 
   const locationToggleButtonPressed = async () => {
     try {
@@ -103,7 +103,6 @@ export const SettingsScreen = ({ navigation }) => {
             )}
           </NativePicker>
         </Section>
-
         <Section>
           <Item
             label={t('label.choose_provider_title')}
@@ -121,18 +120,18 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
           />
           <Item
-            label={t('label.tested_positive_title')}
-            description={t('label.tested_positive_subtitle')}
+            label={t('share.title')}
+            description={t('share.subtitle')}
             onPress={() => navigation.navigate('ExportScreen')}
             last
           />
         </Section>
 
-        {__DEV__ && (
+        <Feature name='google_import'>
           <Section>
             <GoogleMapsImport navigation={navigation} />
           </Section>
-        )}
+        </Feature>
 
         <Section last>
           <Item
