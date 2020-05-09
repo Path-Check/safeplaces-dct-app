@@ -9,23 +9,32 @@ import { styles } from './style';
 const MAYO_COVID_URL = 'https://www.mayoclinic.org/coronavirus-covid-19';
 
 export const MayoButton = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const onPress = () => Linking.openURL(MAYO_COVID_URL);
+
+  /**
+   * Currently, the component is only enabled in English. This will
+   * be updated once there are language-specific resources to link to.
+   */
+  const isEnabled = i18n.language === 'en';
+
   return (
-    <View>
-      <TouchableOpacity onPress={onPress} style={styles.mayoInfoRow}>
-        <View style={styles.mayoInfoContainer}>
-          <Typography style={styles.mainMayoHeader} onPress={onPress}>
-            {t('label.home_mayo_link_heading')}
-          </Typography>
-          <Typography style={styles.mainMayoSubtext} onPress={onPress}>
-            {t('label.home_mayo_link_label')}
-          </Typography>
-        </View>
-        <View style={styles.arrowContainer}>
-          <Image source={foreArrow} />
-        </View>
-      </TouchableOpacity>
-    </View>
+    isEnabled && (
+      <View>
+        <TouchableOpacity onPress={onPress} style={styles.mayoInfoRow}>
+          <View style={styles.mayoInfoContainer}>
+            <Typography style={styles.mainMayoHeader} onPress={onPress}>
+              {t('label.home_mayo_link_heading')}
+            </Typography>
+            <Typography style={styles.mainMayoSubtext} onPress={onPress}>
+              {t('label.home_mayo_link_label')}
+            </Typography>
+          </View>
+          <View style={styles.arrowContainer}>
+            <Image source={foreArrow} />
+          </View>
+        </TouchableOpacity>
+      </View>
+    )
   );
 };
