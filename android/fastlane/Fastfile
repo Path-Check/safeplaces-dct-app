@@ -46,25 +46,13 @@ platform :android do
     gradle(
       task: "assemble",
       build_type: "prodRelease",
-      print_command: false,
-      # properties: {
-      #   "PRIVATEKIT_RELEASE_STORE_FILE" => ENV["secrets.SIGNING_KEY"],
-      #   "PRIVATEKIT_RELEASE_STORE_PASSWORD"  => ENV["secrets.KEY_STORE_PASSWORD"],
-      #   "PRIVATEKIT_RELEASE_KEY_ALIAS" => ENV["secrets.KEY_ALIAS"],
-      #   "PRIVATEKIT_RELEASE_KEY_PASSWORD" => ENV["secrets.KEY_PASSWORD"],
-      # }
+      print_command: false
     )
 
     gradle(
       task: "bundle",
       build_type: "prodRelease",
-      print_command: false,
-      # properties: {
-      #   "PRIVATEKIT_RELEASE_STORE_FILE" => 'ENV["secrets.SIGNING_KEY"]',
-      #   "PRIVATEKIT_RELEASE_STORE_PASSWORD"  => ENV["secrets.KEY_STORE_PASSWORD"],
-      #   "PRIVATEKIT_RELEASE_KEY_ALIAS" => ENV["secrets.KEY_ALIAS"],
-      #   "PRIVATEKIT_RELEASE_KEY_PASSWORD" => ENV["secrets.KEY_PASSWORD"],
-      # }
+      print_command: false
     )
 
     validate_play_store_json_key(

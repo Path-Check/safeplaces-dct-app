@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`may be exposed matches snapshot 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -49,9 +49,7 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "flex": 1,
           "height": "100%",
-          "justifyContent": "center",
           "left": 0,
           "position": "absolute",
           "resizeMode": "contain",
@@ -64,16 +62,17 @@ exports[`renders correctly 1`] = `
         height={1334}
         width={1334}
         xml="<svg width=\\"850\\" height=\\"850\\" viewBox=\\"0 0 850 850\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
-<path d=\\"M425 465C447.091 465 465 447.091 465 425C465 402.909 447.091 385 425 385C402.909 385 385 402.909 385 425C385 447.091 402.909 465 425 465Z\\" fill=\\"white\\"/>
-<path d=\\"M425 457C442.673 457 457 442.673 457 425C457 407.327 442.673 393 425 393C407.327 393 393 407.327 393 425C393 442.673 407.327 457 425 457Z\\" fill=\\"#41DCA4\\"/>
-<path d=\\"M425 412C417.832 412 412 417.832 412 425C412 432.168 417.832 438 425 438C432.168 438 438 432.168 438 425C438 417.832 432.168 412 425 412ZM425 435.075C419.436 435.075 414.925 430.565 414.925 425C414.925 419.436 419.436 414.925 425 414.925C430.564 414.925 435.075 419.436 435.075 425C435.075 430.565 430.564 435.075 425 435.075Z\\" fill=\\"white\\"/>
-<path d=\\"M430.844 419.727C430.22 419.215 429.298 419.305 428.786 419.93L423.15 426.797L421.24 424.334C420.745 423.695 419.826 423.58 419.188 424.074C418.55 424.57 418.433 425.488 418.928 426.127L421.962 430.039C422.235 430.391 422.653 430.599 423.098 430.605C423.104 430.606 423.111 430.606 423.118 430.606C423.556 430.606 423.97 430.409 424.249 430.071L431.047 421.785C431.559 421.161 431.469 420.239 430.844 419.727Z\\" fill=\\"white\\"/>
 <circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"85.5\\" stroke=\\"white\\"/>
 <circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"149.5\\" stroke=\\"white\\"/>
 <circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"217.5\\" stroke=\\"white\\"/>
 <circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"283.5\\" stroke=\\"white\\"/>
 <circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"352.5\\" stroke=\\"white\\"/>
 <circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"424.5\\" stroke=\\"white\\"/>
+<path d=\\"M425 465C447.091 465 465 447.091 465 425C465 402.909 447.091 385 425 385C402.909 385 385 402.909 385 425C385 447.091 402.909 465 425 465Z\\" fill=\\"white\\"/>
+<path d=\\"M425 457C442.673 457 457 442.673 457 425C457 407.327 442.673 393 425 393C407.327 393 393 407.327 393 425C393 442.673 407.327 457 425 457Z\\" fill=\\"#FFC000\\"/>
+<path d=\\"M424 429.375C423.5 429.5 423.25 430 423.25 430.5C423.25 431.125 423.75 431.75 424.5 431.75C425.25 431.75 425.75 431.25 425.75 430.5C425.75 429.5 424.75 429 424 429.375Z\\" fill=\\"white\\"/>
+<path d=\\"M424.5 419.25C423.75 419.25 423.25 419.75 423.25 420.5V426.75C423.25 427.5 423.75 428 424.5 428C425.25 428 425.75 427.5 425.75 426.75V420.5C425.75 419.75 425.25 419.25 424.5 419.25Z\\" fill=\\"white\\"/>
+<path d=\\"M424.5 413C417.625 413 412 418.625 412 425.5C412 432.375 417.625 438 424.5 438C431.375 438 437 432.375 437 425.5C437 418.625 431.375 413 424.5 413ZM424.5 435.5C419 435.5 414.5 431 414.5 425.5C414.5 420 419 415.5 424.5 415.5C430 415.5 434.5 420 434.5 425.5C434.5 431 430 435.5 424.5 435.5Z\\" fill=\\"white\\"/>
 </svg>"
       />
     </View>
@@ -104,6 +103,23 @@ exports[`renders correctly 1`] = `
           style={
             Object {
               "color": "#FFF",
+              "fontFamily": "IBMPlexSans-Medium",
+              "fontSize": 28,
+              "fontWeight": "normal",
+              "lineHeight": 34,
+              "marginBottom": 24,
+              "textAlign": "center",
+              "writingDirection": "ltr",
+            }
+          }
+          use="body1"
+        >
+          You May Be Exposed
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#FFF",
               "fontFamily": "IBMPlexSans-Light",
               "fontSize": 16,
               "fontWeight": "normal",
@@ -114,7 +130,9 @@ exports[`renders correctly 1`] = `
             }
           }
           use="body1"
-        />
+        >
+          This does not mean you are infected.
+        </Text>
       </View>
       <View
         style={
@@ -130,23 +148,6 @@ exports[`renders correctly 1`] = `
           style={
             Object {
               "color": "#FFF",
-              "fontFamily": "IBMPlexSans-Medium",
-              "fontSize": 26,
-              "fontWeight": "normal",
-              "lineHeight": 34,
-              "marginBottom": 24,
-              "textAlign": "center",
-              "writingDirection": "ltr",
-            }
-          }
-          use="body1"
-        >
-          No known contact
-        </Text>
-        <Text
-          style={
-            Object {
-              "color": "#FFF",
               "fontFamily": "IBMPlexSans",
               "fontSize": 18,
               "fontWeight": "normal",
@@ -158,8 +159,61 @@ exports[`renders correctly 1`] = `
           }
           use="body1"
         >
-          Based on available data you haven’t been near anyone reported positive for COVID-19.
+          Based on your GPS history, it is possible you were in contact with or close to someone diagnosed with COVID-19.
         </Text>
+        <View
+          style={
+            Object {
+              "height": 54,
+              "marginTop": 24,
+            }
+          }
+        >
+          <View
+            accessibilityLabel="See exposure history"
+            accessibilityRole="button"
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "backgroundColor": "#FFF",
+                "borderBottomLeftRadius": 8,
+                "borderBottomRightRadius": 8,
+                "borderColor": "transparent",
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 8,
+                "borderTopRightRadius": 8,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "height": 54,
+                "justifyContent": "center",
+                "marginTop": 24,
+                "opacity": 1,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#3C475B",
+                  "fontFamily": "IBMPlexSans-Medium",
+                  "fontSize": 20,
+                  "fontWeight": "normal",
+                  "lineHeight": 40,
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              See exposure history
+            </Text>
+          </View>
+        </View>
       </View>
     </View>
     <View>
@@ -197,6 +251,7 @@ exports[`renders correctly 1`] = `
                 "writingDirection": "ltr",
               }
             }
+            testID="MayoLinkHeading"
             use="body1"
           >
             More COVID-19 information
@@ -213,6 +268,7 @@ exports[`renders correctly 1`] = `
                 "writingDirection": "ltr",
               }
             }
+            testID="MayoLinkLabel"
             use="body1"
           >
             from the Mayo Clinic
@@ -236,35 +292,6 @@ exports[`renders correctly 1`] = `
           />
         </View>
       </View>
-    </View>
-    <View
-      accessible={true}
-      focusable={true}
-      isTVSelectable={true}
-      style={
-        Object {
-          "alignSelf": "flex-end",
-          "marginRight": "7%",
-          "marginTop": "14%",
-          "opacity": 1,
-          "position": "absolute",
-          "top": 0,
-        }
-      }
-    >
-      <Image
-        resizeMode="contain"
-      />
-      <SvgXml
-        color="white"
-        height={30}
-        width={30}
-        xml="
-<svg width=\\"24\\" height=\\"22\\" viewBox=\\"0 0 24 22\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
-  <path d=\\"M23.625 17H9V15.125C9 14.5156 8.48438 14 7.875 14H5.625C4.96875 14 4.5 14.5156 4.5 15.125V17H0.375C0.140625 17 0 17.1875 0 17.375V18.125C0 18.3594 0.140625 18.5 0.375 18.5H4.5V20.375C4.5 21.0312 4.96875 21.5 5.625   21.5H7.875C8.48438 21.5 9 21.0312 9 20.375V18.5H23.625C23.8125 18.5 24 18.3594 24 18.125V17.375C24 17.1875 23.8125 17 23.625 17ZM7.5 20H6V15.5H7.5V20ZM23.625 3.5H12V1.625C12 1.01562 11.4844 0.5 10.875 0.5H8.625C7.96875 0.5 7.5 1.01562 7.5 1.625V3.5H0.375C0.140625 3.5 0 3.6875 0 3.875V4.625C0 4.85938 0.140625 5 0.375 5H7.5V6.875C7.5 7.53125 7.96875 8 8.625 8H10.875C11.4844 8 12 7.53125 12 6.875V5H23.625C23.8125 5 24 4.85938 24 4.625V3.875C24 3.6875 23.8125 3.5 23.625 3.5ZM10.5 6.5H9V2H10.5V6.5ZM23.625 10.25H19.5V8.375C19.5 7.76562 18.9844 7.25 18.375 7.25H16.125C15.4688 7.25 15 7.76562 15 8.375V10.25H0.375C0.140625 10.25 0 10.4375 0 10.625V11.375C0 11.6094 0.140625 11.75 0.375 11.75H15V13.625C15 14.2812 15.4688 14.75 16.125 14.75H18.375C18.9844 14.75 19.5 14.2812 19.5 13.625V11.75H23.625C23.8125 11.75 24 11.6094 24 11.375V10.625C24 10.4375 23.8125 10.25 23.625 10.25ZM18 13.25H16.5V8.75H18V13.25Z\\" fill=\\"currentColor\\" />
-</svg>
-"
-      />
     </View>
   </View>
 </View>

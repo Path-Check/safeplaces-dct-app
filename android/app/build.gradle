@@ -166,11 +166,12 @@ android {
             keyPassword 'android'
         }
         release {
+            project.logger.lifecycle('getting the keystore from ', System.getenv("HOME"));
             if (file("./keystore.jks").exists()) {
-                keyAlias KEY_ALIAS
-                keyPassword KEY_PASSWORD
-                storePassword KEY_STORE_PASSWORD
-                storeFile file("./keystore.jks")
+                keyAlias System.getenv("secrets.KEY_ALIAS")
+                keyPassword System.getenv("secrets.KEY_PASSWORD")
+                storePassword System.getenv("secrets.KEY_STORE_PASSWORD")
+                storeFile file(System.getenv("HOME") + "/keystores/keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')
             }
@@ -238,8 +239,6 @@ dependencies {
 allprojects {
     repositories {
         configurations.all {
-
-
             // To fix the app start crash error
             resolutionStrategy.eachDependency { DependencyResolveDetails details ->
                 def requested = details.requested
