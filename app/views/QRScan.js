@@ -13,14 +13,17 @@ import { styles } from './QRScan/style';
 export const QRScanScreen = ({ navigation, route }) => {
   const [currentState, setcurrentState] = useState(StateEnum.DEFAULT);
 
+  const getLatLonFromRouteParams = () => {
+    const params = route && route.params;
+    const latitude = (params && params.latitude) || undefined;
+    const longitude = (params && params.longitude) || undefined;
+    console.log('from route', latitude, longitude);
+    return { latitude, longitude };
+  };
+
   const onNavigate = () => {
-    const hasRouteParams =
-      route &&
-      route.params &&
-      typeof route.params.latitude !== 'undefined' &&
-      typeof route.params.longitude !== 'undefined';
-    if (hasRouteParams) {
-      const { latitude, longitude } = route.params;
+    const { latitude, longitude } = getLatLonFromRouteParams();
+    if (typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
       const savedSuccessfully = saveCoordinates(latitude, longitude);
       if (savedSuccessfully) {
         setcurrentState(StateEnum.SCAN_SUCCESS);
@@ -52,7 +55,7 @@ export const QRScanScreen = ({ navigation, route }) => {
       unsubscribeState();
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
-  }, [navigation]);
+  }, [navigation, route]);
 
   const saveCoordinates = (latitude, longitude) => {
     const isValid = isValidCoordinates(latitude, longitude);
