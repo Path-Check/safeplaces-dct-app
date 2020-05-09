@@ -2,7 +2,11 @@ import BackgroundGeolocation from '@mauron85/react-native-background-geolocation
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 
-import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
+import {
+  CROSSED_PATHS,
+  LOCATION_DATA,
+  PARTICIPATE,
+} from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { areLocationsNearby } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -10,6 +14,12 @@ import { isPlatformAndroid } from '../Util';
 
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION = '55';
+
+export const Reason = {
+  LOCATION_OFF: 'LOCATION_OFF',
+  NOT_AUTHORIZED: 'NOT_AUTHORIZED',
+  USER_OFF: 'USER_OFF',
+};
 
 export class LocationData {
   constructor() {
@@ -446,7 +456,70 @@ export default class LocationServices {
 
     isBackgroundGeolocationConfigured = false;
     SetStoreData(PARTICIPATE, 'false').then(() => {
-      // nav.navigate('LocationTrackingScreen', {});
+      // nav.navigate('Main', {});
     });
+  }
+  static getHasPotentialExposure() {
+    return new Promise(resolve => {
+      GetStoreData(CROSSED_PATHS).then(dayBin => {
+        dayBin = JSON.parse(dayBin);
+        if (dayBin !== null && dayBin.some(exposure => exposure > 0)) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+    });
+  }
+  static getParticpating() {
+    return new Promise(resolve => {
+      GetStoreData(PARTICIPATE, false).then(isParticipating => {
+        resolve(isParticipating);
+      });
+    });
+  }
+
+  static getBackgroundGeoStatus() {
+    return new Promise(resolve => {
+      BackgroundGeolocation.checkStatus(status => {
+        resolve(status);
+      });
+    });
+  }
+
+  static async checkStatus() {
+    const hasPotentialExposure = await this.getHasPotentialExposure();
+    const particpating = await this.getParticpating();
+
+    if (!particpating) {
+      return {
+        canTrack: false,
+        reason: Reason.USER_OFF,
+        hasPotentialExposure: hasPotentialExposure,
+      };
+    }
+
+    const status = await this.getBackgroundGeoStatus();
+    if (!status.locationServicesEnabled) {
+      return {
+        canTrack: false,
+        reason: Reason.LOCATION_OFF,
+        hasPotentialExposure: hasPotentialExposure,
+      };
+    }
+
+    if (status.authorization != BackgroundGeolocation.AUTHORIZED) {
+      return {
+        canTrack: false,
+        reason: Reason.NOT_AUTHORIZED,
+        hasPotentialExposure: hasPotentialExposure,
+      };
+    }
+
+    return {
+      canTrack: true,
+      reason: '',
+      hasPotentialExposure: hasPotentialExposure,
+    };
   }
 }
