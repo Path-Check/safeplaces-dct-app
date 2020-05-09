@@ -27,12 +27,11 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const eulaPath = EULA_FILES[selectedLocale] || en;
 
   // Any links inside the EULA should launch a separate browser otherwise you can get stuck inside the app
-  shouldStartLoadWithRequestHandler = (webViewState) => {
+  const shouldStartLoadWithRequestHandler = webViewState => {
     if (webViewState.url != 'about:blank') {
       Linking.openURL(webViewState.url);
       return false;
-    }
-    else return true;
+    } else return true;
   };
 
   // Load the EULA from disk
@@ -63,7 +62,15 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                   accessibilityLabel='Close'
                   onPress={() => setModalVisibility(false)}
                 />
-                {html && <WebView style={{ flex: 1,}} source={{ html }} onShouldStartLoadWithRequest={this.shouldStartLoadWithRequestHandler.bind(this)}/>}
+                {html && (
+                  <WebView
+                    style={{ flex: 1 }}
+                    source={{ html }}
+                    onShouldStartLoadWithRequest={
+                      shouldStartLoadWithRequestHandler
+                    }
+                  />
+                )}
               </View>
             </SafeAreaView>
           </Theme>
