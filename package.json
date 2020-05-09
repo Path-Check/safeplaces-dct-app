@@ -10,7 +10,7 @@
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
     "lint": "eslint ./",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package && npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
     "format:eula": "prettier --write ./app/locales/eula/en.html",
