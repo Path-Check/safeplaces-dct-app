@@ -7,8 +7,6 @@ import {
   StatusBar,
   View,
 } from 'react-native';
-import { RNCamera } from 'react-native-camera';
-import QRCodeScanner from 'react-native-qrcode-scanner';
 import { SvgXml } from 'react-native-svg';
 
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
@@ -19,6 +17,7 @@ import { Typography } from '../components/Typography';
 import { Theme } from '../constants/themes';
 import { isValidCoordinates } from '../helpers/Location';
 import LocationServices from '../services/LocationService';
+import { ScanInProgress } from './QRScan/ScanInProgress';
 import { styles } from './QRScan/style';
 
 const StateEnum = {
@@ -39,9 +38,6 @@ const StateIcon = ({ status, size }) => {
       break;
     case StateEnum.SCAN_FAIL:
       icon = StateAtRisk;
-      break;
-    case StateEnum.SCAN_IN_PROGRESS:
-      icon = StateNoContact;
       break;
   }
   return (
@@ -176,19 +172,12 @@ export const QRScanScreen = ({ navigation, route }) => {
           </View>
         )}
         {currentState === StateEnum.SCAN_IN_PROGRESS && (
-          <View style={styles.qrScanContainer}>
-            <QRCodeScanner
-              onRead={onScanSuccess}
-              flashMode={RNCamera.Constants.FlashMode.off}
-            />
-            <Button
-              label={t('qr.scan_cancel')}
-              style={styles.qrCancelButton}
-              onPress={() => {
-                navigation.navigate('Main', {});
-              }}
-            />
-          </View>
+          <ScanInProgress
+            onScanSuccess={onScanSuccess}
+            onScanCancel={() => {
+              navigation.navigate('Main', {});
+            }}
+          />
         )}
       </ImageBackground>
     </Theme>
