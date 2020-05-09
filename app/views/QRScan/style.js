@@ -13,6 +13,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
   },
+  ScanCompleteContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
   mainContainer: {
     position: 'absolute',
     top: '-10%',
