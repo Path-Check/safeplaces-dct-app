@@ -21,9 +21,11 @@ export const QRScanScreen = ({ navigation, route }) => {
     return { latitude, longitude };
   };
 
-  const onNavigate = () => {
+  const onFocus = () => {
     const { latitude, longitude } = getLatLonFromRouteParams();
-    if (typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
+    const isDeepLink =
+      typeof latitude !== 'undefined' && typeof longitude !== 'undefined';
+    if (isDeepLink) {
       const savedSuccessfully = saveCoordinates(latitude, longitude);
       if (savedSuccessfully) {
         setcurrentState(StateEnum.SCAN_SUCCESS);
@@ -42,7 +44,7 @@ export const QRScanScreen = ({ navigation, route }) => {
     };
     const handleStateChange = () => {
       if (navigation.isFocused()) {
-        onNavigate();
+        onFocus();
       } else {
         setcurrentState(StateEnum.DEFAULT);
       }
