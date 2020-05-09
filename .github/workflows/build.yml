@@ -76,7 +76,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - run: ./gradlew bundleRelease --no-daemon
+      - run: ./gradlew assembleRelease --no-daemon
         working-directory: ./android
         env:
           ENVFILE: .env.beta
