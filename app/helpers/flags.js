@@ -1,4 +1,4 @@
-import { assign, clone } from 'lodash';
+import { assign } from 'lodash';
 import React, { useContext, useEffect, useState } from 'react';
 
 import { buildTimeFlags } from '../constants/flagsEnv';
@@ -50,10 +50,6 @@ export const FlagsProvider = ({ children }) => {
     </FlagsContext.Provider>
   );
 };
-
-// Allows for `<FeatureFlag />` to exclude a flag from
-// the toggleable list in `<FeatureFlagsScreen />`
-export const runtimeFlags = clone(buildTimeFlags);
 
 /**
  * Custom hook that can be used to fetch the list of all flags,

@@ -1,4 +1,4 @@
-import { runtimeFlags, useFlags } from '../helpers/Flags';
+import { useFlags } from '../helpers/Flags';
 
 /**
  *
@@ -21,18 +21,9 @@ import { runtimeFlags, useFlags } from '../helpers/Flags';
  *   isRuntimeFlag: boolean
  * }} param0
  */
-export const FeatureFlag = ({
-  name,
-  children,
-  fallback,
-  isRuntimeFlag = true,
-}) => {
+export const FeatureFlag = ({ name, children, fallback }) => {
   const [flags] = useFlags();
   const fallbackRender = fallback || null;
-
-  if (!isRuntimeFlag && runtimeFlags[name]) {
-    delete runtimeFlags[name];
-  }
 
   return flags[name] ? children : fallbackRender;
 };

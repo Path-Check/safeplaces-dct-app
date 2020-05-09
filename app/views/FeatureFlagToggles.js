@@ -11,7 +11,7 @@ import Colors from '../constants/colors';
 import { buildTimeFlags } from '../constants/flagsEnv';
 import { DEBUG_MODE } from '../constants/storage';
 import { Theme } from '../constants/themes';
-import { runtimeFlags, useFlags } from '../helpers/Flags';
+import { useFlags } from '../helpers/Flags';
 import { GetStoreData } from '../helpers/General';
 import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
 
@@ -117,16 +117,14 @@ export const FlagToggleList = () => {
     <View style={styles.toggleList}>
       <ExposureModeToggleRow />
       {alphabetizedFlags.map(key => {
-        if (runtimeFlags[key]) {
-          return (
-            <FlagToggleRow
-              key={key}
-              name={key}
-              val={flags[key]}
-              onValueChange={toggleFlag}
-            />
-          );
-        }
+        return (
+          <FlagToggleRow
+            key={key}
+            name={key}
+            val={flags[key]}
+            onValueChange={toggleFlag}
+          />
+        );
       })}
     </View>
   );

@@ -114,8 +114,7 @@ const MainNavigate = props => {
   return (
     <FeatureFlag
       name='better_location_status_checks'
-      fallback={<LocationTracking {...props} />}
-      isRuntimeFlag={false}>
+      fallback={<LocationTracking {...props} />}>
       <Main />
     </FeatureFlag>
   );

@@ -63,17 +63,3 @@ it('renders the fallback instead, if the flag is disabled/omitted', () => {
 
   expect(asJSON()).toMatchSnapshot();
 });
-
-it('removes the flag from the list of runtime flags if `isRuntimeFlag={false}`', () => {
-  Flags.runtimeFlags = { feature1: true };
-
-  render(
-    <FlagsProvider>
-      <FeatureFlag name='feature1' isRuntimeFlag={false}>
-        <Text>feature1</Text>
-      </FeatureFlag>
-    </FlagsProvider>,
-  );
-
-  expect(Flags.runtimeFlags).toEqual({});
-});
