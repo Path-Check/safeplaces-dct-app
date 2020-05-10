@@ -115,7 +115,7 @@ platform :ios do
       )
 
       upload_to_testflight(
-        skip_submission: true # to only upload the build
+        changelog: "Realm integration build"
       ) 
   end
 end
