@@ -9,11 +9,7 @@ export const validYaml = `
 Authorities:
   - Test Authority:
       - {
-<<<<<<< HEAD
-          url: "https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json",
-=======
           url: "https://raw.githack.com/Path-Check/safeplaces-frontend/develop/examples/safe-paths.json",
->>>>>>> 62a2808201693bf016ce969a6e5b86b31253c245
         }
       - bounds:
           {
@@ -26,11 +22,7 @@ export const invalidYamlWithoutBounds = `
 Authorities:
   - Test Authority:
       - {
-<<<<<<< HEAD
-          url: "https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json",
-=======
           url: "https://raw.githack.com/Path-Check/safeplaces-frontend/develop/examples/safe-paths.json",
->>>>>>> 62a2808201693bf016ce969a6e5b86b31253c245
         }
 `;
 

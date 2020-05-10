@@ -294,9 +294,6 @@ class ChooseProviderScreen extends Component {
                   ]}>
                   <DynamicTextInput
                     onChangeText={text => {
-                      //                      this.setState({
-                      //                        urlText: text,
-                      //                      });
                       this.updateUrlText(text);
                     }}
                     value={this.state.urlText}
@@ -326,9 +323,6 @@ class ChooseProviderScreen extends Component {
                   ]}>
                   <DynamicTextInput
                     onChangeText={text => {
-                      //                      this.setState({
-                      //                        urlText: text,
-                      //                      });
                       this.updateUrlText(text);
                     }}
                     value={this.state.urlText}

@@ -13,10 +13,7 @@ on:
     branches: [develop]
     paths:
       - app/locales/en.json
-<<<<<<< HEAD
-=======
       - app/locales/eula/en.html
->>>>>>> 62a2808201693bf016ce969a6e5b86b31253c245
       - ios/en.lproj/*.strings
       - android/app/src/main/res/values/strings.xml
       - .github/workflows/*.yml
@@ -44,13 +41,6 @@ jobs:
 
       - run: curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
 
-<<<<<<< HEAD
-      - name: upload English files
-        run: ./bin/lokalise2 file upload --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml $UPLOAD_FLAGS
-
-  # Run on PRs, checks for any added keys that are missing in the app/locales/en.json file
-  no-missing-keys:
-=======
       - name: upload english files
         run: yarn i18n:push
         env:
@@ -58,7 +48,6 @@ jobs:
 
   # Run on PRs, checks for any added keys that are missing in the app/locales/en.json file
   check-i18n:
->>>>>>> 62a2808201693bf016ce969a6e5b86b31253c245
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -76,8 +65,3 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
 
       - run: yarn i18n:check
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 62a2808201693bf016ce969a6e5b86b31253c245
