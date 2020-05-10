@@ -11,7 +11,6 @@ import { Theme } from '../constants/themes';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices, { Reason } from '../services/LocationService';
-import { FeatureFlagNavButton } from './FeatureFlagToggles';
 import LocationTracking from './LocationTracking';
 import { ExposurePage } from './main/ExposurePage';
 import { NoKnownExposure } from './main/NoKnownExposure';
@@ -105,7 +104,6 @@ const Main = () => {
     <View style={styles.backgroundImage}>
       {page}
       <SettingsNavButton />
-      <FeatureFlagNavButton navigation={navigation} />
     </View>
   );
 };

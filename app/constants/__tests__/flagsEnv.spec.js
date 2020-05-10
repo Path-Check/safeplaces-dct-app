@@ -1,11 +1,14 @@
 import env from 'react-native-config';
 
-import { getBuildtimeFlags, parseFlags } from '../flagsEnv';
+import { getBuildtimeFlags } from '../flagsEnv';
+
+jest.mock('../../constants/flagsEnv');
+const { parseFlags } = jest.requireActual('../flagsEnv');
 
 describe('getBuildTimeFlags', () => {
   it('returns the parsed flags', () => {
-    // Default value from __mocks__
-    expect(getBuildtimeFlags()).toEqual({ FOO_BAR: true });
+    getBuildtimeFlags.mockReturnValue({ feature1: true });
+    expect(getBuildtimeFlags()).toEqual({ feature1: true });
   });
 });
 

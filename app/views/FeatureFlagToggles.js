@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { BackHandler, StyleSheet, View } from 'react-native';
 
-import flag from '../assets/svgs/flag';
-import { IconButton } from '../components/IconButton';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Switch } from '../components/Switch';
 import { Typography } from '../components/Typography';
@@ -16,33 +14,6 @@ import { GetStoreData } from '../helpers/General';
 import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
 
 export const FEATURE_FLAG_SCREEN_NAME = 'FeatureFlagsScreen';
-
-/**
- * Icon button that redirects a user to the Feature Flags screen.
- * Note: Only renders in development mode.
- */
-export const FeatureFlagNavButton = ({ navigation }) => {
-  if (!__DEV__) {
-    return null;
-  } else {
-    return (
-      <Theme use='violet'>
-        <View style={styles.flagIconContainer}>
-          <IconButton
-            icon={flag}
-            style={styles.flagIcon}
-            accessibilityLabel='Feature Flags'
-            onPress={() => navigation.navigate(FEATURE_FLAG_SCREEN_NAME)}
-          />
-          {/*eslint-disable-next-line react-native/no-raw-text */}
-          <Typography use='body3' style={styles.flagIconText}>
-            Feature Flags
-          </Typography>
-        </View>
-      </Theme>
-    );
-  }
-};
 
 export const FlagToggleRow = ({ name, val, onValueChange }) => {
   const buildtimeFlags = getBuildtimeFlags();
