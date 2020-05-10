@@ -109,7 +109,7 @@ jobs:
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: bundle exec fastlane beta
-        working-directory: 'android'
+        working-directory: ./android
 
       # - name: Upload to Google Play beta track
       #   uses: maierj/fastlane-action@v1.4.0
