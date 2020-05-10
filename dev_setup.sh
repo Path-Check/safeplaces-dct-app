@@ -7,6 +7,7 @@ Usage: dev_setup.sh [options]
    Configures a Linux or MacOS machine for working with the code in this repo.
 Options:
     -ni             Non-interactive mode, auto answers Yes to all questions.
+    --skip-ios      Skip configuring for iOS development.
     -h,  --help     Show this message
 "
 }
@@ -17,6 +18,8 @@ for var in "$@"; do
     exit 0
   elif [[ $var == '-ni' ]]; then
     non_interactive="Y"
+  elif [[ $var == '--skip-ios' ]]; then
+    skip_ios="Y"
   else
     echo "Unknown option: $var"
     show_help
@@ -95,6 +98,13 @@ function get_YN() { # helper function for interactive questions
 if [[ "$OSTYPE" == "darwin"* ]]; then
   if ! found_exe brew; then
     echo "${YELLOW}Homebrew is required to install dependencies: https://docs.brew.sh/Installation${RESET}"
+    exit 1
+  fi
+
+  # Unless configuring for iOS is skipped, Xcode must be installed.
+  if [[ $skip_ios != "Y" ]] && ! xcodebuild -version > /dev/null 2> /dev/null; then
+    echo "${YELLOW}Xcode must be installed to develop for iOS."
+    echo "${YELLOW}Use option '--skip-ios' to setup development for Android only."
     exit 1
   fi
 fi
@@ -190,7 +200,7 @@ fi
 
 # Install ruby bundler and cocoapods for iOS only, because they're only necessary for iOS development
 # Mac OS comes with ruby out of the box.
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]] && [[ "$skip_ios" != "Y" ]]; then
   if ! gem list '^bundler$' -i --version 2.1.4; then
     echo "${BLUE}Installing Ruby bundler for Cocoapod management...${RESET}"
     sudo gem install bundler
