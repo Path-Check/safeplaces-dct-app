@@ -17,7 +17,6 @@ export const QRScanScreen = ({ navigation, route }) => {
     const params = route && route.params;
     const latitude = (params && params.latitude) || undefined;
     const longitude = (params && params.longitude) || undefined;
-    console.log('from route', latitude, longitude);
     return { latitude, longitude };
   };
 
