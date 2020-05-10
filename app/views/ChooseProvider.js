@@ -232,9 +232,6 @@ class ChooseProviderScreen extends Component {
           title={languages.t('label.choose_provider_title')}
           onBackPress={this.backToMain.bind(this)}>
           <View style={styles.main}>
-            <Typography style={styles.headerTitle} use={'headline2'}>
-              {languages.t('label.authorities_title')}
-            </Typography>
             <Typography style={styles.sectionDescription} use={'body1'}>
               {languages.t('label.authorities_desc')}
             </Typography>
