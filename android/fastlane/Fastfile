@@ -68,4 +68,17 @@ platform :android do
       aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
     )
   end
+
+  desc "Upload to playstore"
+  lane :play_store do
+    validate_play_store_json_key(
+      json_key: "app/json_key.json",
+    )
+    
+    upload_to_play_store(
+      track: 'beta',
+      skip_upload_apk: true,
+      aab: 'android/app/build/outputs/bundle/release/app.aab',
+    )
+  end
 end

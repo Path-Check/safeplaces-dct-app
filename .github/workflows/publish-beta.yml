@@ -108,7 +108,7 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: bundle exec fastlane beta
+        run: ./gradlew clean assembleRelease
         working-directory: ./android
 
       # - name: Upload to Google Play beta track
