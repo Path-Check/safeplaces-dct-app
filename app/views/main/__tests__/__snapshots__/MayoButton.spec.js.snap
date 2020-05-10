@@ -57,6 +57,7 @@ exports[`renders when the language is english 1`] = `
               "writingDirection": "ltr",
             }
           }
+          testID="MayoLinkHeading"
           use="body1"
         >
           More COVID-19 information
@@ -73,6 +74,7 @@ exports[`renders when the language is english 1`] = `
               "writingDirection": "ltr",
             }
           }
+          testID="MayoLinkLabel"
           use="body1"
         >
           from the Mayo Clinic
