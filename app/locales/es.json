@@ -1,5 +1,13 @@
 {
   "_display_name": "Español",
+  "about": {
+    "dimensions": "Dimensiones:",
+    "operating_system_abbr": "OS:",
+    "version": "Versión:"
+  },
+  "common": {
+    "done": "Hecho"
+  },
   "history": {
     "no_exposure": "No ha habido contacto",
     "possible_exposure": "Posible",
@@ -11,12 +19,21 @@
   },
   "import": {
     "button_text": "Importar ubicaciones",
+    "error": "Algo salió mal al importar sus datos.",
     "google": {
+      "already_imported": "El archivo de Takeout ya se ha importado.",
       "disclaimer": "Safe Paths no está afiliado con Google y nunca compartirá tus datos.",
+      "file_open_error": "No se pudo abrir el archivo. \nPor favor, asegúrese de que el archivo se abra desde Google Drive",
+      "instructions_detailed": "Visita Google Takeout y exporta tu historial de ubicaciones siguinedo estos pasos: \n1. Método de entrega: \"Añadir al Drive\" \n2. Frecuencia: \"Exportar una vez\" \n3. Tipo y tamaño del archivo: \".zip\" y \"1GB\"\n4. Google envía un email cuando la exportación está lista \n5. Regresa aquí para importar ubicaciones de Google Drive",
+      "instructions_first": "{\"one\": \"Agregar datos de ubicación de Google ayudará a elaborar tu historial de ubicaciones recientes\", \"other\": \"Antes de poder importar, primero debes 'Extraer' tus datos de ubicación de Google\".}",
+      "instructions_second": "Para poder importar, primero debes \"Extraer\" sus datos de ubicación de Google.",
+      "invalid_file_format": "El formato de archivo no es compatible. \nFormatos admitidos: \".zip\".",
+      "no_recent_locations": "La aplicación no tiene ubicaciones recientes.",
       "title": "Google Maps",
       "visit_button_text": "Accede a Google Takeout"
     },
     "subtitle": "Para saber si has estado con alguien con COVID-19 antes de descargar esta app, puedes importar tu historial personal de ubicaciones.",
+    "success": "¡Las ubicaciones recientes se han importado con éxito!",
     "title": "Importar historial"
   },
   "label": {
@@ -25,19 +42,30 @@
     "authorities_add_url": "Añadir organismo via web",
     "authorities_desc": "Elige las autoridades sanitarias de tu zona para obtener datos sobre posibles contactos con el COVID. Selecciona un nombre de la lista global, o introduce la URL del sitio web de una autoridad sanitaria que haya usado Safe Paths.",
     "authorities_input_placeholder": "Introduce la URL aquí",
+    "authorities_new_in_area_msg": "Suscribirse a {{count}} nueva autoridad sanitaria fiable en tu zona",
+    "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona",
+    "authorities_new_in_area_title": "Autoridad sanitaria nueva",
+    "authorities_new_in_area_title_plural": "Autoridades sanitarias nuevas",
+    "authorities_new_subcription_msg": "Te has suscrito a to {{count}} nueva autoridad en tu zona",
+    "authorities_new_subcription_msg_plural": "Te has suscrito a to {{count}} nuevas autoridades en tu zona",
+    "authorities_new_subcription_title": "Nueva suscripción",
+    "authorities_new_subcription_title_plural": "Nuevas suscripciones",
     "authorities_no_sources": "No hay fuentes de datos",
     "authorities_removal_alert_cancel": "Cancelar",
     "authorities_removal_alert_desc": "Quieres eliminar este organismo como fuente de datos?",
     "authorities_removal_alert_proceed": "Adelante",
     "authorities_removal_alert_title": "Eliminar organismo",
     "authorities_title": "Fuentes de datos fiables",
+    "auto_subscribe_checkbox": "Habilitar la suscripción automática",
     "choose_provider_subtitle": "Para informarte de posibles contactos, debes suscribirte a una autoridad sanitaria.",
     "choose_provider_title": "Elegir autoridades sanitarias",
     "commitment": "Compromiso",
     "commitment_para": "Safe Paths registra de forma segura tu ubicación y encuentra posibles contactos con el COVID. Tus datos NUNCA salen de tu dispositivo sin tu consentimiento.",
     "default_news_site_name": "Noticias de Safe Paths",
+    "enter_authority_url": "Introduzca o pegue la URL",
     "event_history_subtitle": "Entiende tu exposición al COVID-19 según los datos publicados por las autoridades sanitarias.",
     "event_history_title": "Historial de exposición",
+    "filter_authorities_by_gps_history": "Filtrar por sus ubicaciones",
     "home_at_risk_header": "Puedes haberte expuesto al COVID",
     "home_at_risk_subsubtext": "Esto no implica que te hayas infectado.",
     "home_at_risk_subtext": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19.",
@@ -51,8 +79,12 @@
     "home_unknown_header": "Desconocido",
     "home_unknown_subtext": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",
     "latest_news": "Últimas noticias",
+    "launch_authority_access": "Suscribirse a las autoridades sanitarias cercanas",
+    "launch_authority_header": "Las autoridades sanitarias proporcionarán a su dispositivo los datos para saber si se ha cruzado con alguien infectado",
+    "launch_authority_subheader": "Suscribirse automáticamente para recibir las últimas actualizaciones de las autoridades sanitarias de tu zona.",
     "launch_done_header": "Ya estás listo",
     "launch_done_subheader": "Preparados para comenzar. Recuerda que puedes cambiar tus preferencias más tarde.",
+    "launch_enable_auto_subscription": "Habilitar la suscripción automática",
     "launch_enable_location": "Permitir acceso",
     "launch_enable_notif": "Permitir notificaciones",
     "launch_finish_set_up": "Finalizar configuración",
@@ -87,9 +119,15 @@
     "push_at_risk_title": "Puedes estar en riesgo",
     "see_exposure_history": "Ver historial de exposición",
     "settings_title": "Panel de control",
+    "skip_this_step": "Omitir este paso",
     "team": "Equipo",
     "team_para": "El equipo se compone de un consorcio de epidemiólogos, ingenieros, analistas de datos, defensores de la privacidad digital, profesores y investigadores de instituciones reconocidas como MIT, Harvard, la Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young y Link Ventures.",
     "terms_of_use": "Condiciones de uso"
+  },
+  "onboarding": {
+    "eula_checkbox": "Acepto el acuerdo de licencia",
+    "eula_continue": "Continuar",
+    "eula_message": "*Debe aceptar para poder utilizar Safe Paths"
   },
   "share": {
     "button_text": "Comparte tus datos",
@@ -97,5 +135,13 @@
     "paragraph_second": "Tu historial se envía como una simple lista de ubicaciones en el tiempo, sin revelar datos personales.",
     "subtitle": "Puedes compartir tus datos con las autoridades sanitarias u otros agentes, o guardar una copia de seguridad",
     "title": "Compartir ubicaciones"
+  },
+  "version_update": {
+    "alert_label": "COVID Safe Paths no está actualizado",
+    "alert_sublabel": "¿Actualizar con la nueva versión?",
+    "later": "Más tarde",
+    "push_notification_message": "Por favor actualice su aplicación",
+    "push_notification_title": "La aplicación no está sactualizada",
+    "update": "Actualizar"
   }
 }
