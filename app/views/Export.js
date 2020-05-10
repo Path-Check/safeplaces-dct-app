@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
+  NativeModules,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -23,7 +24,6 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { Theme } from '../constants/themes';
-import { LocationData } from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64;
 
@@ -48,7 +48,7 @@ export const ExportScreen = ({ navigation }) => {
 
   async function onShare() {
     try {
-      let locationData = await new LocationData().getLocationData();
+      let locationData = await NativeModules.SecureStorageManager.getLocations();
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
 
