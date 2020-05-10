@@ -176,7 +176,7 @@ android {
                 keyAlias System.getenv("secrets.KEY_ALIAS")
                 keyPassword System.getenv("secrets.KEY_PASSWORD")
                 storePassword System.getenv("secrets.KEY_STORE_PASSWORD")
-                storeFile file(System.getenv("HOME") + "/keystores/keystore.jks")
+                storeFile file("./keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')
             }
