@@ -6,7 +6,7 @@
     "version": "Version:"
   },
   "authorities": {
-    "invalid_url_message": "Invalid URL",
+    "invalid_url_message": "Invalid URL"
   },
   "common": {
     "done": "Done"
