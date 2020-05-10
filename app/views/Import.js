@@ -34,13 +34,9 @@ const ImportScreen = props => {
       setImportResults();
 
       const filePath = await pickFile();
-
-      const newLocations = await importTakeoutData(filePath);
-
-      if (newLocations.length) {
-        setImportResults(t('import.success'));
-      } else {
-        setImportResults(t('import.google.already_imported'));
+      if (filePath) {
+        await importTakeoutData(filePath);
+        setImportResults(t('label.import_success'));
       }
     } catch (err) {
       if (err instanceof NoRecentLocationsError) {

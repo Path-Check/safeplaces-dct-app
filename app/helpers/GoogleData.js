@@ -1,9 +1,3 @@
-import { LOCATION_DATA } from '../constants/storage';
-/**
- * Import a Google JSon into the Database.
- */
-import { GetStoreData, SetStoreData } from '../helpers/General';
-
 /**
  * Rounds float number to a desired number of decimal places and returns a float
  * number. NOTE: .toFixed() returns a string, but number is required.
@@ -32,45 +26,11 @@ function formatLocation(placeVisit) {
   };
 }
 
-function hasLocation(localDataJSON, loc) {
-  for (const storedLoc of localDataJSON) {
-    if (
-      storedLoc.latitude === loc.latitude &&
-      storedLoc.longitude === loc.longitude &&
-      storedLoc.time === loc.time
-    ) {
-      return true;
+export function extractLocations(googleLocationHistory) {
+  return (googleLocationHistory?.timelineObjects || []).map(location => {
+    // Only import visited places, not paths for now
+    if (location?.placeVisit) {
+      return formatLocation(location.placeVisit);
     }
-  }
-
-  return false;
-}
-
-function extractNewLocations(storedLocations, googleLocationHistory) {
-  return (googleLocationHistory?.timelineObjects || []).reduce(
-    (newLocations, location) => {
-      // Only import visited places, not paths for now
-      if (location?.placeVisit) {
-        const formattedLoc = formatLocation(location.placeVisit);
-        if (!hasLocation(storedLocations, formattedLoc)) {
-          newLocations.push(formattedLoc);
-        }
-      }
-      return newLocations;
-    },
-    [],
-  );
-}
-
-export async function mergeJSONWithLocalData(googleLocationHistory) {
-  let storedLocations = await GetStoreData(LOCATION_DATA, false);
-  storedLocations = Array.isArray(storedLocations) ? storedLocations : [];
-  const newLocations = extractNewLocations(
-    storedLocations,
-    googleLocationHistory,
-  );
-
-  await SetStoreData(LOCATION_DATA, [...storedLocations, ...newLocations]);
-
-  return newLocations;
+  });
 }
