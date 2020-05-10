@@ -3,8 +3,11 @@ import { BackHandler, ImageBackground, StatusBar } from 'react-native';
 
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import { Theme } from '../constants/themes';
-import { isValidCoordinates, parseQRCodeUrl } from '../helpers/QRScan';
-import LocationServices from '../services/LocationService';
+import {
+  isValidCoordinates,
+  parseQRCodeUrl,
+  saveLocation,
+} from '../helpers/QRScan';
 import { ScanComplete } from './QRScan/ScanComplete';
 import { ScanInProgress } from './QRScan/ScanInProgress';
 import { StateEnum } from './QRScan/StateEnum';
@@ -58,10 +61,10 @@ export const QRScanScreen = ({ navigation, route }) => {
     };
   }, [navigation, route]);
 
-  const saveCoordinates = (latitude, longitude) => {
+  const saveCoordinates = async (latitude, longitude) => {
     const isValid = isValidCoordinates(latitude, longitude);
     if (isValid) {
-      LocationServices.saveLocation({
+      await saveLocation({
         latitude: Number(latitude),
         longitude: Number(longitude),
         time: Date.now(),
@@ -70,11 +73,11 @@ export const QRScanScreen = ({ navigation, route }) => {
     return isValid;
   };
 
-  const onScanSuccess = e => {
+  const onScanSuccess = async e => {
     const url = e && e.data;
     const { latitude, longitude } = parseQRCodeUrl(url);
     if (typeof latitude !== 'undefined' && typeof longitude !== 'undefined') {
-      const savedSuccessfully = saveCoordinates(latitude, longitude);
+      const savedSuccessfully = await saveCoordinates(latitude, longitude);
       if (savedSuccessfully) {
         setcurrentState(StateEnum.SCAN_SUCCESS);
       } else {

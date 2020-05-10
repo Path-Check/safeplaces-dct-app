@@ -1,3 +1,5 @@
+import { NativeModules } from 'react-native';
+
 export const isValidCoordinates = (latitude, longitude) => {
   const isValid = num => {
     const regex = /^(-?\d+\.?\d*|\.\d+)$/;
@@ -15,4 +17,8 @@ export const parseQRCodeUrl = url => {
   const latitude = (split2 && split2.length === 2 && split2[0]) || undefined;
   const longitude = (split2 && split2.length === 2 && split2[1]) || undefined;
   return { latitude, longitude };
+};
+
+export const saveLocation = async location => {
+  await NativeModules.SecureStorageManager.importGoogleLocations([location]);
 };
