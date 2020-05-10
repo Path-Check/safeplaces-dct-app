@@ -7,6 +7,14 @@ NativeModules.SettingsManager = NativeModules.SettingsManager || {
   I18nManager: { localeIdentifier: 'en_US' },
 };
 
+// Secure storage manager
+NativeModules.SecureStorageManager = NativeModules.SecureStorageManager || {
+  getLocations: jest.fn(),
+};
+
+jest.mock('react-native-pulse');
+jest.mock('@mauron85/react-native-background-geolocation');
+
 // Silence YellowBox useNativeDriver warning
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 

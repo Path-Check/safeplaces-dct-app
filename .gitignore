@@ -62,7 +62,6 @@ app/locales/*_old.json
 
 # CocoaPods
 /ios/Pods/
-yarn.lock
 .vscode/launch.json
 ios/Podfile.lock
 

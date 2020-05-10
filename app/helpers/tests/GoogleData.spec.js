@@ -9,39 +9,13 @@ const GOOGLE_IMPORT = {
   ],
 };
 
-describe('mergeJSONWithLocalData', () => {
+describe('extract google locations', () => {
   beforeEach(() => jest.resetModules());
 
-  it('LOCATION_DATA is empty', async () => {
-    jest.doMock('../../helpers/General', () => {
-      return {
-        GetStoreData: async () => {},
-        SetStoreData: async () => {},
-      };
-    });
+  it('extract locations into an array', async () => {
+    const { extractLocations } = require('../GoogleData');
 
-    const { mergeJSONWithLocalData } = require('../GoogleData');
-    const newLocations = await mergeJSONWithLocalData(GOOGLE_IMPORT);
-
+    const newLocations = await extractLocations(GOOGLE_IMPORT);
     expect(newLocations).toEqual([location2, location3, location4]);
-  });
-  it('LOCATION_DATA contains location values', async () => {
-    jest.doMock('../../helpers/General', () => {
-      const {
-        location1,
-        location2,
-        location3,
-      } = require('./fixtures/googleImport');
-
-      return {
-        GetStoreData: async () => [location1, location2, location3],
-        SetStoreData: async () => {},
-      };
-    });
-
-    const { mergeJSONWithLocalData } = require('../GoogleData');
-
-    const newLocations = await mergeJSONWithLocalData(GOOGLE_IMPORT);
-    expect(newLocations).toEqual([location4]);
   });
 });

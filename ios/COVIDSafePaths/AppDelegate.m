@@ -12,13 +12,28 @@
 #import <React/RCTRootView.h>
 #import <RNCPushNotificationIOS.h>
 #import <UserNotifications/UserNotifications.h>
-#import <react-native-splash-screen/RNSplashScreen.h>
+#import <RNSplashScreen.h>
 #import <TSBackgroundFetch/TSBackgroundFetch.h>
+#import <MAURLocation.h>
+#import <MAURBackgroundGeolocationFacade.h>
+#import "COVIDSafePaths-Swift.h"
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  MAURBackgroundGeolocationFacade.locationTransform = ^(MAURLocation * location) {
+    MAURLocation *locationToInsert = [location copy];
+    [[SecureStorage shared] saveDeviceLocationWithBackgroundLocation:locationToInsert];
+    
+    // nil out location so geolocation library doesn't save in its internval db
+    location = nil;
+    return location;
+  };
+  
+  [[SecureStorage shared] trimLocations];
+  
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"COVIDSafePaths"

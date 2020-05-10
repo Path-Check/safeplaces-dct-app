@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
+    "clean": "rm -rf node_modules && yarn",
     "start": "yarn && react-native start",
     "run-android": "react-native run-android",
     "run-ios": "yarn install:pod && react-native run-ios",
