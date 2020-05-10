@@ -1,4 +1,4 @@
-import { isValidCoordinates, parseQRCodeUrl } from '../Location';
+import { isValidCoordinates, parseQRCodeUrl } from '../QRScan';
 
 describe('isValidCoordinates', () => {
   it('Should only validate strings', () => {

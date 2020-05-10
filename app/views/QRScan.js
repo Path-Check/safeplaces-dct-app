@@ -3,7 +3,7 @@ import { BackHandler, ImageBackground, StatusBar } from 'react-native';
 
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import { Theme } from '../constants/themes';
-import { isValidCoordinates, parseQRCodeUrl } from '../helpers/Location';
+import { isValidCoordinates, parseQRCodeUrl } from '../helpers/QRScan';
 import LocationServices from '../services/LocationService';
 import { ScanComplete } from './QRScan/ScanComplete';
 import { ScanInProgress } from './QRScan/ScanInProgress';
