@@ -89,7 +89,7 @@ Array [
           }
         }
       >
-        Import Locations
+        Import your Locations
       </Text>
     </View>
     <RCTScrollView
@@ -130,7 +130,7 @@ Array [
             }
             use="body1"
           >
-            Adding location data from Google will give you a head start on building your recent locations.
+            Add your past location data from Google to start building your recent location history.
           </Text>
           <Text
             style={
@@ -145,7 +145,7 @@ Array [
             }
             use="body1"
           >
-            Before you can import, you must first "Take out" your location data from Google.
+            First, export (or "take out") your location data from Google.
           </Text>
           <Text
             style={
@@ -160,12 +160,14 @@ Array [
             }
             use="body1"
           >
-            Visit Google Takeout and export your Location History using the following settings: 
-1. Delivery method: "Add to Drive" 
-2. Frequency: "Export once" 
-3. File type & size: ".zip" and "1GB"
-4. Google sends an email when the export is ready 
-5. Return here to import locations from Google Drive
+            Go to Google Takeout to export your Location History.
+1. In Select data to include, select only your “Location History” and click Next Step
+2. Use the following settings:
+     - Delivery method: "Add to Drive" 
+     - Frequency: "Export once" 
+     - File type & size: ".zip" and "1GB"
+3. Google will send an email when the export is complete
+5. Return to this screen in Safe Paths to import that file from Google Drive
           </Text>
           <View
             accessibilityLabel="Visit Google Takeout"
@@ -219,7 +221,7 @@ Array [
             </Text>
           </View>
           <View
-            accessibilityLabel="Import Locations"
+            accessibilityLabel="Import your Locations"
             accessibilityRole="button"
             accessible={true}
             focusable={true}
@@ -266,7 +268,7 @@ Array [
               }
               use="body1"
             >
-              Import Locations
+              Import your Locations
             </Text>
           </View>
         </View>

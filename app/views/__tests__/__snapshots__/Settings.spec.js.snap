@@ -389,7 +389,7 @@ exports[`renders correctly (without google import flag) 1`] = `
                 }
                 use="body1"
               >
-                Choose Health Authority
+                Your Health Authorities
               </Text>
               <Text
                 secondary={true}
@@ -405,7 +405,7 @@ exports[`renders correctly (without google import flag) 1`] = `
                 }
                 use="body3"
               >
-                To be informed of exposures you will need to subscribe to a Health Authority.
+                Stay informed with trusted information on COVID-19 in your area.
               </Text>
             </View>
           </View>
@@ -471,7 +471,7 @@ exports[`renders correctly (without google import flag) 1`] = `
                 }
                 use="body3"
               >
-                Read about the latest COVID updates from your health authority and in general.
+                Find the latest COVID updates from your local health authority and Safe Paths.
               </Text>
             </View>
           </View>
@@ -537,7 +537,7 @@ exports[`renders correctly (without google import flag) 1`] = `
                 }
                 use="body3"
               >
-                Understand your personal exposure based on information shared by health authorities.
+                Learn when you may have crossed paths with someone diagnosed with COVID-19 based on trusted data from your local health authorities.
               </Text>
             </View>
           </View>
@@ -1141,7 +1141,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body1"
               >
-                Choose Health Authority
+                Your Health Authorities
               </Text>
               <Text
                 secondary={true}
@@ -1157,7 +1157,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body3"
               >
-                To be informed of exposures you will need to subscribe to a Health Authority.
+                Stay informed with trusted information on COVID-19 in your area.
               </Text>
             </View>
           </View>
@@ -1223,7 +1223,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body3"
               >
-                Read about the latest COVID updates from your health authority and in general.
+                Find the latest COVID updates from your local health authority and Safe Paths.
               </Text>
             </View>
           </View>
@@ -1289,7 +1289,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body3"
               >
-                Understand your personal exposure based on information shared by health authorities.
+                Learn when you may have crossed paths with someone diagnosed with COVID-19 based on trusted data from your local health authorities.
               </Text>
             </View>
           </View>
@@ -1456,7 +1456,7 @@ exports[`renders correctly 1`] = `
               }
               use="body2"
             >
-              To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.
+              To see if you may have crossed paths someone diagnosed with COVID-19 prior to downloading Safe Paths, you can import your personal location history from Google.
             </Text>
           </View>
           <View
@@ -1526,7 +1526,7 @@ exports[`renders correctly 1`] = `
               }
               use="body3"
             >
-              Safe Paths has no affiliation with Google and never shares your data.
+              Safe Paths has no affiliation with Google and never shares your data with them.
             </Text>
           </View>
         </View>

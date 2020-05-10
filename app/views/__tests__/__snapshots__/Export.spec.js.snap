@@ -145,7 +145,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
               }
               use="body1"
             >
-              If you test positive for COVID-19, please do your part by sharing your location history with local authorities.
+              If you test positive for COVID-19, help keep your community safe by anonymously sharing your location history with local health authorities.
             </Text>
             <Text
               style={
@@ -161,7 +161,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
               }
               use="body1"
             >
-              Location is shared as a simple list of times and places, no additional information.
+              Your location data is shared as a simple list of times and places, with no additional information included.
             </Text>
             <View
               accessibilityLabel="Share location data"
