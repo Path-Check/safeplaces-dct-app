@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { BackHandler } from 'react-native';
+import { BackHandler, Dimensions } from 'react-native';
+import PDFView from 'react-native-pdf';
 import { WebView } from 'react-native-webview';
 
-import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
+import NavigationBarWrapper from '../../components/NavigationBarWrapper';
 
 // This is to make the images responsive in the page of a new
 const fixerImage = `
@@ -15,7 +16,7 @@ const fixerImage = `
 const Details = ({
   navigation,
   route: {
-    params: { source },
+    params: { source, switchScreenTo = 'WebView' },
   },
 }) => {
   navigation.setOptions({ headerShown: false });
@@ -39,11 +40,23 @@ const Details = ({
 
   return (
     <NavigationBarWrapper title='Atrás' onBackPress={backToMain.bind(this)}>
-      <WebView
-        source={source}
-        startInLoadingState
-        injectedJavaScript={fixerImage}
-      />
+      {switchScreenTo === 'PDFView' && (
+        <PDFView
+          source={source}
+          style={{
+            width: Dimensions.get('window').width,
+            height: Dimensions.get('window').height,
+            backgroundColor: 'white',
+          }}
+        />
+      )}
+      {switchScreenTo === 'WebView' && (
+        <WebView
+          source={source}
+          startInLoadingState
+          injectedJavaScript={fixerImage}
+        />
+      )}
     </NavigationBarWrapper>
   );
 };
