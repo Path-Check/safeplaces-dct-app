@@ -113,7 +113,10 @@ platform :ios do
         silent: true,
         clean: true,
       )
+  end
 
+  desc "Push a new beta build to TestFlight"
+  lane :testflight do
       upload_to_testflight(
         changelog: "WIP, should be using git commits?"
       ) 
