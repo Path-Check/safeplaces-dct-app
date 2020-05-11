@@ -2,6 +2,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
+/**
+ * @typedef { import("./Assessment").SurveyQuestion } SurveyQuestion
+ * @typedef { import("./Assessment").SurveyOption } SurveyOption
+ */
+import imageHealth from '../../assets/images/icon-health.png';
+import imagePrivate from '../../assets/images/icon-private.png';
+import imageBanner from '../../assets/images/illustration-screening-start.png';
+import imageCdc from '../../assets/images/logo-cdc.png';
+import imageMit from '../../assets/images/logo-mit-media-lab.png';
 import Fonts from '../../constants/fonts';
 import i18n from '../../locales/languages';
 import AssessmentEnd from './AssessmentEnd';
@@ -11,11 +20,6 @@ import {
   QUESTION_KEY_AGREE,
   SCREEN_TYPE_RADIO,
 } from './constants';
-
-/**
- * @typedef { import("./Assessment").SurveyQuestion } SurveyQuestion
- * @typedef { import("./Assessment").SurveyOption } SurveyOption
- */
 
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentStart = ({ navigation }) => {
@@ -29,24 +33,18 @@ const AssessmentStart = ({ navigation }) => {
         });
       }}
       ctaTitle={t('assessment.start_cta')}
-      image={require('../../assets/images/illustration-screening-start.png')}
+      image={imageBanner}
       pretitle={<Pretitle />}
       title={t('assessment.start_title')}>
       <View>
         <View style={styles.description}>
-          <Image
-            source={require('../../assets/images/icon-health.png')}
-            style={styles.descriptionImage}
-          />
+          <Image source={imageHealth} style={styles.descriptionImage} />
           <Text style={styles.descriptionText}>
             {t('assessment.start_description_1')}
           </Text>
         </View>
         <View style={styles.description}>
-          <Image
-            source={require('../../assets/images/icon-private.png')}
-            style={styles.descriptionImage}
-          />
+          <Image source={imagePrivate} style={styles.descriptionImage} />
           <Text style={styles.descriptionText}>
             {t('assessment.start_description_2')}
           </Text>
@@ -60,13 +58,10 @@ function Pretitle() {
   return (
     <View style={styles.logos}>
       <Image
-        source={require('../../assets/images/logo-cdc.png')}
+        source={imageCdc}
         style={{ width: 47, height: 29, marginRight: 10 }}
       />
-      <Image
-        source={require('../../assets/images/logo-mit-media-lab.png')}
-        style={{ width: 58, height: 32 }}
-      />
+      <Image source={imageMit} style={{ width: 58, height: 32 }} />
     </View>
   );
 }

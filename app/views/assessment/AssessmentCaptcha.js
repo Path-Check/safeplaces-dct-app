@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native';
 
+import image from '../../assets/images/illustration-screening-data-sharing.png';
 import { CATCHA_URL, SURVEY_POST_API } from '../../constants/apis';
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
@@ -85,7 +86,7 @@ const AssessmentCaptcha = ({ navigation }) => {
       <ScrollView style={styles.scrollView}>
         <Image
           reiszeMode='cover'
-          source={require('../../assets/images/illustration-screening-data-sharing.png')}
+          source={image}
           style={{ width: WIDTH, height: HEIGHT }}
         />
         <Text style={styles.title}>{t('assessment.captcha_title')}</Text>

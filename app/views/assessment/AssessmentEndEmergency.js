@@ -2,6 +2,7 @@ import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Linking, Text } from 'react-native';
 
+import image from '../../assets/images/illustration-screening-end-911.png';
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import AssessmentEnd from './AssessmentEnd';
@@ -23,7 +24,7 @@ const AssessmentEndEmergency = () => {
           <Text style={{ fontFamily: Fonts.primaryBold }} />
         </Trans>
       }
-      image={require('../../assets/images/illustration-screening-end-911.png')}
+      image={image}
       title={t('assessment.emergency_title')}
     />
   );

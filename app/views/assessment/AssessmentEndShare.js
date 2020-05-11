@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
+import image from '../../assets/images/illustration-screening-data-sharing.png';
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import AssessmentEnd from './AssessmentEnd';
@@ -34,7 +35,7 @@ const AssessmentEndShare = ({ navigation }) => {
           <Text style={styles.skip}>{t('assessment.share_cta_skip')}</Text>
         </TouchableOpacity>
       }
-      image={require('../../assets/images/illustration-screening-data-sharing.png')}
+      image={image}
       title={t('assessment.share_title')}>
       <AssessmentOption
         onSelect={() => setA(a => !a)}

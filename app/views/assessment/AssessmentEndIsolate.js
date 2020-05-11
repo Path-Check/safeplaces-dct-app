@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
 
+import image from '../../assets/images/illustration-screening-end-isolate.png';
 import Fonts from '../../constants/fonts';
 import { MetaContext } from './AssessmentContext';
 import AssessmentEnd from './AssessmentEnd';
@@ -22,7 +23,7 @@ const AssessmentEndIsolate = ({ navigation }) => {
           <Text style={{ fontFamily: Fonts.primaryBold }} />
         </Trans>
       }
-      image={require('../../assets/images/illustration-screening-end-isolate.png')}
+      image={image}
       title={t('assessment.isolate_title')}
     />
   );
