@@ -58,9 +58,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Increase max file watchers
-        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-
       - run: ./gradlew :app:connectedDebugAndroidTest --no-daemon
         working-directory: ./android
 
