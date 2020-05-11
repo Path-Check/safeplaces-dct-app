@@ -3,7 +3,10 @@
   "about": {
     "dimensions": "Dimansyon:",
     "operating_system_abbr": "OS:",
-    "version": "Vesyon:"
+    "version": "Vèsyon:"
+  },
+  "common": {
+    "done": "Fini"
   },
   "history": {
     "no_exposure": "Pa gen kontak",
@@ -16,12 +19,21 @@
   },
   "import": {
     "button_text": "Voye lokalizasyon ki pase yo",
+    "error": "Yon bagay mal mache pandan done ou yo ap enpòte.",
     "google": {
+      "already_imported": "Fichye Takeout la te enpòte deja. ",
       "disclaimer": "Chase Kowona (\"Safe Paths\") pa gen okenn afilyasyon ak Google epi li pa janm pataje done ou yo.",
+      "file_open_error": "Fichye a pa te kapab louvri. \nTanpri, asire ou ke fichye a louvri nan Google drive",
+      "instructions_detailed": "Vizite Google Takeout epi ekspòte list lokalizasyon pa mwayen sa yo: \n 1. Metòd livrezon: \"Ajoute nan Drive\" \n 2. Frekans: \"Ekspòte yon fwa\" \n 3. Tip fichye & gwosè: \".zip\" ak \"1GB\" \n 4. Google ap voye yon imèl lè ekspòtasyon an pare \n 5. Retounen isit la pou enpòte lokalizasyon apati Google Drive",
+      "instructions_first": "Ajoute done lokalizasyon ki sòti sou Google ap ba ou komansman yon ide sou dènye lokalizasyon ou yo.",
+      "instructions_second": "Anvan ou ka enpòte, ou dwe 'Pran' done lokalizasyon ou yo sou Google avan.",
+      "invalid_file_format": "Fòma fichye sa pa sipòte. \nFòma ki sipòte se: \".zip\".",
+      "no_recent_locations": "Takeout pa gen okenn dènye lokalizasyon.",
       "title": "Kat Google",
       "visit_button_text": "Vizite Google Takeout"
     },
     "subtitle": "Pou wè si ou rankontre yon moun ki gen Kowonaviris, telechaje aplikasyon sa a avan, ou kapab voye lis localizasyon pèsonèl ou.",
+    "success": "Dènye lokalizasyon ou yo te enpòte avèk siksè!",
     "title": "Pran done lokalizasyon"
   },
   "label": {
@@ -36,13 +48,16 @@
     "authorities_removal_alert_proceed": "Kontinye",
     "authorities_removal_alert_title": "Retire otorite",
     "authorities_title": "Sous ou ka fè konfyans",
+    "auto_subscribe_checkbox": "Aktive abònman otomatik",
     "choose_provider_subtitle": "Pou kapab toujou rete enfòme a ekspozisyon yo, ou bezwen enskri nan yon otorite.",
     "choose_provider_title": "Chwazi otorite a",
     "commitment": "Angajman",
     "commitment_para": "Chase Kowona (\"Safe Paths\") byen anrejistre e tckeke entèraksyon ak moun ki itilize posisyon ou. Done ou yo pap JANM kite telefòn ou san konsantman ou.",
     "default_news_site_name": "Nouvèl sou Chase Kowona (\"Safe Paths\")",
+    "enter_authority_url": "Antre oswa kole URL",
     "event_history_subtitle": "Konprann ekspozisyon pèsonèl ou daprè enfòmasyon Otorite a pataje.",
     "event_history_title": "Lis ekspozisyon",
+    "filter_authorities_by_gps_history": "Triye pa lokalizasyon ou yo",
     "home_at_risk_header": "Ou ka gen risk",
     "home_at_risk_subsubtext": "Sa pa vle di ou enfekte.",
     "home_at_risk_subtext": "Daprè done disponib yo, ou te kwaze chemen ak yon moun ki te teste pozitif pou Kowonaviris.",
@@ -56,8 +71,12 @@
     "home_unknown_header": "Enkoni",
     "home_unknown_subtext": "Nou pa ka di si ou nan risk sof si ou pèmèt app la gen aksè a lokalizasyon ou.",
     "latest_news": "Dènye nouvèl",
+    "launch_authority_access": "Abonman a otorite sante ki tou pre",
+    "launch_authority_header": "Otorite Swen Sante yo pral bay aparèy ou an done lokal yo pou konnen si ou te kwaze chemen avèk yon moun ki enfekte",
+    "launch_authority_subheader": "Abònman otomatik pou resevwa dènye nouvèl apati otorite swen sante yo nan zòn ou an.",
     "launch_done_header": "Fini nèt",
     "launch_done_subheader": "Ou pare pouw woule. Sonje byen, ou ka toujou fè mizajou sou preferans ou yo pita.",
+    "launch_enable_auto_subscription": "Aktive abònman otomatik",
     "launch_enable_location": "Aktive lokalizasyon",
     "launch_enable_notif": "Aktive notifikasyon",
     "launch_finish_set_up": "Fini enstalasyon",
@@ -92,6 +111,7 @@
     "push_at_risk_title": "Ou ka gen risk",
     "see_exposure_history": "Wè lis ekspozisyon",
     "settings_title": "Tablodbò",
+    "skip_this_step": "Sote etap sa a",
     "team": "Ekip",
     "team_para": "Ekip nou an konpoze de yon group ki genyen ladanl epidemyolojis, enjenyè, syantis done, evanjeliS vi prive dijital, pwofesè ak chèchè nan anpil gran enstitisyon nan mond lan, tankou: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young ak Link Ventures.",
     "terms_of_use": "Règleman itilizasyon"
@@ -107,5 +127,13 @@
     "paragraph_second": "Lokalizasyon yo prale nan fòm yon senp lis lè ak kowòdone zòn yo, okenn enfòmasyon anplis pap transfere",
     "subtitle": "Done prive ou kapab transfere a Otorite a, konsève, oubyen pataje.",
     "title": "Pataje lis lokalizasyon"
+  },
+  "version_update": {
+    "alert_label": "COVID Safe Paths pa ajou",
+    "alert_sublabel": "Mete ajou nan yon nouvo vèsyon?",
+    "later": "Pita",
+    "push_notification_message": "Tanpri mete ajou aplikasyon ou an",
+    "push_notification_title": "Aplikasyon an pa ajou",
+    "update": "Mizajou"
   }
 }
