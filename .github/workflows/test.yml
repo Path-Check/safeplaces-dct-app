@@ -58,7 +58,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - run: ./gradlew :app:connectedDebugAndroidTest --no-daemon
+      - run: ./gradlew :app:connectedDebugAndroidTest --no-daemon --stacktrace
         working-directory: ./android
 
   e2e-ios-build:
