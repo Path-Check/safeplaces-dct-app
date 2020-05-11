@@ -59,8 +59,8 @@ platform :ios do
       }
 
       match(
-        type: 'development',
-        readonly: true,
+        type: 'adhoc',
+        readonly: false,
         keychain_name: "tech_at_safepaths_keychain",
         keychain_password: "meow",
         git_basic_authorization: ENV["secrets.MATCH_GIT_BASIC_AUTH"]
@@ -69,10 +69,10 @@ platform :ios do
       build_ios_app(
         workspace: WORKSPACE,
         scheme: DEBUG_SCHEME,
-        configuration: "Development",
+        configuration: "Debug",
+        export_method: "ad-hoc",
         silent: true,
         clean: true,
-        export_method: 'development',
         output_name: "COVIDSafePaths-staging.ipa",
       )
     end
@@ -115,7 +115,7 @@ platform :ios do
       )
 
       upload_to_testflight(
-        changelog: "Realm integration build"
+        changelog: "WIP, should be using git commits?"
       ) 
   end
 end
