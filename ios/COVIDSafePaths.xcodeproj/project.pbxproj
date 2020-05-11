@@ -323,7 +323,8 @@
 				27F931562459E28800E1024C /* SecureStorageManager.m */,
 				27F931592459E2BD00E1024C /* SecureStorageManager.swift */,
 			);
-			path = bridge;
+			name = bridge;
+			path = COVIDSafePaths/bridge;
 			sourceTree = "<group>";
 		};
 		276F786C245B6CB400312927 /* storage */ = {
@@ -333,7 +334,8 @@
 				276AB15B245291DE00D39B58 /* Location.swift */,
 				271881BF2461AF76001DE067 /* RealmSecureStorage.swift */,
 			);
-			path = storage;
+			name = storage;
+			path = COVIDSafePaths/storage;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
