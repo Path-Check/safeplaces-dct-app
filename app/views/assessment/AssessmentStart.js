@@ -30,18 +30,7 @@ const AssessmentStart = ({ navigation }) => {
       }}
       ctaTitle={t('assessment.start_cta')}
       image={require('../../assets/images/illustration-screening-start.png')}
-      pretitle={
-        <View style={styles.logos}>
-          <Image
-            source={require('../../assets/images/logo-cdc.png')}
-            style={{ width: 47, height: 29, marginRight: 10 }}
-          />
-          <Image
-            source={require('../../assets/images/logo-mit-media-lab.png')}
-            style={{ width: 58, height: 32 }}
-          />
-        </View>
-      }
+      pretitle={<Pretitle />}
       title={t('assessment.start_title')}>
       <View>
         <View style={styles.description}>
@@ -66,6 +55,21 @@ const AssessmentStart = ({ navigation }) => {
     </AssessmentEnd>
   );
 };
+
+function Pretitle() {
+  return (
+    <View style={styles.logos}>
+      <Image
+        source={require('../../assets/images/logo-cdc.png')}
+        style={{ width: 47, height: 29, marginRight: 10 }}
+      />
+      <Image
+        source={require('../../assets/images/logo-mit-media-lab.png')}
+        style={{ width: 58, height: 32 }}
+      />
+    </View>
+  );
+}
 
 /** @type {SurveyQuestion} */
 const agreeQuestion = {

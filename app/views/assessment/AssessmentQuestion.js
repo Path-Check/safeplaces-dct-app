@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -32,6 +32,39 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
   const [selectedValues, setSelectedValues] = useState(
     answers[question.id] || [],
   );
+  // Allow line breaks in the description
+  const description = useMemo(() => {
+    if (!question.question_description) return null;
+    const elements = [];
+    for (const line of question.question_description.split('\n')) {
+      let l = line.trim();
+      if (!l) continue;
+      elements.push(
+        <Text key={l} style={styles.description}>
+          {l}
+        </Text>,
+      );
+    }
+    return <View style={styles.descriptionWrapper}>{elements}</View>;
+  }, [question.question_description]);
+  const displayAsOption = [
+    SCREEN_TYPE_CHECKBOX,
+    SCREEN_TYPE_RADIO,
+    SCREEN_TYPE_DATE,
+  ].includes(question.screen_type);
+  const options = displayAsOption
+    ? option.values.map((option, index) => (
+        <AssessmentOption
+          answer={selectedValues.find(v => v.index === index)}
+          index={index}
+          key={option.value}
+          onSelect={value => onSelectHandler(value, index)}
+          option={option}
+          selected={selectedValues.some(v => v.index === index)}
+          type={question.screen_type}
+        />
+      ))
+    : null;
   /** @type {(value: string, index: number) => void} */
   const onSelectHandler = (value, index) => {
     switch (question.question_type) {
@@ -60,35 +93,8 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
         </View>
         <ScrollView style={styles.scrollView}>
           <View style={styles.scrollViewContent}>
-            {question.question_description ? (
-              <View style={styles.descriptionWrapper}>
-                {question.question_description
-                  .split('\n')
-                  .map(l => l.trim())
-                  .filter(l => l)
-                  .map(l => (
-                    <Text key={l} style={styles.description}>
-                      {l}
-                    </Text>
-                  ))}
-              </View>
-            ) : null}
-            {[
-              SCREEN_TYPE_CHECKBOX,
-              SCREEN_TYPE_RADIO,
-              SCREEN_TYPE_DATE,
-            ].includes(question.screen_type) &&
-              option.values.map((option, index) => (
-                <AssessmentOption
-                  answer={selectedValues.find(v => v.index === index)}
-                  index={index}
-                  key={option.value}
-                  onSelect={value => onSelectHandler(value, index)}
-                  option={option}
-                  selected={selectedValues.some(v => v.index === index)}
-                  type={question.screen_type}
-                />
-              ))}
+            {description}
+            {options}
           </View>
         </ScrollView>
         <View style={styles.footer}>
