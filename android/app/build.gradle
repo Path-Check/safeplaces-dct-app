@@ -152,8 +152,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 17
-        versionName "1.0.3"
+        versionCode 18
+        versionName "1.0.4"
     }
     splits {
         abi {
@@ -186,9 +186,9 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            systemProperty "KEY_ALIAS", findProperty("android.injected.signing.key.alias")
-            systemProperty "KEY_PASSWORD", findProperty("android.injected.signing.key.password")
-            systemProperty "KEY_STORE_PASSWORD", findProperty("android.injected.signing.store.password")
+            // systemProperty "KEY_ALIAS", findProperty("android.injected.signing.key.alias")
+            // systemProperty "KEY_PASSWORD", findProperty("android.injected.signing.key.password")
+            // systemProperty "KEY_STORE_PASSWORD", findProperty("android.injected.signing.store.password")
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
             // signingConfig signingConfigs.release

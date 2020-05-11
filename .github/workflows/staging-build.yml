@@ -159,7 +159,7 @@ jobs:
       # - name: Upload Artifact
       #   uses: actions/upload-artifact@v1
       #   with:
-      #     name: Debug App
+      #     name: Debug (iOS) App (Simulators only)
       #     path: ios/COVIDSafePaths-staging.app.zip
 
       - name: Bundle iOS JS for devices
