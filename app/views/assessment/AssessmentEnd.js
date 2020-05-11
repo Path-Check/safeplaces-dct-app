@@ -9,9 +9,9 @@ import {
   View,
 } from 'react-native';
 
-import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import AssessmentButton from './AssessmentButton';
+import { Colors as AssessmentColors } from './constants';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = WIDTH * (300 / 375);
@@ -76,7 +76,7 @@ export default AssessmentShare;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.ASSESSMENT_BACKGROUND,
+    backgroundColor: AssessmentColors.BACKGROUND,
   },
   scrollView: {
     flex: 1,

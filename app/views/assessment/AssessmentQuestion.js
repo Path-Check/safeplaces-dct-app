@@ -8,6 +8,7 @@ import AssessmentButton from './AssessmentButton';
 import { AnswersContext } from './AssessmentContext';
 import AssessmentOption from './AssessmentOption';
 import {
+  Colors as AssessmentColors,
   QUESTION_TYPE_MULTI,
   SCREEN_TYPE_CHECKBOX,
   SCREEN_TYPE_DATE,
@@ -112,7 +113,7 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.ASSESSMENT_BACKGROUND,
+    backgroundColor: AssessmentColors.BACKGROUND,
   },
   containerInner: {
     flex: 1,

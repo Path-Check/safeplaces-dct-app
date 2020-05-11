@@ -8,6 +8,7 @@ import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import { isPlatformAndroid, isPlatformiOS } from '../../Util';
 import {
+  Colors as AssessmentColors,
   SCREEN_TYPE_CHECKBOX,
   SCREEN_TYPE_DATE,
   SCREEN_TYPE_RADIO,
@@ -126,14 +127,14 @@ const INDICATOR_MARGIN = 10;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.WHITE,
-    borderColor: Colors.ASSESSMENT_BORDER,
+    borderColor: AssessmentColors.BORDER,
     borderRadius: 8,
     borderWidth: 2,
     marginBottom: 16,
     padding: 10,
   },
   containerSelected: {
-    borderColor: Colors.ASSESSMENT_BORDER_SELECTED,
+    borderColor: AssessmentColors.BORDER_SELECTED,
     elevation: 1,
     shadowColor: Colors.BLACK,
     shadowOffset: { height: 0, width: 0 },
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
   },
   indicator: {
     alignItems: 'center',
-    borderColor: Colors.ASSESSMENT_BORDER,
+    borderColor: AssessmentColors.BORDER,
     borderRadius: INDICATOR_WIDTH * 2,
     borderWidth: 2,
     height: INDICATOR_WIDTH,
@@ -155,8 +156,8 @@ const styles = StyleSheet.create({
     width: INDICATOR_WIDTH,
   },
   indicatorSelected: {
-    backgroundColor: Colors.ASSESSMENT_BORDER_SELECTED,
-    borderColor: Colors.ASSESSMENT_BORDER_SELECTED,
+    backgroundColor: AssessmentColors.BORDER_SELECTED,
+    borderColor: AssessmentColors.BORDER_SELECTED,
   },
   indicatorIcon: {},
   indicatorIconRadio: {

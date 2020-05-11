@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Button, Text, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
-// import { SURVEY_GET_API } from '../../constants/apis';
-import Colors from '../../constants/colors';
 import i18n from '../../locales/languages';
 import { isPlatformiOS } from '../../Util';
 import AssessmentCaptcha from './AssessmentCaptcha';
@@ -23,6 +21,7 @@ import AssessmentEndShare from './AssessmentEndShare';
 import AssessmentQuestion from './AssessmentQuestion';
 import AssessmentStart from './AssessmentStart';
 import {
+  Colors as AssessmentColors,
   END_ROUTES,
   OPTION_VALUE_DISAGREE,
   QUESTION_KEY_AGREE,
@@ -106,7 +105,7 @@ const Assessment = ({ navigation }) => {
     headerHideShadow: true,
     headerTitle: '',
     headerStyle: {
-      backgroundColor: Colors.ASSESSMENT_BACKGROUND,
+      backgroundColor: AssessmentColors.BACKGROUND,
     },
     // eslint-disable-next-line
     headerRight: () =>
@@ -138,7 +137,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
                 },
               }}
             />
@@ -153,7 +152,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
                 },
               }}
             />
@@ -163,7 +162,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
                 },
               }}
             />
@@ -173,7 +172,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
                 },
               }}
             />
@@ -183,7 +182,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
                 },
               }}
             />
@@ -193,7 +192,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
                 },
               }}
             />
@@ -203,7 +202,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND_DANGER,
+                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND_DANGER,
                 },
               }}
             />
@@ -213,7 +212,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.ASSESSMENT_IMAGE_BACKGROUND,
+                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
                 },
               }}
             />

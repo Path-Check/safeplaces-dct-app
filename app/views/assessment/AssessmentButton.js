@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
+import { Colors as AssessmentColors } from './constants';
 
 /**
  * @typedef { import("react").ReactNode } ReactNode
@@ -19,7 +20,7 @@ const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
     ? color
     : (disabled
     ? Colors.GRAY_BUTTON
-    : Colors.ASSESSMENT_CTA);
+    : AssessmentColors.CTA);
   return (
     <TouchableOpacity onPress={onPress} disabled={disabled}>
       <View

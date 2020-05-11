@@ -12,12 +12,12 @@ import {
 } from 'react-native';
 
 import image from '../../assets/images/illustration-screening-data-sharing.png';
-import { CATCHA_URL, SURVEY_POST_API } from '../../constants/apis';
-import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import HCaptcha from '../../services/CaptchaService';
 import AssessmentButton from './AssessmentButton';
 import { AnswersContext, SurveyContext } from './AssessmentContext';
+import { CATCHA_URL, SURVEY_POST_API } from './constants';
+import { Colors as AssessmentColors } from './constants';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = WIDTH * (300 / 375);
@@ -115,7 +115,7 @@ export default AssessmentCaptcha;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.ASSESSMENT_BACKGROUND,
+    backgroundColor: AssessmentColors.BACKGROUND,
   },
   scrollView: {
     flex: 1,
