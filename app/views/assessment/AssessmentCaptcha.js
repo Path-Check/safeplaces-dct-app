@@ -13,7 +13,7 @@ import {
 
 import image from '../../assets/images/assessment/illustration-screening-data-sharing.png';
 import Fonts from '../../constants/fonts';
-import HCaptcha from '../../services/CaptchaService';
+import { HCaptcha } from '../../services/CaptchaService';
 import AssessmentButton from './AssessmentButton';
 import { AnswersContext, SurveyContext } from './AssessmentContext';
 import { CATCHA_URL, SURVEY_POST_API } from './constants';

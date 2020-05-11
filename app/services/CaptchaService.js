@@ -12,7 +12,7 @@ const width = Dimensions.get('window').width;
  * @param {*} style: custom style
  * @param {*} url: base url
  */
-const HCaptcha = ({ onMessage, style, uri }) => {
+export const HCaptcha = ({ onMessage, style, uri }) => {
   return (
     <WebView
       startInLoadingState
@@ -38,8 +38,6 @@ function renderLoadingView() {
     />
   );
 }
-
-export default HCaptcha;
 
 const styles = StyleSheet.create({
   loading: {
