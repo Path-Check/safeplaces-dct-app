@@ -31,8 +31,9 @@ platform :ios do
     
     APP_ID = "org.pathcheck.covid-safepaths"
     PROFILE = "match AppStore org.pathcheck.covid-safepaths"
-    DEBUG_PROFILE = "match Development org.pathcheck.covid-safepaths"
-    DEBUG_SCHEME = "Staging"
+    DEBUG_PROFILE = "match Develop org.pathcheck.covid-safepaths"
+    ADHOC_PROFILE = "match AdHoc org.pathcheck.covid-safepaths"
+    STAGING_SCHEME = "Staging"
     TEAM = "79Z8HUPGC3"
     SCHEME = "COVIDSafePaths"
     WORKSPACE = "COVIDSafePaths.xcworkspace"
@@ -49,12 +50,12 @@ platform :ios do
       )
     end
 
-    desc "Push a new staging build for eggplant testers"
+    desc "Push a new staging build for automation"
     lane :staging do
 
       signing_bundle_details = {
         :BUNDLE_IDENTIFIER => APP_ID,
-        :PROVISIONING_PROFILE_SPECIFIER => DEBUG_PROFILE,
+        :PROVISIONING_PROFILE_SPECIFIER => ADHOC_PROFILE,
         :DEVELOPMENT_TEAM => TEAM
       }
 
@@ -68,8 +69,8 @@ platform :ios do
 
       build_ios_app(
         workspace: WORKSPACE,
-        scheme: DEBUG_SCHEME,
-        configuration: "Debug",
+        scheme: STAGING_SCHEME,
+        configuration: "Staging",
         export_method: "ad-hoc",
         silent: true,
         clean: true,
@@ -116,7 +117,7 @@ platform :ios do
   end
 
   desc "Push a new beta build to TestFlight"
-  lane :testflight do
+  lane :deploy do
       upload_to_testflight(
         changelog: "WIP, should be using git commits?"
       ) 

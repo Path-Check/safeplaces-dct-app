@@ -25,10 +25,15 @@ fastlane ios sync_local_certs
 ```
 fastlane ios staging
 ```
-Push a new staging build for eggplant testers
+Push a new staging build for automation
 ### ios beta
 ```
 fastlane ios beta
+```
+Push a new beta build to TestFlight
+### ios testflight
+```
+fastlane ios testflight
 ```
 Push a new beta build to TestFlight
 
