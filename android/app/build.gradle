@@ -172,9 +172,9 @@ android {
         }
         release {
             if (file("./keystore.jks").exists()) {
-                keyAlias project.getProperty("KEY_ALIAS")
-                keyPassword project.getProperty("KEY_PASSWORD")
-                storePassword project.getProperty("KEY_STORE_PASSWORD")
+                keyAlias project.getProperty("android.injected.signing.key.alias")
+                keyPassword project.getProperty("android.injected.signing.key.password")
+                storePassword project.getProperty("android.injected.signing.store.password")
                 storeFile file("./keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')

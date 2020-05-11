@@ -46,7 +46,7 @@ platform :android do
     gradle(
       task: "assemble",
       build_type: "prodRelease",
-      print_command: true,
+      print_command: false,
       properties: {
         "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
         "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
@@ -57,6 +57,7 @@ platform :android do
     gradle(
       task: "bundle",
       build_type: "prodRelease",
+      print_command: false,
       properties: {
         "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
         "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
