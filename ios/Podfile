@@ -23,6 +23,9 @@ target 'COVIDSafePaths' do
   pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
   pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
   pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
+  pod 'RNSensors', :path => '../node_modules/react-native-sensors'
+
+
 
 
   permissions_path = '../node_modules/react-native-permissions/ios'

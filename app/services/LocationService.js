@@ -1,12 +1,20 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
+import {
+  SensorTypes,
+  accelerometer,
+  setUpdateIntervalForType,
+} from 'react-native-sensors';
+import { filter, map } from 'rxjs/operators';
 
 import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { areLocationsNearby } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import { isPlatformAndroid } from '../Util';
+
+setUpdateIntervalForType(SensorTypes.accelerometer, 100);
 
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION = '55';
@@ -362,8 +370,18 @@ export default class LocationServices {
       console.log('[INFO] stop');
     });
 
-    BackgroundGeolocation.on('stationary', () => {
+    BackgroundGeolocation.on('stationary', stationaryLocation => {
       console.log('[INFO] stationary');
+
+      accelerometer
+        .pipe(
+          map(({ x, y, z }) => x + y + z),
+          filter(speed => speed > 12),
+        )
+        .subscribe(() => {
+          console.log('[INFO] accelerometer');
+          locationData.saveLocation(stationaryLocation);
+        });
     });
 
     BackgroundGeolocation.checkStatus(status => {
