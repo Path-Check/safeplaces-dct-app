@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import * as ReactNative from 'react-native';
 
 import { makeTimelineObject } from './GoogleTakeoutUtils';
 
@@ -29,18 +30,6 @@ describe('importTakeoutData', () => {
   });
 
   it('throws NoRecentLocationsError exception if no location files found', async () => {
-    jest.doMock('../GoogleData', () => {
-      const {
-        location1,
-        location2,
-        location3,
-      } = require('./fixtures/googleImport');
-
-      return {
-        mergeJSONWithLocalData: async () => [location1, location2, location3],
-      };
-    });
-
     jest.doMock('react-native-fs', () => {
       return {
         CachesDirectoryPath: '/tmp',
@@ -60,12 +49,6 @@ describe('importTakeoutData', () => {
   });
 
   it('throws InvalidFileExtensionError exception if wrong file format is supplied', async () => {
-    jest.doMock('../GoogleData', () => {
-      return {
-        mergeJSONWithLocalData: async () => {},
-      };
-    });
-
     jest.doMock('react-native-fs', () => {
       return {
         CachesDirectoryPath: '/tmp',
@@ -85,19 +68,18 @@ describe('importTakeoutData', () => {
   });
 
   it(`locations successfully added to local store`, async () => {
-    jest.doMock('../GoogleData', () => {
-      const {
-        location1,
-        location2,
-        location3,
-        location4,
-      } = require('./fixtures/googleImport');
-
+    const importGoogleLocations = jest.fn();
+    jest.doMock('react-native', () => {
       return {
-        mergeJSONWithLocalData: jest
-          .fn()
-          .mockReturnValueOnce([location1, location2])
-          .mockReturnValueOnce([location3, location4]),
+        Platform: {
+          OS: 'ios',
+        },
+        NativeModules: {
+          ...ReactNative.NativeModules,
+          SecureStorageManager: {
+            importGoogleLocations: importGoogleLocations,
+          },
+        },
       };
     });
     jest.doMock('react-native-fs', () => {
@@ -138,59 +120,9 @@ describe('importTakeoutData', () => {
     });
 
     const { importTakeoutData } = require('../GoogleTakeOutAutoImport');
-    const newLocations = await importTakeoutData('file://test.zip');
-    expect(newLocations).toEqual([location1, location2, location3, location4]);
-  });
-
-  it(`no locations inserted if they already exist in local store`, async () => {
-    jest.doMock('../GoogleData', () => {
-      return {
-        mergeJSONWithLocalData: jest
-          .fn()
-          .mockReturnValueOnce([])
-          .mockReturnValueOnce([]),
-      };
-    });
-    jest.doMock('react-native-fs', () => {
-      const {
-        location1,
-        location2,
-        location3,
-        location4,
-      } = require('./fixtures/googleImport');
-
-      return {
-        CachesDirectoryPath: '/tmp',
-        exists: () => Promise.resolve(true),
-        readFile: jest
-          .fn()
-          .mockReturnValueOnce(
-            Promise.resolve(
-              JSON.stringify({
-                timelineObjects: [
-                  makeTimelineObject(location1),
-                  makeTimelineObject(location2),
-                ],
-              }),
-            ),
-          )
-          .mockReturnValueOnce(
-            Promise.resolve(
-              JSON.stringify({
-                timelineObjects: [
-                  makeTimelineObject(location3),
-                  makeTimelineObject(location4),
-                ],
-              }),
-            ),
-          ),
-        unlink: async () => {},
-      };
-    });
-
-    const { importTakeoutData } = require('../GoogleTakeOutAutoImport');
-    const newLocations = await importTakeoutData('file://tmp/test.zip');
-    expect(newLocations.length).toEqual(0);
+    await importTakeoutData('file://test.zip');
+    expect(importGoogleLocations).toHaveBeenCalledWith([location1, location2]);
+    expect(importGoogleLocations).toHaveBeenCalledWith([location3, location4]);
   });
 });
 
