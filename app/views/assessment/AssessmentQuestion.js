@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import AssessmentButton from './AssessmentButton';
 import { AnswersContext } from './AssessmentContext';
