@@ -35,6 +35,35 @@ jobs:
         env:
           CI: true
 
+  unit-test-android:
+    runs-on: macOS-latest # macOS-latest is required, tests need HAXM emulator
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - run: yarn --frozen-lockfile
+
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Increase max file watchers
+        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+      - run: ./gradlew :app:connectedDebugAndroidTest --no-daemon
+        working-directory: ./android
+
   e2e-ios-build:
     runs-on: macOS-latest
     # while this job doesn't depend on the previous job explicitly
