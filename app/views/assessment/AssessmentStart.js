@@ -6,11 +6,11 @@ import { Image, StyleSheet, Text, View } from 'react-native';
  * @typedef { import("./Assessment").SurveyQuestion } SurveyQuestion
  * @typedef { import("./Assessment").SurveyOption } SurveyOption
  */
-import imageHealth from '../../assets/images/icon-health.png';
-import imagePrivate from '../../assets/images/icon-private.png';
-import imageBanner from '../../assets/images/illustration-screening-start.png';
-import imageCdc from '../../assets/images/logo-cdc.png';
-import imageMit from '../../assets/images/logo-mit-media-lab.png';
+import imageHealth from '../../assets/images/assessment/icon-health.png';
+import imagePrivate from '../../assets/images/assessment/icon-private.png';
+import imageBanner from '../../assets/images/assessment/illustration-screening-start.png';
+import imageCdc from '../../assets/images/assessment/logo-cdc.png';
+import imageMit from '../../assets/images/assessment/logo-mit-media-lab.png';
 import Fonts from '../../constants/fonts';
 import i18n from '../../locales/languages';
 import AssessmentEnd from './AssessmentEnd';

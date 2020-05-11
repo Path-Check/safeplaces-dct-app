@@ -2,7 +2,7 @@ import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Linking, Text } from 'react-native';
 
-import image from '../../assets/images/illustration-screening-end-911.png';
+import image from '../../assets/images/assessment/illustration-screening-end-911.png';
 import Fonts from '../../constants/fonts';
 import AssessmentEnd from './AssessmentEnd';
 import { Colors as AssessmentColors } from './constants';

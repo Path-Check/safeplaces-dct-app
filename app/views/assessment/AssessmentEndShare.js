@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import image from '../../assets/images/illustration-screening-data-sharing.png';
+import image from '../../assets/images/assessment/illustration-screening-data-sharing.png';
 import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import AssessmentEnd from './AssessmentEnd';

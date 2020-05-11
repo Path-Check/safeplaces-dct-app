@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 
-import image from '../../assets/images/illustration-screening-data-sharing.png';
+import image from '../../assets/images/assessment/illustration-screening-data-sharing.png';
 import Fonts from '../../constants/fonts';
 import HCaptcha from '../../services/CaptchaService';
 import AssessmentButton from './AssessmentButton';
