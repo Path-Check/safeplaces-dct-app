@@ -73,9 +73,8 @@ const AssessmentCaptcha = ({ navigation }) => {
         method: 'POST',
       });
       const payload = await res.json();
-      console.log(payload);
       navigation.replace('EndComplete');
-    } catch (error) {
+    } catch (e) {
       console.error(`Survey post Failed, ${error}`);
     } finally {
       setIsLoading(false);
