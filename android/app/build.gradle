@@ -172,9 +172,9 @@ android {
         }
         release {
             if (file("./keystore.jks").exists()) {
-                keyAlias System.getProperty("KEY_ALIAS")
-                keyPassword System.getProperty("KEY_PASSWORD")
-                storePassword System.getProperty("KEY_STORE_PASSWORD")
+                keyAlias KEY_ALIAS
+                keyPassword KEY_PASSWORD
+                storePassword KEY_STORE_PASSWORD
                 storeFile file("./keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')
@@ -186,9 +186,6 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            // systemProperty "KEY_ALIAS", findProperty("android.injected.signing.key.alias")
-            // systemProperty "KEY_PASSWORD", findProperty("android.injected.signing.key.password")
-            // systemProperty "KEY_STORE_PASSWORD", findProperty("android.injected.signing.store.password")
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
             // signingConfig signingConfigs.release

@@ -48,38 +48,22 @@ platform :android do
       build_type: "prodRelease",
       print_command: false,
       properties: {
-        "android.injected.signing.store.password" => ENV["secrets.secrets.KEY_STORE_PASSWORD"],
-        "android.injected.signing.key.alias" => ENV["secrets.KEY_ALIAS"],
-        "android.injected.signing.key.password" =>  ENV["secrets.KEY_PASSWORD"]
+        "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" =>  ENV["KEY_PASSWORD"]
       }
     )
-    # keyAlias = ENV["secrets.KEY_ALIAS"]
-    # keyPassword = ENV["secrets.KEY_PASSWORD"]
-    # storePassword = ENV["secrets.secrets.KEY_STORE_PASSWORD"]
 
     gradle(
       task: "bundle",
       build_type: "prodRelease",
       properties: {
-        "android.injected.signing.store.password" => ENV["secrets.secrets.KEY_STORE_PASSWORD"],
-        "android.injected.signing.key.alias" => ENV["secrets.KEY_ALIAS"],
-        "android.injected.signing.key.password" =>  ENV["secrets.KEY_PASSWORD"]
+        "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" =>  ENV["KEY_PASSWORD"]
       }
     )
 
-    # validate_play_store_json_key(
-    #   json_key: "app/json_key.json",
-    # )
-    
-    # upload_to_play_store(
-    #   track: 'beta',
-    #   skip_upload_apk: true,
-    #   aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
-    # )
-  end
-
-  desc "Upload to playstore"
-  lane :play_store do
     validate_play_store_json_key(
       json_key: "app/json_key.json",
     )
@@ -87,7 +71,20 @@ platform :android do
     upload_to_play_store(
       track: 'beta',
       skip_upload_apk: true,
-      aab: 'android/app/build/outputs/bundle/release/app.aab',
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
     )
   end
+
+  # desc "Upload to playstore"
+  # lane :play_store do
+  #   validate_play_store_json_key(
+  #     json_key: "app/json_key.json",
+  #   )
+    
+  #   upload_to_play_store(
+  #     track: 'beta',
+  #     skip_upload_apk: true,
+  #     aab: 'android/app/build/outputs/bundle/release/app.aab',
+  #   )
+  # end
 end
