@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators } from '@react-navigation/stack';
 import React, { Component } from 'react';
-import { enableScreens } from 'react-native-screens';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import { GetStoreData } from './helpers/General';
@@ -20,8 +19,6 @@ import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
 import { SettingsScreen } from './views/Settings';
-
-enableScreens();
 
 const Stack = createNativeStackNavigator();
 
