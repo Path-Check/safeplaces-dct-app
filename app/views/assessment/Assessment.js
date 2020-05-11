@@ -1,5 +1,4 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
-// import axios from 'axios';
 import React, { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Button, Text, TouchableOpacity } from 'react-native';
@@ -303,7 +302,7 @@ function useSurvey() {
 //     async function fetchSurvey() {
 //       try {
 //         setLoading(true);
-//         const survey = await axios.get(SURVEY_GET_API);
+//         const survey = await fetch(SURVEY_GET_API).then(res => res.json());
 //         setResult(survey.data);
 //       } catch (error) {
 //         setLoading(false);

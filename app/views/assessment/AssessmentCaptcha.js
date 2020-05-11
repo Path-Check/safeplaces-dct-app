@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -30,6 +29,58 @@ const AssessmentCaptcha = ({ navigation }) => {
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const buttonDisabled = token === null || isLoading;
+  const onMessage = event => {
+    if (event && event.nativeEvent.data) {
+      if (['cancel', 'error', 'expired'].includes(event.nativeEvent.data)) {
+        console.log('Verified code failed');
+        // TODO: Better error handling
+        Alert.alert('Captcha Response', `captcha ${event.nativeEvent.data}`, [
+          {
+            text: 'OK',
+          },
+        ]);
+      } else {
+        console.log('Verified code received', event.nativeEvent.data);
+        setToken(event.nativeEvent.data);
+      }
+    }
+  };
+  const submit = async () => {
+    setIsLoading(true);
+    const state = navigation.dangerouslyGetState();
+    const questionKeys = survey.questions.map(q => q.question_key);
+    // Extract the keys from navigation stack because the user might
+    // have answered a question, pressed back, changed answer, ended up on a different question
+    // rendering that answer no longer valid
+    const questionKeysFinal = state.routes
+      .filter(r => r.params && r.params.question)
+      .map(r => r.params.question.question_key)
+      // Remove injected questions (agreement, etc)
+      .filter(k => questionKeys.includes(k));
+    const response = questionKeysFinal.map(question_key => ({
+      question_key,
+      response: answers[question_key].map(r => r.value),
+    }));
+    // TODO: Loading state / disable button
+    try {
+      const res = await fetch(SURVEY_POST_API, {
+        body: JSON.stringify(response),
+        headers: {
+          Accept: 'application/json; charset=utf-8',
+          Authorization: `Basic ${token}`,
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        method: 'POST',
+      });
+      const payload = await res.json();
+      console.log(payload);
+      navigation.replace('EndComplete');
+    } catch (error) {
+      console.error(`Survey post Failed, ${error}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -42,66 +93,16 @@ const AssessmentCaptcha = ({ navigation }) => {
         <Text style={styles.description}>
           {t('assessment.captcha_description')}
         </Text>
-
         <HCaptcha
           style={styles.captcha}
           uri={CATCHA_URL}
-          onMessage={event => {
-            if (event && event.nativeEvent.data) {
-              if (
-                ['cancel', 'error', 'expired'].includes(event.nativeEvent.data)
-              ) {
-                console.log('Verified code failed');
-                Alert.alert(
-                  'Captcha Response',
-                  `captcha ${event.nativeEvent.data}`,
-                  [
-                    {
-                      text: 'OK',
-                    },
-                  ],
-                );
-              } else {
-                console.log('Verified code received', event.nativeEvent.data);
-                setToken(event.nativeEvent.data);
-              }
-            }
-          }}
+          onMessage={onMessage}
         />
       </ScrollView>
       <View style={styles.footer}>
         <AssessmentButton
           disabled={buttonDisabled}
-          onPress={() => {
-            setIsLoading(true);
-            const state = navigation.dangerouslyGetState();
-            const questionKeys = survey.questions.map(q => q.question_key);
-            // Extract the keys from navigation stack because the user might
-            // have answered a question, pressed back, changed answer, ended up on a different question
-            // rendering that answer no longer valid
-            const questionKeysFinal = state.routes
-              .filter(r => r.params && r.params.question)
-              .map(r => r.params.question.question_key)
-              // Remove injected questions (agreement, etc)
-              .filter(k => questionKeys.includes(k));
-            const response = questionKeysFinal.map(question_key => ({
-              question_key,
-              response: answers[question_key].map(r => r.value),
-            }));
-            // TODO: Loading state / disable button
-            axios
-              .post(SURVEY_POST_API, response, {
-                headers: { Authorization: `Basic ${token}` },
-              })
-              .then(response => {
-                console.log(`Survey post succeeded: ${response}`);
-                navigation.replace('EndComplete');
-              })
-              .catch(error => {
-                console.error(`Survey post Failed, ${error}`);
-                setIsLoading(false);
-              });
-          }}
+          onPress={submit}
           title={t('assessment.captcha_cta')}
         />
       </View>
