@@ -8,8 +8,9 @@ import React, { Component } from 'react';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
-import Details from './views/DR/Tabs/Details';
-import NewsScreen from './views/DR/Tabs/News';
+import BulletinsScreen from './views/DR/Bulletins';
+import DetailsScreen from './views/DR/Details';
+import NewsScreen from './views/DR/News';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
@@ -102,8 +103,13 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
+            name='BulletinsScreen'
+            component={BulletinsScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
             name='DetailsScreen'
-            component={Details}
+            component={DetailsScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

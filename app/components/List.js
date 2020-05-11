@@ -37,10 +37,12 @@ export default function DataList({
             }
             key={String(index)}
             style={styles.itemContainer}>
-            <Image
-              style={styles.image}
-              source={{ uri: Object.values(img)[1] }}
-            />
+            {img && (
+              <Image
+                style={styles.image}
+                source={{ uri: Object.values(img)[1] }}
+              />
+            )}
             <View style={styles.right}>
               <Text
                 numberOfLines={titleLinesNum}
