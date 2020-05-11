@@ -58,7 +58,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
       />
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
-          <Theme use='violet'>
+          <Theme use='default'>
             <SafeAreaView style={{ flex: 1 }}>
               <View style={{ flex: 7, paddingHorizontal: 5 }}>
                 <IconButton
