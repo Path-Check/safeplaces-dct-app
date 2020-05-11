@@ -81,3 +81,5 @@ ios/COVIDSafePaths-staging.app
 ios/COVIDSafePaths-staging.app.dSYM.zip
 assets/
 
+# Local Realm Artifact
+safepaths.realm
