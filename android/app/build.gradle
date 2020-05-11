@@ -152,8 +152,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 6
-        versionName "1.0.2"
+        versionCode 17
+        versionName "1.0.3"
     }
     splits {
         abi {
@@ -171,11 +171,10 @@ android {
             keyPassword 'android'
         }
         release {
-            project.logger.lifecycle('getting the keystore from ', System.getProperty("KEY_ALIAS"));
             if (file("./keystore.jks").exists()) {
                 keyAlias System.getProperty("KEY_ALIAS")
                 keyPassword System.getProperty("KEY_PASSWORD")
-                storePassword System.getProperty(".KEY_STORE_PASSWORD")
+                storePassword System.getProperty("KEY_STORE_PASSWORD")
                 storeFile file("./keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')
@@ -187,6 +186,9 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
+            systemProperty "KEY_ALIAS", findProperty("android.injected.signing.key.alias")
+            systemProperty "KEY_PASSWORD", findProperty("android.injected.signing.key.password")
+            systemProperty "KEY_STORE_PASSWORD", findProperty("android.injected.signing.store.password")
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
             // signingConfig signingConfigs.release
@@ -232,6 +234,8 @@ dependencies {
     implementation "androidx.annotation:annotation:1.1.0"
     implementation project(':@mauron85_react-native-background-geolocation-common')
     implementation 'com.bottlerocketstudios:vault:1.4.2'
+    implementation 'com.google.android.gms:play-services-gcm:15.0.1'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/"

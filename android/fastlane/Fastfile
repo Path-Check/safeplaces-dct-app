@@ -43,18 +43,16 @@ platform :android do
       version_name: JS_PACKAGE['version']
     )
 
-    puts( ENV["secrets.KEY_ALIAS"])
-
-    # gradle(
-    #   task: "assemble",
-    #   build_type: "prodRelease",
-    #   print_command: false,
-    #   properties: {
-    #     "android.injected.signing.store.password" => ENV["secrets.secrets.KEY_STORE_PASSWORD"],
-    #     "android.injected.signing.key.alias" => ENV["secrets.KEY_ALIAS"],
-    #     "android.injected.signing.key.password" =>  ENV["secrets.KEY_PASSWORD"]
-    #   }
-    # )
+    gradle(
+      task: "assemble",
+      build_type: "prodRelease",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.password" => ENV["secrets.secrets.KEY_STORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["secrets.KEY_ALIAS"],
+        "android.injected.signing.key.password" =>  ENV["secrets.KEY_PASSWORD"]
+      }
+    )
     # keyAlias = ENV["secrets.KEY_ALIAS"]
     # keyPassword = ENV["secrets.KEY_PASSWORD"]
     # storePassword = ENV["secrets.secrets.KEY_STORE_PASSWORD"]
@@ -62,7 +60,6 @@ platform :android do
     gradle(
       task: "bundle",
       build_type: "prodRelease",
-      print_command: false
       properties: {
         "android.injected.signing.store.password" => ENV["secrets.secrets.KEY_STORE_PASSWORD"],
         "android.injected.signing.key.alias" => ENV["secrets.KEY_ALIAS"],
