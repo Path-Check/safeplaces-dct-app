@@ -100,7 +100,7 @@ jobs:
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         with:
-          lane: 'beta'
+          lane: 'release'
           subdirectory: 'android'
           bundle-install-path: 'vendor/bundle'
 
