@@ -89,6 +89,7 @@ jobs:
             -scheme COVIDSafePathsTests \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
             -skip-testing COVIDSafePathsTests/COVIDSafePathsTests/testRendersWelcomeScreen
+        working-directory: ./ios
 
   e2e-ios-build:
     runs-on: macOS-latest
