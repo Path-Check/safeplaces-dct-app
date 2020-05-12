@@ -67,7 +67,7 @@ platform :android do
   end
 
   desc "Upload to google play store beta track"
-  lane :release do
+  lane :play_store do
     validate_play_store_json_key(
       json_key: "app/json_key.json",
     )
