@@ -1,10 +1,7 @@
 on:
   push:
-    branches:
-      - develop
-  pull_request:
-    branches:
-      - develop
+    tags:
+    - 'sec*' # Push events to matching sec* . Use this to tag a security assets build
 
 jobs:
   build_staging_ios:
@@ -70,8 +67,8 @@ jobs:
             ssh-keyscan github.com >> ~/.ssh/known_hosts
             ssh-agent -a $SSH_AUTH_SOCK > /dev/null
             ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
-      
-      - name: Build iOS Staging artifact for devices
+
+      - name: Build iOS Beta artifact for devices
         uses: maierj/fastlane-action@v1.4.0
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
@@ -79,7 +76,7 @@ jobs:
           MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          lane: 'staging'
+          lane: 'beta'
           subdirectory: 'ios'
           bundle-install-path: 'vendor/bundle'
 
@@ -87,4 +84,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: Debug IPA file (work in progress)
-          path: ios/COVIDSafePaths-staging.ipa
+          path: ios/COVIDSafePaths-beta.ipa
