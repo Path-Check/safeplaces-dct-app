@@ -47,7 +47,7 @@ class NewsScreen extends Component {
     return true;
   };
 
-  hideSpinner() { 
+  hideSpinner() {
     this.setState({
       visible: false,
     });
@@ -70,7 +70,7 @@ class NewsScreen extends Component {
             borderBottomRightRadius: 12,
           }}
           cacheEnabled
-          startInLoadingState={true} //Show loading indicator on web view
+          startInLoadingState
         />
       </View>
     );
