@@ -23,7 +23,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - uses: phips28/gh-action-bump-version@v7.1.0
+      - uses: phips28/gh-action-bump-version@v7.0.4
         with:
           github_token: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           branch: 'develop'
