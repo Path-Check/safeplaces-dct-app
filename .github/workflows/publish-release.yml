@@ -18,15 +18,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Checkout source code"
-        uses: "actions/checkout@v2"
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        id: node_cache
         with:
-          ref: ${{ github.ref }}
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
 
-      - uses: tool3/bump@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'develop'
+      - name: Install Node Dependencies
+        if: steps.node_cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Bump the version and don't commit it back
+        run: yarn version:bump:patch
+
 
   deploy_android:
     runs-on: ubuntu-latest
