@@ -253,19 +253,12 @@ function binarySearchForTime(array, targetTime) {
  *        from the authority (e.g. the news url) since we get that in the same call.
  *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
-export function checkIntersect() {
+export async function checkIntersect() {
   console.log(
-    'Intersect tick entering on',
-    isPlatformiOS() ? 'iOS' : 'Android',
+    `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}`,
   );
-
-  asyncCheckIntersect().then(result => {
-    if (result === null) {
-      console.log('[intersect] skipped');
-    } else {
-      console.log('[intersect] completed: ', result);
-    }
-  });
+  const result = await asyncCheckIntersect();
+  console.log(`[intersect] ${result ? 'completed' : 'skipped'}`);
 }
 
 /**
