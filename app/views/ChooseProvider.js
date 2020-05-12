@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import {
   Alert,
@@ -6,13 +5,11 @@ import {
   FlatList,
   Image,
   StyleSheet,
-  Switch,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {
   Menu,
-  MenuOption,
   MenuOptions,
   MenuTrigger,
   renderers,
@@ -24,6 +21,7 @@ import saveIcon from './../assets/images/saveIcon.png';
 import { Checkbox } from '../components/Checkbox';
 import { DynamicTextInput } from '../components/DynamicTextInput';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import TrustedSourceList from '../components/TrustedSourceList';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
@@ -55,6 +53,13 @@ class ChooseProviderScreen extends Component {
   handleBackPress = () => {
     this.props.navigation.goBack();
     return true;
+  };
+
+  onMenuClick = () => {
+    this.setState({
+      displayUrlEntry: 'flex',
+      urlEntryInProgress: true,
+    });
   };
 
   async componentDidMount() {
@@ -107,7 +112,7 @@ class ChooseProviderScreen extends Component {
   }
 
   // Add selected authorities to state, for display in the FlatList
-  addAuthorityToState(authority) {
+  addAuthorityToState = authority => {
     let authorityIndex = this.state.authoritiesList.findIndex(
       x => Object.keys(x)[0] === authority,
     );
@@ -133,7 +138,7 @@ class ChooseProviderScreen extends Component {
     } else {
       console.log('Not adding the duplicate to sources list');
     }
-  }
+  };
 
   addCustomUrlToState(urlInput) {
     if (urlInput === '') {
@@ -200,16 +205,16 @@ class ChooseProviderScreen extends Component {
     );
   }
 
-  toggleFilterAuthoritesByGPSHistory() {
+  toggleFilterAuthoritesByGPSHistory = () => {
     this.filterAuthoritesByGPSHistory({
       val: !this.state.isAuthorityFilterActive,
     });
-  }
+  };
 
-  async filterAuthoritesByGPSHistory(isAuthorityFilterActive) {
+  filterAuthoritesByGPSHistory = async isAuthorityFilterActive => {
     await this.fetchAuthoritiesList(isAuthorityFilterActive.val);
     this.setState({ isAuthorityFilterActive: isAuthorityFilterActive.val });
-  }
+  };
 
   async toggleAutoSubscribe() {
     this.setState(
@@ -346,54 +351,17 @@ class ChooseProviderScreen extends Component {
             </TouchableOpacity>
           </MenuTrigger>
           <MenuOptions>
-            {__DEV__ && (
-              <TouchableOpacity
-                style={styles.authorityFilter}
-                onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
-                <Typography style={styles.authorityFilterText} use={'body2'}>
-                  {languages.t('label.filter_authorities_by_gps_history')}
-                </Typography>
-                <Switch
-                  onValueChange={val =>
-                    this.filterAuthoritesByGPSHistory({ val })
-                  }
-                  value={this.state.isAuthorityFilterActive}
-                />
-              </TouchableOpacity>
-            )}
-            {this.state.authoritiesList === undefined
-              ? null
-              : this.state.authoritiesList.map(item => {
-                  let name = Object.keys(item)[0];
-                  let key = this.state.authoritiesList.indexOf(item);
-
-                  return (
-                    _.findIndex(this.state.selectedAuthorities, ['key', name]) <
-                      0 && (
-                      <MenuOption
-                        key={key}
-                        onSelect={() => {
-                          this.addAuthorityToState(name);
-                        }}
-                        disabled={this.state.authoritiesList.length === 1}>
-                        <Typography style={styles.menuOptionText} use={'body2'}>
-                          {name}
-                        </Typography>
-                      </MenuOption>
-                    )
-                  );
-                })}
-            <MenuOption
-              onSelect={() => {
-                this.setState({
-                  displayUrlEntry: 'flex',
-                  urlEntryInProgress: true,
-                });
-              }}>
-              <Typography style={styles.menuOptionText} use={'body2'}>
-                {languages.t('label.authorities_add_url')}
-              </Typography>
-            </MenuOption>
+            <TrustedSourceList
+              authoritiesList={this.state.authoritiesList}
+              selectedAuthorities={this.state.selectedAuthorities}
+              isAuthorityFilterActive={this.state.isAuthorityFilterActive}
+              toggleFilterAuthoritesByGPSHistory={
+                this.toggleFilterAuthoritesByGPSHistory
+              }
+              addAuthorityToState={this.addAuthorityToState}
+              filterAuthoritesByGPSHistory={this.filterAuthoritesByGPSHistory}
+              onMenuClick={this.onMenuClick}
+            />
           </MenuOptions>
         </Menu>
       </NavigationBarWrapper>
@@ -440,22 +408,6 @@ const styles = StyleSheet.create({
     marginTop: 12,
     overflow: 'scroll',
     color: Colors.VIOLET_TEXT,
-  },
-  authorityFilter: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 5,
-    backgroundColor: Colors.LIGHT_GRAY,
-    borderTopWidth: 3,
-    borderTopColor: Colors.DIVIDER,
-    justifyContent: 'space-between',
-  },
-  authorityFilterText: {
-    padding: 10,
-    color: Colors.VIOLET_TEXT,
-  },
-  menuOptionText: {
-    padding: 10,
   },
   flatlistRowView: {
     flexDirection: 'row',
