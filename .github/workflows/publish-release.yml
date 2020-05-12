@@ -84,7 +84,7 @@ jobs:
         env:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
         run: |
-          echo $SIGNING_KEY | base64 -di > release.keystore && cp keystore.jks app/keystore.jks && mkdir $HOME/keystores && cp keystore.jks $HOME/keystores
+          echo $SIGNING_KEY | base64 -di > keystore.jks && cp keystore.jks app/keystore.jks && mkdir $HOME/keystores && cp keystore.jks $HOME/keystores
         working-directory: ./android
 
       - name: Decode service account key
