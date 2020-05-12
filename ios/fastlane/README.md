@@ -31,9 +31,9 @@ Push a new staging build for automation
 fastlane ios beta
 ```
 Push a new beta build to TestFlight
-### ios testflight
+### ios deploy
 ```
-fastlane ios testflight
+fastlane ios deploy
 ```
 Push a new beta build to TestFlight
 
