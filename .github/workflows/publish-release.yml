@@ -11,35 +11,18 @@ on:
       - master
 
 jobs:
-  # version_bump:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         ref: ${{ github.ref }}
-
-  #     - name: "cat package.json"
-  #       run: cat ./package.json
-
-  #     - name: Cache node_modules/
-  #       uses: actions/cache@v1
-  #       id: node_cache
-  #       with:
-  #         path: node_modules
-  #         key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
-  #         restore-keys: |
-  #           ${{ runner.OS }}-yarn-cache-
-
-  #     - name: "Automated Version Bump"
-  #       uses: "phips28/gh-action-bump-version@master"
-  #       with:
-  #         tag-prefix: 'build'
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #     - name: "cat package.json"
-  #       run: cat ./package.json
+  version_bump:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.17.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+        DEFAULT_BUMP: minor
 
   # deploy_android:
   #   runs-on: ubuntu-latest
@@ -129,7 +112,7 @@ jobs:
 
   deploy_ios:
     runs-on: macOS-latest
-    # needs: version_bump
+    needs: version_bump
     steps:
       - uses: actions/checkout@master
 

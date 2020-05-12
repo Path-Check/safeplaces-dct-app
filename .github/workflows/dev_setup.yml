@@ -31,10 +31,6 @@ jobs:
       - name: Bundle JS
         run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
 
-      - name: Build APK (gradle)
-        run: ./gradlew assembleDebug --no-daemon
-        working-directory: ./android
-
   test-mac:
     runs-on: macOS-latest
     steps:
