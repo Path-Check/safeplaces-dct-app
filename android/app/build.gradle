@@ -171,12 +171,12 @@ android {
             keyPassword 'android'
         }
         release {
-            if (file("./release.keystore").exists()) {
-                System.out.println(project.property("android.injected.signing.key.alias"))
+            storeFile file('keystore.jks')
+            if (file("./keystore.jks").exists()) {
                 keyAlias project.property("android.injected.signing.key.alias")
                 keyPassword project.property("android.injected.signing.key.password")
                 storePassword project.property("android.injected.signing.store.password")
-                storeFile file("./release.keystore")
+                storeFile file("./keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')
             }
@@ -192,6 +192,7 @@ android {
             // signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
 
