@@ -11,74 +11,6 @@ on:
   #     - master
 
 jobs:
-  build_staging_android:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Cache node_modules/
-        uses: actions/cache@v1
-        id: node_cache
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
-
-      - name: Install Node Dependencies
-        if: steps.node_cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
-
-      - name: Setup kernel for react native, increase watchers for release versions.
-        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-
-      - name: Cache gradle
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6
-
-      - name: Install bundler for ruby package management
-        run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
-        working-directory: ./android
-
-      - name: Cache ruby gems
-        uses: actions/cache@v1
-        id: ruby_cache
-        with:
-          path: android/vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/android/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - name: Install Ruby Dependencies
-        if: steps.ruby_cache.outputs.cache-hit != 'true'
-        run: | 
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-        working-directory: ./android
-
-      - name: Build android Staging artifact
-        uses: maierj/fastlane-action@v1.4.0
-        with:
-          lane: 'staging'
-          subdirectory: 'android'
-          bundle-install-path: 'vendor/bundle'
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v1
-        with:
-          name: Debug APK (Android)
-          path: android/app/build/outputs/apk/staging/debug/app-staging-debug.apk
-
   build_staging_ios:
     runs-on: macOS-latest
     steps:
@@ -162,11 +94,25 @@ jobs:
       #     name: Debug (iOS) App (Simulators only)
       #     path: ios/COVIDSafePaths-staging.app.zip
 
-      - name: Bundle iOS JS for devices
-        run: |
-            yarn react-native bundle  --entry-file index.js --platform ios --dev false --bundle-output ./main.jsbundle --assets-dest ./ios && cp ./main.jsbundle ./app/assets/
+      # - name: Build iOS Staging artifact for devices
+      #   uses: maierj/fastlane-action@v1.4.0
+      #   env:
+      #     MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      #     FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+      #     MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+      #     SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      #   with:
+      #     lane: 'staging'
+      #     subdirectory: 'ios'
+      #     bundle-install-path: 'vendor/bundle'
 
-      - name: Build iOS Staging artifact for devices
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: Debug IPA file (work in progress)
+      #     path: ios/COVIDSafePaths-staging.ipa
+
+      - name: Build iOS Beta artifact for devices
         uses: maierj/fastlane-action@v1.4.0
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
@@ -174,7 +120,7 @@ jobs:
           MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          lane: 'staging'
+          lane: 'beta'
           subdirectory: 'ios'
           bundle-install-path: 'vendor/bundle'
 
@@ -182,4 +128,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: Debug IPA file (work in progress)
-          path: ios/COVIDSafePaths-staging.ipa
+          path: ios/COVIDSafePaths-beta.ipa
