@@ -23,8 +23,6 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      run: node --version
-
       - uses: phips28/gh-action-bump-version@v7.1.0
         with:
           github_token: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
