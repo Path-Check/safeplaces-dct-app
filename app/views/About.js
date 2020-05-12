@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Linking
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SvgXml } from 'react-native-svg';
@@ -27,6 +28,7 @@ class AboutScreen extends Component {
     super(props);
     this.state = {
       tapCount: 0, // tracks number of taps, for debugging
+      covidlink: 'covidsafepaths.org'  //website link
     };
   }
 
@@ -83,50 +85,18 @@ class AboutScreen extends Component {
           <View style={styles.spacer} />
           <View style={styles.spacer} />
 
-          <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
-          <Typography style={styles.aboutSectionTitles}>
-            {languages.t('label.commitment')}
-          </Typography>
+          <View style={styles.aboutLabelContainer}>
+            <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
+            <Typography style={styles.aboutSectionTitles}>
+              {languages.t('label.commitment')}
+            </Typography>
+          </View>
           <Typography style={styles.aboutSectionPara}>
-            {languages.t('label.commitment_para')}
+            {languages.t('label.commitment_para')} <Typography style={styles.aboutcovidhyperlink} onPress={() => {
+              Linking.openURL('https://covidsafepaths.org/');
+            }}>{this.state.covidlink}</Typography>
           </Typography>
 
-          <View
-            style={{
-              flexDirection: 'row',
-              alignContent: 'center',
-              marginTop: 36,
-            }}>
-            <SvgXml
-              onPress={this.handleTapTeam}
-              style={styles.aboutSectionIconTeam}
-              xml={team}
-              stroke={this.state.tapCount > 3 ? 'red' : undefined}
-            />
-            {this.state.tapCount > 3 && (
-              <TouchableOpacity onPress={this.handleExitDebugModePress}>
-                <Typography
-                  // eslint-disable-next-line react-native/no-color-literals
-                  style={{
-                    color: Colors.RED_TEXT,
-                    marginLeft: 12,
-                    borderRadius: 4,
-                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                    paddingHorizontal: 8,
-                    paddingVertical: 2,
-                    // eslint-disable-next-line react-native/no-raw-text
-                  }}>
-                  In exposure demo mode, tap to disable
-                </Typography>
-              </TouchableOpacity>
-            )}
-          </View>
-          <Typography style={styles.aboutSectionTitles}>
-            {languages.t('label.team')}
-          </Typography>
-          <Typography style={styles.aboutSectionPara}>
-            {languages.t('label.team_para')}
-          </Typography>
 
           <View style={styles.spacer} />
           <View style={styles.spacer} />
@@ -183,16 +153,23 @@ const styles = StyleSheet.create({
     width: 40.38,
     height: 19,
   },
+  aboutLabelContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
   aboutSectionIconLock: {
     width: 20,
     height: 26.67,
     marginTop: 36,
+
   },
   aboutSectionTitles: {
     color: Colors.VIOLET_TEXT,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
-    marginTop: 9,
+    marginTop: 36,
+    marginLeft: 10,
     lineHeight: 32,
   },
   aboutSectionPara: {
@@ -202,6 +179,15 @@ const styles = StyleSheet.create({
     marginTop: 12,
     alignSelf: 'center',
     fontFamily: fontFamily.primaryRegular,
+  },
+  aboutcovidhyperlink: {
+    color: Colors.VIOLET_TEXT,
+    fontSize: 16,
+    lineHeight: 22.5,
+    marginTop: 12,
+    alignSelf: 'center',
+    fontFamily: fontFamily.primaryRegular,
+    textDecorationLine: 'underline'
   },
   aboutSectionParaBold: {
     color: Colors.VIOLET_TEXT,
