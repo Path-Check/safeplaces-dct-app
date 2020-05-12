@@ -53,16 +53,16 @@ const Main = () => {
     checkIntersect();
   };
 
-  const handleBackPress = () => {
-    BackHandler.exitApp(); // works best when the goBack is async
-    return true;
-  };
-
   const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
     const state = await LocationServices.checkStatusAndStartOrStop();
     setLocation(state);
   }, [setLocation]);
+
+  const handleBackPress = () => {
+    BackHandler.exitApp(); // works best when the goBack is async
+    return true;
+  };
 
   useEffect(() => {
     updateStateInfo();
