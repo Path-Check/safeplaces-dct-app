@@ -32,6 +32,7 @@ import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import { HCAService } from '../services/HCAService';
+import SPKeyboardAvoidingView from './common/SPKeyboardAvoidingView';
 
 const { SlideInMenu } = renderers;
 
@@ -136,13 +137,24 @@ class ChooseProviderScreen extends Component {
     }
   }
 
-  addCustomUrlToState(urlInput) {
+  resetState = () => {
+    this.setState({
+      displayUrlEntry: 'none',
+      urlEntryInProgress: false,
+      urlText: '',
+    });
+  };
+
+  addCustomUrlToState = () => {
+    const urlInput = this.state.urlText;
     if (urlInput === '') {
       console.log('URL input was empty, not saving');
+      this.resetState();
     } else if (
       this.state.selectedAuthorities.findIndex(x => x.url === urlInput) != -1
     ) {
       console.log('URL input was duplicate, not saving');
+      this.resetState();
     } else {
       this.setState(
         {
@@ -152,6 +164,7 @@ class ChooseProviderScreen extends Component {
           }),
           displayUrlEntry: 'none',
           urlEntryInProgress: false,
+          urlText: '',
         },
         () => {
           // Add current settings state to async storage.
@@ -162,7 +175,7 @@ class ChooseProviderScreen extends Component {
         },
       );
     }
-  }
+  };
 
   removeAuthorityFromState(authority) {
     Alert.alert(
@@ -249,88 +262,56 @@ class ChooseProviderScreen extends Component {
             )}
           </View>
 
-          <View style={styles.listContainer}>
-            {Object.keys(this.state.selectedAuthorities).length == 0 ? (
-              <>
+          <SPKeyboardAvoidingView>
+            <View style={styles.listContainer}>
+              {this.state.selectedAuthorities.length == 0 &&
+              !this.state.urlEntryInProgress ? (
                 <Typography
                   style={[styles.sectionDescription, styles.noDataSourceText]}
                   use={'headline2'}>
                   {languages.t('label.authorities_no_sources')}
                 </Typography>
-                <View
-                  style={[
-                    styles.flatlistRowView,
-                    { display: this.state.displayUrlEntry },
-                  ]}>
-                  <DynamicTextInput
-                    onChangeText={text => {
-                      this.setState({
-                        urlText: text,
-                      });
-                    }}
-                    value={this.state.urlText}
-                    autoFocus={this.state.urlEntryInProgress}
-                    style={[styles.item, styles.textInput]}
-                    placeholder={languages.t(
-                      'label.authorities_input_placeholder',
+              ) : (
+                <>
+                  <View
+                    style={[
+                      styles.flatlistRowView,
+                      { display: this.state.displayUrlEntry },
+                    ]}>
+                    <DynamicTextInput
+                      onChangeText={text => {
+                        this.setState({
+                          urlText: text,
+                        });
+                      }}
+                      value={this.state.urlText}
+                      autoFocus={this.state.urlEntryInProgress}
+                      style={[styles.item, styles.textInput]}
+                      placeholder={languages.t('label.enter_authority_url')}
+                      onSubmitEditing={this.addCustomUrlToState}
+                    />
+                    <TouchableOpacity onPress={this.addCustomUrlToState}>
+                      <Image source={saveIcon} style={styles.saveIcon} />
+                    </TouchableOpacity>
+                  </View>
+                  <FlatList
+                    data={this.state.selectedAuthorities}
+                    renderItem={({ item }) => (
+                      <View style={styles.flatlistRowView}>
+                        <Typography style={styles.item} use={'body3'}>
+                          {item.key}
+                        </Typography>
+                        <TouchableOpacity
+                          onPress={() => this.removeAuthorityFromState(item)}>
+                          <Image source={closeIcon} style={styles.closeIcon} />
+                        </TouchableOpacity>
+                      </View>
                     )}
-                    onSubmitEditing={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }
                   />
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }>
-                    <Image source={saveIcon} style={styles.saveIcon} />
-                  </TouchableOpacity>
-                </View>
-              </>
-            ) : (
-              <>
-                <View
-                  style={[
-                    styles.flatlistRowView,
-                    { display: this.state.displayUrlEntry },
-                  ]}>
-                  <DynamicTextInput
-                    onChangeText={text => {
-                      this.setState({
-                        urlText: text,
-                      });
-                    }}
-                    value={this.state.urlText}
-                    autoFocus={this.state.urlEntryInProgress}
-                    style={[styles.item, styles.textInput]}
-                    placeholder={languages.t('label.enter_authority_url')}
-                    onSubmitEditing={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }
-                  />
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }>
-                    <Image source={saveIcon} style={styles.saveIcon} />
-                  </TouchableOpacity>
-                </View>
-                <FlatList
-                  data={this.state.selectedAuthorities}
-                  renderItem={({ item }) => (
-                    <View style={styles.flatlistRowView}>
-                      <Typography style={styles.item} use={'body3'}>
-                        {item.key}
-                      </Typography>
-                      <TouchableOpacity
-                        onPress={() => this.removeAuthorityFromState(item)}>
-                        <Image source={closeIcon} style={styles.closeIcon} />
-                      </TouchableOpacity>
-                    </View>
-                  )}
-                />
-              </>
-            )}
-          </View>
+                </>
+              )}
+            </View>
+          </SPKeyboardAvoidingView>
 
           <Menu
             name='AuthoritiesMenu'
@@ -418,7 +399,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     textAlignVertical: 'top',
     justifyContent: 'flex-start',
-    padding: 20,
+    padding: 10,
     width: '96%',
     alignSelf: 'center',
     backgroundColor: Colors.WHITE,
