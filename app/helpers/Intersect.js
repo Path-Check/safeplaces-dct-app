@@ -254,7 +254,7 @@ function binarySearchForTime(array, targetTime) {
  *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
 export async function checkIntersect() {
-  cconsole.log(
+  console.log(
     `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}`,
   );
   const result = await asyncCheckIntersect();
