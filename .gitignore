@@ -63,7 +63,6 @@ app/locales/*_old.json
 # CocoaPods
 /ios/Pods/
 .vscode/launch.json
-ios/Podfile.lock
 
 # Ruby gems
 ios/vendor/bundle/*

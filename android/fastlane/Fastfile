@@ -31,7 +31,7 @@ platform :android do
     )
   end 
 
-  desc "Build a Release  APK and AAB"
+  desc "Build a Release APK and AAB"
   lane :release do
 
     increment_version_code(
@@ -64,7 +64,10 @@ platform :android do
         "android.injected.signing.key.password" =>  ENV["KEY_PASSWORD"]
       }
     )
+  end
 
+  desc "Upload to google play store beta track"
+  lane :release do
     validate_play_store_json_key(
       json_key: "app/json_key.json",
     )
@@ -72,7 +75,7 @@ platform :android do
     upload_to_play_store(
       track: 'beta',
       skip_upload_apk: true,
-      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+      aab: 'app/build/outputs/bundle/prodRelease/app.aab',
     )
   end
 end
