@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
 import {
-  ScrollView,
   View,
-  RefreshControl,
   TouchableOpacity,
   Image,
   StyleSheet,
+  Text,
+  Card,
 } from 'react-native';
-import { Card, Text, Left } from 'native-base';
+import { Left } from 'native-base';
 import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen';
 import 'moment/locale/es';
 import moment from 'moment';
 //import { Notifications } from 'expo';
-import { Feels, LastBulletin, Aurora } from '../../DR/components/ActionCards'; // <LastBulletin navigation={navigation} />
-//import { getAllCases } from '../../DR/utils/requestManage';
-import styles from '../../DR/components/styles';
-import Colors from '../../DR/constants/Colors';
-import { SvgXml } from 'react-native-svg';
-import settingsIcon from './../../assets/svgs/settingsIcon';
+//import { Feels, Aurora } from '../../DR/components/ActionCards'; // <LastBulletin navigation={navigation} />
+import { requestManager } from '../../services/DR/requestManager';
+import styles from '../../components/DR/styles/styles';
+import Colors from '../../constants/DR/colors';
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -35,12 +33,12 @@ export default class HomeScreen extends Component {
 
   getCases = async () => {
     try {
-      // const {
-      //   cases,
-      //   deaths,
-      //   recovered,
-      //   todayCases,
-      // } = await await getAllCases();
+      const {
+        cases,
+        deaths,
+        recovered,
+        todayCases,
+      } = await await requestManager.getAllCases();
 
       this.setState({
         cases,
@@ -56,16 +54,18 @@ export default class HomeScreen extends Component {
 
   refresh = () => {
     this.setState({ refreshing: true });
-    this.getCases();
+    const cases = this.getCases();
+    console.log(cases);
   };
 
   async componentDidMount() {
     const { navigation } = this.props;
     navigation.setOptions({ headerShown: false });
-    this.getCases();
-    // this._notificationSubscription = Notifications.addListener(
-    //   this._handleNotification
-    // );
+    const cases = this.getCases();
+    console.log(cases);
+    this._notificationSubscription = Notifications.addListener(
+      this._handleNotification
+    );
   }
 
   getSettings() {
@@ -75,9 +75,6 @@ export default class HomeScreen extends Component {
         onPress={() => {
           this.props.navigation.navigate('SettingsScreen');
         }}>
-        {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
-        <Image resizeMode={'contain'} />
-        <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
       </TouchableOpacity>
     );
   }
@@ -129,7 +126,6 @@ export default class HomeScreen extends Component {
             </View>
 
             <View style={styles.marginAndAlign}>
-              <Feels navigation={navigation} />
               <View style={styles.marginAndAlign}>
                 <View style={styles.actualSituationContent}>
                   <Text style={[styles.subtitles, { alignSelf: 'center' }]}>
@@ -182,7 +178,6 @@ export default class HomeScreen extends Component {
                   </Card>
                 </TouchableOpacity>
               </View>
-              <Aurora navigation={navigation} />
             </View>
           </View>
         </View>
