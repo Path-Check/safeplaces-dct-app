@@ -6,6 +6,7 @@
 
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
+import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import { isPlatformiOS } from './../Util';
@@ -22,7 +23,6 @@ import {
   CROSSED_PATHS,
   KNOWN_INTERSECTIONS,
   LAST_CHECKED,
-  LOCATION_DATA,
 } from '../constants/storage';
 import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
@@ -280,19 +280,12 @@ function binarySearchForTime(array, targetTime) {
  *        from the authority (e.g. the news url) since we get that in the same call.
  *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
-export function checkIntersect() {
+export async function checkIntersect() {
   console.log(
-    'Intersect tick entering on',
-    isPlatformiOS() ? 'iOS' : 'Android',
+    `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}`,
   );
-
-  asyncCheckIntersect().then(result => {
-    if (result === null) {
-      console.log('[intersect] skipped');
-    } else {
-      console.log('[intersect] completed: ', result);
-    }
-  });
+  const result = await asyncCheckIntersect();
+  console.log(`[intersect] ${result ? 'completed' : 'skipped'}`);
 }
 
 /**
@@ -311,7 +304,6 @@ async function asyncCheckIntersect() {
     return null;
 
   // get the saved set of locations for the user, normalize and sort
-  let locationArray = normalizeAndSortLocations(await getSavedLocationArray());
 
   let knownIntersections = await getKnownIntersections();
 
@@ -319,6 +311,9 @@ async function asyncCheckIntersect() {
   let dayBins = getEmptyLocationBins();
   let name_news = [];
   let intersectionExposureCount = 0; // keep track of new interactions exposure period
+
+  // get the saved set of locations for the user, already sorted
+  let locationArray = await NativeModules.SecureStorageManager.getLocations();
 
   // get the health authorities
   let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
@@ -435,17 +430,6 @@ async function retrieveUrlAsJson(url) {
   let response = await fetch(url);
   let responseJson = await response.json();
   return responseJson;
-}
-
-/**
- * Gets the currently saved locations as a location array
- */
-async function getSavedLocationArray() {
-  let locationArrayString = await GetStoreData(LOCATION_DATA);
-  if (locationArrayString !== null) {
-    return JSON.parse(locationArrayString);
-  }
-  return [];
 }
 
 /** Set the app into debug mode */

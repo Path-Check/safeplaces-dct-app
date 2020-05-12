@@ -1,0 +1,226 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`no known exposure matches snapshot 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityIgnoresInvertColors={true}
+    style={
+      Object {
+        "flex": 1,
+        "height": "100%",
+        "justifyContent": "flex-end",
+        "resizeMode": "cover",
+        "width": "100%",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../app/assets/images/launchScreenBackground.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": "100%",
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "height": "100%",
+          "left": 0,
+          "position": "absolute",
+          "resizeMode": "contain",
+          "right": 0,
+          "top": "-13%",
+        }
+      }
+    >
+      <SvgXml
+        height={1334}
+        width={1334}
+        xml="<svg width=\\"850\\" height=\\"850\\" viewBox=\\"0 0 850 850\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+<path d=\\"M425 465C447.091 465 465 447.091 465 425C465 402.909 447.091 385 425 385C402.909 385 385 402.909 385 425C385 447.091 402.909 465 425 465Z\\" fill=\\"white\\"/>
+<path d=\\"M425 457C442.673 457 457 442.673 457 425C457 407.327 442.673 393 425 393C407.327 393 393 407.327 393 425C393 442.673 407.327 457 425 457Z\\" fill=\\"#41DCA4\\"/>
+<path d=\\"M425 412C417.832 412 412 417.832 412 425C412 432.168 417.832 438 425 438C432.168 438 438 432.168 438 425C438 417.832 432.168 412 425 412ZM425 435.075C419.436 435.075 414.925 430.565 414.925 425C414.925 419.436 419.436 414.925 425 414.925C430.564 414.925 435.075 419.436 435.075 425C435.075 430.565 430.564 435.075 425 435.075Z\\" fill=\\"white\\"/>
+<path d=\\"M430.844 419.727C430.22 419.215 429.298 419.305 428.786 419.93L423.15 426.797L421.24 424.334C420.745 423.695 419.826 423.58 419.188 424.074C418.55 424.57 418.433 425.488 418.928 426.127L421.962 430.039C422.235 430.391 422.653 430.599 423.098 430.605C423.104 430.606 423.111 430.606 423.118 430.606C423.556 430.606 423.97 430.409 424.249 430.071L431.047 421.785C431.559 421.161 431.469 420.239 430.844 419.727Z\\" fill=\\"white\\"/>
+<circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"85.5\\" stroke=\\"white\\"/>
+<circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"149.5\\" stroke=\\"white\\"/>
+<circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"217.5\\" stroke=\\"white\\"/>
+<circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"283.5\\" stroke=\\"white\\"/>
+<circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"352.5\\" stroke=\\"white\\"/>
+<circle opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"424.5\\" stroke=\\"white\\"/>
+</svg>"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "height": "100%",
+          "left": 0,
+          "paddingBottom": 12,
+          "paddingHorizontal": "12%",
+          "position": "absolute",
+          "right": 0,
+          "top": "-10%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "flex-end",
+            "paddingBottom": 40,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "flex-start",
+            "paddingTop": 80,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFF",
+              "fontFamily": "IBMPlexSans-Medium",
+              "fontSize": 26,
+              "fontWeight": "normal",
+              "lineHeight": 34,
+              "marginBottom": 24,
+              "textAlign": "center",
+              "writingDirection": "ltr",
+            }
+          }
+          use="body1"
+        >
+          No known contact
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#FFF",
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 18,
+              "fontWeight": "normal",
+              "lineHeight": 24.5,
+              "marginBottom": 24,
+              "textAlign": "center",
+              "writingDirection": "ltr",
+            }
+          }
+          use="body1"
+        >
+          Based on available data you haven’t been near anyone reported positive for COVID-19.
+        </Text>
+      </View>
+    </View>
+    <View>
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignContent": "flex-end",
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "padding": 20,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#E5E4E6",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 18,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "textAlign": "left",
+                "writingDirection": "ltr",
+              }
+            }
+            testID="MayoLinkHeading"
+            use="body1"
+          >
+            More COVID-19 information
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#E5E4E6",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 18,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "textAlign": "left",
+                "writingDirection": "ltr",
+              }
+            }
+            testID="MayoLinkLabel"
+            use="body1"
+          >
+            from the Mayo Clinic
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignSelf": "center",
+              "paddingLeft": 20,
+              "paddingRight": 20,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../app/assets/images/foreArrow.png",
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

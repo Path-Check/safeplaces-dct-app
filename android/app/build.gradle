@@ -1,4 +1,8 @@
 apply plugin: "com.android.application"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
 
 project.ext.envConfigFiles = [
     debug: ".env",
@@ -208,6 +212,8 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"
+    implementation project(':@mauron85_react-native-background-geolocation-common')
+    implementation 'com.bottlerocketstudios:vault:1.4.2'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/"
@@ -216,16 +222,14 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-    androidTestImplementation('com.wix:detox:+')  // detox: e2e testing
+    androidTestImplementation('com.wix:detox:+') // detox: e2e testing
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 allprojects {
     repositories {
         configurations.all {
-            // Fixes dependency conflict between react-native-local-assets and
-            // @mauron85/react-native-background-geolocation
-            exclude group: "commons-io", module: "commons-io"
-
             // To fix the app start crash error
             resolutionStrategy.eachDependency { DependencyResolveDetails details ->
                 def requested = details.requested
@@ -252,3 +256,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+repositories {
+  mavenCentral()
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, StyleSheet, View } from 'react-native';
+import { Linking, Modal, StyleSheet, View } from 'react-native';
 import loadLocalResource from 'react-native-local-resource';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
@@ -17,6 +17,8 @@ import { Typography } from './Typography';
 
 const EULA_FILES = { en, ht };
 
+const DEFAULT_EULA_URL = 'about:blank';
+
 export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const [modalVisible, setModalVisibility] = useState(false);
   const [boxChecked, toggleCheckbox] = useState(false);
@@ -25,6 +27,18 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
 
   // Pull the EULA in the correct language, with en as fallback
   const eulaPath = EULA_FILES[selectedLocale] || en;
+
+  // Any links inside the EULA should launch a separate browser otherwise you can get stuck inside the app
+  const shouldStartLoadWithRequestHandler = webViewState => {
+    let shouldLoadRequest = true;
+    if (webViewState.url !== DEFAULT_EULA_URL) {
+      // If the webpage to load isn't the EULA, load it in a separate browser
+      Linking.openURL(webViewState.url);
+      // Don't load the page if its being handled in a separate browser
+      shouldLoadRequest = false;
+    }
+    return shouldLoadRequest;
+  };
 
   // Load the EULA from disk
   useEffect(() => {
@@ -44,7 +58,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
       />
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
-          <Theme use='violet'>
+          <Theme use='default'>
             <SafeAreaView style={{ flex: 1 }}>
               <View style={{ flex: 7, paddingHorizontal: 5 }}>
                 <IconButton
@@ -54,7 +68,15 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                   accessibilityLabel='Close'
                   onPress={() => setModalVisibility(false)}
                 />
-                {html && <WebView style={{ flex: 1 }} source={{ html }} />}
+                {html && (
+                  <WebView
+                    style={{ flex: 1 }}
+                    source={{ html }}
+                    onShouldStartLoadWithRequest={
+                      shouldStartLoadWithRequestHandler
+                    }
+                  />
+                )}
               </View>
             </SafeAreaView>
           </Theme>

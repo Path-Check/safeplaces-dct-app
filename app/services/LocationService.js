@@ -1,15 +1,20 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
-import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
+import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { areLocationsNearby } from '../helpers/Intersect';
 import languages from '../locales/languages';
-import { isPlatformAndroid } from '../Util';
 
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION = '55';
+
+export const Reason = {
+  LOCATION_OFF: 'LOCATION_OFF',
+  NOT_AUTHORIZED: 'NOT_AUTHORIZED',
+  USER_OFF: 'USER_OFF',
+};
 
 export class LocationData {
   constructor() {
@@ -24,114 +29,7 @@ export class LocationData {
   }
 
   async getLocationData() {
-    const locationArrayString = await GetStoreData(LOCATION_DATA);
-    let locationArray = [];
-
-    if (locationArrayString !== null) {
-      locationArray = JSON.parse(locationArrayString);
-    }
-
-    return locationArray;
-  }
-
-  async getPointStats() {
-    const locationData = await this.getLocationData();
-
-    let lastPoint = null;
-    let firstPoint = null;
-    let pointCount = 0;
-
-    if (locationData.length) {
-      lastPoint = locationData.slice(-1)[0];
-      firstPoint = locationData[0];
-      pointCount = locationData.length;
-    }
-
-    return {
-      lastPoint,
-      firstPoint,
-      pointCount,
-    };
-  }
-
-  saveLocation(location) {
-    // Persist this location data in our local storage of time/lat/lon values
-    this.getLocationData().then(locationArray => {
-      // Always work in UTC, not the local time in the locationData
-      let unixtimeUTC = Math.floor(location['time']);
-      let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
-
-      // Verify that at least the minimum amount of time between saves has passed
-      // This ensures that no matter how fast GPS coords are delivered, saving
-      // does not happen any faster than the minLocationSaveInterval
-      if (locationArray.length >= 1) {
-        let lastSaveTime = locationArray[locationArray.length - 1]['time'];
-        if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
-          //console.log('[INFO] Discarding point (too soon):', unixtimeUTC);
-          return;
-        }
-      }
-
-      // Curate the list of points, only keep the last 28 days
-      let curated = [];
-      for (let i = 0; i < locationArray.length; i++) {
-        if (locationArray[i]['time'] > unixtimeUTC_28daysAgo) {
-          curated.push(locationArray[i]);
-        }
-      }
-
-      // Backfill the stationary points, if available
-      // The assumption is that if we see a gap in the data, and the
-      // device hasn't moved significantly, then we can fill in the missing data
-      // with the current location.  This makes it easier for a health authority
-      // person to have a set of locations over time, and they can manually
-      // redact the time frames that aren't correct.
-      if (curated.length >= 1) {
-        let lastLocationArray = curated[curated.length - 1];
-
-        let areCurrentPreviousNearby = areLocationsNearby(
-          lastLocationArray['latitude'],
-          lastLocationArray['longitude'],
-          location['latitude'],
-          location['longitude'],
-        );
-        //console.log('[INFO] nearby:', nearby);
-
-        // Actually do the backfill if the current point is nearby the previous
-        // point and the time is within the maximum time to backfill.
-        let lastRecordedTime = lastLocationArray['time'];
-        if (
-          areCurrentPreviousNearby &&
-          unixtimeUTC - lastRecordedTime < this.maxBackfillTime
-        ) {
-          for (
-            let newTS = lastRecordedTime + this.locationInterval;
-            newTS < unixtimeUTC - this.locationInterval;
-            newTS += this.locationInterval
-          ) {
-            let lat_lon_time = {
-              latitude: lastLocationArray['latitude'],
-              longitude: lastLocationArray['longitude'],
-              time: newTS,
-            };
-            //console.log('[INFO] backfill location:', lat_lon_time);
-            curated.push(lat_lon_time);
-          }
-        }
-      }
-
-      // Save the location using the current lat-lon and the
-      // recorded GPS timestamp
-      let lat_lon_time = {
-        latitude: location['latitude'],
-        longitude: location['longitude'],
-        time: unixtimeUTC,
-      };
-      curated.push(lat_lon_time);
-      console.log('[INFO] saved location:', lat_lon_time);
-
-      SetStoreData(LOCATION_DATA, curated);
-    });
+    return NativeModules.SecureStorageManager.getLocations();
   }
 
   /**
@@ -229,6 +127,7 @@ export default class LocationServices {
 
     // PushNotificationIOS.requestPermissions();
     BackgroundGeolocation.configure({
+      maxLocations: 0,
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
       stationaryRadius: 5,
       distanceFilter: 5,
@@ -248,38 +147,6 @@ export default class LocationServices {
       saveBatteryOnBackground: true,
       stopOnStillActivity: false,
     });
-
-    BackgroundGeolocation.on('location', location => {
-      // handle your locations here
-      /* SAMPLE OF LOCATION DATA OBJECT
-                {
-                  "accuracy": 20, "altitude": 5, "id": 114, "isFromMockProvider": false,
-                  "latitude": 37.4219983, "locationProvider": 1, "longitude": -122.084,
-                  "mockLocationsEnabled": false, "provider": "fused", "speed": 0,
-                  "time": 1583696413000
-                }
-            */
-      // to perform long running operation on iOS
-      // you need to create background task
-      BackgroundGeolocation.startTask(taskKey => {
-        // execute long running task
-        // eg. ajax post location
-        // IMPORTANT: task has to be ended by endTask
-        locationData.saveLocation(location);
-        BackgroundGeolocation.endTask(taskKey);
-      });
-    });
-
-    if (isPlatformAndroid()) {
-      // This feature only is present on Android.
-      BackgroundGeolocation.headlessTask(async event => {
-        // Application was shutdown, but the headless mechanism allows us
-        // to capture events in the background.  (On Android, at least)
-        if (event.name === 'location' || event.name === 'stationary') {
-          locationData.saveLocation(event.params);
-        }
-      });
-    }
 
     BackgroundGeolocation.on('error', error => {
       console.log('[ERROR] BackgroundGeolocation error:', error);
@@ -446,7 +313,70 @@ export default class LocationServices {
 
     isBackgroundGeolocationConfigured = false;
     SetStoreData(PARTICIPATE, 'false').then(() => {
-      // nav.navigate('LocationTrackingScreen', {});
+      // nav.navigate('Main', {});
     });
+  }
+  static getHasPotentialExposure() {
+    return new Promise(resolve => {
+      GetStoreData(CROSSED_PATHS).then(dayBin => {
+        dayBin = JSON.parse(dayBin);
+        if (dayBin !== null && dayBin.some(exposure => exposure > 0)) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+    });
+  }
+  static getParticpating() {
+    return new Promise(resolve => {
+      GetStoreData(PARTICIPATE, false).then(isParticipating => {
+        resolve(isParticipating);
+      });
+    });
+  }
+
+  static getBackgroundGeoStatus() {
+    return new Promise(resolve => {
+      BackgroundGeolocation.checkStatus(status => {
+        resolve(status);
+      });
+    });
+  }
+
+  static async checkStatus() {
+    const hasPotentialExposure = await this.getHasPotentialExposure();
+    const particpating = await this.getParticpating();
+
+    if (!particpating) {
+      return {
+        canTrack: false,
+        reason: Reason.USER_OFF,
+        hasPotentialExposure: hasPotentialExposure,
+      };
+    }
+
+    const status = await this.getBackgroundGeoStatus();
+    if (!status.locationServicesEnabled) {
+      return {
+        canTrack: false,
+        reason: Reason.LOCATION_OFF,
+        hasPotentialExposure: hasPotentialExposure,
+      };
+    }
+
+    if (status.authorization != BackgroundGeolocation.AUTHORIZED) {
+      return {
+        canTrack: false,
+        reason: Reason.NOT_AUTHORIZED,
+        hasPotentialExposure: hasPotentialExposure,
+      };
+    }
+
+    return {
+      canTrack: true,
+      reason: '',
+      hasPotentialExposure: hasPotentialExposure,
+    };
   }
 }
