@@ -58,7 +58,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: run tests
+      - name: ./gradlew :app:connectedDebugAndroidTest --no-daemon
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 28
