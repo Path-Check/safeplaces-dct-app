@@ -25,7 +25,7 @@ jobs:
 
       - uses: tool3/bump@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           branch: 'develop'
 
   deploy_android:
