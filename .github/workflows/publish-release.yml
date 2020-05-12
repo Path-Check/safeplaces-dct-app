@@ -2,10 +2,10 @@ name: Publish Release Candidates to Play Store and Testflight
 
 on:
   push:
-    branches:
-      - develop
-      - release-candidate
-      - master
+    # branches:
+    #   - develop
+    #   - release-candidate
+    #   - master
   pull_request:
     branches:
       - develop
