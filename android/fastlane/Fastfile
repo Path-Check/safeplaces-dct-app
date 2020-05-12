@@ -23,7 +23,7 @@ platform :android do
 
   JS_PACKAGE = load_json(json_path: "../package.json")
 
-  desc "Build a Beta APK and AAB"
+  desc "Build a Staging APK and AAB"
   lane :staging do
     gradle(
       task: "clean assembleStagingDebug",
@@ -31,7 +31,7 @@ platform :android do
     )
   end 
 
-  desc "Build a Release APK and AAB"
+  desc "Build a Release  APK and AAB"
   lane :release do
 
     increment_version_code(
@@ -64,10 +64,7 @@ platform :android do
         "android.injected.signing.key.password" =>  ENV["KEY_PASSWORD"]
       }
     )
-  end
 
-  desc "Upload to Google playstore beta track"
-  lane :play_store do
     validate_play_store_json_key(
       json_key: "app/json_key.json",
     )
@@ -75,7 +72,7 @@ platform :android do
     upload_to_play_store(
       track: 'beta',
       skip_upload_apk: true,
-      aab: 'android/app/build/outputs/bundle/release/app.aab',
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
     )
   end
 end
