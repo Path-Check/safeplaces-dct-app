@@ -14,13 +14,21 @@ on:
 
 jobs:
   version_bump:
-    name: "Bump Package.json version"
+    name: "Bump version"
     runs-on: ubuntu-latest
-    uses: remorses/bump-version@js
-    with:
-        version_file: ./versions.yaml
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: develop
+
+    steps:
+      - name: "Checkout source code"
+        uses: "actions/checkout@v2"
+        with:
+          ref: ${{ github.ref }}
+
+      run: node --version
+
+      - uses: phips28/gh-action-bump-version@v7.1.0
+        with:
+          github_token: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+          branch: 'develop'
 
   deploy_android:
     runs-on: ubuntu-latest
