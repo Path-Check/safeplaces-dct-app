@@ -99,7 +99,7 @@ platform :ios do
 
       build_ios_app(
         workspace: WORKSPACE,
-        scheme: STAGING_SCHEME,
+        scheme: BETA_SCHEME,
         configuration: "Beta",
         export_method: "ad-hoc",
         silent: true,

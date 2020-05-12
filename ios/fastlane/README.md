@@ -30,7 +30,12 @@ Push a new staging build for automation
 ```
 fastlane ios beta
 ```
-Push a new beta build to TestFlight
+Push a new Beta build (AdHoc Signed Release build)
+### ios release
+```
+fastlane ios release
+```
+Push a new Release build to TestFlight
 ### ios deploy
 ```
 fastlane ios deploy
