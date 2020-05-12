@@ -149,7 +149,7 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :deploy do
       upload_to_testflight(
-        changelog: "WIP, should be using git commits?"
+        skip_waiting_for_build_processing: true,
       ) 
   end
 end

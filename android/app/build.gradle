@@ -172,6 +172,7 @@ android {
         }
         release {
             if (file("./keystore.jks").exists()) {
+                System.out.println(project.property("android.injected.signing.key.alias"));
                 keyAlias project.property("android.injected.signing.key.alias")
                 keyPassword project.property("android.injected.signing.key.password")
                 storePassword project.property("android.injected.signing.store.password")
