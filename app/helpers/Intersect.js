@@ -254,18 +254,11 @@ function binarySearchForTime(array, targetTime) {
  *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
 export async function checkIntersect() {
-  console.log(
-    'Intersect tick entering on',
-    isPlatformiOS() ? 'iOS' : 'Android',
+  cconsole.log(
+    `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}`,
   );
-
   const result = await asyncCheckIntersect();
-
-  if (result === null) {
-    console.log('[intersect] skipped');
-  } else {
-    console.log('[intersect] completed');
-  }
+  console.log(`[intersect] ${result ? 'completed' : 'skipped'}`);
 }
 
 /**
