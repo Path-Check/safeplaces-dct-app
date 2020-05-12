@@ -58,8 +58,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - run: ./gradlew :app:connectedDebugAndroidTest --no-daemon --stacktrace
-        working-directory: ./android
+      - name: run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 28
+          script: ./gradlew :app:connectedDebugAndroidTest --no-daemon
+          working-directory: ./android
 
   e2e-ios-build:
     runs-on: macOS-latest
