@@ -49,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: Debug APK
-          path: android/app/build/outputs/apk/dev/debug/app-debug.apk
+          path: android/app/build/outputs/apk/dev/debug/app-dev-debug.apk
 
   # attempt a release build, some things work in debug and not in release
   build-android-release:
