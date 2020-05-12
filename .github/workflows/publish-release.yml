@@ -2,10 +2,10 @@ name: Publish Release Candidates to Play Store and Testflight
 
 on:
   push:
-    # branches:
-    #   - develop
-    #   - release-candidate
-    #   - master
+    branches:
+      - develop
+      - release-candidate
+      - master
   pull_request:
     branches:
       - develop
@@ -14,19 +14,13 @@ on:
 
 jobs:
   version_bump:
-    name: "Bump Version on master"
+    name: "Bump Package.json version"
     runs-on: ubuntu-latest
-
-    steps:
-      - name: "Checkout source code"
-        uses: "actions/checkout@v2"
-        with:
-          ref: ${{ github.ref }}
-
-      - uses: tool3/bump@master
-        with:
-          github_token: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
-          branch: 'develop'
+    uses: remorses/bump-version@js
+    with:
+        version_file: ./versions.yaml
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: develop
 
   deploy_android:
     runs-on: ubuntu-latest
