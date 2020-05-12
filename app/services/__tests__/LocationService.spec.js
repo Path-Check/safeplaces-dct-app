@@ -210,7 +210,7 @@ describe('LocationServices', () => {
 
       const status = await LocationServices.checkStatusAndStartOrStop();
 
-      expect(status).toBe({
+      expect(status).toEqual({
         canTrack: true,
         hasPotentialExposure: false,
         isRunning: true,
