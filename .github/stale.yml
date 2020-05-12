@@ -11,10 +11,10 @@ daysUntilClose: 2
 onlyLabels: []
 
 # Issues or Pull Requests with these labels will never be considered stale. Set to `[]` to disable
-exemptLabels:
-  - pinned
-  - security
-  - "[Status] Maybe Later"
+# exemptLabels:
+#   - pinned
+#   - security
+#   - "[Status] Maybe Later"
 
 # Set to true to ignore issues in a project (defaults to false)
 exemptProjects: false
