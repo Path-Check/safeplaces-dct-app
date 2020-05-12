@@ -1,3 +1,5 @@
+name: Publish Release Candidates to Play Store and Testflight
+
 on:
   push:
     branches:
