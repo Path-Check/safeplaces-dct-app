@@ -26,7 +26,7 @@ jobs:
   #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   #       WITH_V: true
   #       DEFAULT_BUMP: minor
-    version_bump:
+  version_bump:
     name: "Bump Version on master"
     runs-on: ubuntu-latest
 
