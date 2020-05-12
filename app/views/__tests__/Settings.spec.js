@@ -4,21 +4,22 @@ import { act, render } from '@testing-library/react-native';
 import React from 'react';
 
 import { FlagsProvider } from '../../helpers/flags';
+import { GetStoreData } from '../../helpers/General';
 import * as languages from '../../locales/languages';
 import { SettingsScreen } from '../Settings';
 
 jest.mock('../../helpers/General', () => {
   return {
-    GetStoreData: jest.fn().mockResolvedValue('true'),
+    GetStoreData: jest.fn(),
   };
 });
-
-jest.useFakeTimers();
 
 let BACKUP_LOCALE_LIST;
 let BACKUP_LOCALE_NAME;
 
 beforeEach(() => {
+  jest.useFakeTimers();
+  GetStoreData.mockResolvedValue('true');
   BACKUP_LOCALE_LIST = languages.LOCALE_LIST;
   BACKUP_LOCALE_NAME = languages.LOCALE_NAME;
   languages.LOCALE_LIST = [
