@@ -156,18 +156,18 @@ jobs:
           bundle install --jobs 4 --retry 3
         working-directory: ./ios
 
-      - name: Cache CocoaPods
-        uses: actions/cache@v1
-        id: cocoapods_cache
-        with:
-          path: ios/Pods
-          key: ${{ runner.OS }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-pods-
+      # - name: Cache CocoaPods
+      #   uses: actions/cache@v1
+      #   id: cocoapods_cache
+      #   with:
+      #     path: ios/Pods
+      #     key: ${{ runner.OS }}-pods-${{ hashFiles('**/Podfile.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.OS }}-pods-
 
       - name: Install Cocoapods
-        if: steps.cocoapods_cache.outputs.cache-hit != 'true'
-        run: pod install --repo-update
+      #   if: steps.cocoapods_cache.outputs.cache-hit != 'true'
+        run: bundle exec pod install --repo-update
         working-directory: ./ios
 
       - name: Setup SSH Keys and known_hosts
