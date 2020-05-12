@@ -23,7 +23,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - uses: tool3/bump@v1
+      - uses: tool3/bump@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: 'develop'
