@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`base 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="assessment-button"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 12,
+            "padding": 14,
+          },
+          Object {
+            "backgroundColor": "rgb(0,121,253)",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFF",
+            "fontFamily": "IBMPlexSans-Bold",
+            "fontSize": 18,
+            "textAlign": "center",
+          }
+        }
+      >
+        Next
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`color 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="assessment-button"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 12,
+            "padding": 14,
+          },
+          Object {
+            "backgroundColor": "red",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFF",
+            "fontFamily": "IBMPlexSans-Bold",
+            "fontSize": 18,
+            "textAlign": "center",
+          }
+        }
+      >
+        Next
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`disabled 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="assessment-button"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 12,
+            "padding": 14,
+          },
+          Object {
+            "backgroundColor": "#868686",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFF",
+            "fontFamily": "IBMPlexSans-Bold",
+            "fontSize": 18,
+            "textAlign": "center",
+          }
+        }
+      >
+        Next
+      </Text>
+    </View>
+  </View>
+</View>
+`;

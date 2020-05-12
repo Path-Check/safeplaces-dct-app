@@ -40,7 +40,7 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
       let l = line.trim();
       if (!l) continue;
       elements.push(
-        <Text key={l} style={styles.description}>
+        <Text testID='description' key={l} style={styles.description}>
           {l}
         </Text>,
       );
@@ -84,7 +84,7 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
   };
   useEffect(() => {
     onChange(selectedValues);
-  }, [selectedValues]);
+  }, [selectedValues, onChange]);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.containerInner}>

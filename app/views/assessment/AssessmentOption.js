@@ -69,7 +69,8 @@ const AssessmentOption = ({
             return;
           }
           onSelect(option.value);
-        }}>
+        }}
+        testID='option'>
         <View style={[styles.container, selected && styles.containerSelected]}>
           <View style={styles.primary}>
             {showIndicator && (
@@ -92,7 +93,9 @@ const AssessmentOption = ({
                   )}
               </View>
             )}
-            <Text style={styles.title}>{label}</Text>
+            <Text style={styles.title} testID='label'>
+              {label}
+            </Text>
           </View>
           <View style={styles.content}>
             {option.description ? (
@@ -114,6 +117,7 @@ const AssessmentOption = ({
             }
           }}
           timeZoneOffsetInMinutes={0}
+          testID='datepicker'
           value={date}
         />
       )}

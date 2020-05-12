@@ -52,7 +52,9 @@ const AssessmentShare = ({
             {title}
           </Text>
           {description ? (
-            <Text style={styles.description}>{description}</Text>
+            <Text style={styles.description} testID='description'>
+              {description}
+            </Text>
           ) : null}
           {children}
         </View>

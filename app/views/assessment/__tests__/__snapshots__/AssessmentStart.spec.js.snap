@@ -1,0 +1,230 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`base 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#F5F8FC",
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../app/assets/images/assessment/illustration-screening-start.png",
+            }
+          }
+          style={
+            Object {
+              "height": 600,
+              "width": 750,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "padding": 20,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "flexDirection": "row",
+                "marginBottom": 10,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../app/assets/images/assessment/logo-cdc.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 29,
+                  "marginRight": 10,
+                  "width": 47,
+                }
+              }
+            />
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../app/assets/images/assessment/logo-mit-media-lab.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 32,
+                  "width": 58,
+                }
+              }
+            />
+          </View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 30,
+                  "marginBottom": 10,
+                },
+                Object {
+                  "color": undefined,
+                },
+              ]
+            }
+          >
+            COVID-19 Screening
+          </Text>
+          <View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "marginTop": 20,
+                  "paddingHorizontal": 10,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../app/assets/images/assessment/icon-health.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 38,
+                    "marginRight": 20,
+                    "width": 38,
+                  }
+                }
+              />
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 18,
+                    "lineHeight": 22,
+                  }
+                }
+              >
+                Answer a few easy questions about symptoms, travel, and contact you've had.
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "marginTop": 20,
+                  "paddingHorizontal": 10,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../app/assets/images/assessment/icon-private.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 38,
+                    "marginRight": 20,
+                    "width": 38,
+                  }
+                }
+              />
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 18,
+                    "lineHeight": 22,
+                  }
+                }
+              >
+                Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+    <View
+      style={
+        Object {
+          "padding": 20,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="assessment-button"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderRadius": 12,
+                "padding": 14,
+              },
+              Object {
+                "backgroundColor": "rgb(0,121,253)",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#FFF",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 18,
+                "textAlign": "center",
+              }
+            }
+          >
+            Start
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTSafeAreaView>
+</View>
+`;

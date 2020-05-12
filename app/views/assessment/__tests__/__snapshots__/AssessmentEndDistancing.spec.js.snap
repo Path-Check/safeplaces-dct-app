@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`base 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#F5F8FC",
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../app/assets/images/assessment/illustration-screening-end-distancing.png",
+            }
+          }
+          style={
+            Object {
+              "height": 600,
+              "width": 750,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "padding": 20,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 30,
+                  "marginBottom": 10,
+                },
+                Object {
+                  "color": undefined,
+                },
+              ]
+            }
+          >
+            Distancing & PPE
+          </Text>
+          <Text
+            style={
+              Object {
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 20,
+                "lineHeight": 26,
+                "marginBottom": 30,
+              }
+            }
+            testID="description"
+          >
+            Please follow your local, state, or national guidlines for 
+            <Text
+              style={
+                Object {
+                  "fontFamily": "IBMPlexSans-Bold",
+                }
+              }
+            >
+              social distancing
+            </Text>
+             and Personal Protection Equipment (PPE) like masks and/or gloves. No additional action is needed at this time.
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+    <View
+      style={
+        Object {
+          "padding": 20,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="assessment-button"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderRadius": 12,
+                "padding": 14,
+              },
+              Object {
+                "backgroundColor": "rgb(0,121,253)",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#FFF",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 18,
+                "textAlign": "center",
+              }
+            }
+          >
+            Next
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTSafeAreaView>
+</View>
+`;

@@ -22,7 +22,10 @@ const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
     ? Colors.GRAY_BUTTON
     : AssessmentColors.CTA);
   return (
-    <TouchableOpacity onPress={onPress} disabled={disabled}>
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={disabled}
+      testID='assessment-button'>
       <View
         style={[
           styles.cta,

@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SCREEN_TYPE_CHECKBOX 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="option"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#FFF",
+            "borderColor": "rgb(173,188,205)",
+            "borderRadius": 8,
+            "borderWidth": 2,
+            "marginBottom": 16,
+            "padding": 10,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "rgb(173,188,205)",
+                "borderRadius": 40,
+                "borderWidth": 2,
+                "height": 20,
+                "justifyContent": "center",
+                "marginRight": 10,
+                "width": 20,
+              },
+              undefined,
+            ]
+          }
+        />
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "flexWrap": "wrap",
+              "fontFamily": "IBMPlexSans-SemiBold",
+              "fontSize": 20,
+            }
+          }
+          testID="label"
+        >
+          Label
+        </Text>
+      </View>
+      <View>
+        <Text
+          style={
+            Object {
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 16,
+              "marginLeft": 30,
+            }
+          }
+        >
+          Description
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`SCREEN_TYPE_RADIO 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="option"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#FFF",
+            "borderColor": "rgb(173,188,205)",
+            "borderRadius": 8,
+            "borderWidth": 2,
+            "marginBottom": 16,
+            "padding": 10,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "rgb(173,188,205)",
+                "borderRadius": 40,
+                "borderWidth": 2,
+                "height": 20,
+                "justifyContent": "center",
+                "marginRight": 10,
+                "width": 20,
+              },
+              undefined,
+            ]
+          }
+        />
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "flexWrap": "wrap",
+              "fontFamily": "IBMPlexSans-SemiBold",
+              "fontSize": 20,
+            }
+          }
+          testID="label"
+        >
+          Label
+        </Text>
+      </View>
+      <View>
+        <Text
+          style={
+            Object {
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 16,
+              "marginLeft": 30,
+            }
+          }
+        >
+          Description
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
