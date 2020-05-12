@@ -1,3 +1,5 @@
+name: Staging Android
+
 on:
   push:
     branches:

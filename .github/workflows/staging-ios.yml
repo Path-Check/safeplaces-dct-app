@@ -1,3 +1,5 @@
+name: Staging iOS
+
 on:
   push:
     branches:
