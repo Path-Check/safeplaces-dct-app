@@ -242,7 +242,7 @@ export default class LocationServices {
 
   static async getHasPotentialExposure() {
     const dayBin = await GetStoreData(CROSSED_PATHS, false);
-    return dayBin && dayBin.some(exposure => exposure > 0);
+    return !!dayBin && dayBin.some(exposure => exposure > 0);
   }
 
   static async getParticpating() {
@@ -298,7 +298,7 @@ export default class LocationServices {
     return {
       canTrack: true,
       reason: '',
-      hasPotentialExposure: hasPotentialExposure,
+      hasPotentialExposure,
       isRunning,
     };
   }
