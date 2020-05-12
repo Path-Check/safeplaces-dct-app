@@ -84,10 +84,10 @@ jobs:
         working-directory: ./ios
 
       # TODO: remove the skip on COVIDSafePathsTests/testRendersWelcomeScreen once it's passing
-      - run: >
-          xcodebuild test -workspace COVIDSafePaths.xcworkspace
-            -scheme COVIDSafePathsTests
-            -destination 'platform=iOS Simulator,name=iPhone 8'
+      - run: |
+          xcodebuild test -workspace COVIDSafePaths.xcworkspace \
+            -scheme COVIDSafePathsTests \
+            -destination 'platform=iOS Simulator,name=iPhone 8' \
             -skip-testing COVIDSafePathsTests/COVIDSafePathsTests/testRendersWelcomeScreen
 
   e2e-ios-build:
