@@ -13,19 +13,6 @@ on:
       - master
 
 jobs:
-  # version_bump:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: '0'
-  #       ref: ${{ github.ref }}
-  #   - name: Bump version and push tag
-  #     uses: anothrNick/github-tag-action@1.17.2
-  #     env:
-  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #       WITH_V: true
-  #       DEFAULT_BUMP: minor
   version_bump:
     name: "Bump Version on master"
     runs-on: ubuntu-latest
@@ -41,8 +28,6 @@ jobs:
 
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
-        with:
-          tag-prefix: 'release-candidate-'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: "cat package.json"
