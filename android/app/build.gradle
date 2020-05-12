@@ -152,8 +152,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 18
-        versionName "1.0.4"
+        versionCode 20
+        versionName "1.0.8"
     }
     splits {
         abi {
@@ -171,11 +171,12 @@ android {
             keyPassword 'android'
         }
         release {
-            if (file("./keystore.jks").exists()) {
+            if (file("./release.keystore").exists()) {
+                System.out.println(project.property("android.injected.signing.key.alias"))
                 keyAlias project.property("android.injected.signing.key.alias")
                 keyPassword project.property("android.injected.signing.key.password")
                 storePassword project.property("android.injected.signing.store.password")
-                storeFile file("./keystore.jks")
+                storeFile file("./release.keystore")
             } else {
                 project.logger.lifecycle('Could not find release key')
             }
