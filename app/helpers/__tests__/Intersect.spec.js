@@ -126,14 +126,14 @@ describe('intersect with empty sets', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let { bins, newIntersections } = intersectSetIntoBins(
+    let { bins, newIntersectionCount } = intersectSetIntoBins(
       baseLocations,
       concernLocations,
     );
     let expectedBins = getEmptyLocationBins();
 
     expect(bins).toEqual(expectedBins);
-    expect(newIntersections).toBe(0);
+    expect(newIntersectionCount).toBe(0);
   });
 
   /**
@@ -178,14 +178,14 @@ describe('intersect with empty sets', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let { bins, newIntersections } = intersectSetIntoBins(
+    let { bins, newIntersectionCount } = intersectSetIntoBins(
       baseLocations,
       concernLocations,
     );
     let expectedBins = getEmptyLocationBins();
 
     expect(bins).toEqual(expectedBins);
-    expect(newIntersections).toBe(0);
+    expect(newIntersectionCount).toBe(0);
   });
 
   /**
@@ -232,7 +232,7 @@ describe('intersect with empty sets', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let { bins, newIntersections } = intersectSetIntoBins(
+    let { bins, newIntersectionCount } = intersectSetIntoBins(
       baseLocations,
       concernLocations,
     );
@@ -244,7 +244,7 @@ describe('intersect with empty sets', () => {
     expectedBins[10] = 0; // expect 0 (not -1) becuase we have location data for this bin
 
     expect(bins).toEqual(expectedBins);
-    expect(newIntersections).toBe(0);
+    expect(newIntersectionCount).toBe(0);
   });
 });
 
@@ -731,15 +731,15 @@ describe('intersect at fixed locations and times', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let intersections = {};
+    let knownIntersections = {};
 
-    let { newIntersections } = intersectSetIntoBins(
+    let { newIntersectionCount } = intersectSetIntoBins(
       baseLocations,
       concernLocations,
-      intersections,
+      knownIntersections,
     );
 
-    expect(newIntersections).toBe(0);
+    expect(newIntersectionCount).toBe(0);
   });
 
   /**
@@ -765,22 +765,22 @@ describe('intersect at fixed locations and times', () => {
     baseLocations = normalizeAndSortLocations(baseLocations);
     concernLocations = normalizeAndSortLocations(concernLocations);
 
-    let intersections = {};
+    let knownIntersections = {};
 
-    let { newIntersections } = intersectSetIntoBins(
+    let { newIntersectionCount } = intersectSetIntoBins(
       baseLocations,
       concernLocations,
-      intersections,
+      knownIntersections,
     );
 
-    expect(newIntersections).toBe(3900000);
+    expect(newIntersectionCount).toBe(3900000);
 
-    newIntersections = intersectSetIntoBins(
+    newIntersectionCount = intersectSetIntoBins(
       baseLocations,
       concernLocations,
-      intersections,
-    ).newIntersections;
-    expect(newIntersections).toBe(0);
+      knownIntersections,
+    ).newIntersectionCount;
+    expect(newIntersectionCount).toBe(0);
   });
 });
 
