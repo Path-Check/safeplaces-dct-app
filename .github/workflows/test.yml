@@ -19,6 +19,8 @@ jobs:
     needs:
       - unit-test-js
       - unit-test-ios
+    steps:
+      - run: echo "check unit-test-js and unit-test-ios"
 
   unit-test-js:
     runs-on: ubuntu-latest
