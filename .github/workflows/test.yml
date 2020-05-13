@@ -6,11 +6,11 @@ on:
       - develop
       - release-candidate
       - master
-  # pull_request:
-  #   branches:
-  #     - develop
-  #     - release-candidate
-  #     - master
+  pull_request:
+    branches:
+      - develop
+      - release-candidate
+      - master
 
 jobs:
   unit-test:

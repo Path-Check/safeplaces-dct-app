@@ -3,15 +3,10 @@ name: Publish Release Candidates to Play Store and Testflight
 on:
   push:
     branches:
-      - develop
-      - release-candidate
-      - master
-    # paths-ignore:
-    #   - 'package.json'
-    #   - 'CHANGELOG.md'
-  pull_request:
-    branches:
-      - develop
+      # - develop
+      # - release-candidate
+      # - master
+      - feature/add_fastlane
     paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
@@ -24,9 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: ${{ github.base_ref }}
-      if: github.event_name == 'pull_request'
-  
+        ref: ${{ github.ref }}
 
     - name: Bump version and push tag
       uses: TriPSs/conventional-changelog-action@v2
@@ -36,7 +29,6 @@ jobs:
         preset: 'angular'
         tag-prefix: ''
         output-file: 'CHANGELOG.md'
-
 
   deploy_android:
     runs-on: ubuntu-latest
