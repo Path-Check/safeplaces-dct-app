@@ -1,4 +1,4 @@
-name: Publish Release Candidates to Play Store and Testflight
+name: Publish Release Candidates
 
 on:
   push:
