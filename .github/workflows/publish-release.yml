@@ -22,9 +22,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v2
     - name: Bump version and push tag
       uses: TriPSs/conventional-changelog-action@v2
       with:
