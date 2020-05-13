@@ -22,11 +22,17 @@ GEM
     aws-sigv4 (1.1.2)
       aws-eventstream (~> 1.0, >= 1.0.2)
     babosa (1.0.3)
+    badge (0.12.0)
+      curb (~> 0.9)
+      fastimage (>= 1.6)
+      fastlane (>= 2.0)
+      mini_magick (>= 4.9.4, < 5.0.0)
     claide (1.0.3)
     colored (1.2)
     colored2 (3.1.2)
     commander-fastlane (4.4.6)
       highline (~> 1.7.2)
+    curb (0.9.10)
     declarative (0.0.10)
     declarative-option (0.1.0)
     digest-crc (0.5.1)
@@ -81,6 +87,8 @@ GEM
       xcodeproj (>= 1.13.0, < 2.0.0)
       xcpretty (~> 0.3.0)
       xcpretty-travis-formatter (>= 0.0.3)
+    fastlane-plugin-badge (1.4.0)
+      badge (~> 0.12.0)
     fastlane-plugin-increment_version_code (0.4.3)
     fastlane-plugin-increment_version_name (0.0.10)
     fastlane-plugin-load_json (0.0.1)
@@ -178,6 +186,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (= 2.1.4)
   fastlane (= 2.146.1)
+  fastlane-plugin-badge
   fastlane-plugin-increment_version_code
   fastlane-plugin-increment_version_name
   fastlane-plugin-load_json
