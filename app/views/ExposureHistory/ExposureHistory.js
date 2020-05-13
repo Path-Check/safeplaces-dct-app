@@ -101,7 +101,6 @@ export function convertToDailyMinutesExposed(dayBin) {
   let dayBinParsed = JSON.parse(dayBin);
 
   if (!dayBinParsed) {
-    console.log('Crossed Paths is null');
     return NO_HISTORY;
   }
 

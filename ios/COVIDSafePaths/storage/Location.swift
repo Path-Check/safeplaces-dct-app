@@ -19,6 +19,7 @@ class Location: Object {
   static let SOURCE_DEVICE = 0
   static let SOURCE_MIGRATION = 1
   static let SOURCE_GOOGLE = 2
+  static let SOURCE_ASSUMED = 3
 
   // Store date as Int primary key to prevent duplicates. Loses millisecond precision
   dynamic var time: Int = 0
@@ -88,5 +89,59 @@ class Location: Object {
     } else {
       return nil
     }
+  }
+  
+  static func createAssumedLocation(time: Int, latitude: Double, longitude: Double) -> Location {
+    let location = Location()
+    location.time = time
+    location.latitude = latitude
+    location.longitude = longitude
+    location.source = SOURCE_ASSUMED
+    return location
+  }
+  
+  static func areLocationsNearby(lat1: Double, lon1: Double, lat2: Double, lon2: Double) -> Bool {
+    let nearbyDistance = 20.0 // in meters, anything closer is "nearby"
+
+    // these numbers from https://en.wikipedia.org/wiki/Decimal_degrees
+    let notNearbyInLatitude = 0.00017966 // = nearbyDistance / 111320
+    let notNearbyInLongitude23Lat = 0.00019518 // = nearbyDistance / 102470
+    let notNearbyInLongitude45Lat = 0.0002541 // = nearbyDistance / 78710
+    let notNearbyInLongitude67Lat = 0.00045981 // = nearbyDistance / 43496
+
+    let deltaLon = lon2 - lon1
+
+    // Initial checks we can do quickly.  The idea is to filter out any cases where the
+    //   difference in latitude or the difference in longitude must be larger than the
+    //   nearby distance, since this can be calculated trivially.
+    if (abs(lat2 - lat1) > notNearbyInLatitude) { return false }
+    if (abs(lat1) < 23) {
+      if (abs(deltaLon) > notNearbyInLongitude23Lat) { return false }
+    } else if (abs(lat1) < 45) {
+      if (abs(deltaLon) > notNearbyInLongitude45Lat) { return false }
+    } else if (abs(lat1) < 67) {
+      if (abs(deltaLon) > notNearbyInLongitude67Lat) { return false }
+    }
+
+    // Close enough to do a detailed calculation.  Using the the Spherical Law of Cosines method.
+    //    https://www.movable-type.co.uk/scripts/latlong.html
+    //    https://en.wikipedia.org/wiki/Spherical_law_of_cosines
+    //
+    // Calculates the distance in meters
+    let p1 = (lat1 * .pi) / 180
+    let p2 = (lat2 * .pi) / 180
+    let deltaLambda = (deltaLon * .pi) / 180
+    let R = 6371e3; // gives d in metres
+    let d =
+      acos(
+          sin(p1) * sin(p2) +
+              cos(p1) * cos(p2) * cos(deltaLambda)
+      ) * R
+
+    // closer than the "nearby" distance?
+    if (d < nearbyDistance) { return true }
+
+    // nope
+    return false
   }
 }

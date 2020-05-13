@@ -1,34 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`allows dotted notation in the feature name 1`] = `
-<View
-  collapsable={true}
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <Text>
-    feature1.child
-  </Text>
-</View>
-`;
-
-exports[`does not render if dotted notation key path is falsy 1`] = `
-<View
-  collapsable={true}
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
-/>
-`;
-
-exports[`omits feature if the flag is disabled 1`] = `
+exports[`does not render if the flag is disabled 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
