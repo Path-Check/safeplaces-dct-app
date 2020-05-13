@@ -12,9 +12,9 @@ on:
   pull_request:
     branches:
       - develop
-    # paths-ignore:
-    #   - 'package.json'
-    #   - 'CHANGELOG.md'
+    paths-ignore:
+      - 'package.json'
+      - 'CHANGELOG.md'
 
 jobs:
   version_bump:
@@ -24,11 +24,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
       with:
-        token: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Bump version and push tag
       uses: TriPSs/conventional-changelog-action@master
       with:
-        github-token: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         git-message: 'chore(release): {version}'
         preset: 'angular'
         tag-prefix: ''
@@ -164,17 +164,17 @@ jobs:
           bundle install --jobs 4 --retry 3
         working-directory: ./ios
 
-      # - name: Cache CocoaPods
-      #   uses: actions/cache@v1
-      #   id: cocoapods_cache
-      #   with:
-      #     path: ios/Pods
-      #     key: ${{ runner.OS }}-pods-${{ hashFiles('**/Podfile.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.OS }}-pods-
+      - name: Cache CocoaPods
+        uses: actions/cache@v1
+        id: cocoapods_cache
+        with:
+          path: ios/Pods
+          key: ${{ runner.OS }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-pods-
 
       - name: Install Cocoapods
-      #   if: steps.cocoapods_cache.outputs.cache-hit != 'true'
+        if: steps.cocoapods_cache.outputs.cache-hit != 'true'
         run: bundle exec pod install --repo-update
         working-directory: ./ios
 
