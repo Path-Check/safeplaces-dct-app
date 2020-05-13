@@ -5,6 +5,11 @@
 //  Created by Tyler Roach on 5/5/20.
 //  Copyright © 2020 Path Check Inc. All rights reserved.
 //
+// For testing purposes you may need to retrieve data from this encrypted Relm.io database
+// Directions on how to export the encryption key and use it to open the database file:
+// https://pathcheck.atlassian.net/wiki/spaces/TEST/pages/50824879/Secure+Storage+Testing
+// -or-
+// https://gist.github.com/troach-sf/f257bb7b80e6dddd4f3bade81b7b1410
 
 import Foundation
 import RealmSwift
