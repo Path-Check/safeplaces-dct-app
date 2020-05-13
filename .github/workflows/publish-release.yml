@@ -3,10 +3,9 @@ name: Publish Release Candidates to Play Store and Testflight
 on:
   push:
     branches:
-      # - develop
-      # - release-candidate
-      # - master
-      - feature/add_fastlane
+      - develop
+      - release-candidate
+      - master
     paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
