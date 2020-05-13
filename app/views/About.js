@@ -52,7 +52,7 @@ export const AboutScreen = ({ navigation }) => {
         <Typography style={styles.aboutSectionPara}>
           {languages.t('label.commitment_para')}
           <Typography
-            style={styles.aboutcovidhyperlink}
+            style={styles.hyperlink}
             onPress={() => {
               Linking.openURL('https://covidsafepaths.org/');
             }}>
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontFamily: fontFamily.primaryRegular,
   },
-  aboutcovidhyperlink: {
+  hyperlink: {
     color: Colors.VIOLET_TEXT,
     fontSize: 16,
     lineHeight: 22.5,
