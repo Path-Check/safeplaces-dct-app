@@ -222,8 +222,8 @@ export default class LocationServices {
     );
     console.log('[INFO] BackgroundGeolocation auth status: ' + authorization);
 
-    isBackgroundGeolocationConfigured = true;
     BackgroundGeolocation.start(); //triggers start on start event
+    isBackgroundGeolocationConfigured = true;
   }
 
   static async stop() {
