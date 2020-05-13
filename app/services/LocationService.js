@@ -105,101 +105,6 @@ export class LocationData {
   }
 }
 
-function configureBackroundGeoService() {
-  PushNotification.configure({
-    // (required) Called when a remote or local notification is opened or received
-    onNotification(notification) {
-      console.log('NOTIFICATION:', notification);
-      // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
-      notification.finish(PushNotificationIOS.FetchResult.NoData);
-    },
-    requestPermissions: true,
-  });
-
-  const locationData = new LocationData();
-
-  BackgroundGeolocation.configure({
-    maxLocations: 0,
-    desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
-    stationaryRadius: 5,
-    distanceFilter: 5,
-    notificationTitle: languages.t('label.location_enabled_title'),
-    notificationText: languages.t('label.location_enabled_message'),
-    debug: false,
-    startOnBoot: true,
-    stopOnTerminate: false,
-    locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
-    interval: locationData.locationInterval,
-    fastestInterval: locationData.locationInterval,
-    activitiesInterval: locationData.locationInterval,
-    activityType: 'AutomotiveNavigation',
-    pauseLocationUpdates: false,
-    saveBatteryOnBackground: true,
-    stopOnStillActivity: false,
-  });
-
-  BackgroundGeolocation.on('error', error => {
-    console.log('[ERROR] BackgroundGeolocation error:', error);
-  });
-
-  BackgroundGeolocation.on('start', () => {
-    console.log('[INFO] BackgroundGeolocation service has been started');
-  });
-
-  BackgroundGeolocation.on('authorization', status => {
-    console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
-
-    if (status === BackgroundGeolocation.AUTHORIZED) {
-      // TODO: this should not restart if user opted out
-      BackgroundGeolocation.start(); // force running, if not already running
-      BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
-        if (!locationServicesEnabled) {
-          PushNotification.localNotification({
-            id: LOCATION_DISABLED_NOTIFICATION,
-            title: languages.t('label.location_disabled_title'),
-            message: languages.t('label.location_disabled_message'),
-          });
-        } else {
-          PushNotification.cancelLocalNotifications({
-            id: LOCATION_DISABLED_NOTIFICATION,
-          });
-        }
-      });
-    }
-  });
-
-  BackgroundGeolocation.on('background', () => {
-    console.log('[INFO] App is in background');
-  });
-
-  BackgroundGeolocation.on('foreground', () => {
-    console.log('[INFO] App is in foreground');
-  });
-
-  BackgroundGeolocation.on('abort_requested', () => {
-    console.log('[INFO] Server responded with 285 Updates Not Required');
-    // Here we can decide whether we want stop the updates or not.
-    // If you've configured the server to return 285, then it means the server does not require further update.
-    // So the normal thing to do here would be to `BackgroundGeolocation.stop()`.
-    // But you might be counting on it to receive location updates in the UI, so you could just reconfigure and set `url` to null.
-  });
-
-  BackgroundGeolocation.on('http_authorization', () => {
-    console.log('[INFO] App needs to authorize the http requests');
-  });
-
-  BackgroundGeolocation.on('stop', () => {
-    PushNotification.localNotification({
-      title: languages.t('label.location_disabled_title'),
-      message: languages.t('label.location_disabled_message'),
-    });
-    console.log('[INFO] stop');
-  });
-  BackgroundGeolocation.on('stationary', () => {
-    console.log('[INFO] stationary');
-  });
-}
-
 export default class LocationServices {
   static async start() {
     // handles edge cases around Android where start might get called again even though
@@ -209,8 +114,100 @@ export default class LocationServices {
       return;
     }
 
-    configureBackroundGeoService();
-    isBackgroundGeolocationConfigured = true;
+    PushNotification.configure({
+      // (required) Called when a remote or local notification is opened or received
+      onNotification(notification) {
+        console.log('NOTIFICATION:', notification);
+        // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
+        notification.finish(PushNotificationIOS.FetchResult.NoData);
+      },
+      requestPermissions: true,
+    });
+
+    const locationData = new LocationData();
+
+    BackgroundGeolocation.configure({
+      maxLocations: 0,
+      desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
+      stationaryRadius: 5,
+      distanceFilter: 5,
+      notificationTitle: languages.t('label.location_enabled_title'),
+      notificationText: languages.t('label.location_enabled_message'),
+      debug: false,
+      startOnBoot: true,
+      stopOnTerminate: false,
+      locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
+      interval: locationData.locationInterval,
+      fastestInterval: locationData.locationInterval,
+      activitiesInterval: locationData.locationInterval,
+      activityType: 'AutomotiveNavigation',
+      pauseLocationUpdates: false,
+      saveBatteryOnBackground: true,
+      stopOnStillActivity: false,
+    });
+
+    BackgroundGeolocation.on('error', error => {
+      console.log('[ERROR] BackgroundGeolocation error:', error);
+    });
+
+    BackgroundGeolocation.on('start', () => {
+      console.log('[INFO] BackgroundGeolocation service has been started');
+    });
+
+    BackgroundGeolocation.on('authorization', status => {
+      console.log(
+        '[INFO] BackgroundGeolocation authorization status: ' + status,
+      );
+
+      if (status === BackgroundGeolocation.AUTHORIZED) {
+        // TODO: this should not restart if user opted out
+        BackgroundGeolocation.start(); // force running, if not already running
+        BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
+          if (!locationServicesEnabled) {
+            PushNotification.localNotification({
+              id: LOCATION_DISABLED_NOTIFICATION,
+              title: languages.t('label.location_disabled_title'),
+              message: languages.t('label.location_disabled_message'),
+            });
+          } else {
+            PushNotification.cancelLocalNotifications({
+              id: LOCATION_DISABLED_NOTIFICATION,
+            });
+          }
+        });
+      }
+    });
+
+    BackgroundGeolocation.on('background', () => {
+      console.log('[INFO] App is in background');
+    });
+
+    BackgroundGeolocation.on('foreground', () => {
+      console.log('[INFO] App is in foreground');
+    });
+
+    BackgroundGeolocation.on('abort_requested', () => {
+      console.log('[INFO] Server responded with 285 Updates Not Required');
+      // Here we can decide whether we want stop the updates or not.
+      // If you've configured the server to return 285, then it means the server does not require further update.
+      // So the normal thing to do here would be to `BackgroundGeolocation.stop()`.
+      // But you might be counting on it to receive location updates in the UI, so you could just reconfigure and set `url` to null.
+    });
+
+    BackgroundGeolocation.on('http_authorization', () => {
+      console.log('[INFO] App needs to authorize the http requests');
+    });
+
+    BackgroundGeolocation.on('stop', () => {
+      PushNotification.localNotification({
+        title: languages.t('label.location_disabled_title'),
+        message: languages.t('label.location_disabled_message'),
+      });
+      console.log('[INFO] stop');
+    });
+    BackgroundGeolocation.on('stationary', () => {
+      console.log('[INFO] stationary');
+    });
 
     const {
       authorization,
@@ -225,6 +222,7 @@ export default class LocationServices {
     );
     console.log('[INFO] BackgroundGeolocation auth status: ' + authorization);
 
+    isBackgroundGeolocationConfigured = true;
     BackgroundGeolocation.start(); //triggers start on start event
   }
 
