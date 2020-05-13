@@ -1,6 +1,7 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { NativeModules } from 'react-native';
+import { openSettings } from 'react-native-permissions';
 import PushNotification from 'react-native-push-notification';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
@@ -154,7 +155,7 @@ export default class LocationServices {
       console.log('[INFO] BackgroundGeolocation service has been started');
     });
 
-    BackgroundGeolocation.on('authorization', status => {
+    BackgroundGeolocation.on('authorization', async status => {
       console.log(
         '[INFO] BackgroundGeolocation authorization status: ' + status,
       );
@@ -175,6 +176,9 @@ export default class LocationServices {
             });
           }
         });
+      } else {
+        await SetStoreData(PARTICIPATE, 'false');
+        openSettings();
       }
     });
 
