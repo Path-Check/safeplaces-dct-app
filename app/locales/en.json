@@ -5,8 +5,13 @@
     "operating_system_abbr": "OS:",
     "version": "Version:"
   },
+  "authorities": {
+    "invalid_url_title": "Invalid URL",
+    "invalid_url_body": "The URL you entered was invalid, please try again"
+  },
   "common": {
-    "done": "Done"
+    "done": "Done",
+    "ok": "Ok"
   },
   "history": {
     "no_exposure": "No known",

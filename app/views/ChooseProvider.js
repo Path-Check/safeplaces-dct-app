@@ -17,6 +17,7 @@ import {
   renderers,
   withMenuContext,
 } from 'react-native-popup-menu';
+import validUrl from 'valid-url';
 
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
@@ -136,31 +137,57 @@ class ChooseProviderScreen extends Component {
     }
   }
 
-  addCustomUrlToState(urlInput) {
-    if (urlInput === '') {
-      console.log('URL input was empty, not saving');
-    } else if (
-      this.state.selectedAuthorities.findIndex(x => x.url === urlInput) != -1
-    ) {
-      console.log('URL input was duplicate, not saving');
-    } else {
-      this.setState(
+  triggerInvalidUrlAlert() {
+    Alert.alert(
+      languages.t('authorities.invalid_url_title'),
+      languages.t('authorities.invalid_url_body'),
+      [
         {
-          selectedAuthorities: this.state.selectedAuthorities.concat({
-            key: urlInput,
-            url: urlInput,
-          }),
-          displayUrlEntry: 'none',
-          urlEntryInProgress: false,
+          text: languages.t('common.ok'),
+          style: 'cancel',
         },
-        () => {
-          // Add current settings state to async storage.
-          SetStoreData(
-            AUTHORITY_SOURCE_SETTINGS,
-            this.state.selectedAuthorities,
-          );
-        },
-      );
+      ],
+      { cancelable: false },
+    );
+  }
+
+  setUrlText(urlText) {
+    this.setState({ urlText });
+  }
+
+  /**
+   * Checks if the user selected any authorities whose `url` matches
+   * the `url` param.
+   * @param {string} url
+   */
+  hasExistingAuthorityWithUrl(url) {
+    return this.state.selectedAuthorities.some(x => x.url === url);
+  }
+
+  /**
+   * Reset the URL input field to it's original/default settings
+   */
+  resetUrlInput() {
+    this.setState({
+      displayUrlEntry: 'none',
+      urlEntryInProgress: false,
+    });
+  }
+
+  addCustomUrlToState() {
+    let { urlText: url, selectedAuthorities } = this.state;
+
+    if (!validUrl.isWebUri(url)) {
+      this.triggerInvalidUrlAlert();
+    } else {
+      const newAuthority = { key: url, url };
+      const newAuthorities = selectedAuthorities.concat(newAuthority);
+
+      this.setState({ selectedAuthorities: newAuthorities }, () => {
+        SetStoreData(AUTHORITY_SOURCE_SETTINGS, this.state.selectedAuthorities);
+      });
+
+      this.resetUrlInput();
     }
   }
 
@@ -263,25 +290,17 @@ class ChooseProviderScreen extends Component {
                     { display: this.state.displayUrlEntry },
                   ]}>
                   <DynamicTextInput
-                    onChangeText={text => {
-                      this.setState({
-                        urlText: text,
-                      });
-                    }}
+                    onChangeText={this.setUrlText.bind(this)}
                     value={this.state.urlText}
                     autoFocus={this.state.urlEntryInProgress}
                     style={[styles.item, styles.textInput]}
                     placeholder={languages.t(
                       'label.authorities_input_placeholder',
                     )}
-                    onSubmitEditing={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }
+                    onSubmitEditing={this.addCustomUrlToState.bind(this)}
                   />
                   <TouchableOpacity
-                    onPress={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }>
+                    onPress={this.addCustomUrlToState.bind(this)}>
                     <Image source={saveIcon} style={styles.saveIcon} />
                   </TouchableOpacity>
                 </View>
@@ -294,23 +313,15 @@ class ChooseProviderScreen extends Component {
                     { display: this.state.displayUrlEntry },
                   ]}>
                   <DynamicTextInput
-                    onChangeText={text => {
-                      this.setState({
-                        urlText: text,
-                      });
-                    }}
+                    onChangeText={this.setUrlText.bind(this)}
                     value={this.state.urlText}
                     autoFocus={this.state.urlEntryInProgress}
                     style={[styles.item, styles.textInput]}
                     placeholder={languages.t('label.enter_authority_url')}
-                    onSubmitEditing={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }
+                    onSubmitEditing={this.addCustomUrlToState.bind(this)}
                   />
                   <TouchableOpacity
-                    onPress={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }>
+                    onPress={this.addCustomUrlToState.bind(this)}>
                     <Image source={saveIcon} style={styles.saveIcon} />
                   </TouchableOpacity>
                 </View>

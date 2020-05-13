@@ -106,8 +106,7 @@ export class LocationData {
 }
 
 export default class LocationServices {
-  static start() {
-    const locationData = new LocationData();
+  static async start() {
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
     if (isBackgroundGeolocationConfigured) {
@@ -117,7 +116,7 @@ export default class LocationServices {
 
     PushNotification.configure({
       // (required) Called when a remote or local notification is opened or received
-      onNotification: function(notification) {
+      onNotification(notification) {
         console.log('NOTIFICATION:', notification);
         // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
         notification.finish(PushNotificationIOS.FetchResult.NoData);
@@ -125,7 +124,8 @@ export default class LocationServices {
       requestPermissions: true,
     });
 
-    // PushNotificationIOS.requestPermissions();
+    const locationData = new LocationData();
+
     BackgroundGeolocation.configure({
       maxLocations: 0,
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
@@ -133,15 +133,13 @@ export default class LocationServices {
       distanceFilter: 5,
       notificationTitle: languages.t('label.location_enabled_title'),
       notificationText: languages.t('label.location_enabled_message'),
-      debug: false, // when true, it beeps every time a loc is read
+      debug: false,
       startOnBoot: true,
       stopOnTerminate: false,
       locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
-
       interval: locationData.locationInterval,
       fastestInterval: locationData.locationInterval,
       activitiesInterval: locationData.locationInterval,
-
       activityType: 'AutomotiveNavigation',
       pauseLocationUpdates: false,
       saveBatteryOnBackground: true,
@@ -161,30 +159,9 @@ export default class LocationServices {
         '[INFO] BackgroundGeolocation authorization status: ' + status,
       );
 
-      if (status !== BackgroundGeolocation.AUTHORIZED) {
-        // we need to set delay or otherwise alert may not be shown
-        // setTimeout(
-        //   () =>
-        //     Alert.alert(
-        //       languages.t('label.require_location_information_title'),
-        //       languages.t('label.require_location_information_message'),
-        //       [
-        //         {
-        //           text: languages.t('label.yes'),
-        //           onPress: () => BackgroundGeolocation.showAppSettings(),
-        //         },
-        //         {
-        //           text: languages.t('label.no'),
-        //           onPress: () => console.log('No Pressed'),
-        //           style: 'cancel',
-        //         },
-        //       ],
-        //     ),
-        //   1000,
-        // );
-      } else {
-        BackgroundGeolocation.start(); //triggers start on start event
-
+      if (status === BackgroundGeolocation.AUTHORIZED) {
+        // TODO: this should not restart if user opted out
+        BackgroundGeolocation.start(); // force running, if not already running
         BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
           if (!locationServicesEnabled) {
             PushNotification.localNotification({
@@ -228,81 +205,28 @@ export default class LocationServices {
       });
       console.log('[INFO] stop');
     });
-
     BackgroundGeolocation.on('stationary', () => {
       console.log('[INFO] stationary');
     });
 
-    BackgroundGeolocation.checkStatus(status => {
-      console.log(
-        '[INFO] BackgroundGeolocation service is running',
-        status.isRunning,
-      );
-      console.log(
-        '[INFO] BackgroundGeolocation services enabled',
-        status.locationServicesEnabled,
-      );
-      console.log(
-        '[INFO] BackgroundGeolocation auth status: ' + status.authorization,
-      );
+    const {
+      authorization,
+      isRunning,
+      locationServicesEnabled,
+    } = await this.getBackgroundGeoStatus();
 
-      BackgroundGeolocation.start(); //triggers start on start event
-      isBackgroundGeolocationConfigured = true;
+    console.log('[INFO] BackgroundGeolocation service is running', isRunning);
+    console.log(
+      '[INFO] BackgroundGeolocation services enabled',
+      locationServicesEnabled,
+    );
+    console.log('[INFO] BackgroundGeolocation auth status: ' + authorization);
 
-      if (!status.locationServicesEnabled) {
-        // we need to set delay or otherwise alert may not be shown
-        // setTimeout(
-        //   () =>
-        //     Alert.alert(
-        //       languages.t('label.require_location_services_title'),
-        //       languages.t('label.require_location_services_message'),
-        //       [
-        //         {
-        //           text: languages.t('label.yes'),
-        //           onPress: () => {
-        //             if (isPlatformAndroid()) {
-        //               // showLocationSettings() only works for android
-        //               BackgroundGeolocation.showLocationSettings();
-        //             } else {
-        //               Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
-        //             }
-        //           },
-        //         },
-        //         {
-        //           text: languages.t('label.no'),
-        //           onPress: () => console.log('No Pressed'),
-        //           style: 'cancel',
-        //         },
-        //       ],
-        //     ),
-        //   1000,
-        // );
-      } else if (!status.authorization) {
-        // we need to set delay or otherwise alert may not be shown
-        // setTimeout(
-        //   () =>
-        //     Alert.alert(
-        //       languages.t('label.require_location_information_title'),
-        //       languages.t('label.require_location_information_message'),
-        //       [
-        //         {
-        //           text: languages.t('label.yes'),
-        //           onPress: () => BackgroundGeolocation.showAppSettings(),
-        //         },
-        //         {
-        //           text: languages.t('label.no'),
-        //           onPress: () => console.log('No Pressed'),
-        //           style: 'cancel',
-        //         },
-        //       ],
-        //     ),
-        //   1000,
-        // );
-      }
-    });
+    BackgroundGeolocation.start(); //triggers start on start event
+    isBackgroundGeolocationConfigured = true;
   }
 
-  static stop() {
+  static async stop() {
     // unregister all event listeners
     PushNotification.localNotification({
       title: languages.t('label.location_disabled_title'),
@@ -310,73 +234,92 @@ export default class LocationServices {
     });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
-
     isBackgroundGeolocationConfigured = false;
-    SetStoreData(PARTICIPATE, 'false').then(() => {
-      // nav.navigate('Main', {});
-    });
-  }
-  static getHasPotentialExposure() {
-    return new Promise(resolve => {
-      GetStoreData(CROSSED_PATHS).then(dayBin => {
-        dayBin = JSON.parse(dayBin);
-        if (dayBin !== null && dayBin.some(exposure => exposure > 0)) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      });
-    });
-  }
-  static getParticpating() {
-    return new Promise(resolve => {
-      GetStoreData(PARTICIPATE, false).then(isParticipating => {
-        resolve(isParticipating);
-      });
-    });
+    await SetStoreData(PARTICIPATE, 'false');
   }
 
-  static getBackgroundGeoStatus() {
-    return new Promise(resolve => {
-      BackgroundGeolocation.checkStatus(status => {
-        resolve(status);
-      });
+  static async getHasPotentialExposure() {
+    const dayBin = await GetStoreData(CROSSED_PATHS, false);
+    return !!dayBin && dayBin.some(exposure => exposure > 0);
+  }
+
+  static async getParticpating() {
+    return await GetStoreData(PARTICIPATE, false);
+  }
+
+  static async getBackgroundGeoStatus() {
+    return new Promise((resolve, reject) => {
+      BackgroundGeolocation.checkStatus(
+        status => resolve(status),
+        e => reject(e),
+      );
     });
   }
 
   static async checkStatus() {
     const hasPotentialExposure = await this.getHasPotentialExposure();
-    const particpating = await this.getParticpating();
 
+    const {
+      authorization,
+      isRunning,
+      locationServicesEnabled,
+    } = await this.getBackgroundGeoStatus();
+
+    const particpating = await this.getParticpating();
     if (!particpating) {
       return {
         canTrack: false,
         reason: Reason.USER_OFF,
-        hasPotentialExposure: hasPotentialExposure,
+        hasPotentialExposure,
+        isRunning,
       };
     }
 
-    const status = await this.getBackgroundGeoStatus();
-    if (!status.locationServicesEnabled) {
+    if (!locationServicesEnabled) {
       return {
         canTrack: false,
         reason: Reason.LOCATION_OFF,
-        hasPotentialExposure: hasPotentialExposure,
+        hasPotentialExposure,
+        isRunning,
       };
     }
 
-    if (status.authorization != BackgroundGeolocation.AUTHORIZED) {
+    if (authorization != BackgroundGeolocation.AUTHORIZED) {
       return {
         canTrack: false,
         reason: Reason.NOT_AUTHORIZED,
-        hasPotentialExposure: hasPotentialExposure,
+        hasPotentialExposure,
+        isRunning,
       };
     }
 
     return {
       canTrack: true,
       reason: '',
-      hasPotentialExposure: hasPotentialExposure,
+      hasPotentialExposure,
+      isRunning,
     };
+  }
+
+  /**
+   * Like checkStatus, but it also tries to start/stop the service as
+   * appropriate.
+   *
+   * - If the user has opted out or permissions are not available, stop.
+   * - If the user has opted in and perissions are available, start.
+   */
+  static async checkStatusAndStartOrStop() {
+    const status = await this.checkStatus();
+
+    const { canTrack, isRunning } = status;
+
+    if (canTrack && !isRunning) {
+      this.start();
+    }
+
+    if (!canTrack && isRunning) {
+      this.stop();
+    }
+    return status;
   }
 }

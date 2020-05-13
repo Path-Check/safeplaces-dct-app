@@ -19,7 +19,6 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
-import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
 
 class AboutScreen extends Component {
   constructor(props) {
@@ -52,26 +51,6 @@ class AboutScreen extends Component {
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
-
-  handleTapTeam = () => {
-    // debug builds only until we have feature flagging.
-    if (__DEV__) {
-      this.setState({ tapCount: this.state.tapCount + 1 });
-      if (this.state.tapCount >= 3) {
-        if (this.state.tapCount == 3) {
-          enableDebugMode();
-        } else if (this.state.tapCount == 7) {
-          this.setState({ tapCount: 0 });
-          disableDebugMode();
-        }
-      }
-    }
-  };
-
-  handleExitDebugModePress = () => {
-    this.setState({ tapCount: 0 });
-    disableDebugMode();
-  };
 
   render() {
     return (

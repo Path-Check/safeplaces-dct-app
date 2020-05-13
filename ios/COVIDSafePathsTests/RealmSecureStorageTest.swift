@@ -32,7 +32,7 @@ class RealmSecureStorageTest: XCTestCase {
     // given
     let location1Date = Date()
     let location1Time = Int(location1Date.timeIntervalSince1970)
-    let backgroundLocation1 = TestLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
+    let backgroundLocation1 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
   
     // when
     secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
@@ -51,10 +51,10 @@ class RealmSecureStorageTest: XCTestCase {
     // given
     let location1Date = Date()
     let location1Time = Int(location1Date.timeIntervalSince1970)
-    let backgroundLocation1 = TestLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
+    let backgroundLocation1 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
     let location2Date = location1Date.addingTimeInterval(1)
     let location2Time = Int(location2Date.timeIntervalSince1970)
-    let backgroundLocation2 = TestLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
+    let backgroundLocation2 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
     
     // when
     secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
@@ -174,7 +174,7 @@ class RealmSecureStorageTest: XCTestCase {
     // given
     let location1Date = Date()
     let location1Time = Int(location1Date.timeIntervalSince1970)
-    let backgroundLocation1 = TestLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
+    let backgroundLocation1 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
     let location2TimeDouble = Date().addingTimeInterval(-10*24*60*60).timeIntervalSince1970 * 1000
     let location2Time = Int(location2TimeDouble / 1000)
     let location2 = [Location.KEY_TIME: location2TimeDouble, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297]
@@ -203,10 +203,10 @@ class RealmSecureStorageTest: XCTestCase {
     // given
     let location1Date = Date().addingTimeInterval(-15*24*60*60)
     let location1Time = Int(location1Date.timeIntervalSince1970)
-    let backgroundLocation1 = TestLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
+    let backgroundLocation1 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
     let location2Date = Date()
     let location2Time = Int(location2Date.timeIntervalSince1970)
-    let backgroundLocation2 = TestLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
+    let backgroundLocation2 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
     secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
     secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation2)
     
@@ -216,6 +216,61 @@ class RealmSecureStorageTest: XCTestCase {
     // then
     XCTAssertNil(querySingleLocationByTime(time: location1Time))
     XCTAssertNotNil(querySingleLocationByTime(time: location2Time))
+  }
+  
+  func testAssumedLocationListGenerated() {
+    let newLocationDate =  Date()
+    let newLocationTimestamp = Int(newLocationDate.timeIntervalSince1970)
+    let oldLocationDate = newLocationDate.addingTimeInterval(-16*60)
+    let oldLocationTimesteamp = Int(oldLocationDate.timeIntervalSince1970)
+    
+
+    let oldLocation = createTestLocation(time: oldLocationTimesteamp, latitude: 39.09772, longitude: -94.582959)
+    let newLocation = TestMAURLocation(latitude: 39.097769, longitude: -94.582937, date: newLocationDate)
+    
+    let assumedLocations = secureStorage!.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
+    
+    XCTAssertEqual(2, assumedLocations.count)
+    XCTAssertEqual(newLocationTimestamp - (RealmSecureStorage.LOCATION_INTERVAL * 2), assumedLocations[1].time)
+    XCTAssertEqual(oldLocation.latitude, assumedLocations[1].latitude)
+    XCTAssertEqual(oldLocation.longitude, assumedLocations[1].longitude)
+    XCTAssertEqual(newLocationTimestamp - RealmSecureStorage.LOCATION_INTERVAL, assumedLocations[0].time)
+    XCTAssertEqual(oldLocation.latitude, assumedLocations[0].latitude)
+    XCTAssertEqual(oldLocation.longitude, assumedLocations[0].longitude)
+  }
+  
+  func testMaxAssumedLocationListGenerated() {
+    let newLocationDate =  Date()
+    let oldLocationDate = newLocationDate.addingTimeInterval(-24*60*60)
+
+    let oldLocation = createTestLocation(time: Int(oldLocationDate.timeIntervalSince1970), latitude: 10.0, longitude: 10.0)
+    let newLocation = TestMAURLocation(latitude: 10.0, longitude: 10.0, date: newLocationDate)
+    
+    let assumedLocations = secureStorage!.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
+    
+    XCTAssertEqual(287, assumedLocations.count)
+  }
+  
+  func testMaxAssumedLocationListEmptyIfTimeTooClose() {
+    let location1Date = Date().addingTimeInterval(-9*60)
+
+    let oldLocation = createTestLocation(time: Int(location1Date.timeIntervalSince1970), latitude: 10.0, longitude: 10.0)
+    let newLocation = TestMAURLocation(latitude: 10.0, longitude: 10.0, date: Date())
+    
+    let assumedLocations = secureStorage!.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
+    
+    XCTAssertEqual(0, assumedLocations.count)
+  }
+  
+  func testAssumedLocationListEmptyIfNotNearby() {
+    let location1Date = Date().addingTimeInterval(-16*60)
+
+    let oldLocation = createTestLocation(time: Int(location1Date.timeIntervalSince1970), latitude: 10.0, longitude: 10.0)
+    let newLocation = TestMAURLocation(latitude: -10.0, longitude: -10.0, date: Date())
+    
+    let assumedLocations = secureStorage!.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
+    
+    XCTAssertEqual(0, assumedLocations.count)
   }
   
   func querySingleLocationByTime(time: Int) -> Location? {
@@ -233,9 +288,17 @@ class RealmSecureStorageTest: XCTestCase {
       
     }
   }
+  
+  func createTestLocation(time: Int, latitude: Double, longitude: Double) -> Location {
+    let location = Location()
+    location.latitude = latitude
+    location.longitude = longitude
+    location.time = time
+    return location
+  }
 }
 
-class TestLocation: MAURLocation {
+class TestMAURLocation: MAURLocation {
   init(latitude: Double, longitude: Double, date: Date) {
     super.init()
     self.latitude = NSNumber(floatLiteral: latitude)

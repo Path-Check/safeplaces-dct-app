@@ -1,11 +1,11 @@
 {
   "name": "covidsafepaths",
-  "version": "1.0.1",
+  "version": "1.0.11",
   "private": true,
   "scripts": {
     "clean": "rm -rf node_modules && yarn",
     "start": "yarn && react-native start",
-    "run-android": "react-native run-android",
+    "run-android": "react-native run-android --variant=devDebug",
     "run-ios": "yarn install:pod && react-native run-ios",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
@@ -28,7 +28,10 @@
     "test": "jest --config=./jest/config.js",
     "test:watch": "jest --config=./jest/config.js --watch",
     "update-snapshots": "jest --config=./jest/config.js --updateSnapshot",
-    "test:dev_setup": "bats __tests__/dev_setup.test.bats"
+    "test:dev_setup": "bats __tests__/dev_setup.test.bats",
+    "version:bump:major": "version --premajor",
+    "version:bump:minor": "version --preminor",
+    "version:bump:patch": "version --prepatch"
   },
   "lint-staged": {
     "*.js": [
@@ -61,7 +64,6 @@
     "@testing-library/react-native": "^5.0.3",
     "dayjs": "^1.8.24",
     "emotion-theming": "^10.0.27",
-    "flag": "^4.4.0",
     "i18next": "^19.3.3",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
@@ -76,7 +78,7 @@
     "react-native-background-fetch": "^3.0.4",
     "react-native-background-timer": "^2.2.0",
     "react-native-ble-advertiser": "0.0.10",
-    "react-native-config": "^1.0.0",
+    "react-native-config": "luggit/react-native-config#1eb6ac01991210ddad2989857359a0f6ee35d734",
     "react-native-document-picker": "github:rparet/react-native-document-picker",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "^1.6.1",
@@ -99,6 +101,7 @@
     "reanimated-bottom-sheet": "^1.0.0-alpha.19",
     "rn-fetch-blob": "^0.12.0",
     "semver": "^7.3.2",
+    "valid-url": "^1.0.9",
     "victory-native": "^34.1.0"
   },
   "devDependencies": {
