@@ -23,6 +23,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.ref }}
+
     - name: Bump version and push tag
       uses: TriPSs/conventional-changelog-action@v2
       with:
