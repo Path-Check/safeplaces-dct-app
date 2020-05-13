@@ -10,6 +10,10 @@ import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
+import {
+  FEATURE_FLAG_SCREEN_NAME,
+  FeatureFlagsScreen,
+} from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
 import { MainNavigate } from './views/Main';
@@ -133,6 +137,11 @@ class Entry extends Component {
           <Stack.Screen
             name='AboutScreen'
             component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name={FEATURE_FLAG_SCREEN_NAME}
+            component={FeatureFlagsScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

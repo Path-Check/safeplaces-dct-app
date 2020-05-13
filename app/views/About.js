@@ -7,7 +7,6 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SvgXml } from 'react-native-svg';
 
 import packageJson from '../../package.json';
@@ -20,7 +19,6 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
-import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
 
 class AboutScreen extends Component {
   constructor(props) {
@@ -54,26 +52,6 @@ class AboutScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  handleTapTeam = () => {
-    // debug builds only until we have feature flagging.
-    if (__DEV__) {
-      this.setState({ tapCount: this.state.tapCount + 1 });
-      if (this.state.tapCount >= 3) {
-        if (this.state.tapCount == 3) {
-          enableDebugMode();
-        } else if (this.state.tapCount == 7) {
-          this.setState({ tapCount: 0 });
-          disableDebugMode();
-        }
-      }
-    }
-  };
-
-  handleExitDebugModePress = () => {
-    this.setState({ tapCount: 0 });
-    disableDebugMode();
-  };
-
   render() {
     return (
       <NavigationBarWrapper
@@ -97,29 +75,7 @@ class AboutScreen extends Component {
               alignContent: 'center',
               marginTop: 36,
             }}>
-            <SvgXml
-              onPress={this.handleTapTeam}
-              style={styles.aboutSectionIconTeam}
-              xml={team}
-              stroke={this.state.tapCount > 3 ? 'red' : undefined}
-            />
-            {this.state.tapCount > 3 && (
-              <TouchableOpacity onPress={this.handleExitDebugModePress}>
-                <Typography
-                  // eslint-disable-next-line react-native/no-color-literals
-                  style={{
-                    color: Colors.RED_TEXT,
-                    marginLeft: 12,
-                    borderRadius: 4,
-                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                    paddingHorizontal: 8,
-                    paddingVertical: 2,
-                    // eslint-disable-next-line react-native/no-raw-text
-                  }}>
-                  In exposure demo mode, tap to disable
-                </Typography>
-              </TouchableOpacity>
-            )}
+            <SvgXml style={styles.aboutSectionIconTeam} xml={team} />
           </View>
           <Typography style={styles.aboutSectionTitles}>
             {languages.t('label.team')}
