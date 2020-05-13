@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import settingsIcon from './../assets/svgs/settingsIcon';
@@ -53,11 +53,11 @@ const Main = () => {
     checkIntersect();
   };
 
-  const updateStateInfo = async () => {
+  const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
-    const state = await LocationServices.checkStatus();
+    const state = await LocationServices.checkStatusAndStartOrStop();
     setLocation(state);
-  };
+  }, [setLocation]);
 
   const handleBackPress = () => {
     BackHandler.exitApp(); // works best when the goBack is async
@@ -67,22 +67,20 @@ const Main = () => {
   useEffect(() => {
     updateStateInfo();
     // refresh state if user backgrounds app
-    AppState.addEventListener('change', () => {
-      updateStateInfo();
-    });
+    AppState.addEventListener('change', updateStateInfo);
+
     // refresh state if settings change
-    const unsubscribe = navigation.addListener('focus', () => {
-      updateStateInfo();
-    });
+    const unsubscribe = navigation.addListener('focus', updateStateInfo);
+
     // handle back press
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
     return () => {
-      AppState.removeEventListener('change', updateStateInfo());
+      AppState.removeEventListener('change', updateStateInfo);
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
       unsubscribe();
     };
-  }, []);
+  }, [navigation, updateStateInfo]);
 
   let page;
 
