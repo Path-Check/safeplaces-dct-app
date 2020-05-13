@@ -1,15 +1,16 @@
 # How to contribute
 
 ---
+
 **NOTE**
 
-As of 3-May-2020 the COVID Safe Paths repo has moved to a new location (https://github.com/Path-Check/covid-safe-paths).  If you've already set the `upstream` in your repo, GitHub's redirects will make it so things still work; However for consistency we highly recommend you change your `upstream` to point to the new repo location  e.g.
+As of 3-May-2020 the COVID Safe Paths repo has moved to a new location (https://github.com/Path-Check/covid-safe-paths). If you've already set the `upstream` in your repo, GitHub's redirects will make it so things still work; However for consistency we highly recommend you change your `upstream` to point to the new repo location e.g.
+
 ```
 git remote add upstream git@github.com:Path-Check/covid-safe-paths.git
 ```
 
 ---
-
 
 We welcome participation in an open project. We want to make it as easy as possible for people to work together, so please follow these guidelines to prepare and submit a pull request.
 
@@ -51,28 +52,32 @@ git remote add upstream git@github.com:Path-Check/covid-safe-paths.git
 
 ## Make Changes
 
-### Create a branch 
+### Create a branch
 
 1. Always create a new branch from the latest `upstream/develop`:
-  ```bash
-  git checkout develop # you want to branch from the latest 'develop' branch
-  
-  git pull upstream develop # make sure you have the latest code from upstream
-  
-  git push origin develop # optional, push these changes to YOUR fork's develop branch
-  ```
+
+```bash
+git checkout develop # you want to branch from the latest 'develop' branch
+
+git pull upstream develop # make sure you have the latest code from upstream
+
+git push origin develop # optional, push these changes to YOUR fork's develop branch
+```
+
 2. Create the branch. Name the branch something to reflect what you are doing.
-  ```
-  git checkout -b "feature/new-icon" develop # new branch created!
-  
-  "or"
-  
-  git checkout -b "fix/new-icon" develop # new branch created!
 
-  "or"
+```
+git checkout -b "feature/new-icon" develop # new branch created!
 
-  git checkout -b "release/new-icon" develop # new branch created!
-  ```
+"or"
+
+git checkout -b "fix/new-icon" develop # new branch created!
+
+"or"
+
+git checkout -b "release/new-icon" develop # new branch created!
+```
+
 3. Stick to the coding style and patterns that are used already.
 4. Document code! Comments are good. More comments are better. :)
 5. Make commits as you desire. Ultimately they will be squashed, so make notes to yourself. It's as simple as `git commit -m "commit message goes here"`!

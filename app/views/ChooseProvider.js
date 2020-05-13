@@ -17,6 +17,7 @@ import {
   renderers,
   withMenuContext,
 } from 'react-native-popup-menu';
+import validUrl from 'valid-url';
 
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
@@ -137,43 +138,57 @@ class ChooseProviderScreen extends Component {
     }
   }
 
-  resetState = () => {
+  triggerInvalidUrlAlert() {
+    Alert.alert(
+      languages.t('authorities.invalid_url_title'),
+      languages.t('authorities.invalid_url_body'),
+      [
+        {
+          text: languages.t('common.ok'),
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false },
+    );
+  }
+
+  setUrlText(urlText) {
+    this.setState({ urlText });
+  }
+
+  /**
+   * Checks if the user selected any authorities whose `url` matches
+   * the `url` param.
+   * @param {string} url
+   */
+  hasExistingAuthorityWithUrl(url) {
+    return this.state.selectedAuthorities.some(x => x.url === url);
+  }
+
+  /**
+   * Reset the URL input field to it's original/default settings
+   */
+  resetUrlInput = () =>
     this.setState({
       displayUrlEntry: 'none',
       urlEntryInProgress: false,
       urlText: '',
     });
-  };
 
   addCustomUrlToState = () => {
-    const urlInput = this.state.urlText;
-    if (urlInput === '') {
-      console.log('URL input was empty, not saving');
-      this.resetState();
-    } else if (
-      this.state.selectedAuthorities.findIndex(x => x.url === urlInput) != -1
-    ) {
-      console.log('URL input was duplicate, not saving');
-      this.resetState();
+    let { urlText: url, selectedAuthorities } = this.state;
+
+    if (!validUrl.isWebUri(url)) {
+      this.triggerInvalidUrlAlert();
     } else {
-      this.setState(
-        {
-          selectedAuthorities: this.state.selectedAuthorities.concat({
-            key: urlInput,
-            url: urlInput,
-          }),
-          displayUrlEntry: 'none',
-          urlEntryInProgress: false,
-          urlText: '',
-        },
-        () => {
-          // Add current settings state to async storage.
-          SetStoreData(
-            AUTHORITY_SOURCE_SETTINGS,
-            this.state.selectedAuthorities,
-          );
-        },
-      );
+      const newAuthority = { key: url, url };
+      const newAuthorities = selectedAuthorities.concat(newAuthority);
+
+      this.setState({ selectedAuthorities: newAuthorities }, () => {
+        SetStoreData(AUTHORITY_SOURCE_SETTINGS, this.state.selectedAuthorities);
+      });
+
+      this.resetUrlInput();
     }
   };
 

@@ -23,9 +23,9 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - Permission-LocationAlways (2.0.10):
+  - Permission-LocationAlways (2.1.4):
     - RNPermissions
-  - Permission-Notifications (2.0.10):
+  - Permission-Notifications (2.1.4):
     - RNPermissions
   - RCTRequired (0.61.5)
   - RCTTypeSafety (0.61.5):
@@ -192,7 +192,7 @@ PODS:
   - React-jsinspector (0.61.5)
   - react-native-background-timer (2.2.0):
     - React
-  - react-native-config (1.0.0):
+  - react-native-config (0.11.7):
     - React
   - react-native-document-picker (3.2.0):
     - React
@@ -252,25 +252,25 @@ PODS:
     - React-Core
   - RNBackgroundFetch (3.0.4):
     - React
-  - RNCAsyncStorage (1.8.1):
+  - RNCAsyncStorage (1.10.0):
     - React
   - RNCMaskedView (0.1.5):
     - React
-  - RNCPushNotificationIOS (1.1.0):
+  - RNCPushNotificationIOS (1.2.0):
     - React
   - RNFS (2.16.6):
     - React
   - RNGestureHandler (1.6.1):
     - React
-  - RNPermissions (2.0.10):
+  - RNPermissions (2.1.4):
     - React
-  - RNReanimated (1.7.1):
+  - RNReanimated (1.8.0):
     - React
   - RNScreens (2.0.0-alpha.12):
     - React
-  - RNShare (3.1.2):
+  - RNShare (3.3.1):
     - React
-  - RNSVG (12.0.3):
+  - RNSVG (12.1.0):
     - React
   - RNZipArchive (5.0.2):
     - React
@@ -460,8 +460,8 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  Permission-LocationAlways: 738e3b24333d52c87361804bb0a1641de014c405
-  Permission-Notifications: c9eb3a2da68dc0f37a8dc67d37bd28d150c5041d
+  Permission-LocationAlways: 48085521ad224052f5b25c3fdc6d0e996d162428
+  Permission-Notifications: d437cafc026900006d35981d35a2d694f883f44e
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -472,7 +472,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-background-timer: 1f7d560647b40e6a60b01c452ba29c54bf581fc4
-  react-native-config: 7db9b96479164dfd7b2be68eb9079e08279511c4
+  react-native-config: 8f6b2b9e017f6a5e92a97353c768e19e67294bb1
   react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-safe-area-context: d288138da2c800caa111f9352e9333f186a06ead
@@ -494,16 +494,16 @@ SPEC CHECKSUMS:
   RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNBackgroundFetch: 388cf1595934d22fed275b8db9b48a28bb4eb7b6
-  RNCAsyncStorage: e0dd7c8a36543b4ef84969acd9f8aceba3a92dc2
+  RNCAsyncStorage: 6d99641f8e6f15d169d695d8ef184bf187903f11
   RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
-  RNCPushNotificationIOS: ec3e8c17cda6a92a0bb97a53ec5ecf5771d94d21
+  RNCPushNotificationIOS: 4d9ffd08f00ef6c1029ebbf4d72fc711eca3ff01
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNPermissions: 1008d3511fee0e25739cf81c4af0d1b2248f1053
-  RNReanimated: 4e102df74a9674fa943e05f97f3362b6e44d0b48
+  RNPermissions: 3635b407c15f2fe591bd2101c8f20aa0912caba8
+  RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
-  RNShare: c19dbe4a7224098cd3cfc4d3b92c886ca817b3f0
-  RNSVG: 7e16ddfc6e00d5aa69c9eb83e699bcce5dcb85d4
+  RNShare: d4c9789a93ffa286389ff7b73f44118c8aab412f
+  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNZipArchive: ab51bc004a31657f34010254a9182014c6a81217
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b

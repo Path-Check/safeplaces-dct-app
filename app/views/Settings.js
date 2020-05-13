@@ -7,7 +7,7 @@ import checkmarkIcon from '../assets/svgs/checkmarkIcon';
 import languagesIcon from '../assets/svgs/languagesIcon';
 import xmarkIcon from '../assets/svgs/xmarkIcon';
 import { Divider } from '../components/Divider';
-import { Feature } from '../components/Feature';
+import { FeatureFlag } from '../components/FeatureFlag';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
@@ -20,6 +20,7 @@ import {
   supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
 import LocationServices from '../services/LocationService';
+import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
 
@@ -127,11 +128,11 @@ export const SettingsScreen = ({ navigation }) => {
           />
         </Section>
 
-        <Feature name='google_import'>
+        <FeatureFlag name='google_import'>
           <Section>
             <GoogleMapsImport navigation={navigation} />
           </Section>
-        </Feature>
+        </FeatureFlag>
 
         <Section last>
           <Item
@@ -141,6 +142,10 @@ export const SettingsScreen = ({ navigation }) => {
           <Item
             label={t('label.legal_page_title')}
             onPress={() => navigation.navigate('LicensesScreen')}
+          />
+          <Item
+            label='Feature Flags (Dev mode only)'
+            onPress={() => navigation.navigate(FEATURE_FLAG_SCREEN_NAME)}
             last
           />
         </Section>
