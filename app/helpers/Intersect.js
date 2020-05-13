@@ -21,9 +21,14 @@ import {
   AUTHORITY_SOURCE_SETTINGS,
   CROSSED_PATHS,
   LAST_CHECKED,
+  LOCATION_DATA,
 } from '../constants/storage';
 import { DEBUG_MODE } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import {
+  GetStoreData,
+  RemoveStoreData,
+  SetStoreData,
+} from '../helpers/General';
 import languages from '../locales/languages';
 
 /**
@@ -245,6 +250,27 @@ function binarySearchForTime(array, targetTime) {
 }
 
 /**
+ * Migrates the old GPS data into secure storage (Realm)
+ *
+ * @returns {Promise<boolean>} Boolean for whether there was any data to migrate
+ */
+export async function migrateOldData() {
+  const locations = await GetStoreData(LOCATION_DATA, false);
+
+  if (Array.isArray(locations) && locations.length > 0) {
+    await NativeModules.SecureStorageManager.migrateExistingLocations(
+      locations,
+    );
+    await RemoveStoreData(LOCATION_DATA);
+    return true; // data was migrated
+  }
+  return false; // nothing to migrate
+}
+
+/** The old data has been migrated already for this session/app. */
+let hasMigratedOldData = false;
+
+/**
  * Kicks off the intersection process.  Immediately returns after starting the
  * background intersection.  Typically would be run about every 12 hours, but
  * but might get run more frequently, e.g. when the user changes authority settings
@@ -253,19 +279,19 @@ function binarySearchForTime(array, targetTime) {
  *        from the authority (e.g. the news url) since we get that in the same call.
  *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
-export function checkIntersect() {
+export async function checkIntersect() {
   console.log(
-    'Intersect tick entering on',
-    isPlatformiOS() ? 'iOS' : 'Android',
+    `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}`,
   );
 
-  asyncCheckIntersect().then(result => {
-    if (result === null) {
-      console.log('[intersect] skipped');
-    } else {
-      console.log('[intersect] completed: ', result);
-    }
-  });
+  // TODO: remove this after June 1 once 14 day old history is irrelevant
+  if (!hasMigratedOldData) {
+    await migrateOldData();
+    hasMigratedOldData = true;
+  }
+
+  const result = await asyncCheckIntersect();
+  console.log(`[intersect] ${result ? 'completed' : 'skipped'}`);
 }
 
 /**

@@ -287,7 +287,7 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('SettingsScreen', {});
   }
 
-  getSettings() {
+  getSettingsBtn() {
     return (
       <TouchableOpacity
         style={styles.settingsContainer}
@@ -464,7 +464,7 @@ class LocationTracking extends Component {
               </View>
             </TouchableOpacity>
           </View>
-          {this.getSettings()}
+          {this.getSettingsBtn()}
         </ImageBackground>
       </Theme>
     );

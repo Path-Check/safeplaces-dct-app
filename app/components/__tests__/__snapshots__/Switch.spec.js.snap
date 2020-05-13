@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as off by default 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTSwitch
+    accessibilityRole="button"
+    onTintColor="#41dca4"
+    style={
+      Object {
+        "height": 31,
+        "width": 51,
+      }
+    }
+    testID="switch"
+    thumbTintColor="#FFF"
+    tintColor="#DADADA"
+    value={false}
+  />
+</View>
+`;
+
+exports[`renders on 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTSwitch
+    accessibilityRole="button"
+    onTintColor="#41dca4"
+    style={
+      Object {
+        "height": 31,
+        "width": 51,
+      }
+    }
+    testID="switch"
+    thumbTintColor="#FFF"
+    tintColor="#DADADA"
+    value={true}
+  />
+</View>
+`;
