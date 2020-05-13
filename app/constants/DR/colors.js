@@ -8,9 +8,11 @@ const colors = {
   PRIMARY_TEXT: '#000',
   SUCCESS: '#41dca4', // Green
   WARNING: '#ffc000', // Orange
-  VIOLET_ALPHA_06: '#f7f8ff', // cannot use transparency
+  VIOLET_ALPHA_06: '#f7f8ff',
+  pink: '#E75480', // cannot use transparency
   VIOLET: '#4051DB',
   TRANSPARENT: 'transparent',
+  green: '#41dca4',
 
   // For notifications
   HIGHEST_RISK: '#e74c3c',
@@ -54,6 +56,7 @@ const colors = {
 
   DARK_GRAY: '#3C475B',
   LIGHT_GRAY: '#EEEEEE',
+  lightGray: '#EEEEEE',
 
   MONO_DARK: '#202020',
   MONO_SECONDARY: '#757677',

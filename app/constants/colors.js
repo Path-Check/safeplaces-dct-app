@@ -2,12 +2,15 @@ const colors = {
   BLACK: '#000',
   WHITE: '#FFF',
   DODGER_BLUE: '#428AF8',
+  mainBlue: '#428AF8',
   SILVER: '#BEBEBE',
   TORCH_RED: '#F8262F',
   MISCHKA: '#E5E4E6',
   PRIMARY_TEXT: '#000',
-  SUCCESS: '#41dca4', // Green
-  WARNING: '#ffc000', // Orange
+  SUCCESS: '#41dca4',
+  green: '#41dca4',
+  WARNING: '#ffc000',
+  orange: '#ffc000',
   VIOLET_ALPHA_06: '#f7f8ff', // cannot use transparency
   VIOLET: '#4051DB',
   TRANSPARENT: 'transparent',
@@ -28,6 +31,7 @@ const colors = {
   VIOLET_TEXT: '#3C4ED8',
 
   GRAY_BACKGROUND: '#DADADA',
+  background: '#DADADA',
 
   INTRO_WHITE_BG: '#F7F8FF',
   PULSE_WHITE: '#FFFFFF40',
