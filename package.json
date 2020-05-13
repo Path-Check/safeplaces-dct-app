@@ -1,10 +1,10 @@
 {
   "name": "covidsafepaths",
-  "version": "1.0.1",
+  "version": "1.0.12",
   "private": true,
   "scripts": {
     "start": "yarn && react-native start",
-    "run-android": "react-native run-android",
+    "run-android": "react-native run-android --variant=devDebug",
     "run-ios": "yarn install:pod && react-native run-ios",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
