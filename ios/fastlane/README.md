@@ -21,6 +21,11 @@ or alternatively using `brew cask install fastlane`
 fastlane ios sync_local_certs
 ```
 
+### ios badge_update
+```
+fastlane ios badge_update
+```
+Add beta tag to badge
 ### ios staging
 ```
 fastlane ios staging

@@ -11,7 +11,7 @@
 #
 
 # Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+update_fastlane
 
 default_platform(:android)
 
@@ -22,6 +22,14 @@ platform :android do
   end
 
   JS_PACKAGE = load_json(json_path: "../package.json")
+
+  desc "Update badge icons"
+  lane :badge_update do
+    add_badge(
+      dark: true,
+      glob: "./android/app/src/main/res/**/ic_launcher.{png,PNG}"
+    )
+  end
 
   desc "Build a Staging APK and AAB"
   lane :staging do

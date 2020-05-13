@@ -11,7 +11,7 @@
 #
 
 # Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+update_fastlane
 
 default_platform(:ios)
 
@@ -48,6 +48,13 @@ platform :ios do
         keychain_name: "tech_at_safepaths_keychain",
         keychain_password: "meow",
         git_basic_authorization: ENV["secrets.MATCH_GIT_BASIC_AUTH"]
+      )
+    end
+
+    desc "Add beta tag to badge"
+    lane :badge_update do
+      add_badge(
+        dark: true,
       )
     end
 
