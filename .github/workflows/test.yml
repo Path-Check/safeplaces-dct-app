@@ -56,11 +56,11 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: ./gradlew :app:connectedDebugAndroidTest --no-daemon
+      - name: ./gradlew :app:connectedDevDebugAndroidTest --no-daemon
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 28
-          script: ./gradlew :app:connectedDebugAndroidTest --no-daemon
+          script: ./gradlew :app:connectedDevDebugAndroidTest --no-daemon
           working-directory: ./android
 
   unit-test-ios:
