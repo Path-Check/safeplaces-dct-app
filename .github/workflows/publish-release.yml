@@ -6,11 +6,17 @@ on:
       - develop
       - release-candidate
       - master
+  paths-ignore:
+      - 'package.json'
+      - 'CHANGELOG.md'
   pull_request:
     branches:
       - develop
       - release-candidate
       - master
+    paths-ignore:
+      - 'package.json'
+      - 'CHANGELOG.md'
 
 jobs:
   version_bump:
@@ -18,21 +24,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Cache node_modules/
-        uses: actions/cache@v1
-        id: node_cache
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
-
-      - name: Install Node Dependencies
-        if: steps.node_cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
-
-      - name: Bump the version and don't commit it back
-        run: yarn version:bump:patch
+    - uses: actions/checkout@v1
+      with:
+        token: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+    - name: Bump version and push tag
+      uses: TriPSs/conventional-changelog-action@master
+      with:
+        github-token: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+        git-message: 'chore(release): {version}'
+        preset: 'angular'
+        tag-prefix: ''
+        output-file: 'CHANGELOG.md'
 
 
   deploy_android:
