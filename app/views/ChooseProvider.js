@@ -152,18 +152,7 @@ class ChooseProviderScreen extends Component {
     );
   }
 
-  setUrlText(urlText) {
-    this.setState({ urlText });
-  }
-
-  /**
-   * Checks if the user selected any authorities whose `url` matches
-   * the `url` param.
-   * @param {string} url
-   */
-  hasExistingAuthorityWithUrl(url) {
-    return this.state.selectedAuthorities.some(x => x.url === url);
-  }
+  setUrlText = urlText => this.setState({ urlText });
 
   /**
    * Reset the URL input field to it's original/default settings
@@ -294,11 +283,7 @@ class ChooseProviderScreen extends Component {
                       { display: this.state.displayUrlEntry },
                     ]}>
                     <DynamicTextInput
-                      onChangeText={text => {
-                        this.setState({
-                          urlText: text,
-                        });
-                      }}
+                      onChangeText={this.setUrlText}
                       value={this.state.urlText}
                       autoFocus={this.state.urlEntryInProgress}
                       style={[styles.item, styles.textInput]}
@@ -327,7 +312,6 @@ class ChooseProviderScreen extends Component {
               )}
             </View>
           </SPKeyboardAvoidingView>
-
           <Menu
             name='AuthoritiesMenu'
             renderer={SlideInMenu}
