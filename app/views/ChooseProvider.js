@@ -17,6 +17,7 @@ import {
   renderers,
   withMenuContext,
 } from 'react-native-popup-menu';
+import validUrl from 'valid-url';
 
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
@@ -30,7 +31,6 @@ import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { Theme } from '../constants/themes';
 import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
-import { isValidUrl } from '../helpers/urlValidation';
 import languages from '../locales/languages';
 import { HCAService } from '../services/HCAService';
 
@@ -177,9 +177,7 @@ class ChooseProviderScreen extends Component {
   addCustomUrlToState() {
     let { urlText: url, selectedAuthorities } = this.state;
 
-    url = url.trim();
-
-    if (this.hasExistingAuthorityWithUrl(url) || !isValidUrl(url)) {
+    if (!validUrl.isWebUri(url)) {
       this.triggerInvalidUrlAlert();
     } else {
       const newAuthority = { key: url, url };
