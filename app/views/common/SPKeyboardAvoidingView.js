@@ -1,7 +1,7 @@
 import React from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 
-const SPKeyboardAvoidingView = ({ behavior, children }) => {
+export const SPKeyboardAvoidingView = ({ behavior, children }) => {
   const isiOS = Platform.OS === 'ios';
 
   const instanceBehavior =
@@ -25,5 +25,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-export default SPKeyboardAvoidingView;

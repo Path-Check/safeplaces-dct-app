@@ -32,7 +32,7 @@ import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import { HCAService } from '../services/HCAService';
-import SPKeyboardAvoidingView from './common/SPKeyboardAvoidingView';
+import { SPKeyboardAvoidingView } from './common/SPKeyboardAvoidingView';
 
 const { SlideInMenu } = renderers;
 
