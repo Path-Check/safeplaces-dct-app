@@ -12,8 +12,6 @@ on:
   pull_request:
     branches:
       - develop
-      - release-candidate
-      - master
     # paths-ignore:
     #   - 'package.json'
     #   - 'CHANGELOG.md'
