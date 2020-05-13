@@ -72,7 +72,7 @@ class RealmSecureStorage(inMemory: Boolean?) {
       if (backgroundLocation.time - previousTime > MINIMUM_TIME_INTERVAL) {
         val assumedLocations = createAssumedLocations(previousLocation, backgroundLocation)
         if (assumedLocations.isNotEmpty()) {
-          Log.d(TAG, "Inserting ${assumedLocations.size} assumed Location")
+          Log.d(TAG, "Inserting ${assumedLocations.size} assumed locations")
         }
         it.insert(assumedLocations)
         Log.d(TAG, "Inserting New Location")

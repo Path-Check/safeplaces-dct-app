@@ -1,7 +1,4 @@
-import createFlags from 'flag';
 import env from 'react-native-config';
-
-const { FlagsProvider, Flag, useFlag, useFlags } = createFlags();
 
 /**
  * Normalizes flags:
@@ -23,6 +20,4 @@ export function parseFlags(envConfig) {
     }, {});
 }
 
-export const buildTimeFlags = parseFlags(env);
-
-export { FlagsProvider, Flag, useFlag, useFlags };
+export const getBuildtimeFlags = () => parseFlags(env);
