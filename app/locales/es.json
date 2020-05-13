@@ -122,7 +122,7 @@
     "skip_this_step": "Omitir este paso",
     "team": "Equipo",
     "team_para": "El equipo se compone de un consorcio de epidemiólogos, ingenieros, analistas de datos, defensores de la privacidad digital, profesores y investigadores de instituciones reconocidas como MIT, Harvard, la Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young y Link Ventures.",
-    "terms_of_use": "Condiciones de uso"
+    "privacy_policy": "Política de privacidad"
   },
   "onboarding": {
     "eula_checkbox": "Acepto el acuerdo de licencia",
