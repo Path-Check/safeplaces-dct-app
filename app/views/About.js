@@ -2,17 +2,15 @@ import React, { Component } from 'react';
 import {
   BackHandler,
   Dimensions,
+  Linking,
   Platform,
   ScrollView,
   StyleSheet,
   View,
-  Linking
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SvgXml } from 'react-native-svg';
 
 import packageJson from '../../package.json';
-import team from './../assets/svgs/team';
 import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
 import lock from '../assets/svgs/lock';
@@ -28,7 +26,6 @@ class AboutScreen extends Component {
     super(props);
     this.state = {
       tapCount: 0, // tracks number of taps, for debugging
-      covidlink: 'covidsafepaths.org'  //website link
     };
   }
 
@@ -92,11 +89,16 @@ class AboutScreen extends Component {
             </Typography>
           </View>
           <Typography style={styles.aboutSectionPara}>
-            {languages.t('label.commitment_para')} <Typography style={styles.aboutcovidhyperlink} onPress={() => {
-              Linking.openURL('https://covidsafepaths.org/');
-            }}>{this.state.covidlink}</Typography>
+            {languages.t('label.commitment_para')}
+            <Typography
+              style={styles.aboutcovidhyperlink}
+              onPress={() => {
+                Linking.openURL('https://covidsafepaths.org/');
+              }}>
+              {/* eslint-disable-next-line react-native/no-raw-text */}
+              {'covidsafepaths.org'}
+            </Typography>
           </Typography>
-
 
           <View style={styles.spacer} />
           <View style={styles.spacer} />
@@ -146,23 +148,17 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: Colors.INTRO_WHITE_BG,
     paddingHorizontal: 26,
-    // flex: 1,
     paddingBottom: 42,
-  },
-  aboutSectionIconTeam: {
-    width: 40.38,
-    height: 19,
   },
   aboutLabelContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   aboutSectionIconLock: {
     width: 20,
     height: 26.67,
     marginTop: 36,
-
   },
   aboutSectionTitles: {
     color: Colors.VIOLET_TEXT,
@@ -187,7 +183,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     alignSelf: 'center',
     fontFamily: fontFamily.primaryRegular,
-    textDecorationLine: 'underline'
+    textDecorationLine: 'underline',
   },
   aboutSectionParaBold: {
     color: Colors.VIOLET_TEXT,
