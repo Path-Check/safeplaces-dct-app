@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import {
   BackHandler,
   Dimensions,
@@ -17,109 +17,90 @@ import lock from '../assets/svgs/lock';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-import { DEBUG_MODE } from '../constants/storage';
-import { GetStoreData } from '../helpers/General';
 
-class AboutScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tapCount: 0, // tracks number of taps, for debugging
-    };
-  }
-
-  backToMain() {
-    this.props.navigation.goBack();
-  }
-
-  handleBackPress = () => {
-    this.setState({ tapCount: 0 });
-    this.backToMain();
-    return true;
+export const AboutScreen = ({ navigation }) => {
+  const backToMain = () => {
+    navigation.goBack();
   };
 
-  componentDidMount() {
-    GetStoreData(DEBUG_MODE).then(dbgMode => {
-      if (dbgMode == 'true') {
-        this.setState({ tapCount: 4 });
-      }
-    });
+  useEffect(() => {
+    const handleBackPress = () => {
+      navigation.goBack();
+      return true;
+    };
 
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-  }
+    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-  }
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+  }, [navigation]);
 
-  render() {
-    return (
-      <NavigationBarWrapper
-        title={languages.t('label.about_title')}
-        onBackPress={this.backToMain.bind(this)}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View style={styles.spacer} />
-          <View style={styles.spacer} />
+  return (
+    <NavigationBarWrapper
+      title={languages.t('label.about_title')}
+      onBackPress={backToMain}>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={styles.spacer} />
+        <View style={styles.spacer} />
 
-          <View style={styles.aboutLabelContainer}>
-            <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
-            <Typography style={styles.aboutSectionTitles}>
-              {languages.t('label.commitment')}
-            </Typography>
-          </View>
-          <Typography style={styles.aboutSectionPara}>
-            {languages.t('label.commitment_para')}
-            <Typography
-              style={styles.aboutcovidhyperlink}
-              onPress={() => {
-                Linking.openURL('https://covidsafepaths.org/');
-              }}>
-              {/* eslint-disable-next-line react-native/no-raw-text */}
-              {'covidsafepaths.org'}
-            </Typography>
+        <View style={styles.aboutLabelContainer}>
+          <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
+          <Typography style={styles.aboutSectionTitles}>
+            {languages.t('label.commitment')}
           </Typography>
+        </View>
+        <Typography style={styles.aboutSectionPara}>
+          {languages.t('label.commitment_para')}
+          <Typography
+            style={styles.aboutcovidhyperlink}
+            onPress={() => {
+              Linking.openURL('https://covidsafepaths.org/');
+            }}>
+            {/* eslint-disable-next-line react-native/no-raw-text */}
+            {'covidsafepaths.org'}
+          </Typography>
+        </Typography>
 
-          <View style={styles.spacer} />
-          <View style={styles.spacer} />
+        <View style={styles.spacer} />
+        <View style={styles.spacer} />
 
-          <View style={styles.main}>
-            <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>
-                {languages.t('about.version')}
-              </Typography>
-              <Typography style={styles.aboutSectionPara}>
-                {packageJson.version}
-              </Typography>
-            </View>
-
-            <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>
-                {languages.t('about.operating_system_abbr')}
-              </Typography>
-              <Typography style={styles.aboutSectionPara}>
-                {Platform.OS + ' v' + Platform.Version}
-              </Typography>
-            </View>
-
-            <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>
-                {languages.t('about.dimensions')}
-              </Typography>
-              <Typography style={styles.aboutSectionPara}>
-                {Math.trunc(Dimensions.get('screen').width) +
-                  ' x ' +
-                  Math.trunc(Dimensions.get('screen').height)}
-              </Typography>
-            </View>
+        <View style={styles.main}>
+          <View style={styles.row}>
+            <Typography style={styles.aboutSectionParaBold}>
+              {languages.t('about.version')}
+            </Typography>
+            <Typography style={styles.aboutSectionPara}>
+              {packageJson.version}
+            </Typography>
           </View>
 
-          <View style={styles.spacer} />
-          <View style={styles.spacer} />
-        </ScrollView>
-      </NavigationBarWrapper>
-    );
-  }
-}
+          <View style={styles.row}>
+            <Typography style={styles.aboutSectionParaBold}>
+              {languages.t('about.operating_system_abbr')}
+            </Typography>
+            <Typography style={styles.aboutSectionPara}>
+              {Platform.OS + ' v' + Platform.Version}
+            </Typography>
+          </View>
+
+          <View style={styles.row}>
+            <Typography style={styles.aboutSectionParaBold}>
+              {languages.t('about.dimensions')}
+            </Typography>
+            <Typography style={styles.aboutSectionPara}>
+              {Math.trunc(Dimensions.get('screen').width) +
+                ' x ' +
+                Math.trunc(Dimensions.get('screen').height)}
+            </Typography>
+          </View>
+        </View>
+
+        <View style={styles.spacer} />
+        <View style={styles.spacer} />
+      </ScrollView>
+    </NavigationBarWrapper>
+  );
+};
 
 const styles = StyleSheet.create({
   contentContainer: {
