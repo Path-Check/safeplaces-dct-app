@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - develop
+      - master
+      - release-candidate
   pull_request:
     branches:
       - develop
+      - master
+      - release-candidate
 
 jobs:
   build_staging_android:
