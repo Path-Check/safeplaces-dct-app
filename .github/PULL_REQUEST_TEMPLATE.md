@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-<!-- Please read https://github.com/tripleblindmarket/covid-safe-paths/wiki/Pull-Request-Best-Practices for recommended best practices before opening your first pull request -->
-
-#### Description:
-=======
 <!-- Required: read https://github.com/Path-Check/covid-safe-paths/wiki/Pull-Request-Best-Practices for recommended best practices before opening your first pull request.  PR's raised not following those guidelines will require rework, so you might as well start off right -->
->>>>>>> 62a2808201693bf016ce969a6e5b86b31253c245
 
 #### Description:
 
