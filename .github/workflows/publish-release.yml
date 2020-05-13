@@ -6,7 +6,7 @@ on:
       - develop
       - release-candidate
       - master
-  paths-ignore:
+    paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
   pull_request:
