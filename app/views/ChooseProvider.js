@@ -30,27 +30,11 @@ import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { Theme } from '../constants/themes';
 import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
+import { isValidUrl } from '../helpers/urlValidation';
 import languages from '../locales/languages';
 import { HCAService } from '../services/HCAService';
 
 const { SlideInMenu } = renderers;
-const URL_REGEX = new RegExp(
-  /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[-a-zA-Z0-9]+([-.]{1}[-a-zA-Z0-9]+)*\.[-a-zA-Z0-9]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm,
-);
-
-function createInvalidURLPopUp() {
-  Alert.alert(
-    languages.t('authorities.invalid_url_message'),
-    languages.t('label.please_try_again_message'),
-    [
-      {
-        text: languages.t('label.proceed_message'),
-        style: 'cancel',
-      },
-    ],
-    { cancelable: false },
-  );
-}
 
 class ChooseProviderScreen extends Component {
   constructor(props) {
@@ -153,44 +137,59 @@ class ChooseProviderScreen extends Component {
     }
   }
 
-  updateUrlText(text) {
-    const textLimit = 8000;
-    text = text.trim();
-    if (text.length > textLimit) {
-      text = text.substring(0, textLimit);
-      createInvalidURLPopUp();
-    }
+  triggerInvalidUrlAlert() {
+    Alert.alert(
+      languages.t('authorities.invalid_url_title'),
+      languages.t('authorities.invalid_url_body'),
+      [
+        {
+          text: languages.t('common.ok'),
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false },
+    );
+  }
+
+  setUrlText(urlText) {
+    this.setState({ urlText });
+  }
+
+  /**
+   * Checks if the user selected any authorities whose `url` matches
+   * the `url` param.
+   * @param {string} url
+   */
+  hasExistingAuthorityWithUrl(url) {
+    return this.state.selectedAuthorities.some(x => x.url === url);
+  }
+
+  /**
+   * Reset the URL input field to it's original/default settings
+   */
+  resetUrlInput() {
     this.setState({
-      urlText: text,
+      displayUrlEntry: 'none',
+      urlEntryInProgress: false,
     });
   }
 
-  addCustomUrlToState(urlInput) {
-    if (!urlInput.match(URL_REGEX)) {
-      createInvalidURLPopUp();
-    } else if (
-      this.state.selectedAuthorities.findIndex(x => x.url === urlInput) != -1
-    ) {
-      console.log('URL input was duplicate, not saving');
-      createInvalidURLPopUp();
+  addCustomUrlToState() {
+    let { urlText: url, selectedAuthorities } = this.state;
+
+    url = url.trim();
+
+    if (this.hasExistingAuthorityWithUrl(url) || !isValidUrl(url)) {
+      this.triggerInvalidUrlAlert();
     } else {
-      this.setState(
-        {
-          selectedAuthorities: this.state.selectedAuthorities.concat({
-            key: urlInput,
-            url: urlInput,
-          }),
-          displayUrlEntry: 'none',
-          urlEntryInProgress: false,
-        },
-        () => {
-          // Add current settings state to async storage.
-          SetStoreData(
-            AUTHORITY_SOURCE_SETTINGS,
-            this.state.selectedAuthorities,
-          );
-        },
-      );
+      const newAuthority = { key: url, url };
+      const newAuthorities = selectedAuthorities.concat(newAuthority);
+
+      this.setState({ selectedAuthorities: newAuthorities }, () => {
+        SetStoreData(AUTHORITY_SOURCE_SETTINGS, this.state.selectedAuthorities);
+      });
+
+      this.resetUrlInput();
     }
   }
 
@@ -293,23 +292,17 @@ class ChooseProviderScreen extends Component {
                     { display: this.state.displayUrlEntry },
                   ]}>
                   <DynamicTextInput
-                    onChangeText={text => {
-                      this.updateUrlText(text);
-                    }}
+                    onChangeText={this.setUrlText.bind(this)}
                     value={this.state.urlText}
                     autoFocus={this.state.urlEntryInProgress}
                     style={[styles.item, styles.textInput]}
                     placeholder={languages.t(
                       'label.authorities_input_placeholder',
                     )}
-                    onSubmitEditing={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }
+                    onSubmitEditing={this.addCustomUrlToState.bind(this)}
                   />
                   <TouchableOpacity
-                    onPress={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }>
+                    onPress={this.addCustomUrlToState.bind(this)}>
                     <Image source={saveIcon} style={styles.saveIcon} />
                   </TouchableOpacity>
                 </View>
@@ -322,21 +315,15 @@ class ChooseProviderScreen extends Component {
                     { display: this.state.displayUrlEntry },
                   ]}>
                   <DynamicTextInput
-                    onChangeText={text => {
-                      this.updateUrlText(text);
-                    }}
+                    onChangeText={this.setUrlText.bind(this)}
                     value={this.state.urlText}
                     autoFocus={this.state.urlEntryInProgress}
                     style={[styles.item, styles.textInput]}
                     placeholder={languages.t('label.enter_authority_url')}
-                    onSubmitEditing={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }
+                    onSubmitEditing={this.addCustomUrlToState.bind(this)}
                   />
                   <TouchableOpacity
-                    onPress={() =>
-                      this.addCustomUrlToState(this.state.urlText)
-                    }>
+                    onPress={this.addCustomUrlToState.bind(this)}>
                     <Image source={saveIcon} style={styles.saveIcon} />
                   </TouchableOpacity>
                 </View>

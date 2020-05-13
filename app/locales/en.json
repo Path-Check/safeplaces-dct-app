@@ -6,10 +6,12 @@
     "version": "Version:"
   },
   "authorities": {
-    "invalid_url_message": "Invalid URL"
+    "invalid_url_title": "Invalid URL",
+    "invalid_url_body": "The URL you entered was invalid, please try again"
   },
   "common": {
-    "done": "Done"
+    "done": "Done",
+    "ok": "Ok"
   },
   "history": {
     "no_exposure": "No known",
@@ -118,8 +120,6 @@
     "news_subtitle": "Read about the latest COVID updates from your health authority and in general.",
     "news_title": "Latest news",
     "no_data": "No data",
-    "please_try_again_message": "Please try again",
-    "proceed_message": "Proceed",
     "push_at_risk_message": "You have crossed paths with a COVID-19 patient",
     "push_at_risk_title": "You may be at risk",
     "see_exposure_history": "See exposure history",
