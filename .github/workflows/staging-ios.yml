@@ -1,12 +1,13 @@
 name: Staging iOS
 
+# Deliberately turned off the pull request logic here
+# because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
 on:
   push:
     branches:
       - develop
-  pull_request:
-    branches:
-      - develop
+      - master
+      - release-candidate
 
 jobs:
   build_staging_ios:
