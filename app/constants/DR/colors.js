@@ -55,7 +55,9 @@ const colors = {
   NAV_BAR_BORDER: 'rgba(189, 195, 199,0.6)',
 
   DARK_GRAY: '#3C475B',
+  buttonLightText: '#3C475B',
   LIGHT_GRAY: '#EEEEEE',
+
   lightGray: '#EEEEEE',
 
   MONO_DARK: '#202020',
