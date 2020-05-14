@@ -426,12 +426,12 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   headerTitle: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.mainBlue,
   },
   sectionDescription: {
     marginTop: 12,
     overflow: 'scroll',
-    color: Colors.VIOLET_TEXT,
+    color: Colors.BLACK,
   },
   authorityFilter: {
     flexDirection: 'row',

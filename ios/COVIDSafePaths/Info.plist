@@ -81,6 +81,9 @@
 		<string>IBMPlexMono-SemiBoldItalic.ttf</string>
 		<string>IBMPlexMono-Thin.ttf</string>
 		<string>IBMPlexMono-ThinItalic.ttf</string>
+		<string>OpenSans-Bold.ttf</string>
+		<string>OpenSans-Regular.ttf</string>
+		<string>OpenSans-SemiBold.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

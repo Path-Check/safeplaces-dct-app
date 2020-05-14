@@ -158,11 +158,11 @@ const styles = StyleSheet.create({
   // Container covers the entire screen
   topSafeAreaContainer: {
     flex: 0,
-    backgroundColor: Colors.VIOLET_BUTTON,
+    backgroundColor: Colors.mainBlue,
   },
   bottomSafeAreaContainer: {
     flex: 1,
-    backgroundColor: Colors.VIOLET_BUTTON_DARK,
+    backgroundColor: Colors.mainBlue,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   exportButtonText: {
-    color: Colors.VIOLET,
+    color: Colors.mainBlue,
     fontSize: 20,
     fontFamily: fontFamily.primaryMedium,
   },
