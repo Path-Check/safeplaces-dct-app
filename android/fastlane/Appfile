@@ -1,0 +1,2 @@
+json_key_file("./app/json_key.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("org.pathcheck.covidsafepaths") # e.g. com.krausefx.app
