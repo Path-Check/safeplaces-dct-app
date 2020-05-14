@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  diffs-pass-eslint:
+  eslint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -23,6 +23,7 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      - uses: hallee/eslint-action@master
+      - uses: tinovyatkin/action-eslint@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{secrets.GITHUB_TOKEN}}
+          check-name: eslint # this is the job name from above 👆
