@@ -161,7 +161,7 @@ android {
         release {
             storeFile file('keystore.jks')
              if (file("./keystore.jks").exists()) {
-                keyAlias project.property("android.injected.signing.key.alias")                keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
+                keyAlias project.property("android.injected.signing.key.alias")
                 keyPassword project.property("android.injected.signing.key.password")
                 storePassword project.property("android.injected.signing.store.password")
                 storeFile file("./keystore.jks")
