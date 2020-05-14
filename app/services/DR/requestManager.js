@@ -1,30 +1,16 @@
-import { AsyncStorage } from 'react-native';
+import { AUTHORITY_CASES } from '../../constants/storage';
 import fetch from '../../helpers/Fetch';
+import { GetStoreData, SetStoreData } from '../../helpers/General';
 const COV_CASES = 'https://corona.lmao.ninja/v2/countries/do';
 
-async function saveData(data, field) {
-  if (data) {
-    await AsyncStorage.setItem(`coviddr@${field}`, JSON.stringify(data));
-
-    return data;
-  } else {
-    return JSON.parse(await AsyncStorage.getItem(`coviddr@${field}`));
-  }
+export function getAllCases() {
+  const dataSaved = GetStoreData(AUTHORITY_CASES, false);
+  return fetch(COV_CASES)
+    .then(({ data }) => {
+      SetStoreData(AUTHORITY_CASES, data);
+      return data;
+    })
+    .catch(() => {
+      return dataSaved;
+    });
 }
-
-export async function getAllCases() {
-  // eslint-disable-next-line no-undef
-  let data;
-  fetch(`${COV_CASES}`)
-  .then((raw) => data = raw.json())
-  .then(({ data }) => {
-    console.log('[INFO]',data);
-  })
-  .catch(() => {
-    console.log('[ERROR]');
-    return;
-  });
-
-  return await saveData(data, 'situation');
-}
-

@@ -1,13 +1,12 @@
-
-
 import { StyleSheet } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+
 import Colors from '../../../constants/DR/colors';
 
-const { background, pink, mainBlue, orange } = Colors;
+const { background, pink, mainBlue } = Colors;
 const textFontSize = wp('4%');
 
 const styles = StyleSheet.create({
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: wp('100%'),
   },
-  rowAndCenter: { 
+  rowAndCenter: {
     flexDirection: 'row',
     alignItems: 'center',
   },
