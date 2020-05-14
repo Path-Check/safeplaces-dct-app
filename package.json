@@ -138,6 +138,13 @@
       "style": "module"
     }
   },
+  "workspaces": {
+    "packages": [
+      "gps",
+      "bte",
+      "shared"
+    ]
+  },
   "detox": {
     "artifacts": {
       "rootDir": "./e2e/artifacts/",
