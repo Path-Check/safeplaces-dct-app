@@ -247,25 +247,24 @@ class ChooseProviderScreen extends Component {
         <NavigationBarWrapper
           title={languages.t('label.choose_provider_title')}
           onBackPress={this.backToMain.bind(this)}>
-          <View style={styles.main}>
-            <Typography style={styles.headerTitle} use={'headline2'}>
-              {languages.t('label.authorities_title')}
-            </Typography>
-            <Typography style={styles.sectionDescription} use={'body1'}>
-              {languages.t('label.authorities_desc')}
-            </Typography>
-            {__DEV__ && (
-              <TouchableOpacity style={styles.autoSubcribe}>
-                <Checkbox
-                  label={languages.t('label.auto_subscribe_checkbox')}
-                  checked={this.state.isAutoSubscribed}
-                  onPress={() => this.toggleAutoSubscribe()}
-                />
-              </TouchableOpacity>
-            )}
-          </View>
-
           <SPKeyboardAvoidingView>
+            <View style={styles.main}>
+              <Typography style={styles.headerTitle} use={'headline2'}>
+                {languages.t('label.authorities_title')}
+              </Typography>
+              <Typography style={styles.sectionDescription} use={'body1'}>
+                {languages.t('label.authorities_desc')}
+              </Typography>
+              {__DEV__ && (
+                <TouchableOpacity style={styles.autoSubcribe}>
+                  <Checkbox
+                    label={languages.t('label.auto_subscribe_checkbox')}
+                    checked={this.state.isAutoSubscribed}
+                    onPress={() => this.toggleAutoSubscribe()}
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
             <View style={styles.listContainer}>
               {this.state.selectedAuthorities.length == 0 &&
               !this.state.urlEntryInProgress ? (
@@ -310,72 +309,76 @@ class ChooseProviderScreen extends Component {
                 </>
               )}
             </View>
-          </SPKeyboardAvoidingView>
-          <Menu
-            name='AuthoritiesMenu'
-            renderer={SlideInMenu}
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              paddingHorizontal: 12,
-            }}>
-            <MenuTrigger>
-              <Button
-                label={languages.t('label.authorities_add_button_label')}
-                onPress={() =>
-                  this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
-                }
-                disabled={this.state.urlEditInProgress}
-              />
-            </MenuTrigger>
-            <MenuOptions>
-              {__DEV__ && (
-                <TouchableOpacity
-                  style={styles.authorityFilter}
-                  onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
-                  <Typography style={styles.authorityFilterText} use={'body2'}>
-                    {languages.t('label.filter_authorities_by_gps_history')}
-                  </Typography>
-                  <Switch
-                    onValueChange={val =>
-                      this.filterAuthoritesByGPSHistory({ val })
-                    }
-                    value={this.state.isAuthorityFilterActive}
-                  />
-                </TouchableOpacity>
-              )}
-              {this.state.authoritiesList === undefined
-                ? null
-                : this.state.authoritiesList.map(item => {
-                    let name = Object.keys(item)[0];
-                    let key = this.state.authoritiesList.indexOf(item);
+            <Menu
+              name='AuthoritiesMenu'
+              renderer={SlideInMenu}
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                paddingHorizontal: 12,
+              }}>
+              <MenuTrigger>
+                <Button
+                  label={languages.t('label.authorities_add_button_label')}
+                  onPress={() =>
+                    this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
+                  }
+                  disabled={this.state.urlEditInProgress}
+                />
+              </MenuTrigger>
+              <MenuOptions>
+                {__DEV__ && (
+                  <TouchableOpacity
+                    style={styles.authorityFilter}
+                    onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
+                    <Typography
+                      style={styles.authorityFilterText}
+                      use={'body2'}>
+                      {languages.t('label.filter_authorities_by_gps_history')}
+                    </Typography>
+                    <Switch
+                      onValueChange={val =>
+                        this.filterAuthoritesByGPSHistory({ val })
+                      }
+                      value={this.state.isAuthorityFilterActive}
+                    />
+                  </TouchableOpacity>
+                )}
+                {this.state.authoritiesList === undefined
+                  ? null
+                  : this.state.authoritiesList.map(item => {
+                      let name = Object.keys(item)[0];
+                      let key = this.state.authoritiesList.indexOf(item);
 
-                    return (
-                      <MenuOption
-                        key={key}
-                        onSelect={() => {
-                          this.addAuthorityToState(name);
-                        }}
-                        disabled={this.state.authoritiesList.length === 1}>
-                        <Typography style={styles.menuOptionText} use={'body2'}>
-                          {name}
-                        </Typography>
-                      </MenuOption>
-                    );
-                  })}
-              <MenuOption
-                onSelect={() => {
-                  this.setState({
-                    displayUrlEntry: 'flex',
-                    urlEntryInProgress: true,
-                  });
-                }}>
-                <Typography style={styles.menuOptionText} use={'body2'}>
-                  {languages.t('label.authorities_add_url')}
-                </Typography>
-              </MenuOption>
-            </MenuOptions>
-          </Menu>
+                      return (
+                        <MenuOption
+                          key={key}
+                          onSelect={() => {
+                            this.addAuthorityToState(name);
+                          }}
+                          disabled={this.state.authoritiesList.length === 1}>
+                          <Typography
+                            style={styles.menuOptionText}
+                            use={'body2'}>
+                            {name}
+                          </Typography>
+                        </MenuOption>
+                      );
+                    })}
+                <MenuOption
+                  onSelect={() => {
+                    this.setState({
+                      displayUrlEntry: 'flex',
+                      urlEntryInProgress: true,
+                    });
+                  }}>
+                  <Typography style={styles.menuOptionText} use={'body2'}>
+                    {languages.t('label.authorities_add_url')}
+                  </Typography>
+                </MenuOption>
+              </MenuOptions>
+            </Menu>
+          </SPKeyboardAvoidingView>
         </NavigationBarWrapper>
       </Theme>
     );

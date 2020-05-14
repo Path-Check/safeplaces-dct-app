@@ -14,7 +14,7 @@ export const SPKeyboardAvoidingView = ({ behavior, children }) => {
       accessible={false}
       style={styles.keyboardView}
       autoScrollToFocusedInput
-      behavior={isiOS ? instanceBehavior : 'height'}>
+      behavior={isiOS ? instanceBehavior : null}>
       {children}
     </KeyboardAvoidingView>
   );
