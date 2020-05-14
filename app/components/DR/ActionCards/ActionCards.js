@@ -1,13 +1,14 @@
+import { Badge, Button, Card, CardItem, Left, Right, Text } from 'native-base';
 import React from 'react';
 import { Image, View } from 'react-native';
-import { Badge, Card, CardItem, Text, Left, Button, Right } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import styles from './styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import Colors from '../../../constants/DR/colors';
+import styles from './styles';
 const { orange, green, mainBlue, pink } = Colors;
 
 export function Feels({ navigation }) {
@@ -15,7 +16,7 @@ export function Feels({ navigation }) {
     <View>
       <Card style={styles.bigCards}>
         <View style={styles.auroraContainer}>
-          <Icon name="heartbeat" color={orange} size={wp('7%')} />
+          <Icon name='heartbeat' color={orange} size={wp('7%')} />
           <Text style={[styles.textHeader, { marginLeft: 8 }]}>
             ¿Cómo te sientes?
           </Text>
@@ -34,8 +35,7 @@ export function Feels({ navigation }) {
                   width: wp('70%'),
                   marginTop: 15,
                 },
-              ]}
-            >
+              ]}>
               <Text style={styles.buttonText}>Reportar Síntomas</Text>
             </Button>
           </View>
@@ -69,8 +69,7 @@ export function Aurora({ navigation }) {
             style={[
               styles.buttons,
               { backgroundColor: mainBlue, marginLeft: 10 },
-            ]}
-          >
+            ]}>
             <Text style={styles.buttonText}>Conversar</Text>
           </Button>
         </View>
@@ -111,8 +110,7 @@ export function Contact({ isProfile }) {
             height: hp('15%'),
             justifyContent: 'center',
           },
-        ]}
-      >
+        ]}>
         <View style={styles.tester}>
           <Left style={styles.tester}>
             <Image
@@ -144,7 +142,7 @@ export function Alerts() {
       <Card style={styles.bigCards}>
         <CardItem header>
           <Left>
-            <Icon name="bell-o" color={mainBlue} size={30} />
+            <Icon name='bell-o' color={mainBlue} size={30} />
             <Text style={styles.textHeader}>Alertas</Text>
           </Left>
 
