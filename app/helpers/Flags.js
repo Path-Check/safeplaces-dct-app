@@ -47,21 +47,21 @@ export const FlagsProvider = ({ children }) => {
   const buildTimeFlags = getBuildtimeFlags();
   const [flags, setFlags] = useState(buildTimeFlags);
 
-  const getInitalFlagVals = async () => {
-    const storedFlags = await GetStoreData(FEATURE_FLAG_VALS, false);
-
-    if (storedFlags) {
-      // Overwrite existing properties of `getBuildtimeFlags` with stored values from async storage,
-      // omitting any stored value that is not present on `getBuildtimeFlags`.
-      const initialFlags = mergeFlags(buildTimeFlags, storedFlags);
-      setFlags(initialFlags);
-      await SetStoreData(FEATURE_FLAG_VALS, initialFlags);
-    }
-  };
-
   useEffect(() => {
+    const getInitalFlagVals = async () => {
+      const storedFlags = await GetStoreData(FEATURE_FLAG_VALS, false);
+
+      if (storedFlags) {
+        // Overwrite existing properties of `getBuildtimeFlags` with stored values from async storage,
+        // omitting any stored value that is not present on `getBuildtimeFlags`.
+        const initialFlags = mergeFlags(buildTimeFlags, storedFlags);
+        setFlags(initialFlags);
+        await SetStoreData(FEATURE_FLAG_VALS, initialFlags);
+      }
+    };
+
     getInitalFlagVals();
-  }, []);
+  }, [buildTimeFlags]);
 
   return (
     <FlagsContext.Provider value={[flags, setFlags]}>
