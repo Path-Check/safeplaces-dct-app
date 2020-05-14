@@ -375,6 +375,7 @@ class LocationTracking extends Component {
         this.settings();
       };
     }
+
     return (
       <View style={styles.buttonContainer}>
         <ButtonWrapper
@@ -423,8 +424,8 @@ class LocationTracking extends Component {
           </View>
         </View>
 
-        {/* Disable mayo clinic button when `Enable Location Data` button is displayed */}
-        {this.state.currentState !== StateEnum.SETTING_OFF && (
+        {/* Only show mayo clinic button there is no button on screen */}
+        {this.state.currentState === StateEnum.NO_CONTACT && (
           <View>
             <TouchableOpacity
               onPress={this.getMayoInfoPressed.bind(this)}
