@@ -26,3 +26,4 @@ jobs:
       - uses: 18F/github-action-eslint@1.0.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+          files: app/
