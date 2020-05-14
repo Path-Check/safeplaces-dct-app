@@ -4,10 +4,10 @@ import {
   BackHandler,
   Dimensions,
   StyleSheet,
+  ScrollView,
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Carousel from 'react-native-snap-carousel';
 import { WebView } from 'react-native-webview';
 
 import languages from './../locales/languages';
@@ -53,32 +53,6 @@ class NewsScreen extends Component {
     });
   }
 
-  renderItem = item => {
-    return (
-      <View style={styles.singleNews}>
-        <View style={styles.singleNewsHead}>
-          <Typography style={styles.singleNewsHeadText}>
-            {item.item.name}
-          </Typography>
-        </View>
-        <WebView
-          source={{
-            uri: item.item.news_url,
-          }}
-          containerStyle={{
-            borderBottomLeftRadius: 12,
-            borderBottomRightRadius: 12,
-          }}
-          cacheEnabled
-          onLoad={() =>
-            this.setState({
-              visible: false,
-            })
-          }
-        />
-      </View>
-    );
-  };
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -129,15 +103,37 @@ class NewsScreen extends Component {
                 flex: 1,
                 paddingVertical: 16,
               }}>
-              <Carousel
-                data={this.state.newsUrls}
-                renderItem={this.renderItem}
-                sliderWidth={width}
-                itemWidth={width * 0.85}
-                layout={'default'}
-                scrollEnabled
-              />
+              <ScrollView style ={{width: width * .85, alignSelf: 'center'}}>
+                {
+                  this.state.newsUrls.map((item, index) => (
 
+                    <View key = {item.id} style={styles.singleNews}>
+                      <View key = {item.id} style={styles.singleNewsHead}>
+                        <Typography style={styles.singleNewsHeadText}>
+                          {item.name}
+                        </Typography>
+                      </View>
+                      <WebView
+                        source={{
+                          uri: item.news_url,
+                        }}
+                        style ={{height: height*.75}}
+                        containerStyle={{
+                          borderBottomLeftRadius: 12,
+                          borderBottomRightRadius: 12,
+                        }}
+                        cacheEnabled
+                        onLoad={() =>
+                          this.setState({
+                            visible: false,
+                          })
+                        }
+                      />
+                    </View>
+                  ))
+                }
+              </ScrollView>
+              
               {this.state.visible && (
                 <ActivityIndicator
                   style={{
@@ -149,6 +145,7 @@ class NewsScreen extends Component {
                   color='black'
                 />
               )}
+
             </View>
           </LinearGradient>
         </NavigationBarWrapper>
