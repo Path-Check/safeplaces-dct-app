@@ -11,6 +11,7 @@
   "history": {
     "coming_soon": "Coming Soon",
     "coming_soon_subtext": "Receive alerts from your local Healthcare Authority to inform you about potential exposure to COVID-19.",
+    "possible_exposure": "Possible",
     "possible_exposure_para": "It is possible you were in contact with or close to someone who tested positive for COVID-19",
     "what_does_this_mean": "What does this mean?",
     "what_does_this_mean_para": "Based on your GPS history, it is possible that you were in contact with or close to somebody who was diagnosed with COVID-19. This does not mean you are infected but that you might be.\n\nFor further information on what you should do you can refer to the Mayo Clinic's website.",
