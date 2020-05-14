@@ -1,6 +1,6 @@
+import { Platform } from 'react-native';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import { Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
