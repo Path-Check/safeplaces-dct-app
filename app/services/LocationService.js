@@ -122,6 +122,7 @@ export default class LocationServices {
         notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
       // Setting the permissions to true causes a crash on Android, because that configuration requires Firebase
+      // https://github.com/zo0r/react-native-push-notification#usage
       requestPermissions: Platform.OS === 'ios',
     });
 
@@ -224,8 +225,6 @@ export default class LocationServices {
     console.log('[INFO] BackgroundGeolocation auth status: ' + authorization);
 
     BackgroundGeolocation.start(); //triggers start on start event
-    // Setting the permissions to true causes a crash on Android, because that configuration requires Firebase
-    // https://github.com/zo0r/react-native-push-notification#usage
     isBackgroundGeolocationConfigured = true;
   }
 
