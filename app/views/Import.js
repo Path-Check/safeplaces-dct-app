@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   },
   buttonTouchable: {
     borderRadius: 12,
-    backgroundColor: colors.VIOLET,
+    backgroundColor: colors.mainBlue,
     height: 52,
     alignSelf: 'center',
     width: width * 0.7866,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: fontFamily.primarySemiBold,
-    fontSize: 14,
+    fontSize: 16,
     lineHeight: 19,
     letterSpacing: 0,
     textAlign: 'center',
@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     fontFamily: fontFamily.primaryRegular,
+    color: colors.BLACK,
   },
   importResults: {
     fontSize: 12,
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
     color: colors.VIOLET_TEXT,
   },
   importResultsError: {
-    color: colors.RED_TEXT,
+    color: colors.VIOLET_TEXT,
   },
 });
 export default ImportScreen;

@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     marginTop: 9,
   },
   aboutSectionPara: {
-    color: Colors.purple,
+    color: Colors.BLACK,
     fontSize: 16,
     lineHeight: 22.5,
     marginTop: 12,

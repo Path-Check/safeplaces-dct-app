@@ -496,6 +496,7 @@ const styles = StyleSheet.create({
     top: 24,
   },
   pulseContainer: {
+    backgroundColor: Colors.mainBlue,
     position: 'absolute',
     resizeMode: 'contain',
     height: '100%',
@@ -539,6 +540,7 @@ const styles = StyleSheet.create({
   mayoInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: Colors.mainBlue,
   },
   mayoInfoContainer: {
     flexDirection: 'column',

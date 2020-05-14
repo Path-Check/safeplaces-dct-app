@@ -16,7 +16,7 @@ export const defaultTheme = {
   onNavBar: Color.WHITE,
 
   /** E.g. button bg */
-  primary: Color.VIOLET_BUTTON,
+  primary: Color.mainBlue,
   /** E.g. button text color */
   onPrimary: Color.WHITE,
 

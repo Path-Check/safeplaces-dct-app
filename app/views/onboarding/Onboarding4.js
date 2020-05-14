@@ -43,7 +43,7 @@ const Onboarding = props => {
             props.navigation.replace('Onboarding5');
           }}
           buttonColor={Colors.WHITE}
-          bgColor={Colors.VIOLET_BUTTON}
+          bgColor={Colors.mainBlue}
         />
       </View>
     </View>
@@ -69,12 +69,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   headerText: {
-    color: Colors.VIOLET,
+    color: Colors.mainBlue,
     width: width * 0.7,
   },
   subheaderText: {
     marginTop: '6%',
-    color: Colors.VIOLET,
+    color: Colors.mainBlue,
     fontSize: 15,
     width: width * 0.6,
     fontFamily: fontFamily.primaryRegular,

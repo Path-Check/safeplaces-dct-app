@@ -57,8 +57,7 @@ const BottomContainer = styled.SafeAreaView`
   background-color: ${themeBackground};
 `;
 
-const themeNavBarBorder = ({ theme }) =>
-  theme.navBarBorder || Colors.NAV_BAR_VIOLET;
+const themeNavBarBorder = ({ theme }) => theme.navBarBorder || Colors.mainBlue;
 
 const Header = styled.View`
   align-items: center;
@@ -95,7 +94,6 @@ const BackArrowSvg = styled(SvgXml)`
   height: 18px;
   width: 18px;
   color: ${Colors.WHITE};
-  opacity: 0.4;
 `;
 
 NavigationBarWrapper.propTypes = {

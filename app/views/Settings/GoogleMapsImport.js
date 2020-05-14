@@ -29,9 +29,9 @@ export const GoogleMapsImport = ({ navigation }) => {
       <ButtonWrapper
         title={t('import.button_text')}
         onPress={importPressed}
-        buttonColor={Colors.VIOLET}
+        buttonColor={Colors.mainBlue}
         bgColor={Colors.WHITE}
-        borderColor={Colors.VIOLET}
+        borderColor={Colors.mainBlue}
         buttonWidth={'100%'}
       />
 

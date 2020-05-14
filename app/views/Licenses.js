@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   termsInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.SILVER,
+    backgroundColor: Colors.mainBlue,
     padding: 15,
   },
   arrowContainer: {

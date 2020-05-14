@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
   },
   startLoggingButtonTouchable: {
     borderRadius: 12,
-    backgroundColor: '#665eff',
+    backgroundColor: Colors.mainBlue,
     height: 52,
     alignSelf: 'center',
     width: '79%',
@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
   },
   startLoggingButtonText: {
     textAlign: 'center',
-    color: '#ffffff',
+    color: Colors.WHITE,
   },
   headerTitle: {
     color: Colors.mainBlue,

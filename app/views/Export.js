@@ -110,7 +110,7 @@ export const ExportScreen = ({ navigation }) => {
     <Theme use='violet'>
       <StatusBar
         barStyle='light-content'
-        backgroundColor={Colors.VIOLET_BUTTON}
+        backgroundColor={Colors.mainBlue}
         translucent={false}
       />
       <SafeAreaView style={styles.topSafeAreaContainer} />
@@ -118,7 +118,7 @@ export const ExportScreen = ({ navigation }) => {
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
-          colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
+          colors={[Colors.mainBlue, Colors.mainBlue]}
           style={{ flex: 1, height: '100%' }}>
           <View style={styles.headerContainer}>
             <TouchableOpacity
