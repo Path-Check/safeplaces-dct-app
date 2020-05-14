@@ -23,7 +23,6 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      - uses: 18F/github-action-eslint@1.0.0
+      - uses: hallee/eslint-action@master
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          files: app/
