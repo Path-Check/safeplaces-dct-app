@@ -247,7 +247,7 @@ class ChooseProviderScreen extends Component {
         <NavigationBarWrapper
           title={languages.t('label.choose_provider_title')}
           onBackPress={this.backToMain.bind(this)}>
-          <SPKeyboardAvoidingView>
+          <SPKeyboardAvoidingView behavior='padding'>
             <View style={styles.main}>
               <Typography style={styles.headerTitle} use={'headline2'}>
                 {languages.t('label.authorities_title')}
