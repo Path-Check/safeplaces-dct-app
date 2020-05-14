@@ -70,7 +70,8 @@ export const AboutScreen = ({ navigation }) => {
               {languages.t('about.version')}
             </Typography>
             <Typography style={styles.aboutSectionPara}>
-              {packageJson.version}
+              {/* eslint-disable-next-line react-native/no-raw-text */}
+              {` ${packageJson.version}`}
             </Typography>
           </View>
 
@@ -79,7 +80,8 @@ export const AboutScreen = ({ navigation }) => {
               {languages.t('about.operating_system_abbr')}
             </Typography>
             <Typography style={styles.aboutSectionPara}>
-              {Platform.OS + ' v' + Platform.Version}
+              {/* eslint-disable-next-line react-native/no-raw-text */}
+              {` ${Platform.OS} v${Platform.Version}`}
             </Typography>
           </View>
 
@@ -88,9 +90,10 @@ export const AboutScreen = ({ navigation }) => {
               {languages.t('about.dimensions')}
             </Typography>
             <Typography style={styles.aboutSectionPara}>
-              {Math.trunc(Dimensions.get('screen').width) +
-                ' x ' +
-                Math.trunc(Dimensions.get('screen').height)}
+              {/* eslint-disable-next-line react-native/no-raw-text */}
+              {` ${Math.trunc(Dimensions.get('screen').width)} x ${Math.trunc(
+                Dimensions.get('screen').height,
+              )}`}
             </Typography>
           </View>
         </View>
