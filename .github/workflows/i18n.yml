@@ -29,8 +29,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
-
       - name: upload english files
         run: yarn i18n:push
         env:
