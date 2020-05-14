@@ -3,8 +3,8 @@ import {
   ActivityIndicator,
   BackHandler,
   Dimensions,
-  StyleSheet,
   ScrollView,
+  StyleSheet,
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -52,7 +52,6 @@ class NewsScreen extends Component {
       visible: false,
     });
   }
-
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -103,37 +102,34 @@ class NewsScreen extends Component {
                 flex: 1,
                 paddingVertical: 16,
               }}>
-              <ScrollView style ={{width: width * .85, alignSelf: 'center'}}>
-                {
-                  this.state.newsUrls.map((item, index) => (
-
-                    <View key = {item.id} style={styles.singleNews}>
-                      <View key = {item.id} style={styles.singleNewsHead}>
-                        <Typography style={styles.singleNewsHeadText}>
-                          {item.name}
-                        </Typography>
-                      </View>
-                      <WebView
-                        source={{
-                          uri: item.news_url,
-                        }}
-                        style ={{height: height*.75}}
-                        containerStyle={{
-                          borderBottomLeftRadius: 12,
-                          borderBottomRightRadius: 12,
-                        }}
-                        cacheEnabled
-                        onLoad={() =>
-                          this.setState({
-                            visible: false,
-                          })
-                        }
-                      />
+              <ScrollView style={{ width: width * 0.85, alignSelf: 'center' }}>
+                {this.state.newsUrls.map((item, index) => (
+                  <View key={index} style={styles.singleNews}>
+                    <View key={index} style={styles.singleNewsHead}>
+                      <Typography style={styles.singleNewsHeadText}>
+                        {item.name}
+                      </Typography>
                     </View>
-                  ))
-                }
+                    <WebView
+                      source={{
+                        uri: item.news_url,
+                      }}
+                      style={{ height: height * 0.75 }}
+                      containerStyle={{
+                        borderBottomLeftRadius: 12,
+                        borderBottomRightRadius: 12,
+                      }}
+                      cacheEnabled
+                      onLoad={() =>
+                        this.setState({
+                          visible: false,
+                        })
+                      }
+                    />
+                  </View>
+                ))}
               </ScrollView>
-              
+
               {this.state.visible && (
                 <ActivityIndicator
                   style={{
@@ -145,7 +141,6 @@ class NewsScreen extends Component {
                   color='black'
                 />
               )}
-
             </View>
           </LinearGradient>
         </NavigationBarWrapper>
