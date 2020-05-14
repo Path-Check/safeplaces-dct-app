@@ -8,6 +8,7 @@ const colors = {
   PRIMARY_TEXT: '#000',
   SUCCESS: '#41dca4', // Green
   WARNING: '#ffc000', // Orange
+  ORANGE: '#ffc000',
   VIOLET_ALPHA_06: '#f7f8ff',
   PINK: '#E75480', // cannot use transparency
   VIOLET: '#4051DB',
