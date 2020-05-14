@@ -1,21 +1,23 @@
 /* eslint-disable */
-const screenshotText = 'Onboarding - Page 4';
+const buttonLabel = 'Next';
+const screenTitleTestId = 'Header';
+const screenSubtitle = 'Subheader';
+const screenshotText = 'Onboarding - Page 5';
 
-class Onboarding4 {
-  async tapButton(languageStrings) {
-    await element(by.label(languageStrings.label.launch_set_up_phone)).tap();
+class Onboarding5 {
+  async tapButton() {
+    await element(by.label(buttonLabel)).tap();
   }
 
   async takeScreenshot() {
     await device.takeScreenshot(screenshotText);
   }
 
-  async isOnScreen(languageStrings) {
+  async isOnScreen() {
     // eslint-disable-next-line jest/no-standalone-expect
-    await expect(
-      element(by.text(languageStrings.label.launch_screen4_header)),
-    ).toBeVisible();
+    await expect(element(by.id(screenTitleTestId))).toBeVisible();
+    await expect(element(by.id(screenSubtitle))).toBeVisible();
   }
 }
 
-export default new Onboarding4();
+export default new Onboarding5();

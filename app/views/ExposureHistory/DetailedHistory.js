@@ -29,11 +29,11 @@ export const DetailedHistory = ({ history }) => {
 
       {exposedDays.length === 0 ? (
         <>
-          <Typography use='headline3'>
-            {languages.t('label.home_no_contact_header')}
+          <Typography use='headline3' style={{ fontStyle: 'italic' }}>
+            {languages.t('history.coming_soon')}
           </Typography>
           <Typography use='body3'>
-            {languages.t('label.home_no_contact_subtext')}
+            {languages.t('history.coming_soon_subtext')}
           </Typography>
           <Divider />
         </>
