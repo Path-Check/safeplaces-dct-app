@@ -1,8 +1,8 @@
 {
   "_display_name": "Kreyòl ayisyen",
   "history": {
-    "no_exposure": "Pa gen kontak",
-    "possible_exposure": "Posib",
+    "coming_soon": "",
+    "coming_soon_subtext": "",
     "possible_exposure_para": "Li posib ke ou te an kontak oswa pre yon moun ki teste pozitif pou Kowonaviris",
     "what_does_this_mean": "Ki sa sa a vle di?",
     "what_does_this_mean_para": "Daprè lis done GPS ou, li posib ke ou te an kontak oswa tou pre yon moun ki te dyagnostike ak Kowonaviris. Sa pa vle di ou enfekte men se yon posiblite. \n\n Pou plis enfòmasyon sou sa ou ta dwe fè ou ka al gade sou sit entènèt Mayo Klinik la.",
@@ -35,8 +35,10 @@
     "choose_provider_title": "Chwazi otorite a",
     "commitment": "Angajman",
     "commitment_para": "Chemen san danje se yon mouvman mondyal pou devlope zouti gratis, louvri sous, konfidansyalite pa konsepsyon pou rezidan yo, ofisyèl sante piblik yo, ak pi gwo kominote pou aplodi koub COVID-19, redwi laperèz, ak anpeche yon repons siveyans-eta a pandemi an.\n\nPou plis enfòmasyon, tanpri vizite ",
+    "covid_safe_paths": "COVID Safe Paths",
     "default_news_site_name": "Nouvèl sou Chase Kowona (\"Safe Paths\")",
     "event_history_subtitle": "Konprann ekspozisyon pèsonèl ou daprè enfòmasyon Otorite a pataje.",
+    "event_history_settings_title": "",
     "event_history_title": "Lis ekspozisyon",
     "home_at_risk_header": "Ou ka gen risk",
     "home_at_risk_subsubtext": "Sa pa vle di ou enfekte.",

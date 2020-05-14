@@ -4,7 +4,7 @@ const screenTitleTestId = 'Header';
 const screenSubtitle = 'Subheader';
 const screenshotText = 'Onboarding - Page 5';
 
-class Onboarding6 {
+class Onboarding5 {
   async tapButton() {
     await element(by.label(buttonLabel)).tap();
   }
@@ -20,4 +20,4 @@ class Onboarding6 {
   }
 }
 
-export default new Onboarding6();
+export default new Onboarding5();
