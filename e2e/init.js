@@ -5,7 +5,6 @@ const adapter = require('detox/runners/jest/adapter');
 // Set the default timeout
 jest.setTimeout(120000);
 
-jasmine.getEnv().addReporter(adapter);
 beforeAll(async () => {
   await detox.init(config);
 }, 300000);

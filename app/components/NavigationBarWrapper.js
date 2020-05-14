@@ -19,8 +19,6 @@ import Colors from '../constants/colors';
  */
 const widthScale = Math.min(Dimensions.get('window').width / 400, 1.0);
 
-let a;
-
 const NavigationBarWrapper = ({ children, title, onBackPress }) => {
   const theme = useTheme();
 
