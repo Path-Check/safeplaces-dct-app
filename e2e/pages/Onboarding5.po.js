@@ -2,7 +2,7 @@
 const buttonLabel = 'Next';
 const screenTitleTestId = 'Header';
 const screenSubtitle = 'Subheader';
-const screenshotText = 'Onboarding - Page 6';
+const screenshotText = 'Onboarding - Page 5';
 
 class Onboarding6 {
   async tapButton() {

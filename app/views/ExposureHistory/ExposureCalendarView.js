@@ -55,12 +55,6 @@ export const ExposureCalendarView = ({ history, weeks }) => {
         }}
       />
       <LegendRow>
-        <LegendItem riskLevel={Risk.None}>
-          {languages.t('history.no_exposure')}
-        </LegendItem>
-        <LegendItem riskLevel={Risk.Possible}>
-          {languages.t('history.possible_exposure')}
-        </LegendItem>
         <LegendItem riskLevel={Risk.Unknown}>
           {languages.t('label.no_data')}
         </LegendItem>
