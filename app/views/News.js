@@ -100,9 +100,10 @@ class NewsScreen extends Component {
               style={{
                 backgroundColor: Colors.VIOLET_BUTTON_DARK,
                 flex: 1,
-                paddingVertical: 16,
+                alignItems: 'center',
+                paddingTop: height * 0.03,
               }}>
-              <ScrollView style={{ width: width * 0.85, alignSelf: 'center' }}>
+              <ScrollView style={{ width: width * 0.85 }}>
                 {this.state.newsUrls.map((item, index) => (
                   <View key={index} style={styles.singleNews}>
                     <View key={index} style={styles.singleNewsHead}>

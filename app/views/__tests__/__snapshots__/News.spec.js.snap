@@ -150,16 +150,16 @@ exports[`renders correctly 1`] = `
         <View
           style={
             Object {
+              "alignItems": "center",
               "backgroundColor": "#3A4CD7",
               "flex": 1,
-              "paddingVertical": 16,
+              "paddingTop": 40.019999999999996,
             }
           }
         >
           <RCTScrollView
             style={
               Object {
-                "alignSelf": "center",
                 "width": 637.5,
               }
             }
