@@ -203,6 +203,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   cd ..
 fi
 
+# Install xcode select iOS only, because other *nix environments don't support it
+# Mac OS comes with ruby out of the box.
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if ! found_exe xcode-select; then
+    echo "${BLUE}Installing xcode-select..${RESET}"
+    xcode-select --install
+    echo "${GREEN}xcode-select is installed!${RESET}"
+  fi
+fi
+
 # Need Watchman v4.9+ (watchman --version)
 if [[ "$OSTYPE" == "darwin"* ]]; then
   if ! found_exe watchman; then
