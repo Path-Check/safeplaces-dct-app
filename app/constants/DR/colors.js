@@ -9,10 +9,10 @@ const colors = {
   SUCCESS: '#41dca4', // Green
   WARNING: '#ffc000', // Orange
   VIOLET_ALPHA_06: '#f7f8ff',
-  pink: '#E75480', // cannot use transparency
+  PINK: '#E75480', // cannot use transparency
   VIOLET: '#4051DB',
   TRANSPARENT: 'transparent',
-  green: '#41dca4',
+  GREEN: '#41dca4',
 
   // For notifications
   HIGHEST_RISK: '#e74c3c',
@@ -55,10 +55,8 @@ const colors = {
   NAV_BAR_BORDER: 'rgba(189, 195, 199,0.6)',
 
   DARK_GRAY: '#3C475B',
-  buttonLightText: '#3C475B',
+  BUTTON_LIGHT_TEX: '#3C475B',
   LIGHT_GRAY: '#EEEEEE',
-
-  lightGray: '#EEEEEE',
 
   MONO_DARK: '#202020',
   MONO_SECONDARY: '#757677',

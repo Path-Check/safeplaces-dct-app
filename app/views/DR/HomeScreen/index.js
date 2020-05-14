@@ -4,13 +4,16 @@ import moment from 'moment';
 import { Card, Left, Text } from 'native-base';
 import React, { Component } from 'react';
 import {
+  Image,
   RefreshControl,
   ScrollView,
   TouchableOpacity,
   View,
 } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import SvgXml from 'react-native-svg';
 
+import settingsIcon from '../../../assets/svgs/settingsIcon';
 import {
   Aurora,
   Feels,
@@ -74,14 +77,14 @@ export default class HomeScreen extends Component {
     } = this;
 
     return (
-      <View style={{ flex: 1, backgroundColor: Colors.mainBlue }}>
+      <View style={{ flex: 1, backgroundColor: Colors.MAIN_BLUE }}>
+        {this.getSettings()}
         <View>
-          {this.getSettings()}
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
             refreshControl={
               <RefreshControl
-                tintColor={Colors.lightGray}
+                tintColor={Colors.LIGHT_GRAY}
                 refreshing={refreshing}
                 onRefresh={this.refresh}
               />
@@ -123,7 +126,7 @@ export default class HomeScreen extends Component {
                       <Text
                         style={[
                           styles.dataText,
-                          { color: Colors.buttonLightText },
+                          { color: Colors.BUTTON_LIGHT_TEX },
                         ]}>
                         {deaths}
                       </Text>
@@ -132,7 +135,7 @@ export default class HomeScreen extends Component {
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <Card style={styles.infoCards}>
-                      <Text style={[styles.dataText, { color: Colors.green }]}>
+                      <Text style={[styles.dataText, { color: Colors.GREEN }]}>
                         {recovered}
                       </Text>
                       <Text style={styles.text}>Recuperados</Text>
@@ -140,7 +143,7 @@ export default class HomeScreen extends Component {
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <Card style={styles.infoCards}>
-                      <Text style={[styles.dataText, { color: Colors.orange }]}>
+                      <Text style={[styles.dataText, { color: Colors.ORANGE }]}>
                         {todayCases}
                       </Text>
                       <Text style={styles.text}>Casos del día</Text>

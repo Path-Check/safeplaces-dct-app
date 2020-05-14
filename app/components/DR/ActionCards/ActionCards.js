@@ -9,14 +9,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Colors from '../../../constants/DR/colors';
 import styles from './styles';
-const { orange, green, mainBlue, pink } = Colors;
+
+const { ORANGE, GREEN, MAIN_BLUE } = Colors;
 
 export function Feels({ navigation }) {
   return (
     <View>
       <Card style={styles.bigCards}>
         <View style={styles.auroraContainer}>
-          <Icon name='heartbeat' color={orange} size={wp('7%')} />
+          <Icon name='heartbeat' color={ORANGE} size={wp('7%')} />
           <Text style={[styles.textHeader, { marginLeft: 8 }]}>
             ¿Cómo te sientes?
           </Text>
@@ -31,7 +32,7 @@ export function Feels({ navigation }) {
               style={[
                 styles.buttons,
                 {
-                  backgroundColor: green,
+                  backgroundColor: GREEN,
                   width: wp('70%'),
                   marginTop: 15,
                 },
@@ -68,7 +69,7 @@ export function Aurora({ navigation }) {
             onPress={() => navigation.navigate('aurora')}
             style={[
               styles.buttons,
-              { backgroundColor: mainBlue, marginLeft: 10 },
+              { backgroundColor: MAIN_BLUE, marginLeft: 10 },
             ]}>
             <Text style={styles.buttonText}>Conversar</Text>
           </Button>
@@ -106,7 +107,7 @@ export function Contact({ isProfile }) {
         style={[
           styles.bigCards,
           {
-            backgroundColor: mainBlue,
+            backgroundColor: MAIN_BLUE,
             height: hp('15%'),
             justifyContent: 'center',
           },
@@ -142,12 +143,12 @@ export function Alerts() {
       <Card style={styles.bigCards}>
         <CardItem header>
           <Left>
-            <Icon name='bell-o' color={mainBlue} size={30} />
+            <Icon name='bell-o' color={MAIN_BLUE} size={30} />
             <Text style={styles.textHeader}>Alertas</Text>
           </Left>
 
           <Right style={{ backgroundColor: '#fff' }}>
-            <Badge style={{ backgroundColor: mainBlue }}>
+            <Badge style={{ backgroundColor: MAIN_BLUE }}>
               <Text>9 +</Text>
             </Badge>
           </Right>
