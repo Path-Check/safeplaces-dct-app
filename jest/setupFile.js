@@ -10,6 +10,7 @@ NativeModules.SettingsManager = NativeModules.SettingsManager || {
 // Secure storage manager
 NativeModules.SecureStorageManager = NativeModules.SecureStorageManager || {
   getLocations: jest.fn(),
+  migrateExistingLocations: jest.fn(),
 };
 
 jest.mock('react-native-pulse');
