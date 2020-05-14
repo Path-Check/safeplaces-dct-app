@@ -101,8 +101,8 @@ class HCAService {
    */
   async pushAlertNewSubscribedAuthorities(count) {
     await PushNotification.localNotification({
-      title: languages.t('label.authorities_new_subcription_title', { count }),
-      message: languages.t('label.authorities_new_subcription_msg', { count }),
+      title: languages.t('label.authorities_new_subscription_title', { count }),
+      message: languages.t('label.authorities_new_subscription_msg', { count }),
     });
   }
 

@@ -231,11 +231,11 @@ describe('HCAService', () => {
   });
 
   describe('hasUserSetSubscription()', () => {
-    it('returns false if the user has not set a subcription status yet', async () => {
+    it('returns false if the user has not set a subscription status yet', async () => {
       await expect(HCAService.hasUserSetSubscription()).resolves.toBe(false);
     });
 
-    it('returns true if the user has not set a subcription status - either true or false', async () => {
+    it('returns true if the user has not set a subscription status - either true or false', async () => {
       await storageHelpers.SetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, true);
       await expect(HCAService.hasUserSetSubscription()).resolves.toBe(true);
 
