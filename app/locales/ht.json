@@ -54,7 +54,7 @@
     "home_unknown_subtext": "Nou pa ka di si ou nan risk sof si ou pèmèt app la gen aksè a lokalizasyon ou.",
     "latest_news": "Dènye nouvèl",
     "launch_done_header": "Fini nèt",
-    "launch_done_subheader": "Ou pare pouw woule. Sonje byen, ou ka toujou fè mizajou sou preferans ou yo pita.",
+    "launch_done_subheader": "Ou pare pou w woule. Sonje byen, ou ka toujou fè mizajou sou preferans ou yo pita.",
     "launch_enable_location": "Aktive lokalizasyon",
     "launch_enable_notif": "Aktive notifikasyon",
     "launch_finish_set_up": "Fini enstalasyon",
@@ -89,7 +89,7 @@
     "push_at_risk_title": "Ou ka gen risk",
     "see_exposure_history": "Wè lis ekspozisyon",
     "settings_title": "Tablodbò",
-    "privacy_policy": "Règleman sou enfòmasyon prive"
+    "terms_of_use": "Règleman sou enfòmasyon prive"
   },
   "share": {
     "button_text": "Pataje done lokalizasyon",

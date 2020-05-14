@@ -522,7 +522,7 @@ const styles = StyleSheet.create({
   },
   subheaderText: {
     marginBottom: 24,
-    textAlign: 'center',
+    textAlign: 'left',
     lineHeight: 24.5,
     color: Colors.WHITE,
     fontSize: 18,
