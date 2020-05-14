@@ -16,7 +16,7 @@ import {
   Feels,
 } from '../../../components/DR/ActionCards/ActionCards.js';
 import Colors from '../../../constants/DR/colors';
-import { getAllCases } from '../../../services/DR/requestManager.js';
+import { getAllCases } from '../../../services/DR/getAllCases.js';
 import styles from './style';
 
 export default class HomeScreen extends Component {
@@ -52,6 +52,20 @@ export default class HomeScreen extends Component {
     this.getCases();
   }
 
+  getSettings() {
+    return (
+      <TouchableOpacity
+        style={styles.settingsContainer}
+        onPress={() => {
+          this.props.navigation.navigate('SettingsScreen');
+        }}>
+        {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
+        <Image resizeMode={'contain'} />
+        <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
+      </TouchableOpacity>
+    );
+  }
+
   render() {
     const date = moment(new Date(), 'DD/MM/YYYY').format('MMMM YYYY');
     const {
@@ -61,6 +75,8 @@ export default class HomeScreen extends Component {
 
     return (
       <View style={{ flex: 1, backgroundColor: Colors.mainBlue }}>
+                {this.getSettings()}
+
         <ScrollView
           contentContainerStyle={styles.scrollContainer}
           refreshControl={
