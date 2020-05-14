@@ -1,6 +1,6 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import { NativeModules } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
@@ -121,7 +121,7 @@ export default class LocationServices {
         // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
         notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
-      requestPermissions: true,
+      requestPermissions: Platform.OS === 'ios',
     });
 
     const locationData = new LocationData();
