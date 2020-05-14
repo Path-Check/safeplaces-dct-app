@@ -176,9 +176,8 @@ class ChooseProviderScreen extends Component {
       this.setState({ selectedAuthorities: newAuthorities }, () => {
         SetStoreData(AUTHORITY_SOURCE_SETTINGS, this.state.selectedAuthorities);
       });
-
-      this.resetUrlInput();
     }
+    this.resetUrlInput();
   };
 
   removeAuthorityFromState(authority) {
