@@ -76,7 +76,7 @@ export const LicensesScreen = ({ navigation }) => {
             use='headline2'
             onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}
             style={styles.privacyPolicy}>
-            {t('label.terms_of_use')}
+            {t('label.privacy_policy')}
           </Typography>
           <View style={styles.arrowContainer}>
             <Image source={foreArrow} />
