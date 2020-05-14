@@ -23,7 +23,7 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      - uses: tinovyatkin/action-eslint@v1
+      - uses: tinovyatkin/action-eslint@master
         with:
           repo-token: ${{secrets.GITHUB_TOKEN}}
           check-name: eslint # this is the job name from above 👆
