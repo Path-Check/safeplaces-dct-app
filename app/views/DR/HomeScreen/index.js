@@ -75,94 +75,95 @@ export default class HomeScreen extends Component {
 
     return (
       <View style={{ flex: 1, backgroundColor: Colors.mainBlue }}>
-                {this.getSettings()}
-
-        <ScrollView
-          contentContainerStyle={styles.scrollContainer}
-          refreshControl={
-            <RefreshControl
-              tintColor={Colors.lightGray}
-              refreshing={refreshing}
-              onRefresh={this.refresh}
-            />
-          }>
-          <View style={styles.mainHeader} />
-          <View style={{ margin: wp('2%') }}>
-            <View style={styles.HeaderView}>
-              <View style={styles.rowAndCenter}>
-                <Left>
-                  <Text style={[styles.text, { color: '#fff' }]}>
-                    {date[0].toUpperCase() + date.slice(1)}
-                  </Text>
-                </Left>
+        <View>
+          {this.getSettings()}
+          <ScrollView
+            contentContainerStyle={styles.scrollContainer}
+            refreshControl={
+              <RefreshControl
+                tintColor={Colors.lightGray}
+                refreshing={refreshing}
+                onRefresh={this.refresh}
+              />
+            }>
+            <View style={styles.mainHeader} />
+            <View style={{ margin: wp('2%') }}>
+              <View style={styles.HeaderView}>
+                <View style={styles.rowAndCenter}>
+                  <Left>
+                    <Text style={[styles.text, { color: '#fff' }]}>
+                      {date[0].toUpperCase() + date.slice(1)}
+                    </Text>
+                  </Left>
+                </View>
+                <Text style={styles.headerText}>COVID-RD</Text>
               </View>
-              <Text style={styles.headerText}>COVID-RD</Text>
-            </View>
 
-            <View style={styles.marginAndAlign}>
-              <Feels navigation={navigation} />
               <View style={styles.marginAndAlign}>
-                <View style={styles.actualSituationContent}>
-                  <Text style={[styles.subtitles, { alignSelf: 'center' }]}>
-                    Situación actual
+                <Feels navigation={navigation} />
+                <View style={styles.marginAndAlign}>
+                  <View style={styles.actualSituationContent}>
+                    <Text style={[styles.subtitles, { alignSelf: 'center' }]}>
+                      Situación actual
+                    </Text>
+                  </View>
+                  <Text style={[styles.subtitles, { color: '#747474' }]}>
+                    {updatedAt}
                   </Text>
                 </View>
-                <Text style={[styles.subtitles, { color: '#747474' }]}>
-                  {updatedAt}
-                </Text>
-              </View>
-              <View style={styles.actualSituationContainer}>
-                <TouchableOpacity>
-                  <Card style={styles.infoCards}>
-                    <Text style={[styles.dataText]}>{cases}</Text>
-                    <Text style={styles.text}>Positivos</Text>
-                  </Card>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Card style={styles.infoCards}>
+                <View style={styles.actualSituationContainer}>
+                  <TouchableOpacity>
+                    <Card style={styles.infoCards}>
+                      <Text style={[styles.dataText]}>{cases}</Text>
+                      <Text style={styles.text}>Positivos</Text>
+                    </Card>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Card style={styles.infoCards}>
+                      <Text
+                        style={[
+                          styles.dataText,
+                          { color: Colors.buttonLightText },
+                        ]}>
+                        {deaths}
+                      </Text>
+                      <Text style={styles.text}>Fallecidos</Text>
+                    </Card>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Card style={styles.infoCards}>
+                      <Text style={[styles.dataText, { color: Colors.green }]}>
+                        {recovered}
+                      </Text>
+                      <Text style={styles.text}>Recuperados</Text>
+                    </Card>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Card style={styles.infoCards}>
+                      <Text style={[styles.dataText, { color: Colors.orange }]}>
+                        {todayCases}
+                      </Text>
+                      <Text style={styles.text}>Casos del día</Text>
+                    </Card>
+                  </TouchableOpacity>
+                </View>
+                <Aurora navigation={navigation} />
+                <View style={styles.footer}>
+                  <View style={{ margin: wp('5%') }}>
                     <Text
                       style={[
-                        styles.dataText,
-                        { color: Colors.buttonLightText },
+                        styles.text,
+                        { color: '#2f3133', textAlign: 'center' },
                       ]}>
-                      {deaths}
+                      Para más información marca *462 y si tienes una emergencia
+                      marca 911
                     </Text>
-                    <Text style={styles.text}>Fallecidos</Text>
-                  </Card>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Card style={styles.infoCards}>
-                    <Text style={[styles.dataText, { color: Colors.green }]}>
-                      {recovered}
-                    </Text>
-                    <Text style={styles.text}>Recuperados</Text>
-                  </Card>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Card style={styles.infoCards}>
-                    <Text style={[styles.dataText, { color: Colors.orange }]}>
-                      {todayCases}
-                    </Text>
-                    <Text style={styles.text}>Casos del día</Text>
-                  </Card>
-                </TouchableOpacity>
-              </View>
-              <Aurora navigation={navigation} />
-              <View style={styles.footer}>
-                <View style={{ margin: wp('5%') }}>
-                  <Text
-                    style={[
-                      styles.text,
-                      { color: '#2f3133', textAlign: 'center' },
-                    ]}>
-                    Para más información marca *462 y si tienes una emergencia
-                    marca 911
-                  </Text>
+                  </View>
                 </View>
               </View>
             </View>
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
     );
   }
