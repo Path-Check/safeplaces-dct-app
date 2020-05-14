@@ -33,7 +33,7 @@ import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import { HCAService } from '../services/HCAService';
-import { SPKeyboardAvoidingView } from './common/SPKeyboardAvoidingView';
+import { KeyboardAvoidingView } from './common/KeyboardAvoidingView';
 
 const { SlideInMenu } = renderers;
 
@@ -155,6 +155,14 @@ class ChooseProviderScreen extends Component {
   setUrlText = urlText => this.setState({ urlText });
 
   /**
+   * Checks if the user selected any authorities whose `url` matches
+   * the `url` param.
+   * @param {string} url
+   */
+  hasExistingAuthorityWithUrl = url => {
+    return this.state.selectedAuthorities.some(x => x.url === url);
+  };
+  /**
    * Reset the URL input field to it's original/default settings
    */
   resetUrlInput = () =>
@@ -167,7 +175,7 @@ class ChooseProviderScreen extends Component {
   addCustomUrlToState = () => {
     let { urlText: url, selectedAuthorities } = this.state;
 
-    if (!validUrl.isWebUri(url)) {
+    if (!validUrl.isWebUri(url) || this.hasExistingAuthorityWithUrl(url)) {
       this.triggerInvalidUrlAlert();
     } else {
       const newAuthority = { key: url, url };
@@ -247,7 +255,7 @@ class ChooseProviderScreen extends Component {
         <NavigationBarWrapper
           title={languages.t('label.choose_provider_title')}
           onBackPress={this.backToMain.bind(this)}>
-          <SPKeyboardAvoidingView behavior='padding'>
+          <KeyboardAvoidingView behavior='padding'>
             <View style={styles.main}>
               <Typography style={styles.headerTitle} use={'headline2'}>
                 {languages.t('label.authorities_title')}
@@ -378,7 +386,7 @@ class ChooseProviderScreen extends Component {
                 </MenuOption>
               </MenuOptions>
             </Menu>
-          </SPKeyboardAvoidingView>
+          </KeyboardAvoidingView>
         </NavigationBarWrapper>
       </Theme>
     );
