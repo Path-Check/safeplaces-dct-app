@@ -21,6 +21,7 @@ it('renders default values from the flags provider', async () => {
 });
 
 // TODO: issue in test lib: https://github.com/testing-library/native-testing-library/issues/46
+// eslint-disable-next-line jest/no-disabled-tests
 it.skip('renders toggle events', async () => {
   const { getByTestId } = render(
     <FlagsProvider>

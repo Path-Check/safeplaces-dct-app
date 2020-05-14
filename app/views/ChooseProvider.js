@@ -458,6 +458,7 @@ const styles = StyleSheet.create({
   menuOptionText: {
     padding: 10,
   },
+  // eslint-disable-next-line react-native/no-color-literals
   flatlistRowView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
