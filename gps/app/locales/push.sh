@@ -40,7 +40,7 @@ lokalise2 file upload \
 
 echo "Uploading Documents (e.g. EULA)"
 lokalise2 file upload \
-  --file=app/locales/eula/en.html \
+  --file=gps/app/locales/eula/en.html \
   --lang-iso=en \
   --cleanup-mode \
   --replace-modified \
