@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-import BackgroundImage from './../../assets/images/launchScreen1.png';
+import BackgroundImage from '../../../../shared/assets/images/launchScreen1.png';
 import { Button } from '../../components/Button';
 import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';

@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
-import checkmarkIcon from '../assets/svgs/checkmarkIcon';
-import languagesIcon from '../assets/svgs/languagesIcon';
-import xmarkIcon from '../assets/svgs/xmarkIcon';
+import checkmarkIcon from '../../../shared/assets/svgs/checkmarkIcon';
+import languagesIcon from '../../../shared/assets/svgs/languagesIcon';
+import xmarkIcon from '../../../shared/assets/svgs/xmarkIcon';
 import { Divider } from '../components/Divider';
 import { FeatureFlag } from '../components/FeatureFlag';
 import NativePicker from '../components/NativePicker';

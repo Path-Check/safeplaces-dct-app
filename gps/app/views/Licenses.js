@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-import foreArrow from './../assets/images/foreArrow.png';
-import licenses from './../assets/LICENSE.json';
+import foreArrow from '../../../shared/assets/images/foreArrow.png';
+import licenses from '../../../shared/assets/LICENSE.json';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';

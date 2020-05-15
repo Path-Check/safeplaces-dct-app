@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import BackgroundImage from './../../assets/images/launchScreenBackground.png';
-import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
+import BackgroundImage from '../../../../shared/assets/images/launchScreenBackground.png';
+import BackgroundOverlayImage from '../../../../shared/assets/images/launchScreenBackgroundOverlay.png';
 import languages, {
   LOCALE_LIST,
   getUserLocaleOverride,

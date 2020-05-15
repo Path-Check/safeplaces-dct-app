@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Linking, TouchableOpacity, View } from 'react-native';
 
-import foreArrow from './../../assets/images/foreArrow.png';
+import foreArrow from '../../../../shared/assets/images/foreArrow.png';
 import { Typography } from '../../components/Typography';
 import { styles } from './style';
 

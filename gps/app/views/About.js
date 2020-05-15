@@ -13,7 +13,7 @@ import { SvgXml } from 'react-native-svg';
 import packageJson from '../../package.json';
 import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
-import lock from '../assets/svgs/lock';
+import lock from '../../../shared/assets/svgs/lock';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';

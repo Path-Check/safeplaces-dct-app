@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 
-import boxCheckedIcon from './../assets/images/boxCheckedIcon.png';
-import boxUncheckedIcon from './../assets/images/boxUncheckedIcon.png';
+import boxCheckedIcon from '../../../shared/assets/images/boxCheckedIcon.png';
+import boxUncheckedIcon from '../../../shared/assets/images/boxUncheckedIcon.png';
 import { Typography } from './Typography';
 
 export const Checkbox = ({ label, onPress, checked }) => {

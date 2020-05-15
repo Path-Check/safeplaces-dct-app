@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 
-import googleMapsIcon from '../../assets/svgs/google-maps-logo';
+import googleMapsIcon from '../../../../shared/assets/svgs/google-maps-logo';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 

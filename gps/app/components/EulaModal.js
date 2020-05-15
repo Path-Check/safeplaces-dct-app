@@ -5,7 +5,7 @@ import loadLocalResource from 'react-native-local-resource';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 
-import close from '../assets/svgs/close';
+import close from '../../../shared/assets/svgs/close';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import en from '../locales/eula/en.html';

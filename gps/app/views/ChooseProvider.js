@@ -19,8 +19,8 @@ import {
 } from 'react-native-popup-menu';
 import validUrl from 'valid-url';
 
-import closeIcon from './../assets/images/closeIcon.png';
-import saveIcon from './../assets/images/saveIcon.png';
+import closeIcon from '../../../shared/assets/images/closeIcon.png';
+import saveIcon from '../../../shared/assets/images/saveIcon.png';
 import { Button } from '../components/Button';
 import { Checkbox } from '../components/Checkbox';
 import { DynamicTextInput } from '../components/DynamicTextInput';

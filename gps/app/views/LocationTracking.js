@@ -23,14 +23,14 @@ import {
 import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
 
-import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
-import exportImage from './../assets/images/export.png';
-import foreArrow from './../assets/images/foreArrow.png';
-import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import settingsIcon from './../assets/svgs/settingsIcon';
-import StateAtRisk from './../assets/svgs/stateAtRisk';
-import StateNoContact from './../assets/svgs/stateNoContact';
-import StateUnknown from './../assets/svgs/stateUnknown';
+import BackgroundImageAtRisk from '../../../shared/assets/images/backgroundAtRisk.png';
+import exportImage from '../../../shared/assets/images/export.png';
+import foreArrow from '../../../shared/assets/images/foreArrow.png';
+import BackgroundImage from '../../../shared/assets/images/launchScreenBackground.png';
+import settingsIcon from '../../../shared/assets/svgs/settingsIcon';
+import StateAtRisk from '../../../shared/assets/svgs/stateAtRisk';
+import StateNoContact from '../../../shared/assets/svgs/stateNoContact';
+import StateUnknown from '../../../shared/assets/svgs/stateUnknown';
 import { isPlatformAndroid, isPlatformiOS } from './../Util';
 import { Button } from '../components/Button';
 import { Typography } from '../components/Typography';

@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Dimensions, ImageBackground, StatusBar, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import backgroundImage from '../../assets/images/backgroundAtRisk.png';
-import StateAtRisk from '../../assets/svgs/stateAtRisk';
+import backgroundImage from '../../../../shared/assets/images/backgroundAtRisk.png';
+import StateAtRisk from '../../../../shared/assets/svgs/stateAtRisk';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';

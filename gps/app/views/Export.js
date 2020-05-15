@@ -15,8 +15,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import close from './../assets/svgs/close';
-import exportIcon from './../assets/svgs/export';
+import close from '../../../shared/assets/svgs/close';
+import exportIcon from '../../../shared/assets/svgs/export';
 import { isPlatformiOS } from './../Util';
 import { Button } from '../components/Button';
 import { IconButton } from '../components/IconButton';

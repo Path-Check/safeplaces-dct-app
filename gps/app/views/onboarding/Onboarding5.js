@@ -17,11 +17,11 @@ import {
 } from 'react-native-permissions';
 import { SvgXml } from 'react-native-svg';
 
-import BackgroundImage from './../../assets/images/launchScreenBackground.png';
+import BackgroundImage from '../../../../shared/assets/images/launchScreenBackground.png';
 import { isPlatformiOS } from './../../Util';
-import IconDenied from '../../assets/svgs/permissionDenied';
-import IconGranted from '../../assets/svgs/permissionGranted';
-import IconUnknown from '../../assets/svgs/permissionUnknown';
+import IconDenied from '../../../../shared/assets/svgs/permissionDenied';
+import IconGranted from '../../../../shared/assets/svgs/permissionGranted';
+import IconUnknown from '../../../../shared/assets/svgs/permissionUnknown';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';

@@ -4,9 +4,9 @@ import { Dimensions, ImageBackground, StatusBar, View } from 'react-native';
 import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
 
-import exportImage from './../../assets/images/export.png';
-import backgroundImage from './../../assets/images/launchScreenBackground.png';
-import StateNoContact from '../../assets/svgs/stateNoContact';
+import exportImage from '../../../../shared/assets/images/export.png';
+import backgroundImage from '../../../../shared/assets/images/launchScreenBackground.png';
+import StateNoContact from '../../../../shared/assets/svgs/stateNoContact';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { Theme } from '../../constants/themes';

@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import backgroundImage from './../../assets/images/launchScreenBackground.png';
-import StateUnknown from '../../assets/svgs/stateUnknown';
+import backgroundImage from '../../../../shared/assets/images/launchScreenBackground.png';
+import StateUnknown from '../../../../shared/assets/svgs/stateUnknown';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';

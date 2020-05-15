@@ -79,5 +79,8 @@ ios/COVIDSafePaths-staging.ipa
 ios/COVIDSafePaths-staging.app
 ios/COVIDSafePaths-staging.app.dSYM.zip
 
+# Local Android build artifacts
+android/app/src/main/assets/index.android.bundle
+
 # Local Realm Artifact
 safepaths.realm

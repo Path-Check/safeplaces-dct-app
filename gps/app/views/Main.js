@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
-import settingsIcon from './../assets/svgs/settingsIcon';
+import settingsIcon from '../../../shared/assets/svgs/settingsIcon';
 import { isPlatformAndroid } from './../Util';
 import { FeatureFlag } from '../components/FeatureFlag';
 import { IconButton } from '../components/IconButton';
