@@ -1,7 +1,6 @@
 {
   "_display_name": "Kreyòl ayisyen",
   "history": {
-    "no_exposure": "Pa gen kontak",
     "possible_exposure": "Posib",
     "possible_exposure_para": "Li posib ke ou te an kontak oswa pre yon moun ki teste pozitif pou Kowonaviris",
     "what_does_this_mean": "Ki sa sa a vle di?",
@@ -30,13 +29,14 @@
     "authorities_removal_alert_desc": "Eske ou si ke ou vle retire sous done otorite sa?",
     "authorities_removal_alert_proceed": "Kontinye",
     "authorities_removal_alert_title": "Retire otorite",
-    "authorities_title": "Sous ou ka fè konfyans",
     "choose_provider_subtitle": "Pou kapab toujou rete enfòme a ekspozisyon yo, ou bezwen enskri nan yon otorite.",
     "choose_provider_title": "Chwazi otorite a",
     "commitment": "Angajman",
     "commitment_para": "Chemen san danje se yon mouvman mondyal pou devlope zouti gratis, louvri sous, konfidansyalite pa konsepsyon pou rezidan yo, ofisyèl sante piblik yo, ak pi gwo kominote pou aplodi koub COVID-19, redwi laperèz, ak anpeche yon repons siveyans-eta a pandemi an.\n\nPou plis enfòmasyon, tanpri vizite ",
+    "covid_safe_paths": "COVID Safe Paths",
     "default_news_site_name": "Nouvèl sou Chase Kowona (\"Safe Paths\")",
     "event_history_subtitle": "Konprann ekspozisyon pèsonèl ou daprè enfòmasyon Otorite a pataje.",
+    "event_history_settings_title": "",
     "event_history_title": "Lis ekspozisyon",
     "home_at_risk_header": "Ou ka gen risk",
     "home_at_risk_subsubtext": "Sa pa vle di ou enfekte.",
@@ -52,7 +52,7 @@
     "home_unknown_subtext": "Nou pa ka di si ou nan risk sof si ou pèmèt app la gen aksè a lokalizasyon ou.",
     "latest_news": "Dènye nouvèl",
     "launch_done_header": "Fini nèt",
-    "launch_done_subheader": "Ou pare pouw woule. Sonje byen, ou ka toujou fè mizajou sou preferans ou yo pita.",
+    "launch_done_subheader": "Ou pare pou w woule. Sonje byen, ou ka toujou fè mizajou sou preferans ou yo pita.",
     "launch_enable_location": "Aktive lokalizasyon",
     "launch_enable_notif": "Aktive notifikasyon",
     "launch_finish_set_up": "Fini enstalasyon",
@@ -83,11 +83,11 @@
     "news_subtitle": "Li dènye mizajou sou Kowonaviris ak videyo, atik, ilistrasyon ak lòt resous ke ou ka itilize pou jere sitiyasyon an pi byen.",
     "news_title": "Dènye nouvèl",
     "no_data": "Pa gen okenn done",
+    "privacy_policy": "Règleman sou enfòmasyon prive",
     "push_at_risk_message": "Ou te kwaze chemen avèk yon moun ki enfekte Kowonaviris",
     "push_at_risk_title": "Ou ka gen risk",
     "see_exposure_history": "Wè lis ekspozisyon",
-    "settings_title": "Tablodbò",
-    "privacy_policy": "Règleman sou enfòmasyon prive"
+    "settings_title": "Tablodbò"
   },
   "share": {
     "button_text": "Pataje done lokalizasyon",

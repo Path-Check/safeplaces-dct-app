@@ -4,7 +4,6 @@ import {
   ImageBackground,
   StatusBar,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import {
@@ -18,17 +17,17 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
-import { isPlatformiOS } from './../../Util';
 import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
 import ButtonWrapper from '../../components/ButtonWrapper';
-import { Typography } from '../../components/Typography';
+import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
+import fontFamily from '../../constants/fonts';
 import { PARTICIPATE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
-import { HCAService } from '../../services/HCAService';
+import { isPlatformiOS } from '../../Util';
 
 const width = Dimensions.get('window').width;
 
@@ -36,13 +35,6 @@ const PermissionStatusEnum = {
   UNKNOWN: 0,
   GRANTED: 1,
   DENIED: 2,
-};
-
-const StepEnum = {
-  LOCATION: 0,
-  NOTIFICATIONS: 1,
-  HCA_SUBSCRIPTION: 2,
-  DONE: 3,
 };
 
 const PermissionDescription = ({ title, status }) => {
@@ -58,12 +50,9 @@ const PermissionDescription = ({ title, status }) => {
       icon = IconDenied;
       break;
   }
-
   return (
     <View style={styles.permissionContainer}>
-      <Typography style={styles.permissionTitle} use={'body2'}>
-        {title}
-      </Typography>
+      <Typography style={styles.permissionTitle}>{title}</Typography>
       <SvgXml style={styles.permissionIcon} xml={icon} width={30} height={30} />
     </View>
   );
@@ -73,17 +62,11 @@ class Onboarding extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStep: StepEnum.LOCATION,
       notificationPermission: PermissionStatusEnum.UNKNOWN,
       locationPermission: PermissionStatusEnum.UNKNOWN,
-      authSubscriptionStatus: PermissionStatusEnum.UNKNOWN,
     };
-  }
-
-  componentDidMount() {
     this.checkLocationStatus();
-    isPlatformiOS() && this.checkNotificationStatus();
-    __DEV__ && this.checkSubsriptionStatus();
+    this.checkNotificationStatus();
   }
 
   isLocationChecked() {
@@ -94,264 +77,146 @@ class Onboarding extends Component {
     return this.state.notificationPermission !== PermissionStatusEnum.UNKNOWN;
   }
 
-  /**
-   * Helper method to determine the next step for permission requests.
-   * In general there is a linear flow, but because Android does not
-   * require permission for notifications, we skip the notifications
-   * step on Android.
-   *
-   * @param {currentStep} StepEnum
-   * @returns {StepEnum}
-   */
-  getNextStep(currentStep) {
-    switch (currentStep) {
-      case StepEnum.LOCATION:
-        return this.getLocationNextStep();
-      case StepEnum.NOTIFICATIONS:
-        return __DEV__ ? StepEnum.HCA_SUBSCRIPTION : StepEnum.DONE;
-      case StepEnum.HCA_SUBSCRIPTION:
-        return StepEnum.DONE;
-    }
-  }
-
-  async checkLocationStatus() {
-    const nextStep = this.getNextStep(StepEnum.LOCATION);
-    const setting = this.getLocationPermissionSetting();
-    const status = await check(setting);
-
-    switch (status) {
-      case RESULTS.GRANTED:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: PermissionStatusEnum.GRANTED,
-        });
-        break;
-      case RESULTS.BLOCKED:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: PermissionStatusEnum.DENIED,
-        });
-        break;
-    }
-  }
-
-  async checkNotificationStatus() {
-    const nextStep = this.getNextStep(StepEnum.NOTIFICATIONS);
-    const { status } = await checkNotifications();
-
-    switch (status) {
-      case RESULTS.GRANTED:
-        this.setState({
-          currentStep: nextStep,
-          notificationPermission: PermissionStatusEnum.GRANTED,
-        });
-        break;
-      case RESULTS.BLOCKED:
-        this.setState({
-          currentStep: nextStep,
-          notificationPermission: PermissionStatusEnum.DENIED,
-        });
-        break;
-    }
-  }
-
-  async checkSubsriptionStatus() {
-    const nextStep = this.getNextStep(StepEnum.HCA_SUBSCRIPTION);
-    const hasUserSetSubscription = await HCAService.hasUserSetSubscription();
-
-    // Only update state if the user has already set their subscription status
-    if (hasUserSetSubscription) {
-      const isEnabled = await HCAService.isAutosubscriptionEnabled();
-      const authSubscriptionStatus = isEnabled
-        ? PermissionStatusEnum.GRANTED
-        : PermissionStatusEnum.DENIED;
-
-      this.setState({
-        currentStep: nextStep,
-        authSubscriptionStatus,
-      });
-    }
-  }
-
-  getLocationNextStep() {
+  checkLocationStatus() {
+    // NEED TO TEST ON ANNDROID
+    let locationPermission;
     if (isPlatformiOS()) {
-      return StepEnum.NOTIFICATIONS;
-    } else if (__DEV__) {
-      return StepEnum.HCA_SUBSCRIPTION;
+      locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
     } else {
-      return isPlatformiOS() ? StepEnum.NOTIFICATIONS : StepEnum.DONE;
+      locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
     }
+    check(locationPermission)
+      .then(result => {
+        switch (result) {
+          case RESULTS.GRANTED:
+            this.setState({
+              locationPermission: PermissionStatusEnum.GRANTED,
+            });
+            break;
+          case RESULTS.UNAVAILABLE:
+          case RESULTS.BLOCKED:
+            this.setState({
+              locationPermission: PermissionStatusEnum.DENIED,
+            });
+            break;
+        }
+      })
+      .catch(error => {
+        console.log('error checking location: ' + error);
+      });
   }
 
-  /**
-   * Gets the respective location permissions settings string
-   * for the user's current device.
-   *   */
-  getLocationPermissionSetting() {
-    return isPlatformiOS()
-      ? PERMISSIONS.IOS.LOCATION_ALWAYS
-      : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
-  }
-
-  async requestLocation() {
-    const nextStep = this.getNextStep(StepEnum.LOCATION);
-    const locationPermission = this.getLocationPermissionSetting();
-    const status = await request(locationPermission);
-
-    switch (status) {
-      case RESULTS.GRANTED:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: PermissionStatusEnum.GRANTED,
-        });
-        break;
-      case RESULTS.BLOCKED:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: PermissionStatusEnum.DENIED,
-        });
-        break;
-    }
-  }
-
-  async requestNotification() {
-    const nextStep = this.getNextStep(StepEnum.NOTIFICATIONS);
-    const { status } = await requestNotifications(['alert', 'badge', 'sound']);
-
-    switch (status) {
-      case RESULTS.GRANTED:
-        this.setState({
-          currentStep: nextStep,
-          notificationPermission: PermissionStatusEnum.GRANTED,
-        });
-        break;
-      case RESULTS.BLOCKED:
-        this.setState({
-          currentStep: nextStep,
-          notificationPermission: PermissionStatusEnum.DENIED,
-        });
-        break;
-    }
-  }
-
-  async requestHCASubscription() {
-    const nextStep = this.getNextStep(StepEnum.HCA_SUBSCRIPTION);
-    await HCAService.enableAutoSubscription();
-
-    this.setState({
-      currentStep: nextStep,
-      authSubscriptionStatus: PermissionStatusEnum.GRANTED,
+  checkNotificationStatus() {
+    checkNotifications().then(({ status }) => {
+      switch (status) {
+        case RESULTS.GRANTED:
+          this.setState({
+            notificationPermission: PermissionStatusEnum.GRANTED,
+          });
+          break;
+        case RESULTS.UNAVAILABLE:
+        case RESULTS.BLOCKED:
+          this.setState({
+            notificationPermission: PermissionStatusEnum.DENIED,
+          });
+          break;
+      }
     });
   }
 
-  /**
-   * Allows the user to skip over a given step by setting the
-   * permission for that step to `DENIED`
-   * @returns {StepEnum}
-   */
-  skipCurrentStep() {
-    const status = PermissionStatusEnum.DENIED;
-    const nextStep = this.getNextStep(this.state.currentStep);
-
-    switch (this.state.currentStep) {
-      case StepEnum.LOCATION:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: status,
-        });
-        break;
-      case StepEnum.NOTIFICATIONS:
-        this.setState({
-          currentStep: nextStep,
-          notificationPermission: status,
-        });
-        break;
-      case StepEnum.HCA_SUBSCRIPTION:
-        this.setState({
-          currentStep: nextStep,
-          authSubscriptionStatus: status,
-        });
-        break;
+  requestLocation() {
+    // NEED TO TEST ON ANNDROID
+    let locationPermission;
+    if (isPlatformiOS()) {
+      locationPermission = PERMISSIONS.IOS.LOCATION_ALWAYS;
+    } else {
+      locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
     }
+    request(locationPermission).then(result => {
+      switch (result) {
+        case RESULTS.GRANTED:
+          console.log('Location granted');
+          this.setState({
+            locationPermission: PermissionStatusEnum.GRANTED,
+          });
+          break;
+        case RESULTS.UNAVAILABLE:
+        case RESULTS.BLOCKED:
+          this.setState({
+            locationPermission: PermissionStatusEnum.DENIED,
+          });
+          break;
+      }
+    });
   }
 
-  async buttonPressed() {
-    switch (this.state.currentStep) {
-      case StepEnum.LOCATION:
-        this.requestLocation();
-        break;
-      case StepEnum.NOTIFICATIONS:
-        this.requestNotification();
-        break;
-      case StepEnum.HCA_SUBSCRIPTION:
-        this.requestHCASubscription();
-        break;
-      case StepEnum.DONE:
-        SetStoreData(PARTICIPATE, 'true');
-        SetStoreData('ONBOARDING_DONE', true);
-        this.props.navigation.replace('LocationTrackingScreen');
+  requestNotification() {
+    requestNotifications(['alert', 'badge', 'sound']).then(({ status }) => {
+      switch (status) {
+        case RESULTS.GRANTED:
+          this.setState({
+            notificationPermission: PermissionStatusEnum.GRANTED,
+          });
+          break;
+        case RESULTS.UNAVAILABLE:
+        case RESULTS.BLOCKED:
+          this.setState({
+            notificationPermission: PermissionStatusEnum.DENIED,
+          });
+          break;
+      }
+    });
+  }
+
+  buttonPressed() {
+    if (!this.isLocationChecked()) {
+      this.requestLocation();
+    } else if (!this.isNotificationChecked()) {
+      this.requestNotification();
+    } else {
+      SetStoreData(PARTICIPATE, 'true'); // replaces "start" button
+      SetStoreData('ONBOARDING_DONE', true);
+      this.props.navigation.replace('LocationTrackingScreen');
     }
   }
 
   getTitleText() {
-    switch (this.state.currentStep) {
-      case StepEnum.LOCATION:
-        return languages.t('label.launch_location_header');
-      case StepEnum.NOTIFICATIONS:
-        return languages.t('label.launch_notif_header');
-      case StepEnum.HCA_SUBSCRIPTION:
-        return languages.t('label.launch_authority_header');
-      case StepEnum.DONE:
-        return languages.t('label.launch_done_header');
+    if (!this.isLocationChecked()) {
+      return languages.t('label.launch_location_header');
+    } else if (!this.isNotificationChecked()) {
+      return languages.t('label.launch_notif_header');
+    } else {
+      return languages.t('label.launch_done_header');
     }
   }
 
   getTitleTextView() {
-    const use =
-      this.state.currentStep === StepEnum.DONE ? 'headline1' : 'headline2';
-
-    return (
-      <Typography style={styles.headerText} use={use} testID='Header'>
-        {this.getTitleText()}
-      </Typography>
-    );
+    if (!this.isLocationChecked() || !this.isNotificationChecked()) {
+      return (
+        <Typography
+          style={styles.headerText}
+          use={Type.Headline2}
+          testID='Header'>
+          {this.getTitleText()}
+        </Typography>
+      );
+    } else {
+      return (
+        <Typography style={styles.bigHeaderText} use={Type.Headline1}>
+          {this.getTitleText()}
+        </Typography>
+      );
+    }
   }
 
   getSubtitleText() {
-    let style, text;
-
-    switch (this.state.currentStep) {
-      case StepEnum.LOCATION:
-        [style, text] = [
-          styles.subheaderText,
-          languages.t('label.launch_location_subheader'),
-        ];
-        break;
-      case StepEnum.NOTIFICATIONS:
-        [style, text] = [
-          styles.subheaderText,
-          languages.t('label.launch_notif_subheader'),
-        ];
-        break;
-      case StepEnum.HCA_SUBSCRIPTION:
-        [style, text] = [
-          styles.subheaderTextWide,
-          languages.t('label.launch_authority_subheader'),
-        ];
-        break;
-      case StepEnum.DONE:
-        [style, text] = [
-          styles.subheaderText,
-          languages.t('label.launch_done_subheader'),
-        ];
-        break;
+    if (!this.isLocationChecked()) {
+      return languages.t('label.launch_location_subheader');
+    } else if (!this.isNotificationChecked()) {
+      return languages.t('label.launch_notif_subheader');
+    } else {
+      return languages.t('label.launch_done_subheader');
     }
-
-    return (
-      <Typography style={style} use={'body3'}>
-        {text}
-      </Typography>
-    );
   }
 
   getLocationPermission() {
@@ -368,8 +233,8 @@ class Onboarding extends Component {
   }
 
   getNotificationsPermissionIfIOS() {
-    return (
-      isPlatformiOS() && (
+    if (isPlatformiOS()) {
+      return (
         <>
           <PermissionDescription
             title={languages.t('label.launch_notification_access')}
@@ -377,44 +242,18 @@ class Onboarding extends Component {
           />
           <View style={styles.divider} />
         </>
-      )
-    );
-  }
-
-  getAuthSubscriptionStatus() {
-    return (
-      <>
-        <PermissionDescription
-          title={languages.t('label.launch_authority_access')}
-          status={this.state.authSubscriptionStatus}
-        />
-        <View style={styles.divider} />
-      </>
-    );
+      );
+    }
+    return;
   }
 
   getButtonText() {
-    switch (this.state.currentStep) {
-      case StepEnum.LOCATION:
-        return languages.t('label.launch_enable_location');
-      case StepEnum.NOTIFICATIONS:
-        return languages.t('label.launch_enable_notif');
-      case StepEnum.HCA_SUBSCRIPTION:
-        return languages.t('label.launch_enable_auto_subscription');
-      case StepEnum.DONE:
-        return languages.t('label.launch_finish_set_up');
-    }
-  }
-
-  getSkipStepButton() {
-    if (this.state.currentStep !== StepEnum.DONE) {
-      return (
-        <TouchableOpacity onPress={this.skipCurrentStep.bind(this)}>
-          <Typography style={styles.skipThisStepBtn} use={'body1'}>
-            {languages.t('label.skip_this_step')}
-          </Typography>
-        </TouchableOpacity>
-      );
+    if (!this.isLocationChecked()) {
+      return languages.t('label.launch_enable_location');
+    } else if (!this.isNotificationChecked()) {
+      return languages.t('label.launch_enable_notif');
+    } else {
+      return languages.t('label.launch_finish_set_up');
     }
   }
 
@@ -430,12 +269,12 @@ class Onboarding extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             {this.getTitleTextView()}
-            {this.getSubtitleText()}
-            {this.getSkipStepButton()}
+            <Typography style={styles.subheaderText}>
+              {this.getSubtitleText()}
+            </Typography>
             <View style={styles.statusContainer}>
               {this.getLocationPermission()}
               {this.getNotificationsPermissionIfIOS()}
-              {__DEV__ && this.getAuthSubscriptionStatus()}
               <View style={styles.spacer} />
             </View>
           </View>
@@ -469,18 +308,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
   },
+  bigHeaderText: {
+    color: Colors.WHITE,
+    lineHeight: 48.5,
+    paddingTop: 52 - 48.5, // lineHeight hack
+    width: width * 0.7,
+  },
   headerText: {
     color: Colors.WHITE,
+    width: width * 0.8,
   },
   subheaderText: {
-    color: Colors.WHITE,
     marginTop: '3%',
+    color: Colors.WHITE,
+    fontSize: 15,
     width: width * 0.55,
-  },
-  subheaderTextWide: {
-    color: Colors.WHITE,
-    marginTop: '3%',
-    width: width * 0.8,
+    fontFamily: fontFamily.primaryRegular,
   },
   statusContainer: {
     marginTop: '5%',
@@ -505,16 +348,12 @@ const styles = StyleSheet.create({
   },
   permissionTitle: {
     color: Colors.WHITE,
+    fontSize: 16,
     alignSelf: 'center',
-    marginRight: 8,
-    flex: 1,
+    fontFamily: fontFamily.primaryRegular,
   },
   permissionIcon: {
     alignSelf: 'center',
-  },
-  skipThisStepBtn: {
-    color: Colors.DIVIDER,
-    paddingTop: 15,
   },
 });
 

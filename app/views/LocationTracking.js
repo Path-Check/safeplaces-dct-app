@@ -375,6 +375,7 @@ class LocationTracking extends Component {
         this.settings();
       };
     }
+
     return (
       <View style={styles.buttonContainer}>
         <ButtonWrapper
@@ -423,27 +424,30 @@ class LocationTracking extends Component {
           </View>
         </View>
 
-        <View>
-          <TouchableOpacity
-            onPress={this.getMayoInfoPressed.bind(this)}
-            style={styles.mayoInfoRow}>
-            <View style={styles.mayoInfoContainer}>
-              <Typography
-                style={styles.mainMayoHeader}
-                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                {languages.t('label.home_mayo_link_heading')}
-              </Typography>
-              <Typography
-                style={styles.mainMayoSubtext}
-                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                {languages.t('label.home_mayo_link_label')}
-              </Typography>
-            </View>
-            <View style={styles.arrowContainer}>
-              <Image source={foreArrow} style={this.arrow} />
-            </View>
-          </TouchableOpacity>
-        </View>
+        {/* Only show mayo clinic button there is no button on screen */}
+        {this.state.currentState === StateEnum.NO_CONTACT && (
+          <View>
+            <TouchableOpacity
+              onPress={this.getMayoInfoPressed.bind(this)}
+              style={styles.mayoInfoRow}>
+              <View style={styles.mayoInfoContainer}>
+                <Typography
+                  style={styles.mainMayoHeader}
+                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
+                  {languages.t('label.home_mayo_link_heading')}
+                </Typography>
+                <Typography
+                  style={styles.mainMayoSubtext}
+                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
+                  {languages.t('label.home_mayo_link_label')}
+                </Typography>
+              </View>
+              <View style={styles.arrowContainer}>
+                <Image source={foreArrow} style={this.arrow} />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
         {this.getSettings()}
       </ImageBackground>
     );
@@ -522,7 +526,7 @@ const styles = StyleSheet.create({
   },
   subheaderText: {
     marginBottom: 24,
-    textAlign: 'center',
+    textAlign: 'left',
     lineHeight: 24.5,
     color: Colors.WHITE,
     fontSize: 18,

@@ -116,7 +116,7 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('NewsScreen')}
           />
           <Item
-            label={t('label.event_history_title')}
+            label={t('label.event_history_settings_title')}
             description={t('label.event_history_subtitle')}
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
           />

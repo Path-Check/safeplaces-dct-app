@@ -389,7 +389,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body1"
               >
-                Choose Health Authority
+                Your Healthcare Authority
               </Text>
               <Text
                 secondary={true}
@@ -405,7 +405,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body3"
               >
-                To be informed of exposures you will need to subscribe to a Health Authority.
+                Select a Healthcare Authority to learn about COVID-19 in your area.
               </Text>
             </View>
           </View>
@@ -471,7 +471,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body3"
               >
-                Read about the latest COVID updates from your health authority and in general.
+                Find the latest updates from Safe Paths and your local Health Authorities, where available
               </Text>
             </View>
           </View>
@@ -521,7 +521,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body1"
               >
-                Exposure history
+                Exposure History - Coming Soon
               </Text>
               <Text
                 secondary={true}
@@ -537,7 +537,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body3"
               >
-                Understand your personal exposure based on information shared by health authorities.
+                Receive information about potential exposure to COVID-19
               </Text>
             </View>
           </View>
@@ -603,7 +603,7 @@ exports[`renders correctly 1`] = `
                 }
                 use="body3"
               >
-                Your private data can be transferred to health authorities, backed up, or otherwise shared.
+                Your private data can be transferred to health authorities, backed up, or otherwise shared
               </Text>
             </View>
           </View>
@@ -704,7 +704,7 @@ exports[`renders correctly 1`] = `
               }
               use="body2"
             >
-              To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.
+              To add past locations to your Safe Paths location history, you can import your Google location history.
             </Text>
           </View>
           <View
