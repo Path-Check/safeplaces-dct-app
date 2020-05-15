@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.MAIN_BLUE,
     borderBottomEndRadius: 13,
     borderBottomStartRadius: 13,
+    paddingTop: 40,
     marginBottom: '-5%',
     height: hp('16%'),
     width: wp('100%'),
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
   },
   settingsContainer: {
     position: 'absolute',
-    top: 0,
+    top: 25,
     marginTop: '5%',
     marginRight: '7%',
     alignSelf: 'flex-end',
