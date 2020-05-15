@@ -12,6 +12,7 @@ import BulletinsScreen from './views/DR/Bulletins';
 import DetailsScreen from './views/DR/Details';
 // import LocationTracking from './views/LocationTracking';
 import HomeScreen from './views/DR/HomeScreen';
+
 import NewsScreen from './views/DR/News';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
@@ -145,6 +146,16 @@ class Entry extends Component {
           />
           <Stack.Screen
             name='AboutScreen'
+            component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ReportScreen'
+            component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='AuroraScreen'
             component={AboutScreen}
             options={{ headerShown: false }}
           />
