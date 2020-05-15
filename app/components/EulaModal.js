@@ -83,7 +83,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
       <ButtonWrapper
         title={t('label.launch_get_started')}
         onPress={() => setModalVisibility(true)}
-        buttonColor={Colors.mainBlue}
+        buttonColor={Colors.BLUE_RIBBON}
         bgColor={Colors.WHITE}
       />
       <Modal animationType='slide' transparent visible={modalVisible}>
@@ -103,7 +103,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
             </View>
           </SafeAreaView>
           <Theme use='violet'>
-            <SafeAreaView style={{ backgroundColor: Colors.mainBlue }}>
+            <SafeAreaView style={{ backgroundColor: Colors.BLUE_RIBBON }}>
               <View style={styles.ctaBox}>
                 <Checkbox
                   label={t('onboarding.eula_checkbox')}
@@ -116,7 +116,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                 <ButtonWrapper
                   title={t('onboarding.eula_continue')}
                   buttonColor={
-                    canContinue ? Colors.mainBlue : Colors.GRAY_BUTTON
+                    canContinue ? Colors.BLUE_RIBBON : Colors.GRAY_BUTTON
                   }
                   bgColor={canContinue ? Colors.WHITE : Colors.LIGHT_GRAY}
                   buttonWidth={'100%'}
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   ctaBox: {
     padding: 15,
     paddingTop: 0,
-    backgroundColor: Colors.mainBlue,
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   closeIcon: {
     width: 20,

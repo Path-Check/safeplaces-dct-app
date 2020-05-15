@@ -4,19 +4,17 @@ import React from 'react';
 
 import Color from './colors';
 
-// import { Colors } from 'react-native/Libraries/NewAppScreen';
-
 /** Violet on pale violet bg. e.g. Settings */
 export const defaultTheme = {
-  background: Color.lightBlue,
-  textPrimaryOnBackground: Color.mainBlue,
+  background: Color.LIGHTBLUE,
+  textPrimaryOnBackground: Color.BLUE_RIBBON,
   textSecondaryOnBackground: Color.BLACK,
 
-  navBar: Color.mainBlue,
+  navBar: Color.BLUE_RIBBON,
   onNavBar: Color.WHITE,
 
   /** E.g. button bg */
-  primary: Color.mainBlue,
+  primary: Color.BLUE_RIBBON,
   /** E.g. button text color */
   onPrimary: Color.WHITE,
 
@@ -33,10 +31,10 @@ export const violet = {
   textPrimaryOnBackground: Color.WHITE,
   textSecondaryOnBackground: 'rgba(255, 255, 255, 0.6)',
 
-  navBarBorder: Color.mainBlue, // no visible border
+  navBarBorder: Color.BLUE_RIBBON, // no visible border
 
   primary: Color.WHITE,
-  onPrimary: Color.mainBlue,
+  onPrimary: Color.BLUE_RIBBON,
 };
 
 /** White on gray bg. E.g. Possible exposure mode on default screen */

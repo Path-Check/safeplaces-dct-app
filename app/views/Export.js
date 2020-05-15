@@ -110,7 +110,7 @@ export const ExportScreen = ({ navigation }) => {
     <Theme use='violet'>
       <StatusBar
         barStyle='light-content'
-        backgroundColor={Colors.mainBlue}
+        backgroundColor={Colors.BLUE_RIBBON}
         translucent={false}
       />
       <SafeAreaView style={styles.topSafeAreaContainer} />
@@ -118,7 +118,7 @@ export const ExportScreen = ({ navigation }) => {
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
-          colors={[Colors.mainBlue, Colors.mainBlue]}
+          colors={[Colors.BLUE_RIBBON, Colors.BLUE_RIBBON]}
           style={{ flex: 1, height: '100%' }}>
           <View style={styles.headerContainer}>
             <TouchableOpacity
@@ -158,11 +158,11 @@ const styles = StyleSheet.create({
   // Container covers the entire screen
   topSafeAreaContainer: {
     flex: 0,
-    backgroundColor: Colors.mainBlue,
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   bottomSafeAreaContainer: {
     flex: 1,
-    backgroundColor: Colors.mainBlue,
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   exportButtonText: {
-    color: Colors.mainBlue,
+    color: Colors.BLUE_RIBBON,
     fontSize: 20,
     fontFamily: fontFamily.primaryMedium,
   },

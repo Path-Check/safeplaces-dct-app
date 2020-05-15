@@ -19,7 +19,7 @@ import Colors from '../constants/colors';
 const widthScale = Math.min(Dimensions.get('window').width / 400, 1.0);
 
 const NavigationBarWrapper = ({ children, title, onBackPress }) => {
-  const barColor = Colors.mainBlue;
+  const barColor = Colors.BLUE_RIBBON;
 
   return (
     <>
@@ -42,7 +42,7 @@ const NavigationBarWrapper = ({ children, title, onBackPress }) => {
   );
 };
 
-const themeNavBar = ({ theme }) => theme.navBar || Colors.mainBlue;
+const themeNavBar = ({ theme }) => theme.navBar || Colors.BLUE_RIBBON;
 
 const TopContainer = styled.SafeAreaView`
   flex: 0;
@@ -57,7 +57,8 @@ const BottomContainer = styled.SafeAreaView`
   background-color: ${themeBackground};
 `;
 
-const themeNavBarBorder = ({ theme }) => theme.navBarBorder || Colors.mainBlue;
+const themeNavBarBorder = ({ theme }) =>
+  theme.navBarBorder || Colors.BLUE_RIBBON;
 
 const Header = styled.View`
   align-items: center;

@@ -136,11 +136,11 @@ const styles = StyleSheet.create({
   },
   buttonTouchable: {
     borderRadius: 12,
-    backgroundColor: colors.mainBlue,
+    backgroundColor: colors.BLUE_RIBBON,
     height: 52,
     alignSelf: 'center',
     width: width * 0.7866,
-    marginTop: 30,
+    marginTop: 18,
     justifyContent: 'center',
   },
   buttonText: {

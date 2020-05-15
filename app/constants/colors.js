@@ -1,5 +1,3 @@
-const tintColor = '#0161F2';
-
 const colors = {
   BLACK: '#000',
   WHITE: '#FFF',
@@ -64,25 +62,15 @@ const colors = {
   MONO_DARK: '#202020',
   MONO_SECONDARY: '#757677',
 
-  background: '#EFEFEF',
-  errorBackground: 'red',
-  errorText: '#fff',
-  green: '#7ED321',
-  mainBlue: '#0161F2',
-  lightGray: '#D8D8D8',
-  lightBlue: '#EFF4F9',
-  buttonLightText: '#6B6B6B',
-  noticeBackground: tintColor,
-  noticeText: '#fff',
-  orange: '#FEB313',
-  pink: '#F1485B',
-  purple: '#525BD9',
-  tabBar: '#fefefe',
-  tabIconDefault: '#ccc',
-  tabIconSelected: tintColor,
-  tintColor,
-  warningBackground: '#EAEB5E',
-  warningText: '#666804',
+  BLUE_RIBBON: '#0161F2',
+  LIGHTGRAY: '#D8D8D8',
+  LIGHTBLUE: '#EFF4F9',
+  DOVE_GRAY: '#6B6B6B',
+  SUN: '#FEB313',
+  PINK: '#F1485B',
+  PURPLE: '#525BD9',
+  CONFETTI: '#EAEB5E',
+  YUKON_GOLD: '#666804',
 };
 
 export default colors;

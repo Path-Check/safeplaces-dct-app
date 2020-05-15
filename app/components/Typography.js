@@ -69,7 +69,7 @@ export const Typography = ({
 
 const FONT_SIZE_MAP = {
   [Type.Headline1]: '52px',
-  [Type.Headline2]: '26px',
+  [Type.Headline2]: '20px',
   [Type.Headline3]: '16px',
   [Type.Body1]: '18px',
   [Type.Body2]: '16px',

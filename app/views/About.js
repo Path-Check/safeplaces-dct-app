@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     marginTop: 36,
   },
   aboutSectionTitles: {
-    color: Colors.mainBlue,
+    color: Colors.BLUE_RIBBON,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
     marginTop: 9,
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryRegular,
   },
   aboutSectionParaBold: {
-    color: Colors.mainBlue,
+    color: Colors.BLUE_RIBBON,
     fontSize: 16,
     lineHeight: 22.5,
     marginTop: 12,

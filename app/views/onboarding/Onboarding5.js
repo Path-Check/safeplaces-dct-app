@@ -435,7 +435,7 @@ class Onboarding extends Component {
             <ButtonWrapper
               title={this.getButtonText()}
               onPress={this.buttonPressed.bind(this)}
-              buttonColor={Colors.mainBlue}
+              buttonColor={Colors.BLUE_RIBBON}
               bgColor={Colors.WHITE}
             />
           </View>
@@ -453,7 +453,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainContainer: {
-    backgroundColor: Colors.mainBlue,
+    backgroundColor: Colors.BLUE_RIBBON,
     flex: 1,
   },
   contentContainer: {

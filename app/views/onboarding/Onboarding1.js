@@ -20,7 +20,6 @@ import { EulaModal } from '../../components/EulaModal';
 import NativePicker from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
-import colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 
 const width = Dimensions.get('window').width;
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
     height: '100%',
     resizeMode: 'cover',
     flex: 1,
-    backgroundColor: colors.mainBlue,
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   mainContainer: {
     flex: 1,
@@ -142,14 +141,14 @@ const styles = StyleSheet.create({
   // eslint-disable-next-line react-native/no-color-literals
   languageSelector: {
     // alpha needs to be in the bg color otherwise it fades the contained text
-    backgroundColor: colors.WHITE,
+    backgroundColor: Colors.WHITE,
     paddingVertical: 4,
     paddingHorizontal: 11,
     borderRadius: 100,
   },
   languageSelectorText: {
     fontSize: 12,
-    color: Colors.mainBlue,
+    color: Colors.BLUE_RIBBON,
     paddingVertical: 4,
     paddingHorizontal: 11,
     opacity: 1,

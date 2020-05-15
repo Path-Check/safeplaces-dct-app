@@ -393,7 +393,7 @@ class LocationTracking extends Component {
     const cases = this.getCases();
     console.log(cases);
     this._notificationSubscription = Notifications.addListener(
-      this._handleNotification
+      this._handleNotification,
     );
   }
 
@@ -504,7 +504,7 @@ const styles = StyleSheet.create({
     top: 24,
   },
   pulseContainer: {
-    backgroundColor: Colors.mainBlue,
+    backgroundColor: Colors.BLUE_RIBBON,
     position: 'absolute',
     resizeMode: 'contain',
     height: '100%',
@@ -548,7 +548,7 @@ const styles = StyleSheet.create({
   mayoInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.mainBlue,
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   mayoInfoContainer: {
     flexDirection: 'column',
