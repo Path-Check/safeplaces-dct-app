@@ -33,15 +33,15 @@ class Entry extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   GetStoreData('ONBOARDING_DONE')
-  //     .then(onboardingDone => {
-  //       this.setState({
-  //         initialRouteName: onboardingDone,
-  //       });
-  //     })
-  //     .catch(error => console.log(error));
-  // }
+  componentDidMount() {
+    GetStoreData('ONBOARDING_DONE')
+      .then(onboardingDone => {
+        this.setState({
+          initialRouteName: onboardingDone,
+        });
+      })
+      .catch(error => console.log(error));
+  }
 
   render() {
     return (
