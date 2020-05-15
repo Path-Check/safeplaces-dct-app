@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Dimensions, StatusBar } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import backArrow from './../assets/svgs/backArrow';
+import backArrow from '../assets/svgs/backArrow';
 import { isPlatformiOS } from './../Util';
 import Colors from '../constants/colors';
 
