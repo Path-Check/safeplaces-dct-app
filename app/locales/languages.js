@@ -98,7 +98,7 @@ i18next.use(initReactI18next).init({
     // React already does escaping
     escapeValue: false,
   },
-  lng: 'en', // 'en' | 'es',
+  lng: 'es', // 'en' | 'es',
   fallbackLng: 'en', // If language detector fails
   returnEmptyString: false,
   resources: {
@@ -146,7 +146,7 @@ export function supportedDeviceLanguageOrEnglish() {
   const found = Object.keys(LOCALE_NAME).find(
     l => l === langCode || toIETFLanguageTag(l) === toIETFLanguageTag(locale),
   );
-  return found || 'en';
+  return found || 'es';
 }
 
 // detect and set device locale, must go after i18next.init()

@@ -48,6 +48,6 @@ describe('supportedDeviceLanguageOrEnglish()', () => {
 
   it('resolves unknown device locale xx-yy -> en', () => {
     setDeviceLocale('xx0-yy');
-    expect(languages.supportedDeviceLanguageOrEnglish()).toBe('en');
+    expect(languages.supportedDeviceLanguageOrEnglish()).toBe('es');
   });
 });

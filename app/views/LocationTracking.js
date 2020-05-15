@@ -307,7 +307,7 @@ class LocationTracking extends Component {
         <View style={styles.pulseContainer}>
           <Pulse
             image={{ exportImage }}
-            color={Colors.PULSE_WHITE}
+            color={Colors.WHITE}
             numPulses={3}
             diameter={400}
             speed={20}
@@ -406,6 +406,14 @@ class LocationTracking extends Component {
         onPress={() => buttonFunction()}
         style={styles.buttonContainer}
       />
+    );
+  }
+
+  async componentDidMount() {
+    const cases = this.getCases();
+    console.log(cases);
+    this._notificationSubscription = Notifications.addListener(
+      this._handleNotification
     );
   }
 
