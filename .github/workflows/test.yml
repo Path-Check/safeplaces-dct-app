@@ -29,7 +29,7 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-yarn-cache-
 
-      - run: yarn install:all --frozen-lockfile
+      - run: yarn --frozen-lockfile
 
       - run: yarn test
         env:
@@ -47,7 +47,7 @@ jobs:
           key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.OS }}-yarn-cache-
-      - run: yarn install:all --frozen-lockfile
+      - run: yarn --frozen-lockfile
 
       - name: Cache gradle
         uses: actions/cache@v1
@@ -84,7 +84,7 @@ jobs:
 
       - name: Install Node Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install:all --frozen-lockfile
+        run: yarn --frozen-lockfile
 
       - name: Cache ruby gems
         uses: actions/cache@v1
@@ -139,7 +139,7 @@ jobs:
 
       - name: Install Node Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install:all --frozen-lockfile
+        run: yarn --frozen-lockfile
 
       - name: Cache ruby gems
         uses: actions/cache@v1
@@ -196,7 +196,7 @@ jobs:
 
       - name: Install Node Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install:all --frozen-lockfile
+        run: yarn --frozen-lockfile
 
       - run: brew tap wix/brew
 
@@ -239,7 +239,7 @@ jobs:
 
       - name: Install Node Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install:all --frozen-lockfile
+        run: yarn --frozen-lockfile
 
       - run: brew tap wix/brew
 
