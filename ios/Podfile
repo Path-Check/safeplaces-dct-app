@@ -48,6 +48,8 @@ target 'COVIDSafePaths' do
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
 
+  pod 'RNActivityRecognition', :path => '../node_modules/react-native-activity-recognition'
+
   target 'COVIDSafePathsTests' do
     inherit! :search_paths
     # Pods for testing

@@ -199,6 +199,7 @@ android {
 dependencies {
     implementation project(':react-native-reanimated')
     implementation project(':react-native-sensors')
+    implementation project(':react-native-activity-recognition')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"

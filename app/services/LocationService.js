@@ -1,11 +1,8 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import ActivityRecognition from 'react-native-activity-recognition';
 import PushNotification from 'react-native-push-notification';
-import {
-  SensorTypes,
-  accelerometer,
-  setUpdateIntervalForType,
-} from 'react-native-sensors';
+import { accelerometer } from 'react-native-sensors';
 import { filter, map } from 'rxjs/operators';
 
 import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
@@ -14,10 +11,11 @@ import { areLocationsNearby } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import { isPlatformAndroid } from '../Util';
 
-setUpdateIntervalForType(SensorTypes.accelerometer, 100);
-
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION = '55';
+
+let previousLatitude;
+let previousLongitude;
 
 export class LocationData {
   constructor() {
@@ -63,83 +61,96 @@ export class LocationData {
   }
 
   saveLocation(location) {
-    // Persist this location data in our local storage of time/lat/lon values
-    this.getLocationData().then(locationArray => {
-      // Always work in UTC, not the local time in the locationData
-      let unixtimeUTC = Math.floor(location['time']);
-      let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
+    let currentLatitude = location['latitude'];
+    let currentLongitude = location['longitude'];
 
-      // Verify that at least the minimum amount of time between saves has passed
-      // This ensures that no matter how fast GPS coords are delivered, saving
-      // does not happen any faster than the minLocationSaveInterval
-      if (locationArray.length >= 1) {
-        let lastSaveTime = locationArray[locationArray.length - 1]['time'];
-        if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
-          //console.log('[INFO] Discarding point (too soon):', unixtimeUTC);
-          return;
-        }
-      }
+    if (
+      currentLatitude != previousLatitude &&
+      currentLongitude != previousLongitude
+    ) {
+      // Persist this location data in our local storage of time/lat/lon values
+      this.getLocationData().then(locationArray => {
+        // Always work in UTC, not the local time in the locationData
+        let unixtimeUTC = Math.floor(location['time']);
+        let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
 
-      // Curate the list of points, only keep the last 28 days
-      let curated = [];
-      for (let i = 0; i < locationArray.length; i++) {
-        if (locationArray[i]['time'] > unixtimeUTC_28daysAgo) {
-          curated.push(locationArray[i]);
-        }
-      }
+        // Verify that at least the minimum amount of time between saves has passed
+        // This ensures that no matter how fast GPS coords are delivered, saving
+        // does not happen any faster than the minLocationSaveInterval
 
-      // Backfill the stationary points, if available
-      // The assumption is that if we see a gap in the data, and the
-      // device hasn't moved significantly, then we can fill in the missing data
-      // with the current location.  This makes it easier for a health authority
-      // person to have a set of locations over time, and they can manually
-      // redact the time frames that aren't correct.
-      if (curated.length >= 1) {
-        let lastLocationArray = curated[curated.length - 1];
+        // if (locationArray.length >= 1) {
+        //   let lastSaveTime = locationArray[locationArray.length - 1]['time'];
+        //   if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
+        //     //console.log('[INFO] Discarding point (too soon):', unixtimeUTC);
+        //     return;
+        //   }
+        // }
 
-        let areCurrentPreviousNearby = areLocationsNearby(
-          lastLocationArray['latitude'],
-          lastLocationArray['longitude'],
-          location['latitude'],
-          location['longitude'],
-        );
-        //console.log('[INFO] nearby:', nearby);
-
-        // Actually do the backfill if the current point is nearby the previous
-        // point and the time is within the maximum time to backfill.
-        let lastRecordedTime = lastLocationArray['time'];
-        if (
-          areCurrentPreviousNearby &&
-          unixtimeUTC - lastRecordedTime < this.maxBackfillTime
-        ) {
-          for (
-            let newTS = lastRecordedTime + this.locationInterval;
-            newTS < unixtimeUTC - this.locationInterval;
-            newTS += this.locationInterval
-          ) {
-            let lat_lon_time = {
-              latitude: lastLocationArray['latitude'],
-              longitude: lastLocationArray['longitude'],
-              time: newTS,
-            };
-            //console.log('[INFO] backfill location:', lat_lon_time);
-            curated.push(lat_lon_time);
+        // Curate the list of points, only keep the last 28 days
+        let curated = [];
+        for (let i = 0; i < locationArray.length; i++) {
+          if (locationArray[i]['time'] > unixtimeUTC_28daysAgo) {
+            curated.push(locationArray[i]);
           }
         }
-      }
 
-      // Save the location using the current lat-lon and the
-      // recorded GPS timestamp
-      let lat_lon_time = {
-        latitude: location['latitude'],
-        longitude: location['longitude'],
-        time: unixtimeUTC,
-      };
-      curated.push(lat_lon_time);
-      console.log('[INFO] saved location:', lat_lon_time);
+        // Backfill the stationary points, if available
+        // The assumption is that if we see a gap in the data, and the
+        // device hasn't moved significantly, then we can fill in the missing data
+        // with the current location.  This makes it easier for a health authority
+        // person to have a set of locations over time, and they can manually
+        // redact the time frames that aren't correct.
+        if (curated.length >= 1) {
+          let lastLocationArray = curated[curated.length - 1];
 
-      SetStoreData(LOCATION_DATA, curated);
-    });
+          let areCurrentPreviousNearby = areLocationsNearby(
+            lastLocationArray['latitude'],
+            lastLocationArray['longitude'],
+            location['latitude'],
+            location['longitude'],
+          );
+          //console.log('[INFO] nearby:', nearby);
+
+          // Actually do the backfill if the current point is nearby the previous
+          // point and the time is within the maximum time to backfill.
+          let lastRecordedTime = lastLocationArray['time'];
+          if (
+            areCurrentPreviousNearby &&
+            unixtimeUTC - lastRecordedTime < this.maxBackfillTime
+          ) {
+            for (
+              let newTS = lastRecordedTime + this.locationInterval;
+              newTS < unixtimeUTC - this.locationInterval;
+              newTS += this.locationInterval
+            ) {
+              let lat_lon_time = {
+                latitude: lastLocationArray['latitude'],
+                longitude: lastLocationArray['longitude'],
+                time: newTS,
+              };
+              //console.log('[INFO] backfill location:', lat_lon_time);
+              curated.push(lat_lon_time);
+            }
+          }
+        }
+
+        // Save the location using the current lat-lon and the
+        // recorded GPS timestamp
+        previousLatitude = location['latitude'];
+        previousLongitude = location['longitude'];
+        let lat_lon_time = {
+          latitude: location['latitude'],
+          longitude: location['longitude'],
+          time: unixtimeUTC,
+        };
+        curated.push(lat_lon_time);
+        console.log('[INFO] saved location:', lat_lon_time);
+
+        SetStoreData(LOCATION_DATA, curated);
+      });
+    } else {
+      console.log('[INFO] Same Coordinates');
+    }
   }
 
   /**
@@ -213,6 +224,28 @@ export class LocationData {
       );
     }
   }
+
+  detectMovement(currentLocation) {
+    ActivityRecognition.subscribe(detectedActivities => {
+      const mostProbableActivity = detectedActivities.sorted[0];
+      console.log(
+        '[INFO] mostProbableActivity : ' + JSON.stringify(mostProbableActivity),
+      );
+      this.saveLocation(currentLocation);
+    });
+
+    accelerometer
+      .pipe(
+        map(({ x, y, z }) => x + y + z),
+        filter(speed => speed > 12),
+      )
+      .subscribe(() => {
+        const detectionIntervalMillis = 10;
+        ActivityRecognition.start(detectionIntervalMillis);
+      });
+
+    ActivityRecognition.stop();
+  }
 }
 
 export default class LocationServices {
@@ -284,7 +317,7 @@ export default class LocationServices {
         // Application was shutdown, but the headless mechanism allows us
         // to capture events in the background.  (On Android, at least)
         if (event.name === 'location' || event.name === 'stationary') {
-          locationData.saveLocation(event.params);
+          locationData.detectMovement(event.params);
         }
       });
     }
@@ -372,16 +405,7 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('stationary', stationaryLocation => {
       console.log('[INFO] stationary');
-
-      accelerometer
-        .pipe(
-          map(({ x, y, z }) => x + y + z),
-          filter(speed => speed > 12),
-        )
-        .subscribe(() => {
-          console.log('[INFO] accelerometer');
-          locationData.saveLocation(stationaryLocation);
-        });
+      locationData.detectMovement(stationaryLocation);
     });
 
     BackgroundGeolocation.checkStatus(status => {
