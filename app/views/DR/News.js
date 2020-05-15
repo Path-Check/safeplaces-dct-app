@@ -7,9 +7,7 @@ import {
   View,
 } from 'react-native';
 
-import imgNews from '../../assets/images/news.jpg';
 import Button from '../../components/Button';
-import HeaderImage from '../../components/HeaderImage';
 import DataList from '../../components/List';
 import NavigationBarWrapper from '../../components/NavigationBarWrapper';
 import fetch from '../../helpers/Fetch';
@@ -70,7 +68,6 @@ export default function NewsScreen({ navigation }) {
       onBackPress={backToMain.bind(this)}>
       <View style={styles.container}>
         <ScrollView>
-          <HeaderImage imgUrl={imgNews} title='News' />
           <DataList
             data={news}
             navigation={navigation}

@@ -1,10 +1,9 @@
-const tintColor = '#0161F2';
-
 const colors = {
   BLACK: '#000',
   WHITE: '#FFF',
   DODGER_BLUE: '#428AF8',
-  MAIN_BLUE: '#428af8',
+  MAIN_BLUE: '#0161F2',
+  LIGHT_BLUE: '#EFF4F9',
   SILVER: '#BEBEBE',
   TORCH_RED: '#F8262F',
   MISCHKA: '#E5E4E6',
@@ -12,8 +11,9 @@ const colors = {
   SUCCESS: '#41dca4',
   GREEN: '#41dca4',
   WARNING: '#ffc000',
-  orange: '#ffc000',
-  VIOLET_ALPHA_06: '#f7f8ff', // cannot use transparency
+  ORANGE: '#ffc000',
+  VIOLET_ALPHA_06: '#f7f8ff',
+  PINK: '#F1485B', // cannot use transparency
   VIOLET: '#4051DB',
   TRANSPARENT: 'transparent',
 
@@ -63,26 +63,6 @@ const colors = {
 
   MONO_DARK: '#202020',
   MONO_SECONDARY: '#757677',
-
-  background: '#EFEFEF',
-  errorBackground: 'red',
-  errorText: '#fff',
-  green: '#7ED321',
-  mainBlue: '#0161F2',
-  lightGray: '#D8D8D8',
-  lightBlue: '#EFF4F9',
-  buttonLightText: '#6B6B6B',
-  noticeBackground: tintColor,
-  noticeText: '#fff',
-  orange: '#FEB313',
-  pink: '#F1485B',
-  purple: '#525BD9',
-  tabBar: '#fefefe',
-  tabIconDefault: '#ccc',
-  tabIconSelected: tintColor,
-  tintColor,
-  warningBackground: '#EAEB5E',
-  warningText: '#666804',
 };
 
 export default colors;
