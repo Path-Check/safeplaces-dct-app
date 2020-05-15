@@ -10,26 +10,16 @@ import {
 } from 'react-native';
 import { PermissionsAndroid } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-// import * as Location from 'expo-location';
-// import * as Permissions from 'expo-permissions';
-// import {
-//   FontAwesome5,
-//   MaterialIcons,
-//   Ionicons,
-//   Entypo,
-// } from '@expo/vector-icons';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import sortByDistance from 'sort-by-distance';
 
-import closeIcon from '../../assets/images/closeIcon.png';
 import posIconHos from '../../assets/images/pinPositiveHos.png';
 import posIconLab from '../../assets/images/pinPositiveLab.png';
 import BottonUpPanel from '../../components/ButtonUpDrawer';
-// import Colors from '../../constants/Colors';
-// import context from '../../components/reduces/context';
 import {
   requestCovid19Hospitals,
   requestCovid19Laboratories,
@@ -85,9 +75,7 @@ export default function HospitalMap({ navigation, route }) {
             });
             setSortedMarkers(sorted);
           },
-          () => {
-            console.log('ERROR 1');
-          },
+          () => {},
           { enableHighAccuracy: true },
         );
       });
@@ -102,13 +90,9 @@ export default function HospitalMap({ navigation, route }) {
       Geolocation.getCurrentPosition(
         ({ coords }) => {
           const { latitude, longitude } = coords;
-          console.log('lat', latitude);
-          console.log('lan', longitude);
           setCoordinates({ latitude, longitude });
         },
-        () => {
-          console.log('ERROR 2');
-        },
+        () => {},
         { enableHighAccuracy: true },
       );
     }
@@ -136,15 +120,15 @@ export default function HospitalMap({ navigation, route }) {
                   onPress={() => goLocation({ latitude, longitude })}>
                   <View style={styles.row}>
                     <View style={styles.itemImg}>
-                      {/* {type === 'hospital' ? (
-                        // <FontAwesome5
-                        //   name="hospital-alt"
-                        //   size={22}
-                        //   color="#4372e8"
-                        // />
+                      {type === 'hospital' ? (
+                        <Icon name='hospital-o' size={22} color='#4372e8' />
                       ) : (
-                        // <Entypo name="lab-flask" size={22} color="#4372e8" />
-                      )} */}
+                        <icon
+                          name='thermometer-quarter'
+                          size={22}
+                          color='#4372e8'
+                        />
+                      )}
                     </View>
                     <View style={styles.listItem}>
                       <Text style={styles.title}>{name}</Text>
@@ -160,24 +144,23 @@ export default function HospitalMap({ navigation, route }) {
     </View>
   );
 
-  const renderBottomUpPanelIcon = () =>
-    // <Ionicons name="ios-arrow-up" style={{ color: 'black' }} size={25} />
-    // <Text></Text>
-    closeIcon;
+  const renderBottomUpPanelIcon = () => (
+    <Icon name='angle-up' style={{ color: 'black' }} size={25} />
+  );
 
   const renderBottomUpPanelHeader = (
     <View style={styles.listHeader}>
       {type === 'hospital' ? (
-        // <FontAwesome5 name="hospital-alt" size={22} color="#4372e8" />
-        <Text>H</Text>
+        <Icon name='hospital-o' size={22} color='#4372e8' />
       ) : (
-        // <Entypo name="lab-flask" size={22} color="#4372e8" />
-        <Text>L</Text>
+        <Icon name='thermometer-quarter' size={22} color='#4372e8' />
       )}
       <Text style={styles.cardTitle}>
         {type === 'hospital' ? 'Hospitales' : 'Laboratorios'}
       </Text>
-      <Text style={styles.cardText}>Icon</Text>
+      <Text style={styles.cardText}>
+        {`(${selectedMarker.length} acreditados)`}
+      </Text>
     </View>
   );
 
@@ -212,7 +195,7 @@ export default function HospitalMap({ navigation, route }) {
         <TouchableOpacity
           onPress={() => getCurrentLocation()}
           style={[styles.locationButtonContainer, styles.shadow]}>
-          {/* <MaterialIcons name="my-location" size={28} color="#333" /> */}
+          <Icon name='crosshairs' size={28} color='#333' />
         </TouchableOpacity>
       </View>
 

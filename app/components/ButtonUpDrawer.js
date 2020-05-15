@@ -124,7 +124,7 @@ export default class BottomUpPanel extends Component {
                   ]}>
                   {this.props.headerText}
                   <Animated.View style={{ transform: [{ rotate: spin }] }}>
-                    <Text>^</Text>
+                    {this.props.icon()}
                   </Animated.View>
                 </View>
               </Animated.View>
