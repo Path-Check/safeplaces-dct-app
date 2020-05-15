@@ -121,6 +121,13 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('BulletinsScreen')}
           />
           <Item
+            label={t('label.hospital_title')}
+            description={t('label.hospital_subtitle')}
+            onPress={() =>
+              navigation.navigate('MapScreen', { type: 'hospital' })
+            }
+          />
+          <Item
             label={t('label.event_history_title')}
             description={t('label.event_history_subtitle')}
             onPress={() => navigation.navigate('ExposureHistoryScreen')}

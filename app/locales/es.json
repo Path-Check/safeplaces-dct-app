@@ -38,6 +38,8 @@
     "default_news_site_name": "Noticias de Safe Paths",
     "event_history_subtitle": "Entiende tu exposición al COVID-19 según los datos publicados por las autoridades sanitarias.",
     "event_history_title": "Historial de exposición",
+    "hospital_subtitle": "Revisa todos los hospitales disponibles para el COVID.",
+    "hospital_title": "Mapa de Hospitales",
     "home_at_risk_header": "Puedes haberte expuesto al COVID",
     "home_at_risk_subsubtext": "Esto no implica que te hayas infectado.",
     "home_at_risk_subtext": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19.",
