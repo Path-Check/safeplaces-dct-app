@@ -12,7 +12,7 @@ import BulletinsScreen from './views/DR/Bulletins';
 import DetailsScreen from './views/DR/Details';
 // import LocationTracking from './views/LocationTracking';
 import HomeScreen from './views/DR/HomeScreen';
-import NewsScreen from './views/DR/Tabs/News';
+import NewsScreen from './views/DR/News';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
