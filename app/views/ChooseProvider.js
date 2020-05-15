@@ -64,7 +64,7 @@ class ChooseProviderScreen extends Component {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     await this.fetchAuthoritiesList(this.state.isAuthorityFilterActive);
     await this.fetchUserAuthorities();
-    __DEV__ && (await this.fetchAutoSubcribeStatus());
+    __DEV__ && (await this.fetchAutoSubscribeStatus());
   }
 
   componentWillUnmount() {
@@ -86,7 +86,7 @@ class ChooseProviderScreen extends Component {
     }
   }
 
-  async fetchAutoSubcribeStatus() {
+  async fetchAutoSubscribeStatus() {
     const isAutoSubscribed = await HCAService.isAutosubscriptionEnabled();
     this.setState({ isAutoSubscribed });
   }
@@ -264,7 +264,7 @@ class ChooseProviderScreen extends Component {
                 {languages.t('label.authorities_desc')}
               </Typography>
               {__DEV__ && (
-                <TouchableOpacity style={styles.autoSubcribe}>
+                <TouchableOpacity style={styles.autoSubscribe}>
                   <Checkbox
                     label={languages.t('label.auto_subscribe_checkbox')}
                     checked={this.state.isAutoSubscribed}
@@ -464,7 +464,7 @@ const styles = StyleSheet.create({
   textInput: {
     marginLeft: 10,
   },
-  autoSubcribe: {
+  autoSubscribe: {
     paddingTop: 25,
   },
   noDataSourceText: {

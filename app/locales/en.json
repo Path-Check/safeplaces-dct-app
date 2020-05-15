@@ -6,8 +6,8 @@
     "version": "Version:"
   },
   "authorities": {
-    "invalid_url_title": "Invalid URL",
-    "invalid_url_body": "The URL you entered was invalid, please try again"
+    "invalid_url_body": "The URL you entered was invalid, please try again",
+    "invalid_url_title": "Invalid URL"
   },
   "common": {
     "done": "Done",
@@ -51,10 +51,10 @@
     "authorities_new_in_area_msg_plural": "Subscribe to {{count}} new trusted Healthcare Authorities in your location",
     "authorities_new_in_area_title": "New Healthcare Authority",
     "authorities_new_in_area_title_plural": "New Healthcare Authorities",
-    "authorities_new_subcription_msg": "You have been subscribed to {{count}} new authority in your location",
-    "authorities_new_subcription_msg_plural": "You have been subscribed to {{count}} new authorities in your location",
-    "authorities_new_subcription_title": "{{count}} New Subscription",
-    "authorities_new_subcription_title_plural": "{{count}} New Subscriptions",
+    "authorities_new_subscription_msg": "You have been subscribed to {{count}} new authority in your location",
+    "authorities_new_subscription_msg_plural": "You have been subscribed to {{count}} new authorities in your location",
+    "authorities_new_subscription_title": "{{count}} New Subscription",
+    "authorities_new_subscription_title_plural": "{{count}} New Subscriptions",
     "authorities_no_sources": "No data source yet",
     "authorities_removal_alert_cancel": "Cancel",
     "authorities_removal_alert_desc": "Are you sure you want to remove this authority data source?",
@@ -65,7 +65,7 @@
     "choose_provider_subtitle": "To be informed of exposures you will need to subscribe to a Health Authority.",
     "choose_provider_title": "Choose Health Authority",
     "commitment": "Commitment",
-    "commitment_para": "Safe Paths securely records and checks your interaction with people using your location. Your data will NEVER leave your phone without your consent.",
+    "commitment_para": "Safe Paths is a global movement to develop free, open-source, privacy-by-design tools for residents, public health officials, and larger communities to flatten the curve of COVID-19, reduce fear, and prevent a surveillance-state response to the pandemic.\n\nFor more information, please visit ",
     "default_news_site_name": "Safe Paths News",
     "enter_authority_url": "Enter or paste URL",
     "event_history_subtitle": "Understand your personal exposure based on information shared by health authorities.",
@@ -120,6 +120,7 @@
     "news_subtitle": "Read about the latest COVID updates from your health authority and in general.",
     "news_title": "Latest news",
     "no_data": "No data",
+    "privacy_policy": "Privacy Policy",
     "push_at_risk_message": "You have crossed paths with a COVID-19 patient",
     "push_at_risk_title": "You may be at risk",
     "see_exposure_history": "See exposure history",
@@ -127,7 +128,7 @@
     "skip_this_step": "Skip this step",
     "team": "Team",
     "team_para": "Our team is composed of a consortium of epidemiologists, engineers, data scientists, digital privacy evangelists, professors and researchers from reputable institutions, including: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young and Link Ventures.",
-    "privacy_policy": "Privacy Policy"
+    "terms_of_use": "Terms of use"
   },
   "onboarding": {
     "eula_checkbox": "I accept the licensing agreement",
