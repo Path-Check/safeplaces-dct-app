@@ -6,14 +6,12 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-//<HeaderImage imgUrl={imgNews} title='News' />
-//import imgNews from '../../../assets/images/news.jpg';
-import Button from '../../../components/Button';
-import HeaderImage from '../../../components/HeaderImage';
-import DataList from '../../../components/List';
-import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
-import fetch from '../../../helpers/Fetch';
-import languages from '../../../locales/languages';
+
+import Button from '../../components/Button';
+import DataList from '../../components/List';
+import NavigationBarWrapper from '../../components/NavigationBarWrapper';
+import fetch from '../../helpers/Fetch';
+import languages from '../../locales/languages';
 
 const NEWS_URL = 'https://covid-dr.appspot.com/news';
 
@@ -70,7 +68,6 @@ export default function NewsScreen({ navigation }) {
       onBackPress={backToMain.bind(this)}>
       <View style={styles.container}>
         <ScrollView>
-          
           <DataList
             data={news}
             navigation={navigation}
