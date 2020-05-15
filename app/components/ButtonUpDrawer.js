@@ -10,7 +10,6 @@ import {
   Dimensions,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
