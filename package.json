@@ -9,6 +9,7 @@
     "run-ios": "yarn install:pod && react-native run-ios",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
+    "install:all": "find . -type dir -name node_modules | xargs rm -rf && yarn",
     "lint": "eslint ./",
     "postinstall": "patch-package && npx react-native-jetifier",
     "postversion": "react-native-version",
