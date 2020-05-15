@@ -10,9 +10,12 @@ export default function HeaderImage({ imgUrl, title }) {
   return (
     <ImageBackground
       loadingIndicatorSource={placeholder}
+      resizeMode='cover'
+      resizeMethod='scale'
       style={styles.container}
       source={imgUrl}>
       <LinearGradient
+        style={styles.gradient}
         colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.6)']}>
         <Text style={styles.title}>{title}</Text>
       </LinearGradient>
@@ -22,8 +25,7 @@ export default function HeaderImage({ imgUrl, title }) {
 
 const styles = StyleSheet.create({
   container: {
-    // width: '100%',
-    height: 'auto',
+    height: 200,
   },
   description: {
     fontSize: 11,
@@ -34,10 +36,10 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryBold,
     color: Colors.WHITE,
     fontSize: 17,
+    padding: 20,
   },
   gradient: {
     justifyContent: 'flex-end',
-    padding: 20,
     flex: 1,
     resizeMode: 'cover',
   },
