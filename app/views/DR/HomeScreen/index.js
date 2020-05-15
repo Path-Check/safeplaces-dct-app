@@ -4,21 +4,20 @@ import moment from 'moment';
 import { Card, Left, Text } from 'native-base';
 import React, { Component } from 'react';
 import {
-  Image,
   RefreshControl,
   ScrollView,
   TouchableOpacity,
   View,
 } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import SvgXml from 'react-native-svg';
+import { SvgXml } from 'react-native-svg';
 
 import settingsIcon from '../../../assets/svgs/settingsIcon';
 import {
   Aurora,
   Feels,
 } from '../../../components/DR/ActionCards/ActionCards.js';
-import Colors from '../../../constants/DR/colors';
+import Colors from '../../../constants/colors';
 import { getAllCases } from '../../../services/DR/getAllCases.js';
 import styles from './style';
 
@@ -62,8 +61,6 @@ export default class HomeScreen extends Component {
         onPress={() => {
           this.props.navigation.navigate('SettingsScreen');
         }}>
-        {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
-        <Image resizeMode={'contain'} />
         <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
       </TouchableOpacity>
     );
@@ -77,8 +74,7 @@ export default class HomeScreen extends Component {
     } = this;
 
     return (
-      <View style={{ flex: 1, backgroundColor: Colors.MAIN_BLUE }}>
-        {this.getSettings()}
+      <View style={{ flex: 1, backgroundColor: Colors.LIGHT_BLUE }}>
         <View>
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
@@ -89,19 +85,17 @@ export default class HomeScreen extends Component {
                 onRefresh={this.refresh}
               />
             }>
-            <View style={styles.mainHeader} />
-            <View style={{ margin: wp('2%') }}>
-              <View style={styles.HeaderView}>
-                <View style={styles.rowAndCenter}>
-                  <Left>
-                    <Text style={[styles.text, { color: '#fff' }]}>
-                      {date[0].toUpperCase() + date.slice(1)}
-                    </Text>
-                  </Left>
-                </View>
-                <Text style={styles.headerText}>COVID-RD</Text>
+            <View style={styles.mainHeader}>
+              <View style={styles.rowAndCenter}>
+                <Left>
+                  <Text style={[styles.text, { color: '#fff' }]}>
+                    {date[0].toUpperCase() + date.slice(1)}
+                  </Text>
+                </Left>
               </View>
-
+              <Text style={styles.headerText}>COVID-RD</Text>
+            </View>
+            <View style={{ marginHorizontal: wp('2%') }}>
               <View style={styles.marginAndAlign}>
                 <Feels navigation={navigation} />
                 <View style={styles.marginAndAlign}>
@@ -167,6 +161,7 @@ export default class HomeScreen extends Component {
             </View>
           </ScrollView>
         </View>
+        {this.getSettings()}
       </View>
     );
   }

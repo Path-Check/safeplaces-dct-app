@@ -6,7 +6,6 @@ import {
 
 import Colors from '../../../constants/DR/colors';
 
-const { background, pink, mainBlue } = Colors;
 const textFontSize = wp('4%');
 
 const styles = StyleSheet.create({
@@ -25,18 +24,22 @@ const styles = StyleSheet.create({
     marginLeft: -5,
   },
   dataText: {
-    color: pink,
+    color: Colors.PINK,
     fontSize: wp('8%'),
   },
   HeaderView: {
     height: hp('12%'),
     justifyContent: 'flex-end',
-    marginLeft: wp('2%'),
+    paddingRight: wp('2%'),
+    paddingLeft: wp('2%'),
+    backgroundColor: Colors.MAIN_BLUE,
   },
   headerText: {
+    width: '100%',
     fontSize: textFontSize + 10,
-    color: '#fff',
+    color: Colors.WHITE,
     marginBottom: hp('1.5%'),
+    marginHorizontal: wp('5%'),
   },
   infoCards: {
     alignItems: 'center',
@@ -47,19 +50,21 @@ const styles = StyleSheet.create({
   },
   marginAndAlign: { alignItems: 'center', marginHorizontal: wp('2%') },
   mainHeader: {
-    backgroundColor: mainBlue,
+    backgroundColor: Colors.MAIN_BLUE,
     borderBottomEndRadius: 13,
     borderBottomStartRadius: 13,
+    marginBottom: '-5%',
     height: hp('16%'),
-    position: 'absolute',
     width: wp('100%'),
   },
   rowAndCenter: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginVertical: '2%',
+    marginHorizontal: wp('5%'),
   },
   scrollContainer: {
-    backgroundColor: background,
+    backgroundColor: Colors.background,
   },
   subtitles: {
     alignSelf: 'flex-start',
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
   settingsContainer: {
     position: 'absolute',
     top: 0,
-    marginTop: '14%',
+    marginTop: '5%',
     marginRight: '7%',
     alignSelf: 'flex-end',
   },
