@@ -30,38 +30,32 @@ export function requestCovid19Hospitals() {
 
 export function requestCovid19Laboratories() {
   const URL =
-    'https://services5.arcgis.com/vzuQ2GBv7eL3S9SR/arcgis/rest/services/Laboratorios_Clinicos_Hijo/FeatureServer/0//query?where=FID%3E0&outFields=ID%2CNombre%2CTelefono%2Ccoord_X%2Ccoord_Y&f=pjson&token=';
-  return fetch(URL)
-    .then(res => res.json())
-    .then(json =>
-      json.features
-        .map(({ attributes }) => {
-          if (!attributes) return null;
+    'https://services5.arcgis.com/vzuQ2GBv7eL3S9SR/arcgis/rest/services/Laboratorios_Clinicos_Hijo/FeatureServer/0//query?where=FID%3E0&outFields=FID%2CNombre%2CTelefono&f=pjson&token=';
+  return fetch(URL).then(({ data }) =>
+    data.features
+      .map(({ attributes, geometry }) => {
+        if (!attributes) return null;
 
-          // eslint-disable-next-line
-          let { ID, Nombre, Telefono, Coord_X, Coord_Y } = attributes;
-          if (!Coord_X || !Coord_Y) return null;
+        // eslint-disable-next-line
+        let { FID, Nombre, Telefono } = attributes;
+        const { x, y } = geometry;
+        if (!x || !y) return null;
 
-          Telefono = Telefono === ' ' ? '(000) 000-0000' : Telefono;
+        Telefono = Telefono === ' ' ? '(000) 000-0000' : Telefono;
 
-          const utm = new utmObj('International');
+        const utm = new utmObj('International');
 
-          // This is to change coordinates from utm to degree
-          const { lat, lng } = utm.convertUtmToLatLng(
-            Coord_X,
-            Coord_Y,
-            19,
-            'Q',
-          );
+        // This is to change coordinates from utm to degree
+        const { lat, lng } = utm.convertUtmToLatLng(x, y, 19, 'Q');
 
-          return {
-            id: ID,
-            name: Nombre,
-            phone: Telefono,
-            latitude: lat,
-            longitude: lng,
-          };
-        })
-        .filter(laboratory => laboratory),
-    );
+        return {
+          id: FID,
+          name: Nombre,
+          phone: Telefono,
+          latitude: lat,
+          longitude: lng,
+        };
+      })
+      .filter(laboratory => laboratory),
+  );
 }

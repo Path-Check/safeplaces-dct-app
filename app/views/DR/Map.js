@@ -47,7 +47,6 @@ export default function HospitalMap({ navigation, route }) {
 
     if (type === 'hospital') {
       const value = await requestCovid19Hospitals();
-      console.log('value', value);
       setHospitals(value);
       Geolocation.getCurrentPosition(
         ({ coords }) => {
@@ -58,9 +57,7 @@ export default function HospitalMap({ navigation, route }) {
           });
           setSortedMarkers(sorted);
         },
-        () => {
-          console.log('ERROR 1');
-        },
+        () => {},
         { enableHighAccuracy: true },
       );
     } else {
@@ -123,7 +120,7 @@ export default function HospitalMap({ navigation, route }) {
                       {type === 'hospital' ? (
                         <Icon name='hospital-o' size={22} color='#4372e8' />
                       ) : (
-                        <icon
+                        <Icon
                           name='thermometer-quarter'
                           size={22}
                           color='#4372e8'
