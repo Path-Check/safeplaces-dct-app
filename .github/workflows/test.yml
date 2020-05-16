@@ -100,7 +100,7 @@ jobs:
           bundle install --jobs 4 --retry 3
         working-directory: ./ios
 
-      - run: pod install
+      - run: pod install --repo-update
         working-directory: ./ios
 
       # TODO(https://pathcheck.atlassian.net/browse/SAF-250): remove the skip on COVIDSafePathsTests/testRendersWelcomeScreen once it's passing
