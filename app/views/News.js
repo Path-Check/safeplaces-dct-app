@@ -4,18 +4,14 @@ import {
   BackHandler,
   Dimensions,
   ScrollView,
-  StyleSheet,
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { WebView } from 'react-native-webview';
 
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { NewsItem } from '../components/NewsItem';
-import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
 import { AUTHORITY_NEWS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
 
@@ -32,7 +28,7 @@ class NewsScreen extends Component {
       news_url: DEFAULT_NEWS_SITE_URL,
     };
     this.state = {
-      visible: true,
+      isVisible: true,
       default_news: default_news,
       newsUrls: [],
       current_page: 0,
@@ -49,7 +45,7 @@ class NewsScreen extends Component {
   };
   hideSpinner = () => {
     this.setState({
-      visible: false,
+      isVisible: false,
     });
   };
 
@@ -101,11 +97,12 @@ class NewsScreen extends Component {
                 backgroundColor: Colors.VIOLET_BUTTON_DARK,
                 flex: 1,
                 flexDirection: 'row',
+                flexWrap: 'wrap',
                 alignItems: 'center',
                 justifyContent: 'center',
                 paddingHorizontal: 16,
               }}>
-              <ScrollView style={{ width: width * 0.85 }}>
+              <ScrollView>
                 {this.state.newsUrls.map((item, index) => (
                   <NewsItem
                     key={index}
@@ -116,7 +113,7 @@ class NewsScreen extends Component {
                 ))}
               </ScrollView>
 
-              {this.state.visible && (
+              {this.state.isVisible && (
                 <ActivityIndicator
                   style={{
                     position: 'absolute',
@@ -134,28 +131,5 @@ class NewsScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  // eslint-disable-next-line react-native/no-color-literals
-  singleNews: {
-    flexGrow: 1,
-    backgroundColor: 'rgba(255,255,255,0.6)',
-    borderRadius: 12,
-    height: height * 0.8,
-  },
-  singleNewsHead: {
-    height: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderBottomWidth: 3,
-    marginBottom: 0,
-  },
-  singleNewsHeadText: {
-    fontSize: 16,
-    textAlign: 'center',
-    paddingHorizontal: 5,
-    fontFamily: fontFamily.primarySemiBold,
-  },
-});
 
 export default NewsScreen;

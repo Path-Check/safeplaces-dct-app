@@ -17,11 +17,8 @@ export const NewsItem = ({ item, index, hideSpinner }) => {
         source={{
           uri: item.news_url,
         }}
-        style={{ height: height * 0.75 }}
-        containerStyle={{
-          borderBottomLeftRadius: 12,
-          borderBottomRightRadius: 12,
-        }}
+        style={{ flexWrap: 'wrap' }}
+        containerStyle={styles.containerStyle}
         onLoad={hideSpinner}
         cacheEnabled
       />
@@ -49,5 +46,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 5,
     fontFamily: fontFamily.primarySemiBold,
+  },
+  containerStyle: {
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
   },
 });
