@@ -9,7 +9,7 @@ echo "yarn i18n:extract"
 yarn i18n:extract
 
 echo "Checking for blank keys. Correct any that appear in this list:"
-! grep "\"\"" app/locales/en.json
+! grep "\"\"" gps/app/locales/en.json
 
 echo "Checking EULA HTML is prettier formatted"
 ./node_modules/.bin/prettier --check gps/app/locales/eula/en.html

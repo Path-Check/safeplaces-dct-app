@@ -32,7 +32,7 @@ import zh_Hant from './zh_Hant.json';
 
 // Adding/updating a language:
 // 1. Add the language in Lokalise
-// 2. run: yarn i18n:pull with your lokalise token, see app/locales/pull.sh instructions
+// 2. run: yarn i18n:pull with your lokalise token, see gps/app/locales/pull.sh instructions
 // 3. import xy from `./xy.json` and add the language to the language block
 
 /** Fetch the user language override, if any */
@@ -73,24 +73,24 @@ export async function setUserLocaleOverride(locale) {
 /** Languages only available in dev builds. */
 const DEV_LANGUAGES = __DEV__
   ? {
-      ar: { label: ar._display_name, translation: ar },
-      da: { label: da._display_name, translation: da },
-      es: { label: es._display_name, translation: es },
-      fil: { label: fil._display_name, translation: fil },
-      fr: { label: fr._display_name, translation: fr },
-      id: { label: id._display_name, translation: id },
-      it: { label: it._display_name, translation: it },
-      ja: { label: ja._display_name, translation: ja },
-      ml: { label: ml._display_name, translation: ml },
-      nl: { label: nl._display_name, translation: nl },
-      pl: { label: pl._display_name, translation: pl },
-      pt_BR: { label: pt_BR._display_name, translation: pt_BR },
-      ro: { label: ro._display_name, translation: ro },
-      ru: { label: ru._display_name, translation: ru },
-      sk: { label: sk._display_name, translation: sk },
-      vi: { label: vi._display_name, translation: vi },
-      zh_Hant: { label: zh_Hant._display_name, translation: zh_Hant },
-    }
+    ar: { label: ar._display_name, translation: ar },
+    da: { label: da._display_name, translation: da },
+    es: { label: es._display_name, translation: es },
+    fil: { label: fil._display_name, translation: fil },
+    fr: { label: fr._display_name, translation: fr },
+    id: { label: id._display_name, translation: id },
+    it: { label: it._display_name, translation: it },
+    ja: { label: ja._display_name, translation: ja },
+    ml: { label: ml._display_name, translation: ml },
+    nl: { label: nl._display_name, translation: nl },
+    pl: { label: pl._display_name, translation: pl },
+    pt_BR: { label: pt_BR._display_name, translation: pt_BR },
+    ro: { label: ro._display_name, translation: ro },
+    ru: { label: ru._display_name, translation: ru },
+    sk: { label: sk._display_name, translation: sk },
+    vi: { label: vi._display_name, translation: vi },
+    zh_Hant: { label: zh_Hant._display_name, translation: zh_Hant },
+  }
   : {};
 
 i18next.use(initReactI18next).init({
@@ -130,7 +130,7 @@ export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
 export function getDeviceLocale() {
   return Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
-        NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
+    NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
     : NativeModules.I18nManager.localeIdentifier; // Android
 }
 

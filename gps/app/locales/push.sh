@@ -28,7 +28,7 @@ fi
 
 echo "Uploading English base files"
 lokalise2 file upload \
-  --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml \
+  --file=gps/app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml \
   --lang-iso=en \
   --cleanup-mode \
   --replace-modified \
