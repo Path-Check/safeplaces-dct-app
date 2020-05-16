@@ -121,6 +121,11 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('BulletinsScreen')}
           />
           <Item
+            label={t('label.recommendations_title')}
+            description='Read about the advice that we have for you.'
+            onPress={() => navigation.navigate('AdvicesScreen')}
+          />
+          <Item
             label={t('label.event_history_title')}
             description={t('label.event_history_subtitle')}
             onPress={() => navigation.navigate('ExposureHistoryScreen')}

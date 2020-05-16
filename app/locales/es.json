@@ -21,6 +21,7 @@
   },
   "label": {
     "about_title": "Acerca de",
+    "advice_title": "Consejos",
     "authorities_add_button_label": "Añadir fuente de datos fiable",
     "authorities_add_url": "Añadir organismo via web",
     "authorities_desc": "Elige las autoridades sanitarias de tu zona para obtener datos sobre posibles contactos con el COVID. Selecciona un nombre de la lista global, o introduce la URL del sitio web de una autoridad sanitaria que haya usado Safe Paths.",
@@ -85,6 +86,7 @@
     "no_data": "No hay datos",
     "push_at_risk_message": "Has estado cerca de alguien con COVID-19",
     "push_at_risk_title": "Puedes estar en riesgo",
+    "recommendations_title": "Recomendaciones",
     "see_exposure_history": "Ver historial de exposición",
     "settings_title": "Panel de control",
     "team": "Equipo",

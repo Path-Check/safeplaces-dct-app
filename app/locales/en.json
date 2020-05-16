@@ -32,6 +32,7 @@
   },
   "label": {
     "about_title": "About",
+    "advice_title": "Advices",
     "authorities_add_button_label": "Add Trusted Source",
     "authorities_add_url": "Add authority via URL",
     "authorities_desc": "Choose trusted healthcare authorities in your area to obtain exposure data. Either select a name from the global registry, or enter the web address provided by an authority which has implemented Safe Paths.",
@@ -111,6 +112,7 @@
     "no_data": "No data",
     "push_at_risk_message": "You have crossed paths with a COVID-19 patient",
     "push_at_risk_title": "You may be at risk",
+    "recommendations_title": "Recommendations",
     "see_exposure_history": "See exposure history",
     "settings_title": "Dashboard",
     "skip_this_step": "Skip this step",
