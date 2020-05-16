@@ -161,21 +161,4 @@ const styles = StyleSheet.create({
   toggleDefaultVal: {
     fontStyle: 'italic',
   },
-  flagIcon: {
-    marginRight: 50,
-  },
-  flagIconText: {
-    width: '50%',
-    textAlign: 'center',
-    lineHeight: 15,
-    paddingTop: 5,
-  },
-  flagIconContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 20,
-    marginTop: '12%',
-    marginRight: '7%',
-    alignSelf: 'flex-end',
-  },
 });

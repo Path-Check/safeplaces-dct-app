@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  diffs-pass-eslint:
+  eslint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -23,4 +23,8 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      - run: ./node_modules/.bin/lint-diff origin/${{ github.base_ref }}
+      # v1 is broken, the given sha was the latest master (but we dont want to track master)
+      - uses: tinovyatkin/action-eslint@8b32772f075413f9192f43641e03d9bd0abae621
+        with:
+          repo-token: ${{secrets.GITHUB_TOKEN}}
+          check-name: eslint # this is the job name from above 👆
