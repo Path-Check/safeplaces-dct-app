@@ -17,7 +17,6 @@ export const NewsItem = ({ item, index, hideSpinner }) => {
         source={{
           uri: item.news_url,
         }}
-        style={{ flexWrap: 'wrap' }}
         containerStyle={styles.containerStyle}
         onLoad={hideSpinner}
         cacheEnabled

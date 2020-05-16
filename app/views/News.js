@@ -97,7 +97,6 @@ class NewsScreen extends Component {
                 backgroundColor: Colors.VIOLET_BUTTON_DARK,
                 flex: 1,
                 flexDirection: 'row',
-                flexWrap: 'wrap',
                 alignItems: 'center',
                 justifyContent: 'center',
                 paddingHorizontal: 16,
