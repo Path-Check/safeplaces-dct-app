@@ -25,7 +25,7 @@ exports[`setting off matches snapshot 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../gps/app/assets/images/launchScreenBackground.png",
+          "testUri": "../../../shared/assets/images/launchScreenBackground.png",
         }
       }
       style={
@@ -285,7 +285,7 @@ exports[`setting off matches snapshot 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../gps/app/assets/images/foreArrow.png",
+                "testUri": "../../../shared/assets/images/foreArrow.png",
               }
             }
           />

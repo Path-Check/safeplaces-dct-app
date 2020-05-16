@@ -92,7 +92,7 @@ exports[`renders when the language is english 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../gps/app/assets/images/foreArrow.png",
+              "testUri": "../../../shared/assets/images/foreArrow.png",
             }
           }
         />

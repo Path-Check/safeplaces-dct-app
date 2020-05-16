@@ -194,7 +194,7 @@ exports[`renders correctly 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../gps/app/assets/images/foreArrow.png",
+              "testUri": "../../../shared/assets/images/foreArrow.png",
             }
           }
         />
