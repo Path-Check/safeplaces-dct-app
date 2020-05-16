@@ -12,6 +12,7 @@ import { WebView } from 'react-native-webview';
 
 import languages from './../locales/languages';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { NewsItem } from '../components/NewsItem';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -46,12 +47,11 @@ class NewsScreen extends Component {
     this.props.navigation.goBack();
     return true;
   };
-
-  hideSpinner() {
+  hideSpinner = () => {
     this.setState({
       visible: false,
     });
-  }
+  };
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -107,29 +107,12 @@ class NewsScreen extends Component {
               }}>
               <ScrollView style={{ width: width * 0.85 }}>
                 {this.state.newsUrls.map((item, index) => (
-                  <View key={index} style={styles.singleNews}>
-                    <View key={index} style={styles.singleNewsHead}>
-                      <Typography style={styles.singleNewsHeadText}>
-                        {item.name}
-                      </Typography>
-                    </View>
-                    <WebView
-                      source={{
-                        uri: item.news_url,
-                      }}
-                      style={{ height: height * 0.75 }}
-                      containerStyle={{
-                        borderBottomLeftRadius: 12,
-                        borderBottomRightRadius: 12,
-                      }}
-                      cacheEnabled
-                      onLoad={() =>
-                        this.setState({
-                          visible: false,
-                        })
-                      }
-                    />
-                  </View>
+                  <NewsItem
+                    key={index}
+                    hideSpinner={this.hideSpinner}
+                    item={item}
+                    index={index}
+                  />
                 ))}
               </ScrollView>
 
