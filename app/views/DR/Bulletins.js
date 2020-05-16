@@ -42,8 +42,8 @@ export default function BulletinsScreen({ navigation }) {
       title={languages.t('label.latest_news')}
       onBackPress={backToMain.bind(this)}>
       <View style={styles.container}>
+        <HeaderImage imgUrl={imgBulletins} title='Bulletins' />
         <ScrollView>
-          <HeaderImage imgUrl={imgBulletins} title='Bulletins' />
           <List
             data={bulletins}
             navigation={navigation}

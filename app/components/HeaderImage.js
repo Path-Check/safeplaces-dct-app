@@ -27,11 +27,6 @@ const styles = StyleSheet.create({
   container: {
     height: 200,
   },
-  description: {
-    fontSize: 11,
-    color: Colors.WHITE,
-    fontFamily: fontFamily.primaryRegular,
-  },
   title: {
     fontFamily: fontFamily.primaryBold,
     color: Colors.WHITE,

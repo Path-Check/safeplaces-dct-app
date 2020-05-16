@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 
+import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 
 export default function DataList({
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     height: '20%',
     borderRadius: 10,
     maxHeight: 90,
