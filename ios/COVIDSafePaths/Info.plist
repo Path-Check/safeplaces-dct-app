@@ -7,7 +7,7 @@
 		<string>itms-apps</string>
 	</array>
 	<key>LSApplicationCategoryType</key>
-	<string />
+	<string/>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>com.transistorsoft.fetch</string>
