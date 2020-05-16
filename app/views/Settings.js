@@ -111,7 +111,7 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('ChooseProviderScreen')}
           />
           <Item
-            label={t('label.news_title')}
+            label={t('label.latest_news')}
             description={t('label.news_subtitle')}
             onPress={() => navigation.navigate('NewsScreen')}
           />
