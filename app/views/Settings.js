@@ -122,7 +122,7 @@ export const SettingsScreen = ({ navigation }) => {
           />
           <Item
             label={t('label.recommendations_title')}
-            description='Read about the advice that we have for you.'
+            description={t('label.recommendations_description')}
             onPress={() => navigation.navigate('AdvicesScreen')}
           />
           <Item

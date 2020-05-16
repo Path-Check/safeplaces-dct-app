@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import fontFamily from '../constants/fonts';
 
@@ -37,12 +38,7 @@ export default function DataList({
             }
             key={String(index)}
             style={styles.itemContainer}>
-            {img && (
-              <Image
-                style={styles.image}
-                source={{ uri: Object.values(img)[1] }}
-              />
-            )}
+            {img && <Image style={styles.image} source={img} />}
             <View style={styles.right}>
               <Text
                 numberOfLines={titleLinesNum}
@@ -74,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#fff',
-    height: '20%',
+    height: wp('20%'),
     borderRadius: 10,
     maxHeight: 90,
     marginVertical: 5,
@@ -84,8 +80,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    height: '100%',
-    width: '30%',
+    height: wp('15%'),
+    width: wp('15%'),
     borderRadius: 8,
   },
   description: {
@@ -102,7 +98,7 @@ const styles = StyleSheet.create({
     color: '#808080',
   },
   right: {
-    width: '70%',
+    width: wp('70%'),
     paddingHorizontal: 10,
   },
 });

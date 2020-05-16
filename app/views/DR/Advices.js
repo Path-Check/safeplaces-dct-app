@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BackHandler, ScrollView, StyleSheet, View } from 'react-native';
 
-// import iconAdvertisement from '../../assets/images/idea.jpg';
+import iconAdvertisement from '../../assets/images/idea.jpg';
 import imgAdvertisement from '../../assets/images/recommendations.jpg';
 import HeaderImage from '../../components/HeaderImage';
 import List from '../../components/List';
 import NavigationBarWrapper from '../../components/NavigationBarWrapper';
-import fetch from '../../helpers/Fetch';
+import data from '../../constants/DR/RecommendationData';
 import languages from '../../locales/languages';
 
-const BULLETINS_URL = 'https://covid-dr.appspot.com/bulletins';
-
 export default function Advices({ navigation }) {
-  const [bulletins, setBulletins] = useState([]);
-
+  const recommendationData = data.map(item => ({
+    ...item,
+    img: iconAdvertisement,
+  }));
   const backToMain = () => {
     navigation.goBack();
   };
@@ -25,13 +25,6 @@ export default function Advices({ navigation }) {
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-    fetch(BULLETINS_URL)
-      .then(({ data }) => {
-        setBulletins(data.bulletins);
-      })
-      .catch(() => {
-        setBulletins([]);
-      });
 
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
@@ -49,7 +42,8 @@ export default function Advices({ navigation }) {
         />
         <ScrollView>
           <List
-            data={bulletins}
+            data={recommendationData}
+            titleLinesNum={2}
             navigation={navigation}
             switchScreenTo='PDFView'
           />
