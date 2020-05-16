@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, StyleSheet, View } from 'react-native';
 
+import iconImgBulletin from '../../assets/images/bulletin.jpg';
 import imgBulletins from '../../assets/images/bulletins.jpg';
 import HeaderImage from '../../components/HeaderImage';
 import List from '../../components/List';
@@ -12,6 +14,7 @@ const BULLETINS_URL = 'https://covid-dr.appspot.com/bulletins';
 
 export default function BulletinsScreen({ navigation }) {
   const [bulletins, setBulletins] = useState([]);
+  const { t } = useTranslation();
 
   const backToMain = () => {
     navigation.goBack();
@@ -26,7 +29,11 @@ export default function BulletinsScreen({ navigation }) {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
     fetch(BULLETINS_URL)
       .then(({ data }) => {
-        setBulletins(data.bulletins);
+        const bulletinsData = data.bulletins.map(item => ({
+          ...item,
+          img: iconImgBulletin,
+        }));
+        setBulletins(bulletinsData);
       })
       .catch(() => {
         setBulletins([]);
@@ -42,7 +49,7 @@ export default function BulletinsScreen({ navigation }) {
       title={languages.t('label.latest_news')}
       onBackPress={backToMain.bind(this)}>
       <View style={styles.container}>
-        <HeaderImage imgUrl={imgBulletins} title='Bulletins' />
+        <HeaderImage imgUrl={imgBulletins} title={t('label.bulletin_title')} />
         <ScrollView>
           <List
             data={bulletins}

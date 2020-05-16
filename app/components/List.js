@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -41,7 +42,11 @@ export default function DataList({
             {img && (
               <Image
                 style={styles.image}
-                source={{ uri: Object.values(img)[1] }}
+                source={
+                  title.split(' ')[0] === 'Boletin'
+                    ? img
+                    : { uri: Object.values(img)[1] }
+                }
               />
             )}
             <View style={styles.right}>
@@ -85,8 +90,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    height: '100%',
-    width: '30%',
+    height: wp('15%'),
+    width: wp('15%'),
     borderRadius: 8,
   },
   description: {

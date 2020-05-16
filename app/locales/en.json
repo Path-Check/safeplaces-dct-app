@@ -51,6 +51,8 @@
     "authorities_removal_alert_title": "Remove Authority",
     "authorities_title": "Trusted Sources",
     "auto_subscribe_checkbox": "Enable auto subscription",
+    "bulletin_title": "Bulletins",
+    "bulletin_description": "Read about the latest COVID bulletins updates from your health authority.",
     "choose_provider_subtitle": "To be informed of exposures you will need to subscribe to a Health Authority.",
     "choose_provider_title": "Choose Health Authority",
     "commitment": "Commitment",
