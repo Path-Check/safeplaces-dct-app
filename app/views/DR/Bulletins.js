@@ -31,7 +31,7 @@ export default function BulletinsScreen({ navigation }) {
       .then(({ data }) => {
         const bulletinsData = data.bulletins.map(item => ({
           ...item,
-          img: iconImgBulletin,
+          img: { source: iconImgBulletin },
         }));
         setBulletins(bulletinsData);
       })
@@ -70,19 +70,5 @@ const styles = StyleSheet.create({
   containerPagination: {
     alignItems: 'center',
     padding: 20,
-  },
-
-  showMoreContainer: {
-    backgroundColor: '#3f51b5a6',
-    borderRadius: 5,
-  },
-
-  showMoreText: {
-    color: 'white',
-    fontSize: 12,
-    padding: 35,
-    paddingBottom: 12,
-    paddingTop: 12,
-    textTransform: 'uppercase',
   },
 });

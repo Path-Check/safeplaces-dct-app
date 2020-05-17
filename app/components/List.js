@@ -27,7 +27,13 @@ export default function DataList({
     <>
       {data.map(
         (
-          { url = '', img, title = '', dateLabel = '', content = '' },
+          {
+            url = '#',
+            img: { source },
+            title = '',
+            dateLabel = '',
+            content = '',
+          },
           index,
         ) => (
           <TouchableOpacity
@@ -39,16 +45,7 @@ export default function DataList({
             }
             key={String(index)}
             style={styles.itemContainer}>
-            {img && (
-              <Image
-                style={styles.image}
-                source={
-                  title.split(' ')[0] === 'Boletin'
-                    ? img
-                    : { uri: Object.values(img)[1] }
-                }
-              />
-            )}
+            <Image style={styles.image} source={source} />
             <View style={styles.right}>
               <Text
                 numberOfLines={titleLinesNum}
