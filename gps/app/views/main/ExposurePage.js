@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Dimensions, ImageBackground, StatusBar, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import backgroundImage from '../../../../shared/assets/images/backgroundAtRisk.png';
+import { Images } from '../../../../shared/assets';
 import StateAtRisk from '../../../../shared/assets/svgs/stateAtRisk';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
@@ -20,7 +20,9 @@ export const ExposurePage = () => {
 
   return (
     <Theme use='charcoal'>
-      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+      <ImageBackground
+        source={Images.BackgroundAtRisk}
+        style={styles.backgroundImage}>
         <StatusBar
           barStyle='light-content'
           backgroundColor='transparent'

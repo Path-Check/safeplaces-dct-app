@@ -8,8 +8,7 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import BackgroundImage from '../../../../shared/assets/images/launchScreenBackground.png';
-import BackgroundOverlayImage from '../../../../shared/assets/images/launchScreenBackgroundOverlay.png';
+import { Images } from '../../../../shared/assets';
 import languages, {
   LOCALE_LIST,
   getUserLocaleOverride,
@@ -58,10 +57,10 @@ class Onboarding extends Component {
     return (
       <Theme use='violet'>
         <ImageBackground
-          source={BackgroundImage}
+          source={Images.LaunchScreenBackground}
           style={styles.backgroundImage}>
           <ImageBackground
-            source={BackgroundOverlayImage}
+            source={Images.LaunchScreenBackgroundOverlay}
             style={styles.backgroundImage}>
             <StatusBar
               barStyle='light-content'

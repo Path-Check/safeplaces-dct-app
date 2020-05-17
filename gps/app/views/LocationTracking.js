@@ -23,14 +23,7 @@ import {
 import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
 
-import BackgroundImageAtRisk from '../../../shared/assets/images/backgroundAtRisk.png';
-import exportImage from '../../../shared/assets/images/export.png';
-import foreArrow from '../../../shared/assets/images/foreArrow.png';
-import BackgroundImage from '../../../shared/assets/images/launchScreenBackground.png';
-import settingsIcon from '../../../shared/assets/svgs/settingsIcon';
-import StateAtRisk from '../../../shared/assets/svgs/stateAtRisk';
-import StateNoContact from '../../../shared/assets/svgs/stateNoContact';
-import StateUnknown from '../../../shared/assets/svgs/stateUnknown';
+import { Icons, Images } from '../../../shared/assets';
 import { isPlatformAndroid, isPlatformiOS } from './../Util';
 import { Button } from '../components/Button';
 import { Typography } from '../components/Typography';
@@ -66,16 +59,16 @@ const StateIcon = ({ status, size }) => {
   let icon;
   switch (status) {
     case StateEnum.UNKNOWN:
-      icon = StateUnknown;
+      icon = Icons.StateUnknown;
       break;
     case StateEnum.AT_RISK:
-      icon = StateAtRisk;
+      icon = Icons.StateAtRisk;
       break;
     case StateEnum.NO_CONTACT:
-      icon = StateNoContact;
+      icon = Icons.StateNoContact;
       break;
     case StateEnum.SETTING_OFF:
-      icon = StateUnknown;
+      icon = Icons.StateUnknown;
       break;
   }
   return (
@@ -278,9 +271,9 @@ class LocationTracking extends Component {
 
   getBackground() {
     if (this.state.currentState === StateEnum.AT_RISK) {
-      return BackgroundImageAtRisk;
+      return Images.BackgroundImageAtRisk;
     }
-    return BackgroundImage;
+    return Images.BackgroundImage;
   }
 
   settings() {
@@ -296,7 +289,7 @@ class LocationTracking extends Component {
         }}>
         {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
         <Image resizeMode={'contain'} />
-        <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
+        <SvgXml xml={Icons.SettingsIcon} width={30} height={30} color='white' />
       </TouchableOpacity>
     );
   }
@@ -306,7 +299,7 @@ class LocationTracking extends Component {
       return (
         <View style={styles.pulseContainer}>
           <Pulse
-            image={{ exportImage }}
+            image={{ exportImage: Images.ExportImage }}
             color={Colors.PULSE_WHITE}
             numPulses={3}
             diameter={400}
@@ -460,7 +453,7 @@ class LocationTracking extends Component {
                 </Typography>
               </View>
               <View style={styles.arrowContainer}>
-                <Image source={foreArrow} style={this.arrow} />
+                <Image source={Images.ForeArrow} style={this.arrow} />
               </View>
             </TouchableOpacity>
           </View>

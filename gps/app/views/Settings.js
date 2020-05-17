@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
-import checkmarkIcon from '../../../shared/assets/svgs/checkmarkIcon';
-import languagesIcon from '../../../shared/assets/svgs/languagesIcon';
-import xmarkIcon from '../../../shared/assets/svgs/xmarkIcon';
+import { Icons } from '../../../shared/assets';
 import { Divider } from '../components/Divider';
 import { FeatureFlag } from '../components/FeatureFlag';
 import NativePicker from '../components/NativePicker';
@@ -87,7 +85,7 @@ export const SettingsScreen = ({ navigation }) => {
                 ? t('label.logging_active')
                 : t('label.logging_inactive')
             }
-            icon={isLogging ? checkmarkIcon : xmarkIcon}
+            icon={isLogging ? Icons.Checkmark : Icons.XmarkIcon}
             onPress={locationToggleButtonPressed}
           />
           <NativePicker
@@ -98,7 +96,7 @@ export const SettingsScreen = ({ navigation }) => {
               <Item
                 last
                 label={label || t('label.home_unknown_header')}
-                icon={languagesIcon}
+                icon={Icons.LanguagesIcon}
                 onPress={openPicker}
               />
             )}

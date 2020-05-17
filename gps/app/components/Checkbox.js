@@ -1,8 +1,7 @@
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 
-import boxCheckedIcon from '../../../shared/assets/images/boxCheckedIcon.png';
-import boxUncheckedIcon from '../../../shared/assets/images/boxUncheckedIcon.png';
+import { Images } from '../../../shared/assets';
 import { Typography } from './Typography';
 
 export const Checkbox = ({ label, onPress, checked }) => {
@@ -13,7 +12,9 @@ export const Checkbox = ({ label, onPress, checked }) => {
       accessible
       accessibilityLabel={label}>
       <Image
-        source={checked === true ? boxCheckedIcon : boxUncheckedIcon}
+        source={
+          checked === true ? Images.boxCheckedIcon : Images.boxUncheckedIcon
+        }
         style={{ width: 25, height: 25, marginRight: 10 }}
       />
       <Typography use='body1'>{label}</Typography>

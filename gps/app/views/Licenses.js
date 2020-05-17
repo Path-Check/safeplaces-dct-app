@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-import foreArrow from '../../../shared/assets/images/foreArrow.png';
+import { Images } from '../../../shared/assets';
 import licenses from '../../../shared/assets/LICENSE.json';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
@@ -90,7 +90,7 @@ export const LicensesScreen = ({ navigation }) => {
             {t('label.privacy_policy')}
           </Typography>
           <View style={styles.arrowContainer}>
-            <Image source={foreArrow} />
+            <Image source={Images.foreArrow} />
           </View>
         </TouchableOpacity>
       </Theme>
