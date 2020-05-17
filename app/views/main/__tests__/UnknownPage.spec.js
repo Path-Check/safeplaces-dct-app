@@ -16,38 +16,17 @@ afterEach(() => {
   settingsURLSpy.mockRestore();
 });
 
-describe('UnknowPage', () => {
-  describe('when the tracing strategy is bte', () => {
-    it('the enable bluetooth button opens the settings screen', () => {
-      const { getByLabelText } = render(
-        <UnknownPage tracingStrategy={'bte'} />,
-      );
+it('unknown permissions matches snapshot', () => {
+  const { asJSON } = render(<UnknownPage />);
 
-      const button = getByLabelText('Enable Bluetooth');
-      fireEvent.press(button);
+  expect(asJSON()).toMatchSnapshot();
+});
 
-      expect(settingsURLSpy).toHaveBeenCalled();
-    });
-  });
+it('open settings to enable location', () => {
+  const { getByLabelText } = render(<UnknownPage />);
 
-  describe('when the tracing strategy is gps', () => {
-    describe('and the permissions are unknown', () => {
-      it('it matches the snapshot', () => {
-        const { asJSON } = render(<UnknownPage tracingStrategy={'gps'} />);
+  const button = getByLabelText('Enable Location Data');
+  fireEvent.press(button);
 
-        expect(asJSON()).toMatchSnapshot();
-      });
-
-      it('the enable location button opens the settings screen', () => {
-        const { getByLabelText } = render(
-          <UnknownPage tracingStrategy={'gps'} />,
-        );
-
-        const button = getByLabelText('Enable Location Data');
-        fireEvent.press(button);
-
-        expect(settingsURLSpy).toHaveBeenCalled();
-      });
-    });
-  });
+  expect(settingsURLSpy).toHaveBeenCalled();
 });
