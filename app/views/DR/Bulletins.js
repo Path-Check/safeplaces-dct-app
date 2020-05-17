@@ -4,8 +4,8 @@ import { BackHandler, ScrollView, StyleSheet, View } from 'react-native';
 
 import iconImgBulletin from '../../assets/images/bulletin.jpg';
 import imgBulletins from '../../assets/images/bulletins.jpg';
-import HeaderImage from '../../components/HeaderImage';
-import List from '../../components/List';
+import HeaderImage from '../../components/DR/ActionCards/HeaderImage';
+import List from '../../components/DR/ActionCards/List';
 import NavigationBarWrapper from '../../components/NavigationBarWrapper';
 import fetch from '../../helpers/Fetch';
 import languages from '../../locales/languages';

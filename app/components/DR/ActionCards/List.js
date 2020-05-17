@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
+import Colors from '../../../constants/colors';
+import fontFamily from '../../../constants/fonts';
 
 export default function DataList({
   data = [],
