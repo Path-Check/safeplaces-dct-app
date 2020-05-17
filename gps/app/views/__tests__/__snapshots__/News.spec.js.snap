@@ -159,13 +159,7 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          <RCTScrollView
-            style={
-              Object {
-                "width": 637.5,
-              }
-            }
-          >
+          <RCTScrollView>
             <View>
               <View
                 style={
@@ -237,9 +231,7 @@ exports[`renders correctly 1`] = `
                         Object {
                           "backgroundColor": "#ffffff",
                         },
-                        Object {
-                          "height": 1000.5,
-                        },
+                        undefined,
                       ]
                     }
                     useSharedProcessPool={true}
