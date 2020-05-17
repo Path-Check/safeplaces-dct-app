@@ -12,7 +12,6 @@ import BulletinsScreen from './views/DR/Bulletins';
 import DetailsScreen from './views/DR/Details';
 // import LocationTracking from './views/LocationTracking';
 import HomeScreen from './views/DR/HomeScreen';
-
 import NewsScreen from './views/DR/News';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
@@ -49,7 +48,7 @@ class Entry extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName='HomeScreen'
+          initialRouteName='InitialScreen'
           screenOptions={{
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             cardStyle: {

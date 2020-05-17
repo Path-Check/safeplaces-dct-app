@@ -281,7 +281,7 @@ class Onboarding extends Component {
       case StepEnum.DONE:
         SetStoreData(PARTICIPATE, 'true');
         SetStoreData('ONBOARDING_DONE', true);
-        this.props.navigation.replace('LocationTrackingScreen');
+        this.props.navigation.replace('HomeScreen');
     }
   }
 
