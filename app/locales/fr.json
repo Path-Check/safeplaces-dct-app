@@ -2,12 +2,17 @@
   "_display_name": "Français",
   "import": {
     "button_text": "Importer les positions passées",
+    "error": "Un erreur s'est produite lors de l'importation de vos données.",
     "google": {
+      "already_imported": "Le fichier Takeout fourni a déjà été importé.",
       "disclaimer": "L’application Safe Paths n’est pas affiliée à Google et ne partage jamais vos données.",
+      "invalid_file_format": "Le format de fichier fourni n'est pas supporté. \n Formats supportés: \".zip\".",
+      "no_recent_locations": "Takeout n'a pas de positions récentes.",
       "title": "Google Maps",
       "visit_button_text": "Accédez à Google Takeout"
     },
     "subtitle": "Vous pouvez importer votre historique personnel de position pour voir si vous avez croisé une personne infectée avant d’avoir téléchargé cette application.",
+    "success": "Les positions récentes ont été importées!",
     "title": "Importer les positions"
   },
   "label": {

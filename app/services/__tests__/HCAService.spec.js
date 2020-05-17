@@ -34,7 +34,7 @@ describe('HCAService', () => {
       const testAuthority = authorities[0]['Test Authority'];
 
       expect(testAuthority[0]['url']).toBe(
-        'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json',
+        'https://raw.githack.com/Path-Check/safeplaces-frontend/develop/examples/safe-paths.json',
       );
 
       // Has a `bounds` with a `ne` and `sw` field
@@ -79,7 +79,7 @@ describe('HCAService', () => {
         .mockResolvedValue(mockHCA.validParsed);
     });
 
-    it('returns true if the user was in the bounding box of an authority in the past 28 days', async () => {
+    it('returns true if the user was in the bounding box of an authority in the past 14 days', async () => {
       // Returns a point within the bounding box of an authority
       jest
         .spyOn(LocationData.prototype, 'getLocationData')
@@ -89,7 +89,7 @@ describe('HCAService', () => {
       expect(authorities[0]).toEqual(mockHCA.validParsed[0]);
     });
 
-    it('returns false if the user was not in the bounding box of any authority in the past 28 days', async () => {
+    it('returns false if the user was not in the bounding box of any authority in the past 14 days', async () => {
       // Returns a point outside the bounding box of any authority
       jest
         .spyOn(LocationData.prototype, 'getLocationData')
@@ -182,7 +182,7 @@ describe('HCAService', () => {
 
     it('returns the `url` key that is in the first index of authority values array', () => {
       const url =
-        'https://raw.githack.com/tripleblindmarket/safe-places/develop/examples/safe-paths.json';
+        'https://raw.githack.com/Path-Check/safeplaces-frontend/develop/examples/safe-paths.json';
       expect(HCAService.getAuthorityUrl(mockHCA.validParsed[0])).toEqual(url);
     });
   });
@@ -231,11 +231,11 @@ describe('HCAService', () => {
   });
 
   describe('hasUserSetSubscription()', () => {
-    it('returns false if the user has not set a subcription status yet', async () => {
+    it('returns false if the user has not set a subscription status yet', async () => {
       await expect(HCAService.hasUserSetSubscription()).resolves.toBe(false);
     });
 
-    it('returns true if the user has not set a subcription status - either true or false', async () => {
+    it('returns true if the user has not set a subscription status - either true or false', async () => {
       await storageHelpers.SetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, true);
       await expect(HCAService.hasUserSetSubscription()).resolves.toBe(true);
 
