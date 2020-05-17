@@ -89,6 +89,10 @@ dev_setup.bat
 
 **Note:** In some cases, these procedures can lead to the error `Failed to load bundle - Could not connect to development server`. In these cases, kill all other react-native processes and try it again.
 
+This application is following a white labeling strategy to differentiate between
+location (gps) and bluetooth (bte) contract identification strategies.
+
+
 #### Android (Windows, Linux, macOS)
 
 ```
@@ -101,7 +105,11 @@ Device storage can be cleared by long-pressing on the app icon in the simulator,
 
 ```
 yarn install:pod ## only needs to be ran once
-npx react-native run-ios
+```
+
+```
+yarn build-ios-gps ## to build the location enabled version
+yarn build-ios-bte ## to build the bluetooth enabled version
 ```
 
 Device storage can be cleared by clicking "Hardware" on the system toolbar, and then "Erase all content and settings".
@@ -158,3 +166,4 @@ Before pushing up code, it is recommended to manually test your code on the foll
 - iPhone 8 (smaller screen)
 - Pixel 3 XL (larger screen)
 - iPhone 11 (screen w/ notch)
+
