@@ -1,19 +1,18 @@
-import React from 'react';
-import { ImageBackground, Text, StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
+import { ImageBackground, StyleSheet, Text } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+
 import placeholder from '../assets/images/placeholder.png';
 
-
-export default function HeaderImage({ imgUrl, title, description }) {
+export default function HeaderImage({ imgUrl, title }) {
   return (
     <ImageBackground
       loadingIndicatorSource={placeholder}
-      resizeMode="cover"
-      resizeMethod="scale"
+      resizeMode='cover'
+      resizeMethod='scale'
       style={styles.container}
-      source={imgUrl}
-    >
+      source={imgUrl}>
       <LinearGradient
         colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.6)']}
         style={[
@@ -22,8 +21,7 @@ export default function HeaderImage({ imgUrl, title, description }) {
           {
             flex: 1,
           },
-        ]}
-      >
+        ]}>
         <Text style={styles.title}>{title}</Text>
       </LinearGradient>
     </ImageBackground>

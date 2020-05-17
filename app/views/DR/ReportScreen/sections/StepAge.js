@@ -1,22 +1,23 @@
-import React, { useContext, useState, useReducer } from 'react';
-import { ScrollView, View } from 'react-native';
 import { Container, Content, Text } from 'native-base';
+import React, { useContext } from 'react';
+import { ScrollView, View } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
+import context from '../../../components/reduces/context';
 import styles from '../../../components/styles';
 import ToggleButtons from '../../../components/ToggleButtons';
-import context from '../../../components/reduces/context';
 
 const StepAge = ({ setCompleted }) => {
   const [
     {
-      answers: { sex }
+      answers: { sex },
     },
-    setGlobalState
+    setGlobalState,
   ] = useContext(context);
   const setSelectedOption = (selected, selection) => {
     setGlobalState({
       type: 'ADD_ANSWERS',
-      value: { [selected]: selection }
+      value: { [selected]: selection },
     });
   };
 

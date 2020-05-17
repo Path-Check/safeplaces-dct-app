@@ -1,23 +1,23 @@
+import { Button, Container, Content, Text } from 'native-base';
 import React, { useContext } from 'react';
 import { View } from 'react-native';
-import { Button, Container, Content, Text } from 'native-base';
 import {
+  heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
-import styles from './components/styles';
-import Header from './components/Header';
-import context from './components/reduces/context';
 
 import Colors from '../../../constants/DR/colors';
+import Header from './components/Header';
+import context from './components/reduces/context';
+import styles from './components/styles';
 
 export default function ReportScreen({ navigation }) {
-  const [{ answers: {usage} }, setGlobalState] = useContext(context);
+  const [setGlobalState] = useContext(context);
 
   const setSelectedOption = selected => {
     setGlobalState({
-      type: 'ADD_ANSWERS',
-      value: { "usage": selected }
+      type: 'ADD_ANSWERS', //{ answers: {usage} },
+      value: { usage: selected },
     });
   };
   return (
@@ -25,8 +25,8 @@ export default function ReportScreen({ navigation }) {
       <Content>
         <View style={{ flex: 1 }}>
           <Header
-            title="Reporte"
-            text="Las siguientes preguntas están relacionadas al COVID-19"
+            title='Reporte'
+            text='Las siguientes preguntas están relacionadas al COVID-19'
             navigation={navigation}
             style={{ height: hp('18%') }}
           />
@@ -42,8 +42,8 @@ export default function ReportScreen({ navigation }) {
                   width: wp('70%'),
                   height: 38,
                   backgroundColor: Colors.mainBlue,
-                  marginBottom: 10
-                }
+                  marginBottom: 10,
+                },
               ]}
               onPress={() => {
                 setSelectedOption('mySelf');
@@ -52,7 +52,7 @@ export default function ReportScreen({ navigation }) {
               <Text
                 style={[
                   styles.text,
-                  { color: '#fff', textTransform: 'capitalize' }
+                  { color: '#fff', textTransform: 'capitalize' },
                 ]}>
                 Usar para mí
               </Text>
@@ -67,13 +67,13 @@ export default function ReportScreen({ navigation }) {
                 {
                   width: wp('70%'),
                   height: 38,
-                  backgroundColor: Colors.lightBlue
-                }
+                  backgroundColor: Colors.lightBlue,
+                },
               ]}>
               <Text
                 style={[
                   styles.text,
-                  { color: Colors.mainBlue, textTransform: 'capitalize' }
+                  { color: Colors.mainBlue, textTransform: 'capitalize' },
                 ]}>
                 Usar para alguien más
               </Text>

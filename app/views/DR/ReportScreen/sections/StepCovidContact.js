@@ -1,19 +1,20 @@
+import 'moment/locale/es';
+
+import moment from 'moment';
+import { Container, Content, Text } from 'native-base';
 import React, { useContext, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Container, Content, Text } from 'native-base';
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import 'moment/locale/es';
-import moment from 'moment';
+
+import CalendarButton from '../../../components/CalendarButton';
+import Checkbox from '../../../components/Checkbox';
+import Input from '../../../components/Input';
+import context from '../../../components/reduces/context';
 import styles from '../../../components/styles';
 import ToggleButtons from '../../../components/ToggleButtons';
-import Checkbox from '../../../components/Checkbox';
-import CalendarButton from '../../../components/CalendarButton';
-import Input from '../../../components/Input';
-
-import context from '../../../components/reduces/context';
 
 const StepCovidContact = ({ setCompleted }) => {
   const [
@@ -33,14 +34,14 @@ const StepCovidContact = ({ setCompleted }) => {
         countriesVisited,
         traveledIn,
         visitedArea,
-        usedProtection
-      }
+        usedProtection,
+      },
     },
-    setGlobalState
+    setGlobalState,
   ] = useContext(context);
 
   const [selection, setSelection] = useState(
-    traveled == true ? 'Sí' : traveled == false ? 'No' : ''
+    traveled == true ? 'Sí' : traveled == false ? 'No' : '',
   );
 
   const setOption = option => {
@@ -56,7 +57,7 @@ const StepCovidContact = ({ setCompleted }) => {
     option,
     selected,
     notExposureCheck,
-    noneAboveCheck
+    noneAboveCheck,
   ) => {
     setGlobalState({
       type: 'ADD_ANSWERS',
@@ -65,9 +66,9 @@ const StepCovidContact = ({ setCompleted }) => {
         ...(notExposureCheck &&
           noneAboveCheck && {
             [notExposureCheck]: false,
-            [noneAboveCheck]: false
-          })
-      }
+            [noneAboveCheck]: false,
+          }),
+      },
     });
   };
   const minimum = new Date().setDate(new Date().getDate() - 50);
@@ -75,13 +76,15 @@ const StepCovidContact = ({ setCompleted }) => {
   // if(traveled && dateArrived && countriesVisited > 5){
 
   // }
-  if (traveled ===false || ( traveled && dateArrived && countriesVisited.length > 5) &&
-    (liveIn || visitedArea || dontKnowArea || noneAbove) &&
-    (((liveWith ||
-      hadCloseContact ||
-      hadFarContact)&& usedProtection )||
-      notExposed ||
-      dontKnowExposition)
+  if (
+    traveled === false ||
+    (traveled &&
+      dateArrived &&
+      countriesVisited.length > 5 &&
+      (liveIn || visitedArea || dontKnowArea || noneAbove) &&
+      (((liveWith || hadCloseContact || hadFarContact) && usedProtection) ||
+        notExposed ||
+        dontKnowExposition))
   ) {
     setCompleted(true);
   } else {
@@ -115,7 +118,7 @@ const StepCovidContact = ({ setCompleted }) => {
                     onChange={date =>
                       setSelectedOption(
                         'dateArrived',
-                        moment(date, 'DD-MM-YYYY').format('YYYY-MM-DD')
+                        moment(date, 'DD-MM-YYYY').format('YYYY-MM-DD'),
                       )
                     }
                     minDate={moment(minimum)}
@@ -127,7 +130,7 @@ const StepCovidContact = ({ setCompleted }) => {
                   <Input
                     value={countriesVisited}
                     length={150}
-                    multiLine={true}
+                    multiLine
                     onChange={text =>
                       setSelectedOption('countriesVisited', text)
                     }
@@ -157,7 +160,7 @@ const StepCovidContact = ({ setCompleted }) => {
                 text={`${
                   usage === 'others' ? 'Vive' : 'Vivo'
                 } en un área donde el COVID-19 se ha extendido/transmisión comunitaria.`}
-                id="liveIn"
+                id='liveIn'
                 setValue={(id, value) =>
                   setSelectedOption(id, value, 'dontKnowArea', 'noneAbove')
                 }
@@ -167,7 +170,7 @@ const StepCovidContact = ({ setCompleted }) => {
                 text={`${
                   usage === 'others' ? 'Visitó' : 'Visité'
                 } un área donde el COVID-19 se ha extendido/transmisión comunitaria.`}
-                id="visitedArea"
+                id='visitedArea'
                 setValue={(id, value) =>
                   setSelectedOption(id, value, 'dontKnowArea', 'noneAbove')
                 }
@@ -175,7 +178,7 @@ const StepCovidContact = ({ setCompleted }) => {
               />
               <Checkbox
                 text={`No lo ${saber}.`}
-                id="dontKnowArea"
+                id='dontKnowArea'
                 setValue={(id, value) =>
                   setGlobalState({
                     type: 'ADD_ANSWERS',
@@ -183,15 +186,15 @@ const StepCovidContact = ({ setCompleted }) => {
                       liveIn: false,
                       visitedArea: false,
                       noneAbove: false,
-                      [id]: value
-                    }
+                      [id]: value,
+                    },
                   })
                 }
                 initialCheck={dontKnowArea}
               />
               <Checkbox
                 text={`Ninguna de las anteriores.`}
-                id="noneAbove"
+                id='noneAbove'
                 setValue={(id, value) =>
                   setGlobalState({
                     type: 'ADD_ANSWERS',
@@ -199,8 +202,8 @@ const StepCovidContact = ({ setCompleted }) => {
                       liveIn: false,
                       visitedArea: false,
                       dontKnowArea: false,
-                      [id]: value
-                    }
+                      [id]: value,
+                    },
                   })
                 }
                 initialCheck={noneAbove}
@@ -214,26 +217,26 @@ const StepCovidContact = ({ setCompleted }) => {
                 text={`${
                   usage === 'others' ? 'Vive' : 'Vivo'
                 } con alguien diagnosticado con COVID-19.`}
-                id="liveWith"
+                id='liveWith'
                 setValue={(id, value) =>
                   setSelectedOption(
                     id,
                     value,
                     'notExposed',
-                    'dontKnowExposition'
+                    'dontKnowExposition',
                   )
                 }
                 initialCheck={liveWith}
               />
               <Checkbox
                 text={`${sustantive} tenido contacto cercano con alguien diagnosticado con COVID-19.`}
-                id="hadCloseContact"
+                id='hadCloseContact'
                 setValue={(id, value) =>
                   setSelectedOption(
                     id,
                     value,
                     'notExposed',
-                    'dontKnowExposition'
+                    'dontKnowExposition',
                   )
                 }
                 initialCheck={hadCloseContact}
@@ -246,13 +249,13 @@ const StepCovidContact = ({ setCompleted }) => {
               </Text>
               <Checkbox
                 text={`${sustantive} estado cerca de alguien diagnosticado con COVID-19.`}
-                id="hadFarContact"
+                id='hadFarContact'
                 setValue={(id, value) =>
                   setSelectedOption(
                     id,
                     value,
                     'notExposed',
-                    'dontKnowExposition'
+                    'dontKnowExposition',
                   )
                 }
                 initialCheck={hadFarContact}
@@ -264,7 +267,7 @@ const StepCovidContact = ({ setCompleted }) => {
               </Text>
               <Checkbox
                 text={`No ${sustantive.toLowerCase()} estado expuesto.`}
-                id="notExposed"
+                id='notExposed'
                 setValue={(id, value) =>
                   setGlobalState({
                     type: 'ADD_ANSWERS',
@@ -273,8 +276,8 @@ const StepCovidContact = ({ setCompleted }) => {
                       hadCloseContact: false,
                       hadFarContact: false,
                       dontKnowExposition: false,
-                      [id]: value
-                    }
+                      [id]: value,
+                    },
                   })
                 }
                 initialCheck={notExposed}
@@ -286,7 +289,7 @@ const StepCovidContact = ({ setCompleted }) => {
               </Text>
               <Checkbox
                 text={`No lo ${saber}.`}
-                id="dontKnowExposition"
+                id='dontKnowExposition'
                 setValue={(id, value) =>
                   setGlobalState({
                     type: 'ADD_ANSWERS',
@@ -295,8 +298,8 @@ const StepCovidContact = ({ setCompleted }) => {
                       hadCloseContact: false,
                       hadFarContact: false,
                       notExposed: false,
-                      [id]: value
-                    }
+                      [id]: value,
+                    },
                   })
                 }
                 initialCheck={dontKnowExposition}

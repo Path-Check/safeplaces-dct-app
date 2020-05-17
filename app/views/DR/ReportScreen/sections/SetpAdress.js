@@ -1,22 +1,23 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { Container, Content, Picker, Text } from 'native-base';
+import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Container, Content, Text, Picker } from 'native-base';
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import styles from '../../../components/styles';
-import context from '../../../components/reduces/context';
-import provinces from '../../../constants/Provinces';
-import Colors from '../../../constants/Colors';
+
 import Input from '../../../components/Input';
+import context from '../../../components/reduces/context';
+import styles from '../../../components/styles';
+import Colors from '../../../constants/Colors';
+import provinces from '../../../constants/Provinces';
 
 const StepAdress = ({ setCompleted }) => {
   const [
     {
-      answers: { province, municipality, address, numberPersonLivesWith }
+      answers: { province, municipality, address, numberPersonLivesWith },
     },
-    setGlobalState
+    setGlobalState,
   ] = useContext(context);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const StepAdress = ({ setCompleted }) => {
   const setSelectedOption = (option, selected) => {
     setGlobalState({
       type: 'ADD_ANSWERS',
-      value: { [option]: selected }
+      value: { [option]: selected },
     });
   };
 
@@ -35,12 +36,11 @@ const StepAdress = ({ setCompleted }) => {
     const municipNames = [];
     provinces.Provincias.map(provincia => {
       if (provincia.Nombre === prov && provincia.Municipio) {
-
         Object.entries(provincia.Municipio).map(value =>
           value.map(
             value =>
-              value.Nombre !== undefined && municipNames.push(value.Nombre)
-          )
+              value.Nombre !== undefined && municipNames.push(value.Nombre),
+          ),
         );
       }
     });
@@ -62,8 +62,8 @@ const StepAdress = ({ setCompleted }) => {
               </Text>
               <Picker
                 note
-                mode="dropdown"
-                placeholder="Selecciona tu provincia"
+                mode='dropdown'
+                placeholder='Selecciona tu provincia'
                 style={[
                   styles.rectButtons,
                   {
@@ -71,8 +71,8 @@ const StepAdress = ({ setCompleted }) => {
                     backgroundColor: Colors.lightBlue,
                     alignSelf: 'flex-start',
                     borderBottomColor: Colors.mainBlue,
-                    borderBottomWidth: 1.5
-                  }
+                    borderBottomWidth: 1.5,
+                  },
                 ]}
                 selectedValue={province}
                 onValueChange={value => {
@@ -87,7 +87,7 @@ const StepAdress = ({ setCompleted }) => {
                   />
                 ))}
               </Picker>
-              {municipios.length >0 ? (
+              {municipios.length > 0 ? (
                 <View>
                   <Text
                     style={[styles.subtitles, { marginVertical: hp('3%') }]}>
@@ -95,8 +95,8 @@ const StepAdress = ({ setCompleted }) => {
                   </Text>
                   <Picker
                     note
-                    mode="dropdown"
-                    placeholder="Selecciona el municipio"
+                    mode='dropdown'
+                    placeholder='Selecciona el municipio'
                     style={[
                       styles.rectButtons,
                       {
@@ -104,8 +104,8 @@ const StepAdress = ({ setCompleted }) => {
                         backgroundColor: Colors.lightBlue,
                         alignSelf: 'flex-start',
                         borderBottomColor: Colors.mainBlue,
-                        borderBottomWidth: 1.5
-                      }
+                        borderBottomWidth: 1.5,
+                      },
                     ]}
                     selectedValue={municipality}
                     onValueChange={value => {
@@ -120,30 +120,28 @@ const StepAdress = ({ setCompleted }) => {
                     ))}
                   </Picker>
                 </View>
-              ): null}
+              ) : null}
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                Dirección de su domicilio: 
+                Dirección de su domicilio:
               </Text>
               <Input
                 value={address}
                 length={60}
-                multiLine={true}
-                onChange={text =>
-                  setSelectedOption('address', text)
-                }
+                multiLine
+                onChange={text => setSelectedOption('address', text)}
               />
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
                 ¿Cuántas personas viven con usted? *
-            </Text>
+              </Text>
               <Input
                 length={2}
-                keyboard="number-pad"
+                keyboard='number-pad'
                 value={numberPersonLivesWith}
                 onChange={text => {
                   if (parseInt(text, 10) < 30) {
-                    setSelectedOption("numberPersonLivesWith", text);
+                    setSelectedOption('numberPersonLivesWith', text);
                   } else if (text === '') {
-                    setSelectedOption("numberPersonLivesWith", '');
+                    setSelectedOption('numberPersonLivesWith', '');
                   }
                 }}
               />

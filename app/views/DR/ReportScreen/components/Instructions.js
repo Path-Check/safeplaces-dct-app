@@ -1,18 +1,15 @@
-import React, { useRef, useState } from 'react';
-import { View, Image } from 'react-native';
 import { Button, Text } from 'native-base';
+import React, { useRef, useState } from 'react';
+import { Image, View } from 'react-native';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Wizard from 'react-native-wizard';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp
-} from 'react-native-responsive-screen';
-import styles from './styles';
-import Colors from '../constants/Colors';
 
+import Colors from '../constants/Colors';
+import styles from './styles';
 
 export default function Instructions({ data = [], navigation }) {
   const wizard = useRef(null);
-  const [isFirstStep, setIsFirstStep] = useState(true);
+  const [setIsFirstStep] = useState(true);
   const [isLastStep, setIsLastStep] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [backgroundImage, setBackgroundImage] = useState(data[0].image);
@@ -21,14 +18,14 @@ export default function Instructions({ data = [], navigation }) {
   return (
     <View style={styles.instructionView}>
       <Image
-        resizeMode="cover"
+        resizeMode='cover'
         source={backgroundImage}
         style={styles.instructionsImage}
       />
       <View
         style={{
           height: hp('100%'),
-          justifyContent: 'flex-end'
+          justifyContent: 'flex-end',
         }}>
         <View style={[styles.instructionsContainer, styles.bottomMargin]}>
           <View style={styles.stepIndicatorContainer}>
@@ -39,8 +36,8 @@ export default function Instructions({ data = [], navigation }) {
                   styles.stepIndicator,
                   {
                     backgroundColor:
-                      index === currentStep ? '#4acfff' : lightGray
-                  }
+                      index === currentStep ? '#4acfff' : lightGray,
+                  },
                 ]}
               />
             ))}
@@ -51,8 +48,8 @@ export default function Instructions({ data = [], navigation }) {
             steps={data}
             isFirstStep={val => setIsFirstStep(val)}
             isLastStep={val => setIsLastStep(val)}
-            nextStepAnimation="fade"
-            currentStep={({ currentStep, isFirstStep, isLastStep }) => {
+            nextStepAnimation='fade'
+            currentStep={({ currentStep }) => {
               setCurrentStep(currentStep);
               setBackgroundImage(data[currentStep].image);
             }}
@@ -60,7 +57,7 @@ export default function Instructions({ data = [], navigation }) {
           <View
             style={{
               marginVertical: hp('3%'),
-              marginBottom: hp('1.5%')
+              marginBottom: hp('1.5%'),
             }}>
             <Button
               onPress={() => {
@@ -73,8 +70,8 @@ export default function Instructions({ data = [], navigation }) {
                 styles.buttons,
                 {
                   width: '70%',
-                  backgroundColor: '#fff'
-                }
+                  backgroundColor: '#fff',
+                },
               ]}>
               <Text style={[styles.buttonText, { color: mainBlue }]}>
                 Continuar
@@ -90,8 +87,8 @@ export default function Instructions({ data = [], navigation }) {
                   {
                     margin: '1%',
                     alignSelf: 'center',
-                    textTransform: 'capitalize'
-                  }
+                    textTransform: 'capitalize',
+                  },
                 ]}>
                 Saltar
               </Text>

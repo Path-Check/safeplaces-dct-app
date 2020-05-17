@@ -1,0 +1,5 @@
+"NSHumanReadableCopyright" = "حقوق الطبع والنشر © 2020 Path Check Inc. جميع الحقوق محفوظة.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "سيتم حفظ سجل المواقع على جهازك ، ولن تتم مشاركته إلا مع الآخرين إذا اخترت القيام بذلك.";
+"NSLocationAlwaysUsageDescription" = "سيتم حفظ سجل المواقع على جهازك ، ولن تتم مشاركته إلا مع الآخرين إذا اخترت القيام بذلك.";
+"NSLocationWhenInUseUsageDescription" = "سيتم حفظ سجل المواقع على جهازك ، ولن تتم مشاركته إلا مع الآخرين إذا اخترت القيام بذلك.";
+"NSMotionUsageDescription" = "نستخدم مستشعر مقياس التسارع الخاص بك للحصول على سجل دقيق للموقع.";

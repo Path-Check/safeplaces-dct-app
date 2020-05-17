@@ -12,13 +12,28 @@
 #import <React/RCTRootView.h>
 #import <RNCPushNotificationIOS.h>
 #import <UserNotifications/UserNotifications.h>
-#import <react-native-splash-screen/RNSplashScreen.h>
+#import <RNSplashScreen.h>
 #import <TSBackgroundFetch/TSBackgroundFetch.h>
+#import <MAURLocation.h>
+#import <MAURBackgroundGeolocationFacade.h>
+#import "COVIDSafePaths-Swift.h"
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  MAURBackgroundGeolocationFacade.locationTransform = ^(MAURLocation * location) {
+    MAURLocation *locationToInsert = [location copy];
+    [[SecureStorage shared] saveDeviceLocationWithBackgroundLocation:locationToInsert];
+    
+    // nil out location so geolocation library doesn't save in its internval db
+    location = nil;
+    return location;
+  };
+  
+  [[SecureStorage shared] trimLocations];
+  
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"COVIDSafePaths"
@@ -77,16 +92,41 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
  [RNCPushNotificationIOS didReceiveLocalNotification:notification];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-  UILocalNotification *notification = [[UILocalNotification alloc] init];
-  notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
-  notification.alertTitle = NSLocalizedString(@"ios.app_closed_alert_title", @"Title of notification when app is closed");
-  notification.alertBody = NSLocalizedString(@"ios.app_closed_alert_text", @"Body text of notification when app is closed");
-  notification.timeZone = [NSTimeZone defaultTimeZone];
-  notification.soundName = UILocalNotificationDefaultSoundName;
-  notification.applicationIconBadgeNumber = 0;
+-(BOOL) isFirstTimeClosing {
+  //Show local notifiation at first time only.
+  if(![[NSUserDefaults standardUserDefaults] boolForKey:@"cxfed_NotificationAtFirstTimeOnly"]) {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"cxfed_NotificationAtFirstTimeOnly"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    return TRUE;
+  }
+  return FALSE;
+}
 
-  [RNCPushNotificationIOS didReceiveLocalNotification:notification];
+-(BOOL) hasNotificationPermissions {
+  //Checking local notification permission or not.
+  UIUserNotificationSettings *grantedSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+  if (grantedSettings.types != UIUserNotificationTypeNone){
+    return TRUE;
+  }
+  return FALSE;
+}
+
+-(void) notifThatWeAreStillTracking {
+  // Set local notification.
+  UILocalNotification *_localNotification = [[UILocalNotification alloc] init];
+  _localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+  _localNotification.timeZone = [NSTimeZone defaultTimeZone];
+  _localNotification.alertTitle = NSLocalizedString(@"ios.app_closed_alert_title", @"Title of notification when app is closed");
+  _localNotification.alertBody = NSLocalizedString(@"ios.app_closed_alert_text", @"Body text of notification when app is closed");
+  _localNotification.soundName = UILocalNotificationDefaultSoundName;
+  [[UIApplication sharedApplication]scheduleLocalNotification:_localNotification];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+  if([self isFirstTimeClosing] && [self hasNotificationPermissions]) {
+    // Show local notification at first time only when app quit.
+    [self notifThatWeAreStillTracking];
+  }
 }
 
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler

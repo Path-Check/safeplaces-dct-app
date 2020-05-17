@@ -1,31 +1,30 @@
-import React, { useRef, useState, useContext } from 'react';
-import { View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { Button, Text } from 'native-base';
-import Wizard from 'react-native-wizard';
+import React, { useContext, useRef, useState } from 'react';
+import { View } from 'react-native';
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import { Dialog } from 'react-native-simple-dialogs';
-import { Ionicons } from '@expo/vector-icons';
-
-import styles from '../../components/styles';
-import Colors from '../../constants/Colors';
+import Wizard from 'react-native-wizard';
 
 import Header from '../../components/Header';
-import StepHaveSymptoms from './sections/StepHaveSymptoms';
-import StepAge from './sections/StepAge';
-import StepSymptoms from './sections/StepSymptoms';
-import StepMedicalConditions from './sections/StepMedicalConditions';
-import StepCovidContact from './sections/StepCovidContact';
-import StepWorkInHealth from './sections/StepWorkInHealth';
-import StepAdress from './sections/SetpAdress';
-import ThankYou from './sections/thankYou';
 import context from '../../components/reduces/context';
+import styles from '../../components/styles';
+import Colors from '../../constants/Colors';
+import StepAdress from './sections/SetpAdress';
+import StepAge from './sections/StepAge';
+import StepCovidContact from './sections/StepCovidContact';
+import StepHaveSymptoms from './sections/StepHaveSymptoms';
+import StepMedicalConditions from './sections/StepMedicalConditions';
+import StepSymptoms from './sections/StepSymptoms';
+import StepWorkInHealth from './sections/StepWorkInHealth';
+import ThankYou from './sections/thankYou';
 
 export default function ReportScreenQuestions({ navigation }) {
   navigation.setOptions({
-    headerShown: false
+    headerShown: false,
   });
   const wizard = useRef(null);
   const [isFirstStep, setIsFirstStep] = useState(true);
@@ -50,8 +49,8 @@ export default function ReportScreenQuestions({ navigation }) {
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(answers)
-        }
+          body: JSON.stringify(answers),
+        },
       );
       const data = await response.json();
       return data;
@@ -64,29 +63,29 @@ export default function ReportScreenQuestions({ navigation }) {
     {
       content: (
         <StepHaveSymptoms setCompleted={setComplete} sendData={setData} />
-      )
+      ),
     },
     {
-      content: <StepAge setCompleted={setComplete} />
+      content: <StepAge setCompleted={setComplete} />,
     },
     {
-      content: <StepSymptoms setCompleted={setComplete} />
+      content: <StepSymptoms setCompleted={setComplete} />,
     },
     {
-      content: <StepMedicalConditions setCompleted={setComplete} />
+      content: <StepMedicalConditions setCompleted={setComplete} />,
     },
     {
-      content: <StepCovidContact setCompleted={setComplete} />
+      content: <StepCovidContact setCompleted={setComplete} />,
     },
     {
-      content: <StepWorkInHealth setCompleted={setComplete} />
+      content: <StepWorkInHealth setCompleted={setComplete} />,
     },
     {
-      content: <StepAdress setCompleted={setComplete} navigation />
+      content: <StepAdress setCompleted={setComplete} navigation />,
     },
     {
-      content: <ThankYou />
-    }
+      content: <ThankYou />,
+    },
   ];
   const { mainBlue, lightGray, green } = Colors;
   return (
@@ -96,7 +95,7 @@ export default function ReportScreenQuestions({ navigation }) {
         display: 'flex',
         flex: 1,
         flexDirection: 'column',
-        height: hp('96%')
+        height: hp('96%'),
       }}>
       <Dialog visible={dialogVisible} style={{ alignItems: 'center' }}>
         <View>
@@ -104,7 +103,7 @@ export default function ReportScreenQuestions({ navigation }) {
             name={'md-medical'}
             size={30}
             style={{ marginBottom: -6 }}
-            color="#F54243"
+            color='#F54243'
           />
           <Text style={styles.subtitles}>Deberías llamar al *462.</Text>
           <Text style={styles.text}>
@@ -114,7 +113,7 @@ export default function ReportScreenQuestions({ navigation }) {
           <Button
             style={[
               styles.buttons,
-              { backgroundColor: green, width: '70%', marginTop: 25 }
+              { backgroundColor: green, width: '70%', marginTop: 25 },
             ]}
             onPress={() => {
               setDialogVisible(false);
@@ -127,10 +126,10 @@ export default function ReportScreenQuestions({ navigation }) {
       </Dialog>
 
       <Header
-        title="Reporte"
-        text="Por favor responde las siguientes preguntas"
+        title='Reporte'
+        text='Por favor responde las siguientes preguntas'
         navigation={navigation}
-        close={true}
+        close
         style={{ height: hp('19%') }}
       />
 
@@ -138,7 +137,7 @@ export default function ReportScreenQuestions({ navigation }) {
         style={{
           flexDirection: 'row',
           margin: 15,
-          height: hp('1%')
+          height: hp('1%'),
         }}>
         {stepList.map((val, index) => (
           <View
@@ -148,7 +147,7 @@ export default function ReportScreenQuestions({ navigation }) {
               marginHorizontal: 6,
               height: 10,
               borderRadius: 5,
-              backgroundColor: index === currentStep ? mainBlue : lightGray
+              backgroundColor: index === currentStep ? mainBlue : lightGray,
             }}
           />
         ))}
@@ -163,7 +162,7 @@ export default function ReportScreenQuestions({ navigation }) {
           onNext={() => {
             setComplete(false);
           }}
-          currentStep={({ currentStep, isLastStep, isFirstStep }) => {
+          currentStep={({ currentStep }) => {
             setCurrentStep(currentStep);
           }}
         />
@@ -175,20 +174,20 @@ export default function ReportScreenQuestions({ navigation }) {
           (isFirstStep || isLastStep) && { justifyContent: 'center' },
           isLastStep && {
             flexDirection: 'column-reverse',
-            marginBottom: hp('2%')
-          }
+            marginBottom: hp('2%'),
+          },
         ]}>
         {!isFirstStep && (
           <Text
             disabled={isFirstStep}
-            title="Prev"
+            title='Prev'
             onPress={() => wizard.current.prev()}
             style={[
               styles.buttonText,
               {
                 marginHorizontal: wp('5%'),
-                color: 'black'
-              }
+                color: 'black',
+              },
             ]}>
             Atrás
           </Text>
@@ -196,7 +195,7 @@ export default function ReportScreenQuestions({ navigation }) {
 
         <Button
           disabled={isLastStep ? false : !complete}
-          title="Next"
+          title='Next'
           onPress={async () => {
             if (isLastStep) {
               const { covidId } = await sendDataToApi();
@@ -220,8 +219,8 @@ export default function ReportScreenQuestions({ navigation }) {
                 ? green
                 : !complete
                 ? '#b7dbb2'
-                : green
-            }
+                : green,
+            },
           ]}>
           <Text style={styles.buttonText}>
             {isLastStep ? 'Finalizar' : 'Continuar'}
