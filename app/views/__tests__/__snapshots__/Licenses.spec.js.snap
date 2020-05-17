@@ -191,6 +191,7 @@ exports[`renders correctly 1`] = `
           }
         }
       >
+<<<<<<< HEAD:app/views/__tests__/__snapshots__/Licenses.spec.js.snap
         <Image
           source={
             Object {
@@ -198,6 +199,9 @@ exports[`renders correctly 1`] = `
             }
           }
         />
+=======
+        <Image />
+>>>>>>> 74a2510... Rollback js code spliting:gps/app/views/__tests__/__snapshots__/Licenses.spec.js.snap
       </View>
     </View>
   </RCTSafeAreaView>
