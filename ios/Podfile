@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'COVIDSafePaths' do
+def shared_pods
   # Pods for COVIDSafePaths
   project 'COVIDSafePaths.xcodeproj'
 
@@ -47,10 +47,18 @@ target 'COVIDSafePaths' do
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
 
-  target 'COVIDSafePathsTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
   use_native_modules!
+end
+
+target 'BTE' do
+  shared_pods
+end
+
+target 'GPS' do
+  shared_pods
+end
+
+target 'COVIDSafePathsTests' do
+  inherit! :search_paths
+  shared_pods
 end
