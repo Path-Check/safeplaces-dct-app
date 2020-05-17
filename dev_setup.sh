@@ -30,8 +30,8 @@ function found_exe() {
 
 if [[ "$CI" != "true" ]]; then
   if found_exe tput; then
-    if [[ $(tput colors) != "-1" ]]; then
-      # Get some colors we can use to spice up messages!
+    if [[ $(tput colorsDr) != "-1" ]]; then
+      # Get some colorsDr we can use to spice up messages!
       GREEN=$(tput setaf 2)
       BLUE=$(tput setaf 4)
       CYAN=$(tput setaf 6)

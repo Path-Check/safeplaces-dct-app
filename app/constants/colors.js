@@ -1,3 +1,5 @@
+import colorDr from './colors-dr';
+
 const colors = {
   BLACK: '#000',
   WHITE: '#FFF',
@@ -8,7 +10,7 @@ const colors = {
   MISCHKA: '#E5E4E6',
   PRIMARY_TEXT: '#000',
   SUCCESS: '#41dca4',
-  GREEN: '#41dca4',
+  GREEN: '#7ED321',
   WARNING: '#ffc000',
   orange: '#ffc000',
   VIOLET_ALPHA_06: '#f7f8ff', // cannot use transparency
@@ -57,14 +59,13 @@ const colors = {
   NAV_BAR_BORDER: 'rgba(189, 195, 199,0.6)',
 
   DARK_GRAY: '#3C475B',
-  LIGHT_GRAY: '#EEEEEE',
+  LIGHT_GRAY: '#EFEFEF',
 
   MONO_DARK: '#202020',
   MONO_SECONDARY: '#757677',
 
   BLUE_RIBBON: '#0161F2',
-  LIGHTGRAY: '#D8D8D8',
-  LIGHTBLUE: '#EFF4F9',
+  LIGHT_BLUE: '#EFF4F9',
   DOVE_GRAY: '#6B6B6B',
   SUN: '#FEB313',
   PINK: '#F1485B',
@@ -73,4 +74,4 @@ const colors = {
   YUKON_GOLD: '#666804',
 };
 
-export default colors;
+export default Object.assign(colors, colorDr);
