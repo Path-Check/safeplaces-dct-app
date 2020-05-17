@@ -12,7 +12,7 @@ import languages from '../../locales/languages';
 export default function Advices({ navigation }) {
   const recommendationData = data.map(item => ({
     ...item,
-    img: iconAdvertisement,
+    img: { source: iconAdvertisement },
   }));
   const backToMain = () => {
     navigation.goBack();

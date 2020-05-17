@@ -26,7 +26,13 @@ export default function DataList({
     <>
       {data.map(
         (
-          { url = '', img, title = '', dateLabel = '', content = '' },
+          {
+            url = '#',
+            img: { source },
+            title = '',
+            dateLabel = '',
+            content = '',
+          },
           index,
         ) => (
           <TouchableOpacity
@@ -38,7 +44,7 @@ export default function DataList({
             }
             key={String(index)}
             style={styles.itemContainer}>
-            {img && <Image style={styles.image} source={img} />}
+            <Image style={styles.image} source={source} />
             <View style={styles.right}>
               <Text
                 numberOfLines={titleLinesNum}

@@ -11,6 +11,7 @@ import Button from '../../components/Button';
 import DataList from '../../components/List';
 import NavigationBarWrapper from '../../components/NavigationBarWrapper';
 import fetch from '../../helpers/Fetch';
+import sourceStructure from '../../helpers/imagesSource';
 import languages from '../../locales/languages';
 
 const NEWS_URL = 'https://covid-dr.appspot.com/news';
@@ -38,8 +39,8 @@ export default function NewsScreen({ navigation }) {
     setIsLoading(true);
     fetch(`${NEWS_URL}?endAt=${order - 10}`)
       .then(({ data }) => {
-        console.log(data.news[0]);
-        setNews(news.concat(data.news));
+        const newsSource = sourceStructure(data);
+        setNews(news.concat(newsSource));
         setIsLoading(false);
       })
       .catch(() => {
@@ -51,7 +52,8 @@ export default function NewsScreen({ navigation }) {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
     fetch(NEWS_URL)
       .then(({ data }) => {
-        setNews(data.news);
+        const news = sourceStructure(data);
+        setNews(news);
       })
       .catch(() => {
         setNews([]);
@@ -97,19 +99,5 @@ const styles = StyleSheet.create({
   containerPagination: {
     alignItems: 'center',
     padding: 20,
-  },
-
-  showMoreContainer: {
-    backgroundColor: '#3f51b5a6',
-    borderRadius: 5,
-  },
-
-  showMoreText: {
-    color: 'white',
-    fontSize: 12,
-    padding: 35,
-    paddingBottom: 12,
-    paddingTop: 12,
-    textTransform: 'uppercase',
   },
 });
