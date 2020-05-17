@@ -19,8 +19,7 @@ import {
 } from 'react-native-popup-menu';
 import validUrl from 'valid-url';
 
-import closeIcon from '../../../shared/assets/images/closeIcon.png';
-import saveIcon from '../../../shared/assets/images/saveIcon.png';
+import { Icons } from '../../../shared/assets';
 import { Button } from '../components/Button';
 import { Checkbox } from '../components/Checkbox';
 import { DynamicTextInput } from '../components/DynamicTextInput';
@@ -297,7 +296,7 @@ class ChooseProviderScreen extends Component {
                       onSubmitEditing={this.addCustomUrlToState}
                     />
                     <TouchableOpacity onPress={this.addCustomUrlToState}>
-                      <Image source={saveIcon} style={styles.saveIcon} />
+                      <Image source={Icons.SaveIcon} style={styles.saveIcon} />
                     </TouchableOpacity>
                   </View>
                   <FlatList
@@ -309,7 +308,10 @@ class ChooseProviderScreen extends Component {
                         </Typography>
                         <TouchableOpacity
                           onPress={() => this.removeAuthorityFromState(item)}>
-                          <Image source={closeIcon} style={styles.closeIcon} />
+                          <Image
+                            source={Icons.CloseIcon}
+                            style={styles.closeIcon}
+                          />
                         </TouchableOpacity>
                       </View>
                     )}

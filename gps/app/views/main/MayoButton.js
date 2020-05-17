@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Linking, TouchableOpacity, View } from 'react-native';
 
-import foreArrow from '../../../../shared/assets/images/foreArrow.png';
+import { Images } from '../../../../shared/assets';
 import { Typography } from '../../components/Typography';
 import { styles } from './style';
 
@@ -37,7 +37,7 @@ export const MayoButton = () => {
             </Typography>
           </View>
           <View style={styles.arrowContainer}>
-            <Image source={foreArrow} />
+            <Image source={Images.ForeArrow} />
           </View>
         </TouchableOpacity>
       </View>

@@ -10,8 +10,7 @@ import {
 import { openSettings } from 'react-native-permissions';
 import { SvgXml } from 'react-native-svg';
 
-import backgroundImage from '../../../../shared/assets/images/launchScreenBackground.png';
-import StateUnknown from '../../../../shared/assets/svgs/stateUnknown';
+import { Icons, Images } from '../../../../shared/assets';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
@@ -27,7 +26,9 @@ export const UnknownPage = () => {
   const size = Dimensions.get('window').height;
   return (
     <Theme use='violet'>
-      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+      <ImageBackground
+        source={Images.LaunchScreenBackground}
+        style={styles.backgroundImage}>
         <StatusBar
           barStyle='light-content'
           backgroundColor='transparent'
@@ -35,7 +36,7 @@ export const UnknownPage = () => {
         />
         <View style={styles.pulseContainer}>
           <SvgXml
-            xml={StateUnknown}
+            xml={Icons.StateUnknown}
             width={size ? size : 80}
             height={size ? size : 80}
           />
