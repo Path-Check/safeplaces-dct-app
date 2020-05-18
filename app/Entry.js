@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
+import AdvicesScreen from './views/DR/Advices';
 import BulletinsScreen from './views/DR/Bulletins';
 import DetailsScreen from './views/DR/Details';
 // import LocationTracking from './views/LocationTracking';
@@ -106,6 +107,11 @@ class Entry extends Component {
           <Stack.Screen
             name='BulletinsScreen'
             component={BulletinsScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='AdvicesScreen'
+            component={AdvicesScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

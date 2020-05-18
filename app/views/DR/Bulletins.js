@@ -66,9 +66,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
-  containerPagination: {
-    alignItems: 'center',
-    padding: 20,
-  },
 });

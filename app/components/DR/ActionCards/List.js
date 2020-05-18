@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-import Colors from '../../../constants/colors';
 import fontFamily from '../../../constants/fonts';
 
 export default function DataList({
@@ -76,8 +75,8 @@ const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: Colors.WHITE,
-    height: '20%',
+    backgroundColor: '#fff',
+    height: wp('20%'),
     borderRadius: 10,
     maxHeight: 90,
     marginVertical: 5,
@@ -105,7 +104,7 @@ const styles = StyleSheet.create({
     color: '#808080',
   },
   right: {
-    width: '70%',
+    width: wp('70%'),
     paddingHorizontal: 10,
   },
 });
