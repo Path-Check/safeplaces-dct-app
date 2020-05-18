@@ -4,19 +4,21 @@ on:
   push:
     branches: [develop]
     paths:
-      - app/locales/en.json
-      - app/locales/eula/en.html
-      - ios/en.lproj/*.strings
-      - android/app/src/main/res/values/strings.xml
+      - gps/app/locales/en.json
+      - gps/app/locales/eula/en.html
+      - gps/ios/en.lproj/*.strings
+      - gps/android/app/src/main/res/values/strings.xml
       - .github/workflows/*.yml
+      - gps/app/locales/*.sh
   pull_request:
     branches: [develop]
     paths:
-      - app/locales/en.json
-      - app/locales/eula/en.html
-      - ios/en.lproj/*.strings
-      - android/app/src/main/res/values/strings.xml
+      - gps/app/locales/en.json
+      - gps/app/locales/eula/en.html
+      - gps/ios/en.lproj/*.strings
+      - gps/android/app/src/main/res/values/strings.xml
       - .github/workflows/*.yml
+      - gps/app/locales/*.sh
 
 jobs:
   # Only run on a final merge into develop, uploads all changed keys to Lokalised
@@ -27,26 +29,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: cached node_modules/
-        uses: actions/cache@v1
-        id: cache
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
-
-      - run: yarn --frozen-lockfile
-        if: steps.cache.outputs.cache-hit != 'true'
-
-      - run: curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
-
       - name: upload english files
         run: yarn i18n:push
         env:
           LOKALISE_TOKEN: ${{ secrets.LOKALISE_TOKEN }}
 
-  # Run on PRs, checks for any added keys that are missing in the app/locales/en.json file
+  # Run on PRs, checks for any added keys that are missing in the gps/app/locales/en.json file
   check-i18n:
     runs-on: ubuntu-latest
     steps:

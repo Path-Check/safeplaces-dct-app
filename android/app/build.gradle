@@ -6,6 +6,7 @@ apply plugin: 'realm-android'
 
 project.ext.envConfigFiles = [
     debug: ".env",
+    staging: ".env.staging",
     release: ".env.release",
 ]
 
@@ -88,6 +89,9 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
+    bundleInDevDebug: false,
+    bundleInStagingDebug: true,
+    devDisabledInStagingDebug: true,
     enableHermes: false,  // clean and rebuild if changing
 ]
 
@@ -149,7 +153,7 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         versionCode 25
-        versionName "1.0.1"
+        versionName "1.0.8"
     }
     splits {
         abi {
@@ -167,12 +171,12 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('PRIVATEKIT_RELEASE_STORE_FILE')) {
-                project.logger.lifecycle('Signing app with ' + PRIVATEKIT_RELEASE_STORE_FILE)
-                storeFile file(PRIVATEKIT_RELEASE_STORE_FILE)
-                storePassword PRIVATEKIT_RELEASE_STORE_PASSWORD
-                keyAlias PRIVATEKIT_RELEASE_KEY_ALIAS
-                keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
+            storeFile file('keystore.jks')
+            if (file("./keystore.jks").exists()) {
+                keyAlias project.property("android.injected.signing.key.alias")
+                keyPassword project.property("android.injected.signing.key.password")
+                storePassword project.property("android.injected.signing.store.password")
+                storeFile file("./keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')
             }
@@ -188,8 +192,23 @@ android {
             // signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        dev {
+            dimension "version"
+        }
+        staging {
+            dimension "version"
+        }
+        prod {
+            dimension "version"
+        }
+    }
+
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -214,6 +233,8 @@ dependencies {
     implementation "androidx.annotation:annotation:1.1.0"
     implementation project(':@mauron85_react-native-background-geolocation-common')
     implementation 'com.bottlerocketstudios:vault:1.4.2'
+    implementation 'com.google.android.gms:play-services-gcm:15.0.1'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/"
