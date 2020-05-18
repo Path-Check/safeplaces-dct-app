@@ -1,4 +1,16 @@
 apply plugin: "com.android.application"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
+
+project.ext.envConfigFiles = [
+    debug: ".env",
+    staging: ".env.staging",
+    release: ".env.release",
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
@@ -77,6 +89,9 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
+    bundleInDevDebug: false,
+    bundleInStagingDebug: true,
+    devDisabledInStagingDebug: true,
     enableHermes: false,  // clean and rebuild if changing
 ]
 
@@ -118,7 +133,7 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  * on project.ext.react, JavaScript will not be compiled to Hermes Bytecode
  * and the benefits of using Hermes will therefore be sharply reduced.
  */
-def enableHermes = project.ext.react.get("enableHermes", false);
+def enableHermes = project.ext.react.get("enableHermes", false)
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -138,8 +153,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 24
-        versionName "1.0.0"
+        versionCode 25
+        versionName "1.0.8"
     }
     splits {
         abi {
@@ -157,17 +172,16 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('PRIVATEKIT_RELEASE_STORE_FILE')) {
-                project.logger.lifecycle('Signing app with ' + PRIVATEKIT_RELEASE_STORE_FILE)
-                storeFile file(PRIVATEKIT_RELEASE_STORE_FILE)
-                storePassword PRIVATEKIT_RELEASE_STORE_PASSWORD
-                keyAlias PRIVATEKIT_RELEASE_KEY_ALIAS
-                keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
+            storeFile file('keystore.jks')
+            if (file("./keystore.jks").exists()) {
+                keyAlias project.property("android.injected.signing.key.alias")
+                keyPassword project.property("android.injected.signing.key.password")
+                storePassword project.property("android.injected.signing.store.password")
+                storeFile file("./keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')
             }
         }
-
     }
     buildTypes {
         debug {
@@ -179,8 +193,23 @@ android {
             // signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        dev {
+            dimension "version"
+        }
+        staging {
+            dimension "version"
+        }
+        prod {
+            dimension "version"
+        }
+    }
+
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -192,7 +221,6 @@ android {
                 output.versionCodeOverride =
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
-
         }
     }
     packagingOptions {
@@ -206,44 +234,49 @@ android {
 }
 
 dependencies {
+    // loading html files
+    compile project(':react-native-local-resource')
     implementation project(':react-native-reanimated')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"
-
+    implementation project(':@mauron85_react-native-background-geolocation-common')
+    implementation 'com.bottlerocketstudios:vault:1.4.2'
+    implementation 'com.google.android.gms:play-services-gcm:15.0.1'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 
     if (enableHermes) {
-        def hermesPath = "../../node_modules/hermes-engine/android/";
+        def hermesPath = "../../node_modules/hermes-engine/android/"
         debugImplementation files(hermesPath + "hermes-debug.aar")
         releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
         implementation jscFlavor
     }
-    androidTestImplementation('com.wix:detox:+')  // detox: e2e testing
+    androidTestImplementation('com.wix:detox:+') // detox: e2e testing
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
- // Just to fix the app start crash error
- allprojects {
+allprojects {
     repositories {
-    //start here
-    configurations.all {
- resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-   def requested = details.requested
-       if (requested.group == 'com.google.android.gms') {
-          details.useVersion '12.0.1'
-       }
-       if (requested.group == 'com.google.firebase') {
-          details.useVersion '12.0.1'
-         }
-       }
-     }
-    //end
-     jcenter()
-       maven {
-         url "https://maven.google.com"
-       }
-     }
- }
+        configurations.all {
+            // To fix the app start crash error
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                def requested = details.requested
+                if (requested.group == 'com.google.android.gms') {
+                    details.useVersion '12.0.1'
+                }
+                if (requested.group == 'com.google.firebase') {
+                    details.useVersion '12.0.1'
+                }
+            }
+        }
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+    }
+}
 
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
@@ -253,3 +286,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+repositories {
+  mavenCentral()
+}

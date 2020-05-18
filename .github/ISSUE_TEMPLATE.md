@@ -2,11 +2,27 @@
 <!-- When submitting an Issue against this repo, please follow these
      guidelines to help us help you. -->
 
-## Version
 
-- Type of phone: Android / iPhone
-- OS Version:
-- Model: e.g. Samsung Galaxy S8
+<!-- Make sure that you are testing against the latest beta or production version -->
+
+<!-- Write the title in a proper, short, descriptive way with a format like: -->
+<!-- [Section] - Issue -->
+<!-- E.g. [Homepage] - Pulse circle offset -->
+
+## Issue type
+<!-- List all appliable type: (Localization, Hardware, UI -->
+
+## Version 
+- Release build version: <!-- Put here the version of the app tested -->
+
+## Affected Devices
+
+| Brand        |  Model        | OS  |
+| ------------ |:-------------:| ----:|
+<!-- | Samsung     | Galaxy S10 | 10.0 | -->
+
+## Affected Languages
+<!-- If the issue is specific in a single language please specify it -->
 
 ## Steps to reproduce
 

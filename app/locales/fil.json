@@ -37,10 +37,18 @@
     "launch_notif_header": "Kayo ay makakatanggao ng abiso o paalala kung sakali mang kayo ay may nakahalubilo na maysakit",
     "launch_notif_subheader": "Ang aming hihilingin lang sa inyo bilang abala ay kung may panganib, maari po lamang na ito ay ibahagi nyo sa amin.",
     "launch_notification_access": "Payagan ang mga notipikasyon",
-    "launch_screen2_header": "Iyong maabisuhan kung ikaw ay cross landas na may isang tao sa ibang pagkakataon nasuri para sa COVID-19."
+    "launch_screen2_header": "Iyong maabisuhan kung ikaw ay cross landas na may isang tao sa ibang pagkakataon nasuri para sa COVID-19.",
+    "launch_screen2_subheader": "Ang kaalaman ay kapangyarihan.",
+    "launch_screen3_header": "Kung ikaw ay kumpirmadong may COVID-19, maaari mong ibahagi sa amin ang iyong detalye nang di nagpapakilala.",
+    "launch_screen3_subheader": "Ito ay makakatulong upang mapanatiling ligtas ang ating komunidad.",
+    "legal_page_title": "Legal",
+    "loading_public_data": "Naglo-load ng datos ...",
+    "news_title": "Pinakabagong balita",
+    "no_data": "Walang datos",
+    "settings_title": "Dashboard"
   },
   "onboarding": {
-    "eula_checkbox": "Tinatanggap ko ang kasunduan nito.",
+    "eula_checkbox": "Tinatanggap ko ang kasunduan ito.",
     "eula_continue": "Ituloy"
   },
   "version_update": {

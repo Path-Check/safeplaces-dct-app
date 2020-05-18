@@ -62,18 +62,26 @@ app/locales/*_old.json
 
 # CocoaPods
 /ios/Pods/
-yarn.lock
 .vscode/launch.json
-ios/Podfile.lock
 
 # Ruby gems
 ios/vendor/bundle/*
+android/vendor/bundle/*
 
 # Screenshots
 e2e/artifacts/*
 
 # VSCode
 .vscode/*
+
+# Local iOS build artifacts
+ios/COVIDSafePaths-staging.ipa
+ios/COVIDSafePaths-staging.app
+ios/COVIDSafePaths-staging.app.dSYM.zip
+assets/
+
+# Local Realm Artifact
+safepaths.Realm
 
 ### ReactNative.Android Stack ###
 # Built application files

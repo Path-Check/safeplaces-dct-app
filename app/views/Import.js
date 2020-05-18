@@ -1,27 +1,19 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Dimensions,
-  Linking,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 
-import languages from './../locales/languages';
+import { Button } from '../components/Button';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { pickFile } from '../helpers/General';
 import {
+  EmptyFilePathError,
   InvalidFileExtensionError,
   NoRecentLocationsError,
   importTakeoutData,
 } from '../helpers/GoogleTakeOutAutoImport';
-
-const width = Dimensions.get('window').width;
 
 const makeImportResults = (label = '', error = false) => ({
   error,
@@ -33,41 +25,40 @@ const ImportScreen = props => {
   const {
     navigation: { goBack },
   } = props;
-  const [importResults, setImportResults] = useState(makeImportResults());
-
+  const [importResults, _setImportResults] = useState(makeImportResults());
+  const setImportResults = (...args) =>
+    _setImportResults(makeImportResults(...args));
   async function importPickFile() {
     try {
       // reset info message
-      setImportResults(makeImportResults());
+      setImportResults();
 
       const filePath = await pickFile();
       if (filePath) {
-        const newLocations = await importTakeoutData(filePath);
-        if (newLocations.length) {
-          setImportResults(makeImportResults('label.import_success'));
-        } else {
-          setImportResults(makeImportResults('label.import_already_imported'));
-        }
+        await importTakeoutData(filePath);
+        setImportResults(t('label.import_success'));
       }
     } catch (err) {
       if (err instanceof NoRecentLocationsError) {
-        setImportResults(
-          makeImportResults('label.import_no_recent_locations', true),
-        );
+        setImportResults(t('import.google.no_recent_locations'), true);
       } else if (err instanceof InvalidFileExtensionError) {
-        setImportResults(
-          makeImportResults('label.import_invalid_file_format', true),
-        );
+        setImportResults(t('import.google.invalid_file_format'), true);
+      } else if (err instanceof EmptyFilePathError) {
+        /**
+         * If the imported file is opened from other than Google Drive folder,
+         * filepath is returned as null. Leaving a message to ensure import file
+         * is located on Google Drive.
+         */
+        setImportResults(t('import.google.file_open_error'), true);
       } else {
-        setImportResults(makeImportResults('label.import_error', true));
+        console.log('[ERROR] Failed to import locations', err);
+        setImportResults(t('import.error'), true);
       }
     }
   }
 
   return (
-    <NavigationBarWrapper
-      title={languages.t('import.title')}
-      onBackPress={goBack}>
+    <NavigationBarWrapper title={t('import.title')} onBackPress={goBack}>
       <ScrollView style={styles.main}>
         <View style={styles.subHeaderTitle}>
           <Typography style={styles.sectionDescription}>
@@ -80,27 +71,26 @@ const ImportScreen = props => {
           <Typography style={styles.sectionDescription}>
             {t('import.google.instructions_detailed')}
           </Typography>
-          {/* eslint-enable react/no-unescaped-entities */}
-          <TouchableOpacity
+
+          <Button
+            small
+            label={t('import.google.visit_button_text')}
             testID='google-takeout-link'
             onPress={() =>
               Linking.openURL(
                 'https://takeout.google.com/settings/takeout/custom/location_history',
               )
             }
-            style={styles.buttonTouchable}>
-            <Typography style={styles.buttonText}>
-              {languages.t('import.google.visit_button_text')}
-            </Typography>
-          </TouchableOpacity>
-          <TouchableOpacity
+            style={{ marginTop: 24 }}
+          />
+
+          <Button
+            small
+            label={t('import.title')}
             testID='google-takeout-import-btn'
             onPress={importPickFile}
-            style={styles.buttonTouchable}>
-            <Typography style={styles.buttonText}>
-              {languages.t('import.title')}
-            </Typography>
-          </TouchableOpacity>
+            style={{ marginTop: 24 }}
+          />
 
           {importResults.label ? (
             <Typography
@@ -108,7 +98,7 @@ const ImportScreen = props => {
                 ...styles.importResults,
                 ...(importResults?.error ? styles.importResultsError : {}),
               }}>
-              {languages.t(importResults.label)}
+              {importResults.label}
             </Typography>
           ) : null}
         </View>
@@ -133,23 +123,6 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     width: '100%',
     alignSelf: 'center',
-  },
-  buttonTouchable: {
-    borderRadius: 12,
-    backgroundColor: colors.BLUE_RIBBON,
-    height: 52,
-    alignSelf: 'center',
-    width: width * 0.7866,
-    marginTop: 18,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: fontFamily.primarySemiBold,
-    fontSize: 16,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: colors.WHITE,
   },
   sectionDescription: {
     fontSize: 16,

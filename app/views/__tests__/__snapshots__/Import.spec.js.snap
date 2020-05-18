@@ -6,7 +6,7 @@ Array [
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#4051DB",
+        "backgroundColor": "#0161F2",
         "flexBasis": 0,
         "flexGrow": 0,
         "flexShrink": 1,
@@ -28,8 +28,8 @@ Array [
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#4051DB",
-          "borderBottomColor": "#5061E6",
+          "backgroundColor": "#0161F2",
+          "borderBottomColor": "#0161F2",
           "borderBottomWidth": 1,
           "flexDirection": "row",
         }
@@ -62,7 +62,6 @@ Array [
             Object {
               "color": "#FFF",
               "height": 18,
-              "opacity": 0.4,
               "width": 18,
             }
           }
@@ -79,7 +78,7 @@ Array [
             "alignSelf": "center",
             "color": "#FFF",
             "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 26,
+            "fontSize": 22,
             "letterSpacing": -0.3,
             "lineHeight": 34,
             "paddingHorizontal": 20,
@@ -120,6 +119,7 @@ Array [
           <Text
             style={
               Object {
+                "color": "#000",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 16,
                 "fontWeight": "normal",
@@ -135,6 +135,7 @@ Array [
           <Text
             style={
               Object {
+                "color": "#000",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 16,
                 "fontWeight": "normal",
@@ -150,6 +151,7 @@ Array [
           <Text
             style={
               Object {
+                "color": "#000",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 16,
                 "fontWeight": "normal",
@@ -165,11 +167,11 @@ Array [
 2. Frequency: "Export once" 
 3. File type & size: ".zip" and "1GB"
 4. Google sends an email when the export is ready 
-5. Return here to import locations. Import options:
-- Import from Google Drive
-- Download from browser, then import from local phone files. Make sure to be on WiFi network as files can be big.
+5. Return here to import locations from Google Drive
           </Text>
           <View
+            accessibilityLabel="Visit Google Takeout"
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             isTVSelectable={true}
@@ -182,28 +184,34 @@ Array [
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "alignSelf": "center",
-                "backgroundColor": "#4051DB",
-                "borderRadius": 12,
-                "height": 52,
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "borderBottomLeftRadius": 8,
+                "borderBottomRightRadius": 8,
+                "borderColor": "transparent",
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 8,
+                "borderTopRightRadius": 8,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "height": 48,
                 "justifyContent": "center",
-                "marginTop": 30,
+                "marginTop": 24,
                 "opacity": 1,
-                "width": 589.9499999999999,
+                "paddingHorizontal": 14,
               }
             }
             testID="google-takeout-link"
           >
             <Text
+              small={true}
               style={
                 Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans-SemiBold",
+                  "fontFamily": "IBMPlexSans-Medium",
                   "fontSize": 14,
                   "fontWeight": "normal",
-                  "letterSpacing": 0,
-                  "lineHeight": 19,
-                  "textAlign": "center",
+                  "lineHeight": 21,
                   "writingDirection": "ltr",
                 }
               }
@@ -213,6 +221,8 @@ Array [
             </Text>
           </View>
           <View
+            accessibilityLabel="Import Locations"
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             isTVSelectable={true}
@@ -225,28 +235,34 @@ Array [
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "alignSelf": "center",
-                "backgroundColor": "#4051DB",
-                "borderRadius": 12,
-                "height": 52,
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "borderBottomLeftRadius": 8,
+                "borderBottomRightRadius": 8,
+                "borderColor": "transparent",
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 8,
+                "borderTopRightRadius": 8,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "height": 48,
                 "justifyContent": "center",
-                "marginTop": 30,
+                "marginTop": 24,
                 "opacity": 1,
-                "width": 589.9499999999999,
+                "paddingHorizontal": 14,
               }
             }
             testID="google-takeout-import-btn"
           >
             <Text
+              small={true}
               style={
                 Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans-SemiBold",
+                  "fontFamily": "IBMPlexSans-Medium",
                   "fontSize": 14,
                   "fontWeight": "normal",
-                  "letterSpacing": 0,
-                  "lineHeight": 19,
-                  "textAlign": "center",
+                  "lineHeight": 21,
                   "writingDirection": "ltr",
                 }
               }

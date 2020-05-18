@@ -18,8 +18,8 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 
-const TERMS_OF_USE_URL =
-  'https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#';
+const PRIVACY_POLICY_URL =
+  'https://docs.google.com/document/d/17u0f8ni9S0D4w8RCUlMMqxAlXKJAd2oiYGP8NUwkINo/edit';
 
 export const LicensesScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ export const LicensesScreen = ({ navigation }) => {
   };
 
   const handleTermsOfUsePressed = () => {
-    Linking.openURL(TERMS_OF_USE_URL);
+    Linking.openURL(PRIVACY_POLICY_URL);
   };
 
   useEffect(() => {
@@ -86,8 +86,8 @@ export const LicensesScreen = ({ navigation }) => {
           style={styles.termsInfoRow}>
           <Typography
             use='headline2'
-            onPress={() => Linking.openURL(TERMS_OF_USE_URL)}>
-            {t('label.terms_of_use')}
+            onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}>
+            {t('label.privacy_policy')}
           </Typography>
           <View style={styles.arrowContainer}>
             <Image source={foreArrow} />

@@ -43,7 +43,7 @@ export default function BulletinsScreen({ navigation }) {
       onBackPress={backToMain.bind(this)}>
       <View style={styles.container}>
         <ScrollView>
-          <HeaderImage imgUrl={imgBulletins} title='Bulletins' />
+          <HeaderImage imgUrl={imgBulletins} title='Boletines' />
           <List
             data={bulletins}
             navigation={navigation}
