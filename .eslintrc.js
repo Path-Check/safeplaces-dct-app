@@ -3,10 +3,11 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:jest/recommended',
   ],
   parser: 'babel-eslint',
-  plugins: ['react', 'react-native', 'detox'],
+  plugins: ['react', 'react-hooks', 'react-native', 'detox'],
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',

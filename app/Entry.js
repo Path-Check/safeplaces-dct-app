@@ -49,7 +49,7 @@ class Entry extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName='HomeScreen'
+          initialRouteName='InitialScreen'
           screenOptions={{
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             cardStyle: {
@@ -151,6 +151,16 @@ class Entry extends Component {
           />
           <Stack.Screen
             name='AboutScreen'
+            component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ReportScreen'
+            component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='AuroraScreen'
             component={AboutScreen}
             options={{ headerShown: false }}
           />

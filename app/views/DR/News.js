@@ -7,8 +7,10 @@ import {
   View,
 } from 'react-native';
 
+import imgNews from '../../assets/images/news.jpg';
 import Button from '../../components/Button';
-import DataList from '../../components/List';
+import HeaderImage from '../../components/DR/ActionCards/HeaderImage';
+import DataList from '../../components/DR/ActionCards/List';
 import NavigationBarWrapper from '../../components/NavigationBarWrapper';
 import fetch from '../../helpers/Fetch';
 import sourceStructure from '../../helpers/imagesSource';
@@ -69,7 +71,9 @@ export default function NewsScreen({ navigation }) {
       title={languages.t('label.latest_news')}
       onBackPress={backToMain.bind(this)}>
       <View style={styles.container}>
+        <HeaderImage imgUrl={imgNews} title={languages.t('label.news_title')} />
         <ScrollView>
+          <HeaderImage imgUrl={imgNews} title='News' />
           <DataList
             data={news}
             navigation={navigation}

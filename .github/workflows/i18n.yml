@@ -5,35 +5,37 @@ on:
     branches: [develop]
     paths:
       - app/locales/en.json
+      - app/locales/eula/en.html
       - ios/en.lproj/*.strings
       - android/app/src/main/res/values/strings.xml
       - .github/workflows/*.yml
+      - app/locales/*.sh
   pull_request:
     branches: [develop]
     paths:
       - app/locales/en.json
+      - app/locales/eula/en.html
       - ios/en.lproj/*.strings
       - android/app/src/main/res/values/strings.xml
       - .github/workflows/*.yml
+      - app/locales/*.sh
 
 jobs:
   # Only run on a final merge into develop, uploads all changed keys to Lokalised
   lokalise-upload:
     if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
-    env:
-      UPLOAD_FLAGS: --lang-iso=en --cleanup-mode --replace-modified --include-path --detect-icu-plurals --apply-tm --convert-placeholders --project-id=${{ secrets.LOKALISE_PROJECT_ID }} --token=${{ secrets.LOKALISE_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
 
-      - run: curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
-
-      - name: upload English files
-        run: ./bin/lokalise2 file upload --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml $UPLOAD_FLAGS
+      - name: upload english files
+        run: yarn i18n:push
+        env:
+          LOKALISE_TOKEN: ${{ secrets.LOKALISE_TOKEN }}
 
   # Run on PRs, checks for any added keys that are missing in the app/locales/en.json file
-  no-missing-keys:
+  check-i18n:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -51,5 +53,3 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
 
       - run: yarn i18n:check
-
-

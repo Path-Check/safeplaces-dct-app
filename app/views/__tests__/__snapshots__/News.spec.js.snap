@@ -73,7 +73,6 @@ exports[`renders correctly 1`] = `
         <View
           accessible={true}
           focusable={true}
-          isTVSelectable={true}
           style={
             Object {
               "alignItems": "center",
@@ -207,7 +206,6 @@ exports[`renders correctly 1`] = `
             loop={false}
             loopClonesPerSide={3}
             maxToRenderPerBatch={15}
-            numColumns={1}
             onEndReachedThreshold={2}
             overScrollMode="never"
             pinchGestureEnabled={false}
@@ -314,6 +312,8 @@ exports[`renders correctly 1`] = `
                     >
                       <RNCWebView
                         cacheEnabled={true}
+                        injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+                        injectedJavaScriptForMainFrameOnly={true}
                         javaScriptEnabled={true}
                         messagingEnabled={false}
                         source={
