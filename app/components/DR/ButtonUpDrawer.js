@@ -1,9 +1,3 @@
-/* eslint-disable react/state-in-constructor */
-/* eslint-disable react/static-property-placement */
-/* eslint-disable react/no-deprecated */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/sort-comp */
 import React, { Component } from 'react';
 import {
   Animated,

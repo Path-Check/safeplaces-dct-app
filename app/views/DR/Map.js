@@ -19,7 +19,7 @@ import sortByDistance from 'sort-by-distance';
 
 import posIconHos from '../../assets/images/pinPositiveHos.png';
 import posIconLab from '../../assets/images/pinPositiveLab.png';
-import BottonUpPanel from '../../components/ButtonUpDrawer';
+import BottonUpPanel from '../../components/DR/ButtonUpDrawer';
 import {
   requestCovid19Hospitals,
   requestCovid19Laboratories,
