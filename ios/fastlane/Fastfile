@@ -29,7 +29,7 @@ end
 
 platform :ios do
     
-    APP_ID = "org.pathcheck.covid-safepaths"
+    APP_ID = "org.pathcheck.covid-safepaths.bte"
     PROFILE = "match AppStore org.pathcheck.covid-safepaths"
     DEBUG_PROFILE = "match Develop org.pathcheck.covid-safepaths"
     ADHOC_PROFILE = "match AdHoc org.pathcheck.covid-safepaths"
