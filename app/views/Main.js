@@ -8,6 +8,7 @@ import { FeatureFlag } from '../components/FeatureFlag';
 import { IconButton } from '../components/IconButton';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
+import tracingStrategy from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices, { Reason } from '../services/LocationService';
@@ -94,7 +95,7 @@ const Main = () => {
     if (location.reason === Reason.USER_OFF) {
       page = <OffPage />;
     } else {
-      page = <UnknownPage />;
+      page = <UnknownPage tracingStrategy={tracingStrategy} />;
     }
   }
 
