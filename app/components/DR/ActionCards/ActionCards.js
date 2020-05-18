@@ -28,7 +28,7 @@ export function Feels({ navigation }) {
           </Text>
           <View style={{ justifyContent: 'center' }}>
             <Button
-              onPress={() => navigation.navigate('Reportar')}
+              onPress={() => navigation.navigate('ReportScreen')}
               style={[
                 styles.buttons,
                 {
@@ -66,7 +66,7 @@ export function Aurora({ navigation }) {
             </Text>
           </Left>
           <Button
-            onPress={() => navigation.navigate('aurora')}
+            onPress={() => navigation.navigate('AuroraScreen')}
             style={[
               styles.buttons,
               { backgroundColor: MAIN_BLUE, marginLeft: 10 },

@@ -165,7 +165,6 @@ exports[`renders correctly 1`] = `
       <View
         accessible={true}
         focusable={true}
-        isTVSelectable={true}
         style={
           Object {
             "flexDirection": "row",
@@ -239,7 +238,6 @@ exports[`renders correctly 1`] = `
     <View
       accessible={true}
       focusable={true}
-      isTVSelectable={true}
       style={
         Object {
           "alignSelf": "flex-end",

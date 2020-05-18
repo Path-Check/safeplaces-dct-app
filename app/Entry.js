@@ -15,23 +15,14 @@ import HomeScreen from './views/DR/HomeScreen';
 import NewsScreen from './views/DR/News';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
-import {
-  FEATURE_FLAG_SCREEN_NAME,
-  FeatureFlagsScreen,
-} from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
-import { MainNavigate } from './views/Main';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
 import { SettingsScreen } from './views/Settings';
-
-// to substitude for MainNavigate
-//            name='HomeScreen'
-// component={HomeScreen}
 
 const Stack = createStackNavigator();
 
@@ -57,7 +48,7 @@ class Entry extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName='HomeScreen'
+          initialRouteName='InitialScreen'
           screenOptions={{
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             cardStyle: {
@@ -67,7 +58,7 @@ class Entry extends Component {
           {this.state.initialRouteName === 'true' ? (
             <Stack.Screen
               name='InitialScreen'
-              component={MainNavigate} //To-do add HomeScreen
+              component={HomeScreen}
               options={{ headerShown: false }}
             />
           ) : (
@@ -103,8 +94,8 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name='Main'
-            component={MainNavigate}
+            name='HomeScreen'
+            component={HomeScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
@@ -158,8 +149,13 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name={FEATURE_FLAG_SCREEN_NAME}
-            component={FeatureFlagsScreen}
+            name='ReportScreen'
+            component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='AuroraScreen'
+            component={AboutScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

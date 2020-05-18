@@ -70,7 +70,6 @@ exports[`<ExportScreen /> renders correctly 1`] = `
           accessibilityLabel="Close"
           accessible={true}
           focusable={true}
-          isTVSelectable={true}
           style={
             Object {
               "alignContent": "center",
@@ -168,7 +167,6 @@ exports[`<ExportScreen /> renders correctly 1`] = `
               accessibilityRole="button"
               accessible={true}
               focusable={true}
-              isTVSelectable={true}
               style={
                 Object {
                   "alignContent": "center",

@@ -4,9 +4,6 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import Colors from '../../../constants/DR/colors.js';
-
-const { background, orange, pink, mainBlue } = Colors;
 const textFontSize = wp('4%');
 
 const styles = StyleSheet.create({

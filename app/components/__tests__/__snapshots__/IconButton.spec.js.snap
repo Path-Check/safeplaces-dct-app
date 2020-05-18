@@ -13,7 +13,6 @@ exports[`allows size override 1`] = `
   <View
     accessible={true}
     focusable={false}
-    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
@@ -49,7 +48,6 @@ exports[`changes color based on theme 1`] = `
   <View
     accessible={true}
     focusable={false}
-    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
@@ -72,7 +70,6 @@ exports[`changes color based on theme 1`] = `
   <View
     accessible={true}
     focusable={false}
-    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
@@ -108,7 +105,6 @@ exports[`renders different color for secondary 1`] = `
   <View
     accessible={true}
     focusable={false}
-    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
@@ -146,7 +142,6 @@ exports[`renders the icon in a touchable opacity 1`] = `
     accessibilityLabel="Label"
     accessible={true}
     focusable={false}
-    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
