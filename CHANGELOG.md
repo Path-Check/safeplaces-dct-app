@@ -1,3 +1,7 @@
+## [1.0.15](https://github.com/intellisysdcorp/covid-safe-paths/compare/1.0.14...1.0.15) (2020-05-18)
+
+
+
 ## [1.0.14](https://github.com/intellisysdcorp/covid-safe-paths/compare/1.0.13...1.0.14) (2020-05-18)
 
 
@@ -16,10 +20,6 @@
 
 
 # [1.0.0-rc0.5](https://github.com/intellisysdcorp/covid-safe-paths/compare/v1.0.0-rc0.4...v1.0.0-rc0.5) (2020-05-08)
-
-
-
-# [1.0.0-rc0.4](https://github.com/intellisysdcorp/covid-safe-paths/compare/v1.0.0-rc0.3...v1.0.0-rc0.4) (2020-05-08)
 
 
 
