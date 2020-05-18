@@ -1,4 +1,3 @@
-import EnableAuthoritySubscription from '../pages/EnableAuthoritySubscription.po.js';
 import FinishSetup from '../pages/FinishSetup.po.js';
 import Onboarding1 from '../pages/Onboarding1.po.js';
 import Onboarding2 from '../pages/Onboarding2.po.js';
