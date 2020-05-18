@@ -5,8 +5,13 @@
     "operating_system_abbr": "OS:",
     "version": "Vèsyon:"
   },
+  "authorities": {
+    "invalid_url_body": "URL ou antre a pa valid, silvouplè eseye ankò",
+    "invalid_url_title": "URL envalid"
+  },
   "common": {
-    "done": "Fini"
+    "done": "Fini",
+    "ok": "Ok"
   },
   "history": {
     "no_exposure": "Pa gen kontak",
@@ -42,6 +47,14 @@
     "authorities_add_url": "Ajoute otorite a pati yon URL",
     "authorities_desc": "Chwazi otorite ke ou fè konfyans nan zòn ou an pou jwenn done ekspoze yo. Swa ou chwazi yon non ki soti nan rejis global la, oswa antre non adrès entènèt yon otorite, ki te aplike Chase Kowona (\"Safe Paths\"), te bay.",
     "authorities_input_placeholder": "Kole URL ou an la",
+    "authorities_new_in_area_msg": "Enskri nan {{count}} nouvo otorite swen sante ou fè konfyans nan zòn ou",
+    "authorities_new_in_area_msg_plural": "Enskri nan {{count}} nouvo otorite swen sante yo ou fè konfyans nan zòn ou",
+    "authorities_new_in_area_title": "Nouvo otorite swen sante",
+    "authorities_new_in_area_title_plural": "Nouvo otorite swen sante yo",
+    "authorities_new_subscription_msg": "Ou te enski nan {{count}} nouvo otorite nan zòn ou",
+    "authorities_new_subscription_msg_plural": "Ou te enski nan {{count}} nouvo otorite nan zòn ou",
+    "authorities_new_subscription_title": "{{count}} Nouvo enskripsyon",
+    "authorities_new_subscription_title_plural": "{{count}} Nouvo enskripsyon yo",
     "authorities_no_sources": "Ou poko genyen sous done!",
     "authorities_removal_alert_cancel": "Anile",
     "authorities_removal_alert_desc": "Eske ou si ke ou vle retire sous done otorite sa?",
@@ -107,6 +120,7 @@
     "news_subtitle": "Li dènye mizajou sou Kowonaviris ak videyo, atik, ilistrasyon ak lòt resous ke ou ka itilize pou jere sitiyasyon an pi byen.",
     "news_title": "Dènye nouvèl",
     "no_data": "Pa gen okenn done",
+    "privacy_policy": "Règleman sou enfòmasyon prive",
     "push_at_risk_message": "Ou te kwaze chemen avèk yon moun ki enfekte Kowonaviris",
     "push_at_risk_title": "Ou ka gen risk",
     "see_exposure_history": "Wè lis ekspozisyon",
