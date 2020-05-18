@@ -10,7 +10,7 @@ const colors = {
   SUCCESS: '#41dca4',
   GREEN: '#41dca4',
   WARNING: '#ffc000',
-  orange: '#ffc000',
+  ORANGE: '#ffc000',
   VIOLET_ALPHA_06: '#f7f8ff', // cannot use transparency
   VIOLET: '#4051DB',
   TRANSPARENT: 'transparent',

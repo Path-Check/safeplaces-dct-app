@@ -100,7 +100,7 @@ export const getTheme = themeName => {
  * - onPrimary - color to show on top of primary (usually white)
  * - textPrimaryOnBackground - text color to show on background
  * - textSecondaryOnBackground - secondary text color to show on background
- * - warning - warning color (always orange)
+ * - warning - warning color (always ORANGE)
  * - success - success color (always green)
  * - border - border/divider color (usually gray)
  *
