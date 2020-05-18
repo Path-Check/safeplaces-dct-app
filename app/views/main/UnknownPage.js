@@ -17,13 +17,22 @@ import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
-export const UnknownPage = () => {
+export const UnknownPage = ({ tracingStrategy }) => {
   const { t } = useTranslation();
-  const buttonLabel = t('label.home_enable_location');
   const handleEnableLocationPress = () => {
     openSettings();
   };
   const size = Dimensions.get('window').height;
+
+  const buttonLabel =
+    tracingStrategy === 'gps'
+      ? t('label.home_enable_location')
+      : 'Enable Bluetooth';
+  const ctaText =
+    tracingStrategy === 'gps'
+      ? t('label.home_unknown_subtext')
+      : 'Bluetooth not enabled';
+
   return (
     <Theme use='violet'>
       <ImageBackground
@@ -51,9 +60,7 @@ export const UnknownPage = () => {
             <Text style={styles.mainTextBelow}>
               {t('label.home_unknown_header')}
             </Text>
-            <Typography style={styles.subheaderText}>
-              {t('label.home_unknown_subtext')}
-            </Typography>
+            <Typography style={styles.subheaderText}>{ctaText}</Typography>
             <View style={styles.buttonContainer}>
               <Button
                 label={buttonLabel}
