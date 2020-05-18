@@ -7,8 +7,10 @@ import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
+let lastLocationNotification;
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION = '55';
+const LOCATION_NOTIFICATION_TIMEOUT = 1000 * 60 * 60 * 12;
 
 export const Reason = {
   LOCATION_OFF: 'LOCATION_OFF',
@@ -230,10 +232,16 @@ export default class LocationServices {
 
   static async stop() {
     // unregister all event listeners
-    PushNotification.localNotification({
-      title: languages.t('label.location_disabled_title'),
-      message: languages.t('label.location_disabled_message'),
-    });
+    if (
+      !lastLocationNotification ||
+      new Date().getTime() - lastLocationNotification >
+        LOCATION_NOTIFICATION_TIMEOUT
+    ) {
+      PushNotification.localNotification({
+        title: languages.t('label.location_disabled_title'),
+        message: languages.t('label.location_disabled_message'),
+      });
+    }
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
     isBackgroundGeolocationConfigured = false;
