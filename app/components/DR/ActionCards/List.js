@@ -7,8 +7,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-import fontFamily from '../constants/fonts';
+import Colors from '../../../constants/colors';
+import fontFamily from '../../../constants/fonts';
 
 export default function DataList({
   data = [],
@@ -25,7 +27,13 @@ export default function DataList({
     <>
       {data.map(
         (
-          { url = '', img, title = '', dateLabel = '', content = '' },
+          {
+            url = '#',
+            img: { source },
+            title = '',
+            dateLabel = '',
+            content = '',
+          },
           index,
         ) => (
           <TouchableOpacity
@@ -37,12 +45,7 @@ export default function DataList({
             }
             key={String(index)}
             style={styles.itemContainer}>
-            {img && (
-              <Image
-                style={styles.image}
-                source={{ uri: Object.values(img)[1] }}
-              />
-            )}
+            <Image style={styles.image} source={source} />
             <View style={styles.right}>
               <Text
                 numberOfLines={titleLinesNum}
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     height: '20%',
     borderRadius: 10,
     maxHeight: 90,
@@ -84,8 +87,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    height: '100%',
-    width: '30%',
+    height: wp('15%'),
+    width: wp('15%'),
     borderRadius: 8,
   },
   description: {

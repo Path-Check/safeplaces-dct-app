@@ -2,9 +2,9 @@ import React from 'react';
 import { ImageBackground, StyleSheet, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import placeholder from '../assets/images/placeholder.png';
-import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
+import placeholder from '../../../assets/images/placeholder.png';
+import Colors from '../../../constants/colors';
+import fontFamily from '../../../constants/fonts';
 
 export default function HeaderImage({ imgUrl, title }) {
   return (
@@ -26,11 +26,6 @@ export default function HeaderImage({ imgUrl, title }) {
 const styles = StyleSheet.create({
   container: {
     height: 200,
-  },
-  description: {
-    fontSize: 11,
-    color: Colors.WHITE,
-    fontFamily: fontFamily.primaryRegular,
   },
   title: {
     fontFamily: fontFamily.primaryBold,
