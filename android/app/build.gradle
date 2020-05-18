@@ -198,13 +198,11 @@ android {
 
     flavorDimensions "version"
     productFlavors {
-        dev {
+        gps {
             dimension "version"
         }
-        staging {
-            dimension "version"
-        }
-        prod {
+        bte {
+            applicationIdSuffix '.bte'
             dimension "version"
         }
     }
