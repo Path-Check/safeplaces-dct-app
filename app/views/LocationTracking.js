@@ -244,10 +244,7 @@ class LocationTracking extends Component {
   }
 
   willParticipate = () => {
-    SetStoreData(PARTICIPATE, 'true').then(() => {
-      // Turn of bluetooth for v1
-      //BroadcastingServices.start();
-    });
+    SetStoreData(PARTICIPATE, 'true')
     // Check and see if they actually authorized in the system dialog.
     // If not, stop services and set the state to !isLogging
     // Fixes tripleblindmarket/private-kit#129
@@ -259,8 +256,6 @@ class LocationTracking extends Component {
         });
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
         LocationServices.stop();
-        // Turn off bluetooth for v1
-        //BroadcastingServices.stop(this.props.navigation);
         BackgroundTaskServices.stop();
         this.setState({
           isLogging: false,
