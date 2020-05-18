@@ -134,10 +134,14 @@ describe('intersectSetIntoBins', () => {
       baseLocations = normalizeAndSortLocations(baseLocations);
       concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let { bins, newIntersectionCount } = intersectSetIntoBins(
+        baseLocations,
+        concernLocations,
+      );
       let expectedBins = getEmptyLocationBins();
 
-      expect(resultBins).toEqual(expectedBins);
+      expect(bins).toEqual(expectedBins);
+      expect(newIntersectionCount).toBe(0);
     });
 
     /**
@@ -182,10 +186,14 @@ describe('intersectSetIntoBins', () => {
       baseLocations = normalizeAndSortLocations(baseLocations);
       concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let { bins, newIntersectionCount } = intersectSetIntoBins(
+        baseLocations,
+        concernLocations,
+      );
       let expectedBins = getEmptyLocationBins();
 
-      expect(resultBins).toEqual(expectedBins);
+      expect(bins).toEqual(expectedBins);
+      expect(newIntersectionCount).toBe(0);
     });
 
     /**
@@ -232,14 +240,19 @@ describe('intersectSetIntoBins', () => {
       baseLocations = normalizeAndSortLocations(baseLocations);
       concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let { bins, newIntersectionCount } = intersectSetIntoBins(
+        baseLocations,
+        concernLocations,
+      );
+
       let expectedBins = getEmptyLocationBins();
       expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[10] = 0; // expect 0 (not -1) becuase we have location data for this bin
 
-      expect(resultBins).toEqual(expectedBins);
+      expect(bins).toEqual(expectedBins);
+      expect(newIntersectionCount).toBe(0);
     });
   });
 
@@ -329,7 +342,8 @@ describe('intersectSetIntoBins', () => {
       baseLocations = normalizeAndSortLocations(baseLocations);
       concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernLocations)
+        .bins;
 
       let expectedBins = getEmptyLocationBins();
       expectedBins[0] = dayjs
@@ -419,7 +433,8 @@ describe('intersectSetIntoBins', () => {
       baseLocations = normalizeAndSortLocations(baseLocations);
       concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernLocations)
+        .bins;
       let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
       expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -501,7 +516,8 @@ describe('intersectSetIntoBins', () => {
       baseLocations = normalizeAndSortLocations(baseLocations);
       concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernLocations)
+        .bins;
       let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
       expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -552,7 +568,8 @@ describe('intersectSetIntoBins', () => {
       baseLocations = normalizeAndSortLocations(baseLocations);
       concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernLocations)
+        .bins;
       let expectedBins = getEmptyLocationBins();
 
       expectedBins[0] = dayjs
@@ -615,7 +632,8 @@ describe('intersectSetIntoBins', () => {
       baseLocations = normalizeAndSortLocations(baseLocations);
       concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernLocations)
+        .bins;
       let expectedBins = getEmptyLocationBins();
 
       expectedBins[0] = dayjs
@@ -684,12 +702,13 @@ describe('intersectSetIntoBins', () => {
       let resultBins = intersectSetIntoBins(
         baseLocations,
         concernLocations,
+        {},
         21, // override to 21 dayBins
         dayjs.duration(CONCERN_TIME_WINDOW_MINUTES, 'minutes').asMilliseconds(), // setting the concern time window
         dayjs
           .duration(DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
           .asMilliseconds(), //override the exposure period to 1 minute longer that the default
-      );
+      ).bins;
       let expectedBins = getEmptyLocationBins(21);
 
       expectedBins[0] = dayjs
@@ -703,6 +722,78 @@ describe('intersectSetIntoBins', () => {
         .asMilliseconds(); // 3960000 - Should end up counting 66 minutes total at kansascity (60 minutes, plus the one at the current moment @ the 6 minute default)
 
       expect(resultBins).toEqual(expectedBins);
+    });
+
+    it('non concern locations shows no intersections', () => {
+      // 13 location data seperated 5 minutes a part
+      let baseLocations = [
+        ...generateBackfillLocationArray(
+          TEST_LOCATIONS.kansascity.base,
+          TEST_MOMENT.valueOf(),
+        ),
+      ];
+
+      let concernLocations = [
+        ...generateBackfillLocationArray(
+          TEST_LOCATIONS.kansascity.no_concern,
+          TEST_MOMENT.valueOf(),
+        ),
+      ];
+
+      // normalize and sort
+      baseLocations = normalizeAndSortLocations(baseLocations);
+      concernLocations = normalizeAndSortLocations(concernLocations);
+
+      let knownIntersections = {};
+
+      let { newIntersectionCount } = intersectSetIntoBins(
+        baseLocations,
+        concernLocations,
+        knownIntersections,
+      );
+
+      expect(newIntersectionCount).toBe(0);
+    });
+
+    /**
+     * Test checks for new intersections and repeated intersections for a given matching locations
+     */
+    it('concern locations shows intersections', () => {
+      // 13 location data seperated 5 minutes a part
+      let baseLocations = [
+        ...generateBackfillLocationArray(
+          TEST_LOCATIONS.kansascity.base,
+          TEST_MOMENT.valueOf(),
+        ),
+      ];
+
+      let concernLocations = [
+        ...generateBackfillLocationArray(
+          TEST_LOCATIONS.kansascity.concern,
+          TEST_MOMENT.valueOf(),
+        ),
+      ];
+
+      // normalize and sort
+      baseLocations = normalizeAndSortLocations(baseLocations);
+      concernLocations = normalizeAndSortLocations(concernLocations);
+
+      let knownIntersections = {};
+
+      let { newIntersectionCount } = intersectSetIntoBins(
+        baseLocations,
+        concernLocations,
+        knownIntersections,
+      );
+
+      expect(newIntersectionCount).toBe(3900000);
+
+      newIntersectionCount = intersectSetIntoBins(
+        baseLocations,
+        concernLocations,
+        knownIntersections,
+      ).newIntersectionCount;
+      expect(newIntersectionCount).toBe(0);
     });
   });
 
@@ -764,7 +855,8 @@ describe('intersectSetIntoBins', () => {
       baseLocations = normalizeAndSortLocations(baseLocations);
       concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernLocations)
+        .bins;
 
       let expectedBins = getEmptyLocationBins();
       expectedBins[0] = dayjs
