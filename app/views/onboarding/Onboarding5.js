@@ -24,6 +24,7 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
+import { tracingStrategy } from '../../COVIDSafePathsConfig';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { HCAService } from '../../services/HCAService';
@@ -394,6 +395,26 @@ const Onboarding = ({ navigation }) => {
     }
   };
 
+  const LocationPermissionQuestions = () => {
+    return (
+      <>
+        {getLocationPermission()}
+        {getNotificationsPermissionIfIOS()}
+        {__DEV__ && getAuthSubscriptionStatus()}
+        <View style={styles.spacer} />
+      </>
+    );
+  };
+
+  const BluetoothPermissionQuestions = () => {
+    return (
+      <PermissionDescription
+        title={'Ask for bluetooth permission here'}
+        status={PermissionStatusEnum.UNKNOWN}
+      />
+    );
+  };
+
   return (
     <Theme use='violet'>
       <ImageBackground
@@ -411,10 +432,11 @@ const Onboarding = ({ navigation }) => {
             {getSubtitleText()}
             {getSkipStepButton()}
             <View style={styles.statusContainer}>
-              {getLocationPermission()}
-              {getNotificationsPermissionIfIOS()}
-              {__DEV__ && getAuthSubscriptionStatus()}
-              <View style={styles.spacer} />
+              {tracingStrategy === 'gps' ? (
+                <LocationPermissionQuestions />
+              ) : (
+                <BluetoothPermissionQuestions />
+              )}
             </View>
           </View>
         </View>

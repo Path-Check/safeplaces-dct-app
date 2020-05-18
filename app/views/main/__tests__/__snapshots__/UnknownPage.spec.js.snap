@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`unknown permissions matches snapshot 1`] = `
+exports[`UnknowPage when the tracing strategy is gps and the permissions are unknown it matches the snapshot 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
