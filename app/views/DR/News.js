@@ -73,6 +73,7 @@ export default function NewsScreen({ navigation }) {
       <View style={styles.container}>
         <HeaderImage imgUrl={imgNews} title={languages.t('label.news_title')} />
         <ScrollView>
+          <HeaderImage imgUrl={imgNews} title='News' />
           <DataList
             data={news}
             navigation={navigation}

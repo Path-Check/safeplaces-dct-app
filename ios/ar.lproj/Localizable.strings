@@ -1,0 +1,4 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "يقوم تطبيق COVID Safe Paths بتخزين إحداثيات موقعك بأمان مرة واحدة كل خمس دقائق على هذا الجهاز";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "تم إغلاق COVID Safe Paths";

@@ -3,27 +3,27 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
+  NativeModules,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import RNFS from 'react-native-fs';
 import LinearGradient from 'react-native-linear-gradient';
 import Share from 'react-native-share';
-import { SvgXml } from 'react-native-svg';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
 import { isPlatformiOS } from './../Util';
+import { Button } from '../components/Button';
+import { IconButton } from '../components/IconButton';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { Theme } from '../constants/themes';
-import { LocationData } from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64;
 
@@ -48,7 +48,7 @@ export const ExportScreen = ({ navigation }) => {
 
   async function onShare() {
     try {
-      let locationData = await new LocationData().getLocationData();
+      let locationData = await NativeModules.SecureStorageManager.getLocations();
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
 
@@ -121,11 +121,12 @@ export const ExportScreen = ({ navigation }) => {
           colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
           style={{ flex: 1, height: '100%' }}>
           <View style={styles.headerContainer}>
-            <TouchableOpacity
-              style={styles.backArrowTouchable}
-              onPress={() => backToMain()}>
-              <SvgXml style={styles.backArrow} xml={close} />
-            </TouchableOpacity>
+            <IconButton
+              icon={close}
+              size={18}
+              onPress={() => backToMain()}
+              accessibilityLabel='Close'
+            />
           </View>
 
           <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -140,12 +141,12 @@ export const ExportScreen = ({ navigation }) => {
                 {t('share.paragraph_second')}
               </Typography>
 
-              <TouchableOpacity style={styles.exportButton} onPress={onShare}>
-                <Typography style={styles.exportButtonText}>
-                  {t('share.button_text')}
-                </Typography>
-                <SvgXml style={styles.exportIcon} xml={exportIcon} />
-              </TouchableOpacity>
+              <Button
+                style={styles.exportButton}
+                label={t('share.button_text')}
+                icon={exportIcon}
+                onPress={onShare}
+              />
             </View>
           </ScrollView>
         </LinearGradient>
@@ -165,19 +166,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.VIOLET_BUTTON_DARK,
   },
   headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 55,
-    justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 1,
-  },
-  backArrow: {
-    height: 18,
-    width: 18,
+    flexDirection: 'row',
+    height: 55,
+    justifyContent: 'flex-end',
+    paddingHorizontal: 26,
   },
   contentContainer: {
     flexDirection: 'column',
@@ -193,24 +186,8 @@ const styles = StyleSheet.create({
   exportSectionPara: {
     marginTop: 22,
   },
-
   exportButton: {
-    backgroundColor: Colors.WHITE,
-    flexDirection: 'row',
-    height: 64,
-    borderRadius: 8,
     marginTop: 48,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  exportButtonText: {
-    color: Colors.VIOLET,
-    fontSize: 20,
-    fontFamily: fontFamily.primaryMedium,
-  },
-  exportIcon: {
-    width: 16,
-    height: 21,
   },
   main: {
     flex: 1,
