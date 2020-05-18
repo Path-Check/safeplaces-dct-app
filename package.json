@@ -5,7 +5,8 @@
   "scripts": {
     "clean": "rm -rf node_modules && yarn",
     "start": "yarn && react-native start",
-    "run-android": "react-native run-android --variant=devDebug",
+    "run-android-bte": "react-native run-android --variant=bteDebug --appIdSuffix=bte",
+    "run-android-gps": "react-native run-android --variant=gpsDebug",
     "run-ios-bte": "react-native run-ios --scheme \"BTE\"",
     "run-ios-gps": "react-native run-ios --scheme \"GPS\"",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
