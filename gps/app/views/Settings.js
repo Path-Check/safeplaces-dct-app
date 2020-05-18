@@ -1,4 +1,5 @@
 import styled, { css } from '@emotion/native';
+import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
@@ -6,13 +7,14 @@ import { BackHandler, ScrollView, View } from 'react-native';
 import checkmarkIcon from '../../../shared/assets/svgs/checkmarkIcon';
 import languagesIcon from '../../../shared/assets/svgs/languagesIcon';
 import xmarkIcon from '../../../shared/assets/svgs/xmarkIcon';
+import LocationService from '../../app/services/LocationService';
 import { Divider } from '../components/Divider';
 import { FeatureFlag } from '../components/FeatureFlag';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import { SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
@@ -36,16 +38,13 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   useEffect(() => {
+    checkIsLocationEnable();
+
     const handleBackPress = () => {
       navigation.goBack();
       return true;
     };
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    // TODO: this should be a service or hook
-    GetStoreData(PARTICIPATE)
-      .then(isParticipating => setIsLogging(isParticipating === 'true'))
-      .catch(error => console.log(error));
 
     // TODO: extract into service or hook
     getUserLocaleOverride().then(locale => locale && setUserLocale(locale));
@@ -55,11 +54,45 @@ export const SettingsScreen = ({ navigation }) => {
     };
   }, [navigation]);
 
+  //  This method is used to track whether user has "Allow" or "Deny" location permission system Dialog.
+  const systemDialogPermission = async () => {
+    BackgroundGeolocation.on('authorization', async status => {
+      if (status === BackgroundGeolocation.AUTHORIZED) {
+        // when user allow
+        setIsLogging(true);
+        LocationServices.start();
+        await SetStoreData(PARTICIPATE, true);
+      } else {
+        // when user deny
+        setIsLogging(false);
+        LocationServices.stop();
+        await SetStoreData(PARTICIPATE, false);
+      }
+    });
+  };
+
+  // checking whether location permission is enable or disbale from application setting on load of setting's page.
+  const checkIsLocationEnable = () => {
+    LocationService.checkStatus()
+      .then(async res => {
+        if (res !== undefined) {
+          if (res.isRunning === true) {
+            await SetStoreData(PARTICIPATE, true);
+            setIsLogging(true);
+          }
+        }
+      })
+      .catch(err => {
+        console.log('TCL: SettingsScreen -> err', err);
+      });
+  };
+
   const locationToggleButtonPressed = async () => {
     try {
       isLogging ? LocationServices.stop() : LocationServices.start();
       await SetStoreData(PARTICIPATE, !isLogging);
       setIsLogging(!isLogging);
+      systemDialogPermission();
     } catch (e) {
       console.log(e);
     }
