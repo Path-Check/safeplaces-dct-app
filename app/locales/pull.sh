@@ -1,10 +1,10 @@
+#!/bin/bash
+set -e
+
 # Usage:
 #   - Create a READ ONLY a token at https://app.lokalise.com/profile
 #   - Run the command from the root of the project with:
 #     LOKALISE_TOKEN=<token> yarn i18n:pull
-
-#!/bin/bash
-set -e
 
 function found_exe() {
   hash "$1" 2>/dev/null
@@ -28,10 +28,11 @@ fi
 echo "Downloading iOS *.strings"
 lokalise2 file download \
   --add-newline-eof \
-  --export-empty-as skip \
+  --export-empty-as=skip \
   --format strings \
   --include-description \
   --original-filenames \
+  --placeholder-format=ios \
   --unzip-to=ios \
   --export-sort=a_z \
   --config .lokalise.yml --token=$LOKALISE_TOKEN

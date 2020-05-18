@@ -33,7 +33,7 @@ class NewsScreen extends Component {
     this.state = {
       visible: true,
       default_news: default_news,
-      newsUrls: [default_news, default_news],
+      newsUrls: [],
       current_page: 0,
     };
   }

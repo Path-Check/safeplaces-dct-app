@@ -35,6 +35,7 @@ export const violet = {
 
   primary: Color.WHITE,
   onPrimary: Color.BLUE_RIBBON,
+  disabled: '#ececec',
 };
 
 /** White on gray bg. E.g. Possible exposure mode on default screen */
@@ -120,3 +121,9 @@ export const Theme = ({ use = 'default', setBackground = false, children }) => {
     </ThemeProvider>
   );
 };
+
+/**
+ * @param {{theme: defaultTheme, secondary?: boolean}} param0
+ */
+export const themeTextColor = ({ theme, secondary }) =>
+  secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;

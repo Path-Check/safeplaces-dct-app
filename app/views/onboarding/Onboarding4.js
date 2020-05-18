@@ -8,11 +8,12 @@ import {
 } from 'react-native';
 
 import BackgroundImage from './../../assets/images/launchScreen1.png';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import { Button } from '../../components/Button';
 import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
+import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
@@ -36,9 +37,9 @@ const Onboarding = props => {
           {languages.t('label.launch_screen4_subheader')}
         </Typography>
       </View>
-      <View style={styles.footerContainer}>
-        <ButtonWrapper
-          title={languages.t('label.launch_set_up_phone')}
+      <View style={sharedStyles.footerContainer}>
+        <Button
+          label={languages.t('label.launch_set_up_phone')}
           onPress={() => {
             props.navigation.replace('Onboarding5');
           }}
@@ -78,12 +79,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     width: width * 0.6,
     fontFamily: fontFamily.primaryRegular,
-  },
-  footerContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: '10%',
-    alignSelf: 'center',
   },
 });
 
