@@ -63,7 +63,6 @@ exports[`renders default values from the flags provider 1`] = `
             Object {
               "color": "#FFF",
               "height": 18,
-              "opacity": 0.4,
               "width": 18,
             }
           }
@@ -97,7 +96,7 @@ exports[`renders default values from the flags provider 1`] = `
       bold={true}
       style={
         Object {
-          "color": "#4051DB",
+          "color": "#000",
           "fontFamily": "IBMPlexSans-Bold",
           "fontSize": 18,
           "fontWeight": "bold",
@@ -115,7 +114,7 @@ exports[`renders default values from the flags provider 1`] = `
     <Text
       style={
         Object {
-          "color": "#4051DB",
+          "color": "#000",
           "fontFamily": "IBMPlexSans",
           "fontSize": 16,
           "fontWeight": "normal",
@@ -168,7 +167,7 @@ exports[`renders default values from the flags provider 1`] = `
           bold={true}
           style={
             Object {
-              "color": "#4051DB",
+              "color": "#000",
               "fontFamily": "IBMPlexSans-Bold",
               "fontSize": 18,
               "fontWeight": "bold",
@@ -218,7 +217,7 @@ exports[`renders default values from the flags provider 1`] = `
             bold={true}
             style={
               Object {
-                "color": "#4051DB",
+                "color": "#000",
                 "fontFamily": "IBMPlexSans-Bold",
                 "fontSize": 18,
                 "fontWeight": "bold",
@@ -233,7 +232,7 @@ exports[`renders default values from the flags provider 1`] = `
           <Text
             style={
               Object {
-                "color": "#4051DB",
+                "color": "#000",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 16,
                 "fontWeight": "normal",
@@ -247,7 +246,7 @@ exports[`renders default values from the flags provider 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#4051DB",
+                  "color": "#000",
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 15,
                   "fontStyle": "italic",

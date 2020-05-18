@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     marginTop: 36,
   },
   aboutSectionTitles: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.BLACK,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
     marginTop: 36,

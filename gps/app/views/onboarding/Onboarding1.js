@@ -84,7 +84,7 @@ class Onboarding extends Component {
                     <TouchableOpacity
                       onPress={openPicker}
                       style={styles.languageSelector}>
-                      <Typography style={styles.languageSelectorText}>
+                      <Typography use='body2' style={styles.languageSelectorText}>
                         {label}
                       </Typography>
                     </TouchableOpacity>
@@ -140,16 +140,16 @@ const styles = StyleSheet.create({
   // eslint-disable-next-line react-native/no-color-literals
   languageSelector: {
     // alpha needs to be in the bg color otherwise it fades the contained text
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    borderWidth: 1,
+    borderColor: Colors.WHITE,
     paddingVertical: 4,
     paddingHorizontal: 11,
     borderRadius: 100,
   },
   languageSelectorText: {
-    fontSize: 12,
-    color: Colors.VIOLET,
+    color: Colors.WHITE,
     paddingVertical: 4,
-    paddingHorizontal: 11,
+    paddingHorizontal: 20,
     opacity: 1,
     textAlign: 'center',
     textTransform: 'uppercase',

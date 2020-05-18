@@ -7,8 +7,8 @@ import Color from './colors';
 /** Violet on pale violet bg. e.g. Settings */
 export const defaultTheme = {
   background: Color.VIOLET_ALPHA_06,
-  textPrimaryOnBackground: Color.VIOLET,
-  textSecondaryOnBackground: 'rgba(64, 81, 219, 0.6)',
+  textPrimaryOnBackground: Color.BLACK,
+  textSecondaryOnBackground: Color.VIOLET,
 
   navBar: Color.VIOLET,
   onNavBar: Color.WHITE,

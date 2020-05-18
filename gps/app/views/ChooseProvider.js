@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WHITE,
   },
   headerTitle: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.BLACK,
   },
   sectionDescription: {
     marginTop: 12,

@@ -32,7 +32,7 @@ const colors = {
   INTRO_WHITE_BG: '#F7F8FF',
   PULSE_WHITE: '#FFFFFF40',
 
-  DIVIDER: '#A5AFFB',
+  DIVIDER: '#e5e7fa',
 
   BLUE_BUTTON: '#05369B',
   BLUE_TO_BUTTON: '#185BD3',

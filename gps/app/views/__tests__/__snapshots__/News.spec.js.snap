@@ -90,7 +90,6 @@ exports[`renders correctly 1`] = `
               Object {
                 "color": "#FFF",
                 "height": 18,
-                "opacity": 0.4,
                 "width": 18,
               }
             }

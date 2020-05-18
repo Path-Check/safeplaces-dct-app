@@ -13,7 +13,7 @@ exports[`body1 is regular 1`] = `
   <Text
     style={
       Object {
-        "color": "#4051DB",
+        "color": "#000",
         "fontFamily": "IBMPlexSans",
         "fontSize": 18,
         "fontWeight": "normal",
@@ -56,7 +56,7 @@ exports[`changes color based on theme 1`] = `
   <Text
     style={
       Object {
-        "color": "#4051DB",
+        "color": "#000",
         "fontFamily": "IBMPlexSans",
         "fontSize": 18,
         "fontWeight": "normal",
@@ -84,7 +84,7 @@ exports[`headline1 is large and bold 1`] = `
   <Text
     style={
       Object {
-        "color": "#4051DB",
+        "color": "#000",
         "fontFamily": "IBMPlexSans-Bold",
         "fontSize": 52,
         "fontWeight": "bold",

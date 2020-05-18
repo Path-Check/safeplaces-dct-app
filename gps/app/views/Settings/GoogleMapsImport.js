@@ -22,7 +22,7 @@ export const GoogleMapsImport = ({ navigation }) => {
       </TitleRow>
 
       <ParagraphContainer>
-        <Typography use='body2'>{t('import.subtitle')}</Typography>
+        <Typography secondary use='body2'>{t('import.subtitle')}</Typography>
       </ParagraphContainer>
 
       <Button

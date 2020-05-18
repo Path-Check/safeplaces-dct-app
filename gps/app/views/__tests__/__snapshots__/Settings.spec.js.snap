@@ -63,7 +63,6 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             Object {
               "color": "#FFF",
               "height": 18,
-              "opacity": 0.4,
               "width": 18,
             }
           }
@@ -693,6 +692,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             }
           >
             <Text
+              secondary={true}
               style={
                 Object {
                   "fontFamily": "IBMPlexSans",
@@ -1035,7 +1035,6 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             Object {
               "color": "#FFF",
               "height": 18,
-              "opacity": 0.4,
               "width": 18,
             }
           }

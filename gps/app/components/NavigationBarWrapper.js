@@ -98,7 +98,6 @@ const BackArrowSvg = styled(SvgXml)`
   height: 18px;
   width: 18px;
   color: ${Colors.WHITE};
-  opacity: 0.4;
 `;
 
 NavigationBarWrapper.propTypes = {
