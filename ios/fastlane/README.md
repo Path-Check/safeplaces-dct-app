@@ -41,6 +41,11 @@ Push a new GPS Release build to TestFlight
 fastlane ios release_bte
 ```
 Push a new BTE Release build to TestFlight
+### ios deploy
+```
+fastlane ios deploy
+```
+Push a new beta build to TestFlight
 
 ----
 
