@@ -150,7 +150,7 @@ exports[`setting off matches snapshot 1`] = `
             }
           }
         >
-          Unknown
+          Safe Paths
         </Text>
         <Text
           style={
@@ -167,7 +167,7 @@ exports[`setting off matches snapshot 1`] = `
           }
           use="body1"
         >
-          We can’t tell if you’re at risk unless you enable location history in the settings screen.
+          Safe Paths needs location access in Settings to privately save the places you visit. You will not receive notifications about possible contact with COVID-19.
         </Text>
         <View
           accessibilityLabel="Enable Location Data"

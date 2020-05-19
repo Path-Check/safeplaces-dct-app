@@ -150,7 +150,7 @@ exports[`unknown permissions matches snapshot 1`] = `
             }
           }
         >
-          Unknown
+          Safe Paths
         </Text>
         <Text
           style={
@@ -167,7 +167,12 @@ exports[`unknown permissions matches snapshot 1`] = `
           }
           use="body1"
         >
-          We can’t tell if you’re at risk unless you enable the app to access your location.
+          Safe Paths needs location access in Settings to privately save 
+the places you visit 
+
+You will not receive notifications 
+about possible contact with 
+people who have COVID-19
         </Text>
         <View
           style={

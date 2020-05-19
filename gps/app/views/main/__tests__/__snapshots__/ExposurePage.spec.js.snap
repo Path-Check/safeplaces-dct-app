@@ -114,7 +114,7 @@ exports[`may be exposed matches snapshot 1`] = `
           }
           use="body1"
         >
-          You May Be Exposed
+          Safe Paths
         </Text>
         <Text
           style={

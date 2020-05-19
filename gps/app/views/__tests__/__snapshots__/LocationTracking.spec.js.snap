@@ -140,7 +140,7 @@ exports[`renders correctly 1`] = `
           }
           use="body1"
         >
-          No known contact
+          Safe Paths
         </Text>
         <Text
           style={
@@ -157,7 +157,7 @@ exports[`renders correctly 1`] = `
           }
           use="body1"
         >
-          Based on available data you haven’t been near anyone reported positive for COVID-19.
+          Safe Paths is privately saving the places you visit and storing them  on your phone. Notifications about possible contact with COVID-19 are not yet available in your area.
         </Text>
       </View>
     </View>

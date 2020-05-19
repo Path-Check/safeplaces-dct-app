@@ -145,7 +145,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
               }
               use="body1"
             >
-              If you test positive for COVID-19, please do your part by sharing your location history with local authorities.
+              If you test positive for COVID-19, you can choose to share your location history with your Health Authorities during a contact tracing interview, where available.
             </Text>
             <Text
               style={
