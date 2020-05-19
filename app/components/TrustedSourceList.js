@@ -1,4 +1,4 @@
-import { findIndex } from 'lodash';
+import findIndex from 'lodash/findIndex';
 import React from 'react';
 import { StyleSheet, Switch, TouchableOpacity } from 'react-native';
 import { MenuOption } from 'react-native-popup-menu';
@@ -7,7 +7,7 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import languages from '../locales/languages';
 
-export default function TrustedSourceList({
+export const TrustedSourceList = ({
   selectedAuthorities,
   authoritiesList,
   isAuthorityFilterActive,
@@ -15,7 +15,7 @@ export default function TrustedSourceList({
   addAuthorityToState,
   filterAuthoritesByGPSHistory,
   onMenuClick,
-}) {
+}) => {
   const isAuthoritySelected = name => {
     return findIndex(selectedAuthorities, ['key', name]) < 0;
   };
@@ -66,7 +66,7 @@ export default function TrustedSourceList({
       </MenuOption>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   authorityFilter: {

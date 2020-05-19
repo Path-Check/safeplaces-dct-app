@@ -21,7 +21,7 @@ import saveIcon from './../assets/images/saveIcon.png';
 import { Checkbox } from '../components/Checkbox';
 import { DynamicTextInput } from '../components/DynamicTextInput';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import TrustedSourceList from '../components/TrustedSourceList';
+import { TrustedSourceList } from '../components/TrustedSourceList';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
