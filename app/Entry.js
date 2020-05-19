@@ -19,8 +19,6 @@ import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
-import LocationTracking from './views/LocationTracking';
-import { MainNavigate } from './views/Main';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
@@ -95,11 +93,6 @@ class Entry extends Component {
           <Stack.Screen
             name='Onboarding5'
             component={Onboarding5}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='HomeScreen'
-            component={HomeScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

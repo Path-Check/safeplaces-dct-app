@@ -4,12 +4,11 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import Colors from '../../../constants/DR/colors';
+import Colors from '../../../constants/colors';
 
 const screenH = Dimensions.get('screen').height;
 const windowH = Dimensions.get('window').height;
 const androidBottom = screenH - windowH;
-const { background, pink, mainBlue } = Colors;
 const textFontSize = wp('4%');
 
 const styles = StyleSheet.create({
@@ -18,7 +17,7 @@ const styles = StyleSheet.create({
   },
   bottomLine: {
     width: 30,
-    borderBottomColor: Colors.pink,
+    borderBottomColor: Colors.PINK,
     borderBottomWidth: 2,
   },
   heartBeat: {
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
     width: wp('91%'),
   },
   dataText: {
-    color: pink,
+    color: Colors.PINK,
     fontSize: wp('8%'),
     fontFamily: 'OpenSans-Bold',
   },
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   header: {
-    backgroundColor: mainBlue,
+    backgroundColor: Colors.MAIN_BLUE,
     height: hp('12%'),
     position: 'absolute',
     width: wp('100%'),
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
-    backgroundColor: mainBlue,
+    backgroundColor: Colors.MAIN_BLUE,
     width: wp('100%'),
     height: hp('46.5%'),
     justifyContent: 'flex-start',
@@ -149,7 +148,7 @@ const styles = StyleSheet.create({
   },
   inputs: {
     height: 38,
-    borderBottomColor: mainBlue,
+    borderBottomColor: Colors.MAIN_BLUE,
     borderBottomWidth: 0.3,
     margin: 4,
   },
@@ -160,7 +159,7 @@ const styles = StyleSheet.create({
     width: 50,
   },
   mainHeader: {
-    backgroundColor: mainBlue,
+    backgroundColor: Colors.MAIN_BLUE,
     borderBottomEndRadius: 13,
     borderBottomStartRadius: 13,
     height: hp('16%'),
@@ -172,7 +171,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   scrollContainer: {
-    backgroundColor: background,
+    backgroundColor: Colors.BACKGROUND,
   },
   subtitles: {
     alignSelf: 'flex-start',
@@ -230,7 +229,7 @@ const styles = StyleSheet.create({
   toggleOn: {
     backgroundColor: '#D8EAFE',
     width: wp('30%'),
-    borderColor: mainBlue,
+    borderColor: Colors.MAIN_BLUE,
     borderWidth: 2,
   },
   toggleOff: {

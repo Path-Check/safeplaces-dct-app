@@ -4,11 +4,11 @@ import { View } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Context from '../Reduces/context.js';
+import context from '../Reduces/context.js';
 import styles from './style';
 
 export default function Header({ title, text, navigation, close, style }) {
-  const [, setGlobalState] = useContext(Context);
+  const [, setGlobalState] = useContext(context);
   const onPress = () => {
     navigation.goBack();
     setGlobalState({ type: 'CLEAN_ANSWERS' });

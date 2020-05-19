@@ -7,17 +7,17 @@ import {
 } from 'react-native-responsive-screen';
 
 import Header from '../../../components/DR/Header';
-import Context from '../../../components/DR/Reduces/context.js';
-import Colors from '../../../constants/DR/colors';
+import context from '../../../components/DR/Reduces/context.js';
+import Colors from '../../../constants/colors';
 import styles from './style';
 
 export default function ReportScreen({ navigation }) {
-  const [setGlobalState] = useContext(Context);
+  const [{answers:{usage}}, setGlobalState] = useContext(context);
 
   const setSelectedOption = selected => {
     setGlobalState({
       type: 'ADD_ANSWERS',
-      value: { usage: selected },
+      value: { 'usage': selected },
     });
   };
   return (
@@ -41,7 +41,7 @@ export default function ReportScreen({ navigation }) {
                 {
                   width: wp('70%'),
                   height: 38,
-                  backgroundColor: Colors.mainBlue,
+                  backgroundColor: Colors.MAIN_BLUE,
                   marginBottom: 10,
                 },
               ]}
@@ -67,13 +67,13 @@ export default function ReportScreen({ navigation }) {
                 {
                   width: wp('70%'),
                   height: 38,
-                  backgroundColor: Colors.lightBlue,
+                  backgroundColor: Colors.LIGHT_BLUE,
                 },
               ]}>
               <Text
                 style={[
                   styles.text,
-                  { color: Colors.mainBlue, textTransform: 'capitalize' },
+                  { color: Colors.MAIN_BLUE, textTransform: 'capitalize' },
                 ]}>
                 Usar para alguien más
               </Text>
