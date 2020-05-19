@@ -73,6 +73,14 @@ platform :android do
   desc "Build a Release AAB"
   lane :release_bte do
 
+    build_number =  ENV["GITHUB_RUN_NUMBER"]
+
+    increment_version_code(
+      app_project_dir: 'app',
+      version_code: build_number,
+      flavor: 'bte'
+    )
+
     gradle(
       task: "bundle",
       build_type: "bteRelease",
@@ -88,7 +96,14 @@ platform :android do
 
   desc "Upload to google play store beta track"
   lane :play_store_bte do
-    increment_version_code_android(version_code: ENV["GITHUB_RUN_NUMBER"])
+  
+    build_number =  ENV["GITHUB_RUN_NUMBER"]
+
+    increment_version_code(
+      app_project_dir: 'app',
+      version_code: build_number,
+      flavor: 'bte'
+    )
 
     validate_play_store_json_key(
       json_key: "app/json_key.json",
@@ -98,6 +113,7 @@ platform :android do
       track: 'beta',
       release_status: 'draft',
       skip_upload_apk: true,
+      package_name: 'org.pathcheck.covidsafepathsBte',
       aab: "app/build/outputs/bundle/bteRelease/app.aab"
     )
 
