@@ -14,6 +14,7 @@ import DetailsScreen from './views/DR/Details';
 import HomeScreen from './views/DR/HomeScreen';
 import MapScreen from './views/DR/Map';
 import NewsScreen from './views/DR/News';
+import ReportScreen from './views/DR/ReportScreen/index.js';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
@@ -168,7 +169,7 @@ class Entry extends Component {
           />
           <Stack.Screen
             name='ReportScreen'
-            component={AboutScreen}
+            component={ReportScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

@@ -6,17 +6,17 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
+import Header from '../../../components/DR/Header';
+import Context from '../../../components/DR/Reduces/context.js';
 import Colors from '../../../constants/DR/colors';
-import Header from './components/Header';
-import context from './components/reduces/context';
-import styles from './components/styles';
+import styles from './style';
 
 export default function ReportScreen({ navigation }) {
-  const [setGlobalState] = useContext(context);
+  const [setGlobalState] = useContext(Context);
 
   const setSelectedOption = selected => {
     setGlobalState({
-      type: 'ADD_ANSWERS', //{ answers: {usage} },
+      type: 'ADD_ANSWERS',
       value: { usage: selected },
     });
   };

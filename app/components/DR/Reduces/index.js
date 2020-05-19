@@ -1,6 +1,8 @@
-import { ADD_BULLETIN, ADD_NEW } from './actionTypes';
 import moment from 'moment';
-const today = moment(new Date()).format('YYYY-MM-DD')
+
+import { ADD_BULLETIN, ADD_NEW } from './actionTypes';
+
+const today = moment(new Date()).format('YYYY-MM-DD');
 const formBlankAnswers = {
   HIV: false,
   address: '',
@@ -61,12 +63,12 @@ const formBlankAnswers = {
   usedProtection: '',
   visitedArea: false,
   workInHealth: false,
-  workedInHealth: false
+  workedInHealth: false,
 };
 const initialState = {
   bulletins: [],
   news: [],
-  answers: formBlankAnswers
+  answers: formBlankAnswers,
 };
 
 const reducer = (state, action) => {
@@ -74,24 +76,24 @@ const reducer = (state, action) => {
     case ADD_BULLETIN:
       return {
         ...state,
-        bulletins: [...action.value]
+        bulletins: [...action.value],
       };
 
     case ADD_NEW:
       return {
         ...state,
-        news: [...state.news, ...action.value]
+        news: [...state.news, ...action.value],
       };
 
     case 'ADD_ANSWERS':
       return {
         ...state,
-        answers: { ...state.answers, ...action.value }
+        answers: { ...state.answers, ...action.value },
       };
     case 'CLEAN_ANSWERS':
       return {
         ...state,
-        answers: formBlankAnswers
+        answers: formBlankAnswers,
       };
     default:
       return state;

@@ -1,13 +1,14 @@
+import { Button, Text } from 'native-base';
 import React, { useContext } from 'react';
 import { View } from 'react-native';
-import { Button, Text } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import styles from './styles';
-import context from './reduces/context';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import Context from '../Reduces/context.js';
+import styles from './style';
 
 export default function Header({ title, text, navigation, close, style }) {
-  const [, setGlobalState] = useContext(context);
+  const [, setGlobalState] = useContext(Context);
   const onPress = () => {
     navigation.goBack();
     setGlobalState({ type: 'CLEAN_ANSWERS' });
@@ -18,7 +19,7 @@ export default function Header({ title, text, navigation, close, style }) {
       <View style={[styles.HeaderView, style, { padding: wp('3%') }]}>
         {close && (
           <Button transparent onPress={onPress}>
-            <Icon name="times" size={25} color="#fff" />
+            <Icon name='times' size={25} color='#fff' />
           </Button>
         )}
 
