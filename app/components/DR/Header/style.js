@@ -4,7 +4,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import Colors from '../../../../constants/DR/colors';
+import Colors from '../../../constants/DR/colors';
 
 const screenH = Dimensions.get('screen').height;
 const windowH = Dimensions.get('window').height;

@@ -3,8 +3,8 @@ import { BackHandler, ScrollView, StyleSheet, View } from 'react-native';
 
 import iconAdvertisement from '../../assets/images/idea.jpg';
 import imgAdvertisement from '../../assets/images/recommendations.jpg';
-import HeaderImage from '../../components/HeaderImage';
-import List from '../../components/List';
+import HeaderImage from '../../components/DR/ActionCards/HeaderImage';
+import List from '../../components/DR/ActionCards/List';
 import NavigationBarWrapper from '../../components/NavigationBarWrapper';
 import data from '../../constants/DR/RecommendationData';
 import languages from '../../locales/languages';
