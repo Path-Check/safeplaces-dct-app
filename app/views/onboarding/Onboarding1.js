@@ -138,18 +138,17 @@ const styles = StyleSheet.create({
   },
   // eslint-disable-next-line react-native/no-color-literals
   languageSelector: {
-    // alpha needs to be in the bg color otherwise it fades the contained text
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    borderWidth: 1,
+    borderColor: Colors.WHITE,
     paddingVertical: 4,
     paddingHorizontal: 11,
     borderRadius: 100,
   },
   languageSelectorText: {
-    fontSize: 12,
-    color: Colors.VIOLET,
+    fontSize: 16,
+    color: Colors.WHITE,
     paddingVertical: 4,
-    paddingHorizontal: 11,
-    opacity: 1,
+    paddingHorizontal: 20,
     textAlign: 'center',
     textTransform: 'uppercase',
   },

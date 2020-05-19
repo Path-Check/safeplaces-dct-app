@@ -8,10 +8,12 @@ import { FeatureFlag } from '../components/FeatureFlag';
 import { IconButton } from '../components/IconButton';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
+import { config } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices, { Reason } from '../services/LocationService';
 import LocationTracking from './LocationTracking';
+import { ExposureNotificationNotAvailablePage } from './main/ExposureNotificationNotAvailablePage';
 import { ExposurePage } from './main/ExposurePage';
 import { NoKnownExposure } from './main/NoKnownExposure';
 import { OffPage } from './main/OffPage';
@@ -84,15 +86,19 @@ const Main = () => {
 
   let page;
 
-  if (location.canTrack) {
+  if (config.tracingStrategy === 'bte') {
+    // A BT specific page for when Exposure Notifications are not available
+    // for the Healthcare Authority chosen.
+    page = <ExposureNotificationNotAvailablePage />;
+  } else if (location.canTrack) {
     if (location.hasPotentialExposure) {
-      page = <ExposurePage />;
+      page = <ExposurePage tracingStrategy={config.tracingStrategy} />;
     } else {
       page = <NoKnownExposure />;
     }
   } else {
     if (location.reason === Reason.USER_OFF) {
-      page = <OffPage />;
+      page = <OffPage tracingStrategy={config.tracingStrategy} />;
     } else {
       page = <UnknownPage />;
     }
@@ -110,7 +116,7 @@ const MainNavigate = props => {
   return (
     <FeatureFlag
       name='better_location_status_checks'
-      fallback={<LocationTracking {...props} />}>
+      fallback={<LocationTracking {...props} tracingStrategy={config.tracingStrategy} />}>
       <Main />
     </FeatureFlag>
   );

@@ -7,8 +7,11 @@ import Export from './export.png';
 import ForeArrow from './foreArrow.png';
 import HomeScreenBackgroundOverlay from './homeScreenBackgroundOverlay.png';
 import LaunchScreen1 from './launchScreen1.png';
+import LaunchScreen1BT from './launchScreen1BT.png';
 import LaunchScreen2 from './launchScreen2.png';
+import LaunchScreen2BT from './launchScreen2BT.png';
 import LaunchScreen3 from './launchScreen3.png';
+import LaunchScreen3BT from './launchScreen3BT.png';
 import LaunchScreenBackground from './launchScreenBackground.png';
 import LaunchScreenBackgroundOverlay from './launchScreenBackgroundOverlay.png';
 import Newspaper from './newspaper.png';
@@ -28,8 +31,11 @@ export const Images = {
   ForeArrow,
   HomeScreenBackgroundOverlay,
   LaunchScreen1,
+  LaunchScreen1BT,
   LaunchScreen2,
+  LaunchScreen2BT,
   LaunchScreen3,
+  LaunchScreen3BT,
   LaunchScreenBackground,
   LaunchScreenBackgroundOverlay,
   Newspaper,
