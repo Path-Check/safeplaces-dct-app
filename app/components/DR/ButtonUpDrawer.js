@@ -28,7 +28,7 @@ export default class BottomUpPanel extends Component {
       start: height - this.props.startHeight,
       end: this.props.topEnd,
       min: this.props.topEnd,
-      animates: [() => this.animatedHeight],
+      animates: [() => this._animatedHeight],
     },
     width: {
       end: width,
@@ -40,16 +40,16 @@ export default class BottomUpPanel extends Component {
     },
   };
 
-  animatedHeight = new Animated.Value(
+  _animatedHeight = new Animated.Value(
     this.props.isOpen ? this.config.height.end : this.config.height.start,
   );
 
-  animatedPosition = new Animated.Value(
+  _animatedPosition = new Animated.Value(
     this.props.isOpen ? this.config.position.end : this.config.position.start,
   );
 
   componentWillMount() {
-    this.animatedPosition.addListener(value => {
+    this._animatedPosition.addListener(value => {
       // Every time that position changes then actualize the related properties. I.e: height, so the view
       // has the interpolated height
       this.config.position.animates.map(item => {
@@ -57,8 +57,7 @@ export default class BottomUpPanel extends Component {
       });
     });
     // Reset value once listener is registered to update depending animations
-    // eslint-disable-next-line no-underscore-dangle
-    this.animatedPosition.setValue(this.animatedPosition._value);
+    this._animatedPosition.setValue(this._animatedPosition._value);
   }
 
   // Handle isOpen prop changes to either open or close the window
@@ -77,7 +76,7 @@ export default class BottomUpPanel extends Component {
     const { content } = this.props;
 
     // Height according to position
-    const animatedHeight = this.animatedHeight.interpolate({
+    const animatedHeight = this._animatedHeight.interpolate({
       inputRange: [this.config.position.end, this.config.position.start],
       outputRange: [this.config.height.end, this.config.height.start],
     });
@@ -100,7 +99,7 @@ export default class BottomUpPanel extends Component {
                 width,
                 // Animate position on the screen
                 transform: [
-                  { translateY: this.animatedPosition },
+                  { translateY: this._animatedPosition },
                   { translateX: 0 },
                 ],
               },
@@ -127,7 +126,7 @@ export default class BottomUpPanel extends Component {
             {/* Scrollable content */}
             <ScrollView
               ref={scrollView => {
-                this.scrollViewRef = scrollView;
+                this._scrollView = scrollView;
               }}
               // Enable scrolling only when the window is open
               scrollEnabled={this.state.open}
@@ -135,7 +134,8 @@ export default class BottomUpPanel extends Component {
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
               // Trigger onScroll often
-              scrollEventThrottle={16}>
+              scrollEventThrottle={16}
+              onScroll={this._handleScroll}>
               {/* Render content components */}
               {content()}
             </ScrollView>
@@ -147,7 +147,7 @@ export default class BottomUpPanel extends Component {
 
   open = () => {
     this.setState({ open: true }, () => {
-      Animated.timing(this.animatedPosition, {
+      Animated.timing(this._animatedPosition, {
         toValue: this.config.position.end,
         duration: 600,
       }).start();
@@ -161,8 +161,8 @@ export default class BottomUpPanel extends Component {
   };
 
   close = () => {
-    this.scrollViewRef.scrollTo({ y: 0 });
-    Animated.timing(this.animatedPosition, {
+    this._scrollView.scrollTo({ y: 0 });
+    Animated.timing(this._animatedPosition, {
       toValue: this.config.position.start,
       duration: 600,
     }).start(() =>
