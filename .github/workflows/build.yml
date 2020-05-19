@@ -42,16 +42,15 @@ jobs:
       - name: Bundle JS
         run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
 
-      - name: Build APK (gradle)
-        run: ./gradlew assembleDebug --no-daemon
+      - run: ./gradlew assembleDevDebug --no-daemon
         working-directory: ./android
 
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
           name: Debug APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
-
+          path: android/app/build/outputs/apk/dev/debug/app-dev-debug.apk
+          
   build-ios:
     runs-on: macOS-latest
     steps:

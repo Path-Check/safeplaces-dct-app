@@ -6,13 +6,19 @@ import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
+import com.marianhello.bgloc.BackgroundGeolocationFacade;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import io.realm.Realm;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import org.pathcheck.covidsafepaths.bridge.RealmPackage;
+import org.pathcheck.covidsafepaths.storage.SecureStorage;
 
 public class MainApplication extends Application implements ReactApplication {
+
+  private static Context context;
 
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
@@ -27,6 +33,8 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+          packages.add(new RealmPackage());
+
           return packages;
         }
 
@@ -42,17 +50,15 @@ public class MainApplication extends Application implements ReactApplication {
   }
 
   @Override
-  public void onTerminate() {
-      super.onTerminate();
-
-      // ADD LOCAL NOTIFICATION
-  }
-
-  @Override
   public void onCreate() {
     super.onCreate();
+    MainApplication.context = getApplicationContext();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this); // Remove this line if you don't want Flipper enabled
+    Realm.init(this);
+    initializeGeolocationTransformer();
+    // Ignore assignment. Creating to begin heavy encryption work
+    SecureStorage wrapper = SecureStorage.INSTANCE;
   }
 
   /**
@@ -79,5 +85,20 @@ public class MainApplication extends Application implements ReactApplication {
         e.printStackTrace();
       }
     }
+  }
+
+  private void initializeGeolocationTransformer() {
+    BackgroundGeolocationFacade.setLocationTransform((context, location) -> {
+
+      // Save Location in encrypted realm db
+      SecureStorage.INSTANCE.saveDeviceLocation(location);
+
+      // Always return null. We never want to store data in the libraries SQLite DB
+      return null;
+    });
+  }
+
+  public static Context getContext() {
+    return MainApplication.context;
   }
 }

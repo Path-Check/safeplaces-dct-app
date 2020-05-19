@@ -2,6 +2,7 @@ import styled from '@emotion/native';
 import { css } from '@emotion/native/dist/native.cjs.prod';
 import * as React from 'react';
 
+import { themeTextColor } from '../constants/themes';
 import { useLanguageDirection } from '../locales/languages';
 
 export const Type = {
@@ -69,7 +70,7 @@ export const Typography = ({
 
 const FONT_SIZE_MAP = {
   [Type.Headline1]: '52px',
-  [Type.Headline2]: '26px',
+  [Type.Headline2]: '20px',
   [Type.Headline3]: '16px',
   [Type.Body1]: '18px',
   [Type.Body2]: '16px',
@@ -79,7 +80,7 @@ const FONT_SIZE_MAP = {
 const getFontSize = ({ use = Type.Body1 }) => FONT_SIZE_MAP[use];
 
 const LINE_HEIGHT_MAP = {
-  [Type.Headline1]: '48px',
+  [Type.Headline1]: '52px',
   [Type.Headline2]: '34px',
   [Type.Headline3]: '40px',
   [Type.Body1]: '24px',
@@ -89,21 +90,20 @@ const LINE_HEIGHT_MAP = {
 
 const getLineHeight = ({ use = Type.Body1 }) => LINE_HEIGHT_MAP[use];
 
-const getTextColor = ({ theme, secondary = false }) =>
-  secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;
+const getTextOpacity = ({ disabled }) => (disabled ? '0.25' : null);
 
 const getFontWeight = ({ use = Type.Body1, bold }) =>
   use.startsWith('headline') || bold ? 'bold' : 'normal';
 
-const getFontFamily = ({ use, monospace, bold }) =>
-  use.startsWith('headline') || bold
-    ? 'IBMPlexSans-Bold'
-    : monospace
-    ? 'IBMPlexMono'
-    : 'IBMPlexSans';
+const getFontFamily = ({ use, monospace, bold }) => {
+  if (use.startsWith('headline') || bold) return 'IBMPlexSans-Bold';
+  if (monospace) return 'IBMPlexMono';
+  return 'IBMPlexSans';
+};
 
 const ThemedText = styled.Text`
-  color: ${getTextColor};
+  color: ${themeTextColor};
+  opacity: ${getTextOpacity};
   font-family: ${getFontFamily};
   font-size: ${getFontSize};
   font-weight: ${getFontWeight};

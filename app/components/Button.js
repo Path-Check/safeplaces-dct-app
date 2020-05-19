@@ -1,87 +1,90 @@
-import PropTypes from 'prop-types';
+import styled from '@emotion/native';
+import { ThemeProvider } from 'emotion-theming';
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import { SvgXml } from 'react-native-svg';
 
-import colors from '../constants/colors';
 import { Typography } from './Typography';
 
-class Button extends React.Component {
-  render() {
-    const {
-      title,
-      onPress,
-      buttonColor = colors.WHITE,
-      bgColor = colors.DODGER_BLUE,
-      toBgColor = bgColor,
-      titleStyle,
-      buttonStyle,
-      buttonHeight = 54,
-      borderColor,
-      disabled,
-    } = this.props;
-    return (
-      <LinearGradient
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        colors={[bgColor, toBgColor]}
-        style={[
-          buttonStyle ? buttonStyle : styles.container,
-          {
-            height: buttonHeight,
-            borderWidth: borderColor ? 2 : 0,
-            borderColor: borderColor,
-          },
-        ]}>
-        <TouchableOpacity
-          style={[
-            buttonStyle ? buttonStyle : styles.container,
-            { height: buttonHeight },
-          ]}
-          onPress={onPress}
-          accessible
-          accessibilityLabel={title}
-          accessibilityRole='button'
-          disabled={disabled}>
-          <Typography
-            style={[
-              titleStyle ? titleStyle : styles.text,
-              {
-                color: buttonColor,
-              },
-            ]}>
-            {title}
-          </Typography>
-        </TouchableOpacity>
-      </LinearGradient>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 8,
-    borderRadius: 12,
-  },
-  text: {
-    textAlign: 'center',
-    height: 28,
-    fontSize: 20,
-  },
-});
-
-Button.propTypes = {
-  title: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-  buttonColor: PropTypes.string,
-  bgColor: PropTypes.string,
-  toBgColor: PropTypes.string,
-  titleStyle: PropTypes.object,
-  buttonStyle: PropTypes.object,
-  borderColor: PropTypes.string,
+/**
+ * @param {{
+ *   label: string;
+ *   secondary?: boolean;
+ *   icon?: string;
+ *   onPress: () => void;
+ *   disabled?: boolean;
+ * }} param0
+ */
+export const Button = ({
+  label,
+  secondary,
+  icon,
+  onPress,
+  disabled,
+  small,
+  ...otherProps
+}) => {
+  return (
+    <Container
+      onPress={onPress}
+      accessible
+      accessibilityLabel={label}
+      accessibilityRole='button'
+      hasIcon={!!icon}
+      secondary={secondary}
+      disabled={disabled}
+      small={small}
+      {...otherProps}>
+      <ThemeProvider theme={invertTextColors}>
+        <Label small={small} secondary={secondary} disabled={disabled}>
+          {label}
+        </Label>
+        {icon ? <Icon xml={icon} /> : null}
+      </ThemeProvider>
+    </Container>
+  );
 };
 
-export default Button;
+const invertTextColors = theme => {
+  return {
+    ...theme,
+    textPrimaryOnBackground: theme.onPrimary,
+    textSecondaryOnBackground: theme.primary,
+  };
+};
+
+const themePrimary = ({ theme, secondary, disabled }) =>
+  disabled ? theme.disabled : secondary ? 'transparent' : theme.primary;
+
+const getBorderColor = ({ theme, secondary }) =>
+  secondary ? theme.primary : 'transparent';
+
+const getJustifyContent = ({ hasIcon }) =>
+  hasIcon ? 'space-between' : 'center';
+
+const Container = styled.TouchableOpacity`
+  background-color: ${themePrimary};
+  height: ${({ small }) => (small ? '48px' : '72px')};
+  border: 2px solid ${getBorderColor};
+  padding-horizontal: ${({ small }) => (small ? '14px' : '16px')};
+  border-radius: 8px;
+  flex-direction: row;
+  justify-content: ${getJustifyContent};
+  align-content: center;
+  align-items: center;
+  align-self: stretch;
+`;
+
+const getFontSize = ({ small }) => (small ? '14px' : '20px');
+
+const getLineHeight = ({ small }) => (small ? '21px' : '40px');
+
+const Label = styled(Typography)`
+  font-family: IBMPlexSans-Medium;
+  font-size: ${getFontSize};
+  line-height: ${getLineHeight};
+  font-weight: normal;
+`;
+
+const Icon = styled(SvgXml)`
+  margin-right: 8px; // for visual alignment
+`;

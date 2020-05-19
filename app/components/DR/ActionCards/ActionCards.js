@@ -7,7 +7,7 @@ import {
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Colors from '../../../constants/DR/colors';
+import Colors from '../../../constants/colors';
 import styles from './styles';
 
 const { ORANGE, GREEN, MAIN_BLUE } = Colors;
@@ -28,7 +28,7 @@ export function Feels({ navigation }) {
           </Text>
           <View style={{ justifyContent: 'center' }}>
             <Button
-              onPress={() => navigation.navigate('Reportar')}
+              onPress={() => navigation.navigate('ReportScreen')}
               style={[
                 styles.buttons,
                 {
@@ -66,7 +66,7 @@ export function Aurora({ navigation }) {
             </Text>
           </Left>
           <Button
-            onPress={() => navigation.navigate('aurora')}
+            onPress={() => navigation.navigate('AuroraScreen')}
             style={[
               styles.buttons,
               { backgroundColor: MAIN_BLUE, marginLeft: 10 },

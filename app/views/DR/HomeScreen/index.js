@@ -137,14 +137,14 @@ export default class HomeScreen extends Component {
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <Card style={styles.infoCards}>
-                      <Text style={[styles.dataText, { color: Colors.ORANGE }]}>
+                      <Text style={[styles.dataText, { color: Colors.SUN }]}>
                         {todayCases}
                       </Text>
                       <Text style={styles.text}>Casos del día</Text>
                     </Card>
                   </TouchableOpacity>
                 </View>
-                <Aurora navigation={navigation} />
+                <Aurora navigation={this.props.navigation} />
                 <View style={styles.footer}>
                   <View style={{ margin: wp('5%') }}>
                     <Text

@@ -42,6 +42,20 @@ export async function SetStoreData(key, item) {
   }
 }
 
+/**
+ * Remove data with associated key from store
+ *
+ * @param {string} key
+ * @param {object} item
+ */
+export async function RemoveStoreData(key) {
+  try {
+    return await AsyncStorage.removeItem(key);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 export async function pickFile() {
   // Pick a single file - returns actual path on Android, file:// uri on iOS
   try {

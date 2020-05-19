@@ -1,15 +1,20 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import { NativeModules, Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
-import { LOCATION_DATA, PARTICIPATE } from '../constants/storage';
+import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { areLocationsNearby } from '../helpers/Intersect';
 import languages from '../locales/languages';
-import { isPlatformAndroid } from '../Util';
 
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION = '55';
+
+export const Reason = {
+  LOCATION_OFF: 'LOCATION_OFF',
+  NOT_AUTHORIZED: 'NOT_AUTHORIZED',
+  USER_OFF: 'USER_OFF',
+};
 
 export class LocationData {
   constructor() {
@@ -24,114 +29,7 @@ export class LocationData {
   }
 
   async getLocationData() {
-    const locationArrayString = await GetStoreData(LOCATION_DATA);
-    let locationArray = [];
-
-    if (locationArrayString !== null) {
-      locationArray = JSON.parse(locationArrayString);
-    }
-
-    return locationArray;
-  }
-
-  async getPointStats() {
-    const locationData = await this.getLocationData();
-
-    let lastPoint = null;
-    let firstPoint = null;
-    let pointCount = 0;
-
-    if (locationData.length) {
-      lastPoint = locationData.slice(-1)[0];
-      firstPoint = locationData[0];
-      pointCount = locationData.length;
-    }
-
-    return {
-      lastPoint,
-      firstPoint,
-      pointCount,
-    };
-  }
-
-  saveLocation(location) {
-    // Persist this location data in our local storage of time/lat/lon values
-    this.getLocationData().then(locationArray => {
-      // Always work in UTC, not the local time in the locationData
-      let unixtimeUTC = Math.floor(location['time']);
-      let unixtimeUTC_28daysAgo = unixtimeUTC - 60 * 60 * 24 * 1000 * 28;
-
-      // Verify that at least the minimum amount of time between saves has passed
-      // This ensures that no matter how fast GPS coords are delivered, saving
-      // does not happen any faster than the minLocationSaveInterval
-      if (locationArray.length >= 1) {
-        let lastSaveTime = locationArray[locationArray.length - 1]['time'];
-        if (lastSaveTime + this.minLocationSaveInterval > unixtimeUTC) {
-          //console.log('[INFO] Discarding point (too soon):', unixtimeUTC);
-          return;
-        }
-      }
-
-      // Curate the list of points, only keep the last 28 days
-      let curated = [];
-      for (let i = 0; i < locationArray.length; i++) {
-        if (locationArray[i]['time'] > unixtimeUTC_28daysAgo) {
-          curated.push(locationArray[i]);
-        }
-      }
-
-      // Backfill the stationary points, if available
-      // The assumption is that if we see a gap in the data, and the
-      // device hasn't moved significantly, then we can fill in the missing data
-      // with the current location.  This makes it easier for a health authority
-      // person to have a set of locations over time, and they can manually
-      // redact the time frames that aren't correct.
-      if (curated.length >= 1) {
-        let lastLocationArray = curated[curated.length - 1];
-
-        let areCurrentPreviousNearby = areLocationsNearby(
-          lastLocationArray['latitude'],
-          lastLocationArray['longitude'],
-          location['latitude'],
-          location['longitude'],
-        );
-        //console.log('[INFO] nearby:', nearby);
-
-        // Actually do the backfill if the current point is nearby the previous
-        // point and the time is within the maximum time to backfill.
-        let lastRecordedTime = lastLocationArray['time'];
-        if (
-          areCurrentPreviousNearby &&
-          unixtimeUTC - lastRecordedTime < this.maxBackfillTime
-        ) {
-          for (
-            let newTS = lastRecordedTime + this.locationInterval;
-            newTS < unixtimeUTC - this.locationInterval;
-            newTS += this.locationInterval
-          ) {
-            let lat_lon_time = {
-              latitude: lastLocationArray['latitude'],
-              longitude: lastLocationArray['longitude'],
-              time: newTS,
-            };
-            //console.log('[INFO] backfill location:', lat_lon_time);
-            curated.push(lat_lon_time);
-          }
-        }
-      }
-
-      // Save the location using the current lat-lon and the
-      // recorded GPS timestamp
-      let lat_lon_time = {
-        latitude: location['latitude'],
-        longitude: location['longitude'],
-        time: unixtimeUTC,
-      };
-      curated.push(lat_lon_time);
-      console.log('[INFO] saved location:', lat_lon_time);
-
-      SetStoreData(LOCATION_DATA, curated);
-    });
+    return NativeModules.SecureStorageManager.getLocations();
   }
 
   /**
@@ -208,8 +106,7 @@ export class LocationData {
 }
 
 export default class LocationServices {
-  static start() {
-    const locationData = new LocationData();
+  static async start() {
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
     if (isBackgroundGeolocationConfigured) {
@@ -219,67 +116,37 @@ export default class LocationServices {
 
     PushNotification.configure({
       // (required) Called when a remote or local notification is opened or received
-      onNotification: function(notification) {
+      onNotification(notification) {
         console.log('NOTIFICATION:', notification);
         // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
         notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
-      requestPermissions: true,
+      // Setting the permissions to true causes a crash on Android, because that configuration requires Firebase
+      // https://github.com/zo0r/react-native-push-notification#usage
+      requestPermissions: Platform.OS === 'ios',
     });
 
-    // PushNotificationIOS.requestPermissions();
+    const locationData = new LocationData();
+
     BackgroundGeolocation.configure({
+      maxLocations: 0,
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
       stationaryRadius: 5,
       distanceFilter: 5,
       notificationTitle: languages.t('label.location_enabled_title'),
       notificationText: languages.t('label.location_enabled_message'),
-      debug: false, // when true, it beeps every time a loc is read
+      debug: false,
       startOnBoot: true,
       stopOnTerminate: false,
       locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
-
       interval: locationData.locationInterval,
       fastestInterval: locationData.locationInterval,
       activitiesInterval: locationData.locationInterval,
-
       activityType: 'AutomotiveNavigation',
       pauseLocationUpdates: false,
       saveBatteryOnBackground: true,
       stopOnStillActivity: false,
     });
-
-    BackgroundGeolocation.on('location', location => {
-      // handle your locations here
-      /* SAMPLE OF LOCATION DATA OBJECT
-                {
-                  "accuracy": 20, "altitude": 5, "id": 114, "isFromMockProvider": false,
-                  "latitude": 37.4219983, "locationProvider": 1, "longitude": -122.084,
-                  "mockLocationsEnabled": false, "provider": "fused", "speed": 0,
-                  "time": 1583696413000
-                }
-            */
-      // to perform long running operation on iOS
-      // you need to create background task
-      BackgroundGeolocation.startTask(taskKey => {
-        // execute long running task
-        // eg. ajax post location
-        // IMPORTANT: task has to be ended by endTask
-        locationData.saveLocation(location);
-        BackgroundGeolocation.endTask(taskKey);
-      });
-    });
-
-    if (isPlatformAndroid()) {
-      // This feature only is present on Android.
-      BackgroundGeolocation.headlessTask(async event => {
-        // Application was shutdown, but the headless mechanism allows us
-        // to capture events in the background.  (On Android, at least)
-        if (event.name === 'location' || event.name === 'stationary') {
-          locationData.saveLocation(event.params);
-        }
-      });
-    }
 
     BackgroundGeolocation.on('error', error => {
       console.log('[ERROR] BackgroundGeolocation error:', error);
@@ -294,30 +161,9 @@ export default class LocationServices {
         '[INFO] BackgroundGeolocation authorization status: ' + status,
       );
 
-      if (status !== BackgroundGeolocation.AUTHORIZED) {
-        // we need to set delay or otherwise alert may not be shown
-        // setTimeout(
-        //   () =>
-        //     Alert.alert(
-        //       languages.t('label.require_location_information_title'),
-        //       languages.t('label.require_location_information_message'),
-        //       [
-        //         {
-        //           text: languages.t('label.yes'),
-        //           onPress: () => BackgroundGeolocation.showAppSettings(),
-        //         },
-        //         {
-        //           text: languages.t('label.no'),
-        //           onPress: () => console.log('No Pressed'),
-        //           style: 'cancel',
-        //         },
-        //       ],
-        //     ),
-        //   1000,
-        // );
-      } else {
-        BackgroundGeolocation.start(); //triggers start on start event
-
+      if (status === BackgroundGeolocation.AUTHORIZED) {
+        // TODO: this should not restart if user opted out
+        BackgroundGeolocation.start(); // force running, if not already running
         BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
           if (!locationServicesEnabled) {
             PushNotification.localNotification({
@@ -361,81 +207,28 @@ export default class LocationServices {
       });
       console.log('[INFO] stop');
     });
-
     BackgroundGeolocation.on('stationary', () => {
       console.log('[INFO] stationary');
     });
 
-    BackgroundGeolocation.checkStatus(status => {
-      console.log(
-        '[INFO] BackgroundGeolocation service is running',
-        status.isRunning,
-      );
-      console.log(
-        '[INFO] BackgroundGeolocation services enabled',
-        status.locationServicesEnabled,
-      );
-      console.log(
-        '[INFO] BackgroundGeolocation auth status: ' + status.authorization,
-      );
+    const {
+      authorization,
+      isRunning,
+      locationServicesEnabled,
+    } = await this.getBackgroundGeoStatus();
 
-      BackgroundGeolocation.start(); //triggers start on start event
-      isBackgroundGeolocationConfigured = true;
+    console.log('[INFO] BackgroundGeolocation service is running', isRunning);
+    console.log(
+      '[INFO] BackgroundGeolocation services enabled',
+      locationServicesEnabled,
+    );
+    console.log('[INFO] BackgroundGeolocation auth status: ' + authorization);
 
-      if (!status.locationServicesEnabled) {
-        // we need to set delay or otherwise alert may not be shown
-        // setTimeout(
-        //   () =>
-        //     Alert.alert(
-        //       languages.t('label.require_location_services_title'),
-        //       languages.t('label.require_location_services_message'),
-        //       [
-        //         {
-        //           text: languages.t('label.yes'),
-        //           onPress: () => {
-        //             if (isPlatformAndroid()) {
-        //               // showLocationSettings() only works for android
-        //               BackgroundGeolocation.showLocationSettings();
-        //             } else {
-        //               Linking.openURL('App-Prefs:Privacy'); // Deeplinking method for iOS
-        //             }
-        //           },
-        //         },
-        //         {
-        //           text: languages.t('label.no'),
-        //           onPress: () => console.log('No Pressed'),
-        //           style: 'cancel',
-        //         },
-        //       ],
-        //     ),
-        //   1000,
-        // );
-      } else if (!status.authorization) {
-        // we need to set delay or otherwise alert may not be shown
-        // setTimeout(
-        //   () =>
-        //     Alert.alert(
-        //       languages.t('label.require_location_information_title'),
-        //       languages.t('label.require_location_information_message'),
-        //       [
-        //         {
-        //           text: languages.t('label.yes'),
-        //           onPress: () => BackgroundGeolocation.showAppSettings(),
-        //         },
-        //         {
-        //           text: languages.t('label.no'),
-        //           onPress: () => console.log('No Pressed'),
-        //           style: 'cancel',
-        //         },
-        //       ],
-        //     ),
-        //   1000,
-        // );
-      }
-    });
+    BackgroundGeolocation.start(); //triggers start on start event
+    isBackgroundGeolocationConfigured = true;
   }
 
-  static stop() {
+  static async stop() {
     // unregister all event listeners
     PushNotification.localNotification({
       title: languages.t('label.location_disabled_title'),
@@ -443,10 +236,92 @@ export default class LocationServices {
     });
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
-
     isBackgroundGeolocationConfigured = false;
-    SetStoreData(PARTICIPATE, 'false').then(() => {
-      // nav.navigate('LocationTrackingScreen', {});
+    await SetStoreData(PARTICIPATE, 'false');
+  }
+
+  static async getHasPotentialExposure() {
+    const dayBin = await GetStoreData(CROSSED_PATHS, false);
+    return !!dayBin && dayBin.some(exposure => exposure > 0);
+  }
+
+  static async getParticpating() {
+    return await GetStoreData(PARTICIPATE, false);
+  }
+
+  static async getBackgroundGeoStatus() {
+    return new Promise((resolve, reject) => {
+      BackgroundGeolocation.checkStatus(
+        status => resolve(status),
+        e => reject(e),
+      );
     });
+  }
+
+  static async checkStatus() {
+    const hasPotentialExposure = await this.getHasPotentialExposure();
+
+    const {
+      authorization,
+      isRunning,
+      locationServicesEnabled,
+    } = await this.getBackgroundGeoStatus();
+
+    const particpating = await this.getParticpating();
+    if (!particpating) {
+      return {
+        canTrack: false,
+        reason: Reason.USER_OFF,
+        hasPotentialExposure,
+        isRunning,
+      };
+    }
+
+    if (!locationServicesEnabled) {
+      return {
+        canTrack: false,
+        reason: Reason.LOCATION_OFF,
+        hasPotentialExposure,
+        isRunning,
+      };
+    }
+
+    if (authorization != BackgroundGeolocation.AUTHORIZED) {
+      return {
+        canTrack: false,
+        reason: Reason.NOT_AUTHORIZED,
+        hasPotentialExposure,
+        isRunning,
+      };
+    }
+
+    return {
+      canTrack: true,
+      reason: '',
+      hasPotentialExposure,
+      isRunning,
+    };
+  }
+
+  /**
+   * Like checkStatus, but it also tries to start/stop the service as
+   * appropriate.
+   *
+   * - If the user has opted out or permissions are not available, stop.
+   * - If the user has opted in and perissions are available, start.
+   */
+  static async checkStatusAndStartOrStop() {
+    const status = await this.checkStatus();
+
+    const { canTrack, isRunning } = status;
+
+    if (canTrack && !isRunning) {
+      this.start();
+    }
+
+    if (!canTrack && isRunning) {
+      this.stop();
+    }
+    return status;
   }
 }

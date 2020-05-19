@@ -6,15 +6,15 @@ import Color from './colors';
 
 /** Violet on pale violet bg. e.g. Settings */
 export const defaultTheme = {
-  background: Color.VIOLET_ALPHA_06,
-  textPrimaryOnBackground: Color.VIOLET,
-  textSecondaryOnBackground: 'rgba(64, 81, 219, 0.6)',
+  background: Color.LIGHT_BLUE,
+  textPrimaryOnBackground: Color.BLUE_RIBBON,
+  textSecondaryOnBackground: Color.BLACK,
 
-  navBar: Color.VIOLET,
+  navBar: Color.BLUE_RIBBON,
   onNavBar: Color.WHITE,
 
   /** E.g. button bg */
-  primary: Color.VIOLET_BUTTON,
+  primary: Color.BLUE_RIBBON,
   /** E.g. button text color */
   onPrimary: Color.WHITE,
 
@@ -31,10 +31,11 @@ export const violet = {
   textPrimaryOnBackground: Color.WHITE,
   textSecondaryOnBackground: 'rgba(255, 255, 255, 0.6)',
 
-  navBarBorder: Color.VIOLET, // no visible border
+  navBarBorder: Color.BLUE_RIBBON, // no visible border
 
   primary: Color.WHITE,
-  onPrimary: Color.VIOLET,
+  onPrimary: Color.BLUE_RIBBON,
+  disabled: '#ececec',
 };
 
 /** White on gray bg. E.g. Possible exposure mode on default screen */
@@ -100,7 +101,7 @@ export const getTheme = themeName => {
  * - onPrimary - color to show on top of primary (usually white)
  * - textPrimaryOnBackground - text color to show on background
  * - textSecondaryOnBackground - secondary text color to show on background
- * - warning - warning color (always orange)
+ * - warning - warning color (always ORANGE)
  * - success - success color (always green)
  * - border - border/divider color (usually gray)
  *
@@ -120,3 +121,9 @@ export const Theme = ({ use = 'default', setBackground = false, children }) => {
     </ThemeProvider>
   );
 };
+
+/**
+ * @param {{theme: defaultTheme, secondary?: boolean}} param0
+ */
+export const themeTextColor = ({ theme, secondary }) =>
+  secondary ? theme.textSecondaryOnBackground : theme.textPrimaryOnBackground;

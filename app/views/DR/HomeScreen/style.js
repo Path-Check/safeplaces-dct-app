@@ -4,7 +4,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import Colors from '../../../constants/DR/colors';
+import Colors from '../../../constants/colors';
 
 const textFontSize = wp('4%');
 
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     flexDirection: 'row',
-    marginVertical: hp('2%'),
+    alignItems: 'center',
   },
   radioButtonLayout: {
     display: 'flex',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.MAIN_BLUE,
     borderBottomEndRadius: 13,
     borderBottomStartRadius: 13,
-    paddingTop: 40,
+    paddingTop: 10,
     marginBottom: '-5%',
     height: hp('16%'),
     width: wp('100%'),
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     marginHorizontal: wp('5%'),
   },
   scrollContainer: {
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.LIGHT_GRAY,
   },
   subtitles: {
     alignSelf: 'flex-start',
