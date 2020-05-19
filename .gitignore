@@ -61,6 +61,7 @@ app/locales/*_old.json
 *.jsbundle
 
 # CocoaPods
+ios/Podfile.lock 
 /ios/Pods/
 .vscode/launch.json
 
@@ -75,6 +76,7 @@ e2e/artifacts/*
 .vscode/*
 
 # Local iOS build artifacts
+ios/COVIDSafePaths.xcodeproj/project.pbxproj
 ios/COVIDSafePaths-staging.ipa
 ios/COVIDSafePaths-staging.app
 ios/COVIDSafePaths-staging.app.dSYM.zip
