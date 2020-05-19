@@ -109,13 +109,6 @@ jobs:
           subdirectory: 'android'
           bundle-install-path: 'vendor/bundle'
 
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v1
-        with:
-          name: Debug APK (Android)
-          path: android/app/build/outputs/apk/bte/release/app-bte-release.apk
-
       - name: Upload to Google Play beta track
         uses: maierj/fastlane-action@v1.4.0
         with:
