@@ -5,8 +5,13 @@
     "operating_system_abbr": "Sistema Operativo:",
     "version": "Versione:"
   },
+  "authorities": {
+    "invalid_url_body": "L'URL che hai inserito non è valido, prova di nuovo",
+    "invalid_url_title": "URL non valido"
+  },
   "common": {
-    "done": "Fatto"
+    "done": "Fatto",
+    "ok": "Ok"
   },
   "history": {
     "no_exposure": "Non noto",
@@ -43,13 +48,17 @@
     "authorities_desc": "Seleziona le istituzioni sanitarie nella tua area per ottenere i dati sulle possibilità di esposizione.\n\nSeleziona un nome dal registro globale o inserisci l'indirizzo internet fornito da una istituzione sanitaria che partecipa a Safe Paths.",
     "authorities_input_placeholder": "Incolla l'indirizzo qui",
     "authorities_new_in_area_msg": "Iscritto ad {{count}} Istitituzione Sanitaria accreditata per la tua area.",
+    "authorities_new_in_area_msg_plural": "Iscritto a {{count}} Istitituzioni Sanitarie accreditate per la tua area.",
     "authorities_new_in_area_title": "Nuova Istituzione Sanitaria",
     "authorities_new_in_area_title_plural": "Nuove Istituzioni Sanitarie",
     "authorities_new_subcription_msg": "Ti sei registrato ad {{count}} nuova Instituzione nella tua zona",
     "authorities_new_subcription_msg_plural": "Ti sei registrato a {{count}} nuove Instituzioni nella tua zona",
     "authorities_new_subcription_title": "{{numAuthories}} Nuova Iscrizione",
     "authorities_new_subcription_title_plural": "{{numAuthories}} Nuove Iscrizioni",
-    "authorities_new_in_area_msg_plural": "Iscritto a {{count}} Istitituzioni Sanitarie accreditate per la tua area.",
+    "authorities_new_subscription_msg": "Ti sei registrato ad {{count}} nuova Instituzione nella tua zona",
+    "authorities_new_subscription_msg_plural": "Ti sei registrato a {{count}} nuove Instituzioni nella tua zona",
+    "authorities_new_subscription_title": "{{count}} Nuova Sottoscrizione",
+    "authorities_new_subscription_title_plural": "{{count}} Nuove Sottoscrizioni",
     "authorities_no_sources": "Nessuna fonte di dati per ora",
     "authorities_removal_alert_cancel": "Annulla",
     "authorities_removal_alert_desc": "Sei sicuro di voler rimuovere questa fonte di dati sanitari?",
@@ -60,7 +69,7 @@
     "choose_provider_subtitle": "Per essere informato sulle possibilità di esposizione devi aggiungere almeno una Istituzione Sanitaria.",
     "choose_provider_title": "Seleziona le Istituzioni Sanitarie",
     "commitment": "Missione",
-    "commitment_para": "Safe Paths registra i dati in piena sicurezza e controlla l'interazione con altre persone usando la tua posizione.\nI tuoi dati non lasceranno MAI il tuo telefono senza il tuo consenso",
+    "commitment_para": "Safe Paths è un progetto internazionale per sviluppare strumenti gratuiti, di pubblico dominio e attenti alla privacy per i cittadini, funzionari della sanità pubblica e comunità al fine di mitigare la curva dei contagi di COVID-19, ridurre la paura e prevenire uno stato di sorveglianza come risposta alla pandemia.\n\nPer ulteriori informazioni, visitare il sito",
     "default_news_site_name": "Novità su Safe Paths",
     "enter_authority_url": "Inserisci o incolla l'URL",
     "event_history_subtitle": "Controlla la tua possibile esposizione sulla base delle informazioni condivise dalle istituzioni sanitarie",
@@ -115,6 +124,7 @@
     "news_subtitle": "Leggi gli aggiornamenti su COVID-19 da parte delle tue istituzioni sanitarie e nel mondo.",
     "news_title": "Ultime novità",
     "no_data": "Nessun dato",
+    "privacy_policy": "Informativa sulla privacy",
     "push_at_risk_message": "Hai incrociato il percorso di un paziente COVID-19",
     "push_at_risk_title": "Potresti essere a rischio di esposizione",
     "see_exposure_history": "Visualizza lo storico delle esposizioni",
