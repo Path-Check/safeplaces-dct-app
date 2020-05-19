@@ -17,7 +17,7 @@ import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
-const Onboarding = props => {
+const Onboarding2 = ({ navigation }) => {
   return (
     <View style={styles.mainContainer}>
       <StatusBar
@@ -40,9 +40,7 @@ const Onboarding = props => {
       <View style={sharedStyles.footerContainer}>
         <Button
           label={languages.t('label.launch_next')}
-          onPress={() => {
-            props.navigation.replace('Onboarding3');
-          }}
+          onPress={() => navigation.navigate('Onboarding3')}
         />
       </View>
     </View>
@@ -80,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboarding;
+export default Onboarding2;

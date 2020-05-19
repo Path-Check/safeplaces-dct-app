@@ -26,7 +26,7 @@ import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
-class Onboarding extends Component {
+class Onboarding1 extends Component {
   constructor(props) {
     super(props);
 
@@ -99,7 +99,7 @@ class Onboarding extends Component {
               <View style={sharedStyles.footerContainer}>
                 <EulaModal
                   continueFunction={() =>
-                    this.props.navigation.replace('Onboarding2')
+                    this.props.navigation.navigate('Onboarding2')
                   }
                   selectedLocale={this.state.locale}
                 />
@@ -156,4 +156,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboarding;
+export default Onboarding1;

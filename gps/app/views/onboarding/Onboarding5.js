@@ -18,10 +18,10 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import BackgroundImage from '../../../../shared/assets/images/launchScreenBackground.png';
-import { isPlatformiOS } from './../../Util';
 import IconDenied from '../../../../shared/assets/svgs/permissionDenied';
 import IconGranted from '../../../../shared/assets/svgs/permissionGranted';
 import IconUnknown from '../../../../shared/assets/svgs/permissionUnknown';
+import { isPlatformiOS } from './../../Util';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
@@ -294,7 +294,7 @@ class Onboarding extends Component {
           this.state.locationPermission === PermissionStatusEnum.GRANTED,
         );
         SetStoreData('ONBOARDING_DONE', true);
-        this.props.navigation.replace('Main');
+        this.props.navigation.navigate('Main');
     }
   }
 
