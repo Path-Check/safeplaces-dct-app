@@ -5,10 +5,6 @@
     "operating_system_abbr": "OS:",
     "version": "Version:"
   },
-  "authorities": {
-    "invalid_url_body": "The URL you entered was invalid, please try again",
-    "invalid_url_title": "Invalid URL"
-  },
   "common": {
     "done": "Done",
     "ok": "Ok"
