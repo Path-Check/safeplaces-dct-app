@@ -1,3 +1,7 @@
+## [1.0.21](https://github.com/Path-Check/covid-safe-paths/compare/1.0.20...1.0.21) (2020-05-19)
+
+
+
 ## [1.0.20](https://github.com/Path-Check/covid-safe-paths/compare/1.0.19...1.0.20) (2020-05-19)
 
 
@@ -11,10 +15,6 @@
 
 
 ## [1.0.17](https://github.com/Path-Check/covid-safe-paths/compare/1.0.16...1.0.17) (2020-05-19)
-
-
-
-## [1.0.16](https://github.com/Path-Check/covid-safe-paths/compare/1.0.15...1.0.16) (2020-05-19)
 
 
 
