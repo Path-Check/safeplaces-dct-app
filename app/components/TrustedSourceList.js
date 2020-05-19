@@ -1,4 +1,4 @@
-import findIndex from 'lodash/findIndex';
+import { findIndex } from 'lodash';
 import React from 'react';
 import { StyleSheet, Switch, TouchableOpacity } from 'react-native';
 import { MenuOption } from 'react-native-popup-menu';
