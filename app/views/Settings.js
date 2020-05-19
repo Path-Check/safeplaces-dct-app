@@ -29,6 +29,7 @@ export const SettingsScreen = ({ navigation }) => {
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
+  const isGPS = tracingStrategy === 'gps';
 
   const backToMain = () => {
     navigation.goBack();
@@ -55,12 +56,16 @@ export const SettingsScreen = ({ navigation }) => {
   }, [navigation]);
 
   const locationToggleButtonPressed = async () => {
-    try {
-      isLogging ? LocationServices.stop() : LocationServices.start();
-      await SetStoreData(PARTICIPATE, !isLogging);
+    if (!isGPS) {
       setIsLogging(!isLogging);
-    } catch (e) {
-      console.log(e);
+    } else {
+      try {
+        isLogging ? LocationServices.stop() : LocationServices.start();
+        await SetStoreData(PARTICIPATE, !isLogging);
+        setIsLogging(!isLogging);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -74,6 +79,18 @@ export const SettingsScreen = ({ navigation }) => {
     }
   };
 
+  const getLoggingText = () => {
+    if (isLogging && isGPS) {
+      return t('label.logging_active_location');
+    } else if (isLogging && !isGPS) {
+      return t('label.logging_active_bluetooth');
+    } else if (!isLogging && isGPS) {
+      return t('label.logging_inactive_location');
+    } else if (!isLogging && !isGPS) {
+      return t('label.logging_inactive_bluetooth');
+    }
+  }
+
   return (
     <NavigationBarWrapper
       title={t('label.settings_title')}
@@ -81,11 +98,7 @@ export const SettingsScreen = ({ navigation }) => {
       <ScrollView>
         <Section>
           <Item
-            label={
-              isLogging
-                ? t('label.logging_active')
-                : t('label.logging_inactive')
-            }
+            label={getLoggingText()}
             icon={isLogging ? Icons.Checkmark : Icons.XmarkIcon}
             onPress={locationToggleButtonPressed}
           />

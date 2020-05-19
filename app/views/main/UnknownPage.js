@@ -26,12 +26,9 @@ export const UnknownPage = ({ tracingStrategy }) => {
 
   const buttonLabel =
     tracingStrategy === 'gps'
-      ? t('label.home_enable_location')
-      : 'Enable Bluetooth';
-  const ctaText =
-    tracingStrategy === 'gps'
-      ? t('label.home_unknown_subtext')
-      : 'Bluetooth not enabled';
+      ? t(`label.home_enable_location`)
+      : t(`label.home_enable_bluetooth`);
+  const ctaText = t(`label.home_unknown_subtext.${tracingStrategy}`);
 
   return (
     <Theme use='violet'>
