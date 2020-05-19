@@ -1,3 +1,7 @@
+## [1.0.16](https://github.com/intellisysdcorp/covid-safe-paths/compare/1.0.15...1.0.16) (2020-05-19)
+
+
+
 ## [1.0.15](https://github.com/intellisysdcorp/covid-safe-paths/compare/1.0.14...1.0.15) (2020-05-18)
 
 
@@ -16,10 +20,6 @@
 ### Reverts
 
 * Revert "Fixing reviews and adding Aurora" ([de2332f](https://github.com/intellisysdcorp/covid-safe-paths/commit/de2332f721e3d535d2fa7007f2fb5a314aedc244))
-
-
-
-# [1.0.0-rc0.5](https://github.com/intellisysdcorp/covid-safe-paths/compare/v1.0.0-rc0.4...v1.0.0-rc0.5) (2020-05-08)
 
 
 
