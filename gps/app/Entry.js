@@ -38,7 +38,8 @@ class Entry extends Component {
     GetStoreData('ONBOARDING_DONE')
       .then(onboardingComplete => {
         this.setState({
-          onboardingComplete: onboardingComplete !== 'true',
+          // the async store stores this as a string.
+          onboardingComplete: onboardingComplete === 'true',
         });
       })
       .catch(error => console.log(error));
