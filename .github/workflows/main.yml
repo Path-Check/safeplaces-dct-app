@@ -3,7 +3,7 @@ name: Semantic release
 on:
   push:
     branches:
-      - develop
+      - master
 jobs:
   publish:
     runs-on: ubuntu-latest
