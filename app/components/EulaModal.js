@@ -93,7 +93,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                 <Typography style={styles.smallDescriptionText}>
                   {t('onboarding.eula_message')}
                 </Typography>
-                <ButtonWrapper
+                <Button
                   title={t('onboarding.eula_continue')}
                   buttonColor={
                     canContinue ? Colors.BLUE_RIBBON : Colors.GRAY_BUTTON
