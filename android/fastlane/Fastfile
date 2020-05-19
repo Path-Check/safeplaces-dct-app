@@ -64,6 +64,7 @@ platform :android do
     
     upload_to_play_store(
       track: 'beta',
+      release_status: 'draft',
       skip_upload_apk: true,
       aab: 'app/build/outputs/bundle/prodRelease/app.aab',
     )
@@ -111,6 +112,7 @@ platform :android do
     
     upload_to_play_store(
       track: 'beta',
+      release_status: 'draft',
       skip_upload_apk: true,
       aab: 'app/build/outputs/bundle/bteRelease/app.aab',
     )
