@@ -1,4 +1,5 @@
-app_identifier("org.pathcheck.covid-safepaths") # The bundle identifier of your app
+# app_identifier("org.pathcheck.covid-safepaths") # The bundle identifier of your app
+app_identifier("org.pathcheck.bt") # The bundle identifier of your app
 apple_id("tech@pathcheck.org") # Your Apple email address
 
 itc_team_id("121372784") # App Store Connect Team ID
