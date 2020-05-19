@@ -8,8 +8,8 @@ import {
 
 import styles from '../../../../components/DR/Header/style';
 import Input from '../../../../components/DR/Input/index';
-import context from '../../../../components/DR/reduces/context';
-import Colors from '../../../../constants/Colors';
+import context from '../../../../components/DR/Reduces/context';
+import Colors from '../../../../constants/colors';
 import provinces from '../../../../constants/DR/Provinces.json';
 
 const StepAdress = ({ setCompleted }) => {
