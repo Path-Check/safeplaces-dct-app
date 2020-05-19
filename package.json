@@ -109,6 +109,8 @@
     "@babel/runtime": "^7.8.4",
     "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@testing-library/react-native": "^5.0.3",
     "@types/jest": "^25.2.1",
     "babel-jest": "^25.1.0",
@@ -131,7 +133,31 @@
     "prettier-plugin-import-sort": "0.0.3",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-version": "^4.0.0",
-    "react-test-renderer": "16.9.0"
+    "react-test-renderer": "16.9.0",
+    "semantic-release": "^17.0.7"
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+  ],
+  "release": {
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
   },
   "importSort": {
     ".js, .jsx, .es6, .es, .mjs, .ts, .tsx": {
