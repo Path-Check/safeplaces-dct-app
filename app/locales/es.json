@@ -9,7 +9,7 @@
     "done": "Hecho"
   },
   "history": {
-    "no_exposure": "No ha habido contacto",
+    "no_exposure": "No ha tenido contacto",
     "possible_exposure": "Posible",
     "possible_exposure_para": "Es posible que hayas estado en contacto o cerca de alguien que ha dado positivo en COVID-19.",
     "what_does_this_mean": "¿Qué significa esto?",
@@ -75,7 +75,7 @@
     "home_enable_location": "Permitir acceso a tu ubicación",
     "home_mayo_link_heading": "Más información del COVID-19",
     "home_mayo_link_label": "de expertos de la Mayo Clinic",
-    "home_no_contact_header": "No ha habido contacto",
+    "home_no_contact_header": "No ha tenido contacto",
     "home_no_contact_subtext": "Según los datos disponibles, no has estado cerca de nadie que haya dado positivo en COVID-19.",
     "home_setting_off_header": "Desconocido",
     "home_setting_off_subtext": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",

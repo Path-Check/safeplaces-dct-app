@@ -118,7 +118,7 @@ exports[`size is configurable (snapshot) 1`] = `
         "backgroundColor": "transparent",
         "borderBottomLeftRadius": 12,
         "borderBottomRightRadius": 12,
-        "borderColor": "#4051DB",
+        "borderColor": "#0161F2",
         "borderStyle": "solid",
         "borderTopLeftRadius": 12,
         "borderTopRightRadius": 12,
@@ -133,7 +133,7 @@ exports[`size is configurable (snapshot) 1`] = `
       riskLevel="today"
       style={
         Object {
-          "color": "#4051DB",
+          "color": "#0161F2",
           "flexBasis": 0,
           "flexGrow": 1,
           "flexShrink": 1,
@@ -167,7 +167,7 @@ exports[`today matches snapshot 1`] = `
         "backgroundColor": "transparent",
         "borderBottomLeftRadius": 18,
         "borderBottomRightRadius": 18,
-        "borderColor": "#4051DB",
+        "borderColor": "#0161F2",
         "borderStyle": "solid",
         "borderTopLeftRadius": 18,
         "borderTopRightRadius": 18,
@@ -182,7 +182,7 @@ exports[`today matches snapshot 1`] = `
       riskLevel="today"
       style={
         Object {
-          "color": "#4051DB",
+          "color": "#0161F2",
           "flexBasis": 0,
           "flexGrow": 1,
           "flexShrink": 1,

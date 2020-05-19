@@ -1,5 +1,4 @@
 import styled from '@emotion/native';
-import { useTheme } from 'emotion-theming';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { Dimensions, StatusBar } from 'react-native';
@@ -20,9 +19,7 @@ import Colors from '../constants/colors';
 const widthScale = Math.min(Dimensions.get('window').width / 400, 1.0);
 
 const NavigationBarWrapper = ({ children, title, onBackPress }) => {
-  const theme = useTheme();
-
-  const barColor = (theme && theme.navBar) || Colors.VIOLET;
+  const barColor = Colors.BLUE_RIBBON;
 
   return (
     <>
@@ -45,7 +42,7 @@ const NavigationBarWrapper = ({ children, title, onBackPress }) => {
   );
 };
 
-const themeNavBar = ({ theme }) => theme.navBar || Colors.VIOLET;
+const themeNavBar = ({ theme }) => theme.navBar || Colors.BLUE_RIBBON;
 
 const TopContainer = styled.SafeAreaView`
   flex: 0;
@@ -61,7 +58,7 @@ const BottomContainer = styled.SafeAreaView`
 `;
 
 const themeNavBarBorder = ({ theme }) =>
-  theme.navBarBorder || Colors.NAV_BAR_VIOLET;
+  theme.navBarBorder || Colors.BLUE_RIBBON;
 
 const Header = styled.View`
   align-items: center;
@@ -77,7 +74,7 @@ const Title = styled.Text`
   align-self: center;
   color: ${themeOnNavBar};
   font-family: IBMPlexSans-Medium;
-  font-size: ${26 * widthScale + 'px'};
+  font-size: ${22 * widthScale + 'px'};
   line-height: 34px;
   position: absolute;
   padding-horizontal: 20px;
@@ -98,7 +95,6 @@ const BackArrowSvg = styled(SvgXml)`
   height: 18px;
   width: 18px;
   color: ${Colors.WHITE};
-  opacity: 0.4;
 `;
 
 NavigationBarWrapper.propTypes = {

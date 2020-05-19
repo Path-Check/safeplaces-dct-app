@@ -199,7 +199,7 @@ exports[`setting off matches snapshot 1`] = `
           <Text
             style={
               Object {
-                "color": "#4051DB",
+                "color": "#0161F2",
                 "fontFamily": "IBMPlexSans-Medium",
                 "fontSize": 20,
                 "fontWeight": "normal",

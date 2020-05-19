@@ -110,7 +110,7 @@ export const ExportScreen = ({ navigation }) => {
     <Theme use='violet'>
       <StatusBar
         barStyle='light-content'
-        backgroundColor={Colors.VIOLET_BUTTON}
+        backgroundColor={Colors.BLUE_RIBBON}
         translucent={false}
       />
       <SafeAreaView style={styles.topSafeAreaContainer} />
@@ -118,7 +118,7 @@ export const ExportScreen = ({ navigation }) => {
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
-          colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
+          colors={[Colors.BLUE_RIBBON, Colors.BLUE_RIBBON]}
           style={{ flex: 1, height: '100%' }}>
           <View style={styles.headerContainer}>
             <IconButton
@@ -159,11 +159,11 @@ const styles = StyleSheet.create({
   // Container covers the entire screen
   topSafeAreaContainer: {
     flex: 0,
-    backgroundColor: Colors.VIOLET_BUTTON,
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   bottomSafeAreaContainer: {
     flex: 1,
-    backgroundColor: Colors.VIOLET_BUTTON_DARK,
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   headerContainer: {
     alignItems: 'center',
@@ -188,6 +188,17 @@ const styles = StyleSheet.create({
   },
   exportButton: {
     marginTop: 48,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  exportButtonText: {
+    color: Colors.BLUE_RIBBON,
+    fontSize: 20,
+    fontFamily: fontFamily.primaryMedium,
+  },
+  exportIcon: {
+    width: 16,
+    height: 21,
   },
   main: {
     flex: 1,

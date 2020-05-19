@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
   termsInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.SILVER,
-    padding: 15,
+    backgroundColor: Colors.GRAY_BUTTON,
+    padding: 7,
   },
   arrowContainer: {
     alignSelf: 'center',

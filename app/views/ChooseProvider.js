@@ -434,13 +434,25 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: Colors.WHITE,
   },
+  startLoggingButtonTouchable: {
+    borderRadius: 12,
+    backgroundColor: '#665eff',
+    height: 52,
+    alignSelf: 'center',
+    width: '79%',
+    justifyContent: 'center',
+  },
+  startLoggingButtonText: {
+    textAlign: 'center',
+    color: '#ffffff',
+  },
   headerTitle: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.BLUE_RIBBON,
   },
   sectionDescription: {
     marginTop: 12,
     overflow: 'scroll',
-    color: Colors.VIOLET_TEXT,
+    color: Colors.BLACK,
   },
   authorityFilter: {
     flexDirection: 'row',

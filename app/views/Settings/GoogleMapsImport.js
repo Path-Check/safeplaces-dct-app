@@ -29,6 +29,7 @@ export const GoogleMapsImport = ({ navigation }) => {
         secondary
         label={t('import.button_text')}
         onPress={importPressed}
+        buttonWidth={'100%'}
       />
 
       <ParagraphContainer>

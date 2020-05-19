@@ -43,6 +43,8 @@ const Onboarding = props => {
           onPress={() => {
             props.navigation.replace('Onboarding4');
           }}
+          buttonColor={Colors.WHITE}
+          bgColor={Colors.BLUE_RIBBON}
         />
       </View>
     </View>
@@ -68,12 +70,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   headerText: {
-    color: Colors.VIOLET,
+    color: Colors.BLUE_RIBBON,
     width: width * 0.75,
   },
   subheaderText: {
     marginTop: '6%',
-    color: Colors.VIOLET,
+    color: Colors.BLUE_RIBBON,
     fontSize: 15,
     width: width * 0.5,
     fontFamily: fontFamily.primaryRegular,

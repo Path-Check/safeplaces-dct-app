@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
     height: '100%',
     resizeMode: 'cover',
     flex: 1,
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   mainContainer: {
     flex: 1,
@@ -140,19 +141,20 @@ const styles = StyleSheet.create({
   // eslint-disable-next-line react-native/no-color-literals
   languageSelector: {
     // alpha needs to be in the bg color otherwise it fades the contained text
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    backgroundColor: Colors.WHITE,
     paddingVertical: 4,
     paddingHorizontal: 11,
     borderRadius: 100,
   },
   languageSelectorText: {
     fontSize: 12,
-    color: Colors.VIOLET,
+    color: Colors.BLUE_RIBBON,
     paddingVertical: 4,
     paddingHorizontal: 11,
     opacity: 1,
     textAlign: 'center',
     textTransform: 'uppercase',
+    fontWeight: '800',
   },
 });
 

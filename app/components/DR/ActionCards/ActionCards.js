@@ -7,7 +7,7 @@ import {
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Colors from '../../../constants/DR/colors';
+import Colors from '../../../constants/colors';
 import styles from './styles';
 
 const { ORANGE, GREEN, MAIN_BLUE } = Colors;

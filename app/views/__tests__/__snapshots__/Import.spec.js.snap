@@ -6,7 +6,7 @@ Array [
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#4051DB",
+        "backgroundColor": "#0161F2",
         "flexBasis": 0,
         "flexGrow": 0,
         "flexShrink": 1,
@@ -28,8 +28,8 @@ Array [
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#4051DB",
-          "borderBottomColor": "#5061E6",
+          "backgroundColor": "#0161F2",
+          "borderBottomColor": "#0161F2",
           "borderBottomWidth": 1,
           "flexDirection": "row",
         }
@@ -61,7 +61,6 @@ Array [
             Object {
               "color": "#FFF",
               "height": 18,
-              "opacity": 0.4,
               "width": 18,
             }
           }
@@ -78,7 +77,7 @@ Array [
             "alignSelf": "center",
             "color": "#FFF",
             "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 26,
+            "fontSize": 22,
             "letterSpacing": -0.3,
             "lineHeight": 34,
             "paddingHorizontal": 20,
@@ -119,6 +118,7 @@ Array [
           <Text
             style={
               Object {
+                "color": "#000",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 16,
                 "fontWeight": "normal",
@@ -134,6 +134,7 @@ Array [
           <Text
             style={
               Object {
+                "color": "#000",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 16,
                 "fontWeight": "normal",
@@ -149,6 +150,7 @@ Array [
           <Text
             style={
               Object {
+                "color": "#000",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 16,
                 "fontWeight": "normal",

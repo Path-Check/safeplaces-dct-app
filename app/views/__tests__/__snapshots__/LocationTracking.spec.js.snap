@@ -49,6 +49,7 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
+          "backgroundColor": "#0161F2",
           "flex": 1,
           "height": "100%",
           "justifyContent": "center",
@@ -167,6 +168,7 @@ exports[`renders correctly 1`] = `
         focusable={true}
         style={
           Object {
+            "backgroundColor": "#0161F2",
             "flexDirection": "row",
             "justifyContent": "space-between",
             "opacity": 1,

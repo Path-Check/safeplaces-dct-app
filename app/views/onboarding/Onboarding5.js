@@ -468,6 +468,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainContainer: {
+    backgroundColor: Colors.BLUE_RIBBON,
     flex: 1,
   },
   contentContainer: {

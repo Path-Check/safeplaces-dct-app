@@ -28,7 +28,7 @@ exports[`changes text color based on theme 1`] = `
   <Text
     style={
       Object {
-        "color": "#4051DB",
+        "color": "#0161F2",
         "fontFamily": "IBMPlexSans",
         "fontSize": 18,
         "fontWeight": "normal",

@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 12,
     fontFamily: fontFamily.primaryRegular,
+    color: colors.BLACK,
   },
   importResults: {
     fontSize: 12,
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
     color: colors.VIOLET_TEXT,
   },
   importResultsError: {
-    color: colors.RED_TEXT,
+    color: colors.VIOLET_TEXT,
   },
 });
 export default ImportScreen;

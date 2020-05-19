@@ -14,7 +14,7 @@ exports[`renders correctly 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#4051DB",
+        "backgroundColor": "#0161F2",
         "flexBasis": 0,
         "flexGrow": 0,
         "flexShrink": 1,
@@ -36,8 +36,8 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#4051DB",
-          "borderBottomColor": "#5061E6",
+          "backgroundColor": "#0161F2",
+          "borderBottomColor": "#0161F2",
           "borderBottomWidth": 1,
           "flexDirection": "row",
         }
@@ -62,7 +62,6 @@ exports[`renders correctly 1`] = `
             Object {
               "color": "#FFF",
               "height": 18,
-              "opacity": 0.4,
               "width": 18,
             }
           }
@@ -79,7 +78,7 @@ exports[`renders correctly 1`] = `
             "alignSelf": "center",
             "color": "#FFF",
             "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 26,
+            "fontSize": 22,
             "letterSpacing": -0.3,
             "lineHeight": 34,
             "paddingHorizontal": 20,
@@ -159,11 +158,11 @@ exports[`renders correctly 1`] = `
       focusable={true}
       style={
         Object {
-          "backgroundColor": "#BEBEBE",
+          "backgroundColor": "#868686",
           "flexDirection": "row",
           "justifyContent": "space-between",
           "opacity": 1,
-          "padding": 15,
+          "padding": 7,
         }
       }
     >
@@ -172,7 +171,7 @@ exports[`renders correctly 1`] = `
           Object {
             "color": "#FFF",
             "fontFamily": "IBMPlexSans-Bold",
-            "fontSize": 26,
+            "fontSize": 20,
             "fontWeight": "bold",
             "lineHeight": 34,
             "writingDirection": "ltr",

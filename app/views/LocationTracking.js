@@ -408,7 +408,7 @@ class LocationTracking extends Component {
       />
     );
   }
-
+  
   getMayoInfoPressed() {
     Linking.openURL(MAYO_COVID_URL);
   }
@@ -518,6 +518,7 @@ const styles = StyleSheet.create({
     height: 54, // fixes overlaying buttons on really small screens
   },
   pulseContainer: {
+    backgroundColor: Colors.BLUE_RIBBON,
     position: 'absolute',
     resizeMode: 'contain',
     height: '100%',
@@ -563,6 +564,7 @@ const styles = StyleSheet.create({
   mayoInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   mayoInfoContainer: {
     flexDirection: 'column',

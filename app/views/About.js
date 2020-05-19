@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     marginTop: 36,
   },
   aboutSectionTitles: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.BLUE_RIBBON,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
     marginTop: 36,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     lineHeight: 32,
   },
   aboutSectionPara: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.BLACK,
     fontSize: 16,
     lineHeight: 22.5,
     marginTop: 12,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   aboutSectionParaBold: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.BLUE_RIBBON,
     fontSize: 16,
     lineHeight: 22.5,
     marginTop: 12,
