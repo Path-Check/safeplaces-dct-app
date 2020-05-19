@@ -408,7 +408,7 @@ class LocationTracking extends Component {
       />
     );
   }
-  
+
   getMayoInfoPressed() {
     Linking.openURL(MAYO_COVID_URL);
   }
