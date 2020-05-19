@@ -332,9 +332,9 @@ const Onboarding = ({ navigation }) => {
   const getTitleText = () => {
     switch (currentStep) {
       case StepEnum.LOCATION:
-        return languages.t('label.launch_location_header');
+        return languages.t('label.launch_header_location');
       case StepEnum.BLUETOOTH:
-        return languages.t('label.launch_bluetooth_header');
+        return languages.t('label.launch_header_bluetooth');
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_notif_header');
       case StepEnum.HCA_SUBSCRIPTION:
@@ -361,13 +361,13 @@ const Onboarding = ({ navigation }) => {
       case StepEnum.LOCATION:
         [style, text] = [
           styles.subheaderText,
-          languages.t('label.launch_location_subheader'),
+          languages.t('label.launch_subheader'),
         ];
         break;
       case StepEnum.BLUETOOTH:
         [style, text] = [
           styles.subheaderText,
-          languages.t('label.launch_bluetooth_subheader'),
+          languages.t('label.launch_subheader'),
         ];
         break;
       case StepEnum.NOTIFICATIONS:
@@ -402,7 +402,7 @@ const Onboarding = ({ navigation }) => {
       <>
         <View style={styles.divider} />
         <PermissionDescription
-          title={languages.t('label.launch_location_access')}
+          title={languages.t('label.launch_access_location')}
           status={locationPermission}
         />
         <View style={styles.divider} />
@@ -415,7 +415,7 @@ const Onboarding = ({ navigation }) => {
       <>
         <View style={styles.divider} />
         <PermissionDescription
-          title={languages.t('label.launch_bluetooth_access')}
+          title={languages.t('label.launch_access_bluetooth')}
           status={bluetoothPermission}
         />
         <View style={styles.divider} />
