@@ -1,17 +1,35 @@
-name: Staging iOS
+name: Publish Release Candidates BTE
 
-# Deliberately turned off the pull request logic here
-# because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
 on:
   push:
     branches:
-      - develop
-      - master
-      - release-candidate
+      - bte
+    paths-ignore:
+      - 'package.json'
+      - 'CHANGELOG.md'
 
 jobs:
-  build_staging_ios:
+  version_bump:
+    name: "Bump version"
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.ref }}
+
+    - name: Bump version and push tag
+      uses: TriPSs/conventional-changelog-action@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        git-message: 'chore(release): {version}'
+        preset: 'angular'
+        tag-prefix: ''
+        output-file: 'CHANGELOG.md'
+
+  deploy_ios:
     runs-on: macOS-latest
+    needs: version_bump
     steps:
       - uses: actions/checkout@master
 
@@ -64,20 +82,32 @@ jobs:
             ssh-agent -a $SSH_AUTH_SOCK > /dev/null
             ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
 
-      - name: Build iOS Staging artifact for devices
+      - name: Build ios Release artifact
         uses: maierj/fastlane-action@v1.4.0
+        # The names of the keys for secrets are specific and meaningful to Match.
+        # Match password is responsible for decrypting the secrets from the cert repo
+        # Fastlane password is responsible for interacting with the App Store to validate certificates and profiles.
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          lane: 'staging'
+          lane: 'release_bte'
           subdirectory: 'ios'
           bundle-install-path: 'vendor/bundle'
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+      - name: Deploy to testflight
+        uses: maierj/fastlane-action@v1.4.0
+        # The names of the keys for secrets are specific and meaningful to Match.
+        # Match password is responsible for decrypting the secrets from the cert repo
+        # Fastlane password is responsible for interacting with the App Store to validate certificates and profiles.
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          name: Staging IPA file
-          path: ios/COVIDSafePaths-staging.ipa
+          lane: 'deploy'
+          subdirectory: 'ios'
+          bundle-install-path: 'vendor/bundle'

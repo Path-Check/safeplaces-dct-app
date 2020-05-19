@@ -1,13 +1,11 @@
-name: Staging iOS
+name: Staging iOS BTE
 
 # Deliberately turned off the pull request logic here
 # because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
 on:
   push:
     branches:
-      - develop
-      - master
-      - release-candidate
+      - bte
 
 jobs:
   build_staging_ios:
@@ -64,7 +62,7 @@ jobs:
             ssh-agent -a $SSH_AUTH_SOCK > /dev/null
             ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
 
-      - name: Build iOS Staging artifact for devices
+      - name: Build BTE iOS Production artifact for devices
         uses: maierj/fastlane-action@v1.4.0
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
@@ -72,12 +70,12 @@ jobs:
           MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          lane: 'staging'
+          lane: 'staging_bte'
           subdirectory: 'ios'
           bundle-install-path: 'vendor/bundle'
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: Staging IPA file
-          path: ios/COVIDSafePaths-staging.ipa
+          name: Debug IPA file (work in progress)
+          path: ios/COVIDSafePaths-bte.ipa

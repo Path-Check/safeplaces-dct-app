@@ -1,6 +1,7 @@
 git_url("git@github.com:Path-Check/certificates.git")
 storage_mode("git")
-app_identifier(["org.pathcheck.covid-safepaths"])
+# app_identifier(["org.pathcheck.covid-safepaths"]) # GPS Target/Flavor
+app_identifier(["org.pathcheck.bt"]) # BTE Target/Flavor
 username("tech@pathcheck.org") # Your Apple Developer Portal username
 
 # type("appstore") # Options: appstore, adhoc, enterprise or development
