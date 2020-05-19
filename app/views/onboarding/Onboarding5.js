@@ -40,9 +40,10 @@ const PermissionStatusEnum = {
 
 const StepEnum = {
   LOCATION: 0,
-  NOTIFICATIONS: 1,
-  HCA_SUBSCRIPTION: 2,
-  DONE: 3,
+  BLUETOOTH: 1,
+  NOTIFICATIONS: 2,
+  HCA_SUBSCRIPTION: 3,
+  DONE: 4,
 };
 
 const PermissionDescription = ({ title, status }) => {
@@ -70,11 +71,16 @@ const PermissionDescription = ({ title, status }) => {
 };
 
 const Onboarding = ({ navigation }) => {
-  const [currentStep, setCurrentStep] = useState(StepEnum.LOCATION);
+  const isGPSTracingStrategy = () => tracingStrategy === 'gps';
+
+  const [currentStep, setCurrentStep] = useState(isGPSTracingStrategy() ? StepEnum.LOCATION : StepEnum.BLUETOOTH);
   const [notificationPermission, setNotificationPermission] = useState(
     PermissionStatusEnum.UNKNOWN,
   );
   const [locationPermission, setLocationPermission] = useState(
+    PermissionStatusEnum.UNKNOWN,
+  );
+  const [bluetoothPermission, setBluetoothPermission] = useState(
     PermissionStatusEnum.UNKNOWN,
   );
   const [authSubscriptionStatus, setAuthSubscriptionStatus] = useState(
@@ -82,18 +88,10 @@ const Onboarding = ({ navigation }) => {
   );
 
   useEffect(() => {
-    checkLocationStatus();
+    isGPSTracingStrategy() ? checkLocationStatus() : checkBluetoothStatus();
     isPlatformiOS() && checkNotificationStatus();
-    __DEV__ && checkSubsriptionStatus();
+    __DEV__ && isGPSTracingStrategy() && checkSubsriptionStatus();
   });
-
-  const isLocationChecked = () => {
-    return locationPermission !== PermissionStatusEnum.UNKNOWN;
-  };
-
-  const isNotificationChecked = () => {
-    return notificationPermission !== PermissionStatusEnum.UNKNOWN;
-  };
 
   /**
    * Helper method to determine the next step for permission requests.
@@ -108,8 +106,10 @@ const Onboarding = ({ navigation }) => {
     switch (currentStep) {
       case StepEnum.LOCATION:
         return getLocationNextStep();
+      case StepEnum.BLUETOOTH:
+        return getBluetoothNextStep();
       case StepEnum.NOTIFICATIONS:
-        return __DEV__ ? StepEnum.HCA_SUBSCRIPTION : StepEnum.DONE;
+        return __DEV__ && isGPSTracingStrategy() ? StepEnum.HCA_SUBSCRIPTION : StepEnum.DONE;
       case StepEnum.HCA_SUBSCRIPTION:
         return StepEnum.DONE;
     }
@@ -128,6 +128,58 @@ const Onboarding = ({ navigation }) => {
       case RESULTS.BLOCKED:
         setCurrentStep(nextStep);
         setLocationPermission(PermissionStatusEnum.DENIED);
+        break;
+    }
+  };
+
+  const requestLocation = async () => {
+    const nextStep = getNextStep(StepEnum.LOCATION);
+    const locationPermission = getLocationPermissionSetting();
+    const status = await request(locationPermission);
+
+    switch (status) {
+      case RESULTS.GRANTED:
+        setCurrentStep(nextStep);
+        setLocationPermission(PermissionStatusEnum.GRANTED);
+        break;
+      case RESULTS.BLOCKED:
+        setCurrentStep(nextStep);
+        setLocationPermission(nextStep);
+        break;
+    }
+  };
+
+  const checkBluetoothStatus = async () => {
+    const nextStep = getNextStep(StepEnum.BLUETOOTH);
+    const setting = getBluetoothPermissionSetting();
+    const status = await check(setting);
+
+    switch (status) {
+      case RESULTS.GRANTED:
+        setCurrentStep(nextStep);
+        setBluetoothPermission(PermissionStatusEnum.GRANTED);
+        break;
+      case RESULTS.BLOCKED:
+        setCurrentStep(nextStep);
+        setBluetoothPermission(PermissionStatusEnum.DENIED);
+        break;
+    }
+  };
+
+  const requestBluetooth = async () => {
+    const nextStep = getNextStep(StepEnum.BLUETOOTH);
+    const bluetoothPermission = getBluetoothPermissionSetting();
+    // const status = await request(bluetoothPermission);
+    const status = RESULTS.GRANTED;
+
+    switch (status) {
+      case RESULTS.GRANTED:
+        setCurrentStep(nextStep);
+        setBluetoothPermission(PermissionStatusEnum.GRANTED);
+        break;
+      case RESULTS.BLOCKED:
+        setCurrentStep(nextStep);
+        setBluetoothPermission(nextStep);
         break;
     }
   };
@@ -174,6 +226,14 @@ const Onboarding = ({ navigation }) => {
     }
   };
 
+  const getBluetoothNextStep = () => {
+    if (isPlatformiOS()) {
+      return StepEnum.NOTIFICATIONS;
+    } else {
+      return StepEnum.DONE;
+    }
+  };
+
   /**
    * Gets the respective location permissions settings string
    * for the user's current device.
@@ -184,21 +244,12 @@ const Onboarding = ({ navigation }) => {
       : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
   };
 
-  const requestLocation = async () => {
-    const nextStep = getNextStep(StepEnum.LOCATION);
-    const locationPermission = getLocationPermissionSetting();
-    const status = await request(locationPermission);
-
-    switch (status) {
-      case RESULTS.GRANTED:
-        setCurrentStep(nextStep);
-        setLocationPermission(PermissionStatusEnum.GRANTED);
-        break;
-      case RESULTS.BLOCKED:
-        setCurrentStep(nextStep);
-        setLocationPermission(nextStep);
-        break;
-    }
+  // Using dummy permission strings for time being
+  // Replace with ExposureNotification Permissions
+  const getBluetoothPermissionSetting = () => {
+    return isPlatformiOS()
+      ? PERMISSIONS.IOS.BLUETOOTH_PERIPHERAL
+      : "android.permission.BLUETOOTH";
   };
 
   const requestNotification = async () => {
@@ -239,6 +290,10 @@ const Onboarding = ({ navigation }) => {
         setCurrentStep(nextStep);
         setLocationPermission(status);
         break;
+      case StepEnum.BLUETOOTH:
+        setCurrentStep(nextStep);
+        setBluetoothPermission(status);
+        break;
       case StepEnum.NOTIFICATIONS:
         setCurrentStep(nextStep);
         setNotificationPermission(status);
@@ -254,6 +309,9 @@ const Onboarding = ({ navigation }) => {
     switch (currentStep) {
       case StepEnum.LOCATION:
         requestLocation();
+        break;
+      case StepEnum.BLUETOOTH:
+        requestBluetooth();
         break;
       case StepEnum.NOTIFICATIONS:
         requestNotification();
@@ -275,6 +333,8 @@ const Onboarding = ({ navigation }) => {
     switch (currentStep) {
       case StepEnum.LOCATION:
         return languages.t('label.launch_location_header');
+      case StepEnum.BLUETOOTH:
+        return languages.t('label.launch_bluetooth_header');
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_notif_header');
       case StepEnum.HCA_SUBSCRIPTION:
@@ -302,6 +362,12 @@ const Onboarding = ({ navigation }) => {
         [style, text] = [
           styles.subheaderText,
           languages.t('label.launch_location_subheader'),
+        ];
+        break;
+      case StepEnum.BLUETOOTH:
+        [style, text] = [
+          styles.subheaderText,
+          languages.t('label.launch_bluetooth_subheader'),
         ];
         break;
       case StepEnum.NOTIFICATIONS:
@@ -344,6 +410,19 @@ const Onboarding = ({ navigation }) => {
     );
   };
 
+  const getBluetoothPermission = () => {
+    return (
+      <>
+        <View style={styles.divider} />
+        <PermissionDescription
+          title={languages.t('label.launch_bluetooth_access')}
+          status={bluetoothPermission}
+        />
+        <View style={styles.divider} />
+      </>
+    );
+  };
+
   const getNotificationsPermissionIfIOS = () => {
     return (
       isPlatformiOS() && (
@@ -374,6 +453,8 @@ const Onboarding = ({ navigation }) => {
     switch (currentStep) {
       case StepEnum.LOCATION:
         return languages.t('label.launch_enable_location');
+      case StepEnum.BLUETOOTH:
+        return languages.t('label.launch_enable_bluetooth');
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_enable_notif');
       case StepEnum.HCA_SUBSCRIPTION:
@@ -408,10 +489,11 @@ const Onboarding = ({ navigation }) => {
 
   const BluetoothPermissionQuestions = () => {
     return (
-      <PermissionDescription
-        title={'Ask for bluetooth permission here'}
-        status={PermissionStatusEnum.UNKNOWN}
-      />
+      <>
+        {getBluetoothPermission()}
+        {getNotificationsPermissionIfIOS()}
+        <View style={styles.spacer} />
+      </>
     );
   };
 
@@ -432,7 +514,7 @@ const Onboarding = ({ navigation }) => {
             {getSubtitleText()}
             {getSkipStepButton()}
             <View style={styles.statusContainer}>
-              {tracingStrategy === 'gps' ? (
+              {isGPSTracingStrategy() ? (
                 <LocationPermissionQuestions />
               ) : (
                 <BluetoothPermissionQuestions />
