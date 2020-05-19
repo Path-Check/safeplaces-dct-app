@@ -41,14 +41,12 @@
 		<key>NSExceptionDomains</key>
 		<dict/>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you've been exposed to COVID-19</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you've been exposed to COVID-19</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you&apos;ve been exposed to COVID-19</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you&apos;ve been exposed to COVID-19</string>
-	<key>NSMotionUsageDescription</key>
-	<string>We use your accelerometer for accurate location history.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>IBMPlexSans-Bold.ttf</string>
@@ -82,9 +80,12 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
 		<string>fetch</string>
 		<string>location</string>
 		<string>processing</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
