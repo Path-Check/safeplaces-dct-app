@@ -26,7 +26,8 @@ platform :android do
   desc "Build a Staging APK and AAB"
   lane :staging do
     gradle(
-      task: "clean assembleStagingDebug",
+      task: "assemble",
+      build_type: "gpsStaging",
       print_command: false,
     )
   end 
@@ -44,19 +45,8 @@ platform :android do
     )
 
     gradle(
-      task: "assemble",
-      build_type: "prodRelease",
-      print_command: false,
-      properties: {
-        "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
-        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
-        "android.injected.signing.key.password" =>  ENV["KEY_PASSWORD"]
-      }
-    )
-
-    gradle(
       task: "bundle",
-      build_type: "prodRelease",
+      build_type: "gpsRelease",
       print_command: false,
       properties: {
         "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
@@ -74,8 +64,57 @@ platform :android do
     
     upload_to_play_store(
       track: 'beta',
+      release_status: 'draft',
       skip_upload_apk: true,
       aab: 'app/build/outputs/bundle/prodRelease/app.aab',
+    )
+  end
+
+  desc "Build a Staging APK and AAB"
+  lane :staging_bte do
+    gradle(
+      task: "clean assemble",
+      build_type: "bteStaging",
+      print_command: false,
+    )
+  end 
+
+  desc "Build a Release APK and AAB"
+  lane :release_bte do
+
+    increment_version_code(
+      gradle_file_path: "../android/app/build.gradle",
+    )
+
+    increment_version_name(
+      gradle_file_path: "../android/app/build.gradle",
+      version_name: JS_PACKAGE['version']
+    )
+
+    gradle(
+      task: "bundle",
+      build_type: "bteRelease",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" =>  ENV["KEY_PASSWORD"]
+      }
+    )
+
+  end
+
+  desc "Upload to google play store beta track"
+  lane :play_store_bte do
+    validate_play_store_json_key(
+      json_key: "app/json_key.json",
+    )
+    
+    upload_to_play_store(
+      track: 'beta',
+      release_status: 'draft',
+      skip_upload_apk: true,
+      aab: 'app/build/outputs/bundle/bteRelease/app.aab',
     )
   end
 end
