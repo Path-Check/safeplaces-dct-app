@@ -8,7 +8,7 @@ import { FeatureFlag } from '../components/FeatureFlag';
 import { IconButton } from '../components/IconButton';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
-import tracingStrategy from '../COVIDSafePathsConfig';
+import { tracingStrategy } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices, { Reason } from '../services/LocationService';
@@ -87,13 +87,13 @@ const Main = () => {
 
   if (location.canTrack) {
     if (location.hasPotentialExposure) {
-      page = <ExposurePage />;
+      page = <ExposurePage tracingStrategy={tracingStrategy} />;
     } else {
       page = <NoKnownExposure />;
     }
   } else {
     if (location.reason === Reason.USER_OFF) {
-      page = <OffPage />;
+      page = <OffPage tracingStrategy={tracingStrategy} />;
     } else {
       page = <UnknownPage tracingStrategy={tracingStrategy} />;
     }
@@ -111,7 +111,7 @@ const MainNavigate = props => {
   return (
     <FeatureFlag
       name='better_location_status_checks'
-      fallback={<LocationTracking {...props} />}>
+      fallback={<LocationTracking {...props} tracingStrategy={tracingStrategy} />}>
       <Main />
     </FeatureFlag>
   );
