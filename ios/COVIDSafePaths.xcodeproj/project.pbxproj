@@ -270,7 +270,7 @@
 		C53FD061247162F8006D3268 /* COVIDSafePathsConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = COVIDSafePathsConfig.h; sourceTree = "<group>"; };
 		C53FD0622471637D006D3268 /* COVIDSafePathsConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsConfig.m; sourceTree = "<group>"; };
 		C53FD0C124719AD1006D3268 /* COVIDSafePaths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COVIDSafePaths.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C53FD0C224719AD2006D3268 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = info.plist; path = "/Users/johnschoeman/workspace/thoughtbot/covid-safe-paths/ios/info.plist"; sourceTree = "<absolute>"; };
+		C53FD0C224719AD2006D3268 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsConfig.m; sourceTree = "<group>"; };
 		C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePathsTests.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePathsTests/Pods-COVIDSafePathsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C6CBA4DBBF104AC1AB920555 /* IBMPlexSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-BoldItalic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-BoldItalic.ttf"; sourceTree = "<group>"; };

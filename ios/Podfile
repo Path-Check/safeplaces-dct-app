@@ -31,6 +31,7 @@ def shared_pods
 
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
   pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
+  pod 'Permission-BluetoothPeripheral', :path => "#{permissions_path}/BluetoothPeripheral.podspec"
 
   pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
   pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
