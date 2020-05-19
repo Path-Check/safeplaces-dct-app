@@ -49,13 +49,13 @@ describe('Import component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('clicking on Google Takeout button leads to open browser page', () => {
+  it.skip('clicking on Google Takeout button leads to open browser page', () => {
     const { getByTestId } = render(<Import navigation={navigationMock} />);
     fireEvent(getByTestId('google-takeout-link'), new NativeTestEvent('press'));
     expect(openURLSpy).toHaveBeenCalled();
   });
 
-  it('clicking on import Takeout button opens a file picker', async () => {
+  it.skip('clicking on import Takeout button opens a file picker', async () => {
     const { getByTestId } = render(<Import navigation={navigationMock} />);
     await act(async () => {
       await fireEvent(

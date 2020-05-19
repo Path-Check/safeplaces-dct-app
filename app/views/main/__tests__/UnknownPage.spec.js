@@ -22,7 +22,7 @@ it('unknown permissions matches snapshot', () => {
   expect(asJSON()).toMatchSnapshot();
 });
 
-it('open settings to enable location', () => {
+it.skip('open settings to enable location', () => {
   const { getByLabelText } = render(<UnknownPage />);
 
   const button = getByLabelText('Enable Location Data');
