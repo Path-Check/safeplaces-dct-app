@@ -9,12 +9,12 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import CalendarButton from '../../../components/CalendarButton';
-import Checkbox from '../../../components/Checkbox';
-import Input from '../../../components/Input';
-import context from '../../../components/reduces/context';
-import styles from '../../../components/styles';
-import ToggleButtons from '../../../components/ToggleButtons';
+import CalendarButton from '../../../../components/DR/CalendarButton';
+import Checkbox from '../../../../components/DR/Checkbox';
+import styles from '../../../../components/DR/Header/style';
+import Input from '../../../../components/DR/Input';
+import context from '../../../../components/DR/Reduces/context';
+import ToggleButtons from '../../../../components/DR/ToggleButtons';
 
 const StepCovidContact = ({ setCompleted }) => {
   const [

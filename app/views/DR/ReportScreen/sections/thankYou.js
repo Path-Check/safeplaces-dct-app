@@ -7,8 +7,8 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import styles from '../../../components/styles';
-import Colors from '../../../constants/Colors';
+import styles from '../../../../components/DR/Header/style';
+import Colors from '../../../../constants/Colors';
 
 const ThankYou = () => {
   return (
@@ -24,7 +24,7 @@ const ThankYou = () => {
           <Ionicons
             name='md-checkmark-circle-outline'
             size={wp('22%')}
-            color={Colors.green}
+            color={Colors.GREEN}
           />
           <Text style={[styles.subtitles, { alignSelf: 'center' }]}>
             ¡Gracias!

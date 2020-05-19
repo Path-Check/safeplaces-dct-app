@@ -1,0 +1,1102 @@
+{
+    "Pais": "Republica Dominicana",
+    "Provincias": [
+      {
+        "Numero": 1,
+        "Nombre": "Distrito Nacional",
+        "Capital": "Santo Domingo de Guzmán"
+      },
+      {
+        "Numero": 2,
+        "Nombre": "Azua",
+        "Capital": "Azua de Compostela",
+        "Municipio": {
+          "1": {
+            "Nombre": "Azua de Compostela",
+            "Distritos": [
+              "Barreras ",
+              "Barro Arriba ",
+              "Clavellina ",
+              "Emma Balaguer Viuda Vallejo ",
+              "Las Barías-La Estancia ",
+              "Las Lomas ",
+              "Los Jovillos ",
+              "Puerto Viejo"
+            ]
+          },
+          "2": {
+            "Nombre": "Estebanía"
+          },
+          "3": {
+            "Nombre": "Guayabal"
+          },
+          "4": {
+            "Nombre": "Las Charcas",
+            "Distritos": ["Hatillo ", "Palmar de Ocoa"]
+          },
+          "5": {
+            "Nombre": "Las Yayas de Viajama",
+            "Distritos": ["Villarpando ", "Hato Nuevo-Cortés"]
+          },
+          "6": {
+            "Nombre": "Padre Las Casas",
+            "Distritos": ["La Siembra", "Las Lagunas", "Los Fríos"]
+          },
+          "7": {
+            "Nombre": "Peralta"
+          },
+          "8": {
+            "Nombre": "Pueblo Viejo",
+            "Distritos": ["El Rosario"]
+          },
+          "9": {
+            "Nombre": "Sabana Yegua",
+            "Distritos": ["Proyecto 4 ", "Ganadero ", "Proyecto 2-C"]
+          },
+          "10": {
+            "Nombre": "Tábara Arriba",
+            "Distritos": ["Amiama Gómez ", "Los Toros ", "Tábara Abajo"]
+          }
+        }
+      },
+      {
+        "Numero": 3,
+        "Nombre": "Baoruco",
+        "Capital": "Neiba",
+        "Municipio": {
+          "11": {
+            "Nombre": "Neiba",
+            "Distrito": {
+              "23": "El Palmar"
+            }
+          },
+          "12": {
+            "Nombre": "Galván",
+            "Distritos": {
+              "24": "El Salado"
+            }
+          },
+          "13": {
+            "Numero": 13,
+            "Nombre": "Los Ríos",
+            "Distritos": {
+              "25": "Las Clavellinas"
+            }
+          },
+          "14": {
+            "Numero": 14,
+            "Nombre": "Tamayo",
+            "Distritos": {
+              "26": "Mena ",
+              "27": "Monserrat ",
+              "28": "Santa Bárbara-El 6 ",
+              "29": "Santana ",
+              "30": "Uvilla"
+            }
+          },
+          "15": {
+            "Nombre": "Villa Jaragua"
+          }
+        }
+      },
+      {
+        "Numero": 4,
+        "Nombre": "Barahona",
+        "Capital": "Barahona",
+        "Municipio": {
+          "16": {
+            "Nombre": "Barahona",
+            "Distrito": {
+              "31": "El Cachón ",
+              "32": "La Guázara ",
+              "33": "Villa Central"
+            }
+          },
+          "17": {
+            "Nombre": "Cabral"
+          },
+          "18": {
+            "Nombre": "El Peñón"
+          },
+          "19": {
+            "Nombre": "Enriquillo",
+            "Distrito": {
+              "34": "Arroyo Dulce"
+            }
+          },
+          "20": {
+            "Nombre": "Fundación",
+            "Distrito": {
+              "35": "Pescadería"
+            }
+          },
+          "21": {
+            "Nombre": "Jaquimeyes",
+            "Distrito": {
+              "36": "Palo Alto"
+            }
+          },
+          "22": {
+            "Nombre": "La Ciénaga",
+            "Distrito": {
+              "37": "Bahoruco"
+            }
+          },
+          "23": {
+            "Nombre": "Las Salinas"
+          },
+          "24": {
+            "Nombre": "Paraíso",
+            "Distrito": {
+              "38": "Los Patos"
+            }
+          },
+          "25": {
+            "Nombre": "Polo"
+          },
+          "26": {
+            "Nombre": "Vicente Noble",
+            "Distrito": {
+              "39": "Canoa ",
+              "40": "Fondo Negro ",
+              "41": "Quita Coraza"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 5,
+        "Nombre": "Dajabón",
+        "Capital": "Dajabón",
+        "Municipio": {
+          "27": {
+            "Nombre": "Dajabón",
+            "Distrito": {
+              "42": "Cañongo"
+            }
+          },
+          "28": {
+            "Nombre": "El Pino",
+            "Distrito": {
+              "43": "Manuel Bueno"
+            }
+          },
+          "29": {
+            "Nombre": "Loma de Cabrera",
+            "Distrito": {
+              "44": "Capotillo ",
+              "45": "Santiago de la Cruz"
+            }
+          },
+          "30": {
+            "Nombre": "Partido"
+          },
+          "31": {
+            "Nombre": "Restauración"
+          }
+        }
+      },
+      {
+        "Numero": 6,
+        "Nombre": "Duarte",
+        "Capital": "San Francisco de Macorís",
+        "Municipio": {
+          "32": {
+            "Nombre": "San Francisco de Macorís",
+            "Distrito": {
+              "46": "Cenoví ",
+              "47": "Jaya ",
+              "48": "La Peña ",
+              "49": "Presidente Don Antonio Guzmán Fernández"
+            }
+          },
+          "33": {
+            "Nombre": "Arenoso",
+            "Distrito": {
+              "50": "Aguacate ",
+              "51": "Las Coles"
+            }
+          },
+          "34": {
+            "Nombre": "Castillo"
+          },
+          "35": {
+            "Nombre": "Eugenio María de Hostos",
+            "Distrito": {
+              "52": "Sabana Grande"
+            }
+          },
+          "36": {
+            "Nombre": "Las Guáranas"
+          },
+          "37": {
+            "Nombre": "Pimentel"
+          },
+          "38": {
+            "Nombre": "Villa Riva",
+            "Distrito": {
+              "53": "Agua Santa del Yuna ",
+              "54": "Barraquito ",
+              "55": "Cristo Rey de Guaraguao ",
+              "56": "Las Táranas"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 7,
+        "Nombre": "El Seibo",
+        "Capital": "El Seibo",
+        "Municipio": {
+          "39": {
+            "Nombre": "El Seibo",
+            "Distrito": {
+              "57": "Pedro Sánchez ",
+              "58": "San Francisco-Vicentillo ",
+              "59": "Santa Lucía"
+            }
+          },
+          "40": {
+            "Nombre": "Miches",
+            "Distrito": {
+              "60": "El Cedro ",
+              "61": "La Gina"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 8,
+        "Nombre": "Elías Piña",
+        "Capital": "Comendador",
+        "Municipio": {
+          "41": {
+            "Nombre": "Comendador",
+            "Distrito": {
+              "62": "Guayabo ",
+              "63": "Sabana Larga"
+            }
+          },
+          "42": {
+            "Nombre": "Bánica",
+            "Distrito": {
+              "64": "Sabana Cruz ",
+              "65": "Sabana Higüero"
+            }
+          },
+          "43": {
+            "Nombre": "El Llano",
+            "Distrito": {
+              "66": "Guanito"
+            }
+          },
+          "44": {
+            "Nombre": "Hondo Valle",
+            "Distrito": {
+              "67": "Rancho de la Guardia"
+            }
+          },
+          "45": {
+            "Nombre": "Juan Santiago"
+          },
+          "46": {
+            "Nombre": "Pedro Santana",
+            "Distrito": {
+              "68": "Río Limpio"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 9,
+        "Nombre": "Espaillat",
+        "Capital": "Moca",
+        "Municipio": {
+          "47": {
+            "Nombre": "Moca",
+            "Distrito": {
+              "69": "Canca La Reina ",
+              "70": "El Higüerito ",
+              "71": "José Contreras ",
+              "72": "Juan López ",
+              "73": "La Ortega ",
+              "74": "Las Lagunas ",
+              "75": "Monte de la Jagua ",
+              "76": "San Víctor"
+            }
+          },
+          "48": {
+            "Nombre": "Cayetano Germosén"
+          },
+          "49": {
+            "Nombre": "Gaspar Hernández",
+            "Distrito": {
+              "77": "Joba Arriba ",
+              "78": "Veragua ",
+              "79": "Villa Magante"
+            }
+          },
+          "50": {
+            "Nombre": "Jamao al Norte"
+          }
+        }
+      },
+      {
+        "Numero": 10,
+        "Nombre": "Hato Mayor",
+        "Capital": "Hato Mayor del Rey",
+        "Municipio": {
+          "51": {
+            "Nombre": "Hato Mayor del Rey",
+            "Distrito": {
+              "80": "Guayabo Dulce ",
+              "81": "Mata Palacio ",
+              "82": "Yerba Buena"
+            }
+          },
+          "52": {
+            "Nombre": "El Valle"
+          },
+          "53": {
+            "Nombre": "Sabana de la Mar",
+            "Distrito": {
+              "83": "Elupina Cordero de Las Cañitas"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 11,
+        "Nombre": "Hermanas Mirabal",
+        "Capital": "Salcedo",
+        "Municipio": {
+          "54": {
+            "Nombre": "Salcedo",
+            "Distrito": {
+              "84": "Jamao Afuera"
+            }
+          },
+          "55": {
+            "Nombre": "Tenares",
+            "Distrito": {
+              "85": "Blanco"
+            }
+          },
+          "56": {
+            "Nombre": "Villa Tapia"
+          }
+        }
+      },
+      {
+        "Numero": 12,
+        "Nombre": "Independencia",
+        "Capital": "Jimaní",
+        "Municipio": {
+          "57": {
+            "Nombre": "Jimaní",
+            "Distrito": {
+              "86": "Boca de Cachón ",
+              "87": "El Limón"
+            }
+          },
+          "58": {
+            "Nombre": "Cristóbal",
+            "Distrito": {
+              "88": "Batey 8"
+            }
+          },
+          "59": {
+            "Nombre": "Duvergé",
+            "Distrito": {
+              "89": "Vengan a Ver"
+            }
+          },
+          "60": {
+            "Nombre": "La Descubierta"
+          },
+          "61": {
+            "Nombre": "Mella",
+            "Distrito": {
+              "90": "La Colonia"
+            }
+          },
+          "62": {
+            "Nombre": "Postrer Río",
+            "Distrito": {
+              "91": "Guayabal"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 12,
+        "Nombre": "La Altagracia",
+        "Capital": "Higüey",
+        "Municipio": {
+          "63": {
+            "Nombre": "Higüey",
+            "Distrito": {
+              "92": "La Otra Banda ",
+              "93": "Lagunas de Nisibón ",
+              "94": "Verón-Punta Cana"
+            }
+          },
+          "64": {
+            "Nombre": "San Rafael del Yuma",
+            "Distrito": {
+              "95": "Bayahibe ",
+              "96": "Boca de Yuma"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 14,
+        "Nombre": "La Romana",
+        "Capital": "La Romana",
+        "Municipio": {
+          "65": {
+            "Nombre": "La Romana",
+            "Distrito": {
+              "97": "Caleta"
+            }
+          },
+          "66": {
+            "Nombre": "Guaymate"
+          },
+          "67": {
+            "Nombre": "Villa Hermosa",
+            "Distrito": {
+              "98": "Cumayasa"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 15,
+        "Nombre": "La Vega",
+        "Capital": "Concepción de La Vega",
+        "Municipio": {
+          "68": {
+            "Nombre": "La Concepción de La Vega",
+            "Distrito": {
+              "99": "El Ranchito ",
+              "100": "Río Verde Arriba"
+            }
+          },
+          "69": {
+            "Nombre": "Constanza",
+            "Distrito": {
+              "101": "La Sabina ",
+              "102": "Tireo"
+            }
+          },
+          "70": {
+            "Nombre": "Jarabacoa",
+            "Distrito": {
+              "103": "Buena Vista ",
+              "104": "Manabao"
+            }
+          },
+          "71": {
+            "Nombre": "Jima Abajo",
+            "Distrito": {
+              "105": "Rincón"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 16,
+        "Nombre": "María Trinidad Sánchez",
+        "Capital": "Nagua",
+        "Municipio": {
+          "72": {
+            "Nombre": "Nagua",
+            "Distrito": {
+              "106": "Arroyo al Medio ",
+              "107": "Las Gordas ",
+              "108": "San José de Matanzas"
+            }
+          },
+          "73": {
+            "Nombre": "Cabrera",
+            "Distrito": {
+              "109": "Arroyo Salado ",
+              "110": "La Entrada"
+            }
+          },
+          "74": {
+            "Nombre": "El Factor",
+            "Distrito": {
+              "111": "El Pozo"
+            }
+          },
+          "75": {
+            "Nombre": "Río San Juan"
+          }
+        }
+      },
+      {
+        "Numero": 17,
+        "Nombre": "Monseñor Nouel",
+        "Capital": "Bonao",
+        "Municipio": {
+          "76": {
+            "Nombre": "Bonao",
+            "Distrito": {
+              "112": "Arroyo Toro-Masipedro ",
+              "113": "La Salvia-Los Quemados ",
+              "114": "Jayaco ",
+              "115": "Juma Bejucal ",
+              "116": "Sabana del Puerto"
+            }
+          },
+          "77": {
+            "Nombre": "Maimón"
+          },
+          "78": {
+            "Nombre": "Piedra Blanca",
+            "Distrito": {
+              "117": "Juan Adrián ",
+              "118": "Villa Sonador"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 18,
+        "Nombre": "Monte Plata",
+        "Capital": "San Fernando de Montecristi",
+        "Municipio": {
+          "79": {
+            "Nombre": "Montecristi"
+          },
+          "80": {
+            "Nombre": "Castañuela",
+            "Distrito": {
+              "119": "Palo Verde"
+            }
+          },
+          "81": {
+            "Nombre": "Guayubín",
+            "Distrito": {
+              "120": "Cana Chapetón ",
+              "121": "Hatillo Palma ",
+              "122": "Villa Elisa"
+            }
+          },
+          "82": {
+            "Nombre": "Las Matas de Santa Cruz"
+          },
+          "83": {
+            "Nombre": "Pepillo Salcedo"
+          },
+          "84": {
+            "Nombre": "Villa Vásquez"
+          }
+        }
+      },
+      {
+        "Numero": 19,
+        "Nombre": "Montecristi",
+        "Capital": "Monte Plata",
+        "Municipio": {
+          "85": {
+            "Nombre": "Monte Plata",
+            "Distrito": {
+              "123": "Boyá ",
+              "124": "Chirino ",
+              "125": "Don Juan"
+            }
+          },
+          "86": {
+            "Nombre": "Bayaguana"
+          },
+          "87": {
+            "Nombre": "Peralvillo"
+          },
+          "88": {
+            "Nombre": "Sabana Grande de Boyá",
+            "Distrito": {
+              "126": "Gonzalo ",
+              "127": "Majagual"
+            }
+          },
+          "89": {
+            "Nombre": "Yamasá",
+            "Distrito": {
+              "128": "Los Botados"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 20,
+        "Nombre": "Pedernales",
+        "Capital": "Pedernales",
+        "Municipio": {
+          "90": {
+            "Nombre": "Pedernales",
+            "Distrito": {
+              "129": "José Francisco Peña Gómez ",
+              "130": "Juancho"
+            }
+          },
+          "91": {
+            "Nombre": "Oviedo"
+          }
+        }
+      },
+      {
+        "Numero": 21,
+        "Nombre": "Peravia",
+        "Capital": "Baní",
+        "Municipio": {
+          "92": {
+            "Nombre": "Baní",
+            "Distrito": {
+              "131": "Catalina ",
+              "132": "El Carretón ",
+              "133": "El Limonal ",
+              "134": "Las Barías ",
+              "135": "Matanzas ",
+              "136": "Paya ",
+              "137": "Sabana Buey ",
+              "138": "Villa Fundación ",
+              "139": "Villa Sombrero"
+            }
+          },
+          "93": {
+            "Nombre": "Nizao",
+            "Distrito": {
+              "140": "Pizarrete ",
+              "141": "Santana"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 22,
+        "Nombre": "Puerto Plata",
+        "Capital": "San Felipe de Puerto Plata",
+        "Municipio": {
+          "94": {
+            "Nombre": "Puerto Plata",
+            "Distrito": {
+              "142": "Maimón ",
+              "143": "Yásica Arriba"
+            }
+          },
+          "95": {
+            "Nombre": "Altamira",
+            "Distrito": {
+              "144": "Río Grande"
+            }
+          },
+          "96": {
+            "Nombre": "Guananico"
+          },
+          "97": {
+            "Nombre": "Imbert"
+          },
+          "98": {
+            "Nombre": "Los Hidalgos",
+            "Distrito": {
+              "145": "Navas"
+            }
+          },
+          "99": {
+            "Nombre": "Luperón",
+            "Distrito": {
+              "146": "Belloso ",
+              "147": "Estrecho ",
+              "148": "La Isabela"
+            }
+          },
+          "100": {
+            "Nombre": "Sosúa",
+            "Distrito": {
+              "149": "Cabarete ",
+              "150": "Sabaneta de Yásica"
+            }
+          },
+          "101": {
+            "Nombre": "Villa Isabela",
+            "Distrito": {
+              "151": "Estero Hondo ",
+              "152": "Gualete ",
+              "153": "La Jaiba"
+            }
+          },
+          "102": {
+            "Nombre": "Villa Montellano"
+          }
+        }
+      },
+      {
+        "Numero": 23,
+        "Nombre": "Samaná",
+        "Capital": "Santa Bárbara de Samaná",
+        "Municipio": {
+          "103": {
+            "Nombre": "Samaná",
+            "Distrito": {
+              "154": "Arroyo Barril ",
+              "155": "El Limón ",
+              "156": "Las Galeras"
+            }
+          },
+          "104": {
+            "Nombre": "Las Terrenas"
+          },
+          "105": {
+            "Nombre": "Sánchez"
+          }
+        }
+      },
+      {
+        "Numero": 24,
+        "Nombre": "San Cristóbal",
+        "Capital": "San Cristóbal",
+        "Municipio": {
+          "106": {
+            "Nombre": "San Cristóbal",
+            "Distrito": {
+              "157": "Hato Damas"
+            }
+          },
+          "107": {
+            "Nombre": "Bajos de Haina",
+            "Distrito": {
+              "158": "El Carril"
+            }
+          },
+          "108": {
+            "Nombre": "Cambita Garabito",
+            "Distrito": {
+              "159": "Cambita El Pueblecito"
+            }
+          },
+          "109": {
+            "Nombre": "Los Cacaos"
+          },
+          "110": {
+            "Nombre": "Sabana Grande de Palenque"
+          },
+          "111": {
+            "Nombre": "San Gregorio de Nigua"
+          },
+          "112": {
+            "Nombre": "Villa Altagracia",
+            "Distrito": {
+              "160": "La Cuchilla ",
+              "161": "Medina ",
+              "162": "San José del Puerto"
+            }
+          },
+          "113": {
+            "Nombre": "Yaguate"
+          }
+        }
+      },
+      {
+        "Numero": 25,
+        "Nombre": "San José de Ocoa",
+        "Capital": "San José de Ocoa",
+        "Municipio": {
+          "114": {
+            "Nombre": "San José de Ocoa",
+            "Distrito": {
+              "163": "El Naranjal ",
+              "164": "El Pinar ",
+              "165": "La Ciénaga ",
+              "166": "Nizao-Las Auyamas"
+            }
+          },
+          "115": {
+            "Nombre": "Rancho Arriba"
+          },
+          "116": {
+            "Nombre": "Sabana Larga"
+          }
+        }
+      },
+      {
+        "Numero": 26,
+        "Nombre": "San Juan",
+        "Capital": "San Juan de la Maguana",
+        "Municipio": {
+          "117": {
+            "Nombre": "San Juan de la Maguana",
+            "Distrito": {
+              "167": "El Rosario ",
+              "168": "Guanito ",
+              "169": "Hato del Padre ",
+              "170": "Hato Nuevo ",
+              "171": "La Jagua ",
+              "172": "Las Charcas de María Nova ",
+              "173": "Pedro Corto ",
+              "174": "Sabana Alta ",
+              "175": "Sabaneta"
+            }
+          },
+          "118": {
+            "Nombre": "Bohechío",
+            "Distrito": {
+              "176": "Arroyo Cano ",
+              "177": "Yaque"
+            }
+          },
+          "119": {
+            "Nombre": "El Cercado",
+            "Distrito": {
+              "178": "Batista ",
+              "179": "Derrumbadero"
+            }
+          },
+          "120": {
+            "Nombre": "Juan de Herrera",
+            "Distrito": {
+              "180": "Jínova"
+            }
+          },
+          "121": {
+            "Nombre": "Las Matas de Farfán",
+            "Distrito": {
+              "181": "Carrera de Yegua ",
+              "182": "Matayaya"
+            }
+          },
+          "122": {
+            "Nombre": "Vallejuelo",
+            "Distrito": {
+              "183": "Jorjillo"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 27,
+        "Nombre": "San Pedro de Macorís",
+        "Capital": "San Pedro de Macorís",
+        "Municipio": {
+          "123": {
+            "Nombre": "San Pedro de Macorís"
+          },
+          "124": {
+            "Nombre": "Consuelo"
+          },
+          "125": {
+            "Nombre": "Guayacanes"
+          },
+          "126": {
+            "Nombre": "Quisqueya"
+          },
+          "127": {
+            "Nombre": "Ramón Santana"
+          },
+          "128": {
+            "Nombre": "San José de Los Llanos",
+            "Distrito": {
+              "184": "El Puerto ",
+              "185": "Gautier"
+            }
+          }
+        }
+      },
+      {
+        "Numero": "28",
+        "Nombre": "Sánchez Ramírez",
+        "Capital": "Cotuí",
+        "Municipio": {
+          "129": {
+            "Nombre": "Cotuí",
+            "Distrito": {
+              "186": "Caballero ",
+              "187": "Comedero Arriba ",
+              "188": "Quita Sueño"
+            }
+          },
+          "130": {
+            "Nombre": "Cevicos",
+            "Distrito": {
+              "189": "La Cueva ",
+              "190": "Platanal"
+            }
+          },
+          "131": {
+            "Nombre": "Fantino"
+          },
+          "132": {
+            "Nombre": "La Mata",
+            "Distrito": {
+              "191": "Angelina ",
+              "192": "La Bija ",
+              "193": "Hernando Alonzo"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 29,
+        "Nombre": "Santiago",
+        "Capital": "Santiago de los Caballeros",
+        "Municipio": {
+          "133": {
+            "Nombre": "Santiago",
+            "Distrito": {
+              "194": "Baitoa ",
+              "195": "Hato del Yaque ",
+              "196": "La Canela ",
+              "197": "Pedro García ",
+              "198": "San Francisco de Jacagua"
+            }
+          },
+          "134": {
+            "Nombre": "Bisonó"
+          },
+          "135": {
+            "Nombre": "Jánico",
+            "Distrito": {
+              "199": "El Caimito ",
+              "200": "Juncalito"
+            }
+          },
+          "136": {
+            "Nombre": "Licey al Medio",
+            "Distrito": {
+              "201": "Las Palomas"
+            }
+          },
+          "137": {
+            "Nombre": "Puñal",
+            "Distrito": {
+              "202": "Canabacoa ",
+              "203": "Guayabal"
+            }
+          },
+          "138": {
+            "Nombre": "Sabana Iglesia"
+          },
+          "139": {
+            "Nombre": "San José de las Matas",
+            "Distrito": {
+              "204": "El Rubio ",
+              "205": "La Cuesta ",
+              "206": "Las Placetas"
+            }
+          },
+          "140": {
+            "Nombre": "Tamboril",
+            "Distrito": {
+              "207": "Canca La Piedra"
+            }
+          },
+          "141": {
+            "Nombre": "Villa González",
+            "Distrito": {
+              "208": "El Limón ",
+              "209": "Palmar Arriba"
+            }
+          }
+        }
+      },
+      {
+        "Numero": 30,
+        "Nombre": "Santiago Rodríguez",
+        "Capital": "San Ignacio de Sabaneta",
+        "Municipio": {
+          "142": {
+            "Nombre": "San Ignacio de Sabaneta"
+          },
+          "143": {
+            "Nombre": "Los Almácigos"
+          },
+          "144": {
+            "Nombre": "Monción"
+          }
+        }
+      },
+      {
+        "Numero": 31,
+        "Nombre": "Santo Domingo",
+        "Capital": "Santo Domingo Este",
+        "Municipio": {
+          "145": {
+            "Nombre": "Santo Domingo Este",
+            "Distrito": {
+              "210": "San Luis"
+            }
+          },
+          "146": {
+            "Nombre": "Boca Chica",
+            "Distrito": {
+              "211": "La Caleta"
+            }
+          },
+          "147": {
+            "Nombre": "Los Alcarrizos",
+            "Distrito": {
+              "212": "Palmarejo-Villa Linda ",
+              "213": "Pantoja"
+            }
+          },
+          "148": {
+            "Nombre": "Pedro Brand",
+            "Distrito": {
+              "214": "La Cuaba ",
+              "215": "La Guáyiga"
+            }
+          },
+          "149": {
+            "Nombre": "San Antonio de Guerra",
+            "Distrito": {
+              "216": "Hato Viejo"
+            }
+          },
+          "150": {
+            "Nombre": "Santo Domingo Norte",
+            "Distrito": {
+              "217": "La Victoria"
+            }
+          },
+          "151": {
+            "Nombre": "Santo Domingo Oeste"
+          }
+        }
+      },
+      {
+        "Numero": 32,
+        "Nombre": "Valverde",
+        "Capital": "Mao",
+        "Municipio": {
+          "152": {
+            "Nombre": "Mao",
+            "Distrito": {
+              "218": "Ámina ",
+              "219": "Guatapanal ",
+              "220": "Jaibón (Pueblo Nuevo)"
+            }
+          },
+          "153": {
+            "Nombre": "Esperanza",
+            "Distrito": {
+              "221": "Boca de Mao ",
+              "222": "Jicomé ",
+              "223": "Maizal ",
+              "224": "Paradero"
+            }
+          },
+          "154": {
+            "Nombre": "Laguna Salada",
+            "Distrito": {
+              "225": "Cruce de Guayacanes ",
+              "226": "Jaibón ",
+              "227": "La Caya"
+            }
+          }
+        }
+      }
+    ]
+  }

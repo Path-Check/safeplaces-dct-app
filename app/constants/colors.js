@@ -72,6 +72,7 @@ const colors = {
   PURPLE: '#525BD9',
   CONFETTI: '#EAEB5E',
   YUKON_GOLD: '#666804',
+  BUTTON_LIGHT_TEXT: '#6B6B6B',
 };
 
 export default Object.assign(colors, colorDr);

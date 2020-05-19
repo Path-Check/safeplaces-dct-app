@@ -1,10 +1,11 @@
+import { Container, Content, Text } from 'native-base';
 import React, { useContext } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Container, Content, Text } from 'native-base';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import styles from '../../../components/styles';
-import Checkbox from '../../../components/Checkbox';
-import context from '../../../components/reduces/context';
+
+import Checkbox from '../../../../components/DR/Checkbox';
+import styles from '../../../../components/DR/Header/style';
+import context from '../../../../components/DR/Reduces/context';
 
 const StepWorkInHealth = ({ setCompleted }) => {
   const [
@@ -14,16 +15,16 @@ const StepWorkInHealth = ({ setCompleted }) => {
         workInHealth,
         workedInHealth,
         planWorkInHealth,
-        doesntWorkInHealth
-      }
+        doesntWorkInHealth,
+      },
     },
-    setGlobalState
+    setGlobalState,
   ] = useContext(context);
 
   const setSelectedOption = (option, selected) => {
     setGlobalState({
       type: 'ADD_ANSWERS',
-      value: { [option]: selected, doesntWorkInHealth: false }
+      value: { [option]: selected, doesntWorkInHealth: false },
     });
   };
   if (
@@ -53,7 +54,7 @@ const StepWorkInHealth = ({ setCompleted }) => {
               </Text>
               <Checkbox
                 text={`${works} en un centro de cuidado a largo plazo. Incluye asilo de ancianos o centros de asistencia.`}
-                id="workInHealth"
+                id='workInHealth'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={workInHealth}
               />
@@ -61,7 +62,7 @@ const StepWorkInHealth = ({ setCompleted }) => {
                 text={`${
                   usage === 'others' ? 'Ha' : 'He'
                 } trabajado en un hospital o en un centro de asistencia en los últimos 14 días.`}
-                id="workedInHealth"
+                id='workedInHealth'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={workedInHealth}
               />
@@ -69,7 +70,7 @@ const StepWorkInHealth = ({ setCompleted }) => {
                 text={`${
                   usage === 'others' ? 'Planea' : 'Planeo'
                 } trabajar en un hospital o en cualquier otra institución de salud.`}
-                id="planWorkInHealth"
+                id='planWorkInHealth'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={planWorkInHealth}
               />
@@ -77,7 +78,7 @@ const StepWorkInHealth = ({ setCompleted }) => {
                 text={`No ${
                   usage === 'others' ? 'vive' : 'vivo'
                 } ni ${works.toLowerCase()} en una institución de salud.`}
-                id="doesntWorkInHealth"
+                id='doesntWorkInHealth'
                 setValue={(id, value) =>
                   setGlobalState({
                     type: 'ADD_ANSWERS',
@@ -85,8 +86,8 @@ const StepWorkInHealth = ({ setCompleted }) => {
                       workInHealth: false,
                       workedInHealth: false,
                       planWorkInHealth: false,
-                      [id]: value
-                    }
+                      [id]: value,
+                    },
                   })
                 }
                 initialCheck={doesntWorkInHealth}
