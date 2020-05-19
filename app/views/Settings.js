@@ -10,6 +10,7 @@ import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
+import { tracingStrategy } from '../COVIDSafePathsConfig';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
@@ -117,20 +118,25 @@ export const SettingsScreen = ({ navigation }) => {
             label={t('label.event_history_title')}
             description={t('label.event_history_subtitle')}
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
+            last={tracingStrategy === 'gps' ? false : true}
           />
-          <Item
-            label={t('share.title')}
-            description={t('share.subtitle')}
-            onPress={() => navigation.navigate('ExportScreen')}
-            last
-          />
+          {tracingStrategy === 'gps' ? (
+            <Item
+              label={t('share.title')}
+              description={t('share.subtitle')}
+              onPress={() => navigation.navigate('ExportScreen')}
+              last
+            />
+          ) : null}
         </Section>
 
-        <FeatureFlag name='google_import'>
-          <Section>
-            <GoogleMapsImport navigation={navigation} />
-          </Section>
-        </FeatureFlag>
+        {tracingStrategy === 'gps' ? (
+          <FeatureFlag name='google_import'>
+            <Section>
+              <GoogleMapsImport navigation={navigation} />
+            </Section>
+          </FeatureFlag>
+        ) : null}
 
         <Section last>
           <Item
