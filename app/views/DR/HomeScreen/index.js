@@ -144,7 +144,7 @@ export default class HomeScreen extends Component {
                     </Card>
                   </TouchableOpacity>
                 </View>
-                <Aurora navigation={navigation} />
+                <Aurora navigation={this.props.navigation} />
                 <View style={styles.footer}>
                   <View style={{ margin: wp('5%') }}>
                     <Text

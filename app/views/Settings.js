@@ -111,7 +111,7 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('ChooseProviderScreen')}
           />
           <Item
-            label={t('label.news_title')}
+            label={t('label.latest_news')}
             description={t('label.news_subtitle')}
             onPress={() => navigation.navigate('NewsScreen')}
           />
@@ -119,6 +119,11 @@ export const SettingsScreen = ({ navigation }) => {
             label='Boletines'
             description='Read about the latest COVID Bulletins updates from your health authority.'
             onPress={() => navigation.navigate('BulletinsScreen')}
+          />
+          <Item
+            label={t('label.recommendations_title')}
+            description={t('label.recommendations_description')}
+            onPress={() => navigation.navigate('AdvicesScreen')}
           />
           <Item
             label={t('label.event_history_title')}

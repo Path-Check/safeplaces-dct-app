@@ -166,7 +166,6 @@ exports[`renders correctly 1`] = `
       <View
         accessible={true}
         focusable={true}
-        isTVSelectable={true}
         style={
           Object {
             "backgroundColor": "#0161F2",
@@ -241,7 +240,6 @@ exports[`renders correctly 1`] = `
     <View
       accessible={true}
       focusable={true}
-      isTVSelectable={true}
       style={
         Object {
           "alignSelf": "flex-end",

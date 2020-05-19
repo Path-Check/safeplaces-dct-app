@@ -174,7 +174,6 @@ exports[`may be exposed matches snapshot 1`] = `
             accessibilityRole="button"
             accessible={true}
             focusable={true}
-            isTVSelectable={true}
             style={
               Object {
                 "alignContent": "center",
@@ -220,7 +219,6 @@ exports[`may be exposed matches snapshot 1`] = `
       <View
         accessible={true}
         focusable={true}
-        isTVSelectable={true}
         style={
           Object {
             "flexDirection": "row",

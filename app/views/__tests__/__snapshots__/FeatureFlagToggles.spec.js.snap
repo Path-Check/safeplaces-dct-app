@@ -46,7 +46,6 @@ exports[`renders default values from the flags provider 1`] = `
       <View
         accessible={true}
         focusable={true}
-        isTVSelectable={true}
         style={
           Object {
             "alignItems": "center",
@@ -150,7 +149,7 @@ exports[`renders default values from the flags provider 1`] = `
         }
       >
         <RCTSwitch
-          accessibilityRole="button"
+          accessibilityRole="switch"
           onTintColor="#FF5656"
           style={
             Object {
@@ -193,7 +192,7 @@ exports[`renders default values from the flags provider 1`] = `
         }
       >
         <RCTSwitch
-          accessibilityRole="button"
+          accessibilityRole="switch"
           onTintColor="#41dca4"
           style={
             Object {

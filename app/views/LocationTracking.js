@@ -408,15 +408,7 @@ class LocationTracking extends Component {
       />
     );
   }
-
-  async componentDidMount() {
-    const cases = this.getCases();
-    console.log(cases);
-    this._notificationSubscription = Notifications.addListener(
-      this._handleNotification,
-    );
-  }
-
+  
   getMayoInfoPressed() {
     Linking.openURL(MAYO_COVID_URL);
   }

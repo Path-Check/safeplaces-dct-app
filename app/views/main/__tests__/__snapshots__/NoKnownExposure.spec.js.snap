@@ -147,7 +147,6 @@ exports[`no known exposure matches snapshot 1`] = `
       <View
         accessible={true}
         focusable={true}
-        isTVSelectable={true}
         style={
           Object {
             "flexDirection": "row",

@@ -26,7 +26,6 @@ exports[`renders when the language is english 1`] = `
     <View
       accessible={true}
       focusable={true}
-      isTVSelectable={true}
       style={
         Object {
           "flexDirection": "row",
