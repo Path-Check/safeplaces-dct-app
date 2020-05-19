@@ -17,7 +17,7 @@ class Home {
       element(by.label(languageStrings.label.home_unknown_header)),
     ).toBeVisible();
     await expect(
-      element(by.label(languageStrings.label.home_unknown_subtext)),
+      element(by.label(languageStrings.label.home_unknown_subtext_location)),
     ).toBeVisible();
   }
 
@@ -26,7 +26,7 @@ class Home {
       element(by.label(languageStrings.label.home_setting_off_header)),
     ).toBeVisible();
     await expect(
-      element(by.label(languageStrings.label.home_setting_off_subtext)),
+      element(by.label(languageStrings.label.home_setting_off_subtext_location)),
     ).toBeVisible();
   }
 }
