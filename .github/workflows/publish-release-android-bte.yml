@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - bte
-      - release-candidate
-      - master
     paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'

@@ -3,15 +3,8 @@ name: Staging Android
 on:
   push:
     branches:
-      - develop
-      - master
-      - release-candidate
-  pull_request:
-    branches:
-      - develop
-      - master
-      - release-candidate
-
+      - bte
+      
 jobs:
   build_staging_android:
     runs-on: ubuntu-latest
