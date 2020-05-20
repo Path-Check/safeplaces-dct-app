@@ -1,20 +1,21 @@
-## [1.0.27](https://github.com/Path-Check/covid-safe-paths/compare/1.0.25...1.0.27) (2020-05-20)
+## [1.0.28](https://github.com/Path-Check/covid-safe-paths/compare/v0.5.4...1.0.28) (2020-05-20)
+
+
+### Reverts
+
+* Revert "Fix missing settings icon on iOS 12.0.x (#643)" (#650) ([363864a](https://github.com/Path-Check/covid-safe-paths/commit/363864a196c38a727a17b0a892648e7883794757)), closes [#643](https://github.com/Path-Check/covid-safe-paths/issues/643) [#650](https://github.com/Path-Check/covid-safe-paths/issues/650)
 
 
 
-## [1.0.25](https://github.com/Path-Check/covid-safe-paths/compare/1.0.24...1.0.25) (2020-05-19)
+## [0.5.4](https://github.com/Path-Check/covid-safe-paths/compare/v0.5.3...v0.5.4) (2020-03-23)
 
 
 
-## [1.0.24](https://github.com/Path-Check/covid-safe-paths/compare/1.0.23...1.0.24) (2020-05-19)
+## [0.5.3](https://github.com/Path-Check/covid-safe-paths/compare/v0.5.2...v0.5.3) (2020-03-20)
 
 
 
-## [1.0.23](https://github.com/Path-Check/covid-safe-paths/compare/1.0.22...1.0.23) (2020-05-19)
-
-
-
-## [1.0.22](https://github.com/Path-Check/covid-safe-paths/compare/1.0.21...1.0.22) (2020-05-19)
+## 0.5.2 (2020-03-19)
 
 
 
