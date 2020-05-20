@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, View } from 'react-native';
-import styles from './styles';
-import Colors from '../constants/Colors';
+import styles from '../Header/style';
+import Colors from '../../../constants/colors';
 
 export default function Input({
   length,
@@ -13,7 +13,7 @@ export default function Input({
 }) {
   const [focused, setfocused] = useState(false);
   const inputStyle = {
-    borderColor: Colors.mainBlue,
+    borderColor: Colors.MAIN_BLUE,
     borderBottomWidth: 1
   };
   return (
@@ -31,3 +31,5 @@ export default function Input({
     </View>
   );
 }
+
+

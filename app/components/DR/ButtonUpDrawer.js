@@ -165,6 +165,7 @@ export default class BottomUpPanel extends Component {
     Animated.timing(this.animatedPosition, {
       toValue: this.config.position.start,
       duration: 600,
+      useNativeDriver: true,
     }).start(() =>
       this.setState({
         open: false,

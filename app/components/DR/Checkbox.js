@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity } from 'react-native';
 import { CheckBox, Text } from 'native-base';
-import Colors from '../constants/Colors';
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, View } from 'react-native';
+
+import Colors from '../../constants/colors';
 
 export default function Checkbox({ id, text, setValue, initialCheck }) {
   const [checked, setChecked] = useState(initialCheck);
@@ -20,7 +21,7 @@ export default function Checkbox({ id, text, setValue, initialCheck }) {
         }}>
         <CheckBox
           checked={checked}
-          color={Colors.mainBlue}
+          color={Colors.MAIN_BLUE}
           onPress={() => {
             setChecked(!checked);
             setValue(id, !checked);

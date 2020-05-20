@@ -6,18 +6,18 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import Colors from '../../../constants/DR/colors';
-import Header from './components/Header';
-import context from './components/reduces/context';
-import styles from './components/styles';
+import Header from '../../../components/DR/Header';
+import context from '../../../components/DR/Reduces/context.js';
+import Colors from '../../../constants/colors';
+import styles from './style';
 
 export default function ReportScreen({ navigation }) {
-  const [setGlobalState] = useContext(context);
+  const [{answers:{usage}}, setGlobalState] = useContext(context);
 
   const setSelectedOption = selected => {
     setGlobalState({
-      type: 'ADD_ANSWERS', //{ answers: {usage} },
-      value: { usage: selected },
+      type: 'ADD_ANSWERS',
+      value: { 'usage': selected },
     });
   };
   return (
@@ -28,6 +28,7 @@ export default function ReportScreen({ navigation }) {
             title='Reporte'
             text='Las siguientes preguntas están relacionadas al COVID-19'
             navigation={navigation}
+            close={true}
             style={{ height: hp('18%') }}
           />
           <View style={styles.formContainer}>
@@ -41,7 +42,7 @@ export default function ReportScreen({ navigation }) {
                 {
                   width: wp('70%'),
                   height: 38,
-                  backgroundColor: Colors.mainBlue,
+                  backgroundColor: Colors.MAIN_BLUE,
                   marginBottom: 10,
                 },
               ]}
@@ -67,13 +68,13 @@ export default function ReportScreen({ navigation }) {
                 {
                   width: wp('70%'),
                   height: 38,
-                  backgroundColor: Colors.lightBlue,
+                  backgroundColor: Colors.LIGHT_BLUE,
                 },
               ]}>
               <Text
                 style={[
                   styles.text,
-                  { color: Colors.mainBlue, textTransform: 'capitalize' },
+                  { color: Colors.MAIN_BLUE, textTransform: 'capitalize' },
                 ]}>
                 Usar para alguien más
               </Text>

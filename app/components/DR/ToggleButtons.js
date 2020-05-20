@@ -1,27 +1,27 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { RadioButtons } from 'react-native-radio-buttons';
 import { Button } from 'native-base';
+import React from 'react';
+import { Text, View } from 'react-native';
+import { RadioButtons } from 'react-native-radio-buttons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import styles from './styles';
-import Colors from '../constants/Colors';
+import Colors from '../../constants/colors';
+import styles from './Header/style';
 
 // eslint-disable-next-line
 export default function ToggleButtons({
   options,
   selectedOption,
-  onSelection
+  onSelection,
 }) {
   function renderOption(option, selected, onSelect, index) {
     const buttonStyle = {
-      backgroundColor: selected ? '#D8EAFE' : Colors.lightBlue,
-      borderColor: selected ? Colors.mainBlue : Colors.lightBlue,
-      borderWidth: 2
+      backgroundColor: selected ? '#D8EAFE' : Colors.LIGHT_BLUE,
+      borderColor: selected ? Colors.MAIN_BLUE : Colors.LIGHT_BLUE,
+      borderWidth: 2,
     };
     const textStyle = {
       padding: 4,
-      color: selected ? Colors.mainBlue : Colors.buttonLightText
+      color: selected ? Colors.MAIN_BLUE : Colors.BUTTON_LIGHT_TEXT,
     };
 
     return (
@@ -32,14 +32,14 @@ export default function ToggleButtons({
         style={[styles.rectButtons, buttonStyle]}>
         {selected ? (
           <Icon
-            name="check-circle"
-            color={Colors.mainBlue}
+            name='check-circle'
+            color={Colors.MAIN_BLUE}
             size={15}
             style={{
               backgroundColor: '#fff',
               position: 'absolute',
               right: -7,
-              top: -7
+              top: -7,
             }}
           />
         ) : null}
@@ -49,7 +49,9 @@ export default function ToggleButtons({
   }
 
   const renderContainer = optionNodes => (
-    <View style={[styles.radioButtonLayout, {flexWrap: 'wrap'}]}>{optionNodes}</View>
+    <View style={[styles.radioButtonLayout, { flexWrap: 'wrap' }]}>
+      {optionNodes}
+    </View>
   );
 
   return (

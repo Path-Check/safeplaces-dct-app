@@ -1,19 +1,20 @@
+import { Text } from 'native-base';
 import React from 'react';
 import { Image, View } from 'react-native';
-import { Text } from 'native-base';
-import styles from './styles';
+
+import styles from './Header/style';
 
 export default function ResultsContent({
   title,
   subtitle,
   image,
   nextSteps = [],
-  recomendations
+  recomendations,
 }) {
   return (
     <View>
       <Image
-      resizeMode="contain"
+        resizeMode='contain'
         style={{ height: 200, width: 310, alignSelf: 'center', marginTop: 10 }}
         source={image}
       />
@@ -23,7 +24,7 @@ export default function ResultsContent({
       <Text
         style={[
           styles.text,
-          { marginTop: 10, fontSize: 14, textAlign: 'justify' }
+          { marginTop: 10, fontSize: 14, textAlign: 'justify' },
         ]}>
         {subtitle}
       </Text>
@@ -38,7 +39,7 @@ export default function ResultsContent({
             <Text
               style={[
                 styles.text,
-                { marginLeft: 15, marginBottom: 10, textAlign: 'justify' }
+                { marginLeft: 15, marginBottom: 10, textAlign: 'justify' },
               ]}>
               {step.content}
             </Text>
@@ -58,7 +59,7 @@ export default function ResultsContent({
                 <Text
                   style={[
                     styles.text,
-                    { marginLeft: 10, textAlign: 'justify' }
+                    { marginLeft: 10, textAlign: 'justify' },
                   ]}>
                   {step.content}
                 </Text>

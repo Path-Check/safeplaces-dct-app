@@ -6,11 +6,11 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import Input from '../../../components/Input';
-import context from '../../../components/reduces/context';
-import styles from '../../../components/styles';
-import Colors from '../../../constants/Colors';
-import provinces from '../../../constants/Provinces';
+import styles from '../../../../components/DR/Header/style';
+import Input from '../../../../components/DR/Input/index';
+import context from '../../../../components/DR/Reduces/context';
+import Colors from '../../../../constants/colors';
+import provinces from '../../../../constants/DR/Provinces.json';
 
 const StepAdress = ({ setCompleted }) => {
   const [
@@ -68,9 +68,9 @@ const StepAdress = ({ setCompleted }) => {
                   styles.rectButtons,
                   {
                     width: wp('65%'),
-                    backgroundColor: Colors.lightBlue,
+                    backgroundColor: Colors.LIGHT_BLUE,
                     alignSelf: 'flex-start',
-                    borderBottomColor: Colors.mainBlue,
+                    borderBottomColor: Colors.MAIN_BLUE,
                     borderBottomWidth: 1.5,
                   },
                 ]}
@@ -101,9 +101,9 @@ const StepAdress = ({ setCompleted }) => {
                       styles.rectButtons,
                       {
                         width: wp('65%'),
-                        backgroundColor: Colors.lightBlue,
+                        backgroundColor: Colors.LIGHT_BLUE,
                         alignSelf: 'flex-start',
-                        borderBottomColor: Colors.mainBlue,
+                        borderBottomColor: Colors.MAIN_BLUE,
                         borderBottomWidth: 1.5,
                       },
                     ]}

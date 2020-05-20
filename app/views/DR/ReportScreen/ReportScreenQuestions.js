@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Button, Text } from 'native-base';
 import React, { useContext, useRef, useState } from 'react';
 import { View } from 'react-native';
@@ -7,12 +6,13 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import { Dialog } from 'react-native-simple-dialogs';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Wizard from 'react-native-wizard';
 
-import Header from '../../components/Header';
-import context from '../../components/reduces/context';
-import styles from '../../components/styles';
-import Colors from '../../constants/Colors';
+import Header from '../../../components/DR/Header/index';
+import styles from '../../../components/DR/Header/style';
+import context from '../../../components/DR/Reduces/context';
+import Colors from '../../../constants/colors';
 import StepAdress from './sections/SetpAdress';
 import StepAge from './sections/StepAge';
 import StepCovidContact from './sections/StepCovidContact';
@@ -87,7 +87,7 @@ export default function ReportScreenQuestions({ navigation }) {
       content: <ThankYou />,
     },
   ];
-  const { mainBlue, lightGray, green } = Colors;
+  const { MAIN_BLUE, LIGHT_GRAY, GREEN } = Colors;
   return (
     <View
       style={{
@@ -99,8 +99,8 @@ export default function ReportScreenQuestions({ navigation }) {
       }}>
       <Dialog visible={dialogVisible} style={{ alignItems: 'center' }}>
         <View>
-          <Ionicons
-            name={'md-medical'}
+          <Icon
+            name='md-medical'
             size={30}
             style={{ marginBottom: -6 }}
             color='#F54243'
@@ -113,7 +113,7 @@ export default function ReportScreenQuestions({ navigation }) {
           <Button
             style={[
               styles.buttons,
-              { backgroundColor: green, width: '70%', marginTop: 25 },
+              { backgroundColor: GREEN, width: '70%', marginTop: 25 },
             ]}
             onPress={() => {
               setDialogVisible(false);
@@ -147,7 +147,7 @@ export default function ReportScreenQuestions({ navigation }) {
               marginHorizontal: 6,
               height: 10,
               borderRadius: 5,
-              backgroundColor: index === currentStep ? mainBlue : lightGray,
+              backgroundColor: index === currentStep ? MAIN_BLUE : LIGHT_GRAY,
             }}
           />
         ))}
@@ -216,10 +216,10 @@ export default function ReportScreenQuestions({ navigation }) {
               width: isFirstStep || isLastStep ? wp('85%') : 140,
               height: 45,
               backgroundColor: isLastStep
-                ? green
+                ? GREEN
                 : !complete
                 ? '#b7dbb2'
-                : green,
+                : GREEN,
             },
           ]}>
           <Text style={styles.buttonText}>

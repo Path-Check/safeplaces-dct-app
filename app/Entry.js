@@ -14,12 +14,14 @@ import DetailsScreen from './views/DR/Details';
 import HomeScreen from './views/DR/HomeScreen';
 import MapScreen from './views/DR/Map';
 import NewsScreen from './views/DR/News';
+import ReportScreen from './views/DR/ReportScreen/index.js';
+import Report from './views/DR/ReportScreen/ReportScreenQuestions';
+import ResultsScreen from './views/DR/ReportScreen/Results';
+import UserInfo from './views/DR/UserInfoScreen/index';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
-import LocationTracking from './views/LocationTracking';
-import { MainNavigate } from './views/Main';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
@@ -163,12 +165,28 @@ class Entry extends Component {
           />
           <Stack.Screen
             name='ReportScreen'
-            component={AboutScreen}
+            Report
+            component={ReportScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Report'
+            component={Report}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Results'
+            component={ResultsScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
             name='AuroraScreen'
             component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='UserInfo'
+            component={UserInfo}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

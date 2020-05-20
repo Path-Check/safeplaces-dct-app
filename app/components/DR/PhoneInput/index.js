@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 
-import styles from './styles';
+import styles from '../Header/style';
 
 export default function PhoneInput({
   value,

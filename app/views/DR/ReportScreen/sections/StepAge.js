@@ -3,9 +3,9 @@ import React, { useContext } from 'react';
 import { ScrollView, View } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-import context from '../../../components/reduces/context';
-import styles from '../../../components/styles';
-import ToggleButtons from '../../../components/ToggleButtons';
+import styles from '../../../../components/DR/Header/style';
+import context from '../../../../components/DR/Reduces/context';
+import ToggleButtons from '../../../../components/DR/ToggleButtons';
 
 const StepAge = ({ setCompleted }) => {
   const [
