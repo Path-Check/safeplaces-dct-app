@@ -31,7 +31,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['android/**', 'ios/**'],
+  ignorePatterns: ['android/**', 'ios/**', '__mocks__/**'],
   rules: {
     // 0 is for off, 1 is for warning, 2 is for error
     'eol-last': 2, // Require file to end with single newline

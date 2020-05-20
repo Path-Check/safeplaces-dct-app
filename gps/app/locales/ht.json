@@ -6,10 +6,10 @@
     "version": "Vèsyon:"
   },
   "common": {
-    "done": "Done"
+    "done": "Fini"
   },
   "history": {
-    "no_exposure": "",
+    "no_exposure": "Pa gen kontak",
     "possible_exposure": "Posib",
     "possible_exposure_para": "Li posib ke ou te an kontak oswa pre yon moun ki teste pozitif pou Kowonaviris",
     "what_does_this_mean": "Ki sa sa a vle di?",
