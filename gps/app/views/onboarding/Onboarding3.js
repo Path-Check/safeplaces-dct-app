@@ -42,7 +42,7 @@ const Onboarding3 = ({ navigation }) => {
           label={languages.t('label.launch_next')}
           // We have removed the onboarding 4 screen from the app flow.
           // Please see hot-fixes in 1.0.65 for details.
-          onPress={() => navigation.navigate('Onboarding5')}
+          onPress={() => navigation.replace('Onboarding5')}
         />
       </View>
     </View>

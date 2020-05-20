@@ -40,7 +40,7 @@ const Onboarding2 = ({ navigation }) => {
       <View style={sharedStyles.footerContainer}>
         <Button
           label={languages.t('label.launch_next')}
-          onPress={() => navigation.navigate('Onboarding3')}
+          onPress={() => navigation.replace('Onboarding3')}
         />
       </View>
     </View>
