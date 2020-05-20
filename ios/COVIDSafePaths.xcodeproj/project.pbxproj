@@ -183,7 +183,7 @@
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = COVIDSafePaths/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = COVIDSafePaths/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = COVIDSafePaths/main.m; sourceTree = "<group>"; };
 		1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Thin.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Thin.ttf"; sourceTree = "<group>"; };
 		167DF82F84E242A39CBEB042 /* IBMPlexMono-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ExtraLightItalic.ttf"; path = "../shared/assets/fonts/IBMPlexMono-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -270,7 +270,7 @@
 		C53FD061247162F8006D3268 /* COVIDSafePathsConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = COVIDSafePathsConfig.h; sourceTree = "<group>"; };
 		C53FD0622471637D006D3268 /* COVIDSafePathsConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsConfig.m; sourceTree = "<group>"; };
 		C53FD0C124719AD1006D3268 /* COVIDSafePaths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COVIDSafePaths.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C53FD0C224719AD2006D3268 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
+		C53FD0C224719AD2006D3268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsConfig.m; sourceTree = "<group>"; };
 		C53FD116247454EA006D3268 /* COVIDSafePaths.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = COVIDSafePaths.entitlements; path = BTE/COVIDSafePaths.entitlements; sourceTree = "<group>"; };
 		C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePathsTests.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePathsTests/Pods-COVIDSafePathsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -592,7 +592,7 @@
 		C53FD07C247199A4006D3268 /* GPS */ = {
 			isa = PBXGroup;
 			children = (
-				13B07FB61A68108700A75B9A /* info.plist */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
 				C53FD0622471637D006D3268 /* COVIDSafePathsConfig.m */,
 			);
 			path = GPS;
@@ -601,7 +601,7 @@
 		C53FD0C324719C25006D3268 /* BTE */ = {
 			isa = PBXGroup;
 			children = (
-				C53FD0C224719AD2006D3268 /* info.plist */,
+				C53FD0C224719AD2006D3268 /* Info.plist */,
 				C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */,
 			);
 			path = BTE;
@@ -1150,7 +1150,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
-				INFOPLIST_FILE = GPS/info.plist;
+				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1240,7 +1240,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
-				INFOPLIST_FILE = GPS/info.plist;
+				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1384,7 +1384,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
-				INFOPLIST_FILE = GPS/info.plist;
+				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1552,7 +1552,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
-				INFOPLIST_FILE = GPS/info.plist;
+				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1762,16 +1762,12 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
-				INFOPLIST_FILE = BTE/info.plist;
+				INFOPLIST_FILE = BTE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1781,8 +1777,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
@@ -1855,16 +1849,12 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
-				INFOPLIST_FILE = BTE/info.plist;
+				INFOPLIST_FILE = BTE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1874,8 +1864,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
@@ -1948,16 +1936,12 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
-				INFOPLIST_FILE = BTE/info.plist;
+				INFOPLIST_FILE = BTE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1967,8 +1951,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
@@ -2040,16 +2022,12 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
-				INFOPLIST_FILE = BTE/info.plist;
+				INFOPLIST_FILE = BTE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2059,8 +2037,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
