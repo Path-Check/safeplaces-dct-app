@@ -116,7 +116,9 @@ platform :ios do
         xcodeproj: PROJECT,
         version_number: JS_PACKAGE['version']
       )
-      commit_version_bump
+      commit_version_bump(
+        xcodeproj: PROJECT, # optional, if you have multiple Xcode project files, you must specify your main project here
+      )
     end
 
     desc "Push a new Release build to TestFlight"

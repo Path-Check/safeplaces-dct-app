@@ -36,7 +36,9 @@ platform :android do
     increment_version_code(
       gradle_file_path: "../android/app/build.gradle",
     )
-    commit_android_version_bump
+    commit_android_version_bump(
+      gradle_file_folder: "../android/app/",
+    )
   end
 
   desc "Build a Release APK and AAB"
