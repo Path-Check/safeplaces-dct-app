@@ -92,7 +92,7 @@ dev_setup.bat
 #### Android (Windows, Linux, macOS)
 
 ```
-npx react-native run-android
+yarn run-android
 ```
 
 Device storage can be cleared by long-pressing on the app icon in the simulator, clicking "App info", then "Storage", and lastly, "Clear Storage".
@@ -101,7 +101,7 @@ Device storage can be cleared by long-pressing on the app icon in the simulator,
 
 ```
 yarn install:pod ## only needs to be ran once
-npx react-native run-ios
+yarn start:ios
 ```
 
 Device storage can be cleared by clicking "Hardware" on the system toolbar, and then "Erase all content and settings".
