@@ -137,7 +137,7 @@ exports[`renders correctly 1`] = `
           }
           use="body2"
         >
-          Path Check
+          PathCheck
         </Text>
         <Text
           style={
