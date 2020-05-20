@@ -108,6 +108,17 @@ platform :ios do
       )
     end
 
+    desc "Version bump for internal build numbers"
+    lane :increment_project_version_number do
+      # Sets the system build number for the project:
+      # https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
+      increment_version_number(
+        xcodeproj: PROJECT,
+        version_number: JS_PACKAGE['version']
+      )
+      commit_version_bump
+    end
+
     desc "Push a new Release build to TestFlight"
     lane :release do
       # Sets the app store version:
@@ -115,12 +126,6 @@ platform :ios do
       increment_build_number(
         xcodeproj: PROJECT,
         build_number: JS_PACKAGE['version']
-      )
-      # Sets the system build number for the project:
-      # https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
-      increment_version_number(
-        xcodeproj: PROJECT,
-        version_number: JS_PACKAGE['version']
       )
 
       signing_bundle_details = {

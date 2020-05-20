@@ -25,12 +25,22 @@ Runs Android (Native) unit tests
 ```
 fastlane android staging
 ```
-Build a Beta APK and AAB
-### android beta
+Build a Staging APK and AAB
+### android increment_version_code
 ```
-fastlane android beta
+fastlane android increment_version_code
 ```
-Build a Beta APK and AAB
+Increment Version Code
+### android release
+```
+fastlane android release
+```
+Build a Release APK and AAB
+### android play_store
+```
+fastlane android play_store
+```
+Upload to google play store beta track
 
 ----
 

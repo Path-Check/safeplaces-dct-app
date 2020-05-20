@@ -31,12 +31,16 @@ platform :android do
     )
   end 
 
-  desc "Build a Release APK and AAB"
-  lane :release do
-
+  desc "Increment Version Code"
+  lane :increment_project_version_code do
     increment_version_code(
       gradle_file_path: "../android/app/build.gradle",
     )
+    commit_android_version_bump
+  end
+
+  desc "Build a Release APK and AAB"
+  lane :release do
 
     increment_version_name(
       gradle_file_path: "../android/app/build.gradle",

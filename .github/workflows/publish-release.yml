@@ -2,36 +2,14 @@ name: Publish Release Candidates
 
 on:
   push:
-    branches:
-      - develop
-      - release-candidate
-      - master
-    paths-ignore:
-      - 'package.json'
-      - 'CHANGELOG.md'
+    # branches:
+    #   - develop
+    #   - release-candidate
+    #   - master
 
 jobs:
-  version_bump:
-    name: "Bump version"
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.ref }}
-
-    - name: Bump version and push tag
-      uses: TriPSs/conventional-changelog-action@v2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        git-message: 'chore(release): {version}'
-        preset: 'angular'
-        tag-prefix: ''
-        output-file: 'CHANGELOG.md'
-
   deploy_android:
     runs-on: ubuntu-latest
-    needs: version_bump
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -98,6 +76,17 @@ jobs:
         run: echo $GOOGLE_PLAY_STORE_SECRET | base64 -di > json_key.json && cp json_key.json app/json_key.json
         working-directory: ./android
 
+      - name: Increment and Commit Version Code
+        uses: maierj/fastlane-action@v1.4.0
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        with:
+          lane: 'increment_project_version_code'
+          subdirectory: 'android'
+          bundle-install-path: 'vendor/bundle'
+
       - name: Build android Beta artifact
         uses: maierj/fastlane-action@v1.4.0
         env:
@@ -118,7 +107,6 @@ jobs:
 
   deploy_ios:
     runs-on: macOS-latest
-    needs: version_bump
     steps:
       - uses: actions/checkout@master
 
@@ -170,6 +158,17 @@ jobs:
             ssh-keyscan github.com >> ~/.ssh/known_hosts
             ssh-agent -a $SSH_AUTH_SOCK > /dev/null
             ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
+
+      - name: Increment and Commit (internal) Version Number
+        uses: maierj/fastlane-action@v1.4.0
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        with:
+          lane: 'increment_project_version_number'
+          subdirectory: 'ios'
+          bundle-install-path: 'vendor/bundle'
 
       - name: Build ios Release artifact
         uses: maierj/fastlane-action@v1.4.0
