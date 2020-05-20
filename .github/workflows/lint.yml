@@ -27,4 +27,3 @@ jobs:
       - uses: hallee/eslint-action@master
         with:
           repo-token: ${{secrets.GITHUB_TOKEN}}
-          check-name: eslint # this is the job name from above 👆

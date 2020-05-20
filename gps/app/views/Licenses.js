@@ -54,7 +54,7 @@ export const LicensesScreen = ({ navigation }) => {
           </Typography>
 
           <View style={styles.section}>
-            <Typography use='body2'>Path Check</Typography>
+            <Typography use='body2'>PathCheck</Typography>
             <Typography use='body2'>58 Day Street</Typography>
             <Typography use='body2'>Box 441621</Typography>
             <Typography use='body2'>Somerville, MA 02144</Typography>
