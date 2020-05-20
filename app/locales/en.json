@@ -3,6 +3,7 @@
   "about": {
     "dimensions": "Dimensions:",
     "operating_system_abbr": "OS:",
+    "tracing_strategy": "Tracing Strategy:",
     "version": "Version:"
   },
   "authorities": {

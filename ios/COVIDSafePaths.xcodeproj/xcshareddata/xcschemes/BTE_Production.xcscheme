@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Safe Paths.app"
-               BlueprintName = "GPS"
+               BlueprintIdentifier = "C53FD07D24719AD1006D3268"
+               BuildableName = "COVIDSafePaths.app"
+               BlueprintName = "BTE"
                ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -63,16 +63,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Safe Paths.app"
-            BlueprintName = "GPS"
-            ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -80,16 +70,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Safe Paths.app"
-            BlueprintName = "GPS"
-            ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

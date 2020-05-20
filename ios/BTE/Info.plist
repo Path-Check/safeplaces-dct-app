@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>itms-apps</string>
-	</array>
-	<key>LSApplicationCategoryType</key>
-	<string/>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>com.transistorsoft.fetch</string>
@@ -15,7 +9,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Safe Paths</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,11 +21,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.5</string>
+	<string>1.0.28</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.5</string>
+	<string>1.0.28</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>itms-apps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -41,16 +41,12 @@
 		<key>NSExceptionDomains</key>
 		<dict/>
 	</dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you&apos;ve been exposed to COVID-19</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you&apos;ve been exposed to COVID-19</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
-	<key>NSMotionUsageDescription</key>
-	<string>We use your accelerometer for accurate location history.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>IBMPlexSans-Bold.ttf</string>
@@ -84,6 +80,8 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
 		<string>fetch</string>
 		<string>location</string>
 		<string>processing</string>
@@ -102,5 +100,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>We use your accelerometer for accurate location history.</string>
 </dict>
 </plist>

@@ -1,12 +1,13 @@
 {
   "name": "covidsafepaths",
-  "version": "1.0.11",
+  "version": "1.0.28",
   "private": true,
   "scripts": {
     "clean": "rm -rf node_modules && yarn",
     "start": "yarn && react-native start",
     "run-android": "react-native run-android --variant=devDebug",
-    "run-ios": "yarn install:pod && react-native run-ios",
+    "run-ios-bte": "react-native run-ios --scheme \"BTE_Development\"",
+    "run-ios-gps": "react-native run-ios --scheme \"GPS_Development\"",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
     "lint": "eslint ./",

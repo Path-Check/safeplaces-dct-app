@@ -17,6 +17,7 @@ import { Icons } from '../assets';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
+import { config } from '../COVIDSafePathsConfig';
 
 export const AboutScreen = ({ navigation }) => {
   const backToMain = () => {
@@ -65,6 +66,15 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.spacer} />
 
         <View style={styles.main}>
+          <View style={styles.row}>
+            <Typography style={styles.aboutSectionParaBold}>
+              {languages.t('about.tracing_strategy')}
+            </Typography>
+            <Typography style={styles.aboutSectionPara}>
+              {config.tracingStrategy}
+            </Typography>
+          </View>
+
           <View style={styles.row}>
             <Typography style={styles.aboutSectionParaBold}>
               {languages.t('about.version')}
