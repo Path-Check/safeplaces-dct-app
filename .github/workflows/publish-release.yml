@@ -66,9 +66,8 @@ jobs:
       - name: Increment and Commit Version Code
         uses: maierj/fastlane-action@v1.4.0
         env:
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+          GIT_BRANCH_NAME: ${{ github.ref }}
         with:
           lane: 'increment_project_version_code'
           subdirectory: 'android'
@@ -162,9 +161,8 @@ jobs:
       - name: Increment and Commit (internal) Version Number
         uses: maierj/fastlane-action@v1.4.0
         env:
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+          GIT_BRANCH_NAME: ${{ github.ref }}
         with:
           lane: 'increment_project_version_number'
           subdirectory: 'ios'

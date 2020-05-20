@@ -116,9 +116,16 @@ platform :ios do
         xcodeproj: PROJECT,
         version_number: JS_PACKAGE['version']
       )
+
       commit_version_bump(
         xcodeproj: PROJECT, # optional, if you have multiple Xcode project files, you must specify your main project here
       )
+
+      repository_uri = sh("git remote show origin | awk 'NR==2{print $3}' | sed 's/git@//g' | sed 's#https://##g'", log: false)
+      push_uri = "https://x-access-token:#{ENV["GITHUB_TOKEN"]}@#{repository_uri.chomp}.git"
+      branches = "HEAD:#{ENV['GIT_BRANCH_NAME']}"
+      sh("git push #{push_uri} #{branches} --tags", log: false)
+
     end
 
     desc "Push a new Release build to TestFlight"

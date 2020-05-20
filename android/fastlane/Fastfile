@@ -37,6 +37,11 @@ platform :android do
       gradle_file_path: "../android/app/build.gradle",
     )
     commit_android_version_bump
+
+    repository_uri = sh("git remote show origin | awk 'NR==2{print $3}' | sed 's/git@//g' | sed 's#https://##g'", log: false)
+    push_uri = "https://x-access-token:#{ENV["GITHUB_TOKEN"]}@#{repository_uri.chomp}.git"
+    branches = "HEAD:#{ENV['GIT_BRANCH_NAME']}"
+    sh("git push #{push_uri} #{branches} --tags", log: false)
   end
 
   desc "Build a Release APK and AAB"
