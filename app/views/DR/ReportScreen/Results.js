@@ -6,11 +6,11 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import Header from '../../components/Header';
-import context from '../../components/reduces/context';
-import ResultsContent from '../../components/ResultsContent';
-import styles from '../../components/styles';
-import Colors from '../../constants/Colors';
+import Header from '../../../components/DR/Header';
+import styles from '../../../components/DR/Header/style';
+import context from '../../../components/DR/Reduces/context';
+import ResultsContent from '../../../components/DR/ResultsContent';
+import Colors from '../../../constants/colors';
 
 export default function Results({ navigation }) {
   navigation.setOptions({
@@ -131,7 +131,7 @@ export default function Results({ navigation }) {
                   <ResultsContent
                     title='Deberías practicar distancia social'
                     subtitle='En este momento, usted no presenta síntomas de COVID-19, por lo que le recomendamos que continúes con las medidas preventivas de “lavado de manos con agua y jabón de manera frecuente y aplicar el distanciamiento social”'
-                    image={require('../../assets/images/socialDistancing.jpg')}
+                    image={require('../../../assets/images/socialDistancing.jpg')}
                     nextSteps={[
                       {
                         title: 'Mantener el distanciamiento social',
@@ -161,7 +161,7 @@ export default function Results({ navigation }) {
                   <ResultsContent
                     title='Deberías practicar distancia social'
                     subtitle='Ayuda a detener la propagación. Cuando esté fuera de la casa, manténgase al menos a seis pies de distancia de otras personas, evite grupos y solo use el transporte público si es necesario.'
-                    image={require('../../assets/images/socialDistancing.jpg')}
+                    image={require('../../../assets/images/socialDistancing.jpg')}
                     nextSteps={[
                       {
                         title:
@@ -202,7 +202,7 @@ export default function Results({ navigation }) {
                   <ResultsContent
                     title='Deberías practicar distancia social'
                     subtitle='En este momento, usted no presenta síntomas de COVID-19, por lo que recomendamos que continúe con las medidas preventivas de “lavado de manos con agua y jabón de manera frecuente y aplicar el distanciamiento social”'
-                    image={require('../../assets/images/socialDistancing.jpg')}
+                    image={require('../../../assets/images/socialDistancing.jpg')}
                     nextSteps={[
                       {
                         title: 'Mantener el distanciamiento social',
@@ -233,7 +233,7 @@ export default function Results({ navigation }) {
                 <ResultsContent
                   title='Deberías practicar distancia social'
                   subtitle='Ayuda a detener la propagación. Cuando esté fuera de la casa, manténgase al menos a seis pies de distancia de otras personas, evite grupos y solo use el transporte público si es necesario.'
-                  image={require('../../assets/images/socialDistancing.jpg')}
+                  image={require('../../../assets/images/socialDistancing.jpg')}
                   nextSteps={[
                     {
                       title: 'Cuarentena en casa',
@@ -267,7 +267,7 @@ export default function Results({ navigation }) {
                   <ResultsContent
                     title='Debe hacer aislamiento domiciliario'
                     subtitle='Según sus respuestas, debe quedarse en casa y lejos de los demás. Si puedes, ten una habitación y un baño que sean solo para ti. Esto puede ser difícil cuando no te sientes bien, pero protegerá a los que te rodean.'
-                    image={require('../../assets/images/selfIsolation.jpg')}
+                    image={require('../../../assets/images/selfIsolation.jpg')}
                     nextSteps={[
                       {
                         title: 'Aislarse',
@@ -308,7 +308,7 @@ export default function Results({ navigation }) {
                   <ResultsContent
                     title='Contacte a su médico'
                     subtitle='Sus respuestas sugieren que debe hablar con un profesional médico acerca de hacerse la prueba de COVID‑19.'
-                    image={require('../../assets/images/contactDoctor.jpg')}
+                    image={require('../../../assets/images/contactDoctor.jpg')}
                     nextSteps={[
                       {
                         title: 'Aislarse',
@@ -338,7 +338,7 @@ export default function Results({ navigation }) {
                 <ResultsContent
                   title='Contacte a su médico'
                   subtitle='Sus respuestas sugieren que debe hablar con un profesional médico acerca de hacerse la prueba de COVID‑19.'
-                  image={require('../../assets/images/callSupervisor.jpg')}
+                  image={require('../../../assets/images/callSupervisor.jpg')}
                   nextSteps={[
                     {
                       title: 'Aislarse',
@@ -378,7 +378,7 @@ export default function Results({ navigation }) {
                   <ResultsContent
                     title='Contacte a su médico'
                     subtitle='Sus respuestas sugieren que debe hablar con un profesional médico acerca de hacerse la prueba de COVID‑19.'
-                    image={require('../../assets/images/callSupervisor.jpg')}
+                    image={require('../../../assets/images/callSupervisor.jpg')}
                     nextSteps={[
                       {
                         title: 'Aislarse',
@@ -420,7 +420,7 @@ export default function Results({ navigation }) {
                   {
                     width: wp('70%'),
                     height: 38,
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.GREEN,
                     marginTop: 15,
                   },
                 ]}

@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
   buttonText: {
     alignSelf: 'center',
     color: '#fff',
-    fontFamily: 'OpenSans-SemiBold',
     fontSize: wp('3.8%'),
     textTransform: 'capitalize',
   },
@@ -74,7 +73,6 @@ const styles = StyleSheet.create({
   dataText: {
     color: Colors.PINK,
     fontSize: wp('8%'),
-    fontFamily: 'OpenSans-Bold',
   },
   calendarButton: {
     width: wp('40%'),
@@ -96,7 +94,6 @@ const styles = StyleSheet.create({
     marginLeft: wp('2%'),
   },
   headerText: {
-    fontFamily: 'OpenSans-Bold',
     fontSize: textFontSize + 8,
     color: '#fff',
     marginBottom: hp('1.5%'),
@@ -136,13 +133,11 @@ const styles = StyleSheet.create({
     margin: hp('1.5%'),
     color: '#fff',
     fontSize: textFontSize + 6,
-    fontFamily: 'OpenSans-SemiBold',
   },
   instructionsText: {
     textAlign: 'center',
     color: '#fff',
     fontSize: textFontSize + 1,
-    fontFamily: 'OpenSans-Regular',
     margin: hp('2%'),
     width: wp('75%'),
   },
@@ -175,12 +170,10 @@ const styles = StyleSheet.create({
   },
   subtitles: {
     alignSelf: 'flex-start',
-    fontFamily: 'OpenSans-SemiBold',
     marginTop: 15,
     marginBottom: 5,
   },
   hints: {
-    fontFamily: 'OpenSans-Regular',
     fontSize: textFontSize - 6,
   },
   stepIndicatorContainer: {
@@ -199,20 +192,16 @@ const styles = StyleSheet.create({
   text: {
     color: '#000',
     fontSize: textFontSize - 2,
-    fontFamily: 'OpenSans-Regular',
   },
   textSemiBold: {
-    fontFamily: 'OpenSans-SemiBold',
     fontSize: textFontSize - 1,
   },
   textBold: {
-    fontFamily: 'OpenSans-Bold',
     fontSize: textFontSize + 1,
     marginTop: 15,
     marginBottom: 5,
   },
   textHeader: {
-    fontFamily: 'OpenSans-Bold',
     fontSize: textFontSize + 2,
   },
   toggle: {

@@ -1,27 +1,27 @@
-import React, { useContext, useState } from 'react';
-import { View, ScrollView, TouchableHighlight } from 'react-native';
-import { Button, Container, Content, Card, Text } from 'native-base';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Dialog } from 'react-native-simple-dialogs';
 import 'moment/locale/es';
+
 import moment from 'moment';
+import { Button, Card, Container, Content, Text } from 'native-base';
+import React, { useContext, useState } from 'react';
+import { ScrollView, TouchableHighlight, View } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { Dialog } from 'react-native-simple-dialogs';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import CalendarButton from '../../../components/DR/CalendarButton/index';
 import Header from '../../../components/DR/Header';
+import styles from '../../../components/DR/Header/style';
 import Input from '../../../components/DR/Input/index';
 import PhoneInput from '../../../components/DR/PhoneInput/index';
-import CalendarButton from '../../../components/DR/CalendarButton/index';
-
 import context from '../../../components/DR/Reduces/context.js';
-
 import Colors from '../../../constants/colors';
-import styles from '../../../components/DR/Header/style';
 
 export default function UserInfo({ navigation }) {
   navigation.setOptions({
-    headerShown: false
+    headerShown: false,
   });
   const [showDialog, setShowDialog] = useState(false);
   const [usePassport, setUsePassport] = useState(false);
@@ -36,10 +36,10 @@ export default function UserInfo({ navigation }) {
         passportId = '',
         passportName = '',
         nssId = '',
-        phoneNumber
-      }
+        phoneNumber,
+      },
     },
-    setGlobalState
+    setGlobalState,
   ] = useContext(context);
 
   const closeDialog = final => {
@@ -58,8 +58,8 @@ export default function UserInfo({ navigation }) {
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data.body)
-        }
+          body: JSON.stringify(data.body),
+        },
       );
       return response.json();
     } catch (e) {
@@ -73,20 +73,20 @@ export default function UserInfo({ navigation }) {
       data.body = {
         cid: cid,
         birth: moment(birth).format('YYYY-MM-DD'),
-        phoneNumber: phoneNumber
+        phoneNumber: phoneNumber,
       };
     } else if (usePassport) {
       data.body = {
         passportId: passportId,
         passportName: passportName,
         birth: moment(birth).format('YYYY-MM-DD'),
-        phoneNumber: phoneNumber
+        phoneNumber: phoneNumber,
       };
     } else {
       data.body = {
         nssid: nssId,
         birth: moment(birth).format('YYYY-MM-DD'),
-        phoneNumber: phoneNumber
+        phoneNumber: phoneNumber,
       };
     }
     const { valid } = await validate(data);
@@ -96,7 +96,7 @@ export default function UserInfo({ navigation }) {
   const setSelectedOption = (option, selected) => {
     setGlobalState({
       type: 'ADD_ANSWERS',
-      value: { [option]: selected }
+      value: { [option]: selected },
     });
   };
   const disabled =
@@ -105,6 +105,7 @@ export default function UserInfo({ navigation }) {
     birth
       ? false
       : true;
+  let isLoading = false;
   return (
     <Container>
       <Content>
@@ -119,10 +120,10 @@ export default function UserInfo({ navigation }) {
                   transparent
                   onPress={() => closeDialog()}
                   style={{ marginTop: -10 }}>
-                  <Icon name="times" size={25} color={Colors.green} />
+                  <Icon name='times' size={25} color={Colors.GREEN} />
                 </Button>
                 {error && (
-                  <Text style={[styles.text, { color: Colors.red }]}>
+                  <Text style={[styles.text, { color: Colors.RED_TEXT }]}>
                     Datos incorrectos, por favor revise.
                   </Text>
                 )}
@@ -141,7 +142,7 @@ export default function UserInfo({ navigation }) {
                     onChange={text =>
                       setSelectedOption(
                         useIdCard ? 'cid' : useNss && 'nssId',
-                        `${text}`.replace(/\D/g, '')
+                        `${text}`.replace(/\D/g, ''),
                       )
                     }
                     style={{ marginBottom: 12 }}
@@ -188,26 +189,30 @@ export default function UserInfo({ navigation }) {
                   onChange={date => {
                     setSelectedOption(
                       'birth',
-                      moment(date, 'DD-MM-YYYY').format('YYYY-MM-DD')
+                      moment(date, 'DD-MM-YYYY').format('YYYY-MM-DD'),
                     );
                   }}
                   date={moment(birth).format('DD-MM-YYYY')}
-                  minDate="01-01-1900"
+                  minDate='01-01-1900'
                 />
                 <Button
-                  disabled={disabled}
+                  disabled={disabled && !isLoading}
                   style={[
                     styles.buttons,
                     {
-                      backgroundColor: disabled ? '#b7dbb2' : Colors.green,
-                      marginTop: 18
-                    }
+                      backgroundColor: disabled ? '#b7dbb2' : Colors.GREEN,
+                      marginTop: 18,
+                    },
                   ]}
                   onPress={async () => {
+                    //Send data to API
+                    isLoading = true;
                     if (await sendDataToApi()) {
+                      isLoading = false;
                       navigation.navigate('Report');
                       closeDialog(false);
                     } else {
+                      isLoading = false;
                       setError(true);
                     }
                   }}>
@@ -217,8 +222,8 @@ export default function UserInfo({ navigation }) {
             </Dialog>
 
             <Header
-              title="Ingrese sus datos"
-              text="Utilizaremos estos datos para darle el apropiado seguimiento a sus resultados:"
+              title='Ingrese sus datos'
+              text='Utilizaremos estos datos para darle el apropiado seguimiento a sus resultados:'
               navigation={navigation}
               close={true}
               style={{ height: wp('38%') }}
@@ -227,24 +232,24 @@ export default function UserInfo({ navigation }) {
               style={{
                 height: hp('60%'),
                 alignItems: 'center',
-                marginTop: 20
+                marginTop: 20,
               }}>
               <TouchableHighlight
                 onPress={() => {
                   setShowDialog(true);
                   setUseIdCard(true);
                 }}
-                underlayColor="#FFF">
+                underlayColor='#FFF'>
                 <Card style={[styles.bigCards, styles.userDataCard]}>
                   <Text
                     style={[
                       styles.textSemiBold,
-                      { marginVertical: 10, marginHorizontal: 12 }
+                      { marginVertical: 10, marginHorizontal: 12 },
                     ]}>
                     Iniciar con cédula
                   </Text>
                   <Icon
-                    name="id-card"
+                    name='id-card'
                     size={wp('8.5%')}
                     color={Colors.mainBlue}
                   />
@@ -255,17 +260,17 @@ export default function UserInfo({ navigation }) {
                   setShowDialog(true);
                   setUsePassport(true);
                 }}
-                underlayColor="#FFF">
+                underlayColor='#FFF'>
                 <Card style={[styles.bigCards, styles.userDataCard]}>
                   <Text
                     style={[
                       styles.textSemiBold,
-                      { marginVertical: 10, marginHorizontal: 12 }
+                      { marginVertical: 10, marginHorizontal: 12 },
                     ]}>
                     Iniciar con pasaporte
                   </Text>
                   <Icon
-                    name="passport"
+                    name='passport'
                     size={wp('9%')}
                     color={Colors.mainBlue}
                   />
@@ -276,23 +281,23 @@ export default function UserInfo({ navigation }) {
                   setShowDialog(true);
                   setUseNss(true);
                 }}
-                underlayColor="#FFF">
+                underlayColor='#FFF'>
                 <Card
                   style={[
                     styles.bigCards,
                     styles.userDataCard,
-                    { alignItems: 'center' }
+                    { alignItems: 'center' },
                   ]}>
                   <Text
                     style={[
                       styles.textSemiBold,
-                      { marginVertical: 10, marginHorizontal: 12 }
+                      { marginVertical: 10, marginHorizontal: 12 },
                     ]}>
                     Iniciar con Número de Seguridad Social (NSS) de República
                     Dominicana
                   </Text>
                   <Icon
-                    name="id-card-alt"
+                    name='id-card-alt'
                     size={wp('8.5%')}
                     color={Colors.mainBlue}
                   />
