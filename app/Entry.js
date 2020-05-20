@@ -1,4 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native';
 import {
   CardStyleInterpolators,
   createStackNavigator,
@@ -51,7 +50,6 @@ class Entry extends Component {
 
   render() {
     return (
-      <NavigationContainer>
         <Stack.Navigator
           initialRouteName='InitialScreen'
           screenOptions={{
@@ -190,7 +188,6 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
-      </NavigationContainer>
     );
   }
 }

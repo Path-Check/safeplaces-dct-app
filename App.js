@@ -1,9 +1,10 @@
 import React, { useEffect, useReducer } from 'react';
 import { MenuProvider } from 'react-native-popup-menu';
 import SplashScreen from 'react-native-splash-screen';
+import { NavigationContainer } from '@react-navigation/native';
 
 import { Theme } from './app/constants/themes';
-import Entry from './app/Entry';
+import NavEntry from './app/NavEntry';
 import { FlagsProvider } from './app/helpers/Flags';
 import VersionCheckService from './app/services/VersionCheckService';
 import { reducer, initialState } from './app/components/DR/Reduces/index';
@@ -22,7 +23,9 @@ const App = () => {
       <FlagsProvider>
       <MenuProvider>
         <Theme use='default'>
-          <Entry />
+          <NavigationContainer>
+            <NavEntry />
+          </NavigationContainer>
         </Theme>
       </MenuProvider>
     </FlagsProvider>
