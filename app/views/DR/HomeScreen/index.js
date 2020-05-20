@@ -159,9 +159,9 @@ export default class HomeScreen extends Component {
                 </View>
               </View>
             </View>
+            {this.getSettings()}
           </ScrollView>
         </View>
-        {this.getSettings()}
       </View>
     );
   }
