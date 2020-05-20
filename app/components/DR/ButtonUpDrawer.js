@@ -126,7 +126,7 @@ export default class BottomUpPanel extends Component {
             {/* Scrollable content */}
             <ScrollView
               ref={scrollView => {
-                this._scrollView = scrollView;
+                this.scrollView = scrollView;
               }}
               // Enable scrolling only when the window is open
               scrollEnabled={this.state.open}
@@ -135,7 +135,7 @@ export default class BottomUpPanel extends Component {
               showsVerticalScrollIndicator={false}
               // Trigger onScroll often
               scrollEventThrottle={16}
-              onScroll={this._handleScroll}>
+              onScroll={this.handleScroll}>
               {/* Render content components */}
               {content()}
             </ScrollView>
@@ -161,7 +161,7 @@ export default class BottomUpPanel extends Component {
   };
 
   close = () => {
-    this._scrollView.scrollTo({ y: 0 });
+    this.scrollView.scrollTo({ y: 0 });
     Animated.timing(this.animatedPosition, {
       toValue: this.config.position.start,
       duration: 600,
