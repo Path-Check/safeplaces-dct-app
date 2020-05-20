@@ -6,32 +6,17 @@ on:
       - develop
       - release-candidate
       - master
+  # TODO remove after testing
+  pull_request:
+    branches:
+      - develop
     paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
 
 jobs:
-  version_bump:
-    name: "Bump version"
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.ref }}
-
-    - name: Bump version and push tag
-      uses: TriPSs/conventional-changelog-action@v2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        git-message: 'chore(release): {version}'
-        preset: 'angular'
-        tag-prefix: ''
-        output-file: 'CHANGELOG.md'
-
   deploy_android:
     runs-on: ubuntu-latest
-    needs: version_bump
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -48,6 +33,8 @@ jobs:
       - name: Install Node Dependencies
         if: steps.node_cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
+
+      - run: ./bump-test-build-number.sh
 
       - name: Setup kernel for react native, increase watchers for release versions.
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
@@ -80,7 +67,7 @@ jobs:
 
       - name: Install Ruby Dependencies
         if: steps.ruby_cache.outputs.cache-hit != 'true'
-        run: | 
+        run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
         working-directory: ./android
@@ -118,7 +105,6 @@ jobs:
 
   deploy_ios:
     runs-on: macOS-latest
-    needs: version_bump
     steps:
       - uses: actions/checkout@master
 
@@ -137,6 +123,8 @@ jobs:
       - name: Install Node Dependencies
         if: steps.node_cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
+
+      - run: ./bump-test-build-number.sh
 
       - name: Install bundler for ruby package management
         run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
