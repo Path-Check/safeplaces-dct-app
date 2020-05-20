@@ -10,7 +10,7 @@ import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
-import { tracingStrategy } from '../COVIDSafePathsConfig';
+import { config } from '../COVIDSafePathsConfig';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
@@ -29,7 +29,7 @@ export const SettingsScreen = ({ navigation }) => {
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
-  const isGPS = tracingStrategy === 'gps';
+  const isGPS = config.tracingStrategy === 'gps';
 
   const backToMain = () => {
     navigation.goBack();
@@ -89,7 +89,7 @@ export const SettingsScreen = ({ navigation }) => {
     } else if (!isLogging && !isGPS) {
       return t('label.logging_inactive_bluetooth');
     }
-  }
+  };
 
   return (
     <NavigationBarWrapper
@@ -117,7 +117,7 @@ export const SettingsScreen = ({ navigation }) => {
           </NativePicker>
         </Section>
         <Section>
-          {tracingStrategy === 'gps' ? (
+          {isGPS ? (
             <Item
               label={t('label.choose_provider_title')}
               description={t('label.choose_provider_subtitle')}
@@ -133,9 +133,9 @@ export const SettingsScreen = ({ navigation }) => {
             label={t('label.event_history_title')}
             description={t('label.event_history_subtitle')}
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
-            last={tracingStrategy === 'gps' ? false : true}
+            last={isGPS ? false : true}
           />
-          {tracingStrategy === 'gps' ? (
+          {isGPS ? (
             <Item
               label={t('share.title')}
               description={t('share.subtitle')}
@@ -145,7 +145,7 @@ export const SettingsScreen = ({ navigation }) => {
           ) : null}
         </Section>
 
-        {tracingStrategy === 'gps' ? (
+        {isGPS ? (
           <FeatureFlag name='google_import'>
             <Section>
               <GoogleMapsImport navigation={navigation} />

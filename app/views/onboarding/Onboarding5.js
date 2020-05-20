@@ -24,7 +24,7 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
-import { tracingStrategy } from '../../COVIDSafePathsConfig';
+import { config } from '../../COVIDSafePathsConfig';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { HCAService } from '../../services/HCAService';
@@ -71,9 +71,11 @@ const PermissionDescription = ({ title, status }) => {
 };
 
 const Onboarding = ({ navigation }) => {
-  const isGPSTracingStrategy = () => tracingStrategy === 'gps';
+  const isGPSTracingStrategy = () => config.tracingStrategy === 'gps';
 
-  const [currentStep, setCurrentStep] = useState(isGPSTracingStrategy() ? StepEnum.LOCATION : StepEnum.BLUETOOTH);
+  const [currentStep, setCurrentStep] = useState(
+    isGPSTracingStrategy() ? StepEnum.LOCATION : StepEnum.BLUETOOTH,
+  );
   const [notificationPermission, setNotificationPermission] = useState(
     PermissionStatusEnum.UNKNOWN,
   );
@@ -109,7 +111,9 @@ const Onboarding = ({ navigation }) => {
       case StepEnum.BLUETOOTH:
         return getBluetoothNextStep();
       case StepEnum.NOTIFICATIONS:
-        return __DEV__ && isGPSTracingStrategy() ? StepEnum.HCA_SUBSCRIPTION : StepEnum.DONE;
+        return __DEV__ && isGPSTracingStrategy()
+          ? StepEnum.HCA_SUBSCRIPTION
+          : StepEnum.DONE;
       case StepEnum.HCA_SUBSCRIPTION:
         return StepEnum.DONE;
     }
@@ -249,7 +253,7 @@ const Onboarding = ({ navigation }) => {
   const getBluetoothPermissionSetting = () => {
     return isPlatformiOS()
       ? PERMISSIONS.IOS.BLUETOOTH_PERIPHERAL
-      : "android.permission.BLUETOOTH";
+      : 'android.permission.BLUETOOTH';
   };
 
   const requestNotification = async () => {
