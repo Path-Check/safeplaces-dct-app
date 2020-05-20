@@ -8,8 +8,6 @@ import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import HomeScreen from './views/DR/HomeScreen';
-import NewsScreen from './views/DR/News';
-import ReportScreen from './views/DR/ReportScreen/index.js';
 import Report from './views/DR/ReportScreen/ReportScreenQuestions';
 import ResultsScreen from './views/DR/ReportScreen/Results';
 import UserInfo from './views/DR/UserInfoScreen/index';
@@ -98,11 +96,6 @@ class Entry extends Component {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name='NewsScreen'
-          component={NewsScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
           name='ExportScreen'
           component={ExportScreen}
           options={{ headerShown: false }}
@@ -135,12 +128,6 @@ class Entry extends Component {
         <Stack.Screen
           name='AboutScreen'
           component={AboutScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='ReportScreen'
-          Report
-          component={ReportScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen

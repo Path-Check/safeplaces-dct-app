@@ -7,8 +7,7 @@ import Colors from '../../../constants/colors';
 import AdviceScreen from './Advices';
 import BulletinsScreen from './Bulletins';
 import Details from './Details';
-
-// import NewsScreen from './News';
+import NewsScreen from './News';
 
 const TopBar = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -23,7 +22,7 @@ function TabNavigation() {
           inactiveTintColor: '#000',
           labelStyle: styles.label,
         }}>
-        {/* <TopBar.Screen name='Noticias' component={NewsScreen} /> */}
+        <TopBar.Screen name='Noticias' component={NewsScreen} />
         <TopBar.Screen name='Boletines' component={BulletinsScreen} />
         <TopBar.Screen name='Consejos' component={AdviceScreen} />
       </TopBar.Navigator>

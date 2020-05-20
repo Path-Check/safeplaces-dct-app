@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import imgNews from '../../../assets/images/news.jpg';
-import Button from '../../../components/Button';
+import { Button } from '../../../components/Button';
 import HeaderImage from '../../../components/DR/ActionCards/HeaderImage';
 import DataList from '../../../components/DR/ActionCards/List';
 import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
@@ -18,7 +18,7 @@ import languages from '../../../locales/languages';
 
 const NEWS_URL = 'https://covid-dr.appspot.com/news';
 
-export default function NewsScreen({ navigation }) {
+function NewsScreen({ navigation }) {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isNotLastPage, setIsNotLastPage] = useState(true);
@@ -67,31 +67,26 @@ export default function NewsScreen({ navigation }) {
   }, []);
 
   return (
-    <NavigationBarWrapper
-      title={languages.t('label.latest_news')}
-      onBackPress={backToMain.bind(this)}>
-      <View style={styles.container}>
-        <HeaderImage imgUrl={imgNews} title={languages.t('label.news_title')} />
-        <ScrollView>
-          <HeaderImage imgUrl={imgNews} title='Noticias' />
-          <DataList
-            data={news}
-            navigation={navigation}
-            switchScreenTo='WebView'
-          />
-          <View style={styles.containerPagination}>
-            {isNotLastPage && isLoading ? (
-              <ActivityIndicator size='large' />
-            ) : (
-              <Button
-                onPress={onPress}
-                title={languages.t('label.launch_next')}
-              />
-            )}
-          </View>
-        </ScrollView>
-      </View>
-    </NavigationBarWrapper>
+    <View style={styles.container}>
+      <HeaderImage imgUrl={imgNews} title={languages.t('label.news_title')} />
+      <ScrollView>
+        <DataList
+          data={news}
+          navigation={navigation}
+          switchScreenTo='WebView'
+        />
+        <View style={styles.containerPagination}>
+          {isNotLastPage && isLoading ? (
+            <ActivityIndicator size='large' />
+          ) : (
+            <Button
+              onPress={onPress}
+              title={languages.t('label.launch_next')}
+            />
+          )}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -105,3 +100,5 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
+
+export default NewsScreen;
