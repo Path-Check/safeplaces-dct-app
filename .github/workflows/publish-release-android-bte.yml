@@ -1,19 +1,15 @@
-name: Staging Android
+name: Publish Release Candidates
 
 on:
   push:
     branches:
-      - develop
-      - master
-      - release-candidate
-  pull_request:
-    branches:
-      - develop
-      - master
-      - release-candidate
+      - bte-android-product-flavor-setup
+    paths-ignore:
+      - 'package.json'
+      - 'CHANGELOG.md'
 
 jobs:
-  build_staging_android:
+  deploy_android:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -68,15 +64,33 @@ jobs:
           bundle install --jobs 4 --retry 3
         working-directory: ./android
 
-      - name: Build android Staging artifact
+      - name: Decode Android key store
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+        run: |
+          echo $SIGNING_KEY | base64 -di > keystore.jks && cp keystore.jks app/keystore.jks && mkdir $HOME/keystores && cp keystore.jks $HOME/keystores
+        working-directory: ./android
+
+      - name: Decode service account key
+        env:
+          GOOGLE_PLAY_STORE_SECRET: ${{ secrets.GOOGLE_PLAY_STORE_SECRET }}
+        run: echo $GOOGLE_PLAY_STORE_SECRET | base64 -di > json_key.json && cp json_key.json app/json_key.json
+        working-directory: ./android
+
+      - name: Build android Beta artifact
         uses: maierj/fastlane-action@v1.4.0
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         with:
-          lane: 'staging_gps'
+          lane: 'release_bte'
           subdirectory: 'android'
           bundle-install-path: 'vendor/bundle'
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v1
+      - name: Upload to Google Play beta track
+        uses: maierj/fastlane-action@v1.4.0
         with:
-          name: Debug APK (Android)
-          path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
+          lane: 'play_store_bte'
+          subdirectory: 'android'
+          bundle-install-path: 'vendor/bundle'

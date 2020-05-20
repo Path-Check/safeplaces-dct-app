@@ -152,7 +152,7 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 25
+        versionCode 11
         versionName "1.0.8"
     }
     splits {
@@ -186,29 +186,29 @@ android {
         debug {
             signingConfig signingConfigs.debug
         }
+        staging {
+            signingConfig signingConfigs.debug
+            matchingFallbacks = ['staging']
+        }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            // signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
+            matchingFallbacks = ['release']
         }
     }
 
     flavorDimensions "version"
     productFlavors {
-        dev {
+        gps {
+            applicationId 'org.pathcheck.covidsafepaths'
             dimension "version"
         }
-        staging {
-            dimension "version"
-        }
-        prod {
+        bte {
+            applicationId 'org.pathcheck.covidsafepathsBte'
             dimension "version"
         }
     }
-
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -222,6 +222,11 @@ android {
             }
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
 }
 
 dependencies {
