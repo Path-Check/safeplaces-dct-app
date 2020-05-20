@@ -37,7 +37,7 @@ platform :android do
       gradle_file_path: "../android/app/build.gradle",
     )
     commit_android_version_bump(
-      gradle_file_folder: "./android/app",
+      gradle_file_folder: "../android/app",
     )
   end
 
