@@ -6,7 +6,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import { Dialog } from 'react-native-simple-dialogs';
-import { Ionicons } from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Wizard from 'react-native-wizard';
 
 import Header from '../../../components/DR/Header/index';
@@ -99,8 +99,8 @@ export default function ReportScreenQuestions({ navigation }) {
       }}>
       <Dialog visible={dialogVisible} style={{ alignItems: 'center' }}>
         <View>
-          <Ionicons
-            name={'md-medical'}
+          <Icon
+            name='md-medical'
             size={30}
             style={{ marginBottom: -6 }}
             color='#F54243'

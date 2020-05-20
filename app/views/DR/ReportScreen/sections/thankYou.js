@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { Ionicons } from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from '../../../../components/DR/Header/style';
 import Colors from '../../../../constants/colors';
@@ -21,7 +21,7 @@ const ThankYou = () => {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <Ionicons
+          <Icon
             name='md-checkmark-circle-outline'
             size={wp('22%')}
             color={Colors.GREEN}

@@ -28,6 +28,7 @@ export default function ReportScreen({ navigation }) {
             title='Reporte'
             text='Las siguientes preguntas están relacionadas al COVID-19'
             navigation={navigation}
+            close={true}
             style={{ height: hp('18%') }}
           />
           <View style={styles.formContainer}>
