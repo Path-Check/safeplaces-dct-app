@@ -9,8 +9,7 @@
     "done": "Done"
   },
   "history": {
-    "coming_soon": "Coming Soon",
-    "coming_soon_subtext": "Receive alerts from your local Healthcare Authority to inform you about potential exposure to COVID-19.",
+    "no_exposure": "No known",
     "possible_exposure": "Possible",
     "possible_exposure_para": "It is possible you were in contact with or close to someone who tested positive for COVID-19",
     "what_does_this_mean": "What does this mean?",
@@ -22,7 +21,6 @@
     "button_text": "Import past locations",
     "error": "Something went wrong while importing your data.",
     "google": {
-      "already_imported": "Provided Takeout file has already been imported.",
       "disclaimer": "Safe Paths has no affiliation with Google and never shares your data.",
       "file_open_error": "Could not open the file. \nPlease, make sure the file is opened from Google Drive",
       "instructions_detailed": "Visit Google Takeout and export your Location History using the following settings: \n1. Delivery method: \"Add to Drive\" \n2. Frequency: \"Export once\" \n3. File type & size: \".zip\" and \"1GB\"\n4. Google sends an email when the export is ready \n5. Return here to import locations from Google Drive",
@@ -34,7 +32,6 @@
       "visit_button_text": "Visit Google Takeout"
     },
     "subtitle": "To add past locations to your Safe Paths location history, you can import your Google location history.",
-    "success": "Recent locations has been successfully imported!",
     "title": "Import Locations"
   },
   "label": {
@@ -47,10 +44,10 @@
     "authorities_new_in_area_msg_plural": "Subscribe to {{count}} new Healthcare Authorities in your location",
     "authorities_new_in_area_title": "New Healthcare Authority",
     "authorities_new_in_area_title_plural": "New Healthcare Authorities",
-    "authorities_new_subcription_msg": "You have been subscribed to {{count}} new Healthcare Authority in your location",
-    "authorities_new_subcription_msg_plural": "You have been subscribed to {{count}} new Healthcare Authorities in your location",
-    "authorities_new_subcription_title": "{{count}} New Subscription",
-    "authorities_new_subcription_title_plural": "{{count}} New Subscriptions",
+    "authorities_new_subscription_msg": "You have been subscribed to {{count}} new authority in your location",
+    "authorities_new_subscription_msg_plural": "You have been subscribed to {{count}} new authorities in your location",
+    "authorities_new_subscription_title": "{{count}} New Subscription",
+    "authorities_new_subscription_title_plural": "{{count}} New Subscriptions",
     "authorities_no_sources": "No Healthcare Authorities yet",
     "authorities_removal_alert_cancel": "Cancel",
     "authorities_removal_alert_desc": "Are you sure you want to remove this Healthcare Authority",
@@ -65,7 +62,6 @@
     "default_news_site_name": "Safe Paths News",
     "enter_authority_url": "Enter or paste URL",
     "event_history_subtitle": "Receive information about potential exposure to COVID-19",
-    "event_history_settings_title": "Exposure History - Coming Soon",
     "event_history_title": "Exposure History",
     "filter_authorities_by_gps_history": "Filter by your locations",
     "home_at_risk_header": "Safe Paths",
@@ -80,6 +76,7 @@
     "home_setting_off_subtext": "Safe Paths needs location access in Settings to privately save the places you visit. You will not receive notifications about possible contact with COVID-19.",
     "home_unknown_header": "Safe Paths",
     "home_unknown_subtext": "Safe Paths needs location access in Settings to privately save \nthe places you visit \n\nYou will not receive notifications \nabout possible contact with \npeople who have COVID-19",
+    "import_success": "Imported successfully",
     "latest_news": "Latest News",
     "launch_authority_access": "Subscribe to nearby Health Authorities",
     "launch_authority_header": "Select a Healthcare Authority to learn about COVID-19 in your area, where available",
