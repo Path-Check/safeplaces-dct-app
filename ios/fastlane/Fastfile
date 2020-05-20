@@ -30,7 +30,8 @@ end
 platform :ios do
     BTE_APP_ID = "org.pathcheck.bt"
     GPS_APP_ID = "org.pathcheck.covid-safepaths"
-    PROFILE = "match AppStore org.pathcheck.covid-safepaths"
+    GPS_PROFILE = "match AppStore org.pathcheck.covid-safepaths"
+    BTE_PROFILE = "match AppStore org.pathcheck.bt"
     DEBUG_PROFILE = "match Develop org.pathcheck.covid-safepaths"
     ADHOC_PROFILE = "match AdHoc org.pathcheck.covid-safepaths"
     BTE_STAGING_SCHEME = "BTE_Staging"
@@ -125,7 +126,7 @@ platform :ios do
 
       signing_bundle_details = {
         :BUNDLE_IDENTIFIER => GPS_APP_ID,
-        :PROVISIONING_PROFILE_SPECIFIER => PROFILE,
+        :PROVISIONING_PROFILE_SPECIFIER => GPS_PROFILE,
         :DEVELOPMENT_TEAM => TEAM
       }
 
@@ -164,7 +165,7 @@ platform :ios do
 
       signing_bundle_details = {
         :BUNDLE_IDENTIFIER => BTE_APP_ID,
-        :PROVISIONING_PROFILE_SPECIFIER => PROFILE,
+        :PROVISIONING_PROFILE_SPECIFIER => BTE_PROFILE,
         :DEVELOPMENT_TEAM => TEAM
       }
 
