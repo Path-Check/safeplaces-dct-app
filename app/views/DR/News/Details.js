@@ -3,7 +3,7 @@ import { BackHandler, Dimensions } from 'react-native';
 import PDFView from 'react-native-pdf';
 import { WebView } from 'react-native-webview';
 
-import NavigationBarWrapper from '../../components/NavigationBarWrapper';
+import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
 
 // This is to make the images responsive in the page of a new
 const fixerImage = `

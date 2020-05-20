@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import {
   RefreshControl,
   ScrollView,
+  StatusBar,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -75,6 +76,7 @@ export default class HomeScreen extends Component {
 
     return (
       <View style={{ flex: 1, backgroundColor: Colors.MAIN_BLUE }}>
+        <StatusBar backgroundColor={Colors.MAIN_BLUE} />
         <View>
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
