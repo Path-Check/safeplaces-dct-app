@@ -25,8 +25,6 @@ PODS:
   - glog (0.3.5)
   - Permission-BluetoothPeripheral (2.1.4):
     - RNPermissions
-  - Permission-LocationAlways (2.1.4):
-    - RNPermissions
   - Permission-Notifications (2.1.4):
     - RNPermissions
   - RCTRequired (0.61.5)
@@ -293,7 +291,6 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Permission-BluetoothPeripheral (from `../node_modules/react-native-permissions/ios/BluetoothPeripheral.podspec`)
-  - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways.podspec`)
   - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -367,8 +364,6 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   Permission-BluetoothPeripheral:
     :path: "../node_modules/react-native-permissions/ios/BluetoothPeripheral.podspec"
-  Permission-LocationAlways:
-    :path: "../node_modules/react-native-permissions/ios/LocationAlways.podspec"
   Permission-Notifications:
     :path: "../node_modules/react-native-permissions/ios/Notifications.podspec"
   RCTRequired:
@@ -466,7 +461,6 @@ SPEC CHECKSUMS:
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   Permission-BluetoothPeripheral: 2c8ce842373ae7162e41428d66831247fdd660c5
-  Permission-LocationAlways: 48085521ad224052f5b25c3fdc6d0e996d162428
   Permission-Notifications: d437cafc026900006d35981d35a2d694f883f44e
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
@@ -514,6 +508,6 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 10917ed8fc076276bdcbc1446ab856c4e82497fb
+PODFILE CHECKSUM: e8ce1637105c7b52735937ce8c59ba54f84862ce
 
 COCOAPODS: 1.9.1

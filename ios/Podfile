@@ -26,13 +26,6 @@ def shared_pods
   pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
   pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
 
-
-  permissions_path = '../node_modules/react-native-permissions/ios'
-
-  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
-  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
-  pod 'Permission-BluetoothPeripheral', :path => "#{permissions_path}/BluetoothPeripheral.podspec"
-
   pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
   pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
   pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
@@ -47,16 +40,23 @@ def shared_pods
 
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
-
   use_native_modules!
 end
 
 target 'BTE' do
   shared_pods
+
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-BluetoothPeripheral', :path => "#{permissions_path}/BluetoothPeripheral.podspec"
+  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
 end
 
 target 'GPS' do
   shared_pods
+
+  # permissions_path = '../node_modules/react-native-permissions/ios'
+  # pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
+  # pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
 end
 
 target 'COVIDSafePathsTests' do
