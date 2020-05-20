@@ -425,7 +425,7 @@ export default function Results({ navigation }) {
                   },
                 ]}
                 onPress={() => {
-                  navigation.navigate('App');
+                  navigation.navigate('HomeScreen');
                 }}>
                 <Text style={[styles.buttonText, { color: '#fff' }]}>
                   Cerrar
