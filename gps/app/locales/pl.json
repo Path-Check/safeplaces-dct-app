@@ -5,8 +5,13 @@
     "operating_system_abbr": "OS:",
     "version": "Wersja:"
   },
+  "authorities": {
+    "invalid_url_body": "Podany adres URL jest nieprawidłowy, spróbuj ponownie",
+    "invalid_url_title": "Nieprawidłowy adres URL"
+  },
   "common": {
-    "done": "Gotowe"
+    "done": "Gotowe",
+    "ok": "Ok"
   },
   "history": {
     "no_exposure": "Brak narażenia",
@@ -42,17 +47,21 @@
     "authorities_add_url": "Dodaj instytucję poprzez adres URL",
     "authorities_desc": "Wybierz zaufaną instytucję opieki zdrowotnej w Twojej okolicy, aby uzyskać dane dotyczące ryzyka narażenia na zakażenie. Wybierz nazwę z rejestru globalnego lub wprowadź adres internetowy podany przez organ, który wdrożył Safe Paths.",
     "authorities_input_placeholder": "Wklej swój adres URL",
-    "authorities_new_in_area_title_0": "Nowa instytucja opieki zdrowotnej",
-    "authorities_new_in_area_title_3": "Nowe instytucje opieki zdrowotnej",
-    "authorities_new_subcription_title_0": "{{count}} Nowa Subskrypcja",
-    "authorities_new_subcription_title_3": "{{count}} Nowe Subskrybcje",
     "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
+    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
     "authorities_new_subcription_msg_0": "Subskrybujesz {{count}} nową instytucję opieki zdrowotnej w swojej loklizacji",
     "authorities_new_subcription_msg_3": "Subskrybujesz {{count}} nowe instytucje opieki zdrowotnej w swojej loklizacji",
-    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
+    "authorities_new_in_area_title_0": "Nowa instytucja opieki zdrowotnej",
+    "authorities_new_subcription_title_0": "{{count}} Nowa Subskrypcja",
+    "authorities_new_subcription_title_3": "{{count}} Nowe Subskrybcje",
+    "authorities_new_in_area_title_3": "Nowe instytucje opieki zdrowotnej",
+    "authorities_new_subscription_title_0": "{{count}} Nowa subskrybcja",
+    "authorities_new_subscription_title_3": "{{count}} Nowe subskrybcje",
     "authorities_no_sources": "Brak danych dotyczących instytucji",
     "authorities_removal_alert_cancel": "Anuluj",
     "authorities_removal_alert_desc": "Czy jesteś pewien, że chcesz usunąć dane dotyczące instytucji?",
+    "authorities_new_subscription_msg_0": "Subskrybujesz {{count}} nową instytucję opieki zdrowotnej w swojej loklizacji",
+    "authorities_new_subscription_msg_3": "Subskrybujesz {{count}} nowe instytucje opieki zdrowotnej w swojej loklizacji",
     "authorities_removal_alert_proceed": "Ok",
     "authorities_removal_alert_title": "Usuń instytucję",
     "authorities_title": "Zaufane źródło",
@@ -60,7 +69,7 @@
     "choose_provider_subtitle": "Aby zostać poinformowanym o ryzyku narażenia na zakażenie, musisz subskrybować instytucję opieki zdrowotnej.",
     "choose_provider_title": "Wybierz instytucję opieki zdrowotnej",
     "commitment": "Zobowiązanie",
-    "commitment_para": "Safe Paths bezpiecznie rejestruje i sprawdza interakcje z osobami korzystającymi z Twojej lokalizacji. Twoje dane NIGDY nie opuszczą telefonu bez Twojej zgody.",
+    "commitment_para": "Safe Paths to globalny ruch mający na celu stworzenie darmowych, otwartych narzędzi ochrony prywatności dla mieszkańców, urzędników służby zdrowia i większych społeczności, aby spłaszczyć krzywą COVID-19, zmniejszyć strach i zapobiec inwigilującej reakcji państwa na pandemię.\n\nAby uzyskać więcej informacji, odwiedź stronę",
     "default_news_site_name": "Safe Paths Informacje",
     "enter_authority_url": "Wprowadź lub wklej adres URL",
     "event_history_subtitle": "Dowiedz się o swoim osobistym narażeniu na ryzyko zakażenia na podstawie informacji udostępnionych przez instytucje opieki zdrowotnej.",
@@ -115,6 +124,7 @@
     "news_subtitle": "Przeczytaj o najnowszych aktualizacjach COVID z Twojej instytucji zdrowia i inne.",
     "news_title": "Najnowsze informacje",
     "no_data": "Brak danych",
+    "privacy_policy": "Polityka prywatności",
     "push_at_risk_message": "Spotkałeś na swojej drodze osobę zakażoną COVID-19",
     "push_at_risk_title": "Możesz być w niebezpieczeństwie",
     "see_exposure_history": "Zobacz historię narażenia",
