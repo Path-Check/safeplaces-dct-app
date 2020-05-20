@@ -1,3 +1,7 @@
+## [1.0.14](https://github.com/alpita-masurkar/private-kit/compare/1.0.13...1.0.14) (2020-05-20)
+
+
+
 ## [1.0.13](https://github.com/alpita-masurkar/private-kit/compare/1.0.12...1.0.13) (2020-05-17)
 
 
@@ -16,10 +20,6 @@
 
 
 ## [0.5.3](https://github.com/alpita-masurkar/private-kit/compare/v0.5.2...v0.5.3) (2020-03-20)
-
-
-
-## 0.5.2 (2020-03-19)
 
 
 
