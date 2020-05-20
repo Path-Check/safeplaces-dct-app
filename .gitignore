@@ -64,9 +64,11 @@ gps/app/locales/*_old.json
 /ios/Pods/
 .vscode/launch.json
 
-# Ruby gems
+# Ruby gems and ruby bundler artifacts
 ios/vendor/bundle/*
 android/vendor/bundle/*
+android/.bundle/config
+ios/.bundle/config
 
 # Screenshots
 e2e/artifacts/*
