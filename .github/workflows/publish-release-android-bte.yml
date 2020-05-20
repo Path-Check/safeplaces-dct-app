@@ -3,7 +3,7 @@ name: Publish Release Candidates
 on:
   push:
     branches:
-      - bte
+      - task/mb-increment-version-code
     paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
