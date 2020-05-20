@@ -74,7 +74,7 @@ export default class HomeScreen extends Component {
     } = this;
 
     return (
-      <View style={{ flex: 1, backgroundColor: Colors.LIGHT_BLUE }}>
+      <View style={{ flex: 1, backgroundColor: Colors.MAIN_BLUE }}>
         <View>
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
