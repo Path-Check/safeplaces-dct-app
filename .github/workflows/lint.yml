@@ -23,7 +23,8 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-     - uses: hallee/eslint-action@master
+      # v1 is broken, the given sha was the latest master (but we dont want to track master)
+      - uses: hallee/eslint-action@master
         with:
           repo-token: ${{secrets.GITHUB_TOKEN}}
           check-name: eslint # this is the job name from above 👆
