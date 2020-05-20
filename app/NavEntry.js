@@ -5,7 +5,7 @@ import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import EntryScreen from './Entry';
-import Maps from './views/DR/Map';
+import Maps from './views/DR/Maps';
 import NewsMainScreen from './views/DR/News';
 import ReportScreen from './views/DR/ReportScreen';
 import LocationTracking from './views/LocationTracking';
@@ -66,7 +66,7 @@ function MainNavigation() {
       />
       <Tab.Screen
         name='Maps'
-        component={() => <Maps type={'hospital'} />}
+        component={Maps}
         options={{
           tabBarIcon: ({ focused, color }) => (
             <Ionicons

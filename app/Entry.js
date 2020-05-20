@@ -8,7 +8,6 @@ import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import HomeScreen from './views/DR/HomeScreen';
-import MapScreen from './views/DR/Map';
 import NewsScreen from './views/DR/News';
 import ReportScreen from './views/DR/ReportScreen/index.js';
 import Report from './views/DR/ReportScreen/ReportScreenQuestions';
@@ -101,11 +100,6 @@ class Entry extends Component {
         <Stack.Screen
           name='NewsScreen'
           component={NewsScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='MapScreen'
-          component={MapScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
