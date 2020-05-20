@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e # exit immediately on errors
 
-apt-get install -y jq sponge
+sudo apt-get install jq sponge
 
 # writes a timestamp to the end of the current package.json version
 # e.g. 1.0.65 -> 1.0.65.1589941056.235517
