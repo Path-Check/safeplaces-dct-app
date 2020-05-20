@@ -14,6 +14,7 @@
 ## [0.5.3](https://github.com/Path-Check/covid-safe-paths/compare/v0.5.2...v0.5.3) (2020-03-20)
 
 
+
 ## 0.5.2 (2020-03-19)
 
 
