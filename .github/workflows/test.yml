@@ -106,9 +106,9 @@ jobs:
       # TODO(https://pathcheck.atlassian.net/browse/SAF-250): remove the skip on COVIDSafePathsTests/testRendersWelcomeScreen once it's passing
       - run: |
           xcodebuild test -workspace COVIDSafePaths.xcworkspace \
-            -scheme COVIDSafePathsTests \
+            -scheme GPS_Tests \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
-            -skip-testing COVIDSafePathsTests/COVIDSafePathsTests/testRendersWelcomeScreen
+            -skip-testing GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen
         working-directory: ./ios
 
   e2e-ios-build:

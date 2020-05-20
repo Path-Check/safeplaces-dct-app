@@ -67,6 +67,18 @@ Read the [contribution guidelines](CONTRIBUTING.md).
 
 View the [architecture diagram](docs/Private_Kit_Diagram.png) for a basic overview on the sequencing of generalized events and services that are used by Safe Paths.
 
+## WhiteLabeling
+
+PathCheck is building two versions of the application. One for location based
+contact tracing and one for bluetooth based contact tracing. Given that the same
+application cannot have both gps and bluetooth enabled for privacy
+considerations, we need be able to build two separate version of the app for
+distribution.
+
+We are following a white labeling strategy to accomplish this. That we have two
+build targets for each app which use the same codebase. Ideally using the same
+code across the products as possible.
+
 ## Developer Setup
 
 First, run the appropriate setup script for your system. This will install relevant packages, walk through Android Studio configuration, etc.
@@ -99,9 +111,16 @@ Device storage can be cleared by long-pressing on the app icon in the simulator,
 
 #### iOS (macOS only)
 
+Install the pod files:
+
 ```
 yarn install:pod ## only needs to be ran once
-npx react-native run-ios
+```
+
+run the application:
+```
+yarn run-ios-gps ## for the location enabled app
+yarn run-ios-bte ## for the bluetooth enabled app
 ```
 
 Device storage can be cleared by clicking "Hardware" on the system toolbar, and then "Erase all content and settings".
