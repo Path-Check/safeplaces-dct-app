@@ -7,6 +7,6 @@ sudo apt-get install jq moreutils
 # e.g. 1.0.65 -> 1.0.65.1589941056.235517
 cat package.json | grep version
 
-jq '.version=(.version) + "-t" + (now | tostring)' package.json | sponge package.json
+jq '.version=(.version) + "." + (now | tostring)' package.json | sponge package.json
 
 cat package.json | grep version
