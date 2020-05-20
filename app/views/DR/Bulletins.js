@@ -51,7 +51,6 @@ export default function BulletinsScreen({ navigation }) {
       <View style={styles.container}>
         <HeaderImage imgUrl={imgBulletins} title={t('label.bulletin_title')} />
         <ScrollView>
-          <HeaderImage imgUrl={imgBulletins} title='Boletines' />
           <List
             data={bulletins}
             navigation={navigation}

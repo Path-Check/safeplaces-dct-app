@@ -57,8 +57,7 @@ export default class BottomUpPanel extends Component {
       });
     });
     // Reset value once listener is registered to update depending animations
-    // eslint-disable-next-line no-underscore-dangle
-    this.animatedPosition.setValue(this.animatedPosition._value);
+    this.animatedPosition.setValue(this.animatedPosition.value);
   }
 
   // Handle isOpen prop changes to either open or close the window
@@ -127,7 +126,7 @@ export default class BottomUpPanel extends Component {
             {/* Scrollable content */}
             <ScrollView
               ref={scrollView => {
-                this.scrollViewRef = scrollView;
+                this.scrollView = scrollView;
               }}
               // Enable scrolling only when the window is open
               scrollEnabled={this.state.open}
@@ -135,7 +134,8 @@ export default class BottomUpPanel extends Component {
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
               // Trigger onScroll often
-              scrollEventThrottle={16}>
+              scrollEventThrottle={16}
+              onScroll={this.handleScroll}>
               {/* Render content components */}
               {content()}
             </ScrollView>
@@ -161,7 +161,7 @@ export default class BottomUpPanel extends Component {
   };
 
   close = () => {
-    this.scrollViewRef.scrollTo({ y: 0 });
+    this.scrollView.scrollTo({ y: 0 });
     Animated.timing(this.animatedPosition, {
       toValue: this.config.position.start,
       duration: 600,
