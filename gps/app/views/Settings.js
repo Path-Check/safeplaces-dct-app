@@ -124,8 +124,15 @@ export const SettingsScreen = ({ navigation }) => {
             label={t('share.title')}
             description={t('share.subtitle')}
             onPress={() => navigation.navigate('ExportScreen')}
-            last
           />
+          <FeatureFlag name='self_assessment'>
+            <Item
+              label={t('assessment.settings_title')}
+              description={t('assessment.settings_subtitle')}
+              onPress={() => navigation.navigate('AssessmentScreen')}
+              last
+            />
+          </FeatureFlag>
         </Section>
 
         <FeatureFlag name='google_import'>

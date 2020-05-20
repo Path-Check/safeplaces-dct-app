@@ -11,7 +11,13 @@ exports[`renders correctly 1`] = `
   }
 >
   <MenuProvider>
-    <Entry />
+    <RNCSafeAreaView
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
   </MenuProvider>
 </View>
 `;

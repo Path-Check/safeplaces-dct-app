@@ -607,6 +607,14 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               </Text>
             </View>
           </View>
+          <View
+            style={
+              Object {
+                "height": 1,
+                "width": "100%",
+              }
+            }
+          />
         </View>
         <View
           style={
@@ -1579,6 +1587,14 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               </Text>
             </View>
           </View>
+          <View
+            style={
+              Object {
+                "height": 1,
+                "width": "100%",
+              }
+            }
+          />
         </View>
         <View
           style={

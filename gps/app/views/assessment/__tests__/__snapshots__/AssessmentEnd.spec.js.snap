@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`base 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#F5F8FC",
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View>
+        <Image
+          source={
+            Object {
+              "uri": "image.png",
+            }
+          }
+          style={
+            Object {
+              "height": 600,
+              "width": 750,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "padding": 20,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 30,
+                  "marginBottom": 10,
+                },
+                Object {
+                  "color": undefined,
+                },
+              ]
+            }
+          >
+            End
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+    <View
+      style={
+        Object {
+          "padding": 20,
+        }
+      }
+    />
+  </RCTSafeAreaView>
+</View>
+`;

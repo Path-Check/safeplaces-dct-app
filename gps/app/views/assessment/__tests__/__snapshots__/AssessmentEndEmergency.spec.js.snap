@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`base 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#F5F8FC",
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../app/assets/images/assessment/illustration-screening-end-911.png",
+            }
+          }
+          style={
+            Object {
+              "height": 600,
+              "width": 750,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "padding": 20,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 30,
+                  "marginBottom": 10,
+                },
+                Object {
+                  "color": "rgb(227,0,58)",
+                },
+              ]
+            }
+          >
+            Emergency Services
+          </Text>
+          <Text
+            style={
+              Object {
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 20,
+                "lineHeight": 26,
+                "marginBottom": 30,
+              }
+            }
+            testID="description"
+          >
+            You may be having a 
+            <Text
+              style={
+                Object {
+                  "fontFamily": "IBMPlexSans-Bold",
+                }
+              }
+            >
+              medical emergency
+            </Text>
+            . Immediate medical attention is needed.
+
+Tell the emergency operator if you have been in contact with someone with COVID-19 or if you have recently been to an area where COVID-19 is spreading.
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+    <View
+      style={
+        Object {
+          "padding": 20,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="assessment-button"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderRadius": 12,
+                "padding": 14,
+              },
+              Object {
+                "backgroundColor": "rgb(227,0,58)",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#FFF",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 18,
+                "textAlign": "center",
+              }
+            }
+          >
+            Call Emergency Services
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTSafeAreaView>
+</View>
+`;
