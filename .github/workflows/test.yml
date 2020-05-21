@@ -4,13 +4,15 @@ on:
   push:
     branches:
       - develop
-      - release-candidate
       - master
+      - bte-release
+      - gps-release
   pull_request:
     branches:
       - develop
-      - release-candidate
       - master
+      - bte-release
+      - gps-release
 
 jobs:
   unit-test:
