@@ -46,6 +46,7 @@ exports[`renders correctly 1`] = `
       <View
         accessible={true}
         focusable={true}
+        isTVSelectable={true}
         style={
           Object {
             "alignItems": "center",
@@ -156,6 +157,7 @@ exports[`renders correctly 1`] = `
     <View
       accessible={true}
       focusable={true}
+      isTVSelectable={true}
       style={
         Object {
           "backgroundColor": "#868686",
