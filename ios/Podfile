@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'COVIDSafePaths' do
+def shared_pods
   # Pods for COVIDSafePaths
   project 'COVIDSafePaths.xcodeproj'
 
@@ -26,12 +26,6 @@ target 'COVIDSafePaths' do
   pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
   pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
 
-
-  permissions_path = '../node_modules/react-native-permissions/ios'
-
-  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
-  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
-
   pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
   pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
   pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
@@ -46,11 +40,28 @@ target 'COVIDSafePaths' do
 
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
-
-  target 'COVIDSafePathsTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-BluetoothPeripheral', :path => "#{permissions_path}/BluetoothPeripheral.podspec"
+  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
+  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
 
   use_native_modules!
+end
+
+target 'GPS' do
+  shared_pods
+end
+
+target 'BTE' do
+  shared_pods
+end
+
+target 'GPSTests' do
+  inherit! :search_paths
+  shared_pods
+end
+
+target 'BTETests' do
+  inherit! :search_paths
+  shared_pods
 end

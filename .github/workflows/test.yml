@@ -4,13 +4,15 @@ on:
   push:
     branches:
       - develop
-      - release-candidate
       - master
+      - bte-release
+      - gps-release
   pull_request:
     branches:
       - develop
-      - release-candidate
       - master
+      - bte-release
+      - gps-release
 
 jobs:
   unit-test:
@@ -35,7 +37,7 @@ jobs:
         env:
           CI: true
 
-  unit-test-android:
+  unit-test-android-gps:
     runs-on: macOS-latest # macOS-latest is required, tests need HAXM emulator
     steps:
       - uses: actions/checkout@v2
@@ -56,11 +58,39 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: ./gradlew :app:connectedDevDebugAndroidTest --no-daemon
+      - name: ./gradlew :app:connectedGpsDebugAndroidTest --no-daemon
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 28
-          script: ./gradlew :app:connectedDevDebugAndroidTest --no-daemon
+          script: ./gradlew :app:connectedGpsDebugAndroidTest --no-daemon
+          working-directory: ./android
+
+  unit-test-android-bte:
+    runs-on: macOS-latest # macOS-latest is required, tests need HAXM emulator
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+      - run: yarn --frozen-lockfile
+
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: ./gradlew :app:connectedBteDebugAndroidTest --no-daemon
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 28
+          script: ./gradlew :app:connectedBteDebugAndroidTest --no-daemon
           working-directory: ./android
 
   unit-test-ios:
@@ -106,9 +136,9 @@ jobs:
       # TODO(https://pathcheck.atlassian.net/browse/SAF-250): remove the skip on COVIDSafePathsTests/testRendersWelcomeScreen once it's passing
       - run: |
           xcodebuild test -workspace COVIDSafePaths.xcworkspace \
-            -scheme COVIDSafePathsTests \
+            -scheme GPS_Tests \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
-            -skip-testing COVIDSafePathsTests/COVIDSafePathsTests/testRendersWelcomeScreen
+            -skip-testing GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen
         working-directory: ./ios
 
   e2e-ios-build:
