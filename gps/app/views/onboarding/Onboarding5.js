@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Dimensions,
   ImageBackground,
   StatusBar,
@@ -7,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import AndroidBLEAdvertiserModule from 'react-native-ble-advertiser';
 import {
   PERMISSIONS,
   RESULTS,
@@ -18,10 +20,10 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import BackgroundImage from '../../../../shared/assets/images/launchScreenBackground.png';
-import { isPlatformiOS } from './../../Util';
 import IconDenied from '../../../../shared/assets/svgs/permissionDenied';
 import IconGranted from '../../../../shared/assets/svgs/permissionGranted';
 import IconUnknown from '../../../../shared/assets/svgs/permissionUnknown';
+import { isPlatformiOS } from './../../Util';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
@@ -29,6 +31,7 @@ import { PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
+import BroadcastingServices from '../../services/BroadcastingService';
 import { HCAService } from '../../services/HCAService';
 import { sharedStyles } from './styles';
 
@@ -42,9 +45,10 @@ const PermissionStatusEnum = {
 
 const StepEnum = {
   LOCATION: 0,
-  NOTIFICATIONS: 1,
-  HCA_SUBSCRIPTION: 2,
-  DONE: 3,
+  BLUETOOTH: 1,
+  NOTIFICATIONS: 2,
+  HCA_SUBSCRIPTION: 3,
+  DONE: 4,
 };
 
 const PermissionDescription = ({ title, status }) => {
@@ -78,6 +82,7 @@ class Onboarding extends Component {
       currentStep: StepEnum.LOCATION,
       notificationPermission: PermissionStatusEnum.UNKNOWN,
       locationPermission: PermissionStatusEnum.UNKNOWN,
+      bluetoothPermission: PermissionStatusEnum.UNKNOWN,
       authSubscriptionStatus: PermissionStatusEnum.UNKNOWN,
     };
   }
@@ -90,6 +95,10 @@ class Onboarding extends Component {
 
   isLocationChecked() {
     return this.state.locationPermission !== PermissionStatusEnum.UNKNOWN;
+  }
+
+  isBluetoothChecked() {
+    return this.state.bluetoothPermission !== PermissionStatusEnum.UNKNOWN;
   }
 
   isNotificationChecked() {
@@ -108,7 +117,10 @@ class Onboarding extends Component {
   getNextStep(currentStep) {
     switch (currentStep) {
       case StepEnum.LOCATION:
-        return this.getLocationNextStep();
+        return StepEnum.BLUETOOTH;
+      // return this.getLocationNextStep();
+      case StepEnum.BLUETOOTH:
+        return this.getBluetoothNextStep();
       case StepEnum.NOTIFICATIONS:
         return __DEV__ ? StepEnum.HCA_SUBSCRIPTION : StepEnum.DONE;
       case StepEnum.HCA_SUBSCRIPTION:
@@ -175,7 +187,17 @@ class Onboarding extends Component {
     }
   }
 
-  getLocationNextStep() {
+  // getLocationNextStep() {
+  //   if (isPlatformiOS()) {
+  //     return StepEnum.NOTIFICATIONS;
+  //   } else if (__DEV__) {
+  //     return StepEnum.HCA_SUBSCRIPTION;
+  //   } else {
+  //     return isPlatformiOS() ? StepEnum.NOTIFICATIONS : StepEnum.DONE;
+  //   }
+  // }
+
+  getBluetoothNextStep() {
     if (isPlatformiOS()) {
       return StepEnum.NOTIFICATIONS;
     } else if (__DEV__) {
@@ -193,6 +215,59 @@ class Onboarding extends Component {
     return isPlatformiOS()
       ? PERMISSIONS.IOS.LOCATION_ALWAYS
       : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+  }
+
+  requestBluetooth() {
+    const nextStep = this.getNextStep(StepEnum.BLUETOOTH);
+
+    AndroidBLEAdvertiserModule.getAdapterState()
+      .then(result => {
+        if (result === 'STATE_ON') {
+          BroadcastingServices.start();
+          this.setState({
+            currentStep: nextStep,
+            bluetoothPermission: PermissionStatusEnum.GRANTED,
+          });
+        } else {
+          this.askToActiveBluetooth();
+        }
+      })
+      .catch(() => {
+        console.log('BT Not Enabled');
+      });
+  }
+
+  askToActiveBluetooth() {
+    const nextStep = this.getNextStep(StepEnum.BLUETOOTH);
+
+    Alert.alert(
+      'Para utilizar essa funcionalidade é necessário que o Bluetooth esteja ativado.',
+      'Você gostaria de ativar o Bluetooth?',
+      [
+        {
+          text: 'Não',
+          onPress: () => {
+            console.log('User does not want to activate Bluetooth');
+            this.setState({
+              currentStep: nextStep,
+              bluetoothPermission: PermissionStatusEnum.DENIED,
+            });
+          },
+          style: 'cancel',
+        },
+        {
+          text: 'Sim',
+          onPress: () => {
+            AndroidBLEAdvertiserModule.enableAdapter();
+            BroadcastingServices.start();
+            this.setState({
+              currentStep: nextStep,
+              bluetoothPermission: PermissionStatusEnum.GRANTED,
+            });
+          },
+        },
+      ],
+    );
   }
 
   async requestLocation() {
@@ -282,6 +357,9 @@ class Onboarding extends Component {
       case StepEnum.LOCATION:
         this.requestLocation();
         break;
+      case StepEnum.BLUETOOTH:
+        this.requestBluetooth();
+        break;
       case StepEnum.NOTIFICATIONS:
         this.requestNotification();
         break;
@@ -302,6 +380,8 @@ class Onboarding extends Component {
     switch (this.state.currentStep) {
       case StepEnum.LOCATION:
         return languages.t('label.launch_location_header');
+      case StepEnum.BLUETOOTH:
+        return languages.t('label.launch_bluetooth_header');
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_notif_header');
       case StepEnum.HCA_SUBSCRIPTION:
@@ -332,6 +412,13 @@ class Onboarding extends Component {
           languages.t('label.launch_location_subheader'),
         ];
         break;
+      case StepEnum.BLUETOOTH:
+        [style, text] = [
+          styles.subheaderText,
+          languages.t('label.launch_bluetooth_subheader'),
+        ];
+        break;
+
       case StepEnum.NOTIFICATIONS:
         [style, text] = [
           styles.subheaderText,
@@ -372,6 +459,18 @@ class Onboarding extends Component {
     );
   }
 
+  getBluetoothPermission() {
+    return (
+      <>
+        <PermissionDescription
+          title={languages.t('label.launch_bluetooth_access')}
+          status={this.state.bluetoothPermission}
+        />
+        <View style={styles.divider} />
+      </>
+    );
+  }
+
   getNotificationsPermissionIfIOS() {
     return (
       isPlatformiOS() && (
@@ -402,6 +501,8 @@ class Onboarding extends Component {
     switch (this.state.currentStep) {
       case StepEnum.LOCATION:
         return languages.t('label.launch_enable_location');
+      case StepEnum.BLUETOOTH:
+        return languages.t('label.launch_enable_bluetooth');
       case StepEnum.NOTIFICATIONS:
         return languages.t('label.launch_enable_notif');
       case StepEnum.HCA_SUBSCRIPTION:
@@ -442,6 +543,7 @@ class Onboarding extends Component {
               {this.getSkipStepButton()}
               <View style={styles.statusContainer}>
                 {this.getLocationPermission()}
+                {this.getBluetoothPermission()}
                 {this.getNotificationsPermissionIfIOS()}
                 {__DEV__ && this.getAuthSubscriptionStatus()}
                 <View style={styles.spacer} />

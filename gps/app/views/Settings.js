@@ -11,7 +11,7 @@ import { FeatureFlag } from '../components/FeatureFlag';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import { PARTICIPATE } from '../constants/storage';
+import { BLE_TRACKING, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
@@ -19,6 +19,7 @@ import {
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
+import BroadcastingServices from '../services/BroadcastingService';
 import LocationServices from '../services/LocationService';
 import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
@@ -27,6 +28,7 @@ import { SettingsItem as Item } from './Settings/SettingsItem';
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
   const [isLogging, setIsLogging] = useState(undefined);
+  const [activeBle, setActiveBle] = useState(undefined);
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
@@ -47,6 +49,10 @@ export const SettingsScreen = ({ navigation }) => {
       .then(isParticipating => setIsLogging(isParticipating === 'true'))
       .catch(error => console.log(error));
 
+    GetStoreData(BLE_TRACKING)
+      .then(isBleTracking => setActiveBle(isBleTracking === 'true'))
+      .catch(error => console.log(error));
+
     // TODO: extract into service or hook
     getUserLocaleOverride().then(locale => locale && setUserLocale(locale));
 
@@ -60,6 +66,16 @@ export const SettingsScreen = ({ navigation }) => {
       isLogging ? LocationServices.stop() : LocationServices.start();
       await SetStoreData(PARTICIPATE, !isLogging);
       setIsLogging(!isLogging);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const bluetoothToggleButtonPressed = async () => {
+    try {
+      activeBle ? BroadcastingServices.stop() : BroadcastingServices.start();
+      await SetStoreData(BLE_TRACKING, !activeBle);
+      setActiveBle(!activeBle);
     } catch (e) {
       console.log(e);
     }
@@ -90,6 +106,17 @@ export const SettingsScreen = ({ navigation }) => {
             icon={isLogging ? checkmarkIcon : xmarkIcon}
             onPress={locationToggleButtonPressed}
           />
+
+          <Item
+            label={
+              activeBle
+                ? t('label.bluetooth_active')
+                : t('label.bluetooth_inactive')
+            }
+            icon={activeBle ? checkmarkIcon : xmarkIcon}
+            onPress={bluetoothToggleButtonPressed}
+          />
+
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}

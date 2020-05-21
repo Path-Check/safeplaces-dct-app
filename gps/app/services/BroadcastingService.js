@@ -1,11 +1,14 @@
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { Alert } from 'react-native';
-import { NativeEventEmitter, NativeModules } from 'react-native';
+import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import AndroidBLEAdvertiserModule from 'react-native-ble-advertiser';
+import PushNotification from 'react-native-push-notification';
 import UUIDGenerator from 'react-native-uuid-generator';
 
-import { CONTACT_DATA, MY_UUIDs } from '../constants/storage';
+import { BLE_TRACKING, CONTACT_DATA, MY_UUIDs } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import languages from '../locales/languages';
 import { isPlatformAndroid, nowStr } from '../Util';
 
 let currentUUID = null;
@@ -240,7 +243,7 @@ export default class BroadcastingServices {
     setTimeout(
       () =>
         Alert.alert(
-          'COVID Safe Paths requires bluetooth to be enabled',
+          'COVID Safe Paths requires Bluetooth to be enabled',
           'Would you like to enable Bluetooth?',
           [
             {
@@ -259,7 +262,25 @@ export default class BroadcastingServices {
     );
   }
 
+  static async getBleTracking() {
+    return await GetStoreData(BLE_TRACKING, false);
+  }
+
   static start() {
+    PushNotification.configure({
+      // (required) Called when a remote or local notification is opened or received
+      onNotification(notification) {
+        console.log('NOTIFICATION:', notification);
+        // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
+        notification.finish(PushNotificationIOS.FetchResult.NoData);
+      },
+      // Setting the permissions to true causes a crash on Android, because that configuration requires Firebase
+      // https://github.com/zo0r/react-native-push-notification#usage
+      requestPermissions: Platform.OS === 'ios',
+    });
+
+    // console.log('starting Ble service');
+
     // Do not run on iOS for now.
     if (isPlatformAndroid()) {
       const eventEmitter = new NativeEventEmitter(
@@ -302,6 +323,11 @@ export default class BroadcastingServices {
   }
 
   static stop() {
+    PushNotification.localNotification({
+      title: languages.t('label.bluetooth_disabled_title'),
+      message: languages.t('label.bluetooth_disabled_message'),
+    });
+
     if (isPlatformAndroid()) {
       if (onBTStatusChange) {
         onBTStatusChange.remove();
@@ -327,8 +353,15 @@ export default class BroadcastingServices {
     }
   }
 
-  static startAndSetCallbacks() {
+  static async startAndSetCallbacks() {
     // if it was already active
+    PushNotification.localNotification({
+      title: languages.t('label.bluetooth_enabled_title'),
+      message: languages.t('label.bluetooth_enabled_message'),
+    });
+
+    await SetStoreData(BLE_TRACKING, 'true');
+
     if (onDeviceFound) {
       BroadcastingServices.stopAndClearCallbacks();
     }
@@ -351,7 +384,9 @@ export default class BroadcastingServices {
     }, c1_HOUR); // Every hour, change UUID
   }
 
-  static stopAndClearCallbacks() {
+  static async stopAndClearCallbacks() {
+    await SetStoreData(BLE_TRACKING, 'false');
+
     //console.log('[Bluetooth]', nowStr(), currentUUID, 'Stopping Bluetooth');
     stopBroadcast(currentUUID);
 

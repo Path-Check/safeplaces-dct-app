@@ -46,6 +46,7 @@ export const NoKnownExposure = () => {
             <Typography style={styles.mainTextBelow}>
               {t('label.home_no_contact_header')}
             </Typography>
+
             <Typography style={styles.subheaderText}>
               {t('label.home_no_contact_subtext')}
             </Typography>

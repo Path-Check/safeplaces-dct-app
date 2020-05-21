@@ -1,2 +1,1 @@
-npx react-native run-android
-
+ECHO est  desativado.
