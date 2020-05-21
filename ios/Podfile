@@ -48,15 +48,20 @@ def shared_pods
   use_native_modules!
 end
 
-target 'BTE' do
-  shared_pods
-end
-
 target 'GPS' do
   shared_pods
 end
 
-target 'COVIDSafePathsTests' do
+target 'BTE' do
+  shared_pods
+end
+
+target 'GPSTests' do
+  inherit! :search_paths
+  shared_pods
+end
+
+target 'BTETests' do
   inherit! :search_paths
   shared_pods
 end

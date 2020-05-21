@@ -9,7 +9,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>COVIDSafePaths-bte</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -42,11 +42,19 @@
 		<dict/>
 	</dict>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you&apos;ve been exposed to COVID-19</string>
+	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you've been exposed to COVID-19</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you&apos;ve been exposed to COVID-19</string>
+	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you've been exposed to COVID-19</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
+	<key>NSMotionUsageDescription</key>
+	<string>We use your accelerometer for accurate location history.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>IBMPlexSans-Bold.ttf</string>
@@ -100,13 +108,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
-	<key>NSMotionUsageDescription</key>
-	<string>We use your accelerometer for accurate location history.</string>
 </dict>
 </plist>
