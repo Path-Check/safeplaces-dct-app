@@ -15,6 +15,7 @@ import {
   request,
   requestNotifications,
 } from 'react-native-permissions';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { SvgXml } from 'react-native-svg';
 
 import BackgroundImage from './../../assets/images/launchScreenBackground.png';
@@ -22,7 +23,6 @@ import { isPlatformiOS } from './../../Util';
 import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
 import IconUnknown from '../../assets/svgs/permissionUnknown';
-import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { PARTICIPATE } from '../../constants/storage';
@@ -386,18 +386,6 @@ class Onboarding extends Component {
     );
   }
 
-  getAuthSubscriptionStatus() {
-    return (
-      <>
-        <PermissionDescription
-          title={languages.t('label.launch_authority_access')}
-          status={this.state.authSubscriptionStatus}
-        />
-        <View style={styles.divider} />
-      </>
-    );
-  }
-
   getButtonText() {
     switch (this.state.currentStep) {
       case StepEnum.LOCATION:
@@ -443,16 +431,19 @@ class Onboarding extends Component {
               <View style={styles.statusContainer}>
                 {this.getLocationPermission()}
                 {this.getNotificationsPermissionIfIOS()}
-                {__DEV__ && this.getAuthSubscriptionStatus()}
+                {__DEV__}
                 <View style={styles.spacer} />
               </View>
             </View>
           </View>
           <View style={sharedStyles.footerContainer}>
-            <Button
-              label={this.getButtonText()}
-              onPress={this.buttonPressed.bind(this)}
-            />
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              onPress={this.buttonPressed.bind(this)}>
+              <Typography style={styles.buttonText} use={'body2'}>
+                {this.getButtonText()}
+              </Typography>
+            </TouchableOpacity>
           </View>
         </ImageBackground>
       </Theme>
@@ -461,6 +452,22 @@ class Onboarding extends Component {
 }
 
 const styles = StyleSheet.create({
+  buttonText: {
+    fontSize: 18,
+    color: Colors.WHITE,
+    paddingVertical: 4,
+    paddingTop: 20,
+    paddingHorizontal: 11,
+    textAlign: 'center',
+    fontWeight: '900',
+  },
+  buttonStyle: {
+    marginLeft: 23,
+    borderRadius: 50,
+    width: wp('75%'),
+    height: wp('15%'),
+    backgroundColor: Colors.BLUE_RIBBON,
+  },
   backgroundImage: {
     width: '100%',
     height: '100%',
@@ -468,7 +475,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainContainer: {
-    backgroundColor: Colors.BLUE_RIBBON,
+    backgroundColor: Colors.WHITE,
     flex: 1,
   },
   contentContainer: {
@@ -478,7 +485,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   headerText: {
-    color: Colors.WHITE,
+    color: Colors.BLUE_RIBBON,
   },
   subheaderText: {
     color: Colors.WHITE,
@@ -486,7 +493,7 @@ const styles = StyleSheet.create({
     width: width * 0.55,
   },
   subheaderTextWide: {
-    color: Colors.WHITE,
+    color: Colors.VIOLET,
     marginTop: '3%',
     width: width * 0.8,
   },
@@ -494,7 +501,7 @@ const styles = StyleSheet.create({
     marginTop: '5%',
   },
   divider: {
-    backgroundColor: Colors.DIVIDER,
+    backgroundColor: Colors.BLUE_RIBBON,
     height: 1,
     marginVertical: '3%',
   },
@@ -506,7 +513,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   permissionTitle: {
-    color: Colors.WHITE,
+    color: Colors.BLACK,
     alignSelf: 'center',
     marginRight: 8,
     flex: 1,
@@ -516,7 +523,7 @@ const styles = StyleSheet.create({
   },
   skipThisStepBtn: {
     color: Colors.DIVIDER,
-    paddingTop: 15,
+    paddingTop: 40,
   },
 });
 
