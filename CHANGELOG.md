@@ -1,3 +1,7 @@
+## [1.0.13](https://github.com/sparks2209/covid-safe-paths/compare/1.0.12...1.0.13) (2020-05-21)
+
+
+
 ## [1.0.12](https://github.com/sparks2209/covid-safe-paths/compare/v0.5.4...1.0.12) (2020-05-15)
 
 
@@ -12,6 +16,10 @@
 
 
 ## [0.5.3](https://github.com/sparks2209/covid-safe-paths/compare/v0.5.2...v0.5.3) (2020-03-20)
+
+
+
+## 0.5.2 (2020-03-19)
 
 
 
