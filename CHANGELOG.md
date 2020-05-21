@@ -1,4 +1,4 @@
-## [1.0.28](https://github.com/Path-Check/covid-safe-paths/compare/v0.5.4...1.0.28) (2020-05-20)
+## [1.0.29](https://github.com/Path-Check/covid-safe-paths/compare/v0.5.4...1.0.29) (2020-05-21)
 
 
 ### Reverts
