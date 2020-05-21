@@ -4,7 +4,7 @@ import { Platform, StyleSheet } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import EntryScreen from './Entry';
+import HomeScreen from './views/DR/HomeScreen';
 import Maps from './views/DR/Maps';
 import NewsMainScreen from './views/DR/News';
 import ReportScreen from './views/DR/ReportScreen';
@@ -15,7 +15,6 @@ const Tab = createBottomTabNavigator();
 function MainNavigation() {
   return (
     <Tab.Navigator
-      type={'hospital'}
       tabBarOptions={{
         style: [
           Platform.OS === 'ios' ? styles.bottomTabIOS : styles.bottomTabAndroid,
@@ -23,8 +22,8 @@ function MainNavigation() {
         tabStyle: [styles.bottomTabLabel],
       }}>
       <Tab.Screen
-        name='Hospital'
-        component={EntryScreen}
+        name='Home'
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
             <Ionicons

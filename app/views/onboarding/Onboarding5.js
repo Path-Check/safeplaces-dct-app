@@ -294,7 +294,6 @@ class Onboarding extends Component {
           this.state.locationPermission === PermissionStatusEnum.GRANTED,
         );
         SetStoreData('ONBOARDING_DONE', true);
-        this.props.navigation.replace('HomeScreen');
     }
   }
 

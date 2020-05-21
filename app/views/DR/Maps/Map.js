@@ -173,8 +173,7 @@ export default function HospitalMap({ navigation, route: { name: type } }) {
             latitudeDelta,
             longitudeDelta,
           }}
-          showsUserLocation
-          showsMyLocationButton>
+          showsUserLocation>
           {selectedMarker.map(({ id, latitude, longitude }) => (
             <Marker
               image={posIcon}

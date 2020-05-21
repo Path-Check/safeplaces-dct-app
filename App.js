@@ -8,8 +8,9 @@ import SplashScreen from 'react-native-splash-screen';
 import context from './app/components/DR/Reduces/context';
 import { initialState, reducer } from './app/components/DR/Reduces/index';
 import { Theme } from './app/constants/themes';
+import Entry from './app/Entry';
 import { FlagsProvider } from './app/helpers/Flags';
-import NavEntry from './app/NavEntry';
+// import NavEntry from './app/NavEntry';
 import VersionCheckService from './app/services/VersionCheckService';
 
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
         <MenuProvider>
           <Theme use='default'>
             <NavigationContainer>
-              <NavEntry />
+              <Entry />
             </NavigationContainer>
           </Theme>
         </MenuProvider>
