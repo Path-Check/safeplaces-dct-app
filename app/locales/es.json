@@ -15,7 +15,7 @@
     "what_does_this_mean": "¿Qué significa esto?",
     "what_does_this_mean_para": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19. Esto no significa que te hayas infectado, pero sí que podrías estarlo.\n\nPara obtener más información sobre lo que debes hacer, puedes consultar el sitio web de Mayo Clinic.",
     "what_if_no_symptoms": "¿Qué pasa si no tengo síntomas?",
-    "what_if_no_symptoms_para": "Si no tienes síntomas pero quieres hacerte la prueba, puedes ir al punto de pruebas más cercano. \n\nLas personas sin síntomas también pueden tener el COVID e infectar a otros. Respetar el distanciamiento social y evitar el contacto con grupos grandes o personas en riesgo (ancianos, personas con otros problemas médicos) es importante para controlar tanto tú riesgo como el de los demás."
+    "what_if_no_symptoms_para": "Si no tienes síntomas, pero quieres hacerte la prueba, puedes ir al punto de pruebas más cercano. \n\nLas personas sin síntomas también pueden tener el COVID e infectar a otros. Respetar el distanciamiento social y evitar el contacto con grupos grandes o personas en riesgo (ancianos, personas con otros problemas médicos) es importante para controlar tanto tú riesgo como el de los demás."
   },
   "import": {
     "button_text": "Importar ubicaciones",
@@ -24,8 +24,8 @@
       "already_imported": "El archivo de Takeout ya se ha importado.",
       "disclaimer": "Safe Paths no está afiliado con Google y nunca compartirá tus datos.",
       "file_open_error": "No se pudo abrir el archivo. \nPor favor, asegúrese de que el archivo se abra desde Google Drive",
-      "instructions_detailed": "Visita Google Takeout y exporta tu historial de ubicaciones siguinedo estos pasos: \n1. Método de entrega: \"Añadir al Drive\" \n2. Frecuencia: \"Exportar una vez\" \n3. Tipo y tamaño del archivo: \".zip\" y \"1GB\"\n4. Google envía un email cuando la exportación está lista \n5. Regresa aquí para importar ubicaciones de Google Drive",
-      "instructions_first": "{\"one\": \"Agregar datos de ubicación de Google ayudará a elaborar tu historial de ubicaciones recientes\", \"other\": \"Antes de poder importar, primero debes 'Extraer' tus datos de ubicación de Google\".}",
+      "instructions_detailed": "Visita Google Takeout y exporta tu historial de ubicaciones siguiendo estos pasos: \n1. Método de entrega: \"Añadir al Drive\" \n2. Frecuencia: \"Exportar una vez\" \n3. Tipo y tamaño del archivo: \".zip\" y \"1GB\"\n4. Google envía un email cuando la exportación está lista \n5. Regresa aquí para importar ubicaciones de Google Drive",
+      "instructions_first": "{\"one\": \"Agregar datos de tu ubicación de Google ayudará a elaborar un reporte del historial de ubicaciones recientes\", \"other\": \"Antes de poder importar, primero debes 'Extraer' tus datos de ubicación de Google\".}",
       "instructions_second": "Para poder importar, primero debes \"Extraer\" sus datos de ubicación de Google.",
       "invalid_file_format": "El formato de archivo no es compatible. \nFormatos admitidos: \".zip\".",
       "no_recent_locations": "La aplicación no tiene ubicaciones recientes.",
@@ -39,14 +39,14 @@
   "label": {
     "about_title": "Acerca de",
     "authorities_add_button_label": "Añadir fuente de datos fiable",
-    "authorities_add_url": "Añadir organismo via web",
+    "authorities_add_url": "Añadir organismo vía web",
     "authorities_desc": "Elige las autoridades sanitarias de tu zona para obtener datos sobre posibles contactos con el COVID. Selecciona un nombre de la lista global, o introduce la URL del sitio web de una autoridad sanitaria que haya usado Safe Paths.",
     "authorities_input_placeholder": "Introduce la URL aquí",
     "authorities_new_in_area_msg": "Suscribirse a {{count}} nueva autoridad sanitaria fiable en tu zona",
     "authorities_new_in_area_title": "Autoridad sanitaria nueva",
     "authorities_new_in_area_title_plural": "Autoridades sanitarias nuevas",
-    "authorities_new_subcription_msg": "Te has suscrito a to {{count}} nueva autoridad en tu zona",
-    "authorities_new_subcription_msg_plural": "Te has suscrito a to {{count}} nuevas autoridades en tu zona",
+    "authorities_new_subcription_msg": "Te has suscrito a {{count}} nueva autoridad en tu zona",
+    "authorities_new_subcription_msg_plural": "Te has suscrito a {{count}} nuevas autoridades en tu zona",
     "authorities_new_subcription_title": "Nueva suscripción",
     "authorities_new_subcription_title_plural": "Nuevas suscripciones",
     "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona",
@@ -79,7 +79,7 @@
     "home_unknown_header": "Desconocido",
     "home_unknown_subtext": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",
     "latest_news": "Últimas noticias",
-    "launch_authority_access": "Suscribirse a las autoridades sanitarias cercanas",
+    "launch_authority_access": "Suscribirse a las autoridades sanitarias más cercanas",
     "launch_authority_header": "Las autoridades sanitarias proporcionarán a su dispositivo los datos para saber si se ha cruzado con alguien infectado",
     "launch_authority_subheader": "Suscribirse automáticamente para recibir las últimas actualizaciones de las autoridades sanitarias de tu zona.",
     "launch_done_header": "Ya estás listo",
@@ -121,7 +121,7 @@
     "settings_title": "Panel de control",
     "skip_this_step": "Omitir este paso",
     "team": "Equipo",
-    "team_para": "El equipo se compone de un consorcio de epidemiólogos, ingenieros, analistas de datos, defensores de la privacidad digital, profesores y investigadores de instituciones reconocidas como MIT, Harvard, la Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young y Link Ventures.",
+    "team_para": "El equipo se compone de un consorcio de epidemiólogos, ingenieros, analistas de datos, defensores de la privacidad digital, profesores e investigadores de instituciones reconocidas como MIT, Harvard, Hospital Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young y Link Ventures.",
     "terms_of_use": "Condiciones de uso"
   },
   "onboarding": {
@@ -141,7 +141,7 @@
     "alert_sublabel": "¿Actualizar con la nueva versión?",
     "later": "Más tarde",
     "push_notification_message": "Por favor actualice su aplicación",
-    "push_notification_title": "La aplicación no está sactualizada",
+    "push_notification_title": "La aplicación no está actualizada",
     "update": "Actualizar"
   }
 }
