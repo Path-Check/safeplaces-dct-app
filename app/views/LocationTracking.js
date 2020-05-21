@@ -37,6 +37,7 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import {
+  COVID_ID,
   CROSSED_PATHS,
   DEBUG_MODE,
   LOCATION_DATA,
@@ -215,6 +216,36 @@ class LocationTracking extends Component {
           RemoveStoreData(LOCATION_DATA);
         });
       }
+    });
+
+    BackgroundGeolocation.on('location', async location => {
+      GetStoreData(COVID_ID)
+        .then(covidId => {
+          let data = { body: {} };
+          data.body = {
+            latitude: location.latitude,
+            longitude: location.longitude,
+            time: location.time,
+            covidId: covidId,
+          };
+
+          fetch('https://webapps.mepyd.gob.do/contact_tracing/api/UserTrace', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data.body),
+          })
+            .then(function(response) {
+              return response.json();
+            })
+            .then(data => {
+              console.log('[INFO] ' + 'Location API: ' + JSON.stringify(data));
+              return data;
+            })
+            .catch(error => {
+              console.error('[ERROR] ' + error);
+            });
+        })
+        .catch(error => console.log('[ERROR] ' + error));
     });
   }
 
