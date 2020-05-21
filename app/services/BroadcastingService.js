@@ -240,7 +240,7 @@ export default class BroadcastingServices {
     setTimeout(
       () =>
         Alert.alert(
-          'COVID Safe Paths requires bluetooth to be enabled',
+          'COVID Safe Paths requires Bluetooth to be enabled',
           'Would you like to enable Bluetooth?',
           [
             {

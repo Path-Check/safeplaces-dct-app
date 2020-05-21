@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -11,23 +10,13 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
-import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
-export const OffPage = ({ tracingStrategy }) => {
+export const ExposureNotificationNotAvailablePage = () => {
   const { t } = useTranslation();
-  const navigation = useNavigation();
-  const ctaText =
-    tracingStrategy === 'gps'
-      ? t(`label.home_setting_off_subtext_location`)
-      : t(`label.home_setting_off_subtext_bluetooth`);
-  const buttonLabel =
-    tracingStrategy === 'gps'
-      ? t(`label.home_enable_location`)
-      : t(`label.home_enable_bluetooth`);
   const size = Dimensions.get('window').height;
 
   return (
@@ -55,16 +44,11 @@ export const OffPage = ({ tracingStrategy }) => {
           </View>
           <View style={styles.contentBelowPulse}>
             <Text style={styles.mainTextBelow}>
-              {t('label.home_setting_off_header')}
+              {t('label.home_not_available_header_bluetooth')}
             </Text>
             <Typography style={styles.subheaderText}>
-              {ctaText}
+              {t(`label.home_not_available_subtext_bluetooth`)}
             </Typography>
-            <Button
-              label={buttonLabel}
-              onPress={() => navigation.navigate('SettingsScreen', {})}
-              style={styles.buttonContainer}
-            />
           </View>
         </View>
         <MayoButton />

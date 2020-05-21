@@ -62,7 +62,6 @@ Array [
             Object {
               "color": "#FFF",
               "height": 18,
-              "opacity": 0.4,
               "width": 18,
             }
           }
@@ -78,13 +77,14 @@ Array [
           Object {
             "alignSelf": "center",
             "color": "#FFF",
-            "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 26,
-            "letterSpacing": -0.3,
+            "fontFamily": "IBMPlexSans-Bold",
+            "fontSize": 16,
+            "letterSpacing": 1,
             "lineHeight": 34,
             "paddingHorizontal": 20,
             "position": "absolute",
             "textAlign": "center",
+            "textTransform": "uppercase",
             "width": "100%",
           }
         }

@@ -122,7 +122,7 @@ exports[`renders different color for secondary 1`] = `
       secondary={true}
       style={
         Object {
-          "color": "rgba(64, 81, 219, 0.6)",
+          "color": "#000",
         }
       }
       width={24}

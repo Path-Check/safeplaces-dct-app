@@ -102,6 +102,8 @@ class LocationTracking extends Component {
     }
   }
 
+  isGPSTracingStrategy() { return this.props.tracingStrategy === 'gps' }
+
   /*  Check current state
         1) determine if user has correct location permissions
         2) check if they are at risk -> checkIfUserAtRisk()
@@ -347,16 +349,40 @@ class LocationTracking extends Component {
     }
   }
 
+  getAtRiskSubText() {
+    if (this.isGPSTracingStrategy()) {
+      return languages.t('label.home_at_risk_subtext_location');
+    } else {
+      return languages.t(`label.home_at_risk_subtext_location`)
+    }
+  }
+
+  getSettingOffSubText() {
+    if (this.isGPSTracingStrategy()) {
+      return languages.t('label.home_setting_off_subtext_location');
+    } else {
+      return languages.t(`label.home_setting_off_subtext_bluetooth`);
+    } 
+  }
+
+  getUnknownSubText() {
+    if (this.isGPSTracingStrategy()) {
+      return languages.t('label.home_unknown_subtext_location');
+    } else {
+      return languages.t(`label.home_unknown_subtext_bluetooth`);
+    }  
+  }
+
   getSubText() {
     switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
         return languages.t('label.home_no_contact_subtext');
       case StateEnum.AT_RISK:
-        return languages.t('label.home_at_risk_subtext');
+        return this.getAtRiskSubText();
       case StateEnum.UNKNOWN:
-        return languages.t('label.home_unknown_subtext');
+        return this.getUnknownSubText();
       case StateEnum.SETTING_OFF:
-        return languages.t('label.home_setting_off_subtext');
+        return this.getSettingOffSubText();
     }
   }
   getSubSubText() {
@@ -383,12 +409,18 @@ class LocationTracking extends Component {
         this.props.navigation.navigate('ExposureHistoryScreen');
       };
     } else if (this.state.currentState === StateEnum.UNKNOWN) {
-      buttonLabel = languages.t('label.home_enable_location');
+      buttonLabel =
+        this.isGPSTracingStrategy()
+          ? languages.t(`label.home_enable_location`)
+          : languages.t(`label.home_enable_bluetooth`);
       buttonFunction = () => {
         openSettings();
       };
     } else if (this.state.currentState === StateEnum.SETTING_OFF) {
-      buttonLabel = languages.t('label.home_enable_location');
+      buttonLabel =
+        this.isGPSTracingStrategy()
+          ? languages.t(`label.home_enable_location`)
+          : languages.t(`label.home_enable_bluetooth`);
       buttonFunction = () => {
         this.settings();
       };
