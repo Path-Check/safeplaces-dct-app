@@ -1,5 +1,4 @@
 import styled, { css } from '@emotion/native';
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
@@ -52,35 +51,37 @@ export const SettingsScreen = ({ navigation }) => {
   }, [navigation]);
 
   //  This method is used to track whether user has "Allow" or "Deny" location permission system Dialog.
-  const systemDialogPermission = async () => {
-    BackgroundGeolocation.on('authorization', async status => {
-      if (status === BackgroundGeolocation.AUTHORIZED) {
-        // when user allow
-        setIsLogging(true);
-        LocationServices.start();
-        await SetStoreData(PARTICIPATE, true);
-      } else {
-        // when user deny
-        setIsLogging(false);
-        LocationServices.stop();
-        await SetStoreData(PARTICIPATE, false);
-      }
-    });
+  const systemDialogLocationPermission = async () => {
+    await LocationServices.getSystemLocationPermission()
+      .then(async res => {
+        if (res !== undefined) {
+          if (!res.isRunning) {
+            await SetStoreData(PARTICIPATE, false);
+            setIsLogging(false);
+          }
+        }
+      })
+      .catch(err => {
+        console.log(
+          'Something went wrong in system dialog location permission',
+          err,
+        );
+      });
   };
 
   // checking whether location permission is enable or disbale from application setting on load of setting's page.
-  const checkIsLocationEnable = () => {
-    LocationService.checkStatus()
+  const checkIsLocationEnable = async () => {
+    await LocationServices.checkStatus()
       .then(async res => {
         if (res !== undefined) {
-          if (res.isRunning === true) {
+          if (res.isRunning) {
             await SetStoreData(PARTICIPATE, true);
             setIsLogging(true);
           }
         }
       })
       .catch(err => {
-        console.log('TCL: SettingsScreen -> err', err);
+        console.log('Is background Location enable ', err);
       });
   };
 
@@ -89,7 +90,7 @@ export const SettingsScreen = ({ navigation }) => {
       isLogging ? LocationServices.stop() : LocationServices.start();
       await SetStoreData(PARTICIPATE, !isLogging);
       setIsLogging(!isLogging);
-      systemDialogPermission();
+      systemDialogLocationPermission();
     } catch (e) {
       console.log(e);
     }

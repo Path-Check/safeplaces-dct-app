@@ -258,6 +258,17 @@ export default class LocationServices {
     });
   }
 
+  // To get the system dialog click event
+  static async getSystemLocationPermission() {
+    return new Promise((resolve, reject) => {
+      BackgroundGeolocation.on(
+        'authorization',
+        callback => resolve(callback),
+        e => reject(e),
+      );
+    });
+  }
+
   static async checkStatus() {
     const hasPotentialExposure = await this.getHasPotentialExposure();
 
