@@ -26,8 +26,7 @@ platform :android do
   desc "GPS: Build a Staging AAB"
   lane :staging_gps do
     gradle(
-      task: "clean assemble",
-      build_type: "gpsStaging",
+      task: "clean assembleGpsStaging",
       print_command: false,
     )
   end 
@@ -71,8 +70,7 @@ platform :android do
   desc "Build a Staging AAB"
   lane :staging_bte do
     gradle(
-      task: "clean assemble",
-      build_type: "bteStaging",
+      task: "clean assembleBteStaging",
       print_command: false,
     )
   end 
