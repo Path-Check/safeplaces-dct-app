@@ -1,4 +1,4 @@
-name: Staging Android
+name: Staging Android BTE
 
 on:
   push:
