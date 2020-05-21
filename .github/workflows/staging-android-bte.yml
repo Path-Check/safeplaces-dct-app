@@ -1,4 +1,4 @@
-name: Staging Android GPS
+name: Staging Android BTE
 
 on:
   push:
@@ -9,9 +9,10 @@ on:
     branches:
       - develop
       - master
+      - release-candidate
 
 jobs:
-  build_staging_android_gps:
+  build_staging_android:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -69,7 +70,7 @@ jobs:
       - name: Build android Staging artifact
         uses: maierj/fastlane-action@v1.4.0
         with:
-          lane: 'staging_gps'
+          lane: 'staging_bte'
           subdirectory: 'android'
           bundle-install-path: 'vendor/bundle'
 
@@ -77,4 +78,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: Debug APK (Android)
-          path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
+          path: android/app/build/outputs/apk/bte/staging/app-bte-staging.apk

@@ -103,8 +103,11 @@ dev_setup.bat
 
 #### Android (Windows, Linux, macOS)
 
+run the application:
 ```
-npx react-native run-android
+yarn run-android-gps ## for the location enabled app
+yarn run-android-bte ## for the bluetooth enabled app
+```
 ```
 
 Device storage can be cleared by long-pressing on the app icon in the simulator, clicking "App info", then "Storage", and lastly, "Clear Storage".

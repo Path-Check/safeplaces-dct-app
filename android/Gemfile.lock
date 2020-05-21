@@ -82,7 +82,6 @@ GEM
       xcpretty (~> 0.3.0)
       xcpretty-travis-formatter (>= 0.0.3)
     fastlane-plugin-increment_version_code (0.4.3)
-    fastlane-plugin-increment_version_name (0.0.10)
     fastlane-plugin-load_json (0.0.1)
     gh_inspector (1.1.3)
     google-api-client (0.36.4)
@@ -179,7 +178,6 @@ DEPENDENCIES
   bundler (= 2.1.4)
   fastlane (= 2.146.1)
   fastlane-plugin-increment_version_code
-  fastlane-plugin-increment_version_name
   fastlane-plugin-load_json
 
 RUBY VERSION
