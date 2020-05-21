@@ -57,7 +57,6 @@ export const AboutScreen = ({ navigation }) => {
             onPress={() => {
               Linking.openURL('https://covidsafepaths.org/');
             }}>
-            {/* eslint-disable-next-line react-native/no-raw-text */}
             {'covidsafepaths.org'}
           </Typography>
         </Typography>
@@ -71,7 +70,7 @@ export const AboutScreen = ({ navigation }) => {
               {languages.t('about.tracing_strategy')}
             </Typography>
             <Typography style={styles.aboutSectionPara}>
-              {config.tracingStrategy}
+              {` ${config.tracingStrategy}`}
             </Typography>
           </View>
 
@@ -80,7 +79,6 @@ export const AboutScreen = ({ navigation }) => {
               {languages.t('about.version')}
             </Typography>
             <Typography style={styles.aboutSectionPara}>
-              {/* eslint-disable-next-line react-native/no-raw-text */}
               {` ${packageJson.version}`}
             </Typography>
           </View>
@@ -90,7 +88,6 @@ export const AboutScreen = ({ navigation }) => {
               {languages.t('about.operating_system_abbr')}
             </Typography>
             <Typography style={styles.aboutSectionPara}>
-              {/* eslint-disable-next-line react-native/no-raw-text */}
               {` ${Platform.OS} v${Platform.Version}`}
             </Typography>
           </View>
@@ -100,7 +97,6 @@ export const AboutScreen = ({ navigation }) => {
               {languages.t('about.dimensions')}
             </Typography>
             <Typography style={styles.aboutSectionPara}>
-              {/* eslint-disable-next-line react-native/no-raw-text */}
               {` ${Math.trunc(Dimensions.get('screen').width)} x ${Math.trunc(
                 Dimensions.get('screen').height,
               )}`}

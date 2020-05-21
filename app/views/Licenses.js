@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-raw-text */
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {

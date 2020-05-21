@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-raw-text */
 import React, { useEffect, useState } from 'react';
 import { BackHandler, StyleSheet, View } from 'react-native';
 

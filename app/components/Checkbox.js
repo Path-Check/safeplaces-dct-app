@@ -12,9 +12,7 @@ export const Checkbox = ({ label, onPress, checked }) => {
       accessible
       accessibilityLabel={label}>
       <Image
-        source={
-          checked === true ? Images.boxCheckedIcon : Images.boxUncheckedIcon
-        }
+        source={checked ? Images.BoxChecked : Images.BoxUnchecked}
         style={{ width: 25, height: 25, marginRight: 10 }}
       />
       <Typography use='body1'>{label}</Typography>
