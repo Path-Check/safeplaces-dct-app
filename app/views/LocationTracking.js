@@ -238,7 +238,6 @@ class LocationTracking extends Component {
               return response.json();
             })
             .then(data => {
-              console.log('[INFO] ' + 'Location API: ' + JSON.stringify(data));
               return data;
             })
             .catch(error => {

@@ -202,7 +202,6 @@ export default function ReportScreenQuestions({ navigation }) {
             if (isLastStep) {
               const { covidId } = await sendDataToApi();
               SetStoreData(COVID_ID, covidId);
-              console.log('ELCOVID', covidId);
               navigation.navigate('Results');
             }
             if (data === 'Tengo al menos uno de estos síntomas') {
