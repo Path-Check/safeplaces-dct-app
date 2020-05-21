@@ -34,6 +34,13 @@ platform :android do
 
   desc "GPS: Build a Release AAB"
   lane :release_gps do
+
+    build_number =  ENV["GITHUB_RUN_NUMBER"]
+
+    increment_version_code(
+      gradle_file_path: "app/build.gradle",
+      version_code: build_number
+    )
   
     gradle(
       task: "bundle",
@@ -76,9 +83,8 @@ platform :android do
     build_number =  ENV["GITHUB_RUN_NUMBER"]
 
     increment_version_code(
-      app_project_dir: 'app',
-      version_code: build_number,
-      flavor: 'bte'
+      gradle_file_path: "app/build.gradle",
+      version_code: build_number
     )
 
     gradle(
@@ -96,14 +102,6 @@ platform :android do
 
   desc "Upload to google play store beta track"
   lane :play_store_bte do
-  
-    build_number =  ENV["GITHUB_RUN_NUMBER"]
-
-    increment_version_code(
-      app_project_dir: 'app',
-      version_code: build_number,
-      flavor: 'bte'
-    )
 
     validate_play_store_json_key(
       json_key: "app/json_key.json",

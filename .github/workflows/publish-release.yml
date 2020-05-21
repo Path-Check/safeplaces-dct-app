@@ -104,8 +104,9 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
         with:
-          lane: 'release'
+          lane: 'release_gps'
           subdirectory: 'android'
           bundle-install-path: 'vendor/bundle'
 
