@@ -32,7 +32,7 @@ jobs:
         if: steps.node_cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
 
-      - run: ./bump-test-build-number.sh
+      - run: ./append-sha-to-version.sh
 
       - name: Setup kernel for react native, increase watchers for release versions.
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
