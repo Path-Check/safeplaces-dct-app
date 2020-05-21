@@ -32,4 +32,4 @@ jobs:
       # The above eslint action does not show you in the job log what failed,
       # this is just for debugging purposes
       - run: yarn lint
-        if: ${{ failure() }}
+        if: ${{ always() }}
