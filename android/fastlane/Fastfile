@@ -23,7 +23,7 @@ platform :android do
 
   JS_PACKAGE = load_json(json_path: "../package.json")
 
-  desc "GPS: Build a Staging APK and AAB"
+  desc "GPS: Build a Staging AAB"
   lane :staging_gps do
     gradle(
       task: "clean assemble",
@@ -32,7 +32,7 @@ platform :android do
     )
   end 
 
-  desc "GPS: Build a Release APK and AAB"
+  desc "GPS: Build a Release AAB"
   lane :release_gps do
   
     gradle(
@@ -61,7 +61,7 @@ platform :android do
     )
   end
 
-  desc "Build a Staging APK and AAB"
+  desc "Build a Staging AAB"
   lane :staging_bte do
     gradle(
       task: "clean assemble",
@@ -70,7 +70,7 @@ platform :android do
     )
   end 
 
-  desc "Build a Release APK and AAB"
+  desc "Build a Release AAB"
   lane :release_bte do
 
     gradle(
