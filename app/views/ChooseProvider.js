@@ -413,9 +413,6 @@ const styles = StyleSheet.create({
     width: '96%',
     alignSelf: 'center',
   },
-  headerTitle: {
-    color: Colors.VIOLET_TEXT,
-  },
   sectionDescription: {
     marginTop: 12,
     overflow: 'scroll',

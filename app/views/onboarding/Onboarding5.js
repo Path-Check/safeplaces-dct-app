@@ -172,7 +172,7 @@ const Onboarding = ({ navigation }) => {
 
   const requestBluetooth = async () => {
     const nextStep = getNextStep(StepEnum.BLUETOOTH);
-    const bluetoothPermission = getBluetoothPermissionSetting();
+    // const bluetoothPermission = getBluetoothPermissionSetting();
     // const status = await request(bluetoothPermission);
     const status = RESULTS.GRANTED;
 
