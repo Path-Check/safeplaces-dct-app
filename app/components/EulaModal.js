@@ -5,7 +5,7 @@ import loadLocalResource from 'react-native-local-resource';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 
-import close from '../assets/svgs/close';
+import { Icons } from '../assets';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import en from '../locales/eula/en.html';
@@ -62,7 +62,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
             <SafeAreaView style={{ flex: 1 }}>
               <View style={{ flex: 7, paddingHorizontal: 5 }}>
                 <IconButton
-                  icon={close}
+                  icon={Icons.Close}
                   size={20}
                   style={styles.closeIcon}
                   accessibilityLabel='Close'

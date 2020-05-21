@@ -2,6 +2,7 @@
 import React from 'react';
 
 const createComponent = function(name) {
+  // eslint-disable-next-line react/prefer-stateless-function
   return class extends React.Component {
     // overwrite the displayName, since this is a class created dynamically
     static displayName = name;

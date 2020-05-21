@@ -1,10 +1,10 @@
 import styled, { css } from '@emotion/native';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 
 import { Divider } from '../../components/Divider';
 import { Typography } from '../../components/Typography';
-import { useTranslation } from 'react-i18next';
 
 /**
  * Render a single tappable settings item with optional description and icon.
@@ -17,8 +17,7 @@ import { useTranslation } from 'react-i18next';
  * }} param0
  */
 export const SettingsItem = ({ label, onPress, description, icon, last }) => {
-
-  const { i18n } = useTranslation()
+  const { i18n } = useTranslation();
 
   let getCurrentMarginDirection = () =>
     i18n.dir() === 'rtl' ? 'margin-left: 12px;' : 'margin-right: 12px;';
@@ -30,15 +29,18 @@ export const SettingsItem = ({ label, onPress, description, icon, last }) => {
     <>
       <Container
         style={css`
-        flex-direction: ${getCurrentRowDirection()};
+          flex-direction: ${getCurrentRowDirection()};
         `}
         onPress={onPress}>
-        {icon && <Icon
-          xml={icon}
-          style={css`
-         ${getCurrentMarginDirection()};
-       `}
-          size={24} />}
+        {icon && (
+          <Icon
+            xml={icon}
+            style={css`
+              ${getCurrentMarginDirection()};
+            `}
+            size={24}
+          />
+        )}
         <Label>
           <Typography use='body1'>{label}</Typography>
           {description && (
@@ -57,8 +59,6 @@ export const SettingsItem = ({ label, onPress, description, icon, last }) => {
     </>
   );
 };
-
-
 
 const Container = styled.TouchableOpacity`
   padding: 18px 0;

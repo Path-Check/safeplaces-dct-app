@@ -83,6 +83,7 @@
     "home_setting_off_subtext": "We can’t tell if you’re at risk unless you enable location history in the settings screen.",
     "home_unknown_header": "Unknown",
     "home_unknown_subtext": "We can’t tell if you’re at risk unless you enable the app to access your location.",
+    "import_success": "Imported successfully",
     "latest_news": "Latest News",
     "launch_authority_access": "Subscribe to nearby Health Authorities",
     "launch_authority_header": "Healthcare Authorities will provide your device with the local data to know if you have crossed paths with an infected person",

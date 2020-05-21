@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-import BackgroundImage from './../../assets/images/launchScreen3.png';
+import { Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
@@ -26,7 +26,7 @@ const Onboarding = props => {
         translucent
       />
       <ImageBackground
-        source={BackgroundImage}
+        source={Images.LaunchScreen3}
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>

@@ -13,7 +13,7 @@ import { SvgXml } from 'react-native-svg';
 import packageJson from '../../package.json';
 import fontFamily from './../constants/fonts';
 import languages from './../locales/languages';
-import lock from '../assets/svgs/lock';
+import { Icons } from '../assets';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
@@ -44,7 +44,7 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.spacer} />
 
         <View style={styles.aboutLabelContainer}>
-          <SvgXml style={styles.aboutSectionIconLock} xml={lock} />
+          <SvgXml style={styles.aboutSectionIconLock} xml={Icons.Lock} />
           <Typography style={styles.aboutSectionTitles}>
             {languages.t('label.commitment')}
           </Typography>

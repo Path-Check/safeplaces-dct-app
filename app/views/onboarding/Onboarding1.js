@@ -8,14 +8,13 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import BackgroundImage from './../../assets/images/launchScreenBackground.png';
-import BackgroundOverlayImage from './../../assets/images/launchScreenBackgroundOverlay.png';
 import languages, {
   LOCALE_LIST,
   getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from './../../locales/languages';
+import { Images } from '../../assets';
 import { EulaModal } from '../../components/EulaModal';
 import NativePicker from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
@@ -58,10 +57,10 @@ class Onboarding extends Component {
     return (
       <Theme use='violet'>
         <ImageBackground
-          source={BackgroundImage}
+          source={Images.LaunchScreenBackground}
           style={styles.backgroundImage}>
           <ImageBackground
-            source={BackgroundOverlayImage}
+            source={Images.LaunchScreenBackgroundOverlay}
             style={styles.backgroundImage}>
             <StatusBar
               barStyle='light-content'

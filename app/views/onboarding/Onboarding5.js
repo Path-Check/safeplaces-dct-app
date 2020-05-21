@@ -17,11 +17,8 @@ import {
 } from 'react-native-permissions';
 import { SvgXml } from 'react-native-svg';
 
-import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import { isPlatformiOS } from './../../Util';
-import IconDenied from '../../assets/svgs/permissionDenied';
-import IconGranted from '../../assets/svgs/permissionGranted';
-import IconUnknown from '../../assets/svgs/permissionUnknown';
+import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
@@ -51,13 +48,13 @@ const PermissionDescription = ({ title, status }) => {
   let icon;
   switch (status) {
     case PermissionStatusEnum.UNKNOWN:
-      icon = IconUnknown;
+      icon = Icons.PermissionUnknown;
       break;
     case PermissionStatusEnum.GRANTED:
-      icon = IconGranted;
+      icon = Icons.PermissionGranted;
       break;
     case PermissionStatusEnum.DENIED:
-      icon = IconDenied;
+      icon = Icons.PermissionDenied;
       break;
   }
 
@@ -427,7 +424,7 @@ class Onboarding extends Component {
     return (
       <Theme use='violet'>
         <ImageBackground
-          source={BackgroundImage}
+          source={Images.LaunchScreenBackground}
           style={styles.backgroundImage}>
           <StatusBar
             barStyle='light-content'

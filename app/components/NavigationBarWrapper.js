@@ -5,8 +5,8 @@ import * as React from 'react';
 import { Dimensions, StatusBar } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import backArrow from './../assets/svgs/backArrow';
 import { isPlatformiOS } from './../Util';
+import { Icons } from '../assets';
 import Colors from '../constants/colors';
 
 /**
@@ -35,7 +35,7 @@ const NavigationBarWrapper = ({ children, title, onBackPress }) => {
       <BottomContainer>
         <Header>
           <BackArrowIcon onPress={() => onBackPress()}>
-            <BackArrowSvg xml={backArrow} />
+            <BackArrowSvg xml={Icons.BackArrow} />
           </BackArrowIcon>
           <Title>{title}</Title>
         </Header>

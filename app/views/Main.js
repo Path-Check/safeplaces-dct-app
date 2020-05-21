@@ -2,8 +2,8 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
-import settingsIcon from './../assets/svgs/settingsIcon';
 import { isPlatformAndroid } from './../Util';
+import { Icons } from '../assets';
 import { FeatureFlag } from '../components/FeatureFlag';
 import { IconButton } from '../components/IconButton';
 import Colors from '../constants/colors';
@@ -37,7 +37,7 @@ const Main = () => {
       <Theme use='violet'>
         <IconButton
           style={styles.settingsContainer}
-          icon={settingsIcon}
+          icon={Icons.SettingsIcon}
           size={30}
           onPress={() => {
             navigation.navigate('SettingsScreen');

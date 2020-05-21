@@ -44,7 +44,7 @@ buck-out/
 !debug.keystore
 
 # i18next-parser
-app/locales/*_old.json
+gps/app/locales/*_old.json
 
 # fastlane
 #
@@ -78,7 +78,9 @@ e2e/artifacts/*
 ios/COVIDSafePaths-staging.ipa
 ios/COVIDSafePaths-staging.app
 ios/COVIDSafePaths-staging.app.dSYM.zip
-assets/
+
+# Local Android build artifacts
+android/app/src/main/assets/index.android.bundle
 
 # Local Realm Artifact
 safepaths.realm

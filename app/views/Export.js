@@ -15,9 +15,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import close from './../assets/svgs/close';
-import exportIcon from './../assets/svgs/export';
 import { isPlatformiOS } from './../Util';
+import { Icons } from '../assets';
 import { Button } from '../components/Button';
 import { IconButton } from '../components/IconButton';
 import { Typography } from '../components/Typography';
@@ -122,7 +121,7 @@ export const ExportScreen = ({ navigation }) => {
           style={{ flex: 1, height: '100%' }}>
           <View style={styles.headerContainer}>
             <IconButton
-              icon={close}
+              icon={Icons.Close}
               size={18}
               onPress={() => backToMain()}
               accessibilityLabel='Close'
@@ -144,7 +143,7 @@ export const ExportScreen = ({ navigation }) => {
               <Button
                 style={styles.exportButton}
                 label={t('share.button_text')}
-                icon={exportIcon}
+                icon={Icons.Export}
                 onPress={onShare}
               />
             </View>

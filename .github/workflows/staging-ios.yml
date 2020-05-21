@@ -79,5 +79,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: Debug IPA file (work in progress)
+          name: Staging IPA file
           path: ios/COVIDSafePaths-staging.ipa

@@ -268,7 +268,7 @@ PODS:
     - React
   - RNScreens (2.0.0-alpha.12):
     - React
-  - RNShare (3.3.1):
+  - RNShare (3.3.2):
     - React
   - RNSVG (12.1.0):
     - React
@@ -502,7 +502,7 @@ SPEC CHECKSUMS:
   RNPermissions: 3635b407c15f2fe591bd2101c8f20aa0912caba8
   RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
-  RNShare: d4c9789a93ffa286389ff7b73f44118c8aab412f
+  RNShare: bd6518701db274b8ba282b33620885f2225a5bcf
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNZipArchive: ab51bc004a31657f34010254a9182014c6a81217
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
