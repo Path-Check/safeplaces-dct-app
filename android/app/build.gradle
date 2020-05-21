@@ -185,10 +185,11 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug']
         }
         staging {
             signingConfig signingConfigs.debug
-            matchingFallbacks = ['staging']
+            matchingFallbacks = ['debug']
         }
         release {
             minifyEnabled enableProguardInReleaseBuilds
