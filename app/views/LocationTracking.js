@@ -39,7 +39,6 @@ import { Theme } from '../constants/themes';
 import {
   GetStoreData,
   RemoveStoreData,
-  SetStoreData,
 } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -246,10 +245,6 @@ class LocationTracking extends Component {
   }
 
   willParticipate = () => {
-    SetStoreData(PARTICIPATE, 'true').then(() => {
-      // Turn of bluetooth for v1
-      //BroadcastingServices.start();
-    });
     // Check and see if they actually authorized in the system dialog.
     // If not, stop services and set the state to !isLogging
     // Fixes tripleblindmarket/private-kit#129
@@ -261,8 +256,6 @@ class LocationTracking extends Component {
         });
       } else if (authorization === BackgroundGeolocation.NOT_AUTHORIZED) {
         LocationServices.stop();
-        // Turn off bluetooth for v1
-        //BroadcastingServices.stop(this.props.navigation);
         BackgroundTaskServices.stop();
         this.setState({
           isLogging: false,
@@ -362,7 +355,7 @@ class LocationTracking extends Component {
       return languages.t('label.home_setting_off_subtext_location');
     } else {
       return languages.t(`label.home_setting_off_subtext_bluetooth`);
-    } 
+    }
   }
 
   getUnknownSubText() {
@@ -370,7 +363,7 @@ class LocationTracking extends Component {
       return languages.t('label.home_unknown_subtext_location');
     } else {
       return languages.t(`label.home_unknown_subtext_bluetooth`);
-    }  
+    }
   }
 
   getSubText() {
