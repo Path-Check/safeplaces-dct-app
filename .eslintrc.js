@@ -31,7 +31,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['android/**', 'ios/**'],
+  ignorePatterns: ['android/**', 'ios/**', '__mocks__/**'],
   rules: {
     // 0 is for off, 1 is for warning, 2 is for error
     'eol-last': 2, // Require file to end with single newline
@@ -67,7 +67,6 @@ module.exports = {
     'react/react-in-jsx-scope': 2, // Prevent missing React when using JSX
     'react/self-closing-comp': 2, // Prevent extra closing tags for components without children,
     'react/prefer-stateless-function': 2, // Use functional components vs classes
-    'react-native/no-raw-text': [2, { skip: 'Typography' }],
   },
   overrides: [
     {
