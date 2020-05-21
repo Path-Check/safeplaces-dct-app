@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../../../constants/colors';
 import styles from './styles';
 
-const { ORANGE, GREEN, MAIN_BLUE } = Colors;
+const { ORANGE, GREEN, BLUE_RIBBON } = Colors;
 
 export function Feels({ navigation }) {
   return (
@@ -69,7 +69,7 @@ export function Aurora({ navigation }) {
             onPress={() => navigation.navigate('AuroraScreen')}
             style={[
               styles.buttons,
-              { backgroundColor: MAIN_BLUE, marginLeft: 10 },
+              { backgroundColor: BLUE_RIBBON, marginLeft: 10 },
             ]}>
             <Text style={styles.buttonText}>Conversar</Text>
           </Button>
@@ -107,7 +107,7 @@ export function Contact({ isProfile }) {
         style={[
           styles.bigCards,
           {
-            backgroundColor: MAIN_BLUE,
+            backgroundColor: BLUE_RIBBON,
             height: hp('15%'),
             justifyContent: 'center',
           },
@@ -143,12 +143,12 @@ export function Alerts() {
       <Card style={styles.bigCards}>
         <CardItem header>
           <Left>
-            <Icon name='bell-o' color={MAIN_BLUE} size={30} />
+            <Icon name='bell-o' color={BLUE_RIBBON} size={30} />
             <Text style={styles.textHeader}>Alertas</Text>
           </Left>
 
           <Right style={{ backgroundColor: '#fff' }}>
-            <Badge style={{ backgroundColor: MAIN_BLUE }}>
+            <Badge style={{ backgroundColor: BLUE_RIBBON }}>
               <Text>9 +</Text>
             </Badge>
           </Right>

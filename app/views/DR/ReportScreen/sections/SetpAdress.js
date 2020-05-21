@@ -70,7 +70,7 @@ const StepAdress = ({ setCompleted }) => {
                     width: wp('65%'),
                     backgroundColor: Colors.LIGHT_BLUE,
                     alignSelf: 'flex-start',
-                    borderBottomColor: Colors.MAIN_BLUE,
+                    borderBottomColor: Colors.BLUE_RIBBON,
                     borderBottomWidth: 1.5,
                   },
                 ]}
@@ -103,7 +103,7 @@ const StepAdress = ({ setCompleted }) => {
                         width: wp('65%'),
                         backgroundColor: Colors.LIGHT_BLUE,
                         alignSelf: 'flex-start',
-                        borderBottomColor: Colors.MAIN_BLUE,
+                        borderBottomColor: Colors.BLUE_RIBBON,
                         borderBottomWidth: 1.5,
                       },
                     ]}

@@ -75,8 +75,7 @@ export default class HomeScreen extends Component {
     } = this;
 
     return (
-      <View style={{ flex: 1, backgroundColor: Colors.MAIN_BLUE }}>
-        <StatusBar backgroundColor={Colors.MAIN_BLUE} />
+      <View style={{ flex: 1, backgroundColor: Colors.BLUE_RIBBON }}>
         <View>
           <ScrollView
             contentContainerStyle={styles.scrollContainer}

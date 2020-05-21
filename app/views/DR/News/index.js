@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 function TabNavigation() {
   return (
     <>
-      <StatusBar backgroundColor={Colors.MAIN_BLUE} />
+      <StatusBar backgroundColor={Colors.BLUE_RIBBON} />
       <TopBar.Navigator
         tabBarOptions={{
           activeTintColor: '#0059ff',

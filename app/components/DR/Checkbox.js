@@ -21,7 +21,7 @@ export default function Checkbox({ id, text, setValue, initialCheck }) {
         }}>
         <CheckBox
           checked={checked}
-          color={Colors.MAIN_BLUE}
+          color={Colors.BLUE_RIBBON}
           onPress={() => {
             setChecked(!checked);
             setValue(id, !checked);

@@ -89,12 +89,6 @@ class LocationTracking extends Component {
   constructor(props) {
     super(props);
 
-    if (isPlatformAndroid()) {
-      StatusBar.setBackgroundColor(Colors.TRANSPARENT);
-      StatusBar.setBarStyle('light-content');
-      StatusBar.setTranslucent(true);
-    }
-
     this.state = {
       appState: AppState.currentState,
       timer_intersect: null,
@@ -420,11 +414,6 @@ class LocationTracking extends Component {
         <ImageBackground
           source={this.getBackground()}
           style={styles.backgroundImage}>
-          <StatusBar
-            barStyle='light-content'
-            backgroundColor='transparent'
-            translucent
-          />
           {this.getPulseIfNeeded()}
 
           <View style={styles.mainContainer}>

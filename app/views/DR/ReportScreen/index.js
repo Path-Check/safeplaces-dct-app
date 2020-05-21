@@ -12,12 +12,17 @@ import Colors from '../../../constants/colors';
 import styles from './style';
 
 export default function ReportScreen({ navigation }) {
-  const [{answers:{usage}}, setGlobalState] = useContext(context);
+  const [
+    {
+      answers: { usage },
+    },
+    setGlobalState,
+  ] = useContext(context);
 
   const setSelectedOption = selected => {
     setGlobalState({
       type: 'ADD_ANSWERS',
-      value: { 'usage': selected },
+      value: { usage: selected },
     });
   };
   return (
@@ -42,7 +47,7 @@ export default function ReportScreen({ navigation }) {
                 {
                   width: wp('70%'),
                   height: 38,
-                  backgroundColor: Colors.MAIN_BLUE,
+                  backgroundColor: Colors.BLUE_RIBBON,
                   marginBottom: 10,
                 },
               ]}
@@ -74,7 +79,7 @@ export default function ReportScreen({ navigation }) {
               <Text
                 style={[
                   styles.text,
-                  { color: Colors.MAIN_BLUE, textTransform: 'capitalize' },
+                  { color: Colors.BLUE_RIBBON, textTransform: 'capitalize' },
                 ]}>
                 Usar para alguien más
               </Text>
