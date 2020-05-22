@@ -18,6 +18,7 @@ import {
   Feels,
 } from '../../../components/DR/ActionCards/ActionCards.js';
 import Colors from '../../../constants/colors';
+import languages from '../../../locales/languages';
 import { getAllCases } from '../../../services/DR/getAllCases.js';
 import styles from './style';
 
@@ -101,7 +102,7 @@ export default class HomeScreen extends Component {
                 <View style={styles.marginAndAlign}>
                   <View style={styles.actualSituationContent}>
                     <Text style={[styles.subtitles, { alignSelf: 'center' }]}>
-                      Situación actual
+                      {languages.t('label.current_situation_label')}
                     </Text>
                   </View>
                   <Text style={[styles.subtitles, { color: '#747474' }]}>
@@ -112,7 +113,9 @@ export default class HomeScreen extends Component {
                   <TouchableOpacity>
                     <Card style={styles.infoCards}>
                       <Text style={[styles.dataText]}>{cases}</Text>
-                      <Text style={styles.text}>Positivos</Text>
+                      <Text style={styles.text}>
+                        {languages.t('label.positive_label')}
+                      </Text>
                     </Card>
                   </TouchableOpacity>
                   <TouchableOpacity>
@@ -124,7 +127,9 @@ export default class HomeScreen extends Component {
                         ]}>
                         {deaths}
                       </Text>
-                      <Text style={styles.text}>Fallecidos</Text>
+                      <Text style={styles.text}>
+                        {languages.t('label.deceased_label')}
+                      </Text>
                     </Card>
                   </TouchableOpacity>
                   <TouchableOpacity>
@@ -132,7 +137,9 @@ export default class HomeScreen extends Component {
                       <Text style={[styles.dataText, { color: Colors.GREEN }]}>
                         {recovered}
                       </Text>
-                      <Text style={styles.text}>Recuperados</Text>
+                      <Text style={styles.text}>
+                        {languages.t('label.recovered_label')}
+                      </Text>
                     </Card>
                   </TouchableOpacity>
                   <TouchableOpacity>
@@ -140,7 +147,9 @@ export default class HomeScreen extends Component {
                       <Text style={[styles.dataText, { color: Colors.SUN }]}>
                         {todayCases}
                       </Text>
-                      <Text style={styles.text}>Casos del día</Text>
+                      <Text style={styles.text}>
+                        {languages.t('label.case_day_label')}
+                      </Text>
                     </Card>
                   </TouchableOpacity>
                 </View>
@@ -152,8 +161,7 @@ export default class HomeScreen extends Component {
                         styles.text,
                         { color: '#2f3133', textAlign: 'center' },
                       ]}>
-                      Para más información marca *462 y si tienes una emergencia
-                      marca 911
+                      {languages.t('label.home_screen_bottom_text')}
                     </Text>
                   </View>
                 </View>
