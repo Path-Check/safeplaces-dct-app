@@ -6,7 +6,7 @@ import {
 import React, { Component } from 'react';
 
 import { GetStoreData } from './helpers/General';
-// import NavEntry from './NavEntry';
+import NavEntry from './NavEntry';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import HomeScreen from './views/DR/HomeScreen';
@@ -58,7 +58,7 @@ class Entry extends Component {
           {this.state.initialRouteName === 'true' ? (
             <Stack.Screen
               name='InitialScreen'
-              component={HomeScreen}
+              component={NavEntry}
               options={{ headerShown: false }}
             />
           ) : (
@@ -93,11 +93,11 @@ class Entry extends Component {
             component={Onboarding5}
             options={{ headerShown: false }}
           />
-          {/*<Stack.Screen*/}
-          {/*  name='HomeScreen'*/}
-          {/*  component={NavEntry}*/}
-          {/*  options={{ headerShown: false }}*/}
-          {/*/>*/}
+          <Stack.Screen
+            name='HomeScreen'
+            component={NavEntry}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name='ExportScreen'
             component={ExportScreen}
