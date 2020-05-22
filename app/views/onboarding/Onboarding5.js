@@ -22,7 +22,7 @@ import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
-import { PARTICIPATE } from '../../constants/storage';
+import { ONBOARDING_DONE, PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { config } from '../../COVIDSafePathsConfig';
 import { SetStoreData } from '../../helpers/General';
@@ -328,7 +328,7 @@ const Onboarding = ({ navigation }) => {
           PARTICIPATE,
           locationPermission === PermissionStatusEnum.GRANTED,
         );
-        SetStoreData('ONBOARDING_DONE', true);
+        SetStoreData(ONBOARDING_DONE, true);
         navigation.replace('Main');
     }
   };
