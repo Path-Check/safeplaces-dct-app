@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Dimensions,
   ImageBackground,
@@ -13,22 +14,21 @@ import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { config } from '../../COVIDSafePathsConfig';
-import languages from '../../locales/languages';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
+  const { t } = useTranslation();
+
   const isGPS = config.tracingStrategy === 'gps';
-  const backgroundImage = isGPS
-    ? Images.LaunchScreen2
-    : Images.LaunchScreen2BT; 
+  const backgroundImage = isGPS ? Images.LaunchScreen2 : Images.LaunchScreen2BT;
   const headerText = isGPS
-    ? languages.t('label.launch_screen2_header_location')
-    : languages.t('label.launch_screen2_header_bluetooth');
+    ? t('label.launch_screen2_header_location')
+    : t('label.launch_screen2_header_bluetooth');
   const subheaderText = isGPS
-    ? languages.t('label.launch_screen2_subheader_location')
-    : languages.t('label.launch_screen2_subheader_bluetooth');
+    ? t('label.launch_screen2_subheader_location')
+    : t('label.launch_screen2_subheader_bluetooth');
 
   return (
     <View style={styles.mainContainer}>
@@ -45,14 +45,12 @@ const Onboarding = props => {
         <Typography style={styles.headerText} use={Type.Headline2}>
           {headerText}
         </Typography>
-        <Typography style={styles.subheaderText}>
-          {subheaderText}
-        </Typography>
+        <Typography style={styles.subheaderText}>{subheaderText}</Typography>
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>
         <Button
-          label={languages.t('label.launch_next')}
+          label={t('label.launch_next')}
           onPress={() => {
             props.navigation.replace('Onboarding3');
           }}
