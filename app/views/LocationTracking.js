@@ -221,18 +221,17 @@ class LocationTracking extends Component {
     BackgroundGeolocation.on('location', async location => {
       GetStoreData(COVID_ID)
         .then(covidId => {
-          let data = { body: {} };
-          data.body = {
+          const body = JSON.stringify({
             latitude: location.latitude,
             longitude: location.longitude,
             time: location.time,
             covidId: covidId,
-          };
+          });
 
           fetch('https://webapps.mepyd.gob.do/contact_tracing/api/UserTrace', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data.body),
+            body,
           })
             .then(function(response) {
               return response.json();
