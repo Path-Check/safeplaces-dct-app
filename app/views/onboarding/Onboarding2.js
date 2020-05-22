@@ -20,7 +20,9 @@ const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
   const isGPS = config.tracingStrategy === 'gps';
-  const backgroundImage = isGPS ? Images.LaunchScreen2 : Images.LaunchScreen2BT;
+  const backgroundImage = isGPS
+    ? Images.LaunchScreen2
+    : Images.LaunchScreen2BT; 
   const headerText = isGPS
     ? languages.t('label.launch_screen2_header_location')
     : languages.t('label.launch_screen2_header_bluetooth');
@@ -43,7 +45,9 @@ const Onboarding = props => {
         <Typography style={styles.headerText} use={Type.Headline2}>
           {headerText}
         </Typography>
-        <Typography style={styles.subheaderText}>{subheaderText}</Typography>
+        <Typography style={styles.subheaderText}>
+          {subheaderText}
+        </Typography>
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>
