@@ -172,5 +172,16 @@
     "push_notification_message": "Please update your application",
     "push_notification_title": "Application is outdated",
     "update": "Update"
+  },
+  "navigation": {
+    "home": "Home",
+    "location_tracker": "Location",
+    "report": "Report",
+    "maps": "Maps",
+    "hospitals_maps": "Hospitals",
+    "laboratories_maps": "Laboratories",
+    "news": "News",
+    "bulletins": "Bulletins",
+    "advices": "Advices"
   }
 }

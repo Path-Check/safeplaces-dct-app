@@ -16,12 +16,12 @@ export default function ToggleButtons({
   function renderOption(option, selected, onSelect, index) {
     const buttonStyle = {
       backgroundColor: selected ? '#D8EAFE' : Colors.LIGHT_BLUE,
-      borderColor: selected ? Colors.MAIN_BLUE : Colors.LIGHT_BLUE,
+      borderColor: selected ? Colors.BLUE_RIBBON : Colors.LIGHT_BLUE,
       borderWidth: 2,
     };
     const textStyle = {
       padding: 4,
-      color: selected ? Colors.MAIN_BLUE : Colors.BUTTON_LIGHT_TEXT,
+      color: selected ? Colors.BLUE_RIBBON : Colors.BUTTON_LIGHT_TEXT,
     };
 
     return (
@@ -33,7 +33,7 @@ export default function ToggleButtons({
         {selected ? (
           <Icon
             name='check-circle'
-            color={Colors.MAIN_BLUE}
+            color={Colors.BLUE_RIBBON}
             size={15}
             style={{
               backgroundColor: '#fff',

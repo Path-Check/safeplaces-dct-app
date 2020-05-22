@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {
   Animated,
   Dimensions,
+  Easing,
   ScrollView,
   StyleSheet,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import * as Easing from 'react-native/Libraries/Animated/src/Easing';
 
 const { width, height } = Dimensions.get('window');
 
@@ -57,7 +57,8 @@ export default class BottomUpPanel extends Component {
       });
     });
     // Reset value once listener is registered to update depending animations
-    this.animatedPosition.setValue(this.animatedPosition.value);
+    // eslint-disable-next-line no-underscore-dangle
+    this.animatedPosition.setValue(this.animatedPosition._value);
   }
 
   // Handle isOpen prop changes to either open or close the window
@@ -87,61 +88,59 @@ export default class BottomUpPanel extends Component {
       outputRange: ['0deg', '180deg'],
     });
     return (
-      <View>
+      <Animated.View
+        style={[styles.buttonUpPanelView, { height: animatedHeight }]}>
         <Animated.View
-          style={[styles.buttonUpPanelView, { height: animatedHeight }]}>
-          <Animated.View
-            style={[
-              styles.content,
-              {
-                // Add padding at the bottom to fit all content on the screen
-                paddingBottom: this.props.topEnd,
-                width,
-                // Animate position on the screen
-                transform: [
-                  { translateY: this.animatedPosition },
-                  { translateX: 0 },
-                ],
-              },
-            ]}>
-            {/* Section for header or button to open the panel */}
-            <TouchableWithoutFeedback
-              onPress={() => {
-                this.toggle();
-              }}>
-              <Animated.View style={{ height: this.props.startHeight }}>
-                <View
-                  style={[
-                    this.props.bottomUpSlideBtn,
-                    { width, height: this.props.startHeight },
-                  ]}>
-                  {this.props.headerText}
-                  <Animated.View style={{ transform: [{ rotate: spin }] }}>
-                    {this.props.icon()}
-                  </Animated.View>
-                </View>
-              </Animated.View>
-            </TouchableWithoutFeedback>
+          style={[
+            styles.content,
+            {
+              // Add padding at the bottom to fit all content on the screen
+              paddingBottom: this.props.topEnd,
+              width,
+              // Animate position on the screen
+              transform: [
+                { translateY: this.animatedPosition },
+                { translateX: 0 },
+              ],
+            },
+          ]}>
+          {/* Section for header or button to open the panel */}
+          <TouchableWithoutFeedback
+            onPress={() => {
+              this.toggle();
+            }}>
+            <Animated.View style={{ height: this.props.startHeight }}>
+              <View
+                style={[
+                  this.props.bottomUpSlideBtn,
+                  { width, height: this.props.startHeight },
+                ]}>
+                {this.props.headerText}
+                <Animated.View style={{ transform: [{ rotate: spin }] }}>
+                  {this.props.icon()}
+                </Animated.View>
+              </View>
+            </Animated.View>
+          </TouchableWithoutFeedback>
 
-            {/* Scrollable content */}
-            <ScrollView
-              ref={scrollView => {
-                this.scrollView = scrollView;
-              }}
-              // Enable scrolling only when the window is open
-              scrollEnabled={this.state.open}
-              // Hide all scrolling indicators
-              showsHorizontalScrollIndicator={false}
-              showsVerticalScrollIndicator={false}
-              // Trigger onScroll often
-              scrollEventThrottle={16}
-              onScroll={this.handleScroll}>
-              {/* Render content components */}
-              {content()}
-            </ScrollView>
-          </Animated.View>
+          {/* Scrollable content */}
+          <ScrollView
+            ref={scrollView => {
+              this.scrollView = scrollView;
+            }}
+            // Enable scrolling only when the window is open
+            scrollEnabled={this.state.open}
+            // Hide all scrolling indicators
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            // Trigger onScroll often
+            scrollEventThrottle={16}
+            onScroll={this.handleScroll}>
+            {/* Render content components */}
+            {content()}
+          </ScrollView>
         </Animated.View>
-      </View>
+      </Animated.View>
     );
   }
 
@@ -150,6 +149,7 @@ export default class BottomUpPanel extends Component {
       Animated.timing(this.animatedPosition, {
         toValue: this.config.position.end,
         duration: 600,
+        useNativeDriver: true,
       }).start();
       Animated.timing(this.state.spinValue, {
         toValue: 1,

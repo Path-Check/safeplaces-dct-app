@@ -7,14 +7,14 @@ import {
   View,
 } from 'react-native';
 
-import imgNews from '../../assets/images/news.jpg';
-import { Button } from '../../components/Button';
-import HeaderImage from '../../components/DR/ActionCards/HeaderImage';
-import DataList from '../../components/DR/ActionCards/List';
-import NavigationBarWrapper from '../../components/NavigationBarWrapper';
-import fetch from '../../helpers/Fetch';
-import sourceStructure from '../../helpers/imagesSource';
-import languages from '../../locales/languages';
+import imgNews from '../../../assets/images/news.jpg';
+import { Button } from '../../../components/Button';
+import HeaderImage from '../../../components/DR/ActionCards/HeaderImage';
+import DataList from '../../../components/DR/ActionCards/List';
+import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
+import fetch from '../../../helpers/Fetch';
+import sourceStructure from '../../../helpers/imagesSource';
+import languages from '../../../locales/languages';
 
 const NEWS_URL = 'https://covid-dr.appspot.com/news';
 
@@ -67,30 +67,26 @@ function NewsScreen({ navigation }) {
   }, []);
 
   return (
-    <NavigationBarWrapper
-      title={languages.t('label.latest_news')}
-      onBackPress={backToMain.bind(this)}>
-      <View style={styles.container}>
-        <HeaderImage imgUrl={imgNews} title={languages.t('label.news_title')} />
-        <ScrollView>
-          <DataList
-            data={news}
-            navigation={navigation}
-            switchScreenTo='WebView'
-          />
-          <View style={styles.containerPagination}>
-            {isNotLastPage && isLoading ? (
-              <ActivityIndicator size='large' />
-            ) : (
-              <Button
-                onPress={onPress}
-                title={languages.t('label.launch_next')}
-              />
-            )}
-          </View>
-        </ScrollView>
-      </View>
-    </NavigationBarWrapper>
+    <View style={styles.container}>
+      <HeaderImage imgUrl={imgNews} title={languages.t('label.news_title')} />
+      <ScrollView>
+        <DataList
+          data={news}
+          navigation={navigation}
+          switchScreenTo='WebView'
+        />
+        <View style={styles.containerPagination}>
+          {isNotLastPage && isLoading ? (
+            <ActivityIndicator size='large' />
+          ) : (
+            <Button
+              onPress={onPress}
+              title={languages.t('label.launch_next')}
+            />
+          )}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 

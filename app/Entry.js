@@ -1,3 +1,4 @@
+import { NavigationContainer } from '@react-navigation/native';
 import {
   CardStyleInterpolators,
   createStackNavigator,
@@ -5,15 +6,10 @@ import {
 import React, { Component } from 'react';
 
 import { GetStoreData } from './helpers/General';
+import NavEntry from './NavEntry';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
-import AdvicesScreen from './views/DR/Advices';
-import BulletinsScreen from './views/DR/Bulletins';
-import DetailsScreen from './views/DR/Details';
 import HomeScreen from './views/DR/HomeScreen';
-import MapScreen from './views/DR/Map';
-import NewsScreen from './views/DR/News';
-import ReportScreen from './views/DR/ReportScreen/index.js';
 import Report from './views/DR/ReportScreen/ReportScreenQuestions';
 import ResultsScreen from './views/DR/ReportScreen/Results';
 import UserInfo from './views/DR/UserInfoScreen/index';
@@ -50,6 +46,7 @@ class Entry extends Component {
 
   render() {
     return (
+      <NavigationContainer>
         <Stack.Navigator
           initialRouteName='InitialScreen'
           screenOptions={{
@@ -61,7 +58,7 @@ class Entry extends Component {
           {this.state.initialRouteName === 'true' ? (
             <Stack.Screen
               name='InitialScreen'
-              component={HomeScreen}
+              component={NavEntry}
               options={{ headerShown: false }}
             />
           ) : (
@@ -98,32 +95,7 @@ class Entry extends Component {
           />
           <Stack.Screen
             name='HomeScreen'
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='NewsScreen'
-            component={NewsScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='BulletinsScreen'
-            component={BulletinsScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='MapScreen'
-            component={MapScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='AdvicesScreen'
-            component={AdvicesScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='DetailsScreen'
-            component={DetailsScreen}
+            component={NavEntry}
             options={{ headerShown: false }}
           />
           <Stack.Screen
@@ -162,12 +134,6 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name='ReportScreen'
-            Report
-            component={ReportScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
             name='Report'
             component={Report}
             options={{ headerShown: false }}
@@ -188,6 +154,7 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
+      </NavigationContainer>
     );
   }
 }

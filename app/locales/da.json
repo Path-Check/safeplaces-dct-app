@@ -143,5 +143,16 @@
     "push_notification_message": "Opdatér venligst din applikation",
     "push_notification_title": "Applikationen er for gammel",
     "update": "Opdatér"
+  },
+  "navigation": {
+    "home": "Hjem",
+    "location_tracker": "Beliggenhed",
+    "report": "Rapport",
+    "maps": "Kort",
+    "hospitals_maps": "Hospitaler",
+    "laboratories_maps": "Laboratorier",
+    "news": "Nyheder",
+    "bulletins": "Bulletins",
+    "advices": "Tips"
   }
 }

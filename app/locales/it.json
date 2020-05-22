@@ -143,5 +143,16 @@
     "push_notification_message": "Per favore aggiorna l'applicazione",
     "push_notification_title": "L'applicazione non è aggiornata",
     "update": "Aggiorna"
+  },
+  "navigation": {
+    "home": "Inizio",
+    "location_tracker": "Posizione",
+    "report": "Rapporto",
+    "maps": "Mappe",
+    "hospitals_maps": "Ospedali",
+    "laboratories_maps": "Laboratori",
+    "news": "Notizia",
+    "bulletins": "Bollettini",
+    "advices": "Consigli"
   }
 }

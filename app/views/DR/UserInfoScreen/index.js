@@ -225,7 +225,7 @@ export default function UserInfo({ navigation }) {
               title='Ingrese sus datos'
               text='Utilizaremos estos datos para darle el apropiado seguimiento a sus resultados:'
               navigation={navigation}
-              close={true}
+              close
               style={{ height: wp('38%') }}
             />
             <View

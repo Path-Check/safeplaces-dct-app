@@ -143,5 +143,16 @@
     "push_notification_message": "Update uw applicatie",
     "push_notification_title": "Applicatie is verouderd",
     "update": "Update"
+  },
+  "navigation": {
+    "home": "Begin",
+    "location_tracker": "Plaats",
+    "report": "Verslag doen van",
+    "maps": "Kaarten",
+    "hospitals_maps": "Ziekenhuizen",
+    "laboratories_maps": "Laboratoria",
+    "news": "Nieuws",
+    "bulletins": "Bulletins",
+    "advices": "Adviezen"
   }
 }

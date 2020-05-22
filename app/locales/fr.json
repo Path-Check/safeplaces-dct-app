@@ -90,5 +90,16 @@
     "paragraph_second": "L’historique partagé est une simple liste de lieux et de dates, sans informations supplémentaires.",
     "subtitle": "Vos données de position peuvent être envoyées aux autorités sanitaires, sauvegardées, ou partagées autrement.",
     "title": "Partager votre historique de position"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "location_tracker": "Emplacement",
+    "report": "rapport",
+    "maps": "Plans",
+    "hospitals_maps": "Les hôpitaux",
+    "laboratories_maps": "Laboratoires",
+    "news": "Nouvelles",
+    "bulletins": "Bulletins",
+    "advices": "Des conseils"
   }
 }

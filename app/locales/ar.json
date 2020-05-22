@@ -137,5 +137,16 @@
     "push_notification_message": "يرجى تحديث إصدار التطبيق الخاص بك",
     "push_notification_title": "إصدار التطبيق قديم",
     "update": "تحديث"
+  },
+  "navigation": {
+    "home": "الصفحة الرئيسية",
+    "location_tracker": "موقعك",
+    "report": "نقل",
+    "maps": "خرائط",
+    "hospitals_maps": "المستشفيات",
+    "laboratories_maps": "مختبرات",
+    "news": "أخبار",
+    "bulletins": "رسائل إخبارية",
+    "advices": "نصائح"
   }
 }

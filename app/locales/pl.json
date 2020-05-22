@@ -143,5 +143,16 @@
     "push_notification_message": "Proszę zaktualizować swoją aplikację",
     "push_notification_title": "Aplikacja jest nieaktualna",
     "update": "Aktualizacja"
+  },
+  "navigation": {
+    "home": "Początek",
+    "location_tracker": "Lokalizacja",
+    "report": "Raport",
+    "maps": "Mapy",
+    "hospitals_maps": "Szpitale",
+    "laboratories_maps": "Laboratoria",
+    "news": "Aktualności",
+    "bulletins": "Biuletyny",
+    "advices": "Porady"
   }
 }

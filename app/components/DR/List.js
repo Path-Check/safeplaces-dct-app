@@ -37,7 +37,7 @@ export default function DataList({
         ) => (
           <TouchableOpacity
             onPress={() =>
-              navigate('DetailsScreen', {
+              navigate('Details', {
                 switchScreenTo,
                 source: { uri: url },
               })

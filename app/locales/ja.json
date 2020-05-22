@@ -82,5 +82,16 @@
     "button_text": "位置情報のシェアをする",
     "subtitle": "あなたのデータは保険医療機関に転送、バックアップ、または共有する事ができます。",
     "title": "位置情報履歴を共有する"
+  },
+  "navigation": {
+    "home": "アドバイス",
+    "location_tracker": "ロケーション",
+    "report": "報告する",
+    "maps": "地図",
+    "hospitals_maps": "病院",
+    "laboratories_maps": "研究所",
+    "news": "ニュース",
+    "bulletins": "速報",
+    "advices": "Advices"
   }
 }

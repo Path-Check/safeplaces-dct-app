@@ -82,5 +82,16 @@
     "paragraph_second": "Vị trí được chia sẻ dưới dạng danh sách đơn giản gồm thời gian và toạ độ, không bao gồm các thông tin cá nhân khác",
     "subtitle": "Dữ liệu riêng tư của bạn có thể được chuyển đến các cơ quan y tế, sao lưu hoặc chia sẻ.",
     "title": "Chia sẻ lịch sử vị trí"
+  },
+  "navigation": {
+    "home": "Khởi đầu",
+    "location_tracker": "Vị trí",
+    "report": "Báo cáo",
+    "maps": "Bản đồ",
+    "hospitals_maps": "Bệnh viện",
+    "laboratories_maps": "Các phòng thí nghiệm",
+    "news": "Tin tức",
+    "bulletins": "Bản tin",
+    "advices": "Lời khuyên"
   }
 }

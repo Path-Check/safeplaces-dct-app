@@ -94,10 +94,12 @@ export const SettingsScreen = ({ navigation }) => {
             items={LOCALE_LIST}
             value={userLocale}
             onValueChange={localeChanged}>
-            {({ label, openPicker }) => (
+            {(
+              { openPicker }, // Label is not working propperly
+            ) => (
               <Item
                 last
-                label={label || t('label.home_unknown_header')}
+                label={t('label.home_unknown_header')}
                 icon={languagesIcon}
                 onPress={openPicker}
               />
@@ -114,31 +116,7 @@ export const SettingsScreen = ({ navigation }) => {
           <Item
             label={t('label.latest_news')}
             description={t('label.news_subtitle')}
-            onPress={() => navigation.navigate('NewsScreen')}
-          />
-          <Item
-            label={t('label.bulletin_title')}
-            description={t('label.bulletin_description')}
-            onPress={() => navigation.navigate('BulletinsScreen')}
-          />
-          <Item
-            label={t('label.hospital_title')}
-            description={t('label.hospital_subtitle')}
-            onPress={() =>
-              navigation.navigate('MapScreen', { type: 'hospital' })
-            }
-          />
-          <Item
-            label={t('label.laboratories_title')}
-            description={t('label.laboratories_subtitle')}
-            onPress={() =>
-              navigation.navigate('MapScreen', { type: 'laboratory' })
-            }
-          />
-          <Item
-            label={t('label.recommendations_title')}
-            description={t('label.recommendations_description')}
-            onPress={() => navigation.navigate('AdvicesScreen')}
+            onPress={() => navigation.navigate('News')}
           />
           <Item
             label={t('label.event_history_title')}

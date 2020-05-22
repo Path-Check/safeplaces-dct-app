@@ -89,7 +89,7 @@ export default function ReportScreenQuestions({ navigation }) {
       content: <ThankYou />,
     },
   ];
-  const { MAIN_BLUE, LIGHT_GRAY, GREEN } = Colors;
+  const { BLUE_RIBBON, LIGHT_GRAY, GREEN } = Colors;
   return (
     <View
       style={{
@@ -149,7 +149,7 @@ export default function ReportScreenQuestions({ navigation }) {
               marginHorizontal: 6,
               height: 10,
               borderRadius: 5,
-              backgroundColor: index === currentStep ? MAIN_BLUE : LIGHT_GRAY,
+              backgroundColor: index === currentStep ? BLUE_RIBBON : LIGHT_GRAY,
             }}
           />
         ))}

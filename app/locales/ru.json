@@ -143,5 +143,16 @@
     "push_notification_message": "Пожалуйста, обновите приложение",
     "push_notification_title": "Вы используете устаревшую версию приложения",
     "update": "Обновить"
+  },
+  "navigation": {
+    "home": "Начните",
+    "location_tracker": "Расположение",
+    "report": "отчет",
+    "maps": "Карты",
+    "hospitals_maps": "Больницы",
+    "laboratories_maps": "лаборатории",
+    "news": "Новости",
+    "bulletins": "Бюллетени",
+    "advices": "Советы"
   }
 }

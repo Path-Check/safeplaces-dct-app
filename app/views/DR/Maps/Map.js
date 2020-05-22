@@ -17,35 +17,31 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import sortByDistance from 'sort-by-distance';
 
-import posIconHos from '../../assets/images/pinPositiveHos.png';
-import posIconLab from '../../assets/images/pinPositiveLab.png';
-import BottonUpPanel from '../../components/DR/ButtonUpDrawer';
+import posIconHos from '../../../assets/images/pinPositiveHos.png';
+import posIconLab from '../../../assets/images/pinPositiveLab.png';
+import BottonUpPanel from '../../../components/DR/ButtonUpDrawer';
 import {
   requestCovid19Hospitals,
   requestCovid19Laboratories,
-} from '../../helpers/Request';
+} from '../../../helpers/Request';
 
 const latitudeDelta = 0.0052;
 const longitudeDelta = 0.0081;
 const rdCoords = { latitude: 18.7009, longitude: -70.1655 };
 const { height } = Dimensions.get('window');
 
-export default function HospitalMap({ navigation, route }) {
+export default function HospitalMap({ route: { name: type } }) {
   const [hospitals, setHospitals] = useState([]);
   const [laboratories, setLaboratories] = useState([]);
   const [coordinates, setCoordinates] = useState(rdCoords);
   const [bottomRef, setBottomRef] = useState(null);
   const [sortedMarkers, setSortedMarkers] = useState([]);
-  const { type } = route.params;
 
   // This is to change to hospitals or laboratories markers and icons depending on which screen you are
-  const selectedMarker = type === 'hospital' ? hospitals : laboratories;
-  const posIcon = type === 'hospital' ? posIconHos : posIconLab;
-
+  const selectedMarker = type === 'Hospitals' ? hospitals : laboratories;
+  const posIcon = type === 'Hospitals' ? posIconHos : posIconLab;
   useEffect(async () => {
-    navigation.setOptions({ headerTitle: 'Map' });
-
-    if (type === 'hospital') {
+    if (type === 'Hospitals') {
       const value = await requestCovid19Hospitals();
       setHospitals(value);
       Geolocation.getCurrentPosition(
@@ -117,7 +113,7 @@ export default function HospitalMap({ navigation, route }) {
                   onPress={() => goLocation({ latitude, longitude })}>
                   <View style={styles.row}>
                     <View style={styles.itemImg}>
-                      {type === 'hospital' ? (
+                      {type === 'Hospitals' ? (
                         <Icon name='hospital-o' size={22} color='#4372e8' />
                       ) : (
                         <Icon
@@ -147,13 +143,13 @@ export default function HospitalMap({ navigation, route }) {
 
   const renderBottomUpPanelHeader = (
     <View style={styles.listHeader}>
-      {type === 'hospital' ? (
+      {type === 'Hospitals' ? (
         <Icon name='hospital-o' size={22} color='#4372e8' />
       ) : (
         <Icon name='thermometer-quarter' size={22} color='#4372e8' />
       )}
       <Text style={styles.cardTitle}>
-        {type === 'hospital' ? 'Hospitales' : 'Laboratorios'}
+        {type === 'Hospitals' ? 'Hospitales' : 'Laboratorios'}
       </Text>
       <Text style={styles.cardText}>
         {`(${selectedMarker.length} acreditados)`}
@@ -177,8 +173,7 @@ export default function HospitalMap({ navigation, route }) {
             latitudeDelta,
             longitudeDelta,
           }}
-          showsUserLocation
-          showsMyLocationButton>
+          showsUserLocation>
           {selectedMarker.map(({ id, latitude, longitude }) => (
             <Marker
               image={posIcon}

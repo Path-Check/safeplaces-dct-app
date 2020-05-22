@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   header: {
-    backgroundColor: Colors.MAIN_BLUE,
+    backgroundColor: Colors.BLUE_RIBBON,
     height: hp('12%'),
     position: 'absolute',
     width: wp('100%'),
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
-    backgroundColor: Colors.MAIN_BLUE,
+    backgroundColor: Colors.BLUE_RIBBON,
     width: wp('100%'),
     height: hp('46.5%'),
     justifyContent: 'flex-start',
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   inputs: {
     height: 38,
-    borderBottomColor: Colors.MAIN_BLUE,
+    borderBottomColor: Colors.BLUE_RIBBON,
     borderBottomWidth: 0.3,
     margin: 4,
   },
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     width: 50,
   },
   mainHeader: {
-    backgroundColor: Colors.MAIN_BLUE,
+    backgroundColor: Colors.BLUE_RIBBON,
     borderBottomEndRadius: 13,
     borderBottomStartRadius: 13,
     height: hp('16%'),
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   toggleOn: {
     backgroundColor: '#D8EAFE',
     width: wp('30%'),
-    borderColor: Colors.MAIN_BLUE,
+    borderColor: Colors.BLUE_RIBBON,
     borderWidth: 2,
   },
   toggleOff: {

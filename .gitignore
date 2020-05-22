@@ -61,7 +61,7 @@ app/locales/*_old.json
 *.jsbundle
 
 # CocoaPods
-ios/Podfile.lock 
+ios/Podfile.lock
 /ios/Pods/
 .vscode/launch.json
 
@@ -150,6 +150,3 @@ freeline_project_description.json
 .nfs*
 
 # End of https://www.gitignore.io/api/reactnative
-
-
-yarn.lock
