@@ -1,13 +1,4 @@
-<!-- # Submitting an Issue -->
-<!-- When submitting an Issue against this repo, please follow these
-     guidelines to help us help you. -->
-
-
-<!-- Make sure that you are testing against the latest beta or production version -->
-
-<!-- Write the title in a proper, short, descriptive way with a format like: -->
-<!-- [Section] - Issue -->
-<!-- E.g. [Homepage] - Pulse circle offset -->
+<!-- Please view https://github.com/Path-Check/covid-safe-paths/wiki/Github-Issues-Overivew before submitting an issue  -->
 
 ## Issue type
 <!-- List all appliable type: (Localization, Hardware, UI -->
