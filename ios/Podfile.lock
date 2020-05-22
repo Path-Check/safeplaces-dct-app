@@ -252,9 +252,9 @@ PODS:
     - Realm (= 4.4.1)
   - rn-fetch-blob (0.12.0):
     - React-Core
-  - RNBackgroundFetch (3.0.4):
+  - RNBackgroundFetch (3.0.5):
     - React
-  - RNCAsyncStorage (1.10.0):
+  - RNCAsyncStorage (1.10.3):
     - React
   - RNCMaskedView (0.1.5):
     - React
@@ -457,7 +457,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  "@mauron85_react-native-background-geolocation": fa34ab82e94212be16ef6e75c32bcb707b0a1524
+  "@mauron85_react-native-background-geolocation": 70177f5ccd8844497a2f5f0a23c77ee4c4608d42
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
@@ -465,9 +465,9 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  Permission-BluetoothPeripheral: 2c8ce842373ae7162e41428d66831247fdd660c5
-  Permission-LocationAlways: 48085521ad224052f5b25c3fdc6d0e996d162428
-  Permission-Notifications: d437cafc026900006d35981d35a2d694f883f44e
+  Permission-BluetoothPeripheral: 16bb72143890889b25ae16ab15e599ddf0de2e35
+  Permission-LocationAlways: 11a49dcb06b6772f3d8b08ef01e18a1ece1d6375
+  Permission-Notifications: 2d332751cadd3f39bf6062333f36a1bc3e0281d2
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -477,15 +477,15 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-background-timer: 1f7d560647b40e6a60b01c452ba29c54bf581fc4
+  react-native-background-timer: 53c0e028a95d58b1f4498ef7ce152b6c6b337595
   react-native-config: 8f6b2b9e017f6a5e92a97353c768e19e67294bb1
   react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
-  react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
-  react-native-safe-area-context: d288138da2c800caa111f9352e9333f186a06ead
+  react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
+  react-native-safe-area-context: 870aba8339684c9b888d42103580b687ff3f0d0c
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
-  react-native-uuid-generator: 82ffa2a1cac94242ebed52c4dedc5044d3412717
-  react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
-  react-native-webview: 160ac8d6bb974e2933f2de6bb7464a8e934ff31d
+  react-native-uuid-generator: 997d9848f07081ce7200a05b76e3f8c7b309963c
+  react-native-viewpager: 118e65d8c65c56fe48d12a35cdcf1fe7e027a366
+  react-native-webview: d3cf75764f98fd433f1222f5a7ca8e355ada2a15
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -499,18 +499,18 @@ SPEC CHECKSUMS:
   Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
   RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
-  RNBackgroundFetch: 388cf1595934d22fed275b8db9b48a28bb4eb7b6
-  RNCAsyncStorage: 6d99641f8e6f15d169d695d8ef184bf187903f11
-  RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
-  RNCPushNotificationIOS: 4d9ffd08f00ef6c1029ebbf4d72fc711eca3ff01
+  RNBackgroundFetch: 3c0e0e0ba18e6dab3b03e2019a3a5a3f782f1df2
+  RNCAsyncStorage: 62559ca9a3e7790bac152a3e69bdd9ca349d37bd
+  RNCMaskedView: c8b53164b85ecf94c9a44d67082df0f03c1f74cc
+  RNCPushNotificationIOS: 9aa40ed0ff0e53f8ecf3baaaa7e5ccbaa5ba3894
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNPermissions: 3635b407c15f2fe591bd2101c8f20aa0912caba8
+  RNPermissions: 8ca17fd6c822eea589fe84709d9426e05cc39c39
   RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
   RNShare: bd6518701db274b8ba282b33620885f2225a5bcf
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
-  RNZipArchive: ab51bc004a31657f34010254a9182014c6a81217
+  RNZipArchive: f06fe0dcfb9e2fa7437fc7f6c03d5400952f2d57
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 

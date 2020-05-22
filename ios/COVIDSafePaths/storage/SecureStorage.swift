@@ -24,6 +24,15 @@ class SecureStorage: NSObject {
     }
   }
   
+  func saveLocation(location: NSDictionary, source: Int, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    DispatchQueue(label: "realm").async {
+      autoreleasepool { [weak self] in
+        guard let `self` = self else { return }
+        self.secureStorage.saveLocation(location: location, source: source, resolve: resolve, reject: reject)
+      }
+    }
+  }
+  
   func importLocations(locations: NSArray, source: Int, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     DispatchQueue(label: "realm").async {
       autoreleasepool { [weak self] in

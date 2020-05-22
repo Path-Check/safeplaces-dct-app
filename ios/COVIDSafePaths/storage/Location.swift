@@ -14,7 +14,14 @@ class Location: Object {
   static let KEY_TIME = "time"
   static let KEY_LATITUDE = "latitude"
   static let KEY_LONGITUDE = "longitude"
+  static let KEY_HASHES = "hashes"
   static let KEY_SOURCE = "source"
+  static let KEY_ACCURACY = "accuracy"
+  static let KEY_ALTITUDE = "altitude"
+  static let KEY_ALTITUDE_ACCURACY = "altitudeAccuracy"
+  static let KEY_BEARING = "bearing"
+  static let KEY_HEADING = "heading"
+  static let KEY_SPEED = "speed"
   
   static let SOURCE_DEVICE = 0
   static let SOURCE_MIGRATION = 1
@@ -27,6 +34,7 @@ class Location: Object {
   dynamic var longitude: Double = 0
   dynamic var source: Int = -1
   dynamic var provider: String?
+  var hashes = List<String>()
   let altitude = RealmOptional<Double>()
   let speed = RealmOptional<Float>()
   let accuracy = RealmOptional<Float>()
@@ -41,7 +49,8 @@ class Location: Object {
     return [
       Location.KEY_TIME: time * 1000,
       Location.KEY_LATITUDE: latitude,
-      Location.KEY_LONGITUDE: longitude
+      Location.KEY_LONGITUDE: longitude,
+      Location.KEY_HASHES: hashes
     ]
   }
   
@@ -59,24 +68,37 @@ class Location: Object {
     return location;
   }
   
-  static func fromImportLocation(dictionary: NSDictionary?, source: Int) -> Location? {
-    guard let dictionary  = dictionary else { return nil }
-
+  static func parse(dictionary: NSDictionary, imported: Bool = false, source: Int) -> Location? {
     var parsedTime: Int?
     switch dictionary[KEY_TIME] {
     case let stringTime as String:
       if let doubleTime = Double(stringTime) {
-        parsedTime = Int(TimeInterval(doubleTime) / 1000)
+        var timeInterval = TimeInterval(doubleTime)
+        // previous import behavior devided 1000 off time
+        if imported {
+          timeInterval /= 1000
+        }
+        parsedTime = Int(timeInterval)
       }
     case let doubleTime as Double:
-      parsedTime = Int(TimeInterval(doubleTime) / 1000)
+      var timeInterval = TimeInterval(doubleTime)
+      if imported {
+        timeInterval /= 1000
+      }
+      parsedTime = Int(timeInterval)
     default:
       break
     }
 
     let parsedLatitude = dictionary[KEY_LATITUDE] as? Double
     let parsedLongitude = dictionary[KEY_LONGITUDE] as? Double
-
+    let parsedHashes = dictionary[KEY_HASHES] as? [String]
+    let parsedAccuracy = dictionary[KEY_ACCURACY] as? Float
+    let parsedAltitude = dictionary[KEY_ALTITUDE] as? Double
+    let parsedAltitudeAccuracy = dictionary[KEY_ALTITUDE_ACCURACY] as? Float
+    let parsedBearing = dictionary[KEY_BEARING] as? Float
+    let parsedSpeed = dictionary[KEY_SPEED] as? Float
+    
     if let time = parsedTime, let latitude = parsedLatitude, let longitude = parsedLongitude {
       if (latitude == 0.0 || longitude == 0.0) { return nil }
 
@@ -85,10 +107,23 @@ class Location: Object {
       location.latitude = latitude
       location.longitude = longitude
       location.source = source
+      location.accuracy.value = parsedAccuracy
+      location.altitude.value = parsedAltitude
+      location.speed.value = parsedSpeed
+      location.altitudeAccuracy.value = parsedAltitudeAccuracy
+      location.bearing.value = parsedBearing
+      if let hashes = parsedHashes {
+        location.hashes.append(objectsIn: hashes)
+      }
       return location
     } else {
       return nil
     }
+  }
+  
+  static func fromImportLocation(dictionary: NSDictionary?, source: Int) -> Location? {
+    guard let dictionary = dictionary else { return nil }
+    return parse(dictionary: dictionary, imported: true, source: source)
   }
   
   static func createAssumedLocation(time: Int, latitude: Double, longitude: Double) -> Location {

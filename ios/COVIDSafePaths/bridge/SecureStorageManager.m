@@ -26,4 +26,10 @@ RCT_EXTERN_METHOD(
                   resolve: (RCTPromiseResolveBlock)resolve
                   rejecter: (RCTPromiseRejectBlock)reject
 )
+
+RCT_EXTERN_METHOD(
+                  saveLocation: (NSDictionary)location
+                  resolve: (RCTPromiseResolveBlock)resolve
+                  rejecter: (RCTPromiseRejectBlock)reject
+)
 @end
