@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 
 import Colors from '../../../constants/colors';
 import languages from '../../../locales/languages';
@@ -17,25 +17,27 @@ function TabNavigation() {
   return (
     <>
       <StatusBar backgroundColor={Colors.BLUE_RIBBON} />
-      <TopBar.Navigator
-        tabBarOptions={{
-          activeTintColor: '#0059ff',
-          inactiveTintColor: '#000',
-          labelStyle: styles.label,
-        }}>
-        <TopBar.Screen
-          name={languages.t('navigation.news')}
-          component={NewsScreen}
-        />
-        <TopBar.Screen
-          name={languages.t('navigation.bulletins')}
-          component={BulletinsScreen}
-        />
-        <TopBar.Screen
-          name={languages.t('navigation.advices')}
-          component={AdviceScreen}
-        />
-      </TopBar.Navigator>
+      <SafeAreaView style={styles.safeArea}>
+        <TopBar.Navigator
+          tabBarOptions={{
+            activeTintColor: '#0059ff',
+            inactiveTintColor: '#000',
+            labelStyle: styles.label,
+          }}>
+          <TopBar.Screen
+            name={languages.t('navigation.news')}
+            component={NewsScreen}
+          />
+          <TopBar.Screen
+            name={languages.t('navigation.bulletins')}
+            component={BulletinsScreen}
+          />
+          <TopBar.Screen
+            name={languages.t('navigation.advices')}
+            component={AdviceScreen}
+          />
+        </TopBar.Navigator>
+      </SafeAreaView>
     </>
   );
 }
@@ -60,5 +62,8 @@ export default function NewsMainScreen() {
 const styles = StyleSheet.create({
   label: {
     fontSize: 12,
+  },
+  safeArea: {
+    flex: 1,
   },
 });
