@@ -38,6 +38,7 @@ jobs:
           CI: true
 
   unit-test-android-gps:
+    needs: unit-test
     runs-on: macOS-latest # macOS-latest is required, tests need HAXM emulator
     steps:
       - uses: actions/checkout@v2
@@ -66,6 +67,7 @@ jobs:
           working-directory: ./android
 
   unit-test-android-bte:
+    needs: unit-test
     runs-on: macOS-latest # macOS-latest is required, tests need HAXM emulator
     steps:
       - uses: actions/checkout@v2
