@@ -39,6 +39,7 @@ import { Theme } from '../constants/themes';
 import {
   GetStoreData,
   RemoveStoreData,
+  SetStoreData
 } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -245,6 +246,7 @@ class LocationTracking extends Component {
   }
 
   willParticipate = () => {
+    SetStoreData(PARTICIPATE, 'true');
     // Check and see if they actually authorized in the system dialog.
     // If not, stop services and set the state to !isLogging
     // Fixes tripleblindmarket/private-kit#129
