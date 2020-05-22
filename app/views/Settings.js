@@ -105,11 +105,12 @@ export const SettingsScreen = ({ navigation }) => {
           </NativePicker>
         </Section>
         <Section>
-          <Item
+          {/* Hiding choose provider option until next version */}
+          {/* <Item
             label={t('label.choose_provider_title')}
             description={t('label.choose_provider_subtitle')}
             onPress={() => navigation.navigate('ChooseProviderScreen')}
-          />
+          /> */}
           <Item
             label={t('label.latest_news')}
             description={t('label.news_subtitle')}
