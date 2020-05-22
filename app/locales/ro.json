@@ -96,5 +96,16 @@
     "paragraph_second": "Traseele sunt exportate ca o listă simplă ce conține latitudine, longitudine și timpi, fără nici o altă informație de natură personală.",
     "subtitle": "Locațiile vizitate pot fi trimise autoritaților medicale, pot fi salvate ca rezervă, sau pot fi împărțite cu terți.",
     "title": "Exportă istoricul locațiilor"
+  },
+  "navigation": {
+    "home": "Start",
+    "location_tracker": "Locație",
+    "report": "Raport",
+    "maps": "Hărți",
+    "hospitals_maps": "Spitale",
+    "laboratories_maps": "Laboratoare",
+    "news": "Știri",
+    "bulletins": "Buletine",
+    "advices": "Sfaturi"
   }
 }

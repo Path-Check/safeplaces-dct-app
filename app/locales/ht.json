@@ -135,5 +135,16 @@
     "push_notification_message": "Tanpri mete ajou aplikasyon ou an",
     "push_notification_title": "Aplikasyon an pa ajou",
     "update": "Mizajou"
+  },
+  "navigation": {
+    "home": "Lakay",
+    "location_tracker": "Kote",
+    "report": "Rapò",
+    "maps": "Kat",
+    "hospitals_maps": "Lopital yo",
+    "laboratories_maps": "Laboratwa",
+    "news": "Nouvèl",
+    "bulletins": "Bilten",
+    "advices": "Konsèy"
   }
 }

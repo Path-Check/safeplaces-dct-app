@@ -143,5 +143,16 @@
     "push_notification_message": "Prosím, aktualizuj si aplikáciu",
     "push_notification_title": "Aplikácia je neaktuálna",
     "update": "Aktualizovať"
+  },
+  "navigation": {
+    "home": "štart",
+    "location_tracker": "Umiestnenia",
+    "report": "Správa",
+    "maps": "Mapy",
+    "hospitals_maps": "Nemocnice",
+    "laboratories_maps": "Laboratória",
+    "news": "Správy",
+    "bulletins": "Bulletiny",
+    "advices": "Avíza"
   }
 }

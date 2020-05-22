@@ -4,6 +4,7 @@ import { Platform, StyleSheet } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import languages from './locales/languages';
 import HomeScreen from './views/DR/HomeScreen';
 import Maps from './views/DR/Maps';
 import NewsMainScreen from './views/DR/News';
@@ -22,7 +23,7 @@ function MainNavigation() {
         tabStyle: [styles.bottomTabLabel],
       }}>
       <Tab.Screen
-        name='Home'
+        name={languages.t('navigation.home')}
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
@@ -36,7 +37,7 @@ function MainNavigation() {
         }}
       />
       <Tab.Screen
-        name='Location'
+        name={languages.t('navigation.location_tracker')}
         component={LocationTracking}
         options={{
           tabBarIcon: ({ focused, color }) => (
@@ -50,7 +51,7 @@ function MainNavigation() {
         }}
       />
       <Tab.Screen
-        name='Report'
+        name={languages.t('navigation.report')}
         component={ReportScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
@@ -64,7 +65,7 @@ function MainNavigation() {
         }}
       />
       <Tab.Screen
-        name='Maps'
+        name={languages.t('navigation.maps')}
         component={Maps}
         options={{
           tabBarIcon: ({ focused, color }) => (
@@ -78,7 +79,7 @@ function MainNavigation() {
         }}
       />
       <Tab.Screen
-        name='News'
+        name={languages.t('navigation.news')}
         component={NewsMainScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (

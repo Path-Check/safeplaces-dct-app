@@ -79,5 +79,16 @@
     "paragraph_second": "如果您新冠病毒檢測結果為陽性，請您盡己所能分享您的位置歷史資訊給在地的疾病管制機構",
     "subtitle": "您的隱私資料可以被分享給疾病管制機構、背份、或者分享",
     "title": "分享位置歷史資訊"
+  },
+  "navigation": {
+    "home": "開始",
+    "location_tracker": "位置",
+    "report": "報告",
+    "maps": "地圖",
+    "hospitals_maps": "醫院",
+    "laboratories_maps": "化驗室",
+    "news": "新聞",
+    "bulletins": "公告欄",
+    "advices": "忠告"
   }
 }

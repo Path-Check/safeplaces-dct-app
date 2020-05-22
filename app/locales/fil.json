@@ -58,5 +58,16 @@
     "push_notification_message": "Mangyaring i-update ang iyong COVID Safe Paths Software.",
     "push_notification_title": "Ang aplikasyon ay luma na",
     "update": "I-update"
+  },
+  "navigation": {
+    "home": "Bahay",
+    "location_tracker": "Lokasyon",
+    "report": "Iulat",
+    "maps": "Mga Mapa",
+    "hospitals_maps": "Mga Ospital",
+    "laboratories_maps": "Mga Laboratories",
+    "news": "Balita",
+    "bulletins": "Mga bulletins",
+    "advices": "Mga payo"
   }
 }

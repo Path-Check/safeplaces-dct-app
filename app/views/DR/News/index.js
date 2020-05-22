@@ -4,6 +4,7 @@ import React from 'react';
 import { StatusBar, StyleSheet } from 'react-native';
 
 import Colors from '../../../constants/colors';
+import languages from '../../../locales/languages';
 import AdviceScreen from './Advices';
 import BulletinsScreen from './Bulletins';
 import Details from './Details';
@@ -22,9 +23,18 @@ function TabNavigation() {
           inactiveTintColor: '#000',
           labelStyle: styles.label,
         }}>
-        <TopBar.Screen name='Noticias' component={NewsScreen} />
-        <TopBar.Screen name='Boletines' component={BulletinsScreen} />
-        <TopBar.Screen name='Consejos' component={AdviceScreen} />
+        <TopBar.Screen
+          name={languages.t('navigation.news')}
+          component={NewsScreen}
+        />
+        <TopBar.Screen
+          name={languages.t('navigation.bulletins')}
+          component={BulletinsScreen}
+        />
+        <TopBar.Screen
+          name={languages.t('navigation.advices')}
+          component={AdviceScreen}
+        />
       </TopBar.Navigator>
     </>
   );

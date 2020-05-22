@@ -137,5 +137,16 @@
     "push_notification_message": "നിങ്ങളുടെ അപ്ലിക്കേഷൻ അപ്‌ഡേറ്റ് ചെയ്യുക",
     "push_notification_title": "അപ്ലിക്കേഷൻ കാലഹരണപ്പെട്ടതാണ്",
     "update": "അപ്ഡേറ്റ്"
+  },
+  "navigation": {
+    "home": "വീട്",
+    "location_tracker": "സ്ഥാനം",
+    "report": "റിപ്പോർട്ട് ചെയ്യുക",
+    "maps": "മാപ്‌സ്",
+    "hospitals_maps": "ആശുപത്രികൾ",
+    "laboratories_maps": "ലബോറട്ടറികൾ",
+    "news": "വാർത്ത",
+    "bulletins": "ബുള്ളറ്റിനുകൾ",
+    "advices": "ഉപദേശങ്ങൾ"
   }
 }
