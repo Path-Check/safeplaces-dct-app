@@ -1,4 +1,4 @@
-name: Staging iOS
+name: Staging iOS GPS
 
 # Deliberately turned off the pull request logic here
 # because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
@@ -7,7 +7,6 @@ on:
     branches:
       - develop
       - master
-      - release-candidate
 
 jobs:
   build_staging_ios:
@@ -63,7 +62,7 @@ jobs:
             ssh-keyscan github.com >> ~/.ssh/known_hosts
             ssh-agent -a $SSH_AUTH_SOCK > /dev/null
             ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
-      
+
       - name: Build iOS Staging artifact for devices
         uses: maierj/fastlane-action@v1.4.0
         env:
