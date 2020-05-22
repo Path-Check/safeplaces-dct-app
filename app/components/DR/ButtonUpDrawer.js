@@ -57,6 +57,7 @@ export default class BottomUpPanel extends Component {
       });
     });
     // Reset value once listener is registered to update depending animations
+    // eslint-disable-next-line no-underscore-dangle
     this.animatedPosition.setValue(this.animatedPosition._value);
   }
 

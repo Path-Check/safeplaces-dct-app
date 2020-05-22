@@ -8,7 +8,6 @@ import {
   ImageBackground,
   Linking,
   NativeModules,
-  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -31,7 +30,7 @@ import settingsIcon from './../assets/svgs/settingsIcon';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
 import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
-import { isPlatformAndroid, isPlatformiOS } from './../Util';
+import { isPlatformiOS } from './../Util';
 import { Button } from '../components/Button';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';

@@ -95,7 +95,7 @@ export const SettingsScreen = ({ navigation }) => {
             value={userLocale}
             onValueChange={localeChanged}>
             {(
-              { label, openPicker }, // Label is not working propperly
+              { openPicker }, // Label is not working propperly
             ) => (
               <Item
                 last

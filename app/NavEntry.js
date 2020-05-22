@@ -26,6 +26,7 @@ function MainNavigation() {
         name={languages.t('navigation.home')}
         component={HomeScreen}
         options={{
+          // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
               focused={focused}
@@ -40,6 +41,7 @@ function MainNavigation() {
         name={languages.t('navigation.location_tracker')}
         component={LocationTracking}
         options={{
+          // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
               focused={focused}
@@ -54,6 +56,7 @@ function MainNavigation() {
         name={languages.t('navigation.report')}
         component={ReportScreen}
         options={{
+          // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
               focused={focused}
@@ -68,6 +71,7 @@ function MainNavigation() {
         name={languages.t('navigation.maps')}
         component={Maps}
         options={{
+          // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
               focused={focused}
@@ -82,6 +86,7 @@ function MainNavigation() {
         name={languages.t('navigation.news')}
         component={NewsMainScreen}
         options={{
+          // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
               focused={focused}

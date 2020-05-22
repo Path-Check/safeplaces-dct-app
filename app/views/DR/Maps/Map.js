@@ -30,7 +30,7 @@ const longitudeDelta = 0.0081;
 const rdCoords = { latitude: 18.7009, longitude: -70.1655 };
 const { height } = Dimensions.get('window');
 
-export default function HospitalMap({ navigation, route: { name: type } }) {
+export default function HospitalMap({ route: { name: type } }) {
   const [hospitals, setHospitals] = useState([]);
   const [laboratories, setLaboratories] = useState([]);
   const [coordinates, setCoordinates] = useState(rdCoords);

@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 
-import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect, useReducer } from 'react';
 import { StatusBar } from 'react-native';
 import { MenuProvider } from 'react-native-popup-menu';
@@ -31,9 +30,7 @@ const App = () => {
       <FlagsProvider>
         <MenuProvider>
           <Theme use='default'>
-            <NavigationContainer>
-              <Entry />
-            </NavigationContainer>
+            <Entry />
           </Theme>
         </MenuProvider>
       </FlagsProvider>

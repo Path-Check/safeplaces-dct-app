@@ -12,12 +12,7 @@ import Colors from '../../../constants/colors';
 import styles from './style';
 
 export default function ReportScreen({ navigation }) {
-  const [
-    {
-      answers: { usage },
-    },
-    setGlobalState,
-  ] = useContext(context);
+  const [, setGlobalState] = useContext(context);
 
   const setSelectedOption = selected => {
     setGlobalState({
@@ -33,7 +28,7 @@ export default function ReportScreen({ navigation }) {
             title='Reporte'
             text='Las siguientes preguntas están relacionadas al COVID-19'
             navigation={navigation}
-            close={true}
+            close
             style={{ height: hp('18%') }}
           />
           <View style={styles.formContainer}>

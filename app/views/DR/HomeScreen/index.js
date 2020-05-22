@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 import {
   RefreshControl,
   ScrollView,
-  StatusBar,
   TouchableOpacity,
   View,
 } from 'react-native';

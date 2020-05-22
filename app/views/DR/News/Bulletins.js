@@ -7,7 +7,6 @@ import imgBulletins from '../../../assets/images/bulletins.jpg';
 import HeaderImage from '../../../components/DR/ActionCards/HeaderImage';
 import List from '../../../components/DR/ActionCards/List';
 import fetch from '../../../helpers/Fetch';
-import languages from '../../../locales/languages';
 
 const BULLETINS_URL = 'https://covid-dr.appspot.com/bulletins';
 
@@ -16,7 +15,7 @@ export default function BulletinsScreen({ navigation }) {
   const { t } = useTranslation();
 
   const handleBackPress = () => {
-    backToMain();
+    navigation.goBack();
     return true;
   };
 

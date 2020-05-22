@@ -1,3 +1,4 @@
+import { NavigationContainer } from '@react-navigation/native';
 import {
   CardStyleInterpolators,
   createStackNavigator,
@@ -5,9 +6,10 @@ import {
 import React, { Component } from 'react';
 
 import { GetStoreData } from './helpers/General';
-import NavEntry from './NavEntry';
+// import NavEntry from './NavEntry';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
+import HomeScreen from './views/DR/HomeScreen';
 import Report from './views/DR/ReportScreen/ReportScreenQuestions';
 import ResultsScreen from './views/DR/ReportScreen/Results';
 import UserInfo from './views/DR/UserInfoScreen/index';
@@ -44,113 +46,115 @@ class Entry extends Component {
 
   render() {
     return (
-      <Stack.Navigator
-        initialRouteName='InitialScreen'
-        screenOptions={{
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-          cardStyle: {
-            backgroundColor: 'transparent', // prevent white flash on Android
-          },
-        }}>
-        {this.state.initialRouteName === 'true' ? (
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName='InitialScreen'
+          screenOptions={{
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            cardStyle: {
+              backgroundColor: 'transparent', // prevent white flash on Android
+            },
+          }}>
+          {this.state.initialRouteName === 'true' ? (
+            <Stack.Screen
+              name='InitialScreen'
+              component={HomeScreen}
+              options={{ headerShown: false }}
+            />
+          ) : (
+            <Stack.Screen
+              name='InitialScreen'
+              component={Onboarding1}
+              options={{ headerShown: false }}
+            />
+          )}
           <Stack.Screen
-            name='InitialScreen'
-            component={NavEntry}
-            options={{ headerShown: false }}
-          />
-        ) : (
-          <Stack.Screen
-            name='InitialScreen'
+            name='Onboarding1'
             component={Onboarding1}
             options={{ headerShown: false }}
           />
-        )}
-        <Stack.Screen
-          name='Onboarding1'
-          component={Onboarding1}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='Onboarding2'
-          component={Onboarding2}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='Onboarding3'
-          component={Onboarding3}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='Onboarding4'
-          component={Onboarding4}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='Onboarding5'
-          component={Onboarding5}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='HomeScreen'
-          component={NavEntry}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='ExportScreen'
-          component={ExportScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='ImportScreen'
-          component={ImportScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='SettingsScreen'
-          component={SettingsScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='ChooseProviderScreen'
-          component={ChooseProviderScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='LicensesScreen'
-          component={LicensesScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='ExposureHistoryScreen'
-          component={ExposureHistoryScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='AboutScreen'
-          component={AboutScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='Report'
-          component={Report}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='Results'
-          component={ResultsScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='AuroraScreen'
-          component={AboutScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name='UserInfo'
-          component={UserInfo}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+          <Stack.Screen
+            name='Onboarding2'
+            component={Onboarding2}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Onboarding3'
+            component={Onboarding3}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Onboarding4'
+            component={Onboarding4}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Onboarding5'
+            component={Onboarding5}
+            options={{ headerShown: false }}
+          />
+          {/*<Stack.Screen*/}
+          {/*  name='HomeScreen'*/}
+          {/*  component={NavEntry}*/}
+          {/*  options={{ headerShown: false }}*/}
+          {/*/>*/}
+          <Stack.Screen
+            name='ExportScreen'
+            component={ExportScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ImportScreen'
+            component={ImportScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='SettingsScreen'
+            component={SettingsScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ChooseProviderScreen'
+            component={ChooseProviderScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='LicensesScreen'
+            component={LicensesScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ExposureHistoryScreen'
+            component={ExposureHistoryScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='AboutScreen'
+            component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Report'
+            component={Report}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Results'
+            component={ResultsScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='AuroraScreen'
+            component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='UserInfo'
+            component={UserInfo}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
 }
