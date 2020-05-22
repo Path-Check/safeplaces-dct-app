@@ -11,7 +11,7 @@ exports[`renders as off by default 1`] = `
   }
 >
   <RCTSwitch
-    accessibilityRole="switch"
+    accessibilityRole="button"
     onTintColor="#41dca4"
     style={
       Object {
@@ -38,7 +38,7 @@ exports[`renders on 1`] = `
   }
 >
   <RCTSwitch
-    accessibilityRole="switch"
+    accessibilityRole="button"
     onTintColor="#41dca4"
     style={
       Object {

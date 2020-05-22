@@ -94,10 +94,12 @@ export const SettingsScreen = ({ navigation }) => {
             items={LOCALE_LIST}
             value={userLocale}
             onValueChange={localeChanged}>
-            {({ label, openPicker }) => (
+            {(
+              { label, openPicker }, // Label is not working propperly
+            ) => (
               <Item
                 last
-                label={label || t('label.home_unknown_header')}
+                label={t('label.home_unknown_header')}
                 icon={languagesIcon}
                 onPress={openPicker}
               />
@@ -105,11 +107,12 @@ export const SettingsScreen = ({ navigation }) => {
           </NativePicker>
         </Section>
         <Section>
-          <Item
+          {/* Hiding choose provider option until next version */}
+          {/* <Item
             label={t('label.choose_provider_title')}
             description={t('label.choose_provider_subtitle')}
             onPress={() => navigation.navigate('ChooseProviderScreen')}
-          />
+          /> */}
           <Item
             label={t('label.latest_news')}
             description={t('label.news_subtitle')}

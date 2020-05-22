@@ -15,6 +15,7 @@ exports[`allows small override 1`] = `
     accessibilityRole="button"
     accessible={true}
     focusable={false}
+    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
@@ -71,6 +72,7 @@ exports[`changes color based on theme 1`] = `
     accessibilityRole="button"
     accessible={true}
     focusable={false}
+    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
@@ -113,6 +115,7 @@ exports[`changes color based on theme 1`] = `
     accessibilityRole="button"
     accessible={true}
     focusable={false}
+    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
@@ -155,6 +158,7 @@ exports[`changes color based on theme 1`] = `
     accessibilityRole="button"
     accessible={true}
     focusable={false}
+    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
@@ -210,6 +214,7 @@ exports[`renders a violet 72px button on default theme 1`] = `
     accessibilityRole="button"
     accessible={true}
     focusable={false}
+    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
@@ -265,6 +270,7 @@ exports[`renders an icon and space-between if supplied 1`] = `
     accessibilityRole="button"
     accessible={true}
     focusable={false}
+    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",
@@ -328,6 +334,7 @@ exports[`renders different color for secondary 1`] = `
     accessibilityRole="button"
     accessible={true}
     focusable={false}
+    isTVSelectable={true}
     style={
       Object {
         "alignContent": "center",

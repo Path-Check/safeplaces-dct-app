@@ -13,6 +13,8 @@ import Header from '../../../components/DR/Header/index';
 import styles from '../../../components/DR/Header/style';
 import context from '../../../components/DR/Reduces/context';
 import Colors from '../../../constants/colors';
+import { COVID_ID } from '../../../constants/storage';
+import { SetStoreData } from '../../../helpers/General';
 import StepAdress from './sections/SetpAdress';
 import StepAge from './sections/StepAge';
 import StepCovidContact from './sections/StepCovidContact';
@@ -199,7 +201,7 @@ export default function ReportScreenQuestions({ navigation }) {
           onPress={async () => {
             if (isLastStep) {
               const { covidId } = await sendDataToApi();
-              console.log('ELCOVID', covidId);
+              SetStoreData(COVID_ID, covidId);
               navigation.navigate('Results');
             }
             if (data === 'Tengo al menos uno de estos síntomas') {
