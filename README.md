@@ -103,26 +103,27 @@ dev_setup.bat
 
 #### Android (Windows, Linux, macOS)
 
-run the application:
 ```
 yarn run-android-gps ## for the location enabled app
+
 yarn run-android-bte ## for the bluetooth enabled app
-```
 ```
 
 Device storage can be cleared by long-pressing on the app icon in the simulator, clicking "App info", then "Storage", and lastly, "Clear Storage".
 
 #### iOS (macOS only)
 
-Install the pod files:
+First, install the pod files:
 
 ```
 yarn install:pod ## only needs to be ran once
 ```
 
-run the application:
+Then, run the application:
+
 ```
 yarn run-ios-gps ## for the location enabled app
+
 yarn run-ios-bte ## for the bluetooth enabled app
 ```
 
