@@ -5,6 +5,7 @@ import {
 } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
 
+import { ONBOARDING_DONE } from './constants/storage';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
@@ -32,8 +33,9 @@ export const Entry = () => {
 
   useEffect(() => {
     async function checkDone() {
-      const flag = await GetStoreData('ONBOARDING_DONE');
-      setOnboardingDone(flag === 'true');
+      /** @type {boolean | undefined | null} */
+      const flag = await GetStoreData(ONBOARDING_DONE, false /* isString */);
+      setOnboardingDone(!!flag);
     }
 
     checkDone();
