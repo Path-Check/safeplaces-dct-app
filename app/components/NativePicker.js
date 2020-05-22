@@ -50,7 +50,7 @@ export default class NativePicker extends Component {
     this.props.onValueChange(selectedLang);
   };
 
-  languageSelected = () => {
+  componentDidMount() {
     const selectedItem = this.props.items.find(
       i => i.value === this.props.value,
     );
@@ -58,10 +58,6 @@ export default class NativePicker extends Component {
     const value = selectedItem?.value;
 
     this.setState({ value, label, selectedLang: this.props.value });
-  };
-
-  componentDidMount() {
-    this.languageSelected();
   }
 
   render() {
