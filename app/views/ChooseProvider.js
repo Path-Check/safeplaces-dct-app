@@ -55,13 +55,6 @@ class ChooseProviderScreen extends Component {
     return true;
   };
 
-  onMenuClick = () => {
-    this.setState({
-      displayUrlEntry: 'flex',
-      urlEntryInProgress: true,
-    });
-  };
-
   async componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     await this.fetchAuthoritiesList(this.state.isAuthorityFilterActive);
@@ -360,7 +353,12 @@ class ChooseProviderScreen extends Component {
               }
               addAuthorityToState={this.addAuthorityToState}
               filterAuthoritesByGPSHistory={this.filterAuthoritesByGPSHistory}
-              onMenuClick={this.onMenuClick}
+              onMenuClick={() => {
+                this.setState({
+                  displayUrlEntry: 'flex',
+                  urlEntryInProgress: true,
+                });
+              }}
             />
           </MenuOptions>
         </Menu>

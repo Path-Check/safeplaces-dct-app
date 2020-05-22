@@ -1,11 +1,11 @@
 import findIndex from 'lodash/findIndex';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, Switch, TouchableOpacity } from 'react-native';
 import { MenuOption } from 'react-native-popup-menu';
 
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-import languages from '../locales/languages';
 
 export const TrustedSourceList = ({
   selectedAuthorities,
@@ -16,9 +16,14 @@ export const TrustedSourceList = ({
   filterAuthoritesByGPSHistory,
   onMenuClick,
 }) => {
-  const isAuthoritySelected = name => {
+  const { t } = useTranslation();
+  const isAuthoritySelected = item => {
+    let name = Object.keys(item)[0];
     return findIndex(selectedAuthorities, ['key', name]) < 0;
   };
+  const availableAuthorities = authoritiesList.filter(item =>
+    isAuthoritySelected(item),
+  );
 
   return (
     <>
@@ -27,7 +32,7 @@ export const TrustedSourceList = ({
           style={styles.authorityFilter}
           onPress={() => toggleFilterAuthoritesByGPSHistory()}>
           <Typography style={styles.authorityFilterText} use={'body2'}>
-            {languages.t('label.filter_authorities_by_gps_history')}
+            {t('label.filter_authorities_by_gps_history')}
           </Typography>
           <Switch
             onValueChange={val => filterAuthoritesByGPSHistory({ val })}
@@ -35,33 +40,27 @@ export const TrustedSourceList = ({
           />
         </TouchableOpacity>
       )}
-      {authoritiesList === undefined
-        ? null
-        : authoritiesList.map(item => {
-            let name = Object.keys(item)[0];
-            let key = authoritiesList.indexOf(item);
+      {availableAuthorities &&
+        availableAuthorities.map(item => {
+          let name = Object.keys(item)[0];
+          let key = authoritiesList.indexOf(item);
 
-            return (
-              isAuthoritySelected(name) && (
-                <MenuOption
-                  key={key}
-                  onSelect={() => {
-                    addAuthorityToState(name);
-                  }}
-                  disabled={authoritiesList.length === 1}>
-                  <Typography style={styles.menuOptionText} use={'body2'}>
-                    {name}
-                  </Typography>
-                </MenuOption>
-              )
-            );
-          })}
-      <MenuOption
-        onSelect={() => {
-          () => onMenuClick();
-        }}>
+          return (
+            <MenuOption
+              key={key}
+              onSelect={() => {
+                addAuthorityToState(name);
+              }}
+              disabled={authoritiesList.length === 1}>
+              <Typography style={styles.menuOptionText} use={'body2'}>
+                {name}
+              </Typography>
+            </MenuOption>
+          );
+        })}
+      <MenuOption onSelect={onMenuClick}>
         <Typography style={styles.menuOptionText} use={'body2'}>
-          {languages.t('label.authorities_add_url')}
+          {t('label.authorities_add_url')}
         </Typography>
       </MenuOption>
     </>
