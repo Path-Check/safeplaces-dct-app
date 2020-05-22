@@ -10,7 +10,7 @@ class COVIDSafePathsConfig(reactContext: ReactApplicationContext) : ReactContext
         return "COVIDSafePathsConfig"
     }
 
-    @ReactMethod
+    @ReactMethod(isBlockingSynchronousMethod = true)
     fun getTracingStrategy(): String {
         if (BuildConfig.APPLICATION_ID == "org.pathcheck.covidsafepaths") {
             return "gps"
