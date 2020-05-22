@@ -16,7 +16,7 @@ import {
 } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
-import { MainNavigate } from './views/Main';
+import { Main } from './views/Main';
 import NewsScreen from './views/News';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
@@ -31,21 +31,22 @@ class Entry extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      initialRouteName: '',
+      onboardingDone: '',
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     GetStoreData('ONBOARDING_DONE')
       .then(onboardingDone => {
         this.setState({
-          initialRouteName: onboardingDone,
+          onboardingDone: onboardingDone,
         });
       })
       .catch(error => console.log(error));
   }
 
   render() {
+    const { onboardingDone } = this.state;
     return (
       <NavigationContainer>
         <Stack.Navigator
@@ -55,94 +56,35 @@ class Entry extends Component {
             cardStyle: {
               backgroundColor: 'transparent', // prevent white flash on Android
             },
+            headerShown: false,
           }}>
-          {this.state.initialRouteName === 'true' ? (
-            <Stack.Screen
-              name='InitialScreen'
-              component={MainNavigate}
-              options={{ headerShown: false }}
-            />
-          ) : (
-            <Stack.Screen
-              name='InitialScreen'
-              component={Onboarding1}
-              options={{ headerShown: false }}
-            />
-          )}
           <Stack.Screen
-            name='Onboarding1'
-            component={Onboarding1}
-            options={{ headerShown: false }}
+            name='InitialScreen'
+            component={onboardingDone === 'true' ? Main : Onboarding1}
           />
-          <Stack.Screen
-            name='Onboarding2'
-            component={Onboarding2}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='Onboarding3'
-            component={Onboarding3}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='Onboarding4'
-            component={Onboarding4}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='Onboarding5'
-            component={Onboarding5}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='Main'
-            component={MainNavigate}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='NewsScreen'
-            component={NewsScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='ExportScreen'
-            component={ExportScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='ImportScreen'
-            component={ImportScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='SettingsScreen'
-            component={SettingsScreen}
-            options={{ headerShown: false }}
-          />
+          <Stack.Screen name='Onboarding1' component={Onboarding1} />
+          <Stack.Screen name='Onboarding2' component={Onboarding2} />
+          <Stack.Screen name='Onboarding3' component={Onboarding3} />
+          <Stack.Screen name='Onboarding4' component={Onboarding4} />
+          <Stack.Screen name='Onboarding5' component={Onboarding5} />
+          <Stack.Screen name='Main' component={Main} />
+          <Stack.Screen name='NewsScreen' component={NewsScreen} />
+          <Stack.Screen name='ExportScreen' component={ExportScreen} />
+          <Stack.Screen name='ImportScreen' component={ImportScreen} />
+          <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
           <Stack.Screen
             name='ChooseProviderScreen'
             component={ChooseProviderScreen}
-            options={{ headerShown: false }}
           />
-          <Stack.Screen
-            name='LicensesScreen'
-            component={LicensesScreen}
-            options={{ headerShown: false }}
-          />
+          <Stack.Screen name='LicensesScreen' component={LicensesScreen} />
           <Stack.Screen
             name='ExposureHistoryScreen'
             component={ExposureHistoryScreen}
-            options={{ headerShown: false }}
           />
-          <Stack.Screen
-            name='AboutScreen'
-            component={AboutScreen}
-            options={{ headerShown: false }}
-          />
+          <Stack.Screen name='AboutScreen' component={AboutScreen} />
           <Stack.Screen
             name={FEATURE_FLAG_SCREEN_NAME}
             component={FeatureFlagsScreen}
-            options={{ headerShown: false }}
           />
         </Stack.Navigator>
       </NavigationContainer>
