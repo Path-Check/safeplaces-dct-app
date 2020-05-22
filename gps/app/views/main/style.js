@@ -56,6 +56,7 @@ export const styles = StyleSheet.create({
     top: '-13%',
     left: 0,
     right: 0,
+    justifyContent: 'center',
     alignItems: 'center',
   },
   mainTextAbove: {
