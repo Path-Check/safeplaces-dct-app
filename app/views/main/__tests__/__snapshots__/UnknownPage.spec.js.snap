@@ -1,0 +1,316 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unknown permissions matches snapshot 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityIgnoresInvertColors={true}
+    style={
+      Object {
+        "flex": 1,
+        "height": "100%",
+        "justifyContent": "flex-end",
+        "resizeMode": "cover",
+        "width": "100%",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../app/assets/images/launchScreenBackground.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": "100%",
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "height": "100%",
+          "left": 0,
+          "position": "absolute",
+          "resizeMode": "contain",
+          "right": 0,
+          "top": "-13%",
+        }
+      }
+    >
+      <SvgXml
+        height={1334}
+        width={1334}
+        xml="<svg width=\\"850\\" height=\\"850\\" viewBox=\\"0 0 850 850\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+  <defs>
+    <linearGradient x1=\\"100%\\" y1=\\"50%\\" x2=\\"2.20122466%\\" y2=\\"50%\\" id=\\"linearGradient-1\\">
+        <stop stop-color=\\"#DBDBDB\\" offset=\\"0%\\"></stop>
+        <stop stop-color=\\"#B7B7B7\\" offset=\\"100%\\"></stop>
+    </linearGradient>
+  </defs>
+  <g id=\\"Page-1\\" stroke=\\"none\\" stroke-width=\\"1\\" fill=\\"none\\" fill-rule=\\"evenodd\\">
+  <g id=\\"No-Data-Match\\">
+      <circle id=\\"Oval\\" stroke=\\"#FFFFFF\\" opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"85.5\\"></circle>
+      <circle id=\\"Oval\\" stroke=\\"#FFFFFF\\" opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"149.5\\"></circle>
+      <circle id=\\"Oval\\" stroke=\\"#FFFFFF\\" opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"217.5\\"></circle>
+      <circle id=\\"Oval\\" stroke=\\"#FFFFFF\\" opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"283.5\\"></circle>
+      <circle id=\\"Oval\\" stroke=\\"#FFFFFF\\" opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"352.5\\"></circle>
+      <circle id=\\"Oval\\" stroke=\\"#FFFFFF\\" opacity=\\"0.2\\" cx=\\"425\\" cy=\\"425\\" r=\\"424.5\\"></circle>
+      <path d=\\"M425,465 C447.091,465 465,447.091 465,425 C465,402.909 447.091,385 425,385 C402.909,385 385,402.909 385,425 C385,447.091 402.909,465 425,465 Z\\" id=\\"Path\\" fill=\\"#FFFFFF\\" fill-rule=\\"nonzero\\"></path>
+      <path d=\\"M425,457 C442.673,457 457,442.673 457,425 C457,407.327 442.673,393 425,393 C407.327,393 393,407.327 393,425 C393,442.673 407.327,457 425,457 Z\\" id=\\"Path\\" fill=\\"url(#linearGradient-1)\\" fill-rule=\\"nonzero\\"></path>
+      <circle id=\\"Oval\\" stroke=\\"#FFFFFF\\" stroke-width=\\"3\\" cx=\\"425\\" cy=\\"425\\" r=\\"12\\"></circle>
+  </g>
+  </g>
+</svg>"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "height": "100%",
+          "left": 0,
+          "paddingBottom": 12,
+          "paddingHorizontal": "12%",
+          "position": "absolute",
+          "right": 0,
+          "top": "-10%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "flex-end",
+            "paddingBottom": 40,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFF",
+              "fontFamily": "IBMPlexSans-Medium",
+              "fontSize": 28,
+              "fontWeight": "normal",
+              "lineHeight": 34,
+              "marginBottom": 24,
+              "textAlign": "center",
+              "writingDirection": "ltr",
+            }
+          }
+          use="body1"
+        />
+        <Text
+          style={
+            Object {
+              "color": "#FFF",
+              "fontFamily": "IBMPlexSans-Light",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "lineHeight": 24.5,
+              "marginBottom": 24,
+              "textAlign": "center",
+              "writingDirection": "ltr",
+            }
+          }
+          use="body1"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "flex-start",
+            "paddingTop": 80,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFF",
+              "fontFamily": "IBMPlexSans-Medium",
+              "fontSize": 26,
+              "lineHeight": 34,
+              "marginBottom": 24,
+              "textAlign": "center",
+            }
+          }
+        >
+          Unknown
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#FFF",
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 18,
+              "fontWeight": "normal",
+              "lineHeight": 24.5,
+              "marginBottom": 24,
+              "textAlign": "center",
+              "writingDirection": "ltr",
+            }
+          }
+          use="body1"
+        >
+          label.home_unknown_subtext
+        </Text>
+        <View
+          style={
+            Object {
+              "height": 54,
+              "marginTop": 24,
+            }
+          }
+        >
+          <View
+            accessibilityLabel="Enable Location Data"
+            accessibilityRole="button"
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "backgroundColor": "#FFF",
+                "borderBottomLeftRadius": 8,
+                "borderBottomRightRadius": 8,
+                "borderColor": "transparent",
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 8,
+                "borderTopRightRadius": 8,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "height": 54,
+                "justifyContent": "center",
+                "marginTop": 24,
+                "opacity": 1,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#4051DB",
+                  "fontFamily": "IBMPlexSans-Medium",
+                  "fontSize": 20,
+                  "fontWeight": "normal",
+                  "lineHeight": 40,
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              Enable Location Data
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View>
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignContent": "flex-end",
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "padding": 20,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#E5E4E6",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 18,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "textAlign": "left",
+                "writingDirection": "ltr",
+              }
+            }
+            testID="MayoLinkHeading"
+            use="body1"
+          >
+            More COVID-19 information
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#E5E4E6",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 18,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "textAlign": "left",
+                "writingDirection": "ltr",
+              }
+            }
+            testID="MayoLinkLabel"
+            use="body1"
+          >
+            from the Mayo Clinic
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignSelf": "center",
+              "paddingLeft": 20,
+              "paddingRight": 20,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../app/assets/images/foreArrow.png",
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

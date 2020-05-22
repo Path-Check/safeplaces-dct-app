@@ -4,21 +4,21 @@ on:
   push:
     branches: [develop]
     paths:
-      - gps/app/locales/en.json
-      - gps/app/locales/eula/en.html
-      - gps/ios/en.lproj/*.strings
-      - gps/android/app/src/main/res/values/strings.xml
+      - app/locales/en.json
+      - app/locales/eula/en.html
+      - ios/en.lproj/*.strings
+      - android/app/src/main/res/values/strings.xml
       - .github/workflows/*.yml
-      - gps/app/locales/*.sh
+      - app/locales/*.sh
   pull_request:
     branches: [develop]
     paths:
-      - gps/app/locales/en.json
-      - gps/app/locales/eula/en.html
-      - gps/ios/en.lproj/*.strings
-      - gps/android/app/src/main/res/values/strings.xml
+      - app/locales/en.json
+      - app/locales/eula/en.html
+      - ios/en.lproj/*.strings
+      - android/app/src/main/res/values/strings.xml
       - .github/workflows/*.yml
-      - gps/app/locales/*.sh
+      - app/locales/*.sh
 
 jobs:
   # Only run on a final merge into develop, uploads all changed keys to Lokalised
@@ -34,7 +34,7 @@ jobs:
         env:
           LOKALISE_TOKEN: ${{ secrets.LOKALISE_TOKEN }}
 
-  # Run on PRs, checks for any added keys that are missing in the gps/app/locales/en.json file
+  # Run on PRs, checks for any added keys that are missing in the app/locales/en.json file
   check-i18n:
     runs-on: ubuntu-latest
     steps:
