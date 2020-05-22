@@ -3,7 +3,7 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from '@react-navigation/stack';
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
@@ -27,69 +27,58 @@ import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();
 
-class Entry extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      onboardingDone: '',
-    };
-  }
+export const Entry = () => {
+  const [onboardingDone, setOnboardingDone] = useState(false);
 
-  async componentDidMount() {
-    GetStoreData('ONBOARDING_DONE')
-      .then(onboardingDone => {
-        this.setState({
-          onboardingDone: onboardingDone,
-        });
-      })
-      .catch(error => console.log(error));
-  }
+  useEffect(() => {
+    async function checkDone() {
+      const flag = await GetStoreData('ONBOARDING_DONE');
+      setOnboardingDone(flag === 'true');
+    }
 
-  render() {
-    const { onboardingDone } = this.state;
-    return (
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName='InitialScreen'
-          screenOptions={{
-            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-            cardStyle: {
-              backgroundColor: 'transparent', // prevent white flash on Android
-            },
-            headerShown: false,
-          }}>
-          <Stack.Screen
-            name='InitialScreen'
-            component={onboardingDone === 'true' ? Main : Onboarding1}
-          />
-          <Stack.Screen name='Onboarding1' component={Onboarding1} />
-          <Stack.Screen name='Onboarding2' component={Onboarding2} />
-          <Stack.Screen name='Onboarding3' component={Onboarding3} />
-          <Stack.Screen name='Onboarding4' component={Onboarding4} />
-          <Stack.Screen name='Onboarding5' component={Onboarding5} />
-          <Stack.Screen name='Main' component={Main} />
-          <Stack.Screen name='NewsScreen' component={NewsScreen} />
-          <Stack.Screen name='ExportScreen' component={ExportScreen} />
-          <Stack.Screen name='ImportScreen' component={ImportScreen} />
-          <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
-          <Stack.Screen
-            name='ChooseProviderScreen'
-            component={ChooseProviderScreen}
-          />
-          <Stack.Screen name='LicensesScreen' component={LicensesScreen} />
-          <Stack.Screen
-            name='ExposureHistoryScreen'
-            component={ExposureHistoryScreen}
-          />
-          <Stack.Screen name='AboutScreen' component={AboutScreen} />
-          <Stack.Screen
-            name={FEATURE_FLAG_SCREEN_NAME}
-            component={FeatureFlagsScreen}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
-}
+    checkDone();
+  }, []);
 
-export default Entry;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName='InitialScreen'
+        screenOptions={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          cardStyle: {
+            backgroundColor: 'transparent', // prevent white flash on Android
+          },
+          headerShown: false,
+        }}>
+        <Stack.Screen
+          name='InitialScreen'
+          component={onboardingDone ? Main : Onboarding1}
+        />
+        <Stack.Screen name='Onboarding1' component={Onboarding1} />
+        <Stack.Screen name='Onboarding2' component={Onboarding2} />
+        <Stack.Screen name='Onboarding3' component={Onboarding3} />
+        <Stack.Screen name='Onboarding4' component={Onboarding4} />
+        <Stack.Screen name='Onboarding5' component={Onboarding5} />
+        <Stack.Screen name='Main' component={Main} />
+        <Stack.Screen name='NewsScreen' component={NewsScreen} />
+        <Stack.Screen name='ExportScreen' component={ExportScreen} />
+        <Stack.Screen name='ImportScreen' component={ImportScreen} />
+        <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
+        <Stack.Screen
+          name='ChooseProviderScreen'
+          component={ChooseProviderScreen}
+        />
+        <Stack.Screen name='LicensesScreen' component={LicensesScreen} />
+        <Stack.Screen
+          name='ExposureHistoryScreen'
+          component={ExposureHistoryScreen}
+        />
+        <Stack.Screen name='AboutScreen' component={AboutScreen} />
+        <Stack.Screen
+          name={FEATURE_FLAG_SCREEN_NAME}
+          component={FeatureFlagsScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
