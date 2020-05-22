@@ -116,8 +116,8 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('NewsScreen')}
           />
           <Item
-            label='Boletines'
-            description='Read about the latest COVID Bulletins updates from your health authority.'
+            label={t('label.bulletin_title')}
+            description={t('label.bulletin_description')}
             onPress={() => navigation.navigate('BulletinsScreen')}
           />
           <Item

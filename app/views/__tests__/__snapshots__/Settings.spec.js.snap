@@ -46,6 +46,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
       <View
         accessible={true}
         focusable={true}
+        isTVSelectable={true}
         style={
           Object {
             "alignItems": "center",
@@ -107,6 +108,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -169,6 +171,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -350,6 +353,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -415,6 +419,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -480,6 +485,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -514,7 +520,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Boletines
+                Bulletins
               </Text>
               <Text
                 secondary={true}
@@ -530,7 +536,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body3"
               >
-                Read about the latest COVID Bulletins updates from your health authority.
+                Read about the latest COVID bulletins updates from your health authority.
               </Text>
             </View>
           </View>
@@ -545,6 +551,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -610,6 +617,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -675,6 +683,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -740,6 +749,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -805,6 +815,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -964,6 +975,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             accessibilityRole="button"
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignContent": "center",
@@ -1069,6 +1081,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1118,6 +1131,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1167,6 +1181,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1266,6 +1281,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
       <View
         accessible={true}
         focusable={true}
+        isTVSelectable={true}
         style={
           Object {
             "alignItems": "center",
@@ -1327,6 +1343,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1389,6 +1406,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1570,6 +1588,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1635,6 +1654,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1700,6 +1720,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1734,7 +1755,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Boletines
+                Bulletins
               </Text>
               <Text
                 secondary={true}
@@ -1750,7 +1771,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body3"
               >
-                Read about the latest COVID Bulletins updates from your health authority.
+                Read about the latest COVID bulletins updates from your health authority.
               </Text>
             </View>
           </View>
@@ -1765,6 +1786,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1830,6 +1852,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1895,6 +1918,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -1960,6 +1984,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -2025,6 +2050,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -2120,6 +2146,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -2169,6 +2196,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
@@ -2218,6 +2246,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           <View
             accessible={true}
             focusable={true}
+            isTVSelectable={true}
             style={
               Object {
                 "alignItems": "center",
