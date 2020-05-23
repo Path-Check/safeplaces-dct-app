@@ -359,20 +359,28 @@ class ChooseProviderScreen extends Component {
                       let name = Object.keys(item)[0];
                       let key = this.state.authoritiesList.indexOf(item);
 
-                      return (
-                        <MenuOption
-                          key={key}
-                          onSelect={() => {
-                            this.addAuthorityToState(name);
-                          }}
-                          disabled={this.state.authoritiesList.length === 1}>
-                          <Typography
-                            style={styles.menuOptionText}
-                            use={'body2'}>
-                            {name}
-                          </Typography>
-                        </MenuOption>
-                      );
+                      if (
+                        this.state.selectedAuthorities.findIndex(
+                          x => x.key === name,
+                        ) === -1
+                      ) {
+                        return (
+                          <MenuOption
+                            key={key}
+                            onSelect={() => {
+                              this.addAuthorityToState(name);
+                            }}
+                            disabled={this.state.authoritiesList.length === 1}>
+                            <Typography
+                              style={styles.menuOptionText}
+                              use={'body2'}>
+                              {name}
+                            </Typography>
+                          </MenuOption>
+                        );
+                      } else {
+                        return null;
+                      }
                     })}
                 <MenuOption
                   onSelect={() => {
