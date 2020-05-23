@@ -25,13 +25,14 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { Theme } from '../constants/themes';
+import { GetStoreData } from '../helpers/General';
 
 const base64 = RNFetchBlob.base64;
 
 export const ExportScreen = ({ navigation }) => {
   const [showConfirmationAlert, setShowingConfirmationText] = useState(false);
-
   const { t } = useTranslation();
+
   function handleBackPress() {
     navigation.goBack();
     return true;
@@ -43,7 +44,10 @@ export const ExportScreen = ({ navigation }) => {
     };
   });
 
-  function showAlert() {
+  async function showAlert() {
+    const DEVICE_ID = await GetStoreData('DEVICE_ID');
+    console.log('[DEVICE_ID]', DEVICE_ID);
+
     setShowingConfirmationText(true);
   }
 
