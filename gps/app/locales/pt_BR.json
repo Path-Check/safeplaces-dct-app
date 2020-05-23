@@ -144,7 +144,9 @@
     "paragraph_first": "Se você testar positivo para COVID-19, por favor, faça sua parte compartilhando seu histórico de localização com as autoridades locais.",
     "paragraph_second": "A localização é compartilhada como uma lista simples de horários e lugares, sem informações adicionais.",
     "subtitle": "Seus dados privados podem ser transferidos para autoridades de saúde, salvos em backup, ou compartilhados.",
-    "title": "Compartilhar histórico de localização"
+    "title": "Compartilhar histórico de localização",
+    "alertTitle" : "Por favor, só envie o seu histórico de localização se:",
+    "alertFirstItem": "- Você testou positivo para COVID-19"
   },
   "version_update": {
     "alert_label": "COVID Safe Paths está desatualizado",

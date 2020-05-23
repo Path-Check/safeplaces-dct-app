@@ -8,6 +8,8 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
+  Text,
+  TouchableHighlight,
   View,
 } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
@@ -16,11 +18,11 @@ import LinearGradient from 'react-native-linear-gradient';
 // import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import close from '../../../shared/assets/svgs/close';
+// import close from '../../../shared/assets/svgs/close';
 import exportIcon from '../../../shared/assets/svgs/export';
 import { isPlatformiOS } from './../Util';
 import { Button } from '../components/Button';
-import { IconButton } from '../components/IconButton';
+// import { IconButton } from '../components/IconButton';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -55,9 +57,9 @@ export const ExportScreen = ({ navigation }) => {
     setShowingConfirmationText(false);
   }
 
-  function backToMain() {
-    navigation.goBack();
-  }
+  // function backToMain() {
+  //   navigation.goBack();
+  // }
 
   async function onShare() {
     try {
@@ -137,15 +139,6 @@ export const ExportScreen = ({ navigation }) => {
           end={{ x: 0, y: 1 }}
           colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
           style={{ flex: 1, height: '100%' }}>
-          <View style={styles.headerContainer}>
-            <IconButton
-              icon={close}
-              size={18}
-              onPress={() => backToMain()}
-              accessibilityLabel='Close'
-            />
-          </View>
-
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.main}>
               <Typography use='headline2' style={styles.exportSectionTitles}>
@@ -168,21 +161,9 @@ export const ExportScreen = ({ navigation }) => {
               <AwesomeAlert
                 show={showConfirmationAlert}
                 showProgress={false}
-                title='Por favor, só envie o seu histórico de localização, se:'
-                message='- Você testou positivo para COVID-19\n- Você está algum dos seguintes sintomas:'
-                closeOnTouchOutside={false}
-                closeOnHardwareBackPress={false}
-                showCancelButton
-                showConfirmButton
-                cancelText='cancelar'
-                confirmText='enviar'
+                customView={AlertView()}
                 confirmButtonColor='#DD6B55'
-                onCancelPressed={() => {
-                  hideAlert();
-                }}
-                onConfirmPressed={() => {
-                  hideAlert();
-                }}
+                onDismiss={hideAlert}
               />
             </View>
           </ScrollView>
@@ -191,9 +172,69 @@ export const ExportScreen = ({ navigation }) => {
     </Theme>
   );
 };
+function AlertView() {
+  const { t } = useTranslation();
+
+  return (
+    <View style={styles.alertBox}>
+      <Text style={styles.alertTitle}>{t('share.alertTitle')}</Text>
+
+      <Text style={styles.alertItems}>{t('share.alertFirstItem')}</Text>
+
+      {/* <Button
+        title="Enviar"
+        color={Colors.VIOLET_BUTTON}
+        style={styles.sendButton}
+        // onPress={sendLocalizations}
+      /> */}
+
+      <TouchableHighlight
+        style={styles.sendButton}
+        // onPress={sendLocalizations}
+        underlayColor='#fff'>
+        <Text style={styles.sendButtonText}>Enviar</Text>
+      </TouchableHighlight>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   // Container covers the entire screen
+  alertBox: {
+    // width: '100%'
+  },
+
+  alertTitle: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'normal',
+    fontFamily: fontFamily.primaryMedium,
+    marginBottom: 15,
+    color: Colors.MONO_DARK,
+  },
+
+  alertItems: {
+    textAlign: 'center',
+    fontSize: 17,
+    fontWeight: 'normal',
+    fontFamily: fontFamily.primaryMedium,
+    marginBottom: 15,
+    color: Colors.MONO_DARK,
+  },
+
+  sendButton: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: Colors.VIOLET_BUTTON,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: Colors.WHITE,
+  },
+  sendButtonText: {
+    color: Colors.WHITE,
+    textAlign: 'center',
+  },
+
   topSafeAreaContainer: {
     flex: 0,
     backgroundColor: Colors.VIOLET_BUTTON,
@@ -202,13 +243,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.VIOLET_BUTTON_DARK,
   },
-  headerContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: 55,
-    justifyContent: 'flex-end',
-    paddingHorizontal: 26,
-  },
+  // headerContainer: {
+  //   alignItems: 'center',
+  //   flexDirection: 'row',
+  //   height: 55,
+  //   justifyContent: 'flex-end',
+  //   paddingHorizontal: 26,
+  // },
   contentContainer: {
     flexDirection: 'column',
     width: '100%',
