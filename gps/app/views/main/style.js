@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 24,
-    height: 54, // fixes overlaying buttons on really small screens
+    // height: 54, // fixes overlaying buttons on really small screens
   },
   pulseContainer: {
     position: 'absolute',

@@ -7808,6 +7808,13 @@ react-native-app-intro-slider@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-native-app-intro-slider/-/react-native-app-intro-slider-3.0.0.tgz#c3620b967503ce410b3d767252392bb6fb2edf97"
   integrity sha512-2XXUYnSeMYZTLhdRYHSwv8mhoyuEaYxmQfXrWQInH1QvjsnJtKgvORI3bJuJN+tNPg3aut6JYYCNOFsI5of32A==
 
+react-native-awesome-alerts@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-awesome-alerts/-/react-native-awesome-alerts-1.3.2.tgz#b21e609fd46aaf2ec951fa8771870201d702feb1"
+  integrity sha512-PhRj7XeLF+HZ97B728puyHonaJt2oWsJty/QZeowgnepIuVtj7OUYBrohXtY6f4/vrmsk85IH5IzRxLGAF0t1g==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-background-fetch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-native-background-fetch/-/react-native-background-fetch-3.0.4.tgz#0b1e8b282e482343ce7f478ffb94cb72dfde054a"

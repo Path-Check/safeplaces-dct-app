@@ -35,10 +35,10 @@ export const Button = ({
       small={small}
       {...otherProps}>
       <ThemeProvider theme={invertTextColors}>
+        {icon ? <Icon xml={icon} /> : null}
         <Label small={small} secondary={secondary} disabled={disabled}>
           {label}
         </Label>
-        {icon ? <Icon xml={icon} /> : null}
       </ThemeProvider>
     </Container>
   );
@@ -65,7 +65,7 @@ const Container = styled.TouchableOpacity`
   background-color: ${themePrimary};
   height: ${({ small }) => (small ? '48px' : '72px')};
   border: 2px solid ${getBorderColor};
-  padding-horizontal: ${({ small }) => (small ? '14px' : '16px')};
+  padding-horizontal: ${({ small }) => (small ? '14px' : '20px')};
   border-radius: 8px;
   flex-direction: row;
   justify-content: ${getJustifyContent};
@@ -76,9 +76,11 @@ const Container = styled.TouchableOpacity`
 
 const getFontSize = ({ small }) => (small ? '14px' : '20px');
 
-const getLineHeight = ({ small }) => (small ? '21px' : '40px');
+const getLineHeight = ({ small }) => (small ? '20px' : '25px');
 
 const Label = styled(Typography)`
+  margin-right: 8px;
+  text-align: center;
   font-family: IBMPlexSans-Medium;
   font-size: ${getFontSize};
   line-height: ${getLineHeight};
@@ -86,5 +88,5 @@ const Label = styled(Typography)`
 `;
 
 const Icon = styled(SvgXml)`
-  margin-right: 8px; // for visual alignment
+  margin-right: 0px; // for visual alignment
 `;

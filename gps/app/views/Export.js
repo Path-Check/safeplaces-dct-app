@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
@@ -10,9 +10,10 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import RNFS from 'react-native-fs';
 import LinearGradient from 'react-native-linear-gradient';
-import Share from 'react-native-share';
+// import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import close from '../../../shared/assets/svgs/close';
@@ -28,19 +29,27 @@ import { Theme } from '../constants/themes';
 const base64 = RNFetchBlob.base64;
 
 export const ExportScreen = ({ navigation }) => {
+  const [showConfirmationAlert, setShowingConfirmationText] = useState(false);
+
   const { t } = useTranslation();
   function handleBackPress() {
     navigation.goBack();
     return true;
   }
-
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
     return function cleanup() {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
   });
+
+  function showAlert() {
+    setShowingConfirmationText(true);
+  }
+
+  function hideAlert() {
+    setShowingConfirmationText(false);
+  }
 
   function backToMain() {
     navigation.goBack();
@@ -89,14 +98,18 @@ export const ExportScreen = ({ navigation }) => {
           filename: filename,
         };
       }
-      await Share.open(options)
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-          console.log(err.message, err.code);
-        });
+      showAlert();
+
+      // - Esse trecho abaixo abria uma janela para compartilhar o json por wpp, email, etc...
+      // await Share.open(options)
+      //   .then(res => {
+      //     console.log(res);
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //     console.log(err.message, err.code);
+      //   });
+
       if (isPlatformiOS()) {
         // eslint-disable-next-line no-undef
         await RNFS.unlink(url);
@@ -146,6 +159,26 @@ export const ExportScreen = ({ navigation }) => {
                 label={t('share.button_text')}
                 icon={exportIcon}
                 onPress={onShare}
+              />
+
+              <AwesomeAlert
+                show={showConfirmationAlert}
+                showProgress={false}
+                title='Por favor, só envie o seu histórico de localização, se:'
+                message='- Você testou positivo para COVID-19\n- Você está algum dos seguintes sintomas:'
+                closeOnTouchOutside={false}
+                closeOnHardwareBackPress={false}
+                showCancelButton
+                showConfirmButton
+                cancelText='cancelar'
+                confirmText='enviar'
+                confirmButtonColor='#DD6B55'
+                onCancelPressed={() => {
+                  hideAlert();
+                }}
+                onConfirmPressed={() => {
+                  hideAlert();
+                }}
               />
             </View>
           </ScrollView>
