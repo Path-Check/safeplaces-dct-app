@@ -2050,7 +2050,7 @@
 				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = COVIDSafePaths;
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.bt";
 				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
