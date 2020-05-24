@@ -1,18 +1,17 @@
-name: Test
+name: Dev setup
 
 on:
   push:
     branches: [develop]
     paths:
-      - dev_setup.sh
+      - 'dev_setup.sh'
   pull_request:
     branches: [develop]
     paths:
-      - dev_setup.sh
-      - .github/workflows/dev_setup.yml
+      - 'dev_setup.sh'
 
 jobs:
-  dev-setup-ubuntu:
+  test-ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -32,7 +31,7 @@ jobs:
       - name: Bundle JS
         run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
 
-  dev-setup-mac:
+  test-mac:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
