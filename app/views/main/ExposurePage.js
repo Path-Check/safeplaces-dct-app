@@ -11,10 +11,14 @@ import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
-export const ExposurePage = () => {
+export const ExposurePage = ({ tracingStrategy }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const buttonLabel = t('label.see_exposure_history');
+  const subheaderText =
+    tracingStrategy === 'gps'
+      ? t(`label.home_at_risk_subtext_location`)
+      : t(`label.home_at_risk_subtext_bluetooth`);
   const size = Dimensions.get('window').height;
 
   return (
@@ -46,7 +50,7 @@ export const ExposurePage = () => {
           </View>
           <View style={styles.contentBelowPulse}>
             <Typography style={styles.subheaderText}>
-              {t('label.home_at_risk_subtext')}
+              {subheaderText}
             </Typography>
             <View style={styles.buttonContainer}>
               <Button

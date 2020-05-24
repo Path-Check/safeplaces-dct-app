@@ -1,12 +1,14 @@
 {
   "name": "covidsafepaths",
-  "version": "1.0.11",
+  "version": "1.0.28",
   "private": true,
   "scripts": {
     "clean": "rm -rf node_modules && yarn",
     "start": "yarn && react-native start",
-    "run-android": "react-native run-android --variant=devDebug",
-    "run-ios": "yarn install:pod && react-native run-ios",
+    "run-android-bte": "react-native run-android --variant=bteDebug --appId=org.pathcheck.covidsafepathsBte",
+    "run-android-gps": "react-native run-android --variant=gpsDebug --appId=org.pathcheck.covidsafepaths",
+    "run-ios-bte": "yarn install:pod && react-native run-ios --scheme \"BTE_Development\"",
+    "run-ios-gps": "yarn install:pod && react-native run-ios --scheme \"GPS_Development\"",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
     "lint": "eslint ./",
@@ -77,7 +79,6 @@
     "react-native-app-intro-slider": "^3.0.0",
     "react-native-background-fetch": "^3.0.4",
     "react-native-background-timer": "^2.2.0",
-    "react-native-ble-advertiser": "0.0.10",
     "react-native-config": "luggit/react-native-config#1eb6ac01991210ddad2989857359a0f6ee35d734",
     "react-native-document-picker": "github:rparet/react-native-document-picker",
     "react-native-fs": "^2.16.6",
@@ -154,7 +155,7 @@
     "configurations": {
       "iphone11.sim": {
         "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Development -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone 11"
@@ -162,7 +163,7 @@
       },
       "iphone8.sim": {
         "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone 8"
@@ -170,7 +171,31 @@
       },
       "iphone-se.sim": {
         "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme COVIDSafePaths -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone SE"
+        }
+      },
+      "iphone11-bte.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 11"
+        }
+      },
+      "iphone8-bte.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 8"
+        }
+      },
+      "iphone-se-bte.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone SE"

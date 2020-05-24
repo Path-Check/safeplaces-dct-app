@@ -17,11 +17,19 @@ import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
-export const OffPage = () => {
+export const OffPage = ({ tracingStrategy }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const buttonLabel = t('label.home_enable_location');
+  const ctaText =
+    tracingStrategy === 'gps'
+      ? t(`label.home_setting_off_subtext_location`)
+      : t(`label.home_setting_off_subtext_bluetooth`);
+  const buttonLabel =
+    tracingStrategy === 'gps'
+      ? t(`label.home_enable_location`)
+      : t(`label.home_enable_bluetooth`);
   const size = Dimensions.get('window').height;
+
   return (
     <Theme use='violet'>
       <ImageBackground
@@ -49,9 +57,7 @@ export const OffPage = () => {
             <Text style={styles.mainTextBelow}>
               {t('label.home_setting_off_header')}
             </Text>
-            <Typography style={styles.subheaderText}>
-              {t('label.home_setting_off_subtext')}
-            </Typography>
+            <Typography style={styles.subheaderText}>{ctaText}</Typography>
             <Button
               label={buttonLabel}
               onPress={() => navigation.navigate('SettingsScreen', {})}

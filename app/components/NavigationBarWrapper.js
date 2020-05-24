@@ -76,14 +76,15 @@ const themeOnNavBar = ({ theme }) => theme.onNavBar || Colors.WHITE;
 const Title = styled.Text`
   align-self: center;
   color: ${themeOnNavBar};
-  font-family: IBMPlexSans-Medium;
-  font-size: ${26 * widthScale + 'px'};
+  font-family: IBMPlexSans-Bold;
+  font-size: ${16 * widthScale + 'px'};
   line-height: 34px;
   position: absolute;
   padding-horizontal: 20px;
   text-align: center;
+  text-transform: uppercase;
   width: 100%;
-  letter-spacing: -0.3px;
+  letter-spacing: 1px;
 `;
 
 const BackArrowIcon = styled.TouchableOpacity`
@@ -98,7 +99,6 @@ const BackArrowSvg = styled(SvgXml)`
   height: 18px;
   width: 18px;
   color: ${Colors.WHITE};
-  opacity: 0.4;
 `;
 
 NavigationBarWrapper.propTypes = {

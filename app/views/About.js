@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
   Dimensions,
@@ -12,13 +13,15 @@ import { SvgXml } from 'react-native-svg';
 
 import packageJson from '../../package.json';
 import fontFamily from './../constants/fonts';
-import languages from './../locales/languages';
 import { Icons } from '../assets';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
+import { config } from '../COVIDSafePathsConfig';
 
 export const AboutScreen = ({ navigation }) => {
+  const { t } = useTranslation();
+
   const backToMain = () => {
     navigation.goBack();
   };
@@ -35,9 +38,14 @@ export const AboutScreen = ({ navigation }) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
   }, [navigation]);
 
+  const aboutHeaderText =
+    config.tracingStrategy === 'gps'
+      ? t('label.about_header_location')
+      : t('label.about_header_bluetooth');
+
   return (
     <NavigationBarWrapper
-      title={languages.t('label.about_title')}
+      title={t('label.about_title')}
       onBackPress={backToMain}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.spacer} />
@@ -45,12 +53,12 @@ export const AboutScreen = ({ navigation }) => {
 
         <View style={styles.aboutLabelContainer}>
           <SvgXml style={styles.aboutSectionIconLock} xml={Icons.Lock} />
-          <Typography style={styles.aboutSectionTitles}>
-            {languages.t('label.commitment')}
+          <Typography style={styles.aboutSectionTitles} use='headline2'>
+            {aboutHeaderText}
           </Typography>
         </View>
         <Typography style={styles.aboutSectionPara}>
-          {languages.t('label.commitment_para')}
+          {t('label.about_para')}
           <Typography
             style={styles.hyperlink}
             onPress={() => {
@@ -65,33 +73,46 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.spacer} />
 
         <View style={styles.main}>
-          <View style={styles.row}>
-            <Typography style={styles.aboutSectionParaBold}>
-              {languages.t('about.version')}
-            </Typography>
-            <Typography style={styles.aboutSectionPara}>
-              {packageJson.version}
-            </Typography>
+          <View>
+            <View style={styles.row}>
+              <Typography style={styles.aboutSectionParaBold}>
+                {t('about.version')}
+              </Typography>
+            </View>
+
+            <View style={styles.row}>
+              <Typography style={styles.aboutSectionParaBold}>
+                {t('about.operating_system_abbr')}
+              </Typography>
+            </View>
+
+            <View style={styles.row}>
+              <Typography style={styles.aboutSectionParaBold}>
+                {t('about.dimensions')}
+              </Typography>
+            </View>
           </View>
 
-          <View style={styles.row}>
-            <Typography style={styles.aboutSectionParaBold}>
-              {languages.t('about.operating_system_abbr')}
-            </Typography>
-            <Typography style={styles.aboutSectionPara}>
-              {Platform.OS + ' v' + Platform.Version}
-            </Typography>
-          </View>
+          <View>
+            <View style={styles.row}>
+              <Typography style={styles.aboutSectionParaBold}>
+                {packageJson.version}
+              </Typography>
+            </View>
 
-          <View style={styles.row}>
-            <Typography style={styles.aboutSectionParaBold}>
-              {languages.t('about.dimensions')}
-            </Typography>
-            <Typography style={styles.aboutSectionPara}>
-              {Math.trunc(Dimensions.get('screen').width) +
-                ' x ' +
-                Math.trunc(Dimensions.get('screen').height)}
-            </Typography>
+            <View style={styles.row}>
+              <Typography style={styles.aboutSectionParaBold}>
+                {Platform.OS + ' v' + Platform.Version}
+              </Typography>
+            </View>
+
+            <View style={styles.row}>
+              <Typography style={styles.aboutSectionParaBold}>
+                {Math.trunc(Dimensions.get('screen').width) +
+                  ' x ' +
+                  Math.trunc(Dimensions.get('screen').height)}
+              </Typography>
+            </View>
           </View>
         </View>
 
@@ -111,9 +132,7 @@ const styles = StyleSheet.create({
     paddingBottom: 42,
   },
   aboutLabelContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: 'column',
   },
   aboutSectionIconLock: {
     width: 20,
@@ -121,19 +140,15 @@ const styles = StyleSheet.create({
     marginTop: 36,
   },
   aboutSectionTitles: {
-    color: Colors.VIOLET_TEXT,
-    fontSize: 26,
-    fontFamily: fontFamily.primaryMedium,
-    marginTop: 36,
-    marginLeft: 10,
+    color: Colors.BLACK,
+    marginTop: 14,
     lineHeight: 32,
   },
   aboutSectionPara: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.BLACK,
     fontSize: 16,
     lineHeight: 22.5,
     marginTop: 12,
-    alignSelf: 'center',
     fontFamily: fontFamily.primaryRegular,
   },
   hyperlink: {
@@ -149,17 +164,21 @@ const styles = StyleSheet.create({
     color: Colors.VIOLET_TEXT,
     fontSize: 16,
     lineHeight: 22.5,
-    marginTop: 12,
+    marginTop: 20,
     alignSelf: 'center',
     fontFamily: fontFamily.primaryBold,
   },
   spacer: {
     marginVertical: '2%',
   },
+  main: {
+    flexDirection: 'row',
+  },
   row: {
     flexDirection: 'row',
     color: Colors.PRIMARY_TEXT,
     alignItems: 'flex-start',
+    marginRight: 20,
   },
 });
 

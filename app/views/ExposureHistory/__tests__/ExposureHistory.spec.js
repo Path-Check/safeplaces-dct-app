@@ -3,6 +3,12 @@ import MockDate from 'mockdate';
 
 import { convertToDailyMinutesExposed } from '../ExposureHistory';
 
+jest.mock('../../../COVIDSafePathsConfig', () => {
+  return {
+    config: { tracingStrategy: 'gps' },
+  };
+});
+
 describe('convertToDailyMinutesExposed', () => {
   const NOW = dayjs('2020-01-09T00:00:00-08:00');
 

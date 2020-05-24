@@ -22,7 +22,7 @@ import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
-import { PARTICIPATE } from '../../constants/storage';
+import { ONBOARDING_DONE, PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
@@ -290,7 +290,7 @@ class Onboarding extends Component {
           PARTICIPATE,
           this.state.locationPermission === PermissionStatusEnum.GRANTED,
         );
-        SetStoreData('ONBOARDING_DONE', true);
+        SetStoreData(ONBOARDING_DONE, true);
         this.props.navigation.replace('Main');
     }
   }
@@ -361,7 +361,7 @@ class Onboarding extends Component {
       <>
         <View style={styles.divider} />
         <PermissionDescription
-          title={languages.t('label.launch_location_access')}
+          title={languages.t('label.launch_access_location')}
           status={this.state.locationPermission}
         />
         <View style={styles.divider} />

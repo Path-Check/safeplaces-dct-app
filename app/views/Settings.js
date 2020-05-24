@@ -10,6 +10,7 @@ import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
+import { config } from '../COVIDSafePathsConfig';
 import { SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
@@ -28,6 +29,7 @@ export const SettingsScreen = ({ navigation }) => {
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
+  const isGPS = config.tracingStrategy === 'gps';
 
   const backToMain = () => {
     navigation.goBack();
@@ -50,25 +52,6 @@ export const SettingsScreen = ({ navigation }) => {
     };
   }, [navigation]);
 
-  //  This method is used to track whether user has "Allow" or "Deny" location permission system Dialog.
-  const systemDialogLocationPermission = async () => {
-    await LocationServices.getSystemLocationPermission()
-      .then(async res => {
-        if (res !== undefined) {
-          if (!res.isRunning) {
-            await SetStoreData(PARTICIPATE, false);
-            setIsLogging(false);
-          }
-        }
-      })
-      .catch(err => {
-        console.log(
-          'Something went wrong in system dialog location permission',
-          err,
-        );
-      });
-  };
-
   // checking whether location permission is enable or disbale from application setting on load of setting's page.
   const checkIsLocationEnable = async () => {
     await LocationServices.checkStatus()
@@ -86,13 +69,16 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   const locationToggleButtonPressed = async () => {
-    try {
-      isLogging ? LocationServices.stop() : LocationServices.start();
-      await SetStoreData(PARTICIPATE, !isLogging);
+    if (!isGPS) {
       setIsLogging(!isLogging);
-      systemDialogLocationPermission();
-    } catch (e) {
-      console.log(e);
+    } else {
+      try {
+        isLogging ? LocationServices.stop() : LocationServices.start();
+        await SetStoreData(PARTICIPATE, !isLogging);
+        setIsLogging(!isLogging);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -106,21 +92,31 @@ export const SettingsScreen = ({ navigation }) => {
     }
   };
 
+  const getLoggingText = () => {
+    if (isLogging && isGPS) {
+      return t('label.logging_active_location');
+    } else if (isLogging && !isGPS) {
+      return t('label.logging_active_bluetooth');
+    } else if (!isLogging && isGPS) {
+      return t('label.logging_inactive_location');
+    } else if (!isLogging && !isGPS) {
+      return t('label.logging_inactive_bluetooth');
+    }
+  };
+
   return (
     <NavigationBarWrapper
       title={t('label.settings_title')}
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
-          <Item
-            label={
-              isLogging
-                ? t('label.logging_active')
-                : t('label.logging_inactive')
-            }
-            icon={isLogging ? Icons.Checkmark : Icons.XmarkIcon}
-            onPress={locationToggleButtonPressed}
-          />
+          {isGPS && (
+            <Item
+              label={getLoggingText()}
+              icon={isLogging ? Icons.Checkmark : Icons.XmarkIcon}
+              onPress={locationToggleButtonPressed}
+            />
+          )}
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}
@@ -145,25 +141,32 @@ export const SettingsScreen = ({ navigation }) => {
             label={t('label.news_title')}
             description={t('label.news_subtitle')}
             onPress={() => navigation.navigate('NewsScreen')}
+            last={!isGPS}
           />
-          <Item
-            label={t('label.event_history_title')}
-            description={t('label.event_history_subtitle')}
-            onPress={() => navigation.navigate('ExposureHistoryScreen')}
-          />
-          <Item
-            label={t('share.title')}
-            description={t('share.subtitle')}
-            onPress={() => navigation.navigate('ExportScreen')}
-            last
-          />
+          {isGPS ? (
+            <>
+              <Item
+                label={t('label.event_history_title')}
+                description={t('label.event_history_subtitle')}
+                onPress={() => navigation.navigate('ExposureHistoryScreen')}
+              />
+              <Item
+                label={t('share.title')}
+                description={t('share.subtitle')}
+                onPress={() => navigation.navigate('ExportScreen')}
+                last
+              />
+            </>
+          ) : null}
         </Section>
 
-        <FeatureFlag name='google_import'>
-          <Section>
-            <GoogleMapsImport navigation={navigation} />
-          </Section>
-        </FeatureFlag>
+        {isGPS && (
+          <FeatureFlag name='google_import'>
+            <Section>
+              <GoogleMapsImport navigation={navigation} />
+            </Section>
+          </FeatureFlag>
+        )}
 
         <Section last>
           <Item
