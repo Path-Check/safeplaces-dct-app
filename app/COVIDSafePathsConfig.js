@@ -1,6 +1,5 @@
-import Config from "react-native-config";
-
+import Config from 'react-native-config';
 
 export const config = {
-  tracingStrategy: Config.tracingStrategy,
+  tracingStrategy: Config.TRACING_STRATEGY,
 };
