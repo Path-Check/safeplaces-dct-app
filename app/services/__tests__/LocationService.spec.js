@@ -3,8 +3,11 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { NativeModules } from 'react-native';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../../constants/storage';
-import { Reason } from '../LocationService';
-import LocationServices from '../LocationService';
+import LocationServices, {
+  MIN_LOCATION_UPDATE_MS,
+  Reason,
+  getLocationData,
+} from '../LocationService';
 
 jest.mock('@mauron85/react-native-background-geolocation');
 
@@ -27,30 +30,22 @@ beforeEach(() => {
   AsyncStorage.getItem.mockImplementation(key => storage[key]);
 });
 
-describe('LocationData class', () => {
-  let locationData;
+it('has the correct time interval', () => {
+  expect(MIN_LOCATION_UPDATE_MS).toBe(60000 * 5);
+});
 
-  beforeEach(() => {
-    NativeModules.SecureStorageManager.getLocations.mockResolvedValue([
-      1,
-      2,
-      3,
-      4,
-      5,
-    ]);
-    let { LocationData } = require('../LocationService');
-    locationData = new LocationData();
-  });
+it('parses the location data', async () => {
+  NativeModules.SecureStorageManager.getLocations.mockResolvedValue([
+    1,
+    2,
+    3,
+    4,
+    5,
+  ]);
 
-  it('has the correct time interval', () => {
-    expect(locationData.locationInterval).toBe(60000 * 5);
-  });
+  const data = await getLocationData();
 
-  it('parses the location data', async () => {
-    const data = await locationData.getLocationData();
-
-    expect(data.length).toBe(5);
-  });
+  expect(data.length).toBe(5);
 });
 
 describe('LocationServices', () => {

@@ -1,6 +1,7 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import { NativeModules, Platform } from 'react-native';
+import { Platform } from 'react-native';
+import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
@@ -8,7 +9,11 @@ import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
 let isBackgroundGeolocationConfigured = false;
-const LOCATION_DISABLED_NOTIFICATION = '55';
+const LOCATION_DISABLED_NOTIFICATION_ID = '55';
+
+// Time (in milliseconds) between location information polls
+// 5 minutes
+export const MIN_LOCATION_UPDATE_MS = 60000 * 5;
 
 export const Reason = {
   LOCATION_OFF: 'LOCATION_OFF',
@@ -16,93 +21,17 @@ export const Reason = {
   USER_OFF: 'USER_OFF',
 };
 
-export class LocationData {
-  constructor() {
-    // The desired location interval, and the minimum acceptable interval
-    this.locationInterval = 60000 * 5; // Time (in milliseconds) between location information polls.  E.g. 60000*5 = 5 minutes
+export async function getLocationData() {
+  return NativeModules.SecureStorageManager.getLocations();
+}
 
-    // minLocationSaveInterval should be shorter than the locationInterval (to avoid strange skips)
-    this.minLocationSaveInterval = Math.floor(this.locationInterval * 0.8); // Minimum time between location information saves.  60000*4 = 4 minutes
-
-    // Maximum time that we will backfill for missing data
-    this.maxBackfillTime = 60000 * 60 * 24; // Time (in milliseconds).  60000 * 60 * 8 = 24 hours
-  }
-
-  async getLocationData() {
-    return NativeModules.SecureStorageManager.getLocations();
-  }
-
-  /**
-   * Validates that `point` has both a latitude and longitude field
-   * @param {*} point - Object to validate
-   */
-  isValidPoint(point) {
-    if (!point.latitude && !point.latitude === 0) {
-      console.error('`point` param must have a latitude field');
-      return false;
-    }
-
-    if (!point.longitude && !point.longitude === 0) {
-      console.error('`point` param must have a longitude field');
-      return false;
-    }
-
-    return true;
-  }
-
-  /**
-   * Validates that an object is a valid geographic bounding box.
-   * A valid box has a `ne` and `sw` field that each contain a valid GPS point
-   * @param {*} region - Object to validate
-   */
-  isValidBoundingBox(region) {
-    if (!region.ne || !this.isValidPoint(region.ne)) {
-      console.error(`invalid 'ne' field for bounding box: ${region.ne}`);
-      return false;
-    }
-
-    if (!region.sw || !this.isValidPoint(region.sw)) {
-      console.error(`invalid 'ne' field for bounding box: ${region.sw}`);
-      return false;
-    }
-
-    return true;
-  }
-
-  /**
-   * Returns the most recent point of location data for a user.
-   * This is the last item in the location data array.
-   */
-  async getMostRecentUserLoc() {
-    const locData = await this.getLocationData();
-    return locData[locData.length - 1];
-  }
-
-  /**
-   * Given a GPS coordinate, check if it is within the bounding
-   * box of a region.
-   * @param {*} point - Object with a `latitude` and `longitude` field
-   * @param {*} region - Object with a `ne` and `sw` field that each contain a GPS point
-   */
-  isPointInBoundingBox(point, region) {
-    if (!this.isValidPoint(point) || !this.isValidBoundingBox(region)) {
-      return false;
-    } else {
-      const { latitude: pointLat, longitude: pointLon } = point;
-      const { latitude: neLat, longitude: neLon } = region.ne;
-      const { latitude: swLat, longitude: swLon } = region.sw;
-
-      const [latMax, latMin] = neLat > swLat ? [neLat, swLat] : [swLat, neLat];
-      const [lonMax, lonMin] = neLon > swLon ? [neLon, swLon] : [swLon, neLon];
-
-      return (
-        pointLat < latMax &&
-        pointLat > latMin &&
-        pointLon < lonMax &&
-        pointLon > lonMin
-      );
-    }
-  }
+/**
+ * Returns the most recent point of location data for a user.
+ * This is the last item in the location data array.
+ */
+export async function getMostRecentUserLoc() {
+  const locData = await getLocationData();
+  return locData[locData.length - 1];
 }
 
 export default class LocationServices {
@@ -126,8 +55,6 @@ export default class LocationServices {
       requestPermissions: Platform.OS === 'ios',
     });
 
-    const locationData = new LocationData();
-
     BackgroundGeolocation.configure({
       maxLocations: 0,
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
@@ -139,9 +66,9 @@ export default class LocationServices {
       startOnBoot: true,
       stopOnTerminate: false,
       locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
-      interval: locationData.locationInterval,
-      fastestInterval: locationData.locationInterval,
-      activitiesInterval: locationData.locationInterval,
+      interval: MIN_LOCATION_UPDATE_MS,
+      fastestInterval: MIN_LOCATION_UPDATE_MS,
+      activitiesInterval: MIN_LOCATION_UPDATE_MS,
       activityType: 'AutomotiveNavigation',
       pauseLocationUpdates: false,
       saveBatteryOnBackground: true,
@@ -167,13 +94,13 @@ export default class LocationServices {
         BackgroundGeolocation.checkStatus(({ locationServicesEnabled }) => {
           if (!locationServicesEnabled) {
             PushNotification.localNotification({
-              id: LOCATION_DISABLED_NOTIFICATION,
+              id: LOCATION_DISABLED_NOTIFICATION_ID,
               title: languages.t('label.location_disabled_title'),
               message: languages.t('label.location_disabled_message'),
             });
           } else {
             PushNotification.cancelLocalNotifications({
-              id: LOCATION_DISABLED_NOTIFICATION,
+              id: LOCATION_DISABLED_NOTIFICATION_ID,
             });
           }
         });
