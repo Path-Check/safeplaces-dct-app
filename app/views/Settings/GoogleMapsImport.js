@@ -6,6 +6,7 @@ import { SvgXml } from 'react-native-svg';
 import { Icons } from '../../assets';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
+import { config } from '../../COVIDSafePathsConfig';
 
 export const GoogleMapsImport = ({ navigation }) => {
   const { t } = useTranslation();
@@ -14,30 +15,33 @@ export const GoogleMapsImport = ({ navigation }) => {
     navigation.navigate('ImportScreen');
   };
 
-  return (
-    <>
-      <TitleRow>
-        <SvgXml xml={Icons.GoogleMapsLogo} />
-        <Title use='body1'>{t('import.google.title')}</Title>
-      </TitleRow>
+  // GoogleMapsImport is not enabled on BTE
+  if (config.tracingStrategy === 'gps') {
+    return (
+      <>
+        <TitleRow>
+          <SvgXml xml={Icons.GoogleMapsLogo} />
+          <Title use='body1'>{t('import.google.title')}</Title>
+        </TitleRow>
 
-      <ParagraphContainer>
-        <Typography use='body2'>{t('import.subtitle')}</Typography>
-      </ParagraphContainer>
+        <ParagraphContainer>
+          <Typography use='body2'>{t('import.subtitle')}</Typography>
+        </ParagraphContainer>
 
-      <Button
-        secondary
-        label={t('import.button_text')}
-        onPress={importPressed}
-      />
+        <Button
+          secondary
+          label={t('import.button_text')}
+          onPress={importPressed}
+        />
 
-      <ParagraphContainer>
-        <Typography use='body3' secondary monospace>
-          {t('import.google.disclaimer')}
-        </Typography>
-      </ParagraphContainer>
-    </>
-  );
+        <ParagraphContainer>
+          <Typography use='body3' secondary monospace>
+            {t('import.google.disclaimer')}
+          </Typography>
+        </ParagraphContainer>
+      </>
+    );
+  }
 };
 
 const TitleRow = styled.View`

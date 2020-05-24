@@ -14,9 +14,17 @@ import { Typography } from '../../components/Typography';
  *   description?: string,
  *   onPress: (event: import('react-native').GestureResponderEvent) => void,
  *   last?: boolean,
+ *   disabled?: boolean
  * }} param0
  */
-export const SettingsItem = ({ label, onPress, description, icon, last }) => {
+export const SettingsItem = ({
+  label,
+  onPress,
+  description,
+  icon,
+  last,
+  disabled,
+}) => {
   const { i18n } = useTranslation();
 
   let getCurrentMarginDirection = () =>
@@ -31,7 +39,8 @@ export const SettingsItem = ({ label, onPress, description, icon, last }) => {
         style={css`
           flex-direction: ${getCurrentRowDirection()};
         `}
-        onPress={onPress}>
+        onPress={onPress}
+        disabled={disabled}>
         {icon && (
           <Icon
             xml={icon}

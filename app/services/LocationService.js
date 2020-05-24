@@ -4,7 +4,10 @@ import { Platform } from 'react-native';
 import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
-import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
+import {
+  CROSSED_PATHS,
+  IS_APP_LOCATION_TRACKING_ENABLED,
+} from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
@@ -13,26 +16,13 @@ const LOCATION_DISABLED_NOTIFICATION_ID = '55';
 
 // Time (in milliseconds) between location information polls
 // 5 minutes
-export const MIN_LOCATION_UPDATE_MS = 60000 * 5;
+export const MIN_LOCATION_UPDATE_MS = 300000;
 
 export const Reason = {
   LOCATION_OFF: 'LOCATION_OFF',
   NOT_AUTHORIZED: 'NOT_AUTHORIZED',
   USER_OFF: 'USER_OFF',
 };
-
-export async function getLocationData() {
-  return NativeModules.SecureStorageManager.getLocations();
-}
-
-/**
- * Returns the most recent point of location data for a user.
- * This is the last item in the location data array.
- */
-export async function getMostRecentUserLoc() {
-  const locData = await getLocationData();
-  return locData[locData.length - 1];
-}
 
 export default class LocationServices {
   static async start() {
@@ -152,19 +142,25 @@ export default class LocationServices {
     console.log('[INFO] BackgroundGeolocation auth status: ' + authorization);
 
     BackgroundGeolocation.start(); //triggers start on start event
+    await SetStoreData(IS_APP_LOCATION_TRACKING_ENABLED, true);
     isBackgroundGeolocationConfigured = true;
   }
 
   static async stop() {
-    // unregister all event listeners
     PushNotification.localNotification({
       title: languages.t('label.location_disabled_title'),
       message: languages.t('label.location_disabled_message'),
     });
+
     BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
+
     isBackgroundGeolocationConfigured = false;
-    await SetStoreData(PARTICIPATE, 'false');
+
+    await SetStoreData(
+      IS_APP_LOCATION_TRACKING_ENABLED,
+      isBackgroundGeolocationConfigured,
+    );
   }
 
   static async getHasPotentialExposure() {
@@ -172,8 +168,8 @@ export default class LocationServices {
     return !!dayBin && dayBin.some(exposure => exposure > 0);
   }
 
-  static async getParticpating() {
-    return await GetStoreData(PARTICIPATE, false);
+  static async getAppLocStrackingStatus() {
+    return await GetStoreData(IS_APP_LOCATION_TRACKING_ENABLED, false);
   }
 
   static async getBackgroundGeoStatus() {
@@ -187,6 +183,7 @@ export default class LocationServices {
 
   static async checkStatus() {
     const hasPotentialExposure = await this.getHasPotentialExposure();
+    const locTrackingStatus = await this.getAppLocStrackingStatus();
 
     const {
       authorization,
@@ -194,8 +191,7 @@ export default class LocationServices {
       locationServicesEnabled,
     } = await this.getBackgroundGeoStatus();
 
-    const particpating = await this.getParticpating();
-    if (!particpating) {
+    if (!locTrackingStatus) {
       return {
         canTrack: false,
         reason: Reason.USER_OFF,
@@ -250,5 +246,18 @@ export default class LocationServices {
       this.stop();
     }
     return status;
+  }
+
+  async getLocationData() {
+    return NativeModules.SecureStorageManager.getLocations();
+  }
+
+  /**
+   * Returns the most recent point of location data for a user.
+   * This is the last item in the location data array.
+   */
+  async getMostRecentUserLoc() {
+    const locData = await this.getLocationData();
+    return locData[locData.length - 1];
   }
 }

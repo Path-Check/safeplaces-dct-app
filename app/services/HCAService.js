@@ -10,10 +10,7 @@ import {
 } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
-import {
-  getLocationData,
-  getMostRecentUserLoc,
-} from '../services/LocationService';
+import LocationService from '../services/LocationService';
 
 /**
  * Singleton class to interact with health care authority data
@@ -192,7 +189,7 @@ class HCAService {
    * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} List of health care authorities
    */
   async getAuthoritiesFromUserLocHistory() {
-    const locData = await getLocationData();
+    const locData = await LocationService.getLocationData();
     const authorities = await this.getAuthoritiesList();
 
     return authorities.filter(authority =>
@@ -208,7 +205,7 @@ class HCAService {
    * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} list of Healthcare Authorities
    */
   async getNewAuthoritiesInUserLoc() {
-    const mostRecentUserLoc = await getMostRecentUserLoc();
+    const mostRecentUserLoc = await LocationService.getMostRecentUserLoc();
     const authoritiesList = await this.getAuthoritiesList();
     const userAuthorities = await this.getUserAuthorityList();
 

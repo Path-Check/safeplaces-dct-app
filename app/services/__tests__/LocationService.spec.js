@@ -2,7 +2,10 @@ import BackgroundGeolocation from '@mauron85/react-native-background-geolocation
 import AsyncStorage from '@react-native-community/async-storage';
 import { NativeModules } from 'react-native';
 
-import { CROSSED_PATHS, PARTICIPATE } from '../../constants/storage';
+import {
+  CROSSED_PATHS,
+  IS_APP_LOCATION_TRACKING_ENABLED,
+} from '../../constants/storage';
 import LocationServices, {
   MIN_LOCATION_UPDATE_MS,
   Reason,
@@ -63,16 +66,16 @@ describe('LocationServices', () => {
     });
   }); // getHasPotentialExposure
 
-  describe('getParticpating', () => {
+  describe('getAppLocTrackingStatus', () => {
     it('return true when location tracking is on', async () => {
       AsyncStorage.getItem.mockResolvedValueOnce(true);
-      const data = await LocationServices.getParticpating();
+      const data = await LocationServices.getAppLocTrackingStatus();
       expect(data).toBe(true);
     });
 
     it('return false when location tracking is on', async () => {
       AsyncStorage.getItem.mockResolvedValueOnce(false);
-      const data = await LocationServices.getParticpating();
+      const data = await LocationServices.getAppLocTrackingStatus();
       expect(data).toBe(false);
     });
   });
@@ -91,7 +94,7 @@ describe('LocationServices', () => {
   describe('checkStatus', () => {
     it('passes through isRunning state', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'true';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
 
       mockBackgroundGeolocationCheckStatus({
         locationServicesEnabled: true,
@@ -110,7 +113,7 @@ describe('LocationServices', () => {
 
     it('return USER_OFF when particpating is false', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'false';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'false';
 
       mockBackgroundGeolocationCheckStatus({
         locationServicesEnabled: true,
@@ -128,7 +131,7 @@ describe('LocationServices', () => {
 
     it('return LOCATION_OFF when location services are off', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'true';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
       mockBackgroundGeolocationCheckStatus({
         locationServicesEnabled: false,
       });
@@ -143,7 +146,7 @@ describe('LocationServices', () => {
 
     it('return NOT_AUTHORIZED when BackgroundGeoStatus authorization is NOT_AUTHORIZED ', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'true';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
       mockBackgroundGeolocationCheckStatus({
         locationServicesEnabled: true,
         authorization: BackgroundGeolocation.NOT_AUTHORIZED,
@@ -159,7 +162,7 @@ describe('LocationServices', () => {
 
     it('return canTrack true when particpating is true and BackgroundGeolocation is AUTHORIZED', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'true';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
       mockBackgroundGeolocationCheckStatus({
         locationServicesEnabled: true,
         authorization: BackgroundGeolocation.AUTHORIZED,
@@ -174,7 +177,7 @@ describe('LocationServices', () => {
 
     it('return canTrack true and hasPotentialExposure true when BackgroundGeolocation AUTHORIZED', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0, 5]';
-      storage[PARTICIPATE] = 'true';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
       mockBackgroundGeolocationCheckStatus({
         locationServicesEnabled: true,
         authorization: BackgroundGeolocation.AUTHORIZED,
@@ -196,7 +199,7 @@ describe('LocationServices', () => {
 
     it('passes through the checkStatus info', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'true';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
 
       mockBackgroundGeolocationCheckStatus({
         ...CAN_TRACK,
@@ -215,7 +218,7 @@ describe('LocationServices', () => {
 
     it('does not start the service if already running', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'true';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
 
       mockBackgroundGeolocationCheckStatus({
         ...CAN_TRACK,
@@ -229,7 +232,7 @@ describe('LocationServices', () => {
 
     it('starts the service if not running', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'true';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
 
       mockBackgroundGeolocationCheckStatus({
         ...CAN_TRACK,
@@ -248,7 +251,7 @@ describe('LocationServices', () => {
 
     it('does not stop the service if already stopped', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'true';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
 
       mockBackgroundGeolocationCheckStatus({
         ...CANNOT_TRACK,
@@ -262,7 +265,7 @@ describe('LocationServices', () => {
 
     it('stops the service if running', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'true';
+      storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
 
       mockBackgroundGeolocationCheckStatus({
         ...CANNOT_TRACK,

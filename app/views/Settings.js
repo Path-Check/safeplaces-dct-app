@@ -1,7 +1,7 @@
 import styled, { css } from '@emotion/native';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, ScrollView, View } from 'react-native';
+import { BackHandler, Linking, Platform, ScrollView, View } from 'react-native';
 
 import { Icons } from '../assets';
 import { Divider } from '../components/Divider';
@@ -9,23 +9,21 @@ import { FeatureFlag } from '../components/FeatureFlag';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import { PARTICIPATE } from '../constants/storage';
 import { config } from '../COVIDSafePathsConfig';
-import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
-import LocationServices from '../services/LocationService';
+import { useLocTrackingStatus } from '../services/hooks/useLocTrackingStatus';
+import { Reason } from '../services/LocationService';
 import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
-  const [isLogging, setIsLogging] = useState(undefined);
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
@@ -42,11 +40,6 @@ export const SettingsScreen = ({ navigation }) => {
     };
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
-    // TODO: this should be a service or hook
-    GetStoreData(PARTICIPATE)
-      .then(isParticipating => setIsLogging(isParticipating === 'true'))
-      .catch(error => console.log(error));
-
     // TODO: extract into service or hook
     getUserLocaleOverride().then(locale => locale && setUserLocale(locale));
 
@@ -54,20 +47,6 @@ export const SettingsScreen = ({ navigation }) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
   }, [navigation]);
-
-  const locationToggleButtonPressed = async () => {
-    if (!isGPS) {
-      setIsLogging(!isLogging);
-    } else {
-      try {
-        isLogging ? LocationServices.stop() : LocationServices.start();
-        await SetStoreData(PARTICIPATE, !isLogging);
-        setIsLogging(!isLogging);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  };
 
   const localeChanged = async locale => {
     // If user picks manual lang, update and store setting
@@ -79,31 +58,13 @@ export const SettingsScreen = ({ navigation }) => {
     }
   };
 
-  const getLoggingText = () => {
-    if (isLogging && isGPS) {
-      return t('label.logging_active_location');
-    } else if (isLogging && !isGPS) {
-      return t('label.logging_active_bluetooth');
-    } else if (!isLogging && isGPS) {
-      return t('label.logging_inactive_location');
-    } else if (!isLogging && !isGPS) {
-      return t('label.logging_inactive_bluetooth');
-    }
-  }
-
   return (
     <NavigationBarWrapper
       title={t('label.settings_title')}
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
-          {isGPS && (
-            <Item
-              label={getLoggingText()}
-              icon={isLogging ? Icons.Checkmark : Icons.XmarkIcon}
-              onPress={locationToggleButtonPressed}
-            />
-          )}
+          <LocationTrackingPermissions isGPS={isGPS} />
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}
@@ -147,13 +108,11 @@ export const SettingsScreen = ({ navigation }) => {
           ) : null}
         </Section>
 
-        {isGPS && (
-          <FeatureFlag name='google_import'>
-            <Section>
-              <GoogleMapsImport navigation={navigation} />
-            </Section>
-          </FeatureFlag>
-        )}
+        <FeatureFlag name='google_import'>
+          <Section>
+            <GoogleMapsImport navigation={navigation} />
+          </Section>
+        </FeatureFlag>
 
         <Section last>
           <Item
@@ -173,6 +132,63 @@ export const SettingsScreen = ({ navigation }) => {
       </ScrollView>
     </NavigationBarWrapper>
   );
+};
+
+export const LocationTrackingPermissions = ({ isGPS }) => {
+  const { t } = useTranslation();
+  const [locTrackingStatus, setLocTrackingStatus] = useLocTrackingStatus();
+
+  const toggleLocTracking = async () => {
+    const { reason } = locTrackingStatus;
+
+    if (reason === Reason.NOT_AUTHORIZED || reason === Reason.USER_OFF) {
+      await setLocTrackingStatus(true);
+    } else if (reason === Reason.LOCATION_OFF) {
+      // TODO
+    } else {
+      await setLocTrackingStatus(false);
+    }
+  };
+
+  const getIcon = () => {
+    const { canTrack } = locTrackingStatus;
+
+    if (canTrack) {
+      return Icons.Checkmark;
+    } else if (canTrack === false) {
+      return Icons.XmarkIcon;
+    } else {
+      return null;
+    }
+  };
+
+  const getDescription = () => {
+    const { reason } = locTrackingStatus;
+
+    if (reason === Reason.LOCATION_OFF) {
+      return 'Device location services are disabled';
+    }
+  };
+
+  const label = locTrackingStatus.canTrack
+    ? t('label.logging_active_location')
+    : t('label.logging_inactive_location');
+
+  const isDisabled = locTrackingStatus.reason === Reason.LOCATION_OFF;
+
+  if (isGPS) {
+    return (
+      <>
+        <Item
+          label={label}
+          icon={getIcon()}
+          onPress={toggleLocTracking}
+          description={getDescription()}
+          disabled={isDisabled}
+        />
+      </>
+    );
+  }
 };
 
 /**

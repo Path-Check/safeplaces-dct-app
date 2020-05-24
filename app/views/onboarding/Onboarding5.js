@@ -22,7 +22,10 @@ import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
-import { ONBOARDING_DONE, PARTICIPATE } from '../../constants/storage';
+import {
+  IS_APP_LOCATION_TRACKING_ENABLED,
+  ONBOARDING_DONE,
+} from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
@@ -287,7 +290,7 @@ class Onboarding extends Component {
         break;
       case StepEnum.DONE:
         SetStoreData(
-          PARTICIPATE,
+          IS_APP_LOCATION_TRACKING_ENABLED,
           this.state.locationPermission === PermissionStatusEnum.GRANTED,
         );
         SetStoreData(ONBOARDING_DONE, true);
