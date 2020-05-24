@@ -76,7 +76,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
-          name: Debug APK (Android)
+          name: app-gps-staging
           path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
 
   build_staging_android_bte:
@@ -144,7 +144,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
-          name: Debug APK (Android)
+          name: app-bte-staging
           path: android/app/build/outputs/apk/bte/staging/app-bte-staging.apk
 
   build_staging_ios_gps:
@@ -219,7 +219,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: Staging IPA file
+          name: COVIDSafePaths-staging-gps
           path: ios/COVIDSafePaths-staging.ipa
 
   build_staging_ios_bte:
@@ -294,5 +294,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: Debug IPA file (work in progress)
+          name: COVIDSafePaths-staging-bte
           path: ios/COVIDSafePaths-bte.ipa
