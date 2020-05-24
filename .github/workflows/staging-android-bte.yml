@@ -1,4 +1,4 @@
-name: Staging Android BTE
+name: Build
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
       - release-candidate
 
 jobs:
-  build_staging_android:
+  build_staging_android_bte:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -62,7 +62,7 @@ jobs:
 
       - name: Install Ruby Dependencies
         if: steps.ruby_cache.outputs.cache-hit != 'true'
-        run: | 
+        run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
         working-directory: ./android

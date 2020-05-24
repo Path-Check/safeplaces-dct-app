@@ -1,4 +1,4 @@
-name: Staging iOS BTE
+name: Build
 
 # Deliberately turned off the pull request logic here
 # because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  build_staging_ios:
+  build_staging_ios_bte:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@master

@@ -1,4 +1,4 @@
-name: Publish Release Candidates GPS
+name: Deploy
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
         tag-prefix: ''
         output-file: 'CHANGELOG.md'
 
-  deploy_android:
+  deploy_android_gps:
     runs-on: ubuntu-latest
     needs: version_bump
     steps:
@@ -78,7 +78,7 @@ jobs:
 
       - name: Install Ruby Dependencies
         if: steps.ruby_cache.outputs.cache-hit != 'true'
-        run: | 
+        run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
         working-directory: ./android
@@ -115,7 +115,7 @@ jobs:
           subdirectory: 'android'
           bundle-install-path: 'vendor/bundle'
 
-  deploy_ios:
+  deploy_ios_gps:
     runs-on: macOS-latest
     needs: version_bump
     steps:
