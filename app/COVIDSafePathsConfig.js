@@ -1,5 +1,6 @@
-import { NativeModules } from 'react-native';
+import Config from "react-native-config";
+
 
 export const config = {
-  tracingStrategy: NativeModules.COVIDSafePathsConfig.getTracingStrategy(),
+  tracingStrategy: Config.tracingStrategy,
 };
