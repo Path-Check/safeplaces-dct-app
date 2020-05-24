@@ -11,6 +11,7 @@
     "run-ios-gps": "yarn install:pod && react-native run-ios --scheme \"GPS_Development\"",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install && bundle exec pod install",
+    "install:bte": "rm -rf node_modules && subset install bte --all",
     "lint": "eslint ./",
     "postinstall": "patch-package && npx react-native-jetifier",
     "postversion": "react-native-version",
@@ -64,6 +65,7 @@
     "@react-navigation/native": "5.0.9",
     "@react-navigation/stack": "5.1.1",
     "@testing-library/react-native": "^5.0.3",
+    "bte": "^0.0.0",
     "dayjs": "^1.8.24",
     "emotion-theming": "^10.0.27",
     "i18next": "^19.3.3",
@@ -123,6 +125,7 @@
     "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
     "import-sort-config": "^6.0.0",
     "import-sort-style-module": "^6.0.0",
+    "install-subset": "^4.2.0",
     "jest": "^25.1.0",
     "lint-diff": "^1.2.1",
     "lint-staged": "^10.0.9",
@@ -133,6 +136,14 @@
     "react-native-svg-transformer": "^0.14.3",
     "react-native-version": "^4.0.0",
     "react-test-renderer": "16.9.0"
+  },
+  "subsets": {
+    "bte": {
+      "exclude": [
+        "@react-native-community/geolocation",
+        "@mauron85/react-native-background-geolocation"
+      ]
+    }
   },
   "importSort": {
     ".js, .jsx, .es6, .es, .mjs, .ts, .tsx": {
