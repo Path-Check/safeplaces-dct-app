@@ -28,6 +28,7 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { Theme } from '../constants/themes';
+import { config } from '../COVIDSafePathsConfig';
 import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -48,6 +49,7 @@ class ChooseProviderScreen extends Component {
       isAuthorityFilterActive: false,
       isAutoSubscribed: false,
     };
+    this.isGPS = config.tracingStrategy === 'gps';
   }
 
   backToMain() {
@@ -99,7 +101,7 @@ class ChooseProviderScreen extends Component {
   async fetchAuthoritiesList(filterByGPSHistory) {
     let authoritiesList = [];
 
-    if (filterByGPSHistory) {
+    if (filterByGPSHistory && this.isGPS) {
       authoritiesList = await HCAService.getAuthoritiesFromUserLocHistory();
     } else {
       authoritiesList = await HCAService.getAuthoritiesList();
@@ -256,13 +258,10 @@ class ChooseProviderScreen extends Component {
           onBackPress={this.backToMain.bind(this)}>
           <KeyboardAvoidingView behavior='padding'>
             <View style={styles.main}>
-              <Typography style={styles.headerTitle} use={'headline2'}>
-                {languages.t('label.authorities_title')}
-              </Typography>
               <Typography style={styles.sectionDescription} use={'body1'}>
                 {languages.t('label.authorities_desc')}
               </Typography>
-              {__DEV__ && (
+              {__DEV__ && this.isGPS && (
                 <TouchableOpacity style={styles.autoSubscribe}>
                   <Checkbox
                     label={languages.t('label.auto_subscribe_checkbox')}
@@ -337,7 +336,7 @@ class ChooseProviderScreen extends Component {
                 />
               </MenuTrigger>
               <MenuOptions>
-                {__DEV__ && (
+                {__DEV__ && this.isGPS && (
                   <TouchableOpacity
                     style={styles.authorityFilter}
                     onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
@@ -406,17 +405,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   listContainer: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
     textAlignVertical: 'top',
     justifyContent: 'flex-start',
     padding: 10,
     width: '96%',
     alignSelf: 'center',
-    backgroundColor: Colors.WHITE,
-  },
-  headerTitle: {
-    color: Colors.VIOLET_TEXT,
   },
   sectionDescription: {
     marginTop: 12,
@@ -472,7 +467,7 @@ const styles = StyleSheet.create({
   },
   noDataSourceText: {
     textAlign: 'center',
-    paddingTop: 30,
+    fontSize: 18,
   },
 });
 

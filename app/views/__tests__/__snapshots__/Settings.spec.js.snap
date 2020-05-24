@@ -63,7 +63,6 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             Object {
               "color": "#FFF",
               "height": 18,
-              "opacity": 0.4,
               "width": 18,
             }
           }
@@ -79,13 +78,14 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           Object {
             "alignSelf": "center",
             "color": "#FFF",
-            "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 26,
-            "letterSpacing": -0.3,
+            "fontFamily": "IBMPlexSans-Bold",
+            "fontSize": 16,
+            "letterSpacing": 1,
             "lineHeight": 34,
             "paddingHorizontal": 20,
             "position": "absolute",
             "textAlign": "center",
+            "textTransform": "uppercase",
             "width": "100%",
           }
         }
@@ -389,7 +389,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Choose Health Authority
+                Your Healthcare Authority
               </Text>
               <Text
                 secondary={true}
@@ -405,7 +405,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body3"
               >
-                To be informed of exposures you will need to subscribe to a Health Authority.
+                Select a Healthcare Authority to learn about COVID-19 in your area, where available
               </Text>
             </View>
           </View>
@@ -455,7 +455,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Latest news
+                Latest News
               </Text>
               <Text
                 secondary={true}
@@ -471,7 +471,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body3"
               >
-                Read about the latest COVID updates from your health authority and in general.
+                Find the latest updates from Safe Paths and your local Healthcare Authorities, where available
               </Text>
             </View>
           </View>
@@ -1035,7 +1035,6 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             Object {
               "color": "#FFF",
               "height": 18,
-              "opacity": 0.4,
               "width": 18,
             }
           }
@@ -1051,13 +1050,14 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           Object {
             "alignSelf": "center",
             "color": "#FFF",
-            "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 26,
-            "letterSpacing": -0.3,
+            "fontFamily": "IBMPlexSans-Bold",
+            "fontSize": 16,
+            "letterSpacing": 1,
             "lineHeight": 34,
             "paddingHorizontal": 20,
             "position": "absolute",
             "textAlign": "center",
+            "textTransform": "uppercase",
             "width": "100%",
           }
         }
@@ -1361,7 +1361,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Choose Health Authority
+                Your Healthcare Authority
               </Text>
               <Text
                 secondary={true}
@@ -1377,7 +1377,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body3"
               >
-                To be informed of exposures you will need to subscribe to a Health Authority.
+                Select a Healthcare Authority to learn about COVID-19 in your area, where available
               </Text>
             </View>
           </View>
@@ -1427,7 +1427,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Latest news
+                Latest News
               </Text>
               <Text
                 secondary={true}
@@ -1443,7 +1443,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body3"
               >
-                Read about the latest COVID updates from your health authority and in general.
+                Find the latest updates from Safe Paths and your local Healthcare Authorities, where available
               </Text>
             </View>
           </View>

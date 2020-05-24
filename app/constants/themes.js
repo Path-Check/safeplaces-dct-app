@@ -8,7 +8,7 @@ import Color from './colors';
 export const defaultTheme = {
   background: Color.VIOLET_ALPHA_06,
   textPrimaryOnBackground: Color.VIOLET,
-  textSecondaryOnBackground: 'rgba(64, 81, 219, 0.6)',
+  textSecondaryOnBackground: Color.BLACK,
 
   navBar: Color.VIOLET,
   onNavBar: Color.WHITE,
