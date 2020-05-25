@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, Linking, ScrollView, View } from 'react-native';
 import DeviceSettings from 'react-native-device-settings';
-import { openSettings } from 'react-native-permissions';
+import { PERMISSIONS, RESULTS, request } from 'react-native-permissions';
 
 import { Icons } from '../assets';
 import { Divider } from '../components/Divider';
@@ -67,7 +67,7 @@ export const SettingsScreen = ({ navigation }) => {
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
-          <LocationTrackingPermissions isGPS={isGPS} />
+          {isGPS && <LocationTrackingPermissions />}
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}
@@ -137,32 +137,45 @@ export const SettingsScreen = ({ navigation }) => {
   );
 };
 
-export const LocationTrackingPermissions = ({ isGPS }) => {
+export const LocationTrackingPermissions = () => {
   const { t } = useTranslation();
   const [locTrackingStatus, setLocTrackingStatus] = useLocTrackingStatus();
 
-  const toggleAndroidLoc = async reason => {
-    if (reason === Reason.NOT_AUTHORIZED || reason === Reason.USER_OFF) {
-      // Note that Android allows us to toggle app location authorizaiton
-      // without redirecting to settings like in iOS
-      await setLocTrackingStatus(true);
-    } else if (reason === Reason.LOCATION_OFF) {
-      // Open device location settings
-      DeviceSettings.location();
-    } else {
-      await setLocTrackingStatus(false);
-    }
-  };
-
+  /**
+   * Attempts to toggle the location tracking status. If it isn't
+   * possible to do so in-app, redirects a user to device Settings
+   * @param {Reason} reason
+   */
   const toggleiOSLoc = async reason => {
     if (reason === Reason.USER_OFF) {
       await setLocTrackingStatus(true);
     } else if (reason === Reason.NOT_AUTHORIZED) {
       // Open location settings for the app
-      openSettings();
+      const status = await request(PERMISSIONS.IOS.LOCATION_ALWAYS);
+      const isGranted = status === RESULTS.GRANTED;
+      await setLocTrackingStatus(isGranted);
     } else if (reason === Reason.LOCATION_OFF) {
       // Open device settings (iOS does not allow us to open device location settings)
-      Linking.openURL('App-prefs:');
+      const deviceSettingsUrl = 'App-prefs:';
+      Linking.openURL(deviceSettingsUrl);
+    } else {
+      await setLocTrackingStatus(false);
+    }
+  };
+
+  /**
+   * Attempts to toggle the location tracking status. If it isn't
+   * possible to do so in-app, redirects a user to device Settings
+   * @param {Reason} reason
+   */
+  const toggleAndroidLoc = async reason => {
+    if (reason === Reason.NOT_AUTHORIZED || reason === Reason.USER_OFF) {
+      // Note that Android allows us to toggle app location authorizaiton
+      // without needing to redirect to settings like in iOS
+      await setLocTrackingStatus(true);
+    } else if (reason === Reason.LOCATION_OFF) {
+      // Open device location settings
+      DeviceSettings.location();
     } else {
       await setLocTrackingStatus(false);
     }
@@ -177,6 +190,12 @@ export const LocationTrackingPermissions = ({ isGPS }) => {
     isPlatformiOS() ? toggleiOSLoc(reason) : toggleAndroidLoc(reason);
   };
 
+  /**
+   * Returns an active/inactive icon if `canTrack`
+   * is set. Since `canTrack` is initialized
+   * as undefined, this returns `null`
+   * if we are waiting on initialization.
+   */
   const getIcon = () => {
     const { canTrack } = locTrackingStatus;
 
@@ -193,13 +212,11 @@ export const LocationTrackingPermissions = ({ isGPS }) => {
     ? t('label.logging_active_location')
     : t('label.logging_inactive_location');
 
-  if (isGPS) {
-    return (
-      <>
-        <Item label={label} icon={getIcon()} onPress={toggleLocTracking} />
-      </>
-    );
-  }
+  return (
+    <>
+      <Item label={label} icon={getIcon()} onPress={toggleLocTracking} />
+    </>
+  );
 };
 
 /**

@@ -83,8 +83,8 @@ class Onboarding extends Component {
   }
 
   componentDidMount() {
-    this.checkLocationStatus();
-    isPlatformiOS() && this.checkNotificationStatus();
+    this.checkLocationPermission();
+    isPlatformiOS() && this.checkNotificationPermission();
     __DEV__ && this.checkSubsriptionStatus();
   }
 
@@ -116,44 +116,86 @@ class Onboarding extends Component {
     }
   }
 
-  async checkLocationStatus() {
-    const nextStep = this.getNextStep(StepEnum.LOCATION);
-    const setting = this.getLocationPermissionSetting();
-    const status = await check(setting);
-
+  getPermissionFromStatus(status) {
     switch (status) {
       case RESULTS.GRANTED:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: PermissionStatusEnum.GRANTED,
-        });
-        break;
+        return PermissionStatusEnum.GRANTED;
       case RESULTS.BLOCKED:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: PermissionStatusEnum.DENIED,
-        });
-        break;
+        return PermissionStatusEnum.DENIED;
+      case RESULTS.DENIED:
+        return PermissionStatusEnum.DENIED;
+      default:
+        return PermissionStatusEnum.UNKNOWN;
     }
   }
 
-  async checkNotificationStatus() {
+  getLocationNextStep() {
+    if (isPlatformiOS()) {
+      return StepEnum.NOTIFICATIONS;
+    } else if (__DEV__) {
+      return StepEnum.HCA_SUBSCRIPTION;
+    } else {
+      return isPlatformiOS() ? StepEnum.NOTIFICATIONS : StepEnum.DONE;
+    }
+  }
+
+  /**
+   * Gets the respective location permissions settings string
+   * for the user's current device.
+   */
+  getLocationPermissionSetting() {
+    return isPlatformiOS()
+      ? PERMISSIONS.IOS.LOCATION_ALWAYS
+      : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+  }
+
+  setLocationState(status) {
+    const nextStep = this.getNextStep(StepEnum.LOCATION);
+    const locationPermission = this.getPermissionFromStatus(status);
+    this.setState({ currentStep: nextStep, locationPermission });
+  }
+
+  /**
+   * Check for notification permissions - if a user has explicitly
+   * GRANTED or DENIED permissions, then update state and move
+   * skip this request.
+   */
+  async checkLocationPermission() {
+    const setting = this.getLocationPermissionSetting();
+    const status = await check(setting);
+
+    if (status === RESULTS.GRANTED || status === RESULTS.BLOCKED) {
+      this.setLocationState(status);
+    }
+  }
+
+  async requestLocationPermissions() {
+    const setting = this.getLocationPermissionSetting();
+    const status = await request(setting);
+    this.setLocationState(status);
+  }
+
+  setNotificationState(status) {
     const nextStep = this.getNextStep(StepEnum.NOTIFICATIONS);
+    const notificationPermission = this.getPermissionFromStatus(status);
+    this.setState({ currentStep: nextStep, notificationPermission });
+  }
+
+  async requestNotificationPermissions() {
+    const { status } = await requestNotifications(['alert', 'badge', 'sound']);
+    this.setNotificationState(status);
+  }
+
+  /**
+   * Check for notification permissions - if a user has explicitly
+   * GRANTED or DENIED permissions, then update state and move
+   * skip this request.
+   */
+  async checkNotificationPermission() {
     const { status } = await checkNotifications();
 
-    switch (status) {
-      case RESULTS.GRANTED:
-        this.setState({
-          currentStep: nextStep,
-          notificationPermission: PermissionStatusEnum.GRANTED,
-        });
-        break;
-      case RESULTS.BLOCKED:
-        this.setState({
-          currentStep: nextStep,
-          notificationPermission: PermissionStatusEnum.DENIED,
-        });
-        break;
+    if (status === RESULTS.GRANTED || status === RESULTS.BLOCKED) {
+      this.setNotificationState(status);
     }
   }
 
@@ -172,67 +214,6 @@ class Onboarding extends Component {
         currentStep: nextStep,
         authSubscriptionStatus,
       });
-    }
-  }
-
-  getLocationNextStep() {
-    if (isPlatformiOS()) {
-      return StepEnum.NOTIFICATIONS;
-    } else if (__DEV__) {
-      return StepEnum.HCA_SUBSCRIPTION;
-    } else {
-      return isPlatformiOS() ? StepEnum.NOTIFICATIONS : StepEnum.DONE;
-    }
-  }
-
-  /**
-   * Gets the respective location permissions settings string
-   * for the user's current device.
-   *   */
-  getLocationPermissionSetting() {
-    return isPlatformiOS()
-      ? PERMISSIONS.IOS.LOCATION_ALWAYS
-      : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
-  }
-
-  async requestLocation() {
-    const nextStep = this.getNextStep(StepEnum.LOCATION);
-    const locationPermission = this.getLocationPermissionSetting();
-    const status = await request(locationPermission);
-
-    switch (status) {
-      case RESULTS.GRANTED:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: PermissionStatusEnum.GRANTED,
-        });
-        break;
-      case RESULTS.BLOCKED:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: PermissionStatusEnum.DENIED,
-        });
-        break;
-    }
-  }
-
-  async requestNotification() {
-    const nextStep = this.getNextStep(StepEnum.NOTIFICATIONS);
-    const { status } = await requestNotifications(['alert', 'badge', 'sound']);
-
-    switch (status) {
-      case RESULTS.GRANTED:
-        this.setState({
-          currentStep: nextStep,
-          notificationPermission: PermissionStatusEnum.GRANTED,
-        });
-        break;
-      case RESULTS.BLOCKED:
-        this.setState({
-          currentStep: nextStep,
-          notificationPermission: PermissionStatusEnum.DENIED,
-        });
-        break;
     }
   }
 
@@ -280,10 +261,10 @@ class Onboarding extends Component {
   async buttonPressed() {
     switch (this.state.currentStep) {
       case StepEnum.LOCATION:
-        this.requestLocation();
+        this.requestLocationPermissions();
         break;
       case StepEnum.NOTIFICATIONS:
-        this.requestNotification();
+        this.requestNotificationPermissions();
         break;
       case StepEnum.HCA_SUBSCRIPTION:
         this.requestHCASubscription();

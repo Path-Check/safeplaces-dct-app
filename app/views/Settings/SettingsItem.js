@@ -14,7 +14,6 @@ import { Typography } from '../../components/Typography';
  *   description?: string,
  *   onPress: (event: import('react-native').GestureResponderEvent) => void,
  *   last?: boolean,
- *   disabled?: boolean
  * }} param0
  */
 export const SettingsItem = ({ label, onPress, description, icon, last }) => {

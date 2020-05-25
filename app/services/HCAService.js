@@ -254,7 +254,7 @@ class HCAService {
    * @returns {boolean}
    */
   async hasUserSetSubscription() {
-    const permission = await GetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, false);
+    const permission = await GetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, true);
 
     if (permission === null) {
       return false;
