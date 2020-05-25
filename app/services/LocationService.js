@@ -5,7 +5,7 @@ import PushNotification from 'react-native-push-notification';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { getLocationHashes } from '../helpers/LocationEncryption';
+import { FIVE_MIN_MS, getLocationHashes } from '../helpers/LocationEncryption';
 import languages from '../locales/languages';
 
 let isBackgroundGeolocationConfigured = false;
@@ -222,27 +222,20 @@ export default class LocationServices {
     });
 
     BackgroundGeolocation.on('location', async location => {
-      if (!this.lastSavedTime) {
+      if (
+        !this.lastSavedTime ||
+        location.time - this.lastSavedTime >= FIVE_MIN_MS
+      ) {
         this.lastSavedTime = location.time;
-        console.log('No Saved Time');
-      } else {
-        console.log('Too Soon: ' + this.lastSavedTime);
+        await BackgroundGeolocation.startTask(async taskKey => {
+          const hashes = await getLocationHashes(location);
+          await NativeModules.SecureStorageManager.saveLocation({
+            ...location,
+            hashes,
+          });
+          BackgroundGeolocation.endTask(taskKey);
+        });
       }
-      // console.log('LOCATION 1');
-      // await BackgroundGeolocation.startTask(async taskKey => {
-      //   const hashes = await getLocationHashes(location);
-      //   console.log('LOCATION 2');
-      //   // console.log(hashes)
-      //   console.log({
-      //     ...location,
-      //     hashes,
-      //   });
-      //   await NativeModules.SecureStorageManager.saveLocation({
-      //     ...location,
-      //     hashes,
-      //   });
-      //   BackgroundGeolocation.endTask(taskKey);
-      // });
     });
 
     const {

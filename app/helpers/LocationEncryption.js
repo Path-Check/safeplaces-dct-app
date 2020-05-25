@@ -7,7 +7,7 @@ import scrypt from 'react-native-scrypt';
 
 const DEFAULT_SALT = 'salt';
 const TWO_AND_HALF_MIN_MS = 2.5 * 60 * 1000;
-const FIVE_MIN_MS = 5 * 60 * 1000;
+export const FIVE_MIN_MS = 5 * 60 * 1000;
 const GEO_CIRCLE_RADII = [
   { latitude: 0, longitude: 0 }, // center
   { latitude: 0.0001, longitude: 0 }, // N
