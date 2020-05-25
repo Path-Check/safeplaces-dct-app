@@ -5,6 +5,7 @@ import PushNotification from 'react-native-push-notification';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import { getLocationHashes } from '../helpers/LocationEncryption';
 import languages from '../locales/languages';
 
 let isBackgroundGeolocationConfigured = false;
@@ -213,15 +214,21 @@ export default class LocationServices {
     });
 
     BackgroundGeolocation.on('location', async location => {
-      // console.log('LOCATION');
-      // console.log(location);
-      // await BackgroundGeolocation.startTask(async taskKey => {
-      //   await NativeModules.SecureStorageManager.saveLocation({
-      //     ...location,
-      //     hashes: ['csvdymghfnbdfgefwgreh'],
-      //   });
-      //   BackgroundGeolocation.endTask(taskKey);
-      // });
+      console.log('LOCATION 1');
+      await BackgroundGeolocation.startTask(async taskKey => {
+        const hashes = await getLocationHashes(location);
+        console.log('LOCATION 2');
+        // console.log(hashes)
+        console.log({
+          ...location,
+          hashes,
+        });
+        await NativeModules.SecureStorageManager.saveLocation({
+          ...location,
+          hashes,
+        });
+        BackgroundGeolocation.endTask(taskKey);
+      });
     });
 
     const {
