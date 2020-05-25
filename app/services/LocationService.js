@@ -207,8 +207,21 @@ export default class LocationServices {
       });
       console.log('[INFO] stop');
     });
+
     BackgroundGeolocation.on('stationary', () => {
       console.log('[INFO] stationary');
+    });
+
+    BackgroundGeolocation.on('location', async location => {
+      console.log('LOCATION');
+      console.log(location);
+      // await BackgroundGeolocation.startTask(async taskKey => {
+      //   await NativeModules.SecureStorageManager.saveLocation({
+      //     ...location,
+      //     hashes: ['csvdymghfnbdfgefwgreh'],
+      //   });
+      //   BackgroundGeolocation.endTask(taskKey);
+      // });
     });
 
     const {

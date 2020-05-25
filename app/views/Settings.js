@@ -1,7 +1,7 @@
 import styled, { css } from '@emotion/native';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, ScrollView, View } from 'react-native';
+import { BackHandler, NativeModules, ScrollView, View } from 'react-native';
 
 import { Icons } from '../assets';
 import { Divider } from '../components/Divider';
@@ -89,7 +89,16 @@ export const SettingsScreen = ({ navigation }) => {
     } else if (!isLogging && !isGPS) {
       return t('label.logging_inactive_bluetooth');
     }
-  }
+  };
+
+  const getLocation = async () => {
+    try {
+      let locationData = await NativeModules.SecureStorageManager.getLocations();
+      console.log(locationData.map(loc => ({ hashes: loc.hashes })));
+    } catch (e) {
+      console.log('something went wrong in lang change', e);
+    }
+  };
 
   return (
     <NavigationBarWrapper
@@ -141,6 +150,12 @@ export const SettingsScreen = ({ navigation }) => {
                 label={t('share.title')}
                 description={t('share.subtitle')}
                 onPress={() => navigation.navigate('ExportScreen')}
+                last
+              />
+              <Item
+                label={'GET LOCATIONS'}
+                description={'GET LOCATIONS'}
+                onPress={() => getLocation()}
                 last
               />
             </>
