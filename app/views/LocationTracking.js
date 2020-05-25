@@ -538,7 +538,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BLUE_RIBBON,
     position: 'absolute',
     resizeMode: 'contain',
-    height: '100%',
     top: '-13%',
     left: 0,
     right: 0,
