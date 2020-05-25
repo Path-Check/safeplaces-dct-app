@@ -2,6 +2,7 @@ package org.pathcheck.covidsafepaths.storage
 
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReadableArray
+import com.facebook.react.bridge.ReadableMap
 import com.marianhello.bgloc.data.BackgroundLocation
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit.SECONDS
@@ -15,6 +16,17 @@ object SecureStorage {
       secureStorage = RealmSecureStorage()
       secureStorage.trimLocations()
       readyCountdown.countDown()
+    }).start()
+  }
+
+  fun saveLocation(location: ReadableMap, source: Int, promise: Promise) {
+    Thread(Runnable {
+      val ready = readyCountdown.await(10, SECONDS)
+      if (!ready) {
+        promise.reject(java.lang.Exception("Failed to get Realm instance with encryption"))
+        return@Runnable
+      }
+      secureStorage.saveLocation(location, source, promise)
     }).start()
   }
 

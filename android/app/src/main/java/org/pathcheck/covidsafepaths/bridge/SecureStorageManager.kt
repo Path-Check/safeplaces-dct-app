@@ -5,6 +5,8 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.ReadableArray
+import com.facebook.react.bridge.ReadableMap
+import org.pathcheck.covidsafepaths.storage.Location
 import org.pathcheck.covidsafepaths.storage.Location.Companion.SOURCE_GOOGLE
 import org.pathcheck.covidsafepaths.storage.Location.Companion.SOURCE_MIGRATION
 import org.pathcheck.covidsafepaths.storage.SecureStorage
@@ -13,6 +15,11 @@ class SecureStorageManager(reactContext: ReactApplicationContext) : ReactContext
 
   override fun getName(): String {
     return "SecureStorageManager"
+  }
+
+  @ReactMethod
+  fun saveLocation(location: ReadableMap, promise: Promise) {
+    SecureStorage.saveLocation(location, Location.SOURCE_DEVICE, promise)
   }
 
   @ReactMethod

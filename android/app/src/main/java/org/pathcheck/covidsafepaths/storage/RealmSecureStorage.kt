@@ -14,6 +14,7 @@ import com.bottlerocketstudios.vault.SharedPreferenceVault
 import com.bottlerocketstudios.vault.SharedPreferenceVaultFactory
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReadableArray
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableNativeArray
 import com.marianhello.bgloc.data.BackgroundLocation
 import io.realm.Realm
@@ -37,6 +38,7 @@ class RealmSecureStorage(inMemory: Boolean?) {
     const val LOCATION_INTERVAL: Long = 60000 * 5
     private const val MAX_BACKFILL_TIME = 60000 * 60 * 24
     private const val DAYS_TO_KEEP = 14
+    private const val SCHEMA_VERSION: Long = 1
 
     private const val MANUALLY_KEYED_PREF_FILE_NAME = "safepaths_enc_prefs"
     private const val MANUALLY_KEYED_KEY_FILE_NAME = "safepaths_enc_key"
@@ -54,6 +56,8 @@ class RealmSecureStorage(inMemory: Boolean?) {
     val builder = RealmConfiguration.Builder()
         .encryptionKey(encryptionKey)
         .addModule(SafePathsRealmModule())
+        .schemaVersion(SCHEMA_VERSION)
+        .migration(Migration())
 
     if (inMemory != null && inMemory) {
       builder.name(UUID.randomUUID().toString()).inMemory()
@@ -90,6 +94,22 @@ class RealmSecureStorage(inMemory: Boolean?) {
     }
 
     realm.close()
+  }
+
+  fun saveLocation(locationMap: ReadableMap, source: Int, promise: Promise) {
+    val location = Location.fromImportLocation(locationMap, source)
+    if (location == null) {
+      promise.reject(java.lang.Exception("Not enough information to create a Location"))
+      return
+    }
+
+    getRealmInstance().use { realm ->
+      realm.executeTransaction {
+        realm.insertOrUpdate(location)
+      }
+    }
+
+    promise.resolve(true)
   }
 
   fun importLocations(locations: ReadableArray, source: Int, promise: Promise) {

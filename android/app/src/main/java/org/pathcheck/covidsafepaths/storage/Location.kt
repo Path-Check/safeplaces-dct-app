@@ -1,18 +1,51 @@
 package org.pathcheck.covidsafepaths.storage
 
 import android.util.Log
-import com.facebook.react.bridge.ReadableMap
-import com.facebook.react.bridge.ReadableType
+import com.facebook.react.bridge.*
 import com.marianhello.bgloc.data.BackgroundLocation
+import io.realm.RealmList
 import io.realm.RealmObject
-import com.facebook.react.bridge.WritableMap
-import com.facebook.react.bridge.WritableNativeMap
 import io.realm.annotations.PrimaryKey
-import java.lang.Exception
 import kotlin.math.abs
 import kotlin.math.acos
 import kotlin.math.cos
 import kotlin.math.sin
+
+private fun ReadableMap.getDoubleOrNull(key: String): Double? {
+  return if (hasKey(key)) {
+    getDouble(key)
+  } else {
+    null
+  }
+}
+
+private fun ReadableMap.getArrayOrNull(key: String): ReadableArray? {
+  return if (hasKey(key)) {
+    getArray(key)
+  } else {
+    null
+  }
+}
+
+private fun ReadableArray?.toRealmStringList(): RealmList<String>? {
+  if (this == null) {
+    return null
+  }
+
+  val list = RealmList<String>()
+  for (i in 0 until size()) {
+    list.add(getString(i)!!)
+  }
+
+  return list
+}
+
+private fun List<String>.toWritableArray(): WritableArray {
+  return fold(WritableNativeArray()) { array, str ->
+    array.pushString(str)
+    array
+  }
+}
 
 /*
   Realm requires a no-op constructor. Need to use var and fill will default value
@@ -25,24 +58,31 @@ open class Location(
   var speed: Float? = null,
   var accuracy: Float? = null,
   var bearing: Float? = null,
+  var hashes: RealmList<String>? = null,
   var provider: String? = null,
   var mockFlags: Int? = null,
   var source: Int = -1
 ) : RealmObject() {
 
   fun toWritableMap(): WritableMap {
-    val writableMap = WritableNativeMap()
-    writableMap.putDouble(KEY_TIME, time.toDouble())
-    writableMap.putDouble(KEY_LATITUDE, latitude)
-    writableMap.putDouble(KEY_LONGITUDE, longitude)
-    return writableMap
+    return WritableNativeMap().apply {
+      putDouble(KEY_TIME, time.toDouble())
+      putDouble(KEY_LATITUDE, latitude)
+      putDouble(KEY_LONGITUDE, longitude)
+      hashes?.let { putArray(KEY_HASHES, it.toWritableArray()) }
+    }
   }
 
   companion object {
     const val KEY_TIME = "time"
     const val KEY_LATITUDE = "latitude"
     const val KEY_LONGITUDE = "longitude"
+    const val KEY_HASHES = "hashes"
     const val KEY_SOURCE = "source"
+    const val KEY_ACCURACY = "accuracy"
+    const val KEY_ALTITUDE = "altitude"
+    const val KEY_BEARING = "bearing"
+    const val KEY_SPEED = "speed"
 
     const val SOURCE_DEVICE = 0
     const val SOURCE_MIGRATION = 1
@@ -77,6 +117,11 @@ open class Location(
         }
         val latitude = map.getDouble(KEY_LATITUDE)
         val longitude = map.getDouble(KEY_LONGITUDE)
+        val hashes = map.getArrayOrNull(KEY_HASHES).toRealmStringList()
+        val accuracy = map.getDoubleOrNull(KEY_ACCURACY)?.toFloat()
+        val altitude = map.getDoubleOrNull(KEY_ALTITUDE)
+        val bearing = map.getDoubleOrNull(KEY_BEARING)?.toFloat()
+        val speed = map.getDoubleOrNull(KEY_SPEED)?.toFloat()
 
         if (time == null || latitude == 0.0 || longitude == 0.0) {
           return null
@@ -86,7 +131,12 @@ open class Location(
             time = time,
             latitude = latitude,
             longitude = longitude,
-            source = source
+            source = source,
+            hashes = hashes,
+            accuracy = accuracy,
+            altitude = altitude,
+            bearing = bearing,
+            speed = speed
         )
       } catch (exception: Exception) {
         Log.d("Location", "Failed to import location. Received unexpected payload from bridge.")

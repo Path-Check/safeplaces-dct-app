@@ -37,6 +37,35 @@ class RealmSecureStorageTest {
   }
 
   @Test
+  fun saveLocation() {
+    // given
+    val locationTime = 1234567L
+    val hashes = listOf("87e916850d4def3c", "87e916850d4def3d", "87e916850d4def3e", "87e916850d4def3f")
+
+    val location = createWritableMapLocation(
+            time = locationTime,
+            latitude = 40.730610,
+            longitude = -73.935242,
+            hashes = hashes
+    )
+
+    // when
+    secureStorage.saveLocation(locationMap = location,
+            source = Location.SOURCE_DEVICE,
+            promise = TestPromise()
+    )
+
+    // then
+    querySingleLocationByTime(locationTime)?.let {
+      assertEquals(40.730610, it.latitude, 0.0)
+      assertEquals(-73.935242, it.longitude, 0.0)
+      assertEquals(locationTime, it.time)
+      assertEquals(Location.SOURCE_DEVICE, it.source)
+      assertEquals(hashes, it.hashes)
+    } ?: fail("Result Location 1 returned null")
+  }
+
+  @Test
   fun saveDeviceLocations() {
     // given
     val location1Time = System.currentTimeMillis()
@@ -381,11 +410,23 @@ class RealmSecureStorageTest {
     assertEquals(0, assumedLocations.size)
   }
 
-  private fun createWritableMapLocation(latitude: Double, longitude: Double, time: Long): WritableMap {
+  private fun createWritableMapLocation(latitude: Double,
+                                        longitude: Double,
+                                        time: Long,
+                                        hashes: List<String> = emptyList()): WritableMap {
     return WritableNativeMap().apply {
       putDouble("latitude", latitude)
       putDouble("longitude", longitude)
       putDouble("time", time.toDouble())
+
+      if (hashes.isNotEmpty()) {
+        val array = hashes.fold(WritableNativeArray()) { acc, s ->
+          acc.pushString(s)
+          acc
+        }
+
+        putArray(Location.KEY_HASHES, array)
+      }
     }
   }
 

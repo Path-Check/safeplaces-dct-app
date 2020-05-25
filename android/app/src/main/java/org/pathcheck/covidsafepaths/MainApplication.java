@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.marianhello.bgloc.BackgroundGeolocationFacade;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
@@ -54,7 +53,6 @@ public class MainApplication extends Application implements ReactApplication {
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this); // Remove this line if you don't want Flipper enabled
     Realm.init(this);
-    initializeGeolocationTransformer();
     // Ignore assignment. Creating to begin heavy encryption work
     SecureStorage wrapper = SecureStorage.INSTANCE;
   }
@@ -83,17 +81,6 @@ public class MainApplication extends Application implements ReactApplication {
         e.printStackTrace();
       }
     }
-  }
-
-  private void initializeGeolocationTransformer() {
-    BackgroundGeolocationFacade.setLocationTransform((context, location) -> {
-
-      // Save Location in encrypted realm db
-      SecureStorage.INSTANCE.saveDeviceLocation(location);
-
-      // Always return null. We never want to store data in the libraries SQLite DB
-      return null;
-    });
   }
 
   public static Context getContext() {
