@@ -27,10 +27,18 @@ export class LocationData {
 
     // Maximum time that we will backfill for missing data
     this.maxBackfillTime = 60000 * 60 * 24; // Time (in milliseconds).  60000 * 60 * 8 = 24 hours
+
+    // Timestamp of last saved location
+    this.lastSavedTime = null;
   }
 
   async getLocationData() {
-    return NativeModules.SecureStorageManager.getLocations();
+    const locationData = NativeModules.SecureStorageManager.getLocations();
+    return locationData.map(({ latitude, longitude, time }) => ({
+      latitude,
+      longitude,
+      time,
+    }));
   }
 
   /**
@@ -214,21 +222,27 @@ export default class LocationServices {
     });
 
     BackgroundGeolocation.on('location', async location => {
-      console.log('LOCATION 1');
-      await BackgroundGeolocation.startTask(async taskKey => {
-        const hashes = await getLocationHashes(location);
-        console.log('LOCATION 2');
-        // console.log(hashes)
-        console.log({
-          ...location,
-          hashes,
-        });
-        await NativeModules.SecureStorageManager.saveLocation({
-          ...location,
-          hashes,
-        });
-        BackgroundGeolocation.endTask(taskKey);
-      });
+      if (!this.lastSavedTime) {
+        this.lastSavedTime = location.time;
+        console.log('No Saved Time');
+      } else {
+        console.log('Too Soon: ' + this.lastSavedTime);
+      }
+      // console.log('LOCATION 1');
+      // await BackgroundGeolocation.startTask(async taskKey => {
+      //   const hashes = await getLocationHashes(location);
+      //   console.log('LOCATION 2');
+      //   // console.log(hashes)
+      //   console.log({
+      //     ...location,
+      //     hashes,
+      //   });
+      //   await NativeModules.SecureStorageManager.saveLocation({
+      //     ...location,
+      //     hashes,
+      //   });
+      //   BackgroundGeolocation.endTask(taskKey);
+      // });
     });
 
     const {

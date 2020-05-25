@@ -99,7 +99,13 @@ export const SettingsScreen = ({ navigation }) => {
   const getLocation = async () => {
     try {
       let locationData = await NativeModules.SecureStorageManager.getLocations();
-      console.log(locationData.map(loc => ({ hashes: loc.hashes })));
+      let cleanLocationData = await locationData.map(location => ({
+        ...location,
+        hashes: null,
+      }));
+      // let cleanLocationData = NativeModules.SecureStorageManager.getLocations().map(location => ({...location, hashes: null}));
+      console.log(locationData.map(loc => ({ hashes: loc.hashes[0] })));
+      console.log(cleanLocationData.map(loc => ({ hashes: loc.hashes })));
     } catch (e) {
       console.log('something went wrong in lang change', e);
     }
