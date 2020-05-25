@@ -17,13 +17,11 @@ import {
 } from '../Intersect';
 
 // Base moment used in all tests.
-// This is SUPER hacky ... it will effectively ensure that tests run near noon (unless otherwise offset)
-//
-// TODO: Do better than this.  Find something that properly allows for mocking times and timezones (and actually works)
-//
-const TEST_MOMENT = dayjs('2020-04-17T14:00:00.000Z')
-  .startOf('day')
-  .add(12, 'hours');
+const TEST_MOMENT = dayjs(
+  new Date('2020-04-17T12:00:00.000Z').toLocaleString('en-US', {
+    timeZone: 'UTC',
+  }),
+);
 
 /**
  * locations used in testing.  Set up as a single object to help simplify test setup.
@@ -723,13 +721,11 @@ describe('intersectSetIntoBins', () => {
      * Overlaps crossing midnight - should add into two different bins
      */
     it('is counting intersections spanning midnight into the proper bins', () => {
-      //
-      // TODO: Do better than this way of setting the time
-      //
-      //  Another SUPER hacky solution.  This ensures that the the datetime evaluation
-      //    will for sure appear to be 12:31am when the code executes
-      //
-      const THIS_TEST_MOMENT = TEST_MOMENT.startOf('day').add(31, 'minutes');
+      const THIS_TEST_MOMENT = dayjs(
+        new Date('2020-04-17T00:31:00.000Z').toLocaleString('en-US', {
+          timeZone: 'UTC',
+        }),
+      );
       MockDate.set(THIS_TEST_MOMENT.valueOf());
 
       // 2 locations ... the time period will span midnight
