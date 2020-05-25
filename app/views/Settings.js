@@ -12,7 +12,10 @@ import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
 import { config } from '../COVIDSafePathsConfig';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { getLocationStrings } from '../helpers/LocationEncryption';
+import {
+  getLocationStrings,
+  scryptEncode,
+} from '../helpers/LocationEncryption';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
@@ -109,7 +112,8 @@ export const SettingsScreen = ({ navigation }) => {
       latitude: 0,
     };
 
-    const hashes = getLocationStrings(location);
+    const hashes = scryptEncode(location);
+    console.log(getLocationStrings(location));
     console.log(hashes);
   };
 

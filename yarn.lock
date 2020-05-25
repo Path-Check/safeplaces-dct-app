@@ -7909,6 +7909,11 @@ react-native-screens@2.0.0-alpha.12:
   dependencies:
     debounce "^1.2.0"
 
+react-native-scrypt@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-scrypt/-/react-native-scrypt-1.1.2.tgz#fde1718bc69fda1913b885c56cecd0dd85816e10"
+  integrity sha512-Ngum9rLabU5nRVzj+AVvk/a46Sqd49lPK2JDU6rMlUycfF2cQsxfFUYAx2mbSug6mXe0jwbsTLnIDI20DgGjMg==
+
 react-native-share@^3.1.0:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.3.2.tgz#06d1d3f14ba8eeb95e7e94e4db6a286e9902bd29"
