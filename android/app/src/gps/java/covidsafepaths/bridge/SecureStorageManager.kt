@@ -1,13 +1,13 @@
-package org.pathcheck.covidsafepaths.bridge
+package covidsafepaths.bridge
 
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.ReadableArray
-import org.pathcheck.covidsafepaths.storage.Location.Companion.SOURCE_GOOGLE
-import org.pathcheck.covidsafepaths.storage.Location.Companion.SOURCE_MIGRATION
-import org.pathcheck.covidsafepaths.storage.SecureStorage
+import covidsafepaths.storage.Location.Companion.SOURCE_GOOGLE
+import covidsafepaths.storage.Location.Companion.SOURCE_MIGRATION
+import covidsafepaths.storage.SecureStorage
 
 class SecureStorageManager(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 

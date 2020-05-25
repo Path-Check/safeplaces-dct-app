@@ -1,4 +1,4 @@
-package org.pathcheck.covidsafepaths.storage
+package covidsafepaths.storage
 
 import io.realm.annotations.RealmModule
 

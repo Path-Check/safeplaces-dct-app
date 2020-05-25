@@ -5,7 +5,7 @@
 // https://gist.github.com/troach-sf/f257bb7b80e6dddd4f3bade81b7b1410
 
 
-package org.pathcheck.covidsafepaths.storage
+package covidsafepaths.storage
 
 import android.util.Base64
 import android.util.Log
@@ -21,10 +21,10 @@ import io.realm.RealmConfiguration
 import io.realm.Sort.ASCENDING
 import io.realm.Sort.DESCENDING
 import io.realm.kotlin.where
-import org.pathcheck.covidsafepaths.MainApplication
-import org.pathcheck.covidsafepaths.storage.Location.Companion.areLocationsNearby
-import org.pathcheck.covidsafepaths.storage.Location.Companion.createAssumedLocation
-import org.pathcheck.covidsafepaths.util.getCutoffTimestamp
+import covidsafepaths.MainApplication
+import covidsafepaths.storage.Location.Companion.areLocationsNearby
+import covidsafepaths.storage.Location.Companion.createAssumedLocation
+import covidsafepaths.util.getCutoffTimestamp
 import java.security.SecureRandom
 import java.util.UUID
 

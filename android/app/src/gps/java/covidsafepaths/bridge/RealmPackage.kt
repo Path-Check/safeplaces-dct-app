@@ -1,4 +1,4 @@
-package org.pathcheck.covidsafepaths.bridge
+package covidsafepaths.bridge
 
 import android.view.View
 import com.facebook.react.ReactPackage

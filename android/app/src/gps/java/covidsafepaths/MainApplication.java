@@ -1,4 +1,4 @@
-package org.pathcheck.covidsafepaths;
+package covidsafepaths;
 
 import android.app.Application;
 import android.content.Context;
@@ -8,39 +8,40 @@ import com.marianhello.bgloc.BackgroundGeolocationFacade;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import org.pathcheck.covidsafepaths.BuildConfig;
 import io.realm.Realm;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import org.pathcheck.covidsafepaths.bridge.RealmPackage;
-import org.pathcheck.covidsafepaths.storage.SecureStorage;
+import covidsafepaths.bridge.RealmPackage;
+import covidsafepaths.storage.SecureStorage;
 
 public class MainApplication extends Application implements ReactApplication {
 
   private static Context context;
 
   private final ReactNativeHost mReactNativeHost =
-      new ReactNativeHost(this) {
-        @Override
-        public boolean getUseDeveloperSupport() {
-          return BuildConfig.DEBUG;
-        }
+          new ReactNativeHost(this) {
+            @Override
+            public boolean getUseDeveloperSupport() {
+              return BuildConfig.DEBUG;
+            }
 
-        @Override
-        protected List<ReactPackage> getPackages() {
-          @SuppressWarnings("UnnecessaryLocalVariable")
-          List<ReactPackage> packages = new PackageList(this).getPackages();
-          // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
-          packages.add(new RealmPackage());
+            @Override
+            protected List<ReactPackage> getPackages() {
+              @SuppressWarnings("UnnecessaryLocalVariable")
+              List<ReactPackage> packages = new PackageList(this).getPackages();
+              // Packages that cannot be autolinked yet can be added manually here, for example:
+              // packages.add(new MyReactNativePackage());
+              packages.add(new RealmPackage());
 
-          return packages;
-        }
+              return packages;
+            }
 
-        @Override
-        protected String getJSMainModuleName() {
-          return "index";
-        }
-      };
+            @Override
+            protected String getJSMainModuleName() {
+              return "index";
+            }
+          };
 
   @Override
   public ReactNativeHost getReactNativeHost() {
@@ -55,7 +56,7 @@ public class MainApplication extends Application implements ReactApplication {
     initializeFlipper(this); // Remove this line if you don't want Flipper enabled
     Realm.init(this);
     initializeGeolocationTransformer();
-    // Ignore assignment. Creating to begin heavy encryption work
+//    // Ignore assignment. Creating to begin heavy encryption work
     SecureStorage wrapper = SecureStorage.INSTANCE;
   }
 

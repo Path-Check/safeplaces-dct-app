@@ -138,6 +138,8 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false)
 
+def task = gradle.startParameter.taskNames[0] ?: "" // Get "assembleGpsDebug, assembleBteDebug, etc"
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -232,7 +234,7 @@ dependencies {
     implementation 'com.bottlerocketstudios:vault:1.4.2'
     implementation 'com.google.android.gms:play-services-gcm:15.0.1'
     implementation 'com.google.android.gms:play-services-location:15.0.1'
-    if (project.env.get('TRACING_STRATEGY') == "gps") {
+    if (task.toLowerCase().contains("gps")) {
         implementation project(':@mauron85_react-native-background-geolocation-common')
     }
     if (enableHermes) {

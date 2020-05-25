@@ -1,4 +1,4 @@
-package org.pathcheck.covidsafepaths.util
+package covidsafepaths.util
 
 import java.util.Calendar
 
