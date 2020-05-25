@@ -57,7 +57,7 @@ Safe Paths logs your device’s location once every five minutes and stores 14 d
 
 ![Android and iOS build on MacOS](https://github.com/Path-Check/covid-safe-paths/workflows/Android%20and%20iOS%20build%20on%20MacOS/badge.svg)
 
-_Safe Paths_ is a built on [React Native](https://reactnative.dev/docs/getting-started) v0.61.5
+_Safe Paths_ is built on [React Native](https://reactnative.dev/docs/getting-started) v0.61.5
 
 ## Contributing
 
@@ -66,6 +66,18 @@ Read the [contribution guidelines](CONTRIBUTING.md).
 ## Architecture
 
 View the [architecture diagram](docs/Private_Kit_Diagram.png) for a basic overview on the sequencing of generalized events and services that are used by Safe Paths.
+
+## WhiteLabeling
+
+PathCheck is building two versions of the application. One for location based
+contact tracing and one for bluetooth based contact tracing. Given that the same
+application cannot have both gps and bluetooth enabled for privacy
+considerations, we need be able to build two separate version of the app for
+distribution.
+
+We are following a white labeling strategy to accomplish this. That we have two
+build targets for each app which use the same codebase. Ideally using the same
+code across the products as possible.
 
 ## Developer Setup
 
@@ -92,16 +104,27 @@ dev_setup.bat
 #### Android (Windows, Linux, macOS)
 
 ```
-npx react-native run-android
+yarn run-android-gps ## for the location enabled app
+
+yarn run-android-bte ## for the bluetooth enabled app
 ```
 
 Device storage can be cleared by long-pressing on the app icon in the simulator, clicking "App info", then "Storage", and lastly, "Clear Storage".
 
 #### iOS (macOS only)
 
+First, install the pod files:
+
 ```
 yarn install:pod ## only needs to be ran once
-npx react-native run-ios
+```
+
+Then, run the application:
+
+```
+yarn run-ios-gps ## for the location enabled app
+
+yarn run-ios-bte ## for the bluetooth enabled app
 ```
 
 Device storage can be cleared by clicking "Hardware" on the system toolbar, and then "Erase all content and settings".

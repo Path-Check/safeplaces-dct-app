@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { MenuProvider } from 'react-native-popup-menu';
 import SplashScreen from 'react-native-splash-screen';
 
-import { Theme } from './gps/app/constants/themes';
-import Entry from './gps/app/Entry';
-import { FlagsProvider } from './gps/app/helpers/Flags';
-import VersionCheckService from './gps/app/services/VersionCheckService';
+import { Theme } from './app/constants/themes';
+import { Entry } from './app/Entry';
+import { FlagsProvider } from './app/helpers/Flags';
+import VersionCheckService from './app/services/VersionCheckService';
 
 const App = () => {
   useEffect(() => {

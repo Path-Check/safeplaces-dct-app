@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`allows size override 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "opacity": 1,
+      }
+    }
+  >
+    <SvgXml
+      height={48}
+      style={
+        Object {
+          "color": "#4051DB",
+        }
+      }
+      width={48}
+      xml="<g />"
+    />
+  </View>
+</View>
+`;
+
+exports[`changes color based on theme 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "opacity": 1,
+      }
+    }
+  >
+    <SvgXml
+      height={24}
+      style={
+        Object {
+          "color": "#FFF",
+        }
+      }
+      width={24}
+      xml="<g />"
+    />
+  </View>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "opacity": 1,
+      }
+    }
+  >
+    <SvgXml
+      height={24}
+      style={
+        Object {
+          "color": "#4051DB",
+        }
+      }
+      width={24}
+      xml="<g />"
+    />
+  </View>
+</View>
+`;
+
+exports[`renders different color for secondary 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "opacity": 1,
+      }
+    }
+  >
+    <SvgXml
+      height={24}
+      secondary={true}
+      style={
+        Object {
+          "color": "#000",
+        }
+      }
+      width={24}
+      xml="<g />"
+    />
+  </View>
+</View>
+`;
+
+exports[`renders the icon in a touchable opacity 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessibilityLabel="Label"
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "opacity": 1,
+      }
+    }
+  >
+    <SvgXml
+      height={24}
+      style={
+        Object {
+          "color": "#4051DB",
+        }
+      }
+      width={24}
+      xml="<g />"
+    />
+  </View>
+</View>
+`;

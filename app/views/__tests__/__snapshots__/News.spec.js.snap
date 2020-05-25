@@ -1,0 +1,362 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <BVLinearGradient
+    colors={
+      Array [
+        4285102584,
+        4282010839,
+      ]
+    }
+    endPoint={
+      Object {
+        "x": 0,
+        "y": 1,
+      }
+    }
+    locations={null}
+    startPoint={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    style={
+      Object {
+        "flex": 1,
+        "height": "100%",
+      }
+    }
+  >
+    <RCTSafeAreaView
+      emulateUnlessSupported={true}
+      style={
+        Object {
+          "backgroundColor": "#4051DB",
+          "flexBasis": 0,
+          "flexGrow": 0,
+          "flexShrink": 1,
+        }
+      }
+    />
+    <RCTSafeAreaView
+      emulateUnlessSupported={true}
+      style={
+        Object {
+          "backgroundColor": "#F7F8FF",
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#4051DB",
+            "borderBottomColor": "#5061E6",
+            "borderBottomWidth": 1,
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          style={
+            Object {
+              "alignItems": "center",
+              "height": 55,
+              "justifyContent": "center",
+              "opacity": 1,
+              "width": 60,
+              "zIndex": 1,
+            }
+          }
+        >
+          <SvgXml
+            style={
+              Object {
+                "color": "#FFF",
+                "height": 18,
+                "width": 18,
+              }
+            }
+            xml="
+  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
+  </svg>
+"
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "alignSelf": "center",
+              "color": "#FFF",
+              "fontFamily": "IBMPlexSans-Bold",
+              "fontSize": 16,
+              "letterSpacing": 1,
+              "lineHeight": 34,
+              "paddingHorizontal": 20,
+              "position": "absolute",
+              "textAlign": "center",
+              "textTransform": "uppercase",
+              "width": "100%",
+            }
+          }
+        >
+          Latest News
+        </Text>
+      </View>
+      <BVLinearGradient
+        colors={
+          Array [
+            4285102584,
+            4282010839,
+          ]
+        }
+        endPoint={
+          Object {
+            "x": 0,
+            "y": 1,
+          }
+        }
+        locations={null}
+        startPoint={
+          Object {
+            "x": 0,
+            "y": 0,
+          }
+        }
+        style={
+          Object {
+            "flex": 1,
+            "height": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#3A4CD7",
+              "flex": 1,
+              "paddingVertical": 16,
+            }
+          }
+        >
+          <RCTScrollView
+            activeAnimationOptions={null}
+            activeAnimationType="timing"
+            activeSlideAlignment="center"
+            activeSlideOffset={20}
+            apparitionDelay={0}
+            automaticallyAdjustContentInsets={false}
+            autoplay={false}
+            autoplayDelay={1000}
+            autoplayInterval={3000}
+            callbackOffsetMargin={5}
+            containerCustomStyle={Object {}}
+            contentContainerCustomStyle={Object {}}
+            contentContainerStyle={
+              Array [
+                Object {
+                  "paddingLeft": 56.25,
+                  "paddingRight": 56.25,
+                },
+                Object {},
+              ]
+            }
+            data={
+              Array [
+                Object {
+                  "name": "Safe Paths News",
+                  "news_url": "https://covidsafepaths.org/in-app-news",
+                },
+              ]
+            }
+            decelerationRate="fast"
+            directionalLockEnabled={true}
+            disableVirtualization={false}
+            enableMomentum={false}
+            enableSnap={true}
+            firstItem={0}
+            hasParallaxImages={false}
+            horizontal={true}
+            inactiveSlideOpacity={0.7}
+            inactiveSlideScale={0.9}
+            inactiveSlideShift={0}
+            initialNumToRender={7}
+            invertStickyHeaders={false}
+            inverted={false}
+            itemWidth={637.5}
+            layout="default"
+            lockScrollTimeoutDuration={1000}
+            lockScrollWhileSnapping={false}
+            loop={false}
+            loopClonesPerSide={3}
+            maxToRenderPerBatch={15}
+            numColumns={1}
+            onEndReachedThreshold={2}
+            overScrollMode="never"
+            pinchGestureEnabled={false}
+            removeClippedSubviews={true}
+            scrollEnabled={true}
+            scrollEventThrottle={1}
+            scrollsToTop={false}
+            shouldOptimizeUpdates={true}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            slideStyle={Object {}}
+            sliderWidth={750}
+            stickyHeaderIndices={Array []}
+            style={
+              Object {
+                "flexDirection": "row",
+                "width": 750,
+              }
+            }
+            swipeThreshold={20}
+            updateCellsBatchingPeriod={50}
+            useScrollView={false}
+            vertical={false}
+            viewabilityConfigCallbackPairs={Array []}
+            windowSize={15}
+          >
+            <View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "row",
+                    },
+                    null,
+                  ]
+                }
+              >
+                <View
+                  pointerEvents="box-none"
+                  style={
+                    Object {
+                      "opacity": 1,
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                      "width": 637.5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "backgroundColor": "rgba(255,255,255,0.6)",
+                        "borderRadius": 12,
+                        "flexGrow": 1,
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "borderBottomWidth": 3,
+                          "height": 48,
+                          "justifyContent": "center",
+                          "marginBottom": 0,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "fontFamily": "IBMPlexSans-SemiBold",
+                            "fontSize": 16,
+                            "fontWeight": "normal",
+                            "lineHeight": 24,
+                            "paddingHorizontal": 5,
+                            "textAlign": "center",
+                            "writingDirection": "ltr",
+                          }
+                        }
+                        use="body1"
+                      >
+                        Safe Paths News
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "flex": 1,
+                            "overflow": "hidden",
+                          },
+                          Object {
+                            "borderBottomLeftRadius": 12,
+                            "borderBottomRightRadius": 12,
+                          },
+                        ]
+                      }
+                    >
+                      <RNCWebView
+                        cacheEnabled={true}
+                        javaScriptEnabled={true}
+                        messagingEnabled={false}
+                        source={
+                          Object {
+                            "uri": "https://covidsafepaths.org/in-app-news",
+                          }
+                        }
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                              "overflow": "hidden",
+                            },
+                            Object {
+                              "backgroundColor": "#ffffff",
+                            },
+                            undefined,
+                          ]
+                        }
+                        useSharedProcessPool={true}
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </RCTScrollView>
+          <ActivityIndicator
+            animating={true}
+            color="black"
+            hidesWhenStopped={true}
+            size="large"
+            style={
+              Object {
+                "left": 375,
+                "position": "absolute",
+                "top": 667,
+              }
+            }
+          />
+        </View>
+      </BVLinearGradient>
+    </RCTSafeAreaView>
+  </BVLinearGradient>
+</View>
+`;

@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders default values from the flags provider 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#4051DB",
+        "flexBasis": 0,
+        "flexGrow": 0,
+        "flexShrink": 1,
+      }
+    }
+  />
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#F7F8FF",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#4051DB",
+          "borderBottomColor": "#5061E6",
+          "borderBottomWidth": 1,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 55,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 60,
+            "zIndex": 1,
+          }
+        }
+      >
+        <SvgXml
+          style={
+            Object {
+              "color": "#FFF",
+              "height": 18,
+              "width": 18,
+            }
+          }
+          xml="
+  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
+  </svg>
+"
+        />
+      </View>
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#FFF",
+            "fontFamily": "IBMPlexSans-Bold",
+            "fontSize": 16,
+            "letterSpacing": 1,
+            "lineHeight": 34,
+            "paddingHorizontal": 20,
+            "position": "absolute",
+            "textAlign": "center",
+            "textTransform": "uppercase",
+            "width": "100%",
+          }
+        }
+      >
+        Feature Flags
+      </Text>
+    </View>
+    <Text
+      bold={true}
+      style={
+        Object {
+          "color": "#4051DB",
+          "fontFamily": "IBMPlexSans-Bold",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "lineHeight": 24,
+          "marginHorizontal": 15,
+          "paddingTop": 7.5,
+          "textAlign": "center",
+          "writingDirection": "ltr",
+        }
+      }
+      use="body1"
+    >
+      Notice
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#4051DB",
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "lineHeight": 22,
+          "marginHorizontal": 15,
+          "paddingTop": 7.5,
+          "textAlign": "center",
+          "writingDirection": "ltr",
+        }
+      }
+      use="body2"
+    >
+      This screen is only available when running the application in development or testing
+    </Text>
+    <View
+      style={
+        Object {
+          "marginHorizontal": 10,
+          "paddingTop": 20,
+          "width": "80%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "flex-start",
+            "paddingHorizontal": 5,
+            "paddingVertical": 10,
+          }
+        }
+      >
+        <RCTSwitch
+          accessibilityRole="button"
+          onTintColor="#FF5656"
+          style={
+            Object {
+              "height": 31,
+              "width": 51,
+            }
+          }
+          testID="switch"
+          thumbTintColor="#FFF"
+          tintColor="#DADADA"
+          value={false}
+        />
+        <Text
+          bold={true}
+          style={
+            Object {
+              "color": "#4051DB",
+              "fontFamily": "IBMPlexSans-Bold",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "lineHeight": 24,
+              "paddingLeft": 15,
+              "writingDirection": "ltr",
+            }
+          }
+          use="body1"
+        >
+          Exposure Mode
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "flex-start",
+            "paddingHorizontal": 5,
+            "paddingVertical": 10,
+          }
+        }
+      >
+        <RCTSwitch
+          accessibilityRole="button"
+          onTintColor="#41dca4"
+          style={
+            Object {
+              "height": 31,
+              "width": 51,
+            }
+          }
+          testID="FOO_BAR"
+          thumbTintColor="#FFF"
+          tintColor="#DADADA"
+          value={true}
+        />
+        <View
+          style={
+            Object {
+              "paddingLeft": 15,
+            }
+          }
+        >
+          <Text
+            bold={true}
+            style={
+              Object {
+                "color": "#4051DB",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "lineHeight": 24,
+                "writingDirection": "ltr",
+              }
+            }
+            use="body1"
+          >
+            FOO BAR
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#4051DB",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 16,
+                "fontWeight": "normal",
+                "lineHeight": 22,
+                "writingDirection": "ltr",
+              }
+            }
+            use="body2"
+          >
+            Default:
+            <Text
+              style={
+                Object {
+                  "color": "#4051DB",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 15,
+                  "fontStyle": "italic",
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body3"
+            >
+               On
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTSafeAreaView>
+</View>
+`;

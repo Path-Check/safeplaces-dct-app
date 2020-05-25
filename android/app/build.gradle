@@ -5,9 +5,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
 
 project.ext.envConfigFiles = [
-    debug: ".env",
-    staging: ".env.staging",
-    release: ".env.release",
+    btedebug: ".env.bte",
+    btestaging: ".env.bte.staging",
+    bterelease: ".env.bte.release",
+
+    gpsdebug: ".env.gps",
+    gpsstaging: ".env.gps.staging",
+    gpsrelease: ".env.gps.release",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
@@ -152,7 +156,7 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 25
+        versionCode 11
         versionName "1.0.8"
     }
     splits {
@@ -185,43 +189,37 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug']
+        }
+        staging {
+            signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug']
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            // signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
+            matchingFallbacks = ['release']
         }
     }
 
     flavorDimensions "version"
     productFlavors {
-        dev {
+        gps {
+            applicationId 'org.pathcheck.covidsafepaths'
             dimension "version"
         }
-        staging {
-            dimension "version"
-        }
-        prod {
+        bte {
+            applicationId 'org.pathcheck.covidsafepathsBte'
             dimension "version"
         }
     }
 
-    // applicationVariants are e.g. debug, release
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            // For each separate APK per architecture, set a unique version code as described here:
-            // https://developer.android.com/studio/build/configure-apk-splits.html
-            def versionCodes = ["armeabi-v7a": 1, "x86": 2, "arm64-v8a": 3, "x86_64": 4]
-            def abi = output.getFilter(OutputFile.ABI)
-            if (abi != null) {  // null for the universal-debug, universal-release variants
-                output.versionCodeOverride =
-                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
-            }
-        }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
+
 }
 
 dependencies {
