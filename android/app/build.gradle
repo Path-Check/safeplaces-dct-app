@@ -5,13 +5,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
 
 project.ext.envConfigFiles = [
-    btedebug: ".env.bte",
-    btestaging: ".env.bte.staging",
-    bterelease: ".env.bte.release",
+    bteDebug: ".env.bte",
+    bteStaging: ".env.bte.staging",
+    bteRelease: ".env.bte.release",
 
-    gpsdebug: ".env.gps",
-    gpsstaging: ".env.gps.staging",
-    gpsrelease: ".env.gps.release",
+    gpsDebug: ".env.gps",
+    gpsStaging: ".env.gps.staging",
+    gpsRelease: ".env.gps.release",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
@@ -137,7 +137,6 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  * and the benefits of using Hermes will therefore be sharply reduced.
  */
 def enableHermes = project.ext.react.get("enableHermes", false)
-def task = gradle.startParameter.taskNames[0] ?: ""
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -233,7 +232,7 @@ dependencies {
     implementation 'com.bottlerocketstudios:vault:1.4.2'
     implementation 'com.google.android.gms:play-services-gcm:15.0.1'
     implementation 'com.google.android.gms:play-services-location:15.0.1'
-    if (task.toLowerCase().contains("gps")) {
+    if (project.env.get('TRACING_STRATEGY') == "gps") {
         implementation project(':@mauron85_react-native-background-geolocation-common')
     }
     if (enableHermes) {
