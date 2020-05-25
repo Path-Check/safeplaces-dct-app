@@ -36,7 +36,7 @@ export default function ToggleButtons({
             color={Colors.BLUE_RIBBON}
             size={15}
             style={{
-              backgroundColor: '#fff',
+              backgroundColor: Colors.WHITE,
               position: 'absolute',
               right: -7,
               top: -7,

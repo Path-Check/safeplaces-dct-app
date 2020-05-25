@@ -89,11 +89,11 @@ export default function ReportScreenQuestions({ navigation }) {
       content: <ThankYou />,
     },
   ];
-  const { BLUE_RIBBON, LIGHT_GRAY, GREEN } = Colors;
+  const { BLUE_RIBBON, LIGHT_GRAY, GREEN, WHITE, BLACK } = Colors;
   return (
     <View
       style={{
-        backgroundColor: '#fff',
+        backgroundColor: WHITE,
         display: 'flex',
         flex: 1,
         flexDirection: 'column',
@@ -188,7 +188,7 @@ export default function ReportScreenQuestions({ navigation }) {
               styles.buttonText,
               {
                 marginHorizontal: wp('5%'),
-                color: 'black',
+                color: BLACK,
               },
             ]}>
             Atrás

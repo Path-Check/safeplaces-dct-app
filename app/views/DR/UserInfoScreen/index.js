@@ -9,7 +9,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import { Dialog } from 'react-native-simple-dialogs';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import CalendarButton from '../../../components/DR/CalendarButton/index';
 import Header from '../../../components/DR/Header';
@@ -99,13 +99,25 @@ export default function UserInfo({ navigation }) {
       value: { [option]: selected },
     });
   };
+  const getAge = date => {
+    const today = new Date();
+    const birthday = new Date(date);
+    let personAge = today.getFullYear() - birthday.getFullYear();
+    const month = today.getMonth() - birthday.getMonth();
+    if (month < 0 || (month === 0 && today.getDate() < birthday.getDate())) {
+      personAge--;
+    }
+    return setSelectedOption('age', personAge);
+  };
+
+  let isLoading = false;
   const disabled =
-    (cid.length > 10 || passportId || nssId) &&
-    (phoneNumber.length > 13 || passportName) &&
+    (cid.length > 10 || passportId.length > 6 || nssId.length > 5) &&
+    (phoneNumber.length > 13 || passportName.length > 8) &&
     birth
       ? false
       : true;
-  let isLoading = false;
+  console.log(birth, cid, phoneNumber);
   return (
     <Container>
       <Content>
@@ -114,11 +126,11 @@ export default function UserInfo({ navigation }) {
             <Dialog
               onTouchOutside={() => closeDialog(true)}
               visible={showDialog}
-              dialogStyle={{ backgroundColor: '#fff' }}>
+              dialogStyle={{ backgroundColor: Colors.WHITE }}>
               <View>
                 <Button
                   transparent
-                  onPress={() => closeDialog()}
+                  onPress={() => closeDialog(true)}
                   style={{ marginTop: -10 }}>
                   <Icon name='times' size={25} color={Colors.GREEN} />
                 </Button>
@@ -196,23 +208,29 @@ export default function UserInfo({ navigation }) {
                   minDate='01-01-1900'
                 />
                 <Button
-                  disabled={disabled && !isLoading}
+                  disabled={isLoading ? true : disabled}
                   style={[
                     styles.buttons,
                     {
-                      backgroundColor: disabled ? '#b7dbb2' : Colors.GREEN,
+                      backgroundColor: disabled
+                        ? Colors.DARK_GREEN
+                        : Colors.GREEN,
                       marginTop: 18,
                     },
                   ]}
                   onPress={async () => {
                     //Send data to API
+
                     isLoading = true;
                     if (await sendDataToApi()) {
+                      console.log('onpress');
                       isLoading = false;
+                      getAge(birth);
                       navigation.navigate('Report');
                       closeDialog(false);
                     } else {
                       isLoading = false;
+                      console.log('error');
                       setError(true);
                     }
                   }}>
@@ -251,7 +269,7 @@ export default function UserInfo({ navigation }) {
                   <Icon
                     name='id-card'
                     size={wp('8.5%')}
-                    color={Colors.mainBlue}
+                    color={Colors.BLUE_RIBBON}
                   />
                 </Card>
               </TouchableHighlight>
@@ -272,7 +290,7 @@ export default function UserInfo({ navigation }) {
                   <Icon
                     name='passport'
                     size={wp('9%')}
-                    color={Colors.mainBlue}
+                    color={Colors.BLUE_RIBBON}
                   />
                 </Card>
               </TouchableHighlight>
@@ -299,7 +317,7 @@ export default function UserInfo({ navigation }) {
                   <Icon
                     name='id-card-alt'
                     size={wp('8.5%')}
-                    color={Colors.mainBlue}
+                    color={Colors.BLUE_RIBBON}
                   />
                 </Card>
               </TouchableHighlight>

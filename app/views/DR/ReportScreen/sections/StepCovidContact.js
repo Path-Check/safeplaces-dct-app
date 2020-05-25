@@ -1,8 +1,8 @@
 import 'moment/locale/es';
 
 import moment from 'moment';
-import { Container, Content, Text } from 'native-base';
-import React, { useContext, useState } from 'react';
+import { Container, Content, Picker, Text } from 'native-base';
+import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import {
   heightPercentageToDP as hp,
@@ -12,9 +12,9 @@ import {
 import CalendarButton from '../../../../components/DR/CalendarButton';
 import Checkbox from '../../../../components/DR/Checkbox';
 import styles from '../../../../components/DR/Header/style';
-import Input from '../../../../components/DR/Input';
 import context from '../../../../components/DR/Reduces/context';
 import ToggleButtons from '../../../../components/DR/ToggleButtons';
+import Colors from '../../../../constants/colors';
 
 const StepCovidContact = ({ setCompleted }) => {
   const [
@@ -39,6 +39,20 @@ const StepCovidContact = ({ setCompleted }) => {
     },
     setGlobalState,
   ] = useContext(context);
+  const [countries, setCountries] = useState([]);
+
+  const getCountries = async () => {
+    let countries = [];
+    let response = await fetch('https://restcountries.eu/rest/v2/all');
+    response = await response.json();
+    response.map(country => {
+      countries.push(country.name);
+    });
+    return setCountries(countries);
+  };
+  useEffect(() => {
+    getCountries();
+  }, []);
 
   const [selection, setSelection] = useState(
     traveled == true ? 'Sí' : traveled == false ? 'No' : '',
@@ -50,6 +64,8 @@ const StepCovidContact = ({ setCompleted }) => {
       setSelectedOption('traveled', true);
     } else {
       setSelectedOption('traveled', false);
+      setSelectedOption('countriesVisited', '');
+      setSelectedOption('traveledIn', '');
     }
   };
 
@@ -71,20 +87,15 @@ const StepCovidContact = ({ setCompleted }) => {
       },
     });
   };
+
   const minimum = new Date().setDate(new Date().getDate() - 50);
-
-  // if(traveled && dateArrived && countriesVisited > 5){
-
-  // }
   if (
-    traveled === false ||
-    (traveled &&
-      dateArrived &&
-      countriesVisited.length > 5 &&
-      (liveIn || visitedArea || dontKnowArea || noneAbove) &&
+    (traveled === false ||
+      (traveled && dateArrived && countriesVisited && traveledIn)) &&
+    (liveIn || visitedArea || dontKnowArea || noneAbove) &&
       (((liveWith || hadCloseContact || hadFarContact) && usedProtection) ||
         notExposed ||
-        dontKnowExposition))
+        dontKnowExposition)
   ) {
     setCompleted(true);
   } else {
@@ -125,16 +136,34 @@ const StepCovidContact = ({ setCompleted }) => {
                   />
                   <Text
                     style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                    ¿En qué lugares/países estuvo? *
+                    ¿En qué lugar/país estuvo? *
                   </Text>
-                  <Input
-                    value={countriesVisited}
-                    length={150}
-                    multiLine
-                    onChange={text =>
-                      setSelectedOption('countriesVisited', text)
-                    }
-                  />
+                  <Picker
+                    note
+                    mode='dropdown'
+                    placeholder='Selecciona el país'
+                    style={[
+                      styles.rectButtons,
+                      {
+                        width: wp('65%'),
+                        backgroundColor: Colors.LIGHT_BLUE,
+                        alignSelf: 'flex-start',
+                        borderBottomColor: Colors.MAIN_BLUE,
+                        borderBottomWidth: 1.5,
+                      },
+                    ]}
+                    selectedValue={countriesVisited}
+                    onValueChange={value => {
+                      setSelectedOption('countriesVisited', value);
+                    }}>
+                    {countries.map((country, index) => (
+                      <Picker.Item
+                        label={country}
+                        value={country}
+                        key={index}
+                      />
+                    ))}
+                  </Picker>
                   <Text
                     style={[styles.subtitles, { marginVertical: hp('3%') }]}>
                     Viajó en: *

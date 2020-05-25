@@ -54,7 +54,7 @@ const StepAdress = ({ setCompleted }) => {
   return (
     <Container>
       <Content>
-        <View>
+        <View style={{ width: wp('100%') }}>
           <ScrollView>
             <View style={styles.formContainer}>
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>

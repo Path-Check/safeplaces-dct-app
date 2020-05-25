@@ -16,7 +16,8 @@ describe.each(languages)(
       });
     });
 
-    describe('Location set to `always` and notifications `false` set', () => {
+    // eslint-disable-next-line jest/no-disabled-tests
+    describe.skip('Location set to `always` and notifications `false` set', () => {
       beforeAll(async () => {
         await navigateThroughOnboarding(languageStrings);
       });

@@ -48,17 +48,17 @@ const StepHaveSymptoms = ({ setCompleted, sendData }) => {
               <Text style={styles.subtitles}>¿Es esto una emergencia?</Text>
               <Text>
                 Deténgase y llame al *462 si
-                {usage === 'others' && ' la persona a la que evaluarás '}tiene
+                {usage === 'others' && ' la persona a la que evaluarás'} tiene
                 alguno de estos síntomas:
               </Text>
-              <BulletItem text='Dolor en el pecho o presión' />
+              <BulletItem text='Dolor en el pecho o presión.' />
               <BulletItem text='Marcada dificultad para respirar.' />
-              <BulletItem text='Mareo o aturdimiento constante y severo' />
-              <BulletItem text='Dificultad para hablar ' />
-              <BulletItem text='Dificultad para despertarse' />
-              <BulletItem text='Convulsiones' />
-              <BulletItem text='Vómito o diarrea persistente o con sangre' />
-              <BulletItem text='Secreciones por boca y nariz con sangre' />
+              <BulletItem text='Mareo o aturdimiento constante y severo.' />
+              <BulletItem text='Dificultad para hablar.' />
+              <BulletItem text='Dificultad para despertarse.' />
+              <BulletItem text='Convulsiones.' />
+              <BulletItem text='Vómito o diarrea persistente o con sangre.' />
+              <BulletItem text='Secreciones por boca y nariz con sangre.' />
               <View>
                 <ToggleButtons
                   options={[

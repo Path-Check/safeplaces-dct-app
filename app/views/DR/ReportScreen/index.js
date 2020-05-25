@@ -53,7 +53,7 @@ export default function ReportScreen({ navigation }) {
               <Text
                 style={[
                   styles.text,
-                  { color: '#fff', textTransform: 'capitalize' },
+                  { color: Colors.WHITE, textTransform: 'capitalize' },
                 ]}>
                 Usar para mí
               </Text>
