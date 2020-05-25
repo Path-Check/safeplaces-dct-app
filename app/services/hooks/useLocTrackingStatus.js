@@ -24,6 +24,7 @@ export const useLocTrackingStatus = () => {
    */
   const setLocTrackingStatus = async newIsTracking => {
     const { isRunning, reason } = await LocationService.checkStatus();
+    console.log(reason);
 
     if (newIsTracking && !isRunning) {
       await LocationService.start();

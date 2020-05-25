@@ -17,14 +17,7 @@ import { Typography } from '../../components/Typography';
  *   disabled?: boolean
  * }} param0
  */
-export const SettingsItem = ({
-  label,
-  onPress,
-  description,
-  icon,
-  last,
-  disabled,
-}) => {
+export const SettingsItem = ({ label, onPress, description, icon, last }) => {
   const { i18n } = useTranslation();
 
   let getCurrentMarginDirection = () =>
@@ -39,8 +32,7 @@ export const SettingsItem = ({
         style={css`
           flex-direction: ${getCurrentRowDirection()};
         `}
-        onPress={onPress}
-        disabled={disabled}>
+        onPress={onPress}>
         {icon && (
           <Icon
             xml={icon}

@@ -1,7 +1,9 @@
 import styled, { css } from '@emotion/native';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, Linking, Platform, ScrollView, View } from 'react-native';
+import { BackHandler, Linking, ScrollView, View } from 'react-native';
+import DeviceSettings from 'react-native-device-settings';
+import { openSettings } from 'react-native-permissions';
 
 import { Icons } from '../assets';
 import { Divider } from '../components/Divider';
@@ -18,6 +20,7 @@ import {
 } from '../locales/languages';
 import { useLocTrackingStatus } from '../services/hooks/useLocTrackingStatus';
 import { Reason } from '../services/LocationService';
+import { isPlatformiOS } from '../Util';
 import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
@@ -138,16 +141,40 @@ export const LocationTrackingPermissions = ({ isGPS }) => {
   const { t } = useTranslation();
   const [locTrackingStatus, setLocTrackingStatus] = useLocTrackingStatus();
 
-  const toggleLocTracking = async () => {
-    const { reason } = locTrackingStatus;
-
+  const toggleAndroidLoc = async reason => {
     if (reason === Reason.NOT_AUTHORIZED || reason === Reason.USER_OFF) {
+      // Note that Android allows us to toggle app location authorizaiton
+      // without redirecting to settings like in iOS
       await setLocTrackingStatus(true);
     } else if (reason === Reason.LOCATION_OFF) {
-      // TODO
+      // Open device location settings
+      DeviceSettings.location();
     } else {
       await setLocTrackingStatus(false);
     }
+  };
+
+  const toggleiOSLoc = async reason => {
+    if (reason === Reason.USER_OFF) {
+      await setLocTrackingStatus(true);
+    } else if (reason === Reason.NOT_AUTHORIZED) {
+      // Open location settings for the app
+      openSettings();
+    } else if (reason === Reason.LOCATION_OFF) {
+      // Open device settings (iOS does not allow us to open device location settings)
+      Linking.openURL('App-prefs:');
+    } else {
+      await setLocTrackingStatus(false);
+    }
+  };
+
+  /**
+   * Conditional toggling based on the location permission actions
+   * that are enabled per platform.
+   */
+  const toggleLocTracking = async () => {
+    const { reason } = locTrackingStatus;
+    isPlatformiOS() ? toggleiOSLoc(reason) : toggleAndroidLoc(reason);
   };
 
   const getIcon = () => {
@@ -162,30 +189,14 @@ export const LocationTrackingPermissions = ({ isGPS }) => {
     }
   };
 
-  const getDescription = () => {
-    const { reason } = locTrackingStatus;
-
-    if (reason === Reason.LOCATION_OFF) {
-      return 'Device location services are disabled';
-    }
-  };
-
   const label = locTrackingStatus.canTrack
     ? t('label.logging_active_location')
     : t('label.logging_inactive_location');
 
-  const isDisabled = locTrackingStatus.reason === Reason.LOCATION_OFF;
-
   if (isGPS) {
     return (
       <>
-        <Item
-          label={label}
-          icon={getIcon()}
-          onPress={toggleLocTracking}
-          description={getDescription()}
-          disabled={isDisabled}
-        />
+        <Item label={label} icon={getIcon()} onPress={toggleLocTracking} />
       </>
     );
   }

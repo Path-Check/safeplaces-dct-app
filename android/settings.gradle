@@ -1,4 +1,6 @@
 rootProject.name = 'COVIDSafePaths'
+include ':react-native-device-settings'
+project(':react-native-device-settings').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-device-settings/android')
 include ':react-native-reanimated'
 project(':react-native-reanimated').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-reanimated/android')
 include ':react-native-fs'

@@ -9,9 +9,10 @@ import Colors from '../constants/colors';
 import { getBuildtimeFlags } from '../constants/flagsEnv';
 import { DEBUG_MODE } from '../constants/storage';
 import { Theme } from '../constants/themes';
-import { getCleanedFlagName, useFlags } from '../helpers/Flags';
+import { getCleanedFlagName } from '../helpers/Flags';
 import { GetStoreData } from '../helpers/General';
 import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
+import { useFlags } from '../services/hooks/useFlags';
 
 export const FEATURE_FLAG_SCREEN_NAME = 'FeatureFlagsScreen';
 
