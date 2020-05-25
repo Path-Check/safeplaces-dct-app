@@ -12,6 +12,7 @@ import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
 import { config } from '../COVIDSafePathsConfig';
 import { GetStoreData, SetStoreData } from '../helpers/General';
+import { getLocationStrings } from '../helpers/LocationEncryption';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
@@ -100,6 +101,18 @@ export const SettingsScreen = ({ navigation }) => {
     }
   };
 
+  const getLocationHashes = async () => {
+    const location = {
+      // time: 1590175534000,
+      time: 1590176396631.124,
+      longitude: 0,
+      latitude: 0,
+    };
+
+    const hashes = getLocationStrings(location);
+    console.log(hashes);
+  };
+
   return (
     <NavigationBarWrapper
       title={t('label.settings_title')}
@@ -156,6 +169,12 @@ export const SettingsScreen = ({ navigation }) => {
                 label={'GET LOCATIONS'}
                 description={'GET LOCATIONS'}
                 onPress={() => getLocation()}
+                last
+              />
+              <Item
+                label={'GET HASHES'}
+                description={'GET HASHES'}
+                onPress={() => getLocationHashes()}
                 last
               />
             </>

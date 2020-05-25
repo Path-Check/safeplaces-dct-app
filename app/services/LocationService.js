@@ -213,8 +213,8 @@ export default class LocationServices {
     });
 
     BackgroundGeolocation.on('location', async location => {
-      console.log('LOCATION');
-      console.log(location);
+      // console.log('LOCATION');
+      // console.log(location);
       // await BackgroundGeolocation.startTask(async taskKey => {
       //   await NativeModules.SecureStorageManager.saveLocation({
       //     ...location,
