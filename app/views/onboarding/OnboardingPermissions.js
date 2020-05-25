@@ -16,6 +16,7 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { ONBOARDING_DONE, PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
+import { config } from '../../COVIDSafePathsConfig';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
@@ -28,6 +29,7 @@ export const OnboardingPermissions = ({ navigation }) => {
     PermissionsContext,
   );
   const [currentStep, setCurrentStep] = useState(0);
+  const isGPS = config.tracingStrategy === 'gps';
   const isiOS = Platform.OS === 'ios';
   const isDev = __DEV__;
 
@@ -96,7 +98,9 @@ export const OnboardingPermissions = ({ navigation }) => {
 
   const determineSteps = (isGPS, isiOS, isDev) => {
     const steps = [];
-    steps.push(locationStep);
+    if (isGPS) {
+      steps.push(locationStep);
+    }
     if (isiOS) {
       steps.push(notificationStep);
     }
