@@ -5,6 +5,7 @@ const geohash = require('ngeohash');
 
 import scrypt from 'react-native-scrypt';
 
+const DEFAULT_SALT = 'salt';
 const TWO_AND_HALF_MIN_MS = 2.5 * 60 * 1000;
 const FIVE_MIN_MS = 5 * 60 * 1000;
 const GEO_CIRCLE_RADII = [
@@ -85,37 +86,36 @@ export const getLocationStrings = location => {
   return locationStrings;
 };
 
-export async function scryptEncode() {
-  console.log('scryptGeoHash');
+const generateScryptSalt = (saltString = DEFAULT_SALT) => {
+  return saltString.split('').map(char => char.charCodeAt(0));
+};
 
-  const location = {
-    longitude: 14.91328448,
-    latitude: 41.24060321,
-    time: 1589117700000,
-  };
-
-  const geoHashedLocation = geohash.encode(
-    location.latitude,
-    location.longitude,
-    8,
-  );
-  const unixTimeStamp = Math.round(location.time);
+/**
+ * Hashes locationString using Scrypt
+ *
+ * @param {string} locationString
+ */
+export const scryptEncode = async locationString => {
   let scryptHash;
-  const salt = [115, 97, 108, 116];
+  const salt = generateScryptSalt();
   try {
-    scryptHash = await scrypt(
-      geoHashedLocation + unixTimeStamp,
-      salt,
-      16384,
-      8,
-      1,
-      8,
-    );
+    scryptHash = await scrypt(locationString, salt, 16384, 8, 1, 8);
   } catch (e) {
     console.log(e);
+    return null;
   }
+  return scryptHash;
+};
 
-  console.log('scryptHash');
-  console.log(geoHashedLocation + unixTimeStamp);
-  console.log(scryptHash);
-}
+/**
+ * Generates array of location strings and then hashes them using Scrypt
+ *
+ * @param {object} location - { latitude, longitude, time }
+ */
+export const getLocationHashes = async location => {
+  const locationStrings = getLocationStrings(location);
+  const scryptPromises = locationStrings.map(
+    async locationString => await scryptEncode(locationString),
+  );
+  return Promise.all(scryptPromises);
+};

@@ -13,6 +13,7 @@ import { PARTICIPATE } from '../constants/storage';
 import { config } from '../COVIDSafePathsConfig';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
+  getLocationHashes,
   getLocationStrings,
   scryptEncode,
 } from '../helpers/LocationEncryption';
@@ -104,16 +105,14 @@ export const SettingsScreen = ({ navigation }) => {
     }
   };
 
-  const getLocationHashes = async () => {
+  const getLocationHashList = async () => {
     const location = {
-      // time: 1590175534000,
-      time: 1590176396631.124,
-      longitude: 0,
-      latitude: 0,
+      longitude: 14.91328448,
+      latitude: 41.24060321,
+      time: 1589117939000,
     };
 
-    const hashes = scryptEncode(location);
-    console.log(getLocationStrings(location));
+    const hashes = await getLocationHashes(location);
     console.log(hashes);
   };
 
@@ -178,7 +177,7 @@ export const SettingsScreen = ({ navigation }) => {
               <Item
                 label={'GET HASHES'}
                 description={'GET HASHES'}
-                onPress={() => getLocationHashes()}
+                onPress={() => getLocationHashList()}
                 last
               />
             </>
