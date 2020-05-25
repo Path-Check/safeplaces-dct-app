@@ -47,6 +47,79 @@ class RealmSecureStorageTest: XCTestCase {
     XCTAssertEqual(location1Time, resultLocation.time)
   }
   
+  func testSaveLocation() {
+    let mockSave: NSDictionary = [
+      "time": "1234567",
+      "latitude": 12.4213,
+      "longitude": 52.123123,
+      "hashes": [
+        "87e916850d4def3c",
+        "87e916850d4def3d",
+        "87e916850d4def3e",
+        "87e916850d4def3f",
+      ],
+      "altitude": 423.2321
+    ]
+    
+    secureStorage!.saveLocation(location: mockSave,
+      source: Location.SOURCE_DEVICE,
+      resolve: { result in
+        XCTAssertEqual(true, result as! Bool)
+      },
+      reject: emptyRejecter()
+    )
+    
+    guard let resultLocation = querySingleLocationByTime(time: 1234567) else {
+      XCTFail("Resulting location 1 returned nil")
+      return
+    }
+    XCTAssertEqual(12.4213, resultLocation.latitude)
+    XCTAssertEqual(52.123123, resultLocation.longitude)
+    XCTAssertEqual(1234567, resultLocation.time)
+    XCTAssertEqual(Location.SOURCE_DEVICE, resultLocation.source)
+    XCTAssertEqual(423.2321, resultLocation.altitude.value)
+    for hash in mockSave["hashes"] as? [String] ?? [] {
+      XCTAssertTrue(resultLocation.hashes.contains(hash))
+    }
+  }
+  
+  func testGetLocationsWithHashes() {
+    let locationDate = Date()
+    let locationTime = Int(locationDate.timeIntervalSince1970)
+    let mockSave: NSDictionary = [
+      "time": locationTime,
+      "latitude": 12.4213,
+      "longitude": 52.123123,
+      "hashes": [
+        "87e916850d4def3c",
+        "87e916850d4def3d",
+        "87e916850d4def3e",
+        "87e916850d4def3f",
+      ],
+      "altitude": 423.2321
+    ]
+    
+    secureStorage!.saveLocation(location: mockSave,
+      source: Location.SOURCE_DEVICE,
+      resolve: { result in
+        XCTAssertEqual(true, result as! Bool)
+      },
+      reject: emptyRejecter()
+    )
+    
+    // when
+    secureStorage!.getLocations(resolve: { result in
+      XCTAssertEqual(1, (result as! NSArray).count)
+      let hashes = ((result as! NSArray).object(at: 0) as! NSDictionary).object(forKey: Location.KEY_HASHES) as! [String]
+      for hash in mockSave["hashes"] as? [String] ?? [] {
+        XCTAssertTrue(hashes.contains(hash))
+      }
+      XCTAssertEqual(52.123123, ((result as! NSArray).object(at: 0) as! NSDictionary).object(forKey: Location.KEY_LONGITUDE) as! Double)
+      XCTAssertEqual(12.4213, ((result as! NSArray).object(at: 0) as! NSDictionary).object(forKey: Location.KEY_LATITUDE) as! Double)
+      XCTAssertEqual(locationTime * 1000, ((result as! NSArray).object(at: 0) as! NSDictionary).object(forKey: Location.KEY_TIME) as! Int)
+    }, reject: emptyRejecter())
+  }
+  
   func testSaveDeviceLocationIgnoredIfPreviousInsertTooClose() {
     // given
     let location1Date = Date()

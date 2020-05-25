@@ -16,6 +16,11 @@ class SecureStorageManager: NSObject {
   }
   
   @objc
+  func saveLocation(_ location: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+    SecureStorage.shared.saveLocation(location: location, source: Location.SOURCE_DEVICE, resolve: resolve, reject: reject)
+  }
+  
+  @objc
   func getLocations(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
     SecureStorage.shared.getLocations(resolve: resolve, reject: reject)
   }

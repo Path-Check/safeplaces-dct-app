@@ -24,14 +24,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  MAURBackgroundGeolocationFacade.locationTransform = ^(MAURLocation * location) {
-    MAURLocation *locationToInsert = [location copy];
-    [[SecureStorage shared] saveDeviceLocationWithBackgroundLocation:locationToInsert];
-    
-    // nil out location so geolocation library doesn't save in its internval db
-    location = nil;
-    return location;
-  };
+//  Saving device location is sent over the RCTBridge with saveLocation
+//  MAURBackgroundGeolocationFacade.locationTransform = ^(MAURLocation * location) {
+//    MAURLocation *locationToInsert = [location copy];
+//    [[SecureStorage shared] saveDeviceLocationWithBackgroundLocation:locationToInsert];
+//
+//    // nil out location so geolocation library doesn't save in its internal db
+//    location = nil;
+//    return location;
+//  };
   
   [[SecureStorage shared] trimLocations];
   
