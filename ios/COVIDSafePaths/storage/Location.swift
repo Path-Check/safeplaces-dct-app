@@ -50,7 +50,7 @@ class Location: Object {
       Location.KEY_TIME: time * 1000,
       Location.KEY_LATITUDE: latitude,
       Location.KEY_LONGITUDE: longitude,
-      Location.KEY_HASHES: hashes
+      Location.KEY_HASHES: Array(hashes)
     ]
   }
   
