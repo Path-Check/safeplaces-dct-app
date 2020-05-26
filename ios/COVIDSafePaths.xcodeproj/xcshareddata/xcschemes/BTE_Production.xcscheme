@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1130"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "NO"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "echo &quot;.env.bte.release&quot; &gt; /tmp/envfile   # use .env.bte.release&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "C53FD07D24719AD1006D3268"
+                     BuildableName = "COVIDSafePaths.app"
+                     BlueprintName = "BTE"
+                     ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
