@@ -295,4 +295,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: COVIDSafePaths-staging-bte
-          path: ios/COVIDSafePaths-bte.ipa
+          path: ios/COVIDSafePaths-bte-staging.ipa
