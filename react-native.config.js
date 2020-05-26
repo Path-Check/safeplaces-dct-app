@@ -13,5 +13,11 @@ module.exports = {
         ios: null,
       },
     },
+    '@mauron85/react-native-background-geolocation': {
+      platforms: {
+        android: undefined,
+        ios: null,
+      },
+    },
   },
 };
