@@ -93,9 +93,9 @@ const StepCovidContact = ({ setCompleted }) => {
     (traveled === false ||
       (traveled && dateArrived && countriesVisited && traveledIn)) &&
     (liveIn || visitedArea || dontKnowArea || noneAbove) &&
-      (((liveWith || hadCloseContact || hadFarContact) && usedProtection) ||
-        notExposed ||
-        dontKnowExposition)
+    (((liveWith || hadCloseContact || hadFarContact) && usedProtection) ||
+      notExposed ||
+      dontKnowExposition)
   ) {
     setCompleted(true);
   } else {

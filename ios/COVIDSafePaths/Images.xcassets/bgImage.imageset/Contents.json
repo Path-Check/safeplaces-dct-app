@@ -1,23 +1,23 @@
 {
   "images" : [
     {
-      "filename" : "loading - light.png",
       "idiom" : "universal",
+      "filename" : "splash.png",
       "scale" : "1x"
     },
     {
-      "filename" : "loading - light@2x.png",
       "idiom" : "universal",
+      "filename" : "splash-1.png",
       "scale" : "2x"
     },
     {
-      "filename" : "loading - light@3x.png",
       "idiom" : "universal",
+      "filename" : "splash-2.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }
