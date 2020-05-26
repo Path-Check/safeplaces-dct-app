@@ -229,7 +229,10 @@ export default class LocationServices {
       ) {
         locationData.lastSavedTime = location.time;
         await BackgroundGeolocation.startTask(async taskKey => {
-          const hashes = await getLocationHashes(location);
+          const hashes = await getLocationHashes(
+            location,
+            locationData.locationInterval,
+          );
           await NativeModules.SecureStorageManager.saveLocation({
             ...location,
             hashes,

@@ -6,8 +6,6 @@ const geohash = require('ngeohash');
 import scrypt from 'react-native-scrypt';
 
 const DEFAULT_SALT = 'salt';
-const TWO_AND_HALF_MIN_MS = 2.5 * 60 * 1000;
-export const FIVE_MIN_MS = 5 * 60 * 1000;
 const GEO_CIRCLE_RADII = [
   { latitude: 0, longitude: 0 }, // center
   { latitude: 0.0001, longitude: 0 }, // N
@@ -21,23 +19,25 @@ const GEO_CIRCLE_RADII = [
 ];
 
 /**
- * Rounds down timestamp to the nearest 5 minute window
+ * Rounds down timestamp to the nearest interval window
  *
  * @param {number} timestamp - Unix timestamps in milliseconds
+ * @param {number} interval - location storage interval in milliseconds
  */
-const roundToFiveMin = timestamp => {
-  return Math.floor(timestamp / FIVE_MIN_MS) * FIVE_MIN_MS;
+const roundToInterval = (timestamp, interval) => {
+  return Math.floor(timestamp / interval) * interval;
 };
 
 /**
- * Generates time windows for 5 minute interval before and after timestamp
+ * Generates time windows for interval before and after timestamp
  *
  * @param {number} timestamp - Unix timestamps in milliseconds
+ * @param {number} interval - location storage interval in milliseconds
  */
-const getTimeWindows = timestamp => {
-  const time1 = timestamp + TWO_AND_HALF_MIN_MS;
-  const time2 = timestamp - TWO_AND_HALF_MIN_MS;
-  return [roundToFiveMin(time1), roundToFiveMin(time2)];
+const getTimeWindows = (timestamp, interval) => {
+  const time1 = timestamp + interval / 2;
+  const time2 = timestamp - interval / 2;
+  return [roundToInterval(time1, interval), roundToInterval(time2, interval)];
 };
 
 /**
@@ -72,10 +72,11 @@ export const getGeohashes = location => {
  * Generates array of location strings within a 10 meter radius of given location by concatenating each geohash with both time windows
  *
  * @param {object} location - { latitude, longitude, time }
+ * @param {number} interval - location storage interval in milliseconds
  */
-export const getLocationStrings = location => {
+export const getLocationStrings = (location, interval) => {
   const geohashes = getGeohashes(location);
-  const timeWindows = getTimeWindows(location.time);
+  const timeWindows = getTimeWindows(location.time, interval);
   const locationStrings = [];
 
   for (let i = 0; i < geohashes.length; i++) {
@@ -111,9 +112,10 @@ export const scryptEncode = async locationString => {
  * Generates array of location strings and then hashes them using Scrypt
  *
  * @param {object} location - { latitude, longitude, time }
+ * @param {number} interval - location storage interval in milliseconds
  */
-export const getLocationHashes = async location => {
-  const locationStrings = getLocationStrings(location);
+export const getLocationHashes = async (location, interval) => {
+  const locationStrings = getLocationStrings(location, interval);
   const scryptPromises = locationStrings.map(
     async locationString => await scryptEncode(locationString),
   );
