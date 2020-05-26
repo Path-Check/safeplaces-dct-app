@@ -118,7 +118,7 @@ export const SettingsScreen = ({ navigation }) => {
       time: 1589117939000,
     };
 
-    const hashes = await getLocationHashes(location);
+    const hashes = await getLocationHashes(location, 60000 * 5);
     console.log(hashes);
   };
 
