@@ -5,7 +5,7 @@ import PushNotification from 'react-native-push-notification';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { FIVE_MIN_MS, getLocationHashes } from '../helpers/LocationEncryption';
+import { getLocationHashes } from '../helpers/LocationEncryption';
 import languages from '../locales/languages';
 
 let isBackgroundGeolocationConfigured = false;
@@ -223,10 +223,11 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('location', async location => {
       if (
-        !this.lastSavedTime ||
-        location.time - this.lastSavedTime >= FIVE_MIN_MS
+        !locationData.lastSavedTime ||
+        location.time - locationData.lastSavedTime >=
+          locationData.locationInterval
       ) {
-        this.lastSavedTime = location.time;
+        locationData.lastSavedTime = location.time;
         await BackgroundGeolocation.startTask(async taskKey => {
           const hashes = await getLocationHashes(location);
           await NativeModules.SecureStorageManager.saveLocation({
