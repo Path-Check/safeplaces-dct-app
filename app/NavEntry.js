@@ -9,7 +9,6 @@ import HomeScreen from './views/DR/HomeScreen';
 import Maps from './views/DR/Maps';
 import NewsMainScreen from './views/DR/News';
 import ReportScreen from './views/DR/ReportScreen';
-import LocationTracking from './views/LocationTracking';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,9 +22,10 @@ function MainNavigation() {
         tabStyle: [styles.bottomTabLabel],
       }}>
       <Tab.Screen
-        name={languages.t('navigation.home')}
+        name='Home'
         component={HomeScreen}
         options={{
+          tabBarLabel: languages.t('navigation.home'),
           // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
@@ -37,25 +37,12 @@ function MainNavigation() {
           ),
         }}
       />
+
       <Tab.Screen
-        name={languages.t('navigation.location_tracker')}
-        component={LocationTracking}
-        options={{
-          // eslint-disable-next-line react/display-name
-          tabBarIcon: ({ focused, color }) => (
-            <Ionicons
-              focused={focused}
-              name='ios-radio'
-              size={25}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name={languages.t('navigation.report')}
+        name='ReportScreen'
         component={ReportScreen}
         options={{
+          tabBarLabel: languages.t('navigation.report'),
           // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
@@ -68,9 +55,10 @@ function MainNavigation() {
         }}
       />
       <Tab.Screen
-        name={languages.t('navigation.maps')}
+        name='Maps'
         component={Maps}
         options={{
+          tabBarLabel: languages.t('navigation.maps'),
           // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
@@ -83,9 +71,10 @@ function MainNavigation() {
         }}
       />
       <Tab.Screen
-        name={languages.t('navigation.news')}
+        name='News'
         component={NewsMainScreen}
         options={{
+          tabBarLabel: languages.t('navigation.news'),
           // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons

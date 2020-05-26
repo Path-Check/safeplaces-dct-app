@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Colors from '../../../constants/colors';
 import languages from '../../../locales/languages';
@@ -76,6 +76,38 @@ export function Aurora({ navigation }) {
             ]}>
             <Text style={styles.buttonText}>
               {languages.t('label.conversar_label')}
+            </Text>
+          </Button>
+        </View>
+      </Card>
+    </View>
+  );
+}
+
+export function LocationMatch({ navigation }) {
+  return (
+    <View>
+      <Card style={styles.bigCards}>
+        <View style={styles.auroraContainer}>
+          <Icon name='search-location' color={BLUE_RIBBON} size={wp('6%')} />
+          <Text style={[styles.textHeader, { marginLeft: 8 }]}>
+            {languages.t('label.location_match_title')}
+          </Text>
+        </View>
+        <View style={styles.tester}>
+          <Left>
+            <Text style={styles.text}>
+              {languages.t('label.location_match_description')}
+            </Text>
+          </Left>
+          <Button
+            onPress={() => navigation.navigate('Location')}
+            style={[
+              styles.buttons,
+              { backgroundColor: BLUE_RIBBON, marginLeft: 10 },
+            ]}>
+            <Text style={styles.buttonText}>
+              {languages.t('label.location_match_button')}
             </Text>
           </Button>
         </View>

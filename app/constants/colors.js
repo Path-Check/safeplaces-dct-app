@@ -3,6 +3,7 @@ import colorDr from './colors-dr';
 const colors = {
   BLACK: '#000',
   WHITE: '#FFF',
+  GRAY: '#2F3133',
   DODGER_BLUE: '#428AF8',
   MAIN_BLUE: '#428af8',
   SILVER: '#BEBEBE',

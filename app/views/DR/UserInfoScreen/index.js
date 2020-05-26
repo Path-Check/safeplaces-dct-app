@@ -117,7 +117,6 @@ export default function UserInfo({ navigation }) {
     birth
       ? false
       : true;
-  console.log(birth, cid, phoneNumber);
   return (
     <Container>
       <Content>

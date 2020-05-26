@@ -1,12 +1,12 @@
 import 'react-native-gesture-handler';
 
 import React, { useEffect, useReducer } from 'react';
-import { StatusBar } from 'react-native';
 import { MenuProvider } from 'react-native-popup-menu';
 import SplashScreen from 'react-native-splash-screen';
 
 import context from './app/components/DR/Reduces/context';
 import { initialState, reducer } from './app/components/DR/Reduces/index';
+import StatusBar from './app/components/DR/StatusBar';
 import Colors from './app/constants/colors';
 import { Theme } from './app/constants/themes';
 import Entry from './app/Entry';
