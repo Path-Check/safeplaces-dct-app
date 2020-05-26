@@ -1,0 +1,17 @@
+apple_id("tech@pathcheck.org") # Your Apple email address
+
+itc_team_id("121372784") # App Store Connect Team ID
+team_id("79Z8HUPGC3") # Developer Portal Team ID
+
+for_platform :ios do
+  for_lane :release_bte do
+    app_identifier "org.pathcheck.bt"
+  end
+
+  for_lane :release do
+    app_identifier "org.pathcheck.covid-safepaths"
+  end
+end
+
+# For more information about the Appfile, see:
+# https://docs.fastlane.tools/advanced/#appfile

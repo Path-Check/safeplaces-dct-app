@@ -3,14 +3,17 @@
  */
 
 import 'react-native';
-import React from 'react';
-import App from '../App';
-import {render} from '@testing-library/react-native';
+import 'isomorphic-fetch';
 
-jest.mock('../app/Entry', () => 'Entry');
+import { render } from '@testing-library/react-native';
+import React from 'react';
+
+import App from '../App';
+
+jest.mock('../app/Entry', () => ({ Entry: 'Entry' }));
 
 it('renders correctly', () => {
-  const {asJSON} = render(<App />);
+  const { asJSON } = render(<App />);
 
   expect(asJSON()).toMatchSnapshot();
 });

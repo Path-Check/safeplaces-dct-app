@@ -1,10 +1,10 @@
+#!/bin/bash
+set -e
+
 # Usage:
 #   - Create a READ/WRITE token at https://app.lokalise.com/profile
 #   - Run the command from the root of the project with:
 #     LOKALISE_TOKEN=<token> yarn i18n:push
-
-#!/bin/bash
-set -e
 
 function found_exe() {
   hash "$1" 2>/dev/null
@@ -22,6 +22,7 @@ if ! found_exe lokalise2; then
 
   else
     curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
+    export PATH="$PATH:./bin"
   fi
 fi
 
