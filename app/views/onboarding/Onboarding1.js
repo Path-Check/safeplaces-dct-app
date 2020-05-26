@@ -83,7 +83,10 @@ class Onboarding extends Component {
                   {({ label, openPicker }) => (
                     <TouchableOpacity
                       onPress={openPicker}
-                      style={styles.languageSelector}>
+                      style={{
+                        ...styles.languageSelector,
+                        backgroundColor: Colors.WHITE,
+                      }}>
                       <Typography style={styles.languageSelectorText}>
                         {label}
                       </Typography>

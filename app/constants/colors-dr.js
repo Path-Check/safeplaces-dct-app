@@ -9,6 +9,7 @@ const colors = {
   CONFETTI: '#EAEB5E',
   YUKON_GOLD: '#666804',
   GREEN: '#7ED321',
+  DARK_GRAY: '#3B3B3B',
 };
 
 export default colors;

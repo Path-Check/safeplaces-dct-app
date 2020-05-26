@@ -1,17 +1,17 @@
+import { Button, Text } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Linking, Modal, StyleSheet, View } from 'react-native';
 import loadLocalResource from 'react-native-local-resource';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 
 import close from '../assets/svgs/close';
 import Colors from '../constants/colors';
+import buttonStyle from '../constants/DR/buttonStyles';
 import { Theme } from '../constants/themes';
 import en from '../locales/eula/en.html';
 import ht from '../locales/eula/ht.html';
-import { Button } from './Button';
 import { Checkbox } from './Checkbox';
 import { IconButton } from './IconButton';
 import { Typography } from './Typography';
@@ -54,9 +54,16 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   return (
     <>
       <Button
-        label={t('label.launch_get_started')}
-        onPress={() => setModalVisibility(true)}
-      />
+        style={{
+          ...buttonStyle.buttonStyle,
+          backgroundColor: Colors.WHITE,
+          marginBottom: 20,
+        }}
+        onPress={() => setModalVisibility(true)}>
+        <Text style={{ ...buttonStyle.buttonText, color: Colors.BLUE_RIBBON }}>
+          {t('label.launch_get_started')}
+        </Text>
+      </Button>
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
           <Theme use='default'>
@@ -93,14 +100,27 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                   {t('onboarding.eula_message')}
                 </Typography>
                 <Button
-                  label={t('onboarding.eula_continue')}
-                  style={styles.termsButton}
+                  style={{
+                    ...buttonStyle.buttonStyle,
+                    backgroundColor: canContinue
+                      ? Colors.WHITE
+                      : Colors.LIGHT_GRAY,
+                  }}
                   disabled={!canContinue}
                   onPress={() => {
                     setModalVisibility(false);
                     continueFunction();
-                  }}
-                />
+                  }}>
+                  <Text
+                    style={{
+                      ...buttonStyle.buttonText,
+                      color: canContinue
+                        ? Colors.BLUE_RIBBON
+                        : Colors.GRAY_BUTTON,
+                    }}>
+                    {t('onboarding.eula_continue')}
+                  </Text>
+                </Button>
               </View>
             </SafeAreaView>
           </Theme>
@@ -118,12 +138,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     color: Colors.PRIMARY_TEXT,
     backgroundColor: Colors.WHITE,
-  },
-  termsButton: {
-    marginLeft: 65,
-    width: wp('60%'),
-    height: 45,
-    borderRadius: 50,
   },
   ctaBox: {
     padding: 15,

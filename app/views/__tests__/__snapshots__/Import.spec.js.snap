@@ -170,8 +170,6 @@ Array [
 5. Return here to import locations from Google Drive
           </Text>
           <View
-            accessibilityLabel="Visit Google Takeout"
-            accessibilityRole="button"
             accessible={true}
             focusable={true}
             isTVSelectable={true}
@@ -184,45 +182,64 @@ Array [
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "alignContent": "center",
                 "alignItems": "center",
-                "alignSelf": "stretch",
-                "borderBottomLeftRadius": 8,
-                "borderBottomRightRadius": 8,
-                "borderColor": "transparent",
-                "borderStyle": "solid",
-                "borderTopLeftRadius": 8,
-                "borderTopRightRadius": 8,
-                "borderWidth": 2,
+                "backgroundColor": "#0161F2",
+                "borderBottomWidth": null,
+                "borderColor": "#007aff",
+                "borderLeftWidth": null,
+                "borderRadius": 40,
+                "borderRightWidth": null,
+                "borderTopWidth": null,
+                "borderWidth": undefined,
+                "elevation": 2,
                 "flexDirection": "row",
-                "height": 48,
+                "height": 77.5,
                 "justifyContent": "center",
-                "marginTop": 24,
+                "marginBottom": 20,
+                "marginLeft": 23,
+                "marginTop": 40,
                 "opacity": 1,
-                "paddingHorizontal": 14,
+                "paddingBottom": 6,
+                "paddingTop": 6,
+                "shadowColor": undefined,
+                "shadowOffset": undefined,
+                "shadowOpacity": undefined,
+                "shadowRadius": undefined,
+                "width": 562.5,
               }
             }
             testID="google-takeout-link"
           >
             <Text
-              small={true}
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans-Medium",
-                  "fontSize": 14,
-                  "fontWeight": "normal",
-                  "lineHeight": 21,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "#fff",
+                    "fontFamily": "System",
+                    "fontSize": 14,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                  },
+                  Object {
+                    "color": "#FFF",
+                    "fontSize": 30,
+                    "fontWeight": "900",
+                    "paddingHorizontal": 11,
+                    "paddingVertical": 4,
+                    "textAlign": "center",
+                    "textTransform": "capitalize",
+                  },
+                ]
               }
-              use="body1"
+              uppercase={false}
             >
               Visit Google Takeout
             </Text>
           </View>
           <View
-            accessibilityLabel="Import Locations"
-            accessibilityRole="button"
             accessible={true}
             focusable={true}
             isTVSelectable={true}
@@ -235,38 +252,57 @@ Array [
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "alignContent": "center",
                 "alignItems": "center",
-                "alignSelf": "stretch",
-                "borderBottomLeftRadius": 8,
-                "borderBottomRightRadius": 8,
-                "borderColor": "transparent",
-                "borderStyle": "solid",
-                "borderTopLeftRadius": 8,
-                "borderTopRightRadius": 8,
-                "borderWidth": 2,
+                "backgroundColor": "#0161F2",
+                "borderBottomWidth": null,
+                "borderColor": "#007aff",
+                "borderLeftWidth": null,
+                "borderRadius": 40,
+                "borderRightWidth": null,
+                "borderTopWidth": null,
+                "borderWidth": undefined,
+                "elevation": 2,
                 "flexDirection": "row",
-                "height": 48,
+                "height": 77.5,
                 "justifyContent": "center",
-                "marginTop": 24,
+                "marginLeft": 23,
                 "opacity": 1,
-                "paddingHorizontal": 14,
+                "paddingBottom": 6,
+                "paddingTop": 6,
+                "shadowColor": undefined,
+                "shadowOffset": undefined,
+                "shadowOpacity": undefined,
+                "shadowRadius": undefined,
+                "width": 562.5,
               }
             }
             testID="google-takeout-import-btn"
           >
             <Text
-              small={true}
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans-Medium",
-                  "fontSize": 14,
-                  "fontWeight": "normal",
-                  "lineHeight": 21,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "#fff",
+                    "fontFamily": "System",
+                    "fontSize": 14,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                  },
+                  Object {
+                    "color": "#FFF",
+                    "fontSize": 30,
+                    "fontWeight": "900",
+                    "paddingHorizontal": 11,
+                    "paddingVertical": 4,
+                    "textAlign": "center",
+                    "textTransform": "capitalize",
+                  },
+                ]
               }
-              use="body1"
+              uppercase={false}
             >
               Import Locations
             </Text>

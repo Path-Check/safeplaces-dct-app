@@ -1,3 +1,4 @@
+import { Button, Text } from 'native-base';
 import React, { Component } from 'react';
 import {
   Alert,
@@ -17,16 +18,17 @@ import {
   renderers,
   withMenuContext,
 } from 'react-native-popup-menu';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import validUrl from 'valid-url';
 
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
-import { Button } from '../components/Button';
 import { Checkbox } from '../components/Checkbox';
 import { DynamicTextInput } from '../components/DynamicTextInput';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
+import buttonStyle from '../constants/DR/buttonStyles';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { Theme } from '../constants/themes';
 import { SetStoreData } from '../helpers/General';
@@ -353,12 +355,16 @@ class ChooseProviderScreen extends Component {
             }}>
             <MenuTrigger>
               <Button
-                label={languages.t('label.authorities_add_button_label')}
+                style={buttonStyle.buttonStyle}
                 onPress={() =>
                   this.props.ctx.menuActions.openMenu('AuthoritiesMenu')
                 }
-                disabled={this.state.urlEditInProgress}
-              />
+                disabled={this.state.urlEditInProgress}>
+                <Text
+                  style={{ ...buttonStyle.buttonText, fontSize: wp('4.5%') }}>
+                  {languages.t('label.authorities_add_button_label')}
+                </Text>
+              </Button>
             </MenuTrigger>
             <MenuOptions>
               {__DEV__ && (

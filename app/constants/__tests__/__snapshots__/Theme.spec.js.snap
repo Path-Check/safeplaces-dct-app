@@ -56,7 +56,7 @@ exports[`includes extra background View if setBackground=true 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#3C475B",
+        "backgroundColor": "#3B3B3B",
       }
     }
   >

@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     marginLeft: -5,
   },
   dataText: {
+    fontWeight: 'bold',
     color: Colors.PINK,
     fontSize: wp('8%'),
   },

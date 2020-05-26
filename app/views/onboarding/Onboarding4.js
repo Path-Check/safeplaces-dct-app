@@ -1,3 +1,4 @@
+import { Button, Text } from 'native-base';
 import React from 'react';
 import {
   Dimensions,
@@ -6,11 +7,15 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
 import BackgroundImage from './../../assets/images/launchScreen1.png';
-import { Button } from '../../components/Button';
 import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
+import buttonStyle from '../../constants/DR/buttonStyles';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
 import { sharedStyles } from './styles';
@@ -39,13 +44,14 @@ const Onboarding = props => {
       </View>
       <View style={sharedStyles.footerContainer}>
         <Button
-          label={languages.t('label.launch_set_up_phone')}
           onPress={() => {
             props.navigation.replace('Onboarding5');
           }}
-          buttonColor={Colors.WHITE}
-          bgColor={Colors.BLUE_RIBBON}
-        />
+          style={{ ...buttonStyle.buttonStyle, height: hp('7%') }}>
+          <Text style={{ ...buttonStyle.buttonText, fontSize: wp('4.3%') }}>
+            {languages.t('label.launch_set_up_phone')}
+          </Text>
+        </Button>
       </View>
     </View>
   );

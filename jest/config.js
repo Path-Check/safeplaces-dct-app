@@ -10,4 +10,7 @@ module.exports = {
     'node_modules',
     'node_modules/(?!(@react-native-community|react-native)/)',
   ],
+  transformIgnorePatterns: [
+    'node_modules/(?!(react-native|react-native-button|native-base-.*|react-native-.*)/)',
+  ],
 };

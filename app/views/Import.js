@@ -1,11 +1,16 @@
+import { Button, Text } from 'native-base';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Linking, ScrollView, StyleSheet, View } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
-import { Button } from '../components/Button';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import colors from '../constants/colors';
+import buttonStyle from '../constants/DR/buttonStyles';
 import fontFamily from '../constants/fonts';
 import { pickFile } from '../helpers/General';
 import {
@@ -74,23 +79,35 @@ const ImportScreen = props => {
 
           <Button
             small
-            label={t('import.google.visit_button_text')}
             testID='google-takeout-link'
             onPress={() =>
               Linking.openURL(
                 'https://takeout.google.com/settings/takeout/custom/location_history',
               )
             }
-            style={{ marginTop: 24 }}
-          />
+            style={{
+              ...buttonStyle.buttonStyle,
+              marginTop: 40,
+              marginBottom: 20,
+              height: hp('5.8%'),
+            }}>
+            <Text style={{ ...buttonStyle.buttonText, fontSize: wp('4%') }}>
+              {t('import.google.visit_button_text')}
+            </Text>
+          </Button>
 
           <Button
             small
-            label={t('import.title')}
             testID='google-takeout-import-btn'
             onPress={importPickFile}
-            style={{ marginTop: 24 }}
-          />
+            style={{
+              ...buttonStyle.buttonStyle,
+              height: hp('5.8%'),
+            }}>
+            <Text style={{ ...buttonStyle.buttonText, fontSize: wp('4%') }}>
+              {t('import.title')}
+            </Text>
+          </Button>
 
           {importResults.label ? (
             <Typography

@@ -4,6 +4,8 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
+import Colors from '../../../constants/colors';
+
 const textFontSize = wp('4%');
 
 const styles = StyleSheet.create({
@@ -44,6 +46,7 @@ const styles = StyleSheet.create({
     height: 38,
     marginLeft: 6,
     minWidth: wp('27%'),
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   radioButtonLayout: {
     display: 'flex',
