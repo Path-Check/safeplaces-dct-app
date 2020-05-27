@@ -16,6 +16,7 @@ import {
   requestNotifications,
 } from 'react-native-permissions';
 import { SvgXml } from 'react-native-svg';
+import { connect } from 'react-redux';
 
 import { isPlatformiOS } from './../../Util';
 import { Icons, Images } from '../../assets';
@@ -27,6 +28,7 @@ import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { HCAService } from '../../services/HCAService';
+import onboardingCompleteAction from '../../store/actions/onboardingAction';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
@@ -68,7 +70,7 @@ const PermissionDescription = ({ title, status }) => {
   );
 };
 
-class Onboarding extends Component {
+class Onboarding5 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -291,7 +293,7 @@ class Onboarding extends Component {
           this.state.locationPermission === PermissionStatusEnum.GRANTED,
         );
         SetStoreData(ONBOARDING_DONE, true);
-        this.props.navigation.replace('Main');
+        this.props.dispatchOnboardingComplete();
     }
   }
 
@@ -516,4 +518,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboarding;
+const mapDispatchToProps = dispatch => ({
+  dispatchOnboardingComplete: () => dispatch(onboardingCompleteAction()),
+});
+export default connect(null, mapDispatchToProps)(Onboarding5);
