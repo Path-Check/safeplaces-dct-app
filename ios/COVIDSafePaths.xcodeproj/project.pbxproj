@@ -65,7 +65,6 @@
 		B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
 		BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */; };
-		C53FD0632471637D006D3268 /* COVIDSafePathsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C53FD0622471637D006D3268 /* COVIDSafePathsConfig.m */; };
 		C53FD08124719AD1006D3268 /* RealmSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* RealmSecureStorage.swift */; };
 		C53FD08324719AD1006D3268 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */; };
 		C53FD08424719AD1006D3268 /* SecureStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F931562459E28800E1024C /* SecureStorageManager.m */; };
@@ -119,7 +118,6 @@
 		C53FD0B824719AD1006D3268 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */; };
 		C53FD0B924719AD1006D3268 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
 		C53FD0BA24719AD1006D3268 /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
-		C53FD0C524719C57006D3268 /* COVIDSafePathsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */; };
 		C5850A64247D5A41007A596B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5850A63247D5A41007A596B /* Images.xcassets */; };
 		C5AA24D624768FFF00BA0A99 /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
 		C5AA24D724768FFF00BA0A99 /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
@@ -192,7 +190,7 @@
 		0DC95F63E93B2BB75824CCB3 /* libPods-BTETests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BTETests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD29292C60B45029B7823D6 /* IBMPlexSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLight.ttf"; path = "../app/assets/fonts/IBMPlexSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		1360DEA45F2DC8248DFD3B91 /* Pods-BTETests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTETests.beta.xcconfig"; path = "Target Support Files/Pods-BTETests/Pods-BTETests.beta.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* COVIDSafePaths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COVIDSafePaths.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* PathCheckGPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathCheckGPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = COVIDSafePaths/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = COVIDSafePaths/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -289,11 +287,8 @@
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
 		BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
-		C53FD061247162F8006D3268 /* COVIDSafePathsConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = COVIDSafePathsConfig.h; sourceTree = "<group>"; };
-		C53FD0622471637D006D3268 /* COVIDSafePathsConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsConfig.m; sourceTree = "<group>"; };
-		C53FD0C124719AD1006D3268 /* COVIDSafePaths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COVIDSafePaths.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C53FD0C124719AD1006D3268 /* PathCheckBT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathCheckBT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53FD0C224719AD2006D3268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsConfig.m; sourceTree = "<group>"; };
 		C53FD116247454EA006D3268 /* COVIDSafePaths.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = COVIDSafePaths.entitlements; path = BTE/COVIDSafePaths.entitlements; sourceTree = "<group>"; };
 		C5850A63247D5A41007A596B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C5AA24E124768FFF00BA0A99 /* BTETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -532,7 +527,6 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				B2A58212244CE76C000F39A6 /* Localizable.strings */,
 				276AB155245238E300D39B58 /* COVIDSafePaths-Bridging-Header.h */,
-				C53FD061247162F8006D3268 /* COVIDSafePathsConfig.h */,
 			);
 			name = COVIDSafePaths;
 			sourceTree = "<group>";
@@ -630,9 +624,9 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* COVIDSafePaths.app */,
+				13B07F961A680F5B00A75B9A /* PathCheckGPS.app */,
 				00E356EE1AD99517003FC87E /* GPSTests.xctest */,
-				C53FD0C124719AD1006D3268 /* COVIDSafePaths.app */,
+				C53FD0C124719AD1006D3268 /* PathCheckBT.app */,
 				C5AA24E124768FFF00BA0A99 /* BTETests.xctest */,
 			);
 			name = Products;
@@ -642,7 +636,6 @@
 			isa = PBXGroup;
 			children = (
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				C53FD0622471637D006D3268 /* COVIDSafePathsConfig.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 			);
 			path = GPS;
@@ -652,7 +645,6 @@
 			isa = PBXGroup;
 			children = (
 				C53FD0C224719AD2006D3268 /* Info.plist */,
-				C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */,
 				C5850A63247D5A41007A596B /* Images.xcassets */,
 			);
 			path = BTE;
@@ -697,7 +689,7 @@
 			);
 			name = GPS;
 			productName = COVIDSafePaths;
-			productReference = 13B07F961A680F5B00A75B9A /* COVIDSafePaths.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* PathCheckGPS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C53FD07D24719AD1006D3268 /* BTE */ = {
@@ -717,7 +709,7 @@
 			);
 			name = BTE;
 			productName = COVIDSafePaths;
-			productReference = C53FD0C124719AD1006D3268 /* COVIDSafePaths.app */;
+			productReference = C53FD0C124719AD1006D3268 /* PathCheckBT.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C5AA24D124768FFF00BA0A99 /* BTETests */ = {
@@ -763,6 +755,9 @@
 					C53FD07D24719AD1006D3268 = {
 						DevelopmentTeam = 79Z8HUPGC3;
 						ProvisioningStyle = Manual;
+					};
+					C5AA24D124768FFF00BA0A99 = {
+						TestTargetID = C53FD07D24719AD1006D3268;
 					};
 				};
 			};
@@ -1084,7 +1079,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				271881C02461AF76001DE067 /* RealmSecureStorage.swift in Sources */,
-				C53FD0632471637D006D3268 /* COVIDSafePathsConfig.m in Sources */,
 				0835F8922441054A00E95AE3 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				27F931572459E28800E1024C /* SecureStorageManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
@@ -1102,7 +1096,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C53FD08124719AD1006D3268 /* RealmSecureStorage.swift in Sources */,
-				C53FD0C524719C57006D3268 /* COVIDSafePathsConfig.m in Sources */,
 				C53FD08324719AD1006D3268 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				C53FD08424719AD1006D3268 /* SecureStorageManager.m in Sources */,
 				C53FD08524719AD1006D3268 /* AppDelegate.m in Sources */,
@@ -1218,10 +1211,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
 			};
 			name = Debug;
 		};
@@ -1249,9 +1243,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
 			};
 			name = Release;
 		};
@@ -1338,12 +1333,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckGPS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1433,12 +1429,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckGPS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1582,12 +1579,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckGPS;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.covid-safepaths";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1621,10 +1619,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
 			};
 			name = Staging;
 		};
@@ -1759,12 +1758,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckGPS;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.covid-safepaths";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1794,9 +1794,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
 			};
 			name = Beta;
 		};
@@ -1981,12 +1982,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckBT;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2071,12 +2073,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckBT;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2161,12 +2164,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckBT;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2250,12 +2254,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckBT;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2291,7 +2296,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
 			};
 			name = Debug;
 		};
@@ -2325,7 +2330,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
 			};
 			name = Staging;
 		};
@@ -2355,7 +2360,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
 			};
 			name = Release;
 		};
@@ -2385,7 +2390,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
 			};
 			name = Beta;
 		};
