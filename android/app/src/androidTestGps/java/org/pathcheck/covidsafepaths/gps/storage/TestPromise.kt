@@ -1,4 +1,4 @@
-package org.pathcheck.covidsafepaths.storage
+package org.pathcheck.covidsafepaths.gps.storage
 
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.WritableMap

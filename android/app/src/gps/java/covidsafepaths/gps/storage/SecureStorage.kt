@@ -1,4 +1,4 @@
-package covidsafepaths.storage
+package covidsafepaths.gps.storage
 
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReadableArray

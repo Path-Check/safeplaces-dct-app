@@ -1,4 +1,4 @@
-package covidsafepaths.storage
+package covidsafepaths.gps.storage
 
 import android.util.Log
 import com.facebook.react.bridge.ReadableMap

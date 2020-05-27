@@ -1,4 +1,4 @@
-package covidsafepaths;
+package covidsafepaths.gps;
 
 import android.os.Bundle;
 

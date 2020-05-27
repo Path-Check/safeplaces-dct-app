@@ -5,7 +5,7 @@
 // https://gist.github.com/troach-sf/f257bb7b80e6dddd4f3bade81b7b1410
 
 
-package covidsafepaths.storage
+package covidsafepaths.gps.storage
 
 import android.util.Base64
 import android.util.Log
@@ -21,9 +21,9 @@ import io.realm.RealmConfiguration
 import io.realm.Sort.ASCENDING
 import io.realm.Sort.DESCENDING
 import io.realm.kotlin.where
-import covidsafepaths.MainApplication
-import covidsafepaths.storage.Location.Companion.areLocationsNearby
-import covidsafepaths.storage.Location.Companion.createAssumedLocation
+import covidsafepaths.gps.MainApplication
+import covidsafepaths.gps.storage.Location.Companion.areLocationsNearby
+import covidsafepaths.gps.storage.Location.Companion.createAssumedLocation
 import covidsafepaths.util.getCutoffTimestamp
 import java.security.SecureRandom
 import java.util.UUID

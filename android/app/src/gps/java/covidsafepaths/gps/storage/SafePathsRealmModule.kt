@@ -1,4 +1,4 @@
-package covidsafepaths.storage
+package covidsafepaths.gps.storage
 
 import io.realm.annotations.RealmModule
 

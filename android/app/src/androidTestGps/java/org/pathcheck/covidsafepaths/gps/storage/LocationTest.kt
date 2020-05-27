@@ -1,5 +1,6 @@
-package org.pathcheck.covidsafepaths.storage
+package org.pathcheck.covidsafepaths.gps.storage
 
+import covidsafepaths.gps.storage.Location
 import org.junit.Assert.*
 import org.junit.Test
 

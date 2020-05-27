@@ -1,4 +1,4 @@
-package covidsafepaths.bridge
+package covidsafepaths.gps.bridge
 
 import android.view.View
 import com.facebook.react.ReactPackage
