@@ -19,14 +19,18 @@ export const MIN_LOCATION_UPDATE_MS = 300000;
 
 export const Reason = {
   //Location services are disabled for the device
-  LOCATION_OFF: 'LOCATION_OFF',
+  DEVICE_LOCATION_OFF: 'DEVICE_LOCATION_OFF',
 
   // Location services are not enabled for this app
-  NOT_AUTHORIZED: 'NOT_AUTHORIZED',
+  APP_NOT_AUTHORIZED: 'APP_NOT_AUTHORIZED',
 
   // Location services are enabled for this app,
   // but the user has requested that we stop tracking
-  USER_OFF: 'USER_OFF',
+  USER_DISABLED: 'USER_DISABLED',
+
+  // User has granted permission to track and device/app
+  // location services are also granted
+  USER_ENABLED: 'USER_ENABLED',
 };
 
 export default class LocationServices {
@@ -199,7 +203,7 @@ export default class LocationServices {
     if (!locationServicesEnabled) {
       return {
         canTrack: false,
-        reason: Reason.LOCATION_OFF,
+        reason: Reason.DEVICE_LOCATION_OFF,
         hasPotentialExposure,
         isRunning,
       };
@@ -208,7 +212,7 @@ export default class LocationServices {
     if (authorization != BackgroundGeolocation.AUTHORIZED) {
       return {
         canTrack: false,
-        reason: Reason.NOT_AUTHORIZED,
+        reason: Reason.APP_NOT_AUTHORIZED,
         hasPotentialExposure,
         isRunning,
       };
@@ -217,7 +221,7 @@ export default class LocationServices {
     if (!locTrackingStatus) {
       return {
         canTrack: false,
-        reason: Reason.USER_OFF,
+        reason: Reason.USER_DISABLED,
         hasPotentialExposure,
         isRunning,
       };
@@ -225,7 +229,7 @@ export default class LocationServices {
 
     return {
       canTrack: true,
-      reason: '',
+      reason: Reason.USER_ENABLED,
       hasPotentialExposure,
       isRunning,
     };

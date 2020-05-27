@@ -28,7 +28,7 @@ export const Main = () => {
 
   const [location, setLocation] = useState({
     canTrack: true,
-    reason: '',
+    reason: null,
     hasPotentialExposure: false,
   });
 
@@ -95,7 +95,7 @@ export const Main = () => {
       page = <NoKnownExposure />;
     }
   } else {
-    if (location.reason === Reason.USER_OFF) {
+    if (location.reason === Reason.USER_DISABLED) {
       page = <OffPage tracingStrategy={config.tracingStrategy} />;
     } else {
       page = <UnknownPage />;

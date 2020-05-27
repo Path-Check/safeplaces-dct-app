@@ -65,7 +65,7 @@ export const SettingsScreen = ({ navigation }) => {
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
-          {isGPS && <LocationTrackingStatus />}
+          <LocationTrackingStatus />
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}

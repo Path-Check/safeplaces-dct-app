@@ -111,7 +111,7 @@ describe('LocationServices', () => {
       );
     });
 
-    it('return USER_OFF when particpating is false', async () => {
+    it('return USER_DISABLED when particpating is false', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
       storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'false';
 
@@ -124,12 +124,12 @@ describe('LocationServices', () => {
 
       expect(data).toEqual({
         canTrack: false,
-        reason: Reason.USER_OFF,
+        reason: Reason.USER_DISABLED,
         hasPotentialExposure: false,
       });
     });
 
-    it('return LOCATION_OFF when location services are off', async () => {
+    it('return DEVICE_LOCATION_OFF when location services are off', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
       storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
       mockBackgroundGeolocationCheckStatus({
@@ -139,12 +139,12 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: false,
-        reason: Reason.LOCATION_OFF,
+        reason: Reason.DEVICE_LOCATION_OFF,
         hasPotentialExposure: false,
       });
     });
 
-    it('return NOT_AUTHORIZED when BackgroundGeoStatus authorization is NOT_AUTHORIZED ', async () => {
+    it('return APP_NOT_AUTHORIZED when BackgroundGeoStatus authorization is NOT_AUTHORIZED ', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
       storage[IS_APP_LOCATION_TRACKING_ENABLED] = 'true';
       mockBackgroundGeolocationCheckStatus({
@@ -155,7 +155,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: false,
-        reason: Reason.NOT_AUTHORIZED,
+        reason: Reason.APP_NOT_AUTHORIZED,
         hasPotentialExposure: false,
       });
     });
@@ -246,7 +246,7 @@ describe('LocationServices', () => {
 
     const CANNOT_TRACK = {
       locationServicesEnabled: true,
-      authorization: BackgroundGeolocation.NOT_AUTHORIZED,
+      authorization: BackgroundGeolocation.APP_NOT_AUTHORIZED,
     };
 
     it('does not stop the service if already stopped', async () => {

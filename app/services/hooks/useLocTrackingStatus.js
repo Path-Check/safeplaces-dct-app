@@ -12,16 +12,19 @@ export const useLocTrackingStatus = () => {
     canTrack: undefined,
     reason: undefined,
     isRunning: undefined,
+    hasPotentialExposure: undefined,
   };
 
   const [locTrackingStatus, setStatus] = useState(initialState);
 
   /**
    * Set the location tracking status, and start/stop BackgroundGeolocation accordingly
-   * @param {boolean} isEnabled
-   * @returns {{canTrack: boolean, reason: Reason, isRunning: boolean}}
+   * @param {boolean} newIsTracking
+   * @returns {{canTrack: boolean, reason: Reason, isRunning: boolean, hasPotentialExposure: boolean}}
    */
   const setLocTrackingStatus = async newIsTracking => {
+    LocationService.setStoreLocationTracking(newIsTracking);
+
     const { isRunning } = await LocationService.checkStatus();
     const shouldStartTracking = newIsTracking && !isRunning;
 

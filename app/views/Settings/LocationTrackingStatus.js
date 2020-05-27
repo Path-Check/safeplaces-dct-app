@@ -7,6 +7,7 @@ import { openSettings } from 'react-native-permissions';
 
 import { Button, Divider, Switch, Typography } from '../../components';
 import Colors from '../../constants/colors';
+import { config } from '../../COVIDSafePathsConfig';
 import { useLocTrackingStatus } from '../../services/hooks/useLocTrackingStatus';
 import { Reason } from '../../services/LocationService';
 import { isPlatformiOS } from '../../Util';
@@ -17,12 +18,16 @@ export const LocationTrackingStatus = () => {
 
   const { reason, canTrack } = locTrackingStatus;
 
+  const isGPS = config.tracingStrategy === 'gps';
+
   console.log(reason);
 
-  const hasLocTrackingPermissions = reason === Reason.USER_OFF || reason === '';
+  const hasLocTrackingPermissions =
+    reason === Reason.USER_ENABLED || reason === Reason.USER_DISABLED;
 
   const isMissingLocPermissions =
-    reason === Reason.LOCATION_OFF || reason === Reason.NOT_AUTHORIZED;
+    reason === Reason.DEVICE_LOCATION_OFF ||
+    reason === Reason.APP_NOT_AUTHORIZED;
 
   const getCurrentRowDirection = () =>
     i18n.dir() === 'rtl' ? 'row-reverse' : 'row';
@@ -42,17 +47,19 @@ export const LocationTrackingStatus = () => {
     }
   };
 
-  return (
-    <>
-      <Container
-        style={css`
-          flex-direction: ${getCurrentRowDirection()};
-        `}>
-        {getLocStatusElement()}
-      </Container>
-      <Divider />
-    </>
-  );
+  if (isGPS) {
+    return (
+      <>
+        <Container
+          style={css`
+            flex-direction: ${getCurrentRowDirection()};
+          `}>
+          {getLocStatusElement()}
+        </Container>
+        <Divider />
+      </>
+    );
+  }
 };
 
 const EnableLocationButton = ({ reason }) => {
@@ -63,12 +70,12 @@ const EnableLocationButton = ({ reason }) => {
    * that are enabled per platform.
    */
   const requestLocationPermission = async () => {
-    if (reason === Reason.NOT_AUTHORIZED) {
+    if (reason === Reason.APP_NOT_AUTHORIZED) {
       /**
        * Open the settings for the app
        */
       openSettings();
-    } else if (reason === Reason.LOCATION_OFF) {
+    } else if (reason === Reason.DEVICE_LOCATION_OFF) {
       /**
        * Open Device Settings.
        * If iOS, open Settings home screen
@@ -101,7 +108,7 @@ const LocationStatusSwitch = ({ canTrack, setLocTrackingStatus }) => {
   const [label, setLabel] = useState('');
 
   useEffect(() => {
-    let labelInterval = null;
+    let labelInterval;
 
     /**
      * Provide a basic animation to show that location logging
@@ -109,13 +116,10 @@ const LocationStatusSwitch = ({ canTrack, setLocTrackingStatus }) => {
      * to the original label
      */
     const createLabelInterval = () => {
-      const initialActiveLabel = t('label.logging_active_location');
-      setLabel(initialActiveLabel);
-
       return setInterval(() => {
         setLabel(label => {
           if (label.slice(-3) === '...') {
-            setLabel(initialActiveLabel);
+            setLabel(t('label.logging_active_location'));
           } else {
             setLabel(label + '.');
           }
@@ -123,17 +127,17 @@ const LocationStatusSwitch = ({ canTrack, setLocTrackingStatus }) => {
       }, 1000);
     };
 
-    const clearLabelInterval = () => {
-      setLabel(t('label.logging_location_paused'));
-      clearInterval(labelInterval);
-      return null;
+    const initLabel = () => {
+      if (canTrack) {
+        setLabel(t('label.logging_active_location'));
+        labelInterval = createLabelInterval();
+      } else {
+        setLabel(t('label.logging_location_paused'));
+        labelInterval = clearInterval(labelInterval);
+      }
     };
 
-    const getLabel = () => {
-      labelInterval = canTrack ? createLabelInterval() : clearLabelInterval();
-    };
-
-    getLabel();
+    initLabel();
 
     return () => clearInterval(labelInterval);
   }, [canTrack, t]);
@@ -161,7 +165,7 @@ const LocationStatusSwitch = ({ canTrack, setLocTrackingStatus }) => {
   );
 };
 
-const Container = styled.TouchableOpacity`
+const Container = styled.View`
   padding: 18px 0;
   align-items: center;
 `;
