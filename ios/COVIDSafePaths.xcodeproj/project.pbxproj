@@ -82,7 +82,6 @@
 		C53FD09724719AD1006D3268 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4F242849C1008754AC /* CoreGraphics.framework */; };
 		C53FD09824719AD1006D3268 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4D24283B0B008754AC /* CoreData.framework */; };
 		C53FD09924719AD1006D3268 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4B24283AFF008754AC /* Accelerate.framework */; };
-		C53FD09C24719AD1006D3268 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		C53FD09D24719AD1006D3268 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
 		C53FD09E24719AD1006D3268 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		C53FD09F24719AD1006D3268 /* IBMPlexMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE25A1CE9ED048DC83FAE7B0 /* IBMPlexMono-Bold.ttf */; };
@@ -114,6 +113,7 @@
 		C53FD0B924719AD1006D3268 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
 		C53FD0BA24719AD1006D3268 /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
 		C53FD0C524719C57006D3268 /* COVIDSafePathsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */; };
+		C5850A64247D5A41007A596B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5850A63247D5A41007A596B /* Images.xcassets */; };
 		C5AA24D624768FFF00BA0A99 /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
 		C5AA24D724768FFF00BA0A99 /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
 		C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */; };
@@ -189,7 +189,7 @@
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = COVIDSafePaths/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = COVIDSafePaths/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = COVIDSafePaths/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = COVIDSafePaths/main.m; sourceTree = "<group>"; };
 		1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Thin.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Thin.ttf"; sourceTree = "<group>"; };
@@ -284,6 +284,7 @@
 		C53FD0C224719AD2006D3268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsConfig.m; sourceTree = "<group>"; };
 		C53FD116247454EA006D3268 /* COVIDSafePaths.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = COVIDSafePaths.entitlements; path = BTE/COVIDSafePaths.entitlements; sourceTree = "<group>"; };
+		C5850A63247D5A41007A596B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C5AA24E124768FFF00BA0A99 /* BTETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5AA24E224768FFF00BA0A99 /* BTETestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = BTETestsInfo.plist; path = "/Users/johnschoeman/workspace/thoughtbot/covid-safe-paths/ios/BTETestsInfo.plist"; sourceTree = "<absolute>"; };
 		C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePathsTests.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePathsTests/Pods-COVIDSafePathsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -513,7 +514,6 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				B2A5821B244CE80C000F39A6 /* InfoPlist.strings */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -628,6 +628,7 @@
 			children = (
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				C53FD0622471637D006D3268 /* COVIDSafePathsConfig.m */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
 			);
 			path = GPS;
 			sourceTree = "<group>";
@@ -637,6 +638,7 @@
 			children = (
 				C53FD0C224719AD2006D3268 /* Info.plist */,
 				C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */,
+				C5850A63247D5A41007A596B /* Images.xcassets */,
 			);
 			path = BTE;
 			sourceTree = "<group>";
@@ -848,12 +850,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FD09C24719AD1006D3268 /* Images.xcassets in Resources */,
 				C53FD09D24719AD1006D3268 /* InfoPlist.strings in Resources */,
 				C53FD09E24719AD1006D3268 /* LaunchScreen.xib in Resources */,
 				C53FD09F24719AD1006D3268 /* IBMPlexMono-Bold.ttf in Resources */,
 				C53FD0A024719AD1006D3268 /* IBMPlexMono-BoldItalic.ttf in Resources */,
 				C53FD0A124719AD1006D3268 /* IBMPlexMono-ExtraLight.ttf in Resources */,
+				C5850A64247D5A41007A596B /* Images.xcassets in Resources */,
 				C53FD0A224719AD1006D3268 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */,
 				C53FD0A324719AD1006D3268 /* IBMPlexMono-Italic.ttf in Resources */,
 				C53FD0A424719AD1006D3268 /* IBMPlexMono-Light.ttf in Resources */,
@@ -2050,7 +2052,7 @@
 				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = COVIDSafePaths;
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.bt";
 				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
