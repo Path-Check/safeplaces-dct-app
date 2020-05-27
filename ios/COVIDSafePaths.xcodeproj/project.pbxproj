@@ -47,6 +47,12 @@
 		57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */; };
 		626DB8AB8AF9D02B9E411601 /* libPods-BTE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FB16255EA745CC27C638A1 /* libPods-BTE.a */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
+		68704521247EB70C00902214 /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704520247EB70C00902214 /* GeohashTests.swift */; };
+		68704524247EB73500902214 /* MAURLocation+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704523247EB73500902214 /* MAURLocation+ExtensionTests.swift */; };
+		68704526247EB76500902214 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704525247EB76500902214 /* Geohash.swift */; };
+		68704529247EB78700902214 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704528247EB78700902214 /* MAURLocation+Extension.swift */; };
+		6870452D247EB8C300902214 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704525247EB76500902214 /* Geohash.swift */; };
+		6870452E247EB8C600902214 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704528247EB78700902214 /* MAURLocation+Extension.swift */; };
 		7A2281C376904F23BCA10FCA /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
 		8A5B44AA7D724388B70F100B /* IBMPlexSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36B22BAB357B44949D2E168C /* IBMPlexSans-ExtraLight.ttf */; };
 		8CB0C49FEC0F493D95420B30 /* IBMPlexMono-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3053DF05D78949A09366B85D /* IBMPlexMono-ExtraLight.ttf */; };
@@ -232,6 +238,10 @@
 		5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Light.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Light.ttf"; sourceTree = "<group>"; };
 		60B0614ED854C2369C1852FE /* Pods-GPSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.release.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.release.xcconfig"; sourceTree = "<group>"; };
 		668BDA050EF549C6B0759425 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Bold.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
+		68704520247EB70C00902214 /* GeohashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeohashTests.swift; sourceTree = "<group>"; };
+		68704523247EB73500902214 /* MAURLocation+ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAURLocation+ExtensionTests.swift"; sourceTree = "<group>"; };
+		68704525247EB76500902214 /* Geohash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geohash.swift; sourceTree = "<group>"; };
+		68704528247EB78700902214 /* MAURLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAURLocation+Extension.swift"; sourceTree = "<group>"; };
 		6BA94CE8425944B8990A49B3 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Bold.ttf"; path = "../app/assets/fonts/IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
 		6C8CF282C4264C88A4ED8ABF /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
 		71D1C872DB0CCC3BBC3D907E /* Pods-COVIDSafePaths.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths.debug.xcconfig"; sourceTree = "<group>"; };
@@ -392,6 +402,8 @@
 				00E356F01AD99517003FC87E /* Supporting Files */,
 				271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */,
 				271089AF24698720009AC76F /* LocationTests.swift */,
+				68704520247EB70C00902214 /* GeohashTests.swift */,
+				68704523247EB73500902214 /* MAURLocation+ExtensionTests.swift */,
 			);
 			path = COVIDSafePathsTests;
 			sourceTree = "<group>";
@@ -537,7 +549,9 @@
 		276F786C245B6CB400312927 /* storage */ = {
 			isa = PBXGroup;
 			children = (
+				68704525247EB76500902214 /* Geohash.swift */,
 				276AB156245238E400D39B58 /* SecureStorage.swift */,
+				68704528247EB78700902214 /* MAURLocation+Extension.swift */,
 				276AB15B245291DE00D39B58 /* Location.swift */,
 				271881BF2461AF76001DE067 /* RealmSecureStorage.swift */,
 			);
@@ -1058,6 +1072,8 @@
 				271881C32461BF19001DE067 /* RealmSecureStorageTest.swift in Sources */,
 				271089B024698720009AC76F /* LocationTests.swift in Sources */,
 				00E356F31AD99517003FC87E /* COVIDSafePathsTests.m in Sources */,
+				68704521247EB70C00902214 /* GeohashTests.swift in Sources */,
+				68704524247EB73500902214 /* MAURLocation+ExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1072,8 +1088,10 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				276AB15C245291DE00D39B58 /* Location.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				68704526247EB76500902214 /* Geohash.swift in Sources */,
 				27F9315A2459E2BD00E1024C /* SecureStorageManager.swift in Sources */,
 				276AB157245238E400D39B58 /* SecureStorage.swift in Sources */,
+				68704529247EB78700902214 /* MAURLocation+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,8 +1106,10 @@
 				C53FD08524719AD1006D3268 /* AppDelegate.m in Sources */,
 				C53FD08624719AD1006D3268 /* Location.swift in Sources */,
 				C53FD08724719AD1006D3268 /* main.m in Sources */,
+				6870452D247EB8C300902214 /* Geohash.swift in Sources */,
 				C53FD08824719AD1006D3268 /* SecureStorageManager.swift in Sources */,
 				C53FD08924719AD1006D3268 /* SecureStorage.swift in Sources */,
+				6870452E247EB8C600902214 /* MAURLocation+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

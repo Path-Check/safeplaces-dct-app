@@ -4,6 +4,7 @@ PODS:
   - boost-for-react-native (1.63.0)
   - BVLinearGradient (2.5.6):
     - React
+  - CryptoSwift (1.3.1)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.61.5)
   - FBReactNativeSpec (0.61.5):
@@ -287,6 +288,7 @@ PODS:
 DEPENDENCIES:
   - "@mauron85_react-native-background-geolocation (from `../node_modules/@mauron85/react-native-background-geolocation`)"
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
+  - CryptoSwift
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
@@ -346,6 +348,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
+    - CryptoSwift
     - Realm
     - RealmSwift
     - SSZipArchive
@@ -460,6 +463,7 @@ SPEC CHECKSUMS:
   "@mauron85_react-native-background-geolocation": fa34ab82e94212be16ef6e75c32bcb707b0a1524
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
+  CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   FBLazyVector: aaeaf388755e4f29cd74acbc9e3b8da6d807c37f
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
@@ -514,6 +518,6 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 2d2a1a5980e2de432bc74dc16d4234e652447d1a
+PODFILE CHECKSUM: 3cfd65ba4206580b82af544457230e67cadd3f49
 
 COCOAPODS: 1.9.1

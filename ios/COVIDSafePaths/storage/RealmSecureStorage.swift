@@ -183,12 +183,20 @@ class RealmSecureStorage {
     return keyData
   }
   
+  /// migration note for new properties on old objects: https://github.com/realm/realm-cocoa/issues/5294
+  /// schemaVersion 1 adds "hashes" to Location
+  /// At the very minimum we need to update the version with an empty block to indicate
+  /// that the schema has been upgraded (automatically) by Realm: https://realm.io/docs/swift/latest/#migrations
+  /// Realm will automatically detect new properties and removed properties
+  /// And will update the schema on disk automatically
   func getRealmConfig() -> Realm.Configuration? {
     if let key = getEncyrptionKey() {
       if (inMemory) {
-        return Realm.Configuration(inMemoryIdentifier: "temp", encryptionKey: key as Data, objectTypes: [Location.self])
+        return Realm.Configuration(inMemoryIdentifier: "temp", encryptionKey: key as Data, schemaVersion: 1,
+              migrationBlock: ({ _, _ in }), objectTypes: [Location.self])
       } else {
-        return Realm.Configuration(encryptionKey: key as Data, objectTypes: [Location.self])
+        return Realm.Configuration(encryptionKey: key as Data, schemaVersion: 1,
+              migrationBlock: ({ _, _ in }), objectTypes: [Location.self])
       }
     } else {
       return nil
