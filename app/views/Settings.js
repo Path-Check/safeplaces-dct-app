@@ -128,16 +128,13 @@ export const SettingsScreen = ({ navigation }) => {
             label={t('label.news_title')}
             description={t('label.news_subtitle')}
             onPress={() => navigation.navigate('NewsScreen')}
+          />
+          <Item
+            label={t('assessment.settings_title')}
+            description={t('assessment.settings_subtitle')}
+            onPress={() => navigation.navigate('AssessmentScreen')}
             last={!isGPS}
           />
-          <FeatureFlag name='self_assessment'>
-            <Item
-              label={t('assessment.settings_title')}
-              description={t('assessment.settings_subtitle')}
-              onPress={() => navigation.navigate('AssessmentScreen')}
-              last
-            />
-          </FeatureFlag>
           {isGPS ? (
             <>
               <Item
