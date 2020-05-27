@@ -5,13 +5,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
 
 project.ext.envConfigFiles = [
-    bteDebug: ".env.bte",
-    bteStaging: ".env.bte.staging",
-    bteRelease: ".env.bte.release",
+    btedebug: ".env.bte",
+    btestaging: ".env.bte.staging",
+    bterelease: ".env.bte.release",
 
-    gpsDebug: ".env.gps",
-    gpsStaging: ".env.gps.staging",
-    gpsRelease: ".env.gps.release",
+    gpsdebug: ".env.gps",
+    gpsstaging: ".env.gps.staging",
+    gpsrelease: ".env.gps.release",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
@@ -138,8 +138,6 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false)
 
-def task = gradle.startParameter.taskNames[0] ?: "" // Get "assembleGpsDebug, assembleBteDebug, etc"
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -231,12 +229,11 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"
+    implementation project(':@mauron85_react-native-background-geolocation-common')
     implementation 'com.bottlerocketstudios:vault:1.4.2'
     implementation 'com.google.android.gms:play-services-gcm:15.0.1'
     implementation 'com.google.android.gms:play-services-location:15.0.1'
-    if (task.toLowerCase().contains("gps")) {
-        implementation project(':@mauron85_react-native-background-geolocation-common')
-    }
+
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/"
         debugImplementation files(hermesPath + "hermes-debug.aar")
@@ -270,6 +267,12 @@ allprojects {
     }
 }
 
+// Run this once to be able to run the application with BUCK
+// puts all compile dependencies into folder libs for BUCK to use
+task copyDownloadableDepsToLibs(type: Copy) {
+    from configurations.compile
+    into 'libs'
+}
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 repositories {

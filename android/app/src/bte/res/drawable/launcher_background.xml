@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@color/ic_launcher_background"/>
+
+    <!-- Circles -->
+    <item
+        android:drawable="@drawable/background_splash"
+        android:gravity="center" />
+
+    <!-- Logo -->
+    <item
+        android:drawable="@drawable/ic_splash_logo"
+        android:gravity="center" />
+
+    <!-- Text -->
+    <item
+        android:drawable="@drawable/ic_splash_text"
+        android:gravity="center"
+        android:top="450dp" />
+</layer-list>
