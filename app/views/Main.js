@@ -7,7 +7,6 @@ import { Icons } from '../assets';
 import { IconButton } from '../components/IconButton';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
-import { config } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices, { Reason } from '../services/LocationService';
@@ -17,6 +16,7 @@ import { NoKnownExposure } from './main/NoKnownExposure';
 import { OffPage } from './main/OffPage';
 import { styles } from './main/style';
 import { UnknownPage } from './main/UnknownPage';
+import { isGPS } from '../TracingStrategyAssets';
 
 export const Main = () => {
   const navigation = useNavigation();
@@ -84,19 +84,19 @@ export const Main = () => {
 
   let page;
 
-  if (config.tracingStrategy === 'bte') {
+  if (!isGPS) {
     // A BT specific page for when Exposure Notifications are not available
     // for the Healthcare Authority chosen.
     page = <ExposureNotificationNotAvailablePage />;
   } else if (location.canTrack) {
     if (location.hasPotentialExposure) {
-      page = <ExposurePage tracingStrategy={config.tracingStrategy} />;
+      page = <ExposurePage />;
     } else {
       page = <NoKnownExposure />;
     }
   } else {
     if (location.reason === Reason.USER_OFF) {
-      page = <OffPage tracingStrategy={config.tracingStrategy} />;
+      page = <OffPage />;
     } else {
       page = <UnknownPage />;
     }

@@ -7,33 +7,24 @@ import {
   View,
 } from 'react-native';
 
-import { Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { ONBOARDING_DONE } from '../../constants/storage';
-import { config } from '../../COVIDSafePathsConfig';
 import { SetStoreData } from '../../helpers/General';
-import languages from '../../locales/languages';
 import { sharedStyles } from './styles';
+import {
+  onboarding4BackgroundImage as backgroundImage,
+  onboarding4ButtonText as buttonText,
+  onboarding4HeaderText as headerText,
+  onboarding4NavDestination as navDestination,
+  onboarding4SubheaderText as subheaderText,
+} from '../../TracingStrategyAssets';
 
 const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
-  const isGPS = config.tracingStrategy === 'gps';
-  const backgroundImage = isGPS ? Images.LaunchScreen1 : Images.LaunchScreen1BT;
-  const headerText = isGPS
-    ? languages.t('label.launch_screen4_header_location')
-    : languages.t('label.launch_screen4_header_bluetooth');
-  const subheaderText = isGPS
-    ? languages.t('label.launch_screen4_subheader_location')
-    : languages.t('label.launch_screen4_subheader_bluetooth');
-  const buttonText = isGPS
-    ? languages.t('label.launch_set_up_phone_location')
-    : languages.t('label.launch_set_up_phone_bluetooth');
-  const navDestination = isGPS ? 'OnboardingPermissions' : 'Main';
-
   return (
     <View style={styles.mainContainer}>
       <StatusBar

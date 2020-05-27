@@ -13,11 +13,11 @@ import { SvgXml } from 'react-native-svg';
 
 import packageJson from '../../package.json';
 import fontFamily from './../constants/fonts';
-import { config } from '../COVIDSafePathsConfig';
 import { Icons } from '../assets';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
+import { aboutHeaderText } from '../TracingStrategyAssets';
 
 export const AboutScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -37,10 +37,6 @@ export const AboutScreen = ({ navigation }) => {
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
   }, [navigation]);
-
-  const aboutHeaderText = config.tracingStrategy === 'gps'
-    ? t('label.about_header_location')
-    : t('label.about_header_bluetooth');
 
   return (
     <NavigationBarWrapper

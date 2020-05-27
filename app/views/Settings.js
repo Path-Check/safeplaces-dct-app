@@ -10,7 +10,6 @@ import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
-import { config } from '../COVIDSafePathsConfig';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
@@ -22,6 +21,11 @@ import LocationServices from '../services/LocationService';
 import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
+import {
+  isGPS,
+  settingsLoggingActiveText,
+  settingsLoggingInactiveText,
+} from '../TracingStrategyAssets';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -29,7 +33,6 @@ export const SettingsScreen = ({ navigation }) => {
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
-  const isGPS = config.tracingStrategy === 'gps';
 
   const backToMain = () => {
     navigation.goBack();
@@ -56,9 +59,7 @@ export const SettingsScreen = ({ navigation }) => {
   }, [navigation]);
 
   const locationToggleButtonPressed = async () => {
-    if (!isGPS) {
-      setIsLogging(!isLogging);
-    } else {
+    if (isGPS) {
       try {
         isLogging ? LocationServices.stop() : LocationServices.start();
         await SetStoreData(PARTICIPATE, !isLogging);
@@ -66,6 +67,8 @@ export const SettingsScreen = ({ navigation }) => {
       } catch (e) {
         console.log(e);
       }
+    } else {
+      setIsLogging(!isLogging);
     }
   };
 
@@ -80,14 +83,10 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   const getLoggingText = () => {
-    if (isLogging && isGPS) {
-      return t('label.logging_active_location');
-    } else if (isLogging && !isGPS) {
-      return t('label.logging_active_bluetooth');
-    } else if (!isLogging && isGPS) {
-      return t('label.logging_inactive_location');
-    } else if (!isLogging && !isGPS) {
-      return t('label.logging_inactive_bluetooth');
+    if (isLogging) {
+      return settingsLoggingActiveText;
+    } else if (!isLogging) {
+      return settingsLoggingInactiveText;
     }
   }
 

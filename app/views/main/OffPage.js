@@ -16,18 +16,14 @@ import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
+import {
+  offPageCtaText as ctaText,
+  offPageButtonLabel as buttonLabel,
+} from '../../TracingStrategyAssets';
 
-export const OffPage = ({ tracingStrategy }) => {
+export const OffPage = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const ctaText =
-    tracingStrategy === 'gps'
-      ? t(`label.home_setting_off_subtext_location`)
-      : t(`label.home_setting_off_subtext_bluetooth`);
-  const buttonLabel =
-    tracingStrategy === 'gps'
-      ? t(`label.home_enable_location`)
-      : t(`label.home_enable_bluetooth`);
   const size = Dimensions.get('window').height;
 
   return (
