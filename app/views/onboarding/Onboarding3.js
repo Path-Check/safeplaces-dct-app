@@ -8,8 +8,7 @@ import {
 } from 'react-native';
 
 import { Images } from '../../assets';
-import { Button } from '../../components/Button';
-import { Type, Typography } from '../../components/Typography';
+import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { config } from '../../COVIDSafePathsConfig';
@@ -20,12 +19,10 @@ const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
   const isGPS = config.tracingStrategy === 'gps';
-  const backgroundImage = isGPS
-  ? Images.LaunchScreen3
-  : Images.LaunchScreen3BT;
+  const backgroundImage = isGPS ? Images.LaunchScreen3 : Images.LaunchScreen3BT;
   const headerText = isGPS
-  ? languages.t('label.launch_screen3_header_location')
-  : languages.t('label.launch_screen3_header_bluetooth');
+    ? languages.t('label.launch_screen3_header_location')
+    : languages.t('label.launch_screen3_header_bluetooth');
   const subheaderText = isGPS
     ? languages.t('label.launch_screen3_subheader_location')
     : languages.t('label.launch_screen3_subheader_bluetooth');
@@ -45,9 +42,7 @@ const Onboarding = props => {
         <Typography style={styles.headerText} use={Type.Headline2}>
           {headerText}
         </Typography>
-        <Typography style={styles.subheaderText}>
-          {subheaderText}
-        </Typography>
+        <Typography style={styles.subheaderText}>{subheaderText}</Typography>
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>

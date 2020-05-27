@@ -8,8 +8,7 @@ import {
 } from 'react-native';
 
 import { Images } from '../../assets';
-import { Button } from '../../components/Button';
-import { Type, Typography } from '../../components/Typography';
+import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { ONBOARDING_DONE } from '../../constants/storage';

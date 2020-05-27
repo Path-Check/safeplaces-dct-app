@@ -2,9 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { BackHandler, StyleSheet, View } from 'react-native';
 
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Switch } from '../components/Switch';
-import { Typography } from '../components/Typography';
+import { NavigationBarWrapper, Switch, Typography } from '../components';
 import Colors from '../constants/colors';
 import { getBuildtimeFlags } from '../constants/flagsEnv';
 import { DEBUG_MODE } from '../constants/storage';

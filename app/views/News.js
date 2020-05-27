@@ -11,8 +11,7 @@ import Carousel from 'react-native-snap-carousel';
 import { WebView } from 'react-native-webview';
 
 import languages from './../locales/languages';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Typography } from '../components/Typography';
+import { NavigationBarWrapper, Typography } from '../components';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { AUTHORITY_NEWS } from '../constants/storage';

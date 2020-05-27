@@ -10,11 +10,10 @@ import {
   View,
 } from 'react-native';
 
-import { Images } from '../assets';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Typography } from '../components/Typography';
-import Colors from '../constants/colors';
 import fontFamily from './../constants/fonts';
+import { Images } from '../assets';
+import { NavigationBarWrapper, Typography } from '../components';
+import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import { config } from '../COVIDSafePathsConfig';
 
@@ -44,9 +43,10 @@ export const LicensesScreen = ({ navigation }) => {
     };
   });
 
-  const legalPageHeaderText = config.tracingStrategy === 'gps'
-  ? t('label.legal_page_header_location')
-  : t('label.legal_page_header_bluetooth')
+  const legalPageHeaderText =
+    config.tracingStrategy === 'gps'
+      ? t('label.legal_page_header_location')
+      : t('label.legal_page_header_bluetooth');
 
   return (
     <NavigationBarWrapper

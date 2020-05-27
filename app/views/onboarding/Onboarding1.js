@@ -15,9 +15,7 @@ import languages, {
   supportedDeviceLanguageOrEnglish,
 } from './../../locales/languages';
 import { Images } from '../../assets';
-import { EulaModal } from '../../components/EulaModal';
-import NativePicker from '../../components/NativePicker';
-import { Typography } from '../../components/Typography';
+import { EulaModal, NativePicker, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';

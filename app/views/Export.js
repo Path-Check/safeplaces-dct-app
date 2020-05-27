@@ -17,9 +17,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 
 import { isPlatformiOS } from './../Util';
 import { Icons } from '../assets';
-import { Button } from '../components/Button';
-import { IconButton } from '../components/IconButton';
-import { Typography } from '../components/Typography';
+import { Button, IconButton, Typography } from '../components';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { Theme } from '../constants/themes';

@@ -1,7 +1,7 @@
 import styled from '@emotion/native';
 import React from 'react';
 
-import { Typography } from '../../components/Typography';
+import { Typography } from '../../components';
 import { tracingStrategy } from '../../COVIDSafePathsConfig';
 import languages from '../../locales/languages';
 import { ExposureCalendarView } from './ExposureCalendarView';
@@ -18,7 +18,7 @@ export const DetailedHistory = ({ history }) => {
     tracingStrategy === 'gps'
       ? languages.t('history.what_does_this_mean_para_location')
       : languages.t('history.what_does_this_mean_para_bluetooth');
-      
+
   return (
     <>
       <ExposureCalendarView weeks={3} history={history} />
@@ -48,9 +48,7 @@ export const DetailedHistory = ({ history }) => {
           <Typography use='headline3'>
             {languages.t('history.what_does_this_mean')}
           </Typography>
-          <Typography use='body3'>
-            {whatThisMeansParaText}
-          </Typography>
+          <Typography use='body3'>{whatThisMeansParaText}</Typography>
         </>
       )}
 

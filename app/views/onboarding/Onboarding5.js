@@ -19,8 +19,7 @@ import { SvgXml } from 'react-native-svg';
 
 import { isPlatformiOS } from './../../Util';
 import { Icons, Images } from '../../assets';
-import { Button } from '../../components/Button';
-import { Typography } from '../../components/Typography';
+import { Button, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import {
   IS_APP_LOCATION_TRACKING_ENABLED,

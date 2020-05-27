@@ -1,29 +1,27 @@
 import styled, { css } from '@emotion/native';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, Linking, ScrollView, View } from 'react-native';
-import DeviceSettings from 'react-native-device-settings';
-import { PERMISSIONS, RESULTS, request } from 'react-native-permissions';
+import { BackHandler, ScrollView, View } from 'react-native';
 
-import { Icons } from '../assets';
-import { Divider } from '../components/Divider';
-import { FeatureFlag } from '../components/FeatureFlag';
-import NativePicker from '../components/NativePicker';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import Colors from '../constants/colors';
-import { config } from '../COVIDSafePathsConfig';
+import { Icons } from '../../assets';
+import {
+  Divider,
+  FeatureFlag,
+  NativePicker,
+  NavigationBarWrapper,
+} from '../../components';
+import Colors from '../../constants/colors';
+import { config } from '../../COVIDSafePathsConfig';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
-} from '../locales/languages';
-import { useLocTrackingStatus } from '../services/hooks/useLocTrackingStatus';
-import { Reason } from '../services/LocationService';
-import { isPlatformiOS } from '../Util';
-import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
-import { GoogleMapsImport } from './Settings/GoogleMapsImport';
-import { SettingsItem as Item } from './Settings/SettingsItem';
+} from '../../locales/languages';
+import { FEATURE_FLAG_SCREEN_NAME } from '../../views/FeatureFlagToggles';
+import { GoogleMapsImport } from './GoogleMapsImport';
+import { Item } from './Item';
+import { LocationTrackingStatus } from './LocationTrackingStatus';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -67,7 +65,7 @@ export const SettingsScreen = ({ navigation }) => {
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
-          {isGPS && <LocationTrackingPermissions />}
+          {isGPS && <LocationTrackingStatus />}
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}
@@ -134,88 +132,6 @@ export const SettingsScreen = ({ navigation }) => {
         </Section>
       </ScrollView>
     </NavigationBarWrapper>
-  );
-};
-
-export const LocationTrackingPermissions = () => {
-  const { t } = useTranslation();
-  const [locTrackingStatus, setLocTrackingStatus] = useLocTrackingStatus();
-
-  /**
-   * Attempts to toggle the location tracking status. If it isn't
-   * possible to do so in-app, redirects a user to device Settings
-   * @param {Reason} reason
-   */
-  const toggleiOSLoc = async reason => {
-    if (reason === Reason.USER_OFF) {
-      await setLocTrackingStatus(true);
-    } else if (reason === Reason.NOT_AUTHORIZED) {
-      // Open location settings for the app
-      const status = await request(PERMISSIONS.IOS.LOCATION_ALWAYS);
-      const isGranted = status === RESULTS.GRANTED;
-      await setLocTrackingStatus(isGranted);
-    } else if (reason === Reason.LOCATION_OFF) {
-      // Open device settings (iOS does not allow us to open device location settings)
-      const deviceSettingsUrl = 'App-prefs:';
-      Linking.openURL(deviceSettingsUrl);
-    } else {
-      await setLocTrackingStatus(false);
-    }
-  };
-
-  /**
-   * Attempts to toggle the location tracking status. If it isn't
-   * possible to do so in-app, redirects a user to device Settings
-   * @param {Reason} reason
-   */
-  const toggleAndroidLoc = async reason => {
-    if (reason === Reason.NOT_AUTHORIZED || reason === Reason.USER_OFF) {
-      // Note that Android allows us to toggle app location authorizaiton
-      // without needing to redirect to settings like in iOS
-      await setLocTrackingStatus(true);
-    } else if (reason === Reason.LOCATION_OFF) {
-      // Open device location settings
-      DeviceSettings.location();
-    } else {
-      await setLocTrackingStatus(false);
-    }
-  };
-
-  /**
-   * Conditional toggling based on the location permission actions
-   * that are enabled per platform.
-   */
-  const toggleLocTracking = async () => {
-    const { reason } = locTrackingStatus;
-    isPlatformiOS() ? toggleiOSLoc(reason) : toggleAndroidLoc(reason);
-  };
-
-  /**
-   * Returns an active/inactive icon if `canTrack`
-   * is set. Since `canTrack` is initialized
-   * as undefined, this returns `null`
-   * if we are waiting on initialization.
-   */
-  const getIcon = () => {
-    const { canTrack } = locTrackingStatus;
-
-    if (canTrack) {
-      return Icons.Checkmark;
-    } else if (canTrack === false) {
-      return Icons.XmarkIcon;
-    } else {
-      return null;
-    }
-  };
-
-  const label = locTrackingStatus.canTrack
-    ? t('label.logging_active_location')
-    : t('label.logging_inactive_location');
-
-  return (
-    <>
-      <Item label={label} icon={getIcon()} onPress={toggleLocTracking} />
-    </>
   );
 };
 

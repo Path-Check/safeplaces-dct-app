@@ -18,8 +18,14 @@ const LOCATION_DISABLED_NOTIFICATION_ID = '55';
 export const MIN_LOCATION_UPDATE_MS = 300000;
 
 export const Reason = {
+  //Location services are disabled for the device
   LOCATION_OFF: 'LOCATION_OFF',
+
+  // Location services are not enabled for this app
   NOT_AUTHORIZED: 'NOT_AUTHORIZED',
+
+  // Location services are enabled for this app,
+  // but the user has requested that we stop tracking
   USER_OFF: 'USER_OFF',
 };
 
@@ -141,8 +147,9 @@ export default class LocationServices {
     console.log('[INFO] BackgroundGeolocation auth status: ' + authorization);
 
     BackgroundGeolocation.start(); //triggers start on start event
-    await SetStoreData(IS_APP_LOCATION_TRACKING_ENABLED, true);
     isBackgroundGeolocationConfigured = true;
+
+    LocationServices.setStoreLocationTracking(true);
   }
 
   static async stop() {
@@ -155,16 +162,15 @@ export default class LocationServices {
     BackgroundGeolocation.stop();
 
     isBackgroundGeolocationConfigured = false;
-
-    await SetStoreData(
-      IS_APP_LOCATION_TRACKING_ENABLED,
-      isBackgroundGeolocationConfigured,
-    );
   }
 
   static async getHasPotentialExposure() {
     const dayBin = await GetStoreData(CROSSED_PATHS, false);
     return !!dayBin && dayBin.some(exposure => exposure > 0);
+  }
+
+  static async setStoreLocationTracking(isEnabled) {
+    await SetStoreData(IS_APP_LOCATION_TRACKING_ENABLED, isEnabled);
   }
 
   static async getAppLocStrackingStatus() {
@@ -190,15 +196,6 @@ export default class LocationServices {
       locationServicesEnabled,
     } = await this.getBackgroundGeoStatus();
 
-    if (!locTrackingStatus) {
-      return {
-        canTrack: false,
-        reason: Reason.USER_OFF,
-        hasPotentialExposure,
-        isRunning,
-      };
-    }
-
     if (!locationServicesEnabled) {
       return {
         canTrack: false,
@@ -212,6 +209,15 @@ export default class LocationServices {
       return {
         canTrack: false,
         reason: Reason.NOT_AUTHORIZED,
+        hasPotentialExposure,
+        isRunning,
+      };
+    }
+
+    if (!locTrackingStatus) {
+      return {
+        canTrack: false,
+        reason: Reason.USER_OFF,
         hasPotentialExposure,
         isRunning,
       };

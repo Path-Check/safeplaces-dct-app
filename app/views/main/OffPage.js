@@ -11,8 +11,7 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
-import { Button } from '../../components/Button';
-import { Typography } from '../../components/Typography';
+import { Button, Typography } from '../../components';
 import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
@@ -57,9 +56,7 @@ export const OffPage = ({ tracingStrategy }) => {
             <Text style={styles.mainTextBelow}>
               {t('label.home_setting_off_header')}
             </Text>
-            <Typography style={styles.subheaderText}>
-              {ctaText}
-            </Typography>
+            <Typography style={styles.subheaderText}>{ctaText}</Typography>
             <Button
               label={buttonLabel}
               onPress={() => navigation.navigate('SettingsScreen', {})}
