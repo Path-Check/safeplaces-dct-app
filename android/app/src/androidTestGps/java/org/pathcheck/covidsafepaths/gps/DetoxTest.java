@@ -1,4 +1,4 @@
-package org.pathcheck.covidsafepaths;
+package org.pathcheck.covidsafepaths.gps;
 
 import com.wix.detox.Detox;
 
@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
+import covidsafepaths.gps.MainActivity;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
