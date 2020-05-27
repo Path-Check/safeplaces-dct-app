@@ -28,7 +28,7 @@ import covidsafepaths.util.getCutoffTimestamp
 import java.security.SecureRandom
 import java.util.UUID
 
-class RealmSecureStorage(inMemory: Boolean?) {
+open class RealmSecureStorage(inMemory: Boolean?) {
   constructor(): this(false)
 
   companion object {

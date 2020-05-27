@@ -1,5 +1,3 @@
-package org.pathcheck.covidsafepaths.gps;
-
 import com.wix.detox.Detox;
 
 import org.junit.Rule;
