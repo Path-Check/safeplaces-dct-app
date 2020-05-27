@@ -196,21 +196,17 @@ class Onboarding extends Component {
     const nextStep = this.getNextStep(StepEnum.LOCATION);
     const locationPermission = this.getLocationPermissionSetting();
     const status = await request(locationPermission);
+    let permissionStatus = PermissionStatusEnum.DENIED
 
     switch (status) {
       case RESULTS.GRANTED:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: PermissionStatusEnum.GRANTED,
-        });
-        break;
-      case RESULTS.BLOCKED:
-        this.setState({
-          currentStep: nextStep,
-          locationPermission: PermissionStatusEnum.DENIED,
-        });
+        permissionStatus = PermissionStatusEnum.GRANTED
         break;
     }
+    this.setState({
+      currentStep: nextStep,
+      locationPermission: permissionStatus,
+    });
   }
 
   async requestNotification() {
