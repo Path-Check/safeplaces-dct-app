@@ -4,10 +4,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { enableScreens } from 'react-native-screens';
 import SplashScreen from 'react-native-splash-screen';
 
-import { Theme } from './gps/app/constants/themes';
-import Entry from './gps/app/Entry';
-import { FlagsProvider } from './gps/app/helpers/Flags';
-import VersionCheckService from './gps/app/services/VersionCheckService';
+import { Theme } from './app/constants/themes';
+import { Entry } from './app/Entry';
+import { FlagsProvider } from './app/helpers/Flags';
+import VersionCheckService from './app/services/VersionCheckService';
 
 enableScreens();
 

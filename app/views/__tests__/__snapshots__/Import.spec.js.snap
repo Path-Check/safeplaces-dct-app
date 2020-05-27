@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Import component renders correctly 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#4051DB",
+        "flexBasis": 0,
+        "flexGrow": 0,
+        "flexShrink": 1,
+      }
+    }
+  />,
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#F7F8FF",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#4051DB",
+          "borderBottomColor": "#5061E6",
+          "borderBottomWidth": 1,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 55,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 60,
+            "zIndex": 1,
+          }
+        }
+      >
+        <SvgXml
+          style={
+            Object {
+              "color": "#FFF",
+              "height": 18,
+              "width": 18,
+            }
+          }
+          xml="
+  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
+  </svg>
+"
+        />
+      </View>
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#FFF",
+            "fontFamily": "IBMPlexSans-Bold",
+            "fontSize": 16,
+            "letterSpacing": 1,
+            "lineHeight": 34,
+            "paddingHorizontal": 20,
+            "position": "absolute",
+            "textAlign": "center",
+            "textTransform": "uppercase",
+            "width": "100%",
+          }
+        }
+      >
+        Import Locations
+      </Text>
+    </View>
+    <RCTScrollView
+      style={
+        Object {
+          "alignSelf": "center",
+          "flex": 1,
+          "flexDirection": "column",
+          "paddingLeft": 20,
+          "paddingRight": 20,
+          "textAlignVertical": "top",
+          "width": "100%",
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "fontSize": 22,
+              "fontWeight": "bold",
+              "padding": 5,
+              "paddingBottom": 20,
+              "textAlign": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 16,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "marginTop": 12,
+                "writingDirection": "ltr",
+              }
+            }
+            use="body1"
+          >
+            Adding location data from Google will give you a head start on building your recent locations.
+          </Text>
+          <Text
+            style={
+              Object {
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 16,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "marginTop": 12,
+                "writingDirection": "ltr",
+              }
+            }
+            use="body1"
+          >
+            Before you can import, you must first "Take out" your location data from Google.
+          </Text>
+          <Text
+            style={
+              Object {
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 16,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "marginTop": 12,
+                "writingDirection": "ltr",
+              }
+            }
+            use="body1"
+          >
+            Visit Google Takeout and export your Location History using the following settings: 
+1. Delivery method: "Add to Drive" 
+2. Frequency: "Export once" 
+3. File type & size: ".zip" and "1GB"
+4. Google sends an email when the export is ready 
+5. Return here to import locations from Google Drive
+          </Text>
+          <View
+            accessibilityLabel="Visit Google Takeout"
+            accessibilityRole="button"
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "borderBottomLeftRadius": 8,
+                "borderBottomRightRadius": 8,
+                "borderColor": "transparent",
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 8,
+                "borderTopRightRadius": 8,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "height": 48,
+                "justifyContent": "center",
+                "marginTop": 24,
+                "opacity": 1,
+                "paddingHorizontal": 14,
+              }
+            }
+            testID="google-takeout-link"
+          >
+            <Text
+              small={true}
+              style={
+                Object {
+                  "fontFamily": "IBMPlexSans-Medium",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "lineHeight": 21,
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              Visit Google Takeout
+            </Text>
+          </View>
+          <View
+            accessibilityLabel="Import Locations"
+            accessibilityRole="button"
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "borderBottomLeftRadius": 8,
+                "borderBottomRightRadius": 8,
+                "borderColor": "transparent",
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 8,
+                "borderTopRightRadius": 8,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "height": 48,
+                "justifyContent": "center",
+                "marginTop": 24,
+                "opacity": 1,
+                "paddingHorizontal": 14,
+              }
+            }
+            testID="google-takeout-import-btn"
+          >
+            <Text
+              small={true}
+              style={
+                Object {
+                  "fontFamily": "IBMPlexSans-Medium",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "lineHeight": 21,
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              Import Locations
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </RCTSafeAreaView>,
+]
+`;
