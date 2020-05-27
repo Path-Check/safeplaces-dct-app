@@ -56,7 +56,7 @@ public class MainApplication extends Application implements ReactApplication {
     initializeFlipper(this); // Remove this line if you don't want Flipper enabled
     Realm.init(this);
     initializeGeolocationTransformer();
-//    // Ignore assignment. Creating to begin heavy encryption work
+    // Ignore assignment. Creating to begin heavy encryption work
     SecureStorage wrapper = SecureStorage.INSTANCE;
   }
 
