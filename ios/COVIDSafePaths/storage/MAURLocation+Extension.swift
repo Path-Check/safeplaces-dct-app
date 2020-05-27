@@ -35,7 +35,7 @@ public extension MAURLocation {
   
   /// Encodes geoHashes with the scrypt algorithm
   var scryptHashes: [String] {
-    geoHashes.map({ scrypt(on: $0)})
+    geoHashes.map(scrypt)
   }
   
   /// Apply scrypt hash algorithm on a String

@@ -38,14 +38,15 @@ class MAURLocation_ExtensionTests: XCTestCase {
   }
   
   func testScrypt() {
-    let date = Date(timeIntervalSince1970: 1586865600)
-    let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)
+    let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: Date(timeIntervalSince1970: 1586865600000))
     let input = "gcpuuz8u1586865600"
     XCTAssertEqual(backgroundLocation.scrypt(on: input), "0ed62968fef3dc0a")
   }
   
-  func testValidScript() {
-    let date = Date(timeIntervalSince1970: 1586865600)
+  /// Takes a while to run multiple scrypt calls in tests
+  /// It is recommended to enable Whole-Module Optimization to gain better performance. Non-optimized build results in significantly worse performance.
+  func testValidScrypt() {
+    let date = Date(timeIntervalSince1970: 1589117939000)
     let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)
     let scryptHashes = backgroundLocation.scryptHashes
     XCTAssertTrue(scryptHashes.contains("e2754c01925484c5"))
