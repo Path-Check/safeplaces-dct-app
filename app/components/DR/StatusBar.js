@@ -11,8 +11,6 @@ const Statusbar = ({ backgroundColor, ...props }) => {
     } else if (height < 812 && width > 374 && HEIGHT === 0) {
       setHeight(20);
     }
-  } else {
-    setHeight(StatusBar.currentHeight);
   }
   return (
     <View style={[{ height: HEIGHT }, { backgroundColor }]}>

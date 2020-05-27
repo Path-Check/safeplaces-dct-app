@@ -56,7 +56,7 @@ exports[`renders correctly 1`] = `
           "position": "absolute",
           "resizeMode": "contain",
           "right": 0,
-          "top": "-13%",
+          "top": "-5%",
         }
       }
     >
@@ -86,7 +86,7 @@ exports[`renders correctly 1`] = `
           "paddingHorizontal": "12%",
           "position": "absolute",
           "right": 0,
-          "top": "-10%",
+          "top": "5%",
         }
       }
     >
@@ -96,7 +96,7 @@ exports[`renders correctly 1`] = `
             "alignItems": "center",
             "flex": 1,
             "justifyContent": "flex-end",
-            "paddingBottom": 40,
+            "paddingBottom": 80,
           }
         }
       >
@@ -110,6 +110,7 @@ exports[`renders correctly 1`] = `
               "lineHeight": 24.5,
               "marginBottom": 24,
               "textAlign": "center",
+              "top": "-15%",
               "writingDirection": "ltr",
             }
           }

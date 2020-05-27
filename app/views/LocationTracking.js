@@ -501,7 +501,7 @@ const styles = StyleSheet.create({
     // aligns the center of the main container with center of pulse
     // so that two `flex: 1` views will be have a reasonable chance at natural
     // flex flow for above and below the pulse.
-    top: '-10%',
+    top: '5%',
     left: 0,
     right: 0,
     height: '100%',
@@ -512,7 +512,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: PULSE_GAP / 2,
+    paddingBottom: PULSE_GAP,
   },
   contentBelowPulse: {
     flex: 1,
@@ -535,7 +535,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BLUE_RIBBON,
     position: 'absolute',
     resizeMode: 'contain',
-    top: '-13%',
+    top: '-5%',
     left: 0,
     right: 0,
     flex: 1,
@@ -573,6 +573,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fontFamily.primaryLight,
     marginBottom: 24,
+    top: '-15%',
   },
   mayoInfoRow: {
     flexDirection: 'row',
