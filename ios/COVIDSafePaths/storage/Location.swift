@@ -59,7 +59,7 @@ class Location: Object {
     location.altitudeAccuracy.value = backgroundLocation.altitudeAccuracy?.floatValue
     location.bearing.value = backgroundLocation.heading?.floatValue
     location.source = SOURCE_DEVICE
-    location.hashes.append(objectsIn: backgroundLocation.validHashes)
+    location.hashes.append(objectsIn: backgroundLocation.scryptHashes)
     return location;
   }
   

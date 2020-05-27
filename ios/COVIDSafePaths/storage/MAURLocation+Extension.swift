@@ -10,31 +10,46 @@ import Foundation
 import CryptoSwift
 
 public extension MAURLocation {
-  func roundToInterval(timestamp: TimeInterval, interval: TimeInterval) -> TimeInterval {
-    floor(timestamp / interval) * interval
+  /// Generates rounded time windows for interval before and after timestamp
+  /// https://pathcheck.atlassian.net/wiki/x/CoDXB
+  /// - Parameters:
+  ///   - interval: location storage interval in seconds
+  func timeWindows(interval: TimeInterval) -> (early: Int, late: Int) {
+    let time1 = Int(((time.timeIntervalSince1970 - interval / 2) / interval).rounded(.down) * interval)
+    let time2 = Int(((time.timeIntervalSince1970 + interval / 2) / interval).rounded(.down) * interval)
+    return (time1, time2)
   }
   
-  // The UTC timestamp in seconds of the datapoint, rounded down to the nearest 5 minutes
-  var nearestTimeStamp: Int {
-    Int((time.timeIntervalSince1970 / 300.0).rounded(.down) * 300)
+  /// Generates array of geohashes concatenated with time, within a 10 meter radius of given location
+  var geoHashes: [String] {
+    Geohash.GEO_CIRCLE_RADII.map({ radii in
+      (latitude.doubleValue + radii.latitude, longitude.doubleValue + radii.longitude)
+    }).reduce(into: Set<String>(), { (hashes, currentLocation) in
+      hashes.insert(Geohash.encode(latitude: currentLocation.0, longitude: currentLocation.1, length: 8))
+    }).reduce(into: [String](), { (hashes, hash) in
+      let timeWindow = timeWindows(interval: Double(RealmSecureStorage.LOCATION_INTERVAL * 1000))
+      hashes.append("\(hash)\(timeWindow.early)")
+      hashes.append("\(hash)\(timeWindow.late)")
+    })
   }
-
-///  A “cost” of 2^18 (may be customizable by Health Authorities in future - see below).
-///  A “maxmem” of (2^18 + 3) * 1024 = ~262MB (see: https://github.com/nodejs/node/issues/21524 )
-///  A salt of “” (empty string) (see below for future customization by Health Authorities)
-///  A block size of 8
-///  A keylen (output) of 16 bytes.
-  var scryptHash: String {
-    let hash = Array((geohash(precision: 8) + String(nearestTimeStamp)).utf8)
+  
+  /// Encodes geoHashes with the scrypt algorithm
+  var scryptHashes: [String] {
+    geoHashes.map({ scrypt(on: $0)})
+  }
+  
+  /// Apply scrypt hash algorithm on a String
+  ///
+  /// - Parameters:
+  ///     - hash: value to hash
+  func scrypt(on hash: String) -> String {
+    let hash = Array(hash.utf8)
     let generic = Array("salt".utf8)
-    return try! Scrypt(password: hash, salt: generic, dkLen: 16, N: 16384, r: 8, p: 1).calculate().toBase64()!
-  }
-  
-  var validHashes: [String] {
-    []
-  }
-
-  func geohash(precision: Int) -> String {
-    Geohash.encode(latitude: latitude.doubleValue, longitude: longitude.doubleValue, length: precision)
+    ///  A “cost” (N) that is to be determined.  For initial implemention we use 2^12 = 16384.
+    ///  A salt of “salt” (empty string) (see below for future customization by Health Authorities)
+    ///  A block size of 8
+    ///  A keylen (output) of 8 bytes = 16 hex digits.
+    /// Parallelization (p) of 1 - this is the default.
+    return try! Scrypt(password: hash, salt: generic, dkLen: 8, N: 16384, r: 8, p: 1).calculate().toHexString()
   }
 }

@@ -23,7 +23,11 @@ class GeohashTests: XCTestCase {
       "drt2zp2mr"
     ]
     for index in 0..<hashes.count {
-      XCTAssertEqual(location.geohash(precision: index + 1), hashes[index])
+      XCTAssertEqual(Geohash.encode(latitude: location.latitude.doubleValue, longitude: location.longitude.doubleValue, length: index + 1), hashes[index])
     }
+  }
+  
+  func testGeohashSpec() {
+    XCTAssertEqual("sr6de7ee", Geohash.encode(latitude: 41.24060321, longitude: 14.91328448, length: 8))
   }
 }

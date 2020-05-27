@@ -32,9 +32,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		25004E4C90704C6B807B88C7 /* IBMPlexMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71F26FBF5BDA423184286546 /* IBMPlexMono-MediumItalic.ttf */; };
 		2606D1B2B11C4D419867361F /* IBMPlexSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A57577D96B89452694B53982 /* IBMPlexSans-MediumItalic.ttf */; };
-		271089B024698720009AC76F /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
 		271881C02461AF76001DE067 /* RealmSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* RealmSecureStorage.swift */; };
-		271881C32461BF19001DE067 /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
 		276AB157245238E400D39B58 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB156245238E400D39B58 /* SecureStorage.swift */; };
 		276AB15C245291DE00D39B58 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB15B245291DE00D39B58 /* Location.swift */; };
 		27F931572459E28800E1024C /* SecureStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F931562459E28800E1024C /* SecureStorageManager.m */; };
@@ -53,6 +51,9 @@
 		68704529247EB78700902214 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704528247EB78700902214 /* MAURLocation+Extension.swift */; };
 		6870452D247EB8C300902214 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704525247EB76500902214 /* Geohash.swift */; };
 		6870452E247EB8C600902214 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704528247EB78700902214 /* MAURLocation+Extension.swift */; };
+		68B30507247ED53A004812BD /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704525247EB76500902214 /* Geohash.swift */; };
+		68B30509247EF592004812BD /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
+		68B3050A247EF595004812BD /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
 		7A2281C376904F23BCA10FCA /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
 		8A5B44AA7D724388B70F100B /* IBMPlexSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36B22BAB357B44949D2E168C /* IBMPlexSans-ExtraLight.ttf */; };
 		8CB0C49FEC0F493D95420B30 /* IBMPlexMono-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3053DF05D78949A09366B85D /* IBMPlexMono-ExtraLight.ttf */; };
@@ -1069,11 +1070,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				271881C32461BF19001DE067 /* RealmSecureStorageTest.swift in Sources */,
-				271089B024698720009AC76F /* LocationTests.swift in Sources */,
 				00E356F31AD99517003FC87E /* COVIDSafePathsTests.m in Sources */,
+				68B30507247ED53A004812BD /* Geohash.swift in Sources */,
 				68704521247EB70C00902214 /* GeohashTests.swift in Sources */,
 				68704524247EB73500902214 /* MAURLocation+ExtensionTests.swift in Sources */,
+				68B3050A247EF595004812BD /* LocationTests.swift in Sources */,
+				68B30509247EF592004812BD /* RealmSecureStorageTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

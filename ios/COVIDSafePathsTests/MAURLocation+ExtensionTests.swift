@@ -8,19 +8,46 @@
 import XCTest
 
 class MAURLocation_ExtensionTests: XCTestCase {
-//  func testScryptHashSpec() {
-//    let date = Date(timeIntervalSince1970: 1586865792)
-//    let backgroundLocation = TestMAURLocation(latitude: 51.5019, longitude: -0.1415, date: date)
-//    XCTAssertEqual(backgroundLocation.nearestTimeStamp, 1586865600)
-//    XCTAssertEqual(backgroundLocation.geohash(precision: 8), "gcpuuz8u")
-//    XCTAssertEqual(backgroundLocation.scryptHash, "lFYQZWaU9QN5p804NLX1vw==")
-//  }
   
-  func testScryptHashSpec2() {
+  func testTimeWindow() {
+    let date = Date(timeIntervalSince1970: 1586865792000)
+    let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)
+    let windows = backgroundLocation.timeWindows(interval: 60 * 5 * 1000)
+    XCTAssertEqual(windows.early, 1586865600000)
+    XCTAssertEqual(windows.late, 1586865900000)
+  }
+
+  func testScryptHashSpec() {
     let date = Date(timeIntervalSince1970: 1589117939000)
     let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)
-    XCTAssertEqual(backgroundLocation.nearestTimeStamp, 1589117938800)
-    XCTAssertEqual(backgroundLocation.geohash(precision: 8), "sr6de7ee")
-    XCTAssertEqual(backgroundLocation.scryptHash, "e2754c01925484c5")
+    let scryptHashes = backgroundLocation.geoHashes
+
+    let hashes = ["sr6de7ee1589118000000",
+    "sr6de7ee1589117700000",
+    "sr6de7es1589118000000",
+    "sr6de7es1589117700000",
+    "sr6de7e71589118000000",
+    "sr6de7e71589117700000",
+    "sr6de7ek1589118000000",
+    "sr6de7ek1589117700000"
+    ]
+    
+    for hash in scryptHashes  {
+      XCTAssertTrue(hashes.contains(hash))
+    }
+  }
+  
+  func testScrypt() {
+    let date = Date(timeIntervalSince1970: 1586865600)
+    let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)
+    let input = "gcpuuz8u1586865600"
+    XCTAssertEqual(backgroundLocation.scrypt(on: input), "0ed62968fef3dc0a")
+  }
+  
+  func testValidScript() {
+    let date = Date(timeIntervalSince1970: 1586865600)
+    let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)
+    let scryptHashes = backgroundLocation.scryptHashes
+    XCTAssertTrue(scryptHashes.contains("e2754c01925484c5"))
   }
 }

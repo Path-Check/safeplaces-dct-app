@@ -44,7 +44,7 @@ public struct Geohash {
       let mean = (a.min + a.max) / 2
       return value == "1" ? (mean, a.max) : (a.min, mean)
     }
-
+    
     let latRange = lat.reduce((-90.0, 90.0), combiner)
     // latRange = (57.649109959602356, 57.649111300706863)
     
@@ -53,7 +53,7 @@ public struct Geohash {
     
     return (latRange, lonRange)
   }
-
+  
   public static func encode(latitude: Double, longitude: Double, length: Int) -> String {
     // For example: (latitude, longitude) = (57.6491106301546, 10.4074396938086)
     func combiner(array a: (min: Double, max: Double, array: [String]), value: Double) -> (Double, Double, [String]) {
@@ -64,7 +64,7 @@ public struct Geohash {
         return (mean, a.max, a.array + "1")
       }
     }
-
+    
     let lat = Array(repeating: latitude, count: length*5).reduce((-90.0, 90.0, [String]()), combiner)
     // lat = (57.64911063015461, 57.649110630154766, [1,1,0,1,0,0,0,1,1,1,1,1,1,1,0,1,0,1,1,0,0,1,1,0,1,0,0,1,0,0,...])
     
@@ -83,7 +83,8 @@ public struct Geohash {
     return String(arr.prefix(length))
   }
   
-  public static let GEO_CIRCLE_RADII: [(Double, Double)] = [
+  /// Radius around center point of a given location
+  public static let GEO_CIRCLE_RADII: [(latitude: Double, longitude: Double)] = [
     (0, 0), // center
     (0.0001, 0), // N
     (0.00007, 0.00007), // NE
@@ -94,12 +95,12 @@ public struct Geohash {
     (0, -0.0001), // W
     (0.00007, -0.00007) //NW
   ]
-
+  
   // MARK: Private
   private static let bitmap = "0123456789bcdefghjkmnpqrstuvwxyz".enumerated()
     .map {($1, String(integer: $0, radix: 2, padding: 5))}
     .reduce(into: [Character: String]()) { $0[$1.0] = $1.1 }
-
+  
   private static let charmap = bitmap
     .reduce(into: [String: Character]()) { $0[$1.1] = $1.0 }
 }
