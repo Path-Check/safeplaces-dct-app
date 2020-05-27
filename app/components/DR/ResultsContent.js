@@ -4,7 +4,7 @@ import { Image, View } from 'react-native';
 
 import styles from './Header/style';
 
-export default function ResultsContent({
+export default function Content({
   title,
   subtitle,
   image,
