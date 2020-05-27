@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Text } from 'react-native';
 
-import image from '../../assets/images/assessment/illustration-screening-end-distancing.png';
-import Fonts from '../../constants/fonts';
-import { MetaContext } from './AssessmentContext';
-import AssessmentEnd from './AssessmentEnd';
+import image from '../../../assets/images/assessment/illustration-screening-end-distancing.png';
+import { Typography } from '../../../components/Typography';
+import { MetaContext } from '../AssessmentContext';
+import AssessmentEnd, { assessmentStyles } from './AssessmentEnd';
 
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentEndDistancing = ({ navigation }) => {
@@ -18,9 +17,9 @@ const AssessmentEndDistancing = ({ navigation }) => {
       }}
       ctaTitle={t('assessment.distancing_cta')}
       description={
-        <Trans i18nKey='assessment.distancing_description'>
-          <Text />
-          <Text style={{ fontFamily: Fonts.primaryBold }} />
+        <Trans t={t} i18nKey='assessment.distancing_description'>
+          <Typography />
+          <Typography surveyFont style={assessmentStyles.boldBlackText} />
         </Trans>
       }
       image={image}

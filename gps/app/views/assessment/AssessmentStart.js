@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 /**
  * @typedef { import("./Assessment").SurveyQuestion } SurveyQuestion
@@ -11,15 +11,16 @@ import imagePrivate from '../../assets/images/assessment/icon-private.png';
 import imageBanner from '../../assets/images/assessment/illustration-screening-start.png';
 import imageCdc from '../../assets/images/assessment/logo-cdc.png';
 import imageMit from '../../assets/images/assessment/logo-mit-media-lab.png';
-import Fonts from '../../constants/fonts';
+import { Typography } from '../../components/Typography';
+import Colors from '../../constants/colors';
 import i18n from '../../locales/languages';
-import AssessmentEnd from './AssessmentEnd';
 import {
   OPTION_VALUE_AGREE,
   OPTION_VALUE_DISAGREE,
   QUESTION_KEY_AGREE,
   SCREEN_TYPE_RADIO,
 } from './constants';
+import AssessmentEnd from './endScreens/AssessmentEnd';
 
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentStart = ({ navigation }) => {
@@ -39,15 +40,15 @@ const AssessmentStart = ({ navigation }) => {
       <View>
         <View style={styles.description}>
           <Image source={imageHealth} style={styles.descriptionImage} />
-          <Text style={styles.descriptionText}>
+          <Typography style={styles.descriptionText} surveyFont>
             {t('assessment.start_description_1')}
-          </Text>
+          </Typography>
         </View>
         <View style={styles.description}>
           <Image source={imagePrivate} style={styles.descriptionImage} />
-          <Text style={styles.descriptionText}>
+          <Typography style={styles.descriptionText} surveyFont>
             {t('assessment.start_description_2')}
-          </Text>
+          </Typography>
         </View>
       </View>
     </AssessmentEnd>
@@ -113,8 +114,9 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     flex: 1,
-    fontFamily: Fonts.primaryRegular,
-    fontSize: 18,
+    fontSize: 20,
     lineHeight: 22,
+    color: Colors.BLACK,
+    fontWeight: '300',
   },
 });

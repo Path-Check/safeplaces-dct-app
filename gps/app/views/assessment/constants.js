@@ -32,7 +32,7 @@ export const Colors = {
   DANGER: 'rgb(227,0,58)',
 };
 
-export const CATCHA_URL =
+export const CAPTCHA_URL =
   'https://fathomless-mountain-29102.herokuapp.com/v1.0/captcha';
 
 export const SURVEY_GET_API =

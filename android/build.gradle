@@ -19,7 +19,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.4.2")
+        classpath('com.android.tools.build:gradle:3.6.3')
 
         // detox e2e testing
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"

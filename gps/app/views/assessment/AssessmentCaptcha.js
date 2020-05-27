@@ -1,3 +1,4 @@
+import { useNavigationState } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,20 +8,22 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
 import image from '../../assets/images/assessment/illustration-screening-data-sharing.png';
+import { Typography } from '../../components/Typography';
+import Colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import { HCaptcha } from '../../services/CaptchaService';
 import AssessmentButton from './AssessmentButton';
 import { AnswersContext, SurveyContext } from './AssessmentContext';
-import { CATCHA_URL, SURVEY_POST_API } from './constants';
+import { CAPTCHA_URL, SURVEY_POST_API } from './constants';
 import { Colors as AssessmentColors } from './constants';
 
 const WIDTH = Dimensions.get('window').width;
-const HEIGHT = WIDTH * (300 / 375);
+const CONTAINER_WIDTH = 300 / 375;
+const HEIGHT = WIDTH * CONTAINER_WIDTH;
 
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentCaptcha = ({ navigation }) => {
@@ -29,11 +32,13 @@ const AssessmentCaptcha = ({ navigation }) => {
   const answers = useContext(AnswersContext);
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const navigationStateRoutes = useNavigationState(state => state.routes);
   const buttonDisabled = token === null || isLoading;
-  const onMessage = event => {
+  const captchaEventMessage = ['cancel', 'error', 'expired'];
+
+  const handleOnMessage = event => {
     if (event && event.nativeEvent.data) {
-      if (['cancel', 'error', 'expired'].includes(event.nativeEvent.data)) {
-        console.log('Verified code failed');
+      if (captchaEventMessage.includes(event.nativeEvent.data)) {
         // TODO: Better error handling
         Alert.alert('Captcha Response', `captcha ${event.nativeEvent.data}`, [
           {
@@ -41,19 +46,18 @@ const AssessmentCaptcha = ({ navigation }) => {
           },
         ]);
       } else {
-        console.log('Verified code received', event.nativeEvent.data);
         setToken(event.nativeEvent.data);
       }
     }
   };
-  const submit = async () => {
+
+  const handleSubmit = async () => {
     setIsLoading(true);
-    const state = navigation.dangerouslyGetState();
     const questionKeys = survey.questions.map(q => q.question_key);
     // Extract the keys from navigation stack because the user might
     // have answered a question, pressed back, changed answer, ended up on a different question
     // rendering that answer no longer valid
-    const questionKeysFinal = state.routes
+    const questionKeysFinal = navigationStateRoutes
       .filter(r => r.params && r.params.question)
       .map(r => r.params.question.question_key)
       // Remove injected questions (agreement, etc)
@@ -82,6 +86,7 @@ const AssessmentCaptcha = ({ navigation }) => {
       setIsLoading(false);
     }
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -90,20 +95,22 @@ const AssessmentCaptcha = ({ navigation }) => {
           source={image}
           style={{ width: WIDTH, height: HEIGHT }}
         />
-        <Text style={styles.title}>{t('assessment.captcha_title')}</Text>
-        <Text style={styles.description}>
+        <Typography bold style={styles.title}>
+          {t('assessment.captcha_title')}
+        </Typography>
+        <Typography style={styles.description}>
           {t('assessment.captcha_description')}
-        </Text>
+        </Typography>
         <HCaptcha
           style={styles.captcha}
-          uri={CATCHA_URL}
-          onMessage={onMessage}
+          uri={CAPTCHA_URL}
+          onMessage={handleOnMessage}
         />
       </ScrollView>
       <View style={styles.footer}>
         <AssessmentButton
           disabled={buttonDisabled}
-          onPress={submit}
+          onPress={handleSubmit}
           title={t('assessment.captcha_cta')}
         />
       </View>
@@ -123,14 +130,17 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: Fonts.primaryBold,
-    fontSize: 30,
+    fontSize: 28,
+    color: Colors.BLACK,
     marginBottom: 10,
     marginTop: 10,
     paddingHorizontal: 20,
+    paddingVertical: 5,
   },
   description: {
     fontFamily: Fonts.primaryRegular,
     fontSize: 18,
+    color: Colors.BLACK,
     lineHeight: 24,
     marginBottom: 10,
     paddingHorizontal: 20,

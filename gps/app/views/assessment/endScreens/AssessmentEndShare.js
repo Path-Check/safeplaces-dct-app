@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import image from '../../assets/images/assessment/illustration-screening-data-sharing.png';
-import Colors from '../../constants/colors';
-import Fonts from '../../constants/fonts';
-import AssessmentEnd from './AssessmentEnd';
-import AssessmentOption from './AssessmentOption';
-import { SCREEN_TYPE_CHECKBOX } from './constants';
+import image from '../../../assets/images/assessment/illustration-screening-data-sharing.png';
+import { Typography } from '../../../components/Typography';
+import Colors from '../../../constants/colors';
+import Fonts from '../../../constants/fonts';
+import AssessmentOption from '../AssessmentOption';
+import { SCREEN_TYPE_CHECKBOX } from '../constants';
+import AssessmentEnd, { assessmentStyles } from './AssessmentEnd';
 
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentEndShare = ({ navigation }) => {
-  let { t } = useTranslation();
-  let [a, setA] = useState(true);
-  let [b, setB] = useState(true);
+  const { t } = useTranslation();
+  const [endOptionA, setEndOptionA] = useState(true);
+  const [endOptionB, setEndOptionB] = useState(true);
   return (
     <AssessmentEnd
       ctaAction={() => {
@@ -21,10 +22,9 @@ const AssessmentEndShare = ({ navigation }) => {
       }}
       ctaTitle={t('assessment.share_cta')}
       description={
-        <Trans i18nKey='assessment.share_description'>
-          <Text />
-          <Text style={{ fontFamily: Fonts.primaryBold }} />
-          <Text style={{ fontFamily: Fonts.primaryBold }} />
+        <Trans t={t} i18nKey='assessment.share_description'>
+          <Typography />
+          <Typography surveyFont style={assessmentStyles.boldBlackText} />
         </Trans>
       }
       footer={
@@ -38,23 +38,23 @@ const AssessmentEndShare = ({ navigation }) => {
       image={image}
       title={t('assessment.share_title')}>
       <AssessmentOption
-        onSelect={() => setA(a => !a)}
+        onSelect={() => setEndOptionA(endOptionA => !endOptionA)}
         option={{
           label: t('assessment.share_screening_title'),
           description: t('assessment.share_screening_description'),
           value: 'a',
         }}
-        selected={a}
+        isSelected={endOptionA}
         type={SCREEN_TYPE_CHECKBOX}
       />
       <AssessmentOption
-        onSelect={() => setB(b => !b)}
+        onSelect={() => setEndOptionB(endOptionB => !endOptionB)}
         option={{
           label: t('assessment.share_location_title'),
           description: t('assessment.share_location_description'),
           value: 'b',
         }}
-        selected={b}
+        isSelected={endOptionB}
         type={SCREEN_TYPE_CHECKBOX}
       />
     </AssessmentEnd>

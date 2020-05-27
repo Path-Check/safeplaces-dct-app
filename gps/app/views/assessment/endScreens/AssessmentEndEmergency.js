@@ -1,11 +1,11 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Linking, Text } from 'react-native';
+import { Linking } from 'react-native';
 
-import image from '../../assets/images/assessment/illustration-screening-end-911.png';
-import Fonts from '../../constants/fonts';
-import AssessmentEnd from './AssessmentEnd';
-import { Colors as AssessmentColors } from './constants';
+import image from '../../../assets/images/assessment/illustration-screening-end-911.png';
+import { Typography } from '../../../components/Typography';
+import { Colors as AssessmentColors } from '../constants';
+import AssessmentEnd, { assessmentStyles } from './AssessmentEnd';
 
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentEndEmergency = () => {
@@ -19,9 +19,9 @@ const AssessmentEndEmergency = () => {
       ctaColor={AssessmentColors.DANGER}
       ctaTitle={t('assessment.emergency_cta')}
       description={
-        <Trans i18nKey='assessment.emergency_description'>
-          <Text />
-          <Text style={{ fontFamily: Fonts.primaryBold }} />
+        <Trans t={t} i18nKey='assessment.emergency_description'>
+          <Typography />
+          <Typography surveyFont style={assessmentStyles.boldBlackText} />
         </Trans>
       }
       image={image}

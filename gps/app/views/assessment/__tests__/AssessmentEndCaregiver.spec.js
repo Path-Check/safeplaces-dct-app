@@ -4,7 +4,7 @@ import { I18nextProvider } from 'react-i18next';
 
 import i18n from '../../../locales/languages';
 import { MetaContext } from '../AssessmentContext';
-import AssessmentEndCaregiver from '../AssessmentEndCaregiver';
+import AssessmentEndCaregiver from '../endScreens/AssessmentEndCaregiver';
 
 test('base', () => {
   const { asJSON } = render(<AssessmentEndCaregiver />, { wrapper: Wrapper });

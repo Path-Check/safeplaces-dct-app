@@ -4,7 +4,7 @@ import { I18nextProvider } from 'react-i18next';
 
 import i18n from '../../../locales/languages';
 import { MetaContext } from '../AssessmentContext';
-import AssessmentEndDistancing from '../AssessmentEndDistancing';
+import AssessmentEndDistancing from '../endScreens/AssessmentEndDistancing';
 
 test('base', () => {
   const { asJSON } = render(<AssessmentEndDistancing />, { wrapper: Wrapper });

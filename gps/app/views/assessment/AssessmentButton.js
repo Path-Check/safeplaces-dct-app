@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
+import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
-import Fonts from '../../constants/fonts';
 import { Colors as AssessmentColors } from './constants';
 
 /**
@@ -33,7 +33,9 @@ const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
             backgroundColor: backgroundColor,
           },
         ]}>
-        <Text style={styles.ctaText}>{title}</Text>
+        <Typography bold style={styles.ctaText}>
+          {title}
+        </Typography>
       </View>
     </TouchableOpacity>
   );
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
   },
   ctaText: {
     color: Colors.WHITE,
-    fontFamily: Fonts.primaryBold,
+    //fontFamily: Fonts.primaryBold,
     fontSize: 18,
     textAlign: 'center',
   },

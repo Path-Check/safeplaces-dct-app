@@ -2,7 +2,7 @@ import { render } from '@testing-library/react-native';
 import React from 'react';
 import { View } from 'react-native';
 
-import AssessmentEnd from '../AssessmentEnd';
+import AssessmentEnd from '../endScreens/AssessmentEnd';
 
 test('base', () => {
   const { asJSON, queryByTestId } = render(

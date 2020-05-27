@@ -81,6 +81,11 @@
 		<string>IBMPlexMono-SemiBoldItalic.ttf</string>
 		<string>IBMPlexMono-Thin.ttf</string>
 		<string>IBMPlexMono-ThinItalic.ttf</string>
+		<string>SFProRounded-Light.otf</string>
+		<string>SFProRounded-Medium.otf</string>
+		<string>SFProRounded-Bold.otf</string>
+		<string>SFProRounded-Thin.otf</string>
+		<string>SFProRounded-Ultralight.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

@@ -1,23 +1,18 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Button, Text, TouchableOpacity } from 'react-native';
+import { Alert, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
+import { Typography } from '../../components/Typography';
+import { useSurvey } from '../../helpers/CustomHooks';
 import i18n from '../../locales/languages';
-import { isPlatformiOS } from '../../Util';
 import AssessmentCaptcha from './AssessmentCaptcha';
 import {
   AnswersContext,
   MetaContext,
   SurveyContext,
 } from './AssessmentContext';
-import AssessmentEndCaregiver from './AssessmentEndCaregiver';
-import AssessmentEndComplete from './AssessmentEndComplete';
-import AssessmentEndDistancing from './AssessmentEndDistancing';
-import AssessmentEndEmergency from './AssessmentEndEmergency';
-import AssessmentEndIsolate from './AssessmentEndIsolate';
-import AssessmentEndShare from './AssessmentEndShare';
 import AssessmentQuestion from './AssessmentQuestion';
 import AssessmentStart from './AssessmentStart';
 import {
@@ -31,7 +26,12 @@ import {
   SCREEN_TYPE_END,
   SCREEN_TYPE_ISOLATE,
 } from './constants';
-import survey_en from './survey.en.json';
+import AssessmentEndCaregiver from './endScreens/AssessmentEndCaregiver';
+import AssessmentEndComplete from './endScreens/AssessmentEndComplete';
+import AssessmentEndDistancing from './endScreens/AssessmentEndDistancing';
+import AssessmentEndEmergency from './endScreens/AssessmentEndEmergency';
+import AssessmentEndIsolate from './endScreens/AssessmentEndIsolate';
+import AssessmentEndShare from './endScreens/AssessmentEndShare';
 
 /**
  * @typedef {"Checkbox" | "Date" | Radio" | "EndCaregiver" | "EndDistancing" | "EndEmergency" | "EndIsolate" } SurveyScreen
@@ -64,9 +64,6 @@ import survey_en from './survey.en.json';
  */
 
 /** @type {{ [key: string]: Survey }} */
-const surveys = {
-  en: survey_en,
-};
 
 const Stack = createNativeStackNavigator();
 
@@ -75,8 +72,9 @@ const Assessment = ({ navigation }) => {
   /** @type {React.MutableRefObject<SurveyAnswers>} */
   const answers = useRef({});
   const survey = useSurvey();
-  // const [survey] = useSurveyAsync();
+
   const QuestionScreen = useMemo(
+    // memoize assessment question
     () => ({ navigation, route }) => (
       <AssessmentQuestion
         {...route.params}
@@ -91,9 +89,18 @@ const Assessment = ({ navigation }) => {
     ),
     [answers, survey],
   );
+
+  const AssessmentCancel = () => (
+    <TouchableOpacity onPress={navigation.goBack}>
+      <Typography survey style={{ color: AssessmentColors.CTA }}>
+        {t('assessment.cancel')}
+      </Typography>
+    </TouchableOpacity>
+  );
+
   const meta = useMemo(
     () => ({
-      completeRoute: 'EndComplete',
+      completeRoute: 'EndShare',
       dismiss: () => {
         navigation.goBack();
       },
@@ -107,21 +114,15 @@ const Assessment = ({ navigation }) => {
     headerStyle: {
       backgroundColor: AssessmentColors.BACKGROUND,
     },
-    // eslint-disable-next-line
-    headerRight: () =>
-      isPlatformiOS() ? (
-        <Button onPress={navigation.goBack} title={t('assessment.cancel')} />
-      ) : (
-        <TouchableOpacity onPress={navigation.goBack}>
-          <Text>{t('assessment.cancel')}</Text>
-        </TouchableOpacity>
-      ),
+    //eslint-disable-next-line
+    headerRight: () => <AssessmentCancel />,
   };
+
   return (
     <MetaContext.Provider value={meta}>
       <SurveyContext.Provider value={survey}>
         {/* Since answers.current is on object, it won't trigger context updates
-      when mutated, but that's ok — just trying to avoid prop drilling.*/}
+        when mutated, but that's ok — just trying to avoid prop drilling.*/}
         <AnswersContext.Provider value={answers.current}>
           <Stack.Navigator
             initialRouteName='Start'
@@ -252,18 +253,9 @@ function onNextQuestion({ answers, navigation, route, survey }) {
       return showAgreeAlert();
     }
   }
-  let index = survey.questions.findIndex(
-    q => q.question_key === question.question_key,
-  );
-  let nextKey = survey.questions[index + 1].question_key;
-  if (question.conditions) {
-    for (const condition of question.conditions) {
-      if (response.some(r => r.value === condition.response)) {
-        nextKey = condition.jump_to_key;
-        break;
-      }
-    }
-  }
+
+  const nextKey = selectNextQuestion(survey, question, response);
+
   let nextQuestion = getQuestion(survey, nextKey);
   if (nextQuestion.question.question_type === SCREEN_TYPE_END) {
     if (END_ROUTES.includes(nextQuestion.question.screen_type))
@@ -271,9 +263,24 @@ function onNextQuestion({ answers, navigation, route, survey }) {
     navigation.push('EndComplete');
     return;
   }
+
   navigation.push(`Question`, {
     ...nextQuestion,
   });
+}
+
+function selectNextQuestion(survey, question, answer) {
+  let index = survey.questions.findIndex(
+    q => q.question_key === question.question_key,
+  );
+  if (question.conditions) {
+    for (const condition of question.conditions) {
+      if (answer.some(r => r.value === condition.response)) {
+        return condition.jump_to_key;
+      }
+    }
+  }
+  return survey.questions[index + 1].question_key;
 }
 
 function showAgreeAlert() {
@@ -286,28 +293,3 @@ function showAgreeAlert() {
     );
   });
 }
-
-function useSurvey() {
-  let [survey] = useState(() => {
-    return surveys[i18n.language] || survey_en;
-  });
-  return survey;
-}
-
-// function useSurveyAsync() {
-//   const [result, setResult] = React.useState(null);
-//   const [loading, setLoading] = React.useState(false);
-//   React.useEffect(() => {
-//     async function fetchSurvey() {
-//       try {
-//         setLoading(true);
-//         const survey = await fetch(SURVEY_GET_API).then(res => res.json());
-//         setResult(survey.data);
-//       } catch (error) {
-//         setLoading(false);
-//       }
-//     }
-//     fetchSurvey();
-//   }, []);
-//   return [result, loading];
-// }
