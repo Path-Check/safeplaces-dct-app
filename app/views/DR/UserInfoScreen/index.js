@@ -24,6 +24,7 @@ export default function UserInfo({ navigation }) {
     headerShown: false,
   });
   const [showDialog, setShowDialog] = useState(false);
+  const [showValidationDialog, setShowValidationDialog] = useState(false);
   const [usePassport, setUsePassport] = useState(false);
   const [useIdCard, setUseIdCard] = useState(false);
   const [useNss, setUseNss] = useState(false);
@@ -45,6 +46,7 @@ export default function UserInfo({ navigation }) {
   const closeDialog = final => {
     setError(false);
     setShowDialog(false);
+    setShowValidationDialog(false);
     setUseIdCard(false);
     setUseNss(false);
     setUsePassport(false);
@@ -53,7 +55,7 @@ export default function UserInfo({ navigation }) {
 
   const validate = async data => {
     try {
-      const response = await fetch(
+      let response = await fetch(
         'https://webapps.mepyd.gob.do/contact_tracing/api/Person',
         {
           method: 'POST',
@@ -61,7 +63,7 @@ export default function UserInfo({ navigation }) {
           body: JSON.stringify(data.body),
         },
       );
-      return response.json();
+      return await response.json();
     } catch (e) {
       console.log('ha ocurrido un error', e);
     }
@@ -89,8 +91,7 @@ export default function UserInfo({ navigation }) {
         phoneNumber: phoneNumber,
       };
     }
-    const { valid } = await validate(data);
-    return valid;
+    return await validate(data);
   };
 
   const setSelectedOption = (option, selected) => {
@@ -110,8 +111,7 @@ export default function UserInfo({ navigation }) {
     return setSelectedOption('age', personAge);
   };
 
-  let isLoading = false;
-  const disabled =
+  let disabled =
     (cid.length > 10 || passportId.length > 6 || nssId.length > 5) &&
     (phoneNumber.length > 13 || passportName.length > 8) &&
     birth
@@ -122,6 +122,36 @@ export default function UserInfo({ navigation }) {
       <Content>
         <ScrollView>
           <View style={{ flex: 1 }}>
+            <Dialog
+              visible={showValidationDialog}
+              onTouchOutside={() => closeDialog(true)}
+              dialogStyle={{ backgroundColor: Colors.WHITE }}>
+              <Icon
+                name={'exclamation-circle'}
+                color={Colors.RED_TEXT}
+                size={30}
+                style={{ marginBottom: 12, alignSelf: 'center' }}
+              />
+              <Text>
+                En estos momentos no podemos validar tus datos. Por favor
+                intenta más tarde.
+              </Text>
+              <Button
+                style={[
+                  styles.buttons,
+                  {
+                    backgroundColor: Colors.GREEN,
+                    width: '70%',
+                    marginTop: 25,
+                  },
+                ]}
+                onPress={() => {
+                  closeDialog(true);
+                }}>
+                <Text>Cerrar</Text>
+              </Button>
+            </Dialog>
+
             <Dialog
               onTouchOutside={() => closeDialog(true)}
               visible={showDialog}
@@ -207,7 +237,7 @@ export default function UserInfo({ navigation }) {
                   minDate='01-01-1900'
                 />
                 <Button
-                  disabled={isLoading ? true : disabled}
+                  disabled={disabled}
                   style={[
                     styles.buttons,
                     {
@@ -219,18 +249,18 @@ export default function UserInfo({ navigation }) {
                   ]}
                   onPress={async () => {
                     //Send data to API
-
-                    isLoading = true;
-                    if (await sendDataToApi()) {
-                      console.log('onpress');
-                      isLoading = false;
-                      getAge(birth);
-                      navigation.navigate('Report');
-                      closeDialog(false);
+                    let response = await sendDataToApi();
+                    if (response.valid !== undefined) {
+                      if (response.valid) {
+                        getAge(birth);
+                        closeDialog(false);
+                        navigation.navigate('Report');
+                      } else {
+                        setError(true);
+                      }
                     } else {
-                      isLoading = false;
-                      console.log('error');
-                      setError(true);
+                      setShowDialog(false);
+                      setShowValidationDialog(true);
                     }
                   }}>
                   <Text style={styles.buttonText}>Continuar</Text>

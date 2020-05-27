@@ -304,7 +304,6 @@ class LocationTracking extends Component {
     }
     return BackgroundImage;
   }
-
   settings() {
     this.props.navigation.navigate('SettingsScreen', {});
   }
@@ -313,9 +312,7 @@ class LocationTracking extends Component {
     return (
       <TouchableOpacity
         style={styles.settingsContainer}
-        onPress={() => {
-          this.props.navigation.navigate('SettingsScreen');
-        }}>
+        onPress={() => this.settings()}>
         {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
         <Image resizeMode={'contain'} />
         <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
@@ -481,7 +478,7 @@ class LocationTracking extends Component {
               </View>
             </TouchableOpacity>
           </View>
-          {this.getSettingsBtn()}
+          {/* {this.getSettingsBtn()} */}
         </ImageBackground>
       </Theme>
     );

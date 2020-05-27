@@ -139,7 +139,19 @@ class Entry extends Component {
           <Stack.Screen
             name='Location'
             component={LocationTracking}
-            options={{ headerShown: false }}
+            options={{
+              headerTitle: '',
+              headerTintColor: Colors.WHITE,
+              headerBackTitle: ' ',
+              headerStyle: {
+                backgroundColor: Colors.BLUE_RIBBON,
+                shadowColor: Colors.BLUE_RIBBON,
+                height: hp('7%'),
+              },
+              headerLeftContainerStyle: {
+                marginLeft: 15,
+              },
+            }}
           />
           <Stack.Screen
             name='Report'
@@ -157,12 +169,11 @@ class Entry extends Component {
             options={{
               headerTitle: '',
               headerTintColor: Colors.WHITE,
-              headerBackTitle: 'atras',
+              headerBackTitle: ' ',
               headerStyle: {
                 backgroundColor: Colors.BLUE_RIBBON,
                 height: hp('7%'),
               },
-              headerBackTitleStyle: { color: Colors.WHITE },
             }}
           />
           <Stack.Screen
