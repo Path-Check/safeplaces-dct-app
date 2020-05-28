@@ -2,7 +2,6 @@ export { Button } from './Button';
 export { Checkbox } from './Checkbox';
 export { Divider, VerticalDivider } from './Divider';
 export { DynamicTextInput } from './DynamicTextInput';
-export { EulaModal } from './EulaModal';
 export { FeatureFlag } from './FeatureFlag';
 export { IconButton } from './IconButton';
 export { NativePicker } from './NativePicker';

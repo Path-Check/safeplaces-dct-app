@@ -15,10 +15,11 @@ import languages, {
   supportedDeviceLanguageOrEnglish,
 } from './../../locales/languages';
 import { Images } from '../../assets';
-import { EulaModal, NativePicker, Typography } from '../../components';
+import { NativePicker, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
+import { EulaModal } from '../EulaModal';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
