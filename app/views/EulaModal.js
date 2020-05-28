@@ -6,14 +6,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 
 import { Icons } from '../assets';
+import { Button, Checkbox, IconButton, Typography } from '../components';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import en from '../locales/eula/en.html';
 import ht from '../locales/eula/ht.html';
-import { Button } from './Button';
-import { Checkbox } from './Checkbox';
-import { IconButton } from './IconButton';
-import { Typography } from './Typography';
 
 const EULA_FILES = { en, ht };
 

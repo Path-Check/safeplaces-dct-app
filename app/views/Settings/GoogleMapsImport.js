@@ -14,7 +14,7 @@ export const GoogleMapsImport = ({ navigation }) => {
     navigation.navigate('ImportScreen');
   };
 
-  // GoogleMapsImport is not enabled on BTE
+  // GoogleMapsImport is only enabled on the GPS app
   if (config.tracingStrategy === 'gps') {
     return (
       <>
@@ -40,6 +40,8 @@ export const GoogleMapsImport = ({ navigation }) => {
         </ParagraphContainer>
       </>
     );
+  } else {
+    return null;
   }
 };
 

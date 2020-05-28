@@ -15,12 +15,11 @@ import { isPlatformiOS } from '../../Util';
 export const LocationTrackingStatus = () => {
   const { i18n } = useTranslation();
   const [locTrackingStatus, setLocTrackingStatus] = useLocTrackingStatus();
+  console.log(locTrackingStatus);
 
   const { reason, canTrack } = locTrackingStatus;
 
   const isGPS = config.tracingStrategy === 'gps';
-
-  console.log(reason);
 
   const hasLocTrackingPermissions =
     reason === Reason.USER_ENABLED || reason === Reason.USER_DISABLED;
@@ -29,10 +28,14 @@ export const LocationTrackingStatus = () => {
     reason === Reason.DEVICE_LOCATION_OFF ||
     reason === Reason.APP_NOT_AUTHORIZED;
 
-  const getCurrentRowDirection = () =>
-    i18n.dir() === 'rtl' ? 'row-reverse' : 'row';
+  const getCurrentRowDirection = i18n.dir() === 'rtl' ? 'row-reverse' : 'row';
 
   const getLocStatusElement = () => {
+    console.log(`reason: ${reason}`);
+    console.log(
+      `hasLocTrackingPermissions: ${hasLocTrackingPermissions} isMissingLocPermissions: ${isMissingLocPermissions}`,
+    );
+
     if (hasLocTrackingPermissions) {
       return (
         <LocationStatusSwitch
@@ -52,13 +55,15 @@ export const LocationTrackingStatus = () => {
       <>
         <Container
           style={css`
-            flex-direction: ${getCurrentRowDirection()};
+            flex-direction: ${getCurrentRowDirection};
           `}>
           {getLocStatusElement()}
         </Container>
         <Divider />
       </>
     );
+  } else {
+    return null;
   }
 };
 
@@ -70,17 +75,19 @@ const EnableLocationButton = ({ reason }) => {
    * that are enabled per platform.
    */
   const requestLocationPermission = async () => {
+    /**
+     * Open the settings for the app
+     */
     if (reason === Reason.APP_NOT_AUTHORIZED) {
-      /**
-       * Open the settings for the app
-       */
       openSettings();
-    } else if (reason === Reason.DEVICE_LOCATION_OFF) {
-      /**
-       * Open Device Settings.
-       * If iOS, open Settings home screen
-       * If Android, we are able to open the device location permissions
-       */
+    }
+
+    /**
+     * Open Device Settings.
+     * If iOS, open Settings home screen
+     * If Android, we are able to open the device location permissions
+     */
+    if (reason === Reason.DEVICE_LOCATION_OFF) {
       if (isPlatformiOS()) {
         const deviceSettingsUrl = 'App-prefs:';
         Linking.openURL(deviceSettingsUrl);
@@ -104,6 +111,7 @@ const EnableLocationButton = ({ reason }) => {
 };
 
 const LocationStatusSwitch = ({ canTrack, setLocTrackingStatus }) => {
+  console.log('LocationStatusSwitch!');
   const { t, i18n } = useTranslation();
   const [label, setLabel] = useState('');
 
