@@ -6,7 +6,7 @@
 //  Copyright © 2020 Path Check Inc. All rights reserved.
 //
 import XCTest
-import Scrypt
+@testable import Scrypt
 
 class MAURLocation_ExtensionTests: XCTestCase {
   
