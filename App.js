@@ -13,6 +13,19 @@ import createStore from './app/store';
 
 const { store, persistor } = createStore();
 
+// For snapshot testing. In tests, we provide a mock store wrapper if needed.
+export const UnconnectedApp = () => (
+  <FlagsProvider>
+    <MenuProvider>
+      <Theme use='default'>
+        <PermissionsProvider>
+          <Entry />
+        </PermissionsProvider>
+      </Theme>
+    </MenuProvider>
+  </FlagsProvider>
+);
+
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
@@ -22,15 +35,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <FlagsProvider>
-          <MenuProvider>
-            <Theme use='default'>
-              <PermissionsProvider>
-                <Entry />
-              </PermissionsProvider>
-            </Theme>
-          </MenuProvider>
-        </FlagsProvider>
+        <UnconnectedApp />
       </PersistGate>
     </Provider>
   );

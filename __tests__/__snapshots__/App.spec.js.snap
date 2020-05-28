@@ -9,5 +9,9 @@ exports[`renders correctly 1`] = `
       "flex": 1,
     }
   }
-/>
+>
+  <MenuProvider>
+    <Entry />
+  </MenuProvider>
+</View>
 `;
