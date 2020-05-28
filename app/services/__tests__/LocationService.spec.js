@@ -46,7 +46,7 @@ it('parses the location data', async () => {
     5,
   ]);
 
-  const data = await getLocationData();
+  const data = await LocationServices.getLocationData();
 
   expect(data.length).toBe(5);
 });
@@ -170,7 +170,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: true,
-        reason: '',
+        reason: Reason.USER_ENABLED,
         hasPotentialExposure: false,
       });
     });
@@ -185,7 +185,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: true,
-        reason: '',
+        reason: Reason.USER_ENABLED,
         hasPotentialExposure: true,
       });
     });
@@ -212,7 +212,7 @@ describe('LocationServices', () => {
         canTrack: true,
         hasPotentialExposure: false,
         isRunning: true,
-        reason: '',
+        reason: Reason.USER_ENABLED,
       });
     });
 

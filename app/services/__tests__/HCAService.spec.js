@@ -13,7 +13,7 @@ import {
   mockUserLocHistory,
 } from '../__mocks__/mockUserLocHistory';
 import { HCAService } from '../HCAService';
-import * as LocationService from '../LocationService';
+import LocationService from '../LocationService';
 
 jest.mock('rn-fetch-blob', () => {
   return {
@@ -208,7 +208,7 @@ describe('HCAService', () => {
     it('filters out authorities the user has already subscribed to', async () => {
       jest
         .spyOn(LocationService, 'getMostRecentUserLoc')
-        .mockReturnValueOnce(mockMostRecentUserLoc);
+        .mockResolvedValueOnce(mockMostRecentUserLoc);
       jest
         .spyOn(HCAService, 'getUserAuthorityList')
         .mockResolvedValueOnce(mockHCA.validParsed);
@@ -221,7 +221,7 @@ describe('HCAService', () => {
     it('returns an array of new authorities that the user has not subscribed to and are within their current location', async () => {
       jest
         .spyOn(LocationService, 'getMostRecentUserLoc')
-        .mockReturnValueOnce(mockMostRecentUserLoc);
+        .mockResolvedValueOnce(mockMostRecentUserLoc);
       jest.spyOn(HCAService, 'getUserAuthorityList').mockResolvedValueOnce([]);
 
       await expect(HCAService.getNewAuthoritiesInUserLoc()).resolves.toEqual(

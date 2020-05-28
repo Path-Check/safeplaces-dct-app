@@ -177,7 +177,7 @@ export default class LocationServices {
     await SetStoreData(IS_APP_LOCATION_TRACKING_ENABLED, isEnabled);
   }
 
-  static async getAppLocStrackingStatus() {
+  static async getAppLocTrackingStatus() {
     return await GetStoreData(IS_APP_LOCATION_TRACKING_ENABLED, false);
   }
 
@@ -192,7 +192,7 @@ export default class LocationServices {
 
   static async checkStatus() {
     const hasPotentialExposure = await this.getHasPotentialExposure();
-    const locTrackingStatus = await this.getAppLocStrackingStatus();
+    const locTrackingStatus = await this.getAppLocTrackingStatus();
 
     const {
       authorization,
@@ -257,7 +257,7 @@ export default class LocationServices {
     return status;
   }
 
-  async getLocationData() {
+  static async getLocationData() {
     return NativeModules.SecureStorageManager.getLocations();
   }
 
@@ -265,8 +265,8 @@ export default class LocationServices {
    * Returns the most recent point of location data for a user.
    * This is the last item in the location data array.
    */
-  async getMostRecentUserLoc() {
-    const locData = await this.getLocationData();
+  static async getMostRecentUserLoc() {
+    const locData = await LocationServices.getLocationData();
     return locData[locData.length - 1];
   }
 }
