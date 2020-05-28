@@ -69,7 +69,6 @@ jobs:
   unit-test-ios:
     runs-on: macOS-latest
     needs: unit-test
-    timeout-minutes: 20
     steps:
       - uses: actions/checkout@master
 
