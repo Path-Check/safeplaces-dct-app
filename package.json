@@ -10,7 +10,7 @@
     "run-android-gps": "react-native run-android --variant=gpsDebug --appId=org.pathcheck.covidsafepaths",
     "run-ios-bte": "yarn install:pod && react-native run-ios --scheme \"BTE_Development\"",
     "run-ios-gps": "yarn install:pod && react-native run-ios --scheme \"GPS_Development\"",
-    "instrument:ios:gps": "ls -1 -d -t ~/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/COVIDSafePaths.app | head -n 1",
+    "instrument:ios:gps": "ls -1 -d -t ~/Library/Developer/Xcode/DerivedData/COVIDSafePaths-*/Build/Products/Debug-iphonesimulator/PathCheckGPS.app | head -n 1",
     "instrument:ios:bte": "ls -1 -d -t ~/Library/Developer/Xcode/DerivedData/org.pathcheck.bt-*/Build/Products/Debug-iphonesimulator/org.pathcheck.bt.app | head -n 1",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install --quiet && bundle exec pod install --silent",
@@ -165,7 +165,7 @@
         }
       },
       "iphone8.sim": {
-        "binaryPath": "ios/fastlane/test_output/Staging-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/fastlane/test_output/Staging-iphonesimulator/PathCheckGPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -173,7 +173,7 @@
         }
       },
       "iphone-se.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/fastlane/test_output/Staging-iphonesimulator/PathCheckGPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {

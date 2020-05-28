@@ -36,6 +36,7 @@ platform :ios do
     ADHOC_PROFILE = "match AdHoc org.pathcheck.covid-safepaths"
     BTE_STAGING_SCHEME = "BTE_Staging"
     GPS_STAGING_SCHEME = "GPS_Staging"
+    GPS_TESTS_SCHEME = "GPS_Tests"
     TEAM = "79Z8HUPGC3"
     BTE_SCHEME = "BTE_Production"
     GPS_SCHEME = "GPS_Production"
@@ -59,8 +60,8 @@ platform :ios do
       scan(
         clean: true,
         workspace: WORKSPACE,
-        scheme: 'GPS_Tests',
-        configuration: "Staging",
+        scheme: GPS_TESTS_SCHEME,
+        configuration: 'Staging',
         derived_data_path: 'build/',
         devices: ['iPhone 8'],
         prelaunch_simulator: true,

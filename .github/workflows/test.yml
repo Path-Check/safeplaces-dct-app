@@ -128,7 +128,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: e2e-ios-bin
-          path: ios/fastlane/test_output/Staging-iphonesimulator/COVIDSafePaths.app
+          path: ios/fastlane/test_output/Staging-iphonesimulator/PathCheckGPS.app
 
       - uses: actions/upload-artifact@v1
         with:
@@ -189,7 +189,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: e2e-ios-bin
-          path: ios/fastlane/test_output/Staging-iphonesimulator/COVIDSafePaths.app
+          path: ios/fastlane/test_output/Staging-iphonesimulator/PathCheckGPS.app
 
       - run: yarn test:e2e:iphone-se
 
