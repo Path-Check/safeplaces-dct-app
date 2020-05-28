@@ -9,9 +9,9 @@ import { Entry } from './app/Entry';
 import { FlagsProvider } from './app/helpers/Flags';
 import { PermissionsProvider } from './app/PermissionsContext';
 import VersionCheckService from './app/services/VersionCheckService';
-import createStore from './app/store';
+import { createPersistedStore } from './app/store';
 
-const { store, persistor } = createStore();
+const { store, persistor } = createPersistedStore();
 
 // For snapshot testing. In tests, we provide a mock store wrapper if needed.
 export const UnconnectedApp = () => (

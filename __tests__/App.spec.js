@@ -13,7 +13,7 @@ import { UnconnectedApp } from '../App';
 jest.mock('../app/Entry', () => ({ Entry: 'Entry' }));
 
 // We're using the unconnected App, so omit creating a store.
-jest.mock('../app/Store', () => () => ({}));
+jest.mock('../app/Store', () => ({ createPersistedStore: () => ({}) }));
 
 it('renders correctly', () => {
   const { asJSON } = render(<UnconnectedApp />);
