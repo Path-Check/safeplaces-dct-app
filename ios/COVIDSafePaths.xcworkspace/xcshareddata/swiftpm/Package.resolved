@@ -3,7 +3,7 @@
     "pins": [
       {
         "package": "Scrypt",
-        "repositoryURL": "https://github.com/greymass/swift-scrypt.git",
+        "repositoryURL": "https://github.com/MichaelNeas/swift-scrypt.git",
         "state": {
           "branch": null,
           "revision": "7769adfbb690f6b57a5fca7b6afc65ac95a72cbd",

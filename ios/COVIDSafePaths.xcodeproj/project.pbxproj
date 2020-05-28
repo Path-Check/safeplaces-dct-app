@@ -46,7 +46,6 @@
 		626DB8AB8AF9D02B9E411601 /* libPods-BTE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FB16255EA745CC27C638A1 /* libPods-BTE.a */; };
 		680EA419247FEC01003B6F2A /* RealmSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* RealmSecureStorage.swift */; };
 		680EA41B247FEC23003B6F2A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB15B245291DE00D39B58 /* Location.swift */; };
-		680EA422247FF590003B6F2A /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 680EA421247FF590003B6F2A /* Scrypt */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
 		68704521247EB70C00902214 /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704520247EB70C00902214 /* GeohashTests.swift */; };
 		68704524247EB73500902214 /* MAURLocation+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704523247EB73500902214 /* MAURLocation+ExtensionTests.swift */; };
@@ -57,6 +56,7 @@
 		68B30507247ED53A004812BD /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704525247EB76500902214 /* Geohash.swift */; };
 		68B30509247EF592004812BD /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
 		68B3050A247EF595004812BD /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
+		68F029CC24801C6600E7F632 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68F029CB24801C6600E7F632 /* Scrypt */; };
 		68F154E4247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */; };
 		68F154E5247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */; };
 		68F154E6247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */; };
@@ -368,7 +368,7 @@
 				08445F50242849C1008754AC /* CoreGraphics.framework in Frameworks */,
 				08445F4E24283B0B008754AC /* CoreData.framework in Frameworks */,
 				08445F4C24283AFF008754AC /* Accelerate.framework in Frameworks */,
-				680EA422247FF590003B6F2A /* Scrypt in Frameworks */,
+				68F029CC24801C6600E7F632 /* Scrypt in Frameworks */,
 				A49C8C752B3AA7ABB92618E3 /* libPods-GPS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -715,7 +715,7 @@
 			);
 			name = GPS;
 			packageProductDependencies = (
-				680EA421247FF590003B6F2A /* Scrypt */,
+				68F029CB24801C6600E7F632 /* Scrypt */,
 			);
 			productName = COVIDSafePaths;
 			productReference = 13B07F961A680F5B00A75B9A /* PathCheckGPS.app */;
@@ -812,7 +812,7 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
-				680EA420247FF590003B6F2A /* XCRemoteSwiftPackageReference "swift-scrypt" */,
+				68F029CA24801C6600E7F632 /* XCRemoteSwiftPackageReference "swift-scrypt" */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -2499,9 +2499,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		680EA420247FF590003B6F2A /* XCRemoteSwiftPackageReference "swift-scrypt" */ = {
+		68F029CA24801C6600E7F632 /* XCRemoteSwiftPackageReference "swift-scrypt" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/greymass/swift-scrypt.git";
+			repositoryURL = "https://github.com/MichaelNeas/swift-scrypt.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
@@ -2510,9 +2510,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		680EA421247FF590003B6F2A /* Scrypt */ = {
+		68F029CB24801C6600E7F632 /* Scrypt */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 680EA420247FF590003B6F2A /* XCRemoteSwiftPackageReference "swift-scrypt" */;
+			package = 68F029CA24801C6600E7F632 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
 			productName = Scrypt;
 		};
 /* End XCSwiftPackageProductDependency section */
