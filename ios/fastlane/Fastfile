@@ -53,6 +53,22 @@ platform :ios do
       )
     end
 
+    desc "Push a new GPS Staging .app file build for automation"
+    lane :gps_unit_test do
+
+      scan(
+        clean: true,
+        workspace: WORKSPACE,
+        scheme: 'GPS_Tests',
+        configuration: "Staging",
+        derived_data_path: 'build/',
+        devices: ['iPhone 8'],
+        prelaunch_simulator: true,
+        skip_testing: 'GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen',
+        should_zip_build_products: true,
+      )
+    end
+
     desc "Push a new GPS Staging build for automation"
     lane :staging do
 

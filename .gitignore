@@ -91,6 +91,9 @@ ios/COVIDSafePaths-staging-bte.ipa
 ios/COVIDSafePaths-staging-bte.app
 ios/COVIDSafePaths-stating-bte.app.dSYM.zip
 
+# IOS Unit Testing Artifacts
+ios/fastlane/test_output/*
+
 # Local Android build artifacts
 android/app/src/main/assets/index.android.bundle
 

@@ -78,7 +78,7 @@ jobs:
 
       - name: Cache node_modules/
         uses: actions/cache@v1
-        id: cache
+        id: node_cache
         with:
           path: node_modules
           key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
@@ -86,100 +86,72 @@ jobs:
             ${{ runner.OS }}-yarn-cache-
 
       - name: Install Node Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.node_cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
+
+      - name: Install bundler for ruby package management
+        run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
+        working-directory: ./ios
 
       - name: Cache ruby gems
         uses: actions/cache@v1
+        id: ruby_cache
         with:
           path: ios/vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/ios/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - name: Install ruby gems (including Cocoapods)
+      - name: Install Ruby Dependencies
+        if: steps.ruby_cache.outputs.cache-hit != 'true'
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
         working-directory: ./ios
 
-      - run: pod install --repo-update
+      - name: Install Cocoapods
+        run: bundle exec pod install --repo-update
         working-directory: ./ios
 
-      # TODO(https://pathcheck.atlassian.net/browse/SAF-250): remove the skip on COVIDSafePathsTests/testRendersWelcomeScreen once it's passing
-      - run: |
-          xcodebuild test -workspace COVIDSafePaths.xcworkspace \
-            -scheme GPS_Tests \
-            -destination 'platform=iOS Simulator,name=iPhone 8' \
-            -skip-testing GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen
-        working-directory: ./ios
-
-  # separate build job so that multiple test jobs can run on the same artifact
-  e2e-ios-build:
-    runs-on: macOS-latest
-    # while this job doesn't depend on the previous job explicitly
-    # this will force them not to run in parallel. If they're run in parallel,
-    # the node_modules caches will conflict
-    needs: unit-test
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@master
-
-      - name: Set XCode Version
-        run: sudo xcode-select -s /Applications/Xcode_11.app
-
-      - name: Cache node_modules/
-        uses: actions/cache@v1
-        id: cache
+      - name: Unit Test iOS and Upload Simulator Friendly .app Zip
+        uses: maierj/fastlane-action@v1.4.0
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
-
-      - name: Rebuild detox
-        if: steps.cache.outputs.cache-hit == 'true'
-        run: yarn detox-setup
-
-      - name: Install Node Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
-
-      - name: Cache ruby gems
-        uses: actions/cache@v1
-        with:
-          path: ios/vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - name: Install ruby gems (including Cocoapods)
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-        working-directory: ./ios
-
-      - name: Cache CocoaPods
-        uses: actions/cache@v1
-        with:
-          path: ios/Pods
-          key: ${{ runner.OS }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-pods-
-
-      - run: bundle exec pod install --repo-update
-        working-directory: ./ios
-
-      - run: yarn build:e2e:ios
+          lane: 'gps_unit_test'
+          subdirectory: 'ios'
+          bundle-install-path: 'vendor/bundle'
 
       - uses: actions/upload-artifact@v1
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
+          path: ios/fastlane/test_output/Staging-iphonesimulator/COVIDSafePaths.app
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: e2e-ios-zip
+          path: ios/fastlane/test_output/build_products.zip
+
+      - name: Upload Unit Test Results
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: JUnit Report
+          path: ios/fastlane/test_output/report.junit
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: HTML Report
+          path: ios/fastlane/test_output/report.html
 
   e2e-iphone-se:
     runs-on: macOS-latest
-    needs: e2e-ios-build
+    needs: unit-test-ios
     timeout-minutes: 15
     env:
       DEVELOPER_DIR: /Applications/Xcode_11.4.app
@@ -217,7 +189,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
+          path: ios/fastlane/test_output/Staging-iphonesimulator/COVIDSafePaths.app
 
       - run: yarn test:e2e:iphone-se
 

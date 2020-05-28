@@ -21,6 +21,11 @@ or alternatively using `brew cask install fastlane`
 fastlane ios sync_local_certs
 ```
 
+### ios staging_simulator
+```
+fastlane ios staging_simulator
+```
+Push a new GPS Staging .app file build for automation
 ### ios staging
 ```
 fastlane ios staging
