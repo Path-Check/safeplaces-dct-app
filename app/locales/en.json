@@ -29,8 +29,6 @@
     "share_description": "Sharing <1>anonymized data</1> with local healthcare authorities helps them make better decisions - letting everyone get <2>back to work faster!</2> Your information is fully anonymized and cannot be linked back to you.",
     "share_screening_title": "Anonymized Screening Data",
     "share_screening_description": "Share anoymized answers to screening questions with your local healthcare authority.",
-    "share_location_title": "Anonymized Location Data",
-    "share_location_description": "Share anonymized location for the past 14 days with your local healthcare authority.",
     "share_cta_skip": "No thanks, I don't want to share data",
     "share_cta": "Share Anonymized Data",
     "start_title": "COVID-19 Screening",

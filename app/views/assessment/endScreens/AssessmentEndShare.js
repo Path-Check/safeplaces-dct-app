@@ -13,8 +13,8 @@ import AssessmentEnd, { assessmentStyles } from './AssessmentEnd';
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentEndShare = ({ navigation }) => {
   const { t } = useTranslation();
-  const [endOptionA, setEndOptionA] = useState(true);
-  const [endOptionB, setEndOptionB] = useState(true);
+  const [selectScreeningData, setSelectScreeningData] = useState(true);
+
   return (
     <AssessmentEnd
       ctaAction={() => {
@@ -38,23 +38,13 @@ const AssessmentEndShare = ({ navigation }) => {
       image={image}
       title={t('assessment.share_title')}>
       <AssessmentOption
-        onSelect={() => setEndOptionA(endOptionA => !endOptionA)}
+        onSelect={() => setSelectScreeningData(endOptionA => !endOptionA)}
         option={{
           label: t('assessment.share_screening_title'),
           description: t('assessment.share_screening_description'),
           value: 'a',
         }}
-        isSelected={endOptionA}
-        type={SCREEN_TYPE_CHECKBOX}
-      />
-      <AssessmentOption
-        onSelect={() => setEndOptionB(endOptionB => !endOptionB)}
-        option={{
-          label: t('assessment.share_location_title'),
-          description: t('assessment.share_location_description'),
-          value: 'b',
-        }}
-        isSelected={endOptionB}
+        isSelected={selectScreeningData}
         type={SCREEN_TYPE_CHECKBOX}
       />
     </AssessmentEnd>
