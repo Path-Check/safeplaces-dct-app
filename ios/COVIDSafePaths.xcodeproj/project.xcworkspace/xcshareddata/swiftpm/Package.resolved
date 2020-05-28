@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Scrypt",
+        "repositoryURL": "https://github.com/greymass/swift-scrypt.git",
+        "state": {
+          "branch": null,
+          "revision": "7769adfbb690f6b57a5fca7b6afc65ac95a72cbd",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
