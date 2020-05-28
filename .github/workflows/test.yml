@@ -105,7 +105,7 @@ jobs:
 
       - run: pod install --repo-update
         working-directory: ./ios
-      
+
       # TODO(https://pathcheck.atlassian.net/browse/SAF-250): remove the skip on COVIDSafePathsTests/testRendersWelcomeScreen once it's passing
       - run: |
           xcodebuild test -workspace COVIDSafePaths.xcworkspace \

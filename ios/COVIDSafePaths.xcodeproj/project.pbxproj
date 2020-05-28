@@ -57,6 +57,7 @@
 		68B30509247EF592004812BD /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
 		68B3050A247EF595004812BD /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
 		68F029CC24801C6600E7F632 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68F029CB24801C6600E7F632 /* Scrypt */; };
+		68F029D024803A5700E7F632 /* Array+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F029CF24803A5700E7F632 /* Array+ExtensionTests.swift */; };
 		68F154E4247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */; };
 		68F154E5247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */; };
 		68F154E6247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */; };
@@ -254,6 +255,7 @@
 		68704523247EB73500902214 /* MAURLocation+ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAURLocation+ExtensionTests.swift"; sourceTree = "<group>"; };
 		68704525247EB76500902214 /* Geohash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geohash.swift; sourceTree = "<group>"; };
 		68704528247EB78700902214 /* MAURLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAURLocation+Extension.swift"; sourceTree = "<group>"; };
+		68F029CF24803A5700E7F632 /* Array+ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ExtensionTests.swift"; sourceTree = "<group>"; };
 		68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		68F154EA247FE8560023C6F9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		6BA94CE8425944B8990A49B3 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Bold.ttf"; path = "../app/assets/fonts/IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			children = (
 				00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
+				68F029CF24803A5700E7F632 /* Array+ExtensionTests.swift */,
 				271089AF24698720009AC76F /* LocationTests.swift */,
 				68704520247EB70C00902214 /* GeohashTests.swift */,
 				68704523247EB73500902214 /* MAURLocation+ExtensionTests.swift */,
@@ -1102,6 +1105,7 @@
 				00E356F31AD99517003FC87E /* COVIDSafePathsTests.m in Sources */,
 				680EA41B247FEC23003B6F2A /* Location.swift in Sources */,
 				68B30507247ED53A004812BD /* Geohash.swift in Sources */,
+				68F029D024803A5700E7F632 /* Array+ExtensionTests.swift in Sources */,
 				68704521247EB70C00902214 /* GeohashTests.swift in Sources */,
 				68F154E5247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */,
 				68F154EC247FE8560023C6F9 /* String+Extensions.swift in Sources */,
