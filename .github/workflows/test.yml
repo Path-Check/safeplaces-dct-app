@@ -111,7 +111,8 @@ jobs:
           xcodebuild -resolvePackageDependencies test -workspace COVIDSafePaths.xcworkspace \
             -scheme GPS_Tests \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
-            -skip-testing GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen
+            -skip-testing GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen \
+            -clonedSourcePackagesDirPath ./ios
         working-directory: ./ios
 
   # separate build job so that multiple test jobs can run on the same artifact
