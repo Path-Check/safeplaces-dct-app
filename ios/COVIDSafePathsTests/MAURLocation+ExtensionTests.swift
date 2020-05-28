@@ -6,6 +6,7 @@
 //  Copyright © 2020 Path Check Inc. All rights reserved.
 //
 import XCTest
+import Scrypt
 
 class MAURLocation_ExtensionTests: XCTestCase {
   
@@ -35,6 +36,14 @@ class MAURLocation_ExtensionTests: XCTestCase {
     for hash in scryptHashes  {
       XCTAssertTrue(hashes.contains(hash))
     }
+  }
+  
+  func testScryptLib() {
+    let hello = Array("hello".utf8)
+    XCTAssertEqual(
+        try! scrypt(password: hello, salt: hello, length: 48, N: 16384, r: 8, p: 1).toHexString(),
+        "d66e389a849d0dc36a019586182b299ddb2572cf813d889f2fc074338d9c8a776d4e81630c1b9e1ca0fa44a01996e4d1"
+    )
   }
   
   func testScrypt() {
