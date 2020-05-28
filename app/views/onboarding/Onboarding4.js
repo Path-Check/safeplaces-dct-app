@@ -6,21 +6,21 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import { ONBOARDING_DONE } from '../../constants/storage';
 import { config } from '../../COVIDSafePathsConfig';
-import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
+import onboardingCompleteAction from '../../store/actions/onboardingAction';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
-const Onboarding = props => {
+const Onboarding4 = ({ navigation, dispatchOnboardingComplete }) => {
   const isGPS = config.tracingStrategy === 'gps';
   const backgroundImage = isGPS ? Images.LaunchScreen1 : Images.LaunchScreen1BT;
   const headerText = isGPS
@@ -32,7 +32,6 @@ const Onboarding = props => {
   const buttonText = isGPS
     ? languages.t('label.launch_set_up_phone_location')
     : languages.t('label.launch_set_up_phone_bluetooth');
-  const navDestination = isGPS ? 'Onboarding5' : 'Main';
 
   return (
     <View style={styles.mainContainer}>
@@ -55,10 +54,11 @@ const Onboarding = props => {
       <View style={sharedStyles.footerContainer}>
         <Button
           label={buttonText}
-          onPress={() => {
-            SetStoreData(ONBOARDING_DONE, true);
-            props.navigation.replace(navDestination);
-          }}
+          onPress={
+            isGPS
+              ? () => navigation.replace('Onboarding5')
+              : dispatchOnboardingComplete
+          }
         />
       </View>
     </View>
@@ -97,4 +97,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboarding;
+const mapDispatchToProps = dispatch => ({
+  dispatchOnboardingComplete: () => dispatch(onboardingCompleteAction()),
+});
+export default connect(null, mapDispatchToProps)(Onboarding4);

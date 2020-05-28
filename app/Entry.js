@@ -3,11 +3,9 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from '@react-navigation/stack';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { ONBOARDING_DONE } from './constants/storage';
-import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import { ExportScreen } from './views/Export';
