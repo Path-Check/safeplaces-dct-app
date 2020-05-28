@@ -37,6 +37,7 @@ open class RealmSecureStorage(inMemory: Boolean?) {
     const val LOCATION_INTERVAL: Long = 60000 * 5
     private const val MAX_BACKFILL_TIME = 60000 * 60 * 24
     private const val DAYS_TO_KEEP = 14
+    private const val SCHEMA_VERSION: Long = 1
 
     private const val MANUALLY_KEYED_PREF_FILE_NAME = "safepaths_enc_prefs"
     private const val MANUALLY_KEYED_KEY_FILE_NAME = "safepaths_enc_key"
@@ -54,6 +55,8 @@ open class RealmSecureStorage(inMemory: Boolean?) {
     val builder = RealmConfiguration.Builder()
         .encryptionKey(encryptionKey)
         .addModule(SafePathsRealmModule())
+        .schemaVersion(SCHEMA_VERSION)
+        .migration(Migration())
 
     if (inMemory != null && inMemory) {
       builder.name(UUID.randomUUID().toString()).inMemory()

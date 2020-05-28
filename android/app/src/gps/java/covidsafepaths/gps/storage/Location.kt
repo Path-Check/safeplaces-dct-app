@@ -1,18 +1,29 @@
 package covidsafepaths.gps.storage
 
 import android.util.Log
-import com.facebook.react.bridge.ReadableMap
-import com.facebook.react.bridge.ReadableType
+import com.facebook.react.bridge.*
 import com.marianhello.bgloc.data.BackgroundLocation
 import io.realm.RealmObject
-import com.facebook.react.bridge.WritableMap
-import com.facebook.react.bridge.WritableNativeMap
+import io.realm.RealmList
 import io.realm.annotations.PrimaryKey
+import covidsafepaths.gps.extensions.scryptHashes
 import java.lang.Exception
 import kotlin.math.abs
 import kotlin.math.acos
 import kotlin.math.cos
 import kotlin.math.sin
+
+private fun List<String>.toWritableArray(): WritableArray =
+  fold(WritableNativeArray()) { array, str ->
+    array.pushString(str)
+    array
+  }
+
+private fun <T> List<T>.toRealmList(): RealmList<T> =
+  fold(RealmList<T>()) { dst, str ->
+    dst.add(str)
+    dst
+  }
 
 /*
   Realm requires a no-op constructor. Need to use var and fill will default value
@@ -26,16 +37,18 @@ open class Location(
   var accuracy: Float? = null,
   var bearing: Float? = null,
   var provider: String? = null,
+  var hashes: RealmList<String>? = null,
   var mockFlags: Int? = null,
   var source: Int = -1
 ) : RealmObject() {
 
   fun toWritableMap(): WritableMap {
-    val writableMap = WritableNativeMap()
-    writableMap.putDouble(KEY_TIME, time.toDouble())
-    writableMap.putDouble(KEY_LATITUDE, latitude)
-    writableMap.putDouble(KEY_LONGITUDE, longitude)
-    return writableMap
+    return WritableNativeMap().apply {
+      putDouble(KEY_TIME, time.toDouble())
+      putDouble(KEY_LATITUDE, latitude)
+      putDouble(KEY_LONGITUDE, longitude)
+      hashes?.let { putArray(KEY_HASHES, it.toWritableArray()) }
+    }
   }
 
   companion object {
@@ -43,6 +56,7 @@ open class Location(
     const val KEY_LATITUDE = "latitude"
     const val KEY_LONGITUDE = "longitude"
     const val KEY_SOURCE = "source"
+    const val KEY_HASHES = "hashes"
 
     const val SOURCE_DEVICE = 0
     const val SOURCE_MIGRATION = 1
@@ -59,6 +73,7 @@ open class Location(
           accuracy = if (backgroundLocation.hasAccuracy()) backgroundLocation.accuracy else null,
           bearing = if (backgroundLocation.hasBearing()) backgroundLocation.bearing else null,
           provider = backgroundLocation.provider,
+          hashes = backgroundLocation.scryptHashes().toRealmList(),
           mockFlags = backgroundLocation.mockFlags,
           source = SOURCE_DEVICE
       )
