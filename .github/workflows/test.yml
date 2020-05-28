@@ -128,13 +128,10 @@ jobs:
           bundle-install-path: 'vendor/bundle'
 
       - uses: actions/upload-artifact@v1
+        if: always()
         with:
           name: e2e-ios-bin
           path: ios/fastlane/test_output/build_products.zip
-
-      - name: Unzip build products
-        run: unzip -qq build_products.zip -d ./ios/fastlane/test_output/build_products.zip
-        working-directory: ./ios
 
       - name: Upload Test Results
         if: always()
@@ -142,6 +139,11 @@ jobs:
         with:
           name: HTML Report
           path: ios/fastlane/test_output/report.html
+
+      - name: Unzip build products
+        if: always()
+        run: unzip -qq build_products.zip -d ./ios/fastlane/test_output/build_products.zip
+        working-directory: ./ios
 
       - name: Upload .app file
         if: always()
