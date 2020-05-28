@@ -132,9 +132,9 @@ jobs:
           name: e2e-ios-bin
           path: ios/fastlane/test_output/build_products.zip
 
-      - uses: montudor/action-zip@v0.1.0
-        with:
-          args: unzip -qq build_products.zip -d ./ios/fastlane/test_output/build_products.zip
+      - name: Unzip build products
+        run: unzip -qq build_products.zip -d ./ios/fastlane/test_output/build_products.zip
+        working-directory: ./ios
 
       - name: Upload Test Results
         if: always()
