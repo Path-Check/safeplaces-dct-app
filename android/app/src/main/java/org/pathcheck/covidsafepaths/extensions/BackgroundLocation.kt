@@ -53,7 +53,7 @@ fun BackgroundLocation.geohashes(): List<String> =
                 }
 
 internal fun scrypt(source: String): String =
-        SCrypt.generate(source.toByteArray(), SALT, 16384, 8, 1, 8)
+        SCrypt.generate(source.toByteArray(), SALT, 4096, 8, 1, 8)
                 .fold("", { str, it -> str + "%02x".format(it) })
 
 fun BackgroundLocation.scryptHashes(): List<String> =

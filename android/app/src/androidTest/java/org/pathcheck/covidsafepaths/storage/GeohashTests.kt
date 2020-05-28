@@ -55,7 +55,7 @@ class GeohashTests {
 
     @Test
     fun testScrypt() {
-        assertEquals("0ed62968fef3dc0a", scrypt("gcpuuz8u1586865600"))
+        assertEquals("e727d7eb7c51d1b3", scrypt("gcpuuz8u1586865600"))
     }
 
     @Test
@@ -67,6 +67,7 @@ class GeohashTests {
         }
 
         val scryptHashes = location.scryptHashes()
-        assertTrue(scryptHashes.contains("e2754c01925484c5"))
+        scryptHashes.forEach { android.util.Log.i("foobar", "hash " + it) }
+        assertTrue(scryptHashes.contains("a2dcd196d350fda7"))
     }
 }
