@@ -110,6 +110,7 @@ jobs:
       - run: |
           xcodebuild test -workspace COVIDSafePaths.xcworkspace \
             -scheme GPS_Tests \
+            -configuration Debug \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
             -skip-testing GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen
         working-directory: ./ios

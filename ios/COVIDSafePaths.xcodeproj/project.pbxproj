@@ -412,10 +412,10 @@
 			children = (
 				00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
-				271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */,
 				271089AF24698720009AC76F /* LocationTests.swift */,
 				68704520247EB70C00902214 /* GeohashTests.swift */,
 				68704523247EB73500902214 /* MAURLocation+ExtensionTests.swift */,
+				271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */,
 			);
 			path = COVIDSafePathsTests;
 			sourceTree = "<group>";
@@ -694,6 +694,8 @@
 				271881CC2461C95F001DE067 /* PBXTargetDependency */,
 			);
 			name = GPSTests;
+			packageProductDependencies = (
+			);
 			productName = COVIDSafePathsTests;
 			productReference = 00E356EE1AD99517003FC87E /* GPSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
