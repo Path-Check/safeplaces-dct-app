@@ -108,11 +108,11 @@ jobs:
 
       # TODO(https://pathcheck.atlassian.net/browse/SAF-250): remove the skip on COVIDSafePathsTests/testRendersWelcomeScreen once it's passing
       - run: |
-          xcodebuild -resolvePackageDependencies test -workspace COVIDSafePaths.xcworkspace \
+          xcodebuild clean -resolvePackageDependencies \
+            test -workspace COVIDSafePaths.xcworkspace \
             -scheme GPS_Tests \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
-            -skip-testing GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen \
-            -clonedSourcePackagesDirPath ./ios
+            -skip-testing GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen
         working-directory: ./ios
 
   # separate build job so that multiple test jobs can run on the same artifact
