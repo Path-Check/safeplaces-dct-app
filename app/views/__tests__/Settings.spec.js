@@ -20,7 +20,9 @@ jest.mock('../../helpers/General', () => {
 
 jest.mock('../../COVIDSafePathsConfig', () => {
   return {
-    config: { tracingStrategy: 'gps' },
+    config: {
+      isGPS: true,
+    },
   };
 });
 

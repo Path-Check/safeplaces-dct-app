@@ -3,6 +3,14 @@ import React from 'react';
 
 import { ExposurePage } from '../ExposurePage';
 
+jest.mock('../../../COVIDSafePathsConfig', () => {
+  return {
+    config: {
+      isGPS: true,
+    },
+  };
+})
+
 it('may be exposed matches snapshot', () => {
   const { asJSON } = render(<ExposurePage />);
 

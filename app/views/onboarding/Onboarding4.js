@@ -14,17 +14,19 @@ import fontFamily from '../../constants/fonts';
 import { ONBOARDING_DONE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import { sharedStyles } from './styles';
-import {
-  onboarding4BackgroundImage as backgroundImage,
-  onboarding4ButtonText as buttonText,
-  onboarding4HeaderText as headerText,
-  onboarding4NavDestination as navDestination,
-  onboarding4SubheaderText as subheaderText,
-} from '../../TracingStrategyAssets';
+import { AppSpecificAssets } from '../../TracingStrategyAssets';
 
 const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
+  const {
+    onboarding4Background,
+    onboarding4Button,
+    onboarding4Header,
+    onboarding4NavDestination,
+    onboarding4Subheader,
+  } = AppSpecificAssets();
+
   return (
     <View style={styles.mainContainer}>
       <StatusBar
@@ -33,22 +35,22 @@ const Onboarding = props => {
         translucent
       />
       <ImageBackground
-        source={backgroundImage}
+        source={onboarding4Background}
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
         <Typography style={styles.headerText} use={Type.Headline2}>
-          {headerText}
+          {onboarding4Header}
         </Typography>
-        <Typography style={styles.subheaderText}>{subheaderText}</Typography>
+        <Typography style={styles.subheaderText}>{onboarding4Subheader}</Typography>
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>
         <Button
-          label={buttonText}
+          label={onboarding4Button}
           onPress={() => {
             SetStoreData(ONBOARDING_DONE, true);
-            props.navigation.replace(navDestination);
+            props.navigation.replace(onboarding4NavDestination);
           }}
         />
       </View>

@@ -17,10 +17,11 @@ import { Icons } from '../assets';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-import { aboutHeaderText } from '../TracingStrategyAssets';
+import { AppSpecificAssets } from '../TracingStrategyAssets';
 
 export const AboutScreen = ({ navigation }) => {
   const { t } = useTranslation();
+  const { aboutHeader } = AppSpecificAssets();
 
   const backToMain = () => {
     navigation.goBack();
@@ -49,7 +50,7 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.aboutLabelContainer}>
           <SvgXml style={styles.aboutSectionIconLock} xml={Icons.Lock} />
           <Typography style={styles.aboutSectionTitles} use='headline2'>
-            {aboutHeaderText}
+            {aboutHeader}
           </Typography>
         </View>
         <Typography style={styles.aboutSectionPara}>

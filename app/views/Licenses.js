@@ -16,13 +16,14 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from './../constants/fonts';
 import { Theme } from '../constants/themes';
-import { legalPageHeaderText } from '../TracingStrategyAssets';
+import { AppSpecificAssets } from '../TracingStrategyAssets';
 
 const PRIVACY_POLICY_URL =
   'https://docs.google.com/document/d/17u0f8ni9S0D4w8RCUlMMqxAlXKJAd2oiYGP8NUwkINo/edit';
 
 export const LicensesScreen = ({ navigation }) => {
   const { t } = useTranslation();
+  const { legalHeader } = AppSpecificAssets();
 
   const backToMain = () => {
     navigation.goBack();
@@ -51,7 +52,7 @@ export const LicensesScreen = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View>
           <Typography style={styles.heading} use='headline2'>
-            {legalPageHeaderText}
+            {legalHeader}
           </Typography>
           <Typography style={styles.body} use='body1'>
             {t('label.legal_page_address')}

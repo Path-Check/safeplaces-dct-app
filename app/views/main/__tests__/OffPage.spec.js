@@ -3,6 +3,14 @@ import React from 'react';
 
 import { OffPage } from '../OffPage';
 
+jest.mock('../../../COVIDSafePathsConfig', () => {
+  return {
+    config: {
+      isGPS: true,
+    },
+  };
+})
+
 it('setting off matches snapshot', () => {
   const { asJSON } = render(<OffPage />);
 

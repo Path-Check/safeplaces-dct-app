@@ -28,14 +28,15 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { Theme } from '../constants/themes';
+import { config } from '../COVIDSafePathsConfig';
 import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import { HCAService } from '../services/HCAService';
 import { KeyboardAvoidingView } from './common/KeyboardAvoidingView';
-import { isGPS } from '../TracingStrategyAssets';
 
 const { SlideInMenu } = renderers;
+const { isGPS } = config;
 
 class ChooseProviderScreen extends Component {
   constructor(props) {

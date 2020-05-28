@@ -7,6 +7,7 @@ import { Icons } from '../assets';
 import { IconButton } from '../components/IconButton';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
+import { config } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices, { Reason } from '../services/LocationService';
@@ -16,7 +17,8 @@ import { NoKnownExposure } from './main/NoKnownExposure';
 import { OffPage } from './main/OffPage';
 import { styles } from './main/style';
 import { UnknownPage } from './main/UnknownPage';
-import { isGPS } from '../TracingStrategyAssets';
+
+const { isGPS } = config;
 
 export const Main = () => {
   const navigation = useNavigation();

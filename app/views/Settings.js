@@ -10,6 +10,7 @@ import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
+import { config } from '../COVIDSafePathsConfig';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
@@ -21,14 +22,16 @@ import LocationServices from '../services/LocationService';
 import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
-import {
-  isGPS,
-  settingsLoggingActiveText,
-  settingsLoggingInactiveText,
-} from '../TracingStrategyAssets';
+import { AppSpecificAssets } from '../TracingStrategyAssets';
+
+const { isGPS } = config;
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
+  const {
+    settingsLoggingActive,
+    settingsLoggingInactive,
+  } = AppSpecificAssets();
   const [isLogging, setIsLogging] = useState(undefined);
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
@@ -84,9 +87,9 @@ export const SettingsScreen = ({ navigation }) => {
 
   const getLoggingText = () => {
     if (isLogging) {
-      return settingsLoggingActiveText;
+      return settingsLoggingActive;
     } else if (!isLogging) {
-      return settingsLoggingInactiveText;
+      return settingsLoggingInactive;
     }
   }
 

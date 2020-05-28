@@ -13,15 +13,17 @@ import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
 import { sharedStyles } from './styles';
-import {
-  onboarding2BackgroundImage as backgroundImage,
-  onboarding2HeaderText as headerText,
-  onboarding2SubheaderText as subheaderText,
-} from '../../TracingStrategyAssets';
+import { AppSpecificAssets } from '../../TracingStrategyAssets';
 
 const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
+  const {
+    onboarding2Background,
+    onboarding2Header,
+    onboarding2Subheader,
+  } = AppSpecificAssets();
+
   return (
     <View style={styles.mainContainer}>
       <StatusBar
@@ -30,15 +32,15 @@ const Onboarding = props => {
         translucent
       />
       <ImageBackground
-        source={backgroundImage}
+        source={onboarding2Background}
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
         <Typography style={styles.headerText} use={Type.Headline2}>
-          {headerText}
+          {onboarding2Header}
         </Typography>
         <Typography style={styles.subheaderText}>
-          {subheaderText}
+          {onboarding2Subheader}
         </Typography>
       </View>
       <View style={styles.verticalSpacer} />

@@ -5,9 +5,7 @@ import { Typography } from '../../components/Typography';
 import languages from '../../locales/languages';
 import { ExposureCalendarView } from './ExposureCalendarView';
 import { SingleExposureDetail } from './SingleExposureDetail';
-import {
-  detailedHistoryPageWhatThisMeansParaText as whatThisMeansParaText
-} from '../../TracingStrategyAssets';
+import { AppSpecificAssets } from '../../TracingStrategyAssets';
 
 /**
  * Detailed info when there is some exposure found
@@ -15,6 +13,7 @@ import {
  * @param {{history: !import('../../constants/history').History}} param0
  */
 export const DetailedHistory = ({ history }) => {
+  const { detailedHistoryPageWhatThisMeansPara } = AppSpecificAssets();
   const exposedDays = history.filter(day => day.exposureMinutes > 0);
       
   return (
@@ -47,7 +46,7 @@ export const DetailedHistory = ({ history }) => {
             {languages.t('history.what_does_this_mean')}
           </Typography>
           <Typography use='body3'>
-            {whatThisMeansParaText}
+            {detailedHistoryPageWhatThisMeansPara}
           </Typography>
         </>
       )}
