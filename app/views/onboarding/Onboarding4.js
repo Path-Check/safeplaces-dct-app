@@ -6,7 +6,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Images } from '../../assets';
 import { Button } from '../../components/Button';
@@ -20,7 +20,7 @@ import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
-const Onboarding4 = ({ navigation, dispatchOnboardingComplete }) => {
+const Onboarding4 = ({ navigation }) => {
   const isGPS = config.tracingStrategy === 'gps';
   const backgroundImage = isGPS ? Images.LaunchScreen1 : Images.LaunchScreen1BT;
   const headerText = isGPS
@@ -32,6 +32,9 @@ const Onboarding4 = ({ navigation, dispatchOnboardingComplete }) => {
   const buttonText = isGPS
     ? languages.t('label.launch_set_up_phone_location')
     : languages.t('label.launch_set_up_phone_bluetooth');
+
+  const dispatch = useDispatch();
+  const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
 
   return (
     <View style={styles.mainContainer}>
@@ -56,7 +59,7 @@ const Onboarding4 = ({ navigation, dispatchOnboardingComplete }) => {
           label={buttonText}
           onPress={
             isGPS
-              ? () => navigation.replace('Onboarding5')
+              ? () => navigation.replace('OnboardingPermissions')
               : dispatchOnboardingComplete
           }
         />
@@ -97,7 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapDispatchToProps = dispatch => ({
-  dispatchOnboardingComplete: () => dispatch(onboardingCompleteAction()),
-});
-export default connect(null, mapDispatchToProps)(Onboarding4);
+export default Onboarding4;

@@ -22,7 +22,7 @@ import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
-import Onboarding5 from './views/onboarding/Onboarding5';
+import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
 import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();
@@ -65,7 +65,10 @@ const OnboardingStack = () => (
     <Stack.Screen name='Onboarding2' component={Onboarding2} />
     <Stack.Screen name='Onboarding3' component={Onboarding3} />
     <Stack.Screen name='Onboarding4' component={Onboarding4} />
-    <Stack.Screen name='Onboarding5' component={Onboarding5} />
+    <Stack.Screen
+      name='OnboardingPermissions'
+      component={OnboardingPermissions}
+    />
   </Stack.Navigator>
 );
 
