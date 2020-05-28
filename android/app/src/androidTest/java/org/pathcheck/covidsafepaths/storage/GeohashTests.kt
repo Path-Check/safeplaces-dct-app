@@ -67,7 +67,6 @@ class GeohashTests {
         }
 
         val scryptHashes = location.scryptHashes()
-        scryptHashes.forEach { android.util.Log.i("foobar", "hash " + it) }
         assertTrue(scryptHashes.contains("a2dcd196d350fda7"))
     }
 }
