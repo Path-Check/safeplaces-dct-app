@@ -64,15 +64,17 @@ platform :ios do
     lane :gps_unit_test do
 
       scan(
-        clean: true,
+        clean: false,
         workspace: WORKSPACE,
         scheme: GPS_TESTS_SCHEME,
         configuration: 'Staging',
         devices: ['iPhone 8'],
+        output_types: 'html',
         prelaunch_simulator: true,
         skip_testing: 'GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen',
         should_zip_build_products: true,
       )
+
     end
 
     desc "Push a new GPS Staging build for automation"

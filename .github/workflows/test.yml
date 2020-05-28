@@ -130,21 +130,25 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: e2e-ios-bin
-          path: ios/fastlane/test_output/Staging-iphonesimulator/PathCheckGPS.app
+          path: ios/fastlane/test_output/build_products.zip
 
-      - name: Upload Unit Test Results
-        if: always()
-        uses: actions/upload-artifact@v1
+      - uses: montudor/action-zip@v0.1.0
         with:
-          name: JUnit Report
-          path: ios/fastlane/test_output/report.junit
+          args: unzip -qq build_products.zip -d ./ios/fastlane/test_output/build_products.zip
 
-      - name: Upload HTML Report
+      - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v1
         with:
           name: HTML Report
           path: ios/fastlane/test_output/report.html
+
+      - name: Upload .app file
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: HTML Report
+          path: ios/fastlane/test_output/Staging-iphonesimulator/COVIDSafePaths.app
 
   e2e-iphone-se:
     runs-on: macOS-latest
@@ -186,7 +190,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: e2e-ios-bin
-          path: ios/fastlane/test_output/Staging-iphonesimulator/PathCheckGPS.app
+          path: ios/fastlane/test_output/Staging-iphonesimulator/COVIDSafePaths.app
 
       - run: yarn test:e2e:iphone-se
 
