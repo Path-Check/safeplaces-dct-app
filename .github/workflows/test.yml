@@ -113,7 +113,7 @@ jobs:
         run: bundle exec pod install --repo-update
         working-directory: ./ios
 
-      - name: Unit Test iOS and Upload Simulator Friendly .app Zip
+      - name: Unit Test iOS
         uses: maierj/fastlane-action@v1.4.0
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
@@ -129,11 +129,6 @@ jobs:
         with:
           name: e2e-ios-bin
           path: ios/fastlane/test_output/Staging-iphonesimulator/PathCheckGPS.app
-
-      - uses: actions/upload-artifact@v1
-        with:
-          name: e2e-ios-zip
-          path: ios/fastlane/test_output/build_products.zip
 
       - name: Upload Unit Test Results
         if: always()
@@ -152,7 +147,7 @@ jobs:
   e2e-iphone-se:
     runs-on: macOS-latest
     needs: unit-test-ios
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       DEVELOPER_DIR: /Applications/Xcode_11.4.app
     steps:
