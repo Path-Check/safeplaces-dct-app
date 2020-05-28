@@ -54,7 +54,7 @@ export const SettingsScreen = ({ navigation }) => {
 
   // checking whether location permission is enable or disbale from application setting on load of setting's page.
   const checkIsLocationEnable = async () => {
-    await LocationServices.checkStatus()
+    LocationServices.checkStatus()
       .then(res => {
         if (res !== undefined) {
           if (res.isRunning) {
@@ -70,10 +70,10 @@ export const SettingsScreen = ({ navigation }) => {
 
   //  This method is used to track whether user has "Allow" or "Deny" location permission system Dialog.
   const systemDialogLocationPermission = async () => {
-    await LocationServices.getSystemLocationPermission()
-      .then(res => {
-        if (res !== undefined) {
-          if (!res.isRunning) {
+    LocationServices.getSystemLocationPermission()
+      .then(authorized => {
+        if (authorized !== undefined) {
+          if (!authorized) {
             SetStoreData(PARTICIPATE, false);
             setIsLogging(false);
           }
