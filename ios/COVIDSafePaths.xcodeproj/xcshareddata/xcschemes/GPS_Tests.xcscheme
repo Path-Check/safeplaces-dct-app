@@ -67,6 +67,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+            BuildableName = "GPSTests.xctest"
+            BlueprintName = "GPSTests"
+            ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -46,6 +46,7 @@
 		626DB8AB8AF9D02B9E411601 /* libPods-BTE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FB16255EA745CC27C638A1 /* libPods-BTE.a */; };
 		680EA419247FEC01003B6F2A /* RealmSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* RealmSecureStorage.swift */; };
 		680EA41B247FEC23003B6F2A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB15B245291DE00D39B58 /* Location.swift */; };
+		684EF35624807B4A007C7434 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 684EF35524807B4A007C7434 /* Scrypt */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
 		68704521247EB70C00902214 /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704520247EB70C00902214 /* GeohashTests.swift */; };
 		68704524247EB73500902214 /* MAURLocation+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704523247EB73500902214 /* MAURLocation+ExtensionTests.swift */; };
@@ -348,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2138BE26880EEA67E6D1C0E /* libPods-GPSTests.a in Frameworks */,
+				684EF35624807B4A007C7434 /* Scrypt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +700,7 @@
 			);
 			name = GPSTests;
 			packageProductDependencies = (
+				684EF35524807B4A007C7434 /* Scrypt */,
 			);
 			productName = COVIDSafePathsTests;
 			productReference = 00E356EE1AD99517003FC87E /* GPSTests.xctest */;
@@ -1241,6 +1244,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1254,6 +1258,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULEMAP_FILE = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1278,6 +1283,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
@@ -1287,6 +1293,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULEMAP_FILE = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1651,6 +1658,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1664,6 +1672,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULEMAP_FILE = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1831,6 +1840,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
@@ -1840,6 +1850,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULEMAP_FILE = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2520,6 +2531,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		684EF35524807B4A007C7434 /* Scrypt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68F029CA24801C6600E7F632 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
+			productName = Scrypt;
+		};
 		68F029CB24801C6600E7F632 /* Scrypt */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 68F029CA24801C6600E7F632 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
