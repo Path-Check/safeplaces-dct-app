@@ -97,9 +97,10 @@ jobs:
         id: ruby_cache
         with:
           path: ios/vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/ios/Gemfile.lock') }}
+          key: ${{ runner.os }}-gem-cache-${{ hashFiles('**/ios/Gemfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-gems-
+            ${{ runner.os }}-gem-cache-${{ hashFiles('**/ios/Gemfile.lock') }}
+            ${{ runner.os }}-gem-cache-
 
       - name: Install Ruby Dependencies
         if: steps.ruby_cache.outputs.cache-hit != 'true'
