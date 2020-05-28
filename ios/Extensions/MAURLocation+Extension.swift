@@ -44,11 +44,11 @@ public extension MAURLocation {
   func scrypt(on hash: String) -> String {
     let hash = Array(hash.utf8)
     let generic = Array("salt".utf8)
-    ///  A “cost” (N) that is to be determined.  For initial implemention we use 2^12 = 16384.
-    ///  A salt of “salt” (empty string) (see below for future customization by Health Authorities)
+    ///  A “cost” (N) that is to be determined.  Initially was 16384, then modified to 4096
+    ///  A salt of “salt”
     ///  A block size of 8
     ///  A keylen (output) of 8 bytes = 16 hex digits.
     /// Parallelization (p) of 1 - this is the default.
-    return try! Scrypt.scrypt(password: hash, salt: generic, length: 8,N: 16384, r: 8, p: 1).toHexString()
+    return try! Scrypt.scrypt(password: hash, salt: generic, length: 8,N: 4096, r: 8, p: 1).toHexString()
   }
 }

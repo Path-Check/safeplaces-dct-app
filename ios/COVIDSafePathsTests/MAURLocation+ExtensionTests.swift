@@ -40,13 +40,26 @@ class MAURLocation_ExtensionTests: XCTestCase {
   func testScrypt() {
     let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: Date(timeIntervalSince1970: 1586865600000))
     let input = "gcpuuz8u1586865600"
-    XCTAssertEqual(backgroundLocation.scrypt(on: input), "0ed62968fef3dc0a")
+    XCTAssertEqual(backgroundLocation.scrypt(on: input), "e727d7eb7c51d1b3")
   }
   
   func testValidScrypt() {
     let date = Date(timeIntervalSince1970: 1589117939000)
     let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)
     let scryptHashes = backgroundLocation.scryptHashes
-    XCTAssertTrue(scryptHashes.contains("e2754c01925484c5"))
+    let expectedHashes = [
+      "a2dcd196d350fda7",
+      "9ec071d139d8221f",
+      "b3ddc01c5c2666e3",
+      "c0d26f3cc00fe1ac",
+      "5a9f2a50f0a8460e",
+      "37eb1f8a2949e0bd",
+      "6a900d469793d572",
+      "6f0cc27428f105b8"
+    ]
+    
+    for hash in scryptHashes {
+      XCTAssertTrue(expectedHashes.contains(hash))
+    }
   }
 }
