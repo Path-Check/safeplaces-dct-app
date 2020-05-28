@@ -62,7 +62,6 @@ platform :ios do
         workspace: WORKSPACE,
         scheme: GPS_TESTS_SCHEME,
         configuration: 'Staging',
-        derived_data_path: 'build/',
         devices: ['iPhone 8'],
         prelaunch_simulator: true,
         skip_testing: 'GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen',
