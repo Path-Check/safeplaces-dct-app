@@ -10,6 +10,7 @@ import { GetStoreData, SetStoreData } from '../helpers/General';
 import ar from './ar.json';
 import da from './da.json';
 import en from './en.json';
+import es_419 from './es_419.json';
 import es from './es.json';
 import fil from './fil.json';
 import fr from './fr.json';
@@ -75,6 +76,7 @@ const DEV_LANGUAGES = __DEV__
       ar: { label: ar._display_name, translation: ar },
       da: { label: da._display_name, translation: da },
       es: { label: es._display_name, translation: es },
+      es_419: { label: es_419._display_name, translation: es_419 },
       fil: { label: fil._display_name, translation: fil },
       fr: { label: fr._display_name, translation: fr },
       id: { label: id._display_name, translation: id },
