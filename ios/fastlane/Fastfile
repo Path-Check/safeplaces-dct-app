@@ -44,6 +44,12 @@ platform :ios do
     PROJECT = "COVIDSafePaths.xcodeproj"
     JS_PACKAGE = load_json(json_path: "../package.json")
 
+    lane :install_pods do
+     cocoapods(
+      use_bundle_exec: true,
+     )
+    end
+
     lane :sync_local_certs do
       match(
         type: 'appstore',

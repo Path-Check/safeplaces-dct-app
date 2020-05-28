@@ -16,6 +16,11 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
+### ios install_pods
+```
+fastlane ios install_pods
+```
+
 ### ios sync_local_certs
 ```
 fastlane ios sync_local_certs

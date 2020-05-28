@@ -108,18 +108,12 @@ jobs:
           bundle install --jobs 4 --retry 3
         working-directory: ./ios
 
-      - uses: actions/cache@v2
-        id: podfile_cache
+      - name: Install cocoapods
+        uses: maierj/fastlane-action@v1.4.0
         with:
-          path: ios/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/ios/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-
-      - name: Install Cocoapods
-        if: steps.podfile_cache.outputs.cache-hit != 'true'
-        run: bundle exec pod install --repo-update
-        working-directory: ./ios
+          lane: 'install_pods'
+          subdirectory: 'ios'
+          bundle-install-path: 'vendor/bundle'
 
       - name: Unit Test iOS
         uses: maierj/fastlane-action@v1.4.0
