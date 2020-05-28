@@ -7822,11 +7822,6 @@ react-native-background-timer@^2.2.0:
   resolved "https://registry.yarnpkg.com/react-native-background-timer/-/react-native-background-timer-2.2.0.tgz#ff82d30899209b924983cc00e6ce174b8de5054a"
   integrity sha512-Y7N6diSFko/FCJPMmB0PoBlmY1kEcma7qDVwn8t7zi12GLqpe/Vwls97onkSD8/QL+BR33BygUHOrLTPwgeKfg==
 
-react-native-ble-advertiser@0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/react-native-ble-advertiser/-/react-native-ble-advertiser-0.0.10.tgz#1ab85d2a944f3f0eed3beddc4ce76ae5edecf8ce"
-  integrity sha512-4l8Tkb2ki7RwSwh11dARQS1Hs7qRuexRvHZ0Mv6TbrqAA15gij0TKf5IUTueeML6rVqnsV8VykJ2aHuvjsAjfw==
-
 react-native-config@luggit/react-native-config#1eb6ac01991210ddad2989857359a0f6ee35d734:
   version "0.11.7"
   resolved "https://codeload.github.com/luggit/react-native-config/tar.gz/1eb6ac01991210ddad2989857359a0f6ee35d734"

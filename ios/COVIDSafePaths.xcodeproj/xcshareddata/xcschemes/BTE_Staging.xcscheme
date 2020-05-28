@@ -15,7 +15,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-                     BuildableName = "COVIDSafePaths.app"
+                     BuildableName = "PathCheckBT.app"
                      BlueprintName = "BTE"
                      ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
                   </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-               BuildableName = "COVIDSafePaths.app"
+               BuildableName = "PathCheckBT.app"
                BlueprintName = "BTE"
                ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
             </BuildableReference>
@@ -58,6 +58,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C53FD07D24719AD1006D3268"
+            BuildableName = "PathCheckBT.app"
+            BlueprintName = "BTE"
+            ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "FORCE_BUNDLING"
@@ -76,7 +86,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-            BuildableName = "COVIDSafePaths.app"
+            BuildableName = "PathCheckBT.app"
             BlueprintName = "BTE"
             ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
          </BuildableReference>
