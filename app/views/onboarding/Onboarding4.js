@@ -32,7 +32,7 @@ const Onboarding = props => {
   const buttonText = isGPS
     ? languages.t('label.launch_set_up_phone_location')
     : languages.t('label.launch_set_up_phone_bluetooth');
-  const navDestination = isGPS ? 'Onboarding5' : 'Main';
+  const navDestination = isGPS ? 'OnboardingPermissions' : 'Main';
 
   return (
     <View style={styles.mainContainer}>
