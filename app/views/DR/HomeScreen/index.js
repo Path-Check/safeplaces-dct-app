@@ -31,6 +31,7 @@ export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      updated: 0,
       cases: 0,
       deaths: 0,
       recovered: 0,
@@ -40,9 +41,10 @@ export default class HomeScreen extends Component {
   }
 
   getCases = () => {
-    getAllCases().then(({ cases, deaths, recovered, todayCases }) => {
+    getAllCases().then(({ updated, cases, deaths, recovered, todayCases }) => {
       this.setState(state => ({
         ...state,
+        updated,
         cases,
         deaths,
         recovered,
@@ -50,6 +52,20 @@ export default class HomeScreen extends Component {
         refreshing: false,
       }));
     });
+  };
+
+  getUpdateDate = () => {
+    const { updated } = this.state;
+
+    const dateOfCase = new Date(updated);
+
+    let month = dateOfCase.getMonth() + 1;
+    month = month <= 9 ? '0' + month : month;
+    let day = dateOfCase.getDate();
+    day = day <= 9 ? '0' + day : day;
+    const year = dateOfCase.getFullYear();
+
+    return `${day}/${month}/${year}`;
   };
 
   refresh = () => {
@@ -75,6 +91,7 @@ export default class HomeScreen extends Component {
   render() {
     const date = moment(new Date(), 'DD/MM/YYYY').format('MMMM YYYY');
     const {
+      getUpdateDate,
       props: { navigation },
       state: { cases, deaths, recovered, todayCases, refreshing },
     } = this;
@@ -113,6 +130,10 @@ export default class HomeScreen extends Component {
                           { alignSelf: 'center', marginVertical: hp('1%') },
                         ]}>
                         {languages.t('label.current_situation_label')}
+                      </Text>
+                      <Text
+                        style={[styles.dateSubtitle, { alignSelf: 'center' }]}>
+                        {getUpdateDate()}
                       </Text>
                     </View>
                   </View>

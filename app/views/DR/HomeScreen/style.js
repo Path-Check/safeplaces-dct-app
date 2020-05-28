@@ -85,6 +85,9 @@ const styles = StyleSheet.create({
     marginRight: '7%',
     alignSelf: 'flex-end',
   },
+  dateSubtitle: {
+    color: '#808080',
+  },
 });
 
 export default styles;
