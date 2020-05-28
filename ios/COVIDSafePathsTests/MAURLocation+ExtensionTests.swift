@@ -43,8 +43,6 @@ class MAURLocation_ExtensionTests: XCTestCase {
     XCTAssertEqual(backgroundLocation.scrypt(on: input), "0ed62968fef3dc0a")
   }
   
-  /// Takes a while to run multiple scrypt calls in tests
-  /// It is recommended to enable Whole-Module Optimization to gain better performance. Non-optimized build results in significantly worse performance.
   func testValidScrypt() {
     let date = Date(timeIntervalSince1970: 1589117939000)
     let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)

@@ -6,8 +6,7 @@
 //  Copyright © 2020 Path Check Inc. All rights reserved.
 //
 import Foundation
-// Currently CryptoKit does not support scrypt
-import CryptoSwift
+import Scrypt
 
 public extension MAURLocation {
   /// Generates rounded time windows for interval before and after timestamp
@@ -50,6 +49,6 @@ public extension MAURLocation {
     ///  A block size of 8
     ///  A keylen (output) of 8 bytes = 16 hex digits.
     /// Parallelization (p) of 1 - this is the default.
-    return try! Scrypt(password: hash, salt: generic, dkLen: 8, N: 16384, r: 8, p: 1).calculate().toHexString()
+    return try! Scrypt.scrypt(password: hash, salt: generic, length: 8,N: 16384, r: 8, p: 1).toHexString()
   }
 }

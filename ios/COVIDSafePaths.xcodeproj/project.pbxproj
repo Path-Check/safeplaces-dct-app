@@ -44,6 +44,8 @@
 		527CA705E5514AF9BEAC9A2F /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C8CF282C4264C88A4ED8ABF /* IBMPlexMono-Medium.ttf */; };
 		57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */; };
 		626DB8AB8AF9D02B9E411601 /* libPods-BTE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FB16255EA745CC27C638A1 /* libPods-BTE.a */; };
+		680EA419247FEC01003B6F2A /* RealmSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* RealmSecureStorage.swift */; };
+		680EA41B247FEC23003B6F2A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB15B245291DE00D39B58 /* Location.swift */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
 		68704521247EB70C00902214 /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704520247EB70C00902214 /* GeohashTests.swift */; };
 		68704524247EB73500902214 /* MAURLocation+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704523247EB73500902214 /* MAURLocation+ExtensionTests.swift */; };
@@ -54,6 +56,17 @@
 		68B30507247ED53A004812BD /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704525247EB76500902214 /* Geohash.swift */; };
 		68B30509247EF592004812BD /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
 		68B3050A247EF595004812BD /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
+		68F154E0247FE7A30023C6F9 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68F154DF247FE7A30023C6F9 /* Scrypt */; };
+		68F154E4247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */; };
+		68F154E5247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */; };
+		68F154E6247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */; };
+		68F154E7247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */; };
+		68F154E8247FE8400023C6F9 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704528247EB78700902214 /* MAURLocation+Extension.swift */; };
+		68F154E9247FE8400023C6F9 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68704528247EB78700902214 /* MAURLocation+Extension.swift */; };
+		68F154EB247FE8560023C6F9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154EA247FE8560023C6F9 /* String+Extensions.swift */; };
+		68F154EC247FE8560023C6F9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154EA247FE8560023C6F9 /* String+Extensions.swift */; };
+		68F154ED247FE8560023C6F9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154EA247FE8560023C6F9 /* String+Extensions.swift */; };
+		68F154EE247FE8560023C6F9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F154EA247FE8560023C6F9 /* String+Extensions.swift */; };
 		7A2281C376904F23BCA10FCA /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
 		8A5B44AA7D724388B70F100B /* IBMPlexSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36B22BAB357B44949D2E168C /* IBMPlexSans-ExtraLight.ttf */; };
 		8CB0C49FEC0F493D95420B30 /* IBMPlexMono-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3053DF05D78949A09366B85D /* IBMPlexMono-ExtraLight.ttf */; };
@@ -241,6 +254,8 @@
 		68704523247EB73500902214 /* MAURLocation+ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAURLocation+ExtensionTests.swift"; sourceTree = "<group>"; };
 		68704525247EB76500902214 /* Geohash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geohash.swift; sourceTree = "<group>"; };
 		68704528247EB78700902214 /* MAURLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAURLocation+Extension.swift"; sourceTree = "<group>"; };
+		68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		68F154EA247FE8560023C6F9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		6BA94CE8425944B8990A49B3 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Bold.ttf"; path = "../app/assets/fonts/IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
 		6C8CF282C4264C88A4ED8ABF /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
 		71D1C872DB0CCC3BBC3D907E /* Pods-COVIDSafePaths.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths.debug.xcconfig"; sourceTree = "<group>"; };
@@ -353,6 +368,7 @@
 				08445F50242849C1008754AC /* CoreGraphics.framework in Frameworks */,
 				08445F4E24283B0B008754AC /* CoreData.framework in Frameworks */,
 				08445F4C24283AFF008754AC /* Accelerate.framework in Frameworks */,
+				68F154E0247FE7A30023C6F9 /* Scrypt in Frameworks */,
 				A49C8C752B3AA7ABB92618E3 /* libPods-GPS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,6 +530,7 @@
 		13B07FAE1A68108700A75B9A /* COVIDSafePaths */ = {
 			isa = PBXGroup;
 			children = (
+				68F154E2247FE7D30023C6F9 /* Extensions */,
 				C53FD0C324719C25006D3268 /* BTE */,
 				C53FD07C247199A4006D3268 /* GPS */,
 				276F786A245B6C8A00312927 /* bridge */,
@@ -546,7 +563,6 @@
 			children = (
 				68704525247EB76500902214 /* Geohash.swift */,
 				276AB156245238E400D39B58 /* SecureStorage.swift */,
-				68704528247EB78700902214 /* MAURLocation+Extension.swift */,
 				276AB15B245291DE00D39B58 /* Location.swift */,
 				271881BF2461AF76001DE067 /* RealmSecureStorage.swift */,
 			);
@@ -590,6 +606,16 @@
 				2E9077662439A903005C98DE /* libSplashScreen.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		68F154E2247FE7D30023C6F9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				68F154E3247FE7EC0023C6F9 /* Array+Extensions.swift */,
+				68704528247EB78700902214 /* MAURLocation+Extension.swift */,
+				68F154EA247FE8560023C6F9 /* String+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -688,6 +714,9 @@
 			dependencies = (
 			);
 			name = GPS;
+			packageProductDependencies = (
+				68F154DF247FE7A30023C6F9 /* Scrypt */,
+			);
 			productName = COVIDSafePaths;
 			productReference = 13B07F961A680F5B00A75B9A /* PathCheckGPS.app */;
 			productType = "com.apple.product-type.application";
@@ -782,6 +811,9 @@
 				"pt-BR",
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				68F154DE247FE7A30023C6F9 /* XCRemoteSwiftPackageReference "swift-scrypt" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -1066,10 +1098,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* COVIDSafePathsTests.m in Sources */,
+				680EA41B247FEC23003B6F2A /* Location.swift in Sources */,
 				68B30507247ED53A004812BD /* Geohash.swift in Sources */,
 				68704521247EB70C00902214 /* GeohashTests.swift in Sources */,
+				68F154E5247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */,
+				68F154EC247FE8560023C6F9 /* String+Extensions.swift in Sources */,
 				68704524247EB73500902214 /* MAURLocation+ExtensionTests.swift in Sources */,
+				68F154E9247FE8400023C6F9 /* MAURLocation+Extension.swift in Sources */,
 				68B3050A247EF595004812BD /* LocationTests.swift in Sources */,
+				680EA419247FEC01003B6F2A /* RealmSecureStorage.swift in Sources */,
 				68B30509247EF592004812BD /* RealmSecureStorageTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1081,6 +1118,8 @@
 				271881C02461AF76001DE067 /* RealmSecureStorage.swift in Sources */,
 				0835F8922441054A00E95AE3 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				27F931572459E28800E1024C /* SecureStorageManager.m in Sources */,
+				68F154E4247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */,
+				68F154EB247FE8560023C6F9 /* String+Extensions.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				276AB15C245291DE00D39B58 /* Location.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
@@ -1098,6 +1137,8 @@
 				C53FD08124719AD1006D3268 /* RealmSecureStorage.swift in Sources */,
 				C53FD08324719AD1006D3268 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				C53FD08424719AD1006D3268 /* SecureStorageManager.m in Sources */,
+				68F154E6247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */,
+				68F154ED247FE8560023C6F9 /* String+Extensions.swift in Sources */,
 				C53FD08524719AD1006D3268 /* AppDelegate.m in Sources */,
 				C53FD08624719AD1006D3268 /* Location.swift in Sources */,
 				C53FD08724719AD1006D3268 /* main.m in Sources */,
@@ -1112,9 +1153,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68F154E8247FE8400023C6F9 /* MAURLocation+Extension.swift in Sources */,
 				C5AA24D624768FFF00BA0A99 /* RealmSecureStorageTest.swift in Sources */,
 				C5AA24D724768FFF00BA0A99 /* LocationTests.swift in Sources */,
 				C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */,
+				68F154EE247FE8560023C6F9 /* String+Extensions.swift in Sources */,
+				68F154E7247FE7EC0023C6F9 /* Array+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2453,6 +2497,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		68F154DE247FE7A30023C6F9 /* XCRemoteSwiftPackageReference "swift-scrypt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/greymass/swift-scrypt.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		68F154DF247FE7A30023C6F9 /* Scrypt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68F154DE247FE7A30023C6F9 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
+			productName = Scrypt;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }

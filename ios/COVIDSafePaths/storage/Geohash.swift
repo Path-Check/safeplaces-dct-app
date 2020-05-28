@@ -105,14 +105,6 @@ public struct Geohash {
     .reduce(into: [String: Character]()) { $0[$1.1] = $1.0 }
 }
 
-private extension String {
-  init(integer n: Int, radix: Int, padding: Int) {
-    let s = String(n, radix: radix)
-    let pad = (padding - s.count % padding) % padding
-    self = Array(repeating: "0", count: pad).joined(separator: "") + s
-  }
-}
-
 private func + (left: [String], right: String) -> [String] {
   var arr = left
   arr.append(right)
