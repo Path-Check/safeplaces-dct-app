@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import {
   Dimensions,
   ImageBackground,
-  PermissionsAndroid,
   Platform,
   StatusBar,
   StyleSheet,
@@ -43,19 +42,8 @@ export const OnboardingPermissions = ({ navigation }) => {
   };
 
   const handleRequestLocation = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        await location.request();
-        moveToNextStep();
-      } else {
-        moveToNextStep();
-      }
-    } catch (err) {
-      console.warn(err);
-    }
+    await location.request();
+    moveToNextStep();
   };
 
   const handleRequestNotifications = async () => {

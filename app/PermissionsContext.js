@@ -115,9 +115,11 @@ const PermissionsProvider = ({ children }) => {
 
   const requestLocationPermission = async () => {
     if (Platform.OS === 'ios') {
-      requestLocationForPlatform(PERMISSIONS.IOS.LOCATION_ALWAYS);
+      await requestLocationForPlatform(PERMISSIONS.IOS.LOCATION_ALWAYS);
     } else if (Platform.OS === 'android') {
-      requestLocationForPlatform(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+      await requestLocationForPlatform(
+        PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+      );
     }
   };
 
