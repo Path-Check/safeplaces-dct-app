@@ -137,12 +137,23 @@ export const SettingsScreen = ({ navigation }) => {
                 description={t('label.event_history_subtitle')}
                 onPress={() => navigation.navigate('ExposureHistoryScreen')}
               />
-              <Item
-                label={t('share.title')}
-                description={t('share.subtitle')}
-                onPress={() => navigation.navigate('ExportScreen')}
-                last
-              />
+              <FeatureFlag
+                name='export_e2e'
+                fallback={
+                  <Item
+                    label={t('share.title')}
+                    description={t('share.subtitle')}
+                    onPress={() => navigation.navigate('ExportLocally')}
+                    last
+                  />
+                }>
+                <Item
+                  label={t('share.title')}
+                  description={t('share.subtitle')}
+                  onPress={() => navigation.navigate('ExportScreen')}
+                  last
+                />
+              </FeatureFlag>
             </>
           ) : null}
         </Section>

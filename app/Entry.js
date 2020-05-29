@@ -10,9 +10,16 @@ import { ONBOARDING_DONE } from './constants/storage';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
-import ExportCodeInput from './views/Export/ExportCodeInput';
-import ExportSelectHA from './views/Export/ExportSelectHA';
-import ExportStart from './views/Export/ExportStart';
+import {
+  ExportCodeInput,
+  ExportComplete,
+  ExportConfirmUpload,
+  ExportLocally,
+  ExportLocationConsent,
+  ExportPublishConsent,
+  ExportSelectHA,
+  ExportStart,
+} from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import {
   FEATURE_FLAG_SCREEN_NAME,
@@ -42,22 +49,23 @@ const screenOptions = {
 };
 
 const ExportStack = () => (
-  <Stack.Navigator mode='modal' screenOptions={screenOptions}>
+  <Stack.Navigator
+    mode='modal'
+    screenOptions={{ ...screenOptions, cardStyleInterpolator: fade }}>
+    <Stack.Screen name='ExportStart' component={ExportStart} />
+    <Stack.Screen name='ExportSelectHA' component={ExportSelectHA} />
+    <Stack.Screen name='ExportCodeInput' component={ExportCodeInput} />
     <Stack.Screen
-      options={{ cardStyleInterpolator: fade }}
-      name='ExportStart'
-      component={ExportStart}
+      name='ExportLocationConsent'
+      component={ExportLocationConsent}
     />
     <Stack.Screen
-      options={{ cardStyleInterpolator: fade }}
-      name='ExportSelectHA'
-      component={ExportSelectHA}
+      name='ExportPublishConsent'
+      component={ExportPublishConsent}
     />
-    <Stack.Screen
-      options={{ cardStyleInterpolator: fade }}
-      name='ExportCodeInput'
-      component={ExportCodeInput}
-    />
+    <Stack.Screen name='ExportConfirmUpload' component={ExportConfirmUpload} />
+    <Stack.Screen name='ExportDone' component={ExportCodeInput} />
+    <Stack.Screen name='ExportComplete' component={ExportComplete} />
   </Stack.Navigator>
 );
 
@@ -100,6 +108,8 @@ export const Entry = () => {
             ...TransitionPresets.ModalSlideFromBottomIOS,
           }}
         />
+        {/* We feature flag in settings between whether to send to route or e2e export */}
+        <Stack.Screen name='ExportLocally' component={ExportLocally} />
         <Stack.Screen name='ImportScreen' component={ImportScreen} />
         <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
         <Stack.Screen

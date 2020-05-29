@@ -131,7 +131,10 @@ export const ExportSelectHA = ({ route, navigation }) => {
       const res = await fetch(`${MOCK_ENDPOINT}?access_code=${code}`);
       const { valid } = await res.json();
       if (valid) {
-        // navigation.navigate('ExportLocationConsent');
+        navigation.navigate('ExportLocationConsent', {
+          selectedAuthority,
+          code,
+        });
       } else {
         setCodeInvalid(true);
       }
