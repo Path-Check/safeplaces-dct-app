@@ -3,8 +3,9 @@ import { MenuProvider } from 'react-native-popup-menu';
 import SplashScreen from 'react-native-splash-screen';
 
 import { Theme } from './app/constants/themes';
-import Entry from './app/Entry';
+import { Entry } from './app/Entry';
 import { FlagsProvider } from './app/helpers/Flags';
+import { PermissionsProvider } from './app/PermissionsContext';
 import VersionCheckService from './app/services/VersionCheckService';
 
 const App = () => {
@@ -17,7 +18,9 @@ const App = () => {
     <FlagsProvider>
       <MenuProvider>
         <Theme use='default'>
-          <Entry />
+          <PermissionsProvider>
+            <Entry />
+          </PermissionsProvider>
         </Theme>
       </MenuProvider>
     </FlagsProvider>

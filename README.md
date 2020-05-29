@@ -75,9 +75,9 @@ application cannot have both gps and bluetooth enabled for privacy
 considerations, we need be able to build two separate version of the app for
 distribution.
 
-We are following a white labeling strategy to accomplish this. That we have two
-build targets for each app which use the same codebase. Ideally using the same
-code across the products as possible.
+We are following a white labeling strategy to accomplish this. That is, we have
+two build targets for each app which use the same codebase. For development, we
+are preferring to keep as much code as possible common between the two targets.
 
 ## Developer Setup
 
@@ -103,30 +103,34 @@ dev_setup.bat
 
 #### Android (Windows, Linux, macOS)
 
-run the application:
 ```
 yarn run-android-gps ## for the location enabled app
+
 yarn run-android-bte ## for the bluetooth enabled app
-```
 ```
 
 Device storage can be cleared by long-pressing on the app icon in the simulator, clicking "App info", then "Storage", and lastly, "Clear Storage".
 
 #### iOS (macOS only)
 
-Install the pod files:
+First, install the pod files:
 
 ```
 yarn install:pod ## only needs to be ran once
 ```
 
-run the application:
+Then, run the application:
+
 ```
 yarn run-ios-gps ## for the location enabled app
+
 yarn run-ios-bte ## for the bluetooth enabled app
 ```
 
 Device storage can be cleared by clicking "Hardware" on the system toolbar, and then "Erase all content and settings".
+
+Privacy settings can be reset by going to Settings > General > Reset > Reset
+Location & Privacy
 
 ### Release Builds
 
