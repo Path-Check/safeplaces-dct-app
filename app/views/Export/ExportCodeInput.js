@@ -2,6 +2,7 @@
 /* eslint-disable react-native/no-raw-text */
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  Alert,
   KeyboardAvoidingView,
   StatusBar,
   StyleSheet,
@@ -19,6 +20,8 @@ import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 
 const CODE_LENGTH = 6;
+const MOCK_ENDPOINT =
+  'https://private-anon-da01e87e46-safeplaces.apiary-mock.com/access-code/valid';
 
 const CodeInput = ({ code, length, setCode }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -85,7 +88,7 @@ const CodeInput = ({ code, length, setCode }) => {
   };
 
   return (
-    <View style={{ flexDirection: 'row', flex: 1 }}>
+    <View style={{ flexDirection: 'row', flexShrink: 1 }}>
       {[...digits].map((digit, i) => (
         <TextInput
           ref={ref => (digitRefs.current[i] = ref)}
@@ -95,7 +98,7 @@ const CodeInput = ({ code, length, setCode }) => {
             fontSize: 20,
             color: '#1F2C9B',
             textAlign: 'center',
-            flexShrink: 1,
+            flexGrow: 1,
             aspectRatio: 1,
             borderWidth: 2,
             borderColor: digit ? Colors.VIOLET_BUTTON : '#E5E7FA',
@@ -116,9 +119,29 @@ const CodeInput = ({ code, length, setCode }) => {
 
 export const ExportSelectHA = ({ route, navigation }) => {
   const [code, setCode] = useState('');
+  const [isCheckingCode, setIsCheckingCode] = useState(false);
+  const [codeInvalid, setCodeInvalid] = useState(false);
+
   const { selectedAuthority } = route.params;
 
-  console.log({ code });
+  const validateCode = async () => {
+    setIsCheckingCode(true);
+    setCodeInvalid(false);
+    try {
+      const res = await fetch(`${MOCK_ENDPOINT}?access_code=${code}`);
+      const { valid } = await res.json();
+      if (valid) {
+        // navigation.navigate('ExportLocationConsent');
+      } else {
+        setCodeInvalid(true);
+      }
+      setIsCheckingCode(false);
+    } catch (e) {
+      Alert.alert('Something went wrong');
+      console.log(e);
+      setIsCheckingCode(false);
+    }
+  };
 
   return (
     <Theme use='default'>
@@ -159,12 +182,23 @@ export const ExportSelectHA = ({ route, navigation }) => {
               {`The representative from ${selectedAuthority.name} will provide a verfication code over the phone to link your data with ${selectedAuthority.name}.`}
             </Typography>
             <View style={{ height: 60 }} />
-            <CodeInput code={code} length={CODE_LENGTH} setCode={setCode} />
+            <View style={{ flex: 1 }}>
+              <CodeInput code={code} length={CODE_LENGTH} setCode={setCode} />
+
+              {codeInvalid && (
+                <Typography
+                  style={{ marginTop: 8, color: Colors.RED_TEXT }}
+                  use='body2'>
+                  Try a different code
+                </Typography>
+              )}
+            </View>
+
             <Button
               style={{ marginBottom: 20 }}
-              disabled={code.length < CODE_LENGTH}
+              disabled={code.length < CODE_LENGTH || isCheckingCode}
               label={'Next'}
-              onPress={() => {}}
+              onPress={validateCode}
             />
           </View>
         </KeyboardAvoidingView>
