@@ -16,18 +16,12 @@ import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
+import { useAssets } from '../../TracingStrategyAssets';
 
-export const OffPage = ({ tracingStrategy }) => {
+export const OffPage = () => {
   const { t } = useTranslation();
+  const { offPageCta, offPageButton } = useAssets();
   const navigation = useNavigation();
-  const ctaText =
-    tracingStrategy === 'gps'
-      ? t(`label.home_setting_off_subtext_location`)
-      : t(`label.home_setting_off_subtext_bluetooth`);
-  const buttonLabel =
-    tracingStrategy === 'gps'
-      ? t(`label.home_enable_location`)
-      : t(`label.home_enable_bluetooth`);
   const size = Dimensions.get('window').height;
 
   return (
@@ -58,10 +52,10 @@ export const OffPage = ({ tracingStrategy }) => {
               {t('label.home_setting_off_header')}
             </Text>
             <Typography style={styles.subheaderText}>
-              {ctaText}
+              {offPageCta}
             </Typography>
             <Button
-              label={buttonLabel}
+              label={offPageButton}
               onPress={() => navigation.navigate('SettingsScreen', {})}
               style={styles.buttonContainer}
             />
