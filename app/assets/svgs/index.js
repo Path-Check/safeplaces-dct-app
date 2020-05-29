@@ -1,5 +1,6 @@
 import BackArrow from './backArrow';
-import Checkmark from './checkmarkIcon';
+import Checkmark from './checkmark';
+import CheckmarkCircle from './checkmarkCircle';
 import Close from './close';
 import Export from './export';
 import GoogleMapsLogo from './google-maps-logo';
@@ -21,6 +22,7 @@ import XmarkIcon from './xmarkIcon';
 export const Icons = {
   BackArrow,
   Checkmark,
+  CheckmarkCircle,
   Close,
   Export,
   GoogleMapsLogo,

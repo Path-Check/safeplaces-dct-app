@@ -89,7 +89,7 @@ export const SettingsScreen = ({ navigation }) => {
     } else if (!isLogging && !isGPS) {
       return t('label.logging_inactive_bluetooth');
     }
-  }
+  };
 
   return (
     <NavigationBarWrapper
@@ -100,7 +100,7 @@ export const SettingsScreen = ({ navigation }) => {
           {isGPS && (
             <Item
               label={getLoggingText()}
-              icon={isLogging ? Icons.Checkmark : Icons.XmarkIcon}
+              icon={isLogging ? Icons.CheckmarkCircle : Icons.XmarkIcon}
               onPress={locationToggleButtonPressed}
             />
           )}

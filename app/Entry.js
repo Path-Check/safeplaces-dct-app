@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import {
   CardStyleInterpolators,
+  TransitionPresets,
   createStackNavigator,
 } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
@@ -9,7 +10,9 @@ import { ONBOARDING_DONE } from './constants/storage';
 import { GetStoreData } from './helpers/General';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
-import { ExportScreen } from './views/Export';
+import ExportCodeInput from './views/Export/ExportCodeInput';
+import ExportSelectHA from './views/Export/ExportSelectHA';
+import ExportStart from './views/Export/ExportStart';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import {
   FEATURE_FLAG_SCREEN_NAME,
@@ -28,6 +31,36 @@ import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();
 
+const fade = ({ current }) => ({ cardStyle: { opacity: current.progress } });
+
+const screenOptions = {
+  cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+  cardStyle: {
+    backgroundColor: 'transparent', // prevent white flash on Android
+  },
+  headerShown: false,
+};
+
+const ExportStack = () => (
+  <Stack.Navigator mode='modal' screenOptions={screenOptions}>
+    <Stack.Screen
+      options={{ cardStyleInterpolator: fade }}
+      name='ExportStart'
+      component={ExportStart}
+    />
+    <Stack.Screen
+      options={{ cardStyleInterpolator: fade }}
+      name='ExportSelectHA'
+      component={ExportSelectHA}
+    />
+    <Stack.Screen
+      options={{ cardStyleInterpolator: fade }}
+      name='ExportCodeInput'
+      component={ExportCodeInput}
+    />
+  </Stack.Navigator>
+);
+
 export const Entry = () => {
   const [onboardingDone, setOnboardingDone] = useState(false);
 
@@ -45,13 +78,7 @@ export const Entry = () => {
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName='InitialScreen'
-        screenOptions={{
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-          cardStyle: {
-            backgroundColor: 'transparent', // prevent white flash on Android
-          },
-          headerShown: false,
-        }}>
+        screenOptions={screenOptions}>
         <Stack.Screen
           name='InitialScreen'
           component={onboardingDone ? Main : Onboarding1}
@@ -66,7 +93,13 @@ export const Entry = () => {
         />
         <Stack.Screen name='Main' component={Main} />
         <Stack.Screen name='NewsScreen' component={NewsScreen} />
-        <Stack.Screen name='ExportScreen' component={ExportScreen} />
+        <Stack.Screen
+          name='ExportScreen'
+          component={ExportStack}
+          options={{
+            ...TransitionPresets.ModalSlideFromBottomIOS,
+          }}
+        />
         <Stack.Screen name='ImportScreen' component={ImportScreen} />
         <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
         <Stack.Screen
