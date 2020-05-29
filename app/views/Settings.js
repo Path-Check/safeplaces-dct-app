@@ -10,7 +10,7 @@ import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
-import { config } from '../COVIDSafePathsConfig';
+import { isGPS } from '../COVIDSafePathsConfig';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
@@ -22,16 +22,14 @@ import LocationServices from '../services/LocationService';
 import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
-import { AppSpecificAssets } from '../TracingStrategyAssets';
-
-const { isGPS } = config;
+import { useAssets } from '../TracingStrategyAssets';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
   const {
     settingsLoggingActive,
     settingsLoggingInactive,
-  } = AppSpecificAssets();
+  } = useAssets();
   const [isLogging, setIsLogging] = useState(undefined);
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),

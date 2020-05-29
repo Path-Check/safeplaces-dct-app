@@ -5,9 +5,7 @@ import { ExposurePage } from '../ExposurePage';
 
 jest.mock('../../../COVIDSafePathsConfig', () => {
   return {
-    config: {
-      isGPS: true,
-    },
+    isGPS: true,
   };
 })
 

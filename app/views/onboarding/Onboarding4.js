@@ -14,7 +14,7 @@ import fontFamily from '../../constants/fonts';
 import { ONBOARDING_DONE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
 import { sharedStyles } from './styles';
-import { AppSpecificAssets } from '../../TracingStrategyAssets';
+import { useAssets } from '../../TracingStrategyAssets';
 
 const width = Dimensions.get('window').width;
 
@@ -25,7 +25,7 @@ const Onboarding = props => {
     onboarding4Header,
     onboarding4NavDestination,
     onboarding4Subheader,
-  } = AppSpecificAssets();
+  } = useAssets();
 
   return (
     <View style={styles.mainContainer}>

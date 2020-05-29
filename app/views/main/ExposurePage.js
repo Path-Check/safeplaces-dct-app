@@ -10,12 +10,12 @@ import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
-import { AppSpecificAssets } from '../../TracingStrategyAssets';
+import { useAssets } from '../../TracingStrategyAssets';
 
 
 export const ExposurePage = () => {
   const { t } = useTranslation();
-  const { exposurePageSubheader } = AppSpecificAssets();
+  const { exposurePageSubheader } = useAssets();
   const navigation = useNavigation();
   const buttonLabel = t('label.see_exposure_history');
 

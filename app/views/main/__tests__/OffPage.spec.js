@@ -5,9 +5,7 @@ import { OffPage } from '../OffPage';
 
 jest.mock('../../../COVIDSafePathsConfig', () => {
   return {
-    config: {
-      isGPS: true,
-    },
+    isGPS: true,
   };
 })
 

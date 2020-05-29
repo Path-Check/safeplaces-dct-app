@@ -7,9 +7,7 @@ import { LicensesScreen } from '../Licenses';
 
 jest.mock('../../COVIDSafePathsConfig', () => {
   return {
-    config: {
-      isGPS: true,
-    },
+    isGPS: true,
   };
 });
 

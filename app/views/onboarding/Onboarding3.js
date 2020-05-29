@@ -13,7 +13,7 @@ import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
 import { sharedStyles } from './styles';
-import { AppSpecificAssets } from '../../TracingStrategyAssets';
+import { useAssets } from '../../TracingStrategyAssets';
 
 const width = Dimensions.get('window').width;
 
@@ -22,7 +22,7 @@ const Onboarding = props => {
     onboarding3Background,
     onboarding3Header,
     onboarding3Subheader,
-  } = AppSpecificAssets();
+  } = useAssets();
 
   return (
     <View style={styles.mainContainer}>

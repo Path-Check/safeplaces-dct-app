@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Images } from './assets';
-import { config } from './COVIDSafePathsConfig';
+import { isGPS } from './COVIDSafePathsConfig';
 
-export function AppSpecificAssets() {
-  const { isGPS } = config;
+export function useAssets() {
   const { t } = useTranslation();
 
   // Onboarding2

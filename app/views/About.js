@@ -17,11 +17,11 @@ import { Icons } from '../assets';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-import { AppSpecificAssets } from '../TracingStrategyAssets';
+import { useAssets } from '../TracingStrategyAssets';
 
 export const AboutScreen = ({ navigation }) => {
   const { t } = useTranslation();
-  const { aboutHeader } = AppSpecificAssets();
+  const { aboutHeader } = useAssets();
 
   const backToMain = () => {
     navigation.goBack();
