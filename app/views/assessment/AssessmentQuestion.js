@@ -43,7 +43,6 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
       if (!l) continue;
       elements.push(
         <Typography
-          surveyFont
           testID='description'
           key={l}
           style={styles.description}>
@@ -100,7 +99,7 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.containerInner}>
         <View style={styles.header}>
-          <Typography surveyFont style={styles.title}>
+          <Typography style={styles.title}>
             {question.question_text}
           </Typography>
         </View>

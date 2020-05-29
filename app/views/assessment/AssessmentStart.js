@@ -40,13 +40,13 @@ const AssessmentStart = ({ navigation }) => {
       <View>
         <View style={styles.description}>
           <Image source={imageHealth} style={styles.descriptionImage} />
-          <Typography style={styles.descriptionText} surveyFont>
+          <Typography use='body1' style={styles.descriptionText}>
             {t('assessment.start_description_1')}
           </Typography>
         </View>
         <View style={styles.description}>
           <Image source={imagePrivate} style={styles.descriptionImage} />
-          <Typography style={styles.descriptionText} surveyFont>
+          <Typography use='body1' style={styles.descriptionText}>
             {t('assessment.start_description_2')}
           </Typography>
         </View>
@@ -114,9 +114,6 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     flex: 1,
-    fontSize: 20,
-    lineHeight: 22,
     color: Colors.BLACK,
-    fontWeight: '300',
   },
 });

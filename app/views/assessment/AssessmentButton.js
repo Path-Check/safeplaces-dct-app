@@ -33,7 +33,8 @@ const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
             backgroundColor: backgroundColor,
           },
         ]}>
-        <Typography bold style={styles.ctaText}>
+
+        <Typography use='body1' style={styles.ctaText}>
           {title}
         </Typography>
       </View>
@@ -45,13 +46,12 @@ export default AssessmentButton;
 
 const styles = StyleSheet.create({
   cta: {
-    borderRadius: 12,
-    padding: 14,
+    borderRadius: 10,
+    paddingVertical: 22,
+    paddingHorizontal: 14,
   },
   ctaText: {
     color: Colors.WHITE,
-    //fontFamily: Fonts.primaryBold,
-    fontSize: 18,
     textAlign: 'center',
   },
 });

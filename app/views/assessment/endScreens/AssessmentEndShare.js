@@ -24,7 +24,7 @@ const AssessmentEndShare = ({ navigation }) => {
       description={
         <Trans t={t} i18nKey='assessment.share_description'>
           <Typography />
-          <Typography surveyFont style={assessmentStyles.boldBlackText} />
+          <Typography style={assessmentStyles.boldBlackText} />
         </Trans>
       }
       footer={

@@ -28,7 +28,7 @@ export const Colors = {
   IMAGE_BACKGROUND_DANGER: 'rgb(255,226,233)',
   BORDER: 'rgb(173,188,205)',
   BORDER_SELECTED: 'rgb(0,121,253)',
-  CTA: 'rgb(0,121,253)',
+  CTA: 'rgb(105,121,248)',
   DANGER: 'rgb(227,0,58)',
 };
 
