@@ -36,6 +36,7 @@ lokalise2 file upload \
   --detect-icu-plurals \
   --apply-tm \
   --convert-placeholders \
+  --poll \
   --config .lokalise.yml --token=$LOKALISE_TOKEN
 
 echo "Uploading Documents (e.g. EULA)"
@@ -48,4 +49,5 @@ lokalise2 file upload \
   --detect-icu-plurals \
   --apply-tm \
   --convert-placeholders \
+  --poll \
   --project-id=565995355ea89e2a5f2926.77486458 --token=$LOKALISE_TOKEN
