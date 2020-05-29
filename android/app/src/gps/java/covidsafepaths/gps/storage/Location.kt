@@ -29,26 +29,29 @@ private fun <T> List<T>.toRealmList(): RealmList<T> =
   Realm requires a no-op constructor. Need to use var and fill will default value
  */
 open class Location(
-  @PrimaryKey var time: Long = 0,
-  var latitude: Double = 0.0,
-  var longitude: Double = 0.0,
-  var altitude: Double? = null,
-  var speed: Float? = null,
-  var accuracy: Float? = null,
-  var bearing: Float? = null,
-  var provider: String? = null,
-  var hashes: RealmList<String>? = null,
-  var mockFlags: Int? = null,
-  var source: Int = -1
+        @PrimaryKey var time: Long = 0,
+        var latitude: Double = 0.0,
+        var longitude: Double = 0.0,
+        var altitude: Double? = null,
+        var speed: Float? = null,
+        var accuracy: Float? = null,
+        var bearing: Float? = null,
+        var provider: String? = null,
+        var mockFlags: Int? = null,
+        var hashes: RealmList<String>? = null,
+        var source: Int = -1
 ) : RealmObject() {
 
   fun toWritableMap(): WritableMap {
-    return WritableNativeMap().apply {
+      return WritableNativeMap().apply {
       putDouble(KEY_TIME, time.toDouble())
       putDouble(KEY_LATITUDE, latitude)
       putDouble(KEY_LONGITUDE, longitude)
       hashes?.let { putArray(KEY_HASHES, it.toWritableArray()) }
+      putDouble(KEY_ACCURACY, accuracy?.toDouble() ?: 0.0)
+      putString(KEY_PROVIDER, provider)
     }
+
   }
 
   companion object {
@@ -57,6 +60,9 @@ open class Location(
     const val KEY_LONGITUDE = "longitude"
     const val KEY_SOURCE = "source"
     const val KEY_HASHES = "hashes"
+
+    const val KEY_ACCURACY = "accuracy"
+    const val KEY_PROVIDER = "provider"
 
     const val SOURCE_DEVICE = 0
     const val SOURCE_MIGRATION = 1
@@ -80,8 +86,8 @@ open class Location(
     }
 
     fun fromImportLocation(
-      map: ReadableMap?,
-      source: Int
+            map: ReadableMap?,
+            source: Int
     ): Location? {
       return try {
         if (map == null) return null
@@ -98,10 +104,10 @@ open class Location(
         }
 
         return Location(
-            time = time,
-            latitude = latitude,
-            longitude = longitude,
-            source = source
+                time = time,
+                latitude = latitude,
+                longitude = longitude,
+                source = source
         )
       } catch (exception: Exception) {
         Log.d("Location", "Failed to import location. Received unexpected payload from bridge.")
@@ -110,12 +116,14 @@ open class Location(
       }
     }
 
-    fun createAssumedLocation(time: Long, latitude: Double, longitude: Double): Location {
+    fun createAssumedLocation(time: Long, latitude: Double, longitude: Double, accuracy: Float?, provider: String?): Location {
       return Location(
-          time = time,
-          latitude = latitude,
-          longitude = longitude,
-          source = SOURCE_ASSUMED
+              time = time,
+              latitude = latitude,
+              longitude = longitude,
+              source = SOURCE_ASSUMED,
+              accuracy = accuracy,
+              provider = provider
       )
     }
 
@@ -152,10 +160,10 @@ open class Location(
       val deltaLambda = (deltaLon * Math.PI) / 180
       val R = 6371e3; // gives d in metres
       val d =
-        acos(
-            sin(p1) * sin(p2) +
-                cos(p1) * cos(p2) * cos(deltaLambda)
-        ) * R
+              acos(
+                      sin(p1) * sin(p2) +
+                              cos(p1) * cos(p2) * cos(deltaLambda)
+              ) * R
 
       // closer than the "nearby" distance?
       if (d < nearbyDistance) return true
