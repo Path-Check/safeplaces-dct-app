@@ -1,6 +1,5 @@
-// TODO: REMOVE
-/* eslint-disable react-native/no-raw-text */
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Alert,
   KeyboardAvoidingView,
@@ -118,6 +117,8 @@ const CodeInput = ({ code, length, setCode }) => {
 };
 
 export const ExportSelectHA = ({ route, navigation }) => {
+  const { t } = useTranslation();
+
   const [code, setCode] = useState('');
   const [isCheckingCode, setIsCheckingCode] = useState(false);
   const [codeInvalid, setCodeInvalid] = useState(false);
@@ -178,11 +179,11 @@ export const ExportSelectHA = ({ route, navigation }) => {
           </View>
           <View style={{ flex: 1 }}>
             <Typography use='headline2' style={styles.exportSectionTitles}>
-              Enter your verification code
+              {t('export.code_input_title')}
             </Typography>
             <View style={{ height: 8 }} />
             <Typography use='body1'>
-              {`The representative from ${selectedAuthority.name} will provide a verfication code over the phone to link your data with ${selectedAuthority.name}.`}
+              {t('export.code_input_body', { name: selectedAuthority.name })}
             </Typography>
             <View style={{ height: 60 }} />
             <View style={{ flex: 1 }}>
@@ -192,7 +193,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
                 <Typography
                   style={{ marginTop: 8, color: Colors.RED_TEXT }}
                   use='body2'>
-                  Try a different code
+                  {t('export.code_input_error')}
                 </Typography>
               )}
             </View>
@@ -200,7 +201,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
             <Button
               style={{ marginBottom: 20 }}
               disabled={code.length < CODE_LENGTH || isCheckingCode}
-              label={'Next'}
+              label={t('common.next')}
               onPress={validateCode}
             />
           </View>
