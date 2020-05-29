@@ -31,6 +31,8 @@ jobs:
         run: yarn --frozen-lockfile
 
       - run: ./append-sha-to-version.sh
+        env:
+          HEAD_REF_SHA: ${{ github.head_ref }}
 
       - name: Setup kernel for react native, increase watchers for release versions.
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
@@ -101,6 +103,8 @@ jobs:
         run: yarn --frozen-lockfile
 
       - run: ./append-sha-to-version.sh
+        env:
+          HEAD_REF_SHA: ${{ github.head_ref }}
 
       - name: Setup kernel for react native, increase watchers for release versions.
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
@@ -176,6 +180,8 @@ jobs:
         run: yarn --frozen-lockfile
 
       - run: ./append-sha-to-version.sh
+        env:
+          HEAD_REF_SHA: ${{ github.head_ref }}
 
       - name: Install bundler for ruby package management
         run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
@@ -253,6 +259,8 @@ jobs:
         run: yarn --frozen-lockfile
 
       - run: ./append-sha-to-version.sh
+        env:
+          HEAD_REF_SHA: ${{ github.head_ref }}
 
       - name: Install bundler for ruby package management
         run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"

@@ -28,7 +28,9 @@ require_bin sponge moreutils
 # e.g. 1.0.65 -> 1.0.65.1589941056.235517
 cat package.json | grep version
 
-SHA=$(git rev-parse --short $GITHUB_SHA)
+# PRs create a merge commit into develop, so we cannot use $GITHUB_SHA
+# instead we need ${{ github.head_ref }} which is the pure head ref
+SHA=$(git rev-parse --short $HEAD_REF_SHA)
 
 jq --arg SHA "$SHA" '.version=(.version) + "-" + $SHA' package.json | sponge package.json
 
