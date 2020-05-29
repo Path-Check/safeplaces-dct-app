@@ -5,28 +5,27 @@ import LocationService from '../LocationService';
 
 /**
  * Hook used to check the location tracking status of a user
- * @param {{canTrack: boolean, reason: Reason, isRunning: boolean, hasPotentialExposure: boolean}} status
+ * @param {{canTrack: boolean, reason: Reason, isRunning: boolean}} status
  */
-export const useLocTrackingStatus = () => {
+export const useGpsTrackingStatus = () => {
   const initialState = {
     canTrack: undefined,
     reason: undefined,
     isRunning: undefined,
-    hasPotentialExposure: undefined,
   };
 
-  const [locTrackingStatus, setStatus] = useState(initialState);
+  const [userOptIn, setStatus] = useState(initialState);
 
   /**
    * Set the location tracking status, and start/stop BackgroundGeolocation accordingly
-   * @param {boolean} newIsTracking
-   * @returns {{canTrack: boolean, reason: Reason, isRunning: boolean, hasPotentialExposure: boolean}}
+   * @param {boolean} userOptIn
+   * @returns {{canTrack: boolean, reason: Reason, isRunning: boolean}}
    */
-  const setLocTrackingStatus = async newIsTracking => {
-    LocationService.setStoreLocationTracking(newIsTracking);
+  const setUserOptIn = async userOptIn => {
+    LocationService.setUserOptIn(userOptIn);
 
     const { isRunning } = await LocationService.checkStatus();
-    const shouldStartTracking = newIsTracking && !isRunning;
+    const shouldStartTracking = userOptIn && !isRunning;
 
     shouldStartTracking
       ? await LocationService.start()
@@ -50,5 +49,5 @@ export const useLocTrackingStatus = () => {
     getAndSetStatus();
   }, []);
 
-  return [locTrackingStatus, setLocTrackingStatus];
+  return [userOptIn, setUserOptIn];
 };

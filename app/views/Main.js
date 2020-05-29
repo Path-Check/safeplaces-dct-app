@@ -95,7 +95,7 @@ export const Main = () => {
       page = <NoKnownExposure />;
     }
   } else {
-    if (location.reason === Reason.USER_DISABLED) {
+    if (location.reason === Reason.USER_OPT_OUT) {
       page = <OffPage tracingStrategy={config.tracingStrategy} />;
     } else {
       page = <UnknownPage />;

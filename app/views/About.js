@@ -16,7 +16,7 @@ import fontFamily from './../constants/fonts';
 import { Icons } from '../assets';
 import { NavigationBarWrapper, Typography } from '../components';
 import Colors from '../constants/colors';
-import { config } from '../COVIDSafePathsConfig';
+import { isGPS } from '../COVIDSafePathsConfig';
 
 export const AboutScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -37,10 +37,9 @@ export const AboutScreen = ({ navigation }) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
   }, [navigation]);
 
-  const aboutHeaderText =
-    config.tracingStrategy === 'gps'
-      ? t('label.about_header_location')
-      : t('label.about_header_bluetooth');
+  const aboutHeaderText = isGPS
+    ? t('label.about_header_location')
+    : t('label.about_header_bluetooth');
 
   return (
     <NavigationBarWrapper

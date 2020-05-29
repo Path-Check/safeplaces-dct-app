@@ -5,7 +5,7 @@ import PushNotification from 'react-native-push-notification';
 
 import {
   CROSSED_PATHS,
-  IS_APP_LOCATION_TRACKING_ENABLED,
+  IS_LOCATION_TRACKING_OPT_IN,
 } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
@@ -18,19 +18,27 @@ const LOCATION_DISABLED_NOTIFICATION_ID = '55';
 export const MIN_LOCATION_UPDATE_MS = 300000;
 
 export const Reason = {
-  //Location services are disabled for the device
+  /**
+   * Location services are disabled for the device
+   */
   DEVICE_LOCATION_OFF: 'DEVICE_LOCATION_OFF',
 
-  // Location services are not enabled for this app
+  /**
+   * Location services are not enabled for this app
+   */
   APP_NOT_AUTHORIZED: 'APP_NOT_AUTHORIZED',
 
-  // Location services are enabled for this app,
-  // but the user has requested that we stop tracking
-  USER_DISABLED: 'USER_DISABLED',
+  /**
+   * Location services are enabled for this app,
+   * but the user has requested that we stop tracking
+   */
+  USER_OPT_OUT: 'USER_OPT_OUT',
 
-  // User has granted permission to track and device/app
-  // location services are also granted
-  USER_ENABLED: 'USER_ENABLED',
+  /**
+   * User has granted permission to track and device/app
+   * location services are also enabled
+   */
+  ALL_CONDITIONS_MET: 'ALL_CONDITIONS_MET',
 };
 
 export default class LocationServices {
@@ -153,7 +161,7 @@ export default class LocationServices {
     BackgroundGeolocation.start(); //triggers start on start event
     isBackgroundGeolocationConfigured = true;
 
-    LocationServices.setStoreLocationTracking(true);
+    LocationServices.setUserOptIn(true);
   }
 
   static async stop() {
@@ -173,12 +181,12 @@ export default class LocationServices {
     return !!dayBin && dayBin.some(exposure => exposure > 0);
   }
 
-  static async setStoreLocationTracking(isEnabled) {
-    await SetStoreData(IS_APP_LOCATION_TRACKING_ENABLED, isEnabled);
+  static async setUserOptIn(isEnabled) {
+    await SetStoreData(IS_LOCATION_TRACKING_OPT_IN, isEnabled);
   }
 
-  static async getAppLocTrackingStatus() {
-    return await GetStoreData(IS_APP_LOCATION_TRACKING_ENABLED, false);
+  static async getUserOptInStatus() {
+    return await GetStoreData(IS_LOCATION_TRACKING_OPT_IN, false);
   }
 
   static async getBackgroundGeoStatus() {
@@ -192,15 +200,15 @@ export default class LocationServices {
 
   static async checkStatus() {
     const hasPotentialExposure = await this.getHasPotentialExposure();
-    const locTrackingStatus = await this.getAppLocTrackingStatus();
+    const userOptIn = await this.getUserOptInStatus();
 
     const {
-      authorization,
+      authorization: appGpsStatus,
       isRunning,
-      locationServicesEnabled,
+      locationServicesEnabled: isDeviceGpsEnabled,
     } = await this.getBackgroundGeoStatus();
 
-    if (!locationServicesEnabled) {
+    if (!isDeviceGpsEnabled) {
       return {
         canTrack: false,
         reason: Reason.DEVICE_LOCATION_OFF,
@@ -209,7 +217,7 @@ export default class LocationServices {
       };
     }
 
-    if (authorization != BackgroundGeolocation.AUTHORIZED) {
+    if (appGpsStatus != BackgroundGeolocation.AUTHORIZED) {
       return {
         canTrack: false,
         reason: Reason.APP_NOT_AUTHORIZED,
@@ -218,10 +226,10 @@ export default class LocationServices {
       };
     }
 
-    if (!locTrackingStatus) {
+    if (!userOptIn) {
       return {
         canTrack: false,
-        reason: Reason.USER_DISABLED,
+        reason: Reason.USER_OPT_OUT,
         hasPotentialExposure,
         isRunning,
       };
@@ -229,7 +237,7 @@ export default class LocationServices {
 
     return {
       canTrack: true,
-      reason: Reason.USER_ENABLED,
+      reason: Reason.ALL_CONDITIONS_MET,
       hasPotentialExposure,
       isRunning,
     };

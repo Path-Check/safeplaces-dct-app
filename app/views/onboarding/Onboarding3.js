@@ -11,14 +11,13 @@ import { Images } from '../../assets';
 import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import { config } from '../../COVIDSafePathsConfig';
+import { isGPS } from '../../COVIDSafePathsConfig';
 import languages from '../../locales/languages';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
-  const isGPS = config.tracingStrategy === 'gps';
   const backgroundImage = isGPS ? Images.LaunchScreen3 : Images.LaunchScreen3BT;
   const headerText = isGPS
     ? languages.t('label.launch_screen3_header_location')

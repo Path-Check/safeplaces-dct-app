@@ -30,7 +30,7 @@ import {
 import Colors from '../constants/colors';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { Theme } from '../constants/themes';
-import { config } from '../COVIDSafePathsConfig';
+import { isGPS } from '../COVIDSafePathsConfig';
 import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -51,7 +51,6 @@ class ChooseProviderScreen extends Component {
       isAuthorityFilterActive: false,
       isAutoSubscribed: false,
     };
-    this.isGPS = config.tracingStrategy === 'gps';
   }
 
   backToMain() {
@@ -103,7 +102,7 @@ class ChooseProviderScreen extends Component {
   async fetchAuthoritiesList(filterByGPSHistory) {
     let authoritiesList = [];
 
-    if (filterByGPSHistory && this.isGPS) {
+    if (filterByGPSHistory && isGPS) {
       authoritiesList = await HCAService.getAuthoritiesFromUserLocHistory();
     } else {
       authoritiesList = await HCAService.getAuthoritiesList();
@@ -263,7 +262,7 @@ class ChooseProviderScreen extends Component {
               <Typography style={styles.sectionDescription} use={'body1'}>
                 {languages.t('label.authorities_desc')}
               </Typography>
-              {__DEV__ && this.isGPS && (
+              {__DEV__ && isGPS && (
                 <TouchableOpacity style={styles.autoSubscribe}>
                   <Checkbox
                     label={languages.t('label.auto_subscribe_checkbox')}
@@ -338,7 +337,7 @@ class ChooseProviderScreen extends Component {
                 />
               </MenuTrigger>
               <MenuOptions>
-                {__DEV__ && this.isGPS && (
+                {__DEV__ && isGPS && (
                   <TouchableOpacity
                     style={styles.authorityFilter}
                     onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>

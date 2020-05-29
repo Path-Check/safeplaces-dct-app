@@ -10,7 +10,7 @@ import {
 } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
-import LocationService from '../services/LocationService';
+import LocationService from './LocationService';
 
 /**
  * Singleton class to interact with health care authority data

@@ -11,7 +11,7 @@ import {
   NavigationBarWrapper,
 } from '../../components';
 import Colors from '../../constants/colors';
-import { config } from '../../COVIDSafePathsConfig';
+import { isGPS } from '../../COVIDSafePathsConfig';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
@@ -20,15 +20,14 @@ import {
 } from '../../locales/languages';
 import { FEATURE_FLAG_SCREEN_NAME } from '../../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './GoogleMapsImport';
+import { GpsTrackingStatus } from './GpsTrackingStatus';
 import { Item } from './Item';
-import { LocationTrackingStatus } from './LocationTrackingStatus';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
-  const isGPS = config.tracingStrategy === 'gps';
 
   const backToMain = () => {
     navigation.goBack();
@@ -65,7 +64,7 @@ export const SettingsScreen = ({ navigation }) => {
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
-          <LocationTrackingStatus />
+          {isGPS && <GpsTrackingStatus />}
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}
@@ -109,11 +108,13 @@ export const SettingsScreen = ({ navigation }) => {
           ) : null}
         </Section>
 
-        <FeatureFlag name='google_import'>
-          <Section>
-            <GoogleMapsImport navigation={navigation} />
-          </Section>
-        </FeatureFlag>
+        {isGPS && (
+          <FeatureFlag name='google_import'>
+            <Section>
+              <GoogleMapsImport navigation={navigation} />
+            </Section>
+          </FeatureFlag>
+        )}
 
         <Section last>
           <Item
