@@ -304,7 +304,7 @@ export default function Results({ navigation }) {
                 )}
               {hasSympthomps &&
                 hasHealthProblems &&
-                hadContact &&
+                (hadContact || notExpostion) &&
                 doesntWorkInHealth && (
                   <ResultsContent
                     title='Contacte a su médico'
