@@ -44,7 +44,7 @@ buck-out/
 !debug.keystore
 
 # i18next-parser
-gps/app/locales/*_old.json
+/app/locales/*_old.json
 
 # fastlane
 #
@@ -75,9 +75,21 @@ e2e/artifacts/*
 .vscode/*
 
 # Local iOS build artifacts
+ios/COVIDSafePaths.ipa
+ios/COVIDSafePaths.app
+ios/COVIDSafePaths.app.dSYM.zip
+
 ios/COVIDSafePaths-staging.ipa
 ios/COVIDSafePaths-staging.app
 ios/COVIDSafePaths-staging.app.dSYM.zip
+
+ios/COVIDSafePaths-bte.ipa
+ios/COVIDSafePaths-bte.app
+ios/COVIDSafePaths-bte.app.dSYM.zip
+
+ios/COVIDSafePaths-staging-bte.ipa
+ios/COVIDSafePaths-staging-bte.app
+ios/COVIDSafePaths-stating-bte.app.dSYM.zip
 
 # Local Android build artifacts
 android/app/src/main/assets/index.android.bundle

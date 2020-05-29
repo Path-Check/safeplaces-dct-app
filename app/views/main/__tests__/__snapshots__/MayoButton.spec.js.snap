@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`does not render when the language is not english 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+/>
+`;
+
+exports[`renders when the language is english 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignContent": "flex-end",
+            "flexDirection": "column",
+            "justifyContent": "space-between",
+            "padding": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#E5E4E6",
+              "fontFamily": "IBMPlexSans-Bold",
+              "fontSize": 18,
+              "fontWeight": "normal",
+              "lineHeight": 24,
+              "textAlign": "left",
+              "writingDirection": "ltr",
+            }
+          }
+          testID="MayoLinkHeading"
+          use="body1"
+        >
+          More COVID-19 information
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#E5E4E6",
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 18,
+              "fontWeight": "normal",
+              "lineHeight": 24,
+              "textAlign": "left",
+              "writingDirection": "ltr",
+            }
+          }
+          testID="MayoLinkLabel"
+          use="body1"
+        >
+          from the Mayo Clinic
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "paddingLeft": 20,
+            "paddingRight": 20,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../app/assets/images/foreArrow.png",
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;

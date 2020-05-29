@@ -10,7 +10,7 @@ import React from 'react';
 
 import App from '../App';
 
-jest.mock('../gps/app/Entry', () => 'Entry');
+jest.mock('../app/Entry', () => ({ Entry: 'Entry' }));
 
 it('renders correctly', () => {
   const { asJSON } = render(<App />);

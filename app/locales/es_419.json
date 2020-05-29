@@ -1,0 +1,26 @@
+{
+  "_display_name": "Español (LA)",
+  "label": {
+    "launch_screen2_header_location": "Reciba notificaciones si se cruza con alguien que más tarde fue diagnosticado con COVID-19.",
+    "launch_screen2_subheader_bluetooth": "La fecha y la duración del encuentro se registran junto con una estimación de cuán cerca pudieron haber estado los dos teléfonos.",
+    "launch_screen2_subheader_location": "El conocimiento es poder.",
+    "launch_screen3_header_bluetooth": "Todos los datos están encriptados y almacenados de forma privada en su teléfono.",
+    "launch_screen3_header_location": "Si su resultado es positivo, puede elegir si desea compartirlo de forma anonima.",
+    "launch_screen3_subheader_bluetooth": "Su teléfono no compartirá información personal con otros usuarios de PathCheck a menos que usted elija informar anónimamente un diagnóstico positivo.",
+    "launch_screen3_subheader_location": "Lo cual ayuda a mantener segura a toda su comunidad.",
+    "launch_screen4_header_bluetooth": "Reciba notificaciones si se ha encontrado con el propietario de un teléfono que fue diagnosticado con COVID-19 y eligio compartir anónimamente su estado de salud.",
+    "launch_screen4_header_location": "Usted tiene el control total. Sus datos sólo se guardan en su teléfono.",
+    "launch_screen4_subheader_bluetooth": "En este caso, busque información de su Autoridad Local de Salud sobre qué hacer a continuación.",
+    "launch_screen4_subheader_location": "Si su resultado es positivo, solo usted puede elegir si desea compartirlo.",
+    "launch_set_up_phone_bluetooth": "Hecho",
+    "launch_set_up_phone_location": "Configurar mi teléfono",
+    "launch_subheader": "No se preocupe, la información nunca sale de su dispositivo a menos que decida explícitamente compartirla.",
+    "legal_page_address": "PathCheck \n 58 Day Street \n Box 441621 \n Somerville, MA 02144",
+    "legal_page_header_bluetooth": "PathCheck Bluetooth",
+    "legal_page_header_location": "PathCheck GPS",
+    "logging_active_bluetooth": "Notificaciones de exposición activa",
+    "logging_active_location": "Ubicación activa",
+    "logging_inactive_bluetooth": "Notificaciones de exposición inactiva",
+    "logging_inactive_location": "Ubicación inactiva"
+  }
+}

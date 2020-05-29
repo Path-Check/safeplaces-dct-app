@@ -13,7 +13,7 @@ class Onboarding3 {
   async isOnScreen(languageStrings) {
     // eslint-disable-next-line jest/no-standalone-expect
     await expect(
-      element(by.label(languageStrings.label.launch_screen3_header)),
+      element(by.label(languageStrings.label.launch_screen3_header_location)),
     ).toBeVisible();
   }
 }
