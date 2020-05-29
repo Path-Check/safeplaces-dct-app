@@ -28,7 +28,7 @@ require_bin sponge moreutils
 # e.g. 1.0.65 -> 1.0.65.1589941056.235517
 cat package.json | grep version
 
-SHA=$(git rev-parse --short HEAD)
+SHA=$(git rev-parse --short $GITHUB_SHA)
 
 jq --arg SHA "$SHA" '.version=(.version) + "-" + $SHA' package.json | sponge package.json
 
