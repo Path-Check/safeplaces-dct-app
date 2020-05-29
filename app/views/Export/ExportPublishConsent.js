@@ -35,7 +35,6 @@ export const ExportPublishConsent = ({ navigation, route }) => {
       }
     } catch (e) {
       Alert.alert('Something went wrong');
-      console.log(e);
       setIsConsenting(false);
     }
   };
