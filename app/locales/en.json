@@ -13,11 +13,14 @@
   "common": {
     "done": "Done",
     "ok": "Ok",
-    "start": "Start"
+    "start": "Start",
+    "next": "Next"
   },
   "export": {
     "start_title": "Share your location history anonymously with your community if you have tested positive for COVID-19.",
-    "start_body": "The representative from your Healthcare Authority will walk you through this process during your interview."
+    "start_body": "The representative from your Healthcare Authority will walk you through this process during your interview.",
+    "select_ha_title": "Select your Healthcare Authority",
+    "select_ha_subtitle": ""
   },
   "history": {
     "no_exposure": "No known",

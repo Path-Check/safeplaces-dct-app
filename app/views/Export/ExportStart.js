@@ -8,7 +8,6 @@ export const ExportStart = ({ navigation }) => {
 
   const onNext = () => navigation.navigate('ExportSelectHA');
   const onClose = () => navigation.navigate('SettingsScreen');
-  // TODO: use localized text
   return (
     <ExportTemplate
       onClose={onClose}

@@ -1,6 +1,5 @@
-// TODO: REMOVE
-/* eslint-disable react-native/no-raw-text */
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   StatusBar,
@@ -30,6 +29,8 @@ const getParsedAuthorities = async () => {
 };
 
 export const ExportSelectHA = ({ navigation }) => {
+  const { t } = useTranslation();
+
   const [authorities, setAuthorities] = useState(null);
   const [selectedAuthority, setSelectedAuthority] = useState(null);
   useEffect(() => {
@@ -67,7 +68,7 @@ export const ExportSelectHA = ({ navigation }) => {
               />
             </View>
             <Typography use='headline2' style={styles.exportSectionTitles}>
-              Select your Healthcare Authority
+              {t('export.select_ha_title')}
             </Typography>
           </View>
           <Separator />
@@ -112,7 +113,7 @@ export const ExportSelectHA = ({ navigation }) => {
             <View style={{ paddingHorizontal: 24 }}>
               <Button
                 style={styles.exportButton}
-                label={'Next'}
+                label={t('common.next')}
                 onPress={() =>
                   navigation.navigate('ExportCodeInput', { selectedAuthority })
                 }
