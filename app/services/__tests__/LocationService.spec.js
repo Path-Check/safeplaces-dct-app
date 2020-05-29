@@ -9,7 +9,6 @@ import {
 import LocationServices, {
   MIN_LOCATION_UPDATE_MS,
   Reason,
-  getLocationData,
 } from '../LocationService';
 
 jest.mock('@mauron85/react-native-background-geolocation');
