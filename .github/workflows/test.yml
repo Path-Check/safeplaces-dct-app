@@ -141,20 +141,6 @@ jobs:
           name: HTML Report
           path: ios/fastlane/test_output/report.html
 
-      - name: Unzip build products
-        if: always()
-        run: |
-          pwd
-          unzip -qq ./fastlane/test_output/build_products.zip
-        working-directory: ./ios
-
-      - name: Upload .app file
-        if: always()
-        uses: actions/upload-artifact@v1
-        with:
-          name: Appfile
-          path: ios/fastlane/test_output/Staging-iphonesimulator/PathCheckGPS.app
-
   e2e-iphone-se:
     runs-on: macOS-latest
     needs: unit-test-ios
@@ -195,7 +181,12 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: e2e-ios-bin
-          path: ios/fastlane/test_output/Staging-iphonesimulator/PathCheckGPS.app
+          path: ios/fastlane/test_output/
+
+      - name: Unzip build products
+        if: always()
+        run: unzip ./e2e-ios-bin.zip && ls
+        working-directory: ./ios/fastlane/test_output/
 
       - run: yarn test:e2e:iphone-se
 
