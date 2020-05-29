@@ -161,7 +161,7 @@ open class RealmSecureStorage(inMemory: Boolean?) {
                 newLocation.time - MAX_BACKFILL_TIME, previous.time + LOCATION_INTERVAL
             )
             for (time in latestDesiredBackfill downTo earliestDesiredBackfill step LOCATION_INTERVAL) {
-              assumedLocationsToInsert.add(createAssumedLocation(time, previous.latitude, previous.longitude))
+              assumedLocationsToInsert.add(createAssumedLocation(time, previous.latitude, previous.longitude, previous.accuracy, previous.provider))
             }
           }}
     return assumedLocationsToInsert
