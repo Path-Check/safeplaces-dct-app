@@ -8,10 +8,6 @@ on:
     paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
-  # TODO remove after testing
-  pull_request:
-    branches:
-      - develop
 
 jobs:
   version_bump:
