@@ -1,8 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import ExportTemplate from './ExportTemplate';
 
 export const ExportStart = ({ navigation }) => {
+  const { t } = useTranslation();
+
   const onNext = () => navigation.navigate('ExportSelectHA');
   const onClose = () => navigation.navigate('SettingsScreen');
   // TODO: use localized text
@@ -10,13 +13,9 @@ export const ExportStart = ({ navigation }) => {
     <ExportTemplate
       onClose={onClose}
       onNext={onNext}
-      headline={
-        'Share your location history anonymously with your community if you have tested positive for COVID-19.'
-      }
-      body={
-        'The representative from your Healthcare Authority will walk you through this process during your interview.'
-      }
-      nextButtonLabel={'Start'}
+      headline={t('export.start_title')}
+      body={t('export.start_body')}
+      nextButtonLabel={t('common.start')}
     />
   );
 };
