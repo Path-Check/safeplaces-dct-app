@@ -30,7 +30,11 @@ cat package.json | grep version
 
 # PRs create a merge commit into develop, so we cannot use $GITHUB_SHA
 # instead we need ${{ github.head_ref }} which is the pure head ref
-SHA=$(git rev-parse --short $HEAD_REF_SHA)
+echo "GITHUB_REF: $GITHUB_REF"
+echo "GITHUB_REF: $GITHUB_REF"
+echo "HEAD_REF_SHA: $HEAD_REF_SHA"
+SHA=$(git rev-parse --short $GITHUB_REF)
+echo "SHA: $SHA"
 
 jq --arg SHA "$SHA" '.version=(.version) + "-" + $SHA' package.json | sponge package.json
 
