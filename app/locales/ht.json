@@ -28,7 +28,7 @@
     "button_text": "Voye lokalizasyon ki pase yo",
     "error": "Yon bagay mal mache pandan done ou yo ap enpòte.",
     "google": {
-      "already_imported": "Fichye Takeout la te enpòte deja. ",
+      "already_imported": "Fichye Takeout la te enpòte deja.",
       "disclaimer": "Chase Kowona (\"Safe Paths\") pa gen okenn afilyasyon ak Google epi li pa janm pataje done ou yo.",
       "file_open_error": "Fichye a pa te kapab louvri. \nTanpri, asire ou ke fichye a louvri nan Google drive",
       "instructions_detailed": "Vizite Google Takeout epi ekspòte list lokalizasyon pa mwayen sa yo: \n 1. Metòd livrezon: \"Ajoute nan Drive\" \n 2. Frekans: \"Ekspòte yon fwa\" \n 3. Tip fichye & gwosè: \".zip\" ak \"1GB\" \n 4. Google ap voye yon imèl lè ekspòtasyon an pare \n 5. Retounen isit la pou enpòte lokalizasyon apati Google Drive",
@@ -93,7 +93,7 @@
     "home_unknown_subtext_location": "Nou pa ka di si ou nan risk sof si ou pèmèt app la gen aksè a lokalizasyon ou.",
     "import_success": "Enpòte avèk siksè",
     "latest_news": "Dènye nouvèl",
-    "launch_access_bluetooth": "Pèmèt trase kontak ",
+    "launch_access_bluetooth": "Pèmèt trase kontak",
     "launch_access_location": "Gen aksè a lokalizasyon",
     "launch_authority_access": "Abonman a otorite sante ki tou pre",
     "launch_authority_header": "Otorite Swen Sante yo pral bay aparèy ou an done lokal yo pou konnen si ou te kwaze chemen avèk yon moun ki enfekte",
@@ -157,7 +157,7 @@
   "onboarding": {
     "eula_checkbox": "Mwen aksepte akò lisans la",
     "eula_continue": "Kontinye",
-    "eula_message": "* Ou dwe aksepte pou itilize Safe Paths 'Chase Kowona"
+    "eula_message": "*Ou dwe aksepte pou itilize Safe Paths 'Chase Kowona"
   },
   "share": {
     "button_text": "Pataje done lokalizasyon",

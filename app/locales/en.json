@@ -46,7 +46,7 @@
   "label": {
     "about_header_bluetooth": "PathCheck BT",
     "about_header_location": "PathCheck GPS",
-    "about_para": "PathCheck is a global movement to develop free, open-source, privacy-by-design tools for residents, public health officials, and larger communities to flatten the curve of COVID-19, reduce fear, and prevent a surveillance-state response to the pandemic. \n\nFor more information, visit ",
+    "about_para": "PathCheck is a global movement to develop free, open-source, privacy-by-design tools for residents, public health officials, and larger communities to flatten the curve of COVID-19, reduce fear, and prevent a surveillance-state response to the pandemic. \n\nFor more information, visit",
     "about_title": "About",
     "authorities_add_button_label": "Add Healthcare Authority",
     "authorities_add_url": "Add authority via URL",
@@ -115,7 +115,7 @@
     "launch_screen1_header": "The way back to normal starts here.",
     "launch_screen2_header_bluetooth": "Your phone remembers other devices it meets but won't identify you to other people.",
     "launch_screen2_header_location": "Get notified if you cross paths with someone later diagnosed for COVID-19.",
-    "launch_screen2_subheader_bluetooth": "Nearby phones use Bluetooth to share and save random number strings to recall devices nearby.\n\nIf a person reports a positive diagnosis, their phone's recent random IDs are flagged to anonymously notify others. No locations or personal info is shared",
+    "launch_screen2_subheader_bluetooth": "Nearby phones use Bluetooth to share and save random number strings to recall devices nearby.\n\nIf a person reports a positive diagnosis, their phone's recent random IDs are flagged to anonymously notify others. No locations or personal info is shared.",
     "launch_screen2_subheader_location": "Knowledge is power.",
     "launch_screen3_header_bluetooth": "Receive notifications when someone you encountered later chooses to report a positive diagnosis.",
     "launch_screen3_header_location": "If you test positive, you can choose to donate your data anonymously",
