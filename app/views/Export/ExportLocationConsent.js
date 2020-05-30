@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Icons } from '../../assets';
+import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
 
 // NOTE:
@@ -14,7 +15,8 @@ export const ExportLocationConsent = ({ navigation, route }) => {
 
   const onNext = () =>
     navigation.navigate('ExportPublishConsent', { selectedAuthority, code });
-  const onClose = () => navigation.navigate('SettingsScreen');
+
+  const onClose = () => exitWarningAlert(navigation);
 
   return (
     <ExportTemplate

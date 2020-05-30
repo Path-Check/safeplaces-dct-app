@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Alert, NativeModules } from 'react-native';
 
 import { Icons } from '../../assets';
+import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
 
 const MOCK_ENDPOINT =
@@ -11,7 +12,7 @@ const MOCK_ENDPOINT =
 export const ExportComplete = ({ navigation, route }) => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
-  const onClose = () => navigation.navigate('SettingsScreen');
+  const onClose = () => exitWarningAlert(navigation);
 
   const { selectedAuthority, code } = route.params;
 
