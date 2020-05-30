@@ -58,24 +58,22 @@ export const ExportTemplate = ({
         translucent={false}
       />
       <BackgroundContainer lightTheme={lightTheme}>
-        <SafeAreaView style={{ flex: 1, paddingBottom: 44 }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              padding: 12,
-            }}>
+        <SafeAreaView style={{ flex: 1, paddingBottom: 24 }}>
+          <View style={styles.header}>
             <IconButton icon={Icons.Close} size={22} onPress={onClose} />
           </View>
-
           <ScrollView
             alwaysBounceVertical={false}
-            style={{ flex: 1 }}
+            style={{ flexGrow: 1 }}
             contentContainerStyle={{
+              // Opt for center alignment without icons,
+              // top alignment with icon.
               justifyContent: icon ? undefined : 'center',
               flexGrow: 1,
-              paddingVertical: 24,
+              paddingBottom: 24,
             }}>
+            {/* Add top padding if we can afford it */}
+            {<View style={{ maxHeight: 20, flexGrow: 1 }} />}
             {icon && (
               <View style={styles.iconContainerCircle}>
                 <SvgXml xml={icon} width={30} height={30} />
@@ -91,6 +89,7 @@ export const ExportTemplate = ({
 
           {/* TODO: <Button/> needs an actual loading state. */}
           <Button
+            style={{ marginTop: 10 }}
             label={nextButtonLabel}
             onPress={onNext}
             disabled={buttonLoading}
@@ -100,6 +99,9 @@ export const ExportTemplate = ({
               {buttonSubtitle}
             </Typography>
           )}
+          {/* Add extra padding on the bottom if available for phone. 
+           Interlays with the flexGrow on the scroll view to ensure that scrolling content has priority. */}
+          <View style={{ maxHeight: 20, flexGrow: 1 }} />
         </SafeAreaView>
       </BackgroundContainer>
     </Theme>
@@ -107,6 +109,11 @@ export const ExportTemplate = ({
 };
 
 const styles = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    padding: 12,
+  },
   iconContainerCircle: {
     width: 70,
     height: 70,
@@ -121,7 +128,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.primaryMedium,
   },
   container: {
-    backgroundColor: '#F8F8FF',
+    backgroundColor: Colors.INTRO_WHITE_BG,
     flex: 1,
     paddingHorizontal: 24,
   },

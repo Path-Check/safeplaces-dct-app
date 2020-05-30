@@ -51,7 +51,11 @@ const screenOptions = {
 const ExportStack = () => (
   <Stack.Navigator
     mode='modal'
-    screenOptions={{ ...screenOptions, cardStyleInterpolator: fade }}>
+    screenOptions={{
+      ...screenOptions,
+      cardStyleInterpolator: fade,
+      gestureEnabled: false,
+    }}>
     <Stack.Screen name='ExportStart' component={ExportStart} />
     <Stack.Screen name='ExportSelectHA' component={ExportSelectHA} />
     <Stack.Screen name='ExportCodeInput' component={ExportCodeInput} />

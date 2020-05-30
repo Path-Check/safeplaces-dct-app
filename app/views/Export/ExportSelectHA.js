@@ -52,7 +52,7 @@ export const ExportSelectHA = ({ navigation }) => {
         backgroundColor={Colors.VIOLET_BUTTON}
         translucent={false}
       />
-      <View style={{ flex: 1, backgroundColor: '#F8F8FF' }}>
+      <View style={styles.wrapper}>
         <SafeAreaView style={{ flex: 1, paddingBottom: 0 }}>
           <View style={{ paddingHorizontal: 24, paddingBottom: 20 }}>
             <View
@@ -87,12 +87,15 @@ export const ExportSelectHA = ({ navigation }) => {
                     justifyContent: 'space-between',
                     flexDirection: 'row',
                   }}>
-                  <Typography style={{ fontWeight: '500' }} use='body1'>
+                  <Typography
+                    style={{ fontWeight: '500', paddingRight: 30 }}
+                    use='body1'>
                     {HA.name}
                   </Typography>
-                  {selectedAuthority === HA && (
+                  {/* Preserve icon positioning to prevent adding wrapping  */}
+                  <View style={{ opacity: selectedAuthority === HA ? 1 : 0 }}>
                     <SvgXml xml={Icons.Checkmark} width={24} height={24} />
-                  )}
+                  </View>
                 </View>
               </TouchableHighlight>
             )}
@@ -130,7 +133,7 @@ export const ExportSelectHA = ({ navigation }) => {
 const Separator = () => (
   <View
     style={{
-      backgroundColor: '#E5E7FA',
+      backgroundColor: Colors.DIVIDER,
       height: StyleSheet.hairlineWidth,
       width: '100%',
     }}
@@ -138,9 +141,10 @@ const Separator = () => (
 );
 
 const styles = StyleSheet.create({
+  wrapper: { flex: 1, backgroundColor: Colors.INTRO_WHITE_BG },
   exportSectionTitles: {
     fontWeight: '500',
-    color: '#1F2C9B',
+    color: Colors.VIOLET_TEXT_DARK,
     fontFamily: fontFamily.primaryMedium,
   },
   card: {

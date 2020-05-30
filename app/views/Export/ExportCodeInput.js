@@ -79,7 +79,7 @@ const CodeInput = ({ code, length, setCode }) => {
           focus(newIndex);
         }
       }
-      // clear current (used for last digitf)
+      // clear current (used for last digit)
       else {
         setCode(code.slice(0, currentIndex));
       }
@@ -93,17 +93,14 @@ const CodeInput = ({ code, length, setCode }) => {
           ref={ref => (digitRefs.current[i] = ref)}
           key={`${i}CodeDigit`}
           value={digit}
-          style={{
-            fontSize: 20,
-            color: '#1F2C9B',
-            textAlign: 'center',
-            flexGrow: 1,
-            aspectRatio: 1,
-            borderWidth: 2,
-            borderColor: digit ? Colors.VIOLET_BUTTON : '#E5E7FA',
-            borderRadius: 10,
-            marginRight: 6,
-          }}
+          style={[
+            styles.digitInput,
+            {
+              borderColor: digit
+                ? Colors.VIOLET_BUTTON
+                : Colors.VIOLET_BUTTON_LIGHT,
+            },
+          ]}
           keyboardType={'number-pad'}
           returnKeyType={'done'}
           onChangeText={onChangeDigit}
@@ -141,8 +138,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
       }
       setIsCheckingCode(false);
     } catch (e) {
-      Alert.alert('Something went wrong');
-      console.log(e);
+      Alert.alert(t('common.something_went_wrong'));
       setIsCheckingCode(false);
     }
   };
@@ -154,18 +150,9 @@ export const ExportSelectHA = ({ route, navigation }) => {
         backgroundColor={Colors.VIOLET_BUTTON}
         translucent={false}
       />
-      <SafeAreaView
-        style={{ flex: 1, paddingBottom: 44, backgroundColor: '#F8F8FF' }}>
-        <KeyboardAvoidingView
-          behavior={'padding'}
-          style={{ paddingHorizontal: 24, paddingBottom: 20, flex: 1 }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              padding: 12,
-              paddingLeft: 0,
-            }}>
+      <SafeAreaView style={styles.wrapper}>
+        <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
+          <View style={styles.headerIcons}>
             <IconButton
               icon={Icons.BackArrow}
               size={27}
@@ -177,7 +164,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
               onPress={() => navigation.navigate('SettingsScreen')}
             />
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, marginBottom: 20 }}>
             <Typography use='headline2' style={styles.exportSectionTitles}>
               {t('export.code_input_title')}
             </Typography>
@@ -185,21 +172,17 @@ export const ExportSelectHA = ({ route, navigation }) => {
             <Typography use='body1'>
               {t('export.code_input_body', { name: selectedAuthority.name })}
             </Typography>
-            <View style={{ height: 60 }} />
-            <View style={{ flex: 1 }}>
+            {/* These flex grows allow for a lot of flexibility across device sizes */}
+            <View style={{ maxHeight: 60, flexGrow: 1 }} />
+            <View style={{ flexGrow: 1 }}>
               <CodeInput code={code} length={CODE_LENGTH} setCode={setCode} />
-
               {codeInvalid && (
-                <Typography
-                  style={{ marginTop: 8, color: Colors.RED_TEXT }}
-                  use='body2'>
+                <Typography style={styles.errorSubtitle} use='body2'>
                   {t('export.code_input_error')}
                 </Typography>
               )}
             </View>
-
             <Button
-              style={{ marginBottom: 20 }}
               disabled={code.length < CODE_LENGTH || isCheckingCode}
               label={t('common.next')}
               onPress={validateCode}
@@ -212,8 +195,38 @@ export const ExportSelectHA = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  errorSubtitle: {
+    marginTop: 8,
+    color: Colors.RED_TEXT,
+  },
+  headerIcons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 12,
+    paddingLeft: 0,
+  },
+  wrapper: {
+    flex: 1,
+    paddingBottom: 44,
+    backgroundColor: Colors.INTRO_WHITE_BG,
+  },
+  container: {
+    paddingHorizontal: 24,
+    paddingBottom: 20,
+    flex: 1,
+  },
+  digitInput: {
+    fontSize: 20,
+    color: Colors.VIOLET_TEXT_DARK,
+    textAlign: 'center',
+    flexGrow: 1,
+    aspectRatio: 1,
+    borderWidth: 2,
+    borderRadius: 10,
+    marginRight: 6,
+  },
   exportSectionTitles: {
-    color: '#1F2C9B',
+    color: Colors.VIOLET_TEXT_DARK,
     fontWeight: '500',
     fontFamily: fontFamily.primaryMedium,
   },
