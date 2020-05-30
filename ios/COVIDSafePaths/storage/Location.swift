@@ -15,6 +15,7 @@ class Location: Object {
   static let KEY_LATITUDE = "latitude"
   static let KEY_LONGITUDE = "longitude"
   static let KEY_SOURCE = "source"
+  static let KEY_HASHES = "hashes"
   
   static let SOURCE_DEVICE = 0
   static let SOURCE_MIGRATION = 1
@@ -27,6 +28,7 @@ class Location: Object {
   dynamic var longitude: Double = 0
   dynamic var source: Int = -1
   dynamic var provider: String?
+  var hashes = List<String>()
   let altitude = RealmOptional<Double>()
   let speed = RealmOptional<Float>()
   let accuracy = RealmOptional<Float>()
@@ -41,7 +43,8 @@ class Location: Object {
     return [
       Location.KEY_TIME: time * 1000,
       Location.KEY_LATITUDE: latitude,
-      Location.KEY_LONGITUDE: longitude
+      Location.KEY_LONGITUDE: longitude,
+      Location.KEY_HASHES: Array(hashes)
     ]
   }
   
@@ -56,6 +59,7 @@ class Location: Object {
     location.altitudeAccuracy.value = backgroundLocation.altitudeAccuracy?.floatValue
     location.bearing.value = backgroundLocation.heading?.floatValue
     location.source = SOURCE_DEVICE
+    location.hashes.append(objectsIn: backgroundLocation.scryptHashes)
     return location;
   }
   

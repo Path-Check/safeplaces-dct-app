@@ -7,32 +7,25 @@ import {
   View,
 } from 'react-native';
 
-import { Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { ONBOARDING_DONE } from '../../constants/storage';
-import { config } from '../../COVIDSafePathsConfig';
 import { SetStoreData } from '../../helpers/General';
-import languages from '../../locales/languages';
 import { sharedStyles } from './styles';
+import { useAssets } from '../../TracingStrategyAssets';
 
 const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
-  const isGPS = config.tracingStrategy === 'gps';
-  const backgroundImage = isGPS ? Images.LaunchScreen1 : Images.LaunchScreen1BT;
-  const headerText = isGPS
-    ? languages.t('label.launch_screen4_header_location')
-    : languages.t('label.launch_screen4_header_bluetooth');
-  const subheaderText = isGPS
-    ? languages.t('label.launch_screen4_subheader_location')
-    : languages.t('label.launch_screen4_subheader_bluetooth');
-  const buttonText = isGPS
-    ? languages.t('label.launch_set_up_phone_location')
-    : languages.t('label.launch_set_up_phone_bluetooth');
-  const navDestination = isGPS ? 'Onboarding5' : 'Main';
+  const {
+    onboarding4Background,
+    onboarding4Button,
+    onboarding4Header,
+    onboarding4NavDestination,
+    onboarding4Subheader,
+  } = useAssets();
 
   return (
     <View style={styles.mainContainer}>
@@ -42,22 +35,22 @@ const Onboarding = props => {
         translucent
       />
       <ImageBackground
-        source={backgroundImage}
+        source={onboarding4Background}
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
         <Typography style={styles.headerText} use={Type.Headline2}>
-          {headerText}
+          {onboarding4Header}
         </Typography>
-        <Typography style={styles.subheaderText}>{subheaderText}</Typography>
+        <Typography style={styles.subheaderText}>{onboarding4Subheader}</Typography>
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>
         <Button
-          label={buttonText}
+          label={onboarding4Button}
           onPress={() => {
             SetStoreData(ONBOARDING_DONE, true);
-            props.navigation.replace(navDestination);
+            props.navigation.replace(onboarding4NavDestination);
           }}
         />
       </View>

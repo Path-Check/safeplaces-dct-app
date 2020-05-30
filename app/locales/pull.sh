@@ -37,14 +37,25 @@ lokalise2 file download \
   --export-sort=a_z \
   --config .lokalise.yml --token=$LOKALISE_TOKEN
 
-echo "Downloading Android strings.xml"
+echo "Downloading Android GPS strings.xml"
 lokalise2 file download \
   --add-newline-eof \
   --export-empty-as skip \
   --format xml \
   --include-description \
   --original-filenames \
-  --unzip-to=android/app/src/main/res \
+  --unzip-to=android/app/src/gps/res \
+  --export-sort=a_z \
+  --config .lokalise.yml --token=$LOKALISE_TOKEN
+
+echo "Downloading Android BTE strings.xml"
+lokalise2 file download \
+  --add-newline-eof \
+  --export-empty-as skip \
+  --format xml \
+  --include-description \
+  --original-filenames \
+  --unzip-to=android/app/src/bte/res \
   --export-sort=a_z \
   --config .lokalise.yml --token=$LOKALISE_TOKEN
 
