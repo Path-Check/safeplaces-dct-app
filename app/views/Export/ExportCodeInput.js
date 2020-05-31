@@ -1,3 +1,4 @@
+import { useTheme } from 'emotion-theming';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -24,17 +25,18 @@ const MOCK_ENDPOINT =
 
 const CodeInput = ({ code, length, setCode }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const theme = useTheme();
 
-  let digits = [];
-  for (let i = 0; i < length; i++) digits.push(code[i]);
+  let characters = [];
+  for (let i = 0; i < length; i++) characters.push(code[i]);
 
-  const digitRefs = useRef([]);
+  const characterRefs = useRef([]);
   useEffect(() => {
-    digitRefs.current = digitRefs.current.slice(0, length);
+    characterRefs.current = characterRefs.current.slice(0, length);
   }, [length]);
 
   const focus = i => {
-    digitRefs.current[i].focus();
+    characterRefs.current[i].focus();
   };
 
   // Focus on mount
@@ -49,14 +51,14 @@ const CodeInput = ({ code, length, setCode }) => {
       // prohibit skipping forward
       focus(currentIndex);
     } else {
-      // restart at clicked digit
+      // restart at clicked character
       setCurrentIndex(i);
       setCode(code.slice(0, i));
     }
   };
 
-  // Adding digits
-  const onChangeDigit = d => {
+  // Adding characters
+  const onChangeCharacter = d => {
     if (d.length) {
       setCode(code.slice(0, currentIndex) + d);
       const nextIndex = currentIndex + 1;
@@ -67,7 +69,7 @@ const CodeInput = ({ code, length, setCode }) => {
     }
   };
 
-  // Removing digits
+  // Removing characters
   const onKeyPress = e => {
     if (e.nativeEvent.key === 'Backspace') {
       // go to previous
@@ -79,7 +81,7 @@ const CodeInput = ({ code, length, setCode }) => {
           focus(newIndex);
         }
       }
-      // clear current (used for last digit)
+      // clear current (used for last character)
       else {
         setCode(code.slice(0, currentIndex));
       }
@@ -88,22 +90,20 @@ const CodeInput = ({ code, length, setCode }) => {
 
   return (
     <View style={{ flexDirection: 'row', flexShrink: 1 }}>
-      {[...digits].map((digit, i) => (
+      {[...characters].map((character, i) => (
         <TextInput
-          ref={ref => (digitRefs.current[i] = ref)}
-          key={`${i}CodeDigit`}
-          value={digit}
+          ref={ref => (characterRefs.current[i] = ref)}
+          key={`${i}CodeCharacter`}
+          value={character}
           style={[
-            styles.digitInput,
+            styles.characterInput,
             {
-              borderColor: digit
-                ? Colors.VIOLET_BUTTON
-                : Colors.VIOLET_BUTTON_LIGHT,
+              borderColor: character ? theme.primary : theme.disabledLight,
             },
           ]}
           keyboardType={'number-pad'}
           returnKeyType={'done'}
-          onChangeText={onChangeDigit}
+          onChangeText={onChangeCharacter}
           onKeyPress={onKeyPress}
           blurOnSubmit={false}
           onFocus={() => onFocus(i)}
@@ -147,7 +147,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
     <Theme use='default'>
       <StatusBar
         barStyle='dark-content'
-        backgroundColor={Colors.VIOLET_BUTTON}
+        backgroundColor={Colors.INTRO_WHITE_BG}
         translucent={false}
       />
       <SafeAreaView style={styles.wrapper}>
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     flex: 1,
   },
-  digitInput: {
+  characterInput: {
     fontSize: 20,
     color: Colors.VIOLET_TEXT_DARK,
     textAlign: 'center',

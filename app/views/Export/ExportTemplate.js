@@ -15,7 +15,16 @@ import { Theme } from '../../constants/themes';
 
 const BackgroundContainer = ({ lightTheme, children }) => {
   if (lightTheme) {
-    return <View style={styles.container}>{children}</View>;
+    return (
+      <View style={styles.container}>
+        <StatusBar
+          barStyle={'dark-content'}
+          backgroundColor={Colors.INTRO_WHITE_BG}
+          translucent={false}
+        />
+        {children}
+      </View>
+    );
   }
   return (
     <LinearGradient
@@ -23,6 +32,11 @@ const BackgroundContainer = ({ lightTheme, children }) => {
       end={{ x: 0, y: 1 }}
       colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
       style={styles.container}>
+      <StatusBar
+        barStyle={'light-content'}
+        backgroundColor={Colors.VIOLET_BUTTON}
+        translucent={false}
+      />
       {children}
     </LinearGradient>
   );
@@ -52,11 +66,6 @@ export const ExportTemplate = ({
 
   return (
     <Theme use={lightTheme ? 'default' : 'violet'}>
-      <StatusBar
-        barStyle={lightTheme ? 'dark-content' : 'light-content'}
-        backgroundColor={Colors.VIOLET_BUTTON}
-        translucent={false}
-      />
       <BackgroundContainer lightTheme={lightTheme}>
         <SafeAreaView style={{ flex: 1, paddingBottom: 24 }}>
           <View style={styles.header}>

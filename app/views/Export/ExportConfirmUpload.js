@@ -20,9 +20,7 @@ export const ExportComplete = ({ navigation, route }) => {
     setIsUploading(true);
     try {
       const concernPoints = await NativeModules.SecureStorageManager.getLocations();
-      console.log({ concernPoints });
-
-      const res = await fetch(`${MOCK_ENDPOINT}`, {
+      const res = await fetch(MOCK_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

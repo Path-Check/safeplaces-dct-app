@@ -49,7 +49,7 @@ export const ExportSelectHA = ({ navigation }) => {
     <Theme use='default'>
       <StatusBar
         barStyle='dark-content'
-        backgroundColor={Colors.VIOLET_BUTTON}
+        backgroundColor={Colors.INTRO_WHITE_BG}
         translucent={false}
       />
       <View style={styles.wrapper}>
