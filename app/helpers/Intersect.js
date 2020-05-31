@@ -1,7 +1,8 @@
 /**
  * Intersect a set of points against the user's locally stored points.
  *
- * v1 - Unencrypted, simpleminded (minimal optimization).
+ * MVP1 implementation
+ *  - hashed data points and thresholds
  */
 
 import dayjs from 'dayjs';
@@ -30,6 +31,127 @@ import {
   SetStoreData,
 } from '../helpers/General';
 import languages from '../locales/languages';
+import { LocationData } from '../services/LocationService';
+
+/**
+ * Updates the `hasMatch` flag of recorded GPS data points that are in the HA's list of concern points.
+ * This method does not calculate the exposure durations, as that can be done only after all of the HA data chunks have been analyzed
+ *
+ * @param {array} localGPSDataPoints - array of recorded GPS data points.
+ * @param {array} concernPointHashes - set of hashed concern points issued by health authorities
+ */
+function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
+  // iterate over recorded GPS data points
+  for (const dataPoint of localGPSDataPoints) {
+    // check if any of hashes in this GPS data point is contained in the HA's list of concern points
+    const hasCrossedPaths = dataPoint.hashes.some(h =>
+      concernPointHashes.has(h),
+    );
+    if (hasCrossedPaths) {
+      // paths crossed, set match flag
+      dataPoint.hasMatch = true;
+    }
+  }
+}
+
+/**
+ * Calculates the exposure durations for each day
+ *
+ * @param {array} localGPSDataPoints - array of recorded GPS data points.
+ * @param {int} numDayBins - (optional) number of bins in the array returned
+ * @param {int} concernTimeWindowMS - (optional) window of time to use when determining an exposure
+ * @param {int} defaultExposurePeriodMS - (optional) the default exposure period to use when necessary when an exposure is found
+ */
+function reduceToDayBins(
+  localGPSDataPoints,
+  percentOfMatchesInTimeframe,
+  concernTimeframe = CONCERN_TIME_WINDOW_MINUTES,
+  numDayBins = MAX_EXPOSURE_WINDOW_DAYS,
+  gpsPeriod = LocationData.locationInterval,
+) {
+  // useful for time calcs
+  dayjs.extend(duration);
+
+  // first step is to fill the gaps in local data
+  const filledLocalData = localGPSDataPoints.reduce((acc, dp, index) => {
+    acc.push(dp);
+
+    if (index === localGPSDataPoints.length - 1) return;
+    // gap size is the amount of additional gps sampling periods
+    // that can fit in the interval between two local data points
+    const interval = localGPSDataPoints[index + 1].time.diff(dp.time);
+    const gapSize = Math.round(interval / gpsPeriod) - 1;
+    if (gapSize > 0) {
+      // generate missing data points with correct times
+      acc.push(...fillLocationGap(dp.time, gapSize, gpsPeriod));
+    }
+  }, []);
+
+  // number of data points that fit in the timeframe
+  const pointsInFrame = Math.round((concernTimeframe * 60e3) / gpsPeriod);
+  // minimal match count in timeframe for it to be considered as an exposure period
+  const thresholdMatches = Math.round(
+    pointsInFrame * percentOfMatchesInTimeframe,
+  );
+
+  // for each element, calculate the number of matches that occured up until that element
+  let matchCount = 0;
+  const prevMatchCounts = filledLocalData
+    .map(p => (p.hasMatch ? matchCount++ : matchCount)) // make an array of matches up until that data point
+    .push(matchCount); // as the name states, prevMatchCounts[index] is the number of matches
+  // in previous index elements, so we add one more that tells us the total num of matches
+
+  // array of exposures, each exposure is an object of shape
+  // { start (inclusive) , end (non-inclusive) }.
+  const exposures = [];
+  let currExposure = null;
+  // slide the timeframe over recorded data points
+  for (
+    let i = 0, j = i + pointsInFrame;
+    j <= filledLocalData.length;
+    i++, j++
+  ) {
+    // if the current exposure ended and the frame advanced, clear old exposure
+    if (currExposure && currExposure.end < j) {
+      currExposure = null;
+    }
+
+    // skip if curr data point doesn't have a match
+    // or the match count in this frame is smaller than the threshold
+    if (
+      filledLocalData[i].hasMatch &&
+      prevMatchCounts[j] - prevMatchCounts[i] >= thresholdMatches
+    ) {
+      if (currExposure) {
+        // if there is an active exposure, extend it
+        currExposure.end = j;
+      } else {
+        // if there isn't - create it and add it to the list
+        currExposure = { start: i, end: j };
+        exposures.push(currExposure);
+      }
+    }
+  }
+
+  // generate an array with the asked number of day bins
+  const dayBins = getEmptyLocationBins(numDayBins);
+
+  // iterate over the exposures array and update the day bins
+  for (let exposure of exposures) {
+    const startTime = filledLocalData[exposure.start].time;
+    const duration =
+      (exposure.end - exposure.start) * DEFAULT_EXPOSURE_PERIOD_MINUTES;
+
+    const daysAgo = dayjs().diff(startTime, 'day');
+
+    // TODO: split duration if it spans across multiple days?
+
+    if (dayBins[daysAgo] < 0) dayBins[daysAgo] = 0;
+    dayBins[daysAgo] += duration;
+  }
+
+  return dayBins;
+}
 
 /**
  * Intersects the locationArray with the concernLocationArray, returning the results
@@ -309,8 +431,11 @@ async function asyncCheckIntersect() {
   )
     return null;
 
-  // Set up the empty set of dayBins for intersections, and the array for the news urls
-  let dayBins = getEmptyLocationBins();
+  // Fetch previous dayBins for intersections
+  const dayBins = await GetStoreData(CROSSED_PATHS);
+
+  // Init the arrays for new intersection data and for the news urls
+  let tempDayBins = [];
   let name_news = [];
 
   // get the saved set of locations for the user, already sorted
@@ -334,18 +459,23 @@ async function asyncCheckIntersect() {
         });
 
         // intersect the users location with the locations from the authority
-        let tempDayBin = intersectSetIntoBins(
+        updateMatchFlags(
           locationArray,
-          normalizeAndSortLocations(responseJson.concern_points),
+          new Set(responseJson.concern_point_hashes),
+        );
+        let tempDayBins = reduceToDayBins(
+          locationArray,
+          responseJson.notification_threshold_percent,
+          responseJson.notification_threshold_timeframe,
         );
 
         // Update each day's bin with the result from the intersection.  To keep the
         //  difference between no data (==-1) and exposure data (>=0), there
         //  are a total of 3 cases to consider.
-        dayBins = dayBins.map((currentValue, i) => {
-          if (currentValue < 0) return tempDayBin[i];
-          if (tempDayBin[i] < 0) return currentValue;
-          return currentValue + tempDayBin[i];
+        tempDayBins = tempDayBins.map((currentValue, i) => {
+          if (currentValue < 0) return dayBins[i];
+          if (dayBins[i] < 0) return currentValue;
+          return currentValue + tempDayBins[i];
         });
       } catch (error) {
         // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
@@ -362,7 +492,7 @@ async function asyncCheckIntersect() {
   if (dayBins.some(a => a > 0)) notifyUserOfRisk();
 
   // store the results
-  SetStoreData(CROSSED_PATHS, dayBins); // TODO: Store per authority?
+  SetStoreData(CROSSED_PATHS, tempDayBins); // TODO: Store per authority?
 
   // save off the current time as the last checked time
   let unixtimeUTC = dayjs().valueOf();
@@ -375,6 +505,12 @@ export function getEmptyLocationBins(
   exposureWindowDays = MAX_EXPOSURE_WINDOW_DAYS,
 ) {
   return new Array(exposureWindowDays).fill(-1);
+}
+
+function fillLocationGap(startTime, gapSize, gpsPeriod) {
+  return [...new Array(gapSize)].map((_, i) => ({
+    time: startTime + (i + 1) * gpsPeriod,
+  }));
 }
 
 /**
