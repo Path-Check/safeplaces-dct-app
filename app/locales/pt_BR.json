@@ -45,8 +45,8 @@
   },
   "label": {
     "about_header_bluetooth": "BT do Pathcheck",
-    "about_header_location": "GPS do Pathcheck",
-    "about_para": "O PathCheck é um movimento global para desenvolver ferramentas gratuitas, de código aberto e privacidade por design para residentes, funcionários da saúde pública e grandes comunidades para achatar a curva do COVID-19, reduzir o medo e impedir uma resposta vigilante do estado à pandemia. \n\nPara mais informações, visite ",
+    "about_header_location": "GPS do PathCheck",
+    "about_para": "O PathCheck é um movimento global para desenvolver ferramentas gratuitas, de código aberto e privacidade por design para residentes, funcionários da saúde pública e grandes comunidades para achatar a curva do COVID-19, reduzir o medo e impedir uma resposta vigilante do estado à pandemia. \n\nPara mais informações, visite",
     "about_title": "Sobre",
     "authorities_add_button_label": "Adicionar Fonte Confiável",
     "authorities_add_url": "Adicionar autoridade por URL",
@@ -129,8 +129,8 @@
     "launch_set_up_phone_location": "Configurar meu celular",
     "launch_subheader": "Não se preocupe, a informação não sai do seu aparelho, a não ser que você decida compartilhar.",
     "legal_page_address": "PathCheck \n 58 Day Street \n Box 441621 \n Somerville, MA 02144",
-    "legal_page_header_bluetooth": "BT do Pathcheck",
-    "legal_page_header_location": "GPS do Pathcheck",
+    "legal_page_header_bluetooth": "BT do PathCheck",
+    "legal_page_header_location": "GPS do PathCheck",
     "legal_page_title": "Legal",
     "loading_public_data": "carregando dados...",
     "location_disabled_message": "COVID Safe Paths requer serviços de localização.",
@@ -157,7 +157,7 @@
   "onboarding": {
     "eula_checkbox": "Eu aceito o acordo de licenciamento",
     "eula_continue": "Continuar",
-    "eula_message": "* Você deve aceitar para usar Safe Paths"
+    "eula_message": "*Você deve aceitar para usar Safe Paths"
   },
   "share": {
     "button_text": "Compartilhar dados de localização",
