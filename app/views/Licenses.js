@@ -9,20 +9,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
 
-import foreArrow from './../assets/images/foreArrow.png';
-import licenses from './../assets/LICENSE.json';
+import fontFamily from './../constants/fonts';
+import { Images } from '../assets';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
+import { useAssets } from '../TracingStrategyAssets';
 
-const TERMS_OF_USE_URL =
-  'https://docs.google.com/document/d/1mtdal_pywsKZVMXLHjjj5eKznipPLP8sM1HwFTIhjo0/edit#';
+const PRIVACY_POLICY_URL =
+  'https://docs.google.com/document/d/17u0f8ni9S0D4w8RCUlMMqxAlXKJAd2oiYGP8NUwkINo/edit';
 
 export const LicensesScreen = ({ navigation }) => {
   const { t } = useTranslation();
+  const { legalHeader } = useAssets();
 
   const backToMain = () => {
     navigation.goBack();
@@ -34,7 +35,7 @@ export const LicensesScreen = ({ navigation }) => {
   };
 
   const handleTermsOfUsePressed = () => {
-    Linking.openURL(TERMS_OF_USE_URL);
+    Linking.openURL(PRIVACY_POLICY_URL);
   };
 
   useEffect(() => {
@@ -44,53 +45,48 @@ export const LicensesScreen = ({ navigation }) => {
     };
   });
 
-  function getLicenses() {
-    let result = '<html>';
-    result +=
-      '<style>  html, body { font-size: 40px; margin: 0; padding: 0; } </style>';
-    result += '<body>';
-
-    for (let i = 0; i < licenses.terms_and_licenses.length; i++) {
-      const element = licenses.terms_and_licenses[i];
-
-      result += '<H2>' + element.name + '</H2><P>';
-      result += element.text.replace(/\n/g, '<br/>');
-      result += '<hr/>';
-    }
-    result += '</body></html>';
-
-    return result;
-  }
-
   return (
     <NavigationBarWrapper
       title={t('label.legal_page_title')}
       onBackPress={backToMain}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <View style={{ flex: 4 }}>
-          <WebView
-            originWhitelist={['*']}
-            source={{
-              html: getLicenses(),
-            }}
-            style={{
-              marginTop: 15,
-              backgroundColor: Colors.INTRO_WHITE_BG,
-            }}
-          />
+        <View>
+          <Typography style={styles.heading} use='headline2'>
+            {legalHeader}
+          </Typography>
+          <Typography style={styles.body} use='body1'>
+            {t('label.legal_page_address')}
+          </Typography>
+          <Typography
+            style={styles.hyperlink}
+            onPress={() => {
+              Linking.openURL('mailto:info@pathcheck.org');
+            }}>
+            {/* eslint-disable-next-line react-native/no-raw-text */}
+            {'info@pathcheck.org'}
+          </Typography>
+          <Typography
+            style={styles.hyperlink}
+            onPress={() => {
+              Linking.openURL('https://covidsafepaths.org/');
+            }}>
+            {/* eslint-disable-next-line react-native/no-raw-text */}
+            {'covidsafepaths.org'}
+          </Typography>
         </View>
       </ScrollView>
+
       <Theme use='charcoal'>
         <TouchableOpacity
           onPress={handleTermsOfUsePressed}
           style={styles.termsInfoRow}>
           <Typography
-            use='headline2'
-            onPress={() => Linking.openURL(TERMS_OF_USE_URL)}>
-            {t('label.terms_of_use')}
+            use='body1'
+            onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}>
+            {t('label.privacy_policy')}
           </Typography>
           <View style={styles.arrowContainer}>
-            <Image source={foreArrow} />
+            <Image source={Images.ForeArrow} />
           </View>
         </TouchableOpacity>
       </Theme>
@@ -99,18 +95,33 @@ export const LicensesScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  body: {
+    color: Colors.BLACK,
+    marginBottom: 24,
+  },
   contentContainer: {
-    flexDirection: 'column',
     width: '100%',
     backgroundColor: Colors.INTRO_WHITE_BG,
     paddingHorizontal: 26,
-    flex: 1,
+    paddingVertical: 40,
+  },
+  heading: {
+    color: Colors.BLACK,
+    marginBottom: 12,
+  },
+  hyperlink: {
+    color: Colors.VIOLET_TEXT,
+    fontSize: 16,
+    marginBottom: 12,
+    fontFamily: fontFamily.primaryRegular,
+    textDecorationLine: 'underline',
   },
   termsInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.SILVER,
-    padding: 15,
+    backgroundColor: Colors.VIOLET,
+    paddingVertical: 25,
+    paddingHorizontal: 15,
   },
   arrowContainer: {
     alignSelf: 'center',

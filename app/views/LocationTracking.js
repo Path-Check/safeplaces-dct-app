@@ -7,6 +7,7 @@ import {
   Image,
   ImageBackground,
   Linking,
+  NativeModules,
   StatusBar,
   StyleSheet,
   Text,
@@ -22,21 +23,24 @@ import {
 import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
 
-import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
-import exportImage from './../assets/images/export.png';
-import foreArrow from './../assets/images/foreArrow.png';
-import BackgroundImage from './../assets/images/launchScreenBackground.png';
-import settingsIcon from './../assets/svgs/settingsIcon';
-import StateAtRisk from './../assets/svgs/stateAtRisk';
-import StateNoContact from './../assets/svgs/stateNoContact';
-import StateUnknown from './../assets/svgs/stateUnknown';
 import { isPlatformAndroid, isPlatformiOS } from './../Util';
-import ButtonWrapper from '../components/ButtonWrapper';
+import { Icons, Images } from '../assets';
+import { Button } from '../components/Button';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import { CROSSED_PATHS, DEBUG_MODE, PARTICIPATE } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import {
+  CROSSED_PATHS,
+  DEBUG_MODE,
+  LOCATION_DATA,
+  PARTICIPATE,
+} from '../constants/storage';
+import { Theme } from '../constants/themes';
+import {
+  GetStoreData,
+  RemoveStoreData,
+  SetStoreData,
+} from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
@@ -55,16 +59,16 @@ const StateIcon = ({ status, size }) => {
   let icon;
   switch (status) {
     case StateEnum.UNKNOWN:
-      icon = StateUnknown;
+      icon = Icons.StateUnknown;
       break;
     case StateEnum.AT_RISK:
-      icon = StateAtRisk;
+      icon = Icons.StateAtRisk;
       break;
     case StateEnum.NO_CONTACT:
-      icon = StateNoContact;
+      icon = Icons.StateNoContact;
       break;
     case StateEnum.SETTING_OFF:
-      icon = StateUnknown;
+      icon = Icons.StateUnknown;
       break;
   }
   return (
@@ -96,6 +100,10 @@ class LocationTracking extends Component {
       // statements
       console.log(e);
     }
+  }
+
+  isGPSTracingStrategy() {
+    return this.props.tracingStrategy === 'gps';
   }
 
   /*  Check current state
@@ -195,6 +203,16 @@ class LocationTracking extends Component {
         }
       })
       .catch(error => console.log(error));
+
+    GetStoreData(LOCATION_DATA, false).then(locations => {
+      if (Array.isArray(locations) && locations.length > 0) {
+        NativeModules.SecureStorageManager.migrateExistingLocations(
+          locations,
+        ).then(() => {
+          RemoveStoreData(LOCATION_DATA);
+        });
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -257,16 +275,16 @@ class LocationTracking extends Component {
 
   getBackground() {
     if (this.state.currentState === StateEnum.AT_RISK) {
-      return BackgroundImageAtRisk;
+      return Images.BackgroundImageAtRisk;
     }
-    return BackgroundImage;
+    return Images.LaunchScreenBackground;
   }
 
   settings() {
     this.props.navigation.navigate('SettingsScreen', {});
   }
 
-  getSettings() {
+  getSettingsBtn() {
     return (
       <TouchableOpacity
         style={styles.settingsContainer}
@@ -275,7 +293,7 @@ class LocationTracking extends Component {
         }}>
         {/* Is there is a reason there's this imageless image tag here? Can we delete it? */}
         <Image resizeMode={'contain'} />
-        <SvgXml xml={settingsIcon} width={30} height={30} color='white' />
+        <SvgXml xml={Icons.SettingsIcon} width={30} height={30} color='white' />
       </TouchableOpacity>
     );
   }
@@ -285,7 +303,7 @@ class LocationTracking extends Component {
       return (
         <View style={styles.pulseContainer}>
           <Pulse
-            image={{ exportImage }}
+            image={{ exportImage: Images.ExportImage }}
             color={Colors.PULSE_WHITE}
             numPulses={3}
             diameter={400}
@@ -333,16 +351,40 @@ class LocationTracking extends Component {
     }
   }
 
+  getAtRiskSubText() {
+    if (this.isGPSTracingStrategy()) {
+      return languages.t('label.home_at_risk_subtext_location');
+    } else {
+      return languages.t(`label.home_at_risk_subtext_location`);
+    }
+  }
+
+  getSettingOffSubText() {
+    if (this.isGPSTracingStrategy()) {
+      return languages.t('label.home_setting_off_subtext_location');
+    } else {
+      return languages.t(`label.home_setting_off_subtext_bluetooth`);
+    }
+  }
+
+  getUnknownSubText() {
+    if (this.isGPSTracingStrategy()) {
+      return languages.t('label.home_unknown_subtext_location');
+    } else {
+      return languages.t(`label.home_unknown_subtext_bluetooth`);
+    }
+  }
+
   getSubText() {
     switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
         return languages.t('label.home_no_contact_subtext');
       case StateEnum.AT_RISK:
-        return languages.t('label.home_at_risk_subtext');
+        return this.getAtRiskSubText();
       case StateEnum.UNKNOWN:
-        return languages.t('label.home_unknown_subtext');
+        return this.getUnknownSubText();
       case StateEnum.SETTING_OFF:
-        return languages.t('label.home_setting_off_subtext');
+        return this.getSettingOffSubText();
     }
   }
   getSubSubText() {
@@ -369,27 +411,26 @@ class LocationTracking extends Component {
         this.props.navigation.navigate('ExposureHistoryScreen');
       };
     } else if (this.state.currentState === StateEnum.UNKNOWN) {
-      buttonLabel = languages.t('label.home_enable_location');
+      buttonLabel = this.isGPSTracingStrategy()
+        ? languages.t(`label.home_enable_location`)
+        : languages.t(`label.home_enable_bluetooth`);
       buttonFunction = () => {
         openSettings();
       };
     } else if (this.state.currentState === StateEnum.SETTING_OFF) {
-      buttonLabel = languages.t('label.home_enable_location');
+      buttonLabel = this.isGPSTracingStrategy()
+        ? languages.t(`label.home_enable_location`)
+        : languages.t(`label.home_enable_bluetooth`);
       buttonFunction = () => {
         this.settings();
       };
     }
     return (
-      <View style={styles.buttonContainer}>
-        <ButtonWrapper
-          title={buttonLabel}
-          onPress={() => {
-            buttonFunction();
-          }}
-          buttonColor={Colors.BLUE_BUTTON}
-          bgColor={Colors.WHITE}
-        />
-      </View>
+      <Button
+        label={buttonLabel}
+        onPress={() => buttonFunction()}
+        style={styles.buttonContainer}
+      />
     );
   }
 
@@ -398,58 +439,59 @@ class LocationTracking extends Component {
   }
 
   render() {
+    const hasPossibleExposure = this.state.currentState === StateEnum.AT_RISK;
     return (
-      <ImageBackground
-        source={this.getBackground()}
-        style={styles.backgroundImage}>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor='transparent'
-          translucent
-        />
-        {this.getPulseIfNeeded()}
+      <Theme use={hasPossibleExposure ? 'charcoal' : 'violet'}>
+        <ImageBackground
+          source={this.getBackground()}
+          style={styles.backgroundImage}>
+          <StatusBar
+            barStyle='light-content'
+            backgroundColor='transparent'
+            translucent
+          />
+          {this.getPulseIfNeeded()}
 
-        <View style={styles.mainContainer}>
-          <View style={styles.contentAbovePulse}>
-            {this.state.currentState === StateEnum.AT_RISK &&
-              this.getMainText()}
-            <Typography style={styles.subsubheaderText}>
-              {this.getSubSubText()}
-            </Typography>
-          </View>
-          <View style={styles.contentBelowPulse}>
-            {this.state.currentState !== StateEnum.AT_RISK &&
-              this.getMainText()}
-            <Typography style={styles.subheaderText}>
-              {this.getSubText()}
-            </Typography>
-            {this.getCTAIfNeeded()}
-          </View>
-        </View>
-
-        <View>
-          <TouchableOpacity
-            onPress={this.getMayoInfoPressed.bind(this)}
-            style={styles.mayoInfoRow}>
-            <View style={styles.mayoInfoContainer}>
-              <Typography
-                style={styles.mainMayoHeader}
-                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                {languages.t('label.home_mayo_link_heading')}
-              </Typography>
-              <Typography
-                style={styles.mainMayoSubtext}
-                onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                {languages.t('label.home_mayo_link_label')}
+          <View style={styles.mainContainer}>
+            <View style={styles.contentAbovePulse}>
+              {hasPossibleExposure && this.getMainText()}
+              <Typography style={styles.subsubheaderText}>
+                {this.getSubSubText()}
               </Typography>
             </View>
-            <View style={styles.arrowContainer}>
-              <Image source={foreArrow} style={this.arrow} />
+            <View style={styles.contentBelowPulse}>
+              {!hasPossibleExposure && this.getMainText()}
+              <Typography style={styles.subheaderText}>
+                {this.getSubText()}
+              </Typography>
+              {this.getCTAIfNeeded()}
             </View>
-          </TouchableOpacity>
-        </View>
-        {this.getSettings()}
-      </ImageBackground>
+          </View>
+
+          <View>
+            <TouchableOpacity
+              onPress={this.getMayoInfoPressed.bind(this)}
+              style={styles.mayoInfoRow}>
+              <View style={styles.mayoInfoContainer}>
+                <Typography
+                  style={styles.mainMayoHeader}
+                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
+                  {languages.t('label.home_mayo_link_heading')}
+                </Typography>
+                <Typography
+                  style={styles.mainMayoSubtext}
+                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
+                  {languages.t('label.home_mayo_link_label')}
+                </Typography>
+              </View>
+              <View style={styles.arrowContainer}>
+                <Image source={Images.ForeArrow} style={this.arrow} />
+              </View>
+            </TouchableOpacity>
+          </View>
+          {this.getSettingsBtn()}
+        </ImageBackground>
+      </Theme>
     );
   }
 }
@@ -497,7 +539,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    top: 24,
+    marginTop: 24,
+    height: 54, // fixes overlaying buttons on really small screens
   },
   pulseContainer: {
     position: 'absolute',
@@ -506,7 +549,9 @@ const styles = StyleSheet.create({
     top: '-13%',
     left: 0,
     right: 0,
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   mainTextAbove: {
     textAlign: 'center',

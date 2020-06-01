@@ -1,4 +1,3 @@
-import EnableAuthoritySubscription from '../pages/EnableAuthoritySubscription.po.js';
 import FinishSetup from '../pages/FinishSetup.po.js';
 import Onboarding1 from '../pages/Onboarding1.po.js';
 import Onboarding2 from '../pages/Onboarding2.po.js';
@@ -26,6 +25,8 @@ export const navigateThroughPermissions = async languageStrings => {
 export const navigateThroughOnboarding = async languageStrings => {
   await navigateThroughPermissions(languageStrings);
   await FinishSetup.isOnScreen(languageStrings);
+  await element(by.id('onboarding-permissions-button')).tap();
+  await element(by.id('onboarding-permissions-button')).tap();
   await FinishSetup.takeScreenshot(languageStrings);
-  await FinishSetup.tapButton(languageStrings);
+  await element(by.label(languageStrings.label.launch_finish_set_up)).tap();
 };

@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Typography } from '../../components/Typography';
 import languages from '../../locales/languages';
+import { useAssets } from '../../TracingStrategyAssets';
 import { ExposureCalendarView } from './ExposureCalendarView';
 import { SingleExposureDetail } from './SingleExposureDetail';
 
@@ -12,7 +13,9 @@ import { SingleExposureDetail } from './SingleExposureDetail';
  * @param {{history: !import('../../constants/history').History}} param0
  */
 export const DetailedHistory = ({ history }) => {
+  const { detailedHistoryPageWhatThisMeansPara } = useAssets();
   const exposedDays = history.filter(day => day.exposureMinutes > 0);
+
   return (
     <>
       <ExposureCalendarView weeks={3} history={history} />
@@ -43,7 +46,7 @@ export const DetailedHistory = ({ history }) => {
             {languages.t('history.what_does_this_mean')}
           </Typography>
           <Typography use='body3'>
-            {languages.t('history.what_does_this_mean_para')}
+            {detailedHistoryPageWhatThisMeansPara}
           </Typography>
         </>
       )}

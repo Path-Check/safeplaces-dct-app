@@ -1,10 +1,10 @@
+#!/bin/bash
+set -e
+
 # Usage:
 #   - Create a READ/WRITE token at https://app.lokalise.com/profile
 #   - Run the command from the root of the project with:
 #     LOKALISE_TOKEN=<token> yarn i18n:push
-
-#!/bin/bash
-set -e
 
 function found_exe() {
   hash "$1" 2>/dev/null
@@ -22,12 +22,13 @@ if ! found_exe lokalise2; then
 
   else
     curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
+    export PATH="$PATH:./bin"
   fi
 fi
 
 echo "Uploading English base files"
 lokalise2 file upload \
-  --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/main/res/values/strings.xml \
+  --file=app/locales/en.json,ios/en.lproj/InfoPlist.strings,ios/en.lproj/Localizable.strings,android/app/src/gps/res/values/strings.xml,android/app/src/bte/res/values/strings.xml \
   --lang-iso=en \
   --cleanup-mode \
   --replace-modified \
@@ -35,6 +36,7 @@ lokalise2 file upload \
   --detect-icu-plurals \
   --apply-tm \
   --convert-placeholders \
+  --poll \
   --config .lokalise.yml --token=$LOKALISE_TOKEN
 
 echo "Uploading Documents (e.g. EULA)"
@@ -47,4 +49,5 @@ lokalise2 file upload \
   --detect-icu-plurals \
   --apply-tm \
   --convert-placeholders \
+  --poll \
   --project-id=565995355ea89e2a5f2926.77486458 --token=$LOKALISE_TOKEN

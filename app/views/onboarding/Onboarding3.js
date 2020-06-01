@@ -7,16 +7,23 @@ import {
   View,
 } from 'react-native';
 
-import BackgroundImage from './../../assets/images/launchScreen3.png';
-import ButtonWrapper from '../../components/ButtonWrapper';
+import { Button } from '../../components/Button';
 import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
+import { useAssets } from '../../TracingStrategyAssets';
+import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
+  const {
+    onboarding3Background,
+    onboarding3Header,
+    onboarding3Subheader,
+  } = useAssets();
+
   return (
     <View style={styles.mainContainer}>
       <StatusBar
@@ -25,25 +32,24 @@ const Onboarding = props => {
         translucent
       />
       <ImageBackground
-        source={BackgroundImage}
+        source={onboarding3Background}
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
         <Typography style={styles.headerText} use={Type.Headline2}>
-          {languages.t('label.launch_screen3_header')}
+          {onboarding3Header}
         </Typography>
         <Typography style={styles.subheaderText}>
-          {languages.t('label.launch_screen3_subheader')}
+          {onboarding3Subheader}
         </Typography>
       </View>
-      <View style={styles.footerContainer}>
-        <ButtonWrapper
-          title={languages.t('label.launch_next')}
+      <View style={styles.verticalSpacer} />
+      <View style={sharedStyles.footerContainer}>
+        <Button
+          label={languages.t('label.launch_next')}
           onPress={() => {
             props.navigation.replace('Onboarding4');
           }}
-          buttonColor={Colors.WHITE}
-          bgColor={Colors.VIOLET_BUTTON}
         />
       </View>
     </View>
@@ -64,26 +70,21 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     width: width * 0.9,
-    flex: 1,
-    justifyContent: 'center',
+    flex: 2,
     alignSelf: 'center',
+    justifyContent: 'center',
   },
   headerText: {
     color: Colors.VIOLET,
-    width: width * 0.75,
   },
   subheaderText: {
     marginTop: '6%',
     color: Colors.VIOLET,
-    fontSize: 15,
-    width: width * 0.5,
+    fontSize: 16,
     fontFamily: fontFamily.primaryRegular,
   },
-  footerContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: '10%',
-    alignSelf: 'center',
+  verticalSpacer: {
+    flex: 1,
   },
 });
 

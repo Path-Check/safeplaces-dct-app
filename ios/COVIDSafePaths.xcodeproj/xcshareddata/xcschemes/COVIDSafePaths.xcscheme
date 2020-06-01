@@ -29,22 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "COVIDSafePaths.app"
-               BlueprintName = "COVIDSafePaths"
-               ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "COVIDSafePathsTests.xctest"
-               BlueprintName = "COVIDSafePathsTests"
+               BuildableName = "PathCheckGPS.app"
+               BlueprintName = "GPS"
                ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -59,22 +45,12 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "COVIDSafePaths.app"
-            BlueprintName = "COVIDSafePaths"
+            BuildableName = "PathCheckGPS.app"
+            BlueprintName = "GPS"
             ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "COVIDSafePathsTests.xctest"
-               BlueprintName = "COVIDSafePathsTests"
-               ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -92,8 +68,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "COVIDSafePaths.app"
-            BlueprintName = "COVIDSafePaths"
+            BuildableName = "PathCheckGPS.app"
+            BlueprintName = "GPS"
             ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -109,8 +85,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "COVIDSafePaths.app"
-            BlueprintName = "COVIDSafePaths"
+            BuildableName = "PathCheckGPS.app"
+            BlueprintName = "GPS"
             ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

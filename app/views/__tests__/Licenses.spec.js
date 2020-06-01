@@ -5,6 +5,12 @@ import React from 'react';
 
 import { LicensesScreen } from '../Licenses';
 
+jest.mock('../../COVIDSafePathsConfig', () => {
+  return {
+    isGPS: true,
+  };
+});
+
 it('renders correctly', () => {
   const { asJSON } = render(<LicensesScreen />);
 

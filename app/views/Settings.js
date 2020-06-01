@@ -3,15 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
-import checkmarkIcon from '../assets/svgs/checkmarkIcon';
-import languagesIcon from '../assets/svgs/languagesIcon';
-import xmarkIcon from '../assets/svgs/xmarkIcon';
+import { Icons } from '../assets';
 import { Divider } from '../components/Divider';
-import { Feature } from '../components/Feature';
+import { FeatureFlag } from '../components/FeatureFlag';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
 import { PARTICIPATE } from '../constants/storage';
+import { isGPS } from '../COVIDSafePathsConfig';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
@@ -20,11 +19,14 @@ import {
   supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
 import LocationServices from '../services/LocationService';
+import { useAssets } from '../TracingStrategyAssets';
+import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
+  const { settingsLoggingActive, settingsLoggingInactive } = useAssets();
   const [isLogging, setIsLogging] = useState(undefined);
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
@@ -55,12 +57,16 @@ export const SettingsScreen = ({ navigation }) => {
   }, [navigation]);
 
   const locationToggleButtonPressed = async () => {
-    try {
-      isLogging ? LocationServices.stop() : LocationServices.start();
-      await SetStoreData(PARTICIPATE, !isLogging);
+    if (isGPS) {
+      try {
+        isLogging ? LocationServices.stop() : LocationServices.start();
+        await SetStoreData(PARTICIPATE, !isLogging);
+        setIsLogging(!isLogging);
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
       setIsLogging(!isLogging);
-    } catch (e) {
-      console.log(e);
     }
   };
 
@@ -74,21 +80,27 @@ export const SettingsScreen = ({ navigation }) => {
     }
   };
 
+  const getLoggingText = () => {
+    if (isLogging) {
+      return settingsLoggingActive;
+    } else if (!isLogging) {
+      return settingsLoggingInactive;
+    }
+  };
+
   return (
     <NavigationBarWrapper
       title={t('label.settings_title')}
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
-          <Item
-            label={
-              isLogging
-                ? t('label.logging_active')
-                : t('label.logging_inactive')
-            }
-            icon={isLogging ? checkmarkIcon : xmarkIcon}
-            onPress={locationToggleButtonPressed}
-          />
+          {isGPS && (
+            <Item
+              label={getLoggingText()}
+              icon={isLogging ? Icons.Checkmark : Icons.XmarkIcon}
+              onPress={locationToggleButtonPressed}
+            />
+          )}
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}
@@ -97,7 +109,7 @@ export const SettingsScreen = ({ navigation }) => {
               <Item
                 last
                 label={label || t('label.home_unknown_header')}
-                icon={languagesIcon}
+                icon={Icons.LanguagesIcon}
                 onPress={openPicker}
               />
             )}
@@ -113,25 +125,32 @@ export const SettingsScreen = ({ navigation }) => {
             label={t('label.news_title')}
             description={t('label.news_subtitle')}
             onPress={() => navigation.navigate('NewsScreen')}
+            last={!isGPS}
           />
-          <Item
-            label={t('label.event_history_title')}
-            description={t('label.event_history_subtitle')}
-            onPress={() => navigation.navigate('ExposureHistoryScreen')}
-          />
-          <Item
-            label={t('share.title')}
-            description={t('share.subtitle')}
-            onPress={() => navigation.navigate('ExportScreen')}
-            last
-          />
+          {isGPS ? (
+            <>
+              <Item
+                label={t('label.event_history_title')}
+                description={t('label.event_history_subtitle')}
+                onPress={() => navigation.navigate('ExposureHistoryScreen')}
+              />
+              <Item
+                label={t('share.title')}
+                description={t('share.subtitle')}
+                onPress={() => navigation.navigate('ExportScreen')}
+                last
+              />
+            </>
+          ) : null}
         </Section>
 
-        <Feature name='google_import'>
-          <Section>
-            <GoogleMapsImport navigation={navigation} />
-          </Section>
-        </Feature>
+        {isGPS && (
+          <FeatureFlag name='google_import'>
+            <Section>
+              <GoogleMapsImport navigation={navigation} />
+            </Section>
+          </FeatureFlag>
+        )}
 
         <Section last>
           <Item
@@ -141,6 +160,10 @@ export const SettingsScreen = ({ navigation }) => {
           <Item
             label={t('label.legal_page_title')}
             onPress={() => navigation.navigate('LicensesScreen')}
+          />
+          <Item
+            label='Feature Flags (Dev mode only)'
+            onPress={() => navigation.navigate(FEATURE_FLAG_SCREEN_NAME)}
             last
           />
         </Section>

@@ -1,0 +1,198 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+# Force Github workflows to use a local keychain for match to use
+before_all do
+  create_keychain(
+    name: "tech_at_safepaths_keychain",
+    password: "meow",
+    default_keychain: true,
+    unlock: true,
+    timeout: 3600,
+    lock_when_sleeps: false
+  )
+end
+
+platform :ios do
+    BTE_APP_ID = "org.pathcheck.bt"
+    GPS_APP_ID = "org.pathcheck.covid-safepaths"
+    GPS_PROFILE = "match AppStore org.pathcheck.covid-safepaths"
+    BTE_PROFILE = "match AppStore org.pathcheck.bt"
+    DEBUG_PROFILE = "match Develop org.pathcheck.covid-safepaths"
+    ADHOC_PROFILE = "match AdHoc org.pathcheck.covid-safepaths"
+    BTE_STAGING_SCHEME = "BTE_Staging"
+    GPS_STAGING_SCHEME = "GPS_Staging"
+    TEAM = "79Z8HUPGC3"
+    BTE_SCHEME = "BTE_Production"
+    GPS_SCHEME = "GPS_Production"
+    WORKSPACE = "COVIDSafePaths.xcworkspace"
+    PROJECT = "COVIDSafePaths.xcodeproj"
+    JS_PACKAGE = load_json(json_path: "../package.json")
+
+    lane :sync_local_certs do
+      match(
+        type: 'appstore',
+        readonly: true,
+        keychain_name: "tech_at_safepaths_keychain",
+        keychain_password: "meow",
+        git_basic_authorization: ENV["secrets.MATCH_GIT_BASIC_AUTH"]
+      )
+    end
+
+    desc "Push a new GPS Staging build for automation"
+    lane :staging do
+
+      signing_bundle_details = {
+        :BUNDLE_IDENTIFIER => GPS_APP_ID,
+        :PROVISIONING_PROFILE_SPECIFIER => ADHOC_PROFILE,
+        :DEVELOPMENT_TEAM => TEAM
+      }
+
+      match(
+        type: 'adhoc',
+        readonly: false,
+        keychain_name: "tech_at_safepaths_keychain",
+        keychain_password: "meow",
+        git_basic_authorization: ENV["secrets.MATCH_GIT_BASIC_AUTH"]
+      )
+
+      build_ios_app(
+        workspace: WORKSPACE,
+        scheme: GPS_STAGING_SCHEME,
+        configuration: "Staging",
+        export_method: "ad-hoc",
+        silent: true,
+        clean: true,
+        output_name: "COVIDSafePaths-staging.ipa",
+      )
+    end
+
+    desc "Push a new BTE Staging build for automation"
+    lane :staging_bte do
+
+      signing_bundle_details = {
+        :BUNDLE_IDENTIFIER => BTE_APP_ID,
+        :PROVISIONING_PROFILE_SPECIFIER => ADHOC_PROFILE,
+        :DEVELOPMENT_TEAM => TEAM
+      }
+
+      match(
+        type: 'adhoc',
+        readonly: false,
+        keychain_name: "tech_at_safepaths_keychain",
+        keychain_password: "meow",
+        git_basic_authorization: ENV["secrets.MATCH_GIT_BASIC_AUTH"]
+      )
+
+      build_ios_app(
+        workspace: WORKSPACE,
+        scheme: BTE_STAGING_SCHEME,
+        configuration: "Staging",
+        export_method: "ad-hoc",
+        silent: true,
+        clean: true,
+        output_name: "COVIDSafePaths-bte-staging.ipa",
+      )
+    end
+
+    desc "Push a new GPS Release build to TestFlight"
+    lane :release do
+      # Sets the app store version:
+      # https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion
+      increment_build_number(
+        xcodeproj: PROJECT,
+        build_number: JS_PACKAGE['version']
+      )
+      # Sets the system build number for the project:
+      # https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
+      increment_version_number(
+        xcodeproj: PROJECT,
+        version_number: JS_PACKAGE['version']
+      )
+
+      signing_bundle_details = {
+        :BUNDLE_IDENTIFIER => GPS_APP_ID,
+        :PROVISIONING_PROFILE_SPECIFIER => GPS_PROFILE,
+        :DEVELOPMENT_TEAM => TEAM
+      }
+
+      match(
+        type: 'appstore',
+        readonly: false,
+        keychain_name: "tech_at_safepaths_keychain",
+        keychain_password: "meow",
+        git_basic_authorization: ENV["secrets.MATCH_GIT_BASIC_AUTH"],
+        app_identifier: 'org.pathcheck.covid-safepaths'
+      )
+
+      build_ios_app(
+        workspace: WORKSPACE,
+        scheme: GPS_SCHEME,
+        configuration: "Release",
+        silent: true,
+        clean: true,
+        output_name: "COVIDSafePaths.ipa",
+      )
+  end
+
+    desc "Push a new BTE Release build to TestFlight"
+    lane :release_bte do
+      # Sets the app store version:
+      # https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion
+      increment_build_number(
+        xcodeproj: PROJECT,
+        build_number: JS_PACKAGE['version']
+      )
+      # Sets the system build number for the project:
+      # https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
+      increment_version_number(
+        xcodeproj: PROJECT,
+        version_number: JS_PACKAGE['version']
+      )
+
+      signing_bundle_details = {
+        :BUNDLE_IDENTIFIER => BTE_APP_ID,
+        :PROVISIONING_PROFILE_SPECIFIER => BTE_PROFILE,
+        :DEVELOPMENT_TEAM => TEAM
+      }
+
+      match(
+        type: 'appstore',
+        readonly: false,
+        keychain_name: "tech_at_safepaths_keychain",
+        keychain_password: "meow",
+        git_basic_authorization: ENV["secrets.MATCH_GIT_BASIC_AUTH"],
+        app_identifier: 'org.pathcheck.bt'
+      )
+
+      build_ios_app(
+        workspace: WORKSPACE,
+        scheme: BTE_SCHEME,
+        configuration: "Release",
+        silent: true,
+        clean: true,
+        output_name: "COVIDSafePaths-bte.ipa",
+      )
+  end
+
+  desc "Push a new beta build to TestFlight"
+  lane :deploy do
+      upload_to_testflight(
+        skip_waiting_for_build_processing: true,
+      ) 
+  end
+end

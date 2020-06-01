@@ -1,0 +1,118 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs Android (Native) unit tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  JS_PACKAGE = load_json(json_path: "../package.json")
+
+  desc "GPS: Build a Staging AAB"
+  lane :staging_gps do
+    gradle(
+      task: "clean assembleGpsStaging",
+      print_command: false,
+    )
+  end 
+
+  desc "GPS: Build a Release AAB"
+  lane :release_gps do
+
+    build_number =  ENV["GITHUB_RUN_NUMBER"]
+
+    increment_version_code(
+      gradle_file_path: "app/build.gradle",
+      version_code: build_number
+    )
+  
+    gradle(
+      task: "bundle",
+      build_type: "gpsRelease",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" =>  ENV["KEY_PASSWORD"]
+      }
+    )
+  end
+
+  desc "Upload to google play store beta track"
+  lane :play_store_gps do
+    validate_play_store_json_key(
+      json_key: "app/json_key.json",
+    )
+    
+    upload_to_play_store(
+      track: 'beta',
+      release_status: 'draft',
+      skip_upload_apk: true,
+      aab: 'app/build/outputs/bundle/gpsRelease/app.aab',
+    )
+  end
+
+  desc "Build a Staging AAB"
+  lane :staging_bte do
+    gradle(
+      task: "clean assembleBteStaging",
+      print_command: false,
+    )
+  end 
+
+  desc "Build a Release AAB"
+  lane :release_bte do
+
+    build_number =  ENV["GITHUB_RUN_NUMBER"]
+
+    increment_version_code(
+      gradle_file_path: "app/build.gradle",
+      version_code: build_number
+    )
+
+    gradle(
+      task: "bundle",
+      build_type: "bteRelease",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" =>  ENV["KEY_PASSWORD"]
+      }
+    )
+
+  end
+
+  desc "Upload to google play store beta track"
+  lane :play_store_bte do
+
+    validate_play_store_json_key(
+      json_key: "app/json_key.json",
+    )
+    
+    upload_to_play_store(
+      track: 'beta',
+      release_status: 'draft',
+      skip_upload_apk: true,
+      package_name: 'org.pathcheck.covidsafepathsBte',
+      aab: "app/build/outputs/bundle/bteRelease/app.aab"
+    )
+
+  end
+
+end

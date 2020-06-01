@@ -1,8 +1,17 @@
 apply plugin: "com.android.application"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
 
 project.ext.envConfigFiles = [
-    debug: ".env",
-    release: ".env.release",
+    btedebug: ".env.bte",
+    btestaging: ".env.bte.staging",
+    bterelease: ".env.bte.release",
+
+    gpsdebug: ".env.gps",
+    gpsstaging: ".env.gps.staging",
+    gpsrelease: ".env.gps.release",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
@@ -84,6 +93,9 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
+    bundleInDevDebug: false,
+    bundleInStagingDebug: true,
+    devDisabledInStagingDebug: true,
     enableHermes: false,  // clean and rebuild if changing
 ]
 
@@ -144,8 +156,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 25
-        versionName "1.0.1"
+        versionCode 11
+        versionName "1.0.8"
     }
     splits {
         abi {
@@ -163,12 +175,12 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('PRIVATEKIT_RELEASE_STORE_FILE')) {
-                project.logger.lifecycle('Signing app with ' + PRIVATEKIT_RELEASE_STORE_FILE)
-                storeFile file(PRIVATEKIT_RELEASE_STORE_FILE)
-                storePassword PRIVATEKIT_RELEASE_STORE_PASSWORD
-                keyAlias PRIVATEKIT_RELEASE_KEY_ALIAS
-                keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
+            storeFile file('keystore.jks')
+            if (file("./keystore.jks").exists()) {
+                keyAlias project.property("android.injected.signing.key.alias")
+                keyPassword project.property("android.injected.signing.key.password")
+                storePassword project.property("android.injected.signing.store.password")
+                storeFile file("./keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')
             }
@@ -177,28 +189,37 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug']
+        }
+        staging {
+            signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug']
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            // signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            matchingFallbacks = ['release']
         }
     }
-    // applicationVariants are e.g. debug, release
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            // For each separate APK per architecture, set a unique version code as described here:
-            // https://developer.android.com/studio/build/configure-apk-splits.html
-            def versionCodes = ["armeabi-v7a": 1, "x86": 2, "arm64-v8a": 3, "x86_64": 4]
-            def abi = output.getFilter(OutputFile.ABI)
-            if (abi != null) {  // null for the universal-debug, universal-release variants
-                output.versionCodeOverride =
-                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
-            }
+
+    flavorDimensions "version"
+    productFlavors {
+        gps {
+            applicationId 'org.pathcheck.covidsafepaths'
+            dimension "version"
+        }
+        bte {
+            applicationId 'org.pathcheck.covidsafepathsBte'
+            dimension "version"
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -208,6 +229,10 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"
+    implementation project(':@mauron85_react-native-background-geolocation-common')
+    implementation 'com.bottlerocketstudios:vault:1.4.2'
+    implementation 'com.google.android.gms:play-services-gcm:15.0.1'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/"
@@ -216,16 +241,18 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-    androidTestImplementation('com.wix:detox:+')  // detox: e2e testing
+
+    implementation 'com.github.drfonfon:android-kotlin-geohash:1.0'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
+
+    androidTestImplementation('com.wix:detox:+') // detox: e2e testing
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 allprojects {
     repositories {
         configurations.all {
-            // Fixes dependency conflict between react-native-local-assets and
-            // @mauron85/react-native-background-geolocation
-            exclude group: "commons-io", module: "commons-io"
-
             // To fix the app start crash error
             resolutionStrategy.eachDependency { DependencyResolveDetails details ->
                 def requested = details.requested
@@ -252,3 +279,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+repositories {
+  mavenCentral()
+}

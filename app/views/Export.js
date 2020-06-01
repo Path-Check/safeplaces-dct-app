@@ -3,28 +3,26 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
+  NativeModules,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import RNFS from 'react-native-fs';
 import LinearGradient from 'react-native-linear-gradient';
 import Share from 'react-native-share';
-import { SvgXml } from 'react-native-svg';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import close from './../assets/svgs/close';
-import exportIcon from './../assets/svgs/export';
 import { isPlatformiOS } from './../Util';
+import { Icons } from '../assets';
+import { Button } from '../components/Button';
 import { IconButton } from '../components/IconButton';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { Theme } from '../constants/themes';
-import { LocationData } from '../services/LocationService';
 
 const base64 = RNFetchBlob.base64;
 
@@ -49,7 +47,7 @@ export const ExportScreen = ({ navigation }) => {
 
   async function onShare() {
     try {
-      let locationData = await new LocationData().getLocationData();
+      let locationData = await NativeModules.SecureStorageManager.getLocations();
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
 
@@ -123,7 +121,7 @@ export const ExportScreen = ({ navigation }) => {
           style={{ flex: 1, height: '100%' }}>
           <View style={styles.headerContainer}>
             <IconButton
-              icon={close}
+              icon={Icons.Close}
               size={18}
               onPress={() => backToMain()}
               accessibilityLabel='Close'
@@ -142,12 +140,12 @@ export const ExportScreen = ({ navigation }) => {
                 {t('share.paragraph_second')}
               </Typography>
 
-              <TouchableOpacity style={styles.exportButton} onPress={onShare}>
-                <Typography style={styles.exportButtonText}>
-                  {t('share.button_text')}
-                </Typography>
-                <SvgXml style={styles.exportIcon} xml={exportIcon} />
-              </TouchableOpacity>
+              <Button
+                style={styles.exportButton}
+                label={t('share.button_text')}
+                icon={Icons.Export}
+                onPress={onShare}
+              />
             </View>
           </ScrollView>
         </LinearGradient>
@@ -187,24 +185,8 @@ const styles = StyleSheet.create({
   exportSectionPara: {
     marginTop: 22,
   },
-
   exportButton: {
-    backgroundColor: Colors.WHITE,
-    flexDirection: 'row',
-    height: 64,
-    borderRadius: 8,
     marginTop: 48,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  exportButtonText: {
-    color: Colors.VIOLET,
-    fontSize: 20,
-    fontFamily: fontFamily.primaryMedium,
-  },
-  exportIcon: {
-    width: 16,
-    height: 21,
   },
   main: {
     flex: 1,
