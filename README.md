@@ -23,11 +23,11 @@ COVID Safe Paths is a mobile app for digital contract tracing (DCT) sponsored by
 
 ## Privacy Preserving 
 
-What’s truly special about Safe Paths is our strong commitment to preserving the privacy of individual users. We're building an application that can help contain outbreaks of COVID-19 without forcing users to sacrafice their personal privacy. For example, if a user chooses to use Safe Paths to maintain a record of their locations use a time stamped GPS log, which stores 14 days of data in 5 minute increments. The location log is stored on the users phone. The logged data only leave the device if the user chooses to send the information to an authorized public health authority (PHA) as part of the contact tracing prcoess.
+What’s truly special about Safe Paths is our strong commitment to preserving the privacy of individual users. We're building an application that can help contain outbreaks of COVID-19 without forcing users to sacrifice their personal privacy. For example, if a user chooses to use Safe Paths to maintain a record of their locations use a time stamped GPS log, which stores 14 days of data in 5 minute increments. The location log is stored on the user's phone. The logged data only leaves the device if the user chooses to send the information to an authorized public health authority (PHA) as part of the contact tracing process.
 
 ## Multiple Capabilities
 
-Safe Paths is designed to support a range of DCT and public health use cases. Currently the main build uses GPS for location tracking. Our roadmap includes adding support for other location and proximity technologis, symptom tracking, and communication with PHAs. 
+Safe Paths is designed to support a range of DCT and public health use cases. Currently the main build uses GPS for location tracking with GAEN BT tracing strategies in active development. Our roadmap includes adding support for other location and proximity technologies, symptom tracking, and communication with PHAs.
 
 ### Project Aurora and the Google Apple Exposure Notification API (GAEN) 
 
@@ -35,28 +35,26 @@ Project Aurora is the code name for a build from Safe Paths for an app that is f
 
 ## Multiple Implementation Strategies 
 
-Safe Paths is designed to support a variety of implementation strategies. 
+The Safe Paths app is being developed to support a variety of build 'flavors' of the application around core health and tracing functionality. Reach out to our team to discuss creating a flavor for your use-case.
 
 ### Path Check Release of COVID Safe Paths
 Safe Paths is available as an app published by Path Check in the [Apple App Store](https://apps.apple.com/us/app/covid-safe-paths/id1508266966) and the [Google Play App Store](https://play.google.com/store/apps/details?id=org.pathcheck.covidsafepaths). Any authorized pubic health authority can use Safe Paths. 
 
 ### Custom Builds 
 
-We welcome public health authorities and other organizations implementing digital contact tracing strategies to create custom builds for their specific needs, incorporate Safe Paths features into their applications, or create downstream projects that stay linked to the Safe Paths project. 
+We welcome public health authorities and other organizations implementing digital contact tracing strategies to create custom builds for their specific needs, incorporate Safe Paths features into their applications, or create downstream projects that stay linked to the Safe Paths project. If intending to fork the repository and develop off of it, be aware that this comes "at your own risk" for continued maintenance.
 
 ### GAEN Instances
 
-The rules for GAEN require that each public health authority release their own application. The goal with Project Aurora is to suppor this deployment strategy. 
+The rules for GAEN require that each public health authority release their own application. The goal with Project Aurora is to support this deployment strategy. 
 
 ## End-to-End System
 
-Safe Paths is designed to work with Safe Places, a tool for contact tracing teams to work with location data in the course of contact tracing interviews and to publish points of concern. Without having to sharing their own location history, a Safe Paths user can download the points of concern from their PHA to identify if they have had risk of an exposure. 
-
-Project Aurora supports any GAEN compliant Key Server for exposure notification. 
+Safe Paths is designed to work with Safe Places, a tool for contact tracing teams to work with location data in the course of contact tracing interviews and to publish points of concern. Without having to sharing their own location history, a Safe Paths user can download the points of concern from their PHA to identify if they have had risk of an exposure.
 
 ## Broad Non-Developer Community 
 
-One of the important aspects of the Safe Paths open source project is that it's supported by a large community of volutneers in addition to the open source developer community. More than 1,400 Path Check volunteers are working together to support Safe Paths and help drive adoption around the world. 
+One of the important aspects of the Safe Paths open source project is that it's supported by a large community of volunteers in addition to the open source developer community. Spanning as diverse domains as product management, user research, cryptography, security, compliance, design, and videography more than 1,400 Path Check volunteers are working together to support Safe Paths and help drive adoption around the world.
 
 ### Learn More
 
