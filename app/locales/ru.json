@@ -121,7 +121,7 @@
   "onboarding": {
     "eula_checkbox": "Я принимаю лицензионное соглашение",
     "eula_continue": "Продолжить",
-    "eula_message": "Примите, чтобы пользоваться Safe Paths"
+    "eula_message": "*Примите, чтобы пользоваться Safe Paths"
   },
   "share": {
     "button_text": "Поделится данными о местоположении",

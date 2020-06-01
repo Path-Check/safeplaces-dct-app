@@ -46,7 +46,7 @@
   "label": {
     "about_header_bluetooth": "PathCheck Bluetooth",
     "about_header_location": "PathCheck GPS",
-    "about_para": "PathCheck è un movimento globale per sviluppare strumenti gratuiti, open-source, e orientati alla privacy per i residenti, i funzionari della sanità pubblica e le comunità più grandi al fine di appiattire la curva di COVID-19, ridurre la paura e prevenire una risposta dello stato di sorveglianza alla pandemia. \n\nPer ulteriori informazioni, visitare il sito ",
+    "about_para": "PathCheck è un movimento globale per sviluppare strumenti gratuiti, open-source, e orientati alla privacy per i residenti, i funzionari della sanità pubblica e le comunità più grandi al fine di appiattire la curva di COVID-19, ridurre la paura e prevenire una risposta dello stato di sorveglianza alla pandemia. \n\nPer ulteriori informazioni, visitare il sito",
     "about_title": "Informazioni",
     "authorities_add_button_label": "Aggiungi istituzione sanitaria",
     "authorities_add_url": "Aggiungi istituzione sanitaria via URL",
@@ -157,7 +157,7 @@
   "onboarding": {
     "eula_checkbox": "Accetto il contratto di licenza",
     "eula_continue": "Continua",
-    "eula_message": "* È necessario accettare per utilizzare Safe Paths"
+    "eula_message": "*È necessario accettare per utilizzare Safe Paths"
   },
   "share": {
     "button_text": "Condividi i tuoi dati GPS",

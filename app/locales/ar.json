@@ -102,7 +102,7 @@
     "location_disabled_title": "تم تعطيل خدمة تتبع الموقع",
     "location_enabled_message": "يقوم تطبيق COVID Safe Paths بتخزين إحداثيات موقعك بأمان مرة واحدة كل خمس دقائق على هذا الجهاز",
     "location_enabled_title": "تم تفعيل تطبيق COVID Safe Paths",
-    "logging_active_location": " خدمة تتبع الموقع مفعلة",
+    "logging_active_location": "خدمة تتبع الموقع مفعلة",
     "logging_inactive_location": "خدمة تتبع الموقع غير مفعلة",
     "news_subtitle": "اقرأ عن آخر تحديثات COVID من السلطات الصحية الخاصة بك وبشكل عام",
     "news_title": "أحدث الأخبار",
@@ -119,7 +119,7 @@
   "onboarding": {
     "eula_checkbox": "أوافق على اتفاقية الترخيص",
     "eula_continue": "استمر",
-    "eula_message": "*يجب أن تقبل لاستخدام تطبيق Safe Paths "
+    "eula_message": "*يجب أن تقبل لاستخدام تطبيق Safe Paths"
   },
   "share": {
     "button_text": "مشاركة بيانات الموقع",
