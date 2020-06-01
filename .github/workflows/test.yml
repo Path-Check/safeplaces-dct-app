@@ -180,8 +180,8 @@ jobs:
 
       - uses: actions/download-artifact@master
         with:
-          name: e2e-ios-bin
-          path: ios/fastlane/test_output/
+          name: e2e-ios-bin.zip
+          path: .ios/fastlane/test_output/
 
       - name: Unzip build products
         if: always()
