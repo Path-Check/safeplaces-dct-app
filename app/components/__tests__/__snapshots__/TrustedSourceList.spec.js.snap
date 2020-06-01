@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders trusted source list 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#EEEEEE",
+        "borderTopColor": "#A5AFFB",
+        "borderTopWidth": 3,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "opacity": 1,
+        "paddingHorizontal": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#3C4ED8",
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "lineHeight": 22,
+          "padding": 10,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body2"
+    >
+      Filter by your locations
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      style={
+        Object {
+          "height": 31,
+          "width": 51,
+        }
+      }
+      value={false}
+    />
+  </View>
+  <MenuOption
+    disabled={false}
+  >
+    <Text
+      style={
+        Object {
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "lineHeight": 22,
+          "padding": 10,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body2"
+    >
+      first
+    </Text>
+  </MenuOption>
+  <MenuOption
+    disabled={false}
+  >
+    <Text
+      style={
+        Object {
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "lineHeight": 22,
+          "padding": 10,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body2"
+    >
+      second
+    </Text>
+  </MenuOption>
+  <MenuOption>
+    <Text
+      style={
+        Object {
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "lineHeight": 22,
+          "padding": 10,
+          "writingDirection": "ltr",
+        }
+      }
+      use="body2"
+    >
+      Add authority via URL
+    </Text>
+  </MenuOption>
+</View>
+`;
