@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import os.signpost
 
 @objcMembers
 class Location: Object {
@@ -59,13 +58,7 @@ class Location: Object {
     location.accuracy.value = backgroundLocation.accuracy?.floatValue
     location.altitudeAccuracy.value = backgroundLocation.altitudeAccuracy?.floatValue
     location.bearing.value = backgroundLocation.heading?.floatValue
-    if #available(iOS 12.0, *) {
-      os_signpost(.begin, log: Log.scryptHashing, name: "Location Hashing")
-    }
     location.source = SOURCE_DEVICE
-    if #available(iOS 12.0, *) {
-      os_signpost(.end, log: Log.scryptHashing, name: "Location Hashing")
-    }
     location.hashes.append(objectsIn: backgroundLocation.scryptHashes)
     return location;
   }

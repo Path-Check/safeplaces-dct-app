@@ -150,7 +150,7 @@ jobs:
   build_staging_ios_gps:
     # Deliberately turned off the pull request logic here
     # because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
-    # if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@master
@@ -225,7 +225,7 @@ jobs:
   build_staging_ios_bte:
     # Deliberately turned off the pull request logic here
     # because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
-    # if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@master
