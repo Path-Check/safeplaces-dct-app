@@ -56,7 +56,7 @@ exports[`renders correctly 1`] = `
           "position": "absolute",
           "resizeMode": "contain",
           "right": 0,
-          "top": "-5%",
+          "top": "-15%",
         }
       }
     >
@@ -86,7 +86,7 @@ exports[`renders correctly 1`] = `
           "paddingHorizontal": "12%",
           "position": "absolute",
           "right": 0,
-          "top": "5%",
+          "top": "-7%",
         }
       }
     >

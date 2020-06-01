@@ -64,7 +64,7 @@ const StateEnum = {
 
 const StateIcon = ({ status, size }) => {
   let icon;
-  switch (status) {
+  switch (1) {
     case StateEnum.UNKNOWN:
       icon = StateUnknown;
       break;
@@ -299,7 +299,7 @@ class LocationTracking extends Component {
   };
 
   getBackground() {
-    if (this.state.currentState === StateEnum.AT_RISK) {
+    if (1 === StateEnum.AT_RISK) {
       return BackgroundImageAtRisk;
     }
     return BackgroundImage;
@@ -321,7 +321,7 @@ class LocationTracking extends Component {
   }
 
   getPulseIfNeeded() {
-    if (this.state.currentState == StateEnum.NO_CONTACT) {
+    if (1 == StateEnum.NO_CONTACT) {
       return (
         <View style={styles.pulseContainer}>
           <Pulse
@@ -345,7 +345,7 @@ class LocationTracking extends Component {
   }
 
   getMainText() {
-    switch (this.state.currentState) {
+    switch (1) {
       case StateEnum.NO_CONTACT:
         return (
           <Typography style={styles.mainTextBelow}>
@@ -374,7 +374,7 @@ class LocationTracking extends Component {
   }
 
   getSubText() {
-    switch (this.state.currentState) {
+    switch (1) {
       case StateEnum.NO_CONTACT:
         return languages.t('label.home_no_contact_subtext');
       case StateEnum.AT_RISK:
@@ -386,7 +386,7 @@ class LocationTracking extends Component {
     }
   }
   getSubSubText() {
-    switch (this.state.currentState) {
+    switch (1) {
       case StateEnum.NO_CONTACT:
         return null;
       case StateEnum.AT_RISK:
@@ -401,9 +401,9 @@ class LocationTracking extends Component {
   getCTAIfNeeded() {
     let buttonLabel;
     let buttonFunction;
-    if (this.state.currentState === StateEnum.NO_CONTACT) {
+    if (1 === StateEnum.NO_CONTACT) {
       return;
-    } else if (this.state.currentState === StateEnum.AT_RISK) {
+    } else if (1 === StateEnum.AT_RISK) {
       buttonLabel = languages.t('label.see_exposure_history');
       buttonFunction = () => {
         this.props.navigation.navigate('ExposureHistoryScreen');
@@ -501,7 +501,7 @@ const styles = StyleSheet.create({
     // aligns the center of the main container with center of pulse
     // so that two `flex: 1` views will be have a reasonable chance at natural
     // flex flow for above and below the pulse.
-    top: '5%',
+    top: '-7%',
     left: 0,
     right: 0,
     height: '100%',
@@ -535,7 +535,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BLUE_RIBBON,
     position: 'absolute',
     resizeMode: 'contain',
-    top: '-5%',
+    top: '-15%',
     left: 0,
     right: 0,
     flex: 1,
