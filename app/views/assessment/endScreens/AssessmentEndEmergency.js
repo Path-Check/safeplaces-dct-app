@@ -21,7 +21,7 @@ const AssessmentEndEmergency = () => {
       description={
         <Trans t={t} i18nKey='assessment.emergency_description'>
           <Typography />
-          <Typography surveyFont style={assessmentStyles.boldBlackText} />
+          <Typography style={assessmentStyles.boldBlackText} />
         </Trans>
       }
       image={image}

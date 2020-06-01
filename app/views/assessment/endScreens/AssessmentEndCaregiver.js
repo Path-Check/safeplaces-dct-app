@@ -19,7 +19,7 @@ const AssessmentEndCaregiver = ({ navigation }) => {
       description={
         <Trans t={t} i18nKey='assessment.caregiver_description'>
           <Typography />
-          <Typography surveyFont style={assessmentStyles.boldBlackText} />
+          <Typography style={assessmentStyles.boldBlackText} />
         </Trans>
       }
       image={image}

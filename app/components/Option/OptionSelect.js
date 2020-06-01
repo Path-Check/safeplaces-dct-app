@@ -42,7 +42,7 @@ export function OptionSelect({
             )}
         </View>
       )}
-      <Typography surveyFont style={styles.title} testID='label'>
+      <Typography style={styles.title} testID='label'>
         {title}
       </Typography>
     </View>

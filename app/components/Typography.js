@@ -46,7 +46,6 @@ export const Typography = ({
   secondary,
   monospace,
   bold,
-  surveyFont,
   style,
   children,
   ...otherProps
@@ -63,7 +62,6 @@ export const Typography = ({
       secondary={secondary}
       monospace={monospace}
       bold={bold}
-      surveyFont={surveyFont}
       {...otherProps}>
       {children}
     </ThemedText>
@@ -97,10 +95,9 @@ const getTextOpacity = ({ disabled }) => (disabled ? '0.25' : null);
 const getFontWeight = ({ use = Type.Body1, bold }) =>
   use.startsWith('headline') || bold ? 'bold' : 'normal';
 
-const getFontFamily = ({ use, monospace, surveyFont, bold }) => {
+const getFontFamily = ({ use, monospace, bold }) => {
   if (use.startsWith('headline') || bold) return 'IBMPlexSans-Bold';
   if (monospace) return 'IBMPlexMono';
-  if (surveyFont) return 'SFProRounded-Medium';
   return 'IBMPlexSans';
 };
 

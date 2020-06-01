@@ -48,17 +48,11 @@ const AssessmentEnd = ({
         <Image source={image} style={{ width: WIDTH, height: HEIGHT }} />
         <View style={assessmentStyles.scrollViewContent}>
           {pretitle}
-          <Typography
-            surveyFont
-            style={[
-              assessmentStyles.title,
-              { color: ctaColor ? ctaColor : undefined },
-            ]}>
+          <Typography use='headline2'>
             {title}
           </Typography>
           {description && (
             <Typography
-              surveyFont
               style={assessmentStyles.description}
               testID='description'>
               {description}
@@ -93,11 +87,6 @@ export const assessmentStyles = StyleSheet.create({
   },
   scrollViewContent: {
     padding: 20,
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 28,
-    paddingVertical: 15,
   },
   description: {
     fontSize: 20,
