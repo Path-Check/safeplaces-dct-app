@@ -90,7 +90,7 @@ const CodeInput = ({ code, length, setCode }) => {
 
   return (
     <View style={{ flexDirection: 'row', flexShrink: 1 }}>
-      {[...characters].map((character, i) => (
+      {characters.map((character, i) => (
         <TextInput
           ref={ref => (characterRefs.current[i] = ref)}
           key={`${i}CodeCharacter`}
