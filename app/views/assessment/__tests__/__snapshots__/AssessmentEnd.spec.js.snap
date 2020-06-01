@@ -49,17 +49,15 @@ exports[`base 1`] = `
         >
           <Text
             style={
-              Array [
-                Object {
-                  "fontFamily": "IBMPlexSans-Bold",
-                  "fontSize": 30,
-                  "marginBottom": 10,
-                },
-                Object {
-                  "color": undefined,
-                },
-              ]
+              Object {
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 26,
+                "fontWeight": "bold",
+                "lineHeight": 34,
+                "writingDirection": "ltr",
+              }
             }
+            use="headline2"
           >
             End
           </Text>

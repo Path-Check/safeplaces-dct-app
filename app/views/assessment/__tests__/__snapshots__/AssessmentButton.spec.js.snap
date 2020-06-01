@@ -25,11 +25,12 @@ exports[`base 1`] = `
       style={
         Array [
           Object {
-            "borderRadius": 12,
-            "padding": 14,
+            "borderRadius": 10,
+            "paddingHorizontal": 14,
+            "paddingVertical": 22,
           },
           Object {
-            "backgroundColor": "rgb(0,121,253)",
+            "backgroundColor": "rgb(105,121,248)",
           },
         ]
       }
@@ -38,11 +39,15 @@ exports[`base 1`] = `
         style={
           Object {
             "color": "#FFF",
-            "fontFamily": "IBMPlexSans-Bold",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 18,
+            "fontWeight": "normal",
+            "lineHeight": 24,
             "textAlign": "center",
+            "writingDirection": "ltr",
           }
         }
+        use="body1"
       >
         Next
       </Text>
@@ -76,8 +81,9 @@ exports[`color 1`] = `
       style={
         Array [
           Object {
-            "borderRadius": 12,
-            "padding": 14,
+            "borderRadius": 10,
+            "paddingHorizontal": 14,
+            "paddingVertical": 22,
           },
           Object {
             "backgroundColor": "red",
@@ -89,11 +95,15 @@ exports[`color 1`] = `
         style={
           Object {
             "color": "#FFF",
-            "fontFamily": "IBMPlexSans-Bold",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 18,
+            "fontWeight": "normal",
+            "lineHeight": 24,
             "textAlign": "center",
+            "writingDirection": "ltr",
           }
         }
+        use="body1"
       >
         Next
       </Text>
@@ -127,8 +137,9 @@ exports[`disabled 1`] = `
       style={
         Array [
           Object {
-            "borderRadius": 12,
-            "padding": 14,
+            "borderRadius": 10,
+            "paddingHorizontal": 14,
+            "paddingVertical": 22,
           },
           Object {
             "backgroundColor": "#868686",
@@ -140,11 +151,15 @@ exports[`disabled 1`] = `
         style={
           Object {
             "color": "#FFF",
-            "fontFamily": "IBMPlexSans-Bold",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 18,
+            "fontWeight": "normal",
+            "lineHeight": 24,
             "textAlign": "center",
+            "writingDirection": "ltr",
           }
         }
+        use="body1"
       >
         Next
       </Text>

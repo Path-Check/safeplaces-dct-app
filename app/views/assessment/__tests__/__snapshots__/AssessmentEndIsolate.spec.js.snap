@@ -49,38 +49,46 @@ exports[`base 1`] = `
         >
           <Text
             style={
-              Array [
-                Object {
-                  "fontFamily": "IBMPlexSans-Bold",
-                  "fontSize": 30,
-                  "marginBottom": 10,
-                },
-                Object {
-                  "color": undefined,
-                },
-              ]
+              Object {
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 26,
+                "fontWeight": "bold",
+                "lineHeight": 34,
+                "writingDirection": "ltr",
+              }
             }
+            use="headline2"
           >
             Isolate Yourself
           </Text>
           <Text
             style={
               Object {
+                "color": "#000",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 20,
+                "fontWeight": "normal",
                 "lineHeight": 26,
                 "marginBottom": 30,
+                "writingDirection": "ltr",
               }
             }
             testID="description"
+            use="body1"
           >
             You 
             <Text
               style={
                 Object {
-                  "fontFamily": "IBMPlexSans-Bold",
+                  "color": "#000",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 20,
+                  "fontWeight": "bold",
+                  "lineHeight": 24,
+                  "writingDirection": "ltr",
                 }
               }
+              use="body1"
             >
               have some symptoms
             </Text>
@@ -111,11 +119,12 @@ exports[`base 1`] = `
           style={
             Array [
               Object {
-                "borderRadius": 12,
-                "padding": 14,
+                "borderRadius": 10,
+                "paddingHorizontal": 14,
+                "paddingVertical": 22,
               },
               Object {
-                "backgroundColor": "rgb(0,121,253)",
+                "backgroundColor": "rgb(105,121,248)",
               },
             ]
           }
@@ -124,11 +133,15 @@ exports[`base 1`] = `
             style={
               Object {
                 "color": "#FFF",
-                "fontFamily": "IBMPlexSans-Bold",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 18,
+                "fontWeight": "normal",
+                "lineHeight": 24,
                 "textAlign": "center",
+                "writingDirection": "ltr",
               }
             }
+            use="body1"
           >
             Next
           </Text>

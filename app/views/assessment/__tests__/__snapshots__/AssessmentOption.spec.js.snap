@@ -64,13 +64,18 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
         <Text
           style={
             Object {
+              "color": "#000",
               "flex": 1,
               "flexWrap": "wrap",
-              "fontFamily": "IBMPlexSans-SemiBold",
+              "fontFamily": "IBMPlexSans",
               "fontSize": 20,
+              "fontWeight": "bold",
+              "lineHeight": 24,
+              "writingDirection": "ltr",
             }
           }
           testID="label"
+          use="body1"
         >
           Label
         </Text>
@@ -79,11 +84,16 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
         <Text
           style={
             Object {
+              "color": "#000",
               "fontFamily": "IBMPlexSans",
               "fontSize": 16,
+              "fontWeight": "normal",
+              "lineHeight": 24,
               "marginLeft": 30,
+              "writingDirection": "ltr",
             }
           }
+          use="body1"
         >
           Description
         </Text>
@@ -157,13 +167,18 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
         <Text
           style={
             Object {
+              "color": "#000",
               "flex": 1,
               "flexWrap": "wrap",
-              "fontFamily": "IBMPlexSans-SemiBold",
+              "fontFamily": "IBMPlexSans",
               "fontSize": 20,
+              "fontWeight": "bold",
+              "lineHeight": 24,
+              "writingDirection": "ltr",
             }
           }
           testID="label"
+          use="body1"
         >
           Label
         </Text>
@@ -172,11 +187,16 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
         <Text
           style={
             Object {
+              "color": "#000",
               "fontFamily": "IBMPlexSans",
               "fontSize": 16,
+              "fontWeight": "normal",
+              "lineHeight": 24,
               "marginLeft": 30,
+              "writingDirection": "ltr",
             }
           }
+          use="body1"
         >
           Description
         </Text>
