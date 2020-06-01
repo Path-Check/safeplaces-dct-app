@@ -296,6 +296,7 @@ jobs:
     # bte-release branch only
     if: github.event_name == 'push' && github.ref == 'refs/heads/bte-release'
     runs-on: ubuntu-latest
+    needs: version_bump
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
