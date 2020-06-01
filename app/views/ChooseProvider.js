@@ -342,9 +342,7 @@ class ChooseProviderScreen extends Component {
                     this.toggleFilterAuthoritesByGPSHistory
                   }
                   addAuthorityToState={this.addAuthorityToState}
-                  filterAuthoritesByGPSHistory={
-                    this.filterAuthoritesByGPSHistory
-                  }
+                  filterAuthoritesByGPSHistory={this.filterAuthoritesByGPSHistory}
                   onMenuClick={() => {
                     this.setState({
                       displayUrlEntry: 'flex',
