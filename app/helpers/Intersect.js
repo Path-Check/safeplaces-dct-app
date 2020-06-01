@@ -434,8 +434,7 @@ async function asyncCheckIntersect() {
   // Fetch previous dayBins for intersections
   let dayBins = await GetStoreData(CROSSED_PATHS);
 
-  // Init the arrays for new intersection data and for the news urls
-  let tempDayBins = [];
+  // Init the array for the news urls
   let name_news = [];
 
   // get the saved set of locations for the user, already sorted
@@ -492,7 +491,7 @@ async function asyncCheckIntersect() {
   if (dayBins.some(a => a > 0)) notifyUserOfRisk();
 
   // store the results
-  SetStoreData(CROSSED_PATHS, tempDayBins); // TODO: Store per authority?
+  SetStoreData(CROSSED_PATHS, dayBins); // TODO: Store per authority?
 
   // save off the current time as the last checked time
   let unixtimeUTC = dayjs().valueOf();
