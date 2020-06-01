@@ -64,7 +64,7 @@ const StateEnum = {
 
 const StateIcon = ({ status, size }) => {
   let icon;
-  switch (1) {
+  switch (status) {
     case StateEnum.UNKNOWN:
       icon = StateUnknown;
       break;
@@ -299,7 +299,7 @@ class LocationTracking extends Component {
   };
 
   getBackground() {
-    if (1 === StateEnum.AT_RISK) {
+    if (this.state.currentState === StateEnum.AT_RISK) {
       return BackgroundImageAtRisk;
     }
     return BackgroundImage;
@@ -321,7 +321,7 @@ class LocationTracking extends Component {
   }
 
   getPulseIfNeeded() {
-    if (1 == StateEnum.NO_CONTACT) {
+    if (this.state.currentState == StateEnum.NO_CONTACT) {
       return (
         <View style={styles.pulseContainer}>
           <Pulse
@@ -345,7 +345,7 @@ class LocationTracking extends Component {
   }
 
   getMainText() {
-    switch (1) {
+    switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
         return (
           <Typography style={styles.mainTextBelow}>
@@ -374,7 +374,7 @@ class LocationTracking extends Component {
   }
 
   getSubText() {
-    switch (1) {
+    switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
         return languages.t('label.home_no_contact_subtext');
       case StateEnum.AT_RISK:
@@ -386,7 +386,7 @@ class LocationTracking extends Component {
     }
   }
   getSubSubText() {
-    switch (1) {
+    switch (this.state.currentState) {
       case StateEnum.NO_CONTACT:
         return null;
       case StateEnum.AT_RISK:
@@ -401,9 +401,9 @@ class LocationTracking extends Component {
   getCTAIfNeeded() {
     let buttonLabel;
     let buttonFunction;
-    if (1 === StateEnum.NO_CONTACT) {
+    if (this.state.currentState === StateEnum.NO_CONTACT) {
       return;
-    } else if (1 === StateEnum.AT_RISK) {
+    } else if (this.state.currentState === StateEnum.AT_RISK) {
       buttonLabel = languages.t('label.see_exposure_history');
       buttonFunction = () => {
         this.props.navigation.navigate('ExposureHistoryScreen');
@@ -548,6 +548,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     color: Colors.WHITE,
     fontSize: 28,
+    top: '-5%',
     fontFamily: fontFamily.primaryMedium,
   },
   mainTextBelow: {
@@ -573,7 +574,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fontFamily.primaryLight,
     marginBottom: 24,
-    top: '-15%',
+    top: '-7%',
   },
   mayoInfoRow: {
     flexDirection: 'row',
