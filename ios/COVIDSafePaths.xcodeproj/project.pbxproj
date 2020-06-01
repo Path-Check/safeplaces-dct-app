@@ -47,6 +47,8 @@
 		57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */; };
 		626DB8AB8AF9D02B9E411601 /* libPods-BTE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FB16255EA745CC27C638A1 /* libPods-BTE.a */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
+		688D1F3D24858B7900AD21AE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
+		688D1F3F24858B7900AD21AE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
 		68AD526024857AF900D40926 /* MARULocation+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971724809F5C0091A254 /* MARULocation+ExtensionTests.swift */; };
 		68AD526224857AFC00D40926 /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971924809F9C0091A254 /* GeohashTests.swift */; };
 		68AD526324857AFE00D40926 /* Array+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */; };
@@ -1119,6 +1121,7 @@
 			files = (
 				271881C32461BF19001DE067 /* RealmSecureStorageTest.swift in Sources */,
 				68D8971624809E4B0091A254 /* String+Extension.swift in Sources */,
+				688D1F3F24858B7900AD21AE /* Log.swift in Sources */,
 				68D8970D24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */,
 				68D8971024809CEB0091A254 /* Geohash.swift in Sources */,
 				68D8971324809DAE0091A254 /* Array+Extension.swift in Sources */,
@@ -1175,6 +1178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5AA24D624768FFF00BA0A99 /* RealmSecureStorageTest.swift in Sources */,
+				688D1F3D24858B7900AD21AE /* Log.swift in Sources */,
 				C5AA24D724768FFF00BA0A99 /* LocationTests.swift in Sources */,
 				68AD526224857AFC00D40926 /* GeohashTests.swift in Sources */,
 				68AD526324857AFE00D40926 /* Array+ExtensionTests.swift in Sources */,
