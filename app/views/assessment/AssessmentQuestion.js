@@ -78,14 +78,33 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
   const onSelectHandler = (value, index) => {
     if (question.question_type === QUESTION_TYPE_MULTI) {
       return setSelectedValues(values => {
+        // TODO: Better way to filter single value questions?
+        const singleValueQuestions = [
+          'Choose not to answer',
+          'None of the above',
+          'None',
+        ];
         // this looks for an existing value inside the selected values array
         // which indicates user unselected the value
         const unselectedValue = values.some(v => v.index === index);
-        if (unselectedValue) {
-          // if thats true we remove the value from the values array
-          return values.filter(v => v.index !== index);
+        const currentValue = option.values[index];
+        // this handles deselect for values in multi question type
+        // that should act as a single value type questions
+        // basically when any other selection is made this question gets unselected
+        const unselectSingleValueQuestion = values.filter(v => {
+          return !singleValueQuestions.includes(option.values[v.index].label);
+        });
+
+        if (singleValueQuestions.includes(currentValue.label)) {
+          // this logic handles single value questions in multi question type environment
+          return unselectedValue
+            ? unselectSingleValueQuestion
+            : [{ index, value }];
         } else {
-          return [...values, { index, value }];
+          // this logic handles the multi value questions selection
+          return unselectedValue
+            ? unselectSingleValueQuestion.filter(v => v.index !== index)
+            : [...unselectSingleValueQuestion, { index, value }];
         }
       });
     }
