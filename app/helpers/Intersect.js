@@ -432,7 +432,7 @@ async function asyncCheckIntersect() {
     return null;
 
   // Fetch previous dayBins for intersections
-  const dayBins = await GetStoreData(CROSSED_PATHS);
+  let dayBins = await GetStoreData(CROSSED_PATHS);
 
   // Init the arrays for new intersection data and for the news urls
   let tempDayBins = [];
@@ -472,10 +472,10 @@ async function asyncCheckIntersect() {
         // Update each day's bin with the result from the intersection.  To keep the
         //  difference between no data (==-1) and exposure data (>=0), there
         //  are a total of 3 cases to consider.
-        tempDayBins = tempDayBins.map((currentValue, i) => {
+        dayBins = tempDayBins.map((currentValue, i) => {
           if (currentValue < 0) return dayBins[i];
           if (dayBins[i] < 0) return currentValue;
-          return currentValue + tempDayBins[i];
+          return currentValue + dayBins[i];
         });
       } catch (error) {
         // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
