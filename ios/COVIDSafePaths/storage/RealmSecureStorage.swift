@@ -186,9 +186,11 @@ class RealmSecureStorage {
   func getRealmConfig() -> Realm.Configuration? {
     if let key = getEncyrptionKey() {
       if (inMemory) {
-        return Realm.Configuration(inMemoryIdentifier: "temp", encryptionKey: key as Data, objectTypes: [Location.self])
+        return Realm.Configuration(inMemoryIdentifier: "temp", encryptionKey: key as Data, schemaVersion: 1,
+                                   migrationBlock: { _, _ in }, objectTypes: [Location.self])
       } else {
-        return Realm.Configuration(encryptionKey: key as Data, objectTypes: [Location.self])
+        return Realm.Configuration(encryptionKey: key as Data, schemaVersion: 1,
+                                  migrationBlock: { _, _ in }, objectTypes: [Location.self])
       }
     } else {
       return nil

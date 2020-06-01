@@ -151,13 +151,13 @@
     "settings_title": "Tablica",
     "skip_this_step": "Pomiń ten krok",
     "team": "Zespół",
-    "team_para": "Nasz zespół składa się z konsorcjum epidemiologów, inżynierów, naukowców, cyfrowych ewangelistów prywatności, profesorów i badaczy z uznanych instytucji, w tym: MIT, Hardvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young oraz Link Ventures.",
+    "team_para": "Nasz zespół składa się z konsorcjum epidemiologów, inżynierów, naukowców, cyfrowych ewangelistów prywatności, profesorów i badaczy z uznanych instytucji, w tym: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young oraz Link Ventures.",
     "terms_of_use": "Warunki korzystania"
   },
   "onboarding": {
     "eula_checkbox": "Akceptuję umowę licencyjną",
     "eula_continue": "Dalej",
-    "eula_message": "Musisz zaakceptować, jeśli chcesz korzystać z Safe Paths"
+    "eula_message": "*Musisz zaakceptować, jeśli chcesz korzystać z Safe Paths"
   },
   "share": {
     "button_text": "Udostępnij dane o lokalizacji",
