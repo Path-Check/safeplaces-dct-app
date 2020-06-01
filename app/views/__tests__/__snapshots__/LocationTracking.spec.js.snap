@@ -110,7 +110,7 @@ exports[`renders correctly 1`] = `
               "lineHeight": 24.5,
               "marginBottom": 24,
               "textAlign": "center",
-              "top": "-15%",
+              "top": "-7%",
               "writingDirection": "ltr",
             }
           }
