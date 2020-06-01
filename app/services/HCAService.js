@@ -11,6 +11,8 @@ import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 import { LocationData } from './LocationService';
 
+//const authoritiesYaml = require('./../constants/DR/healthcare-authorities.yaml');
+
 /**
  * Singleton class to interact with health care authority data
  */
@@ -22,9 +24,10 @@ class HCAService {
    * @returns {void}
    */
   async fetchAuthoritiesYaml() {
+    //THis is to get the file from remote server but we curently got it local with yamlContent
     return await RNFetchBlob.config({
       fileCache: true,
-    }).fetch('GET', AUTHORITIES_LIST_URL);
+    }).wrap('GET');
   }
 
   /**
@@ -35,9 +38,34 @@ class HCAService {
     let authorities = [];
 
     try {
-      const result = await this.fetchAuthoritiesYaml();
-      const list = await RNFetchBlob.fs.readFile(result.path(), 'utf8');
-      authorities = Yaml.safeLoad(list).Authorities;
+      // const result = await this.fetchAuthoritiesYaml();
+      // const list = await RNFetchBlob.fs.readFile(result.path(), 'utf8');
+      // console.log("Yaml list: " + JSON.stringify(list));
+      const authoritiesJson = {
+        Authorities: [
+          {
+            'Ministerio de Salud Publica': [
+              {
+                url: 'https://webapps.mepyd.gob.do/contact_tracing/api/Contact',
+              },
+              {
+                bounds: {
+                  ne: {
+                    latitude: 20.365051,
+                    longitude: -67.795684,
+                  },
+                  sw: {
+                    latitude: 16.99877,
+                    longitude: -72.17912,
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      };
+
+      authorities = authoritiesJson.Authorities;
     } catch (err) {
       console.error(err);
     }
@@ -196,7 +224,7 @@ class HCAService {
    */
   async findNewAuthorities() {
     const newAuthorities = await this.getNewAuthoritiesInUserLoc();
-
+    console.log('new autho: ' + newAuthorities);
     if (newAuthorities.length > 0) {
       if (this.isAutosubscriptionEnabled()) {
         await this.pushAlertNewSubscriptions(newAuthorities);

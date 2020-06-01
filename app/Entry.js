@@ -17,6 +17,7 @@ import ResultsScreen from './views/DR/ReportScreen/Results';
 import UserInfo from './views/DR/UserInfoScreen/index';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
+import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
 import LocationTracking from './views/LocationTracking';
@@ -179,6 +180,11 @@ class Entry extends Component {
           <Stack.Screen
             name='UserInfo'
             component={UserInfo}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='FeatureFlagsScreen'
+            component={FeatureFlagsScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
