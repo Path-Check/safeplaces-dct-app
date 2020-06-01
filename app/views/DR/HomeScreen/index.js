@@ -40,15 +40,41 @@ export default class HomeScreen extends Component {
     };
   }
 
+  // This fuction is to abreviate or separate numbers, ex: 1000 => 1,000, 100000 => 100K
+  separateOrAbreviate = data => {
+    const { cases, deaths, recovered, todayCases } = data;
+
+    const oldCases = [cases, deaths, recovered, todayCases];
+
+    const newCases = oldCases.map(number => {
+      switch (number > 0) {
+        case number < 1e3:
+          return number;
+
+        case number >= 1e3 && number < 1e5:
+          return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+
+        case number >= 1e5 && number < 1e6:
+          return +(number / 1e3).toFixed(1) + 'K';
+
+        default:
+          return +(number / 1e6).toFixed(1) + 'M';
+      }
+    });
+    return {
+      cases: newCases[0],
+      deaths: newCases[1],
+      recovered: newCases[2],
+      todayCases: newCases[3],
+    };
+  };
+
   getCases = () => {
     getAllCases().then(({ updated, cases, deaths, recovered, todayCases }) => {
       this.setState(state => ({
         ...state,
         updated,
-        cases,
-        deaths,
-        recovered,
-        todayCases,
+        ...this.separateOrAbreviate({ cases, deaths, recovered, todayCases }), // To take all the cards' content and abreviate them
         refreshing: false,
       }));
     });
