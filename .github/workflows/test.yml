@@ -175,7 +175,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-iphonesimulator/PathCheckGPS.app
+          path: ios/build/Build/Products/Release-iphonesimulator/GPS.app
 
   e2e-iphone-se:
     runs-on: macOS-latest
@@ -217,7 +217,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
+          path: ios/build/Build/Products/Release-iphonesimulator/GPS.app
 
       - run: yarn test:e2e:iphone-se
 
