@@ -1,7 +1,7 @@
 import BackArrow from './backArrow.png';
 import BackgroundAtRisk from './backgroundAtRisk.png';
 import BoxCheckedIcon from './boxCheckedIcon.png';
-import boxUncheckedIcon from './boxUncheckedIcon.png';
+import BoxUncheckedIcon from './boxUncheckedIcon.png';
 import Close from './closeIcon.png';
 import Export from './export.png';
 import ForeArrow from './foreArrow.png';
@@ -25,7 +25,7 @@ export const Images = {
   BackArrow,
   BackgroundAtRisk,
   BoxCheckedIcon,
-  boxUncheckedIcon,
+  BoxUncheckedIcon,
   Close,
   Export,
   ForeArrow,

@@ -177,10 +177,10 @@ exports[`setting off matches snapshot 1`] = `
           }
           use="body1"
         >
-          We can’t tell if you’re at risk unless you enable contact tracing in the settings screen.
+          We can’t tell if you’re at risk unless you enable location history in the settings screen.
         </Text>
         <View
-          accessibilityLabel="Enable Contact Tracing"
+          accessibilityLabel="Enable Location Data"
           accessibilityRole="button"
           accessible={true}
           focusable={true}
@@ -220,7 +220,7 @@ exports[`setting off matches snapshot 1`] = `
             }
             use="body1"
           >
-            Enable Contact Tracing
+            Enable Location Data
           </Text>
         </View>
       </View>

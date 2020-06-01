@@ -47,6 +47,19 @@
 		57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */; };
 		626DB8AB8AF9D02B9E411601 /* libPods-BTE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FB16255EA745CC27C638A1 /* libPods-BTE.a */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
+		68D8970624809AA50091A254 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68D8970524809AA50091A254 /* Scrypt */; };
+		68D8970924809ABF0091A254 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68D8970824809ABF0091A254 /* Scrypt */; };
+		68D8970C24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */; };
+		68D8970D24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */; };
+		68D8970F24809CEB0091A254 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970E24809CEB0091A254 /* Geohash.swift */; };
+		68D8971024809CEB0091A254 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970E24809CEB0091A254 /* Geohash.swift */; };
+		68D8971224809DAE0091A254 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971124809DAE0091A254 /* Array+Extension.swift */; };
+		68D8971324809DAE0091A254 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971124809DAE0091A254 /* Array+Extension.swift */; };
+		68D8971524809E4B0091A254 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971424809E4B0091A254 /* String+Extension.swift */; };
+		68D8971624809E4B0091A254 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971424809E4B0091A254 /* String+Extension.swift */; };
+		68D8971824809F5C0091A254 /* MARULocation+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971724809F5C0091A254 /* MARULocation+ExtensionTests.swift */; };
+		68D8971A24809F9C0091A254 /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971924809F9C0091A254 /* GeohashTests.swift */; };
+		68D8971C24809FB50091A254 /* Array+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */; };
 		7A2281C376904F23BCA10FCA /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
 		8A5B44AA7D724388B70F100B /* IBMPlexSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36B22BAB357B44949D2E168C /* IBMPlexSans-ExtraLight.ttf */; };
 		8CB0C49FEC0F493D95420B30 /* IBMPlexMono-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3053DF05D78949A09366B85D /* IBMPlexMono-ExtraLight.ttf */; };
@@ -58,7 +71,6 @@
 		B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
 		BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */; };
-		C53FD0632471637D006D3268 /* COVIDSafePathsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C53FD0622471637D006D3268 /* COVIDSafePathsConfig.m */; };
 		C53FD08124719AD1006D3268 /* RealmSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* RealmSecureStorage.swift */; };
 		C53FD08324719AD1006D3268 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */; };
 		C53FD08424719AD1006D3268 /* SecureStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F931562459E28800E1024C /* SecureStorageManager.m */; };
@@ -82,7 +94,6 @@
 		C53FD09724719AD1006D3268 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4F242849C1008754AC /* CoreGraphics.framework */; };
 		C53FD09824719AD1006D3268 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4D24283B0B008754AC /* CoreData.framework */; };
 		C53FD09924719AD1006D3268 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4B24283AFF008754AC /* Accelerate.framework */; };
-		C53FD09C24719AD1006D3268 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		C53FD09D24719AD1006D3268 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
 		C53FD09E24719AD1006D3268 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		C53FD09F24719AD1006D3268 /* IBMPlexMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE25A1CE9ED048DC83FAE7B0 /* IBMPlexMono-Bold.ttf */; };
@@ -113,7 +124,7 @@
 		C53FD0B824719AD1006D3268 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */; };
 		C53FD0B924719AD1006D3268 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
 		C53FD0BA24719AD1006D3268 /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
-		C53FD0C524719C57006D3268 /* COVIDSafePathsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */; };
+		C5850A64247D5A41007A596B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5850A63247D5A41007A596B /* Images.xcassets */; };
 		C5AA24D624768FFF00BA0A99 /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
 		C5AA24D724768FFF00BA0A99 /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
 		C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */; };
@@ -185,11 +196,11 @@
 		0DC95F63E93B2BB75824CCB3 /* libPods-BTETests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BTETests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD29292C60B45029B7823D6 /* IBMPlexSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLight.ttf"; path = "../app/assets/fonts/IBMPlexSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		1360DEA45F2DC8248DFD3B91 /* Pods-BTETests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTETests.beta.xcconfig"; path = "Target Support Files/Pods-BTETests/Pods-BTETests.beta.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* COVIDSafePaths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COVIDSafePaths.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* PathCheckGPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathCheckGPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = COVIDSafePaths/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = COVIDSafePaths/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = COVIDSafePaths/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = COVIDSafePaths/main.m; sourceTree = "<group>"; };
 		1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Thin.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Thin.ttf"; sourceTree = "<group>"; };
@@ -232,6 +243,13 @@
 		5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Light.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Light.ttf"; sourceTree = "<group>"; };
 		60B0614ED854C2369C1852FE /* Pods-GPSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.release.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.release.xcconfig"; sourceTree = "<group>"; };
 		668BDA050EF549C6B0759425 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Bold.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
+		68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAURLocation+Extension.swift"; sourceTree = "<group>"; };
+		68D8970E24809CEB0091A254 /* Geohash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geohash.swift; sourceTree = "<group>"; };
+		68D8971124809DAE0091A254 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		68D8971424809E4B0091A254 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		68D8971724809F5C0091A254 /* MARULocation+ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MARULocation+ExtensionTests.swift"; sourceTree = "<group>"; };
+		68D8971924809F9C0091A254 /* GeohashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeohashTests.swift; sourceTree = "<group>"; };
+		68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ExtensionTests.swift"; sourceTree = "<group>"; };
 		6BA94CE8425944B8990A49B3 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Bold.ttf"; path = "../app/assets/fonts/IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
 		6C8CF282C4264C88A4ED8ABF /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
 		71D1C872DB0CCC3BBC3D907E /* Pods-COVIDSafePaths.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths.debug.xcconfig"; sourceTree = "<group>"; };
@@ -278,12 +296,10 @@
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
 		BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
-		C53FD061247162F8006D3268 /* COVIDSafePathsConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = COVIDSafePathsConfig.h; sourceTree = "<group>"; };
-		C53FD0622471637D006D3268 /* COVIDSafePathsConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsConfig.m; sourceTree = "<group>"; };
-		C53FD0C124719AD1006D3268 /* COVIDSafePaths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COVIDSafePaths.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C53FD0C124719AD1006D3268 /* PathCheckBT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathCheckBT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53FD0C224719AD2006D3268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsConfig.m; sourceTree = "<group>"; };
 		C53FD116247454EA006D3268 /* COVIDSafePaths.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = COVIDSafePaths.entitlements; path = BTE/COVIDSafePaths.entitlements; sourceTree = "<group>"; };
+		C5850A63247D5A41007A596B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C5AA24E124768FFF00BA0A99 /* BTETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5AA24E224768FFF00BA0A99 /* BTETestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = BTETestsInfo.plist; path = "/Users/johnschoeman/workspace/thoughtbot/covid-safe-paths/ios/BTETestsInfo.plist"; sourceTree = "<absolute>"; };
 		C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePathsTests.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePathsTests/Pods-COVIDSafePathsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -323,6 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68D8970924809ABF0091A254 /* Scrypt in Frameworks */,
 				B2138BE26880EEA67E6D1C0E /* libPods-GPSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +363,7 @@
 				08445F50242849C1008754AC /* CoreGraphics.framework in Frameworks */,
 				08445F4E24283B0B008754AC /* CoreData.framework in Frameworks */,
 				08445F4C24283AFF008754AC /* Accelerate.framework in Frameworks */,
+				68D8970624809AA50091A254 /* Scrypt in Frameworks */,
 				A49C8C752B3AA7ABB92618E3 /* libPods-GPS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +409,9 @@
 				00E356F01AD99517003FC87E /* Supporting Files */,
 				271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */,
 				271089AF24698720009AC76F /* LocationTests.swift */,
+				68D8971724809F5C0091A254 /* MARULocation+ExtensionTests.swift */,
+				68D8971924809F9C0091A254 /* GeohashTests.swift */,
+				68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */,
 			);
 			path = COVIDSafePathsTests;
 			sourceTree = "<group>";
@@ -505,6 +526,7 @@
 		13B07FAE1A68108700A75B9A /* COVIDSafePaths */ = {
 			isa = PBXGroup;
 			children = (
+				68D8970A24809B2D0091A254 /* Extension */,
 				C53FD0C324719C25006D3268 /* BTE */,
 				C53FD07C247199A4006D3268 /* GPS */,
 				276F786A245B6C8A00312927 /* bridge */,
@@ -513,13 +535,11 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				B2A5821B244CE80C000F39A6 /* InfoPlist.strings */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				B2A58212244CE76C000F39A6 /* Localizable.strings */,
 				276AB155245238E300D39B58 /* COVIDSafePaths-Bridging-Header.h */,
-				C53FD061247162F8006D3268 /* COVIDSafePathsConfig.h */,
 			);
 			name = COVIDSafePaths;
 			sourceTree = "<group>";
@@ -540,6 +560,7 @@
 				276AB156245238E400D39B58 /* SecureStorage.swift */,
 				276AB15B245291DE00D39B58 /* Location.swift */,
 				271881BF2461AF76001DE067 /* RealmSecureStorage.swift */,
+				68D8970E24809CEB0091A254 /* Geohash.swift */,
 			);
 			name = storage;
 			path = COVIDSafePaths/storage;
@@ -583,6 +604,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		68D8970A24809B2D0091A254 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */,
+				68D8971124809DAE0091A254 /* Array+Extension.swift */,
+				68D8971424809E4B0091A254 /* String+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -615,9 +646,9 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* COVIDSafePaths.app */,
+				13B07F961A680F5B00A75B9A /* PathCheckGPS.app */,
 				00E356EE1AD99517003FC87E /* GPSTests.xctest */,
-				C53FD0C124719AD1006D3268 /* COVIDSafePaths.app */,
+				C53FD0C124719AD1006D3268 /* PathCheckBT.app */,
 				C5AA24E124768FFF00BA0A99 /* BTETests.xctest */,
 			);
 			name = Products;
@@ -627,7 +658,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				C53FD0622471637D006D3268 /* COVIDSafePathsConfig.m */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
 			);
 			path = GPS;
 			sourceTree = "<group>";
@@ -636,7 +667,7 @@
 			isa = PBXGroup;
 			children = (
 				C53FD0C224719AD2006D3268 /* Info.plist */,
-				C53FD0C424719C57006D3268 /* COVIDSafePathsConfig.m */,
+				C5850A63247D5A41007A596B /* Images.xcassets */,
 			);
 			path = BTE;
 			sourceTree = "<group>";
@@ -659,6 +690,9 @@
 				271881CC2461C95F001DE067 /* PBXTargetDependency */,
 			);
 			name = GPSTests;
+			packageProductDependencies = (
+				68D8970824809ABF0091A254 /* Scrypt */,
+			);
 			productName = COVIDSafePathsTests;
 			productReference = 00E356EE1AD99517003FC87E /* GPSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -679,8 +713,11 @@
 			dependencies = (
 			);
 			name = GPS;
+			packageProductDependencies = (
+				68D8970524809AA50091A254 /* Scrypt */,
+			);
 			productName = COVIDSafePaths;
-			productReference = 13B07F961A680F5B00A75B9A /* COVIDSafePaths.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* PathCheckGPS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C53FD07D24719AD1006D3268 /* BTE */ = {
@@ -700,7 +737,7 @@
 			);
 			name = BTE;
 			productName = COVIDSafePaths;
-			productReference = C53FD0C124719AD1006D3268 /* COVIDSafePaths.app */;
+			productReference = C53FD0C124719AD1006D3268 /* PathCheckBT.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C5AA24D124768FFF00BA0A99 /* BTETests */ = {
@@ -747,6 +784,9 @@
 						DevelopmentTeam = 79Z8HUPGC3;
 						ProvisioningStyle = Manual;
 					};
+					C5AA24D124768FFF00BA0A99 = {
+						TestTargetID = C53FD07D24719AD1006D3268;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "COVIDSafePaths" */;
@@ -770,6 +810,9 @@
 				"pt-BR",
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -848,12 +891,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FD09C24719AD1006D3268 /* Images.xcassets in Resources */,
 				C53FD09D24719AD1006D3268 /* InfoPlist.strings in Resources */,
 				C53FD09E24719AD1006D3268 /* LaunchScreen.xib in Resources */,
 				C53FD09F24719AD1006D3268 /* IBMPlexMono-Bold.ttf in Resources */,
 				C53FD0A024719AD1006D3268 /* IBMPlexMono-BoldItalic.ttf in Resources */,
 				C53FD0A124719AD1006D3268 /* IBMPlexMono-ExtraLight.ttf in Resources */,
+				C5850A64247D5A41007A596B /* Images.xcassets in Resources */,
 				C53FD0A224719AD1006D3268 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */,
 				C53FD0A324719AD1006D3268 /* IBMPlexMono-Italic.ttf in Resources */,
 				C53FD0A424719AD1006D3268 /* IBMPlexMono-Light.ttf in Resources */,
@@ -1054,8 +1097,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				271881C32461BF19001DE067 /* RealmSecureStorageTest.swift in Sources */,
+				68D8971624809E4B0091A254 /* String+Extension.swift in Sources */,
+				68D8970D24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */,
+				68D8971024809CEB0091A254 /* Geohash.swift in Sources */,
+				68D8971324809DAE0091A254 /* Array+Extension.swift in Sources */,
+				68D8971A24809F9C0091A254 /* GeohashTests.swift in Sources */,
 				271089B024698720009AC76F /* LocationTests.swift in Sources */,
+				68D8971C24809FB50091A254 /* Array+ExtensionTests.swift in Sources */,
 				00E356F31AD99517003FC87E /* COVIDSafePathsTests.m in Sources */,
+				68D8971824809F5C0091A254 /* MARULocation+ExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,10 +1114,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				271881C02461AF76001DE067 /* RealmSecureStorage.swift in Sources */,
-				C53FD0632471637D006D3268 /* COVIDSafePathsConfig.m in Sources */,
 				0835F8922441054A00E95AE3 /* RNBackgroundFetch+AppDelegate.m in Sources */,
+				68D8971224809DAE0091A254 /* Array+Extension.swift in Sources */,
+				68D8970F24809CEB0091A254 /* Geohash.swift in Sources */,
 				27F931572459E28800E1024C /* SecureStorageManager.m in Sources */,
+				68D8971524809E4B0091A254 /* String+Extension.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				68D8970C24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */,
 				276AB15C245291DE00D39B58 /* Location.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				27F9315A2459E2BD00E1024C /* SecureStorageManager.swift in Sources */,
@@ -1080,7 +1133,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C53FD08124719AD1006D3268 /* RealmSecureStorage.swift in Sources */,
-				C53FD0C524719C57006D3268 /* COVIDSafePathsConfig.m in Sources */,
 				C53FD08324719AD1006D3268 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				C53FD08424719AD1006D3268 /* SecureStorageManager.m in Sources */,
 				C53FD08524719AD1006D3268 /* AppDelegate.m in Sources */,
@@ -1194,10 +1246,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
 			};
 			name = Debug;
 		};
@@ -1225,9 +1278,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
 			};
 			name = Release;
 		};
@@ -1314,12 +1368,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckGPS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1409,12 +1464,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckGPS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1558,12 +1614,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckGPS;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.covid-safepaths";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1597,10 +1654,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
 			};
 			name = Staging;
 		};
@@ -1735,12 +1793,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckGPS;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.covid-safepaths";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1770,9 +1829,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
 			};
 			name = Beta;
 		};
@@ -1957,12 +2017,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckBT;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2047,12 +2108,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = COVIDSafePaths;
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PRODUCT_NAME = PathCheckBT;
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.bt";
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2137,12 +2199,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckBT;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2226,12 +2289,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = COVIDSafePaths.app/PrivateHeaders;
+				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = COVIDSafePaths;
+				PRODUCT_NAME = PathCheckBT;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = COVIDSafePaths.app/Headers;
+				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2267,7 +2331,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
 			};
 			name = Debug;
 		};
@@ -2301,7 +2365,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
 			};
 			name = Staging;
 		};
@@ -2331,7 +2395,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
 			};
 			name = Release;
 		};
@@ -2361,7 +2425,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/COVIDSafePaths.app/COVIDSafePaths";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
 			};
 			name = Beta;
 		};
@@ -2424,6 +2488,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MichaelNeas/swift-scrypt.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		68D8970524809AA50091A254 /* Scrypt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
+			productName = Scrypt;
+		};
+		68D8970824809ABF0091A254 /* Scrypt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
+			productName = Scrypt;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }
