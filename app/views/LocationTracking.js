@@ -32,6 +32,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import { isPlatformiOS } from './../Util';
 import { Button } from '../components/Button';
+import NextSteps from '../components/DR/LocationTracking/NextSteps';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -443,6 +444,9 @@ class LocationTracking extends Component {
 
           <View style={styles.mainContainer}>
             <View style={styles.contentAbovePulse}>
+              {hasPossibleExposure && (
+                <NextSteps navigation={this.props.navigation} />
+              )}
               {hasPossibleExposure && this.getMainText()}
               <Typography style={styles.subsubheaderText}>
                 {this.getSubSubText()}

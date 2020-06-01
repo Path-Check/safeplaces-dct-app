@@ -6,17 +6,20 @@ import {
 import React, { Component } from 'react';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
+import ExposedResponse from './components/DR/LocationTracking/ExposedResponse';
 import Colors from './constants/colors';
 import { GetStoreData } from './helpers/General';
 import NavEntry from './NavEntry';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import AuroraScreen from './views/DR/Aurora';
+import Details from './views/DR/News/Details';
 import Report from './views/DR/ReportScreen/ReportScreenQuestions';
 import ResultsScreen from './views/DR/ReportScreen/Results';
 import UserInfo from './views/DR/UserInfoScreen/index';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
+import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
 import LocationTracking from './views/LocationTracking';
@@ -179,6 +182,21 @@ class Entry extends Component {
           <Stack.Screen
             name='UserInfo'
             component={UserInfo}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ExposedResponse'
+            component={ExposedResponse}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Details'
+            component={Details}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen // This is to enable the exposed screen please leave for development and QA we will take it out later
+            name='FeatureFlagsScreen'
+            component={FeatureFlagsScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
