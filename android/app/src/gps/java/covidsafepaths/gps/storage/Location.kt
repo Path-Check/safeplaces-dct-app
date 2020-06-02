@@ -48,8 +48,6 @@ open class Location(
       putDouble(KEY_LATITUDE, latitude)
       putDouble(KEY_LONGITUDE, longitude)
       hashes?.let { putArray(KEY_HASHES, it.toWritableArray()) }
-      putDouble(KEY_ACCURACY, accuracy?.toDouble() ?: 0.0)
-      putString(KEY_PROVIDER, provider)
     }
 
   }
@@ -60,9 +58,6 @@ open class Location(
     const val KEY_LONGITUDE = "longitude"
     const val KEY_SOURCE = "source"
     const val KEY_HASHES = "hashes"
-
-    const val KEY_ACCURACY = "accuracy"
-    const val KEY_PROVIDER = "provider"
 
     const val SOURCE_DEVICE = 0
     const val SOURCE_MIGRATION = 1
@@ -116,14 +111,12 @@ open class Location(
       }
     }
 
-    fun createAssumedLocation(time: Long, latitude: Double, longitude: Double, accuracy: Float?, provider: String?): Location {
+    fun createAssumedLocation(time: Long, latitude: Double, longitude: Double): Location {
       return Location(
               time = time,
               latitude = latitude,
               longitude = longitude,
-              source = SOURCE_ASSUMED,
-              accuracy = accuracy,
-              provider = provider
+              source = SOURCE_ASSUMED
       )
     }
 
