@@ -55,6 +55,27 @@ function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
 }
 
 /**
+ *
+ * @param {array} localData - array of stored gps points with gaps
+ * @param {int} gpsPeriod - local points sampling period
+ */
+function fillGapsInLocalData(localData, gpsPeriod) {
+  return localData.reduce((acc, dp, index) => {
+    acc.push(dp);
+
+    if (index === localData.length - 1) return;
+    // gap size is the amount of additional gps sampling periods
+    // that can fit in the interval between two local data points
+    const interval = localData[index + 1].time.diff(dp.time);
+    const gapSize = Math.round(interval / gpsPeriod) - 1;
+    if (gapSize > 0) {
+      // generate missing data points with correct times
+      acc.push(...fillLocationGap(dp.time, gapSize, gpsPeriod));
+    }
+  }, []);
+}
+
+/**
  * Calculates the exposure durations for each day
  *
  * @param {array} localGPSDataPoints - array of recorded GPS data points.
@@ -72,21 +93,6 @@ function reduceToDayBins(
   // useful for time calcs
   dayjs.extend(duration);
 
-  // first step is to fill the gaps in local data
-  const filledLocalData = localGPSDataPoints.reduce((acc, dp, index) => {
-    acc.push(dp);
-
-    if (index === localGPSDataPoints.length - 1) return;
-    // gap size is the amount of additional gps sampling periods
-    // that can fit in the interval between two local data points
-    const interval = localGPSDataPoints[index + 1].time.diff(dp.time);
-    const gapSize = Math.round(interval / gpsPeriod) - 1;
-    if (gapSize > 0) {
-      // generate missing data points with correct times
-      acc.push(...fillLocationGap(dp.time, gapSize, gpsPeriod));
-    }
-  }, []);
-
   // number of data points that fit in the timeframe
   const pointsInFrame = Math.round((concernTimeframe * 60e3) / gpsPeriod);
   // minimal match count in timeframe for it to be considered as an exposure period
@@ -96,7 +102,7 @@ function reduceToDayBins(
 
   // for each element, calculate the number of matches that occured up until that element
   let matchCount = 0;
-  const prevMatchCounts = filledLocalData
+  const prevMatchCounts = localGPSDataPoints
     .map(p => (p.hasMatch ? matchCount++ : matchCount)) // make an array of matches up until that data point
     .push(matchCount); // as the name states, prevMatchCounts[index] is the number of matches
   // in previous index elements, so we add one more that tells us the total num of matches
@@ -108,7 +114,7 @@ function reduceToDayBins(
   // slide the timeframe over recorded data points
   for (
     let i = 0, j = i + pointsInFrame;
-    j <= filledLocalData.length;
+    j <= localGPSDataPoints.length;
     i++, j++
   ) {
     // if the current exposure ended and the frame advanced, clear old exposure
@@ -119,7 +125,7 @@ function reduceToDayBins(
     // skip if curr data point doesn't have a match
     // or the match count in this frame is smaller than the threshold
     if (
-      filledLocalData[i].hasMatch &&
+      localGPSDataPoints[i].hasMatch &&
       prevMatchCounts[j] - prevMatchCounts[i] >= thresholdMatches
     ) {
       if (currExposure) {
@@ -138,7 +144,7 @@ function reduceToDayBins(
 
   // iterate over the exposures array and update the day bins
   for (let exposure of exposures) {
-    const startTime = filledLocalData[exposure.start].time;
+    const startTime = localGPSDataPoints[exposure.start].time;
     const duration =
       (exposure.end - exposure.start) * DEFAULT_EXPOSURE_PERIOD_MINUTES;
 
@@ -437,8 +443,11 @@ async function asyncCheckIntersect() {
   // Init the array for the news urls
   let name_news = [];
 
-  // get the saved set of locations for the user, already sorted
-  let locationArray = await NativeModules.SecureStorageManager.getLocations();
+  const gpsPeriod = LocationData.locationInterval;
+
+  // get the saved set of locations for the user, already sorted, and fill in the gaps
+  const locationArray = await NativeModules.SecureStorageManager.getLocations();
+  const filledLocationArray = fillGapsInLocalData(locationArray, gpsPeriod);
 
   // get the health authorities
   let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
@@ -459,11 +468,11 @@ async function asyncCheckIntersect() {
 
         // intersect the users location with the locations from the authority
         updateMatchFlags(
-          locationArray,
+          filledLocationArray,
           new Set(responseJson.concern_point_hashes),
         );
         let tempDayBins = reduceToDayBins(
-          locationArray,
+          filledLocationArray,
           responseJson.notification_threshold_percent,
           responseJson.notification_threshold_timeframe,
         );
