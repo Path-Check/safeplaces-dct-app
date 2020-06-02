@@ -8,7 +8,7 @@
 
 import XCTest
 import RealmSwift
-@testable import COVIDSafePaths
+@testable import GPS
 
 class RealmSecureStorageTest: XCTestCase {
   

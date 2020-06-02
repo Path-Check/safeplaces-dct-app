@@ -1,6 +1,6 @@
 git_url("git@github.com:Path-Check/certificates.git")
 storage_mode("git")
-app_identifier(["org.pathcheck.covid-safepaths"])
+app_identifier(["org.pathcheck.covid-safepaths", "org.pathcheck.bt"])
 username("tech@pathcheck.org") # Your Apple Developer Portal username
 
 # type("appstore") # Options: appstore, adhoc, enterprise or development
