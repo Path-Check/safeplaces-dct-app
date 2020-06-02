@@ -246,7 +246,7 @@ export default class LocationServices {
   }
 
   static async getParticpating() {
-    return await GetStoreData(PARTICIPATE, false);
+    return true;
   }
 
   static async getBackgroundGeoStatus() {
