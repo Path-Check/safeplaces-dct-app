@@ -24,7 +24,7 @@ export function Feels({ navigation }) {
           </Text>
         </View>
         <View style={{ flexDirection: 'column' }}>
-          <Text style={styles.text}>
+          <Text style={[styles.text, { width: '90%' }]}>
             {languages.t('label.report_symptoms_description')}
           </Text>
           <View style={{ justifyContent: 'center' }}>
