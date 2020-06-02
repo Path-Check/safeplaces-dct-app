@@ -157,13 +157,6 @@
 			remoteGlobalIDString = C53FD07D24719AD1006D3268;
 			remoteInfo = BTE;
 		};
-		C5C850E024804A0300A494CA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 418F75461D02DC3D0045FEA0;
-			remoteInfo = RCTBackgroundGeolocation;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -306,7 +299,6 @@
 		C5AA24E224768FFF00BA0A99 /* BTETestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = BTETestsInfo.plist; path = "/Users/johnschoeman/workspace/thoughtbot/covid-safe-paths/ios/BTETestsInfo.plist"; sourceTree = "<absolute>"; };
 		C5C850C6248014F700A494CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C5C850C92480156200A494CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBackgroundGeolocation.xcodeproj; path = "../node_modules/@mauron85/react-native-background-geolocation/ios/RCTBackgroundGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		C5C850E324804A5200A494CA /* libBackgroundGeolocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBackgroundGeolocation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C850F8248125A800A494CA /* libBackgroundGeolocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBackgroundGeolocation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C850FB24812AAB00A494CA /* GPS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GPS-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -620,7 +612,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */,
 				2E9077612439A903005C98DE /* SplashScreen.xcodeproj */,
 			);
 			name = Libraries;
@@ -685,14 +676,6 @@
 				C56190A12485332E009A6756 /* BTE-Bridging-Header.h */,
 			);
 			path = BTE;
-			sourceTree = "<group>";
-		};
-		C5C850DD24804A0300A494CA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C5C850E124804A0300A494CA /* libRCTBackgroundGeolocation.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -845,10 +828,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = C5C850DD24804A0300A494CA /* Products */;
-					ProjectRef = C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */;
-				},
-				{
 					ProductGroup = 2E9077622439A903005C98DE /* Products */;
 					ProjectRef = 2E9077612439A903005C98DE /* SplashScreen.xcodeproj */;
 				},
@@ -869,13 +848,6 @@
 			fileType = archive.ar;
 			path = libSplashScreen.a;
 			remoteRef = 2E9077652439A903005C98DE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C5C850E124804A0300A494CA /* libRCTBackgroundGeolocation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTBackgroundGeolocation.a;
-			remoteRef = C5C850E024804A0300A494CA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1283,6 +1255,9 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Debug;
 		};
@@ -1313,6 +1288,9 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Release;
 		};
@@ -1328,63 +1306,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
-				);
 				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
 				MARKETING_VERSION = 1.0.5;
 				OTHER_LDFLAGS = (
@@ -1399,6 +1324,9 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Debug;
 		};
@@ -1414,63 +1342,10 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
-				);
 				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
 				MARKETING_VERSION = 1.0.5;
 				OTHER_LDFLAGS = (
@@ -1484,6 +1359,9 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Release;
 		};
@@ -1554,63 +1432,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
-				);
 				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
 				MARKETING_VERSION = 1.0.5;
 				OTHER_LDFLAGS = (
@@ -1625,6 +1450,9 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Staging;
 		};
@@ -1659,6 +1487,9 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Staging;
 		};
@@ -1722,63 +1553,10 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
-				);
 				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
 				MARKETING_VERSION = 1.0.5;
 				OTHER_LDFLAGS = (
@@ -1792,6 +1570,9 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Beta;
 		};
@@ -1822,6 +1603,9 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Beta;
 		};
@@ -1959,6 +1743,9 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Debug;
 		};
@@ -1993,6 +1780,9 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Staging;
 		};
@@ -2026,6 +1816,9 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Release;
 		};
@@ -2059,6 +1852,9 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Beta;
 		};
@@ -2091,6 +1887,9 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Debug;
 		};
@@ -2123,6 +1922,9 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Staging;
 		};
@@ -2151,6 +1953,9 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Release;
 		};
@@ -2179,6 +1984,9 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 			};
 			name = Beta;
 		};

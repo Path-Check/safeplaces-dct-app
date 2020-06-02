@@ -223,6 +223,7 @@ android {
 }
 
 dependencies {
+    implementation project(':@mauron85_react-native-background-geolocation')
     // loading html files
     compile project(':react-native-local-resource')
     implementation project(':react-native-reanimated')
