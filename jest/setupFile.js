@@ -14,7 +14,7 @@ NativeModules.SecureStorageManager = NativeModules.SecureStorageManager || {
 };
 
 jest.mock('react-native-pulse');
-jest.mock('@mauron85/react-native-background-geolocation');
+// jest.mock('@mauron85/react-native-background-geolocation');
 
 // Silence YellowBox useNativeDriver warning
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
@@ -51,13 +51,13 @@ jest.mock('@react-navigation/native', () => {
     StackActions: {
       push: jest
         .fn()
-        .mockImplementation(x => ({ ...x, type: 'Navigation/PUSH' })),
+        .mockImplementation((x) => ({ ...x, type: 'Navigation/PUSH' })),
       replace: jest
         .fn()
-        .mockImplementation(x => ({ ...x, type: 'Navigation/REPLACE' })),
+        .mockImplementation((x) => ({ ...x, type: 'Navigation/REPLACE' })),
     },
     NavigationActions: {
-      navigate: jest.fn().mockImplementation(x => x),
+      navigate: jest.fn().mockImplementation((x) => x),
     },
     useNavigation: () => {
       return { navigate: jest.fn() };
