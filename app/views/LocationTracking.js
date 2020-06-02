@@ -444,9 +444,6 @@ class LocationTracking extends Component {
 
           <View style={styles.mainContainer}>
             <View style={styles.contentAbovePulse}>
-              {hasPossibleExposure && (
-                <NextSteps navigation={this.props.navigation} />
-              )}
               {hasPossibleExposure && this.getMainText()}
               <Typography style={styles.subsubheaderText}>
                 {this.getSubSubText()}
@@ -458,6 +455,9 @@ class LocationTracking extends Component {
                 {this.getSubText()}
               </Typography>
               {this.getCTAIfNeeded()}
+              {hasPossibleExposure && (
+                <NextSteps navigation={this.props.navigation} />
+              )}
             </View>
           </View>
 

@@ -21,6 +21,7 @@ class NextSteps extends Component {
         label={buttonLabel}
         onPress={() => buttonFunction()}
         style={styles.buttonContainer}
+        secondary
       />
     );
   }
@@ -29,7 +30,7 @@ class NextSteps extends Component {
 const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 24,
-    marginBottom: 24,
+    //marginBottom: 24,
     height: 54, // fixes overlaying buttons on really small screens
   },
 });
