@@ -6,7 +6,6 @@
 //  Copyright © 2020 Path Check Inc. All rights reserved.
 //
 import Foundation
-import Scrypt
 import os.log
 
 public extension MAURLocation {
@@ -37,14 +36,14 @@ public extension MAURLocation {
   var scryptHashes: [String] {
     if #available(iOS 10.0, *) {
       let start = DispatchTime.now()
-      let scryptGeoHashes = geoHashes.map(scrypt)
+      let scryptGeoHashes = geoHashes.map(scryptEncode)
       let end = DispatchTime.now()
       let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
       let timeInterval = Double(nanoTime) / 1_000_000_000
       os_log("Hashing completed in: %d seconds", log: Log.scryptHashing, type: .debug, timeInterval)
       return scryptGeoHashes
     } else {
-      return geoHashes.map(scrypt)
+      return geoHashes.map(scryptEncode)
     }
   }
 
@@ -52,7 +51,7 @@ public extension MAURLocation {
   ///
   /// - Parameters:
   ///     - hash: value to hash
-  func scrypt(on hash: String) -> String {
+  func scryptEncode(hash: String) -> String {
     let hash = Array(hash.utf8)
     let generic = Array("salt".utf8)
     ///  A “cost” (N) that is to be determined.  Initially was 16384, then modified to 4096
@@ -60,6 +59,6 @@ public extension MAURLocation {
     ///  A block size of 8
     ///  A keylen (output) of 8 bytes = 16 hex digits.
     /// Parallelization (p) of 1 - this is the default.
-    return try! Scrypt.scrypt(password: hash, salt: generic, length: 8,N: 4096, r: 8, p: 1).toHexString()
+    return try! scrypt(password: hash, salt: generic, length: 8,N: 4096, r: 8, p: 1).toHexString()
   }
 }

@@ -40,7 +40,7 @@ class MAURLocation_ExtensionTests: XCTestCase {
   func testScrypt() {
     let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: Date(timeIntervalSince1970: 1586865600000))
     let input = "gcpuuz8u1586865600"
-    XCTAssertEqual(backgroundLocation.scrypt(on: input), "e727d7eb7c51d1b3")
+    XCTAssertEqual(backgroundLocation.scryptEncode(hash: input), "e727d7eb7c51d1b3")
   }
 
   func testValidScrypt() {
