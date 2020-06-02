@@ -15,18 +15,21 @@ import LinearGradient from 'react-native-linear-gradient';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import { isPlatformiOS } from './../Util';
-import { Icons } from '../assets';
-import { Button } from '../components/Button';
-import { IconButton } from '../components/IconButton';
-import { Typography } from '../components/Typography';
-import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
-import { Theme } from '../constants/themes';
+import { Icons } from '../../assets';
+import { Button } from '../../components/Button';
+import { IconButton } from '../../components/IconButton';
+import { Typography } from '../../components/Typography';
+import Colors from '../../constants/colors';
+import fontFamily from '../../constants/fonts';
+import { Theme } from '../../constants/themes';
+import { isPlatformiOS } from '../../Util';
 
 const base64 = RNFetchBlob.base64;
 
-export const ExportScreen = ({ navigation }) => {
+// NOTE:
+// This is the old way we export. This is still the default, but will
+// become flipped behind the feature flag once we have staging for uploading.
+const ExportLocally = ({ navigation }) => {
   const { t } = useTranslation();
   function handleBackPress() {
     navigation.goBack();
@@ -194,10 +197,12 @@ const styles = StyleSheet.create({
   },
 });
 
-ExportScreen.propTypes = {
+ExportLocally.propTypes = {
   shareButtonDisabled: PropTypes.bool,
 };
 
-ExportScreen.defaultProps = {
+ExportLocally.defaultProps = {
   shareButtonDisabled: true,
 };
+
+export default ExportLocally;

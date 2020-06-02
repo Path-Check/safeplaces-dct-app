@@ -89,7 +89,7 @@ export const SettingsScreen = ({ navigation }) => {
     } else if (!isLogging) {
       return settingsLoggingInactive;
     }
-  }
+  };
 
   return (
     <NavigationBarWrapper
@@ -100,7 +100,7 @@ export const SettingsScreen = ({ navigation }) => {
           {isGPS && (
             <Item
               label={getLoggingText()}
-              icon={isLogging ? Icons.Checkmark : Icons.XmarkIcon}
+              icon={isLogging ? Icons.CheckmarkCircle : Icons.XmarkIcon}
               onPress={locationToggleButtonPressed}
             />
           )}
@@ -137,12 +137,23 @@ export const SettingsScreen = ({ navigation }) => {
                 description={t('label.event_history_subtitle')}
                 onPress={() => navigation.navigate('ExposureHistoryScreen')}
               />
-              <Item
-                label={t('share.title')}
-                description={t('share.subtitle')}
-                onPress={() => navigation.navigate('ExportScreen')}
-                last
-              />
+              <FeatureFlag
+                name='export_e2e'
+                fallback={
+                  <Item
+                    label={t('share.title')}
+                    description={t('share.subtitle')}
+                    onPress={() => navigation.navigate('ExportLocally')}
+                    last
+                  />
+                }>
+                <Item
+                  label={t('share.title')}
+                  description={t('share.subtitle')}
+                  onPress={() => navigation.navigate('ExportScreen')}
+                  last
+                />
+              </FeatureFlag>
             </>
           ) : null}
         </Section>
