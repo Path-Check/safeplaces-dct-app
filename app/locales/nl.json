@@ -6,7 +6,11 @@
     "version": "Versie:"
   },
   "common": {
-    "done": "Klaar"
+    "done": "Klaar",
+    "next": "Volgende"
+  },
+  "export": {
+    "exit_warning_cancel": "Annuleer"
   },
   "history": {
     "no_exposure": "Geen blootstelling",
@@ -52,7 +56,6 @@
     "authorities_removal_alert_title": "Autoriteit verwijderen",
     "auto_subscribe_checkbox": "Automatisch abonnement inschakelen",
     "choose_provider_subtitle": "Om op de hoogte te blijven van mogelijke blootstellingen, kunt u het best abonneren op een gezondheidsinstantie.",
-    "authorities_new_in_area_msg_plural": "Meld u aan voor {{count}} nieuwe gezondheidinstanties in uw regio",
     "choose_provider_title": "Kies een gezondheidsinstantie",
     "default_news_site_name": "Safe Paths nieuws",
     "enter_authority_url": "URL invoeren of plakken",
@@ -75,6 +78,7 @@
     "launch_access_location": "Locatie toegang",
     "launch_authority_access": "Abonneer u op nabijgelegen gezondheidsautoriteiten",
     "launch_authority_header": "Gezondheidszorgautoriteiten zullen uw apparaat voorzien van de lokale gegevens om te weten of u een besmette persoon bent tegengekomen.",
+    "authorities_new_in_area_msg_plural": "Meld u aan voor {{count}} nieuwe gezondheidinstanties in uw regio",
     "launch_authority_subheader": "Schrijf u automatisch in om de laatste updates van gezondheidsinstanties in uw regio te ontvangen.",
     "launch_done_header": "Klaar voor gebruik",
     "launch_done_subheader": "U kunt altijd uw instellingen op een later moment nog kan aanpassen.",

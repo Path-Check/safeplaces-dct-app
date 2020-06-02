@@ -12,7 +12,11 @@
   },
   "common": {
     "done": "Fatto",
+    "next": "Prossimo",
     "ok": "Ok"
+  },
+  "export": {
+    "exit_warning_cancel": "Annulla"
   },
   "history": {
     "no_exposure": "Non noto",
@@ -53,7 +57,6 @@
     "authorities_desc": "Seleziona le istituzioni sanitarie nella tua area per ottenere i dati sulle possibilità di esposizione.\n\nSeleziona un nome dal registro globale o inserisci l'indirizzo internet fornito da una istituzione sanitaria che partecipa a Safe Paths.",
     "authorities_input_placeholder": "Incolla l'indirizzo qui",
     "authorities_new_in_area_msg": "Iscritto ad {{count}} Istitituzione Sanitaria accreditata per la tua area.",
-    "authorities_new_in_area_msg_plural": "Iscritto a {{count}} Istitituzioni Sanitarie accreditate per la tua area.",
     "authorities_new_in_area_title": "Nuova Istituzione Sanitaria",
     "authorities_new_in_area_title_plural": "Nuove Istituzioni Sanitarie",
     "authorities_new_subscription_msg": "Ti sei registrato ad {{count}} nuova Instituzione nella tua zona",
@@ -79,6 +82,7 @@
     "home_at_risk_subtext_location": "Sulla base del tuo storico GPS, è possibile che tu sia venuto a contatto o sia nelle vicinanze di qualcuno con diagnosi di COVID-19",
     "home_enable_bluetooth": "Abilita il tracciamento dei contatti",
     "home_enable_location": "Attiva la Localizzazione",
+    "authorities_new_in_area_msg_plural": "Iscritto a {{count}} Istitituzioni Sanitarie accreditate per la tua area.",
     "home_mayo_link_heading": "Informati sul COVID-19",
     "home_mayo_link_label": "grazie alla Mayo Clinic",
     "home_no_contact_header": "Nessuna esposizione",

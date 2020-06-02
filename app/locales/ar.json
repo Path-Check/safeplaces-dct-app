@@ -6,7 +6,11 @@
     "version": "الإصدار:"
   },
   "common": {
-    "done": "تم"
+    "done": "تم",
+    "next": "التالى"
+  },
+  "export": {
+    "exit_warning_cancel": "إلغاء"
   },
   "history": {
     "no_exposure": "لم يتم التعرض",
@@ -51,8 +55,6 @@
     "choose_provider_subtitle": "لتكون على علم بالتعرض والانتشار ، ستحتاج إلى الاشتراك في هيئة صحية",
     "choose_provider_title": "اختر الهيئة الصحية",
     "default_news_site_name": "أخبار المسارات الآمنة",
-    "authorities_new_in_area_title_1": "هيئة الرعاية الصحية الجديدة",
-    "authorities_new_in_area_title_5": "هيئات الرعاية الصحية الجديدة",
     "enter_authority_url": "أدخل أو الصق عنوان ال URL",
     "event_history_subtitle": "افهم تعرضك الشخصي بناءً على المعلومات التي تشاركها السلطات الصحية",
     "event_history_title": "سجلات التعرض",
@@ -75,6 +77,8 @@
     "launch_authority_header": "ستقوم جهات الرعاية الصحية بتزويد جهازك بالبيانات المحلية لمعرفة ما إذا كنت قد تقاطعت مع شخص مصاب",
     "launch_authority_subheader": "اشترك تلقائيًا لتلقي آخر التحديثات من جهات الرعاية الصحية في منطقتك.",
     "launch_done_header": "انتهينا",
+    "authorities_new_in_area_title_1": "هيئة الرعاية الصحية الجديدة",
+    "authorities_new_in_area_title_5": "هيئات الرعاية الصحية الجديدة",
     "launch_done_subheader": "أنت على استعداد لبدء التنفيذ.\n تذكر ، يمكنك دائمًا تحديث تفضيلاتك لاحقًا",
     "launch_enable_auto_subscription": "تفعيل الاشتراك التلقائي",
     "launch_enable_location": "فعل تحديد الموقع",

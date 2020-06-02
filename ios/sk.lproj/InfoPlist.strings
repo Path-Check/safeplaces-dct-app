@@ -1,0 +1,5 @@
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. Všetky práva vyhradené.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Tvoja história polohy sa uloží do tvojho zariadenia a bude zdieľaná s ostatnými iba vtedy, ak sa tak rozhodneš. ";
+"NSLocationAlwaysUsageDescription" = "Tvoja história polohy sa uloží do tvojho zariadenia a bude zdieľaná s ostatnými iba vtedy, ak sa tak rozhodneš.";
+"NSLocationWhenInUseUsageDescription" = "Tvoja história polohy sa uloží do tvojho zariadenia a bude zdieľaná s ostatnými iba vtedy, ak sa tak rozhodneš. ";
+"NSMotionUsageDescription" = "Používame akcelerometer na presnú históriu polohy.";

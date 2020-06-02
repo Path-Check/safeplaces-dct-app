@@ -12,7 +12,11 @@
   },
   "common": {
     "done": "Gotowe",
+    "next": "Dalej",
     "ok": "Ok"
+  },
+  "export": {
+    "exit_warning_cancel": "Anuluj"
   },
   "history": {
     "no_exposure": "Brak narażenia",
@@ -52,15 +56,13 @@
     "authorities_add_url": "Dodaj instytucję poprzez adres URL",
     "authorities_desc": "Wybierz jeden lub więcej organów opieki zdrowotnej w Twojej okolicy, aby uzyskać informacje na temat COVID-19 w pobliżu, jeśli są dostępne. \n\nWybierz nazwę z rejestru globalnego lub wprowadź adres internetowy podany przez organ opieki zdrowotnej, który wdrożył PathCheck.",
     "authorities_input_placeholder": "Wklej swój adres URL",
-    "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
-    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
-    "authorities_new_subscription_msg_0": "Subskrybujesz {{count}} nową instytucję opieki zdrowotnej w swojej loklizacji",
-    "authorities_new_subscription_msg_3": "Subskrybujesz {{count}} nowe instytucje opieki zdrowotnej w swojej loklizacji",
     "authorities_new_in_area_title_0": "Nowa instytucja opieki zdrowotnej",
+    "authorities_new_in_area_title_3": "Nowe instytucje opieki zdrowotnej",
     "authorities_new_subscription_title_0": "{{count}} Nowa subskrybcja",
     "authorities_new_subscription_title_3": "{{count}} Nowe subskrybcje",
-    "authorities_new_in_area_title_3": "Nowe instytucje opieki zdrowotnej",
     "authorities_no_sources": "Brak organów opieki zdrowotnej",
+    "authorities_new_subscription_msg_0": "Subskrybujesz {{count}} nową instytucję opieki zdrowotnej w swojej loklizacji",
+    "authorities_new_subscription_msg_3": "Subskrybujesz {{count}} nowe instytucje opieki zdrowotnej w swojej loklizacji",
     "authorities_removal_alert_cancel": "Anuluj",
     "authorities_removal_alert_desc": "Czy jesteś pewien, że chcesz usunąć dane dotyczące instytucji?",
     "authorities_removal_alert_proceed": "Ok",
@@ -79,6 +81,8 @@
     "home_at_risk_subtext_location": "Na podstawie Twojej historii GPS jest możliwe, że byłeś w kontakcie lub w pobliżu osoby, u której zdiagnozowano COVID-19.",
     "home_enable_bluetooth": "Zezwól na śledzenie kontaktów",
     "home_enable_location": "Zezwól na lokalizację danych",
+    "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
+    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
     "home_mayo_link_heading": "Więcej informacji o COVID-19",
     "home_mayo_link_label": "z Mayo Clinic",
     "home_no_contact_header": "Brak kontaktu",

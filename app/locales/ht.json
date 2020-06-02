@@ -12,7 +12,11 @@
   },
   "common": {
     "done": "Fini",
+    "next": "Kontinye",
     "ok": "Ok"
+  },
+  "export": {
+    "exit_warning_cancel": "Anile"
   },
   "history": {
     "no_exposure": "Pa gen kontak",
@@ -52,17 +56,15 @@
     "authorities_add_url": "Ajoute otorite a pati yon URL",
     "authorities_desc": "Chwazi otorite ke ou fè konfyans nan zòn ou an pou jwenn done ekspoze yo. Swa ou chwazi yon non ki soti nan rejis global la, oswa antre non adrès entènèt yon otorite, ki te aplike Chase Kowona (\"Safe Paths\"), te bay.",
     "authorities_input_placeholder": "Kole URL ou an la",
-    "authorities_new_in_area_msg_1": "Enskri nan {{count}} nouvo otorite swen sante ou fè konfyans nan zòn ou",
-    "authorities_new_in_area_msg_5": "Enskri nan {{count}} nouvo otorite swen sante yo ou fè konfyans nan zòn ou",
-    "authorities_new_subscription_msg_1": "Ou te enski nan {{count}} nouvo otorite nan zòn ou",
-    "authorities_new_subscription_msg_5": "Ou te enski nan {{count}} nouvo otorite nan zòn ou",
-    "authorities_no_sources": "Ou poko genyen sous done!",
-    "authorities_removal_alert_cancel": "Anile",
     "authorities_new_in_area_title_1": "Nouvo otorite swen sante",
+    "authorities_new_in_area_title_4": "Nouvo otorite swen sante yo",
     "authorities_new_subscription_title_1": "{{count}} Nouvo enskripsyon",
     "authorities_new_subscription_title_5": "{{count}} Nouvo enskripsyon yo",
-    "authorities_new_in_area_title_4": "Nouvo otorite swen sante yo",
+    "authorities_no_sources": "Ou poko genyen sous done!",
+    "authorities_removal_alert_cancel": "Anile",
     "authorities_removal_alert_desc": "Eske ou si ke ou vle retire sous done otorite sa?",
+    "authorities_new_subscription_msg_1": "Ou te enski nan {{count}} nouvo otorite nan zòn ou",
+    "authorities_new_subscription_msg_5": "Ou te enski nan {{count}} nouvo otorite nan zòn ou",
     "authorities_removal_alert_proceed": "Kontinye",
     "authorities_removal_alert_title": "Retire otorite",
     "auto_subscribe_checkbox": "Aktive abònman otomatik",
@@ -79,6 +81,8 @@
     "home_at_risk_subtext_location": "Daprè done disponib yo, ou te kwaze chemen ak yon moun ki te teste pozitif pou Kowonaviris.",
     "home_enable_bluetooth": "Aktive Contact Tracing",
     "home_enable_location": "Aktive done lokalizasyon",
+    "authorities_new_in_area_msg_1": "Enskri nan {{count}} nouvo otorite swen sante ou fè konfyans nan zòn ou",
+    "authorities_new_in_area_msg_5": "Enskri nan {{count}} nouvo otorite swen sante yo ou fè konfyans nan zòn ou",
     "home_mayo_link_heading": "Plis enfòmasyon sou Kowonaviris",
     "home_mayo_link_label": "ki soti nan Mayo Clinic",
     "home_no_contact_header": "Pa gen kontak",

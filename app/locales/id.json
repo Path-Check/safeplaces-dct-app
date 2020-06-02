@@ -1,5 +1,11 @@
 {
   "_display_name": "Indonesia",
+  "common": {
+    "next": "Selanjutnya"
+  },
+  "export": {
+    "exit_warning_cancel": "Batal"
+  },
   "history": {
     "no_exposure": "Tidak ada paparan",
     "possible_exposure": "Kemungkinan Terpapar",
