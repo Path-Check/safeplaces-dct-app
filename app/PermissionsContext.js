@@ -88,11 +88,7 @@ const PermissionsProvider = ({ children }) => {
       setLocationPermission(statusToEnum(status));
     } else if (Platform.OS === 'android') {
       const status = await check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
-      if (locationPermission === PermissionStatus.UNKNOWN) {
-        setLocationPermission(PermissionStatus.UNKNOWN);
-      } else {
-        setLocationPermission(statusToEnum(status));
-      }
+      setLocationPermission(statusToEnum(status));
     }
   };
 
