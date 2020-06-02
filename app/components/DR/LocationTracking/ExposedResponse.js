@@ -10,6 +10,7 @@ import Header from '../../../components/DR/Header';
 import styles from '../../../components/DR/Header/style';
 import ResultsContent from '../../../components/DR/ResultsContent';
 import Colors from '../../../constants/colors';
+import languages from '../../../locales/languages';
 
 export default function ExposedResponse({ navigation }) {
   return (
@@ -18,7 +19,7 @@ export default function ExposedResponse({ navigation }) {
         <ScrollView>
           <View style={{ flex: 1 }}>
             <Header
-              title='Pasos a seguir'
+              title={languages.t('label.exposure_next_steps')}
               text='No ha tenido síntomas de COVID-19, pero contacto expuesto a alguien con COVID-19.'
               navigation={navigation}
               style={{ height: hp('18%') }}

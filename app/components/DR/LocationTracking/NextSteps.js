@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { Button } from '../../../components/Button';
+import languages from '../../../locales/languages';
 
 class NextSteps extends Component {
   constructor(props) {
@@ -11,8 +12,7 @@ class NextSteps extends Component {
   render() {
     let buttonLabel;
     let buttonFunction;
-    //buttonLabel = languages.t('label.see_exposure_history');
-    buttonLabel = 'Pasos a seguir';
+    buttonLabel = languages.t('label.exposure_next_steps');
     buttonFunction = () => {
       this.props.navigation.navigate('ExposedResponse');
     };
