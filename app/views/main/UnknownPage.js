@@ -46,7 +46,7 @@ export const UnknownPage = () => {
           </View>
           <View style={styles.contentBelowPulse}>
             <Text style={styles.mainTextBelow}>
-              {t('label.home_setting_off_header')}
+              {t('label.home_unknown_header')}
             </Text>
             <Typography style={styles.subheaderText}>
               {t('label.home_unknown_subtext')}
