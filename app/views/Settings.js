@@ -19,17 +19,14 @@ import {
   supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
 import LocationServices from '../services/LocationService';
+import { useAssets } from '../TracingStrategyAssets';
 import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
-import { useAssets } from '../TracingStrategyAssets';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
-  const {
-    settingsLoggingActive,
-    settingsLoggingInactive,
-  } = useAssets();
+  const { settingsLoggingActive, settingsLoggingInactive } = useAssets();
   const [isLogging, setIsLogging] = useState(undefined);
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
@@ -89,7 +86,7 @@ export const SettingsScreen = ({ navigation }) => {
     } else if (!isLogging) {
       return settingsLoggingInactive;
     }
-  }
+  };
 
   return (
     <NavigationBarWrapper
@@ -100,7 +97,7 @@ export const SettingsScreen = ({ navigation }) => {
           {isGPS && (
             <Item
               label={getLoggingText()}
-              icon={isLogging ? Icons.Checkmark : Icons.XmarkIcon}
+              icon={isLogging ? Icons.CheckmarkCircle : Icons.XmarkIcon}
               onPress={locationToggleButtonPressed}
             />
           )}
@@ -137,12 +134,23 @@ export const SettingsScreen = ({ navigation }) => {
                 description={t('label.event_history_subtitle')}
                 onPress={() => navigation.navigate('ExposureHistoryScreen')}
               />
-              <Item
-                label={t('share.title')}
-                description={t('share.subtitle')}
-                onPress={() => navigation.navigate('ExportScreen')}
-                last
-              />
+              <FeatureFlag
+                name='export_e2e'
+                fallback={
+                  <Item
+                    label={t('share.title')}
+                    description={t('share.subtitle')}
+                    onPress={() => navigation.navigate('ExportLocally')}
+                    last
+                  />
+                }>
+                <Item
+                  label={t('share.title')}
+                  description={t('share.subtitle')}
+                  onPress={() => navigation.navigate('ExportScreen')}
+                  last
+                />
+              </FeatureFlag>
             </>
           ) : null}
         </Section>

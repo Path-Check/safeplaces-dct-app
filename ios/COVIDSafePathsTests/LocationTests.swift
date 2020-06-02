@@ -6,7 +6,7 @@
 //  Copyright © 2020 Path Check Inc. All rights reserved.
 //
 import XCTest
-@testable import PathCheckGPS
+@testable import GPS
 
 class LocationTests: XCTestCase {
   

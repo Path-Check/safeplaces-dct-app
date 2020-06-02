@@ -25,8 +25,6 @@ PODS:
   - glog (0.3.5)
   - Permission-LocationAlways (2.1.4):
     - RNPermissions
-  - Permission-LocationWhenInUse (2.1.4):
-    - RNPermissions
   - Permission-Notifications (2.1.4):
     - RNPermissions
   - RCTRequired (0.61.5)
@@ -293,7 +291,6 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways.podspec`)
-  - Permission-LocationWhenInUse (from `../node_modules/react-native-permissions/ios/LocationWhenInUse.podspec`)
   - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -367,8 +364,6 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   Permission-LocationAlways:
     :path: "../node_modules/react-native-permissions/ios/LocationAlways.podspec"
-  Permission-LocationWhenInUse:
-    :path: "../node_modules/react-native-permissions/ios/LocationWhenInUse.podspec"
   Permission-Notifications:
     :path: "../node_modules/react-native-permissions/ios/Notifications.podspec"
   RCTRequired:
@@ -466,7 +461,6 @@ SPEC CHECKSUMS:
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   Permission-LocationAlways: 48085521ad224052f5b25c3fdc6d0e996d162428
-  Permission-LocationWhenInUse: 7449010ca36a26dbe6b10e69e9d6ebcab0222c42
   Permission-Notifications: d437cafc026900006d35981d35a2d694f883f44e
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
@@ -514,6 +508,6 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: da76f32974b5fc83f551b81bc61d97931055a2ec
+PODFILE CHECKSUM: 148568a0f595d4c77a3c0d8e9323f9fa07e053a9
 
 COCOAPODS: 1.9.1
