@@ -144,8 +144,9 @@ class Entry extends Component {
               headerTintColor: Colors.WHITE,
               headerBackTitle: ' ',
               headerStyle: {
-                backgroundColor: Colors.BLUE_RIBBON,
-                shadowColor: Colors.BLUE_RIBBON,
+                backgroundColor: (0, 0, 0), // Transparent Background
+                elevation: 0, // remove shadow on Android
+                shadowOpacity: 0, // remove shadow on iOS
                 height: hp('7%'),
               },
               headerLeftContainerStyle: {
