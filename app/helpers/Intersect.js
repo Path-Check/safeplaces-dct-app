@@ -443,22 +443,26 @@ async function asyncCheckIntersect() {
   // Init the array for the news urls
   let name_news = [];
 
-  const gpsPeriod = LocationData.locationInterval;
-
   // get the saved set of locations for the user, already sorted, and fill in the gaps
   const locationArray = await NativeModules.SecureStorageManager.getLocations();
-  const filledLocationArray = fillGapsInLocalData(locationArray, gpsPeriod);
+
+  // fill the gaps in local data
+  const gpsPeriod = LocationData.locationInterval;
+  const filledLocalData = fillGapsInLocalData(locationArray, gpsPeriod);
 
   // get the health authorities
-  let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
+  const authorities = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
+  const updatedAuthorities = [];
 
-  if (authority_list) {
-    // Parse the registered health authorities
-    authority_list = JSON.parse(authority_list);
+  if (authorities) {
+    for (const authority of authorities) {
+      // init last read cursor string that is stored with HA data
+      let cursor = authority.cursor;
+      // start timestamp of the last stored cursor for this HA
+      const prevCursorStart = parseTimestampCursor(cursor)[0];
 
-    for (const authority of authority_list) {
       try {
-        let responseJson = await retrieveUrlAsJson(authority.url);
+        const responseJson = await retrieveUrlAsJson(authority.url);
 
         // Update the news array with the info from the authority
         name_news.push({
@@ -466,13 +470,23 @@ async function asyncCheckIntersect() {
           news_url: responseJson.info_website,
         });
 
-        // intersect the users location with the locations from the authority
-        updateMatchFlags(
-          filledLocationArray,
-          new Set(responseJson.concern_point_hashes),
-        );
+        for (const page of responseJson.pages) {
+          // skip pages we read before
+          if (prevCursorStart > page.startTimestamp) continue;
+          // fetch the page we didn't have before
+          const concernPointsPage = retrieveUrlAsJson(page.filename);
+
+          // check if any of local points hashes are contained in this page
+          updateMatchFlags(
+            filledLocalData,
+            new Set(concernPointsPage.concern_point_hashes),
+          );
+
+          cursor = `${page.startTimestamp}_${page.endTimestamp}`;
+        }
+
         let tempDayBins = reduceToDayBins(
-          filledLocationArray,
+          filledLocalData,
           responseJson.notification_threshold_percent,
           responseJson.notification_threshold_timeframe,
         );
@@ -490,6 +504,8 @@ async function asyncCheckIntersect() {
         //       Should do better than this.
         console.log('[authority] fetch/parse error :', error);
       }
+      // at last, we update the last read cursor for the current HA
+      updatedAuthorities.push({ ...authority, cursor });
     }
   }
 
@@ -501,6 +517,9 @@ async function asyncCheckIntersect() {
 
   // store the results
   SetStoreData(CROSSED_PATHS, dayBins); // TODO: Store per authority?
+
+  // store updated cursors
+  SetStoreData(AUTHORITY_SOURCE_SETTINGS, updatedAuthorities);
 
   // save off the current time as the last checked time
   let unixtimeUTC = dayjs().valueOf();
@@ -519,6 +538,10 @@ function fillLocationGap(startTime, gapSize, gpsPeriod) {
   return [...new Array(gapSize)].map((_, i) => ({
     time: startTime + (i + 1) * gpsPeriod,
   }));
+}
+
+function parseTimestampCursor(cursorString) {
+  return cursorString ? cursorString.split('_') : [0, 0];
 }
 
 /**
