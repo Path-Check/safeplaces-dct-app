@@ -41,6 +41,8 @@ platform :ios do
     GPS_SCHEME = "GPS_Production"
     WORKSPACE = "COVIDSafePaths.xcworkspace"
     PROJECT = "COVIDSafePaths.xcodeproj"
+    VERSON_NUMBER = "1.0.29"
+    BUILD_NUMBER = "3"
     JS_PACKAGE = load_json(json_path: "../package.json")
 
     lane :sync_local_certs do
@@ -155,13 +157,13 @@ platform :ios do
       # https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion
       increment_build_number(
         xcodeproj: PROJECT,
-        build_number: JS_PACKAGE['version']
+        build_number: BUILD_NUMBER
       )
       # Sets the system build number for the project:
       # https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
       increment_version_number(
         xcodeproj: PROJECT,
-        version_number: JS_PACKAGE['version']
+        version_number: VERSON_NUMBER
       )
 
       signing_bundle_details = {
