@@ -8,7 +8,7 @@ import {
   requestNotifications,
 } from 'react-native-permissions';
 
-import { config } from './COVIDSafePathsConfig';
+import { isGPS } from './COVIDSafePathsConfig';
 import { HCAService } from './services/HCAService';
 
 export const PermissionStatus = {
@@ -70,7 +70,6 @@ const PermissionsProvider = ({ children }) => {
 
   useEffect(() => {
     const checkAllPermissions = async () => {
-      const isGPS = config.tracingStrategy === 'gps';
       const isiOS = Platform.OS === 'ios';
       const isDev = __DEV__;
       await Promise.all([

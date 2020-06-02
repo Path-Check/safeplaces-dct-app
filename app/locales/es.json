@@ -3,16 +3,23 @@
   "about": {
     "dimensions": "Dimensiones:",
     "operating_system_abbr": "OS:",
+    "tracing_strategy": "Estrategia de rastreo:",
     "version": "Versión:"
   },
+  "authorities": {
+    "invalid_url_body": "La URL que introdujo no era válida, por favor inténtelo de nuevo",
+    "invalid_url_title": "URL no válida"
+  },
   "common": {
-    "done": "Hecho"
+    "done": "Hecho",
+    "ok": "Ok"
   },
   "history": {
     "no_exposure": "No ha habido contacto",
     "possible_exposure": "Posible",
     "possible_exposure_para": "Es posible que hayas estado en contacto o cerca de alguien que ha dado positivo en COVID-19.",
     "what_does_this_mean": "¿Qué significa esto?",
+    "what_does_this_mean_para_bluetooth": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19. Esto no significa que te hayas infectado, pero sí que podrías estarlo.\n\nPara obtener más información sobre lo que debes hacer, puedes consultar el sitio web de Mayo Clinic.",
     "what_does_this_mean_para_location": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19. Esto no significa que te hayas infectado, pero sí que podrías estarlo.\n\nPara obtener más información sobre lo que debes hacer, puedes consultar el sitio web de Mayo Clinic.",
     "what_if_no_symptoms": "¿Qué pasa si no tengo síntomas?",
     "what_if_no_symptoms_para": "Si no tienes síntomas, pero quieres hacerte la prueba, puedes ir al punto de pruebas más cercano. \n\nLas personas sin síntomas también pueden tener el COVID e infectar a otros. Respetar el distanciamiento social y evitar el contacto con grupos grandes o personas en riesgo (ancianos, personas con otros problemas médicos) es importante para controlar tanto tú riesgo como el de los demás."
@@ -25,7 +32,7 @@
       "disclaimer": "Safe Paths no está afiliado con Google y nunca compartirá tus datos.",
       "file_open_error": "No se pudo abrir el archivo. \nPor favor, asegúrese de que el archivo se abra desde Google Drive",
       "instructions_detailed": "Visita Google Takeout y exporta tu historial de ubicaciones siguiendo estos pasos: \n1. Método de entrega: \"Añadir al Drive\" \n2. Frecuencia: \"Exportar una vez\" \n3. Tipo y tamaño del archivo: \".zip\" y \"1GB\"\n4. Google envía un email cuando la exportación está lista \n5. Regresa aquí para importar ubicaciones de Google Drive",
-      "instructions_first": "{\"one\": \"Agregar datos de tu ubicación de Google ayudará a elaborar un reporte del historial de ubicaciones recientes\", \"other\": \"Antes de poder importar, primero debes 'Extraer' tus datos de ubicación de Google\".}",
+      "instructions_first": "Agregar datos de tu ubicación de Google ayudará a elaborar un reporte del historial de ubicaciones recientes",
       "instructions_second": "Para poder importar, primero debes \"Extraer\" sus datos de ubicación de Google.",
       "invalid_file_format": "El formato de archivo no es compatible. \nFormatos admitidos: \".zip\".",
       "no_recent_locations": "La aplicación no tiene ubicaciones recientes.",
@@ -37,12 +44,16 @@
     "title": "Importar historial"
   },
   "label": {
+    "about_header_bluetooth": "PathCheck Bluetooth",
+    "about_header_location": "PathCheck GPS",
+    "about_para": "PathCheck es un movimiento global para crear herramientas gratuitas, de código abierto y respuetuosas con la privacidad para ciudadanos, funcionarios de salud pública y comunidades locales, con el fin de aplanar la curva del COVID-19, reducir el miedo y evitar un excesivo control estatal después de la pandemia.\n\n Para más información, visite",
     "about_title": "Acerca de",
     "authorities_add_button_label": "Añadir fuente de datos fiable",
     "authorities_add_url": "Añadir organismo vía web",
     "authorities_desc": "Elige las autoridades sanitarias de tu zona para obtener datos sobre posibles contactos con el COVID. Selecciona un nombre de la lista global, o introduce la URL del sitio web de una autoridad sanitaria que haya usado Safe Paths.",
     "authorities_input_placeholder": "Introduce la URL aquí",
     "authorities_new_in_area_msg": "Suscribirse a {{count}} nueva autoridad sanitaria fiable en tu zona",
+    "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona",
     "authorities_new_in_area_title": "Autoridad sanitaria nueva",
     "authorities_new_in_area_title_plural": "Autoridades sanitarias nuevas",
     "authorities_new_subscription_msg": "Te has suscrito a {{count}} nueva autoridad en tu zona",
@@ -54,7 +65,6 @@
     "authorities_removal_alert_desc": "Quieres eliminar este organismo como fuente de datos?",
     "authorities_removal_alert_proceed": "Adelante",
     "authorities_removal_alert_title": "Eliminar organismo",
-    "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona",
     "auto_subscribe_checkbox": "Habilitar la suscripción automática",
     "choose_provider_subtitle": "Para informarte de posibles contactos, debes suscribirte a una autoridad sanitaria.",
     "choose_provider_title": "Elegir autoridades sanitarias",
@@ -65,6 +75,7 @@
     "filter_authorities_by_gps_history": "Filtrar por sus ubicaciones",
     "home_at_risk_header": "Puedes haberte expuesto al COVID",
     "home_at_risk_subsubtext": "Esto no implica que te hayas infectado.",
+    "home_at_risk_subtext_bluetooth": "De acuerdo a tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien diagnosticado con COVID-19.",
     "home_at_risk_subtext_location": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19.",
     "home_enable_bluetooth": "Habilitar rastreabilidad de contactos",
     "home_enable_location": "Permitir acceso a tu ubicación",
@@ -80,6 +91,7 @@
     "home_unknown_header": "Desconocido",
     "home_unknown_subtext_bluetooth": "No podemos saber si está en riesgo a menos que habilite la rastreabilidad de contactos en la aplicación.",
     "home_unknown_subtext_location": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",
+    "import_success": "Importado con éxito",
     "latest_news": "Últimas noticias",
     "launch_access_bluetooth": "Permitir rastreabilidad de contactos",
     "launch_access_location": "Acceder a tu ubicación",
@@ -132,6 +144,7 @@
     "news_subtitle": "Novedades sobre el COVID-19 de tus autoridades sanitarias y noticias en general.",
     "news_title": "Últimas Noticias",
     "no_data": "No hay datos",
+    "privacy_policy": "Política de privacidad",
     "push_at_risk_message": "Has estado cerca de alguien con COVID-19",
     "push_at_risk_title": "Puedes estar en riesgo",
     "see_exposure_history": "Ver historial de exposición",

@@ -10,15 +10,15 @@ import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
+import { useAssets } from '../../TracingStrategyAssets';
 
-export const ExposurePage = ({ tracingStrategy }) => {
+
+export const ExposurePage = () => {
   const { t } = useTranslation();
+  const { exposurePageSubheader } = useAssets();
   const navigation = useNavigation();
   const buttonLabel = t('label.see_exposure_history');
-  const subheaderText = 
-    tracingStrategy === 'gps'
-      ? t(`label.home_at_risk_subtext_location`)
-      : t(`label.home_at_risk_subtext_bluetooth`);
+
   const size = Dimensions.get('window').height;
 
   return (
@@ -50,7 +50,7 @@ export const ExposurePage = ({ tracingStrategy }) => {
           </View>
           <View style={styles.contentBelowPulse}>
             <Typography style={styles.subheaderText}>
-              {subheaderText}
+              {exposurePageSubheader}
             </Typography>
             <View style={styles.buttonContainer}>
               <Button

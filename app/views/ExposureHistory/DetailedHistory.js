@@ -2,10 +2,10 @@ import styled from '@emotion/native';
 import React from 'react';
 
 import { Typography } from '../../components/Typography';
-import { tracingStrategy } from '../../COVIDSafePathsConfig';
 import languages from '../../locales/languages';
 import { ExposureCalendarView } from './ExposureCalendarView';
 import { SingleExposureDetail } from './SingleExposureDetail';
+import { useAssets } from '../../TracingStrategyAssets';
 
 /**
  * Detailed info when there is some exposure found
@@ -13,11 +13,8 @@ import { SingleExposureDetail } from './SingleExposureDetail';
  * @param {{history: !import('../../constants/history').History}} param0
  */
 export const DetailedHistory = ({ history }) => {
+  const { detailedHistoryPageWhatThisMeansPara } = useAssets();
   const exposedDays = history.filter(day => day.exposureMinutes > 0);
-  const whatThisMeansParaText =
-    tracingStrategy === 'gps'
-      ? languages.t('history.what_does_this_mean_para_location')
-      : languages.t('history.what_does_this_mean_para_bluetooth');
       
   return (
     <>
@@ -49,7 +46,7 @@ export const DetailedHistory = ({ history }) => {
             {languages.t('history.what_does_this_mean')}
           </Typography>
           <Typography use='body3'>
-            {whatThisMeansParaText}
+            {detailedHistoryPageWhatThisMeansPara}
           </Typography>
         </>
       )}
