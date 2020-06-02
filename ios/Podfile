@@ -5,12 +5,11 @@ def shared_pods
   # Pods for COVIDSafePaths
   project 'COVIDSafePaths.xcodeproj'
 
-  pod 'Realm', :modular_headers => true
-  pod 'RealmSwift', :modular_headers => true
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
   pod 'RCTTypeSafety', :path => "../node_modules/react-native/Libraries/TypeSafety"
+
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/'
   pod 'React-CoreModules', :path => '../node_modules/react-native/React/CoreModules'
@@ -41,27 +40,43 @@ def shared_pods
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
   permissions_path = '../node_modules/react-native-permissions/ios'
-  pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse.podspec"
-  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
   pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
 
   use_native_modules!
 end
 
+def gps_pods
+  pod 'Realm', :modular_headers => true
+  pod 'RealmSwift', :modular_headers => true
+
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
+end
+
+def bte_pods
+  ### These should be removed in a future commit
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
+end
+
 target 'GPS' do
+  gps_pods
   shared_pods
 end
 
 target 'BTE' do
+  bte_pods
   shared_pods
 end
 
 target 'GPSTests' do
   inherit! :search_paths
+  gps_pods
   shared_pods
 end
 
 target 'BTETests' do
   inherit! :search_paths
+  bte_pods
   shared_pods
 end
