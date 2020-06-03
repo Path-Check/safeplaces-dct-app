@@ -19,7 +19,6 @@ import ResultsScreen from './views/DR/ReportScreen/Results';
 import UserInfo from './views/DR/UserInfoScreen/index';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
-import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
 import LocationTracking from './views/LocationTracking';
@@ -193,11 +192,6 @@ class Entry extends Component {
           <Stack.Screen
             name='Details'
             component={Details}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen // This is to enable the exposed screen please leave for development and QA we will take it out later
-            name='FeatureFlagsScreen'
-            component={FeatureFlagsScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
