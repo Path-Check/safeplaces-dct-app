@@ -29,7 +29,6 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		25004E4C90704C6B807B88C7 /* IBMPlexMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71F26FBF5BDA423184286546 /* IBMPlexMono-MediumItalic.ttf */; };
 		2606D1B2B11C4D419867361F /* IBMPlexSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A57577D96B89452694B53982 /* IBMPlexSans-MediumItalic.ttf */; };
 		271089B024698720009AC76F /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
@@ -47,13 +46,9 @@
 		57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */; };
 		626DB8AB8AF9D02B9E411601 /* libPods-BTE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FB16255EA745CC27C638A1 /* libPods-BTE.a */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
-		688D1F3D24858B7900AD21AE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
 		688D1F3F24858B7900AD21AE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
 		68AD526024857AF900D40926 /* MARULocation+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971724809F5C0091A254 /* MARULocation+ExtensionTests.swift */; };
-		68AD526224857AFC00D40926 /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971924809F9C0091A254 /* GeohashTests.swift */; };
-		68AD526324857AFE00D40926 /* Array+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */; };
 		68D8970624809AA50091A254 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68D8970524809AA50091A254 /* Scrypt */; };
-		68D8970924809ABF0091A254 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68D8970824809ABF0091A254 /* Scrypt */; };
 		68D8970C24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */; };
 		68D8970D24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */; };
 		68D8970F24809CEB0091A254 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970E24809CEB0091A254 /* Geohash.swift */; };
@@ -65,13 +60,8 @@
 		68D8971824809F5C0091A254 /* MARULocation+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971724809F5C0091A254 /* MARULocation+ExtensionTests.swift */; };
 		68D8971A24809F9C0091A254 /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971924809F9C0091A254 /* GeohashTests.swift */; };
 		68D8971C24809FB50091A254 /* Array+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */; };
-		68EFB20D24856DB9003D84F3 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */; };
-		68EFB20F24856DBD003D84F3 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971124809DAE0091A254 /* Array+Extension.swift */; };
-		68EFB21024856DBF003D84F3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971424809E4B0091A254 /* String+Extension.swift */; };
-		68EFB21124856DD6003D84F3 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970E24809CEB0091A254 /* Geohash.swift */; };
 		68EFB21324856EC6003D84F3 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68EFB21224856EC6003D84F3 /* Scrypt */; };
 		68EFB215248570C2003D84F3 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
-		68EFB216248570C2003D84F3 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
 		68EFB21824857A3D003D84F3 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68EFB21724857A3D003D84F3 /* Scrypt */; };
 		7A2281C376904F23BCA10FCA /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
 		8A5B44AA7D724388B70F100B /* IBMPlexSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36B22BAB357B44949D2E168C /* IBMPlexSans-ExtraLight.ttf */; };
@@ -84,14 +74,6 @@
 		B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
 		BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */; };
-		C53FD08124719AD1006D3268 /* RealmSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* RealmSecureStorage.swift */; };
-		C53FD08324719AD1006D3268 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */; };
-		C53FD08424719AD1006D3268 /* SecureStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F931562459E28800E1024C /* SecureStorageManager.m */; };
-		C53FD08524719AD1006D3268 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		C53FD08624719AD1006D3268 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB15B245291DE00D39B58 /* Location.swift */; };
-		C53FD08724719AD1006D3268 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		C53FD08824719AD1006D3268 /* SecureStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F931592459E2BD00E1024C /* SecureStorageManager.swift */; };
-		C53FD08924719AD1006D3268 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB156245238E400D39B58 /* SecureStorage.swift */; };
 		C53FD08B24719AD1006D3268 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6724284A52008754AC /* UIKit.framework */; };
 		C53FD08C24719AD1006D3268 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6524284A42008754AC /* SystemConfiguration.framework */; };
 		C53FD08D24719AD1006D3268 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6324284A36008754AC /* QuartzCore.framework */; };
@@ -107,7 +89,6 @@
 		C53FD09724719AD1006D3268 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4F242849C1008754AC /* CoreGraphics.framework */; };
 		C53FD09824719AD1006D3268 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4D24283B0B008754AC /* CoreData.framework */; };
 		C53FD09924719AD1006D3268 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4B24283AFF008754AC /* Accelerate.framework */; };
-		C53FD09D24719AD1006D3268 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
 		C53FD09E24719AD1006D3268 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		C53FD09F24719AD1006D3268 /* IBMPlexMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE25A1CE9ED048DC83FAE7B0 /* IBMPlexMono-Bold.ttf */; };
 		C53FD0A024719AD1006D3268 /* IBMPlexMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B4A262ECA724F9CAB9A2C70 /* IBMPlexMono-BoldItalic.ttf */; };
@@ -138,9 +119,10 @@
 		C53FD0B924719AD1006D3268 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
 		C53FD0BA24719AD1006D3268 /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
 		C5850A64247D5A41007A596B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5850A63247D5A41007A596B /* Images.xcassets */; };
-		C5AA24D624768FFF00BA0A99 /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
-		C5AA24D724768FFF00BA0A99 /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
 		C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */; };
+		C5C850C7248014F700A494CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C850C6248014F700A494CA /* main.m */; };
+		C5C850CA2480156200A494CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C850C92480156200A494CA /* AppDelegate.m */; };
+		C5EF723724864F8500AA39D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EF72202485D0E600AA39D5 /* main.m */; };
 		D43E27B6F1E045D798270A11 /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4904B061CC24439783E20928 /* IBMPlexSans-SemiBold.ttf */; };
 		D668C3DAB08B4FCBB01E8C2D /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C8EDCCEFCE4874A747E404 /* IBMPlexMono-Light.ttf */; };
 		D7E714F18C9C4172BC01ADF8 /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */; };
@@ -175,6 +157,13 @@
 			remoteGlobalIDString = C53FD07D24719AD1006D3268;
 			remoteInfo = BTE;
 		};
+		C5C850E024804A0300A494CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 418F75461D02DC3D0045FEA0;
+			remoteInfo = RCTBackgroundGeolocation;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -182,7 +171,7 @@
 		00E356EE1AD99517003FC87E /* GPSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsTests.m; sourceTree = "<group>"; };
-		0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RNBackgroundFetch+AppDelegate.m"; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; };
+		0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RNBackgroundFetch+AppDelegate.m"; path = "../../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; };
 		08445F4324283A2F008754AC /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = "GoogleMaps-3.8.0/Base/Frameworks/GoogleMapsBase.framework"; sourceTree = "<group>"; };
 		08445F4524283A40008754AC /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "GoogleMaps-3.8.0/Maps/Frameworks/GoogleMaps.framework"; sourceTree = "<group>"; };
 		08445F4724283A46008754AC /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = "GoogleMaps-3.8.0/Maps/Frameworks/GoogleMapsCore.framework"; sourceTree = "<group>"; };
@@ -209,13 +198,12 @@
 		0DC95F63E93B2BB75824CCB3 /* libPods-BTETests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BTETests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD29292C60B45029B7823D6 /* IBMPlexSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLight.ttf"; path = "../app/assets/fonts/IBMPlexSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		1360DEA45F2DC8248DFD3B91 /* Pods-BTETests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTETests.beta.xcconfig"; path = "Target Support Files/Pods-BTETests/Pods-BTETests.beta.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* PathCheckGPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathCheckGPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* GPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = COVIDSafePaths/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = COVIDSafePaths/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = COVIDSafePaths/main.m; sourceTree = "<group>"; };
 		1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Thin.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Thin.ttf"; sourceTree = "<group>"; };
 		167DF82F84E242A39CBEB042 /* IBMPlexMono-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ExtraLightItalic.ttf"; path = "../shared/assets/fonts/IBMPlexMono-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		1ACA74BACC8C2004F373876F /* Pods-GPSTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.staging.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -225,7 +213,6 @@
 		271089AF24698720009AC76F /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		271881BF2461AF76001DE067 /* RealmSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSecureStorage.swift; sourceTree = "<group>"; };
 		271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSecureStorageTest.swift; sourceTree = "<group>"; };
-		276AB155245238E300D39B58 /* COVIDSafePaths-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "COVIDSafePaths-Bridging-Header.h"; sourceTree = "<group>"; };
 		276AB156245238E400D39B58 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 		276AB15B245291DE00D39B58 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		27F931562459E28800E1024C /* SecureStorageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecureStorageManager.m; sourceTree = "<group>"; };
@@ -310,13 +297,21 @@
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
 		BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
-		C53FD0C124719AD1006D3268 /* PathCheckBT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathCheckBT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C53FD0C124719AD1006D3268 /* BTE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53FD0C224719AD2006D3268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C53FD116247454EA006D3268 /* COVIDSafePaths.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = COVIDSafePaths.entitlements; path = BTE/COVIDSafePaths.entitlements; sourceTree = "<group>"; };
+		C56190A12485332E009A6756 /* BTE-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BTE-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5850A63247D5A41007A596B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C5AA24E124768FFF00BA0A99 /* BTETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5AA24E224768FFF00BA0A99 /* BTETestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = BTETestsInfo.plist; path = "/Users/johnschoeman/workspace/thoughtbot/covid-safe-paths/ios/BTETestsInfo.plist"; sourceTree = "<absolute>"; };
+		C5C850C6248014F700A494CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C5C850C92480156200A494CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBackgroundGeolocation.xcodeproj; path = "../node_modules/@mauron85/react-native-background-geolocation/ios/RCTBackgroundGeolocation.xcodeproj"; sourceTree = "<group>"; };
+		C5C850E324804A5200A494CA /* libBackgroundGeolocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBackgroundGeolocation.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5C850F8248125A800A494CA /* libBackgroundGeolocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBackgroundGeolocation.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5C850FB24812AAB00A494CA /* GPS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GPS-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePathsTests.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePathsTests/Pods-COVIDSafePathsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C5EF72202485D0E600AA39D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = bridge/main.m; sourceTree = "<group>"; };
 		C6CBA4DBBF104AC1AB920555 /* IBMPlexSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-BoldItalic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		C840FB7884D64E6FA97ECC2C /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../app/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
 		C92C147334A73EA6C87105F3 /* Pods-COVIDSafePaths-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths-tvOS.release.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths-tvOS/Pods-COVIDSafePaths-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -353,7 +348,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68D8970924809ABF0091A254 /* Scrypt in Frameworks */,
 				B2138BE26880EEA67E6D1C0E /* libPods-GPSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,21 +536,13 @@
 		13B07FAE1A68108700A75B9A /* COVIDSafePaths */ = {
 			isa = PBXGroup;
 			children = (
-				68D8970A24809B2D0091A254 /* Extension */,
 				C53FD0C324719C25006D3268 /* BTE */,
 				C53FD07C247199A4006D3268 /* GPS */,
-				276F786A245B6C8A00312927 /* bridge */,
-				276F786C245B6CB400312927 /* storage */,
-				0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				B2A5821B244CE80C000F39A6 /* InfoPlist.strings */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				68EFB214248570C2003D84F3 /* Log.swift */,
-				13B07FB71A68108700A75B9A /* main.m */,
 				B2A58212244CE76C000F39A6 /* Localizable.strings */,
-				276AB155245238E300D39B58 /* COVIDSafePaths-Bridging-Header.h */,
 			);
 			name = COVIDSafePaths;
 			sourceTree = "<group>";
@@ -567,8 +553,7 @@
 				27F931562459E28800E1024C /* SecureStorageManager.m */,
 				27F931592459E2BD00E1024C /* SecureStorageManager.swift */,
 			);
-			name = bridge;
-			path = COVIDSafePaths/bridge;
+			path = bridge;
 			sourceTree = "<group>";
 		};
 		276F786C245B6CB400312927 /* storage */ = {
@@ -579,13 +564,13 @@
 				271881BF2461AF76001DE067 /* RealmSecureStorage.swift */,
 				68D8970E24809CEB0091A254 /* Geohash.swift */,
 			);
-			name = storage;
-			path = COVIDSafePaths/storage;
+			path = storage;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C5C850E324804A5200A494CA /* libBackgroundGeolocation.a */,
 				08445F6724284A52008754AC /* UIKit.framework */,
 				08445F6524284A42008754AC /* SystemConfiguration.framework */,
 				08445F6324284A36008754AC /* QuartzCore.framework */,
@@ -600,6 +585,7 @@
 				08445F51242849CF008754AC /* CoreImage.framework */,
 				08445F4F242849C1008754AC /* CoreGraphics.framework */,
 				08445F4D24283B0B008754AC /* CoreData.framework */,
+				C5C850F8248125A800A494CA /* libBackgroundGeolocation.a */,
 				08445F4B24283AFF008754AC /* Accelerate.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
@@ -634,6 +620,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */,
 				2E9077612439A903005C98DE /* SplashScreen.xcodeproj */,
 			);
 			name = Libraries;
@@ -663,9 +650,9 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* PathCheckGPS.app */,
+				13B07F961A680F5B00A75B9A /* GPS.app */,
 				00E356EE1AD99517003FC87E /* GPSTests.xctest */,
-				C53FD0C124719AD1006D3268 /* PathCheckBT.app */,
+				C53FD0C124719AD1006D3268 /* BTE.app */,
 				C5AA24E124768FFF00BA0A99 /* BTETests.xctest */,
 			);
 			name = Products;
@@ -674,8 +661,16 @@
 		C53FD07C247199A4006D3268 /* GPS */ = {
 			isa = PBXGroup;
 			children = (
+				68D8970A24809B2D0091A254 /* Extension */,
+				276F786C245B6CB400312927 /* storage */,
+				276F786A245B6C8A00312927 /* bridge */,
+				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				C5EF72202485D0E600AA39D5 /* main.m */,
+				B2A5821B244CE80C000F39A6 /* InfoPlist.strings */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */,
+				C5C850FB24812AAB00A494CA /* GPS-Bridging-Header.h */,
 			);
 			path = GPS;
 			sourceTree = "<group>";
@@ -683,10 +678,21 @@
 		C53FD0C324719C25006D3268 /* BTE */ = {
 			isa = PBXGroup;
 			children = (
+				C5C850C92480156200A494CA /* AppDelegate.m */,
+				C5C850C6248014F700A494CA /* main.m */,
 				C53FD0C224719AD2006D3268 /* Info.plist */,
 				C5850A63247D5A41007A596B /* Images.xcassets */,
+				C56190A12485332E009A6756 /* BTE-Bridging-Header.h */,
 			);
 			path = BTE;
+			sourceTree = "<group>";
+		};
+		C5C850DD24804A0300A494CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C5C850E124804A0300A494CA /* libRCTBackgroundGeolocation.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -708,7 +714,6 @@
 			);
 			name = GPSTests;
 			packageProductDependencies = (
-				68D8970824809ABF0091A254 /* Scrypt */,
 			);
 			productName = COVIDSafePathsTests;
 			productReference = 00E356EE1AD99517003FC87E /* GPSTests.xctest */;
@@ -734,7 +739,7 @@
 				68D8970524809AA50091A254 /* Scrypt */,
 			);
 			productName = COVIDSafePaths;
-			productReference = 13B07F961A680F5B00A75B9A /* PathCheckGPS.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* GPS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C53FD07D24719AD1006D3268 /* BTE */ = {
@@ -757,7 +762,7 @@
 				68EFB21224856EC6003D84F3 /* Scrypt */,
 			);
 			productName = COVIDSafePaths;
-			productReference = C53FD0C124719AD1006D3268 /* PathCheckBT.app */;
+			productReference = C53FD0C124719AD1006D3268 /* BTE.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C5AA24D124768FFF00BA0A99 /* BTETests */ = {
@@ -840,6 +845,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = C5C850DD24804A0300A494CA /* Products */;
+					ProjectRef = C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */;
+				},
+				{
 					ProductGroup = 2E9077622439A903005C98DE /* Products */;
 					ProjectRef = 2E9077612439A903005C98DE /* SplashScreen.xcodeproj */;
 				},
@@ -860,6 +869,13 @@
 			fileType = archive.ar;
 			path = libSplashScreen.a;
 			remoteRef = 2E9077652439A903005C98DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C5C850E124804A0300A494CA /* libRCTBackgroundGeolocation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTBackgroundGeolocation.a;
+			remoteRef = C5C850E024804A0300A494CA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -914,7 +930,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FD09D24719AD1006D3268 /* InfoPlist.strings in Resources */,
 				C53FD09E24719AD1006D3268 /* LaunchScreen.xib in Resources */,
 				C53FD09F24719AD1006D3268 /* IBMPlexMono-Bold.ttf in Resources */,
 				C53FD0A024719AD1006D3268 /* IBMPlexMono-BoldItalic.ttf in Resources */,
@@ -1137,6 +1152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5EF723724864F8500AA39D5 /* main.m in Sources */,
 				271881C02461AF76001DE067 /* RealmSecureStorage.swift in Sources */,
 				0835F8922441054A00E95AE3 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				68EFB215248570C2003D84F3 /* Log.swift in Sources */,
@@ -1147,7 +1163,6 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				68D8970C24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */,
 				276AB15C245291DE00D39B58 /* Location.swift in Sources */,
-				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				27F9315A2459E2BD00E1024C /* SecureStorageManager.swift in Sources */,
 				276AB157245238E400D39B58 /* SecureStorage.swift in Sources */,
 			);
@@ -1157,19 +1172,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FD08124719AD1006D3268 /* RealmSecureStorage.swift in Sources */,
-				68EFB21024856DBF003D84F3 /* String+Extension.swift in Sources */,
-				68EFB216248570C2003D84F3 /* Log.swift in Sources */,
-				68EFB20F24856DBD003D84F3 /* Array+Extension.swift in Sources */,
-				68EFB21124856DD6003D84F3 /* Geohash.swift in Sources */,
-				C53FD08324719AD1006D3268 /* RNBackgroundFetch+AppDelegate.m in Sources */,
-				C53FD08424719AD1006D3268 /* SecureStorageManager.m in Sources */,
-				C53FD08524719AD1006D3268 /* AppDelegate.m in Sources */,
-				C53FD08624719AD1006D3268 /* Location.swift in Sources */,
-				C53FD08724719AD1006D3268 /* main.m in Sources */,
-				68EFB20D24856DB9003D84F3 /* MAURLocation+Extension.swift in Sources */,
-				C53FD08824719AD1006D3268 /* SecureStorageManager.swift in Sources */,
-				C53FD08924719AD1006D3268 /* SecureStorage.swift in Sources */,
+				C5C850CA2480156200A494CA /* AppDelegate.m in Sources */,
+				C5C850C7248014F700A494CA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1177,11 +1181,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5AA24D624768FFF00BA0A99 /* RealmSecureStorageTest.swift in Sources */,
-				688D1F3D24858B7900AD21AE /* Log.swift in Sources */,
-				C5AA24D724768FFF00BA0A99 /* LocationTests.swift in Sources */,
-				68AD526224857AFC00D40926 /* GeohashTests.swift in Sources */,
-				68AD526324857AFE00D40926 /* Array+ExtensionTests.swift in Sources */,
 				C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */,
 				68AD526024857AF900D40926 /* MARULocation+ExtensionTests.swift in Sources */,
 			);
@@ -1265,7 +1264,6 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1281,10 +1279,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
 			};
 			name = Debug;
 		};
@@ -1297,7 +1295,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1313,9 +1310,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
 			};
 			name = Release;
 		};
@@ -1331,14 +1328,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
 				);
 				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1347,12 +1340,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/@mauron85_react-native-background-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
@@ -1361,7 +1352,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
@@ -1402,13 +1392,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = PathCheckGPS;
+				PRODUCT_NAME = GPS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1427,14 +1414,10 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
 				);
 				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1443,12 +1426,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/@mauron85_react-native-background-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
@@ -1457,7 +1438,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
@@ -1498,13 +1478,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = PathCheckGPS;
+				PRODUCT_NAME = GPS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1577,14 +1554,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
 				);
 				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1593,12 +1566,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/@mauron85_react-native-background-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
@@ -1607,7 +1578,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
@@ -1648,13 +1618,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = PathCheckGPS;
+				PRODUCT_NAME = GPS;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.covid-safepaths";
-				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1673,7 +1640,6 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1689,10 +1655,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
 			};
 			name = Staging;
 		};
@@ -1756,14 +1722,10 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Base/Frameworks",
-					"$(PROJECT_DIR)/GoogleMaps-3.8.0/Maps/Frameworks",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
 				);
 				INFOPLIST_FILE = GPS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1772,12 +1734,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/@mauron85_react-native-background-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
@@ -1786,7 +1746,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
@@ -1827,13 +1786,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
-				PRODUCT_NAME = PathCheckGPS;
+				PRODUCT_NAME = GPS;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.covid-safepaths";
-				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1848,7 +1804,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1864,9 +1819,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckGPS.app/PathCheckGPS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
 			};
 			name = Beta;
 		};
@@ -1986,64 +1941,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-				);
 				INFOPLIST_FILE = BTE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/@mauron85_react-native-background-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
 				MARKETING_VERSION = 1.0.5;
 				OTHER_LDFLAGS = (
@@ -2051,13 +1952,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = PathCheckBT;
+				PRODUCT_NAME = BTE;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2077,64 +1975,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-				);
 				INFOPLIST_FILE = BTE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/@mauron85_react-native-background-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
 				MARKETING_VERSION = 1.0.5;
 				OTHER_LDFLAGS = (
@@ -2142,13 +1986,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = PathCheckBT;
+				PRODUCT_NAME = BTE;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2168,64 +2009,10 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-				);
 				INFOPLIST_FILE = BTE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/@mauron85_react-native-background-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
 				MARKETING_VERSION = 1.0.5;
 				OTHER_LDFLAGS = (
@@ -2233,13 +2020,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = PathCheckBT;
+				PRODUCT_NAME = BTE;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2258,64 +2042,10 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-				);
 				INFOPLIST_FILE = BTE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/@mauron85_react-native-background-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
 				MARKETING_VERSION = 1.0.5;
 				OTHER_LDFLAGS = (
@@ -2323,13 +2053,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRIVATE_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/PrivateHeaders";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = PathCheckBT;
+				PRODUCT_NAME = BTE;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
-				PUBLIC_HEADERS_FOLDER_PATH = "${PROJECT_NAME}.app/Headers";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2339,7 +2066,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0AA00174D067CC708D445BC1 /* Pods-BTETests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
@@ -2347,7 +2073,6 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = BTETestsInfo.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2362,7 +2087,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
@@ -2373,7 +2098,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F9475E01B42150CFCF453D52 /* Pods-BTETests.staging.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
@@ -2381,7 +2105,6 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = BTETestsInfo.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2396,7 +2119,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
@@ -2407,12 +2130,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1C73DA2257D3A75481B746C2 /* Pods-BTETests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = BTETestsInfo.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2427,7 +2148,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
 			};
@@ -2437,12 +2158,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1360DEA45F2DC8248DFD3B91 /* Pods-BTETests.beta.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = BTETestsInfo.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2457,7 +2176,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "COVIDSafePaths-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
 			};
@@ -2536,11 +2255,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		68D8970524809AA50091A254 /* Scrypt */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
-			productName = Scrypt;
-		};
-		68D8970824809ABF0091A254 /* Scrypt */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
 			productName = Scrypt;

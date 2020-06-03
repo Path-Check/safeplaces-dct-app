@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 
+
 class SecureStorage: NSObject {
   
   @objc static let shared = SecureStorage()

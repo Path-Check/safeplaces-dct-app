@@ -15,7 +15,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-                     BuildableName = "PathCheckBT.app"
+                     BuildableName = "BTE.app"
                      BlueprintName = "BTE"
                      ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
                   </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-               BuildableName = "PathCheckBT.app"
+               BuildableName = "BTE.app"
                BlueprintName = "BTE"
                ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
             </BuildableReference>
@@ -63,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-            BuildableName = "PathCheckBT.app"
+            BuildableName = "BTE.app"
             BlueprintName = "BTE"
             ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-            BuildableName = "PathCheckBT.app"
+            BuildableName = "BTE.app"
             BlueprintName = "BTE"
             ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
          </BuildableReference>

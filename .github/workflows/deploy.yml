@@ -127,7 +127,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Set XCode Version
-        run: sudo xcode-select -s /Applications/Xcode_11.app
+        run: sudo xcode-select -s /Applications/Xcode_11.5.app
 
       - name: Cache node_modules/
         uses: actions/cache@v1
@@ -214,7 +214,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Set XCode Version
-        run: sudo xcode-select -s /Applications/Xcode_11.app
+        run: sudo xcode-select -s /Applications/Xcode_11.5.app
 
       - name: Cache node_modules/
         uses: actions/cache@v1
