@@ -4,6 +4,7 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 import React, { Component } from 'react';
+import { Platform } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import ExposedResponse from './components/DR/LocationTracking/ExposedResponse';
@@ -146,9 +147,9 @@ class Entry extends Component {
               headerTintColor: Colors.WHITE,
               headerBackTitle: ' ',
               headerStyle: {
-                backgroundColor: (0, 0, 0), // Transparent Background
+                backgroundColor:
+                  Platform.OS === 'android' ? (0, 0, 0) : Colors.BLUE_RIBBON, // Transparent Background
                 elevation: 0, // remove shadow on Android
-                shadowOpacity: 0, // remove shadow on iOS
                 height: hp('7%'),
               },
               headerLeftContainerStyle: {
