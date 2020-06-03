@@ -2,7 +2,7 @@ import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Linking } from 'react-native';
 
-import image from '../../../assets/images/assessment/illustration-screening-end-911.png';
+import { Icons } from '../../../assets';
 import { Typography } from '../../../components/Typography';
 import { Colors as AssessmentColors } from '../constants';
 import AssessmentEnd, { assessmentStyles } from './AssessmentEnd';
@@ -17,6 +17,7 @@ const AssessmentEndEmergency = () => {
         Linking.openURL('tel:911');
       }}
       ctaColor={AssessmentColors.DANGER}
+      icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.emergency_cta')}
       description={
         <Trans t={t} i18nKey='assessment.emergency_description'>
@@ -24,7 +25,6 @@ const AssessmentEndEmergency = () => {
           <Typography style={assessmentStyles.boldBlackText} />
         </Trans>
       }
-      image={image}
       title={t('assessment.emergency_title')}
     />
   );

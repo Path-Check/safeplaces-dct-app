@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  Dimensions,
-  Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -11,11 +9,7 @@ import {
 import { Typography } from '../../../components/Typography';
 import Colors from '../../../constants/colors';
 import AssessmentButton from '../AssessmentButton';
-import { Colors as AssessmentColors } from '../constants';
-
-const WIDTH = Dimensions.get('window').width;
-const CONTAINER_WIDTH = 300 / 375;
-const HEIGHT = WIDTH * CONTAINER_WIDTH;
+import { SvgXml } from 'react-native-svg';
 
 /**
  * @typedef { import("react").ReactNode } ReactNode
@@ -38,22 +32,20 @@ const AssessmentEnd = ({
   description,
   children,
   footer,
-  image,
-  pretitle,
+  icon,
   title,
 }) => {
   return (
     <SafeAreaView style={assessmentStyles.container}>
       <ScrollView style={assessmentStyles.scrollView}>
-        <Image source={image} style={{ width: WIDTH, height: HEIGHT }} />
         <View style={assessmentStyles.scrollViewContent}>
-          {pretitle}
-          <Typography use='headline2'>
+          <SvgXml xml={icon} />
+          <Typography use='headline2' style={assessmentStyles.headingSpacing}>
             {title}
           </Typography>
           {description && (
             <Typography
-              style={assessmentStyles.description}
+              use='body1'
               testID='description'>
               {description}
             </Typography>
@@ -80,7 +72,7 @@ export default AssessmentEnd;
 export const assessmentStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: AssessmentColors.BACKGROUND,
+    backgroundColor: Colors.SECONDARY_10,
   },
   scrollView: {
     flex: 1,
@@ -88,11 +80,8 @@ export const assessmentStyles = StyleSheet.create({
   scrollViewContent: {
     padding: 20,
   },
-  description: {
-    fontSize: 20,
-    lineHeight: 26,
-    marginBottom: 30,
-    color: Colors.BLACK,
+  headingSpacing: {
+    marginVertical: 30,
   },
   footer: {
     padding: 20,

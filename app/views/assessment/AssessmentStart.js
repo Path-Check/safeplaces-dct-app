@@ -1,18 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, StyleSheet, View } from 'react-native';
+import { Icons } from '../../assets';
 
 /**
  * @typedef { import("./Assessment").SurveyQuestion } SurveyQuestion
  * @typedef { import("./Assessment").SurveyOption } SurveyOption
  */
-import imageHealth from '../../assets/images/assessment/icon-health.png';
-import imagePrivate from '../../assets/images/assessment/icon-private.png';
-import imageBanner from '../../assets/images/assessment/illustration-screening-start.png';
-import imageCdc from '../../assets/images/assessment/logo-cdc.png';
-import imageMit from '../../assets/images/assessment/logo-mit-media-lab.png';
-import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 import i18n from '../../locales/languages';
 import {
   OPTION_VALUE_AGREE,
@@ -33,39 +26,12 @@ const AssessmentStart = ({ navigation }) => {
           option: agreeOption,
         });
       }}
+      icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.start_cta')}
-      image={imageBanner}
-      pretitle={<Pretitle />}
-      title={t('assessment.start_title')}>
-      <View>
-        <View style={styles.description}>
-          <Image source={imageHealth} style={styles.descriptionImage} />
-          <Typography use='body1' style={styles.descriptionText}>
-            {t('assessment.start_description_1')}
-          </Typography>
-        </View>
-        <View style={styles.description}>
-          <Image source={imagePrivate} style={styles.descriptionImage} />
-          <Typography use='body1' style={styles.descriptionText}>
-            {t('assessment.start_description_2')}
-          </Typography>
-        </View>
-      </View>
-    </AssessmentEnd>
+      title={t('assessment.start_title')}
+      description={t('assessment.start_description')} />
   );
 };
-
-function Pretitle() {
-  return (
-    <View style={styles.logos}>
-      <Image
-        source={imageCdc}
-        style={{ width: 47, height: 29, marginRight: 10 }}
-      />
-      <Image source={imageMit} style={{ width: 58, height: 32 }} />
-    </View>
-  );
-}
 
 /** @type {SurveyQuestion} */
 const agreeQuestion = {
@@ -94,26 +60,3 @@ const agreeOption = {
 };
 
 export default AssessmentStart;
-
-const styles = StyleSheet.create({
-  logos: {
-    alignItems: 'flex-end',
-    flexDirection: 'row',
-    marginBottom: 10,
-  },
-  description: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 20,
-    paddingHorizontal: 10,
-  },
-  descriptionImage: {
-    width: 38,
-    height: 38,
-    marginRight: 20,
-  },
-  descriptionText: {
-    flex: 1,
-    color: Colors.BLACK,
-  },
-});

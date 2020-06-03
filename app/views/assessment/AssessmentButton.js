@@ -3,7 +3,6 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
-import { Colors as AssessmentColors } from './constants';
 
 /**
  * @typedef { import("react").ReactNode } ReactNode
@@ -19,8 +18,13 @@ const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
   let backgroundColor = color
     ? color
     : (disabled
-    ? Colors.GRAY_BUTTON
-    : AssessmentColors.CTA);
+    ? Colors.SECONDARY_50
+    : Colors.PRIMARY_50);
+  let textColor = color
+    ? color
+    : (disabled
+    ? Colors.SECONDARY_100
+    : Colors.WHITE);
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -34,7 +38,7 @@ const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
           },
         ]}>
 
-        <Typography use='body1' style={styles.ctaText}>
+        <Typography use='body1' style={[styles.ctaText, { color: textColor,},]}>
           {title}
         </Typography>
       </View>
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   ctaText: {
-    color: Colors.WHITE,
+    color: Colors.SECONDARY_10,
     textAlign: 'center',
   },
 });

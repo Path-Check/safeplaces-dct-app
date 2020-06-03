@@ -10,6 +10,7 @@ import Lock from './lock';
 import PermissionDenied from './permissionDenied';
 import PermissionGranted from './permissionGranted';
 import PermissionUnknown from './permissionUnknown';
+import SelfAssessment from './selfAssessment';
 import SettingsIcon from './settingsIcon';
 import StateAtRisk from './stateAtRisk';
 import StateNoContact from './stateNoContact';
@@ -31,6 +32,7 @@ export const Icons = {
   PermissionDenied,
   PermissionGranted,
   PermissionUnknown,
+  SelfAssessment,
   SettingsIcon,
   StateAtRisk,
   StateNoContact,

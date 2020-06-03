@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import image from '../../../assets/images/assessment/illustration-screening-data-sharing.png';
+import { Icons } from '../../../assets';
 import { Typography } from '../../../components/Typography';
 import Colors from '../../../constants/colors';
 import Fonts from '../../../constants/fonts';
@@ -20,6 +20,7 @@ const AssessmentEndShare = ({ navigation }) => {
       ctaAction={() => {
         navigation.push('Captcha');
       }}
+      icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.share_cta')}
       description={
         <Trans t={t} i18nKey='assessment.share_description'>
@@ -35,7 +36,6 @@ const AssessmentEndShare = ({ navigation }) => {
           <Text style={styles.skip}>{t('assessment.share_cta_skip')}</Text>
         </TouchableOpacity>
       }
-      image={image}
       title={t('assessment.share_title')}>
       <AssessmentOption
         onSelect={() => setSelectScreeningData(endOptionA => !endOptionA)}
