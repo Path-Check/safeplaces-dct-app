@@ -148,7 +148,6 @@ class Entry extends Component {
                 backgroundColor:
                   Platform.OS === 'android' ? (0, 0, 0) : Colors.BLUE_RIBBON, // Transparent Background
                 elevation: 0, // remove shadow on Android
-                shadowOpacity: 0, // remove shadow on iOS
                 height: hp('7%'),
               },
               headerLeftContainerStyle: {
