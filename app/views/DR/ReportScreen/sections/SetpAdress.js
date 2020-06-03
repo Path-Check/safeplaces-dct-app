@@ -1,6 +1,8 @@
+import Geolocation from '@react-native-community/geolocation';
 import { Container, Content, Picker, Text } from 'native-base';
 import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
+import { PermissionsAndroid, Platform } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -46,6 +48,22 @@ const StepAdress = ({ setCompleted }) => {
     });
     setMunicipios(municipNames);
   };
+
+  const getCurrentLocation = async () => {
+    const granted = await PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
+    if (granted || Platform.OS === 'ios') {
+      Geolocation.getCurrentPosition(
+        ({ coords }) => {
+          setSelectedOption('latitude', coords.latitude.toString());
+          setSelectedOption('longitude', coords.longitude.toString());
+        },
+        { enableHighAccuracy: true },
+      );
+    }
+  };
+
   if (province && numberPersonLivesWith) {
     setCompleted(true);
   } else {
@@ -143,6 +161,7 @@ const StepAdress = ({ setCompleted }) => {
                   } else if (text === '') {
                     setSelectedOption('numberPersonLivesWith', '');
                   }
+                  getCurrentLocation();
                 }}
               />
             </View>
