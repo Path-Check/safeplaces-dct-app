@@ -1,4 +1,20 @@
 apply plugin: "com.android.application"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
+
+project.ext.envConfigFiles = [
+    btedebug: ".env.bte",
+    btestaging: ".env.bte.staging",
+    bterelease: ".env.bte.release",
+
+    gpsdebug: ".env.gps",
+    gpsstaging: ".env.gps.staging",
+    gpsrelease: ".env.gps.release",
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
@@ -77,6 +93,9 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
+    bundleInDevDebug: false,
+    bundleInStagingDebug: true,
+    devDisabledInStagingDebug: true,
     enableHermes: false,  // clean and rebuild if changing
 ]
 
@@ -117,7 +136,7 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  * on project.ext.react, JavaScript will not be compiled to Hermes Bytecode
  * and the benefits of using Hermes will therefore be sharply reduced.
  */
-def enableHermes = project.ext.react.get("enableHermes", false);
+def enableHermes = project.ext.react.get("enableHermes", false)
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -132,8 +151,13 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-        versionCode 22
-        versionName "0.9.4"
+
+        // detox e2e testing
+        testBuildType System.getProperty('testBuildType', 'debug')
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        versionCode 11
+        versionName "1.0.8"
     }
     splits {
         abi {
@@ -151,87 +175,101 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('PRIVATEKIT_RELEASE_STORE_FILE')) {
-                project.logger.lifecycle('Signing app with ' + PRIVATEKIT_RELEASE_STORE_FILE)
-                storeFile file(PRIVATEKIT_RELEASE_STORE_FILE)
-                storePassword PRIVATEKIT_RELEASE_STORE_PASSWORD
-                keyAlias PRIVATEKIT_RELEASE_KEY_ALIAS
-                keyPassword PRIVATEKIT_RELEASE_KEY_PASSWORD
+            storeFile file('keystore.jks')
+            if (file("./keystore.jks").exists()) {
+                keyAlias project.property("android.injected.signing.key.alias")
+                keyPassword project.property("android.injected.signing.key.password")
+                storePassword project.property("android.injected.signing.store.password")
+                storeFile file("./keystore.jks")
             } else {
                 project.logger.lifecycle('Could not find release key')
             }
         }
-
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug']
+        }
+        staging {
+            signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug']
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            // signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            matchingFallbacks = ['release']
         }
     }
-    // applicationVariants are e.g. debug, release
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            // For each separate APK per architecture, set a unique version code as described here:
-            // https://developer.android.com/studio/build/configure-apk-splits.html
-            def versionCodes = ["armeabi-v7a": 1, "x86": 2, "arm64-v8a": 3, "x86_64": 4]
-            def abi = output.getFilter(OutputFile.ABI)
-            if (abi != null) {  // null for the universal-debug, universal-release variants
-                output.versionCodeOverride =
-                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
-            }
 
+    flavorDimensions "version"
+    productFlavors {
+        gps {
+            applicationId 'org.pathcheck.covidsafepaths'
+            dimension "version"
+        }
+        bte {
+            applicationId 'org.pathcheck.covidsafepathsBte'
+            dimension "version"
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
 }
 
 dependencies {
+    // loading html files
+    compile project(':react-native-local-resource')
     implementation project(':react-native-reanimated')
-    implementation project(':react-native-gesture-handler')
-    implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"
-
-    compile project(':react-native-fs')
+    implementation project(':@mauron85_react-native-background-geolocation-common')
+    implementation 'com.bottlerocketstudios:vault:1.4.2'
+    implementation 'com.google.android.gms:play-services-gcm:15.0.1'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 
     if (enableHermes) {
-        def hermesPath = "../../node_modules/hermes-engine/android/";
+        def hermesPath = "../../node_modules/hermes-engine/android/"
         debugImplementation files(hermesPath + "hermes-debug.aar")
         releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
         implementation jscFlavor
     }
+
+    implementation 'com.github.drfonfon:android-kotlin-geohash:1.0'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
+
+    androidTestImplementation('com.wix:detox:+') // detox: e2e testing
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
- // Just to fix the app start crash error
- allprojects {
+allprojects {
     repositories {
-    //start here
-    configurations.all {
- resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-   def requested = details.requested
-       if (requested.group == 'com.google.android.gms') {
-          details.useVersion '12.0.1'
-       }
-       if (requested.group == 'com.google.firebase') {
-          details.useVersion '12.0.1'
-         }
-       }
-     }
-    //end
-     jcenter()
-       maven {
-         url "https://maven.google.com"
-       }
-     }
- }
+        configurations.all {
+            // To fix the app start crash error
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                def requested = details.requested
+                if (requested.group == 'com.google.android.gms') {
+                    details.useVersion '12.0.1'
+                }
+                if (requested.group == 'com.google.firebase') {
+                    details.useVersion '12.0.1'
+                }
+            }
+        }
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+    }
+}
 
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
@@ -241,3 +279,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+repositories {
+  mavenCentral()
+}
