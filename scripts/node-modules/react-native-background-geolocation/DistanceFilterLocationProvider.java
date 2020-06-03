@@ -21,6 +21,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -46,6 +47,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeoutException;
 
@@ -147,8 +150,8 @@ public class DistanceFilterLocationProvider extends AbstractLocationProvider imp
 
         logger.info("Start recording");
         scaledDistanceFilter = mConfig.getDistanceFilter();
-        isStarted = true;
         setPace(false);
+        isStarted = true;
     }
 
     @Override
@@ -158,6 +161,10 @@ public class DistanceFilterLocationProvider extends AbstractLocationProvider imp
         }
 
         try {
+        // Stop fused location provider
+            mFusedLocationProviderClient.removeLocationUpdates(mLocationCallback);
+
+
             locationManager.removeUpdates(this);
             locationManager.removeProximityAlert(stationaryRegionPI);
         } catch (SecurityException e) {
@@ -196,7 +203,8 @@ public class DistanceFilterLocationProvider extends AbstractLocationProvider imp
      */
     private void setPace(Boolean value) {
         // New implementation
-        config();
+        if(!isStarted)
+            config();
     }
 
     /**
@@ -614,9 +622,9 @@ public class DistanceFilterLocationProvider extends AbstractLocationProvider imp
 
 
     private void config() {
-            isServiceRunning = true;
+        isServiceRunning = true;
             mLocationRequest = new LocationRequest();
-            mLocationRequest.setInterval(300000); // get gps location every 1 min 60000
+            mLocationRequest.setInterval(300000); // get gps location every 5 mins == 300000 milliseconds
             mLocationRequest.setFastestInterval(300000);
             mLocationRequest.setSmallestDisplacement(0);
             mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -626,8 +634,6 @@ public class DistanceFilterLocationProvider extends AbstractLocationProvider imp
 
 
     private void startLocationUpdates() {
-        Log.e("startLocationUpdates", "startLocationUpdates");
-
         arrLocations = new ArrayList<Location>();
         mLocationCallback = new LocationCallback() {
             @Override
@@ -644,38 +650,38 @@ public class DistanceFilterLocationProvider extends AbstractLocationProvider imp
         mFusedLocationProviderClient = getFusedLocationProviderClient(mContext);
         mFusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.getMainLooper()  /*Looper*/);
 
-        Date date = new Date(System.currentTimeMillis());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm :ss:aa", Locale.ENGLISH);
-        String var = dateFormat.format(date);
-        Log.e("Service Start time", var + "");
-
     }
 
     void getLastKnownLocation() {
-        locationIndex++;
 
-        try {
-            int timeout = 30000;
-        long maximumAge = 30000;
-        boolean enableHighAccuracy = true;
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
 
-        Location location = getCurrentLocation(timeout, maximumAge, enableHighAccuracy);
-        Toast.makeText(mContext, "Lat: " + location.getLatitude()+" Long: "+location.getLongitude()+" Accuracy: "+location.getAccuracy()+" locationIndex: "+locationIndex, Toast.LENGTH_LONG).show();
+                locationIndex++;
 
-            if(locationIndex >= 5) {
-                handleLocation(location);
-            } else {
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable(){
-                    @Override
-                    public void run(){
-                        getLastKnownLocation();
+                try {
+                    int timeout = 30000;
+                    long maximumAge = 300000;
+                    boolean enableHighAccuracy = true;
+
+                    final Location location = getCurrentLocation(timeout, maximumAge, enableHighAccuracy);
+                    if(locationIndex >= 5) {
+                        locationIndex = 0;
+                        handleLocation(location);
+                    } else {
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                getLastKnownLocation();
+                            }
+                        }, 3000);
                     }
-                }, 3000);
+                } catch (PluginException e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (PluginException e) {
-            e.printStackTrace();
-        }
+        });
     }
 }
 
