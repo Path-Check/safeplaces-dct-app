@@ -39,16 +39,9 @@
     "version:bump:minor": "version --preminor",
     "version:bump:patch": "version --prepatch"
   },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "lint-diff HEAD",
-      "git add --force"
-    ]
-  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-push": "yarn validate && yarn test"
     }
   },
   "rnpm": {

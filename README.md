@@ -166,28 +166,38 @@ Generating a release build is an optional step in the development process.
 
 This project is using
 [typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
+
+Run the complier with:
+```
+yarn tsc
+```
+
 Not every file *needs* to be written in TypeScript, but we are preferring to use
-TypeScript in general. Note that for React-Native projects, TypeScript
-complication is handled by the metro-bundler build process and there is no need
-to emit js code into a bundle as one would do in a web context. Hence the
-inclusion of the `--noEmit` flag.
+TypeScript in general.
+
+Note that for React-Native projects, TypeScript complication is handled by the
+metro-bundler build process and there is no need to emit js code into a bundle
+as one would do in a web context, hence the inclusion of the `--noEmit` flag.
 
 #### Prettier
 
-This project is using [prettier](https://prettier.io/docs/en/install.html)
+This project is using [prettier](https://prettier.io/docs/en/install.html).
+
 We have a local prettierrc file, please make sure your development environment
 is set to use the project's prettierrc.
 
 #### Husky
 
 This project is using [husky](https://github.com/typicode/husky) to automate
-running validation and tests locally on a pre-push git hook. If you ever need to
-push code without running these scripts, you can pass the `--no-verify` flag on
-`git push`.
+running validation and tests locally on a pre-push git hook.
 
-#### eslint
+If you ever need to push code without running these scripts, you can pass the
+`--no-verify` flag on `git push`.
+
+#### ESLint
 
 This project is using [eslint](https://eslint.org/docs/user-guide/getting-started).
+
 We have linting checks on CI, please make sure to include the checks locally in
 your IDE.
 
