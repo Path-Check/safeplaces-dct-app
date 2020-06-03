@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import { createImmutableStateInvariantMiddleware } from '@reduxjs/toolkit';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { createMigrate, persistReducer, persistStore } from 'redux-persist';
 
@@ -10,7 +11,9 @@ const composeEnhancers =
   (typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
-const enhancers = composeEnhancers(applyMiddleware());
+const enhancers = composeEnhancers(
+  applyMiddleware(createImmutableStateInvariantMiddleware()),
+);
 
 export const STORE_VERSION = 0;
 const persistConfig = {

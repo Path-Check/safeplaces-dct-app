@@ -7,6 +7,7 @@ import {
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import {
@@ -39,7 +40,7 @@ const Stack = createStackNavigator();
 
 const fade = ({ current }) => ({ cardStyle: { opacity: current.progress } });
 
-const screenOptions = {
+const SCREEN_OPTIONS = {
   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
   cardStyle: {
     backgroundColor: 'transparent', // prevent white flash on Android
@@ -51,7 +52,7 @@ const ExportStack = () => (
   <Stack.Navigator
     mode='modal'
     screenOptions={{
-      ...screenOptions,
+      ...SCREEN_OPTIONS,
       cardStyleInterpolator: fade,
       gestureEnabled: false,
     }}>
@@ -73,7 +74,7 @@ const ExportStack = () => (
 );
 
 const MainApp = () => (
-  <Stack.Navigator initialRouteName='Main' screenOptions={screenOptions}>
+  <Stack.Navigator initialRouteName='Main' screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen name='Main' component={Main} />
     <Stack.Screen name='NewsScreen' component={NewsScreen} />
     <Stack.Screen
@@ -105,7 +106,7 @@ const MainApp = () => (
 );
 
 const OnboardingStack = () => (
-  <Stack.Navigator screenOptions={screenOptions}>
+  <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen name='Onboarding1' component={Onboarding1} />
     <Stack.Screen name='Onboarding2' component={Onboarding2} />
     <Stack.Screen name='Onboarding3' component={Onboarding3} />
@@ -118,11 +119,11 @@ const OnboardingStack = () => (
 );
 
 export const Entry = () => {
-  const onboardingComplete = useSelector(state => state.onboarding.complete);
+  const onboardingComplete = useSelector(isOnboardingCompleteSelector);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
         {onboardingComplete ? (
           <Stack.Screen name={'App'} component={MainApp} />
         ) : (

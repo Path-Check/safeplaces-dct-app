@@ -1,7 +1,5 @@
-import { ONBOARDING_COMPLETE } from './constants';
+import { createAction } from '@reduxjs/toolkit';
 
-const onboardingCompleteAction = () => ({
-  type: ONBOARDING_COMPLETE,
-});
-
-export default onboardingCompleteAction;
+const ONBOARDING = 'ONBOARDING';
+const onboardingAction = createAction(ONBOARDING);
+export default onboardingAction;

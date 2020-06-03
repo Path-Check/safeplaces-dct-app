@@ -1,19 +1,13 @@
-import { ONBOARDING_COMPLETE } from '../actions/constants';
+import { createReducer } from '@reduxjs/toolkit';
 
-const initialState = {
-  complete: false,
-};
+import onboardingAction from '../actions/onboardingAction';
 
-const onboardingReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ONBOARDING_COMPLETE: {
-      return {
-        complete: true,
-      };
-    }
-    default:
-      return state;
-  }
-};
+const initialState = { complete: false };
+
+const onboardingReducer = createReducer(initialState, {
+  [onboardingAction]: state => {
+    state.complete = true;
+  },
+});
 
 export default onboardingReducer;
