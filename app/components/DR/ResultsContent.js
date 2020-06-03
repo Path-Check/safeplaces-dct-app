@@ -10,6 +10,9 @@ export default function ResultsContent({
   image,
   nextSteps = [],
   recomendations,
+  subLink = null,
+  subLinkText = null,
+  navigation = null,
 }) {
   return (
     <View>
@@ -27,6 +30,20 @@ export default function ResultsContent({
           { marginTop: 10, fontSize: 14, textAlign: 'justify' },
         ]}>
         {subtitle}
+        {subLink && (
+          <Text
+            style={{ color: 'blue' }}
+            onPress={() =>
+              navigation.navigate('Details', {
+                source: {
+                  uri:
+                    'http://digepisalud.gob.do/documentos/?drawer=Vigilancia%20Epidemiologica*Alertas%20epidemiologicas*Coronavirus*Nacional*Materiales%20IEC%20COVID-19',
+                },
+              })
+            }>
+            {subLinkText}
+          </Text>
+        )}
       </Text>
       <Text style={styles.textBold}>Siguientes pasos:</Text>
       <View style={styles.bottomLine} />

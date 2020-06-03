@@ -20,7 +20,6 @@ import {
   supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
 import LocationServices from '../services/LocationService';
-import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
 
@@ -140,11 +139,6 @@ export const SettingsScreen = ({ navigation }) => {
           <Item
             label={t('label.legal_page_title')}
             onPress={() => navigation.navigate('LicensesScreen')}
-          />
-          <Item
-            label='Feature Flags (Dev mode only)'
-            onPress={() => navigation.navigate(FEATURE_FLAG_SCREEN_NAME)}
-            last
           />
         </Section>
       </ScrollView>

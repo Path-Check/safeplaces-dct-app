@@ -32,6 +32,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import { isPlatformiOS } from './../Util';
 import { Button } from '../components/Button';
+import NextSteps from '../components/DR/LocationTracking/NextSteps';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -454,30 +455,12 @@ class LocationTracking extends Component {
                 {this.getSubText()}
               </Typography>
               {this.getCTAIfNeeded()}
+              {hasPossibleExposure && (
+                <NextSteps navigation={this.props.navigation} />
+              )}
             </View>
           </View>
 
-          <View>
-            <TouchableOpacity
-              onPress={this.getMayoInfoPressed.bind(this)}
-              style={styles.mayoInfoRow}>
-              <View style={styles.mayoInfoContainer}>
-                <Typography
-                  style={styles.mainMayoHeader}
-                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                  {languages.t('label.home_mayo_link_heading')}
-                </Typography>
-                <Typography
-                  style={styles.mainMayoSubtext}
-                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                  {languages.t('label.home_mayo_link_label')}
-                </Typography>
-              </View>
-              <View style={styles.arrowContainer}>
-                <Image source={foreArrow} style={this.arrow} />
-              </View>
-            </TouchableOpacity>
-          </View>
           {/* {this.getSettingsBtn()} */}
         </ImageBackground>
       </Theme>
