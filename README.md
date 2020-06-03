@@ -84,7 +84,7 @@ Read the [contribution guidelines](CONTRIBUTING.md).
 
 View the [architecture diagram](docs/Private_Kit_Diagram.png) for a basic overview on the sequencing of generalized events and services that are used by Safe Paths.
 
-## WhiteLabeling
+### White Labeling
 
 PathCheck is building two versions of the application. One for location based
 contact tracing and one for bluetooth based contact tracing. Given that the same
@@ -159,9 +159,49 @@ Generating a release build is an optional step in the development process.
 
 [react-native-debugger](https://github.com/jhen0409/react-native-debugger) is recommended. This tool will provide visibility of the JSX hierarchy, breakpoint usage, monitoring of network calls, and other common debugging tasks.
 
+## Tooling
+
+#### TypeScript
+
+This project is using
+[typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
+Not every file *needs* to be written in TypeScript, but we are preferring to use
+TypeScript in general. Note that for React-Native projects, TypeScript
+complication is handled by the metro-bundler build process and there is no need
+to emit js code into a bundle as one would do in a web context. Hence the
+inclusion of the `--noEmit` flag.
+
+#### Prettier
+
+This project is using [prettier](https://prettier.io/docs/en/install.html)
+We have a local prettierrc file, please make sure your development environment
+is set to use the project's prettierrc.
+
+#### Husky
+
+This project is using [husky](https://github.com/typicode/husky) to automate
+running validation and tests locally on a pre-push git hook. If you ever need to
+push code without running these scripts, you can pass the `--no-verify` flag on
+`git push`.
+
+#### eslint
+
+This project is using [eslint](https://eslint.org/docs/user-guide/getting-started).
+We have linting checks on CI, please make sure to include the checks locally in
+your IDE.
+
 ## Testing
 
 Tests are ran automatically through Github actions - PRs are not able to be merged if there are tests that are failing.
+
+
+### Static Testing
+
+To run the static analysis tools:
+
+```
+yarn validate
+```
 
 ### Unit Test
 

@@ -5,6 +5,8 @@
   "scripts": {
     "clean": "rm -rf node_modules && yarn",
     "start": "yarn && react-native start",
+    "tsc": "tsc --noEmit",
+    "validate": "yarn tsc",
     "run-android-bte": "react-native run-android --variant=bteDebug --appId=org.pathcheck.covidsafepathsBte",
     "run-android-gps": "react-native run-android --variant=gpsDebug --appId=org.pathcheck.covidsafepaths",
     "run-ios-bte": "yarn install:pod && react-native run-ios --scheme \"BTE_Development\"",
@@ -110,7 +112,10 @@
     "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
     "@testing-library/react-native": "^5.0.3",
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^25.2.3",
+    "@types/react": "^16.9.35",
+    "@types/react-native": "^0.62.12",
+    "@types/react-test-renderer": "^16.9.2",
     "babel-jest": "^25.1.0",
     "bats": "^1.1.0",
     "detox": "^16.1.1",
@@ -131,7 +136,8 @@
     "prettier-plugin-import-sort": "0.0.3",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-version": "^4.0.0",
-    "react-test-renderer": "16.9.0"
+    "react-test-renderer": "16.9.0",
+    "typescript": "^3.9.3"
   },
   "importSort": {
     ".js, .jsx, .es6, .es, .mjs, .ts, .tsx": {
