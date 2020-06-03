@@ -8,10 +8,9 @@ import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
+import { useAssets } from '../../TracingStrategyAssets';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
-import { useAssets } from '../../TracingStrategyAssets';
-
 
 export const ExposurePage = () => {
   const { t } = useTranslation();

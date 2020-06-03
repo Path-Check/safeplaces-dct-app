@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+
 import { Images } from './assets';
 import { isGPS } from './COVIDSafePathsConfig';
 
@@ -8,7 +9,7 @@ export function useAssets() {
   // Onboarding2
   const onboarding2Background = isGPS
     ? Images.LaunchScreen2
-    : Images.LaunchScreen2BT; 
+    : Images.LaunchScreen2BT;
   const onboarding2Header = isGPS
     ? t('label.launch_screen2_header_location')
     : t('label.launch_screen2_header_bluetooth');
@@ -65,7 +66,7 @@ export function useAssets() {
     ? t('history.what_does_this_mean_para_location')
     : t('history.what_does_this_mean_para_bluetooth');
 
-  // Dashboard Pages   
+  // Dashboard Pages
 
   // Exposure Page
   const exposurePageSubheader = isGPS
@@ -77,7 +78,7 @@ export function useAssets() {
     ? t(`label.home_setting_off_subtext_location`)
     : t(`label.home_setting_off_subtext_bluetooth`);
   const offPageButton = isGPS
-     ? t(`label.home_enable_location`)
+    ? t(`label.home_enable_location`)
     : t(`label.home_enable_bluetooth`);
 
   return {
@@ -100,5 +101,5 @@ export function useAssets() {
     exposurePageSubheader,
     offPageCta,
     offPageButton,
-  }
+  };
 }

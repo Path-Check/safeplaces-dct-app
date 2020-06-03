@@ -13,8 +13,8 @@ import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { ONBOARDING_DONE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
-import { sharedStyles } from './styles';
 import { useAssets } from '../../TracingStrategyAssets';
+import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
@@ -42,7 +42,9 @@ const Onboarding = props => {
         <Typography style={styles.headerText} use={Type.Headline2}>
           {onboarding4Header}
         </Typography>
-        <Typography style={styles.subheaderText}>{onboarding4Subheader}</Typography>
+        <Typography style={styles.subheaderText}>
+          {onboarding4Subheader}
+        </Typography>
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>

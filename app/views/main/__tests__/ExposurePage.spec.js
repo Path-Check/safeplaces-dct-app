@@ -7,7 +7,7 @@ jest.mock('../../../COVIDSafePathsConfig', () => {
   return {
     isGPS: true,
   };
-})
+});
 
 it('may be exposed matches snapshot', () => {
   const { asJSON } = render(<ExposurePage />);

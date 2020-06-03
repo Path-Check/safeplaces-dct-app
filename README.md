@@ -96,6 +96,7 @@ We are following a white labeling strategy to accomplish this. That is, we have
 two build targets for each app which use the same codebase. For development, we
 are preferring to keep as much code as possible common between the two targets.
 
+
 ## Developer Setup
 
 First, run the appropriate setup script for your system. This will install relevant packages, walk through Android Studio configuration, etc.
@@ -193,7 +194,6 @@ your IDE.
 ## Testing
 
 Tests are ran automatically through Github actions - PRs are not able to be merged if there are tests that are failing.
-
 
 ### Static Testing
 
