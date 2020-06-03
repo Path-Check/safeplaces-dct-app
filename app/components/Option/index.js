@@ -30,11 +30,6 @@ export function Option({
           inputType={inputType}
           icon={Icon}
         />
-        <View style={styles.content}>
-          {description && (
-            <Typography style={styles.description}>{description}</Typography>
-          )}
-        </View>
       </View>
     </TouchableOpacity>
   );
@@ -45,50 +40,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WHITE,
     borderColor: AssessmentColors.BORDER,
     borderRadius: 8,
-    borderWidth: 2,
+    borderWidth: 1,
     marginBottom: 16,
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
   },
   containerSelected: {
-    borderColor: AssessmentColors.BORDER_SELECTED,
-    elevation: 1,
-    shadowColor: Colors.BLACK,
-    shadowOffset: { height: 0, width: 0 },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-  },
-  indicator: {
-    alignItems: 'center',
-    borderColor: AssessmentColors.BORDER,
-    borderRadius: INDICATOR_WIDTH * 2,
-    borderWidth: 2,
-    height: INDICATOR_WIDTH,
-    justifyContent: 'center',
-    marginRight: INDICATOR_MARGIN,
-    width: INDICATOR_WIDTH,
-  },
-  indicatorSelected: {
-    backgroundColor: AssessmentColors.BORDER_SELECTED,
-    borderColor: AssessmentColors.BORDER_SELECTED,
-  },
-  indicatorIcon: {},
-  indicatorIconRadio: {
-    borderRadius: 100,
-    backgroundColor: Colors.WHITE,
-    height: INDICATOR_WIDTH * 0.5,
-    width: INDICATOR_WIDTH * 0.5,
-  },
-  title: {
-    flex: 1,
-    flexWrap: 'wrap',
-    color: Colors.BLACK,
-    fontSize: 20,
-  },
-  description: {
-    fontFamily: Fonts.primaryRegular,
-    fontSize: 16,
-    color: Colors.BLACK,
-    marginLeft: INDICATOR_WIDTH + INDICATOR_MARGIN,
+    backgroundColor: Colors.SECONDARY_50,
+    borderColor: Colors.PRIMARY_50,
   },
   primary: {
     alignItems: 'center',

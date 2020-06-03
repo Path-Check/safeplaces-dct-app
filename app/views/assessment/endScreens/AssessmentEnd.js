@@ -1,21 +1,16 @@
 import React from 'react';
 import {
-  Dimensions,
-  Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   View,
+  ImageBackground,
 } from 'react-native';
 
 import { Typography } from '../../../components/Typography';
 import Colors from '../../../constants/colors';
 import AssessmentButton from '../AssessmentButton';
-import { Colors as AssessmentColors } from '../constants';
-
-const WIDTH = Dimensions.get('window').width;
-const CONTAINER_WIDTH = 300 / 375;
-const HEIGHT = WIDTH * CONTAINER_WIDTH;
+import { SvgXml } from 'react-native-svg';
 
 /**
  * @typedef { import("react").ReactNode } ReactNode
@@ -32,45 +27,50 @@ const HEIGHT = WIDTH * CONTAINER_WIDTH;
  *   title: string;
  * }>} */
 const AssessmentEnd = ({
+  backgroundColor,
+  backgroundImage,
+  children,
   ctaAction,
   ctaColor,
   ctaTitle,
   description,
-  children,
+  fontColor,
   footer,
-  image,
-  pretitle,
+  icon,
   title,
 }) => {
   return (
-    <SafeAreaView style={assessmentStyles.container}>
-      <ScrollView style={assessmentStyles.scrollView}>
-        <Image source={image} style={{ width: WIDTH, height: HEIGHT }} />
-        <View style={assessmentStyles.scrollViewContent}>
-          {pretitle}
-          <Typography use='headline2'>
-            {title}
-          </Typography>
-          {description && (
-            <Typography
-              style={assessmentStyles.description}
-              testID='description'>
-              {description}
+    <SafeAreaView backgroundColor={backgroundColor} style={assessmentStyles.container}>
+      <ImageBackground source={backgroundImage} style={assessmentStyles.backgroundImage}>
+        <ScrollView style={assessmentStyles.scrollView}>
+          <View style={assessmentStyles.scrollViewContent}>
+            <SvgXml xml={icon} />
+            <Typography color={fontColor} use='headline2' style={assessmentStyles.headingSpacing}>
+              {title}
             </Typography>
+            {description && (
+              <Typography
+                color={fontColor}
+                use='body1'
+                style={assessmentStyles.description}
+                testID='description'>
+                {description}
+              </Typography>
+            )}
+            {children}
+          </View>
+        </ScrollView>
+        <View style={assessmentStyles.footer}>
+          {footer}
+          {ctaTitle && (
+            <AssessmentButton
+              color={ctaColor}
+              onPress={ctaAction}
+              title={ctaTitle}
+            />
           )}
-          {children}
         </View>
-      </ScrollView>
-      <View style={assessmentStyles.footer}>
-        {footer}
-        {ctaTitle && (
-          <AssessmentButton
-            color={ctaColor}
-            onPress={ctaAction}
-            title={ctaTitle}
-          />
-        )}
-      </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 };
@@ -80,7 +80,11 @@ export default AssessmentEnd;
 export const assessmentStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: AssessmentColors.BACKGROUND,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
   scrollView: {
     flex: 1,
@@ -88,20 +92,13 @@ export const assessmentStyles = StyleSheet.create({
   scrollViewContent: {
     padding: 20,
   },
-  description: {
-    fontSize: 20,
-    lineHeight: 26,
-    marginBottom: 30,
-    color: Colors.BLACK,
+  headingSpacing: {
+    marginVertical: 30,
   },
   footer: {
     padding: 20,
   },
-  // this is exported and used elsewhere
-  // eslint-disable-next-line react-native/no-unused-styles
-  boldBlackText: {
-    color: Colors.BLACK,
-    fontWeight: 'bold',
-    fontSize: 20,
+  description: {
+    marginBottom: 20,
   },
 });

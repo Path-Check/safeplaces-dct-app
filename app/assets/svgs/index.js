@@ -1,3 +1,4 @@
+import AnonymizedData from './anonymizedData';
 import BackArrow from './backArrow';
 import Checkmark from './checkmarkIcon';
 import Close from './close';
@@ -10,6 +11,7 @@ import Lock from './lock';
 import PermissionDenied from './permissionDenied';
 import PermissionGranted from './permissionGranted';
 import PermissionUnknown from './permissionUnknown';
+import SelfAssessment from './selfAssessment';
 import SettingsIcon from './settingsIcon';
 import StateAtRisk from './stateAtRisk';
 import StateNoContact from './stateNoContact';
@@ -19,6 +21,7 @@ import Warning from './warning';
 import XmarkIcon from './xmarkIcon';
 
 export const Icons = {
+  AnonymizedData,
   BackArrow,
   Checkmark,
   Close,
@@ -31,6 +34,7 @@ export const Icons = {
   PermissionDenied,
   PermissionGranted,
   PermissionUnknown,
+  SelfAssessment,
   SettingsIcon,
   StateAtRisk,
   StateNoContact,

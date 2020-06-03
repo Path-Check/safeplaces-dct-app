@@ -37,12 +37,10 @@ export function OptionSelect({
           )}
           {isSelected &&
             (inputType === SCREEN_TYPE_RADIO ||
-              inputType === SCREEN_TYPE_DATE) && (
-              <View style={styles.indicatorIconRadio} />
-            )}
+              inputType === SCREEN_TYPE_DATE) }
         </View>
       )}
-      <Typography style={styles.title} testID='label'>
+      <Typography use='body1' style={styles.title} testID='label'>
         {title}
       </Typography>
     </View>
@@ -61,21 +59,12 @@ const styles = StyleSheet.create({
     width: INDICATOR_WIDTH,
   },
   indicatorSelected: {
-    backgroundColor: AssessmentColors.BORDER_SELECTED,
-    borderColor: AssessmentColors.BORDER_SELECTED,
-  },
-  indicatorIcon: {},
-  indicatorIconRadio: {
-    borderRadius: 100,
-    backgroundColor: Colors.WHITE,
-    height: INDICATOR_WIDTH * 0.5,
-    width: INDICATOR_WIDTH * 0.5,
+    backgroundColor: Colors.PRIMARY_50,
+    borderColor: Colors.PRIMARY_50,
   },
   title: {
     flex: 1,
     flexWrap: 'wrap',
     color: Colors.BLACK,
-    fontSize: 20,
-    fontWeight: 'bold',
   },
 });
