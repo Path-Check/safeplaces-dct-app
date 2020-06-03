@@ -35,37 +35,26 @@ export default class NativePicker extends Component {
     this.state = {
       modalVisible: false,
       selectedLang: '',
-      value: '',
-      label: '',
     };
   }
 
-  openPicker = () => {
-    this.setState({ modalVisible: true });
-  };
+  render() {
+    const openPicker = () => {
+      this.setState({ modalVisible: true });
+    };
 
-  changeSelected = selectedLang => {
-    this.setState({ selectedLang });
+    const changeSelected = selectedLang => {
+      this.setState({ selectedLang });
+      this.props.onValueChange(selectedLang);
+    };
 
-    this.props.onValueChange(selectedLang);
-  };
-
-  componentDidMount() {
     const selectedItem = this.props.items.find(
       i => i.value === this.props.value,
     );
     const label = selectedItem?.label || '';
     const value = selectedItem?.value;
 
-    this.setState({ value, label, selectedLang: this.props.value });
-  }
-
-  render() {
-    const {
-      openPicker,
-      changeSelected,
-      state: { value, label, selectedLang },
-    } = this;
+    const { selectedLang } = this.state;
     const renderLabel = this.props.children;
 
     // iOS and Android Pickers behave differently, handled below

@@ -219,7 +219,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Unknown
+                English
               </Text>
             </View>
           </View>
@@ -782,48 +782,6 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               }
             }
           />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Feature Flags (Dev mode only)
-              </Text>
-            </View>
-          </View>
         </View>
         <View
           style={
@@ -1058,7 +1016,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Unknown
+                English
               </Text>
             </View>
           </View>
@@ -1451,48 +1409,6 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               }
             }
           />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Feature Flags (Dev mode only)
-              </Text>
-            </View>
-          </View>
         </View>
         <View
           style={

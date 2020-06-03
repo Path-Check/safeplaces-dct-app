@@ -35,7 +35,7 @@ export function requestCovid19Hospitals() {
 
 export function requestCovid19Laboratories() {
   const URL =
-    'https://services5.arcgis.com/vzuQ2GBv7eL3S9SR/arcgis/rest/services/Laboratorios_Clinicos_Hijo/FeatureServer/0//query?where=FID>0&outFields=ID%2CNombre%2CTelefono%2Ccoord_X%2Ccoord_Y&f=pjson&token=';
+    'https://services5.arcgis.com/vzuQ2GBv7eL3S9SR/arcgis/rest/services/Laboratorios_Clinicos_Hijo/FeatureServer/0//query?where=FID%3E0&outFields=ID%2CNombre%2CTelefono%2Ccoord_X%2Ccoord_Y&f=pjson&token=';
   return fetch(URL).then(({ data }) =>
     data.features
       .map(({ attributes }) => {
