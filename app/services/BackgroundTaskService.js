@@ -6,7 +6,7 @@ import { HCAService } from '../services/HCAService';
 
 export function executeTask() {
   checkIntersect();
-  __DEV__ && HCAService.findNewAuthorities();
+  HCAService.findNewAuthorities();
 }
 
 export default class BackgroundTaskServices {

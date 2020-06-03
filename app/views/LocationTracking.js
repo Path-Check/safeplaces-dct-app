@@ -52,6 +52,8 @@ import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
+import { HCAService } from '../services/HCAService';
+
 
 const MAYO_COVID_URL = 'https://www.mayoclinic.org/coronavirus-covid-19';
 
@@ -125,6 +127,7 @@ class LocationTracking extends Component {
               case RESULTS.GRANTED:
                 LocationServices.start();
                 this.checkIfUserAtRisk();
+                HCAService.findNewAuthorities();
                 return;
               case RESULTS.UNAVAILABLE:
               case RESULTS.BLOCKED:

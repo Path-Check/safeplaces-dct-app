@@ -37,12 +37,12 @@ export class LocationData {
    * @param {*} point - Object to validate
    */
   isValidPoint(point) {
-    if (!point.latitude && !point.latitude === 0) {
+    if (point && !point.latitude && !point.latitude === 0) {
       console.error('`point` param must have a latitude field');
       return false;
     }
 
-    if (!point.longitude && !point.longitude === 0) {
+    if (point && !point.longitude && !point.longitude === 0) {
       console.error('`point` param must have a longitude field');
       return false;
     }

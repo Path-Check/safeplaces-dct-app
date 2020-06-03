@@ -6,6 +6,7 @@ import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 import {
   AUTHORITY_SOURCE_SETTINGS,
   ENABLE_HCA_AUTO_SUBSCRIPTION,
+  LOCATION_DATA
 } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
@@ -30,48 +31,112 @@ class HCAService {
     }).wrap('GET');
   }
 
+  offsetLocation(location) {
+    //Position, decimal degrees
+   const lat = location.latitude;
+   const lon = location.longitude;
+
+   //Earth’s radius, sphere
+   const R=6378137;
+
+   //offsets in meters
+   const dn = 100;
+   const de = 100;
+
+   //Coordinate offsets in radians
+   const dLat = dn/R;
+   const dLon = de/(R*Cos(Math.PI*lat/180));
+
+   //OffsetPosition, decimal degrees
+   const latO = lat + dLat * 180/Math.PI;
+   const lonO = lon + dLon * 180/Math.PI;
+
+   location.latitude = latO;
+   location.longitude = lonO;
+ }
+
   /**
    * Fetches the list of all registed Health Care Authorities
    * @returns {Array} List of health care authorities from the global registry
    */
   async getAuthoritiesList() {
     let authorities = [];
+    let mostNorthEastPoint = null; 
+    let mostSouthWestPoint = null; 
 
     try {
-      // const result = await this.fetchAuthoritiesYaml();
-      // const list = await RNFetchBlob.fs.readFile(result.path(), 'utf8');
-      // console.log("Yaml list: " + JSON.stringify(list));
-      const authoritiesJson = {
-        Authorities: [
-          {
-            'Ministerio de Salud Publica': [
-              {
-                url: 'https://webapps.mepyd.gob.do/contact_tracing/api/Contact',
-              },
-              {
-                bounds: {
-                  ne: {
-                    latitude: 20.365051,
-                    longitude: -67.795684,
-                  },
-                  sw: {
-                    latitude: 16.99877,
-                    longitude: -72.17912,
-                  },
-                },
-              },
-            ],
-          },
-        ],
-      };
+      const locations = await new LocationData().getLocationData();
 
-      authorities = authoritiesJson.Authorities;
-    } catch (err) {
-      console.error(err);
+      myProimse.then(
+        () => console.log('resolved'), 
+        (error) => console.log(error.message)
+      );
+
+      if (Array.isArray(locations) && locations.length > 0) {
+        for (var index = locations.length - 1; index > 0; index--) {
+  
+          var dateOffset = (24*60*60*1000); //1 day
+          var yesterdayEnd = new Date();
+          yesterdayEnd.setTime(yesterdayEnd.getTime() - dateOffset);
+  
+          const location = locations[index];
+          if(new Date(location.time).getTime() < yesterdayEnd.getTime() ){
+            //is on todays date 
+            if((mostNorthEastPoint === null && mostSouthWestPoint === null )){
+              mostNorthEastPoint = location;
+              mostSouthWestPoint = location;
+            } 
+            if(mostNorthEastPoint.latitude < location.latitude || mostNorthEastPoint.longitude < location.longitude){
+              mostNorthEastPoint = location;
+            }
+            if(mostSouthWestPoint.latitude > location.latitude || mostSouthWestPoint.longitude > location.longitude  ){
+              mostSouthWestPoint = location;
+            }
+          } else {
+            break;
+          }
+        }
+        
+      }
+    } catch (error) {
+      console.log("[Error] " + error);
     }
 
+    const baseUrl = 'https://webapps.mepyd.gob.do/contact_tracing/api/Contact';
+    const url = mostNorthEastPoint && mostSouthWestPoint ? `${baseUrl}?NE=${mostNorthEastPoint.latitude},${mostNorthEastPoint.longitude}&SW=${mostSouthWestPoint.latitude},${mostSouthWestPoint.longitude}` 
+                                      : baseUrl;
+    console.log("URL: "+ url);
+    console.log(" are there points? "+ mostNorthEastPoint && mostSouthWestPoint );
+
+                          
+    const authoritiesJson = {
+      Authorities: [
+        {
+          'Ministerio de Salud Publica': [
+            {
+              url: url,
+            },
+            {
+              bounds: {
+                ne: {
+                  latitude: 20.365051,
+                  longitude: -67.795684,
+                },
+                sw: {
+                  latitude: 16.99877,
+                  longitude: -72.17912,
+                },
+              },
+            },
+          ],
+        }
+      ],
+    };
+
+    authorities = authoritiesJson.Authorities;
     return authorities;
   }
+
 
   /**
    * Get the list of Health Care Authorities that a user has saved
@@ -165,8 +230,8 @@ class HCAService {
   isPointInAuthorityBounds(point, authority) {
     const locHelper = new LocationData();
     const bounds = this.getAuthorityBounds(authority);
-
-    return bounds && locHelper.isPointInBoundingBox(point, bounds);
+    let result = bounds && locHelper.isPointInBoundingBox(point, bounds);//This passes is true on my phone not on simulator makes sense because of the location 
+    return result;
   }
 
   /**
@@ -185,6 +250,7 @@ class HCAService {
     );
   }
 
+
   /**
    * Gets the most recent location of the user and returns a list of
    * all Healthcare Authorities whose bounds contain the user's current location,
@@ -193,14 +259,14 @@ class HCAService {
    * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} list of Healthcare Authorities
    */
   async getNewAuthoritiesInUserLoc() {
-    const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();
-    const authoritiesList = await this.getAuthoritiesList();
+    const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();//Nice I needed this nice nice 
+    const authoritiesList = await this.getAuthoritiesList();//This is were we are not getting any new authorities Why does the button doesnt work :( )
     const userAuthorities = await this.getUserAuthorityList();
 
     return authoritiesList.filter(
       authority =>
-        this.isPointInAuthorityBounds(mostRecentUserLoc, authority) &&
-        !userAuthorities.includes(authority),
+        this.isPointInAuthorityBounds(mostRecentUserLoc, authority) && ((!Array.isArray(userAuthorities) || !userAuthorities.length) ||
+        !userAuthorities.some( elem => JSON.stringify(authority) === JSON.stringify(elem)))
     );
   }
 
@@ -224,7 +290,6 @@ class HCAService {
    */
   async findNewAuthorities() {
     const newAuthorities = await this.getNewAuthoritiesInUserLoc();
-    console.log('new autho: ' + newAuthorities);
     if (newAuthorities.length > 0) {
       if (this.isAutosubscriptionEnabled()) {
         await this.pushAlertNewSubscriptions(newAuthorities);
