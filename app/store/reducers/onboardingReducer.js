@@ -1,11 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import onboardingAction from '../actions/onboardingAction';
+import onboardingCompleteAction from '../actions/onboardingCompleteAction';
 
 const initialState = { complete: false };
 
 const onboardingReducer = createReducer(initialState, {
-  [onboardingAction]: state => {
+  [onboardingCompleteAction]: state => {
     state.complete = true;
   },
 });

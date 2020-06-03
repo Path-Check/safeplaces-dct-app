@@ -21,7 +21,7 @@ import { isGPS } from '../../COVIDSafePathsConfig';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
-import onboardingCompleteAction from '../../store/actions/onboardingAction';
+import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
