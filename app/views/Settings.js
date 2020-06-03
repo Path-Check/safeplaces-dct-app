@@ -9,27 +9,22 @@ import { FeatureFlag } from '../components/FeatureFlag';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import { PARTICIPATE } from '../constants/storage';
-import { config } from '../COVIDSafePathsConfig';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import { isGPS } from '../COVIDSafePathsConfig';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../locales/languages';
-import LocationServices from '../services/LocationService';
 import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './Settings/GoogleMapsImport';
 import { SettingsItem as Item } from './Settings/SettingsItem';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
-  const [isLogging, setIsLogging] = useState(undefined);
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
-  const isGPS = config.tracingStrategy === 'gps';
 
   const backToMain = () => {
     navigation.goBack();
@@ -42,11 +37,6 @@ export const SettingsScreen = ({ navigation }) => {
     };
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
-    // TODO: this should be a service or hook
-    GetStoreData(PARTICIPATE)
-      .then(isParticipating => setIsLogging(isParticipating === 'true'))
-      .catch(error => console.log(error));
-
     // TODO: extract into service or hook
     getUserLocaleOverride().then(locale => locale && setUserLocale(locale));
 
@@ -54,20 +44,6 @@ export const SettingsScreen = ({ navigation }) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
   }, [navigation]);
-
-  const locationToggleButtonPressed = async () => {
-    if (!isGPS) {
-      setIsLogging(!isLogging);
-    } else {
-      try {
-        isLogging ? LocationServices.stop() : LocationServices.start();
-        await SetStoreData(PARTICIPATE, !isLogging);
-        setIsLogging(!isLogging);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  };
 
   const localeChanged = async locale => {
     // If user picks manual lang, update and store setting
@@ -79,31 +55,12 @@ export const SettingsScreen = ({ navigation }) => {
     }
   };
 
-  const getLoggingText = () => {
-    if (isLogging && isGPS) {
-      return t('label.logging_active_location');
-    } else if (isLogging && !isGPS) {
-      return t('label.logging_active_bluetooth');
-    } else if (!isLogging && isGPS) {
-      return t('label.logging_inactive_location');
-    } else if (!isLogging && !isGPS) {
-      return t('label.logging_inactive_bluetooth');
-    }
-  }
-
   return (
     <NavigationBarWrapper
       title={t('label.settings_title')}
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
-          {isGPS && (
-            <Item
-              label={getLoggingText()}
-              icon={isLogging ? Icons.Checkmark : Icons.XmarkIcon}
-              onPress={locationToggleButtonPressed}
-            />
-          )}
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}
@@ -137,12 +94,23 @@ export const SettingsScreen = ({ navigation }) => {
                 description={t('label.event_history_subtitle')}
                 onPress={() => navigation.navigate('ExposureHistoryScreen')}
               />
-              <Item
-                label={t('share.title')}
-                description={t('share.subtitle')}
-                onPress={() => navigation.navigate('ExportScreen')}
-                last
-              />
+              <FeatureFlag
+                name='export_e2e'
+                fallback={
+                  <Item
+                    label={t('share.title')}
+                    description={t('share.subtitle')}
+                    onPress={() => navigation.navigate('ExportLocally')}
+                    last
+                  />
+                }>
+                <Item
+                  label={t('share.title')}
+                  description={t('share.subtitle')}
+                  onPress={() => navigation.navigate('ExportScreen')}
+                  last
+                />
+              </FeatureFlag>
             </>
           ) : null}
         </Section>

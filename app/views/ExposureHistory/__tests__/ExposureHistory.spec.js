@@ -5,7 +5,7 @@ import { convertToDailyMinutesExposed } from '../ExposureHistory';
 
 jest.mock('../../../COVIDSafePathsConfig', () => {
   return {
-    config: { tracingStrategy: 'gps' },
+    isGPS: true,
   };
 });
 

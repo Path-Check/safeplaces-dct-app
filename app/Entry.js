@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import {
   CardStyleInterpolators,
+  TransitionPresets,
   createStackNavigator,
 } from '@react-navigation/stack';
 import React from 'react';
@@ -8,7 +9,16 @@ import { useSelector } from 'react-redux';
 
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
-import { ExportScreen } from './views/Export';
+import {
+  ExportCodeInput,
+  ExportComplete,
+  ExportConfirmUpload,
+  ExportLocally,
+  ExportLocationConsent,
+  ExportPublishConsent,
+  ExportSelectHA,
+  ExportStart,
+} from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import {
   FEATURE_FLAG_SCREEN_NAME,
@@ -27,6 +37,8 @@ import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();
 
+const fade = ({ current }) => ({ cardStyle: { opacity: current.progress } });
+
 const screenOptions = {
   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
   cardStyle: {
@@ -35,11 +47,44 @@ const screenOptions = {
   headerShown: false,
 };
 
+const ExportStack = () => (
+  <Stack.Navigator
+    mode='modal'
+    screenOptions={{
+      ...screenOptions,
+      cardStyleInterpolator: fade,
+      gestureEnabled: false,
+    }}>
+    <Stack.Screen name='ExportStart' component={ExportStart} />
+    <Stack.Screen name='ExportSelectHA' component={ExportSelectHA} />
+    <Stack.Screen name='ExportCodeInput' component={ExportCodeInput} />
+    <Stack.Screen
+      name='ExportLocationConsent'
+      component={ExportLocationConsent}
+    />
+    <Stack.Screen
+      name='ExportPublishConsent'
+      component={ExportPublishConsent}
+    />
+    <Stack.Screen name='ExportConfirmUpload' component={ExportConfirmUpload} />
+    <Stack.Screen name='ExportDone' component={ExportCodeInput} />
+    <Stack.Screen name='ExportComplete' component={ExportComplete} />
+  </Stack.Navigator>
+);
+
 const MainApp = () => (
-  <Stack.Navigator screenOptions={screenOptions}>
+  <Stack.Navigator initialRouteName='Main' screenOptions={screenOptions}>
     <Stack.Screen name='Main' component={Main} />
     <Stack.Screen name='NewsScreen' component={NewsScreen} />
-    <Stack.Screen name='ExportScreen' component={ExportScreen} />
+    <Stack.Screen
+      name='ExportScreen'
+      component={ExportStack}
+      options={{
+        ...TransitionPresets.ModalSlideFromBottomIOS,
+      }}
+    />
+    {/* We feature flag in settings between whether to send to route or e2e export */}
+    <Stack.Screen name='ExportLocally' component={ExportLocally} />
     <Stack.Screen name='ImportScreen' component={ImportScreen} />
     <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
     <Stack.Screen
