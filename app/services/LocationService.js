@@ -13,7 +13,6 @@ const LOCATION_DISABLED_NOTIFICATION = '55';
 export const Reason = {
   LOCATION_OFF: 'LOCATION_OFF',
   NOT_AUTHORIZED: 'NOT_AUTHORIZED',
-  USER_OFF: 'USER_OFF',
 };
 
 export class LocationData {
@@ -245,10 +244,6 @@ export default class LocationServices {
     return !!dayBin && dayBin.some(exposure => exposure > 0);
   }
 
-  static async getParticpating() {
-    return await GetStoreData(PARTICIPATE, false);
-  }
-
   static async getBackgroundGeoStatus() {
     return new Promise((resolve, reject) => {
       BackgroundGeolocation.checkStatus(
@@ -266,16 +261,6 @@ export default class LocationServices {
       isRunning,
       locationServicesEnabled,
     } = await this.getBackgroundGeoStatus();
-
-    const particpating = await this.getParticpating();
-    if (!particpating) {
-      return {
-        canTrack: false,
-        reason: Reason.USER_OFF,
-        hasPotentialExposure,
-        isRunning,
-      };
-    }
 
     if (!locationServicesEnabled) {
       return {
