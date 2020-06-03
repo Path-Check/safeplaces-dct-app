@@ -10,9 +10,10 @@ import { Button, Checkbox, IconButton, Typography } from '../components';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import en from '../locales/eula/en.html';
+import es_PR from '../locales/eula/es_PR.html';
 import ht from '../locales/eula/ht.html';
 
-const EULA_FILES = { en, ht };
+const EULA_FILES = { en, es_PR, ht };
 
 const DEFAULT_EULA_URL = 'about:blank';
 

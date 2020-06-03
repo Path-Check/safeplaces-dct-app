@@ -80,7 +80,6 @@
     "react-native-background-fetch": "^3.0.4",
     "react-native-background-timer": "^2.2.0",
     "react-native-config": "luggit/react-native-config#1eb6ac01991210ddad2989857359a0f6ee35d734",
-    "react-native-device-settings": "^1.2.0",
     "react-native-document-picker": "github:rparet/react-native-document-picker",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "^1.6.1",
@@ -155,7 +154,7 @@
     },
     "configurations": {
       "iphone11.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/GPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Development -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -163,7 +162,7 @@
         }
       },
       "iphone8.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/GPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -171,7 +170,7 @@
         }
       },
       "iphone-se.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/GPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -179,7 +178,7 @@
         }
       },
       "iphone11-bte.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BTE.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -187,7 +186,7 @@
         }
       },
       "iphone8-bte.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BTE.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -195,7 +194,7 @@
         }
       },
       "iphone-se-bte.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BTE.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {

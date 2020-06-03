@@ -1,6 +1,6 @@
 export const LOCATION_DATA = 'LOCATION_DATA';
 export const CONTACT_DATA = 'CONTACT_DATA';
-export const IS_LOCATION_TRACKING_OPT_IN = 'IS_LOCATION_TRACKING_OPT_IN';
+export const PARTICIPATE = 'PARTICIPATE';
 export const MY_UUIDs = 'MY_UUIDs';
 export const CROSSED_PATHS = 'CROSSED_PATHS';
 export const LANG_OVERRIDE = 'LANG_OVERRIDE';

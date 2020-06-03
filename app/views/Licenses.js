@@ -15,13 +15,14 @@ import { Images } from '../assets';
 import { NavigationBarWrapper, Typography } from '../components';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
-import { isGPS } from '../COVIDSafePathsConfig';
+import { useAssets } from '../services/hooks/TracingStrategyAssets';
 
 const PRIVACY_POLICY_URL =
   'https://docs.google.com/document/d/17u0f8ni9S0D4w8RCUlMMqxAlXKJAd2oiYGP8NUwkINo/edit';
 
 export const LicensesScreen = ({ navigation }) => {
   const { t } = useTranslation();
+  const { legalHeader } = useAssets();
 
   const backToMain = () => {
     navigation.goBack();
@@ -43,10 +44,6 @@ export const LicensesScreen = ({ navigation }) => {
     };
   });
 
-  const legalPageHeaderText = isGPS
-    ? t('label.legal_page_header_location')
-    : t('label.legal_page_header_bluetooth');
-
   return (
     <NavigationBarWrapper
       title={t('label.legal_page_title')}
@@ -54,7 +51,7 @@ export const LicensesScreen = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View>
           <Typography style={styles.heading} use='headline2'>
-            {legalPageHeaderText}
+            {legalHeader}
           </Typography>
           <Typography style={styles.body} use='body1'>
             {t('label.legal_page_address')}

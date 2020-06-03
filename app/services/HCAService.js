@@ -205,7 +205,7 @@ class HCAService {
    * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} list of Healthcare Authorities
    */
   async getNewAuthoritiesInUserLoc() {
-    const mostRecentUserLoc = await LocationService.getMostRecentUserLoc();
+    const mostRecentUserLoc = await LocationService.getMostRecentUserGps();
     const authoritiesList = await this.getAuthoritiesList();
     const userAuthorities = await this.getUserAuthorityList();
 

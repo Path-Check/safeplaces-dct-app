@@ -159,7 +159,7 @@ exports[`may be exposed matches snapshot 1`] = `
           }
           use="body1"
         >
-          Based on your contact tracing history, it is possible you were in contact with or close to someone diagnosed with COVID-19.
+          Based on your GPS history, it is possible you were in contact with or close to someone diagnosed with COVID-19.
         </Text>
         <View
           style={

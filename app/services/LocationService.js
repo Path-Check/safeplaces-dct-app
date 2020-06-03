@@ -3,10 +3,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { NativeModules, Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
-import {
-  CROSSED_PATHS,
-  IS_LOCATION_TRACKING_OPT_IN,
-} from '../constants/storage';
+import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
@@ -182,11 +179,11 @@ export default class LocationServices {
   }
 
   static async setUserOptIn(isEnabled) {
-    await SetStoreData(IS_LOCATION_TRACKING_OPT_IN, isEnabled);
+    await SetStoreData(PARTICIPATE, isEnabled);
   }
 
   static async getUserOptInStatus() {
-    return await GetStoreData(IS_LOCATION_TRACKING_OPT_IN, false);
+    return await GetStoreData(PARTICIPATE, false);
   }
 
   static async getBackgroundGeoStatus() {
@@ -273,7 +270,7 @@ export default class LocationServices {
    * Returns the most recent point of location data for a user.
    * This is the last item in the location data array.
    */
-  static async getMostRecentUserLoc() {
+  static async getMostRecentUserGps() {
     const locData = await LocationServices.getLocationData();
     return locData[locData.length - 1];
   }

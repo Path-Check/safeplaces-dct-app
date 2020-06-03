@@ -7,17 +7,15 @@ import { SvgXml } from 'react-native-svg';
 import { Icons, Images } from '../../assets';
 import { Button, Typography } from '../../components';
 import { Theme } from '../../constants/themes';
+import { useAssets } from '../../services/hooks/TracingStrategyAssets';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
-export const ExposurePage = ({ tracingStrategy }) => {
+export const ExposurePage = () => {
   const { t } = useTranslation();
+  const { exposurePageSubheader } = useAssets();
   const navigation = useNavigation();
   const buttonLabel = t('label.see_exposure_history');
-  const subheaderText =
-    tracingStrategy === 'gps'
-      ? t(`label.home_at_risk_subtext_location`)
-      : t(`label.home_at_risk_subtext_bluetooth`);
   const size = Dimensions.get('window').height;
 
   return (
@@ -49,7 +47,7 @@ export const ExposurePage = ({ tracingStrategy }) => {
           </View>
           <View style={styles.contentBelowPulse}>
             <Typography style={styles.subheaderText}>
-              {subheaderText}
+              {exposurePageSubheader}
             </Typography>
             <View style={styles.buttonContainer}>
               <Button

@@ -196,7 +196,7 @@ describe('HCAService', () => {
 
     it('returns an empty array if there are no authorities in the area', async () => {
       jest
-        .spyOn(LocationService, 'getMostRecentUserLoc')
+        .spyOn(LocationService, 'getMostRecentUserGps')
         .mockReturnValueOnce(mockNullMostRecentUserLoc);
       jest.spyOn(HCAService, 'getUserAuthorityList').mockResolvedValueOnce([]);
 
@@ -207,7 +207,7 @@ describe('HCAService', () => {
 
     it('filters out authorities the user has already subscribed to', async () => {
       jest
-        .spyOn(LocationService, 'getMostRecentUserLoc')
+        .spyOn(LocationService, 'getMostRecentUserGps')
         .mockResolvedValueOnce(mockMostRecentUserLoc);
       jest
         .spyOn(HCAService, 'getUserAuthorityList')
@@ -220,7 +220,7 @@ describe('HCAService', () => {
 
     it('returns an array of new authorities that the user has not subscribed to and are within their current location', async () => {
       jest
-        .spyOn(LocationService, 'getMostRecentUserLoc')
+        .spyOn(LocationService, 'getMostRecentUserGps')
         .mockResolvedValueOnce(mockMostRecentUserLoc);
       jest.spyOn(HCAService, 'getUserAuthorityList').mockResolvedValueOnce([]);
 

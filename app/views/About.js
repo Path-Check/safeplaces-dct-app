@@ -16,10 +16,11 @@ import fontFamily from './../constants/fonts';
 import { Icons } from '../assets';
 import { NavigationBarWrapper, Typography } from '../components';
 import Colors from '../constants/colors';
-import { isGPS } from '../COVIDSafePathsConfig';
+import { useAssets } from '../services/hooks/TracingStrategyAssets';
 
 export const AboutScreen = ({ navigation }) => {
   const { t } = useTranslation();
+  const { aboutHeader } = useAssets();
 
   const backToMain = () => {
     navigation.goBack();
@@ -37,10 +38,6 @@ export const AboutScreen = ({ navigation }) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
   }, [navigation]);
 
-  const aboutHeaderText = isGPS
-    ? t('label.about_header_location')
-    : t('label.about_header_bluetooth');
-
   return (
     <NavigationBarWrapper
       title={t('label.about_title')}
@@ -52,7 +49,7 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.aboutLabelContainer}>
           <SvgXml style={styles.aboutSectionIconLock} xml={Icons.Lock} />
           <Typography style={styles.aboutSectionTitles} use='headline2'>
-            {aboutHeaderText}
+            {aboutHeader}
           </Typography>
         </View>
         <Typography style={styles.aboutSectionPara}>

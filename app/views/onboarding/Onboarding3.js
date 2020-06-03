@@ -7,24 +7,21 @@ import {
   View,
 } from 'react-native';
 
-import { Images } from '../../assets';
 import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import { isGPS } from '../../COVIDSafePathsConfig';
 import languages from '../../locales/languages';
+import { useAssets } from '../../services/hooks/TracingStrategyAssets';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
-  const backgroundImage = isGPS ? Images.LaunchScreen3 : Images.LaunchScreen3BT;
-  const headerText = isGPS
-    ? languages.t('label.launch_screen3_header_location')
-    : languages.t('label.launch_screen3_header_bluetooth');
-  const subheaderText = isGPS
-    ? languages.t('label.launch_screen3_subheader_location')
-    : languages.t('label.launch_screen3_subheader_bluetooth');
+  const {
+    onboarding3Background,
+    onboarding3Header,
+    onboarding3Subheader,
+  } = useAssets();
 
   return (
     <View style={styles.mainContainer}>
@@ -34,14 +31,16 @@ const Onboarding = props => {
         translucent
       />
       <ImageBackground
-        source={backgroundImage}
+        source={onboarding3Background}
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
         <Typography style={styles.headerText} use={Type.Headline2}>
-          {headerText}
+          {onboarding3Header}
         </Typography>
-        <Typography style={styles.subheaderText}>{subheaderText}</Typography>
+        <Typography style={styles.subheaderText}>
+          {onboarding3Subheader}
+        </Typography>
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>
