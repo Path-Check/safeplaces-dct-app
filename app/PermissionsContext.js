@@ -53,6 +53,11 @@ const initialState = {
     check: () => {},
     request: () => {},
   },
+  exposureNotification: {
+    status: PermissionStatus.UNKNOWN,
+    check: () => {},
+    request: () => {},
+  },
 };
 
 const PermissionsContext = createContext(initialState);
@@ -67,16 +72,20 @@ const PermissionsProvider = ({ children }) => {
   const [authSubscriptionPermission, setAuthSubscriptionPermission] = useState(
     PermissionStatus.UNKNOWN,
   );
+  const [exposureNotificationPermission, setExposureNotificationPermission] = useState(
+    PermissionStatus.UNKNOWN,
+  );
 
   useEffect(() => {
     const checkAllPermissions = async () => {
       const isiOS = Platform.OS === 'ios';
       const isDev = __DEV__;
       await Promise.all([
+        !isGPS ? checkExposureNotificationPermission() : null,
         isGPS ? checkLocationPermission() : null,
-        isiOS ? checkNotificationPermission() : null,
+        isGPS && isiOS ? checkNotificationPermission() : null,
         // TODO(https://pathcheck.atlassian.net/browse/SAF-232): Put HCA auto sub logic behind a feature flag
-        isDev && isiOS ? checkAuthSubscriptionPermission() : null,
+        isGPS && isDev && isiOS ? checkAuthSubscriptionPermission() : null,
       ]);
     };
     checkAllPermissions();
@@ -112,6 +121,11 @@ const PermissionsProvider = ({ children }) => {
     }
   };
 
+  const checkExposureNotificationPermission = async () => {
+    const status = 'unknown';
+    setExposureNotificationPermission(statusToEnum(status));
+  };
+
   const requestLocationPermission = async () => {
     if (Platform.OS === 'ios') {
       requestLocationForPlatform(PERMISSIONS.IOS.LOCATION_ALWAYS);
@@ -136,6 +150,11 @@ const PermissionsProvider = ({ children }) => {
     setAuthSubscriptionPermission(status);
   };
 
+  const requestExposureNotificationPermission = async () => {
+    const status = 'unknown';
+    setLocationPermission(statusToEnum(status));
+  };
+
   return (
     <PermissionsContext.Provider
       value={{
@@ -154,6 +173,11 @@ const PermissionsProvider = ({ children }) => {
           check: checkAuthSubscriptionPermission,
           request: requestAuthSubscriptionPermission,
         },
+        exposureNotification: {
+          status: exposureNotificationPermission,
+          check: checkExposureNotificationPermission,
+          request: requestExposureNotificationPermission,
+        }
       }}>
       {children}
     </PermissionsContext.Provider>

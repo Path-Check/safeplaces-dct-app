@@ -11,8 +11,6 @@ import { Button } from '../../components/Button';
 import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import { ONBOARDING_DONE } from '../../constants/storage';
-import { SetStoreData } from '../../helpers/General';
 import { sharedStyles } from './styles';
 import { useAssets } from '../../TracingStrategyAssets';
 
@@ -23,7 +21,6 @@ const Onboarding = props => {
     onboarding4Background,
     onboarding4Button,
     onboarding4Header,
-    onboarding4NavDestination,
     onboarding4Subheader,
   } = useAssets();
 
@@ -48,10 +45,7 @@ const Onboarding = props => {
       <View style={sharedStyles.footerContainer}>
         <Button
           label={onboarding4Button}
-          onPress={() => {
-            SetStoreData(ONBOARDING_DONE, true);
-            props.navigation.replace(onboarding4NavDestination);
-          }}
+          onPress={() => props.navigation.replace("OnboardingPermissions")}
         />
       </View>
     </View>

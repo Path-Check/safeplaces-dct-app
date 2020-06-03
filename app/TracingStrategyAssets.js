@@ -40,7 +40,6 @@ export function useAssets() {
   const onboarding4Button = isGPS
     ? t('label.launch_set_up_phone_location')
     : t('label.launch_set_up_phone_bluetooth');
-  const onboarding4NavDestination = isGPS ? 'OnboardingPermissions' : 'Main';
 
   // Settings Page
   const settingsLoggingActive = isGPS
@@ -91,7 +90,6 @@ export function useAssets() {
     onboarding4Header,
     onboarding4Subheader,
     onboarding4Button,
-    onboarding4NavDestination,
     settingsLoggingActive,
     settingsLoggingInactive,
     aboutHeader,
