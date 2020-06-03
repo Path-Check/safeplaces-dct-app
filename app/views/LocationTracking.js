@@ -461,27 +461,6 @@ class LocationTracking extends Component {
             </View>
           </View>
 
-          <View>
-            <TouchableOpacity
-              onPress={this.getMayoInfoPressed.bind(this)}
-              style={styles.mayoInfoRow}>
-              <View style={styles.mayoInfoContainer}>
-                <Typography
-                  style={styles.mainMayoHeader}
-                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                  {languages.t('label.home_mayo_link_heading')}
-                </Typography>
-                <Typography
-                  style={styles.mainMayoSubtext}
-                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                  {languages.t('label.home_mayo_link_label')}
-                </Typography>
-              </View>
-              <View style={styles.arrowContainer}>
-                <Image source={foreArrow} style={this.arrow} />
-              </View>
-            </TouchableOpacity>
-          </View>
           {/* {this.getSettingsBtn()} */}
         </ImageBackground>
       </Theme>
