@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Platform, StyleSheet } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import languages from './locales/languages';
 import HomeScreen from './views/DR/HomeScreen';
 import Maps from './views/DR/Maps';
 import NewsMainScreen from './views/DR/News';
@@ -13,6 +13,7 @@ import ReportScreen from './views/DR/ReportScreen';
 const Tab = createBottomTabNavigator();
 
 function MainNavigation() {
+  const { t } = useTranslation();
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -25,7 +26,7 @@ function MainNavigation() {
         name='Home'
         component={HomeScreen}
         options={{
-          tabBarLabel: languages.t('navigation.home'),
+          tabBarLabel: t('navigation.home'),
           // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
@@ -42,7 +43,7 @@ function MainNavigation() {
         name='ReportScreen'
         component={ReportScreen}
         options={{
-          tabBarLabel: languages.t('navigation.report'),
+          tabBarLabel: t('navigation.report'),
           // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
@@ -58,7 +59,7 @@ function MainNavigation() {
         name='Maps'
         component={Maps}
         options={{
-          tabBarLabel: languages.t('navigation.maps'),
+          tabBarLabel: t('navigation.maps'),
           // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
@@ -74,7 +75,7 @@ function MainNavigation() {
         name='News'
         component={NewsMainScreen}
         options={{
-          tabBarLabel: languages.t('navigation.news'),
+          tabBarLabel: t('navigation.news'),
           // eslint-disable-next-line react/display-name
           tabBarIcon: ({ focused, color }) => (
             <Ionicons

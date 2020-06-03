@@ -93,12 +93,10 @@ export const SettingsScreen = ({ navigation }) => {
             items={LOCALE_LIST}
             value={userLocale}
             onValueChange={localeChanged}>
-            {(
-              { openPicker }, // Label is not working propperly
-            ) => (
+            {({ label, openPicker }) => (
               <Item
                 last
-                label={t('label.home_unknown_header')}
+                label={label || t('label.home_unknown_header')}
                 icon={languagesIcon}
                 onPress={openPicker}
               />
