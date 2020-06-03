@@ -111,7 +111,7 @@ class NewsScreen extends Component {
                     onTouchEnd={() => {
                       this.setState({ enabled: true });
                     }}
-                    style={{ margin: 35 }}>
+                    style={{ margin: 36 }}>
                     <NewsItem
                       key={index}
                       hideSpinner={this.hideSpinner}
