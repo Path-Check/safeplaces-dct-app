@@ -318,21 +318,23 @@ async function asyncCheckIntersect() {
 
   // get the health authorities
   let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
-
+  // console.log("authority_list: "+ JSON.stringify(authority_list)); PK tenemos 2 formas de conseguir los authoritys 
+  
   if (authority_list) {
     // Parse the registered health authorities
     authority_list = JSON.parse(authority_list);
 
-    for (const authority of authority_list) {
+    for (var index = 0; index < authority_list.length; index++) {
       try {
-        let responseJson = await retrieveUrlAsJson(authority.url);
-
+        let keys = Object.keys(authority_list[index]);
+        let responseJson = await retrieveUrlAsJson((authority_list[index][keys])[0].url);
+        console.log("responseJson: "+responseJson);
         // Update the news array with the info from the authority
         name_news.push({
           name: responseJson.authority_name,
           news_url: responseJson.info_website,
         });
-
+        
         // intersect the users location with the locations from the authority
         let tempDayBin = intersectSetIntoBins(
           locationArray,

@@ -32,6 +32,8 @@ class HCAService {
   }
 
   offsetLocation(location) {
+    if(!location)
+      return location;
     //Position, decimal degrees
    const lat = location.latitude;
    const lon = location.longitude;
@@ -45,7 +47,7 @@ class HCAService {
 
    //Coordinate offsets in radians
    const dLat = dn/R;
-   const dLon = de/(R*Cos(Math.PI*lat/180));
+   const dLon = de/(R*Math.cos((Math.PI*lat/180)));
 
    //OffsetPosition, decimal degrees
    const latO = lat + dLat * 180/Math.PI;
@@ -53,6 +55,7 @@ class HCAService {
 
    location.latitude = latO;
    location.longitude = lonO;
+   return location;
  }
 
   /**
@@ -67,11 +70,6 @@ class HCAService {
     try {
       const locations = await new LocationData().getLocationData();
 
-      myProimse.then(
-        () => console.log('resolved'), 
-        (error) => console.log(error.message)
-      );
-
       if (Array.isArray(locations) && locations.length > 0) {
         for (var index = locations.length - 1; index > 0; index--) {
   
@@ -80,7 +78,7 @@ class HCAService {
           yesterdayEnd.setTime(yesterdayEnd.getTime() - dateOffset);
   
           const location = locations[index];
-          if(new Date(location.time).getTime() < yesterdayEnd.getTime() ){
+          if((location.time - yesterdayEnd.getTime()) > 0 ){
             //is on todays date 
             if((mostNorthEastPoint === null && mostSouthWestPoint === null )){
               mostNorthEastPoint = location;
@@ -93,20 +91,22 @@ class HCAService {
               mostSouthWestPoint = location;
             }
           } else {
+
             break;
           }
         }
-        
+
       }
     } catch (error) {
       console.log("[Error] " + error);
     }
+    this.offsetLocation(mostNorthEastPoint);
+    this.offsetLocation(mostSouthWestPoint);
 
     const baseUrl = 'https://webapps.mepyd.gob.do/contact_tracing/api/Contact';
     const url = mostNorthEastPoint && mostSouthWestPoint ? `${baseUrl}?NE=${mostNorthEastPoint.latitude},${mostNorthEastPoint.longitude}&SW=${mostSouthWestPoint.latitude},${mostSouthWestPoint.longitude}` 
                                       : baseUrl;
-    console.log("URL: "+ url);
-    console.log(" are there points? "+ mostNorthEastPoint && mostSouthWestPoint );
+    console.log("URL: "+ baseUrl);
 
                           
     const authoritiesJson = {
@@ -114,7 +114,7 @@ class HCAService {
         {
           'Ministerio de Salud Publica': [
             {
-              url: url,
+              url: baseUrl,
             },
             {
               bounds: {
@@ -262,7 +262,7 @@ class HCAService {
     const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();//Nice I needed this nice nice 
     const authoritiesList = await this.getAuthoritiesList();//This is were we are not getting any new authorities Why does the button doesnt work :( )
     const userAuthorities = await this.getUserAuthorityList();
-
+    
     return authoritiesList.filter(
       authority =>
         this.isPointInAuthorityBounds(mostRecentUserLoc, authority) && ((!Array.isArray(userAuthorities) || !userAuthorities.length) ||
