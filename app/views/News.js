@@ -32,6 +32,7 @@ class NewsScreen extends Component {
       default_news: default_news,
       newsUrls: [],
       current_page: 0,
+      enabled: true,
     };
   }
 
@@ -77,7 +78,7 @@ class NewsScreen extends Component {
   }
 
   render() {
-    // console.log('News URL -', this.state.newsUrls);
+    // console.log(this.state.enabled);
     return (
       <LinearGradient
         start={{ x: 0, y: 0 }}
@@ -99,16 +100,25 @@ class NewsScreen extends Component {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
-                paddingHorizontal: 16,
               }}>
-              <ScrollView>
+              <ScrollView scrollEnabled={this.state.enabled}>
                 {this.state.newsUrls.map((item, index) => (
-                  <NewsItem
+                  <ScrollView
                     key={index}
-                    hideSpinner={this.hideSpinner}
-                    item={item}
-                    index={index}
-                  />
+                    onTouchStart={() => {
+                      this.setState({ enabled: false });
+                    }}
+                    onTouchEnd={() => {
+                      this.setState({ enabled: true });
+                    }}
+                    style={{ margin: 35 }}>
+                    <NewsItem
+                      key={index}
+                      hideSpinner={this.hideSpinner}
+                      item={item}
+                      index={index}
+                    />
+                  </ScrollView>
                 ))}
               </ScrollView>
 

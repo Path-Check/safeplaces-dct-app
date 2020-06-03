@@ -17,6 +17,7 @@ export const NewsItem = ({ item, index, hideSpinner }) => {
         source={{
           uri: item.news_url,
         }}
+        nestedScrollEnabled
         containerStyle={styles.containerStyle}
         onLoad={hideSpinner}
         cacheEnabled
