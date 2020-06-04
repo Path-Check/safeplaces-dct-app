@@ -75,6 +75,8 @@
     "enter_authority_url": "Introduzca o pegue la URL",
     "event_history_subtitle": "Entiende tu exposición al COVID-19 según los datos publicados por las autoridades sanitarias.",
     "event_history_title": "Historial de exposición",
+    "epidemiologic_report_title": "Apoyo a positivos al virus",
+    "epidemiologic_report_subtitle": "Puedes revisar tu estado de alta epidemiológica y recibir consejos de salud.",
     "hospital_subtitle": "Revisa todos los hospitales disponibles para el COVID.",
     "hospital_title": "Mapa de Hospitales",
     "filter_authorities_by_gps_history": "Filtrar por sus ubicaciones",
@@ -171,6 +173,10 @@
     "push_notification_message": "Por favor actualice su aplicación",
     "push_notification_title": "La aplicación no está sactualizada",
     "update": "Actualizar"
+  },
+  "positives": {
+    "epidemiologic_report_tab": "Reporte epidemiologico",
+    "mental_health_advice_tab": "Consejos de salud mental"
   },
   "navigation": {
     "home": "Inicio",

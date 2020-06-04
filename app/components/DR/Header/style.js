@@ -5,6 +5,7 @@ import {
 } from 'react-native-responsive-screen';
 
 import Colors from '../../../constants/colors';
+import fontFamily from '../../../constants/fonts';
 
 const screenH = Dimensions.get('screen').height;
 const windowH = Dimensions.get('window').height;
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
   buttons: {
     alignSelf: 'center',
     borderRadius: 25,
+    backgroundColor: Colors.BLUE_RIBBON,
     justifyContent: 'center',
     height: 38,
     marginLeft: 6,
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     alignSelf: 'center',
-    color: '#fff',
+    color: Colors.WHITE,
     fontSize: wp('3.8%'),
     textTransform: 'capitalize',
   },
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
   },
   calendarButton: {
     width: wp('40%'),
-    backgroundColor: '#EFF4F9',
+    backgroundColor: Colors.LIGHT_BLUE,
   },
   formContainer: {
     marginHorizontal: wp('6%'),
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: textFontSize + 8,
-    color: '#fff',
+    color: Colors.WHITE,
     marginBottom: hp('1.5%'),
   },
   infoCards: {
@@ -131,12 +133,12 @@ const styles = StyleSheet.create({
   },
   instructionsTitle: {
     margin: hp('1.5%'),
-    color: '#fff',
+    color: Colors.WHITE,
     fontSize: textFontSize + 6,
   },
   instructionsText: {
     textAlign: 'center',
-    color: '#fff',
+    color: Colors.WHITE,
     fontSize: textFontSize + 1,
     margin: hp('2%'),
     width: wp('75%'),
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
     margin: 4,
   },
   image: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     borderRadius: 50,
     height: 50,
     width: 50,
@@ -172,6 +174,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginTop: 15,
     marginBottom: 5,
+    fontFamily: fontFamily.primarySemiBold,
   },
   hints: {
     fontSize: textFontSize - 6,
@@ -190,11 +193,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   text: {
-    color: '#000',
+    color: Colors.BLACK,
     fontSize: textFontSize - 2,
   },
   textSemiBold: {
     fontSize: textFontSize - 1,
+    fontFamily: fontFamily.primarySemiBold,
   },
   textBold: {
     fontSize: textFontSize + 1,
@@ -209,10 +213,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: wp('35%'),
     height: hp('5%'),
-    backgroundColor: '#EFF4F9',
+    backgroundColor: Colors.LIGHT_BLUE,
     borderRadius: 3,
     borderWidth: 1,
-    borderColor: '#EFF4F9',
+    borderColor: Colors.LIGHT_BLUE,
     margin: wp('2%'),
   },
   toggleOn: {
