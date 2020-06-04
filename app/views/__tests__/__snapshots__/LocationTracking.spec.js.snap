@@ -56,7 +56,7 @@ exports[`renders correctly 1`] = `
           "position": "absolute",
           "resizeMode": "contain",
           "right": 0,
-          "top": "-5%",
+          "top": "-15%",
         }
       }
     >
@@ -86,7 +86,7 @@ exports[`renders correctly 1`] = `
           "paddingHorizontal": "12%",
           "position": "absolute",
           "right": 0,
-          "top": "5%",
+          "top": "-7%",
         }
       }
     >
@@ -110,7 +110,7 @@ exports[`renders correctly 1`] = `
               "lineHeight": 24.5,
               "marginBottom": 24,
               "textAlign": "center",
-              "top": "-15%",
+              "top": "-7%",
               "writingDirection": "ltr",
             }
           }
@@ -161,82 +161,6 @@ exports[`renders correctly 1`] = `
         >
           Based on available data you haven’t been near anyone reported positive for COVID-19.
         </Text>
-      </View>
-    </View>
-    <View>
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        style={
-          Object {
-            "backgroundColor": "#0161F2",
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "opacity": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignContent": "flex-end",
-              "flexDirection": "column",
-              "justifyContent": "space-between",
-              "padding": 20,
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "#E5E4E6",
-                "fontFamily": "IBMPlexSans-Bold",
-                "fontSize": 18,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "textAlign": "left",
-                "writingDirection": "ltr",
-              }
-            }
-            use="body1"
-          >
-            More COVID-19 information
-          </Text>
-          <Text
-            style={
-              Object {
-                "color": "#E5E4E6",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 18,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "textAlign": "left",
-                "writingDirection": "ltr",
-              }
-            }
-            use="body1"
-          >
-            from the Mayo Clinic
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "alignSelf": "center",
-              "paddingLeft": 20,
-              "paddingRight": 20,
-            }
-          }
-        >
-          <Image
-            source={
-              Object {
-                "testUri": "../../../app/assets/images/foreArrow.png",
-              }
-            }
-          />
-        </View>
       </View>
     </View>
   </View>

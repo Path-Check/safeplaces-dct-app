@@ -32,6 +32,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import { isPlatformiOS } from './../Util';
 import { Button } from '../components/Button';
+import NextSteps from '../components/DR/LocationTracking/NextSteps';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -457,30 +458,12 @@ class LocationTracking extends Component {
                 {this.getSubText()}
               </Typography>
               {this.getCTAIfNeeded()}
+              {hasPossibleExposure && (
+                <NextSteps navigation={this.props.navigation} />
+              )}
             </View>
           </View>
 
-          <View>
-            <TouchableOpacity
-              onPress={this.getMayoInfoPressed.bind(this)}
-              style={styles.mayoInfoRow}>
-              <View style={styles.mayoInfoContainer}>
-                <Typography
-                  style={styles.mainMayoHeader}
-                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                  {languages.t('label.home_mayo_link_heading')}
-                </Typography>
-                <Typography
-                  style={styles.mainMayoSubtext}
-                  onPress={() => Linking.openURL(MAYO_COVID_URL)}>
-                  {languages.t('label.home_mayo_link_label')}
-                </Typography>
-              </View>
-              <View style={styles.arrowContainer}>
-                <Image source={foreArrow} style={this.arrow} />
-              </View>
-            </TouchableOpacity>
-          </View>
           {/* {this.getSettingsBtn()} */}
         </ImageBackground>
       </Theme>
@@ -504,7 +487,7 @@ const styles = StyleSheet.create({
     // aligns the center of the main container with center of pulse
     // so that two `flex: 1` views will be have a reasonable chance at natural
     // flex flow for above and below the pulse.
-    top: '5%',
+    top: '-7%',
     left: 0,
     right: 0,
     height: '100%',
@@ -538,7 +521,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BLUE_RIBBON,
     position: 'absolute',
     resizeMode: 'contain',
-    top: '-5%',
+    top: '-15%',
     left: 0,
     right: 0,
     flex: 1,
@@ -551,6 +534,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     color: Colors.WHITE,
     fontSize: 28,
+    top: '-5%',
     fontFamily: fontFamily.primaryMedium,
   },
   mainTextBelow: {
@@ -576,7 +560,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fontFamily.primaryLight,
     marginBottom: 24,
-    top: '-15%',
+    top: '-7%',
   },
   mayoInfoRow: {
     flexDirection: 'row',

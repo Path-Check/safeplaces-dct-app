@@ -4,14 +4,17 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 import React, { Component } from 'react';
+import { Platform } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
+import ExposedResponse from './components/DR/LocationTracking/ExposedResponse';
 import Colors from './constants/colors';
 import { GetStoreData } from './helpers/General';
 import NavEntry from './NavEntry';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import AuroraScreen from './views/DR/Aurora';
+import Details from './views/DR/News/Details';
 import Report from './views/DR/ReportScreen/ReportScreenQuestions';
 import ResultsScreen from './views/DR/ReportScreen/Results';
 import UserInfo from './views/DR/UserInfoScreen/index';
@@ -141,8 +144,9 @@ class Entry extends Component {
               headerTintColor: Colors.WHITE,
               headerBackTitle: ' ',
               headerStyle: {
-                backgroundColor: Colors.BLUE_RIBBON,
-                shadowColor: Colors.BLUE_RIBBON,
+                backgroundColor:
+                  Platform.OS === 'android' ? (0, 0, 0) : Colors.BLUE_RIBBON, // Transparent Background
+                elevation: 0, // remove shadow on Android
                 height: hp('7%'),
               },
               headerLeftContainerStyle: {
@@ -171,6 +175,16 @@ class Entry extends Component {
           <Stack.Screen
             name='UserInfo'
             component={UserInfo}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ExposedResponse'
+            component={ExposedResponse}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Details'
+            component={Details}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

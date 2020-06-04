@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { PermissionsAndroid } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { PermissionsAndroid, Platform } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -40,7 +40,8 @@ export default function HospitalMap({ route: { name: type } }) {
   // This is to change to hospitals or laboratories markers and icons depending on which screen you are
   const selectedMarker = type === 'Hospitals' ? hospitals : laboratories;
   const posIcon = type === 'Hospitals' ? posIconHos : posIconLab;
-  useEffect(async () => {
+
+  const handleChanges = async () => {
     if (type === 'Hospitals') {
       const value = await requestCovid19Hospitals();
       setHospitals(value);
@@ -73,13 +74,17 @@ export default function HospitalMap({ route: { name: type } }) {
         );
       });
     }
+  };
+
+  useEffect(() => {
+    handleChanges();
   }, []);
 
   const getCurrentLocation = async () => {
     const granted = await PermissionsAndroid.check(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
     );
-    if (granted) {
+    if (granted || Platform.OS === 'ios') {
       Geolocation.getCurrentPosition(
         ({ coords }) => {
           const { latitude, longitude } = coords;

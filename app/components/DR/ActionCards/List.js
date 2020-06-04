@@ -20,19 +20,28 @@ export default function DataList({
   navigation: { navigate },
   switchScreenTo,
 }) {
+  const cropsName = [
+    '120x67',
+    '120x80',
+    '120x86',
+    '250x141',
+    '250x167',
+    '250x179',
+  ];
+  const getImageCrop = (img, crops) => {
+    if (img.source) return img.source;
+
+    const firstCropFound = crops.find(cropName => img[cropName]);
+    return firstCropFound ? { uri: img[firstCropFound] } : { uri: img.master };
+  };
+
   if (data.length === 0) return <ActivityIndicator size='large' />;
 
   return (
     <>
       {data.map(
         (
-          {
-            url = '#',
-            img: { source },
-            title = '',
-            dateLabel = '',
-            content = '',
-          },
+          { url = '#', img, title = '', dateLabel = '', content = '' },
           index,
         ) => (
           <TouchableOpacity
@@ -44,7 +53,7 @@ export default function DataList({
             }
             key={String(index)}
             style={styles.itemContainer}>
-            <Image style={styles.image} source={source} />
+            <Image style={styles.image} source={getImageCrop(img, cropsName)} />
             <View style={styles.right}>
               <Text
                 numberOfLines={titleLinesNum}
