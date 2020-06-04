@@ -69,6 +69,7 @@ const EpidemiologicalStatus = ({ navigation }) => {
         <Text style={styles.subtitles}>Alta Epidemiológica</Text>
         <View style={styles.bottomLine} />
         <Text>Estado:</Text>
+
         <View
           style={{
             justifyContent: 'center',

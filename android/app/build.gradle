@@ -144,7 +144,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "org.pathcheck.covidsafepaths"
+        applicationId "com.optic.covdr"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
@@ -153,8 +153,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 25
-        versionName "1.0.8"
+        versionCode 15
+        versionName "1.2.0"
     }
     splits {
         abi {
