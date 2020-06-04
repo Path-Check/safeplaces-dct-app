@@ -40,7 +40,7 @@ import { LocationData } from '../services/LocationService';
  * @param {array} localGPSDataPoints - array of recorded GPS data points.
  * @param {array} concernPointHashes - set of hashed concern points issued by health authorities
  */
-function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
+export function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
   // iterate over recorded GPS data points
   for (const dataPoint of localGPSDataPoints) {
     // check if any of hashes in this GPS data point is contained in the HA's list of concern points
@@ -59,7 +59,7 @@ function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
  * @param {array} localData - array of stored gps points with gaps
  * @param {int} gpsPeriod - local points sampling period
  */
-function fillGapsInLocalData(localData, gpsPeriod) {
+export function fillGapsInLocalData(localData, gpsPeriod) {
   return localData.reduce((acc, dp, index) => {
     acc.push(dp);
 
@@ -83,7 +83,7 @@ function fillGapsInLocalData(localData, gpsPeriod) {
  * @param {int} concernTimeWindowMS - (optional) window of time to use when determining an exposure
  * @param {int} defaultExposurePeriodMS - (optional) the default exposure period to use when necessary when an exposure is found
  */
-function reduceToDayBins(
+export function reduceToDayBins(
   localGPSDataPoints,
   percentOfMatchesInTimeframe,
   concernTimeframe = CONCERN_TIME_WINDOW_MINUTES,
@@ -129,7 +129,7 @@ function reduceToDayBins(
       prevMatchCounts[j] - prevMatchCounts[i] >= thresholdMatches
     ) {
       if (currExposure) {
-        // if there is an active exposure, extend it
+        // if there is an active exposure, extend it (non-inclusively)
         currExposure.end = j;
       } else {
         // if there isn't - create it and add it to the list
@@ -185,6 +185,7 @@ function reduceToDayBins(
   return dayBins;
 }
 
+// rounds the number of minutes to nearest valid exposure period
 function roundExposure(minutes) {
   return (
     Math.round(minutes / DEFAULT_EXPOSURE_PERIOD_MINUTES) *
