@@ -14,9 +14,11 @@ exports[`renders correctly 1`] = `
     accessibilityIgnoresInvertColors={true}
     style={
       Object {
+        "backgroundColor": "#0161F2",
         "flex": 1,
         "height": "100%",
         "justifyContent": "flex-end",
+        "paddingBottom": 20,
         "resizeMode": "cover",
         "width": "100%",
       }

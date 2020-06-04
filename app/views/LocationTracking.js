@@ -478,6 +478,8 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     flex: 1,
     justifyContent: 'flex-end',
+    paddingBottom: 20,
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   mainContainer: {
     position: 'absolute',
