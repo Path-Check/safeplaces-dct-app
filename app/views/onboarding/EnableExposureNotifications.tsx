@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, StatusBar, StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
+import { NavigationScreenProp } from 'react-navigation';
 
 import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
@@ -10,7 +11,11 @@ import Colors from '../../constants/colors';
 import { Theme } from '../../constants/themes';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
 
-export const EnableExposureNotifications = ({ navigation }) => {
+export const EnableExposureNotifications = ({
+  navigation,
+}: {
+  navigation: NavigationScreenProp<Record<string, unknown>>;
+}): JSX.Element => {
   const { requestExposureNotificationAuthorization } = useContext(
     ExposureNotificationContext,
   );
