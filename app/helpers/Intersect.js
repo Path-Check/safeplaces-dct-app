@@ -142,21 +142,54 @@ function reduceToDayBins(
   // generate an array with the asked number of day bins
   const dayBins = getEmptyLocationBins(numDayBins);
 
-  // iterate over the exposures array and update the day bins
+  // and now, finally, we can fill the day bins based on calculated exposure periods
   for (let exposure of exposures) {
-    const startTime = localGPSDataPoints[exposure.start].time;
-    const duration =
-      (exposure.end - exposure.start) * DEFAULT_EXPOSURE_PERIOD_MINUTES;
+    const startTime = dayjs(localGPSDataPoints[exposure.start].time);
+    const endTime = dayjs(localGPSDataPoints[exposure.end - 1].time);
 
-    const daysAgo = dayjs().diff(startTime, 'day');
+    const daysAgoStart = dayjs().diff(startTime, 'day');
+    const daysAgoEnd = dayjs().diff(endTime, 'day');
 
-    // TODO: split duration if it spans across multiple days?
+    // difference in days between start and end
+    // NOTE: in "days ago", the start day is bigger or same as the end day
+    const dayDiff = daysAgoStart - daysAgoEnd;
 
-    if (dayBins[daysAgo] < 0) dayBins[daysAgo] = 0;
-    dayBins[daysAgo] += duration;
+    if (dayDiff === 0) {
+      // if the start and end of the exposure happened on the same day
+      // we can subtract the indices of data points
+      // and easily calculate exposure length
+      const duration =
+        (exposure.end - exposure.start) * DEFAULT_EXPOSURE_PERIOD_MINUTES;
+      // accumulate the calculated duration
+      dayBins[daysAgoStart] += duration;
+    } else {
+      // exposure spans across two or more days, iterate over each
+      // logic here is kinda backwards, as the indices mean "days ago"
+      for (let daysAgo = daysAgoStart; daysAgo >= daysAgoEnd; daysAgo--) {
+        if (daysAgo === daysAgoStart) {
+          // for the first day, calc from start time to midnight
+          const midnight = startTime.clone().endOf('day');
+          dayBins[daysAgo] += roundExposure(midnight.diff(startTime, 'minute'));
+        } else if (daysAgo === daysAgoEnd) {
+          // for the last day, calc from midnight to end time
+          const midnight = endTime.clone().startOf('day');
+          dayBins[daysAgo] += roundExposure(endTime.diff(midnight, 'minute'));
+        } else {
+          // otherwise, it's a full day exposure
+          dayBins[daysAgo] = 24 * 60;
+        }
+      }
+    }
   }
 
   return dayBins;
+}
+
+function roundExposure(minutes) {
+  return (
+    Math.round(minutes / DEFAULT_EXPOSURE_PERIOD_MINUTES) *
+    DEFAULT_EXPOSURE_PERIOD_MINUTES
+  );
 }
 
 /**
