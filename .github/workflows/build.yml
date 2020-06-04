@@ -15,7 +15,14 @@ on:
 jobs:
   build-android:
     runs-on: ubuntu-latest
+    env:
+      ENVFILE: .env.release
+      COLOR_BG: ${{ secrets.COLOR_BG }}
     steps:
+      - name: Update .env file
+        run: |
+          printenv >> .env.release
+
       - uses: actions/checkout@v2
 
       - name: Cache node_modules/
@@ -50,10 +57,16 @@ jobs:
         with:
           name: Debug APK
           path: android/app/build/outputs/apk/dev/debug/app-dev-debug.apk
-          
+
   build-ios:
     runs-on: macOS-latest
+    env:
+      ENVFILE: .env.release
     steps:
+      - name: Update .env file
+        run: |
+          printenv >> .env.release
+
       - uses: actions/checkout@master
 
       - name: Set XCode Version

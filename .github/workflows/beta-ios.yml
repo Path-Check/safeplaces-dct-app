@@ -8,7 +8,13 @@ on:
 jobs:
   build_staging_ios:
     runs-on: macOS-latest
+    env:
+      ENVFILE: .env.release
     steps:
+      - name: Update .env file
+        run: |
+          printenv >> .env.release
+
       - uses: actions/checkout@master
 
       - name: Set XCode Version
