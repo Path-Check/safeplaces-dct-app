@@ -12,7 +12,11 @@
   },
   "common": {
     "done": "Feito",
+    "next": "Próximo",
     "ok": "Ok"
+  },
+  "export": {
+    "exit_warning_cancel": "Cancelar"
   },
   "history": {
     "no_exposure": "Sem exposição conhecida",
@@ -53,7 +57,6 @@
     "authorities_desc": "Escolha autoridades de saúde de sua região para obter dados de exposição. Selecione o nome a partir do registro mundial, ou entre o endereço da web fornecido pela autoridade que implementou Safe Paths.",
     "authorities_input_placeholder": "Cole o endereço URL aqui",
     "authorities_new_in_area_msg": "Se inscreva em {{count}} nova autoridade de saúde de confiança em sua área.",
-    "authorities_new_in_area_msg_plural": "Se inscreva em {{count}} novas autoridades de saúde de confiança em sua área.",
     "authorities_new_in_area_title": "Nova Autoridade de Saúde",
     "authorities_new_in_area_title_plural": "Novas Autoridades de Saúde",
     "authorities_new_subscription_msg": "Voce foi inscrito(a) em {{count}} nova autoridade em sua localização",
@@ -79,6 +82,7 @@
     "home_at_risk_subtext_location": "Baseado no seu histórico de localização por GPS, é possível que você tenha estado próximo ou em contato com alguém com COVID-19.",
     "home_enable_bluetooth": "Habilite o rastreamento de contatos",
     "home_enable_location": "Permitir uso de localização",
+    "authorities_new_in_area_msg_plural": "Se inscreva em {{count}} novas autoridades de saúde de confiança em sua área.",
     "home_mayo_link_heading": "Mais informações sobre COVID-19",
     "home_mayo_link_label": "da Mayo Clinic",
     "home_no_contact_header": "Sem contato conhecido",

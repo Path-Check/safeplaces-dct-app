@@ -11,7 +11,11 @@
   },
   "common": {
     "done": "ചെയ്‌തു",
+    "next": "അടുത്തത്",
     "ok": "ശരി"
+  },
+  "export": {
+    "exit_warning_cancel": "റദ്ദാക്കുക"
   },
   "history": {
     "no_exposure": "സാധ്യതയില്ല",
@@ -56,7 +60,6 @@
     "authorities_new_subscription_title_plural": "{{count}} പുതിയ സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ",
     "authorities_no_sources": "ഇതുവരെ ഡാറ്റ ഉറവിടങ്ങളൊന്നുമില്ല",
     "authorities_removal_alert_cancel": "റദ്ദാക്കുക",
-    "authorities_new_in_area_msg_plural": "നിങ്ങളുടെ സ്ഥലത്തെ  {{count}} പുതിയ വിശ്വസനീയ ആരോഗ്യ സംരക്ഷണ അതോറിറ്റികളിലേക്ക് സബ്‌സ്‌ക്രൈബുചെയ്യുക",
     "authorities_removal_alert_desc": "ഈ അതോറിറ്റി ഡാറ്റ ഉറവിടം നീക്കംചെയ്യണമെന്ന് നിങ്ങൾക്ക് ഉറപ്പാണോ?",
     "authorities_removal_alert_proceed": "തുടരുക",
     "authorities_removal_alert_title": "അധികാരനീക്കം",
@@ -79,6 +82,7 @@
     "home_setting_off_header": "അജ്ഞാതം",
     "home_setting_off_subtext_location": "ക്രമീകരണ സ്ക്രീനിൽ ലൊക്കേഷൻ ചരിത്രം പ്രാപ്‌തമാക്കിയില്ലെങ്കിൽ നിങ്ങൾക്ക് അപകടസാധ്യത ഉണ്ടോ എന്ന് ഞങ്ങൾക്ക് പറയാനാവില്ല.",
     "home_unknown_header": "അജ്ഞാതം",
+    "authorities_new_in_area_msg_plural": "നിങ്ങളുടെ സ്ഥലത്തെ  {{count}} പുതിയ വിശ്വസനീയ ആരോഗ്യ സംരക്ഷണ അതോറിറ്റികളിലേക്ക് സബ്‌സ്‌ക്രൈബുചെയ്യുക",
     "home_unknown_subtext_location": "നിങ്ങളുടെ ലൊക്കേഷൻ ആക്‌സസ്സുചെയ്യാൻ അപ്ലിക്കേഷൻ പ്രാപ്‌തമാക്കിയില്ലെങ്കിൽ നിങ്ങൾക്ക് അപകടസാധ്യതയുണ്ടോ ഞങ്ങൾക്ക് പറയാനാവില്ല.",
     "latest_news": "പുതിയ വാർത്ത",
     "launch_access_location": "ലൊക്കേഷൻ ആക്‌സസ്സ്",
