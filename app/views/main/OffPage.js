@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -8,19 +7,19 @@ import {
   Text,
   View,
 } from 'react-native';
+import { openSettings } from 'react-native-permissions';
 import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
 import { Button, Typography } from '../../components';
 import { Theme } from '../../constants/themes';
-import { useAssets } from '../../services/hooks/TracingStrategyAssets';
+import { useAssets } from '../../services/hooks/useAssets';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
 export const OffPage = () => {
   const { t } = useTranslation();
   const { offPageCta, offPageButton } = useAssets();
-  const navigation = useNavigation();
   const size = Dimensions.get('window').height;
 
   return (
@@ -53,7 +52,7 @@ export const OffPage = () => {
             <Typography style={styles.subheaderText}>{offPageCta}</Typography>
             <Button
               label={offPageButton}
-              onPress={() => navigation.navigate('SettingsScreen', {})}
+              onPress={openSettings}
               style={styles.buttonContainer}
             />
           </View>

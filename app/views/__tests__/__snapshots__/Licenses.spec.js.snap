@@ -119,7 +119,7 @@ exports[`renders correctly 1`] = `
             }
             use="headline2"
           >
-            PathCheck BT
+            PathCheck GPS
           </Text>
           <Text
             style={

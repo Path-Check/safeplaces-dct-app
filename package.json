@@ -174,7 +174,7 @@
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone SE"
+          "type": "iPhone SE (2nd generation)"
         }
       },
       "iphone11-bte.sim": {
@@ -198,7 +198,7 @@
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone SE"
+          "type": "iPhone SE (2nd generation)"
         }
       }
     },

@@ -1,37 +1,29 @@
-import {} from '../components/Divider';
-
 import styled, { css } from '@emotion/native';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
-import { Icons } from '../assets';
+import { Icons } from '../../assets';
 import {
   Divider,
   FeatureFlag,
   NativePicker,
   NavigationBarWrapper,
-} from '../components';
-import Colors from '../constants/colors';
-import { PARTICIPATE } from '../constants/storage';
-import { isGPS } from '../COVIDSafePathsConfig';
-import { SetStoreData } from '../helpers/General';
+} from '../../components';
+import Colors from '../../constants/colors';
+import { isGPS } from '../../COVIDSafePathsConfig';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
-} from '../locales/languages';
-import LocationServices from '../services/LocationService';
-import { useAssets } from '../TracingStrategyAssets';
-import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
+} from '../../locales/languages';
+import { FEATURE_FLAG_SCREEN_NAME } from '../../views/FeatureFlagToggles';
 import { GoogleMapsImport } from './GoogleMapsImport';
 import { Item } from './Item';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
-  const { settingsLoggingActive, settingsLoggingInactive } = useAssets();
-  const [isLogging, setIsLogging] = useState(undefined);
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
@@ -55,20 +47,6 @@ export const SettingsScreen = ({ navigation }) => {
     };
   }, [navigation]);
 
-  const locationToggleButtonPressed = async () => {
-    if (isGPS) {
-      try {
-        isLogging ? LocationServices.stop() : LocationServices.start();
-        await SetStoreData(PARTICIPATE, !isLogging);
-        setIsLogging(!isLogging);
-      } catch (e) {
-        console.log(e);
-      }
-    } else {
-      setIsLogging(!isLogging);
-    }
-  };
-
   const localeChanged = async locale => {
     // If user picks manual lang, update and store setting
     try {
@@ -79,27 +57,12 @@ export const SettingsScreen = ({ navigation }) => {
     }
   };
 
-  const getLoggingText = () => {
-    if (isLogging) {
-      return settingsLoggingActive;
-    } else if (!isLogging) {
-      return settingsLoggingInactive;
-    }
-  };
-
   return (
     <NavigationBarWrapper
       title={t('label.settings_title')}
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
-          {isGPS && (
-            <Item
-              label={getLoggingText()}
-              icon={isLogging ? Icons.CheckmarkCircle : Icons.XmarkIcon}
-              onPress={locationToggleButtonPressed}
-            />
-          )}
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}

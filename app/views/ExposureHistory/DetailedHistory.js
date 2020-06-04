@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Typography } from '../../components';
 import languages from '../../locales/languages';
-import { useAssets } from '../../services/hooks/TracingStrategyAssets';
+import { useAssets } from '../../services/hooks/useAssets';
 import { ExposureCalendarView } from './ExposureCalendarView';
 import { SingleExposureDetail } from './SingleExposureDetail';
 

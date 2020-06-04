@@ -3,8 +3,8 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { NativeModules, Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
-import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import { CROSSED_PATHS } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
 let isBackgroundGeolocationConfigured = false;
@@ -21,15 +21,9 @@ export const Reason = {
   DEVICE_LOCATION_OFF: 'DEVICE_LOCATION_OFF',
 
   /**
-   * Location services are not enabled for this app
+   * Location services are disabled for this app
    */
   APP_NOT_AUTHORIZED: 'APP_NOT_AUTHORIZED',
-
-  /**
-   * Location services are enabled for this app,
-   * but the user has requested that we stop tracking
-   */
-  USER_OPT_OUT: 'USER_OPT_OUT',
 
   /**
    * User has granted permission to track and device/app
@@ -157,8 +151,6 @@ export default class LocationServices {
 
     BackgroundGeolocation.start(); //triggers start on start event
     isBackgroundGeolocationConfigured = true;
-
-    LocationServices.setUserOptIn(true);
   }
 
   static async stop() {
@@ -178,14 +170,6 @@ export default class LocationServices {
     return !!dayBin && dayBin.some(exposure => exposure > 0);
   }
 
-  static async setUserOptIn(isEnabled) {
-    await SetStoreData(PARTICIPATE, isEnabled);
-  }
-
-  static async getUserOptInStatus() {
-    return await GetStoreData(PARTICIPATE, false);
-  }
-
   static async getBackgroundGeoStatus() {
     return new Promise((resolve, reject) => {
       BackgroundGeolocation.checkStatus(
@@ -197,7 +181,6 @@ export default class LocationServices {
 
   static async checkStatus() {
     const hasPotentialExposure = await this.getHasPotentialExposure();
-    const userOptIn = await this.getUserOptInStatus();
 
     const {
       authorization: appGpsStatus,
@@ -214,19 +197,10 @@ export default class LocationServices {
       };
     }
 
-    if (appGpsStatus != BackgroundGeolocation.AUTHORIZED) {
+    if (!appGpsStatus) {
       return {
         canTrack: false,
         reason: Reason.APP_NOT_AUTHORIZED,
-        hasPotentialExposure,
-        isRunning,
-      };
-    }
-
-    if (!userOptIn) {
-      return {
-        canTrack: false,
-        reason: Reason.USER_OPT_OUT,
         hasPotentialExposure,
         isRunning,
       };

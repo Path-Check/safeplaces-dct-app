@@ -11,7 +11,7 @@ import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
-import { useAssets } from '../../services/hooks/TracingStrategyAssets';
+import { useAssets } from '../../services/hooks/useAssets';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;

@@ -16,7 +16,7 @@ import fontFamily from './../constants/fonts';
 import { Icons } from '../assets';
 import { NavigationBarWrapper, Typography } from '../components';
 import Colors from '../constants/colors';
-import { useAssets } from '../services/hooks/TracingStrategyAssets';
+import { useAssets } from '../services/hooks/useAssets';
 
 export const AboutScreen = ({ navigation }) => {
   const { t } = useTranslation();

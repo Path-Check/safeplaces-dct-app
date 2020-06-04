@@ -12,7 +12,7 @@ import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { ONBOARDING_DONE } from '../../constants/storage';
 import { SetStoreData } from '../../helpers/General';
-import { useAssets } from '../../services/hooks/TracingStrategyAssets';
+import { useAssets } from '../../services/hooks/useAssets';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
