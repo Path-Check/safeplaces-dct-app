@@ -10,8 +10,7 @@ import {
 import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import { ONBOARDING_DONE } from '../../constants/storage';
-import { SetStoreData } from '../../helpers/General';
+import { isGPS } from '../../COVIDSafePathsConfig';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
 
@@ -22,9 +21,15 @@ const Onboarding = (props) => {
     onboarding4Background,
     onboarding4Button,
     onboarding4Header,
-    onboarding4NavDestination,
     onboarding4Subheader,
   } = useAssets();
+
+  const handleOnPressNext = () => {
+    const nextScreen = isGPS
+      ? 'OnboardingPermissions'
+      : 'EnableExposureNotifications';
+    props.navigation.replace(nextScreen);
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -47,13 +52,7 @@ const Onboarding = (props) => {
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>
-        <Button
-          label={onboarding4Button}
-          onPress={() => {
-            SetStoreData(ONBOARDING_DONE, true);
-            props.navigation.replace(onboarding4NavDestination);
-          }}
-        />
+        <Button label={onboarding4Button} onPress={handleOnPressNext} />
       </View>
     </View>
   );
