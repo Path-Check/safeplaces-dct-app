@@ -128,13 +128,12 @@ describe('intersectSetIntoBins', () => {
      */
     it('empty locations vs empty concern locations has no data result', () => {
       let baseLocations = [];
-      let concernLocations = [];
+      let concernHashes = [];
 
       // normalize and sort
       baseLocations = normalizeAndSortLocations(baseLocations);
-      concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernHashes);
       let expectedBins = getEmptyLocationBins();
 
       expect(resultBins).toEqual(expectedBins);
@@ -147,42 +146,46 @@ describe('intersectSetIntoBins', () => {
       let baseLocations = [];
 
       // a few concern locations, going back a while
-      let concernLocations = [
+      let concernHashes = [
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.concern,
           TEST_MOMENT.valueOf(),
-        ),
+          'kansascity',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.concern,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'hammerfest',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.concern,
           TEST_MOMENT.clone()
             .subtract(7, 'days')
             .valueOf(),
-        ),
+          'hobart',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
           TEST_MOMENT.clone()
             .subtract(10, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
           TEST_MOMENT.clone()
             .subtract(17, 'days')
             .valueOf(),
-        ),
+          'laconcordia',
+        ).hashes,
       ];
 
       // normalize and sort
       baseLocations = normalizeAndSortLocations(baseLocations);
-      concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernHashes);
       let expectedBins = getEmptyLocationBins();
 
       expect(resultBins).toEqual(expectedBins);
@@ -196,43 +199,47 @@ describe('intersectSetIntoBins', () => {
       // a few base locations, going back a while
       let baseLocations = [
         ...generateBackfillLocationArray(
-          TEST_LOCATIONS.kansascity.concern,
+          TEST_LOCATIONS.kansascity.base,
           TEST_MOMENT.valueOf(),
-        ),
+          'kansascity',
+        ).locations,
         ...generateBackfillLocationArray(
-          TEST_LOCATIONS.hammerfest.concern,
+          TEST_LOCATIONS.hammerfest.base,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'hammerfest',
+        ).locations,
         ...generateBackfillLocationArray(
-          TEST_LOCATIONS.hobart.concern,
+          TEST_LOCATIONS.hobart.base,
           TEST_MOMENT.clone()
             .subtract(7, 'days')
             .valueOf(),
-        ),
+          'hobart',
+        ).locations,
         ...generateBackfillLocationArray(
-          TEST_LOCATIONS.munich.concern,
+          TEST_LOCATIONS.munich.base,
           TEST_MOMENT.clone()
             .subtract(10, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).locations,
         ...generateBackfillLocationArray(
-          TEST_LOCATIONS.laconcordia.concern,
+          TEST_LOCATIONS.laconcordia.base,
           TEST_MOMENT.clone()
             .subtract(17, 'days')
             .valueOf(),
-        ),
+          'laconcordia',
+        ).locations,
       ];
 
       // no concern locations
-      let concernLocations = [];
+      let concernHashes = [];
 
       // normalize and sort
       baseLocations = normalizeAndSortLocations(baseLocations);
-      concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernHashes);
       let expectedBins = getEmptyLocationBins();
       expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -258,7 +265,7 @@ describe('intersectSetIntoBins', () => {
     });
 
     /**
-     * Exact matches in the baseLocations and the concernLocations
+     * Exact matches in the baseLocations and the concernHashes
      */
     it('exact intersect has known result', () => {
       // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
@@ -266,70 +273,78 @@ describe('intersectSetIntoBins', () => {
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.base,
           TEST_MOMENT.valueOf(),
-        ),
+          'kansascity',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.base,
-          //TEST_MOMENT_MS - 3 * 24 * 60 * 60 * 1000,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'hammerfest',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.base,
           TEST_MOMENT.clone()
             .subtract(7, 'days')
             .valueOf(),
-        ),
+          'hobart',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
           TEST_MOMENT.clone()
             .subtract(10, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.base,
           TEST_MOMENT.clone()
             .subtract(17, 'days')
             .valueOf(),
-        ),
+          'laconcordia',
+        ).locations,
       ];
       // same locations for the concern array, at the same times
-      let concernLocations = [
+      let concernHashes = [
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.concern,
           TEST_MOMENT.valueOf(),
-        ),
+          'kansascity',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.concern,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'hammerfest',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.concern,
           TEST_MOMENT.clone()
             .subtract(7, 'days')
             .valueOf(),
-        ),
+          'hobart',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
           TEST_MOMENT.clone()
             .subtract(10, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
           TEST_MOMENT.clone()
             .subtract(17, 'days')
             .valueOf(),
-        ),
+          'laconcordia',
+        ).hashes,
       ];
 
       // normalize and sort
       baseLocations = normalizeAndSortLocations(baseLocations);
-      concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernHashes);
 
       let expectedBins = getEmptyLocationBins();
       expectedBins[0] = dayjs
@@ -357,69 +372,79 @@ describe('intersectSetIntoBins', () => {
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.base,
           TEST_MOMENT.valueOf(),
-        ),
+          'kansascity',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.base,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
-            .valueOf(), // - dayjs.duration(3, 'days').asMilliseconds(),
-        ),
+            .valueOf(),
+          'hammerfest',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.base,
           TEST_MOMENT.clone()
             .subtract(7, 'days')
             .valueOf(),
-        ),
+          'hobart',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
           TEST_MOMENT.clone()
             .subtract(10, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.base,
           TEST_MOMENT.clone()
             .subtract(17, 'days')
             .valueOf(),
-        ),
+          'laconcordia',
+        ).locations,
       ];
+
       // LOOK SHARP ... the locations are in a different order (so at different times)
-      let concernLocations = [
+      let concernHashes = [
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.concern,
           TEST_MOMENT.valueOf(),
-        ),
+          'hammerfest',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'laconcordia',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.concern,
           TEST_MOMENT.clone()
             .subtract(7, 'days')
             .valueOf(),
-        ),
+          'kansascity',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.concern,
           TEST_MOMENT.clone()
             .subtract(10, 'days')
             .valueOf(),
-        ),
+          'hobart',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
           TEST_MOMENT.clone()
             .subtract(17, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).hashes,
       ];
 
       // normalize and sort
       baseLocations = normalizeAndSortLocations(baseLocations);
-      concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernHashes);
       let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
       expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -438,70 +463,79 @@ describe('intersectSetIntoBins', () => {
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.base,
           TEST_MOMENT.valueOf(),
-        ),
+          'kansascity',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.base,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'hammerfest',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.base,
           TEST_MOMENT.clone()
             .subtract(7, 'days')
             .valueOf(),
-        ),
+          'hobart',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
           TEST_MOMENT.clone()
             .subtract(10, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.base,
           TEST_MOMENT.clone()
             .subtract(17, 'days')
             .valueOf(),
-        ),
+          'laconcordia',
+        ).locations,
       ];
 
       // same locations for the concern array
-      let concernLocations = [
+      let concernHashes = [
+        ...generateBackfillLocationArray(
+          TEST_LOCATIONS.kansascity.no_concern,
+          TEST_MOMENT.valueOf(),
+          'kansascity',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.no_concern,
-          TEST_MOMENT.valueOf(),
-        ),
-        ...generateBackfillLocationArray(
-          TEST_LOCATIONS.laconcordia.no_concern,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
-        ...generateBackfillLocationArray(
-          TEST_LOCATIONS.kansascity.no_concern,
-          TEST_MOMENT.clone()
-            .subtract(7, 'days')
-            .valueOf(),
-        ),
+          'hammerfest',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.no_concern,
           TEST_MOMENT.clone()
-            .subtract(10, 'days')
+            .subtract(7, 'days')
             .valueOf(),
-        ),
+          'hobart',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.no_concern,
           TEST_MOMENT.clone()
+            .subtract(10, 'days')
+            .valueOf(),
+          'munich',
+        ).hashes,
+        ...generateBackfillLocationArray(
+          TEST_LOCATIONS.laconcordia.no_concern,
+          TEST_MOMENT.clone()
             .subtract(17, 'days')
             .valueOf(),
-        ),
+          'laconcordia',
+        ).hashes,
       ];
 
       // normalize and sort
       baseLocations = normalizeAndSortLocations(baseLocations);
-      concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernHashes);
       let expectedBins = getEmptyLocationBins(); // expect no concern time in any of the bins
       expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -521,38 +555,41 @@ describe('intersectSetIntoBins', () => {
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.base,
           TEST_MOMENT.valueOf(),
-        ),
+          'laconcordia',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).locations,
       ];
 
       // same locations for the concern array, the first is offset back 30 minutes over the offset window, the second
       //   is offset 30 minutes forward
-      let concernLocations = [
+      let concernHashes = [
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
           TEST_MOMENT.clone()
             .subtract(CONCERN_TIME_WINDOW_MINUTES + 30, 'minutes')
             .valueOf(),
-        ),
+          'laconcordia',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .add(30, 'minutes')
             .valueOf(),
-        ),
+          'munich',
+        ).hashes,
       ];
 
       // normalize and sort
       baseLocations = normalizeAndSortLocations(baseLocations);
-      concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernHashes);
       let expectedBins = getEmptyLocationBins();
 
       expectedBins[0] = dayjs
@@ -575,47 +612,52 @@ describe('intersectSetIntoBins', () => {
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.base,
           TEST_MOMENT.valueOf(),
-        ),
+          'laconcordia',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).locations,
       ];
 
       // locations with a fair amount of expected overlap
-      let concernLocations = [
+      let concernHashes = [
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
           TEST_MOMENT.valueOf(),
-        ),
+          'laconcordia',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
           TEST_MOMENT.clone()
             .subtract(3, 'minutes')
             .valueOf(),
-        ),
+          'laconcordia',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .subtract(12, 'minutes')
             .valueOf(),
-        ),
+          'munich',
+        ).hashes,
       ];
 
       // normalize and sort
       baseLocations = normalizeAndSortLocations(baseLocations);
-      concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernHashes);
       let expectedBins = getEmptyLocationBins();
 
       expectedBins[0] = dayjs
@@ -639,7 +681,8 @@ describe('intersectSetIntoBins', () => {
           TEST_MOMENT.valueOf(),
           dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
           dayjs.duration(4, 'minutes').asMilliseconds(), // 1000 * 60 * 4  backfill interval is 4 minutes
-        ),
+          'laconcordia',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
           TEST_MOMENT.clone()
@@ -647,43 +690,47 @@ describe('intersectSetIntoBins', () => {
             .valueOf(),
           dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
           dayjs.duration(15, 'minutes').asMilliseconds(), //1000 * 60 * 15 backfill interval is 15 minutes, or a total of 5 location points
-        ),
+          'munich',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.base,
           TEST_MOMENT.valueOf() - dayjs.duration(17, 'days').asMilliseconds(), // 17 * 24 * 60 * 60 * 1000,
-        ),
+          'kansascity',
+        ).locations,
       ];
 
       // same locations for the concern array, the first is offset back 30 minutes over the offset window, the second
       //   is offset 30 minutes forward
-      let concernLocations = [
+      let concernHashes = [
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
           TEST_MOMENT.valueOf(),
           dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
           dayjs.duration(1, 'minutes').asMilliseconds(), //1000 * 60 * 1 backfill interval is 1 minute
-        ),
+          'laconcordia',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'munich',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.concern,
           TEST_MOMENT.clone()
             .subtract(17, 'days')
             .valueOf(),
-        ),
+          'kansascity',
+        ).hashes,
       ];
 
       // normalize and sort
       baseLocations = normalizeAndSortLocations(baseLocations);
-      concernLocations = normalizeAndSortLocations(concernLocations);
 
       let resultBins = intersectSetIntoBins(
         baseLocations,
-        concernLocations,
+        concernHashes,
         21, // override to 21 dayBins
         dayjs.duration(CONCERN_TIME_WINDOW_MINUTES, 'minutes').asMilliseconds(), // setting the concern time window
         dayjs
@@ -737,34 +784,37 @@ describe('intersectSetIntoBins', () => {
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.base,
           THIS_TEST_MOMENT.valueOf(),
-        ),
+          'kansascity',
+        ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.base,
           //TEST_MOMENT_MS - 3 * 24 * 60 * 60 * 1000,
           THIS_TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'hammerfest',
+        ).locations,
       ];
       // same locations, still spanning midnight
-      let concernLocations = [
+      let concernHashes = [
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.concern,
           THIS_TEST_MOMENT.valueOf(),
-        ),
+          'kansascity',
+        ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.concern,
           THIS_TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-        ),
+          'hammerfest',
+        ).hashes,
       ];
 
       // normalize and sort
       baseLocations = normalizeAndSortLocations(baseLocations);
-      concernLocations = normalizeAndSortLocations(concernLocations);
 
-      let resultBins = intersectSetIntoBins(baseLocations, concernLocations);
+      let resultBins = intersectSetIntoBins(baseLocations, concernHashes);
 
       let expectedBins = getEmptyLocationBins();
       expectedBins[0] = dayjs
@@ -824,18 +874,27 @@ describe('intersectSetIntoBins', () => {
   function generateBackfillLocationArray(
     location,
     startTimeMS,
-    backfillTimeMS = 1000 * 60 * 60,
-    backfillIntervalMS = 1000 * 60 * 5,
+    hashSeed,
+    backfillTimeMS = 1000 * 60 * 60, // one hour default backfill time
+    backfillIntervalMS = 1000 * 60 * 5, // five minutes default gps period
   ) {
-    let ar = [];
+    let locations = [];
+    let hashes = [];
     for (
       let t = startTimeMS;
       t >= startTimeMS - backfillTimeMS;
       t -= backfillIntervalMS
     ) {
-      ar.push({ time: t, latitude: location.lat, longitude: location.lon });
+      const hash = `${hashSeed}_${t}`;
+      locations.push({
+        time: t,
+        latitude: location.lat,
+        longitude: location.lon,
+        hashes: [hash],
+      });
+      hashes.push(hash);
     }
-    return ar;
+    return { locations, hashes };
   }
 }); // intersectSetIntoBins
 
