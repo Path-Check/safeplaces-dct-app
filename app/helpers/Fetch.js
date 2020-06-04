@@ -1,10 +1,7 @@
 import axios from 'axios';
 
 const Config = {
-  //url: '/',
   withCredentials: true,
-  //httpAgent: new http.Agent({ keepAlive: true }),
-  //method: 'get',
 };
 
 const wrapFetch = (url, options) => {
