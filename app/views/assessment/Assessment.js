@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Alert, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
-import { Typography } from '../../components/Typography';
+import { SvgXml } from 'react-native-svg';
+import { Icons } from '../../assets';
+import Colors from '../../constants/colors';
 import { useSurvey } from '../../helpers/CustomHooks';
 import i18n from '../../locales/languages';
 import AssessmentCaptcha from './AssessmentCaptcha';
@@ -92,9 +94,7 @@ const Assessment = ({ navigation }) => {
 
   const AssessmentCancel = () => (
     <TouchableOpacity onPress={navigation.goBack}>
-      <Typography survey style={{ color: AssessmentColors.CTA }}>
-        {t('assessment.cancel')}
-      </Typography>
+      <SvgXml xml={Icons.Close} />
     </TouchableOpacity>
   );
 
@@ -108,11 +108,10 @@ const Assessment = ({ navigation }) => {
     [navigation],
   );
   const screenOptions = {
-    headerBackTitle: 'Back',
     headerHideShadow: true,
     headerTitle: '',
     headerStyle: {
-      backgroundColor: AssessmentColors.BACKGROUND,
+      backgroundColor: Colors.SECONDARY_10,
     },
     //eslint-disable-next-line
     headerRight: () => <AssessmentCancel />,
@@ -138,7 +137,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
+                  backgroundColor: Colors.SECONDARY_10,
                 },
               }}
             />
@@ -153,7 +152,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
+                  backgroundColor: Colors.SECONDARY_10,
                 },
               }}
             />
@@ -163,7 +162,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
+                  backgroundColor: Colors.SECONDARY_10,
                 },
               }}
             />
@@ -173,7 +172,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
+                  backgroundColor: Colors.SECONDARY_10,
                 },
               }}
             />
@@ -183,7 +182,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
+                  backgroundColor: Colors.SECONDARY_10,
                 },
               }}
             />
@@ -193,7 +192,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
+                  backgroundColor: Colors.SECONDARY_10,
                 },
               }}
             />
@@ -203,7 +202,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND_DANGER,
+                  backgroundColor: Colors.SECONDARY_10,
                 },
               }}
             />
@@ -213,7 +212,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: AssessmentColors.IMAGE_BACKGROUND,
+                  backgroundColor: Colors.SECONDARY_10,
                 },
               }}
             />

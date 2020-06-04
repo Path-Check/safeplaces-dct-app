@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import image from '../../../assets/images/assessment/illustration-screening-end-done.png';
+import { Icons } from '../../../assets';
 import { Typography } from '../../../components/Typography';
 import { MetaContext } from '../AssessmentContext';
 import AssessmentEnd, { assessmentStyles } from './AssessmentEnd';
@@ -13,6 +13,7 @@ const AssessmentEndComplete = () => {
   return (
     <AssessmentEnd
       ctaAction={dismiss}
+      icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.complete_cta')}
       description={
         <Trans t={t} i18nKey='assessment.complete_description'>
@@ -20,7 +21,6 @@ const AssessmentEndComplete = () => {
           <Typography style={assessmentStyles.boldBlackText} />
         </Trans>
       }
-      image={image}
       title={t('assessment.complete_title')}
     />
   );

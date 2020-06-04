@@ -8,7 +8,6 @@ import AssessmentButton from './AssessmentButton';
 import { AnswersContext } from './AssessmentContext';
 import AssessmentOption from './AssessmentOption';
 import {
-  Colors as AssessmentColors,
   QUESTION_TYPE_MULTI,
   SCREEN_TYPE_CHECKBOX,
   SCREEN_TYPE_DATE,
@@ -116,9 +115,8 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.containerInner}>
         <View style={styles.header}>
-          <Typography style={styles.title}>
+          <Typography use='headline2'>
             {question.question_text}
           </Typography>
         </View>
@@ -135,7 +133,6 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
             title={t('assessment.next')}
           />
         </View>
-      </View>
     </SafeAreaView>
   );
 };
@@ -143,20 +140,11 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: AssessmentColors.BACKGROUND,
-  },
-  containerInner: {
-    flex: 1,
+    backgroundColor: Colors.SECONDARY_10,
   },
   header: {
     paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 28,
-    paddingTop: 20,
-    color: Colors.BLACK,
-    lineHeight: 33,
-    fontWeight: 'bold',
+    marginVertical: 40,
   },
   scrollView: {
     flex: 1,

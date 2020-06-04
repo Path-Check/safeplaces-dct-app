@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import image from '../../../assets/images/assessment/illustration-screening-end-caregiver.png';
+import { Icons } from '../../../assets';
 import { Typography } from '../../../components/Typography';
 import { MetaContext } from '../AssessmentContext';
 import AssessmentEnd, { assessmentStyles } from './AssessmentEnd';
@@ -15,6 +15,7 @@ const AssessmentEndCaregiver = ({ navigation }) => {
       ctaAction={() => {
         navigation.push(completeRoute);
       }}
+      icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.caregiver_cta')}
       description={
         <Trans t={t} i18nKey='assessment.caregiver_description'>
@@ -22,7 +23,6 @@ const AssessmentEndCaregiver = ({ navigation }) => {
           <Typography style={assessmentStyles.boldBlackText} />
         </Trans>
       }
-      image={image}
       title={t('assessment.caregiver_title')}
     />
   );
