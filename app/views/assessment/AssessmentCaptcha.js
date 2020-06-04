@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
   },
   captcha: {
     minHeight: 600,
+    backgroundColor: AssessmentColors.TRANSPARENT,
   },
   footer: {
     padding: 20,

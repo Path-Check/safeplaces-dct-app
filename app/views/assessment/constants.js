@@ -30,6 +30,7 @@ export const Colors = {
   BORDER_SELECTED: 'rgb(0,121,253)',
   CTA: 'rgb(105,121,248)',
   DANGER: 'rgb(227,0,58)',
+  TRANSPARENT: 'transparent',
 };
 
 export const CAPTCHA_URL =
