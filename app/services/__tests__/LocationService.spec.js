@@ -68,20 +68,6 @@ describe('LocationServices', () => {
     });
   }); // getHasPotentialExposure
 
-  describe('getParticpating', () => {
-    it('return true when location tracking is on', async () => {
-      AsyncStorage.getItem.mockResolvedValueOnce(true);
-      const data = await LocationServices.getParticpating();
-      expect(data).toBe(true);
-    });
-
-    it('return false when location tracking is on', async () => {
-      AsyncStorage.getItem.mockResolvedValueOnce(false);
-      const data = await LocationServices.getParticpating();
-      expect(data).toBe(false);
-    });
-  });
-
   describe('getBackgroundGeoStatus', () => {
     it('return status based on phone location permissions', async () => {
       let status = {
@@ -111,24 +97,6 @@ describe('LocationServices', () => {
           isRunning: 'blah',
         }),
       );
-    });
-
-    it('return USER_OFF when particpating is false', async () => {
-      storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'false';
-
-      mockBackgroundGeolocationCheckStatus({
-        locationServicesEnabled: true,
-        authorization: BackgroundGeolocation.AUTHORIZED,
-      });
-
-      const data = await LocationServices.checkStatus();
-
-      expect(data).toEqual({
-        canTrack: false,
-        reason: Reason.USER_OFF,
-        hasPotentialExposure: false,
-      });
     });
 
     it('return LOCATION_OFF when location services are off', async () => {

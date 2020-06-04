@@ -95,9 +95,13 @@ export const Main = () => {
       page = <NoKnownExposure />;
     }
   } else {
-    if (location.reason === Reason.USER_OFF) {
+    if (
+      location.reason === Reason.LOCATION_OFF ||
+      location.reason === Reason.NOT_AUTHORIZED
+    ) {
       page = <OffPage />;
     } else {
+      // Invariant violation if this occurs
       page = <UnknownPage />;
     }
   }
