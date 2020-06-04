@@ -328,7 +328,7 @@ async function asyncCheckIntersect() {
   }
 
   if (authority_list) {
-    for (var index = 0; index < authority_list.length; index++) {
+    for (let index = 0; index < authority_list.length; index++) {
       try {
         let keys = Object.keys(authority_list[index]);
         let url = authority_list[index][keys][0].url;

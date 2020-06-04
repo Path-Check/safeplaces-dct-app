@@ -1,4 +1,3 @@
-import Yaml from 'js-yaml';
 import PushNotification from 'react-native-push-notification';
 import RNFetchBlob from 'rn-fetch-blob';
 
@@ -6,13 +5,10 @@ import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 import {
   AUTHORITY_SOURCE_SETTINGS,
   ENABLE_HCA_AUTO_SUBSCRIPTION,
-  LOCATION_DATA
 } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 import { LocationData } from './LocationService';
-
-//const authoritiesYaml = require('./../constants/DR/healthcare-authorities.yaml');
 
 /**
  * Singleton class to interact with health care authority data
@@ -28,35 +24,34 @@ class HCAService {
     //THis is to get the file from remote server but we curently got it local with yamlContent
     return await RNFetchBlob.config({
       fileCache: true,
-    }).wrap('GET');
+    }).wrap('GET', AUTHORITIES_LIST_URL);
   }
 
   offsetLocation(location) {
-    if(!location)
-      return location;
+    if (!location) return location;
     //Position, decimal degrees
-   const lat = location.latitude;
-   const lon = location.longitude;
+    const lat = location.latitude;
+    const lon = location.longitude;
 
-   //Earth’s radius, sphere
-   const R=6378137;
+    //Earth’s radius, sphere
+    const R = 6378137;
 
-   //offsets in meters
-   const dn = 100;
-   const de = 100;
+    //offsets in meters
+    const dn = 100;
+    const de = 100;
 
-   //Coordinate offsets in radians
-   const dLat = dn/R;
-   const dLon = de/(R*Math.cos((Math.PI*lat/180)));
+    //Coordinate offsets in radians
+    const dLat = dn / R;
+    const dLon = de / (R * Math.cos((Math.PI * lat) / 180));
 
-   //OffsetPosition, decimal degrees
-   const latO = lat + dLat * 180/Math.PI;
-   const lonO = lon + dLon * 180/Math.PI;
+    //OffsetPosition, decimal degrees
+    const latO = lat + (dLat * 180) / Math.PI;
+    const lonO = lon + (dLon * 180) / Math.PI;
 
-   location.latitude = latO;
-   location.longitude = lonO;
-   return location;
- }
+    location.latitude = latO;
+    location.longitude = lonO;
+    return location;
+  }
 
   /**
    * Fetches the list of all registed Health Care Authorities
@@ -64,57 +59,60 @@ class HCAService {
    */
   async getAuthoritiesList() {
     let authorities = [];
-    let mostNorthEastPoint = null; 
-    let mostSouthWestPoint = null; 
+    let mostNorthEastPoint = null;
+    let mostSouthWestPoint = null;
 
     try {
       const locations = await new LocationData().getLocationData();
 
       if (Array.isArray(locations) && locations.length > 0) {
-        for (var index = locations.length - 1; index > 0; index--) {
-  
-          var dateOffset = (24*60*60*1000); //1 day
-          var yesterdayEnd = new Date();
+        for (let index = locations.length - 1; index > 0; index--) {
+          let dateOffset = 24 * 60 * 60 * 1000; //1 day
+          let yesterdayEnd = new Date();
           yesterdayEnd.setTime(yesterdayEnd.getTime() - dateOffset);
-  
+
           const location = locations[index];
-          if((location.time - yesterdayEnd.getTime()) > 0 ){
-            //is on todays date 
-            if((mostNorthEastPoint === null && mostSouthWestPoint === null )){
+          if (location.time - yesterdayEnd.getTime() > 0) {
+            //is on todays date
+            if (mostNorthEastPoint === null && mostSouthWestPoint === null) {
               mostNorthEastPoint = location;
               mostSouthWestPoint = location;
-            } 
-            if(mostNorthEastPoint.latitude < location.latitude || mostNorthEastPoint.longitude < location.longitude){
+            }
+            if (
+              mostNorthEastPoint.latitude < location.latitude ||
+              mostNorthEastPoint.longitude < location.longitude
+            ) {
               mostNorthEastPoint = location;
             }
-            if(mostSouthWestPoint.latitude > location.latitude || mostSouthWestPoint.longitude > location.longitude  ){
+            if (
+              mostSouthWestPoint.latitude > location.latitude ||
+              mostSouthWestPoint.longitude > location.longitude
+            ) {
               mostSouthWestPoint = location;
             }
           } else {
-
             break;
           }
         }
-
       }
     } catch (error) {
-      console.log("[Error] " + error);
+      console.log('[Error] ' + error);
     }
     this.offsetLocation(mostNorthEastPoint);
     this.offsetLocation(mostSouthWestPoint);
 
     const baseUrl = 'https://webapps.mepyd.gob.do/contact_tracing/api/Contact';
-    const url = mostNorthEastPoint && mostSouthWestPoint ? `${baseUrl}?NE=${mostNorthEastPoint.latitude},${mostNorthEastPoint.longitude}&SW=${mostSouthWestPoint.latitude},${mostSouthWestPoint.longitude}` 
-                                      : baseUrl;
-    console.log("URL: "+ baseUrl);
+    const url =
+      mostNorthEastPoint && mostSouthWestPoint
+        ? `${baseUrl}?NE=${mostNorthEastPoint.latitude},${mostNorthEastPoint.longitude}&SW=${mostSouthWestPoint.latitude},${mostSouthWestPoint.longitude}`
+        : baseUrl;
 
-                          
     const authoritiesJson = {
       Authorities: [
         {
           'Ministerio de Salud Publica': [
             {
-              url: baseUrl,
+              url: url,
             },
             {
               bounds: {
@@ -129,14 +127,13 @@ class HCAService {
               },
             },
           ],
-        }
+        },
       ],
     };
 
     authorities = authoritiesJson.Authorities;
     return authorities;
   }
-
 
   /**
    * Get the list of Health Care Authorities that a user has saved
@@ -230,7 +227,7 @@ class HCAService {
   isPointInAuthorityBounds(point, authority) {
     const locHelper = new LocationData();
     const bounds = this.getAuthorityBounds(authority);
-    let result = bounds && locHelper.isPointInBoundingBox(point, bounds);//This passes is true on my phone not on simulator makes sense because of the location 
+    let result = bounds && locHelper.isPointInBoundingBox(point, bounds); //This passes is true on my phone not on simulator makes sense because of the location
     return result;
   }
 
@@ -250,7 +247,6 @@ class HCAService {
     );
   }
 
-
   /**
    * Gets the most recent location of the user and returns a list of
    * all Healthcare Authorities whose bounds contain the user's current location,
@@ -259,14 +255,18 @@ class HCAService {
    * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} list of Healthcare Authorities
    */
   async getNewAuthoritiesInUserLoc() {
-    const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();//Nice I needed this nice nice 
-    const authoritiesList = await this.getAuthoritiesList();//This is were we are not getting any new authorities Why does the button doesnt work :( )
+    const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc(); //Nice I needed this nice nice
+    const authoritiesList = await this.getAuthoritiesList(); //This is were we are not getting any new authorities Why does the button doesnt work :( )
     const userAuthorities = await this.getUserAuthorityList();
-    
+
     return authoritiesList.filter(
       authority =>
-        this.isPointInAuthorityBounds(mostRecentUserLoc, authority) && ((!Array.isArray(userAuthorities) || !userAuthorities.length) ||
-        !userAuthorities.some( elem => JSON.stringify(authority) === JSON.stringify(elem)))
+        this.isPointInAuthorityBounds(mostRecentUserLoc, authority) &&
+        (!Array.isArray(userAuthorities) ||
+          !userAuthorities.length ||
+          !userAuthorities.some(
+            elem => JSON.stringify(authority) === JSON.stringify(elem),
+          )),
     );
   }
 

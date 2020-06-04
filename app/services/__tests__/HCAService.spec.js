@@ -23,6 +23,28 @@ jest.mock('rn-fetch-blob', () => {
   };
 });
 
+const authorities = [
+  {
+    'Ministerio de Salud Publica': [
+      {
+        url: 'https://webapps.mepyd.gob.do/contact_tracing/api/Contact',
+      },
+      {
+        bounds: {
+          ne: {
+            latitude: 20.365051,
+            longitude: -67.795684,
+          },
+          sw: {
+            latitude: 16.99877,
+            longitude: -72.17912,
+          },
+        },
+      },
+    ],
+  },
+];
+
 describe('HCAService', () => {
   describe('getAuthoritiesList()', () => {
     it('Given a successful reseponse, returns a list of health care authorities with a valid schema', async () => {
@@ -31,10 +53,10 @@ describe('HCAService', () => {
         .mockResolvedValueOnce({ path: () => '' });
 
       const authorities = await HCAService.getAuthoritiesList();
-      const testAuthority = authorities[0]['Test Authority'];
+      const testAuthority = authorities[0]['Ministerio de Salud Publica'];
 
       expect(testAuthority[0]['url']).toBe(
-        'https://raw.githack.com/Path-Check/safeplaces-frontend/develop/examples/safe-paths.json',
+        'https://webapps.mepyd.gob.do/contact_tracing/api/Contact',
       );
 
       // Has a `bounds` with a `ne` and `sw` field
@@ -51,7 +73,9 @@ describe('HCAService', () => {
           throw new Error();
         });
 
-      await expect(HCAService.getAuthoritiesList()).resolves.toEqual([]);
+      await expect(HCAService.getAuthoritiesList()).resolves.toEqual(
+        authorities,
+      );
     });
   });
 
