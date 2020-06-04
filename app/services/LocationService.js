@@ -26,8 +26,8 @@ export const Reason = {
   APP_NOT_AUTHORIZED: 'APP_NOT_AUTHORIZED',
 
   /**
-   * User has granted permission to track and device/app
-   * location services are also enabled
+   * User has granted location tracking permissions
+   * to the app, and device location services are running
    */
   ALL_CONDITIONS_MET: 'ALL_CONDITIONS_MET',
 };
@@ -183,7 +183,7 @@ export default class LocationServices {
     const hasPotentialExposure = await this.getHasPotentialExposure();
 
     const {
-      authorization: appGpsStatus,
+      authorization: isAppGpsEnabled,
       isRunning,
       locationServicesEnabled: isDeviceGpsEnabled,
     } = await this.getBackgroundGeoStatus();
@@ -197,7 +197,7 @@ export default class LocationServices {
       };
     }
 
-    if (!appGpsStatus) {
+    if (!isAppGpsEnabled) {
       return {
         canTrack: false,
         reason: Reason.APP_NOT_AUTHORIZED,
