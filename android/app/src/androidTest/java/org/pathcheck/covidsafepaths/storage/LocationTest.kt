@@ -1,5 +1,6 @@
 package org.pathcheck.covidsafepaths.storage
 
+import com.optic.covdr.storage.Location
 import org.junit.Assert.*
 import org.junit.Test
 
