@@ -11,6 +11,10 @@ jobs:
     env:
       ENVFILE: .env.release
     steps:
+      - name: Update .env file
+        run: |
+          printenv >> .env.release
+
       - name: Checkout code
         uses: actions/checkout@v2
 
