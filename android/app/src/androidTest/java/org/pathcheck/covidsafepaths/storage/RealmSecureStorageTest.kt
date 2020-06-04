@@ -5,6 +5,8 @@ import com.facebook.react.bridge.WritableMap
 import com.facebook.react.bridge.WritableNativeArray
 import com.facebook.react.bridge.WritableNativeMap
 import com.marianhello.bgloc.data.BackgroundLocation
+import com.optic.covdr.storage.Location
+import com.optic.covdr.storage.RealmSecureStorage
 import io.realm.Realm
 import io.realm.kotlin.where
 import org.junit.After
