@@ -1,4 +1,5 @@
 import styled, { css } from '@emotion/native';
+import AsyncStorage from '@react-native-community/async-storage';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
@@ -119,6 +120,18 @@ export const SettingsScreen = ({ navigation }) => {
             label={t('share.title')}
             description={t('share.subtitle')}
             onPress={() => navigation.navigate('ExportScreen')}
+          />
+          <Item
+            label={t('label.epidemiologic_report_title')}
+            description={t('label.epidemiologic_report_subtitle')}
+            onPress={async () => {
+              const value = await AsyncStorage.getItem('positive');
+              if (value !== null) {
+                navigation.navigate('EpidemiologicResponse');
+              } else {
+                navigation.navigate('UserInfo');
+              }
+            }}
             last
           />
         </Section>

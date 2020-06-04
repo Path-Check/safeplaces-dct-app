@@ -13,10 +13,12 @@ const colors = {
   SUCCESS: '#41dca4',
   GREEN: '#7ED321',
   DARK_GREEN: '#B7DBB2',
+  MEDIUM_GREEN: '#42A009',
   WARNING: '#ffc000',
   ORANGE: '#ffc000',
   VIOLET_ALPHA_06: '#f7f8ff', // cannot use transparency
   VIOLET: '#4051DB',
+  GOLD: '#F0A246',
   TRANSPARENT: 'transparent',
 
   // For notifications
