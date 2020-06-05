@@ -13,7 +13,7 @@ import { GetStoreData, SetStoreData } from './General';
  * `getCleanedFlagName('hello_world')` becomes `Hello world`
  *
  */
-export const getCleanedFlagName = name => {
+export const getCleanedFlagName = (name) => {
   const withSpaces = name.replace('_', ' ');
   return (
     withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1, withSpaces.length)

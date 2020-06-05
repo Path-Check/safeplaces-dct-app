@@ -16,7 +16,7 @@ import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
-const Onboarding = props => {
+const Onboarding = (props) => {
   const {
     onboarding2Background,
     onboarding2Header,

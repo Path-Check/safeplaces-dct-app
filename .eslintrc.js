@@ -6,8 +6,26 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:jest/recommended',
   ],
-  parser: 'babel-eslint',
-  plugins: ['react', 'react-hooks', 'react-native', 'detox'],
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint',
+    'prettier',
+    'react',
+    'react-hooks',
+    'react-native',
+    'detox',
+  ],
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {},
+    },
+    react: {
+      version: 'detect',
+    },
+  },
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
@@ -26,15 +44,11 @@ module.exports = {
     'jest/globals': true,
     mocha: true,
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
   ignorePatterns: ['android/**', 'ios/**'],
   rules: {
     // 0 is for off, 1 is for warning, 2 is for error
     'eol-last': 2, // Require file to end with single newline
+    'no-import-assign': 1,
     'no-constant-condition': 2, // Disallow use of constant expressions in conditions
     'no-dupe-keys': 2, // Disallow Duplicate Keys
     'no-empty': 2, // Disallow Empty Block Statements

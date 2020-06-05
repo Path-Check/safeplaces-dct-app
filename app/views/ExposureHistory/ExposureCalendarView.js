@@ -28,7 +28,7 @@ function getDayKey(date) {
 export const ExposureCalendarView = ({ history, weeks }) => {
   /** @type {{[date: string]: number}} */
   const exposureMap = {};
-  history.forEach(day => {
+  history.forEach((day) => {
     exposureMap[getDayKey(day.date)] = day.exposureMinutes;
   });
 
@@ -42,8 +42,8 @@ export const ExposureCalendarView = ({ history, weeks }) => {
       <Typography use='headline3'>{title}</Typography>
       <MonthGrid
         weeks={weeks}
-        renderDayHeader={d => <DayOfWeek key={d}>{d}</DayOfWeek>}
-        renderDay={date => {
+        renderDayHeader={(d) => <DayOfWeek key={d}>{d}</DayOfWeek>}
+        renderDay={(date) => {
           const exposureMinutes = exposureMap[getDayKey(date)];
           return (
             <CalendarDay

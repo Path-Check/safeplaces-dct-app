@@ -17,7 +17,7 @@ export const FEATURE_FLAG_SCREEN_NAME = 'FeatureFlagsScreen';
 export const FlagToggleRow = ({ name, val, onValueChange }) => {
   const buildtimeFlags = getBuildtimeFlags();
 
-  const getBuildtimeFlagVal = flagName =>
+  const getBuildtimeFlagVal = (flagName) =>
     buildtimeFlags[flagName] ? 'On' : 'Off';
 
   return (
@@ -53,7 +53,7 @@ export const ExposureModeToggleRow = () => {
     setInitalExposureVal();
   }, []);
 
-  const toggleExposureMode = val => {
+  const toggleExposureMode = (val) => {
     val ? enableDebugMode() : disableDebugMode();
     setIsExposed(val);
   };
@@ -83,12 +83,12 @@ export const FlagToggleList = () => {
   const [flags, setFlag] = useFlags();
   const alphabetizedFlags = Object.keys(flags).sort(); // Prevents toggle reordering
 
-  const toggleFlag = async key => setFlag(key, !flags[key]);
+  const toggleFlag = async (key) => setFlag(key, !flags[key]);
 
   return (
     <View style={styles.toggleList}>
       <ExposureModeToggleRow />
-      {alphabetizedFlags.map(key => {
+      {alphabetizedFlags.map((key) => {
         return (
           <FlagToggleRow
             key={key}

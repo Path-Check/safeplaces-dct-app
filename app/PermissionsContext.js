@@ -17,7 +17,7 @@ export const PermissionStatus = {
   DENIED: 2,
 };
 
-const statusToEnum = status => {
+const statusToEnum = (status) => {
   switch (status) {
     case 'unknown': {
       return PermissionStatus.UNKNOWN;
@@ -120,7 +120,7 @@ const PermissionsProvider = ({ children }) => {
     }
   };
 
-  const requestLocationForPlatform = async permission => {
+  const requestLocationForPlatform = async (permission) => {
     const status = await request(permission);
     setLocationPermission(statusToEnum(status));
   };

@@ -82,7 +82,7 @@ const ExportLocally = ({ navigation }) => {
               ],
             };
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err.message);
           });
       } else {
@@ -96,10 +96,10 @@ const ExportLocally = ({ navigation }) => {
         };
       }
       await Share.open(options)
-        .then(res => {
+        .then((res) => {
           console.log(res);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           console.log(err.message, err.code);
         });

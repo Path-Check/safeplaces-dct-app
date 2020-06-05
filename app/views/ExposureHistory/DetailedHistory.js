@@ -14,7 +14,7 @@ import { SingleExposureDetail } from './SingleExposureDetail';
  */
 export const DetailedHistory = ({ history }) => {
   const { detailedHistoryPageWhatThisMeansPara } = useAssets();
-  const exposedDays = history.filter(day => day.exposureMinutes > 0);
+  const exposedDays = history.filter((day) => day.exposureMinutes > 0);
 
   return (
     <>

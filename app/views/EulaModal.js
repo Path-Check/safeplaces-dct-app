@@ -27,7 +27,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const eulaPath = EULA_FILES[selectedLocale] || en;
 
   // Any links inside the EULA should launch a separate browser otherwise you can get stuck inside the app
-  const shouldStartLoadWithRequestHandler = webViewState => {
+  const shouldStartLoadWithRequestHandler = (webViewState) => {
     let shouldLoadRequest = true;
     if (webViewState.url !== DEFAULT_EULA_URL) {
       // If the webpage to load isn't the EULA, load it in a separate browser

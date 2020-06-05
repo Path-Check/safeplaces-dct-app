@@ -147,7 +147,7 @@ export function supportedDeviceLanguageOrEnglish() {
   const locale = getDeviceLocale(); // en_US
   const langCode = getLanguageFromLocale(locale); // en
   const found = Object.keys(LOCALE_NAME).find(
-    l => l === langCode || toIETFLanguageTag(l) === toIETFLanguageTag(locale),
+    (l) => l === langCode || toIETFLanguageTag(l) === toIETFLanguageTag(locale),
   );
   return found || 'en';
 }
@@ -156,7 +156,7 @@ export function supportedDeviceLanguageOrEnglish() {
 setLocale(supportedDeviceLanguageOrEnglish());
 
 // detect user override
-getUserLocaleOverride().then(locale => locale && setLocale(locale));
+getUserLocaleOverride().then((locale) => locale && setLocale(locale));
 
 export default i18next;
 
