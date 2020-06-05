@@ -16,9 +16,7 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import { Icons } from '../../assets';
-import { Button } from '../../components/Button';
-import { IconButton } from '../../components/IconButton';
-import { Typography } from '../../components/Typography';
+import { Button, IconButton, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
@@ -84,7 +82,7 @@ const ExportLocally = ({ navigation }) => {
               ],
             };
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err.message);
           });
       } else {
@@ -98,10 +96,10 @@ const ExportLocally = ({ navigation }) => {
         };
       }
       await Share.open(options)
-        .then(res => {
+        .then((res) => {
           console.log(res);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           console.log(err.message, err.code);
         });

@@ -44,7 +44,7 @@ export const Button = ({
   );
 };
 
-const invertTextColors = theme => {
+const invertTextColors = (theme) => {
   return {
     ...theme,
     textPrimaryOnBackground: theme.onPrimary,

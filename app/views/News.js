@@ -9,8 +9,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 import languages from './../locales/languages';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { NewsItem } from '../components/NewsItem';
+import { NavigationBarWrapper, NewsItem } from '../components';
 import Colors from '../constants/colors';
 import { AUTHORITY_NEWS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
@@ -54,7 +53,7 @@ class NewsScreen extends Component {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
     GetStoreData(AUTHORITY_NEWS)
-      .then(nameNewsString => {
+      .then((nameNewsString) => {
         // Bring in news from the various authorities.  This is
         // pulled down from the web when you subscribe to an Authority
         // on the Settings page.
@@ -70,7 +69,7 @@ class NewsScreen extends Component {
           newsUrls: arr,
         });
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
 
   componentWillUnmount() {

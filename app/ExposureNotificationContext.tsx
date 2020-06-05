@@ -3,40 +3,45 @@ import React, { createContext, useState } from 'react';
 
 import * as ExposureNotifications from './exposureNotificationsNativeModule';
 
-export type ENAuthorizationStatus = "authorized" | "notAuthorized"
+export type ENAuthorizationStatus = 'authorized' | 'notAuthorized';
 
 interface ExposureNotificationsState {
-    exposureNotificationAuthorizationStatus: ENAuthorizationStatus,
-    requestExposureNotificationAuthorization: () => void,
+  exposureNotificationAuthorizationStatus: ENAuthorizationStatus;
+  requestExposureNotificationAuthorization: () => void;
 }
 
-const initialStatus: ENAuthorizationStatus = "notAuthorized"
+const initialStatus: ENAuthorizationStatus = 'notAuthorized';
 
 const ExposureNotificationsContext = createContext<ExposureNotificationsState>({
   exposureNotificationAuthorizationStatus: initialStatus,
-  requestExposureNotificationAuthorization: () => {}
+  requestExposureNotificationAuthorization: () => {},
 });
 
 interface ExposureNotificationProviderProps {
-  children: JSX.Element
+  children: JSX.Element;
 }
 
-const ExposureNotificationsProvider = ({ children }: ExposureNotificationProviderProps) => {
-  const [exposureNotificationAuthorizationStatus, setExposureNotificationAuthorizationStatus] =
-    useState<ENAuthorizationStatus>(initialStatus);
+const ExposureNotificationsProvider = ({
+  children,
+}: ExposureNotificationProviderProps): JSX.Element => {
+  const [
+    exposureNotificationAuthorizationStatus,
+    setExposureNotificationAuthorizationStatus,
+  ] = useState<ENAuthorizationStatus>(initialStatus);
 
   const requestExposureNotificationAuthorization = () => {
-   const cb = (authorizationStatus: ENAuthorizationStatus) => {
-     setExposureNotificationAuthorizationStatus(authorizationStatus)
-   };
-    ExposureNotifications.requestAuthorization(cb)
-  }
+    const cb = (authorizationStatus: ENAuthorizationStatus) => {
+      setExposureNotificationAuthorizationStatus(authorizationStatus);
+    };
+    ExposureNotifications.requestAuthorization(cb);
+  };
 
   return (
-    <ExposureNotificationsContext.Provider value={{
-      exposureNotificationAuthorizationStatus,
-      requestExposureNotificationAuthorization
-    }}>
+    <ExposureNotificationsContext.Provider
+      value={{
+        exposureNotificationAuthorizationStatus,
+        requestExposureNotificationAuthorization,
+      }}>
       {children}
     </ExposureNotificationsContext.Provider>
   );
@@ -44,4 +49,3 @@ const ExposureNotificationsProvider = ({ children }: ExposureNotificationProvide
 
 export { ExposureNotificationsProvider };
 export default ExposureNotificationsContext;
-
