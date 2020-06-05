@@ -34,7 +34,7 @@ import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
-import { OldOnboardingPermissions } from './views/onboarding/OldOnboardingPermissions';
+// import { OnboardingPermissions } from './views/onboarding/OldOnboardingPermissions';
 import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
 import { SettingsScreen } from './views/Settings';
 
@@ -93,10 +93,10 @@ export const Entry = () => {
       <Stack.Navigator
         initialRouteName='InitialScreen'
         screenOptions={screenOptions}>
-        {/* <Stack.Screen
+        <Stack.Screen
           name='InitialScreen'
           component={onboardingDone ? Main : Onboarding1}
-        /> */}
+        />
         <Stack.Screen name='Onboarding1' component={Onboarding1} />
         <Stack.Screen name='Onboarding2' component={Onboarding2} />
         <Stack.Screen name='Onboarding3' component={Onboarding3} />

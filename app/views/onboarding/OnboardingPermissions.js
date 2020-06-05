@@ -16,7 +16,6 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { ONBOARDING_DONE, PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
-import { isGPS } from '../../COVIDSafePathsConfig';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
@@ -25,28 +24,22 @@ import fontFamily from '../../constants/fonts';
 
 const width = Dimensions.get('window').width;
 
-export const OnboardingPermissions = ({ navigation }) => {
+export const OnboardingPermissions = ({ route, navigation }) => {
   const { location, notification, authSubscription } = useContext(
     PermissionsContext,
   );
-  // const isiOS = Platform.OS === 'ios';
-  // const isDev = __DEV__;
+  // const { step } = route.params;
 
-  const moveToNextStep = () => {
-    setCurrentStep(currentStep + 1);
-  };
-
-  const onSkipStep = () => {
+  const handleRequestNotifications = async () => {
+    console.log('handleRequestNotifications')
+    await notification.request();
     moveToNextStep();
   };
 
   const handleRequestLocation = async () => {
+    console.log('handleRequestLocation')
     await location.request();
-    moveToNextStep();
-  };
-
-  const handleRequestNotifications = async () => {
-    await notification.request();
+    await handleRequestAuthSubscription()
     moveToNextStep();
   };
 
@@ -55,13 +48,71 @@ export const OnboardingPermissions = ({ navigation }) => {
     moveToNextStep();
   };
 
-  const handleOnPressDone = () => {
+  const notificationStep = {
+    header: languages.t('onboarding.notification_header'),
+    subHeader: languages.t('onboarding.notification_subheader'),
+    nextStepParam: 'location',
+    handleButtonPress: handleRequestNotifications,
+    icon: Icons.Bell,
+    buttonLabel: languages.t('label.launch_enable_notif')
+  }
+  const locationStep = {
+    header: languages.t('onboarding.location_header'),
+    subHeader: languages.t('onboarding.location_subheader'),
+    nextStepParam: null,
+    handleButtonPress: handleRequestLocation,
+    icon: Icons.LocationPin,
+    buttonLabel: languages.t('label.launch_allow_location')
+  }
+  const steps = {
+    notification: notificationStep,
+    location: locationStep,
+  }
+  const currentStep = steps[route.params.step]
+  const { header, subHeader, icon, nextStepParam, handleButtonPress, buttonLabel } = currentStep;
+  // const isiOS = Platform.OS === 'ios';
+  // const isDev = __DEV__;
+
+  // const moveToNextStep = () => {
+  //   setCurrentStep(currentStep + 1);
+  // };
+
+  const moveToNextStep = () => {
+    if (nextStepParam) {
+      navigation.push('OnboardingPermissions', {
+        step: nextStepParam
+      })
+    } else {
+      completeOnboarding()
+    }
+  };
+
+  const onSkipStep = () => {
+    moveToNextStep()
+  };
+
+  const completeOnboarding = () => {
     SetStoreData(PARTICIPATE, location.status === PermissionStatus.GRANTED);
     SetStoreData(ONBOARDING_DONE, true);
     navigation.replace('Main');
-  };
+  }
 
-  const handleButtonPress = () => {}
+  // const handleOnPressDone = () => {
+  //   SetStoreData(PARTICIPATE, location.status === PermissionStatus.GRANTED);
+  //   SetStoreData(ONBOARDING_DONE, true);
+  //   navigation.replace('Main');
+  // };
+
+  // const handleButtonPress = () => {
+  //   if (step === 'location') {
+  //     // SetStoreData(ONBOARDING_DONE, true);
+  //     navigation.replace('Main');
+  //   } else {
+  //     navigation.push('OnboardingPermissions', {
+  //       step: steps[step].nextStep
+  //     })
+  //   }
+  // }
 
   return (
     <Theme use='violet'>
@@ -78,64 +129,31 @@ export const OnboardingPermissions = ({ navigation }) => {
           testID={'onboarding-permissions-screen'}
           style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            {/* <SvgXml
-              style={styles.icon}
-              xml={Icons.LocationPin}
-              width={80}
-              height={80}
-            /> */}
             <View style={styles.iconCircle}>
               <SvgXml
-                xml={Icons.LocationPin}
+                xml={icon}
                 width={30}
                 height={30}
               />
             </View>
             <Typography style={styles.headerText}>
-              {'Would you like to recieve notifications when you may have crossed paths with the virus?'}
+              {header}
             </Typography>
             <Typography style={styles.subheaderText}>
-              {'To recieve exposure notifications, you need to be in an area covered by a local Health Department partner.\n\nIf there are no local or regional partner Health Department in your area yet, get notified when new Health Departments are added near you.'}
-            </Typography>
-            <Typography style={styles.subheaderText}>
-              {'To recieve exposure notifications, you need to be in an area covered by a local Health Department partner.\n\nIf there are no local or regional partner Health Department in your area yet, get notified when new Health Departments are added near you.'}
+              {subHeader}
             </Typography>
           </View>
-          {/* <View style={styles.contentContainer}>
-            <Typography
-              style={styles.headerText}
-              use={headerThemeStyle}
-              testID='Header'>
-              {titleText}
-            </Typography>
-            <Typography style={subTitleStyle} use={'body3'}>
-              {subTitleText}
-            </Typography>
-            {finishedAllSteps ? null : <SkipStepButton onPress={onSkipStep} />}
-
-            <View style={styles.statusContainer}>
-              {steps.map(({ testID, indicatorText, status }, idx) => (
-                <PermissionIndicator
-                  key={`indicator-${idx}`}
-                  title={indicatorText}
-                  status={status}
-                  testID={testID}
-                />
-              ))}
-              <View style={styles.spacer} />
-            </View>
-          </View> */}
         </View>
         <View style={sharedStyles.footerContainer}>
           <Button
             label={'Maybe Later'}
             secondary
             style={styles.marginBottom}
-            onPress={handleButtonPress}
+            onPress={onSkipStep}
             testID={'onboarding-permissions-button'}
           />
           <Button
-            label={'Enable Notifications'}
+            label={buttonLabel}
             onPress={handleButtonPress}
             testID={'onboarding-permissions-button'}
           />
@@ -158,8 +176,9 @@ const styles = StyleSheet.create({
   contentContainer: {
     width: width * 0.9,
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignSelf: 'center',
+    marginTop: 70,
   },
   headerText: {
     // textAlign: 'center',
@@ -177,11 +196,6 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontSize: 18,
     fontFamily: fontFamily.primaryRegular,
-  },
-  icon: {
-    // alignSelf: 'center',
-    color: Colors.WHITE,
-    // fill: Colors.WHITE
   },
   marginBottom: {
     marginBottom: 21,

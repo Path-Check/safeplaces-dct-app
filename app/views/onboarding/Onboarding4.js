@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Dimensions,
   ImageBackground,
+  Platform,
   StatusBar,
   StyleSheet,
   View,
@@ -14,6 +15,7 @@ import { isGPS } from '../../COVIDSafePathsConfig';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
 
+  const isiOS = Platform.OS === 'ios';
 const width = Dimensions.get('window').width;
 
 const Onboarding = (props) => {
@@ -25,10 +27,11 @@ const Onboarding = (props) => {
   } = useAssets();
 
   const handleOnPressNext = () => {
-    const nextScreen = isGPS
-      ? 'OnboardingPermissions'
-      : 'EnableExposureNotifications';
-    props.navigation.replace(nextScreen);
+    if (isGPS) {
+      props.navigation.replace('OnboardingPermissions', { step: isiOS ? 'notification' : 'location' });
+    } else {
+      props.navigation.replace('EnableExposureNotifications');
+    }
   };
 
   return (
