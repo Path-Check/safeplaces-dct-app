@@ -19,7 +19,7 @@ import Colors from '../constants/colors';
  */
 const widthScale = Math.min(Dimensions.get('window').width / 400, 1.0);
 
-const NavigationBarWrapper = ({ children, title, onBackPress }) => {
+export const NavigationBarWrapper = ({ children, title, onBackPress }) => {
   const theme = useTheme();
 
   const barColor = (theme && theme.navBar) || Colors.VIOLET;
@@ -105,5 +105,3 @@ NavigationBarWrapper.propTypes = {
   title: PropTypes.string.isRequired,
   onBackPress: PropTypes.func.isRequired,
 };
-
-export default NavigationBarWrapper;

@@ -1,5 +1,5 @@
 import { assign } from 'lodash';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getBuildtimeFlags } from '../constants/flagsEnv';
 import { FEATURE_FLAG_VALS } from '../constants/storage';
@@ -13,7 +13,7 @@ import { GetStoreData, SetStoreData } from './General';
  * `getCleanedFlagName('hello_world')` becomes `Hello world`
  *
  */
-export const getCleanedFlagName = name => {
+export const getCleanedFlagName = (name) => {
   const withSpaces = name.replace('_', ' ');
   return (
     withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1, withSpaces.length)
@@ -69,19 +69,3 @@ export const FlagsProvider = ({ children }) => {
     </FlagsContext.Provider>
   );
 };
-
-/**
- * Custom hook that can be used to fetch the list of all flags,
- * and to set the value for a particular flag.
- */
-export function useFlags() {
-  const [flags, setFlags] = useContext(FlagsContext);
-
-  const setFlag = async (flagName, flagVal) => {
-    const newFlags = { ...flags, [flagName]: flagVal };
-    setFlags(newFlags);
-    await SetStoreData(FEATURE_FLAG_VALS, newFlags);
-  };
-
-  return [flags, setFlag];
-}

@@ -22,7 +22,7 @@ import { HCAService } from '../../services/HCAService';
 
 const getParsedAuthorities = async () => {
   const authorities = await HCAService.getAuthoritiesList();
-  return authorities.map(authority => ({
+  return authorities.map((authority) => ({
     name: Object.keys(authority)[0],
     url: Object.values(authority)[0][0].url,
   }));
@@ -37,7 +37,7 @@ export const ExportSelectHA = ({ navigation }) => {
     getParsedAuthorities().then(setAuthorities);
   }, []);
 
-  const toggleSelected = HA => {
+  const toggleSelected = (HA) => {
     if (HA === selectedAuthority) {
       setSelectedAuthority(null);
     } else {

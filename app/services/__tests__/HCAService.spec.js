@@ -13,7 +13,7 @@ import {
   mockUserLocHistory,
 } from '../__mocks__/mockUserLocHistory';
 import { HCAService } from '../HCAService';
-import { LocationData } from '../LocationService';
+import LocationService from '../LocationService';
 
 jest.mock('rn-fetch-blob', () => {
   return {
@@ -82,7 +82,7 @@ describe('HCAService', () => {
     it('returns true if the user was in the bounding box of an authority in the past 14 days', async () => {
       // Returns a point within the bounding box of an authority
       jest
-        .spyOn(LocationData.prototype, 'getLocationData')
+        .spyOn(LocationService, 'getLocationData')
         .mockReturnValueOnce(mockUserLocHistory);
 
       const authorities = await HCAService.getAuthoritiesFromUserLocHistory();
@@ -92,7 +92,7 @@ describe('HCAService', () => {
     it('returns false if the user was not in the bounding box of any authority in the past 14 days', async () => {
       // Returns a point outside the bounding box of any authority
       jest
-        .spyOn(LocationData.prototype, 'getLocationData')
+        .spyOn(LocationService, 'getLocationData')
         .mockReturnValueOnce(mockNullUserLocHistory);
 
       await expect(
@@ -196,7 +196,7 @@ describe('HCAService', () => {
 
     it('returns an empty array if there are no authorities in the area', async () => {
       jest
-        .spyOn(LocationData.prototype, 'getMostRecentUserLoc')
+        .spyOn(LocationService, 'getMostRecentUserGps')
         .mockReturnValueOnce(mockNullMostRecentUserLoc);
       jest.spyOn(HCAService, 'getUserAuthorityList').mockResolvedValueOnce([]);
 
@@ -207,8 +207,8 @@ describe('HCAService', () => {
 
     it('filters out authorities the user has already subscribed to', async () => {
       jest
-        .spyOn(LocationData.prototype, 'getMostRecentUserLoc')
-        .mockReturnValueOnce(mockMostRecentUserLoc);
+        .spyOn(LocationService, 'getMostRecentUserGps')
+        .mockResolvedValueOnce(mockMostRecentUserLoc);
       jest
         .spyOn(HCAService, 'getUserAuthorityList')
         .mockResolvedValueOnce(mockHCA.validParsed);
@@ -220,8 +220,8 @@ describe('HCAService', () => {
 
     it('returns an array of new authorities that the user has not subscribed to and are within their current location', async () => {
       jest
-        .spyOn(LocationData.prototype, 'getMostRecentUserLoc')
-        .mockReturnValueOnce(mockMostRecentUserLoc);
+        .spyOn(LocationService, 'getMostRecentUserGps')
+        .mockResolvedValueOnce(mockMostRecentUserLoc);
       jest.spyOn(HCAService, 'getUserAuthorityList').mockResolvedValueOnce([]);
 
       await expect(HCAService.getNewAuthoritiesInUserLoc()).resolves.toEqual(
@@ -301,6 +301,64 @@ describe('HCAService', () => {
 
       // Doesn't overwrite existing elements
       expect(newAuthorityList[0]).toEqual(mockHCA.validParsed[0]);
+    });
+  });
+
+  describe('isPointInAuthorityBounds', () => {
+    const pointInBounds = { latitude: 37, longitude: -122 };
+
+    it('returns true if the point is the bounds of the authority passed', () => {
+      expect(
+        HCAService.isPointInAuthorityBounds(
+          pointInBounds,
+          mockHCA.validParsed[0],
+        ),
+      ).toBe(true);
+    });
+
+    it('returns false if the point is not a valid coordinate', () => {
+      expect(
+        HCAService.isPointInAuthorityBounds({}, mockHCA.validParsed[0]),
+      ).toBe(false);
+    });
+
+    it('returns false if the authority passed does not have a valid bounding box', () => {
+      expect(
+        HCAService.isPointInAuthorityBounds(
+          pointInBounds,
+          mockHCA.invalidYamlWithoutBounds,
+        ),
+      ).toBe(false);
+    });
+  });
+
+  describe('isValidBoundingBox', () => {
+    const validBounds = {
+      ne: { latitude: 36.42025904738132, longitude: -121.93670068664551 },
+      sw: { latitude: 38.29988330010084, longitude: -123.2516993133545 },
+    };
+
+    it('returns true if a valid bounding box object is passed', () => {
+      expect(HCAService.isValidBoundingBox(validBounds)).toBe(true);
+    });
+
+    it('returns false if a "ne" bound is not passed', () => {
+      expect(HCAService.isValidBoundingBox({ sw: validBounds.sw })).toBe(false);
+    });
+
+    it('returns false if the "ne" bound is not a valid coordinate', () => {
+      expect(
+        HCAService.isValidBoundingBox({ ne: {}, sw: validBounds.sw }),
+      ).toBe(false);
+    });
+
+    it('returns false if a "sw" bound is not passed', () => {
+      expect(HCAService.isValidBoundingBox({ ne: validBounds.ne })).toBe(false);
+    });
+    it('returns false if the "sw" bound is not a valid coordinate', () => {
+      expect(
+        HCAService.isValidBoundingBox({ ne: validBounds.ne, sw: {} }),
+      ).toBe(false);
     });
   });
 });

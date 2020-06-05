@@ -8,8 +8,7 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-import { Button } from '../../components/Button';
-import { Type, Typography } from '../../components/Typography';
+import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { isGPS } from '../../COVIDSafePathsConfig';
@@ -19,7 +18,7 @@ import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
-const Onboarding = props => {
+const Onboarding = (props) => {
   const {
     onboarding4Background,
     onboarding4Button,

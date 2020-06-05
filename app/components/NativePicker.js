@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-import { Typography } from '../components/Typography';
+import { Typography } from '../components';
 import Colors from '../constants/colors';
 import languages from '../locales/languages';
 
@@ -29,7 +29,7 @@ import languages from '../locales/languages';
  * </NativePicker>
  * ```
  */
-export default class NativePicker extends Component {
+export class NativePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +43,7 @@ export default class NativePicker extends Component {
       this.setState({ modalVisible: true });
     };
     const selectedItem = this.props.items.find(
-      i => i.value === this.props.value,
+      (i) => i.value === this.props.value,
     );
     const label = selectedItem?.label || '';
     const value = selectedItem?.value;
@@ -64,7 +64,7 @@ export default class NativePicker extends Component {
               top: 0,
               bottom: 0,
             }}>
-            {this.props.items.map(i => (
+            {this.props.items.map((i) => (
               <Picker.Item key={i.value} label={i.label} value={i.value} />
             ))}
           </Picker>
@@ -114,7 +114,7 @@ export default class NativePicker extends Component {
                     <Picker
                       selectedValue={this.props.value}
                       onValueChange={this.props.onValueChange}>
-                      {this.props.items.map(i => (
+                      {this.props.items.map((i) => (
                         <Picker.Item
                           key={i.value}
                           label={i.label}

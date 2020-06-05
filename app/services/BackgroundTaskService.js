@@ -26,12 +26,12 @@ export default class BackgroundTaskServices {
         requiresBatteryNotLow: false, // Default
         requiresStorageNotLow: false, // Default
       },
-      async taskId => {
+      async (taskId) => {
         console.log('[js] Received background-fetch event: ', taskId);
         executeTask();
         BackgroundFetch.finish(taskId);
       },
-      error => {
+      (error) => {
         console.log('[js] RNBackgroundFetch failed to start', error);
       },
     );

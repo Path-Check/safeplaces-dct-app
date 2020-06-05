@@ -1,13 +1,32 @@
 module.exports = {
   root: true,
   extends: [
+    'plugin:@typescript-eslint/recommended',
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jest/recommended',
   ],
-  parser: 'babel-eslint',
-  plugins: ['react', 'react-hooks', 'react-native', 'detox'],
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint',
+    'prettier',
+    'react',
+    'react-hooks',
+    'react-native',
+    'detox',
+  ],
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {},
+    },
+    react: {
+      version: 'detect',
+    },
+  },
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
@@ -26,15 +45,11 @@ module.exports = {
     'jest/globals': true,
     mocha: true,
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
   ignorePatterns: ['android/**', 'ios/**'],
   rules: {
     // 0 is for off, 1 is for warning, 2 is for error
     'eol-last': 2, // Require file to end with single newline
+    'no-import-assign': 1,
     'no-constant-condition': 2, // Disallow use of constant expressions in conditions
     'no-dupe-keys': 2, // Disallow Duplicate Keys
     'no-empty': 2, // Disallow Empty Block Statements
@@ -67,6 +82,9 @@ module.exports = {
     'react/react-in-jsx-scope': 2, // Prevent missing React when using JSX
     'react/self-closing-comp': 2, // Prevent extra closing tags for components without children,
     'react/prefer-stateless-function': 2, // Use functional components vs classes
+    '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/no-empty-function': [2, { allow: ['arrowFunctions'] }],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   overrides: [
     {
@@ -79,6 +97,13 @@ module.exports = {
       files: ['e2e/**/*.js'], // Or *.test.js
       rules: {
         'jest/expect-expect': 0, // these files do expectations inside page objects
+      },
+    },
+    {
+      // enable the rule specifically for TypeScript files
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': ['error'],
       },
     },
   ],

@@ -6,15 +6,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 
 import { Icons } from '../assets';
+import { Button, Checkbox, IconButton, Typography } from '../components';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import en from '../locales/eula/en.html';
 import es_PR from '../locales/eula/es_PR.html';
 import ht from '../locales/eula/ht.html';
-import { Button } from './Button';
-import { Checkbox } from './Checkbox';
-import { IconButton } from './IconButton';
-import { Typography } from './Typography';
 
 const EULA_FILES = { en, es_PR, ht };
 
@@ -30,7 +27,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const eulaPath = EULA_FILES[selectedLocale] || en;
 
   // Any links inside the EULA should launch a separate browser otherwise you can get stuck inside the app
-  const shouldStartLoadWithRequestHandler = webViewState => {
+  const shouldStartLoadWithRequestHandler = (webViewState) => {
     let shouldLoadRequest = true;
     if (webViewState.url !== DEFAULT_EULA_URL) {
       // If the webpage to load isn't the EULA, load it in a separate browser
