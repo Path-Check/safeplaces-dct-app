@@ -34,7 +34,6 @@ import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
-// import { OnboardingPermissions } from './views/onboarding/OldOnboardingPermissions';
 import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
 import { SettingsScreen } from './views/Settings';
 

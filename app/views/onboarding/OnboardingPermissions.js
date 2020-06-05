@@ -97,23 +97,6 @@ export const OnboardingPermissions = ({ route, navigation }) => {
     navigation.replace('Main');
   }
 
-  // const handleOnPressDone = () => {
-  //   SetStoreData(PARTICIPATE, location.status === PermissionStatus.GRANTED);
-  //   SetStoreData(ONBOARDING_DONE, true);
-  //   navigation.replace('Main');
-  // };
-
-  // const handleButtonPress = () => {
-  //   if (step === 'location') {
-  //     // SetStoreData(ONBOARDING_DONE, true);
-  //     navigation.replace('Main');
-  //   } else {
-  //     navigation.push('OnboardingPermissions', {
-  //       step: steps[step].nextStep
-  //     })
-  //   }
-  // }
-
   return (
     <Theme use='violet'>
       <ImageBackground
