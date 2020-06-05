@@ -1,11 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import {
   Dimensions,
   ImageBackground,
-  Platform,
   StatusBar,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
@@ -28,16 +26,13 @@ export const OnboardingPermissions = ({ route, navigation }) => {
   const { location, notification, authSubscription } = useContext(
     PermissionsContext,
   );
-  // const { step } = route.params;
 
   const handleRequestNotifications = async () => {
-    console.log('handleRequestNotifications')
     await notification.request();
     moveToNextStep();
   };
 
   const handleRequestLocation = async () => {
-    console.log('handleRequestLocation')
     await location.request();
     await handleRequestAuthSubscription()
     moveToNextStep();
@@ -70,12 +65,6 @@ export const OnboardingPermissions = ({ route, navigation }) => {
   }
   const currentStep = steps[route.params.step]
   const { header, subHeader, icon, nextStepParam, handleButtonPress, buttonLabel } = currentStep;
-  // const isiOS = Platform.OS === 'ios';
-  // const isDev = __DEV__;
-
-  // const moveToNextStep = () => {
-  //   setCurrentStep(currentStep + 1);
-  // };
 
   const moveToNextStep = () => {
     if (nextStepParam) {
@@ -159,14 +148,10 @@ const styles = StyleSheet.create({
   contentContainer: {
     width: width * 0.9,
     flex: 1,
-    // justifyContent: 'center',
     alignSelf: 'center',
     marginTop: 70,
   },
   headerText: {
-    // textAlign: 'center',
-    // justifyContent: 'center',
-    // alignSelf: 'center',
     lineHeight: 32,
     color: Colors.WHITE,
     fontSize: 26,
@@ -175,7 +160,6 @@ const styles = StyleSheet.create({
   subheaderText: {
     color: Colors.WHITE,
     marginTop: 24,
-    // width: width * 0.55,
     lineHeight: 24,
     fontSize: 18,
     fontFamily: fontFamily.primaryRegular,
