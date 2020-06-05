@@ -6,6 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { Theme } from './app/constants/themes';
 import { Entry } from './app/Entry';
+import { ExposureNotificationsProvider } from './app/ExposureNotificationContext';
 import { FlagsProvider } from './app/helpers/Flags';
 import { PermissionsProvider } from './app/PermissionsContext';
 import VersionCheckService from './app/services/VersionCheckService';
@@ -19,7 +20,9 @@ export const UnconnectedApp = () => (
     <MenuProvider>
       <Theme use='default'>
         <PermissionsProvider>
-          <Entry />
+          <ExposureNotificationsProvider>
+            <Entry />
+          </ExposureNotificationsProvider>
         </PermissionsProvider>
       </Theme>
     </MenuProvider>

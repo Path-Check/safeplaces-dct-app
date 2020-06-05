@@ -29,6 +29,7 @@ import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
 import { Main } from './views/Main';
 import NewsScreen from './views/News';
+import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
@@ -101,6 +102,10 @@ const MainApp = () => (
     <Stack.Screen
       name={FEATURE_FLAG_SCREEN_NAME}
       component={FeatureFlagsScreen}
+    />
+    <Stack.Screen
+      name='EnableExposureNotifications'
+      component={EnableExposureNotifications}
     />
   </Stack.Navigator>
 );
