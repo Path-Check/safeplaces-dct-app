@@ -5,7 +5,7 @@ import { Alert } from 'react-native';
  * Triggers an alert before returning to the settings screen.
  * Use this on screens after the upload code.
  */
-const exitWarningAlert = navigation => {
+const exitWarningAlert = (navigation) => {
   Alert.alert(
     i18next.t('export.exit_warning_title'),
     i18next.t('export.exit_warning_body'),

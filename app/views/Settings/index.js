@@ -40,14 +40,14 @@ export const SettingsScreen = ({ navigation }) => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
     // TODO: extract into service or hook
-    getUserLocaleOverride().then(locale => locale && setUserLocale(locale));
+    getUserLocaleOverride().then((locale) => locale && setUserLocale(locale));
 
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
   }, [navigation]);
 
-  const localeChanged = async locale => {
+  const localeChanged = async (locale) => {
     // If user picks manual lang, update and store setting
     try {
       await setUserLocaleOverride(locale);

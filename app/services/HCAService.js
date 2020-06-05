@@ -192,8 +192,8 @@ class HCAService {
     const locData = await LocationService.getLocationData();
     const authorities = await this.getAuthoritiesList();
 
-    return authorities.filter(authority =>
-      locData.some(point => this.isPointInAuthorityBounds(point, authority)),
+    return authorities.filter((authority) =>
+      locData.some((point) => this.isPointInAuthorityBounds(point, authority)),
     );
   }
 
@@ -210,7 +210,7 @@ class HCAService {
     const userAuthorities = await this.getUserAuthorityList();
 
     return authoritiesList.filter(
-      authority =>
+      (authority) =>
         this.isPointInAuthorityBounds(mostRecentUserLoc, authority) &&
         !userAuthorities.includes(authority),
     );

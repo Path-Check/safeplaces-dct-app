@@ -18,7 +18,7 @@ const makeImportResults = (label = '', error = false) => ({
   label,
 });
 
-const ImportScreen = props => {
+const ImportScreen = (props) => {
   const { t } = useTranslation();
   const {
     navigation: { goBack },

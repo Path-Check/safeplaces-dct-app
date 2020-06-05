@@ -4,7 +4,7 @@ import * as languages from '../languages';
 
 const BACKUP_SETTINGS_MANAGER = NativeModules.SettingsManager;
 
-const setDeviceLocale = locale => {
+const setDeviceLocale = (locale) => {
   NativeModules.SettingsManager = {
     settings: { AppleLocale: locale },
     I18nManager: { localeIdentifier: locale },

@@ -73,7 +73,7 @@ export default class LocationServices {
       stopOnStillActivity: false,
     });
 
-    BackgroundGeolocation.on('error', error => {
+    BackgroundGeolocation.on('error', (error) => {
       console.log('[ERROR] BackgroundGeolocation error:', error);
     });
 
@@ -81,7 +81,7 @@ export default class LocationServices {
       console.log('[INFO] BackgroundGeolocation service has been started');
     });
 
-    BackgroundGeolocation.on('authorization', status => {
+    BackgroundGeolocation.on('authorization', (status) => {
       console.log(
         '[INFO] BackgroundGeolocation authorization status: ' + status,
       );
@@ -167,14 +167,14 @@ export default class LocationServices {
 
   static async getHasPotentialExposure() {
     const dayBin = await GetStoreData(CROSSED_PATHS, false);
-    return !!dayBin && dayBin.some(exposure => exposure > 0);
+    return !!dayBin && dayBin.some((exposure) => exposure > 0);
   }
 
   static async getBackgroundGeoStatus() {
     return new Promise((resolve, reject) => {
       BackgroundGeolocation.checkStatus(
-        status => resolve(status),
-        e => reject(e),
+        (status) => resolve(status),
+        (e) => reject(e),
       );
     });
   }

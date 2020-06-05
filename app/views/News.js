@@ -53,7 +53,7 @@ class NewsScreen extends Component {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
     GetStoreData(AUTHORITY_NEWS)
-      .then(nameNewsString => {
+      .then((nameNewsString) => {
         // Bring in news from the various authorities.  This is
         // pulled down from the web when you subscribe to an Authority
         // on the Settings page.
@@ -69,7 +69,7 @@ class NewsScreen extends Component {
           newsUrls: arr,
         });
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
 
   componentWillUnmount() {

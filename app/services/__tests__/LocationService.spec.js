@@ -11,7 +11,7 @@ import LocationServices, {
 jest.mock('@mauron85/react-native-background-geolocation');
 
 function mockBackgroundGeolocationCheckStatus(data) {
-  BackgroundGeolocation.checkStatus.mockImplementation(callback => {
+  BackgroundGeolocation.checkStatus.mockImplementation((callback) => {
     callback(data);
   });
 }
@@ -20,13 +20,13 @@ function mockBackgroundGeolocationCheckStatus(data) {
 const storage = {};
 
 function resetStorage() {
-  Object.keys(storage).forEach(k => delete storage[k]);
+  Object.keys(storage).forEach((k) => delete storage[k]);
 }
 
 beforeEach(() => {
   resetStorage();
   jest.resetAllMocks();
-  AsyncStorage.getItem.mockImplementation(key => storage[key]);
+  AsyncStorage.getItem.mockImplementation((key) => storage[key]);
 });
 
 it('has the correct time interval', () => {

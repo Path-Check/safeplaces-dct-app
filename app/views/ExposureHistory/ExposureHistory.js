@@ -48,7 +48,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
   }, [navigation]);
 
   const hasExposure =
-    history?.length && history.some(h => h.exposureMinutes > 0);
+    history?.length && history.some((h) => h.exposureMinutes > 0);
 
   const themeBackground = hasExposure
     ? charcoal.background

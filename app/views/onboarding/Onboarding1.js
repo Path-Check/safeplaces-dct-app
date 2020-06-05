@@ -34,14 +34,14 @@ class Onboarding extends Component {
   }
 
   componentDidMount() {
-    getUserLocaleOverride().then(locale => {
+    getUserLocaleOverride().then((locale) => {
       if (locale) {
         this.setState({ locale });
       }
     });
   }
 
-  onLocaleChange = async locale => {
+  onLocaleChange = async (locale) => {
     if (locale) {
       try {
         await setUserLocaleOverride(locale);
