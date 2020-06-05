@@ -278,7 +278,7 @@ public class DistanceFilterLocationProvider extends AbstractLocationProvider imp
     }
 
     public void onLocationChanged(Location location) {
-        logger.debug("Location change: {} isMoving={}", location.toString(), isMoving);
+       // logger.debug("Location change: {} isMoving={}", location.toString(), isMoving);
 
         if (!isMoving && !isAcquiringStationaryLocation && stationaryLocation==null) {
             // Perhaps our GPS signal was interupted, re-acquire a stationaryLocation now.
@@ -666,6 +666,12 @@ public class DistanceFilterLocationProvider extends AbstractLocationProvider imp
                     boolean enableHighAccuracy = true;
 
                     final Location location = getCurrentLocation(timeout, maximumAge, enableHighAccuracy);
+
+                    if(location.getAccuracy() < 15) {
+                        handleLocation(location);
+                        return;
+                    }
+
                     if(locationIndex >= 5) {
                         locationIndex = 0;
                         handleLocation(location);
