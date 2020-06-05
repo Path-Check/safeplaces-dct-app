@@ -15,7 +15,7 @@ import { Images } from '../assets';
 import { NavigationBarWrapper, Typography } from '../components';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
-import { useAssets } from '../services/hooks/useAssets';
+import { useAssets } from '../TracingStrategyAssets';
 
 const PRIVACY_POLICY_URL =
   'https://docs.google.com/document/d/17u0f8ni9S0D4w8RCUlMMqxAlXKJAd2oiYGP8NUwkINo/edit';

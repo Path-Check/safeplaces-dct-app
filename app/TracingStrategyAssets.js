@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import { Images } from '../../assets';
-import { isGPS } from '../../COVIDSafePathsConfig';
+import { Images } from './assets';
+import { isGPS } from './COVIDSafePathsConfig';
 
 export function useAssets() {
   const { t } = useTranslation();
