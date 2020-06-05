@@ -74,6 +74,12 @@
 		B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
 		B596C07024880B7000943B79 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596C06F24880B7000943B79 /* String+Extensions.swift */; };
 		B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* PTCExposureManagerModule.m */; };
+		B5FC37C12489B075006474EB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C02489B075006474EB /* APIClient.swift */; };
+		B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C52489B1B3006474EB /* APIRequest.swift */; };
+		B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C92489B1C1006474EB /* JSON.swift */; };
+		B5FC37CC2489B251006474EB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37CB2489B251006474EB /* Result.swift */; };
+		B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37CD2489B359006474EB /* TypeAliases.swift */; };
+		B5FC37D02489B3DE006474EB /* StructuredError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37CF2489B3DE006474EB /* StructuredError.swift */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
 		BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */; };
 		C53FD08B24719AD1006D3268 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6724284A52008754AC /* UIKit.framework */; };
@@ -300,6 +306,12 @@
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
 		B596C06F24880B7000943B79 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		B596C0712488127D00943B79 /* PTCExposureManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCExposureManagerModule.m; sourceTree = "<group>"; };
+		B5FC37C02489B075006474EB /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		B5FC37C52489B1B3006474EB /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		B5FC37C92489B1C1006474EB /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		B5FC37CB2489B251006474EB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		B5FC37CD2489B359006474EB /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		B5FC37CF2489B3DE006474EB /* StructuredError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredError.swift; sourceTree = "<group>"; };
 		BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
 		C53FD0C124719AD1006D3268 /* BTE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -664,6 +676,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B5FC37BD2489B05F006474EB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC37D12489C25D006474EB /* Requests */,
+				B5FC37C02489B075006474EB /* APIClient.swift */,
+				B5FC37CF2489B3DE006474EB /* StructuredError.swift */,
+				B5FC37CB2489B251006474EB /* Result.swift */,
+				B5FC37CD2489B359006474EB /* TypeAliases.swift */,
+				B5FC37C52489B1B3006474EB /* APIRequest.swift */,
+				B5FC37C92489B1C1006474EB /* JSON.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		B5FC37D12489C25D006474EB /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
 		C53FD07C247199A4006D3268 /* GPS */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +717,7 @@
 		C53FD0C324719C25006D3268 /* BTE */ = {
 			isa = PBXGroup;
 			children = (
+				B5FC37BD2489B05F006474EB /* API */,
 				C57BDFB124883EF400CE62B1 /* bridge */,
 				C5C850C92480156200A494CA /* AppDelegate.m */,
 				C5C850C6248014F700A494CA /* main.m */,
@@ -1184,11 +1218,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5FC37CC2489B251006474EB /* Result.swift in Sources */,
 				C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */,
+				B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */,
 				C5C850CA2480156200A494CA /* AppDelegate.m in Sources */,
 				B596C07024880B7000943B79 /* String+Extensions.swift in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
 				B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */,
+				B5FC37C12489B075006474EB /* APIClient.swift in Sources */,
+				B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */,
+				B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */,
+				B5FC37D02489B3DE006474EB /* StructuredError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

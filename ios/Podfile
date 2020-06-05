@@ -57,6 +57,7 @@ def bte_pods
   ### These should be removed in a future commit
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
+  pod 'Alamofire', '~> 4.9.1'
 end
 
 target 'GPS' do
