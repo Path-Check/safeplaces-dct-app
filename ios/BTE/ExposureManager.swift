@@ -59,9 +59,7 @@ final class ExposureManager: NSObject {
     func finish(_ result: Result<([Exposure], Int)>) {
       
       for localURL in localURLs {
-        APIClient.shared.request(DiagnosisKeyURLRequest.delete(localURL)) { result in
-          // Handle Result
-        }
+        APIClient.shared.request(DiagnosisKeyURLRequest.delete(localURL)) { _ in }
       }
       
       let success: Bool
@@ -122,16 +120,7 @@ final class ExposureManager: NSObject {
         APIClient.shared.request(ExposureConfigurationRequest.get) { result in
           switch result {
           case .success(let configuration):
-            let exposureConfiguration = ENExposureConfiguration()
-            exposureConfiguration.minimumRiskScore = configuration.minimumRiskScore
-            exposureConfiguration.attenuationLevelValues = configuration.attenuationLevelValues as [NSNumber]
-            exposureConfiguration.attenuationWeight = configuration.attenuationWeight
-            exposureConfiguration.daysSinceLastExposureLevelValues = configuration.daysSinceLastExposureLevelValues as [NSNumber]
-            exposureConfiguration.daysSinceLastExposureWeight = configuration.daysSinceLastExposureWeight
-            exposureConfiguration.durationLevelValues = configuration.durationLevelValues as [NSNumber]
-            exposureConfiguration.durationWeight = configuration.durationWeight
-            exposureConfiguration.transmissionRiskLevelValues = configuration.transmissionRiskLevelValues as [NSNumber]
-            exposureConfiguration.transmissionRiskWeight = configuration.transmissionRiskWeight
+            let exposureConfiguration = configuration.asENExposureConfiguration
             ExposureManager.shared.manager.detectExposures(configuration: exposureConfiguration, diagnosisKeyURLs: localURLs) { summary, error in
               if let error = error {
                 finish(.failure(error))
