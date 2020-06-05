@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { Icons } from '../../../assets';
+import { Icons, Images } from '../../../assets';
 import { Typography } from '../../../components/Typography';
+import Colors from '../../../constants/colors';
 import { MetaContext } from '../AssessmentContext';
-import AssessmentEnd, { assessmentStyles } from './AssessmentEnd';
+import AssessmentEnd from './AssessmentEnd';
 
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentEndComplete = () => {
@@ -13,12 +14,13 @@ const AssessmentEndComplete = () => {
   return (
     <AssessmentEnd
       ctaAction={dismiss}
+      backgroundColor={Colors.SECONDARY_10}
+      backgroundImage={Images.EmptyPathBackground}
       icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.complete_cta')}
       description={
         <Trans t={t} i18nKey='assessment.complete_description'>
           <Typography />
-          <Typography style={assessmentStyles.boldBlackText} />
         </Trans>
       }
       title={t('assessment.complete_title')}

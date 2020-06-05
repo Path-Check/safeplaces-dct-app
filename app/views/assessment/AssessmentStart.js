@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Icons } from '../../assets';
 
+import { Icons, Images } from '../../assets';
+import Colors from '../../constants/colors';
 /**
  * @typedef { import("./Assessment").SurveyQuestion } SurveyQuestion
  * @typedef { import("./Assessment").SurveyOption } SurveyOption
@@ -26,10 +27,13 @@ const AssessmentStart = ({ navigation }) => {
           option: agreeOption,
         });
       }}
+      backgroundColor={Colors.SECONDARY_10}
+      backgroundImage={Images.EmptyPathBackground}
       icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.start_cta')}
       title={t('assessment.start_title')}
-      description={t('assessment.start_description')} />
+      description={t('assessment.start_description')}
+    />
   );
 };
 

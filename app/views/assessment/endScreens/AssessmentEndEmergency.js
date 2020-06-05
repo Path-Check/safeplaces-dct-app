@@ -2,10 +2,11 @@ import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Linking } from 'react-native';
 
-import { Icons } from '../../../assets';
+import { Icons, Images } from '../../../assets';
 import { Typography } from '../../../components/Typography';
+import Colors from '../../../constants/colors';
 import { Colors as AssessmentColors } from '../constants';
-import AssessmentEnd, { assessmentStyles } from './AssessmentEnd';
+import AssessmentEnd from './AssessmentEnd';
 
 /** @type {React.FunctionComponent<{}>} */
 const AssessmentEndEmergency = () => {
@@ -17,12 +18,13 @@ const AssessmentEndEmergency = () => {
         Linking.openURL('tel:911');
       }}
       ctaColor={AssessmentColors.DANGER}
+      backgroundColor={Colors.SECONDARY_10}
+      backgroundImage={Images.EmptyPathBackground}
       icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.emergency_cta')}
       description={
         <Trans t={t} i18nKey='assessment.emergency_description'>
           <Typography />
-          <Typography style={assessmentStyles.boldBlackText} />
         </Trans>
       }
       title={t('assessment.emergency_title')}

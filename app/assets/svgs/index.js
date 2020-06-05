@@ -1,3 +1,4 @@
+import AnonymizedData from './anonymizedData';
 import BackArrow from './backArrow';
 import Checkmark from './checkmarkIcon';
 import Close from './close';
@@ -20,6 +21,7 @@ import Warning from './warning';
 import XmarkIcon from './xmarkIcon';
 
 export const Icons = {
+  AnonymizedData,
   BackArrow,
   Checkmark,
   Close,
