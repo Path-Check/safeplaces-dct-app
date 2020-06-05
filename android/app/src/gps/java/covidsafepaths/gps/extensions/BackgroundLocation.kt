@@ -7,6 +7,7 @@ package covidsafepaths.gps.extensions
 //  Created by Tambet Ingo on 05/28/2020.
 //
 
+import android.util.Log
 import com.fonfon.kgeohash.GeoHash
 import com.marianhello.bgloc.data.BackgroundLocation
 import covidsafepaths.gps.storage.RealmSecureStorage
@@ -56,5 +57,11 @@ internal fun scrypt(source: String): String =
         SCrypt.generate(source.toByteArray(), SALT, 4096, 8, 1, 8)
                 .fold("", { str, it -> str + "%02x".format(it) })
 
-fun BackgroundLocation.scryptHashes(): List<String> =
-        geohashes().map { scrypt(it) }
+fun BackgroundLocation.scryptHashes(): List<String> {
+    val start = System.currentTimeMillis()
+    val hashes = geohashes().map { scrypt(it) }
+    val duration = System.currentTimeMillis() - start
+    Log.d("Location", "Encrypted ${hashes.size} hashes in ${duration}ms")
+
+    return hashes
+}

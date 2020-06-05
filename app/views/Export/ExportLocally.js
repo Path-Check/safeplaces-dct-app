@@ -15,18 +15,19 @@ import LinearGradient from 'react-native-linear-gradient';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import { isPlatformiOS } from './../Util';
-import { Icons } from '../assets';
-import { Button } from '../components/Button';
-import { IconButton } from '../components/IconButton';
-import { Typography } from '../components/Typography';
-import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
-import { Theme } from '../constants/themes';
+import { Icons } from '../../assets';
+import { Button, IconButton, Typography } from '../../components';
+import Colors from '../../constants/colors';
+import fontFamily from '../../constants/fonts';
+import { Theme } from '../../constants/themes';
+import { isPlatformiOS } from '../../Util';
 
 const base64 = RNFetchBlob.base64;
 
-export const ExportScreen = ({ navigation }) => {
+// NOTE:
+// This is the old way we export. This is still the default, but will
+// become flipped behind the feature flag once we have staging for uploading.
+const ExportLocally = ({ navigation }) => {
   const { t } = useTranslation();
   function handleBackPress() {
     navigation.goBack();
@@ -52,7 +53,13 @@ export const ExportScreen = ({ navigation }) => {
       let unixtimeUTC = Date.parse(nowUTC);
 
       let options = {};
-      let jsonData = JSON.stringify(locationData);
+      let jsonData = JSON.stringify(
+        locationData.map(({ latitude, longitude, time }) => ({
+          latitude,
+          longitude,
+          time,
+        })),
+      );
       const title = 'COVIDSafePaths.json';
       const filename = unixtimeUTC + '.json';
       const message = 'Here is my location log from COVID Safe Paths.';
@@ -194,10 +201,12 @@ const styles = StyleSheet.create({
   },
 });
 
-ExportScreen.propTypes = {
+ExportLocally.propTypes = {
   shareButtonDisabled: PropTypes.bool,
 };
 
-ExportScreen.defaultProps = {
+ExportLocally.defaultProps = {
   shareButtonDisabled: true,
 };
+
+export default ExportLocally;

@@ -2,7 +2,7 @@ import styled, { css } from '@emotion/native';
 import dayjs from 'dayjs';
 import React from 'react';
 
-import { Typography } from '../../components/Typography';
+import { Typography } from '../../components';
 import languages from '../../locales/languages';
 import { CalendarDay, DayOfWeek } from './CalendarDay';
 import { DataCircle, Risk } from './DataCircle';

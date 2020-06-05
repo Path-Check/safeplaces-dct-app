@@ -20,11 +20,13 @@ import {
 import validUrl from 'valid-url';
 
 import { Icons } from '../assets';
-import { Button } from '../components/Button';
-import { Checkbox } from '../components/Checkbox';
-import { DynamicTextInput } from '../components/DynamicTextInput';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Typography } from '../components/Typography';
+import {
+  Button,
+  Checkbox,
+  DynamicTextInput,
+  NavigationBarWrapper,
+  Typography,
+} from '../components';
 import Colors from '../constants/colors';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { Theme } from '../constants/themes';

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Image, Linking, TouchableOpacity, View } from 'react-native';
 
 import { Images } from '../../assets';
-import { Typography } from '../../components/Typography';
+import { Typography } from '../../components';
 import { styles } from './style';
 
 const MAYO_COVID_URL = 'https://www.mayoclinic.org/coronavirus-covid-19';
