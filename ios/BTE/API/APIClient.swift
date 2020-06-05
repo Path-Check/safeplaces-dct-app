@@ -3,6 +3,7 @@ import Alamofire
 final class APIClient {
 
   let baseUrl: URL
+  static let shared = APIClient(baseUrl: URL(string: "READ FROM ENV")!)
 
   private let sessionManager: SessionManager
 
