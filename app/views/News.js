@@ -9,8 +9,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 import languages from './../locales/languages';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { NewsItem } from '../components/NewsItem';
+import { NavigationBarWrapper, NewsItem } from '../components';
 import Colors from '../constants/colors';
 import { AUTHORITY_NEWS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';

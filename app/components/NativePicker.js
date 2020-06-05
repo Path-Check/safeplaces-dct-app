@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-import { Typography } from '../components/Typography';
+import { Typography } from '../components';
 import Colors from '../constants/colors';
 import languages from '../locales/languages';
 
@@ -29,7 +29,7 @@ import languages from '../locales/languages';
  * </NativePicker>
  * ```
  */
-export default class NativePicker extends Component {
+export class NativePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {

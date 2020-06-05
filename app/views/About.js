@@ -14,8 +14,7 @@ import { SvgXml } from 'react-native-svg';
 import packageJson from '../../package.json';
 import fontFamily from './../constants/fonts';
 import { Icons } from '../assets';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Typography } from '../components/Typography';
+import { NavigationBarWrapper, Typography } from '../components';
 import Colors from '../constants/colors';
 import { useAssets } from '../TracingStrategyAssets';
 

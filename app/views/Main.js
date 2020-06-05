@@ -4,7 +4,7 @@ import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
 import { Icons } from '../assets';
-import { IconButton } from '../components/IconButton';
+import { IconButton } from '../components';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import { isGPS } from '../COVIDSafePathsConfig';
@@ -28,7 +28,7 @@ export const Main = () => {
 
   const [location, setLocation] = useState({
     canTrack: true,
-    reason: '',
+    reason: null,
     hasPotentialExposure: false,
   });
 

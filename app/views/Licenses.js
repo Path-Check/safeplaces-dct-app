@@ -12,8 +12,7 @@ import {
 
 import fontFamily from './../constants/fonts';
 import { Images } from '../assets';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Typography } from '../components/Typography';
+import { NavigationBarWrapper, Typography } from '../components';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import { useAssets } from '../TracingStrategyAssets';
