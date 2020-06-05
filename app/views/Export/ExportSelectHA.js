@@ -10,6 +10,7 @@ import {
 import { FlatList } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SvgXml } from 'react-native-svg';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Icons } from '../../assets';
 import { Button } from '../../components/Button';
@@ -18,24 +19,19 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
-import { HCAService } from '../../services/HCAService';
-
-const getParsedAuthorities = async () => {
-  const authorities = await HCAService.getAuthoritiesList();
-  return authorities.map(authority => ({
-    name: Object.keys(authority)[0],
-    url: Object.values(authority)[0][0].url,
-  }));
-};
+import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
+import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
 
 export const ExportSelectHA = ({ navigation }) => {
   const { t } = useTranslation();
 
-  const [authorities, setAuthorities] = useState(null);
-  const [selectedAuthority, setSelectedAuthority] = useState(null);
+  const dispatch = useDispatch();
   useEffect(() => {
-    getParsedAuthorities().then(setAuthorities);
-  }, []);
+    dispatch(getHealthcareAuthorities());
+  }, [dispatch]);
+
+  const authorities = useSelector(healthcareAuthorityOptionsSelector);
+  const [selectedAuthority, setSelectedAuthority] = useState(null);
 
   const toggleSelected = HA => {
     if (HA === selectedAuthority) {

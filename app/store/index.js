@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { createImmutableStateInvariantMiddleware } from '@reduxjs/toolkit';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { createMigrate, persistReducer, persistStore } from 'redux-persist';
+import thunk from 'redux-thunk';
 
 import migrations from './migrations';
 import rootReducer from './reducers/rootReducer';
@@ -12,7 +13,7 @@ const composeEnhancers =
   compose;
 
 const enhancers = composeEnhancers(
-  applyMiddleware(createImmutableStateInvariantMiddleware()),
+  applyMiddleware(thunk, createImmutableStateInvariantMiddleware()),
 );
 
 export const STORE_VERSION = 0;

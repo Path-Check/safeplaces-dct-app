@@ -6,9 +6,6 @@ import { Icons } from '../../assets';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
 
-const MOCK_ENDPOINT =
-  'https://private-anon-da01e87e46-safeplaces.apiary-mock.com/upload';
-
 export const ExportComplete = ({ navigation, route }) => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
@@ -20,7 +17,8 @@ export const ExportComplete = ({ navigation, route }) => {
     setIsUploading(true);
     try {
       const concernPoints = await NativeModules.SecureStorageManager.getLocations();
-      const res = await fetch(MOCK_ENDPOINT, {
+      const endpoint = `${selectedAuthority.ingest_url}/upload`;
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

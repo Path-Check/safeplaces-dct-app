@@ -121,11 +121,14 @@ export const ExportSelectHA = ({ route, navigation }) => {
   const [codeInvalid, setCodeInvalid] = useState(false);
 
   const { selectedAuthority } = route.params;
-
   const validateCode = async () => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
+      // The api is currently using body params right now. Once this is resolved we can uncomment this.
+      // Until then, we assume the code is good on this screen (hit the mock endpoint), and instead failure occurs on consent
+      // const checkAccessCodeRoute = `${selectedAuthority.ingest_url}/access-code/valid`;
+      // const res = await fetch(`${checkAccessCodeRoute}?access_code=${code}`);
       const res = await fetch(`${MOCK_ENDPOINT}?access_code=${code}`);
       const { valid } = await res.json();
       if (valid) {

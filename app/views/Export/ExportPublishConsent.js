@@ -6,9 +6,6 @@ import { Icons } from '../../assets';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
 
-const MOCK_ENDPOINT =
-  'https://private-anon-da01e87e46-safeplaces.apiary-mock.com/consent';
-
 export const ExportPublishConsent = ({ navigation, route }) => {
   const [isConsenting, setIsConsenting] = useState(false);
   const onClose = () => exitWarningAlert(navigation);
@@ -19,7 +16,8 @@ export const ExportPublishConsent = ({ navigation, route }) => {
   const consent = async () => {
     setIsConsenting(true);
     try {
-      const res = await fetch(`${MOCK_ENDPOINT}`, {
+      const endpoint = `${selectedAuthority.ingest_url}/consent`;
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
