@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   extends: [
+    'plugin:@typescript-eslint/recommended',
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
@@ -81,6 +82,9 @@ module.exports = {
     'react/react-in-jsx-scope': 2, // Prevent missing React when using JSX
     'react/self-closing-comp': 2, // Prevent extra closing tags for components without children,
     'react/prefer-stateless-function': 2, // Use functional components vs classes
+    '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/no-empty-function': [2, { allow: ['arrowFunctions'] }],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   overrides: [
     {
@@ -93,6 +97,13 @@ module.exports = {
       files: ['e2e/**/*.js'], // Or *.test.js
       rules: {
         'jest/expect-expect': 0, // these files do expectations inside page objects
+      },
+    },
+    {
+      // enable the rule specifically for TypeScript files
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': ['error'],
       },
     },
   ],
