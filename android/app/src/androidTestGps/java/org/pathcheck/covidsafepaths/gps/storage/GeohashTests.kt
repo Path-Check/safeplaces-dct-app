@@ -55,7 +55,7 @@ class GeohashTests {
 
     @Test
     fun testScrypt() {
-        assertEquals("e727d7eb7c51d1b3", scrypt("gcpuuz8u1586865600"))
+        assertEquals("c9414c55812d796a", scrypt("gcpuuz8u1586865600000"))
     }
 
     @Test

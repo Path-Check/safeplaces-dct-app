@@ -2,23 +2,22 @@
 import React, { useEffect, useState } from 'react';
 import { BackHandler, StyleSheet, View } from 'react-native';
 
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Switch } from '../components/Switch';
-import { Typography } from '../components/Typography';
+import { NavigationBarWrapper, Switch, Typography } from '../components';
 import Colors from '../constants/colors';
 import { getBuildtimeFlags } from '../constants/flagsEnv';
 import { DEBUG_MODE } from '../constants/storage';
 import { Theme } from '../constants/themes';
-import { getCleanedFlagName, useFlags } from '../helpers/Flags';
+import { getCleanedFlagName } from '../helpers/Flags';
 import { GetStoreData } from '../helpers/General';
 import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
+import { useFlags } from '../services/hooks/useFlags';
 
 export const FEATURE_FLAG_SCREEN_NAME = 'FeatureFlagsScreen';
 
 export const FlagToggleRow = ({ name, val, onValueChange }) => {
   const buildtimeFlags = getBuildtimeFlags();
 
-  const getBuildtimeFlagVal = flagName =>
+  const getBuildtimeFlagVal = (flagName) =>
     buildtimeFlags[flagName] ? 'On' : 'Off';
 
   return (
@@ -54,7 +53,7 @@ export const ExposureModeToggleRow = () => {
     setInitalExposureVal();
   }, []);
 
-  const toggleExposureMode = val => {
+  const toggleExposureMode = (val) => {
     val ? enableDebugMode() : disableDebugMode();
     setIsExposed(val);
   };
@@ -84,12 +83,12 @@ export const FlagToggleList = () => {
   const [flags, setFlag] = useFlags();
   const alphabetizedFlags = Object.keys(flags).sort(); // Prevents toggle reordering
 
-  const toggleFlag = async key => setFlag(key, !flags[key]);
+  const toggleFlag = async (key) => setFlag(key, !flags[key]);
 
   return (
     <View style={styles.toggleList}>
       <ExposureModeToggleRow />
-      {alphabetizedFlags.map(key => {
+      {alphabetizedFlags.map((key) => {
         return (
           <FlagToggleRow
             key={key}

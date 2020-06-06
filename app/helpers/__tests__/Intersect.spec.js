@@ -154,27 +154,19 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.concern,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.concern,
-          TEST_MOMENT.clone()
-            .subtract(7, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
-          TEST_MOMENT.clone()
-            .subtract(10, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
-          TEST_MOMENT.clone()
-            .subtract(17, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
         ),
       ];
 
@@ -201,27 +193,19 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.concern,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.concern,
-          TEST_MOMENT.clone()
-            .subtract(7, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
-          TEST_MOMENT.clone()
-            .subtract(10, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
-          TEST_MOMENT.clone()
-            .subtract(17, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
         ),
       ];
 
@@ -270,27 +254,19 @@ describe('intersectSetIntoBins', () => {
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.base,
           //TEST_MOMENT_MS - 3 * 24 * 60 * 60 * 1000,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.base,
-          TEST_MOMENT.clone()
-            .subtract(7, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
-          TEST_MOMENT.clone()
-            .subtract(10, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.base,
-          TEST_MOMENT.clone()
-            .subtract(17, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
         ),
       ];
       // same locations for the concern array, at the same times
@@ -301,27 +277,19 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.concern,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.concern,
-          TEST_MOMENT.clone()
-            .subtract(7, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
-          TEST_MOMENT.clone()
-            .subtract(10, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
-          TEST_MOMENT.clone()
-            .subtract(17, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
         ),
       ];
 
@@ -360,27 +328,19 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.base,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(), // - dayjs.duration(3, 'days').asMilliseconds(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(), // - dayjs.duration(3, 'days').asMilliseconds(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.base,
-          TEST_MOMENT.clone()
-            .subtract(7, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
-          TEST_MOMENT.clone()
-            .subtract(10, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.base,
-          TEST_MOMENT.clone()
-            .subtract(17, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
         ),
       ];
       // LOOK SHARP ... the locations are in a different order (so at different times)
@@ -391,27 +351,19 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.concern,
-          TEST_MOMENT.clone()
-            .subtract(7, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.concern,
-          TEST_MOMENT.clone()
-            .subtract(10, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
-          TEST_MOMENT.clone()
-            .subtract(17, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
         ),
       ];
 
@@ -441,27 +393,19 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.base,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.base,
-          TEST_MOMENT.clone()
-            .subtract(7, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
-          TEST_MOMENT.clone()
-            .subtract(10, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.base,
-          TEST_MOMENT.clone()
-            .subtract(17, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
         ),
       ];
 
@@ -473,27 +417,19 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.no_concern,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.no_concern,
-          TEST_MOMENT.clone()
-            .subtract(7, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(7, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hobart.no_concern,
-          TEST_MOMENT.clone()
-            .subtract(10, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(10, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.no_concern,
-          TEST_MOMENT.clone()
-            .subtract(17, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
         ),
       ];
 
@@ -524,9 +460,7 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
       ];
 
@@ -541,10 +475,7 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .add(30, 'minutes')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').add(30, 'minutes').valueOf(),
         ),
       ];
 
@@ -578,9 +509,7 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
       ];
 
@@ -592,15 +521,11 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
-          TEST_MOMENT.clone()
-            .subtract(3, 'minutes')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'minutes').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
@@ -642,9 +567,7 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
           dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
           dayjs.duration(15, 'minutes').asMilliseconds(), //1000 * 60 * 15 backfill interval is 15 minutes, or a total of 5 location points
         ),
@@ -665,15 +588,11 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
-          TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.concern,
-          TEST_MOMENT.clone()
-            .subtract(17, 'days')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(17, 'days').valueOf(),
         ),
       ];
 
@@ -741,9 +660,7 @@ describe('intersectSetIntoBins', () => {
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.base,
           //TEST_MOMENT_MS - 3 * 24 * 60 * 60 * 1000,
-          THIS_TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          THIS_TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
       ];
       // same locations, still spanning midnight
@@ -754,9 +671,7 @@ describe('intersectSetIntoBins', () => {
         ),
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.hammerfest.concern,
-          THIS_TEST_MOMENT.clone()
-            .subtract(3, 'days')
-            .valueOf(),
+          THIS_TEST_MOMENT.clone().subtract(3, 'days').valueOf(),
         ),
       ];
 

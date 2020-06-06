@@ -5,7 +5,7 @@ import healthcareAuthoritiesReducer from './healthcareAuthoritiesReducer';
 
 const rootReducer = combineReducers({
   onboarding: onboardingReducer,
-  healthcareAuthorities: healthcareAuthoritiesReducer
+  healthcareAuthorities: healthcareAuthoritiesReducer,
 });
 
 export default rootReducer;

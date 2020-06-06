@@ -33,7 +33,7 @@ export const ExportSelectHA = ({ navigation }) => {
   const authorities = useSelector(healthcareAuthorityOptionsSelector);
   const [selectedAuthority, setSelectedAuthority] = useState(null);
 
-  const toggleSelected = HA => {
+  const toggleSelected = (HA) => {
     if (HA === selectedAuthority) {
       setSelectedAuthority(null);
     } else {

@@ -1,8 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { createAction } from '@reduxjs/toolkit';
 import Yaml from 'js-yaml';
-import { Action } from 'redux';
-import { ThunkAction } from 'redux-thunk';
-import RNFetchBlob from 'rn-fetch-blob';
 
 import { AUTHORITIES_LIST_URL_MVP1 } from '../../../constants/authorities';
 
@@ -23,7 +21,7 @@ const getHealthcareAuthorities_failure = createAction(
 );
 
 const getHealthcareAuthoritiesApi = async () => {
-  const yamlString = await fetch(AUTHORITIES_LIST_URL_MVP1).then(res =>
+  const yamlString = await fetch(AUTHORITIES_LIST_URL_MVP1).then((res) =>
     res.text(),
   );
   const { authorities } = Yaml.safeLoad(yamlString);
@@ -33,7 +31,7 @@ const getHealthcareAuthoritiesApi = async () => {
   return authorities;
 };
 
-const getHealthcareAuthoritiesAction = () => async dispatch => {
+const getHealthcareAuthoritiesAction = () => async (dispatch: any) => {
   dispatch(getHealthcareAuthorities_started());
   try {
     const healthcareAuthorities = await getHealthcareAuthoritiesApi();

@@ -5,8 +5,7 @@ import { Dimensions, ImageBackground, StatusBar, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
-import { Button } from '../../components/Button';
-import { Typography } from '../../components/Typography';
+import { Button, Typography } from '../../components';
 import { Theme } from '../../constants/themes';
 import { useAssets } from '../../TracingStrategyAssets';
 import { MayoButton } from './MayoButton';
@@ -17,7 +16,6 @@ export const ExposurePage = () => {
   const { exposurePageSubheader } = useAssets();
   const navigation = useNavigation();
   const buttonLabel = t('label.see_exposure_history');
-
   const size = Dimensions.get('window').height;
 
   return (
