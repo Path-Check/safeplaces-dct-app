@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { RootState, HealthcareAuthority } from '../types';
 
-const healthcareAuthorityOptionsSelector = (state: any) =>
-  state.healthcareAuthorities.availableAuthorities;
+const healthcareAuthorityOptionsSelector = (
+  state: RootState,
+): HealthcareAuthority[] => state.healthcareAuthorities.availableAuthorities;
 
 export default healthcareAuthorityOptionsSelector;

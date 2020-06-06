@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { createAction } from '@reduxjs/toolkit';
 import Yaml from 'js-yaml';
+import { Dispatch } from 'redux';
 
 import { AUTHORITIES_LIST_URL_MVP1 } from '../../../constants/authorities';
+import { AppThunk } from '../../types';
 
 const GET_HEALTHCARE_AUTHORITIES_STARTED = 'GET_HEALTHCARE_AUTHORITIES_STARTED';
 const GET_HEALTHCARE_AUTHORITIES_SUCCESS = 'GET_HEALTHCARE_AUTHORITIES_SUCCESS';
@@ -31,7 +32,9 @@ const getHealthcareAuthoritiesApi = async () => {
   return authorities;
 };
 
-const getHealthcareAuthoritiesAction = () => async (dispatch: any) => {
+const getHealthcareAuthoritiesAction = (): AppThunk<void> => async (
+  dispatch: Dispatch,
+): Promise<void> => {
   dispatch(getHealthcareAuthorities_started());
   try {
     const healthcareAuthorities = await getHealthcareAuthoritiesApi();

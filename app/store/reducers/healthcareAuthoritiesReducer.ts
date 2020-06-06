@@ -1,4 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
+import type { HealthcareAuthority, ApiRequest } from '../types';
+import { ApiStatus } from '../types';
 
 import {
   getHealthcareAuthorities_failure,
@@ -6,33 +8,13 @@ import {
   getHealthcareAuthorities_success,
 } from '../actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 
-// These will appear in redux debugger, so string names are helpful
-enum ApiStatus {
-  INITIAL = 'INITIAL',
-  STARTED = 'STARTED',
-  SUCCESS = 'SUCCESS',
-  FAILURE = 'FAILURE',
-}
-
-interface ApiRequest {
-  status: ApiStatus;
-  errorMessage: string | null; // This is only for redux debugging. Store as a string for the safety in the store.
-}
-
-interface HealthcareAuthority {
-  name: string;
-  bounds: Record<string, unknown>;
-  ingest_url: string;
-  publish_url: string;
-}
-
-interface State {
+type HealthCareReducerState = {
   availableAuthorities: HealthcareAuthority[];
   selectedAuthorities: HealthcareAuthority[];
   request: ApiRequest;
-}
+};
 
-const initialState: State = {
+const initialState: HealthCareReducerState = {
   availableAuthorities: [],
   selectedAuthorities: [],
   request: {

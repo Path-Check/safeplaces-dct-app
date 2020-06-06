@@ -1,18 +1,14 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { createImmutableStateInvariantMiddleware } from '@reduxjs/toolkit';
-import { applyMiddleware, compose, createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { createMigrate, persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import migrations from './migrations';
 import rootReducer from './reducers/rootReducer';
 
-const composeEnhancers =
-  // eslint-disable-next-line no-underscore-dangle
-  (typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
-  compose;
-
-const enhancers = composeEnhancers(
+const enhancers = composeWithDevTools(
   applyMiddleware(thunk, createImmutableStateInvariantMiddleware()),
 );
 
@@ -28,8 +24,5 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const createPersistedStore = () => {
-  const store = createStore(persistedReducer, {}, enhancers);
-  const persistor = persistStore(store);
-  return { store, persistor };
-};
+export const store = createStore(persistedReducer, {}, enhancers);
+export const persistor = persistStore(store);
