@@ -39,6 +39,7 @@ export const ENDev = ({ navigation }) => {
           <Item label='Reset Test Results' last />
         </Section>
         <Section last>
+          <Item label='Show Diagnosis Keys' />
           <Item label='Get and Post Diagnosis Keys' />
           <Item label='Reset Diagnosis Keys' last />
         </Section>

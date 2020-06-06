@@ -43,7 +43,7 @@ final class ExposureManager: NSObject {
     }
   }
   
-  func detectExposures(completionHandler: ((Bool) -> Void)? = nil) -> Progress {
+  @discardableResult func detectExposures(completionHandler: ((Bool) -> Void)? = nil) -> Progress {
     
     let progress = Progress()
     
@@ -200,5 +200,74 @@ final class ExposureManager: NSObject {
       }
     }
   }
-  
+
+  @objc func handleDebugAction(_ action: DebugAction, completion: @escaping (String?) -> Void) {
+    switch action {
+    case .detectExposuresNow:
+      detectExposures { success in
+        if success {
+          completion(nil)
+        } else {
+          completion("Exposure detection error")
+        }
+      }
+    case .simulateExposureDetectionError:
+      LocalStore.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
+      completion(LocalStore.shared.exposureDetectionErrorLocalizedDescription)
+    case .simulateExposure:
+      let exposure = Exposure(date: Date() - TimeInterval.random(in: 1...4) * 24 * 60 * 60,
+                              duration: TimeInterval(Int.random(in: 1...5) * 60 * 5),
+                              totalRiskScore: .random(in: 1...8),
+                              transmissionRiskLevel: .random(in: 0...7))
+      LocalStore.shared.exposures.append(exposure)
+      completion(nil)
+    case .simulatePositiveDiagnosis:
+      let testResult = TestResult(id: UUID(),
+                                  isAdded: true,
+                                  dateAdministered: Date() - TimeInterval.random(in: 0...4) * 24 * 60 * 60,
+                                  isShared: .random())
+      LocalStore.shared.testResults[testResult.id] = testResult
+      completion(nil)
+    case .disableExposureNotifications:
+      manager.setExposureNotificationEnabled(false) { error in
+        if let error = error {
+          completion(error.localizedDescription)
+        } else {
+          completion(nil)
+        }
+      }
+    case .resetExposureDetectionError:
+      LocalStore.shared.exposureDetectionErrorLocalizedDescription = nil
+      completion(nil)
+    case .resetLocalExposures:
+      LocalStore.shared.nextDiagnosisKeyFileIndex = 0
+      LocalStore.shared.exposures = []
+      LocalStore.shared.dateLastPerformedExposureDetection = nil
+      completion(nil)
+    case .resetLocalTestResults:
+      LocalStore.shared.testResults = [:]
+      completion(nil)
+    case .getAndPostDiagnosisKeys:
+      getAndPostTestDiagnosisKeys { error in
+        if let error = error {
+          completion(error.localizedDescription)
+        } else {
+          completion(nil)
+        }
+      }
+    }
+  }
+
+}
+
+@objc enum DebugAction: Int {
+  case detectExposuresNow,
+  simulateExposureDetectionError,
+  simulateExposure,
+  simulatePositiveDiagnosis,
+  disableExposureNotifications,
+  resetExposureDetectionError,
+  resetLocalExposures,
+  resetLocalTestResults,
+  getAndPostDiagnosisKeys
 }
