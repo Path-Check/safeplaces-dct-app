@@ -106,6 +106,7 @@ final class ExposureManager: NSObject {
         }
       case let .failure(error):
         finish(.failure(error))
+        return
       }
       dispatchGroup.notify(queue: .main) {
         for result in localURLResults {
@@ -201,19 +202,19 @@ final class ExposureManager: NSObject {
     }
   }
 
-  @objc func handleDebugAction(_ action: DebugAction, completion: @escaping (String?) -> Void) {
+  @objc func handleDebugAction(_ action: DebugAction, completion: @escaping RCTResponseSenderBlock) {
     switch action {
     case .detectExposuresNow:
       detectExposures { success in
         if success {
           completion(nil)
         } else {
-          completion("Exposure detection error")
+          completion(["Exposure detection error."])
         }
       }
     case .simulateExposureDetectionError:
       LocalStore.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
-      completion(LocalStore.shared.exposureDetectionErrorLocalizedDescription)
+      completion([LocalStore.shared.exposureDetectionErrorLocalizedDescription])
     case .simulateExposure:
       let exposure = Exposure(date: Date() - TimeInterval.random(in: 1...4) * 24 * 60 * 60,
                               duration: TimeInterval(Int.random(in: 1...5) * 60 * 5),
@@ -231,7 +232,7 @@ final class ExposureManager: NSObject {
     case .disableExposureNotifications:
       manager.setExposureNotificationEnabled(false) { error in
         if let error = error {
-          completion(error.localizedDescription)
+          completion([error.localizedDescription])
         } else {
           completion(nil)
         }
@@ -250,7 +251,7 @@ final class ExposureManager: NSObject {
     case .getAndPostDiagnosisKeys:
       getAndPostTestDiagnosisKeys { error in
         if let error = error {
-          completion(error.localizedDescription)
+          completion([error.localizedDescription])
         } else {
           completion(nil)
         }
