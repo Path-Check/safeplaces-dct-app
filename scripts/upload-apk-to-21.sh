@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Script: Upload
 # Jenkings script file will upload file for running autonomous test.
 # USAGE:  upload upload.conf
