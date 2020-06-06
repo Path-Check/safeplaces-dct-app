@@ -547,7 +547,7 @@ public class DistanceFilterLocationProvider extends AbstractLocationProvider imp
 
 
     public Location getCurrentLocation(int timeout, long maximumAge, boolean enableHighAccuracy) throws PluginException {
-        logger.info("Getting current location with timeout:{} maximumAge:{} enableHighAccuracy:{}", timeout, maximumAge, enableHighAccuracy);
+       // logger.info("Getting current location with timeout:{} maximumAge:{} enableHighAccuracy:{}", timeout, maximumAge, enableHighAccuracy);
 
         com.marianhello.bgloc.LocationManager locationManager = com.marianhello.bgloc.LocationManager.getInstance(mContext);
         Promise<Location> promise = locationManager.getCurrentLocation(timeout, maximumAge, enableHighAccuracy);
