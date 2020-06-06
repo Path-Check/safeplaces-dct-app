@@ -42,6 +42,8 @@ export const NavigationBarWrapper = ({
   title,
   onBackPress,
   includeBackButton = true,
+  rightTitle,
+  onRightPress
 }: NavigationBarWrapperProps): JSX.Element => {
   const theme = useTheme<{ navBar: string }>();
 
@@ -63,6 +65,11 @@ export const NavigationBarWrapper = ({
             </BackArrowIcon>
           ) : null}
           <Title>{title}</Title>
+          {onRightPress && (
+            <RightArrowIcon onPress={() => onRightPress()}>
+              <RightTitle>{rightTitle}</RightTitle>
+            </RightArrowIcon>
+          )}
         </Header>
         {children}
       </BottomContainer>
@@ -113,11 +120,33 @@ const Title = styled.Text`
   letter-spacing: 1px;
 `;
 
+const RightTitle = styled.Text`
+  align-self: center;
+  color: ${Colors.RIGHT_TITLE};
+  font-family: IBMPlexSans;
+  font-size: ${16 * widthScale + 'px'};
+  position: absolute;
+  padding-horizontal: 5px;
+  text-align: center;
+  letter-spacing: 1px;
+`;
+
 const BackArrowIcon = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   width: 60px;
   z-index: 1;
+`;
+
+const RightArrowIcon = styled.TouchableOpacity`
+  align-items: center;
+  height: 55px;
+  justify-content: center;
+  width: 60px;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 const BackArrowSvg = styled(SvgXml)`
