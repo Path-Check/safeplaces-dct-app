@@ -6,11 +6,13 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { isGPS } from '../../COVIDSafePathsConfig';
+import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
 
@@ -24,12 +26,12 @@ const Onboarding = (props) => {
     onboarding4Subheader,
   } = useAssets();
 
-  const handleOnPressNext = () => {
-    const nextScreen = isGPS
-      ? 'OnboardingPermissions'
-      : 'EnableExposureNotifications';
-    props.navigation.replace(nextScreen);
-  };
+  const dispatch = useDispatch();
+  const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
+  const navigateToGpsPermissions = () =>
+    props.navigation.replace('OnboardingPermissions');
+
+  const onNext = isGPS ? navigateToGpsPermissions : dispatchOnboardingComplete;
 
   return (
     <View style={styles.mainContainer}>
@@ -52,7 +54,7 @@ const Onboarding = (props) => {
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>
-        <Button label={onboarding4Button} onPress={handleOnPressNext} />
+        <Button label={onboarding4Button} onPress={onNext} />
       </View>
     </View>
   );
