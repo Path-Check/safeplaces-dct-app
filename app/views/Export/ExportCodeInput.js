@@ -20,8 +20,6 @@ import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 
 const CODE_LENGTH = 6;
-const MOCK_ENDPOINT =
-  'https://private-anon-da01e87e46-safeplaces.apiary-mock.com/access-code/valid';
 
 const CodeInput = ({ code, length, setCode }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -125,11 +123,14 @@ export const ExportSelectHA = ({ route, navigation }) => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
-      // The api is currently using body params right now. Once this is resolved we can uncomment this.
-      // Until then, we assume the code is good on this screen (hit the mock endpoint), and instead failure occurs on consent
-      // const checkAccessCodeRoute = `${selectedAuthority.ingest_url}/access-code/valid`;
-      // const res = await fetch(`${checkAccessCodeRoute}?access_code=${code}`);
-      const res = await fetch(`${MOCK_ENDPOINT}?access_code=${code}`);
+      const checkAccessCodeRoute = `${selectedAuthority.ingest_url}/access-code/valid`;
+      const res = await fetch(`${checkAccessCodeRoute}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ accessCode: code }),
+      });
       const { valid } = await res.json();
       if (valid) {
         navigation.navigate('ExportLocationConsent', {
