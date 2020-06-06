@@ -47,7 +47,7 @@ copyFile(
 
 copyFile(
   './scripts/node-modules/react-native-background-geolocation/BackgroundGeolocationFacade.java',
-  './node_modules/@mauron85/react-native-background-geolocation/android/common/src/main/java/com/tenforwardconsulting/bgloc/BackgroundGeolocationFacade.java',
+  './node_modules/@mauron85/react-native-background-geolocation/android/common/src/main/java/com/marianhello/bgloc/BackgroundGeolocationFacade.java',
   () => {},
 );
 copyFile(
