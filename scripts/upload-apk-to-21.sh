@@ -3,14 +3,14 @@
 # Jenkings script file will upload file for running autonomous test.
 # USAGE:  upload upload.conf
 
-echo $1
-echo $2
-echo $3
-printenv TWENTY_ONE_LABS_API_KEY
-printenv TWENTY_ONE_LABS_PASSWORD
+echo 'first: ' $1
+echo 'second: ' $2
+echo 'third: ' $3
+echo 'api key: ' $TWENTY_ONE_LABS_API_KEY
+echo 'pwd: ' $TWENTY_ONE_LABS_PASSWORD
 
 source $1
-echo $application_id
+echo 'app id: ' $application_id
 
 if [ -z "$1" ]; then
   printf  "configuration file param missing.  Usage: test <config_filepath> <APK_FILE_PATH>\n"
