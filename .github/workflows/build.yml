@@ -22,10 +22,7 @@ jobs:
           TWENTY_ONE_LABS_API_KEY: ${{ secrets.TWENTY_ONE_LABS_API_KEY }}
           TWENTY_ONE_LABS_PASSWORD: ${{ secrets.TWENTY_ONE_LABS_PASSWORD }}
         run: |
-          ./scripts/upload-apk-to-21.sh \
-            ./scripts/safepath-android.conf \ 
-            build_$(github.run_number) \ 
-            android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
+          ./scripts/upload-apk-to-21.sh ./scripts/safepath-android.conf build_$(github.run_number) android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
 
       - name: Cache node_modules/
         uses: actions/cache@v1
