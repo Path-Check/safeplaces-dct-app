@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Icons } from '../../assets';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
-
+import { Linking } from 'react-native';
 // NOTE:
 // We don't actually hit the consent endpoint until the next screen. These screens are tied together,
 // So there is one endpoint for both parts.
@@ -18,6 +18,14 @@ export const ExportLocationConsent = ({ navigation, route }) => {
 
   const onClose = () => exitWarningAlert(navigation);
 
+  // Fetch here to ensure we show the up to date privacy policy
+  const onPressLink = async () => {
+    const { privacy_policy_url } = await fetch(
+      selectedAuthority.cursor_url,
+    ).then((res) => res.json());
+    Linking.openURL(privacy_policy_url);
+  };
+
   return (
     <ExportTemplate
       onClose={onClose}
@@ -26,6 +34,8 @@ export const ExportLocationConsent = ({ navigation, route }) => {
       buttonSubtitle={t('export.consent_button_subtitle')}
       headline={t('export.location_consent_title')}
       body={t('export.location_consent_body', { name: selectedAuthority.name })}
+      bodyLinkText={t('export.location_consent_link')}
+      bodyLinkOnPress={onPressLink}
       icon={Icons.LocationPin}
     />
   );

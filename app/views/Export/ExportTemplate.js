@@ -12,6 +12,7 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const BackgroundContainer = ({ lightTheme, children }) => {
   if (lightTheme) {
@@ -53,6 +54,10 @@ export const ExportTemplate = ({
   icon,
   lightTheme,
   buttonLoading,
+  // We can consider instead using the trans component:
+  // https://react.i18next.com/latest/trans-component
+  bodyLinkText,
+  bodyLinkOnPress,
 }) => {
   useEffect(() => {
     function handleBackPress() {
@@ -94,6 +99,18 @@ export const ExportTemplate = ({
             </Typography>
             <View style={{ height: 8 }} />
             <Typography use='body1'>{body}</Typography>
+            {bodyLinkText && (
+              <TouchableOpacity onPress={bodyLinkOnPress}>
+                <Typography
+                  style={{
+                    color: Colors.LINK,
+                    textDecorationLine: 'underline',
+                  }}
+                  use='body1'>
+                  {bodyLinkText}
+                </Typography>
+              </TouchableOpacity>
+            )}
           </ScrollView>
 
           {/* TODO: <Button/> needs an actual loading state. */}
