@@ -17,6 +17,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Upload APK to 21 Labs
+        env:
+          TWENTY_ONE_LABS_API_KEY: ${{ secrets.TWENTY_ONE_LABS_API_KEY }}
+          TWENTY_ONE_LABS_PASSWORD: ${{ secrets.TWENTY_ONE_LABS_PASSWORD }}
+        run: |
+          ./scripts/upload-apk-to-21.sh \
+            ./scripts/safepath-android.conf \ 
+            build_$(github.run_number) \ 
+            android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
+
       - name: Cache node_modules/
         uses: actions/cache@v1
         id: node_cache
@@ -69,15 +79,25 @@ jobs:
       - name: Build android Staging artifact
         uses: maierj/fastlane-action@v1.4.0
         with:
-          lane: 'staging_gps'
-          subdirectory: 'android'
-          bundle-install-path: 'vendor/bundle'
+          lane: "staging_gps"
+          subdirectory: "android"
+          bundle-install-path: "vendor/bundle"
 
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
           name: app-gps-staging
           path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
+
+      # - name: Upload APK to 21 Labs
+      #   env:
+      #     TWENTY_ONE_LABS_API_KEY: ${{ secrets.TWENTY_ONE_LABS_API_KEY }}
+      #     TWENTY_ONE_LABS_PASSWORD: ${{ secrets.TWENTY_ONE_LABS_PASSWORD }}
+      #   run: |
+      #     ./scripts/upload-apk-to-21.sh \
+      #       ./scripts/safepath-android.conf \
+      #       build_$(github.run_number) \
+      #       android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
 
   build_staging_android_bte:
     runs-on: ubuntu-latest
@@ -137,9 +157,9 @@ jobs:
       - name: Build android Staging artifact
         uses: maierj/fastlane-action@v1.4.0
         with:
-          lane: 'staging_bte'
-          subdirectory: 'android'
-          bundle-install-path: 'vendor/bundle'
+          lane: "staging_bte"
+          subdirectory: "android"
+          bundle-install-path: "vendor/bundle"
 
       - name: Upload APK
         uses: actions/upload-artifact@v1
@@ -151,7 +171,7 @@ jobs:
     # Deliberately turned off the pull request logic here
     # because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
     if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@master
 
@@ -199,10 +219,10 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-            mkdir -p ~/.ssh
-            ssh-keyscan github.com >> ~/.ssh/known_hosts
-            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-            ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
 
       - name: Build iOS Staging artifact for devices
         uses: maierj/fastlane-action@v1.4.0
@@ -212,9 +232,9 @@ jobs:
           MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          lane: 'staging'
-          subdirectory: 'ios'
-          bundle-install-path: 'vendor/bundle'
+          lane: "staging"
+          subdirectory: "ios"
+          bundle-install-path: "vendor/bundle"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
@@ -226,7 +246,7 @@ jobs:
     # Deliberately turned off the pull request logic here
     # because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
     if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@master
 
@@ -274,10 +294,10 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-            mkdir -p ~/.ssh
-            ssh-keyscan github.com >> ~/.ssh/known_hosts
-            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-            ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
 
       - name: Build BTE iOS Production artifact for devices
         uses: maierj/fastlane-action@v1.4.0
@@ -287,9 +307,9 @@ jobs:
           MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          lane: 'staging_bte'
-          subdirectory: 'ios'
-          bundle-install-path: 'vendor/bundle'
+          lane: "staging_bte"
+          subdirectory: "ios"
+          bundle-install-path: "vendor/bundle"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
