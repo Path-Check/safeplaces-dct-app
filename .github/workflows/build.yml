@@ -19,10 +19,11 @@ jobs:
 
       - name: Upload APK to 21 Labs
         env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           TWENTY_ONE_LABS_API_KEY: ${{ secrets.TWENTY_ONE_LABS_API_KEY }}
           TWENTY_ONE_LABS_PASSWORD: ${{ secrets.TWENTY_ONE_LABS_PASSWORD }}
         run: |
-          ./scripts/upload-apk-to-21.sh ./scripts/safepath-android.conf build_$GITHUB_RUN_NUMBER android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
+          ./scripts/upload-apk-to-21.sh ./scripts/safepath-android.conf build_$GITHUB_RUN_ID android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
 
       - name: Cache node_modules/
         uses: actions/cache@v1
