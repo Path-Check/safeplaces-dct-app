@@ -9,6 +9,8 @@ echo 'third: ' $3
 echo 'api key: ' $TWENTY_ONE_LABS_API_KEY
 echo 'pwd: ' $TWENTY_ONE_LABS_PASSWORD
 
+printenv
+
 source $1
 echo 'app id: ' $application_id
 
