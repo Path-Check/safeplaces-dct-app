@@ -59,6 +59,8 @@ const colors = {
 
   MONO_DARK: '#202020',
   MONO_SECONDARY: '#757677',
+
+  RIGHT_TITLE: '#F8F8FF',
 };
 
 export default colors;

@@ -8,7 +8,13 @@
   },
   "authorities": {
     "invalid_url_body": "The URL you entered was invalid, please try again",
-    "invalid_url_title": "Invalid URL"
+    "invalid_url_title": "Invalid URL",
+    "authority_input_title":"Enter a URL for the Healthcare Authority you would like to add",
+    "authority_info":"Healthcare Authorities can share information and resources about COVID-19 for their area, including verified data that allows SafePaths to estimate when you may have crossed paths with the virus.",
+    "view_your_health_authorities":"View Your Healthcare Authorities",
+    "automatically_follow_ha":"Automatically follow partner Healthcare Authorities nearby",
+    "all_health_care_authorities":"All Healthcare Authorities",
+    "authority_already_exist":"Authority Already Added"
   },
   "common": {
     "done": "Done",
@@ -93,7 +99,8 @@
     "authorities_removal_alert_title": "Remove Authority",
     "auto_subscribe_checkbox": "Enable auto subscription",
     "choose_provider_subtitle": "Select a Healthcare Authority to learn about COVID-19 in your area, where available",
-    "choose_provider_title": "Your Healthcare Authority",
+    "choose_provider_title": "Healthcare Authority",
+    "add_manual_url_title": "Add Via URL",
     "default_news_site_name": "Safe Paths News",
     "enter_authority_url": "Enter or paste URL",
     "event_history_subtitle": "Understand your personal exposure based on information shared by health authorities.",

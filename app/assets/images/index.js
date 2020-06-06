@@ -3,6 +3,7 @@ import BackgroundAtRisk from './backgroundAtRisk.png';
 import BoxCheckedIcon from './boxCheckedIcon.png';
 import BoxUncheckedIcon from './boxUncheckedIcon.png';
 import Close from './closeIcon.png';
+import Doctors from './doctors.png';
 import Export from './export.png';
 import ForeArrow from './foreArrow.png';
 import HomeScreenBackgroundOverlay from './homeScreenBackgroundOverlay.png';
@@ -44,4 +45,5 @@ export const Images = {
   UserGreen,
   Welcome1,
   WWW,
+  Doctors,
 };

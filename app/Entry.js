@@ -9,7 +9,10 @@ import { useSelector } from 'react-redux';
 
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import AboutScreen from './views/About';
+import AddManualURLScreen from './views/AddManualURL';
+import AuthorityInfoScreen from './views/AuthorityInfo';
 import ChooseProviderScreen from './views/ChooseProvider';
+import EditAuthoritiesScreen from './views/EditAuthorities';
 import {
   ExportCodeInput,
   ExportComplete,
@@ -35,6 +38,7 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
+import SelectedHAsScreen from './views/SelectedHAs';
 import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();

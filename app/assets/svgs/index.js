@@ -1,4 +1,6 @@
+import ArrowNext from './arrow_next';
 import BackArrow from './backArrow';
+import GreenCheck from './check';
 import Checkmark from './checkmark';
 import CheckmarkCircle from './checkmarkCircle';
 import Close from './close';
@@ -20,6 +22,7 @@ import StateNoContact from './stateNoContact';
 import StateUnknown from './stateUnknown';
 import Team from './team';
 import Upload from './upload';
+import URLIcon from './url_icon';
 import Warning from './warning';
 import XmarkIcon from './xmarkIcon';
 
@@ -48,4 +51,7 @@ export const Icons = {
   Upload,
   Warning,
   XmarkIcon,
+  ArrowNext,
+  GreenCheck,
+  URLIcon,
 };
