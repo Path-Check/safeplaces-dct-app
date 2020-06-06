@@ -25,7 +25,10 @@ import {
   FEATURE_FLAG_SCREEN_NAME,
   FeatureFlagsScreen,
 } from './views/FeatureFlagToggles';
-import { EN_DEBUG_MENU_SCREEN_NAME, ENDev } from './views/Settings/ENDev';
+import {
+  EN_DEBUG_MENU_SCREEN_NAME,
+  ENDebugMenu,
+} from './views/Settings/ENDebugMenu';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
 import { Main } from './views/Main';
@@ -100,7 +103,7 @@ const MainApp = () => (
       component={ExposureHistoryScreen}
     />
     <Stack.Screen name='AboutScreen' component={AboutScreen} />
-    <Stack.Screen name={EN_DEBUG_MENU_SCREEN_NAME} component={ENDev} />
+    <Stack.Screen name={EN_DEBUG_MENU_SCREEN_NAME} component={ENDebugMenu} />
     <Stack.Screen
       name={FEATURE_FLAG_SCREEN_NAME}
       component={FeatureFlagsScreen}

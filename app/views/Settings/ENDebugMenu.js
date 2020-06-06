@@ -5,9 +5,9 @@ import { NavigationBarWrapper } from '../../components';
 import { Item } from './Item';
 import { Section } from './Section';
 
-export const EN_DEBUG_MENU_SCREEN_NAME = 'ENDev';
+export const EN_DEBUG_MENU_SCREEN_NAME = 'ENDebugMenu';
 
-export const ENDev = ({ navigation }) => {
+export const ENDebugMenu = ({ navigation }) => {
   useEffect(() => {
     const handleBackPress = () => {
       navigation.goBack();

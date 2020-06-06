@@ -16,7 +16,7 @@ import {
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
 import { FEATURE_FLAG_SCREEN_NAME } from '../../views/FeatureFlagToggles';
-import { EN_DEBUG_MENU_SCREEN_NAME } from './ENDev';
+import { EN_DEBUG_MENU_SCREEN_NAME } from './ENDebugMenu';
 import { GoogleMapsImport } from './GoogleMapsImport';
 import { Item } from './Item';
 import { Section } from './Section';
