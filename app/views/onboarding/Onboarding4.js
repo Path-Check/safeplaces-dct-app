@@ -6,26 +6,32 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 
-import { Button } from '../../components/Button';
-import { Type, Typography } from '../../components/Typography';
+import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-import { ONBOARDING_DONE } from '../../constants/storage';
-import { SetStoreData } from '../../helpers/General';
-import { sharedStyles } from './styles';
+import { isGPS } from '../../COVIDSafePathsConfig';
+import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import { useAssets } from '../../TracingStrategyAssets';
+import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
-const Onboarding = props => {
+const Onboarding = (props) => {
   const {
     onboarding4Background,
     onboarding4Button,
     onboarding4Header,
-    onboarding4NavDestination,
     onboarding4Subheader,
   } = useAssets();
+
+  const dispatch = useDispatch();
+  const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
+  const navigateToGpsPermissions = () =>
+    props.navigation.replace('OnboardingPermissions');
+
+  const onNext = isGPS ? navigateToGpsPermissions : dispatchOnboardingComplete;
 
   return (
     <View style={styles.mainContainer}>
@@ -42,17 +48,13 @@ const Onboarding = props => {
         <Typography style={styles.headerText} use={Type.Headline2}>
           {onboarding4Header}
         </Typography>
-        <Typography style={styles.subheaderText}>{onboarding4Subheader}</Typography>
+        <Typography style={styles.subheaderText}>
+          {onboarding4Subheader}
+        </Typography>
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>
-        <Button
-          label={onboarding4Button}
-          onPress={() => {
-            SetStoreData(ONBOARDING_DONE, true);
-            props.navigation.replace(onboarding4NavDestination);
-          }}
-        />
+        <Button label={onboarding4Button} onPress={onNext} />
       </View>
     </View>
   );

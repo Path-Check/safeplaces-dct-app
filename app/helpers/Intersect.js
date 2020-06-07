@@ -359,7 +359,7 @@ async function asyncCheckIntersect() {
   SetStoreData(AUTHORITY_NEWS, name_news);
 
   // if any of the bins are > 0, tell the user
-  if (dayBins.some(a => a > 0)) notifyUserOfRisk();
+  if (dayBins.some((a) => a > 0)) notifyUserOfRisk();
 
   // store the results
   SetStoreData(CROSSED_PATHS, dayBins); // TODO: Store per authority?

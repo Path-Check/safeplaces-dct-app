@@ -10,7 +10,7 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
-import { Typography } from '../../components/Typography';
+import { Typography } from '../../components';
 import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';

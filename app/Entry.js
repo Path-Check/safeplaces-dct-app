@@ -4,10 +4,10 @@ import {
   TransitionPresets,
   createStackNavigator,
 } from '@react-navigation/stack';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { ONBOARDING_DONE } from './constants/storage';
-import { GetStoreData } from './helpers/General';
+import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import {
@@ -29,6 +29,7 @@ import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
 import { Main } from './views/Main';
 import NewsScreen from './views/News';
+import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
@@ -40,7 +41,7 @@ const Stack = createStackNavigator();
 
 const fade = ({ current }) => ({ cardStyle: { opacity: current.progress } });
 
-const screenOptions = {
+const SCREEN_OPTIONS = {
   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
   cardStyle: {
     backgroundColor: 'transparent', // prevent white flash on Android
@@ -52,7 +53,7 @@ const ExportStack = () => (
   <Stack.Navigator
     mode='modal'
     screenOptions={{
-      ...screenOptions,
+      ...SCREEN_OPTIONS,
       cardStyleInterpolator: fade,
       gestureEnabled: false,
     }}>
@@ -73,63 +74,66 @@ const ExportStack = () => (
   </Stack.Navigator>
 );
 
+const MainApp = () => (
+  <Stack.Navigator initialRouteName='Main' screenOptions={SCREEN_OPTIONS}>
+    <Stack.Screen name='Main' component={Main} />
+    <Stack.Screen name='NewsScreen' component={NewsScreen} />
+    <Stack.Screen
+      name='ExportScreen'
+      component={ExportStack}
+      options={{
+        ...TransitionPresets.ModalSlideFromBottomIOS,
+      }}
+    />
+    {/* We feature flag in settings between whether to send to route or e2e export */}
+    <Stack.Screen name='ExportLocally' component={ExportLocally} />
+    <Stack.Screen name='ImportScreen' component={ImportScreen} />
+    <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
+    <Stack.Screen
+      name='ChooseProviderScreen'
+      component={ChooseProviderScreen}
+    />
+    <Stack.Screen name='LicensesScreen' component={LicensesScreen} />
+    <Stack.Screen
+      name='ExposureHistoryScreen'
+      component={ExposureHistoryScreen}
+    />
+    <Stack.Screen name='AboutScreen' component={AboutScreen} />
+    <Stack.Screen
+      name={FEATURE_FLAG_SCREEN_NAME}
+      component={FeatureFlagsScreen}
+    />
+    <Stack.Screen
+      name='EnableExposureNotifications'
+      component={EnableExposureNotifications}
+    />
+  </Stack.Navigator>
+);
+
+const OnboardingStack = () => (
+  <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
+    <Stack.Screen name='Onboarding1' component={Onboarding1} />
+    <Stack.Screen name='Onboarding2' component={Onboarding2} />
+    <Stack.Screen name='Onboarding3' component={Onboarding3} />
+    <Stack.Screen name='Onboarding4' component={Onboarding4} />
+    <Stack.Screen
+      name='OnboardingPermissions'
+      component={OnboardingPermissions}
+    />
+  </Stack.Navigator>
+);
+
 export const Entry = () => {
-  const [onboardingDone, setOnboardingDone] = useState(false);
-
-  useEffect(() => {
-    async function checkDone() {
-      /** @type {boolean | undefined | null} */
-      const flag = await GetStoreData(ONBOARDING_DONE, false /* isString */);
-      setOnboardingDone(!!flag);
-    }
-
-    checkDone();
-  }, []);
+  const onboardingComplete = useSelector(isOnboardingCompleteSelector);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName='InitialScreen'
-        screenOptions={screenOptions}>
-        <Stack.Screen
-          name='InitialScreen'
-          component={onboardingDone ? Main : Onboarding1}
-        />
-        <Stack.Screen name='Onboarding1' component={Onboarding1} />
-        <Stack.Screen name='Onboarding2' component={Onboarding2} />
-        <Stack.Screen name='Onboarding3' component={Onboarding3} />
-        <Stack.Screen name='Onboarding4' component={Onboarding4} />
-        <Stack.Screen
-          name='OnboardingPermissions'
-          component={OnboardingPermissions}
-        />
-        <Stack.Screen name='Main' component={Main} />
-        <Stack.Screen name='NewsScreen' component={NewsScreen} />
-        <Stack.Screen
-          name='ExportScreen'
-          component={ExportStack}
-          options={{
-            ...TransitionPresets.ModalSlideFromBottomIOS,
-          }}
-        />
-        {/* We feature flag in settings between whether to send to route or e2e export */}
-        <Stack.Screen name='ExportLocally' component={ExportLocally} />
-        <Stack.Screen name='ImportScreen' component={ImportScreen} />
-        <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
-        <Stack.Screen
-          name='ChooseProviderScreen'
-          component={ChooseProviderScreen}
-        />
-        <Stack.Screen name='LicensesScreen' component={LicensesScreen} />
-        <Stack.Screen
-          name='ExposureHistoryScreen'
-          component={ExposureHistoryScreen}
-        />
-        <Stack.Screen name='AboutScreen' component={AboutScreen} />
-        <Stack.Screen
-          name={FEATURE_FLAG_SCREEN_NAME}
-          component={FeatureFlagsScreen}
-        />
+      <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
+        {onboardingComplete ? (
+          <Stack.Screen name={'App'} component={MainApp} />
+        ) : (
+          <Stack.Screen name={'Onboarding'} component={OnboardingStack} />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

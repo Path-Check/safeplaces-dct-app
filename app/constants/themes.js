@@ -73,7 +73,7 @@ export const ThemedBackground = styled.View`
  *
  * @param {'default' | 'violet' | 'charcoal'} themeName
  */
-export const getTheme = themeName => {
+export const getTheme = (themeName) => {
   const themeColors = THEME_MAP[themeName];
   if (!themeColors) {
     throw new Error(`Unknown theme ${themeName}`);

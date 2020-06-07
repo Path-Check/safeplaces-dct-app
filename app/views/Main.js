@@ -4,7 +4,7 @@ import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
 import { Icons } from '../assets';
-import { IconButton } from '../components/IconButton';
+import { IconButton } from '../components';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import { isGPS } from '../COVIDSafePathsConfig';
@@ -28,7 +28,7 @@ export const Main = () => {
 
   const [location, setLocation] = useState({
     canTrack: true,
-    reason: '',
+    reason: null,
     hasPotentialExposure: false,
   });
 
@@ -95,9 +95,13 @@ export const Main = () => {
       page = <NoKnownExposure />;
     }
   } else {
-    if (location.reason === Reason.USER_OFF) {
+    if (
+      location.reason === Reason.LOCATION_OFF ||
+      location.reason === Reason.NOT_AUTHORIZED
+    ) {
       page = <OffPage />;
     } else {
+      // Invariant violation if this occurs
       page = <UnknownPage />;
     }
   }

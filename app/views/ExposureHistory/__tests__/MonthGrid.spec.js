@@ -7,8 +7,8 @@ import { MonthGrid } from '../MonthGrid';
 
 const NOW = dayjs('2020-01-09T00:00:00-08:00').startOf('day');
 
-const renderDayHeader = dayOfWeek => <span>{dayOfWeek}</span>;
-const renderDay = date => <span>{date.format('D')}</span>;
+const renderDayHeader = (dayOfWeek) => <span>{dayOfWeek}</span>;
+const renderDay = (date) => <span>{date.format('D')}</span>;
 
 const renderProps = { renderDayHeader, renderDay };
 

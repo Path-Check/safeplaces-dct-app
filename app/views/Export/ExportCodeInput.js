@@ -35,7 +35,7 @@ const CodeInput = ({ code, length, setCode }) => {
     characterRefs.current = characterRefs.current.slice(0, length);
   }, [length]);
 
-  const focus = i => {
+  const focus = (i) => {
     characterRefs.current[i].focus();
   };
 
@@ -46,7 +46,7 @@ const CodeInput = ({ code, length, setCode }) => {
     }, 0); // allow waiting for transition to end & first paint
   }, []);
 
-  const onFocus = i => {
+  const onFocus = (i) => {
     if (i > currentIndex) {
       // prohibit skipping forward
       focus(currentIndex);
@@ -58,7 +58,7 @@ const CodeInput = ({ code, length, setCode }) => {
   };
 
   // Adding characters
-  const onChangeCharacter = d => {
+  const onChangeCharacter = (d) => {
     if (d.length) {
       setCode(code.slice(0, currentIndex) + d);
       const nextIndex = currentIndex + 1;
@@ -70,7 +70,7 @@ const CodeInput = ({ code, length, setCode }) => {
   };
 
   // Removing characters
-  const onKeyPress = e => {
+  const onKeyPress = (e) => {
     if (e.nativeEvent.key === 'Backspace') {
       // go to previous
       if (!code[currentIndex]) {
@@ -92,7 +92,7 @@ const CodeInput = ({ code, length, setCode }) => {
     <View style={{ flexDirection: 'row', flexShrink: 1 }}>
       {characters.map((character, i) => (
         <TextInput
-          ref={ref => (characterRefs.current[i] = ref)}
+          ref={(ref) => (characterRefs.current[i] = ref)}
           key={`${i}CodeCharacter`}
           value={character}
           style={[
