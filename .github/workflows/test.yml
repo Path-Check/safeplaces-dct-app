@@ -180,13 +180,13 @@ jobs:
 
       - uses: actions/download-artifact@master
         with:
-          name: e2e-ios-bin.zip
-          path: .ios/fastlane/test_output/
+          name: e2e-ios-bin
+          path: ios/build/Build/Products/Staging-iphonesimulator/GPS.app
 
-      - name: Unzip build products
-        if: always()
-        run: unzip ./e2e-ios-bin.zip && ls
-        working-directory: ./ios/fastlane/test_output/
+      # - name: Unzip build products
+      #   if: always()
+      #   run: unzip ./e2e-ios-bin.zip && ls
+      #   working-directory: ./ios/fastlane/test_output/
 
       - run: yarn test:e2e:iphone-se
 

@@ -169,7 +169,7 @@
     },
     "configurations": {
       "iphone11.sim": {
-        "binaryPath": "ios/fastlane/test_output/Staging-iphonesimulator/GPS.app",
+        "binaryPath": "ios/build/Build/Products/Staging-iphonesimulator/GPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Development -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -177,7 +177,7 @@
         }
       },
       "iphone8.sim": {
-        "binaryPath": "ios/fastlane/test_output/Staging-iphonesimulator/GPS.app",
+        "binaryPath": "ios/build/Build/Products/Staging-iphonesimulator/GPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -185,7 +185,7 @@
         }
       },
       "iphone-se.sim": {
-        "binaryPath": "ios/fastlane/test_output/Staging-iphonesimulator/GPS.app",
+        "binaryPath": "ios/build/Build/Products/Staging-iphonesimulator/GPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
