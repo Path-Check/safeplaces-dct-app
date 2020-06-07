@@ -5,11 +5,12 @@ import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
 import imgNews from '../../../assets/images/news.jpg';
 import HeaderImage from '../../../components/DR/ActionCards/HeaderImage';
 import DataList from '../../../components/DR/ActionCards/List';
+import { FIREBASE_SERVICE } from '../../../constants/DR/baseUrls';
 import buttonStyle from '../../../constants/DR/buttonStyles';
 import fetch from '../../../helpers/Fetch';
 import languages from '../../../locales/languages';
 
-const NEWS_URL = 'https://covid-dr.appspot.com/news';
+const NEWS_URL = `${FIREBASE_SERVICE}/news`;
 
 function NewsScreen({ navigation }) {
   const [news, setNews] = useState([]);

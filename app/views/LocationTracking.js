@@ -35,6 +35,7 @@ import { Button } from '../components/Button';
 import NextSteps from '../components/DR/LocationTracking/NextSteps';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
+import { MEPYD_C5I_SERVICE } from '../constants/DR/baseUrls';
 import fontFamily from '../constants/fonts';
 import {
   COVID_ID,
@@ -222,7 +223,7 @@ class LocationTracking extends Component {
             covidId: covidId,
           });
 
-          fetch('https://webapps.mepyd.gob.do/contact_tracing/api/UserTrace', {
+          fetch(`${MEPYD_C5I_SERVICE}/contact_tracing/api/UserTrace`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body,
@@ -477,6 +478,8 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     flex: 1,
     justifyContent: 'flex-end',
+    paddingBottom: 20,
+    backgroundColor: Colors.BLUE_RIBBON,
   },
   mainContainer: {
     position: 'absolute',

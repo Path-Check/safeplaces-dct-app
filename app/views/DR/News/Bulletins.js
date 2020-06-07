@@ -6,10 +6,10 @@ import iconImgBulletin from '../../../assets/images/bulletin.jpg';
 import imgBulletins from '../../../assets/images/bulletins.jpg';
 import HeaderImage from '../../../components/DR/ActionCards/HeaderImage';
 import List from '../../../components/DR/ActionCards/List';
+import { FIREBASE_SERVICE } from '../../../constants/DR/baseUrls';
 import fetch from '../../../helpers/Fetch';
 
-const BULLETINS_URL = 'https://covid-dr.appspot.com/bulletins';
-
+const BULLETINS_URL = `${FIREBASE_SERVICE}/bulletins`;
 export default function BulletinsScreen({ navigation }) {
   const [bulletins, setBulletins] = useState([]);
   const { t } = useTranslation();
