@@ -8,4 +8,12 @@ extension ENTemporaryExposureKey {
                 rollingStartNumber: rollingStartNumber,
                 transmissionRiskLevel: transmissionRiskLevel)
   }
+  var asDictionary : [String: Any] {
+    return [
+      "keyData": keyData,
+      "rollingPeriod": rollingPeriod,
+      "rollingStartNumber": rollingStartNumber,
+      "transmissionRiskLevel": transmissionRiskLevel
+    ]
+  }
 }

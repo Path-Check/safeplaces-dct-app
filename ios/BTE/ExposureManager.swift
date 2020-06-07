@@ -182,6 +182,7 @@ final class ExposureManager: NSObject {
     manager.getTestDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
         completion(error)
+      } else {
         APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey })) { result in
           switch result {
           case .success(let urls):
@@ -201,68 +202,77 @@ final class ExposureManager: NSObject {
       }
     }
   }
-
+  
   @objc func handleDebugAction(_ action: DebugAction, completion: @escaping RCTResponseSenderBlock) {
     switch action {
+    case .fetchDiagnosisKeys:
+      manager.getDiagnosisKeys { (keys, error) in
+        if let error = error {
+          completion([error, NSNull()])
+        } else {
+          completion([NSNull(), keys!.map { $0.asDictionary }])
+        }
+      }
     case .detectExposuresNow:
       detectExposures { success in
         if success {
-          completion(nil)
+          completion([NSNull(), NSNull()])
         } else {
-          completion(["Exposure detection error."])
+          completion(["Exposure detection error.", NSNull()])
         }
       }
     case .simulateExposureDetectionError:
       LocalStore.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
-      completion([LocalStore.shared.exposureDetectionErrorLocalizedDescription])
+      completion([NSNull(), LocalStore.shared.exposureDetectionErrorLocalizedDescription])
     case .simulateExposure:
       let exposure = Exposure(date: Date() - TimeInterval.random(in: 1...4) * 24 * 60 * 60,
                               duration: TimeInterval(Int.random(in: 1...5) * 60 * 5),
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
       LocalStore.shared.exposures.append(exposure)
-      completion(nil)
+      completion([NSNull(), LocalStore.shared.exposures])
     case .simulatePositiveDiagnosis:
       let testResult = TestResult(id: UUID(),
                                   isAdded: true,
                                   dateAdministered: Date() - TimeInterval.random(in: 0...4) * 24 * 60 * 60,
                                   isShared: .random())
       LocalStore.shared.testResults[testResult.id] = testResult
-      completion(nil)
+      completion([NSNull(), LocalStore.shared.testResults])
     case .disableExposureNotifications:
       manager.setExposureNotificationEnabled(false) { error in
         if let error = error {
-          completion([error.localizedDescription])
+          completion([error.localizedDescription, NSNull()])
         } else {
-          completion(nil)
+          completion([NSNull(), NSNull()])
         }
       }
     case .resetExposureDetectionError:
       LocalStore.shared.exposureDetectionErrorLocalizedDescription = nil
-      completion(nil)
+      completion([NSNull(), NSNull()])
     case .resetLocalExposures:
       LocalStore.shared.nextDiagnosisKeyFileIndex = 0
       LocalStore.shared.exposures = []
       LocalStore.shared.dateLastPerformedExposureDetection = nil
-      completion(nil)
+      completion([NSNull(), NSNull()])
     case .resetLocalTestResults:
       LocalStore.shared.testResults = [:]
-      completion(nil)
+      completion([NSNull(), NSNull()])
     case .getAndPostDiagnosisKeys:
       getAndPostTestDiagnosisKeys { error in
         if let error = error {
-          completion([error.localizedDescription])
+          completion([error.localizedDescription, NSNull()])
         } else {
-          completion(nil)
+          completion([NSNull(), NSNull()])
         }
       }
     }
   }
-
+  
 }
 
 @objc enum DebugAction: Int {
-  case detectExposuresNow,
+  case fetchDiagnosisKeys,
+  detectExposuresNow,
   simulateExposureDetectionError,
   simulateExposure,
   simulatePositiveDiagnosis,

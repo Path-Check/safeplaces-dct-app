@@ -16,6 +16,7 @@ import {
 } from '../../exposureNotificationsNativeModule';
 
 export const EN_DEBUG_MENU_SCREEN_NAME = 'ENDebugMenu';
+export const EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME = 'ENLocalDiagnosisKeyScreen';
 
 export const ENDebugMenu = ({ navigation }) => {
   useEffect(() => {
@@ -36,12 +37,7 @@ export const ENDebugMenu = ({ navigation }) => {
   };
 
   const showErrorAlert = (errorString) => {
-    Alert.alert(
-      'Error',
-      errorString,
-      [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-      { cancelable: false },
-    );
+    Alert.alert('Error', errorString, [{ text: 'OK' }], { cancelable: false });
   };
 
   const showSuccessAlert = (messageString) => {
@@ -157,9 +153,9 @@ export const ENDebugMenu = ({ navigation }) => {
         </Section>
         <Section last>
           <Item
-            label='Show Diagnosis Keys'
+            label='Show Local Diagnosis Keys'
             onPress={() => {
-              showErrorAlert('Not Yet Implemented.');
+              navigation.navigate(EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME);
             }}
           />
           <Item
