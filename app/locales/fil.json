@@ -1,5 +1,11 @@
 {
   "_display_name": "Filipino",
+  "common": {
+    "next": "Susunod"
+  },
+  "export": {
+    "exit_warning_cancel": "Magkansela"
+  },
   "import": {
     "title": "Mag-import ng lokasyon"
   },
