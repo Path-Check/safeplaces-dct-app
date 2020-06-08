@@ -2,10 +2,11 @@ import React, { useContext, useState } from 'react';
 import {
   Dimensions,
   ImageBackground,
+  Platform,
+  ScrollView,
   StatusBar,
   StyleSheet,
   View,
-  Platform,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
@@ -20,7 +21,6 @@ import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
-import { sharedStyles } from './styles';
 import fontFamily from '../../constants/fonts';
 
 const width = Dimensions.get('window').width;
@@ -103,7 +103,7 @@ export const OnboardingPermissions = ({ route, navigation }) => {
           translucent
         />
 
-        <View
+        <ScrollView
           testID={'onboarding-permissions-screen'}
           style={styles.mainContainer}>
           <View style={styles.contentContainer}>
@@ -121,8 +121,8 @@ export const OnboardingPermissions = ({ route, navigation }) => {
               {subHeader}
             </Typography>
           </View>
-        </View>
-        <View style={sharedStyles.footerContainer}>
+        </ScrollView>
+        <View style={[styles.footerContainer]}>
           <Button
             label={'Maybe Later'}
             secondary
@@ -181,5 +181,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 28,
-  }
+  },
+  footerContainer: {
+    padding: 24,
+    width: '100%',
+  },
 });
