@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -8,26 +7,19 @@ import {
   Text,
   View,
 } from 'react-native';
+import { openSettings } from 'react-native-permissions';
 import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
-import { Button } from '../../components/Button';
-import { Typography } from '../../components/Typography';
+import { Button, Typography } from '../../components';
 import { Theme } from '../../constants/themes';
+import { useAssets } from '../../TracingStrategyAssets';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
-export const OffPage = ({ tracingStrategy }) => {
+export const OffPage = () => {
   const { t } = useTranslation();
-  const navigation = useNavigation();
-  const ctaText =
-    tracingStrategy === 'gps'
-      ? t(`label.home_setting_off_subtext_location`)
-      : t(`label.home_setting_off_subtext_bluetooth`);
-  const buttonLabel =
-    tracingStrategy === 'gps'
-      ? t(`label.home_enable_location`)
-      : t(`label.home_enable_bluetooth`);
+  const { offPageCta, offPageButton } = useAssets();
   const size = Dimensions.get('window').height;
 
   return (
@@ -57,12 +49,10 @@ export const OffPage = ({ tracingStrategy }) => {
             <Text style={styles.mainTextBelow}>
               {t('label.home_setting_off_header')}
             </Text>
-            <Typography style={styles.subheaderText}>
-              {ctaText}
-            </Typography>
+            <Typography style={styles.subheaderText}>{offPageCta}</Typography>
             <Button
-              label={buttonLabel}
-              onPress={() => navigation.navigate('SettingsScreen', {})}
+              label={offPageButton}
+              onPress={openSettings}
               style={styles.buttonContainer}
             />
           </View>

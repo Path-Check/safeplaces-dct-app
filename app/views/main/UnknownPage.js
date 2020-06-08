@@ -11,8 +11,7 @@ import { openSettings } from 'react-native-permissions';
 import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
-import { Button } from '../../components/Button';
-import { Typography } from '../../components/Typography';
+import { Button, Typography } from '../../components';
 import { Theme } from '../../constants/themes';
 import { MayoButton } from './MayoButton';
 import { styles } from './style';
@@ -20,9 +19,6 @@ import { styles } from './style';
 export const UnknownPage = () => {
   const { t } = useTranslation();
   const buttonLabel = t('label.home_enable_location');
-  const handleEnableLocationPress = () => {
-    openSettings();
-  };
   const size = Dimensions.get('window').height;
   return (
     <Theme use='violet'>
@@ -57,7 +53,7 @@ export const UnknownPage = () => {
             <View style={styles.buttonContainer}>
               <Button
                 label={buttonLabel}
-                onPress={() => handleEnableLocationPress()}
+                onPress={openSettings}
                 style={styles.buttonContainer}
               />
             </View>

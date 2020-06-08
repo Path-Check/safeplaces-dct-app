@@ -5,13 +5,17 @@
   "scripts": {
     "clean": "rm -rf node_modules && yarn",
     "start": "yarn && react-native start",
+    "tsc": "tsc --noEmit",
+    "prettier": "prettier \"app/**/*.+(js|jsx|ts|tsx|json)\"",
+    "format": "yarn prettier --write",
+    "lint": "eslint ./",
+    "validate": "yarn prettier --list-different && yarn tsc && yarn lint",
     "run-android-bte": "react-native run-android --variant=bteDebug --appId=org.pathcheck.covidsafepathsBte",
     "run-android-gps": "react-native run-android --variant=gpsDebug --appId=org.pathcheck.covidsafepaths",
     "run-ios-bte": "yarn install:pod && react-native run-ios --scheme \"BTE_Development\"",
     "run-ios-gps": "yarn install:pod && react-native run-ios --scheme \"GPS_Development\"",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install --quiet && bundle exec pod install --silent",
-    "lint": "eslint ./",
     "postinstall": "patch-package && npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
@@ -35,16 +39,9 @@
     "version:bump:minor": "version --preminor",
     "version:bump:patch": "version --prepatch"
   },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "lint-diff HEAD",
-      "git add --force"
-    ]
-  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-push": "yarn validate && yarn test"
     }
   },
   "rnpm": {
@@ -63,8 +60,10 @@
     "@react-native-community/viewpager": "^3.3.0",
     "@react-navigation/native": "5.0.9",
     "@react-navigation/stack": "5.1.1",
+    "@reduxjs/toolkit": "^1.3.6",
     "dayjs": "^1.8.24",
     "emotion-theming": "^10.0.27",
+    "geolib": "^3.2.1",
     "i18next": "^19.3.3",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
@@ -92,13 +91,15 @@
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-share": "^3.1.0",
-    "react-native-snap-carousel": "^3.8.1",
     "react-native-splash-screen": "^3.2.0",
     "react-native-svg": "^12.0.3",
     "react-native-uuid-generator": "^6.1.1",
     "react-native-webview": "^8.1.2",
     "react-native-zip-archive": "^5.0.1",
+    "react-redux": "^7.2.0",
     "reanimated-bottom-sheet": "^1.0.0-alpha.19",
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
     "rn-fetch-blob": "^0.12.0",
     "semver": "^7.3.2",
     "valid-url": "^1.0.9",
@@ -110,13 +111,25 @@
     "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
     "@testing-library/react-native": "^5.0.3",
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^25.2.3",
+    "@types/react": "^16.9.35",
+    "@types/react-native": "^0.62.12",
+    "@types/react-test-renderer": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
     "babel-jest": "^25.1.0",
     "bats": "^1.1.0",
     "detox": "^16.1.1",
-    "eslint": "^6.8.0",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-detox": "^1.0.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-json": "^2.1.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.0",
     "husky": "^4.2.3",
     "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
@@ -127,11 +140,11 @@
     "lint-staged": "^10.0.9",
     "metro-react-native-babel-preset": "^0.58.0",
     "mockdate": "^2.0.5",
-    "prettier": "1.19.1",
-    "prettier-plugin-import-sort": "0.0.3",
+    "prettier": "^2.0.5",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-version": "^4.0.0",
-    "react-test-renderer": "16.9.0"
+    "react-test-renderer": "16.9.0",
+    "typescript": "^3.9.3"
   },
   "importSort": {
     ".js, .jsx, .es6, .es, .mjs, .ts, .tsx": {
@@ -153,7 +166,7 @@
     },
     "configurations": {
       "iphone11.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/GPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Development -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -161,7 +174,7 @@
         }
       },
       "iphone8.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/GPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -169,15 +182,15 @@
         }
       },
       "iphone-se.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/GPS.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone SE"
+          "type": "iPhone SE (2nd generation)"
         }
       },
       "iphone11-bte.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BTE.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -185,7 +198,7 @@
         }
       },
       "iphone8-bte.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BTE.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
@@ -193,11 +206,11 @@
         }
       },
       "iphone-se-bte.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app",
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BTE.app",
         "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
-          "type": "iPhone SE"
+          "type": "iPhone SE (2nd generation)"
         }
       }
     },

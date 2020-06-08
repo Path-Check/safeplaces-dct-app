@@ -21,6 +21,7 @@ export const defaultTheme = {
   success: Color.SUCCESS,
   warning: Color.WARNING,
   disabled: 'rgba(64, 81, 219, 0.6)',
+  disabledLight: Color.VIOLET_BUTTON_LIGHT,
   border: Color.DIVIDER,
 };
 
@@ -36,6 +37,7 @@ export const violet = {
   primary: Color.WHITE,
   onPrimary: Color.VIOLET,
   disabled: '#ececec',
+  disabledLight: '#ececec',
 };
 
 /** White on gray bg. E.g. Possible exposure mode on default screen */
@@ -52,6 +54,7 @@ export const charcoal = {
   onPrimary: Color.DARK_GRAY,
 
   disabled: '#A9AFBA',
+  disabledLight: '#A9AFBA',
 };
 
 const THEME_MAP = {
@@ -70,7 +73,7 @@ export const ThemedBackground = styled.View`
  *
  * @param {'default' | 'violet' | 'charcoal'} themeName
  */
-export const getTheme = themeName => {
+export const getTheme = (themeName) => {
   const themeColors = THEME_MAP[themeName];
   if (!themeColors) {
     throw new Error(`Unknown theme ${themeName}`);

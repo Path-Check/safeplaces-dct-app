@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Shown on app info, app switcher, etc -->
+  <string name="app_name" translatable="false">PathCheck GPS</string>
+  <!-- Shown below icon on launcher only -->
+  <string name="app_name_short" translatable="false">PathCheck GPS</string>
+  <!-- Channel label for notifications shown in App > Notifications > Path Check BT -->
+  <string name="notification_channel_description">PathCheck GPS notifications</string>
+</resources>

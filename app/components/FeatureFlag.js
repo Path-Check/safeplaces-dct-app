@@ -1,4 +1,4 @@
-import { useFlags } from '../helpers/Flags';
+import { useFlags } from '../services/hooks/useFlags';
 
 /**
  *

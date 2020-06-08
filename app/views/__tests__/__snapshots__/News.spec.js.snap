@@ -150,123 +150,33 @@ exports[`renders correctly 1`] = `
         <View
           style={
             Object {
+              "alignItems": "center",
               "backgroundColor": "#3A4CD7",
               "flex": 1,
-              "paddingVertical": 16,
+              "flexDirection": "row",
+              "justifyContent": "center",
             }
           }
         >
           <RCTScrollView
-            activeAnimationOptions={null}
-            activeAnimationType="timing"
-            activeSlideAlignment="center"
-            activeSlideOffset={20}
-            apparitionDelay={0}
-            automaticallyAdjustContentInsets={false}
-            autoplay={false}
-            autoplayDelay={1000}
-            autoplayInterval={3000}
-            callbackOffsetMargin={5}
-            containerCustomStyle={Object {}}
-            contentContainerCustomStyle={Object {}}
-            contentContainerStyle={
-              Array [
-                Object {
-                  "paddingLeft": 56.25,
-                  "paddingRight": 56.25,
-                },
-                Object {},
-              ]
-            }
-            data={
-              Array [
-                Object {
-                  "name": "Safe Paths News",
-                  "news_url": "https://covidsafepaths.org/in-app-news",
-                },
-              ]
-            }
-            decelerationRate="fast"
-            directionalLockEnabled={true}
-            disableVirtualization={false}
-            enableMomentum={false}
-            enableSnap={true}
-            firstItem={0}
-            hasParallaxImages={false}
-            horizontal={true}
-            inactiveSlideOpacity={0.7}
-            inactiveSlideScale={0.9}
-            inactiveSlideShift={0}
-            initialNumToRender={7}
-            invertStickyHeaders={false}
-            inverted={false}
-            itemWidth={637.5}
-            layout="default"
-            lockScrollTimeoutDuration={1000}
-            lockScrollWhileSnapping={false}
-            loop={false}
-            loopClonesPerSide={3}
-            maxToRenderPerBatch={15}
-            numColumns={1}
-            onEndReachedThreshold={2}
-            overScrollMode="never"
-            pinchGestureEnabled={false}
-            removeClippedSubviews={true}
             scrollEnabled={true}
-            scrollEventThrottle={1}
-            scrollsToTop={false}
-            shouldOptimizeUpdates={true}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            slideStyle={Object {}}
-            sliderWidth={750}
-            stickyHeaderIndices={Array []}
-            style={
-              Object {
-                "flexDirection": "row",
-                "width": 750,
-              }
-            }
-            swipeThreshold={20}
-            updateCellsBatchingPeriod={50}
-            useScrollView={false}
-            vertical={false}
-            viewabilityConfigCallbackPairs={Array []}
-            windowSize={15}
           >
             <View>
-              <View
+              <RCTScrollView
                 style={
-                  Array [
-                    Object {
-                      "flexDirection": "row",
-                    },
-                    null,
-                  ]
+                  Object {
+                    "margin": 36,
+                  }
                 }
               >
-                <View
-                  pointerEvents="box-none"
-                  style={
-                    Object {
-                      "opacity": 1,
-                      "transform": Array [
-                        Object {
-                          "scale": 1,
-                        },
-                      ],
-                      "width": 637.5,
-                    }
-                  }
-                >
+                <View>
                   <View
                     style={
                       Object {
-                        "alignSelf": "center",
                         "backgroundColor": "rgba(255,255,255,0.6)",
                         "borderRadius": 12,
                         "flexGrow": 1,
-                        "width": "100%",
+                        "height": 1067.2,
                       }
                     }
                   >
@@ -316,6 +226,7 @@ exports[`renders correctly 1`] = `
                         cacheEnabled={true}
                         javaScriptEnabled={true}
                         messagingEnabled={false}
+                        nestedScrollEnabled={true}
                         source={
                           Object {
                             "uri": "https://covidsafepaths.org/in-app-news",
@@ -338,7 +249,7 @@ exports[`renders correctly 1`] = `
                     </View>
                   </View>
                 </View>
-              </View>
+              </RCTScrollView>
             </View>
           </RCTScrollView>
           <ActivityIndicator

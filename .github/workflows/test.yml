@@ -69,12 +69,12 @@ jobs:
   unit-test-ios:
     runs-on: macOS-latest
     needs: unit-test
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@master
 
       - name: Set XCode Version
-        run: sudo xcode-select -s /Applications/Xcode_11.app
+        run: sudo xcode-select -s /Applications/Xcode_11.5.app
 
       - name: Cache node_modules/
         uses: actions/cache@v1
@@ -126,7 +126,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Set XCode Version
-        run: sudo xcode-select -s /Applications/Xcode_11.app
+        run: sudo xcode-select -s /Applications/Xcode_11.5.app
 
       - name: Cache node_modules/
         uses: actions/cache@v1
@@ -175,14 +175,14 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-iphonesimulator/PathCheckGPS.app
+          path: ios/build/Build/Products/Release-iphonesimulator/GPS.app
 
   e2e-iphone-se:
     runs-on: macOS-latest
     needs: e2e-ios-build
     timeout-minutes: 15
     env:
-      DEVELOPER_DIR: /Applications/Xcode_11.4.app
+      DEVELOPER_DIR: /Applications/Xcode_11.5.app
     steps:
       - uses: actions/checkout@master
       - name: Cache node_modules/
@@ -210,14 +210,14 @@ jobs:
 
       # - run: xcrun simctl list runtimes
 
-      - run: xcrun simctl create "iPhone SE" com.apple.CoreSimulator.SimDeviceType.iPhone-SE com.apple.CoreSimulator.SimRuntime.iOS-13-4
+      - run: xcrun simctl create "iPhone SE (2nd generation)" com.apple.CoreSimulator.SimDeviceType.iPhone-SE com.apple.CoreSimulator.SimRuntime.iOS-13-5
 
       - run: xcrun simctl list
 
       - uses: actions/download-artifact@master
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-iphonesimulator/COVIDSafePaths.app
+          path: ios/build/Build/Products/Release-iphonesimulator/GPS.app
 
       - run: yarn test:e2e:iphone-se
 

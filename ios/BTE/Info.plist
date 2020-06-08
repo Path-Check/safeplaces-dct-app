@@ -5,6 +5,7 @@
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>com.transistorsoft.fetch</string>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).exposure-notification</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
@@ -41,20 +42,10 @@
 		<key>NSExceptionDomains</key>
 		<dict/>
 	</dict>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you've been exposed to COVID-19</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>This app uses Bluetooth to securely collect and share random IDs with nearby devices. The app can use these IDs to notify you if you've been exposed to COVID-19</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To simulate sharing diagnosis keys between a central server by scanning QR codes.</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
-	<key>NSMotionUsageDescription</key>
-	<string>We use your accelerometer for accurate location history.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>IBMPlexSans-Bold.ttf</string>
@@ -88,10 +79,7 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>bluetooth-central</string>
-		<string>bluetooth-peripheral</string>
 		<string>fetch</string>
-		<string>location</string>
 		<string>processing</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
@@ -99,6 +87,8 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>bluetooth-le</string>
+		<string>telephony</string>
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>

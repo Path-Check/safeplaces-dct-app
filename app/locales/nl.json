@@ -121,7 +121,7 @@
   "onboarding": {
     "eula_checkbox": "Ik accepteer de licentieovereenkomst",
     "eula_continue": "Ga verder",
-    "eula_message": "U moet accepteren om Safe Paths te gebruiken"
+    "eula_message": "*U moet accepteren om Safe Paths te gebruiken"
   },
   "share": {
     "button_text": "Deel uw locatie gegevens",

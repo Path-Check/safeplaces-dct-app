@@ -8,7 +8,7 @@ import {
   requestNotifications,
 } from 'react-native-permissions';
 
-import { config } from './COVIDSafePathsConfig';
+import { isGPS } from './COVIDSafePathsConfig';
 import { HCAService } from './services/HCAService';
 
 export const PermissionStatus = {
@@ -17,7 +17,7 @@ export const PermissionStatus = {
   DENIED: 2,
 };
 
-const statusToEnum = status => {
+const statusToEnum = (status) => {
   switch (status) {
     case 'unknown': {
       return PermissionStatus.UNKNOWN;
@@ -70,7 +70,6 @@ const PermissionsProvider = ({ children }) => {
 
   useEffect(() => {
     const checkAllPermissions = async () => {
-      const isGPS = config.tracingStrategy === 'gps';
       const isiOS = Platform.OS === 'ios';
       const isDev = __DEV__;
       await Promise.all([
@@ -121,7 +120,7 @@ const PermissionsProvider = ({ children }) => {
     }
   };
 
-  const requestLocationForPlatform = async permission => {
+  const requestLocationForPlatform = async (permission) => {
     const status = await request(permission);
     setLocationPermission(statusToEnum(status));
   };

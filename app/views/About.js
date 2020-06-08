@@ -13,14 +13,14 @@ import { SvgXml } from 'react-native-svg';
 
 import packageJson from '../../package.json';
 import fontFamily from './../constants/fonts';
-import { config } from '../COVIDSafePathsConfig';
 import { Icons } from '../assets';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Typography } from '../components/Typography';
+import { NavigationBarWrapper, Typography } from '../components';
 import Colors from '../constants/colors';
+import { useAssets } from '../TracingStrategyAssets';
 
 export const AboutScreen = ({ navigation }) => {
   const { t } = useTranslation();
+  const { aboutHeader } = useAssets();
 
   const backToMain = () => {
     navigation.goBack();
@@ -38,10 +38,6 @@ export const AboutScreen = ({ navigation }) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
   }, [navigation]);
 
-  const aboutHeaderText = config.tracingStrategy === 'gps'
-    ? t('label.about_header_location')
-    : t('label.about_header_bluetooth');
-
   return (
     <NavigationBarWrapper
       title={t('label.about_title')}
@@ -53,7 +49,7 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.aboutLabelContainer}>
           <SvgXml style={styles.aboutSectionIconLock} xml={Icons.Lock} />
           <Typography style={styles.aboutSectionTitles} use='headline2'>
-            {aboutHeaderText}
+            {aboutHeader}
           </Typography>
         </View>
         <Typography style={styles.aboutSectionPara}>
@@ -94,26 +90,26 @@ export const AboutScreen = ({ navigation }) => {
 
           <View>
             <View style={styles.row}>
-                <Typography style={styles.aboutSectionParaBold}>
-                  {packageJson.version}
-                </Typography>
-              </View>
+              <Typography style={styles.aboutSectionParaBold}>
+                {packageJson.version}
+              </Typography>
+            </View>
 
-              <View style={styles.row}>
-                <Typography style={styles.aboutSectionParaBold}>
-                  {Platform.OS + ' v' + Platform.Version}
-                </Typography>
-              </View>
+            <View style={styles.row}>
+              <Typography style={styles.aboutSectionParaBold}>
+                {Platform.OS + ' v' + Platform.Version}
+              </Typography>
+            </View>
 
-              <View style={styles.row}>
-                <Typography style={styles.aboutSectionParaBold}>
-                  {Math.trunc(Dimensions.get('screen').width) +
-                    ' x ' +
-                    Math.trunc(Dimensions.get('screen').height)}
-                </Typography>
-              </View>
+            <View style={styles.row}>
+              <Typography style={styles.aboutSectionParaBold}>
+                {Math.trunc(Dimensions.get('screen').width) +
+                  ' x ' +
+                  Math.trunc(Dimensions.get('screen').height)}
+              </Typography>
             </View>
           </View>
+        </View>
 
         <View style={styles.spacer} />
         <View style={styles.spacer} />

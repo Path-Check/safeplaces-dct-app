@@ -93,9 +93,12 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
-    bundleInDevDebug: false,
-    bundleInStagingDebug: true,
-    devDisabledInStagingDebug: true,
+    bundleInGpsDebug: false,
+    bundleInBteDebug: false,
+    bundleInGpsStaging: true,
+    bundleInBteStaging: true,
+    devDisabledInGpsStaging: true,
+    devDisabledInBteStaging: true,
     enableHermes: false,  // clean and rebuild if changing
 ]
 
@@ -241,6 +244,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation 'com.github.drfonfon:android-kotlin-geohash:1.0'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
+
     androidTestImplementation('com.wix:detox:+') // detox: e2e testing
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
