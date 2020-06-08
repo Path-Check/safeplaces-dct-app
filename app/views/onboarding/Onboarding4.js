@@ -26,8 +26,6 @@ const Onboarding = (props) => {
     onboarding4Subheader,
   } = useAssets();
 
-  const handleOnPressNext = () => {
-  const dispatch = useDispatch();
   const navigateToGpsPermissions = () => props.navigation.replace('OnboardingPermissions', { step: isiOS ? 'notification' : 'location' });
   const navigateToBlePermissions = () => props.navigation.replace('EnableExposureNotifications');
   const onNext = isGPS ? navigateToGpsPermissions : navigateToBlePermissions;

@@ -36,13 +36,13 @@ export const OnboardingPermissions = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
 
-  const moveToNextStep = () => {
-    setCurrentStep(currentStep + 1);
-  };
+  // const moveToNextStep = () => {
+  //   setCurrentStep(currentStep + 1);
+  // };
 
-  const onSkipStep = () => {
-    moveToNextStep();
-  };
+  // const onSkipStep = () => {
+  //   moveToNextStep();
+  // };
 
   const handleRequestLocation = async () => {
     await location.request();
