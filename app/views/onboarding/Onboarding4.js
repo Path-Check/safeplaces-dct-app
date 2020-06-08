@@ -7,13 +7,11 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
 
 import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { isGPS } from '../../COVIDSafePathsConfig';
-import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
 
