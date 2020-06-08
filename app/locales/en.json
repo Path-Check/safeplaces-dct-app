@@ -73,7 +73,6 @@
     "about_header_bluetooth": "PathCheck BT",
     "about_header_location": "PathCheck GPS",
     "about_para": "PathCheck is a global movement to develop free, open-source, privacy-by-design tools for residents, public health officials, and larger communities to flatten the curve of COVID-19, reduce fear, and prevent a surveillance-state response to the pandemic. \n\nFor more information, visit",
-    "about_title": "About",
     "authorities_add_button_label": "Add Healthcare Authority",
     "authorities_add_url": "Add authority via URL",
     "authorities_desc": "Select one or more Healthcare Authorities in your area for information about COVID-19 near you, if available. \n\nEither select a name from the global registry or enter a web address provided by a Healthcare Authority that has implemented PathCheck.",
@@ -159,7 +158,6 @@
     "legal_page_address": "PathCheck\n58 Day Street\nBox 441621\nSomerville, MA 02144",
     "legal_page_header_bluetooth": "PathCheck BT",
     "legal_page_header_location": "PathCheck GPS",
-    "legal_page_title": "Legal",
     "loading_public_data": "loading data...",
     "location_disabled_message": "COVID Safe Paths requires location services.",
     "location_disabled_title": "Location Tracking Was Disabled",
@@ -208,5 +206,11 @@
     "locations": "Locations",
     "partners": "Partners",
     "more": "More"
+  },
+  "screen_titles": {
+    "about": "About",
+    "faq": "FAQ",
+    "report_issue": "Report an issue",
+    "legal": "Legal"
   }
 }

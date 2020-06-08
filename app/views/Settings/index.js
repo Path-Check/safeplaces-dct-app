@@ -4,14 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
 import { Icons } from '../../assets';
-import {
-  Divider,
-  FeatureFlag,
-  NativePicker,
-  NavigationBarWrapper,
-} from '../../components';
+import { Divider, NativePicker, NavigationBarWrapper } from '../../components';
 import Colors from '../../constants/colors';
-import { isGPS } from '../../COVIDSafePathsConfig';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
@@ -19,7 +13,6 @@ import {
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
 import { FEATURE_FLAG_SCREEN_NAME } from '../../views/FeatureFlagToggles';
-import { GoogleMapsImport } from './GoogleMapsImport';
 import { Item } from './Item';
 
 export const SettingsScreen = ({ navigation }) => {
@@ -78,61 +71,19 @@ export const SettingsScreen = ({ navigation }) => {
             )}
           </NativePicker>
         </Section>
-        <Section>
-          <Item
-            label={t('label.choose_provider_title')}
-            description={t('label.choose_provider_subtitle')}
-            onPress={() => navigation.navigate('ChooseProviderScreen')}
-          />
-          <Item
-            label={t('label.news_title')}
-            description={t('label.news_subtitle')}
-            onPress={() => navigation.navigate('NewsScreen')}
-            last={!isGPS}
-          />
-          {isGPS ? (
-            <>
-              <Item
-                label={t('label.event_history_title')}
-                description={t('label.event_history_subtitle')}
-                onPress={() => navigation.navigate('ExposureHistoryScreen')}
-              />
-              <FeatureFlag
-                name='export_e2e'
-                fallback={
-                  <Item
-                    label={t('share.title')}
-                    description={t('share.subtitle')}
-                    onPress={() => navigation.navigate('ExportLocally')}
-                    last
-                  />
-                }>
-                <Item
-                  label={t('share.title')}
-                  description={t('share.subtitle')}
-                  onPress={() => navigation.navigate('ExportScreen')}
-                  last
-                />
-              </FeatureFlag>
-            </>
-          ) : null}
-        </Section>
 
-        {isGPS && (
-          <FeatureFlag name='google_import'>
-            <Section>
-              <GoogleMapsImport navigation={navigation} />
-            </Section>
-          </FeatureFlag>
-        )}
+        <Section>
+          <Item label={t('screen_titles.faq')} />
+          <Item label={t('screen_titles.report_issue')} last />
+        </Section>
 
         <Section last>
           <Item
-            label={t('label.about_title')}
+            label={t('screen_titles.about')}
             onPress={() => navigation.navigate('AboutScreen')}
           />
           <Item
-            label={t('label.legal_page_title')}
+            label={t('screen_titles.legal')}
             onPress={() => navigation.navigate('LicensesScreen')}
           />
           <Item
