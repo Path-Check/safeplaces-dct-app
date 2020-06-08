@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
-// import { BOTTOM_NAV_HEIGHT } from '../../components';
 
 const PULSE_GAP = 80;
 

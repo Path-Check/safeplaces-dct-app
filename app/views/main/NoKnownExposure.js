@@ -9,7 +9,6 @@ import { Typography } from '../../components';
 import Colors from '../../constants/colors';
 import { Theme } from '../../constants/themes';
 import { styles } from './style';
-import { BOTTOM_NAV_HEIGHT } from '../../components';
 
 export const NoKnownExposure = () => {
   const size = Dimensions.get('window').height;

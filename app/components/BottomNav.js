@@ -1,70 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import * as NavIcons from '../assets/svgs/BottomNav';
 import { Theme } from '../constants/themes';
 import Colors from '../constants/colors';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { Typography } from './';
+import { Typography } from '.';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { isGPS } from '../COVIDSafePathsConfig';
+import { useTranslation } from 'react-i18next';
+import { CROSSED_PATHS } from '../constants/storage';
+import { GetStoreData } from '../helpers/General';
 
-const HistoryNav = {
-  icons: { active: NavIcons.HistoryActive, inactive: NavIcons.HistoryInactive },
-  label: 'History',
-  screen: 'ExposureHistoryScreen',
-  hasNotifications: true,
-};
-
-const HomeNav = {
-  icons: { active: NavIcons.HomeActive, inactive: NavIcons.HomeInactive },
-  label: 'Home',
-  screen: 'Main',
-  hasNotifications: false,
-};
-
-const LocationsNav = {
-  icons: {
-    active: NavIcons.LocationsActive,
-    inactive: NavIcons.LocationsInactive,
-  },
-  label: 'Locations',
-  screen: 'ExportScreen', // TODO: Determine if this is correct
-  hasNotifications: false,
-};
-
-const MoreNav = {
-  icons: { active: NavIcons.MoreActive, inactive: NavIcons.MoreInactive },
-  label: 'More',
-  screen: 'SettingsScreen',
-  hasNotifications: false,
-};
-
-const PartnersNav = {
-  icons: {
-    active: NavIcons.PartnersActive,
-    inactive: NavIcons.PartnersInactive,
-  },
-  label: 'Partners',
-  screen: 'ChooseProviderScreen',
-  hasNotifications: false,
-};
-
-const NavIconButton = ({ icons, label, screen, hasNotifications }) => {
+const NavIconButton = ({ icons, label, screens }) => {
   const navigation = useNavigation();
   const route = useRoute();
+  const [hasNotifications, setNotifications] = useState(false);
 
-  const isActive = route.name === screen;
+  const isActive =
+    screens.children.includes(route.name) || screens.primary === route.name;
+
+  // If true, we need to do add a notification to the History nav button
+  const isHistoryScreen = screens.primary === 'ExposureHistoryScreen';
 
   const icon = icons[isActive ? 'active' : 'inactive'];
 
-  // TODO: Can we use primary/secondary theming here?
+  useEffect(() => {
+    const checkForExposure = async () => {
+      return setNotifications(await GetStoreData(CROSSED_PATHS));
+    };
+
+    isHistoryScreen && checkForExposure();
+  });
+
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate(screen);
+        navigation.navigate(screens.primary);
       }}
-      style={styles.navIconRoot}>
-      {/* {hasNotifications && <Typography>*</Typography>} */}
+      style={
+        hasNotifications
+          ? [styles.navIconRoot, { paddingBottom: 7 }]
+          : styles.navIconRoot
+      }>
+      {hasNotifications && (
+        <SvgXml
+          xml={NavIcons.NotificationIcon}
+          width={8}
+          height={8}
+          style={{ top: 3, left: 18 }}
+        />
+      )}
       <SvgXml xml={icon} width={24} height={24} />
       <Typography
         use='Body1'
@@ -76,6 +61,50 @@ const NavIconButton = ({ icons, label, screen, hasNotifications }) => {
 };
 
 export const BottomNav = () => {
+  const { t } = useTranslation();
+
+  const HistoryNav = {
+    icons: {
+      active: NavIcons.HistoryActive,
+      inactive: NavIcons.HistoryInactive,
+    },
+    label: t('navigation.history'),
+    screens: { primary: 'ExposureHistoryScreen', children: [] },
+  };
+
+  const HomeNav = {
+    icons: { active: NavIcons.HomeActive, inactive: NavIcons.HomeInactive },
+    label: t('navigation.home'),
+    screens: { primary: 'Main', children: [] },
+  };
+
+  const LocationsNav = {
+    icons: {
+      active: NavIcons.LocationsActive,
+      inactive: NavIcons.LocationsInactive,
+    },
+    label: t('navigation.locations'),
+    screens: { primary: 'ExportScreen', children: [] }, // TODO: Determine if this is correct
+  };
+
+  const MoreNav = {
+    icons: { active: NavIcons.MoreActive, inactive: NavIcons.MoreInactive },
+    label: t('navigation.more'),
+    screens: {
+      primary: 'SettingsScreen',
+      children: ['AboutScreen', 'LicensesScreen'],
+    },
+  };
+
+  const PartnersNav = {
+    icons: {
+      active: NavIcons.PartnersActive,
+      inactive: NavIcons.PartnersInactive,
+    },
+    label: t('navigation.partners'),
+    screens: { primary: 'ChooseProviderScreen', children: [] },
+  };
+
   const gpsNavIcons = [HomeNav, HistoryNav, LocationsNav, PartnersNav, MoreNav];
 
   // Excludes `LocationsNav`

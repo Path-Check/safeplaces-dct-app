@@ -201,5 +201,12 @@
     "push_notification_message": "Please update your application",
     "push_notification_title": "Application is outdated",
     "update": "Update"
+  },
+  "navigation": {
+    "home": "Home",
+    "history": "History",
+    "locations": "Locations",
+    "partners": "Partners",
+    "more": "More"
   }
 }
