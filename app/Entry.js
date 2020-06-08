@@ -108,6 +108,11 @@ const MainApp = () => (
       name='EnableExposureNotifications'
       component={EnableExposureNotifications}
     />
+     <Stack.Screen
+      name='AssessmentScreen'
+      component={AssessmentScreen}
+      options={{ stackPresentation: 'modal', headerShown: false }}
+    />
   </Stack.Navigator>
 );
 
