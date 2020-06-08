@@ -6,8 +6,12 @@ import PushNotification from 'react-native-push-notification';
 import { CROSSED_PATHS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
+import BackgroundTimer from 'react-native-background-timer';
+import { HCAService } from '../services/HCAService';
 
 let isBackgroundGeolocationConfigured = false;
+let isBackgroundGeolocationStarted = false;
+
 const LOCATION_DISABLED_NOTIFICATION_ID = '55';
 
 // Time (in milliseconds) between location information polls
@@ -75,6 +79,7 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('start', () => {
       console.log('[INFO] BackgroundGeolocation service has been started');
+      this.findNewAuthorities();
     });
 
     BackgroundGeolocation.on('authorization', (status) => {
@@ -147,6 +152,23 @@ export default class LocationServices {
 
     BackgroundGeolocation.start(); //triggers start on start event
     isBackgroundGeolocationConfigured = true;
+  }
+
+  static async findNewAuthorities() {
+    if(!isBackgroundGeolocationStarted) {
+      isBackgroundGeolocationStarted = true;
+      BackgroundTimer.runBackgroundTimer( async () => { 
+
+        //code that will be called every 15 seconds 
+        const mostRecentUserLoc = await LocationServices.getLocationData();
+
+        if(mostRecentUserLoc.length > 0) {
+          BackgroundTimer.stopBackgroundTimer();
+          HCAService.findNewAuthorities();
+        }
+      },15000);     
+    }
+       
   }
 
   static async stop() {

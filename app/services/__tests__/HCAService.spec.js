@@ -297,7 +297,7 @@ describe('HCAService', () => {
 
       const newAuthorityList = await HCAService.getUserAuthorityList();
 
-      expect(newAuthorityList.length).toBe(mockHCA.validParsed.length + 1);
+      expect(newAuthorityList.length).toBe(mockHCA.validParsed.length);
 
       // Doesn't overwrite existing elements
       expect(newAuthorityList[0]).toEqual(mockHCA.validParsed[0]);
