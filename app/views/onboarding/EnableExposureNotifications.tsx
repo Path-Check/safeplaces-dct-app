@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, StatusBar, StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { NavigationScreenProp } from 'react-navigation';
 
 import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
@@ -10,16 +9,18 @@ import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { Theme } from '../../constants/themes';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
+import { useDispatch } from 'react-redux';
 
-export const EnableExposureNotifications = ({
-  navigation,
-}: {
-  navigation: NavigationScreenProp<Record<string, unknown>>;
-}): JSX.Element => {
+import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
+
+export const EnableExposureNotifications = (): JSX.Element => {
   const { requestExposureNotificationAuthorization } = useContext(
     ExposureNotificationContext,
   );
   const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
 
   const buttonLabel = t('label.launch_enable_exposure_notif');
   const disableButtonLabel = t('label.launch_disable_exposure_notif');
@@ -28,11 +29,7 @@ export const EnableExposureNotifications = ({
 
   const handleOnPressEnable = () => {
     requestExposureNotificationAuthorization();
-    navigation.navigate('Main');
-  };
-
-  const handleOnPressDisable = () => {
-    navigation.navigate('Main');
+    dispatchOnboardingComplete();
   };
 
   return (
@@ -68,7 +65,7 @@ export const EnableExposureNotifications = ({
             <Button
               secondary
               label={disableButtonLabel}
-              onPress={handleOnPressDisable}
+              onPress={dispatchOnboardingComplete}
               testID={'onboarding-permissions-disable-button'}
             />
             <Button
