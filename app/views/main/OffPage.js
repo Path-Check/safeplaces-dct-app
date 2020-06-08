@@ -14,7 +14,6 @@ import { Icons, Images } from '../../assets';
 import { Button, Typography } from '../../components';
 import { Theme } from '../../constants/themes';
 import { useAssets } from '../../TracingStrategyAssets';
-import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
 export const OffPage = () => {
@@ -57,7 +56,6 @@ export const OffPage = () => {
             />
           </View>
         </View>
-        <MayoButton />
       </ImageBackground>
     </Theme>
   );

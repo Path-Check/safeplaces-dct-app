@@ -82,7 +82,10 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   };
 
   return (
-    <NavigationBarWrapper title={'EN Debug Menu'} onBackPress={backToSettings}>
+    <NavigationBarWrapper
+      includeBottomNav
+      title={'EN Debug Menu'}
+      onBackPress={backToSettings}>
       <ScrollView>
         <Section>
           <Item

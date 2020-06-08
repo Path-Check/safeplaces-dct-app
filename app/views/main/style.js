@@ -38,13 +38,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: PULSE_GAP,
   },
-  settingsContainer: {
-    position: 'absolute',
-    top: 0,
-    marginTop: '14%',
-    marginRight: '7%',
-    alignSelf: 'flex-end',
-  },
   buttonContainer: {
     marginTop: 24,
     height: 54, // fixes overlaying buttons on really small screens
@@ -52,8 +45,7 @@ export const styles = StyleSheet.create({
   pulseContainer: {
     position: 'absolute',
     resizeMode: 'contain',
-    height: '100%',
-    top: '-13%',
+    top: '-17%',
     left: 0,
     right: 0,
     alignItems: 'center',

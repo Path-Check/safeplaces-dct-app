@@ -67,6 +67,7 @@ exports[`renders correctly 1`] = `
             "borderBottomColor": "#5061E6",
             "borderBottomWidth": 1,
             "flexDirection": "row",
+            "height": 55,
           }
         }
       >
@@ -77,7 +78,6 @@ exports[`renders correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "height": 55,
               "justifyContent": "center",
               "opacity": 1,
               "width": 60,
