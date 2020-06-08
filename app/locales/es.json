@@ -8,7 +8,13 @@
   },
   "authorities": {
     "invalid_url_body": "La URL que introdujo no era válida, por favor inténtelo de nuevo",
-    "invalid_url_title": "URL no válida"
+    "invalid_url_title": "URL no válida",
+    "authority_input_title": "Ingrese una URL para la Autoridad de Salud que le gustaría agregar",
+    "authority_info": "Las autoridades sanitarias pueden compartir información y recursos sobre COVID-19 para su área, incluidos datos verificados que permiten a SafePath estimar cuándo puede haberse cruzado con el virus",
+    "view_your_health_authorities": "Ver sus autoridades sanitarias",
+    "automatically_follow_ha": "Siga automáticamente a las autoridades sanitarias socias cercanas",
+    "all_health_care_authorities": "Todas las autoridades sanitarias",
+    "authority_already_exist": "Autoridad ya agregada"
   },
   "common": {
     "done": "Hecho",
