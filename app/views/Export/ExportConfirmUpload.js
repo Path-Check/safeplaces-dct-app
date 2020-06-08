@@ -5,9 +5,7 @@ import { Alert, NativeModules } from 'react-native';
 import { Icons } from '../../assets';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
-
-const MOCK_ENDPOINT =
-  'https://private-anon-da01e87e46-safeplaces.apiary-mock.com/upload';
+import exportUploadApi from '../../api/export/exportUploadApi';
 
 export const ExportComplete = ({ navigation, route }) => {
   const { t } = useTranslation();
@@ -20,19 +18,8 @@ export const ExportComplete = ({ navigation, route }) => {
     setIsUploading(true);
     try {
       const concernPoints = await NativeModules.SecureStorageManager.getLocations();
-      const res = await fetch(MOCK_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ accessCode: code, concernPoints }),
-      });
-      const success = res.status === 201;
-      if (success) {
-        navigation.navigate('ExportComplete');
-      } else {
-        throw res.status;
-      }
+      await exportUploadApi(selectedAuthority, concernPoints, code);
+      navigation.navigate('ExportComplete');
       setIsUploading(false);
     } catch (e) {
       Alert.alert(t('common.something_went_wrong'));

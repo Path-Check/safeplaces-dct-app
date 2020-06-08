@@ -7,16 +7,18 @@ import {
   View,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
+import { useDispatch } from 'react-redux';
 
 import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
-import { ONBOARDING_DONE, PARTICIPATE } from '../../constants/storage';
+import { PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
+import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import { sharedStyles } from './styles';
 import fontFamily from '../../constants/fonts';
 
@@ -29,6 +31,16 @@ export const OnboardingPermissions = ({ route, navigation }) => {
 
   const handleRequestNotifications = async () => {
     await notification.request();
+  }
+  
+  const dispatch = useDispatch();
+  const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
+
+  const moveToNextStep = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
+  const onSkipStep = () => {
     moveToNextStep();
   };
 
