@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Dimensions,
   ImageBackground,
   StatusBar,
   StyleSheet,
   View,
+  Platform,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
@@ -25,6 +26,8 @@ import fontFamily from '../../constants/fonts';
 const width = Dimensions.get('window').width;
 
 export const OnboardingPermissions = ({ route, navigation }) => {
+  const isiOS = Platform.OS === 'ios';
+  const [step, setStep] = useState(isiOS ? 'notification' : 'location');
   const { location, notification, authSubscription } = useContext(
     PermissionsContext,
   );
@@ -68,14 +71,12 @@ export const OnboardingPermissions = ({ route, navigation }) => {
     notification: notificationStep,
     location: locationStep,
   }
-  const currentStep = steps[route.params.step]
+  const currentStep = steps[step]
   const { header, subHeader, icon, nextStepParam, handleButtonPress, buttonLabel } = currentStep;
 
   const moveToNextStep = () => {
     if (nextStepParam) {
-      navigation.push('OnboardingPermissions', {
-        step: nextStepParam
-      })
+      setStep(nextStepParam)
     } else {
       completeOnboarding()
     }
