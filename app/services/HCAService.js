@@ -60,13 +60,34 @@ class HCAService {
    * @param {newAuthorities} Array healthcare authoritiy objects
    * @returns void
    */
-  async appendToAuthorityList(newAuthorities) {
-    const authorities = (await this.getUserAuthorityList()) || [];
-    await SetStoreData(AUTHORITY_SOURCE_SETTINGS, [
-      ...authorities,
-      ...newAuthorities,
-    ]);
+  async appendToAuthorityList(authorities) {  
+    await SetStoreData(AUTHORITY_SOURCE_SETTINGS, authorities);
   }
+
+  /**
+   * Remove duplicate objects from two arrays and return a new array with new objects
+   *
+   * @returns {Array} Healthcare authoritiy objects
+   */
+  async removeDuplicate(source, target) {
+    let newHAs = [];
+    for (var i = 0; i < source.length; i++) {
+        var srcObj = source[i];
+
+        var tarObj = target.find(function (obj) {
+            const sourceKeys = Object. keys(srcObj);
+            const targetKeys = Object. keys(obj);
+            const filteredArray = targetKeys.filter(val => sourceKeys.includes(val));
+            return filteredArray.length > 0;
+        });
+
+        if (!tarObj) {
+          newHAs.push(srcObj);
+            break;
+        }
+    }
+    return newHAs;
+}
 
   /**
    * Checks if a user has saved any Health Care Authorities
@@ -162,6 +183,10 @@ class HCAService {
   isPointInAuthorityBounds(point, authority) {
     const region = this.getAuthorityBounds(authority);
 
+    if(!region)
+    return false;
+
+    
     if (!isValidCoordinate(point) || !this.isValidBoundingBox(region)) {
       return false;
     } else {
@@ -206,14 +231,21 @@ class HCAService {
    */
   async getNewAuthoritiesInUserLoc() {
     const mostRecentUserLoc = await LocationService.getMostRecentUserGps();
-    const authoritiesList = await this.getAuthoritiesList();
-    const userAuthorities = await this.getUserAuthorityList();
+    let authoritiesList = await this.getAuthoritiesList();
+    let userAuthorities = await this.getUserAuthorityList();
 
-    return authoritiesList.filter(
-      (authority) =>
-        this.isPointInAuthorityBounds(mostRecentUserLoc, authority) &&
-        !userAuthorities.includes(authority),
+    if(!userAuthorities) {
+      userAuthorities = [];
+    }
+
+    authoritiesList = authoritiesList.filter(
+      (authority) => {
+        return this.isPointInAuthorityBounds(mostRecentUserLoc, authority)
+      }
     );
+
+    const newAuthorities = await this.removeDuplicate(authoritiesList, userAuthorities);
+    return newAuthorities;
   }
 
   /**

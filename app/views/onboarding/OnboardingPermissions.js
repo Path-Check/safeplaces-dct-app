@@ -107,9 +107,9 @@ export const OnboardingPermissions = () => {
     if (isiOS) {
       steps.push(notificationStep);
     }
-    if (isDev) {
-      steps.push(authSubscriptionStep);
-    }
+    
+    steps.push(authSubscriptionStep);
+    
     return steps;
   };
 
