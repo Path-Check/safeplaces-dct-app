@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 
-export const EnableExposureNotifications = () => {
+export const EnableExposureNotifications = (): JSX.Element => {
   const { requestExposureNotificationAuthorization } = useContext(
     ExposureNotificationContext,
   );
