@@ -1,9 +1,7 @@
 import { NativeModules } from 'react-native';
 
-import {
-  ENAuthorizationStatus,
-  ENDiagnosisKey,
-} from './ExposureNotificationContext';
+import { ENAuthorizationStatus } from './ExposureNotificationContext';
+import { ENDiagnosisKey } from './views/Settings/ENLocalDiagnosisKeyScreen';
 
 const exposureNotificationModule = NativeModules.PTCExposureManagerModule;
 const debugModule = NativeModules.DebugMenuModule;
@@ -15,7 +13,7 @@ export const requestAuthorization = async (
 };
 
 export const fetchDiagnosisKeys = async (
-  cb: (error: Error, diagnosisKeys: ENDiagnosisKey[]) => void,
+  cb: (errorMessage: string, diagnosisKeys: ENDiagnosisKey[]) => void,
 ): Promise<void> => {
   debugModule.fetchDiagnosisKeys(cb);
 };

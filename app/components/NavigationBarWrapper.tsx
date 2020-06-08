@@ -2,10 +2,9 @@ import styled from '@emotion/native';
 import { useTheme } from 'emotion-theming';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { Dimensions, StatusBar } from 'react-native';
+import { Dimensions, StatusBar, Platform } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { isPlatformiOS } from './../Util';
 import { Icons } from '../assets';
 import Colors from '../constants/colors';
 
@@ -19,8 +18,25 @@ import Colors from '../constants/colors';
  */
 const widthScale = Math.min(Dimensions.get('window').width / 400, 1.0);
 
-export const NavigationBarWrapper = ({ children, title, onBackPress }) => {
-  const theme = useTheme();
+interface NavigationBarWrapperProps {
+  children: JSX.Element;
+  title: string;
+  onBackPress: () => void;
+}
+
+interface Theme {
+  navBar: string;
+  background: string;
+  navBarBorder: string;
+  onNavBar: string;
+}
+
+export const NavigationBarWrapper = ({
+  children,
+  title,
+  onBackPress,
+}: NavigationBarWrapperProps): JSX.Element => {
+  const theme = useTheme<{ navBar: string }>();
 
   const barColor = (theme && theme.navBar) || Colors.VIOLET;
 
@@ -29,7 +45,7 @@ export const NavigationBarWrapper = ({ children, title, onBackPress }) => {
       <StatusBar
         barStyle='light-content'
         backgroundColor={barColor}
-        translucent={isPlatformiOS()}
+        translucent={Platform.OS === 'ios'}
       />
       <TopContainer />
       <BottomContainer>
@@ -45,14 +61,14 @@ export const NavigationBarWrapper = ({ children, title, onBackPress }) => {
   );
 };
 
-const themeNavBar = ({ theme }) => theme.navBar || Colors.VIOLET;
+const themeNavBar = (theme: Theme) => theme.navBar || Colors.VIOLET;
 
 const TopContainer = styled.SafeAreaView`
   flex: 0;
   background-color: ${themeNavBar};
 `;
 
-const themeBackground = ({ theme }) =>
+const themeBackground = (theme: Theme) =>
   theme.background || Colors.INTRO_WHITE_BG;
 
 const BottomContainer = styled.SafeAreaView`
@@ -60,7 +76,7 @@ const BottomContainer = styled.SafeAreaView`
   background-color: ${themeBackground};
 `;
 
-const themeNavBarBorder = ({ theme }) =>
+const themeNavBarBorder = (theme: Theme) =>
   theme.navBarBorder || Colors.NAV_BAR_VIOLET;
 
 const Header = styled.View`
@@ -71,7 +87,7 @@ const Header = styled.View`
   flex-direction: row;
 `;
 
-const themeOnNavBar = ({ theme }) => theme.onNavBar || Colors.WHITE;
+const themeOnNavBar = (theme: Theme) => theme.onNavBar || Colors.WHITE;
 
 const Title = styled.Text`
   align-self: center;
