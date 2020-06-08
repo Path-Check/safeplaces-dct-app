@@ -127,7 +127,10 @@ export function initLocationBins(
  * @param {array} localData - array of stored gps points with gaps
  * @param {int} gpsPeriodMS - local points sampling period
  */
-export function fillLocationGaps(localData, gpsPeriodMS) {
+export function fillLocationGaps(
+  localData,
+  gpsPeriodMS = MIN_LOCATION_UPDATE_MS,
+) {
   // helper function that creates and populates an array with correct timestamps
   const generateGapPoints = (startTime, gapSize, gpsPeriodMS) =>
     [...new Array(gapSize)].map((_, i) => ({
@@ -193,7 +196,7 @@ export function fillDayBins(
   localGPSDataPoints,
   concernTimeframeMS = DEFAULT_CONCERN_TIME_FRAME_MINUTES * 60e3,
   thresholdMatchPercent = DEFAULT_THRESHOLD_MATCH_PERCENT,
-  gpsPeriodMS = DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
+  gpsPeriodMS = MIN_LOCATION_UPDATE_MS,
 ) {
   dayjs.extend(dayOfYear);
   // number of data points that fit in the timeframe
@@ -297,194 +300,6 @@ function roundExposure(difMS, gpsPeriodMS) {
 }
 
 /**
- * Intersects the locationArray with the concernLocationArray, returning the results
- *   as a dayBin array.
- *
- * @param {array} localArray - array of the local locations.  Assumed to have been sorted and normalized
- * @param {array} concernArray - superset array of all concerning points from health authorities.  Assumed to have been sorted and normalized
- * @param {int} numDayBins - (optional) number of bins in the array returned
- * @param {int} concernTimeWindowMS - (optional) window of time to use when determining an exposure
- * @param {int} defaultExposurePeriodMS - (optional) the default exposure period to use when necessary when an exposure is found
- */
-export function intersectSetIntoBins(
-  localArray,
-  concernArray,
-  numDayBins = MAX_EXPOSURE_WINDOW_DAYS,
-  concernTimeWindowMS = 1000 * 60 * DEFAULT_CONCERN_TIME_FRAME_MINUTES,
-  defaultExposurePeriodMS = DEFAULT_EXPOSURE_PERIOD_MINUTES * 60 * 1000,
-) {
-  // useful for time calcs
-  dayjs.extend(duration);
-
-  // generate an array with the asked for number of day bins
-  const dayBins = initLocationBins(numDayBins);
-
-  //for (let loc of localArray) {
-  for (let i = 0; i < localArray.length; i++) {
-    let currentLocation = localArray[i];
-
-    // The current day is 0 days ago (in otherwords, bin 0).
-    // Figure out how many days ago the current location was.
-    // Note that we're basing this off midnight in the user's current timezone.
-    // Also using the dayjs subtract method, which should take timezone and
-    //   daylight savings into account.
-    let midnight = dayjs().startOf('day');
-    let daysAgo = 0;
-    while (currentLocation.time < midnight.valueOf() && daysAgo < numDayBins) {
-      midnight = midnight.subtract(1, 'day');
-      daysAgo++;
-    }
-
-    // if this location's date is earlier than the number of days to bin, we can skip it
-    if (daysAgo >= numDayBins) continue;
-
-    // Check to see if this is the first exposure for this bin.  If so, reset the exposure time to 0
-    // to indicate that we do actually have some data for this day
-    if (dayBins[daysAgo] < 0) dayBins[daysAgo] = 0;
-
-    // timeMin and timeMax set from the concern time window
-    // These define the window of time that is considered an intersection of concern.
-    // The idea is that if this location (lat,lon) is in the concernLocationArray from
-    //   the time starting from this location's recorded minus the concernTimeWindow time up
-    //   to this locations recorded time, then it is a location of concern.
-    let timeMin = currentLocation.time - concernTimeWindowMS;
-    let timeMax = currentLocation.time;
-
-    // now find the index in the concernArray that starts with timeMin (if one exists)
-    //
-    // TODO:  There's probably an optimization that could be done if the locationArray
-    //          increased in time only a small amount, since the index we found
-    //          in the concernArray is probably already close to where we want to be.
-    let j = binarySearchForTime(concernArray, timeMin);
-    // we don't really if the exact timestamp wasn't found, so just take the j value as the index to start
-    if (j < 0) j = -(j + 1);
-
-    // starting at the now known index that corresponds to the beginning of the
-    // location time window, go through all of the concernArray's time-locations
-    // to see if there are actually any intersections of concern.  Stop when
-    // we get past the timewindow.
-    while (j < concernArray.length && concernArray[j].time <= timeMax) {
-      if (
-        areLocationsNearby(
-          concernArray[j].latitude,
-          concernArray[j].longitude,
-          currentLocation.latitude,
-          currentLocation.longitude,
-        )
-      ) {
-        // Crossed path.  Add the exposure time to the appropriate day bin.
-
-        // How long was the possible concern time?
-        //    = the amount of time from the current locations time to the next location time
-        // or = if that calculated time is not possible or too large, use the defaultExposurePeriodMS
-        let exposurePeriod = defaultExposurePeriodMS;
-        if (i < localArray.length - 1) {
-          let timeWindow = localArray[i + 1].time - currentLocation.time;
-          if (timeWindow < defaultExposurePeriodMS * 2) {
-            // not over 2x the default, so should be OK
-            exposurePeriod = timeWindow;
-          }
-        }
-
-        // now add the exposure period to the bin
-        dayBins[daysAgo] += exposurePeriod;
-
-        // Since we've counted the current location time period, we can now break the loop for
-        // this time period and go on to the next location
-        break;
-      }
-
-      j++;
-    }
-  }
-
-  return dayBins;
-}
-
-/**
- * Function to determine if two location points are "nearby".
- * Uses shortcuts when possible, then the exact calculation.
- *
- * @param {number} lat1 - location 1 latitude
- * @param {number} lon1 - location 1 longitude
- * @param {number} lat2 - location 2 latitude
- * @param {number} lon2 - location 2 longitude
- * @return {boolean} true if the two locations meet the criteria for nearby
- */
-export function areLocationsNearby(lat1, lon1, lat2, lon2) {
-  let nearbyDistance = 20; // in meters, anything closer is "nearby"
-
-  // these numbers from https://en.wikipedia.org/wiki/Decimal_degrees
-  let notNearbyInLatitude = 0.00017966; // = nearbyDistance / 111320
-  let notNearbyInLongitude_23Lat = 0.00019518; // = nearbyDistance / 102470
-  let notNearbyInLongitude_45Lat = 0.0002541; // = nearbyDistance / 78710
-  let notNearbyInLongitude_67Lat = 0.00045981; // = nearbyDistance / 43496
-
-  let deltaLon = lon2 - lon1;
-
-  // Initial checks we can do quickly.  The idea is to filter out any cases where the
-  //   difference in latitude or the difference in longitude must be larger than the
-  //   nearby distance, since this can be calculated trivially.
-  if (Math.abs(lat2 - lat1) > notNearbyInLatitude) return false;
-  if (Math.abs(lat1) < 23) {
-    if (Math.abs(deltaLon) > notNearbyInLongitude_23Lat) return false;
-  } else if (Math.abs(lat1) < 45) {
-    if (Math.abs(deltaLon) > notNearbyInLongitude_45Lat) return false;
-  } else if (Math.abs(lat1) < 67) {
-    if (Math.abs(deltaLon) > notNearbyInLongitude_67Lat) return false;
-  }
-
-  // Close enough to do a detailed calculation.  Using the the Spherical Law of Cosines method.
-  //    https://www.movable-type.co.uk/scripts/latlong.html
-  //    https://en.wikipedia.org/wiki/Spherical_law_of_cosines
-  //
-  // Calculates the distance in meters
-  let p1 = (lat1 * Math.PI) / 180;
-  let p2 = (lat2 * Math.PI) / 180;
-  let deltaLambda = (deltaLon * Math.PI) / 180;
-  let R = 6371e3; // gives d in metres
-  let d =
-    Math.acos(
-      Math.sin(p1) * Math.sin(p2) +
-        Math.cos(p1) * Math.cos(p2) * Math.cos(deltaLambda),
-    ) * R;
-
-  // closer than the "nearby" distance?
-  if (d < nearbyDistance) return true;
-
-  // nope
-  return false;
-}
-
-// Basic binary search.  Assumes a sorted array.
-function binarySearchForTime(array, targetTime) {
-  // Binary search:
-  //   array = sorted array
-  //   target = search target
-  // Returns:
-  //   value >= 0,   index of found item
-  //   value < 0,    i where -(i+1) is the insertion point
-  let i = 0;
-  let n = array.length - 1;
-
-  while (i <= n) {
-    let k = (n + i) >> 1;
-    let cmp = targetTime - array[k].time;
-
-    if (cmp > 0) {
-      i = k + 1;
-    } else if (cmp < 0) {
-      n = k - 1;
-    } else {
-      // Found exact match!
-      // NOTE: Could be one of several if array has duplicates
-      return k;
-    }
-  }
-  return -i - 1;
-}
-
-/**
  * Migrates the old GPS data into secure storage (Realm)
  *
  * @returns {Promise<boolean>} Boolean for whether there was any data to migrate
@@ -550,7 +365,7 @@ async function asyncCheckIntersect() {
   // Init the array for the news urls
   let name_news = [];
 
-  const gpsPeriodMS = DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3;
+  const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
 
   // get the saved set of locations for the user, already sorted, and fill in the gaps
   let locationArray = await NativeModules.SecureStorageManager.getLocations();
@@ -644,7 +459,8 @@ async function asyncCheckIntersect() {
   let unixtimeUTC = dayjs().valueOf();
   SetStoreData(LAST_CHECKED, unixtimeUTC);
 
-  return dayBins;
+function parseTimestampCursor(cursorString) {
+  return cursorString ? cursorString.split('_') : [0, 0];
 }
 
 /**

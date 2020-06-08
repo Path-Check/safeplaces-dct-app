@@ -875,36 +875,6 @@ describe('calculate exposure durations', () => {
   });
 
   /**
-   * Simple tests for the areLocationsNearby function
-   */
-  describe('areLocationsNearby', () => {
-    /**
-     * test that north and south poles are far apart!
-     */
-    it('north and south poles not nearby', () => {
-      expect(areLocationsNearby(90, 0, -90, 0)).toBe(false);
-    });
-
-    /**
-     * New York and Sydney are far apart too (crossing both the equator and date line)
-     */
-    it('New York and Sydney are not nearby', () => {
-      expect(areLocationsNearby(40.7128, -74.006, -33.8688, 151.2093)).toBe(
-        false,
-      );
-    });
-
-    /**
-     * Two spots in downtown KC that are with about 15 feet of one another
-     */
-    it('two spots in Kansas City are nearby', () => {
-      expect(
-        areLocationsNearby(39.09772, -94.582959, 39.097769, -94.582937),
-      ).toBe(true);
-    });
-  });
-
-  /**
    * Helper for building up the location arrays
    *
    * @param {*} location
