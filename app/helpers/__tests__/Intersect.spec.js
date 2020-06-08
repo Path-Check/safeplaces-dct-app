@@ -4,7 +4,10 @@ import duration from 'dayjs/plugin/duration';
 import MockDate from 'mockdate';
 import { NativeModules } from 'react-native';
 
-import { DEFAULT_EXPOSURE_PERIOD_MINUTES } from '../../constants/history';
+import {
+  DEFAULT_EXPOSURE_PERIOD_MINUTES,
+  MAX_EXPOSURE_WINDOW_DAYS,
+} from '../../constants/history';
 import {
   areLocationsNearby,
   discardOldData,
@@ -121,8 +124,8 @@ const TEST_LOCATIONS = {
   },
 };
 
-const DEFAULT_MATCH_PERCENT_IN_TIMEFRAME = 0.66;
-const DEFAULT_CONCERN_TIMEFRAME_MINUTES = 30;
+const DEFAULT_THRESHOLD_MATCH_PERCENT = 0.66;
+const DEFAULT_CONCERN_TIMEFRAME_MS = 30 * 60e3;
 
 beforeEach(() => {
   jest.resetAllMocks();
@@ -150,7 +153,10 @@ describe('calculate exposure durations', () => {
 
       baseLocations = normalizeAndSortLocations(baseLocations);
       baseLocations = discardOldData(baseLocations);
-      let resultBins = initLocationBins(baseLocations);
+      let resultBins = initLocationBins(
+        MAX_EXPOSURE_WINDOW_DAYS,
+        baseLocations,
+      );
       baseLocations = fillLocationGaps(
         baseLocations,
         DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
@@ -159,13 +165,13 @@ describe('calculate exposure durations', () => {
       updateMatchFlags(baseLocations, concernHashes);
       // claculate exposure durations
       resultBins = fillDayBins(
-        baseLocations,
-        DEFAULT_MATCH_PERCENT_IN_TIMEFRAME,
-        DEFAULT_CONCERN_TIMEFRAME_MINUTES,
         resultBins,
+        baseLocations,
+        DEFAULT_CONCERN_TIMEFRAME_MS,
+        DEFAULT_THRESHOLD_MATCH_PERCENT,
       );
 
-      let expectedBins = initLocationBins();
+      let expectedBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS);
 
       expect(resultBins).toEqual(expectedBins);
     });
@@ -210,7 +216,10 @@ describe('calculate exposure durations', () => {
 
       baseLocations = normalizeAndSortLocations(baseLocations);
       baseLocations = discardOldData(baseLocations);
-      const resultBins = initLocationBins(baseLocations);
+      const resultBins = initLocationBins(
+        MAX_EXPOSURE_WINDOW_DAYS,
+        baseLocations,
+      );
       baseLocations = fillLocationGaps(
         baseLocations,
         DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
@@ -219,13 +228,13 @@ describe('calculate exposure durations', () => {
       updateMatchFlags(baseLocations, concernHashes);
       // claculate exposure durations
       fillDayBins(
-        baseLocations,
-        DEFAULT_MATCH_PERCENT_IN_TIMEFRAME,
-        DEFAULT_CONCERN_TIMEFRAME_MINUTES,
         resultBins,
+        baseLocations,
+        DEFAULT_CONCERN_TIMEFRAME_MS,
+        DEFAULT_THRESHOLD_MATCH_PERCENT,
       );
 
-      let expectedBins = initLocationBins();
+      let expectedBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS);
 
       expect(resultBins).toEqual(expectedBins);
     });
@@ -272,7 +281,10 @@ describe('calculate exposure durations', () => {
 
       baseLocations = normalizeAndSortLocations(baseLocations);
       baseLocations = discardOldData(baseLocations);
-      const resultBins = initLocationBins(baseLocations);
+      const resultBins = initLocationBins(
+        MAX_EXPOSURE_WINDOW_DAYS,
+        baseLocations,
+      );
       baseLocations = fillLocationGaps(
         baseLocations,
         DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
@@ -281,13 +293,13 @@ describe('calculate exposure durations', () => {
       updateMatchFlags(baseLocations, new Set(concernHashes));
       // claculate exposure durations
       fillDayBins(
-        baseLocations,
-        DEFAULT_MATCH_PERCENT_IN_TIMEFRAME,
-        DEFAULT_CONCERN_TIMEFRAME_MINUTES,
         resultBins,
+        baseLocations,
+        DEFAULT_CONCERN_TIMEFRAME_MS,
+        DEFAULT_THRESHOLD_MATCH_PERCENT,
       );
 
-      let expectedBins = initLocationBins();
+      let expectedBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS);
       expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -382,7 +394,10 @@ describe('calculate exposure durations', () => {
 
       baseLocations = normalizeAndSortLocations(baseLocations);
       baseLocations = discardOldData(baseLocations);
-      const resultBins = initLocationBins(baseLocations);
+      const resultBins = initLocationBins(
+        MAX_EXPOSURE_WINDOW_DAYS,
+        baseLocations,
+      );
       baseLocations = fillLocationGaps(
         baseLocations,
         DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
@@ -391,13 +406,13 @@ describe('calculate exposure durations', () => {
       updateMatchFlags(baseLocations, new Set(concernHashes));
       // claculate exposure durations
       fillDayBins(
-        baseLocations,
-        DEFAULT_MATCH_PERCENT_IN_TIMEFRAME,
-        DEFAULT_CONCERN_TIMEFRAME_MINUTES,
         resultBins,
+        baseLocations,
+        DEFAULT_CONCERN_TIMEFRAME_MS,
+        DEFAULT_THRESHOLD_MATCH_PERCENT,
       );
 
-      let expectedBins = initLocationBins();
+      let expectedBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS);
       // for today, we should get an exposure of 65 minutes.
       // The number of (partially) consecutive matches exceeds the threshold,
       // but the window of exposure can't be extended as those are the last points we analize
@@ -493,7 +508,10 @@ describe('calculate exposure durations', () => {
 
       baseLocations = normalizeAndSortLocations(baseLocations);
       baseLocations = discardOldData(baseLocations);
-      const resultBins = initLocationBins(baseLocations);
+      const resultBins = initLocationBins(
+        MAX_EXPOSURE_WINDOW_DAYS,
+        baseLocations,
+      );
       baseLocations = fillLocationGaps(
         baseLocations,
         DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
@@ -502,13 +520,13 @@ describe('calculate exposure durations', () => {
       updateMatchFlags(baseLocations, new Set(concernHashes));
       // claculate exposure durations
       fillDayBins(
-        baseLocations,
-        DEFAULT_MATCH_PERCENT_IN_TIMEFRAME,
-        DEFAULT_CONCERN_TIMEFRAME_MINUTES,
         resultBins,
+        baseLocations,
+        DEFAULT_CONCERN_TIMEFRAME_MS,
+        DEFAULT_THRESHOLD_MATCH_PERCENT,
       );
 
-      let expectedBins = initLocationBins(); // expect no concern time in any of the bins
+      let expectedBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS); // expect no concern time in any of the bins
       expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -587,7 +605,10 @@ describe('calculate exposure durations', () => {
 
       baseLocations = normalizeAndSortLocations(baseLocations);
       baseLocations = discardOldData(baseLocations);
-      const resultBins = initLocationBins(baseLocations);
+      const resultBins = initLocationBins(
+        MAX_EXPOSURE_WINDOW_DAYS,
+        baseLocations,
+      );
       baseLocations = fillLocationGaps(
         baseLocations,
         DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
@@ -596,13 +617,13 @@ describe('calculate exposure durations', () => {
       updateMatchFlags(baseLocations, new Set(concernHashes));
       // claculate exposure durations
       fillDayBins(
-        baseLocations,
-        DEFAULT_MATCH_PERCENT_IN_TIMEFRAME,
-        DEFAULT_CONCERN_TIMEFRAME_MINUTES,
         resultBins,
+        baseLocations,
+        DEFAULT_CONCERN_TIMEFRAME_MS,
+        DEFAULT_THRESHOLD_MATCH_PERCENT,
       );
 
-      let expectedBins = initLocationBins(); // expect no concern time in any of the bins
+      let expectedBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS); // expect no concern time in any of the bins
       expectedBins[0] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[3] = 0; // expect 0 (not -1) becuase we have location data for this bin
       expectedBins[7] = 0; // expect 0 (not -1) becuase we have location data for this bin
@@ -650,7 +671,10 @@ describe('calculate exposure durations', () => {
 
       baseLocations = normalizeAndSortLocations(baseLocations);
       baseLocations = discardOldData(baseLocations);
-      const resultBins = initLocationBins(baseLocations);
+      const resultBins = initLocationBins(
+        MAX_EXPOSURE_WINDOW_DAYS,
+        baseLocations,
+      );
       baseLocations = fillLocationGaps(
         baseLocations,
         DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
@@ -659,13 +683,13 @@ describe('calculate exposure durations', () => {
       updateMatchFlags(baseLocations, new Set(concernHashes));
       // claculate exposure durations
       fillDayBins(
-        baseLocations,
-        DEFAULT_MATCH_PERCENT_IN_TIMEFRAME,
-        DEFAULT_CONCERN_TIMEFRAME_MINUTES,
         resultBins,
+        baseLocations,
+        DEFAULT_CONCERN_TIMEFRAME_MS,
+        DEFAULT_THRESHOLD_MATCH_PERCENT,
       );
 
-      let expectedBins = initLocationBins();
+      let expectedBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS);
 
       expectedBins[0] = dayjs
         .duration(9 * DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
@@ -726,7 +750,10 @@ describe('calculate exposure durations', () => {
 
       baseLocations = normalizeAndSortLocations(baseLocations);
       baseLocations = discardOldData(baseLocations);
-      const resultBins = initLocationBins(baseLocations);
+      const resultBins = initLocationBins(
+        MAX_EXPOSURE_WINDOW_DAYS,
+        baseLocations,
+      );
       baseLocations = fillLocationGaps(
         baseLocations,
         DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
@@ -735,20 +762,20 @@ describe('calculate exposure durations', () => {
       updateMatchFlags(baseLocations, new Set(concernHashes));
       // claculate exposure durations
       fillDayBins(
-        baseLocations,
-        DEFAULT_MATCH_PERCENT_IN_TIMEFRAME,
-        DEFAULT_CONCERN_TIMEFRAME_MINUTES,
         resultBins,
+        baseLocations,
+        DEFAULT_CONCERN_TIMEFRAME_MS,
+        DEFAULT_THRESHOLD_MATCH_PERCENT,
       );
 
-      let expectedBins = initLocationBins();
+      let expectedBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS);
 
       expectedBins[0] = dayjs
         .duration(13 * DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
         .asMilliseconds(); // 3900000 expect 60 minutes + 5 minutes for the final data point that takes the default
       expectedBins[3] = dayjs
         .duration(15 * DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-        .asMilliseconds(); // 3900000 expect 60 minutes + 5 minutes for the final data point that takes the default
+        .asMilliseconds(); // 3900000 expect 70 minutes + 5 minutes for the final data point that takes the default
 
       expect(resultBins).toEqual(expectedBins);
     });
@@ -757,78 +784,83 @@ describe('calculate exposure durations', () => {
      * specific test with two locations, with altered defaults.  more dayBins, shorter backfill times
      */
     it('is counting non-standard intervals correctly', () => {
-      // 5 locations, spread over 17 days.  Note, the final location is over the 14 days that intersect covers
+      // for this test we assume that the global gps sampling period is 4 minutes
       let baseLocations = [
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.base,
           TEST_MOMENT.valueOf(),
-          dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
-          dayjs.duration(4, 'minutes').asMilliseconds(), // 1000 * 60 * 4  backfill interval is 4 minutes
+          // we backfill for 64 minutes because it's a multiple of 16
+          dayjs.duration(64, 'minutes').asMilliseconds(),
+          dayjs.duration(4, 'minutes').asMilliseconds(),
         ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.base,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
-          dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
-          dayjs.duration(15, 'minutes').asMilliseconds(), //1000 * 60 * 15 backfill interval is 15 minutes, or a total of 5 location points
+          dayjs.duration(64, 'minutes').asMilliseconds(),
+          dayjs.duration(4, 'minutes').asMilliseconds(),
         ).locations,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.base,
-          TEST_MOMENT.valueOf() - dayjs.duration(17, 'days').asMilliseconds(), // 17 * 24 * 60 * 60 * 1000,
+          TEST_MOMENT.clone()
+            .subtract(17, 'days')
+            .valueOf(),
+          dayjs.duration(64, 'minutes').asMilliseconds(),
+          dayjs.duration(4, 'minutes').asMilliseconds(),
         ).locations,
       ];
 
-      // same locations for the concern array, the first is offset back 30 minutes over the offset window, the second
-      //   is offset 30 minutes forward
       let concernHashes = [
+        // generate half of hashes, threshold over 50% should calc this as 0 exposure
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
           TEST_MOMENT.valueOf(),
-          dayjs.duration(1, 'hour').asMilliseconds(), // 1000 * 60 * 60  still only 1 hour
-          dayjs.duration(1, 'minutes').asMilliseconds(), //1000 * 60 * 1 backfill interval is 1 minute
+          dayjs.duration(64, 'minutes').asMilliseconds(),
+          dayjs.duration(4, 'minutes').asMilliseconds(),
         ).hashes,
+        // generate half of hashes, threshold over 50% should calc this as 0 exposure
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
           TEST_MOMENT.clone()
             .subtract(3, 'days')
             .valueOf(),
+          dayjs.duration(64, 'minutes').asMilliseconds(),
+          dayjs.duration(8, 'minutes').asMilliseconds(),
         ).hashes,
+        // generate quarter of hashes, threshold over 25% should calc this as 0 exposure
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.kansascity.concern,
           TEST_MOMENT.clone()
             .subtract(17, 'days')
             .valueOf(),
+          dayjs.duration(64, 'minutes').asMilliseconds(),
+          dayjs.duration(16, 'minutes').asMilliseconds(),
         ).hashes,
       ];
 
       baseLocations = normalizeAndSortLocations(baseLocations);
-      baseLocations = discardOldData(baseLocations);
-      const resultBins = initLocationBins(baseLocations, 21);
+      baseLocations = discardOldData(baseLocations, 21);
+      const resultBins = initLocationBins(21, baseLocations);
       baseLocations = fillLocationGaps(
         baseLocations,
-        DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
+        4 * 60e3, // fill gaps with proper gps intervals
       );
       // check for intersections and update matchflags
       updateMatchFlags(baseLocations, new Set(concernHashes));
       // claculate exposure durations
       fillDayBins(
-        baseLocations,
-        DEFAULT_EXPOSURE_PERIOD_MINUTES,
-        DEFAULT_MATCH_PERCENT_IN_TIMEFRAME,
         resultBins,
+        baseLocations,
+        32 * 60e3, // 32 minutes time frame, so 8 points in time frame
+        26 / 100, // threshold reduced to 26% - more then 2 out of 8 matches for concern
+        4 * 60e3, // override gps interval
       );
       let expectedBins = initLocationBins(21);
 
-      expectedBins[0] = dayjs
-        .duration(13 * DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
-        .asMilliseconds(); // 3960000 - Should end up counting 66 minutes total at loconcoria (60 minutes, plus the one at the current moment @ the 6 minute default)
-      expectedBins[3] = dayjs
-        .duration(6 * DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
-        .asMilliseconds(); // 5 * 6 * 60 * 1000; // Should end up counting 30 minutes exposure for munich (5 exposures, 6 minutes each)
-      expectedBins[17] = dayjs
-        .duration(13 * DEFAULT_EXPOSURE_PERIOD_MINUTES + 1, 'minutes')
-        .asMilliseconds(); // 3960000 - Should end up counting 66 minutes total at kansascity (60 minutes, plus the one at the current moment @ the 6 minute default)
+      expectedBins[0] = dayjs.duration(17 * 4, 'minutes').asMilliseconds();
+      expectedBins[3] = dayjs.duration(20 * 4, 'minutes').asMilliseconds();
+      expectedBins[17] = 0; // match percent threshold over 25%, no exposure.
 
       expect(resultBins).toEqual(expectedBins);
     });
@@ -890,7 +922,10 @@ describe('calculate exposure durations', () => {
 
       baseLocations = normalizeAndSortLocations(baseLocations);
       baseLocations = discardOldData(baseLocations);
-      const resultBins = initLocationBins(baseLocations);
+      const resultBins = initLocationBins(
+        MAX_EXPOSURE_WINDOW_DAYS,
+        baseLocations,
+      );
       baseLocations = fillLocationGaps(
         baseLocations,
         DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
@@ -899,13 +934,13 @@ describe('calculate exposure durations', () => {
       updateMatchFlags(baseLocations, new Set(concernHashes));
       // claculate exposure durations
       fillDayBins(
-        baseLocations,
-        DEFAULT_MATCH_PERCENT_IN_TIMEFRAME,
-        DEFAULT_CONCERN_TIMEFRAME_MINUTES,
         resultBins,
+        baseLocations,
+        DEFAULT_CONCERN_TIMEFRAME_MS,
+        DEFAULT_THRESHOLD_MATCH_PERCENT,
       );
 
-      let expectedBins = initLocationBins();
+      let expectedBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS);
       expectedBins[0] = dayjs
         .duration(7 * DEFAULT_EXPOSURE_PERIOD_MINUTES, 'minutes')
         .asMilliseconds(); // expect 30 minutes + 5 minutes for "today"
