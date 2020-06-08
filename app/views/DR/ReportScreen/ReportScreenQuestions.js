@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import { Button, Text } from 'native-base';
 import React, { useContext, useRef, useState } from 'react';
 import { View } from 'react-native';
@@ -9,6 +10,7 @@ import { Dialog } from 'react-native-simple-dialogs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Wizard from 'react-native-wizard';
 
+import { MEPYD_C5I_SERVICE } from './../../../constants/DR/baseUrls';
 import Header from '../../../components/DR/Header/index';
 import styles from '../../../components/DR/Header/style';
 import context from '../../../components/DR/Reduces/context';
@@ -46,18 +48,26 @@ export default function ReportScreenQuestions({ navigation }) {
 
   const sendDataToApi = async () => {
     try {
+      let merged = {};
+      if (answers.usage === 'mySelf') {
+        let userInfo = await AsyncStorage.getItem('UserPersonalInfo');
+        userInfo = await JSON.parse(userInfo);
+        merged = { ...userInfo, ...answers };
+      } else {
+        merged = answers;
+      }
       const response = await fetch(
-        'https://webapps.mepyd.gob.do:443/contact_tracing/api/Form',
+        `${MEPYD_C5I_SERVICE}:443/contact_tracing/api/Form`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(answers),
+          body: JSON.stringify(merged),
         },
       );
       const data = await response.json();
       return data;
     } catch (e) {
-      console.log('ha ocurrido un error', e);
+      console.log('[error] ', e);
     }
   };
 
@@ -200,9 +210,13 @@ export default function ReportScreenQuestions({ navigation }) {
           title='Next'
           onPress={async () => {
             if (isLastStep) {
-              const { covidId } = await sendDataToApi();
-              SetStoreData(COVID_ID, covidId);
-              navigation.navigate('Results');
+              try {
+                const { covidId } = await sendDataToApi();
+                SetStoreData(COVID_ID, covidId);
+                navigation.navigate('Results');
+              } catch (e) {
+                console.log('[error] ', e);
+              }
             }
             if (data === 'Tengo al menos uno de estos síntomas') {
               setDialogVisible(true);

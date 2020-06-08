@@ -15,6 +15,7 @@ import styles from '../../../../components/DR/Header/style';
 import context from '../../../../components/DR/Reduces/context';
 import ToggleButtons from '../../../../components/DR/ToggleButtons';
 import Colors from '../../../../constants/colors';
+import { REST_COUNTRIES_SERVICE } from '../../../../constants/DR/baseUrls';
 
 const StepCovidContact = ({ setCompleted }) => {
   const [
@@ -43,7 +44,7 @@ const StepCovidContact = ({ setCompleted }) => {
 
   const getCountries = async () => {
     let countries = [];
-    let response = await fetch('https://restcountries.eu/rest/v2/all');
+    let response = await fetch(REST_COUNTRIES_SERVICE);
     response = await response.json();
     response.map(country => {
       countries.push(country.name);

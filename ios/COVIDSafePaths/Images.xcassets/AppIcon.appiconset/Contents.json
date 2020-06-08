@@ -1,122 +1,122 @@
 {
   "images" : [
     {
-      "filename" : "icon-ios-20@2x.png",
+      "size" : "20x20",
       "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "20x20"
+      "filename" : "Isotipo_covi.png",
+      "scale" : "2x"
     },
     {
-      "filename" : "icon-ios-20@3x.png",
+      "size" : "20x20",
       "idiom" : "iphone",
-      "scale" : "3x",
-      "size" : "20x20"
+      "filename" : "Isotipo_covi-1.png",
+      "scale" : "3x"
     },
     {
-      "filename" : "icon-ios-29.png",
+      "size" : "29x29",
       "idiom" : "iphone",
-      "scale" : "1x",
-      "size" : "29x29"
+      "filename" : "Isotipo_covi-2.png",
+      "scale" : "1x"
     },
     {
-      "filename" : "icon-ios-29@2x.png",
+      "size" : "29x29",
       "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "29x29"
+      "filename" : "Isotipo_covi-3.png",
+      "scale" : "2x"
     },
     {
-      "filename" : "icon-ios-29@3x.png",
+      "size" : "29x29",
       "idiom" : "iphone",
-      "scale" : "3x",
-      "size" : "29x29"
+      "filename" : "Isotipo_covi-4.png",
+      "scale" : "3x"
     },
     {
-      "filename" : "icon-ios-40@2x.png",
+      "size" : "40x40",
       "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "40x40"
+      "filename" : "Isotipo_covi-5.png",
+      "scale" : "2x"
     },
     {
-      "filename" : "icon-ios-40@3x.png",
+      "size" : "40x40",
       "idiom" : "iphone",
-      "scale" : "3x",
-      "size" : "40x40"
+      "filename" : "Isotipo_covi-6.png",
+      "scale" : "3x"
     },
     {
-      "filename" : "icon-ios-60@2x.png",
+      "size" : "60x60",
       "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "60x60"
+      "filename" : "Isotipo_covi-7.png",
+      "scale" : "2x"
     },
     {
-      "filename" : "icon-ios-60@3x.png",
+      "size" : "60x60",
       "idiom" : "iphone",
-      "scale" : "3x",
-      "size" : "60x60"
+      "filename" : "Isotipo_covi-8.png",
+      "scale" : "3x"
     },
     {
-      "filename" : "icon-ios-20.png",
+      "size" : "20x20",
       "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "20x20"
+      "filename" : "Isotipo_covi-9.png",
+      "scale" : "1x"
     },
     {
-      "filename" : "icon-ios-20@2x-1.png",
+      "size" : "20x20",
       "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "20x20"
+      "filename" : "Isotipo_covi-10.png",
+      "scale" : "2x"
     },
     {
-      "filename" : "icon-ios-30.png",
+      "size" : "29x29",
       "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "29x29"
+      "filename" : "Isotipo_covi-11.png",
+      "scale" : "1x"
     },
     {
-      "filename" : "icon-ios-29@2x-1.png",
+      "size" : "29x29",
       "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "29x29"
+      "filename" : "Isotipo_covi-12.png",
+      "scale" : "2x"
     },
     {
-      "filename" : "icon-ios-20@2x-2.png",
+      "size" : "40x40",
       "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "40x40"
+      "filename" : "Isotipo_covi-13.png",
+      "scale" : "1x"
     },
     {
-      "filename" : "icon-ios-40@2x-1.png",
+      "size" : "40x40",
       "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "40x40"
+      "filename" : "Isotipo_covi-14.png",
+      "scale" : "2x"
     },
     {
-      "filename" : "icon-ios-76.png",
+      "size" : "76x76",
       "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "76x76"
+      "filename" : "Isotipo_covi-15.png",
+      "scale" : "1x"
     },
     {
-      "filename" : "icon-ios-76@2x.png",
+      "size" : "76x76",
       "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "76x76"
+      "filename" : "Isotipo_covi-16.png",
+      "scale" : "2x"
     },
     {
-      "filename" : "icon-ios-83.5@2x.png",
+      "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "83.5x83.5"
+      "filename" : "Isotipo_covi-17.png",
+      "scale" : "2x"
     },
     {
-      "filename" : "icon-ios-1024@1x.png",
+      "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "scale" : "1x",
-      "size" : "1024x1024"
+      "filename" : "Isotipo_covi-18.png",
+      "scale" : "1x"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }

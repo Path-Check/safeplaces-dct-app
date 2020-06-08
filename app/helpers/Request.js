@@ -1,10 +1,10 @@
 import utmObj from 'utm-latlng';
 
+import { HEALTH_SERVICES_SERVICE } from '../constants/DR/baseUrls';
 import fetch from '../helpers/Fetch';
 
 export function requestCovid19Hospitals() {
-  const URL =
-    'https://services5.arcgis.com/vzuQ2GBv7eL3S9SR/arcgis/rest/services/capa_HOSPITALES_del_SNS_para_COVID_para_apps/FeatureServer/1//query?where=OBJECTID%3E0&outFields=OBJECTID%2CNombre_del_Centro%2CNivel_de_atenci%C3%B3n%2CTelCentro%2Cx%2Cy&f=pjson&token=';
+  const URL = `${HEALTH_SERVICES_SERVICE}/vzuQ2GBv7eL3S9SR/arcgis/rest/services/capa_HOSPITALES_del_SNS_para_COVID_para_apps/FeatureServer/1//query?where=OBJECTID%3E0&outFields=OBJECTID%2CNombre_del_Centro%2CNivel_de_atenci%C3%B3n%2CTelCentro%2Cx%2Cy&f=pjson&token=`;
   return fetch(URL).then(({ data }) =>
     data.features
       .map(({ attributes }) => {
@@ -34,8 +34,7 @@ export function requestCovid19Hospitals() {
 }
 
 export function requestCovid19Laboratories() {
-  const URL =
-    'https://services5.arcgis.com/vzuQ2GBv7eL3S9SR/arcgis/rest/services/Laboratorios_Clinicos_Hijo/FeatureServer/0//query?where=FID%3E0&outFields=ID%2CNombre%2CTelefono%2Ccoord_X%2Ccoord_Y&f=pjson&token=';
+  const URL = `${HEALTH_SERVICES_SERVICE}/vzuQ2GBv7eL3S9SR/arcgis/rest/services/Laboratorios_Clinicos_Hijo/FeatureServer/0//query?where=FID%3E0&outFields=ID%2CNombre%2CTelefono%2Ccoord_X%2Ccoord_Y&f=pjson&token=`;
   return fetch(URL).then(({ data }) =>
     data.features
       .map(({ attributes }) => {

@@ -103,7 +103,7 @@ i18next.use(initReactI18next).init({
   returnEmptyString: false,
   resources: {
     en: { label: en._display_name, translation: en },
-    ht: { label: ht._display_name, translation: ht },
+    es: { label: es._display_name, translation: es },
     ...DEV_LANGUAGES,
   },
 });
