@@ -3,6 +3,8 @@ import rootReducer from './reducers/rootReducer';
 import { StateType } from 'typesafe-actions';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
+// Our internal store representation is the same as the API representation
+export type { HealthcareAuthority } from '../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type Store = StateType<typeof store>;
@@ -18,14 +20,6 @@ export enum ApiStatus {
 export type ApiRequest = {
   status: ApiStatus; // This allows components to show states based on api status
   errorMessage: string | null; // This is only for redux debugging. Store as a string for the safety in the store.
-};
-
-// From API
-export type HealthcareAuthority = {
-  name: string;
-  bounds: Record<string, unknown>;
-  ingest_url: string;
-  publish_url: string;
 };
 
 export type AppThunk<ReturnType = void> = ThunkAction<

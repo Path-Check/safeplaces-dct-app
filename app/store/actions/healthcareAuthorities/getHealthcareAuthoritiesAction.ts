@@ -1,9 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
-import Yaml from 'js-yaml';
+
 import { Dispatch } from 'redux';
 
-import { AUTHORITIES_LIST_URL_MVP1 } from '../../../constants/authorities';
 import { AppThunk } from '../../types';
+import getHealthcareAuthoritiesApi from '../../../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
 
 const GET_HEALTHCARE_AUTHORITIES_STARTED = 'GET_HEALTHCARE_AUTHORITIES_STARTED';
 const GET_HEALTHCARE_AUTHORITIES_SUCCESS = 'GET_HEALTHCARE_AUTHORITIES_SUCCESS';
@@ -20,17 +20,6 @@ const getHealthcareAuthorities_failure = createAction(
   GET_HEALTHCARE_AUTHORITIES_FAILURE,
   ({ error }) => ({ payload: {}, meta: { error } }),
 );
-
-const getHealthcareAuthoritiesApi = async () => {
-  const yamlString = await fetch(AUTHORITIES_LIST_URL_MVP1).then((res) =>
-    res.text(),
-  );
-  const { authorities } = Yaml.safeLoad(yamlString);
-  if (!Array.isArray(authorities)) {
-    throw new Error('authorities yaml did not return an array of authorities');
-  }
-  return authorities;
-};
 
 const getHealthcareAuthoritiesAction = (): AppThunk<void> => async (
   dispatch: Dispatch,

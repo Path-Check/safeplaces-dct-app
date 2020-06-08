@@ -5,6 +5,7 @@ import { Alert, NativeModules } from 'react-native';
 import { Icons } from '../../assets';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
+import exportUploadApi from '../../api/export/exportUploadApi';
 
 export const ExportComplete = ({ navigation, route }) => {
   const { t } = useTranslation();
@@ -17,20 +18,8 @@ export const ExportComplete = ({ navigation, route }) => {
     setIsUploading(true);
     try {
       const concernPoints = await NativeModules.SecureStorageManager.getLocations();
-      const endpoint = `${selectedAuthority.ingest_url}/upload`;
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ accessCode: code, concernPoints }),
-      });
-      const success = res.status === 201;
-      if (success) {
-        navigation.navigate('ExportComplete');
-      } else {
-        throw res.status;
-      }
+      await exportUploadApi(selectedAuthority, concernPoints, code);
+      navigation.navigate('ExportComplete');
       setIsUploading(false);
     } catch (e) {
       Alert.alert(t('common.something_went_wrong'));

@@ -5,6 +5,7 @@ import { Icons } from '../../assets';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
 import { Linking } from 'react-native';
+import getCursorApi from '../../api/healthcareAuthorities/getCursorApi';
 // NOTE:
 // We don't actually hit the consent endpoint until the next screen. These screens are tied together,
 // So there is one endpoint for both parts.
@@ -20,9 +21,7 @@ export const ExportLocationConsent = ({ navigation, route }) => {
 
   // Fetch here to ensure we show the up to date privacy policy
   const onPressLink = async () => {
-    const { privacy_policy_url } = await fetch(
-      selectedAuthority.cursor_url,
-    ).then((res) => res.json());
+    const { privacy_policy_url } = await getCursorApi(selectedAuthority);
     Linking.openURL(privacy_policy_url);
   };
 
