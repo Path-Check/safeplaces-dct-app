@@ -31,6 +31,7 @@ export const OnboardingPermissions = ({ route, navigation }) => {
 
   const handleRequestNotifications = async () => {
     await notification.request();
+    moveToNextStep();
   }
   
   const dispatch = useDispatch();
