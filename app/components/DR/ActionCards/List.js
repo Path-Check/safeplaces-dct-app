@@ -17,6 +17,7 @@ export default function DataList({
   styleDescription = {},
   styleDate = {},
   titleLinesNum = 1,
+  descriptionLinesNum = 3,
   navigation: { navigate },
   switchScreenTo,
 }) {
@@ -63,7 +64,7 @@ export default function DataList({
               {content ? (
                 <Text
                   style={[styles.description, styleDescription]}
-                  numberOfLines={3}>
+                  numberOfLines={descriptionLinesNum}>
                   {content}
                 </Text>
               ) : null}
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   description: {
-    fontSize: 11,
+    fontSize: 12,
     fontFamily: fontFamily.primaryRegular,
   },
   title: {

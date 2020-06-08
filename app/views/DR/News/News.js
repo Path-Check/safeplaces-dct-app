@@ -52,6 +52,7 @@ function NewsScreen({ navigation }) {
           data={news}
           navigation={navigation}
           switchScreenTo='WebView'
+          descriptionLinesNum={2}
         />
         <View style={styles.containerPagination}>
           {isNotLastPage && isLoading ? (
