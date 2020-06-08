@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TextInput,
   View,
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -178,7 +179,12 @@ export const ExportSelectHA = ({ route, navigation }) => {
             </Typography>
             {/* These flex grows allow for a lot of flexibility across device sizes */}
             <View style={{ maxHeight: 60, flexGrow: 1 }} />
-            <View style={{ flexGrow: 1 }}>
+            {/* there's a flex end bug on android, this is a hack to ensure some spacing */}
+            <View
+              style={{
+                flexGrow: 1,
+                marginVertical: Platform.OS === 'ios' ? 0 : 10,
+              }}>
               <CodeInput code={code} length={CODE_LENGTH} setCode={setCode} />
               {codeInvalid && (
                 <Typography style={styles.errorSubtitle} use='body2'>
