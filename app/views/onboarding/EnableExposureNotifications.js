@@ -9,12 +9,18 @@ import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { Theme } from '../../constants/themes';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
+import { useDispatch } from 'react-redux';
 
-export const EnableExposureNotifications = ({ navigation }) => {
+import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
+
+export const EnableExposureNotifications = () => {
   const { requestExposureNotificationAuthorization } = useContext(
     ExposureNotificationContext,
   );
   const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
 
   const buttonLabel = t('label.launch_enable_exposure_notif');
   const disableButtonLabel = t('label.launch_disable_exposure_notif');
@@ -23,11 +29,7 @@ export const EnableExposureNotifications = ({ navigation }) => {
 
   const handleOnPressEnable = () => {
     requestExposureNotificationAuthorization();
-    navigation.navigate('Main');
-  };
-
-  const handleOnPressDisable = () => {
-    navigation.navigate('Main');
+    dispatchOnboardingComplete();
   };
 
   return (
@@ -63,7 +65,7 @@ export const EnableExposureNotifications = ({ navigation }) => {
             <Button
               secondary
               label={disableButtonLabel}
-              onPress={handleOnPressDisable}
+              onPress={dispatchOnboardingComplete}
               testID={'onboarding-permissions-disable-button'}
             />
             <Button
