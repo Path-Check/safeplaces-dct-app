@@ -9,7 +9,6 @@ import {
   MAX_EXPOSURE_WINDOW_DAYS,
 } from '../../constants/history';
 import {
-  areLocationsNearby,
   discardOldData,
   fillDayBins,
   fillLocationGaps,

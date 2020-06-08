@@ -7,7 +7,6 @@
 
 import dayjs from 'dayjs';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
-import duration from 'dayjs/plugin/duration';
 import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
@@ -17,6 +16,7 @@ import {
   DEFAULT_THRESHOLD_MATCH_PERCENT,
   MAX_EXPOSURE_WINDOW_DAYS,
   MIN_CHECK_INTERSECT_INTERVAL,
+  MIN_LOCATION_UPDATE_MS,
 } from '../constants/history';
 import {
   AUTHORITY_NEWS,
@@ -387,7 +387,6 @@ async function asyncCheckIntersect() {
       try {
         let {
           authority_name,
-          concern_point_hashes,
           info_website,
           notification_threshold_percent,
           notification_threshold_timeframe,
