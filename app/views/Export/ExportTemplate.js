@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import {
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import { BackHandler } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -12,7 +18,6 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const BackgroundContainer = ({ lightTheme, children }) => {
   if (lightTheme) {
