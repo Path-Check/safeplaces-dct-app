@@ -14,7 +14,6 @@ import PushNotification from 'react-native-push-notification';
 import { isPlatformiOS } from './../Util';
 import {
   DEFAULT_CONCERN_TIME_FRAME_MINUTES,
-  DEFAULT_EXPOSURE_PERIOD_MINUTES,
   DEFAULT_THRESHOLD_MATCH_PERCENT,
   MAX_EXPOSURE_WINDOW_DAYS,
   MIN_CHECK_INTERSECT_INTERVAL,
@@ -83,7 +82,7 @@ export function discardOldData(
   dayjs.extend(dayOfYear);
   const todayDOY = dayjs().dayOfYear();
   const firstValid = localDataPoints.findIndex(
-    dp => todayDOY - dayjs(dp.time).dayOfYear() < exposureWindowDays,
+    (dp) => todayDOY - dayjs(dp.time).dayOfYear() < exposureWindowDays,
   );
   return localDataPoints.slice(firstValid, localDataPoints.length);
 }
@@ -173,7 +172,7 @@ export function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
   // iterate over recorded GPS data points
   for (const dataPoint of localGPSDataPoints) {
     // check if any of hashes in this GPS data point is contained in the HA's list of concern points
-    const hasCrossedPaths = dataPoint.hashes.some(h =>
+    const hasCrossedPaths = dataPoint.hashes.some((h) =>
       concernPointHashes.has(h),
     );
     if (hasCrossedPaths) {
@@ -206,7 +205,7 @@ export function fillDayBins(
 
   // for each element, calculate the number of matches that occured up until that element
   let matchCount = 0;
-  const prevMatchCounts = localGPSDataPoints.map(p =>
+  const prevMatchCounts = localGPSDataPoints.map((p) =>
     p.hasMatch ? matchCount++ : matchCount,
   ); // make an array of matches up until that data point
   prevMatchCounts.push(matchCount); // as the name states, prevMatchCounts[index] is the number of matches
@@ -458,6 +457,7 @@ async function asyncCheckIntersect() {
   // save off the current time as the last checked time
   let unixtimeUTC = dayjs().valueOf();
   SetStoreData(LAST_CHECKED, unixtimeUTC);
+}
 
 function parseTimestampCursor(cursorString) {
   return cursorString ? cursorString.split('_') : [0, 0];
