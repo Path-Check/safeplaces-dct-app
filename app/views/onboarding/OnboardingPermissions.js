@@ -25,7 +25,7 @@ import fontFamily from '../../constants/fonts';
 
 const width = Dimensions.get('window').width;
 
-export const OnboardingPermissions = ({ route, navigation }) => {
+export const OnboardingPermissions = () => {
   const isiOS = Platform.OS === 'ios';
   const [step, setStep] = useState(isiOS ? 'notification' : 'location');
   const { location, notification, authSubscription } = useContext(
