@@ -14,7 +14,6 @@ import {
   getAndPostDiagnosisKeys,
   simulateExposureDetectionError,
 } from '../../exposureNotificationsNativeModule';
-import { reset } from 'mockdate';
 
 export const EN_DEBUG_MENU_SCREEN_NAME = 'ENDebugMenu';
 export const EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME = 'ENLocalDiagnosisKeyScreen';

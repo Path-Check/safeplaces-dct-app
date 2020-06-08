@@ -25,6 +25,7 @@ export const ENLocalDiagnosisKeyScreen = ({ navigation }) => {
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation, diagnosisKeys]);
 
   const backToSettings = () => {
