@@ -19,6 +19,7 @@ import Input from '../../../components/DR/Input/index';
 import PhoneInput from '../../../components/DR/PhoneInput/index';
 import context from '../../../components/DR/Reduces/context.js';
 import Colors from '../../../constants/colors';
+import { MEPYD_C5I_SERVICE } from '../../../constants/DR/baseUrls';
 
 export default function UserInfo({ navigation }) {
   navigation.setOptions({
@@ -82,7 +83,7 @@ export default function UserInfo({ navigation }) {
   const validate = async data => {
     try {
       let response = await fetch(
-        'https://webapps.mepyd.gob.do/contact_tracing/api/Person',
+        `${MEPYD_C5I_SERVICE}/contact_tracing/api/Person`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
