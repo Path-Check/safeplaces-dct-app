@@ -23,8 +23,6 @@ import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import fontFamily from '../../constants/fonts';
 
-//
-
 const width = Dimensions.get('window').width;
 
 export const OnboardingPermissions = () => {
