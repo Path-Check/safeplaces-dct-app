@@ -590,9 +590,7 @@ describe('calculate exposure durations', () => {
       let concernHashes = [
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.laconcordia.concern,
-          TEST_MOMENT.clone()
-            .subtract(30, 'minutes')
-            .valueOf(),
+          TEST_MOMENT.clone().subtract(30, 'minutes').valueOf(),
         ).hashes,
         ...generateBackfillLocationArray(
           TEST_LOCATIONS.munich.concern,
