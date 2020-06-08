@@ -37,14 +37,6 @@ export const OnboardingPermissions = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
 
-  // const moveToNextStep = () => {
-  //   setCurrentStep(currentStep + 1);
-  // };
-
-  // const onSkipStep = () => {
-  //   moveToNextStep();
-  // };
-
   const handleRequestLocation = async () => {
     await location.request();
     await handleRequestAuthSubscription()
@@ -95,7 +87,7 @@ export const OnboardingPermissions = ({ route, navigation }) => {
 
   const completeOnboarding = () => {
     SetStoreData(PARTICIPATE, location.status === PermissionStatus.GRANTED);
-    SetStoreData(ONBOARDING_DONE, true);
+    dispatchOnboardingComplete();
     navigation.replace('Main');
   }
 
