@@ -108,7 +108,7 @@ export const ExportSelectHA = ({ navigation }) => {
           />
         </SafeAreaView>
         <View style={styles.card}>
-          <SafeAreaView style={{ paddingBottom: 44 }}>
+          <SafeAreaView style={{ paddingBottom: 44, paddingTop: 44 }}>
             <View style={{ paddingHorizontal: 24 }}>
               <Button
                 style={styles.exportButton}
