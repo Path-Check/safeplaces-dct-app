@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TextInput,
   View,
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -20,8 +21,6 @@ import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 
 const CODE_LENGTH = 6;
-const MOCK_ENDPOINT =
-  'https://private-anon-da01e87e46-safeplaces.apiary-mock.com/access-code/valid';
 
 const CodeInput = ({ code, length, setCode }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -121,12 +120,18 @@ export const ExportSelectHA = ({ route, navigation }) => {
   const [codeInvalid, setCodeInvalid] = useState(false);
 
   const { selectedAuthority } = route.params;
-
   const validateCode = async () => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
-      const res = await fetch(`${MOCK_ENDPOINT}?access_code=${code}`);
+      const checkAccessCodeRoute = `${selectedAuthority.ingest_url}/access-code/valid`;
+      const res = await fetch(`${checkAccessCodeRoute}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ accessCode: code }),
+      });
       const { valid } = await res.json();
       if (valid) {
         navigation.navigate('ExportLocationConsent', {
@@ -174,7 +179,12 @@ export const ExportSelectHA = ({ route, navigation }) => {
             </Typography>
             {/* These flex grows allow for a lot of flexibility across device sizes */}
             <View style={{ maxHeight: 60, flexGrow: 1 }} />
-            <View style={{ flexGrow: 1 }}>
+            {/* there's a flex end bug on android, this is a hack to ensure some spacing */}
+            <View
+              style={{
+                flexGrow: 1,
+                marginVertical: Platform.OS === 'ios' ? 0 : 10,
+              }}>
               <CodeInput code={code} length={CODE_LENGTH} setCode={setCode} />
               {codeInvalid && (
                 <Typography style={styles.errorSubtitle} use='body2'>
