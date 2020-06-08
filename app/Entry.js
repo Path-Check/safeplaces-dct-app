@@ -86,11 +86,6 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name='Onboarding3'
-            component={Onboarding3}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
             name='Onboarding4'
             component={Onboarding4}
             options={{ headerShown: false }}

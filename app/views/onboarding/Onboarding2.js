@@ -42,7 +42,7 @@ const Onboarding = props => {
       <View style={sharedStyles.footerContainer}>
         <Button
           onPress={() => {
-            props.navigation.replace('Onboarding3');
+            props.navigation.replace('Onboarding4');
           }}
           style={{ ...buttonStyle.buttonStyle, height: hp('7%') }}>
           <Text style={buttonStyle.buttonText}>
