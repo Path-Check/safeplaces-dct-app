@@ -89,7 +89,6 @@ export const OnboardingPermissions = ({ route, navigation }) => {
   const completeOnboarding = () => {
     SetStoreData(PARTICIPATE, location.status === PermissionStatus.GRANTED);
     dispatchOnboardingComplete();
-    navigation.replace('Main');
   }
 
   return (
