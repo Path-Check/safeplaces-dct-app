@@ -8,25 +8,25 @@ import { Typography } from '.';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { isGPS } from '../COVIDSafePathsConfig';
 import { useTranslation } from 'react-i18next';
-import { CROSSED_PATHS } from '../constants/storage';
-import { GetStoreData } from '../helpers/General';
+import LocationService from '../services/LocationService';
 
 const NavIconButton = ({ icons, label, screens }) => {
+  const [hasNotifications, setNotifications] = useState(false);
+
   const navigation = useNavigation();
   const route = useRoute();
-  const [hasNotifications, setNotifications] = useState(false);
 
   const isActive =
     screens.children.includes(route.name) || screens.primary === route.name;
 
-  // If true, we need to do add a notification to the History nav button
+  // If true, we need to allow for notification icons on the History nav button
   const isHistoryScreen = screens.primary === 'ExposureHistoryScreen';
 
   const icon = icons[isActive ? 'active' : 'inactive'];
 
   useEffect(() => {
     const checkForExposure = async () => {
-      return setNotifications(await GetStoreData(CROSSED_PATHS));
+      setNotifications(await LocationService.getHasPotentialExposure());
     };
 
     isHistoryScreen && checkForExposure();
@@ -92,7 +92,7 @@ export const BottomNav = () => {
     label: t('navigation.more'),
     screens: {
       primary: 'SettingsScreen',
-      children: ['AboutScreen', 'LicensesScreen'],
+      children: ['AboutScreen', 'LicensesScreen', 'FeatureFlagsScreen'],
     },
   };
 
