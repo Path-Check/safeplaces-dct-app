@@ -9,28 +9,33 @@ import {
   View,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
+import { useDispatch } from 'react-redux';
 
 import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
-import { ONBOARDING_DONE, PARTICIPATE } from '../../constants/storage';
+import { PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
+import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
-export const OnboardingPermissions = ({ navigation }) => {
+export const OnboardingPermissions = () => {
   const { location, notification, authSubscription } = useContext(
     PermissionsContext,
   );
   const [currentStep, setCurrentStep] = useState(0);
   const isiOS = Platform.OS === 'ios';
   const isDev = __DEV__;
+
+  const dispatch = useDispatch();
+  const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
 
   const moveToNextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -57,8 +62,7 @@ export const OnboardingPermissions = ({ navigation }) => {
 
   const handleOnPressDone = () => {
     SetStoreData(PARTICIPATE, location.status === PermissionStatus.GRANTED);
-    SetStoreData(ONBOARDING_DONE, true);
-    navigation.replace('Main');
+    dispatchOnboardingComplete();
   };
 
   const locationStep = {

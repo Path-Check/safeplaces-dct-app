@@ -4,6 +4,7 @@ import Checkmark from './checkmark';
 import CheckmarkCircle from './checkmarkCircle';
 import Close from './close';
 import Export from './export';
+import ExposureIcon from './exposureIcon';
 import GoogleMapsLogo from './google-maps-logo';
 import IntroGlobe from './intro-locked';
 import IntroSiren from './intro-siren';
@@ -31,6 +32,7 @@ export const Icons = {
   CheckmarkCircle,
   Close,
   Export,
+  ExposureIcon,
   GoogleMapsLogo,
   IntroGlobe,
   IntroSiren,

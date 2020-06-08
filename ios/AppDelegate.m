@@ -15,6 +15,7 @@
 #import <RNCPushNotificationIOS.h>
 #import <UserNotifications/UserNotifications.h>
 #import <RNSplashScreen.h>
+#import <BTE-Swift.h>
 
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -36,7 +37,6 @@
   center.delegate = self;
 
   [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
-  // [REQUIRED] Register BackgroundFetch
   return YES;
 }
 
