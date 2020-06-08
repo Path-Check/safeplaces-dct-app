@@ -80,7 +80,7 @@ export const SettingsScreen = ({ navigation }) => {
         <Section>
           <Item
             label={t('label.choose_provider_title')}
-            description={t('label.choose_provider_subtitle') + 'new'}
+            description={t('label.choose_provider_subtitle')}
             onPress={() => navigation.navigate('AuthorityInfoScreen')}
           />
 
