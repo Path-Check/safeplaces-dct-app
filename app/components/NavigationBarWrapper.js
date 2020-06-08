@@ -8,7 +8,7 @@ import { SvgXml } from 'react-native-svg';
 import { isPlatformiOS } from './../Util';
 import { Icons } from '../assets';
 import Colors from '../constants/colors';
-import { BottomNav } from '../components';
+import { BottomNav } from '../components/BottomNav';
 
 /**
  * Navigation bar and status bar. Optionally include bottom nav

@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-import { Typography } from '../components';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import languages from '../locales/languages';
 

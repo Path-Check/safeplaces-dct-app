@@ -10,53 +10,52 @@ import { isGPS } from '../COVIDSafePathsConfig';
 import { useTranslation } from 'react-i18next';
 import LocationService from '../services/LocationService';
 
-const NavIconButton = ({ icons, label, screens }) => {
-  const [hasNotifications, setNotifications] = useState(false);
+const NavIconButton = ({ icons, label, screens, hasNotifications }) => {
+  const [hasExposure, setHasExposure] = useState(false);
 
   const navigation = useNavigation();
   const route = useRoute();
 
   const isActive =
-    screens.children.includes(route.name) || screens.primary === route.name;
-
-  // If true, we need to allow for notification icons on the History nav button
-  const isHistoryScreen = screens.primary === 'ExposureHistoryScreen';
+    screens.primary === route.name || screens.children.includes(route.name);
 
   const icon = icons[isActive ? 'active' : 'inactive'];
 
   useEffect(() => {
     const checkForExposure = async () => {
-      setNotifications(await LocationService.getHasPotentialExposure());
+      setHasExposure(await LocationService.getHasPotentialExposure());
     };
 
-    isHistoryScreen && checkForExposure();
+    // The History nav icon is the only element that needs to check for exposure
+    // and create a notification element if the user has been exposed.
+    if (screens.primary === 'ExposureHistoryScreen') {
+      checkForExposure();
+    }
   });
 
   return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate(screens.primary);
-      }}
-      style={
-        hasNotifications
-          ? [styles.navIconRoot, { paddingBottom: 7 }]
-          : styles.navIconRoot
-      }>
-      {hasNotifications && (
-        <SvgXml
-          xml={NavIcons.NotificationIcon}
-          width={8}
-          height={8}
-          style={{ top: 3, left: 18 }}
-        />
-      )}
-      <SvgXml xml={icon} width={24} height={24} />
-      <Typography
-        use='Body1'
-        style={isActive ? styles.labelActive : styles.labelInactive}>
-        {label}
-      </Typography>
-    </TouchableOpacity>
+    <Theme use={isActive ? 'violet' : 'default'}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate(screens.primary);
+        }}
+        style={
+          hasNotifications
+            ? [styles.navIconRoot, { paddingBottom: 7 }]
+            : styles.navIconRoot
+        }>
+        {hasExposure && (
+          <SvgXml
+            xml={NavIcons.NotificationIcon}
+            width={8}
+            height={8}
+            style={styles.notificationIcon}
+          />
+        )}
+        <SvgXml xml={icon} width={24} height={24} />
+        <Typography use='Body1'>{label}</Typography>
+      </TouchableOpacity>
+    </Theme>
   );
 };
 
@@ -113,13 +112,11 @@ export const BottomNav = () => {
   const navIconButtons = isGPS ? gpsNavIcons : bteNavIcons;
 
   return (
-    <Theme use='charcoal'>
-      <View style={styles.navRoot}>
-        {navIconButtons.map((navIconButton) => (
-          <NavIconButton key={navIconButton.label} {...navIconButton} />
-        ))}
-      </View>
-    </Theme>
+    <View style={styles.navRoot}>
+      {navIconButtons.map((navIconButton) => (
+        <NavIconButton key={navIconButton.label} {...navIconButton} />
+      ))}
+    </View>
   );
 };
 
@@ -137,10 +134,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  labelActive: {
-    color: Colors.WHITE,
-  },
-  labelInactive: {
-    color: Colors.DIVIDER,
+  notificationIcon: {
+    top: 3,
+    left: 18,
   },
 });
