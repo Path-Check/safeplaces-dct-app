@@ -5,7 +5,7 @@ import validUrl from 'valid-url';
 import { Icons } from '../assets';
 import { Button } from '../components/Button';
 import { IconButton } from '../components/IconButton';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
@@ -22,7 +22,7 @@ class AddManualURLScreen extends Component {
       selectedAuthorities: [],
       displayUrlEntry: 'none',
       urlEntryInProgress: false,
-      urlText: 'https://www.google.com',
+      urlText: '',
       authoritiesList: [],
       isAuthorityFilterActive: false,
       isAutoSubscribed: false,
