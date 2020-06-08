@@ -97,6 +97,19 @@ const MainApp = () => (
       name='ChooseProviderScreen'
       component={ChooseProviderScreen}
     />
+    <Stack.Screen
+      name='AuthorityInfoScreen'
+      component={AuthorityInfoScreen}
+    />
+    <Stack.Screen name='SelectedHAsScreen' component={SelectedHAsScreen} />
+    <Stack.Screen
+      name='EditAuthoritiesScreen'
+      component={EditAuthoritiesScreen}
+    />
+    <Stack.Screen
+      name='AddManualURLScreen'
+      component={AddManualURLScreen}
+    />
     <Stack.Screen name='LicensesScreen' component={LicensesScreen} />
     <Stack.Screen
       name='ExposureHistoryScreen'

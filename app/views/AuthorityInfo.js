@@ -10,7 +10,7 @@ import {
 
 import { Icons, Images } from '../assets';
 import { IconButton } from '../components/IconButton';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { LAST_CHECKED } from '../constants/storage';

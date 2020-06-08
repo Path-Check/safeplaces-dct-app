@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Alert, BackHandler, FlatList, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
+import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';

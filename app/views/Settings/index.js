@@ -78,11 +78,6 @@ export const SettingsScreen = ({ navigation }) => {
           </NativePicker>
         </Section>
         <Section>
-          {/* <Item
-            label={t('label.choose_provider_title')}
-            description={t('label.choose_provider_subtitle')}
-            onPress={() => navigation.navigate('ChooseProviderScreen')}
-          /> */}
           <Item
             label={t('label.choose_provider_title')}
             description={t('label.choose_provider_subtitle') + 'new'}
