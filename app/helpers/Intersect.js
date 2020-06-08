@@ -6,14 +6,16 @@
  */
 
 import dayjs from 'dayjs';
+import dayOfYear from 'dayjs/plugin/dayOfYear';
 import duration from 'dayjs/plugin/duration';
 import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import { isPlatformiOS } from './../Util';
 import {
-  CONCERN_TIME_WINDOW_MINUTES,
+  DEFAULT_CONCERN_TIME_FRAME_MINUTES,
   DEFAULT_EXPOSURE_PERIOD_MINUTES,
+  DEFAULT_THRESHOLD_MATCH_PERCENT,
   MAX_EXPOSURE_WINDOW_DAYS,
   MIN_CHECK_INTERSECT_INTERVAL,
 } from '../constants/history';
@@ -31,16 +33,140 @@ import {
   SetStoreData,
 } from '../helpers/General';
 import languages from '../locales/languages';
-import { LocationData } from '../services/LocationService';
 
 /**
- * Updates the `hasMatch` flag of recorded GPS data points that are in the HA's list of concern points.
- * This method does not calculate the exposure durations, as that can be done only after all of the HA data chunks have been analyzed
+ * Performs "safety" cleanup of the data, to help ensure that we actually have location
+ *   data in the array.  Also fixes cases with extra info or values coming in as strings.
+ *
+ * @param {array} arr - array of locations in JSON format
+ */
+export function normalizeAndSortLocations(arr) {
+  // This fixes several issues that I found in different input data:
+  //   * Values stored as strings instead of numbers
+  //   * Extra info in the input
+  //   * Improperly sorted data (can happen after an Import)
+  let result = [];
+
+  if (arr) {
+    for (let i = 0; i < arr.length; i++) {
+      let elem = arr[i];
+      if (
+        'time' in elem &&
+        'latitude' in elem &&
+        'longitude' in elem &&
+        'hashes' in elem
+      ) {
+        result.push({
+          time: Number(elem.time),
+          latitude: Number(elem.latitude),
+          longitude: Number(elem.longitude),
+          hashes: elem.hashes,
+        });
+      }
+    }
+
+    result.sort((a, b) => a.time - b.time);
+  }
+  return result;
+}
+
+/**
+ * Returns an array of data points within the exposure window
+ *
+ * @param {array} localDataPoints
+ * @param {int} exposureWindowDays
+ */
+export function discardOldData(
+  localDataPoints = [],
+  exposureWindowDays = MAX_EXPOSURE_WINDOW_DAYS,
+) {
+  dayjs.extend(dayOfYear);
+  const todayDOY = dayjs().dayOfYear();
+  const firstValid = localDataPoints.findIndex(
+    dp => todayDOY - dayjs(dp.time).dayOfYear() < exposureWindowDays,
+  );
+  return localDataPoints.slice(firstValid, localDataPoints.length);
+}
+
+/**
+ * Returns an array with <exposureWindowDays> elements.
+ * The elements have a value of -1 if there are no local
+ * data points for that day, otherwise zero.
+ *
+ * This method should be called before filling the gaps
+ * in the local points data becouse the filled data would
+ * generate the same result as filling day bins with zeros.
+ *
+ * @param {array} localDataPoints
+ * @param {int} exposureWindowDays
+ */
+export function initLocationBins(
+  exposureWindowDays = MAX_EXPOSURE_WINDOW_DAYS,
+  localDataPoints = [],
+) {
+  dayjs.extend(dayOfYear);
+  const todayDOY = dayjs().dayOfYear();
+  const dayBins = new Array(exposureWindowDays).fill(-1);
+
+  for (let ldp of localDataPoints) {
+    const daysAgo = todayDOY - dayjs(ldp.time).dayOfYear();
+    if (dayBins[daysAgo] === 0 || daysAgo >= exposureWindowDays) continue;
+    dayBins[daysAgo] = 0;
+  }
+  return dayBins;
+}
+
+/**
+ * Returns an array that consists all elements from <localData> array,
+ * with elements inserted between two local data points if there is a time gap
+ * larger than <gpsPeriodMS>.
+ *
+ * The number of elements inserted between two elements is one less
+ * than the number of gps periods that occured between the two points.
+ *
+ * @param {array} localData - array of stored gps points with gaps
+ * @param {int} gpsPeriodMS - local points sampling period
+ */
+export function fillLocationGaps(localData, gpsPeriodMS) {
+  // helper function that creates and populates an array with correct timestamps
+  const generateGapPoints = (startTime, gapSize, gpsPeriodMS) =>
+    [...new Array(gapSize)].map((_, i) => ({
+      time: startTime + (i + 1) * gpsPeriodMS,
+      hashes: [],
+    }));
+
+  const filled = [];
+  for (let i = 0; i < localData.length; i++) {
+    filled.push(localData[i]);
+
+    if (i === localData.length - 1) continue;
+    // gap size is the amount of additional gps sampling periods
+    // that can fit in the interval between two local data points
+    const interval = dayjs(localData[i + 1].time).diff(localData[i].time);
+    const gapSize = Math.round(interval / gpsPeriodMS) - 1;
+    if (gapSize > 0) {
+      // generate missing data points with correct times
+      filled.push(
+        ...generateGapPoints(localData[i].time, gapSize, gpsPeriodMS),
+      );
+    }
+  }
+
+  return filled;
+}
+
+/**
+ * Updates the `hasMatch` flag of recorded GPS data points
+ * that are in the HA's list of concern points.
+ *
+ * This method does not calculate the exposure durations,
+ * as that can be done only after all of the HA data chunks
+ * have been analyzed.
  *
  * @param {array} localGPSDataPoints - array of recorded GPS data points.
- * @param {array} concernPointHashes - set of hashed concern points issued by health authorities
+ * @param {Set} concernPointHashes - set of hashed concern points issued by health authorities
  */
-function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
+export function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
   // iterate over recorded GPS data points
   for (const dataPoint of localGPSDataPoints) {
     // check if any of hashes in this GPS data point is contained in the HA's list of concern points
@@ -55,27 +181,6 @@ function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
 }
 
 /**
- *
- * @param {array} localData - array of stored gps points with gaps
- * @param {int} gpsPeriod - local points sampling period
- */
-function fillGapsInLocalData(localData, gpsPeriod) {
-  return localData.reduce((acc, dp, index) => {
-    acc.push(dp);
-
-    if (index === localData.length - 1) return;
-    // gap size is the amount of additional gps sampling periods
-    // that can fit in the interval between two local data points
-    const interval = localData[index + 1].time.diff(dp.time);
-    const gapSize = Math.round(interval / gpsPeriod) - 1;
-    if (gapSize > 0) {
-      // generate missing data points with correct times
-      acc.push(...fillLocationGap(dp.time, gapSize, gpsPeriod));
-    }
-  }, []);
-}
-
-/**
  * Calculates the exposure durations for each day
  *
  * @param {array} localGPSDataPoints - array of recorded GPS data points.
@@ -83,28 +188,25 @@ function fillGapsInLocalData(localData, gpsPeriod) {
  * @param {int} concernTimeWindowMS - (optional) window of time to use when determining an exposure
  * @param {int} defaultExposurePeriodMS - (optional) the default exposure period to use when necessary when an exposure is found
  */
-function reduceToDayBins(
+export function fillDayBins(
+  dayBins,
   localGPSDataPoints,
-  percentOfMatchesInTimeframe,
-  concernTimeframe = CONCERN_TIME_WINDOW_MINUTES,
-  numDayBins = MAX_EXPOSURE_WINDOW_DAYS,
-  gpsPeriod = LocationData.locationInterval,
+  concernTimeframeMS = DEFAULT_CONCERN_TIME_FRAME_MINUTES * 60e3,
+  thresholdMatchPercent = DEFAULT_THRESHOLD_MATCH_PERCENT,
+  gpsPeriodMS = DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3,
 ) {
-  // useful for time calcs
-  dayjs.extend(duration);
-
+  dayjs.extend(dayOfYear);
   // number of data points that fit in the timeframe
-  const pointsInFrame = Math.round((concernTimeframe * 60e3) / gpsPeriod);
-  // minimal match count in timeframe for it to be considered as an exposure period
-  const thresholdMatches = Math.round(
-    pointsInFrame * percentOfMatchesInTimeframe,
-  );
+  const pointsInFrame = Math.round(concernTimeframeMS / gpsPeriodMS);
+  // number of matches in timeframe for it to be considered as an exposure period
+  const thresholdMatches = Math.ceil(pointsInFrame * thresholdMatchPercent);
 
   // for each element, calculate the number of matches that occured up until that element
   let matchCount = 0;
-  const prevMatchCounts = localGPSDataPoints
-    .map(p => (p.hasMatch ? matchCount++ : matchCount)) // make an array of matches up until that data point
-    .push(matchCount); // as the name states, prevMatchCounts[index] is the number of matches
+  const prevMatchCounts = localGPSDataPoints.map(p =>
+    p.hasMatch ? matchCount++ : matchCount,
+  ); // make an array of matches up until that data point
+  prevMatchCounts.push(matchCount); // as the name states, prevMatchCounts[index] is the number of matches
   // in previous index elements, so we add one more that tells us the total num of matches
 
   // array of exposures, each exposure is an object of shape
@@ -118,7 +220,7 @@ function reduceToDayBins(
     i++, j++
   ) {
     // if the current exposure ended and the frame advanced, clear old exposure
-    if (currExposure && currExposure.end < j) {
+    if (currExposure && currExposure.end < i) {
       currExposure = null;
     }
 
@@ -129,7 +231,7 @@ function reduceToDayBins(
       prevMatchCounts[j] - prevMatchCounts[i] >= thresholdMatches
     ) {
       if (currExposure) {
-        // if there is an active exposure, extend it
+        // if there is an active exposure, extend it (non-inclusively)
         currExposure.end = j;
       } else {
         // if there isn't - create it and add it to the list
@@ -139,24 +241,59 @@ function reduceToDayBins(
     }
   }
 
-  // generate an array with the asked number of day bins
-  const dayBins = getEmptyLocationBins(numDayBins);
+  const todayDOY = dayjs().dayOfYear();
 
-  // iterate over the exposures array and update the day bins
+  // and now, finally, we can fill the day bins based on calculated exposure periods
   for (let exposure of exposures) {
-    const startTime = localGPSDataPoints[exposure.start].time;
-    const duration =
-      (exposure.end - exposure.start) * DEFAULT_EXPOSURE_PERIOD_MINUTES;
+    const startTime = dayjs(localGPSDataPoints[exposure.start].time);
+    const endTime = dayjs(localGPSDataPoints[exposure.end - 1].time);
 
-    const daysAgo = dayjs().diff(startTime, 'day');
+    const daysAgoStart = todayDOY - dayjs(startTime).dayOfYear();
+    const daysAgoEnd = todayDOY - dayjs(endTime).dayOfYear();
 
-    // TODO: split duration if it spans across multiple days?
+    // difference in days between start and end
+    // NOTE: in "days ago", the start day is bigger or same as the end day
+    const dayDiff = daysAgoStart - daysAgoEnd;
 
-    if (dayBins[daysAgo] < 0) dayBins[daysAgo] = 0;
-    dayBins[daysAgo] += duration;
+    if (dayDiff === 0) {
+      // if the start and end of the exposure happened on the same day
+      // we can subtract the indices of data points
+      // and easily calculate exposure length
+      const duration = (exposure.end - exposure.start) * gpsPeriodMS;
+      // accumulate the calculated duration
+      dayBins[daysAgoStart] += duration;
+    } else {
+      // exposure spans across two or more days, iterate over each
+      // logic here is kinda backwards, as the indices mean "days ago"
+      for (let daysAgo = daysAgoStart; daysAgo >= daysAgoEnd; daysAgo--) {
+        if (daysAgo === daysAgoStart) {
+          // for the first day, calc from start time to midnight
+          const midnight = startTime.clone().endOf('day');
+          dayBins[daysAgo] += roundExposure(
+            midnight.diff(startTime),
+            gpsPeriodMS,
+          );
+        } else if (daysAgo === daysAgoEnd) {
+          // for the last day, calc from midnight to end time
+          const midnight = endTime.clone().startOf('day');
+          dayBins[daysAgo] += roundExposure(
+            endTime.diff(midnight) + gpsPeriodMS,
+            gpsPeriodMS,
+          );
+        } else {
+          // otherwise, it's a full day exposure
+          dayBins[daysAgo] = 24 * 60;
+        }
+      }
+    }
   }
 
   return dayBins;
+}
+
+// rounds the number of miliseconds to nearest valid exposure period
+function roundExposure(difMS, gpsPeriodMS) {
+  return Math.round(difMS / gpsPeriodMS) * gpsPeriodMS;
 }
 
 /**
@@ -173,14 +310,14 @@ export function intersectSetIntoBins(
   localArray,
   concernArray,
   numDayBins = MAX_EXPOSURE_WINDOW_DAYS,
-  concernTimeWindowMS = 1000 * 60 * CONCERN_TIME_WINDOW_MINUTES,
+  concernTimeWindowMS = 1000 * 60 * DEFAULT_CONCERN_TIME_FRAME_MINUTES,
   defaultExposurePeriodMS = DEFAULT_EXPOSURE_PERIOD_MINUTES * 60 * 1000,
 ) {
   // useful for time calcs
   dayjs.extend(duration);
 
   // generate an array with the asked for number of day bins
-  const dayBins = getEmptyLocationBins(numDayBins);
+  const dayBins = initLocationBins(numDayBins);
 
   //for (let loc of localArray) {
   for (let i = 0; i < localArray.length; i++) {
@@ -319,36 +456,6 @@ export function areLocationsNearby(lat1, lon1, lat2, lon2) {
   return false;
 }
 
-/**
- * Performs "safety" cleanup of the data, to help ensure that we actually have location
- *   data in the array.  Also fixes cases with extra info or values coming in as strings.
- *
- * @param {array} arr - array of locations in JSON format
- */
-export function normalizeAndSortLocations(arr) {
-  // This fixes several issues that I found in different input data:
-  //   * Values stored as strings instead of numbers
-  //   * Extra info in the input
-  //   * Improperly sorted data (can happen after an Import)
-  let result = [];
-
-  if (arr) {
-    for (let i = 0; i < arr.length; i++) {
-      let elem = arr[i];
-      if ('time' in elem && 'latitude' in elem && 'longitude' in elem) {
-        result.push({
-          time: Number(elem.time),
-          latitude: Number(elem.latitude),
-          longitude: Number(elem.longitude),
-        });
-      }
-    }
-
-    result.sort((a, b) => a.time - b.time);
-  }
-  return result;
-}
-
 // Basic binary search.  Assumes a sorted array.
 function binarySearchForTime(array, targetTime) {
   // Binary search:
@@ -443,12 +550,14 @@ async function asyncCheckIntersect() {
   // Init the array for the news urls
   let name_news = [];
 
-  // get the saved set of locations for the user, already sorted, and fill in the gaps
-  const locationArray = await NativeModules.SecureStorageManager.getLocations();
+  const gpsPeriodMS = DEFAULT_EXPOSURE_PERIOD_MINUTES * 60e3;
 
-  // fill the gaps in local data
-  const gpsPeriod = LocationData.locationInterval;
-  const filledLocalData = fillGapsInLocalData(locationArray, gpsPeriod);
+  // get the saved set of locations for the user, already sorted, and fill in the gaps
+  let locationArray = await NativeModules.SecureStorageManager.getLocations();
+  locationArray = discardOldData(locationArray, MAX_EXPOSURE_WINDOW_DAYS);
+  // generate an array with the asked number of day bins
+  let tempDayBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS, locationArray);
+  locationArray = fillLocationGaps(locationArray, gpsPeriodMS);
 
   // get the health authorities
   const authorities = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
@@ -462,15 +571,22 @@ async function asyncCheckIntersect() {
       const prevCursorStart = parseTimestampCursor(cursor)[0];
 
       try {
-        const responseJson = await retrieveUrlAsJson(authority.url);
+        let {
+          authority_name,
+          concern_point_hashes,
+          info_website,
+          notification_threshold_percent,
+          notification_threshold_timeframe,
+          pages,
+        } = await retrieveUrlAsJson(authority.url);
 
         // Update the news array with the info from the authority
         name_news.push({
-          name: responseJson.authority_name,
-          news_url: responseJson.info_website,
+          name: authority_name,
+          news_url: info_website,
         });
 
-        for (const page of responseJson.pages) {
+        for (const page of pages) {
           // skip pages we read before
           if (prevCursorStart > page.startTimestamp) continue;
           // fetch the page we didn't have before
@@ -478,17 +594,20 @@ async function asyncCheckIntersect() {
 
           // check if any of local points hashes are contained in this page
           updateMatchFlags(
-            filledLocalData,
+            locationArray,
             new Set(concernPointsPage.concern_point_hashes),
           );
 
           cursor = `${page.startTimestamp}_${page.endTimestamp}`;
         }
 
-        let tempDayBins = reduceToDayBins(
-          filledLocalData,
-          responseJson.notification_threshold_percent,
-          responseJson.notification_threshold_timeframe,
+        const timeframeMS = notification_threshold_timeframe * 60e3;
+        const matchCoeff = notification_threshold_percent / 100;
+        tempDayBins = fillDayBins(
+          tempDayBins,
+          locationArray,
+          timeframeMS,
+          matchCoeff,
         );
 
         // Update each day's bin with the result from the intersection.  To keep the
@@ -526,22 +645,6 @@ async function asyncCheckIntersect() {
   SetStoreData(LAST_CHECKED, unixtimeUTC);
 
   return dayBins;
-}
-
-export function getEmptyLocationBins(
-  exposureWindowDays = MAX_EXPOSURE_WINDOW_DAYS,
-) {
-  return new Array(exposureWindowDays).fill(-1);
-}
-
-function fillLocationGap(startTime, gapSize, gpsPeriod) {
-  return [...new Array(gapSize)].map((_, i) => ({
-    time: startTime + (i + 1) * gpsPeriod,
-  }));
-}
-
-function parseTimestampCursor(cursorString) {
-  return cursorString ? cursorString.split('_') : [0, 0];
 }
 
 /**
