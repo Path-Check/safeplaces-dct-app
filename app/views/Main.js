@@ -3,10 +3,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
-import { Icons } from '../assets';
-import { IconButton } from '../components';
+import { BottomNav } from '../components';
 import Colors from '../constants/colors';
-import { Theme } from '../constants/themes';
 import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
@@ -31,22 +29,6 @@ export const Main = () => {
     reason: null,
     hasPotentialExposure: false,
   });
-
-  const SettingsNavButton = () => {
-    return (
-      <Theme use='violet'>
-        <IconButton
-          style={styles.settingsContainer}
-          icon={Icons.SettingsIcon}
-          size={30}
-          onPress={() => {
-            navigation.navigate('SettingsScreen');
-          }}
-          label='default'
-        />
-      </Theme>
-    );
-  };
 
   const checkForPossibleExposure = () => {
     BackgroundTaskServices.start();
@@ -109,7 +91,7 @@ export const Main = () => {
   return (
     <View style={styles.backgroundImage}>
       {page}
-      <SettingsNavButton />
+      <BottomNav />
     </View>
   );
 };

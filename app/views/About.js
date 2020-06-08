@@ -41,7 +41,8 @@ export const AboutScreen = ({ navigation }) => {
   return (
     <NavigationBarWrapper
       title={t('label.about_title')}
-      onBackPress={backToMain}>
+      onBackPress={backToMain}
+      includeBottomNav>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.spacer} />
         <View style={styles.spacer} />

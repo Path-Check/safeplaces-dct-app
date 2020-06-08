@@ -105,8 +105,6 @@
     "home_at_risk_subtext_location": "Based on your GPS history, it is possible you were in contact with or close to someone diagnosed with COVID-19.",
     "home_enable_bluetooth": "Enable Contact Tracing",
     "home_enable_location": "Enable Location Data",
-    "home_mayo_link_heading": "More COVID-19 information",
-    "home_mayo_link_label": "from the Mayo Clinic",
     "home_no_contact_header": "No known contact",
     "home_no_contact_subtext": "Based on available data you haven’t been near anyone reported positive for COVID-19.",
     "home_not_available_header_bluetooth": "Exposure history notifications are not yet available",

@@ -8,8 +8,8 @@ import { Icons, Images } from '../../assets';
 import { Typography } from '../../components';
 import Colors from '../../constants/colors';
 import { Theme } from '../../constants/themes';
-import { MayoButton } from './MayoButton';
 import { styles } from './style';
+import { BOTTOM_NAV_HEIGHT } from '../../components';
 
 export const NoKnownExposure = () => {
   const size = Dimensions.get('window').height;
@@ -51,7 +51,6 @@ export const NoKnownExposure = () => {
             </Typography>
           </View>
         </View>
-        <MayoButton />
       </ImageBackground>
     </Theme>
   );

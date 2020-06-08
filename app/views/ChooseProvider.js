@@ -257,7 +257,8 @@ class ChooseProviderScreen extends Component {
       <Theme use='default'>
         <NavigationBarWrapper
           title={languages.t('label.choose_provider_title')}
-          onBackPress={this.backToMain.bind(this)}>
+          onBackPress={this.backToMain.bind(this)}
+          includeBottomNav>
           <KeyboardAvoidingView behavior='padding'>
             <View style={styles.main}>
               <Typography style={styles.sectionDescription} use={'body1'}>

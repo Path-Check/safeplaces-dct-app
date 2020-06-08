@@ -47,7 +47,8 @@ export const LicensesScreen = ({ navigation }) => {
   return (
     <NavigationBarWrapper
       title={t('label.legal_page_title')}
-      onBackPress={backToMain}>
+      onBackPress={backToMain}
+      includeBottomNav>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View>
           <Typography style={styles.heading} use='headline2'>
@@ -74,7 +75,6 @@ export const LicensesScreen = ({ navigation }) => {
           </Typography>
         </View>
       </ScrollView>
-
       <Theme use='charcoal'>
         <TouchableOpacity
           onPress={handleTermsOfUsePressed}

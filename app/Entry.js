@@ -6,7 +6,6 @@ import {
 } from '@react-navigation/stack';
 import React from 'react';
 import { useSelector } from 'react-redux';
-
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';

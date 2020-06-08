@@ -60,7 +60,8 @@ export const SettingsScreen = ({ navigation }) => {
   return (
     <NavigationBarWrapper
       title={t('label.settings_title')}
-      onBackPress={backToMain}>
+      onBackPress={backToMain}
+      includeBottomNav>
       <ScrollView>
         <Section>
           <NativePicker
