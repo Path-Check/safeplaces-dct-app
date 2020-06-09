@@ -1,6 +1,6 @@
 {
   "name": "covidsafepaths",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "private": true,
   "scripts": {
     "clean": "rm -rf node_modules && yarn",
