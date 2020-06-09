@@ -359,7 +359,7 @@ async function asyncCheckIntersect() {
     return null;
 
   // Fetch previous dayBins for intersections
-  let dayBins = await GetStoreData(CROSSED_PATHS);
+  let dayBins = await GetStoreData(CROSSED_PATHS, false);
 
   // Init the array for the news urls
   let name_news = [];
@@ -421,16 +421,8 @@ async function asyncCheckIntersect() {
           locationArray,
           timeframeMS,
           matchCoeff,
+          gpsPeriodMS,
         );
-
-        // Update each day's bin with the result from the intersection.  To keep the
-        //  difference between no data (==-1) and exposure data (>=0), there
-        //  are a total of 3 cases to consider.
-        dayBins = tempDayBins.map((currentValue, i) => {
-          if (currentValue < 0) return dayBins[i];
-          if (dayBins[i] < 0) return currentValue;
-          return currentValue + dayBins[i];
-        });
       } catch (error) {
         // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
         //       Should do better than this.
@@ -440,6 +432,16 @@ async function asyncCheckIntersect() {
       updatedAuthorities.push({ ...authority, cursor });
     }
   }
+
+  // Update each day's bin with the result from the intersection.  To keep the
+  //  difference between no data (==-1) and exposure data (>=0), there
+  //  are a total of 3 cases to consider.
+  dayBins = tempDayBins.map((currentValue, i) => {
+    if (dayBins == null) return currentValue;
+    if (currentValue < 0) return dayBins[i];
+    if (dayBins[i] < 0) return currentValue;
+    return currentValue + dayBins[i];
+  });
 
   // Store the news arary for the authorities found.
   SetStoreData(AUTHORITY_NEWS, name_news);
