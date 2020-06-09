@@ -27,7 +27,7 @@ function formatLocation(placeVisit) {
 }
 
 export function extractLocations(googleLocationHistory) {
-  return (googleLocationHistory?.timelineObjects || []).map(location => {
+  return (googleLocationHistory?.timelineObjects || []).map((location) => {
     // Only import visited places, not paths for now
     if (location?.placeVisit) {
       return formatLocation(location.placeVisit);

@@ -1,11 +1,11 @@
 import styled from '@emotion/native';
 import React from 'react';
 
-import { Typography } from '../../components/Typography';
+import { Typography } from '../../components';
 import languages from '../../locales/languages';
+import { useAssets } from '../../TracingStrategyAssets';
 import { ExposureCalendarView } from './ExposureCalendarView';
 import { SingleExposureDetail } from './SingleExposureDetail';
-import { useAssets } from '../../TracingStrategyAssets';
 
 /**
  * Detailed info when there is some exposure found
@@ -14,8 +14,8 @@ import { useAssets } from '../../TracingStrategyAssets';
  */
 export const DetailedHistory = ({ history }) => {
   const { detailedHistoryPageWhatThisMeansPara } = useAssets();
-  const exposedDays = history.filter(day => day.exposureMinutes > 0);
-      
+  const exposedDays = history.filter((day) => day.exposureMinutes > 0);
+
   return (
     <>
       <ExposureCalendarView weeks={3} history={history} />

@@ -3,8 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 
-import { Divider } from '../../components/Divider';
-import { Typography } from '../../components/Typography';
+import { Divider, Typography } from '../../components';
 
 /**
  * Render a single tappable settings item with optional description and icon.
@@ -16,7 +15,7 @@ import { Typography } from '../../components/Typography';
  *   last?: boolean,
  * }} param0
  */
-export const SettingsItem = ({ label, onPress, description, icon, last }) => {
+export const Item = ({ label, onPress, description, icon, last }) => {
   const { i18n } = useTranslation();
 
   let getCurrentMarginDirection = () =>

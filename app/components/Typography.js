@@ -1,6 +1,6 @@
 import styled from '@emotion/native';
 import { css } from '@emotion/native/dist/native.cjs.prod';
-import * as React from 'react';
+import React from 'react';
 
 import { themeTextColor } from '../constants/themes';
 import { useLanguageDirection } from '../locales/languages';

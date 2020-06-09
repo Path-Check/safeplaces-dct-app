@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react-native';
 import React from 'react';
 
-import { Typography } from '../../components/Typography';
+import { Typography } from '../../components';
 import { Theme } from '../themes';
 
 it('includes extra background View if setBackground=true', () => {

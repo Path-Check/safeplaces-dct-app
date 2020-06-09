@@ -37,7 +37,7 @@ const MONTHS = [
 export function getFilenamesForLatest2Months(rootPath, now) {
   const previousMonth = dayjs(now).subtract(1, 'month');
 
-  return [previousMonth, now].map(date => {
+  return [previousMonth, now].map((date) => {
     const year = date.year();
     const monthStr = MONTHS[date.month()];
     return (

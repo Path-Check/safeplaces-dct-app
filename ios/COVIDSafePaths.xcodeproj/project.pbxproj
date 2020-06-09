@@ -72,6 +72,22 @@
 		A5EA4480D4CC4B468D4B4DDC /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 997AE6137471448A99893BC8 /* IBMPlexMono-SemiBoldItalic.ttf */; };
 		B2138BE26880EEA67E6D1C0E /* libPods-GPSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3297E1A39360171CB7CC3C8 /* libPods-GPSTests.a */; };
 		B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
+		B596C07024880B7000943B79 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596C06F24880B7000943B79 /* String+Extensions.swift */; };
+		B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* PTCExposureManagerModule.m */; };
+		B5FC37C12489B075006474EB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C02489B075006474EB /* APIClient.swift */; };
+		B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C52489B1B3006474EB /* APIRequest.swift */; };
+		B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C92489B1C1006474EB /* JSON.swift */; };
+		B5FC37CC2489B251006474EB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37CB2489B251006474EB /* Result.swift */; };
+		B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37CD2489B359006474EB /* TypeAliases.swift */; };
+		B5FC37D02489B3DE006474EB /* StructuredError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37CF2489B3DE006474EB /* StructuredError.swift */; };
+		B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37D7248A784F006474EB /* DiagnosisKeyRequests.swift */; };
+		B5FC37DD248A78D2006474EB /* ExposureKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37DC248A78D2006474EB /* ExposureKey.swift */; };
+		B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */; };
+		B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */; };
+		B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E2248A82AE006474EB /* Exposure.swift */; };
+		B5FC37E6248A82E3006474EB /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E5248A82E3006474EB /* LocalStore.swift */; };
+		B5FC37E8248A8302006474EB /* TestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E7248A8302006474EB /* TestResult.swift */; };
+		B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
 		BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */; };
 		C53FD08B24719AD1006D3268 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6724284A52008754AC /* UIKit.framework */; };
@@ -118,6 +134,7 @@
 		C53FD0B824719AD1006D3268 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */; };
 		C53FD0B924719AD1006D3268 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
 		C53FD0BA24719AD1006D3268 /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
+		C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58463E32486C51100BCB842 /* ExposureManager.swift */; };
 		C5850A64247D5A41007A596B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5850A63247D5A41007A596B /* Images.xcassets */; };
 		C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */; };
 		C5C850C7248014F700A494CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C850C6248014F700A494CA /* main.m */; };
@@ -295,12 +312,29 @@
 		B2A5822E244CEA9F000F39A6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B3297E1A39360171CB7CC3C8 /* libPods-GPSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
+		B596C06F24880B7000943B79 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		B596C0712488127D00943B79 /* PTCExposureManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCExposureManagerModule.m; sourceTree = "<group>"; };
+		B5FC37C02489B075006474EB /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		B5FC37C52489B1B3006474EB /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		B5FC37C92489B1C1006474EB /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		B5FC37CB2489B251006474EB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		B5FC37CD2489B359006474EB /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		B5FC37CF2489B3DE006474EB /* StructuredError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredError.swift; sourceTree = "<group>"; };
+		B5FC37D7248A784F006474EB /* DiagnosisKeyRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisKeyRequests.swift; sourceTree = "<group>"; };
+		B5FC37DC248A78D2006474EB /* ExposureKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureKey.swift; sourceTree = "<group>"; };
+		B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureConfiguration.swift; sourceTree = "<group>"; };
+		B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureConfigurationRequests.swift; sourceTree = "<group>"; };
+		B5FC37E2248A82AE006474EB /* Exposure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exposure.swift; sourceTree = "<group>"; };
+		B5FC37E5248A82E3006474EB /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
+		B5FC37E7248A8302006474EB /* TestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResult.swift; sourceTree = "<group>"; };
+		B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ENTemporaryExposureKey+Extensions.swift"; sourceTree = "<group>"; };
 		BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
 		C53FD0C124719AD1006D3268 /* BTE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53FD0C224719AD2006D3268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C53FD116247454EA006D3268 /* COVIDSafePaths.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = COVIDSafePaths.entitlements; path = BTE/COVIDSafePaths.entitlements; sourceTree = "<group>"; };
 		C56190A12485332E009A6756 /* BTE-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BTE-Bridging-Header.h"; sourceTree = "<group>"; };
+		C58463E32486C51100BCB842 /* ExposureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureManager.swift; sourceTree = "<group>"; };
 		C5850A63247D5A41007A596B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C5AA24E124768FFF00BA0A99 /* BTETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5AA24E224768FFF00BA0A99 /* BTETestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = BTETestsInfo.plist; path = "/Users/johnschoeman/workspace/thoughtbot/covid-safe-paths/ios/BTETestsInfo.plist"; sourceTree = "<absolute>"; };
@@ -658,6 +692,57 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B5FC37BD2489B05F006474EB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC37DB248A78C3006474EB /* Model */,
+				B5FC37D12489C25D006474EB /* Requests */,
+				B5FC37C02489B075006474EB /* APIClient.swift */,
+				B5FC37CF2489B3DE006474EB /* StructuredError.swift */,
+				B5FC37CB2489B251006474EB /* Result.swift */,
+				B5FC37CD2489B359006474EB /* TypeAliases.swift */,
+				B5FC37C52489B1B3006474EB /* APIRequest.swift */,
+				B5FC37C92489B1C1006474EB /* JSON.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		B5FC37D12489C25D006474EB /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC37D7248A784F006474EB /* DiagnosisKeyRequests.swift */,
+				B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		B5FC37DB248A78C3006474EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC37DC248A78D2006474EB /* ExposureKey.swift */,
+				B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */,
+				B5FC37E7248A8302006474EB /* TestResult.swift */,
+				B5FC37E2248A82AE006474EB /* Exposure.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B5FC37E4248A82D6006474EB /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC37E5248A82E3006474EB /* LocalStore.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		B5FC37F2248A9934006474EB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C53FD07C247199A4006D3268 /* GPS */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,13 +763,27 @@
 		C53FD0C324719C25006D3268 /* BTE */ = {
 			isa = PBXGroup;
 			children = (
+				B5FC37F2248A9934006474EB /* Extensions */,
+				B5FC37E4248A82D6006474EB /* Storage */,
+				B5FC37BD2489B05F006474EB /* API */,
+				C57BDFB124883EF400CE62B1 /* bridge */,
 				C5C850C92480156200A494CA /* AppDelegate.m */,
 				C5C850C6248014F700A494CA /* main.m */,
 				C53FD0C224719AD2006D3268 /* Info.plist */,
 				C5850A63247D5A41007A596B /* Images.xcassets */,
 				C56190A12485332E009A6756 /* BTE-Bridging-Header.h */,
+				C58463E32486C51100BCB842 /* ExposureManager.swift */,
+				B596C06F24880B7000943B79 /* String+Extensions.swift */,
 			);
 			path = BTE;
+			sourceTree = "<group>";
+		};
+		C57BDFB124883EF400CE62B1 /* bridge */ = {
+			isa = PBXGroup;
+			children = (
+				B596C0712488127D00943B79 /* PTCExposureManagerModule.m */,
+			);
+			path = bridge;
 			sourceTree = "<group>";
 		};
 		C5C850DD24804A0300A494CA /* Products */ = {
@@ -806,11 +905,6 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 79Z8HUPGC3;
 						LastSwiftMigration = 1130;
-						ProvisioningStyle = Automatic;
-					};
-					C53FD07D24719AD1006D3268 = {
-						DevelopmentTeam = 79Z8HUPGC3;
-						ProvisioningStyle = Manual;
 					};
 					C5AA24D124768FFF00BA0A99 = {
 						TestTargetID = C53FD07D24719AD1006D3268;
@@ -1172,8 +1266,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5FC37E8248A8302006474EB /* TestResult.swift in Sources */,
+				B5FC37CC2489B251006474EB /* Result.swift in Sources */,
+				C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */,
+				B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */,
 				C5C850CA2480156200A494CA /* AppDelegate.m in Sources */,
+				B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */,
+				B5FC37E6248A82E3006474EB /* LocalStore.swift in Sources */,
+				B596C07024880B7000943B79 /* String+Extensions.swift in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
+				B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */,
+				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
+				B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */,
+				B5FC37C12489B075006474EB /* APIClient.swift in Sources */,
+				B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */,
+				B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */,
+				B5FC37DD248A78D2006474EB /* ExposureKey.swift in Sources */,
+				B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */,
+				B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */,
+				B5FC37D02489B3DE006474EB /* StructuredError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1548,12 +1659,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
@@ -1620,7 +1731,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
 				PRODUCT_NAME = GPS;
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.covid-safepaths";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1716,12 +1827,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
@@ -1788,7 +1899,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
 				PRODUCT_NAME = GPS;
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.covid-safepaths";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1935,13 +2046,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BTE/COVIDSafePaths.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				INFOPLIST_FILE = BTE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1954,7 +2066,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BTE;
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1969,13 +2081,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BTE/COVIDSafePaths.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				INFOPLIST_FILE = BTE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1988,7 +2101,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BTE;
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.pathcheck.bt";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2003,13 +2116,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BTE/COVIDSafePaths.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				INFOPLIST_FILE = BTE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2022,7 +2136,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BTE;
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2036,13 +2150,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BTE/COVIDSafePaths.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				INFOPLIST_FILE = BTE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2055,7 +2170,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BTE;
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.pathcheck.bt";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2066,6 +2181,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0AA00174D067CC708D445BC1 /* Pods-BTETests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
@@ -2098,6 +2214,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F9475E01B42150CFCF453D52 /* Pods-BTETests.staging.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
@@ -2130,6 +2247,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1C73DA2257D3A75481B746C2 /* Pods-BTETests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -2158,6 +2276,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1360DEA45F2DC8248DFD3B91 /* Pods-BTETests.beta.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;

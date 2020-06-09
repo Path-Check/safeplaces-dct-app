@@ -3,18 +3,14 @@ import {
   ActivityIndicator,
   BackHandler,
   Dimensions,
-  StyleSheet,
+  ScrollView,
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Carousel from 'react-native-snap-carousel';
-import { WebView } from 'react-native-webview';
 
 import languages from './../locales/languages';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Typography } from '../components/Typography';
+import { NavigationBarWrapper, NewsItem } from '../components';
 import Colors from '../constants/colors';
-import fontFamily from '../constants/fonts';
 import { AUTHORITY_NEWS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
 
@@ -31,10 +27,11 @@ class NewsScreen extends Component {
       news_url: DEFAULT_NEWS_SITE_URL,
     };
     this.state = {
-      visible: true,
+      isVisible: true,
       default_news: default_news,
       newsUrls: [],
       current_page: 0,
+      enabled: true,
     };
   }
 
@@ -46,45 +43,17 @@ class NewsScreen extends Component {
     this.props.navigation.goBack();
     return true;
   };
-
-  hideSpinner() {
+  hideSpinner = () => {
     this.setState({
-      visible: false,
+      isVisible: false,
     });
-  }
-
-  renderItem = item => {
-    return (
-      <View style={styles.singleNews}>
-        <View style={styles.singleNewsHead}>
-          <Typography style={styles.singleNewsHeadText}>
-            {item.item.name}
-          </Typography>
-        </View>
-        <WebView
-          source={{
-            uri: item.item.news_url,
-          }}
-          containerStyle={{
-            borderBottomLeftRadius: 12,
-            borderBottomRightRadius: 12,
-          }}
-          cacheEnabled
-          onLoad={() =>
-            this.setState({
-              visible: false,
-            })
-          }
-        />
-      </View>
-    );
   };
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
     GetStoreData(AUTHORITY_NEWS)
-      .then(nameNewsString => {
+      .then((nameNewsString) => {
         // Bring in news from the various authorities.  This is
         // pulled down from the web when you subscribe to an Authority
         // on the Settings page.
@@ -100,7 +69,7 @@ class NewsScreen extends Component {
           newsUrls: arr,
         });
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
 
   componentWillUnmount() {
@@ -108,7 +77,7 @@ class NewsScreen extends Component {
   }
 
   render() {
-    // console.log('News URL -', this.state.newsUrls);
+    // console.log(this.state.enabled);
     return (
       <LinearGradient
         start={{ x: 0, y: 0 }}
@@ -127,18 +96,32 @@ class NewsScreen extends Component {
               style={{
                 backgroundColor: Colors.VIOLET_BUTTON_DARK,
                 flex: 1,
-                paddingVertical: 16,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}>
-              <Carousel
-                data={this.state.newsUrls}
-                renderItem={this.renderItem}
-                sliderWidth={width}
-                itemWidth={width * 0.85}
-                layout={'default'}
-                scrollEnabled
-              />
+              <ScrollView scrollEnabled={this.state.enabled}>
+                {this.state.newsUrls.map((item, index) => (
+                  <ScrollView
+                    key={index}
+                    onTouchStart={() => {
+                      this.setState({ enabled: false });
+                    }}
+                    onTouchEnd={() => {
+                      this.setState({ enabled: true });
+                    }}
+                    style={{ margin: 36 }}>
+                    <NewsItem
+                      key={index}
+                      hideSpinner={this.hideSpinner}
+                      item={item}
+                      index={index}
+                    />
+                  </ScrollView>
+                ))}
+              </ScrollView>
 
-              {this.state.visible && (
+              {this.state.isVisible && (
                 <ActivityIndicator
                   style={{
                     position: 'absolute',
@@ -156,29 +139,5 @@ class NewsScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  // eslint-disable-next-line react-native/no-color-literals
-  singleNews: {
-    flexGrow: 1,
-    backgroundColor: 'rgba(255,255,255,0.6)',
-    borderRadius: 12,
-    alignSelf: 'center',
-    width: '100%',
-  },
-  singleNewsHead: {
-    height: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderBottomWidth: 3,
-    marginBottom: 0,
-  },
-  singleNewsHeadText: {
-    fontSize: 16,
-    textAlign: 'center',
-    paddingHorizontal: 5,
-    fontFamily: fontFamily.primarySemiBold,
-  },
-});
 
 export default NewsScreen;

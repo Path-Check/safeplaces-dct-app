@@ -10,6 +10,7 @@ export const Switch = ({
   trackColor = { false: Colors.GRAY_BACKGROUND, true: Colors.SUCCESS },
   testID = 'switch',
   thumbColor = Colors.WHITE,
+  style,
 }) => {
   return (
     <RNSwitch
@@ -18,6 +19,7 @@ export const Switch = ({
       trackColor={trackColor}
       thumbColor={thumbColor}
       testID={testID}
+      style={style}
     />
   );
 };
