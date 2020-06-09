@@ -1,10 +1,10 @@
 import styled from '@emotion/native';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider, useTheme } from 'emotion-theming';
 import * as React from 'react';
 import { SvgXml } from 'react-native-svg';
 
 import { Typography } from './Typography';
-
+import { ActivityIndicator } from 'react-native';
 /**
  * @param {{
  *   label: string;
@@ -12,6 +12,7 @@ import { Typography } from './Typography';
  *   icon?: string;
  *   onPress: () => void;
  *   disabled?: boolean;
+ *   loading?: boolean;
  * }} param0
  */
 export const Button = ({
@@ -21,8 +22,10 @@ export const Button = ({
   onPress,
   disabled,
   small,
+  loading,
   ...otherProps
 }) => {
+  const theme = useTheme();
   return (
     <Container
       onPress={onPress}
@@ -31,14 +34,20 @@ export const Button = ({
       accessibilityRole='button'
       hasIcon={!!icon}
       secondary={secondary}
-      disabled={disabled}
+      disabled={disabled || loading}
       small={small}
       {...otherProps}>
       <ThemeProvider theme={invertTextColors}>
-        <Label small={small} secondary={secondary} disabled={disabled}>
-          {label}
-        </Label>
-        {icon ? <Icon xml={icon} /> : null}
+        {loading ? (
+          <ActivityIndicator size={'large'} color={theme.onPrimary} />
+        ) : (
+          <>
+            <Label small={small} secondary={secondary} disabled={disabled}>
+              {label}
+            </Label>
+            {icon ? <Icon xml={icon} /> : null}
+          </>
+        )}
       </ThemeProvider>
     </Container>
   );

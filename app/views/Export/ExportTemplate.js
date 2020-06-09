@@ -118,12 +118,11 @@ export const ExportTemplate = ({
             )}
           </ScrollView>
 
-          {/* TODO: <Button/> needs an actual loading state. */}
           <Button
             style={{ marginTop: 10 }}
             label={nextButtonLabel}
             onPress={onNext}
-            disabled={buttonLoading}
+            loading={buttonLoading}
           />
           {buttonSubtitle && (
             <Typography style={{ paddingTop: 10 }} use='body3'>

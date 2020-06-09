@@ -6,18 +6,19 @@ import {
   checkNotifications,
   request,
   requestNotifications,
+  Permission,
 } from 'react-native-permissions';
 
 import { isGPS } from './COVIDSafePathsConfig';
-import { HCAService } from './services/HCAService';
+import { HCAService } from './services/HCAService.js';
 
-export const PermissionStatus = {
-  UNKNOWN: 0,
-  GRANTED: 1,
-  DENIED: 2,
-};
+export enum PermissionStatus {
+  UNKNOWN,
+  GRANTED,
+  DENIED,
+}
 
-const statusToEnum = (status) => {
+const statusToEnum = (status: string) => {
   switch (status) {
     case 'unknown': {
       return PermissionStatus.UNKNOWN;
@@ -37,6 +38,24 @@ const statusToEnum = (status) => {
   }
 };
 
+interface PermissionContextState {
+  location: {
+    status: PermissionStatus;
+    check: () => void;
+    request: () => void;
+  };
+  notification: {
+    status: PermissionStatus;
+    check: () => void;
+    request: () => void;
+  };
+  authSubscription: {
+    status: PermissionStatus;
+    check: () => void;
+    request: () => void;
+  };
+}
+
 const initialState = {
   location: {
     status: PermissionStatus.UNKNOWN,
@@ -55,9 +74,13 @@ const initialState = {
   },
 };
 
-const PermissionsContext = createContext(initialState);
+const PermissionsContext = createContext<PermissionContextState>(initialState);
 
-const PermissionsProvider = ({ children }) => {
+const PermissionsProvider = ({
+  children,
+}: {
+  children: JSX.Element;
+}): JSX.Element => {
   const [locationPermission, setLocationPermission] = useState(
     PermissionStatus.UNKNOWN,
   );
@@ -86,7 +109,7 @@ const PermissionsProvider = ({ children }) => {
     if (Platform.OS === 'ios') {
       const status = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
       setLocationPermission(statusToEnum(status));
-    } else if (Platform.OS === 'andriod') {
+    } else if (Platform.OS === 'android') {
       const status = await check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
       setLocationPermission(statusToEnum(status));
     }
@@ -108,7 +131,7 @@ const PermissionsProvider = ({ children }) => {
         ? PermissionStatus.GRANTED
         : PermissionStatus.DENIED;
 
-      setAuthSubscriptionPermission(statusToEnum(status));
+      setAuthSubscriptionPermission(status);
     }
   };
 
@@ -120,7 +143,7 @@ const PermissionsProvider = ({ children }) => {
     }
   };
 
-  const requestLocationForPlatform = async (permission) => {
+  const requestLocationForPlatform = async (permission: Permission) => {
     const status = await request(permission);
     setLocationPermission(statusToEnum(status));
   };
