@@ -18,8 +18,10 @@ export const fetchDiagnosisKeys = async (
   debugModule.fetchDiagnosisKeys(cb);
 };
 
+export type ENModuleError = string | null;
+
 export const detectExposuresNow = async (
-  cb: (errorString: string | null) => void,
+  cb: (error: ENModuleError) => void,
 ): Promise<void> => {
   debugModule.detectExposuresNow(cb);
 };
