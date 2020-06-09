@@ -187,16 +187,6 @@ const MainAppTabs = () => {
   );
 };
 
-// const MainApp = () => (
-//   <Stack.Navigator initialRouteName='Main' screenOptions={SCREEN_OPTIONS}>
-
-//     <Stack.Screen
-//       name='EnableExposureNotifications'
-//       component={EnableExposureNotifications}
-//     />
-//   </Stack.Navigator>
-// );
-
 const OnboardingStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen name='Onboarding1' component={Onboarding1} />
@@ -206,6 +196,10 @@ const OnboardingStack = () => (
     <Stack.Screen
       name='OnboardingPermissions'
       component={OnboardingPermissions}
+    />
+    <Stack.Screen
+      name='EnableExposureNotifications'
+      component={EnableExposureNotifications}
     />
   </Stack.Navigator>
 );
