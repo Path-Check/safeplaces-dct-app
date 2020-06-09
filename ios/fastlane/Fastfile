@@ -41,8 +41,8 @@ platform :ios do
     GPS_SCHEME = "GPS_Production"
     WORKSPACE = "COVIDSafePaths.xcworkspace"
     PROJECT = "COVIDSafePaths.xcodeproj"
-    VERSON_NUMBER = "1.0.29"
-    BUILD_NUMBER = "4"
+    VERSON_NUMBER = "0.0.1"
+    BUILD_NUMBER = "1"
     JS_PACKAGE = load_json(json_path: "../package.json")
 
     lane :sync_local_certs do
