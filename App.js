@@ -10,9 +10,7 @@ import { ExposureNotificationsProvider } from './app/ExposureNotificationContext
 import { FlagsProvider } from './app/helpers/Flags';
 import { PermissionsProvider } from './app/PermissionsContext';
 import VersionCheckService from './app/services/VersionCheckService';
-import { createPersistedStore } from './app/store';
-
-const { store, persistor } = createPersistedStore();
+import { store, persistor } from './app/store';
 
 // For snapshot testing. In tests, we provide a mock store wrapper if needed.
 export const UnconnectedApp = () => (

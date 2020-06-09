@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import {
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import { BackHandler } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -53,6 +59,10 @@ export const ExportTemplate = ({
   icon,
   lightTheme,
   buttonLoading,
+  // We can consider instead using the trans component:
+  // https://react.i18next.com/latest/trans-component
+  bodyLinkText,
+  bodyLinkOnPress,
 }) => {
   useEffect(() => {
     function handleBackPress() {
@@ -94,6 +104,18 @@ export const ExportTemplate = ({
             </Typography>
             <View style={{ height: 8 }} />
             <Typography use='body1'>{body}</Typography>
+            {bodyLinkText && (
+              <TouchableOpacity onPress={bodyLinkOnPress}>
+                <Typography
+                  style={{
+                    color: Colors.LINK,
+                    textDecorationLine: 'underline',
+                  }}
+                  use='body1'>
+                  {bodyLinkText}
+                </Typography>
+              </TouchableOpacity>
+            )}
           </ScrollView>
 
           {/* TODO: <Button/> needs an actual loading state. */}

@@ -5,10 +5,7 @@ import { Alert } from 'react-native';
 import { Icons } from '../../assets';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
-
-const MOCK_ENDPOINT =
-  'https://private-anon-da01e87e46-safeplaces.apiary-mock.com/consent';
-
+import exportConsentApi from '../../api/export/exportConsentApi';
 export const ExportPublishConsent = ({ navigation, route }) => {
   const [isConsenting, setIsConsenting] = useState(false);
   const onClose = () => exitWarningAlert(navigation);
@@ -19,21 +16,9 @@ export const ExportPublishConsent = ({ navigation, route }) => {
   const consent = async () => {
     setIsConsenting(true);
     try {
-      const res = await fetch(`${MOCK_ENDPOINT}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ consent: true, accessCode: code }),
-      });
-      const success = res.status === 200;
-      if (success) {
-        setIsConsenting(false);
-        navigation.navigate('ExportConfirmUpload', { selectedAuthority, code });
-      } else {
-        setIsConsenting(false);
-        throw res.status;
-      }
+      await exportConsentApi(selectedAuthority, true, code);
+      setIsConsenting(false);
+      navigation.navigate('ExportConfirmUpload', { selectedAuthority, code });
     } catch (e) {
       Alert.alert('Something went wrong');
       setIsConsenting(false);
