@@ -57,12 +57,12 @@ export const MonthGrid = ({
   return (
     <Container>
       <HeaderRow>
-        {headers.map(day => (
+        {headers.map((day) => (
           <CellWrapper key={day}>{renderDayHeader(day)}</CellWrapper>
         ))}
       </HeaderRow>
       <DateGrid>
-        {days.map(day => (
+        {days.map((day) => (
           <CellWrapper key={day.format()}>{renderDay(day)}</CellWrapper>
         ))}
       </DateGrid>

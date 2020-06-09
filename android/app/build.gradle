@@ -93,9 +93,12 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
-    bundleInDevDebug: false,
-    bundleInStagingDebug: true,
-    devDisabledInStagingDebug: true,
+    bundleInGpsDebug: false,
+    bundleInBteDebug: false,
+    bundleInGpsStaging: true,
+    bundleInBteStaging: true,
+    devDisabledInGpsStaging: true,
+    devDisabledInBteStaging: true,
     enableHermes: false,  // clean and rebuild if changing
 ]
 

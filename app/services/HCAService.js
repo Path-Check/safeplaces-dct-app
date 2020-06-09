@@ -1,3 +1,4 @@
+import { isValidCoordinate } from 'geolib';
 import Yaml from 'js-yaml';
 import PushNotification from 'react-native-push-notification';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -9,7 +10,7 @@ import {
 } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
-import { LocationData } from './LocationService';
+import LocationService from './LocationService';
 
 /**
  * Singleton class to interact with health care authority data
@@ -129,16 +130,55 @@ class HCAService {
   }
 
   /**
-   * Checks if a given point is inside the bounds of the given authority
-   * @param {point} Object contains a `latitude` and `longitude` field
+   * Validates that an object is a valid geographic bounding box.
+   * A valid box has a `ne` and `sw` field that each contain a valid GPS point
+   * @param {{ne: { latitude: number, longitude: number }, sw: { latitude: number, longitude: number }}} region -
+   */
+  isValidBoundingBox(region) {
+    if (!region) {
+      console.error('An invalid region was passed: ' + region);
+      return false;
+    }
+
+    if (!region.ne || !isValidCoordinate(region.ne)) {
+      console.error(`invalid 'ne' field for bounding box: ${region.ne}`);
+      return false;
+    }
+
+    if (!region.sw || !isValidCoordinate(region.sw)) {
+      console.error(`invalid 'ne' field for bounding box: ${region.sw}`);
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Given a GPS coordinate, check if it is within the bounding
+   * box of a region.
+   * @param {*} point - Object with a `latitude` and `longitude` field
    * @param {authority} Authority Healthcare Authority object
-   * @returns {boolean}
    */
   isPointInAuthorityBounds(point, authority) {
-    const locHelper = new LocationData();
-    const bounds = this.getAuthorityBounds(authority);
+    const region = this.getAuthorityBounds(authority);
 
-    return bounds && locHelper.isPointInBoundingBox(point, bounds);
+    if (!isValidCoordinate(point) || !this.isValidBoundingBox(region)) {
+      return false;
+    } else {
+      const { latitude: pointLat, longitude: pointLon } = point;
+      const { latitude: neLat, longitude: neLon } = region.ne;
+      const { latitude: swLat, longitude: swLon } = region.sw;
+
+      const [latMax, latMin] = neLat > swLat ? [neLat, swLat] : [swLat, neLat];
+      const [lonMax, lonMin] = neLon > swLon ? [neLon, swLon] : [swLon, neLon];
+
+      return (
+        pointLat < latMax &&
+        pointLat > latMin &&
+        pointLon < lonMax &&
+        pointLon > lonMin
+      );
+    }
   }
 
   /**
@@ -149,11 +189,11 @@ class HCAService {
    * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} List of health care authorities
    */
   async getAuthoritiesFromUserLocHistory() {
-    const locData = await new LocationData().getLocationData();
+    const locData = await LocationService.getLocationData();
     const authorities = await this.getAuthoritiesList();
 
-    return authorities.filter(authority =>
-      locData.some(point => this.isPointInAuthorityBounds(point, authority)),
+    return authorities.filter((authority) =>
+      locData.some((point) => this.isPointInAuthorityBounds(point, authority)),
     );
   }
 
@@ -165,12 +205,12 @@ class HCAService {
    * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} list of Healthcare Authorities
    */
   async getNewAuthoritiesInUserLoc() {
-    const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();
+    const mostRecentUserLoc = await LocationService.getMostRecentUserGps();
     const authoritiesList = await this.getAuthoritiesList();
     const userAuthorities = await this.getUserAuthorityList();
 
     return authoritiesList.filter(
-      authority =>
+      (authority) =>
         this.isPointInAuthorityBounds(mostRecentUserLoc, authority) &&
         !userAuthorities.includes(authority),
     );
@@ -230,7 +270,7 @@ class HCAService {
    * @returns {boolean}
    */
   async isAutosubscriptionEnabled() {
-    return (await GetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, true)) === 'true';
+    return await GetStoreData(ENABLE_HCA_AUTO_SUBSCRIPTION, false);
   }
 
   /**

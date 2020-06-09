@@ -14,8 +14,7 @@ import { SvgXml } from 'react-native-svg';
 import packageJson from '../../package.json';
 import fontFamily from './../constants/fonts';
 import { Icons } from '../assets';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Typography } from '../components/Typography';
+import { NavigationBarWrapper, Typography } from '../components';
 import Colors from '../constants/colors';
 import { useAssets } from '../TracingStrategyAssets';
 
@@ -91,26 +90,26 @@ export const AboutScreen = ({ navigation }) => {
 
           <View>
             <View style={styles.row}>
-                <Typography style={styles.aboutSectionParaBold}>
-                  {packageJson.version}
-                </Typography>
-              </View>
+              <Typography style={styles.aboutSectionParaBold}>
+                {packageJson.version}
+              </Typography>
+            </View>
 
-              <View style={styles.row}>
-                <Typography style={styles.aboutSectionParaBold}>
-                  {Platform.OS + ' v' + Platform.Version}
-                </Typography>
-              </View>
+            <View style={styles.row}>
+              <Typography style={styles.aboutSectionParaBold}>
+                {Platform.OS + ' v' + Platform.Version}
+              </Typography>
+            </View>
 
-              <View style={styles.row}>
-                <Typography style={styles.aboutSectionParaBold}>
-                  {Math.trunc(Dimensions.get('screen').width) +
-                    ' x ' +
-                    Math.trunc(Dimensions.get('screen').height)}
-                </Typography>
-              </View>
+            <View style={styles.row}>
+              <Typography style={styles.aboutSectionParaBold}>
+                {Math.trunc(Dimensions.get('screen').width) +
+                  ' x ' +
+                  Math.trunc(Dimensions.get('screen').height)}
+              </Typography>
             </View>
           </View>
+        </View>
 
         <View style={styles.spacer} />
         <View style={styles.spacer} />

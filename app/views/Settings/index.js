@@ -3,22 +3,24 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
-import { Icons } from '../assets';
-import { Divider } from '../components/Divider';
-import { FeatureFlag } from '../components/FeatureFlag';
-import NativePicker from '../components/NativePicker';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import Colors from '../constants/colors';
-import { isGPS } from '../COVIDSafePathsConfig';
+import { Icons } from '../../assets';
+import {
+  Divider,
+  FeatureFlag,
+  NativePicker,
+  NavigationBarWrapper,
+} from '../../components';
+import Colors from '../../constants/colors';
+import { isGPS } from '../../COVIDSafePathsConfig';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
-} from '../locales/languages';
-import { FEATURE_FLAG_SCREEN_NAME } from '../views/FeatureFlagToggles';
-import { GoogleMapsImport } from './Settings/GoogleMapsImport';
-import { SettingsItem as Item } from './Settings/SettingsItem';
+} from '../../locales/languages';
+import { FEATURE_FLAG_SCREEN_NAME } from '../../views/FeatureFlagToggles';
+import { GoogleMapsImport } from './GoogleMapsImport';
+import { Item } from './Item';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -38,14 +40,14 @@ export const SettingsScreen = ({ navigation }) => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
     // TODO: extract into service or hook
-    getUserLocaleOverride().then(locale => locale && setUserLocale(locale));
+    getUserLocaleOverride().then((locale) => locale && setUserLocale(locale));
 
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
   }, [navigation]);
 
-  const localeChanged = async locale => {
+  const localeChanged = async (locale) => {
     // If user picks manual lang, update and store setting
     try {
       await setUserLocaleOverride(locale);

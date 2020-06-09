@@ -24,7 +24,6 @@ jest.mock('../../COVIDSafePathsConfig', () => {
   };
 });
 
-
 jest.useFakeTimers();
 
 describe('<Settings />', () => {

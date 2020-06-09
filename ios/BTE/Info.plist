@@ -5,6 +5,7 @@
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>com.transistorsoft.fetch</string>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).exposure-notification</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
@@ -41,6 +42,8 @@
 		<key>NSExceptionDomains</key>
 		<dict/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>To simulate sharing diagnosis keys between a central server by scanning QR codes.</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
@@ -84,6 +87,8 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>bluetooth-le</string>
+		<string>telephony</string>
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>

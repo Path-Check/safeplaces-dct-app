@@ -4,8 +4,7 @@ import duration from 'dayjs/plugin/duration';
 import React, { useEffect, useState } from 'react';
 import { BackHandler, ScrollView } from 'react-native';
 
-import NavigationBarWrapper from '../../components/NavigationBarWrapper';
-import { Typography } from '../../components/Typography';
+import { NavigationBarWrapper, Typography } from '../../components';
 import { MAX_EXPOSURE_WINDOW } from '../../constants/history';
 import { CROSSED_PATHS } from '../../constants/storage';
 import { Theme, charcoal, defaultTheme } from '../../constants/themes';
@@ -49,7 +48,7 @@ export const ExposureHistoryScreen = ({ navigation }) => {
   }, [navigation]);
 
   const hasExposure =
-    history?.length && history.some(h => h.exposureMinutes > 0);
+    history?.length && history.some((h) => h.exposureMinutes > 0);
 
   const themeBackground = hasExposure
     ? charcoal.background
