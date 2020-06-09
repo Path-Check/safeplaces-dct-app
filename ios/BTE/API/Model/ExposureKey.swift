@@ -4,6 +4,12 @@ import RealmSwift
 
 @objcMembers
 class ExposureKey: Object, Codable {
+
+  var keyData: Data!
+  var rollingPeriod: ENIntervalNumber!
+  var rollingStartNumber: ENIntervalNumber!
+  var transmissionRiskLevel: ENRiskLevel!
+
   init(keyData: Data,
        rollingPeriod: ENIntervalNumber,
        rollingStartNumber: ENIntervalNumber,
@@ -16,11 +22,6 @@ class ExposureKey: Object, Codable {
   }
 
   required init() {
-    fatalError("init() has not been implemented")
+    super.init()
   }
-
-  let keyData: Data
-  let rollingPeriod: ENIntervalNumber
-  let rollingStartNumber: ENIntervalNumber
-  let transmissionRiskLevel: ENRiskLevel
 }
