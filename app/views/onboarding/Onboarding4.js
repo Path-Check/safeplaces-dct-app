@@ -6,13 +6,11 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
 
 import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { isGPS } from '../../COVIDSafePathsConfig';
-import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
 
@@ -26,12 +24,10 @@ const Onboarding = (props) => {
     onboarding4Subheader,
   } = useAssets();
 
-  const dispatch = useDispatch();
-  const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
-  const navigateToGpsPermissions = () =>
-    props.navigation.replace('OnboardingPermissions');
-
-  const onNext = isGPS ? navigateToGpsPermissions : dispatchOnboardingComplete;
+  const onNext = () =>
+    props.navigation.replace(
+      isGPS ? 'OnboardingPermissions' : 'EnableExposureNotifications',
+    );
 
   return (
     <View style={styles.mainContainer}>
