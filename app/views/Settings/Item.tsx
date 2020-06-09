@@ -3,7 +3,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 
-import { Divider, Typography } from '../../components';
+import { Typography } from '../../components/Typography';
+import { Divider } from '../../components/Divider';
 
 /**
  * Render a single tappable settings item with optional description and icon.
@@ -15,13 +16,28 @@ import { Divider, Typography } from '../../components';
  *   last?: boolean,
  * }} param0
  */
-export const Item = ({ label, onPress, description, icon, last }) => {
+
+type ItemProps = {
+  label?: string;
+  onPress?: () => void;
+  description?: string;
+  icon?: string;
+  last?: boolean;
+};
+
+export const Item = ({
+  label,
+  onPress,
+  description,
+  icon,
+  last,
+}: ItemProps): JSX.Element => {
   const { i18n } = useTranslation();
 
-  let getCurrentMarginDirection = () =>
+  const getCurrentMarginDirection = () =>
     i18n.dir() === 'rtl' ? 'margin-left: 12px;' : 'margin-right: 12px;';
 
-  let getCurrentRowDirection = () =>
+  const getCurrentRowDirection = () =>
     i18n.dir() === 'rtl' ? 'row-reverse' : 'row';
 
   return (

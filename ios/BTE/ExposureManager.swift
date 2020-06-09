@@ -252,9 +252,9 @@ final class ExposureManager: NSObject {
       APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .get) { result in
         switch result {
         case .success(let configuration):
-          break
+          completion([NSNull(), "Configuration: \(configuration)"])
         case .failure(let error):
-          break
+          completion([error.localizedDescription, NSNull()])
         }
       }
     }

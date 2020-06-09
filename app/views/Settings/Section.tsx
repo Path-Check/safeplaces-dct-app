@@ -2,14 +2,20 @@ import React from 'react';
 
 import styled, { css } from '@emotion/native';
 import Colors from '../../constants/colors';
-import { Divider } from '../../components';
+import { Divider } from '../../components/Divider';
 import { View } from 'react-native';
 /**
  * Render a white section with blue spacer at the bottom (unless `last == true`)
  *
  * @param {{last?: boolean}} param0
  */
-export const Section = ({ last, children }) => (
+
+type SectionProps = {
+  last?: boolean;
+  children?: React.ReactNode;
+};
+
+export const Section = ({ last, children }: SectionProps): JSX.Element => (
   <>
     <SectionWrapper>{children}</SectionWrapper>
 
