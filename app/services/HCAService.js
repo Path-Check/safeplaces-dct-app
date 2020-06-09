@@ -71,10 +71,10 @@ class HCAService {
    */
   async removeDuplicate(source, target) {
     let newHAs = [];
-    for (var i = 0; i < source.length; i++) {
-        var srcObj = source[i];
+    for (let i = 0; i < source.length; i++) {
+        let srcObj = source[i];
 
-        var tarObj = target.find(function (obj) {
+        let tarObj = target.find(function (obj) {
             const sourceKeys = Object. keys(srcObj);
             const targetKeys = Object. keys(obj);
             const filteredArray = targetKeys.filter(val => sourceKeys.includes(val));
