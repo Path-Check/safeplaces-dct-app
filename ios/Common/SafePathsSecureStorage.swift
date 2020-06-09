@@ -16,11 +16,6 @@ import RealmSwift
 
 class SafePathsSecureStorage {
   
-  static let DAYS_TO_KEEP = 14
-  static let LOCATION_INTERVAL = 60 * 5
-  private static let MINIMUM_TIME_INTERVAL = 60 * 4
-  private static let MAX_BACKFILL_TIME = 60 * 60 * 24
-  
   let keyLastSavedTime: String
   let inMemory: Bool
   

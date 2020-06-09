@@ -1,6 +1,12 @@
 import Foundation
+import RealmSwift
 
 final class GPSSecureStorage: SafePathsSecureStorage {
+
+  private static let DAYS_TO_KEEP = 14
+  static let LOCATION_INTERVAL = 60 * 5
+  private static let MINIMUM_TIME_INTERVAL = 60 * 4
+  private static let MAX_BACKFILL_TIME = 60 * 60 * 24
 
   func saveDeviceLocation(backgroundLocation: MAURLocation) {
     // The geolocation library sometimes returns nil times.
@@ -13,7 +19,7 @@ final class GPSSecureStorage: SafePathsSecureStorage {
     // Using UserDefaults here since realm reads are async and we could end up saving multiple locations before a query for the most recent record returns
     let currentTime = Int(backgroundLocation.time.timeIntervalSince1970)
     let lastSavedTime = UserDefaults.standard.integer(forKey: keyLastSavedTime)
-    if (currentTime - lastSavedTime < SafePathsSecureStorage.MINIMUM_TIME_INTERVAL) {
+    if (currentTime - lastSavedTime < GPSSecureStorage.MINIMUM_TIME_INTERVAL) {
       return
     } else {
       UserDefaults.standard.set(currentTime, forKey: keyLastSavedTime)
@@ -27,7 +33,7 @@ final class GPSSecureStorage: SafePathsSecureStorage {
       .sorted(byKeyPath: Location.KEY_TIME, ascending: false)
     let previousLocation = realmResults.first
     let previousTime = previousLocation?.time ?? 0
-    if currentTime - previousTime > SafePathsSecureStorage.MINIMUM_TIME_INTERVAL {
+    if currentTime - previousTime > GPSSecureStorage.MINIMUM_TIME_INTERVAL {
       let assumedLocations = createAssumedLocations(previousLocation: previousLocation, newLocation: backgroundLocation)
       try! realm.write {
         realm.add(assumedLocations, update: .modified)
@@ -92,18 +98,18 @@ final class GPSSecureStorage: SafePathsSecureStorage {
       lon1: previousLocation.longitude,
       lat2: newLocation.latitude.doubleValue,
       lon2: newLocation.longitude.doubleValue)
-    let isTimeWithinThreshold = newLocationTime - previousLocation.time <= SafePathsSecureStorage.MAX_BACKFILL_TIME
+    let isTimeWithinThreshold = newLocationTime - previousLocation.time <= GPSSecureStorage.MAX_BACKFILL_TIME
     if isNearbyPrevious && isTimeWithinThreshold {
-      let latestDesiredBackfill = newLocationTime - SafePathsSecureStorage.LOCATION_INTERVAL
-      let earliestDesiredBackfill = max(newLocationTime - SafePathsSecureStorage.MAX_BACKFILL_TIME, previousLocation.time + SafePathsSecureStorage.LOCATION_INTERVAL)
-      for time in stride(from: latestDesiredBackfill, through: earliestDesiredBackfill, by: -SafePathsSecureStorage.LOCATION_INTERVAL) {
+      let latestDesiredBackfill = newLocationTime - GPSSecureStorage.LOCATION_INTERVAL
+      let earliestDesiredBackfill = max(newLocationTime - GPSSecureStorage.MAX_BACKFILL_TIME, previousLocation.time + GPSSecureStorage.LOCATION_INTERVAL)
+      for time in stride(from: latestDesiredBackfill, through: earliestDesiredBackfill, by: -GPSSecureStorage.LOCATION_INTERVAL) {
         assumedLocationsToInsert.append(Location.createAssumedLocation(time: time, latitude: previousLocation.latitude, longitude: previousLocation.longitude))
       }
     }
     return assumedLocationsToInsert
   }
 
-  func getRealmConfig() -> Realm.Configuration? {
+  override func getRealmConfig() -> Realm.Configuration? {
     if let key = getEncyrptionKey() {
       if (inMemory) {
         return Realm.Configuration(inMemoryIdentifier: "temp", encryptionKey: key as Data, schemaVersion: 1,
@@ -118,7 +124,7 @@ final class GPSSecureStorage: SafePathsSecureStorage {
   }
 
   func getCutoffTime() -> Int {
-    return Int(Date().timeIntervalSince1970) - (SafePathsSecureStorage.DAYS_TO_KEEP * 86400)
+    return Int(Date().timeIntervalSince1970) - (GPSSecureStorage.DAYS_TO_KEEP * 86400)
   }
 
 }

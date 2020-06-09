@@ -3,6 +3,8 @@ import RealmSwift
 
 final class BTESecureStorage: SafePathsSecureStorage {
 
+  private static let DAYS_TO_KEEP = 14
+
   override func getRealmConfig() -> Realm.Configuration? {
     if let key = getEncyrptionKey() {
       if (inMemory) {
@@ -18,7 +20,7 @@ final class BTESecureStorage: SafePathsSecureStorage {
   }
 
   func getCutoffTime() -> Int {
-    return Int(Date().timeIntervalSince1970) - (SafePathsSecureStorage.DAYS_TO_KEEP * 86400)
+    return Int(Date().timeIntervalSince1970) - (BTESecureStorage.DAYS_TO_KEEP * 86400)
   }
 
 }

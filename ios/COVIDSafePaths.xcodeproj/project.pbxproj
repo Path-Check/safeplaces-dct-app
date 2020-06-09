@@ -61,7 +61,6 @@
 		68D8971C24809FB50091A254 /* Array+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */; };
 		68EFB21324856EC6003D84F3 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68EFB21224856EC6003D84F3 /* Scrypt */; };
 		68EFB215248570C2003D84F3 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
-		68EFB21824857A3D003D84F3 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68EFB21724857A3D003D84F3 /* Scrypt */; };
 		7A2281C376904F23BCA10FCA /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
 		8A5B44AA7D724388B70F100B /* IBMPlexSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36B22BAB357B44949D2E168C /* IBMPlexSans-ExtraLight.ttf */; };
 		8CB0C49FEC0F493D95420B30 /* IBMPlexMono-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3053DF05D78949A09366B85D /* IBMPlexMono-ExtraLight.ttf */; };
@@ -343,7 +342,6 @@
 		C58463E32486C51100BCB842 /* ExposureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureManager.swift; sourceTree = "<group>"; };
 		C5850A63247D5A41007A596B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C5AA24E124768FFF00BA0A99 /* BTETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5AA24E224768FFF00BA0A99 /* BTETestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = BTETestsInfo.plist; path = "/Users/johnschoeman/workspace/thoughtbot/covid-safe-paths/ios/BTETestsInfo.plist"; sourceTree = "<absolute>"; };
 		C5C850C6248014F700A494CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C5C850C92480156200A494CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBackgroundGeolocation.xcodeproj; path = "../node_modules/@mauron85/react-native-background-geolocation/ios/RCTBackgroundGeolocation.xcodeproj"; sourceTree = "<group>"; };
@@ -444,7 +442,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68EFB21824857A3D003D84F3 /* Scrypt in Frameworks */,
 				DC5AA89EE2128B33D9D6BE1F /* libPods-BTETests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,7 +467,6 @@
 			isa = PBXGroup;
 			children = (
 				00E356F11AD99517003FC87E /* Info.plist */,
-				C5AA24E224768FFF00BA0A99 /* BTETestsInfo.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -897,7 +893,6 @@
 			);
 			name = BTETests;
 			packageProductDependencies = (
-				68EFB21724857A3D003D84F3 /* Scrypt */,
 			);
 			productName = COVIDSafePathsTests;
 			productReference = C5AA24E124768FFF00BA0A99 /* BTETests.xctest */;
@@ -2209,7 +2204,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = BTETestsInfo.plist;
+				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2226,7 +2221,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BTE.app/BTE";
 			};
 			name = Debug;
 		};
@@ -2242,7 +2237,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = BTETestsInfo.plist;
+				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2259,7 +2254,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BTE.app/BTE";
 			};
 			name = Staging;
 		};
@@ -2272,7 +2267,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = BTETestsInfo.plist;
+				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2288,7 +2283,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BTE.app/BTE";
 			};
 			name = Release;
 		};
@@ -2301,7 +2296,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = BTETestsInfo.plist;
+				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2317,7 +2312,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PathCheckBT.app/PathCheckBT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BTE.app/BTE";
 			};
 			name = Beta;
 		};
@@ -2399,11 +2394,6 @@
 			productName = Scrypt;
 		};
 		68EFB21224856EC6003D84F3 /* Scrypt */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
-			productName = Scrypt;
-		};
-		68EFB21724857A3D003D84F3 /* Scrypt */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
 			productName = Scrypt;
