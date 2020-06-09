@@ -27,7 +27,7 @@ import {
 
 const latitudeDelta = 0.0052;
 const longitudeDelta = 0.0081;
-const rdCoords = { latitude: 18.7009, longitude: -70.1655 };
+const rdCoords = { latitude: 0, longitude: 0 };
 const { height } = Dimensions.get('window');
 
 export default function HospitalMap({ route: { name: type } }) {
@@ -48,6 +48,8 @@ export default function HospitalMap({ route: { name: type } }) {
       Geolocation.getCurrentPosition(
         ({ coords }) => {
           const { latitude, longitude } = coords;
+          rdCoords.latitude = latitude;
+          rdCoords.longitude = longitude;
           const sorted = sortByDistance({ latitude, longitude }, value, {
             yName: 'latitude',
             xName: 'longitude',
@@ -63,6 +65,8 @@ export default function HospitalMap({ route: { name: type } }) {
         Geolocation.getCurrentPosition(
           ({ coords }) => {
             const { latitude, longitude } = coords;
+            rdCoords.latitude = latitude;
+            rdCoords.longitude = longitude;
             const sorted = sortByDistance({ latitude, longitude }, value, {
               yName: 'latitude',
               xName: 'longitude',
