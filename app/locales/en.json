@@ -144,6 +144,7 @@
     "launch_enable_exposure_notif": "Enable",
     "launch_exposure_notif_subheader": "To be notified about updates to your exposure history, your phone needs permission to exchange anonymous Bluetooth random ID with other devices.\n\nExposure Notifcations only work with other devices with the setting enabled.\n\nYou can turn off this notifications at any time.",
     "launch_exposure_notif_header": "Enable Exposure Notifications",
+    "launch_allow_location": "Allow Location Access",
     "launch_finish_set_up": "Finish Setup",
     "launch_get_started": "Get Started",
     "launch_header_bluetooth": "To know who you have been in contact with, your phone needs to access your Bluetooth.",
@@ -197,7 +198,11 @@
   "onboarding": {
     "eula_checkbox": "I accept the licensing agreement",
     "eula_continue": "Continue",
-    "eula_message": "*You must accept in order to use Safe Paths"
+    "eula_message": "*You must accept in order to use Safe Paths",
+    "notification_header": "Would you like to recieve notifications when you may have crossed paths with the virus?",
+    "notification_subheader": "To recieve exposure notifications, you need to be in an area covered by a local Health Department partner.\n\nIf there are no local or regional partner Health Department in your area yet, get notified when new Health Departments are added near you.",
+    "location_header": "To determine when you may have crossed paths with the virus, PathCheck needs location access.",
+    "location_subheader": "Your PathCheck location diary only includes GPS coordinates, dates, and times.\n\nYour data will not be shared with anyone unless you choose to do so."
   },
   "share": {
     "button_text": "Share location data",
