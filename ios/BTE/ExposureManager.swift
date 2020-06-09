@@ -54,17 +54,13 @@ final class ExposureManager: NSObject {
       completionHandler?(false)
       return progress
     }
+
     detectingExposures = true
-    
-    var localURLs = [URL]()
-    
+
     func finish(_ result: Result<([Exposure], Int)>) {
       
-      for localURL in localURLs {
-        // TODO: Delete local diagnosis key
-//        APIClient.shared.request(DiagnosisKeyURLRequest.delete(localURL)) { _ in }
-      }
-      
+      // TODO: Delete local diagnosis keys from realm here
+
       let success: Bool
       if progress.isCancelled {
         success = false
@@ -87,70 +83,7 @@ final class ExposureManager: NSObject {
       detectingExposures = false
       completionHandler?(success)
     }
-    let nextDiagnosisKeyFileIndex = LocalStore.shared.nextDiagnosisKeyFileIndex
-    let dispatchGroup = DispatchGroup()
-    var localURLResults = [Result<URL>]()
-    
-    RealmClient.shared.fetchDataCollection { (result: Result<[URL]>) in
-      switch result {
-      case .success(let urls):
-        let prunedUrls = urls[min(nextDiagnosisKeyFileIndex, urls.count)...]
-        for remoteURL in prunedUrls {
-          dispatchGroup.enter()
-          RealmClient.shared.fetchData { (result: Result<URL>) in
-            switch result {
-            case .success:
-              localURLResults.append(result)
-            case .failure(let error):
-              finish(.failure(error))
-            }
-            dispatchGroup.leave()
-          }
-        }
-      case let .failure(error):
-        finish(.failure(error))
-        return
-      }
-      dispatchGroup.notify(queue: .main) {
-        for result in localURLResults {
-          switch result {
-          case let .success(localURL):
-            localURLs.append(localURL)
-          case let .failure(error):
-            finish(.failure(error))
-            return
-          }
-        }
-        APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .post) { result in
-          switch result {
-          case .success(let configuration):
-            let exposureConfiguration = configuration.asENExposureConfiguration
-            ExposureManager.shared.manager.detectExposures(configuration: exposureConfiguration, diagnosisKeyURLs: localURLs) { summary, error in
-              if let error = error {
-                finish(.failure(error))
-                return
-              }
-              let userExplanation = NSLocalizedString("USER_NOTIFICATION_EXPLANATION", comment: "User notification")
-              ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
-                if let error = error {
-                  finish(.failure(error))
-                  return
-                }
-                let newExposures = exposures!.map { exposure in
-                  Exposure(date: exposure.date,
-                           duration: exposure.duration,
-                           totalRiskScore: exposure.totalRiskScore,
-                           transmissionRiskLevel: exposure.transmissionRiskLevel)
-                }
-                finish(.success((newExposures, nextDiagnosisKeyFileIndex + localURLs.count)))
-              }
-            }
-          case .failure(let error):
-            finish(.failure(error))
-          }
-        }
-      }
-    }
+
 
     return progress
   }
@@ -258,7 +191,6 @@ final class ExposureManager: NSObject {
         case .success(let configuration):
           break
         case .failure(let error):
-          //
           break
         }
       }

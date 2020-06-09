@@ -65,3 +65,9 @@ export const simulateExposureDetectionError = async (
 ): Promise<void> => {
   debugModule.simulateExposureDetectionError(cb);
 };
+
+export const getExposureConfiguration = async (
+  cb: (error: Error) => void,
+): Promise<void> => {
+  debugModule.getExposureConfiguration(cb);
+};

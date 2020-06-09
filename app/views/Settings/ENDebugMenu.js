@@ -13,6 +13,7 @@ import {
   resetLocalExposures,
   getAndPostDiagnosisKeys,
   simulateExposureDetectionError,
+  getExposureConfiguration,
 } from '../../exposureNotificationsNativeModule';
 
 export const EN_DEBUG_MENU_SCREEN_NAME = 'ENDebugMenu';
@@ -80,10 +81,17 @@ export const ENDebugMenu = ({ navigation }) => {
             )}
           />
           <Item
+            label='Get Exposure Configuration'
+            onPress={handleOnPressSimulationButton(
+              getExposureConfiguration,
+              'Successfully Fetched Exposure Configuration',
+            )}
+          />
+          <Item
             label='Simulate Exposure Detection Error'
             onPress={handleOnPressSimulationButton(
               simulateExposureDetectionError,
-              'There was a problem simulating exposure detection error.',
+              'Exposure detection error simulation successful.',
             )}
           />
           <Item
