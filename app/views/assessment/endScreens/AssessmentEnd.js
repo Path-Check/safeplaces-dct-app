@@ -22,7 +22,6 @@ import AssessmentButton from '../AssessmentButton';
  *   description?: ReactNode;
  *   footer?: ReactNode;
  *   image: string;
- *   pretitle?: ReactNode;
  *   title: string;
  * }>} */
 const AssessmentEnd = ({

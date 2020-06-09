@@ -14,63 +14,80 @@ exports[`base 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#F5F8FC",
         "flex": 1,
       }
     }
   >
-    <RCTScrollView
+    <View
+      accessibilityIgnoresInvertColors={true}
       style={
         Object {
           "flex": 1,
+          "justifyContent": "center",
+          "resizeMode": "cover",
         }
       }
     >
-      <View>
-        <Image
-          source={
+      <Image
+        style={
+          Array [
             Object {
-              "uri": "image.png",
-            }
-          }
-          style={
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
             Object {
-              "height": 600,
-              "width": 750,
-            }
+              "height": undefined,
+              "width": undefined,
+            },
+            undefined,
+          ]
+        }
+      />
+      <RCTScrollView
+        style={
+          Object {
+            "flex": 1,
           }
-        />
-        <View
-          style={
-            Object {
-              "padding": 20,
-            }
-          }
-        >
-          <Text
+        }
+      >
+        <View>
+          <View
             style={
               Object {
-                "fontFamily": "IBMPlexSans-Bold",
-                "fontSize": 26,
-                "fontWeight": "bold",
-                "lineHeight": 34,
-                "writingDirection": "ltr",
+                "padding": 20,
               }
             }
-            use="headline2"
           >
-            End
-          </Text>
+            <SvgXml />
+            <Text
+              style={
+                Object {
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 26,
+                  "fontWeight": "bold",
+                  "lineHeight": 34,
+                  "marginVertical": 30,
+                  "writingDirection": "ltr",
+                }
+              }
+              use="headline2"
+            >
+              End
+            </Text>
+          </View>
         </View>
-      </View>
-    </RCTScrollView>
-    <View
-      style={
-        Object {
-          "padding": 20,
+      </RCTScrollView>
+      <View
+        style={
+          Object {
+            "padding": 20,
+          }
         }
-      }
-    />
+      />
+    </View>
   </RCTSafeAreaView>
 </View>
 `;

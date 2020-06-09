@@ -11,228 +11,148 @@ exports[`base 1`] = `
   }
 >
   <RCTSafeAreaView
+    backgroundColor="#F8F8FF"
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#F5F8FC",
         "flex": 1,
       }
     }
   >
-    <RCTScrollView
+    <View
+      accessibilityIgnoresInvertColors={true}
       style={
         Object {
           "flex": 1,
+          "justifyContent": "center",
+          "resizeMode": "cover",
         }
       }
     >
-      <View>
-        <Image
-          source={
+      <Image
+        style={
+          Array [
             Object {
-              "testUri": "../../../app/assets/images/assessment/illustration-screening-start.png",
-            }
-          }
-          style={
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
             Object {
-              "height": 600,
-              "width": 750,
-            }
+              "height": undefined,
+              "width": undefined,
+            },
+            undefined,
+          ]
+        }
+      />
+      <RCTScrollView
+        style={
+          Object {
+            "flex": 1,
           }
-        />
-        <View
-          style={
-            Object {
-              "padding": 20,
-            }
-          }
-        >
+        }
+      >
+        <View>
           <View
             style={
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "marginBottom": 10,
+                "padding": 20,
               }
             }
           >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../app/assets/images/assessment/logo-cdc.png",
-                }
-              }
-              style={
-                Object {
-                  "height": 29,
-                  "marginRight": 10,
-                  "width": 47,
-                }
-              }
+            <SvgXml
+              xml="
+<svg width=\\"69\\" height=\\"69\\" viewBox=\\"0 0 69 69\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+<circle cx=\\"34.5\\" cy=\\"34.5\\" r=\\"34.5\\" fill=\\"#D3D7F8\\"/>
+<path d=\\"M48.3723 23.6277C44.8687 20.1241 39.209 20.1241 35.7054 23.6277L35.0316 24.3352L34.3241 23.6277C30.8205 20.1241 25.1608 20.1241 21.6572 23.6277C18.1199 27.1313 18.1199 32.791 21.6235 36.2946L33.2124 47.8498C34.2231 48.8268 35.8064 48.8268 36.8171 47.8498L48.3723 36.2946C51.8759 32.791 51.8759 27.1313 48.3723 23.6277ZM45.5088 31.1403H43.4201V33.229C43.4201 33.9364 42.8474 34.5091 42.1399 34.5091C41.4324 34.5091 40.8597 33.9364 40.8597 33.229V31.1403H38.771C38.0636 31.1403 37.4909 30.5676 37.4909 29.8601C37.4909 29.1526 38.0636 28.5799 38.771 28.5799H40.8597V26.4912C40.8597 25.7838 41.4324 25.2111 42.1399 25.2111C42.8474 25.2111 43.4201 25.7838 43.4201 26.4912V28.5799H45.5088C46.2162 28.5799 46.7889 29.1526 46.7889 29.8601C46.8226 30.5676 46.2162 31.1403 45.5088 31.1403Z\\" fill=\\"#4754C5\\"/>
+</svg>
+"
             />
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../app/assets/images/assessment/logo-mit-media-lab.png",
-                }
-              }
+            <Text
               style={
                 Object {
-                  "height": 32,
-                  "width": 58,
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 26,
+                  "fontWeight": "bold",
+                  "lineHeight": 34,
+                  "marginVertical": 30,
+                  "writingDirection": "ltr",
                 }
               }
-            />
-          </View>
-          <Text
-            style={
-              Object {
-                "fontFamily": "IBMPlexSans-Bold",
-                "fontSize": 26,
-                "fontWeight": "bold",
-                "lineHeight": 34,
-                "writingDirection": "ltr",
-              }
-            }
-            use="headline2"
-          >
-            COVID-19 Screening
-          </Text>
-          <View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                  "flexWrap": "wrap",
-                  "marginTop": 20,
-                  "paddingHorizontal": 10,
-                }
-              }
+              use="headline2"
             >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../app/assets/images/assessment/icon-health.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 38,
-                    "marginRight": 20,
-                    "width": 38,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#000",
-                    "flex": 1,
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Answer a few easy questions about symptoms, travel, and contact you've had.
-              </Text>
-            </View>
-            <View
+              Answer questions about your symptoms and medical history to learn what to do next about COVID-19
+            </Text>
+            <Text
               style={
                 Object {
-                  "flexDirection": "row",
-                  "flexWrap": "wrap",
-                  "marginTop": 20,
-                  "paddingHorizontal": 10,
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "marginBottom": 20,
+                  "writingDirection": "ltr",
                 }
               }
+              testID="description"
+              use="body1"
             >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../app/assets/images/assessment/icon-private.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 38,
-                    "marginRight": 20,
-                    "width": 38,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#000",
-                    "flex": 1,
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.
-              </Text>
-            </View>
+              Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.
+            </Text>
           </View>
         </View>
-      </View>
-    </RCTScrollView>
-    <View
-      style={
-        Object {
-          "padding": 20,
-        }
-      }
-    >
+      </RCTScrollView>
       <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
         style={
           Object {
-            "opacity": 1,
+            "padding": 20,
           }
         }
-        testID="assessment-button"
       >
         <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
           style={
-            Array [
-              Object {
-                "borderRadius": 10,
-                "paddingHorizontal": 14,
-                "paddingVertical": 22,
-              },
-              Object {
-                "backgroundColor": "rgb(105,121,248)",
-              },
-            ]
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "#FFF",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 18,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "textAlign": "center",
-                "writingDirection": "ltr",
-              }
+            Object {
+              "opacity": 1,
             }
-            use="body1"
+          }
+          testID="assessment-button"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 10,
+                  "paddingHorizontal": 14,
+                  "paddingVertical": 22,
+                },
+                Object {
+                  "backgroundColor": "#6979F8",
+                },
+              ]
+            }
           >
-            Start
-          </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#FFF",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "textAlign": "center",
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              Start
+            </Text>
+          </View>
         </View>
       </View>
     </View>

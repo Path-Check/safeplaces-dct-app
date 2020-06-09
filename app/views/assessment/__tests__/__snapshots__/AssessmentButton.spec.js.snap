@@ -30,7 +30,7 @@ exports[`base 1`] = `
             "paddingVertical": 22,
           },
           Object {
-            "backgroundColor": "rgb(105,121,248)",
+            "backgroundColor": "#6979F8",
           },
         ]
       }
@@ -94,7 +94,7 @@ exports[`color 1`] = `
       <Text
         style={
           Object {
-            "color": "#FFF",
+            "color": "red",
             "fontFamily": "IBMPlexSans",
             "fontSize": 18,
             "fontWeight": "normal",
@@ -142,7 +142,7 @@ exports[`disabled 1`] = `
             "paddingVertical": 22,
           },
           Object {
-            "backgroundColor": "#868686",
+            "backgroundColor": "#E5E7FA",
           },
         ]
       }
@@ -150,7 +150,7 @@ exports[`disabled 1`] = `
       <Text
         style={
           Object {
-            "color": "#FFF",
+            "color": "#A5AFFB",
             "fontFamily": "IBMPlexSans",
             "fontSize": 18,
             "fontWeight": "normal",

@@ -49,14 +49,3 @@ test('footer', () => {
   );
   expect(getByTestId('footer')).toBeTruthy();
 });
-
-test('pretitle', () => {
-  const { getByTestId } = render(
-    <AssessmentEnd
-      image={{ uri: 'image.png' }}
-      pretitle={<View testID='pretitle' />}
-      title='End'
-    />,
-  );
-  expect(getByTestId('pretitle')).toBeTruthy();
-});

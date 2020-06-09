@@ -28,9 +28,10 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
             "backgroundColor": "#FFF",
             "borderColor": "rgb(173,188,205)",
             "borderRadius": 8,
-            "borderWidth": 2,
+            "borderWidth": 1,
             "marginBottom": 16,
-            "padding": 10,
+            "paddingHorizontal": 10,
+            "paddingVertical": 20,
           },
           undefined,
         ]
@@ -68,8 +69,8 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
               "flex": 1,
               "flexWrap": "wrap",
               "fontFamily": "IBMPlexSans",
-              "fontSize": 20,
-              "fontWeight": "bold",
+              "fontSize": 18,
+              "fontWeight": "normal",
               "lineHeight": 24,
               "writingDirection": "ltr",
             }
@@ -78,24 +79,6 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
           use="body1"
         >
           Label
-        </Text>
-      </View>
-      <View>
-        <Text
-          style={
-            Object {
-              "color": "#000",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 16,
-              "fontWeight": "normal",
-              "lineHeight": 24,
-              "marginLeft": 30,
-              "writingDirection": "ltr",
-            }
-          }
-          use="body1"
-        >
-          Description
         </Text>
       </View>
     </View>
@@ -131,9 +114,10 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
             "backgroundColor": "#FFF",
             "borderColor": "rgb(173,188,205)",
             "borderRadius": 8,
-            "borderWidth": 2,
+            "borderWidth": 1,
             "marginBottom": 16,
-            "padding": 10,
+            "paddingHorizontal": 10,
+            "paddingVertical": 20,
           },
           undefined,
         ]
@@ -171,8 +155,8 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
               "flex": 1,
               "flexWrap": "wrap",
               "fontFamily": "IBMPlexSans",
-              "fontSize": 20,
-              "fontWeight": "bold",
+              "fontSize": 18,
+              "fontWeight": "normal",
               "lineHeight": 24,
               "writingDirection": "ltr",
             }
@@ -181,24 +165,6 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
           use="body1"
         >
           Label
-        </Text>
-      </View>
-      <View>
-        <Text
-          style={
-            Object {
-              "color": "#000",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 16,
-              "fontWeight": "normal",
-              "lineHeight": 24,
-              "marginLeft": 30,
-              "writingDirection": "ltr",
-            }
-          }
-          use="body1"
-        >
-          Description
         </Text>
       </View>
     </View>
