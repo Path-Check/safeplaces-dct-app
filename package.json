@@ -63,7 +63,7 @@
     "@types/react-redux": "^7.1.9",
     "dayjs": "^1.8.24",
     "emotion-theming": "^10.0.27",
-    "geolib": "^3.2.1",
+    "geolib": "^3.3.1",
     "i18next": "^19.3.3",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",

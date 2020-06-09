@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Scrypt",
+        "repositoryURL": "https://github.com/MichaelNeas/swift-scrypt.git",
+        "state": {
+          "branch": "master",
+          "revision": "ef765c45ee568f662e2111ba59f51badfde56da2",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
