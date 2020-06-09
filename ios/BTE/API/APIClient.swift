@@ -81,8 +81,9 @@ private extension APIClient {
     static let errorMessage = "error_description"
   }
 
-  func dataRequest<T: APIRequest>(for request: T) -> DataRequest {
-    return sessionManager.request(
+  func dataRequest<T: APIRequest>(for request: T, requestType: RequestType) -> DataRequest {
+    let baseUrl = requestType == .post ? postUrl : pullUrl
+    let r = sessionManager.request(
       baseUrl.appendingPathComponent(request.path, isDirectory: false),
       method: request.method,
       parameters: request.parameters,
