@@ -65,7 +65,7 @@ class ChooseProviderScreen extends Component {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     await this.fetchAuthoritiesList(this.state.isAuthorityFilterActive);
     await this.fetchUserAuthorities();
-    __DEV__ && (await this.fetchAutoSubscribeStatus());
+    await this.fetchAutoSubscribeStatus();
   }
 
   componentWillUnmount() {
@@ -79,7 +79,6 @@ class ChooseProviderScreen extends Component {
 
   async fetchUserAuthorities() {
     const selectedAuthorities = await HCAService.getUserAuthorityList();
-
     if (selectedAuthorities) {
       this.setState({ selectedAuthorities });
     } else {
@@ -267,7 +266,7 @@ class ChooseProviderScreen extends Component {
             <Typography style={styles.sectionDescription} use={'body1'}>
               {languages.t('label.authorities_desc')}
             </Typography>
-            {__DEV__ && (
+            {
               <TouchableOpacity style={styles.autoSubscribe}>
                 <Checkbox
                   label={languages.t('label.auto_subscribe_checkbox')}
@@ -275,7 +274,7 @@ class ChooseProviderScreen extends Component {
                   onPress={() => this.toggleAutoSubscribe()}
                 />
               </TouchableOpacity>
-            )}
+            }
           </View>
 
           <View style={styles.listContainer}>
@@ -328,7 +327,9 @@ class ChooseProviderScreen extends Component {
                   </TouchableOpacity>
                 </View>
                 <FlatList
-                  data={this.state.selectedAuthorities}
+                  data={this.state.selectedAuthorities.map(authoObject => {
+                    return { key: Object.keys(authoObject)[0] };
+                  })}
                   renderItem={({ item }) => (
                     <View style={styles.flatlistRowView}>
                       <Typography style={styles.item} use={'body3'}>
@@ -367,7 +368,7 @@ class ChooseProviderScreen extends Component {
               </Button>
             </MenuTrigger>
             <MenuOptions>
-              {__DEV__ && (
+              {
                 <TouchableOpacity
                   style={styles.authorityFilter}
                   onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
@@ -381,7 +382,7 @@ class ChooseProviderScreen extends Component {
                     value={this.state.isAuthorityFilterActive}
                   />
                 </TouchableOpacity>
-              )}
+              }
               {this.state.authoritiesList === undefined
                 ? null
                 : this.state.authoritiesList.map(item => {

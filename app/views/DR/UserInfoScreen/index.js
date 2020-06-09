@@ -59,7 +59,7 @@ export default function UserInfo({ navigation }) {
   const validateCovidPositive = async info => {
     try {
       let response = await fetch(
-        'https://webapps.mepyd.gob.do:443/contact_tracing/api/Form',
+        `${MEPYD_C5I_SERVICE}:443/contact_tracing/api/Form`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

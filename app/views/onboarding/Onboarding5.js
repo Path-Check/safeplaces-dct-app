@@ -90,7 +90,7 @@ class Onboarding extends Component {
   componentDidMount() {
     this.checkLocationStatus();
     isPlatformiOS() && this.checkNotificationStatus();
-    __DEV__ && this.checkSubsriptionStatus();
+    this.checkSubsriptionStatus();
   }
 
   isLocationChecked() {
@@ -115,7 +115,7 @@ class Onboarding extends Component {
       case StepEnum.LOCATION:
         return this.getLocationNextStep();
       case StepEnum.NOTIFICATIONS:
-        return __DEV__ ? StepEnum.HCA_SUBSCRIPTION : StepEnum.DONE;
+        return StepEnum.HCA_SUBSCRIPTION;
       case StepEnum.HCA_SUBSCRIPTION:
         return StepEnum.DONE;
     }
@@ -195,10 +195,8 @@ class Onboarding extends Component {
   getLocationNextStep() {
     if (isPlatformiOS()) {
       return StepEnum.NOTIFICATIONS;
-    } else if (__DEV__) {
-      return StepEnum.HCA_SUBSCRIPTION;
     } else {
-      return isPlatformiOS() ? StepEnum.NOTIFICATIONS : StepEnum.DONE;
+      return StepEnum.HCA_SUBSCRIPTION;
     }
   }
 
@@ -448,7 +446,7 @@ class Onboarding extends Component {
               <View style={styles.statusContainer}>
                 {this.getLocationPermission()}
                 {this.getNotificationsPermissionIfIOS()}
-                {__DEV__ && this.getAuthSubscriptionStatus()}
+                {this.getAuthSubscriptionStatus()}
                 <View style={styles.spacer} />
               </View>
             </View>

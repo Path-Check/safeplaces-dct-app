@@ -1,0 +1,10 @@
+# Below is the global registry of health authorities for Safe Places.
+# Any organization can declare itself a health authority, just enter a PR and it will be merged into the registry.
+# A health authority must host a file created by the Safe Paths publisher tool at the url provided.
+
+Authorities:
+
+- Ministerio de Salud Publica: 
+  - {url: "https://appscovid.mide.gob.do/contact_tracing/api/Contact"}
+  - bounds: { "ne": { "latitude": 20.365051, "longitude": -67.795684}, "sw": { "latitude": 16.998770, "longitude": -72.179120}}
+

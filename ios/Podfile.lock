@@ -202,7 +202,7 @@ PODS:
     - React
   - react-native-pdf (6.1.2):
     - React
-  - react-native-safe-area-context (0.6.0):
+  - react-native-safe-area-context (1.0.2):
     - React
   - react-native-splash-screen (3.2.0):
     - React
@@ -258,7 +258,7 @@ PODS:
     - React
   - RNCAsyncStorage (1.10.3):
     - React
-  - RNCMaskedView (0.1.5):
+  - RNCMaskedView (0.1.10):
     - React
   - RNCPushNotificationIOS (1.2.0):
     - React
@@ -268,9 +268,9 @@ PODS:
     - React
   - RNPermissions (2.1.5):
     - React
-  - RNReanimated (1.8.0):
+  - RNReanimated (1.9.0):
     - React
-  - RNScreens (2.0.0-alpha.12):
+  - RNScreens (2.8.0):
     - React
   - RNShare (3.3.2):
     - React
@@ -492,7 +492,7 @@ SPEC CHECKSUMS:
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-pdf: 7d76a6619f76a6ebfb2f82a4f2feeb17826ba8b4
-  react-native-safe-area-context: d288138da2c800caa111f9352e9333f186a06ead
+  react-native-safe-area-context: 9d9640a9085014864052e38496fc1dfde0b93974
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-uuid-generator: 82ffa2a1cac94242ebed52c4dedc5044d3412717
   react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
@@ -512,13 +512,13 @@ SPEC CHECKSUMS:
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNBackgroundFetch: 8597ff4bbd2a644907ebcfb8124fbed87b6f345b
   RNCAsyncStorage: cd7234ff15c010723ed7c499ae4eedc605eac1fd
-  RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
+  RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNCPushNotificationIOS: 4d9ffd08f00ef6c1029ebbf4d72fc711eca3ff01
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNPermissions: ad71dd4f767ec254f2cd57592fbee02afee75467
-  RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
-  RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
+  RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
+  RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244
   RNShare: bd6518701db274b8ba282b33620885f2225a5bcf
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
