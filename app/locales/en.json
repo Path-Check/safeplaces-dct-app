@@ -33,10 +33,7 @@
     "share_cta": "I understand and consent",
     "start_title": "Answer questions about your symptoms and medical history to learn what to do next about COVID-19",
     "start_description": "Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.",
-    "start_cta": "Start",
-    "captcha_title": "Please confirm",
-    "captcha_description": "To protect against abuse from automated systems like bots, please check the box below...",
-    "captcha_cta": "Submit"
+    "start_cta": "Start"
   },
   "_display_name": "English",
   "about": {

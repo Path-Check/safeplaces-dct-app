@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import AboutScreen from './views/About';
-import AssessmentScreen from './views/assessment/Assessment';
+import AssessmentScreen from './views/assessment';
 import ChooseProviderScreen from './views/ChooseProvider';
 import {
   ExportCodeInput,

@@ -6,13 +6,13 @@ import { Icons, Images } from '../../../assets';
 import { Typography } from '../../../components/Typography';
 import Colors from '../../../constants/colors';
 import { Colors as AssessmentColors } from '../constants';
-import AssessmentEnd from './AssessmentEnd';
+import { Info } from '../Info';
 
 /** @type {React.FunctionComponent<{}>} */
-const AssessmentEndEmergency = () => {
+export const Emergency = () => {
   let { t } = useTranslation();
   return (
-    <AssessmentEnd
+    <Info
       ctaAction={() => {
         // TODO: This would need to be localized per country
         Linking.openURL('tel:911');
@@ -31,5 +31,3 @@ const AssessmentEndEmergency = () => {
     />
   );
 };
-
-export default AssessmentEndEmergency;

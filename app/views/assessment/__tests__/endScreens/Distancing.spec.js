@@ -2,19 +2,19 @@ import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 import { I18nextProvider } from 'react-i18next';
 
-import i18n from '../../../locales/languages';
-import { MetaContext } from '../AssessmentContext';
-import AssessmentEndDistancing from '../endScreens/AssessmentEndDistancing';
+import i18n from '../../../../locales/languages';
+import { MetaContext } from '../../Context';
+import { Distancing } from '../../endScreens/Distancing';
 
 test('base', () => {
-  const { asJSON } = render(<AssessmentEndDistancing />, { wrapper: Wrapper });
+  const { asJSON } = render(<Distancing />, { wrapper: Wrapper });
   expect(asJSON()).toMatchSnapshot();
 });
 
 test('cta', () => {
   const push = jest.fn();
   const { getByTestId } = render(
-    <AssessmentEndDistancing navigation={{ push }} />,
+    <Distancing navigation={{ push }} />,
     { wrapper: Wrapper },
   );
   const cta = getByTestId('assessment-button');

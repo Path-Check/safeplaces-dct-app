@@ -4,15 +4,15 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Icons, Images } from '../../../assets';
 import { Typography } from '../../../components/Typography';
 import Colors from '../../../constants/colors';
-import { MetaContext } from '../AssessmentContext';
-import AssessmentEnd from './AssessmentEnd';
+import { MetaContext } from '../Context';
+import { Info } from '../Info';
 
 /** @type {React.FunctionComponent<{}>} */
-const AssessmentEndDistancing = ({ navigation }) => {
+export const Distancing = ({ navigation }) => {
   let { t } = useTranslation();
   let { completeRoute } = useContext(MetaContext);
   return (
-    <AssessmentEnd
+    <Info
       ctaAction={() => {
         navigation.push(completeRoute);
       }}
@@ -29,5 +29,3 @@ const AssessmentEndDistancing = ({ navigation }) => {
     />
   );
 };
-
-export default AssessmentEndDistancing;

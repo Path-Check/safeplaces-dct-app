@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 
-import AssessmentOption from '../AssessmentOption';
+import { Option } from '../Option';
 import {
   SCREEN_TYPE_CHECKBOX,
   SCREEN_TYPE_DATE,
@@ -10,7 +10,7 @@ import {
 
 test('SCREEN_TYPE_CHECKBOX', () => {
   const { asJSON } = render(
-    <AssessmentOption
+    <Option
       index={0}
       onSelect={jest.fn()}
       option={{
@@ -26,7 +26,7 @@ test('SCREEN_TYPE_CHECKBOX', () => {
 
 test('SCREEN_TYPE_RADIO', () => {
   const { asJSON } = render(
-    <AssessmentOption
+    <Option
       index={0}
       onSelect={jest.fn()}
       option={{
@@ -43,7 +43,7 @@ test('SCREEN_TYPE_RADIO', () => {
 describe('SCREEN_TYPE_DATE', () => {
   test('displays the label if not selected', () => {
     const { getByTestId } = render(
-      <AssessmentOption
+      <Option
         index={0}
         onSelect={jest.fn()}
         option={{
@@ -61,7 +61,7 @@ describe('SCREEN_TYPE_DATE', () => {
     }));
     let onSelect = jest.fn();
     const { getByTestId } = render(
-      <AssessmentOption
+      <Option
         index={0}
         onSelect={onSelect}
         option={{
@@ -77,7 +77,7 @@ describe('SCREEN_TYPE_DATE', () => {
   });
   test('shows the date picker', () => {
     const { getByTestId } = render(
-      <AssessmentOption
+      <Option
         index={0}
         onSelect={jest.fn()}
         option={{

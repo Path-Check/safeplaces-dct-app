@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { Typography } from '../../../components/Typography';
-import AssessmentButton from '../AssessmentButton';
+import { Typography } from '../../components/Typography';
+import { Button } from './Button';
 
 /**
  * @typedef { import("react").ReactNode } ReactNode
@@ -24,7 +24,7 @@ import AssessmentButton from '../AssessmentButton';
  *   image: string;
  *   title: string;
  * }>} */
-const AssessmentEnd = ({
+export const Info = ({
   backgroundColor,
   backgroundImage,
   children,
@@ -68,7 +68,7 @@ const AssessmentEnd = ({
         <View style={assessmentStyles.footer}>
           {footer}
           {ctaTitle && (
-            <AssessmentButton
+            <Button
               color={ctaColor}
               onPress={ctaAction}
               title={ctaTitle}
@@ -79,8 +79,6 @@ const AssessmentEnd = ({
     </SafeAreaView>
   );
 };
-
-export default AssessmentEnd;
 
 export const assessmentStyles = StyleSheet.create({
   container: {

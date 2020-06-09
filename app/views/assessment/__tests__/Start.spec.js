@@ -3,10 +3,10 @@ import React from 'react';
 import { I18nextProvider } from 'react-i18next';
 
 import i18n from '../../../locales/languages';
-import AssessmentStart from '../AssessmentStart';
+import { Start } from '../Start';
 
 test('base', () => {
-  const { asJSON } = render(<AssessmentStart />, { wrapper: Wrapper });
+  const { asJSON } = render(<Start />, { wrapper: Wrapper });
   expect(asJSON()).toMatchSnapshot();
 });
 

@@ -1,19 +1,19 @@
 import { render } from '@testing-library/react-native';
 import React from 'react';
 
-import AssessmentButton from '../AssessmentButton';
+import { Button } from '../Button';
 
 test('base', () => {
-  const { asJSON } = render(<AssessmentButton title='Next' />);
+  const { asJSON } = render(<Button title='Next' />);
   expect(asJSON()).toMatchSnapshot();
 });
 
 test('disabled', () => {
-  const { asJSON } = render(<AssessmentButton disabled title='Next' />);
+  const { asJSON } = render(<Button disabled title='Next' />);
   expect(asJSON()).toMatchSnapshot();
 });
 
 test('color', () => {
-  const { asJSON } = render(<AssessmentButton color='red' title='Next' />);
+  const { asJSON } = render(<Button color='red' title='Next' />);
   expect(asJSON()).toMatchSnapshot();
 });

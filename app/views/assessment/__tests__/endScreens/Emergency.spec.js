@@ -2,12 +2,12 @@ import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 import { I18nextProvider } from 'react-i18next';
 
-import i18n from '../../../locales/languages';
-import { MetaContext } from '../AssessmentContext';
-import AssessmentEndEmergency from '../endScreens/AssessmentEndEmergency';
+import i18n from '../../../../locales/languages';
+import { MetaContext } from '../../Context';
+import { Emergency } from '../../endScreens/Emergency';
 
 test('base', () => {
-  const { asJSON } = render(<AssessmentEndEmergency />, { wrapper: Wrapper });
+  const { asJSON } = render(<Emergency />, { wrapper: Wrapper });
   expect(asJSON()).toMatchSnapshot();
 });
 
@@ -16,7 +16,7 @@ test('cta', () => {
   jest.doMock('react-native/Libraries/Linking/Linking', () => ({
     openURL: openURL,
   }));
-  const { getByTestId } = render(<AssessmentEndEmergency />, {
+  const { getByTestId } = render(<Emergency />, {
     wrapper: Wrapper,
   });
   const cta = getByTestId('assessment-button');

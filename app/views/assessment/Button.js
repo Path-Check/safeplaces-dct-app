@@ -14,7 +14,7 @@ import Colors from '../../constants/colors';
  *   title: string;
  *   disabled: boolean;
  * }>} */
-const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
+export const Button = ({ color, onPress, title, disabled = false }) => {
   let backgroundColor = color
     ? color
     : disabled
@@ -44,8 +44,6 @@ const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
     </TouchableOpacity>
   );
 };
-
-export default AssessmentButton;
 
 const styles = StyleSheet.create({
   cta: {

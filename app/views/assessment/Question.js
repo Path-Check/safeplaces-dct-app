@@ -4,9 +4,9 @@ import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
-import AssessmentButton from './AssessmentButton';
-import { AnswersContext } from './AssessmentContext';
-import AssessmentOption from './AssessmentOption';
+import { Button } from './Button';
+import { AnswersContext } from './Context';
+import { Option } from './Option';
 import {
   QUESTION_TYPE_MULTI,
   SCREEN_TYPE_CHECKBOX,
@@ -15,9 +15,9 @@ import {
 } from './constants';
 
 /**
- * @typedef { import("./Assessment").SurveyQuestion } SurveyQuestion
- * @typedef { import("./Assessment").SurveyOption } SurveyOption
- * @typedef { import("./Assessment").SurveyAnswers } SurveyAnswers
+ * @typedef { import(".").SurveyQuestion } SurveyQuestion
+ * @typedef { import(".").SurveyOption } SurveyOption
+ * @typedef { import(".").SurveyAnswers } SurveyAnswers
  */
 
 /** @type {React.FunctionComponent<{
@@ -26,7 +26,7 @@ import {
  *   option: SurveyOption
  *   question: SurveyQuestion
  * }>} */
-const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
+export const Question = ({ onNext, onChange, option, question }) => {
   const { t } = useTranslation();
   const answers = useContext(AnswersContext);
   const [selectedValues, setSelectedValues] = useState(
@@ -58,7 +58,7 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
   const options =
     displayAsOption &&
     option.values.map((option, index) => (
-      <AssessmentOption
+      <Option
         answer={selectedValues.find((v) => v.index === index)}
         index={index}
         key={option.value}
@@ -122,7 +122,7 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
         </View>
       </ScrollView>
       <View style={styles.footer}>
-        <AssessmentButton
+        <Button
           disabled={!selectedValues.length}
           onPress={onNext}
           title={t('assessment.next')}
@@ -162,5 +162,3 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
-
-export default AssessmentQuestion;

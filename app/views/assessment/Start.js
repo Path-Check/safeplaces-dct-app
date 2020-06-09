@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Icons, Images } from '../../assets';
 import Colors from '../../constants/colors';
 /**
- * @typedef { import("./Assessment").SurveyQuestion } SurveyQuestion
- * @typedef { import("./Assessment").SurveyOption } SurveyOption
+ * @typedef { import(".").SurveyQuestion } SurveyQuestion
+ * @typedef { import(".").SurveyOption } SurveyOption
  */
 import i18n from '../../locales/languages';
 import {
@@ -14,13 +14,13 @@ import {
   QUESTION_KEY_AGREE,
   SCREEN_TYPE_RADIO,
 } from './constants';
-import AssessmentEnd from './endScreens/AssessmentEnd';
+import { Info } from './Info';
 
 /** @type {React.FunctionComponent<{}>} */
-const AssessmentStart = ({ navigation }) => {
+export const Start = ({ navigation }) => {
   let { t } = useTranslation();
   return (
-    <AssessmentEnd
+    <Info
       ctaAction={() => {
         navigation.push('Question', {
           question: agreeQuestion,
@@ -62,5 +62,3 @@ const agreeOption = {
     },
   ],
 };
-
-export default AssessmentStart;

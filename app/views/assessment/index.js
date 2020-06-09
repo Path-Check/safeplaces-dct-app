@@ -8,14 +8,13 @@ import { Icons } from '../../assets';
 import Colors from '../../constants/colors';
 import { useSurvey } from '../../helpers/CustomHooks';
 import i18n from '../../locales/languages';
-import AssessmentCaptcha from './AssessmentCaptcha';
 import {
   AnswersContext,
   MetaContext,
   SurveyContext,
-} from './AssessmentContext';
-import AssessmentQuestion from './AssessmentQuestion';
-import AssessmentStart from './AssessmentStart';
+} from './Context';
+import { Question } from './Question';
+import { Start } from './Start';
 import {
   END_ROUTES,
   OPTION_VALUE_DISAGREE,
@@ -26,12 +25,12 @@ import {
   SCREEN_TYPE_END,
   SCREEN_TYPE_ISOLATE,
 } from './constants';
-import AssessmentEndCaregiver from './endScreens/AssessmentEndCaregiver';
-import AssessmentEndComplete from './endScreens/AssessmentEndComplete';
-import AssessmentEndDistancing from './endScreens/AssessmentEndDistancing';
-import AssessmentEndEmergency from './endScreens/AssessmentEndEmergency';
-import AssessmentEndIsolate from './endScreens/AssessmentEndIsolate';
-import AssessmentEndShare from './endScreens/AssessmentEndShare';
+import { Caregiver } from './endScreens/Caregiver';
+import { Complete } from './endScreens/Complete';
+import { Distancing } from './endScreens/Distancing';
+import { Emergency } from './endScreens/Emergency';
+import { Isolate } from './endScreens/Isolate';
+import { Share } from './endScreens/Share';
 
 /**
  * @typedef {"Checkbox" | "Date" | Radio" | "EndCaregiver" | "EndDistancing" | "EndEmergency" | "EndIsolate" } SurveyScreen
@@ -75,7 +74,7 @@ const Assessment = ({ navigation }) => {
   const QuestionScreen = useMemo(
     // memoize assessment question
     () => ({ navigation, route }) => (
-      <AssessmentQuestion
+      <Question
         {...route.params}
         onNext={() => {
           onNextQuestion({ answers, navigation, route, survey });
@@ -129,7 +128,7 @@ const Assessment = ({ navigation }) => {
               },
             }}>
             <Stack.Screen
-              component={AssessmentStart}
+              component={Start}
               name='Start'
               options={{
                 ...screenOptions,
@@ -144,7 +143,7 @@ const Assessment = ({ navigation }) => {
               options={screenOptions}
             />
             <Stack.Screen
-              component={AssessmentEndComplete}
+              component={Complete}
               name='EndComplete'
               options={{
                 ...screenOptions,
@@ -154,7 +153,7 @@ const Assessment = ({ navigation }) => {
               }}
             />
             <Stack.Screen
-              component={AssessmentEndShare}
+              component={Share}
               name='EndShare'
               options={{
                 ...screenOptions,
@@ -164,17 +163,7 @@ const Assessment = ({ navigation }) => {
               }}
             />
             <Stack.Screen
-              component={AssessmentCaptcha}
-              name='Captcha'
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
-                },
-              }}
-            />
-            <Stack.Screen
-              component={AssessmentEndCaregiver}
+              component={Caregiver}
               name={SCREEN_TYPE_CAREGIVER}
               options={{
                 ...screenOptions,
@@ -184,7 +173,7 @@ const Assessment = ({ navigation }) => {
               }}
             />
             <Stack.Screen
-              component={AssessmentEndDistancing}
+              component={Distancing}
               name={SCREEN_TYPE_DISTANCING}
               options={{
                 ...screenOptions,
@@ -194,7 +183,7 @@ const Assessment = ({ navigation }) => {
               }}
             />
             <Stack.Screen
-              component={AssessmentEndEmergency}
+              component={Emergency}
               name={SCREEN_TYPE_EMERGENCY}
               options={{
                 ...screenOptions,
@@ -204,7 +193,7 @@ const Assessment = ({ navigation }) => {
               }}
             />
             <Stack.Screen
-              component={AssessmentEndIsolate}
+              component={Isolate}
               name={SCREEN_TYPE_ISOLATE}
               options={{
                 ...screenOptions,

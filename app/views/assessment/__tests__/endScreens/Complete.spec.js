@@ -2,9 +2,9 @@ import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 import { I18nextProvider } from 'react-i18next';
 
-import i18n from '../../../locales/languages';
-import { MetaContext } from '../AssessmentContext';
-import AssessmentEndComplete from '../endScreens/AssessmentEndComplete';
+import i18n from '../../../../locales/languages';
+import { MetaContext } from '../../Context';
+import { Complete } from '../../endScreens/Complete';
 
 let meta;
 
@@ -15,14 +15,14 @@ beforeEach(() => {
 });
 
 test('base', () => {
-  const { asJSON } = render(<AssessmentEndComplete />, { wrapper: Wrapper });
+  const { asJSON } = render(<Complete />, { wrapper: Wrapper });
   expect(asJSON()).toMatchSnapshot();
 });
 
 test('cta', () => {
   const dismiss = jest.fn();
   meta.dismiss = dismiss;
-  const { getByTestId } = render(<AssessmentEndComplete />, {
+  const { getByTestId } = render(<Complete />, {
     wrapper: Wrapper,
   });
   const cta = getByTestId('assessment-button');

@@ -4,28 +4,28 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Icons, Images } from '../../../assets';
 import { Typography } from '../../../components/Typography';
 import Colors from '../../../constants/colors';
-import { MetaContext } from '../AssessmentContext';
-import AssessmentEnd from './AssessmentEnd';
+import { MetaContext } from '../Context';
+import { Info } from '../Info';
 
 /** @type {React.FunctionComponent<{}>} */
-const AssessmentEndComplete = () => {
+export const Caregiver = ({ navigation }) => {
   let { t } = useTranslation();
-  let { dismiss } = useContext(MetaContext);
+  let { completeRoute } = useContext(MetaContext);
   return (
-    <AssessmentEnd
-      ctaAction={dismiss}
+    <Info
+      ctaAction={() => {
+        navigation.push(completeRoute);
+      }}
       backgroundColor={Colors.SECONDARY_10}
       backgroundImage={Images.EmptyPathBackground}
       icon={Icons.SelfAssessment}
-      ctaTitle={t('assessment.complete_cta')}
+      ctaTitle={t('assessment.caregiver_cta')}
       description={
-        <Trans t={t} i18nKey='assessment.complete_description'>
+        <Trans t={t} i18nKey='assessment.caregiver_description'>
           <Typography />
         </Trans>
       }
-      title={t('assessment.complete_title')}
+      title={t('assessment.caregiver_title')}
     />
   );
 };
-
-export default AssessmentEndComplete;

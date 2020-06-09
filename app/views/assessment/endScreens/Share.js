@@ -4,14 +4,14 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Icons } from '../../../assets';
 import { Typography } from '../../../components/Typography';
 import Colors from '../../../constants/colors';
-import AssessmentEnd from './AssessmentEnd';
+import { Info } from '../Info';
 
 /** @type {React.FunctionComponent<{}>} */
-const AssessmentEndShare = ({ navigation }) => {
+export const Share = ({ navigation }) => {
   const { t } = useTranslation();
 
   return (
-    <AssessmentEnd
+    <Info
       ctaAction={() => {
         navigation.push('EndComplete');
       }}
@@ -31,5 +31,3 @@ const AssessmentEndShare = ({ navigation }) => {
     />
   );
 };
-
-export default AssessmentEndShare;
