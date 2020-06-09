@@ -76,6 +76,7 @@
 		B596C07024880B7000943B79 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596C06F24880B7000943B79 /* String+Extensions.swift */; };
 		B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* PTCExposureManagerModule.m */; };
 		B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */; };
+		B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */; };
 		B5FC37C12489B075006474EB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C02489B075006474EB /* APIClient.swift */; };
 		B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C52489B1B3006474EB /* APIRequest.swift */; };
 		B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C92489B1C1006474EB /* JSON.swift */; };
@@ -319,6 +320,7 @@
 		B596C06F24880B7000943B79 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		B596C0712488127D00943B79 /* PTCExposureManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCExposureManagerModule.m; sourceTree = "<group>"; };
 		B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebugMenuModule.m; sourceTree = "<group>"; };
+		B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisKeyUrlRequests.swift; sourceTree = "<group>"; };
 		B5FC37C02489B075006474EB /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		B5FC37C52489B1B3006474EB /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		B5FC37C92489B1C1006474EB /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
@@ -722,6 +724,7 @@
 			isa = PBXGroup;
 			children = (
 				B5FC37D7248A784F006474EB /* DiagnosisKeyRequests.swift */,
+				B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */,
 				B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */,
 			);
 			path = Requests;
@@ -1284,6 +1287,7 @@
 				B5FC37CC2489B251006474EB /* Result.swift in Sources */,
 				C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */,
 				B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */,
+				B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */,
 				C5C850CA2480156200A494CA /* AppDelegate.m in Sources */,
 				B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */,
 				B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */,
