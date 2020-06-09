@@ -1,4 +1,4 @@
-import type { HealthcareAuthority } from '../HealthcareAuthorities/getHealthcareAuthoritiesApi';
+import type { HealthcareAuthority } from '../healthcareAuthorities/getHealthcareAuthoritiesApi';
 
 const exportConsentApi = async (
   authority: HealthcareAuthority,
