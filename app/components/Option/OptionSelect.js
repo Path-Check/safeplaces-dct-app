@@ -36,8 +36,7 @@ export function OptionSelect({
             />
           )}
           {isSelected &&
-            (inputType === SCREEN_TYPE_RADIO ||
-              inputType === SCREEN_TYPE_DATE) }
+            (inputType === SCREEN_TYPE_RADIO || inputType === SCREEN_TYPE_DATE)}
         </View>
       )}
       <Typography use='body1' style={styles.title} testID='label'>

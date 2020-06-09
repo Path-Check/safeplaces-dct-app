@@ -83,7 +83,7 @@ const Assessment = ({ navigation }) => {
         onNext={() => {
           onNextQuestion({ answers, navigation, route, survey });
         }}
-        onChange={value => {
+        onChange={(value) => {
           let { question } = route.params;
           answers.current[question.question_key] = value;
         }}
@@ -230,8 +230,8 @@ export default Assessment;
  * @param key {string}
  */
 function getQuestion(survey, key) {
-  const question = survey.questions.find(q => q.question_key === key);
-  const option = survey.options.find(o => o.key === question.option_key);
+  const question = survey.questions.find((q) => q.question_key === key);
+  const option = survey.options.find((o) => o.key === question.option_key);
   return { question, option };
 }
 
@@ -248,7 +248,7 @@ function onNextQuestion({ answers, navigation, route, survey }) {
   const { question } = route.params;
   const response = answers.current[question.question_key];
   if (question.question_key === QUESTION_KEY_AGREE) {
-    if (response.some(r => r.value === OPTION_VALUE_DISAGREE)) {
+    if (response.some((r) => r.value === OPTION_VALUE_DISAGREE)) {
       return showAgreeAlert();
     }
   }
@@ -270,11 +270,11 @@ function onNextQuestion({ answers, navigation, route, survey }) {
 
 function selectNextQuestion(survey, question, answer) {
   let index = survey.questions.findIndex(
-    q => q.question_key === question.question_key,
+    (q) => q.question_key === question.question_key,
   );
   if (question.conditions) {
     for (const condition of question.conditions) {
-      if (answer.some(r => r.value === condition.response)) {
+      if (answer.some((r) => r.value === condition.response)) {
         return condition.jump_to_key;
       }
     }
@@ -283,7 +283,7 @@ function selectNextQuestion(survey, question, answer) {
 }
 
 function showAgreeAlert() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     Alert.alert(
       i18n.t('assessment.agree_alert_title'),
       i18n.t('assessment.agree_alert_description'),

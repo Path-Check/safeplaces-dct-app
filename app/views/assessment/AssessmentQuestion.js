@@ -41,10 +41,7 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
       let l = line.trim();
       if (!l) continue;
       elements.push(
-        <Typography
-          testID='description'
-          key={l}
-          style={styles.description}>
+        <Typography testID='description' key={l} style={styles.description}>
           {l}
         </Typography>,
       );
@@ -62,12 +59,12 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
     displayAsOption &&
     option.values.map((option, index) => (
       <AssessmentOption
-        answer={selectedValues.find(v => v.index === index)}
+        answer={selectedValues.find((v) => v.index === index)}
         index={index}
         key={option.value}
-        onSelect={value => onSelectHandler(value, index)}
+        onSelect={(value) => onSelectHandler(value, index)}
         option={option}
-        isSelected={selectedValues.some(v => v.index === index)}
+        isSelected={selectedValues.some((v) => v.index === index)}
         type={question.screen_type}
       />
     ));
@@ -75,7 +72,7 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
   /** @type {(value: string, index: number) => void} */
   const onSelectHandler = (value, index) => {
     if (question.question_type === QUESTION_TYPE_MULTI) {
-      return setSelectedValues(values => {
+      return setSelectedValues((values) => {
         // TODO: Better way to filter single value questions?
         const singleValueQuestions = [
           'Choose not to answer',
@@ -84,12 +81,12 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
         ];
         // this looks for an existing value inside the selected values array
         // which indicates user unselected the value
-        const unselectedValue = values.some(v => v.index === index);
+        const unselectedValue = values.some((v) => v.index === index);
         const currentValue = option.values[index];
         // this handles deselect for values in multi question type
         // that should act as a single value type questions
         // basically when any other selection is made this question gets unselected
-        const unselectSingleValueQuestion = values.filter(v => {
+        const unselectSingleValueQuestion = values.filter((v) => {
           return !singleValueQuestions.includes(option.values[v.index].label);
         });
 
@@ -101,7 +98,7 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
         } else {
           // this logic handles the multi value questions selection
           return unselectedValue
-            ? unselectSingleValueQuestion.filter(v => v.index !== index)
+            ? unselectSingleValueQuestion.filter((v) => v.index !== index)
             : [...unselectSingleValueQuestion, { index, value }];
         }
       });
@@ -115,24 +112,22 @@ const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <Typography use='headline2'>
-            {question.question_text}
-          </Typography>
+      <View style={styles.header}>
+        <Typography use='headline2'>{question.question_text}</Typography>
+      </View>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.scrollViewContent}>
+          {description}
+          {options}
         </View>
-        <ScrollView style={styles.scrollView}>
-          <View style={styles.scrollViewContent}>
-            {description}
-            {options}
-          </View>
-        </ScrollView>
-        <View style={styles.footer}>
-          <AssessmentButton
-            disabled={!selectedValues.length}
-            onPress={onNext}
-            title={t('assessment.next')}
-          />
-        </View>
+      </ScrollView>
+      <View style={styles.footer}>
+        <AssessmentButton
+          disabled={!selectedValues.length}
+          onPress={onNext}
+          title={t('assessment.next')}
+        />
+      </View>
     </SafeAreaView>
   );
 };

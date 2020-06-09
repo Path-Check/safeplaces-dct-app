@@ -17,14 +17,14 @@ import Colors from '../../constants/colors';
 const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
   let backgroundColor = color
     ? color
-    : (disabled
+    : disabled
     ? Colors.SECONDARY_50
-    : Colors.PRIMARY_50);
+    : Colors.PRIMARY_50;
   let textColor = color
     ? color
-    : (disabled
+    : disabled
     ? Colors.SECONDARY_100
-    : Colors.WHITE);
+    : Colors.WHITE;
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -37,8 +37,7 @@ const AssessmentButton = ({ color, onPress, title, disabled = false }) => {
             backgroundColor: backgroundColor,
           },
         ]}>
-
-        <Typography use='body1' style={[styles.ctaText, { color: textColor,},]}>
+        <Typography use='body1' style={[styles.ctaText, { color: textColor }]}>
           {title}
         </Typography>
       </View>

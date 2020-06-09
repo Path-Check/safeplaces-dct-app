@@ -32,11 +32,11 @@ const AssessmentCaptcha = ({ navigation }) => {
   const answers = useContext(AnswersContext);
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const navigationStateRoutes = useNavigationState(state => state.routes);
+  const navigationStateRoutes = useNavigationState((state) => state.routes);
   const buttonDisabled = token === null || isLoading;
   const captchaEventMessage = ['cancel', 'error', 'expired'];
 
-  const handleOnMessage = event => {
+  const handleOnMessage = (event) => {
     if (event && event.nativeEvent.data) {
       if (captchaEventMessage.includes(event.nativeEvent.data)) {
         // TODO: Better error handling
@@ -53,18 +53,18 @@ const AssessmentCaptcha = ({ navigation }) => {
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    const questionKeys = survey.questions.map(q => q.question_key);
+    const questionKeys = survey.questions.map((q) => q.question_key);
     // Extract the keys from navigation stack because the user might
     // have answered a question, pressed back, changed answer, ended up on a different question
     // rendering that answer no longer valid
     const questionKeysFinal = navigationStateRoutes
-      .filter(r => r.params && r.params.question)
-      .map(r => r.params.question.question_key)
+      .filter((r) => r.params && r.params.question)
+      .map((r) => r.params.question.question_key)
       // Remove injected questions (agreement, etc)
-      .filter(k => questionKeys.includes(k));
-    const response = questionKeysFinal.map(question_key => ({
+      .filter((k) => questionKeys.includes(k));
+    const response = questionKeysFinal.map((question_key) => ({
       question_key,
-      response: answers[question_key].map(r => r.value),
+      response: answers[question_key].map((r) => r.value),
     }));
     // TODO: Loading state / disable button
     try {

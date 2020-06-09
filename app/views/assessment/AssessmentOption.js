@@ -38,7 +38,7 @@ const AssessmentOption = ({
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   const [date, setDate] = useState(() =>
-    (isDateOption && isSelected && answer) ? new Date(answer.value) : null,
+    isDateOption && isSelected && answer ? new Date(answer.value) : null,
   );
   const label = useMemo(() => {
     if (isDateOption && date) {
