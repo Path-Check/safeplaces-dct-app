@@ -144,6 +144,7 @@
     "jest": "^25.1.0",
     "lint-diff": "^1.2.1",
     "lint-staged": "^10.0.9",
+    "logkitty": "^0.7.1",
     "metro-react-native-babel-preset": "^0.58.0",
     "mockdate": "^2.0.5",
     "prettier": "^2.0.5",
