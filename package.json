@@ -121,6 +121,7 @@
     "@types/react-native": "^0.62.12",
     "@types/react-navigation": "^3.4.0",
     "@types/react-test-renderer": "^16.9.2",
+    "@types/whatwg-fetch": "0.0.33",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
     "@typescript-eslint/parser": "^3.1.0",
     "babel-jest": "^25.1.0",
