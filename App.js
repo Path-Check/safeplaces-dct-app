@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { MenuProvider } from 'react-native-popup-menu';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { enableScreens } from 'react-native-screens';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';

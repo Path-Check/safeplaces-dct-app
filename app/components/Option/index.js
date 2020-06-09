@@ -3,20 +3,14 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import Icon from '../../assets/svgs/check';
 import Colors from '../../constants/colors';
-import Fonts from '../../constants/fonts';
 import { Colors as AssessmentColors } from '../../views/assessment/constants';
-import { Typography } from '../Typography';
 import { OptionSelect } from './OptionSelect';
-
-const INDICATOR_WIDTH = 20;
-const INDICATOR_MARGIN = 10;
 
 export function Option({
   isValidType,
   isSelected,
   inputType,
   title,
-  description,
   onPress,
 }) {
   return (

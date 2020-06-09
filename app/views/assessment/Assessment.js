@@ -1,6 +1,5 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
 import React, { useMemo, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
@@ -18,7 +17,6 @@ import {
 import AssessmentQuestion from './AssessmentQuestion';
 import AssessmentStart from './AssessmentStart';
 import {
-  Colors as AssessmentColors,
   END_ROUTES,
   OPTION_VALUE_DISAGREE,
   QUESTION_KEY_AGREE,
@@ -70,7 +68,6 @@ import AssessmentEndShare from './endScreens/AssessmentEndShare';
 const Stack = createNativeStackNavigator();
 
 const Assessment = ({ navigation }) => {
-  const { t } = useTranslation();
   /** @type {React.MutableRefObject<SurveyAnswers>} */
   const answers = useRef({});
   const survey = useSurvey();
