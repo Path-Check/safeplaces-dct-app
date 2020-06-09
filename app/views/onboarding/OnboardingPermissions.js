@@ -99,7 +99,7 @@ export const OnboardingPermissions = () => {
     handleButtonPress: handleOnPressDone,
   };
 
-  const determineSteps = (isGPS, isiOS, isDev) => {
+  const determineSteps = (isGPS, isiOS) => {
     const steps = [];
     if (isGPS) {
       steps.push(locationStep);
