@@ -81,4 +81,12 @@ RCT_EXPORT_METHOD(getAndPostDiagnosisKeys: (RCTResponseSenderBlock)callback) {
   }];
 }
 
+RCT_EXPORT_METHOD(getExposureConfiguration: (RCTResponseSenderBlock)callback) {
+  [[ExposureManager shared] handleDebugAction:DebugActionGetExposureConfiguration completion:^(NSArray *response) {
+    id error = response[0];
+    id payload = response[1];
+    callback(@[error, payload]);
+  }];
+}
+
 @end

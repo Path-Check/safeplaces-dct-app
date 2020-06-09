@@ -1,14 +1,24 @@
 import Alamofire
 
+enum RequestType {
+  case post,
+  get
+}
+
 final class APIClient {
 
-  let baseUrl: URL
-  static let shared = APIClient(baseUrl: URL(string: "https://www.google.com")!)
+  let postUrl: URL
+  let pullUrl: URL
+  static let shared = APIClient(
+    postUrl: URL(string: "https://exposure-2kabcv6c4a-uc.a.run.app")!,
+    pullUrl: URL(string: "https://federationout-2kabcv6c4a-uc.a.run.app")!
+  )
 
   private let sessionManager: SessionManager
 
-  init(baseUrl: URL) {
-    self.baseUrl = baseUrl
+  init(postUrl: URL, pullUrl: URL) {
+    self.postUrl = postUrl
+    self.pullUrl = pullUrl
 
     let configuration = URLSessionConfiguration.default
 
@@ -20,8 +30,8 @@ final class APIClient {
     sessionManager = SessionManager(configuration: configuration)
   }
 
-  func request<T: APIRequest>(_ request: T, completion: @escaping GenericCompletion) where T.ResponseType == Void {
-    dataRequest(for: request)
+  func request<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping GenericCompletion) where T.ResponseType == Void {
+    dataRequest(for: request, requestType: requestType)
       .validate(validate)
       .response { response in
         if let error = response.error {
@@ -33,8 +43,8 @@ final class APIClient {
     }
   }
 
-  func request<T: APIRequest>(_ request: T, completion: @escaping (Result<JSONObject>) -> Void) where T.ResponseType == JSONObject {
-    dataRequest(for: request)
+  func request<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<JSONObject>) -> Void) where T.ResponseType == JSONObject {
+    dataRequest(for: request, requestType: requestType)
       .validate(validate)
       .responseJSON { response in
         switch response.result {
@@ -46,12 +56,12 @@ final class APIClient {
     }
   }
 
-  func request<T: APIRequest>(_ request: T, completion: @escaping (Result<T.ResponseType>) -> Void) where T.ResponseType: Decodable {
-    requestDecodable(request, completion: completion)
+  func request<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<T.ResponseType>) -> Void) where T.ResponseType: Decodable {
+    requestDecodable(request, requestType: requestType, completion: completion)
   }
 
-  func requestList<T: APIRequest>(_ request: T, completion: @escaping (Result<[T.ResponseType.Element]>) -> Void) where T.ResponseType: Collection, T.ResponseType.Element: Decodable {
-    requestDecodables(request, completion: completion)
+  func requestList<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<[T.ResponseType.Element]>) -> Void) where T.ResponseType: Collection, T.ResponseType.Element: Decodable {
+    requestDecodables(request, requestType: requestType, completion: completion)
   }
 
   func cancelAllRequests() {
@@ -98,8 +108,8 @@ private extension APIClient {
     return .failure(GenericError(statusCode: response.statusCode))
   }
 
-  func requestDecodable<T: APIRequest>(_ request: T, completion: @escaping (Result<T.ResponseType>) -> Void) where T.ResponseType: Decodable {
-    dataRequest(for: request)
+  func requestDecodable<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<T.ResponseType>) -> Void) where T.ResponseType: Decodable {
+    dataRequest(for: request, requestType: requestType)
       .validate(validate)
       .responseData { response in
         switch response.result {
@@ -117,8 +127,8 @@ private extension APIClient {
     }
   }
 
-  func requestDecodables<T: APIRequest>(_ request: T, completion: @escaping (Result<[T.ResponseType.Element]>) -> Void) where T.ResponseType: Collection, T.ResponseType.Element: Decodable {
-    requestDecodable(CollectionAPIRequest(request: request)) { result in
+  func requestDecodables<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<[T.ResponseType.Element]>) -> Void) where T.ResponseType: Collection, T.ResponseType.Element: Decodable {
+    requestDecodable(CollectionAPIRequest(request: request), requestType: requestType) { result in
       switch result {
       case .success(let value):
         completion(.success(value.results))

@@ -17,7 +17,7 @@ enum ExposureConfigurationRequest: APIRequest {
   var path: String {
     switch self {
     case .get:
-      return "exposureConfiguration"
+      return ""
     }
   }
 

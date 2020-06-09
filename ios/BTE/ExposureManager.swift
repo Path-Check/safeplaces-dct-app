@@ -8,6 +8,8 @@ final class ExposureManager: NSObject {
   @objc static let shared = ExposureManager()
   
   let manager = ENManager()
+
+  private let secureStorage: BTESecureStorage = BTESecureStorage()
   
   var detectingExposures = false
   
@@ -59,7 +61,8 @@ final class ExposureManager: NSObject {
     func finish(_ result: Result<([Exposure], Int)>) {
       
       for localURL in localURLs {
-        APIClient.shared.request(DiagnosisKeyURLRequest.delete(localURL)) { _ in }
+        // TODO: Delete local diagnosis key
+//        APIClient.shared.request(DiagnosisKeyURLRequest.delete(localURL)) { _ in }
       }
       
       let success: Bool
@@ -88,13 +91,13 @@ final class ExposureManager: NSObject {
     let dispatchGroup = DispatchGroup()
     var localURLResults = [Result<URL>]()
     
-    APIClient.shared.request(DiagnosisKeyURLListRequest.get) { result in
+    RealmClient.shared.fetchDataCollection { (result: Result<[URL]>) in
       switch result {
       case .success(let urls):
         let prunedUrls = urls[min(nextDiagnosisKeyFileIndex, urls.count)...]
         for remoteURL in prunedUrls {
           dispatchGroup.enter()
-          APIClient.shared.request(DiagnosisKeyURLRequest.get(remoteURL)) { result in
+          RealmClient.shared.fetchData { (result: Result<URL>) in
             switch result {
             case .success:
               localURLResults.append(result)
@@ -118,7 +121,7 @@ final class ExposureManager: NSObject {
             return
           }
         }
-        APIClient.shared.request(ExposureConfigurationRequest.get) { result in
+        APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .post) { result in
           switch result {
           case .success(let configuration):
             let exposureConfiguration = configuration.asENExposureConfiguration
@@ -148,7 +151,7 @@ final class ExposureManager: NSObject {
         }
       }
     }
-    
+
     return progress
   }
   
@@ -157,17 +160,9 @@ final class ExposureManager: NSObject {
       if let error = error {
         completion(error)
       } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey })) { result in
+        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }), requestType: .post) { result in
           switch result {
-          case .success(let urls):
-            APIClient.shared.request(DiagnosisKeyListRequest.post(urls)) { result in
-              switch result {
-              case .success:
-                break
-              case .failure(let error):
-                completion(error)
-              }
-            }
+          case .success:
             break
           case .failure(let error):
             completion(error)
@@ -183,17 +178,9 @@ final class ExposureManager: NSObject {
       if let error = error {
         completion(error)
       } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey })) { result in
+        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }), requestType: .post) { result in
           switch result {
-          case .success(let urls):
-            APIClient.shared.request(DiagnosisKeyListRequest.post(urls)) { result in
-              switch result {
-              case .success:
-                break
-              case .failure(let error):
-                completion(error)
-              }
-            }
+          case .success:
             break
           case .failure(let error):
             completion(error)
@@ -265,6 +252,16 @@ final class ExposureManager: NSObject {
           completion([NSNull(), NSNull()])
         }
       }
+    case .getExposureConfiguration:
+      APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .get) { result in
+        switch result {
+        case .success(let configuration):
+          break
+        case .failure(let error):
+          //
+          break
+        }
+      }
     }
   }
   
@@ -280,5 +277,6 @@ final class ExposureManager: NSObject {
   resetExposureDetectionError,
   resetLocalExposures,
   resetLocalTestResults,
-  getAndPostDiagnosisKeys
+  getAndPostDiagnosisKeys,
+  getExposureConfiguration
 }

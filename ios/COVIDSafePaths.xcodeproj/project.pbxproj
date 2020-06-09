@@ -32,7 +32,7 @@
 		25004E4C90704C6B807B88C7 /* IBMPlexMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71F26FBF5BDA423184286546 /* IBMPlexMono-MediumItalic.ttf */; };
 		2606D1B2B11C4D419867361F /* IBMPlexSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A57577D96B89452694B53982 /* IBMPlexSans-MediumItalic.ttf */; };
 		271089B024698720009AC76F /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
-		271881C02461AF76001DE067 /* RealmSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* RealmSecureStorage.swift */; };
+		271881C02461AF76001DE067 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
 		271881C32461BF19001DE067 /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
 		276AB157245238E400D39B58 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB156245238E400D39B58 /* SecureStorage.swift */; };
 		276AB15C245291DE00D39B58 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB15B245291DE00D39B58 /* Location.swift */; };
@@ -72,6 +72,9 @@
 		A5EA4480D4CC4B468D4B4DDC /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 997AE6137471448A99893BC8 /* IBMPlexMono-SemiBoldItalic.ttf */; };
 		B2138BE26880EEA67E6D1C0E /* libPods-GPSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3297E1A39360171CB7CC3C8 /* libPods-GPSTests.a */; };
 		B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
+		B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
+		B52D88C2248F0FD90071ED51 /* GPSSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */; };
+		B52D88C4248F10FD0071ED51 /* BTESecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C3248F10FD0071ED51 /* BTESecureStorage.swift */; };
 		B596C07024880B7000943B79 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596C06F24880B7000943B79 /* String+Extensions.swift */; };
 		B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* PTCExposureManagerModule.m */; };
 		B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */; };
@@ -229,7 +232,7 @@
 		20E5EE8E6065465F9558DCDB /* IBMPlexMono-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		210E5F50B07048118538B796 /* IBMPlexSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Italic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Italic.ttf"; sourceTree = "<group>"; };
 		271089AF24698720009AC76F /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
-		271881BF2461AF76001DE067 /* RealmSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSecureStorage.swift; sourceTree = "<group>"; };
+		271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafePathsSecureStorage.swift; sourceTree = "<group>"; };
 		271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSecureStorageTest.swift; sourceTree = "<group>"; };
 		276AB156245238E400D39B58 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 		276AB15B245291DE00D39B58 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 		B2A5822E244CEA9F000F39A6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B3297E1A39360171CB7CC3C8 /* libPods-GPSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
+		B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSSecureStorage.swift; sourceTree = "<group>"; };
+		B52D88C3248F10FD0071ED51 /* BTESecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTESecureStorage.swift; sourceTree = "<group>"; };
 		B596C06F24880B7000943B79 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		B596C0712488127D00943B79 /* PTCExposureManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCExposureManagerModule.m; sourceTree = "<group>"; };
 		B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebugMenuModule.m; sourceTree = "<group>"; };
@@ -572,6 +577,7 @@
 		13B07FAE1A68108700A75B9A /* COVIDSafePaths */ = {
 			isa = PBXGroup;
 			children = (
+				B52D88BF248F0F130071ED51 /* Common */,
 				C53FD0C324719C25006D3268 /* BTE */,
 				C53FD07C247199A4006D3268 /* GPS */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -597,8 +603,8 @@
 			children = (
 				276AB156245238E400D39B58 /* SecureStorage.swift */,
 				276AB15B245291DE00D39B58 /* Location.swift */,
-				271881BF2461AF76001DE067 /* RealmSecureStorage.swift */,
 				68D8970E24809CEB0091A254 /* Geohash.swift */,
+				B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */,
 			);
 			path = storage;
 			sourceTree = "<group>";
@@ -694,6 +700,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B52D88BF248F0F130071ED51 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		B5FC37BD2489B05F006474EB /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -733,6 +747,7 @@
 			isa = PBXGroup;
 			children = (
 				B5FC37E5248A82E3006474EB /* LocalStore.swift */,
+				B52D88C3248F10FD0071ED51 /* BTESecureStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -1250,7 +1265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5EF723724864F8500AA39D5 /* main.m in Sources */,
-				271881C02461AF76001DE067 /* RealmSecureStorage.swift in Sources */,
+				271881C02461AF76001DE067 /* SafePathsSecureStorage.swift in Sources */,
 				0835F8922441054A00E95AE3 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				68EFB215248570C2003D84F3 /* Log.swift in Sources */,
 				68D8971224809DAE0091A254 /* Array+Extension.swift in Sources */,
@@ -1258,6 +1273,7 @@
 				27F931572459E28800E1024C /* SecureStorageManager.m in Sources */,
 				68D8971524809E4B0091A254 /* String+Extension.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				B52D88C2248F0FD90071ED51 /* GPSSecureStorage.swift in Sources */,
 				68D8970C24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */,
 				276AB15C245291DE00D39B58 /* Location.swift in Sources */,
 				27F9315A2459E2BD00E1024C /* SecureStorageManager.swift in Sources */,
@@ -1270,11 +1286,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5FC37E8248A8302006474EB /* TestResult.swift in Sources */,
+				B52D88C4248F10FD0071ED51 /* BTESecureStorage.swift in Sources */,
 				B5FC37CC2489B251006474EB /* Result.swift in Sources */,
 				C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */,
 				B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */,
 				C5C850CA2480156200A494CA /* AppDelegate.m in Sources */,
 				B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */,
+				B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */,
 				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
 				B5FC37E6248A82E3006474EB /* LocalStore.swift in Sources */,
 				B596C07024880B7000943B79 /* String+Extensions.swift in Sources */,
