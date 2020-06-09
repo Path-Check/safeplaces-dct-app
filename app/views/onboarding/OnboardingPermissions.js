@@ -127,7 +127,7 @@ export const OnboardingPermissions = () => {
             secondary
             style={styles.marginBottom}
             onPress={onSkipStep}
-            testID={'onboarding-permissions-button'}
+            testID={'onboarding-permissions-skip-button'}
           />
           <Button
             label={buttonLabel}
