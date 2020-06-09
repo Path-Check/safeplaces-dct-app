@@ -6,13 +6,7 @@ import Colors from '../../constants/colors';
 import { Colors as AssessmentColors } from '../../views/assessment/constants';
 import { OptionSelect } from './OptionSelect';
 
-export function Option({
-  isValidType,
-  isSelected,
-  inputType,
-  title,
-  onPress,
-}) {
+export function Option({ isValidType, isSelected, inputType, title, onPress }) {
   return (
     <TouchableOpacity onPress={onPress} testID='option'>
       <View style={[styles.container, isSelected && styles.containerSelected]}>
