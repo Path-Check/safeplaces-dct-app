@@ -105,21 +105,15 @@ export const SettingsScreen = ({ navigation }) => {
           </NativePicker>
         </Section>
         <Section>
-          {/* Hiding choose provider option until next version */}
-          {/* <Item
+          <Item
             label={t('label.choose_provider_title')}
             description={t('label.choose_provider_subtitle')}
             onPress={() => navigation.navigate('ChooseProviderScreen')}
-          /> */}
+          />
           <Item
             label={t('label.event_history_title')}
             description={t('label.event_history_subtitle')}
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
-          />
-          <Item
-            label={t('share.title')}
-            description={t('share.subtitle')}
-            onPress={() => navigation.navigate('ExportScreen')}
           />
           <Item
             label={t('label.epidemiologic_report_title')}

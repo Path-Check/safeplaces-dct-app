@@ -30,6 +30,7 @@ import {
   SetStoreData,
 } from '../helpers/General';
 import languages from '../locales/languages';
+import { HCAService } from '../services/HCAService';
 
 /**
  * Intersects the locationArray with the concernLocationArray, returning the results
@@ -317,22 +318,26 @@ async function asyncCheckIntersect() {
   let locationArray = await NativeModules.SecureStorageManager.getLocations();
 
   // get the health authorities
-  let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
+  let authority_list = null;
+  try {
+    authority_list = await HCAService.getAuthoritiesList();
+  } catch (error) {
+    console.log('[error] ' + error);
+    return;
+  }
 
   if (authority_list) {
-    // Parse the registered health authorities
-    authority_list = JSON.parse(authority_list);
-
-    for (const authority of authority_list) {
+    for (let index = 0; index < authority_list.length; index++) {
       try {
-        let responseJson = await retrieveUrlAsJson(authority.url);
+        let keys = Object.keys(authority_list[index]);
+        let url = authority_list[index][keys][0].url;
+        let responseJson = await retrieveUrlAsJson(url);
 
         // Update the news array with the info from the authority
         name_news.push({
           name: responseJson.authority_name,
           news_url: responseJson.info_website,
         });
-
         // intersect the users location with the locations from the authority
         let tempDayBin = intersectSetIntoBins(
           locationArray,

@@ -388,7 +388,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Exposure history
+                Choose Health Authority
               </Text>
               <Text
                 secondary={true}
@@ -404,7 +404,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body3"
               >
-                Understand your personal exposure based on information shared by health authorities.
+                To be informed of exposures you will need to subscribe to a Health Authority.
               </Text>
             </View>
           </View>
@@ -454,7 +454,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Share location history
+                Exposure history
               </Text>
               <Text
                 secondary={true}
@@ -470,7 +470,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body3"
               >
-                Your private data can be transferred to health authorities, backed up, or otherwise shared.
+                Understand your personal exposure based on information shared by health authorities.
               </Text>
             </View>
           </View>
@@ -707,7 +707,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               }
               use="body3"
             >
-              Safe Paths has no affiliation with Google and never shares your data.
+              Safe Paths has no affiliation with Google and only shares your data with the subscribed health authority.
             </Text>
           </View>
         </View>
@@ -1251,7 +1251,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Exposure history
+                Choose Health Authority
               </Text>
               <Text
                 secondary={true}
@@ -1267,7 +1267,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body3"
               >
-                Understand your personal exposure based on information shared by health authorities.
+                To be informed of exposures you will need to subscribe to a Health Authority.
               </Text>
             </View>
           </View>
@@ -1317,7 +1317,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Share location history
+                Exposure history
               </Text>
               <Text
                 secondary={true}
@@ -1333,7 +1333,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body3"
               >
-                Your private data can be transferred to health authorities, backed up, or otherwise shared.
+                Understand your personal exposure based on information shared by health authorities.
               </Text>
             </View>
           </View>

@@ -22,7 +22,7 @@
     "error": "Algo salió mal al importar sus datos.",
     "google": {
       "already_imported": "El archivo de Takeout ya se ha importado.",
-      "disclaimer": "Safe Paths no está afiliado con Google y nunca compartirá tus datos.",
+      "disclaimer": "Safe Paths no está afiliado con Google y solo compartirá tus datos con la autoridad de salud suscrita.",
       "file_open_error": "No se pudo abrir el archivo. \nPor favor, asegúrese de que el archivo se abra desde Google Drive",
       "instructions_detailed": "Visita Google Takeout y exporta tu historial de ubicaciones siguinedo estos pasos: \n1. Método de entrega: \"Añadir al Drive\" \n2. Frecuencia: \"Exportar una vez\" \n3. Tipo y tamaño del archivo: \".zip\" y \"1GB\"\n4. Google envía un email cuando la exportación está lista \n5. Regresa aquí para importar ubicaciones de Google Drive",
       "instructions_first": "Agregar datos de ubicación de Google ayudará a elaborar tu historial de ubicaciones recientes, \"Antes de poder importar, primero debes 'Extraer' tus datos de ubicación de Google\".",
@@ -114,7 +114,7 @@
     "launch_notif_subheader": "No te molestaremos salvo para enviarte información sobre tu riesgo de exposición.",
     "launch_notification_access": "No te molestaremos salvo para enviarte información sobre tu riesgo de exposición.",
     "launch_screen1_header": "La vuelta a la normalidad comienza aquí.",
-    "launch_screen2_header": "Recibe notificaciones si has estado con alguien que después de positivo en COVID-19.",
+    "launch_screen2_header": "Recibe notificaciones si has estado con alguien que después resulte positivo al COVID-19.",
     "launch_screen2_subheader": "La información es poder.",
     "launch_screen3_header": "Si das positivo, puedes optar por compartir tus datos de forma anónima",
     "launch_screen3_subheader": "Ayuda a proteger a tu entorno más cercano.",

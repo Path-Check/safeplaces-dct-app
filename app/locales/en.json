@@ -27,7 +27,7 @@
     "error": "Something went wrong while importing your data.",
     "google": {
       "already_imported": "Provided Takeout file has already been imported.",
-      "disclaimer": "Safe Paths has no affiliation with Google and never shares your data.",
+      "disclaimer": "Safe Paths has no affiliation with Google and only shares your data with the subscribed health authority.",
       "file_open_error": "Could not open the file. \nPlease, make sure the file is opened from Google Drive",
       "instructions_detailed": "Visit Google Takeout and export your Location History using the following settings: \n1. Delivery method: \"Add to Drive\" \n2. Frequency: \"Export once\" \n3. File type & size: \".zip\" and \"1GB\"\n4. Google sends an email when the export is ready \n5. Return here to import locations from Google Drive",
       "instructions_first": "Adding location data from Google will give you a head start on building your recent locations.",
@@ -119,7 +119,7 @@
     "launch_notif_subheader": "We won't bother you except to share updates on your potential exposure risks.",
     "launch_notification_access": "Allow notifications",
     "launch_screen1_header": "The way back to normal starts here.",
-    "launch_screen2_header": "Get notified if you cross paths with someone later diagnosed for COVID-19.",
+    "launch_screen2_header": "Get notified if you have been in contact with someone who may be COVID-19 positive.",
     "launch_screen2_subheader": "Knowledge is power.",
     "launch_screen3_header": "If you test positive, you can choose to donate your data anonymously",
     "launch_screen3_subheader": "Which helps keep your entire community safe.",

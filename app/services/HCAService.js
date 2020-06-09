@@ -1,8 +1,8 @@
-import Yaml from 'js-yaml';
 import PushNotification from 'react-native-push-notification';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import { AUTHORITIES_LIST_URL } from '../constants/authorities';
+import { MEPYD_C5I_SERVICE } from '../constants/DR/baseUrls';
 import {
   AUTHORITY_SOURCE_SETTINGS,
   ENABLE_HCA_AUTO_SUBSCRIPTION,
@@ -22,9 +22,36 @@ class HCAService {
    * @returns {void}
    */
   async fetchAuthoritiesYaml() {
+    //THis is to get the file from remote server but we curently got it local with yamlContent
     return await RNFetchBlob.config({
       fileCache: true,
-    }).fetch('GET', AUTHORITIES_LIST_URL);
+    }).wrap('GET', AUTHORITIES_LIST_URL);
+  }
+
+  offsetLocation(location, offset) {
+    if (!location) return location;
+    //Position, decimal degrees
+    const lat = location.latitude;
+    const lon = location.longitude;
+
+    //Earth’s radius, sphere
+    const R = 6378137;
+
+    //offsets in meters
+    const dn = offset;
+    const de = offset;
+
+    //Coordinate offsets in radians
+    const dLat = dn / R;
+    const dLon = de / (R * Math.cos((Math.PI * lat) / 180));
+
+    //OffsetPosition, decimal degrees
+    const latO = lat + (dLat * 180) / Math.PI;
+    const lonO = lon + (dLon * 180) / Math.PI;
+
+    location.latitude = latO;
+    location.longitude = lonO;
+    return location;
   }
 
   /**
@@ -33,15 +60,80 @@ class HCAService {
    */
   async getAuthoritiesList() {
     let authorities = [];
+    let mostNorthEastPoint = null;
+    let mostSouthWestPoint = null;
 
     try {
-      const result = await this.fetchAuthoritiesYaml();
-      const list = await RNFetchBlob.fs.readFile(result.path(), 'utf8');
-      authorities = Yaml.safeLoad(list).Authorities;
-    } catch (err) {
-      console.error(err);
+      const locations = await new LocationData().getLocationData();
+
+      if (Array.isArray(locations) && locations.length > 0) {
+        for (let index = locations.length - 1; index > 0; index--) {
+          let dateOffset = 24 * 60 * 60 * 1000; //1 day
+          let yesterdayEnd = new Date();
+          yesterdayEnd.setTime(yesterdayEnd.getTime() - dateOffset);
+
+          const location = locations[index];
+          if (location.time - yesterdayEnd.getTime() > 0) {
+            //is on todays date
+            if (mostNorthEastPoint === null && mostSouthWestPoint === null) {
+              mostNorthEastPoint = location;
+              mostSouthWestPoint = location;
+            }
+            if (
+              mostNorthEastPoint.latitude < location.latitude ||
+              mostNorthEastPoint.longitude < location.longitude
+            ) {
+              mostNorthEastPoint = location;
+            }
+            if (
+              mostSouthWestPoint.latitude > location.latitude ||
+              mostSouthWestPoint.longitude > location.longitude
+            ) {
+              mostSouthWestPoint = location;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+    } catch (error) {
+      console.log('[Error] ' + error);
     }
 
+    this.offsetLocation(mostNorthEastPoint, 100); //Add +100m to area covered by user
+    this.offsetLocation(mostSouthWestPoint, 100);
+
+    const baseUrl = `${MEPYD_C5I_SERVICE}/contact_tracing/api/Contact`;
+    const url =
+      mostNorthEastPoint && mostSouthWestPoint
+        ? `${baseUrl}?NE=${mostNorthEastPoint.latitude},${mostNorthEastPoint.longitude}&SW=${mostSouthWestPoint.latitude},${mostSouthWestPoint.longitude}`
+        : baseUrl;
+
+    const authoritiesJson = {
+      Authorities: [
+        {
+          'Ministerio de Salud Publica': [
+            {
+              url: url,
+            },
+            {
+              bounds: {
+                ne: {
+                  latitude: 20.365051,
+                  longitude: -67.795684,
+                },
+                sw: {
+                  latitude: 16.99877,
+                  longitude: -72.17912,
+                },
+              },
+            },
+          ],
+        },
+      ],
+    };
+
+    authorities = authoritiesJson.Authorities;
     return authorities;
   }
 
@@ -137,8 +229,8 @@ class HCAService {
   isPointInAuthorityBounds(point, authority) {
     const locHelper = new LocationData();
     const bounds = this.getAuthorityBounds(authority);
-
-    return bounds && locHelper.isPointInBoundingBox(point, bounds);
+    let result = bounds && locHelper.isPointInBoundingBox(point, bounds); //This passes is true on my phone not on simulator makes sense because of the location
+    return result;
   }
 
   /**
@@ -165,14 +257,18 @@ class HCAService {
    * @returns {[{authority_name: [{url: string}, {bounds: Object}]}]} list of Healthcare Authorities
    */
   async getNewAuthoritiesInUserLoc() {
-    const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc();
-    const authoritiesList = await this.getAuthoritiesList();
+    const mostRecentUserLoc = await new LocationData().getMostRecentUserLoc(); //Nice I needed this nice nice
+    const authoritiesList = await this.getAuthoritiesList(); //This is were we are not getting any new authorities Why does the button doesnt work :( )
     const userAuthorities = await this.getUserAuthorityList();
 
     return authoritiesList.filter(
       authority =>
         this.isPointInAuthorityBounds(mostRecentUserLoc, authority) &&
-        !userAuthorities.includes(authority),
+        (!Array.isArray(userAuthorities) ||
+          !userAuthorities.length ||
+          !userAuthorities.some(
+            elem => JSON.stringify(authority) === JSON.stringify(elem),
+          )),
     );
   }
 
@@ -196,7 +292,6 @@ class HCAService {
    */
   async findNewAuthorities() {
     const newAuthorities = await this.getNewAuthoritiesInUserLoc();
-
     if (newAuthorities.length > 0) {
       if (this.isAutosubscriptionEnabled()) {
         await this.pushAlertNewSubscriptions(newAuthorities);
