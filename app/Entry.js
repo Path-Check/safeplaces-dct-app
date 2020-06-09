@@ -114,10 +114,6 @@ const MainApp = () => (
       name={FEATURE_FLAG_SCREEN_NAME}
       component={FeatureFlagsScreen}
     />
-    <Stack.Screen
-      name='EnableExposureNotifications'
-      component={EnableExposureNotifications}
-    />
   </Stack.Navigator>
 );
 
@@ -130,6 +126,10 @@ const OnboardingStack = () => (
     <Stack.Screen
       name='OnboardingPermissions'
       component={OnboardingPermissions}
+    />
+    <Stack.Screen
+      name='EnableExposureNotifications'
+      component={EnableExposureNotifications}
     />
   </Stack.Navigator>
 );
