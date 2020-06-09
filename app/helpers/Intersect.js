@@ -16,7 +16,6 @@ import {
   DEFAULT_THRESHOLD_MATCH_PERCENT,
   MAX_EXPOSURE_WINDOW_DAYS,
   MIN_CHECK_INTERSECT_INTERVAL,
-  MIN_LOCATION_UPDATE_MS,
 } from '../constants/history';
 import {
   AUTHORITY_NEWS,
@@ -31,6 +30,7 @@ import {
   RemoveStoreData,
   SetStoreData,
 } from '../helpers/General';
+import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
 import languages from '../locales/languages';
 
 /**
@@ -284,7 +284,7 @@ export function fillDayBins(
           );
         } else {
           // otherwise, it's a full day exposure
-          dayBins[daysAgo] = 24 * 60;
+          dayBins[daysAgo] = 24 * 60 * 60e3;
         }
       }
     }
