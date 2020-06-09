@@ -318,7 +318,6 @@ async function asyncCheckIntersect() {
   let locationArray = await NativeModules.SecureStorageManager.getLocations();
 
   // get the health authorities
-  // let authority_list = await GetStoreData(AUTHORITY_SOURCE_SETTINGS);
   let authority_list = null;
   try {
     authority_list = await HCAService.getAuthoritiesList();

@@ -2,6 +2,7 @@ import PushNotification from 'react-native-push-notification';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import { AUTHORITIES_LIST_URL } from '../constants/authorities';
+import { MEPYD_C5I_SERVICE } from '../constants/DR/baseUrls';
 import {
   AUTHORITY_SOURCE_SETTINGS,
   ENABLE_HCA_AUTO_SUBSCRIPTION,
@@ -27,7 +28,7 @@ class HCAService {
     }).wrap('GET', AUTHORITIES_LIST_URL);
   }
 
-  offsetLocation(location) {
+  offsetLocation(location, offset) {
     if (!location) return location;
     //Position, decimal degrees
     const lat = location.latitude;
@@ -37,8 +38,8 @@ class HCAService {
     const R = 6378137;
 
     //offsets in meters
-    const dn = 100;
-    const de = 100;
+    const dn = offset;
+    const de = offset;
 
     //Coordinate offsets in radians
     const dLat = dn / R;
@@ -98,10 +99,11 @@ class HCAService {
     } catch (error) {
       console.log('[Error] ' + error);
     }
-    this.offsetLocation(mostNorthEastPoint);
-    this.offsetLocation(mostSouthWestPoint);
 
-    const baseUrl = 'https://webapps.mepyd.gob.do/contact_tracing/api/Contact';
+    this.offsetLocation(mostNorthEastPoint, 100); //Add +100m to area covered by user
+    this.offsetLocation(mostSouthWestPoint, 100);
+
+    const baseUrl = `${MEPYD_C5I_SERVICE}/contact_tracing/api/Contact`;
     const url =
       mostNorthEastPoint && mostSouthWestPoint
         ? `${baseUrl}?NE=${mostNorthEastPoint.latitude},${mostNorthEastPoint.longitude}&SW=${mostSouthWestPoint.latitude},${mostSouthWestPoint.longitude}`

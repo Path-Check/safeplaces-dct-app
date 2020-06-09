@@ -5,6 +5,6 @@
 Authorities:
 
 - Ministerio de Salud Publica: 
-  - {url: "https://webapps.mepyd.gob.do/contact_tracing/api/Contact"}
+  - {url: "https://appscovid.mide.gob.do/contact_tracing/api/Contact"}
   - bounds: { "ne": { "latitude": 20.365051, "longitude": -67.795684}, "sw": { "latitude": 16.998770, "longitude": -72.179120}}
 
