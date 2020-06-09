@@ -47,8 +47,7 @@ export const LicensesScreen = ({ navigation }) => {
   return (
     <NavigationBarWrapper
       title={t('screen_titles.legal')}
-      onBackPress={backToMain}
-      includeBottomNav>
+      onBackPress={backToMain}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View>
           <Typography style={styles.heading} use='headline2'>

@@ -1,5 +1,4 @@
 export { Button } from './Button';
-export { BottomNav } from './BottomNav';
 export { Checkbox } from './Checkbox';
 export { Divider, VerticalDivider } from './Divider';
 export { DynamicTextInput } from './DynamicTextInput';

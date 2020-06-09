@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { NavigationContainer } from '@react-navigation/native';
 import {
   CardStyleInterpolators,
@@ -20,14 +21,10 @@ import {
   ExportStart,
 } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
-import {
-  FEATURE_FLAG_SCREEN_NAME,
-  FeatureFlagsScreen,
-} from './views/FeatureFlagToggles';
+import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
 import { Main } from './views/Main';
-import NewsScreen from './views/News';
 import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
@@ -35,7 +32,14 @@ import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
 import { SettingsScreen } from './views/Settings';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useTranslation } from 'react-i18next';
+import { isGPS } from './COVIDSafePathsConfig';
+import Colors from './constants/colors';
+import * as Icons from './assets/svgs/TabBarNav';
+import { SvgXml } from 'react-native-svg';
 
+const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const fade = ({ current }) => ({ cardStyle: { opacity: current.progress } });
@@ -73,10 +77,13 @@ const ExportStack = () => (
   </Stack.Navigator>
 );
 
-const MainApp = () => (
-  <Stack.Navigator initialRouteName='Main' screenOptions={SCREEN_OPTIONS}>
-    <Stack.Screen name='Main' component={Main} />
-    <Stack.Screen name='NewsScreen' component={NewsScreen} />
+const MoreTabStack = () => (
+  <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
+    <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
+    <Stack.Screen name='AboutScreen' component={AboutScreen} />
+    <Stack.Screen name='LicensesScreen' component={LicensesScreen} />
+    <Stack.Screen name='FeatureFlagsScreen' component={FeatureFlagsScreen} />
+    <Stack.Screen name='ImportScreen' component={ImportScreen} />
     <Stack.Screen
       name='ExportScreen'
       component={ExportStack}
@@ -84,30 +91,111 @@ const MainApp = () => (
         ...TransitionPresets.ModalSlideFromBottomIOS,
       }}
     />
-    {/* We feature flag in settings between whether to send to route or e2e export */}
-    <Stack.Screen name='ExportLocally' component={ExportLocally} />
-    <Stack.Screen name='ImportScreen' component={ImportScreen} />
-    <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
-    <Stack.Screen
-      name='ChooseProviderScreen'
-      component={ChooseProviderScreen}
-    />
-    <Stack.Screen name='LicensesScreen' component={LicensesScreen} />
-    <Stack.Screen
-      name='ExposureHistoryScreen'
-      component={ExposureHistoryScreen}
-    />
-    <Stack.Screen name='AboutScreen' component={AboutScreen} />
-    <Stack.Screen
-      name={FEATURE_FLAG_SCREEN_NAME}
-      component={FeatureFlagsScreen}
-    />
-    <Stack.Screen
-      name='EnableExposureNotifications'
-      component={EnableExposureNotifications}
-    />
   </Stack.Navigator>
 );
+
+const MainAppTabs = () => {
+  const { t } = useTranslation();
+
+  return (
+    <Tab.Navigator
+      initialRouteName='Main'
+      tabBarOptions={{
+        activeTintColor: Colors.WHITE,
+        inactiveTintColor: Colors.DIVIDER,
+        style: {
+          backgroundColor: Colors.VIOLET_TEXT_DARK,
+          height: 60,
+          borderTopWidth: 0,
+        },
+      }}>
+      <Tab.Screen
+        name='Main'
+        component={Main}
+        options={{
+          tabBarLabel: t('navigation.home'),
+          tabBarIcon: ({ focused, size }) => (
+            <SvgXml
+              xml={focused ? Icons.HomeActive : Icons.HomeInactive}
+              width={size}
+              height={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='ExposureHistoryScreen'
+        component={ExposureHistoryScreen}
+        options={{
+          tabBarLabel: t('navigation.history'),
+          tabBarIcon: ({ focused, size }) => (
+            <SvgXml
+              xml={focused ? Icons.HistoryActive : Icons.HistoryInactive}
+              width={size}
+              height={size}
+            />
+          ),
+        }}
+      />
+      {/* We feature flag in settings between whether to send to route or e2e export */}
+      {isGPS && (
+        <Tab.Screen
+          name='ExportLocally'
+          component={ExportLocally}
+          options={{
+            tabBarLabel: t('navigation.locations'),
+            tabBarIcon: ({ focused, size }) => (
+              <SvgXml
+                xml={focused ? Icons.LocationsActive : Icons.LocationsInactive}
+                width={size}
+                height={size}
+              />
+            ),
+          }}
+        />
+      )}
+
+      <Tab.Screen
+        name='ChooseProviderScreen'
+        component={ChooseProviderScreen}
+        options={{
+          tabBarLabel: t('navigation.partners'),
+          tabBarIcon: ({ focused, size }) => (
+            <SvgXml
+              xml={focused ? Icons.PartnersActive : Icons.PartnersInactive}
+              width={size}
+              height={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='MoreScreen'
+        component={MoreTabStack}
+        options={{
+          tabBarLabel: t('navigation.more'),
+          tabBarIcon: ({ focused, size }) => (
+            <SvgXml
+              xml={focused ? Icons.MoreActive : Icons.MoreInactive}
+              width={size}
+              height={size}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+// const MainApp = () => (
+//   <Stack.Navigator initialRouteName='Main' screenOptions={SCREEN_OPTIONS}>
+
+//     <Stack.Screen
+//       name='EnableExposureNotifications'
+//       component={EnableExposureNotifications}
+//     />
+//   </Stack.Navigator>
+// );
 
 const OnboardingStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
@@ -129,7 +217,7 @@ export const Entry = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
         {onboardingComplete ? (
-          <Stack.Screen name={'App'} component={MainApp} />
+          <Stack.Screen name={'App'} component={MainAppTabs} />
         ) : (
           <Stack.Screen name={'Onboarding'} component={OnboardingStack} />
         )}

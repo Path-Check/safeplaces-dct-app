@@ -121,10 +121,7 @@ export const FeatureFlagsScreen = ({ navigation }) => {
   };
 
   return (
-    <NavigationBarWrapper
-      title={'Feature Flags'}
-      onBackPress={backToMain}
-      includeBottomNav>
+    <NavigationBarWrapper title={'Feature Flags'} onBackPress={backToMain}>
       <Theme use='default'>
         <Typography use='body1' style={styles.headerText} bold>
           Notice

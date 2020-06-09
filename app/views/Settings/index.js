@@ -4,7 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { BackHandler, ScrollView, View } from 'react-native';
 
 import { Icons } from '../../assets';
-import { Divider, NativePicker, NavigationBarWrapper } from '../../components';
+import {
+  Divider,
+  NativePicker,
+  NavigationBarWrapper,
+  FeatureFlag,
+} from '../../components';
 import Colors from '../../constants/colors';
 import {
   LOCALE_LIST,
@@ -14,6 +19,8 @@ import {
 } from '../../locales/languages';
 import { FEATURE_FLAG_SCREEN_NAME } from '../../views/FeatureFlagToggles';
 import { Item } from './Item';
+import { isGPS } from '../../COVIDSafePathsConfig';
+import { GoogleMapsImport } from './GoogleMapsImport';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -52,9 +59,8 @@ export const SettingsScreen = ({ navigation }) => {
 
   return (
     <NavigationBarWrapper
-      title={t('label.settings_title')}
-      onBackPress={backToMain}
-      includeBottomNav>
+      title={t('screen_titles.more')}
+      onBackPress={backToMain}>
       <ScrollView>
         <Section>
           <NativePicker
@@ -77,6 +83,43 @@ export const SettingsScreen = ({ navigation }) => {
           <Item label={t('screen_titles.report_issue')} last />
         </Section>
 
+        <Section>
+          {isGPS ? (
+            <>
+              <Item
+                label={t('label.event_history_title')}
+                description={t('label.event_history_subtitle')}
+                onPress={() => navigation.navigate('ExposureHistoryScreen')}
+              />
+              <FeatureFlag
+                name='export_e2e'
+                fallback={
+                  <Item
+                    label={t('share.title')}
+                    description={t('share.subtitle')}
+                    onPress={() => navigation.navigate('ExportLocally')}
+                    last
+                  />
+                }>
+                <Item
+                  label={t('share.title')}
+                  description={t('share.subtitle')}
+                  onPress={() => navigation.navigate('ExportScreen')}
+                  last
+                />
+              </FeatureFlag>
+            </>
+          ) : null}
+        </Section>
+
+        {isGPS && (
+          <FeatureFlag name='google_import'>
+            <Section>
+              <GoogleMapsImport navigation={navigation} />
+            </Section>
+          </FeatureFlag>
+        )}
+
         <Section last>
           <Item
             label={t('screen_titles.about')}
@@ -85,12 +128,15 @@ export const SettingsScreen = ({ navigation }) => {
           <Item
             label={t('screen_titles.legal')}
             onPress={() => navigation.navigate('LicensesScreen')}
+            last={!__DEV__}
           />
-          <Item
-            label='Feature Flags (Dev mode only)'
-            onPress={() => navigation.navigate(FEATURE_FLAG_SCREEN_NAME)}
-            last
-          />
+          {__DEV__ && (
+            <Item
+              label='Feature Flags (Dev mode only)'
+              onPress={() => navigation.navigate(FEATURE_FLAG_SCREEN_NAME)}
+              last
+            />
+          )}
         </Section>
       </ScrollView>
     </NavigationBarWrapper>

@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
-import { BottomNav } from '../components';
 import Colors from '../constants/colors';
 import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
@@ -88,10 +87,5 @@ export const Main = () => {
     }
   }
 
-  return (
-    <View style={styles.backgroundImage}>
-      {page}
-      <BottomNav />
-    </View>
-  );
+  return <View style={styles.backgroundImage}>{page}</View>;
 };

@@ -8,25 +8,18 @@ import { SvgXml } from 'react-native-svg';
 import { isPlatformiOS } from './../Util';
 import { Icons } from '../assets';
 import Colors from '../constants/colors';
-import { BottomNav } from '../components/BottomNav';
 
 /**
- * Navigation bar and status bar. Optionally include bottom nav
+ * Navigation bar and status bar
  *
  * @param {{
  *   title: string,
  *   onBackPress: () => void,
- *   includeBottomNav: boolean
  * }} param0
  */
 const widthScale = Math.min(Dimensions.get('window').width / 400, 1.0);
 
-export const NavigationBarWrapper = ({
-  children,
-  title,
-  onBackPress,
-  includeBottomNav,
-}) => {
+export const NavigationBarWrapper = ({ children, title, onBackPress }) => {
   const theme = useTheme();
 
   const barColor = (theme && theme.navBar) || Colors.VIOLET;
@@ -48,7 +41,6 @@ export const NavigationBarWrapper = ({
         </Header>
         {children}
       </BottomContainer>
-      {includeBottomNav && <BottomNav />}
     </>
   );
 };
