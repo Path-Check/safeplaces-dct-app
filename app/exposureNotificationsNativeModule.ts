@@ -27,49 +27,49 @@ export const detectExposuresNow = async (
 };
 
 export const simulateExposure = async (
-  cb: (errorString: string | null) => void,
+  cb: (error: ENModuleError) => void,
 ): Promise<void> => {
   debugModule.simulateExposure(cb);
 };
 
 export const simulatePositiveDiagnosis = async (
-  cb: (errorString: string | null) => void,
+  cb: (error: ENModuleError) => void,
 ): Promise<void> => {
   debugModule.simulatePositiveDiagnosis(cb);
 };
 
 export const disableExposureNotifications = async (
-  cb: (errorString: string | null) => void,
+  cb: (error: ENModuleError) => void,
 ): Promise<void> => {
   debugModule.disableExposureNotifications(cb);
 };
 
 export const resetExposureDetectionError = async (
-  cb: (errorString: string | null) => void,
+  cb: (error: ENModuleError) => void,
 ): Promise<void> => {
   debugModule.resetExposureDetectionError(cb);
 };
 
 export const resetLocalExposures = async (
-  cb: (errorString: string | null) => void,
+  cb: (error: ENModuleError) => void,
 ): Promise<void> => {
   debugModule.resetLocalExposures(cb);
 };
 
 export const getAndPostDiagnosisKeys = async (
-  cb: (errorString: string | null) => void,
+  cb: (error: ENModuleError) => void,
 ): Promise<void> => {
   debugModule.getAndPostDiagnosisKeys(cb);
 };
 
 export const simulateExposureDetectionError = async (
-  cb: (errorString: string | null) => void,
+  cb: (error: ENModuleError) => void,
 ): Promise<void> => {
   debugModule.simulateExposureDetectionError(cb);
 };
 
 export const getExposureConfiguration = async (
-  cb: (errorString: string | null) => void,
+  cb: (error: ENModuleError) => void,
 ): Promise<void> => {
   debugModule.getExposureConfiguration(cb);
 };

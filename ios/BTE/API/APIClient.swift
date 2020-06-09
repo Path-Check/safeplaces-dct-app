@@ -83,7 +83,7 @@ private extension APIClient {
 
   func dataRequest<T: APIRequest>(for request: T, requestType: RequestType) -> DataRequest {
     let baseUrl = requestType == .post ? postUrl : pullUrl
-    let r = sessionManager.request(
+    return sessionManager.request(
       baseUrl.appendingPathComponent(request.path, isDirectory: false),
       method: request.method,
       parameters: request.parameters,
