@@ -6,7 +6,11 @@
     "version": "الإصدار:"
   },
   "common": {
-    "done": "تم"
+    "done": "تم",
+    "next": "التالى"
+  },
+  "export": {
+    "exit_warning_cancel": "إلغاء"
   },
   "history": {
     "no_exposure": "لم يتم التعرض",
@@ -42,6 +46,8 @@
     "authorities_add_url": "إضافة هيئة صحية عبر رابط",
     "authorities_desc": "اختر الهيئة الصحية الموثوقة في منطقتك للحصول على بيانات التعرض و الانتشار. حدد إما اسمًا من السجل العام ، أو أدخل عنوان الويب الذي قدمته السلطة",
     "authorities_input_placeholder": "الصق عنوان الرابط هنا",
+    "authorities_new_in_area_title_1": "هيئة الرعاية الصحية الجديدة",
+    "authorities_new_in_area_title_5": "هيئات الرعاية الصحية الجديدة",
     "authorities_no_sources": "لا توجد بيانات حتى الآن",
     "authorities_removal_alert_cancel": "إلغاء",
     "authorities_removal_alert_desc": "هل أنت متأكد من أنك تريد إزالة مصدر بيانات هذه الهيئة",
@@ -51,8 +57,6 @@
     "choose_provider_subtitle": "لتكون على علم بالتعرض والانتشار ، ستحتاج إلى الاشتراك في هيئة صحية",
     "choose_provider_title": "اختر الهيئة الصحية",
     "default_news_site_name": "أخبار المسارات الآمنة",
-    "authorities_new_in_area_title_1": "هيئة الرعاية الصحية الجديدة",
-    "authorities_new_in_area_title_5": "هيئات الرعاية الصحية الجديدة",
     "enter_authority_url": "أدخل أو الصق عنوان ال URL",
     "event_history_subtitle": "افهم تعرضك الشخصي بناءً على المعلومات التي تشاركها السلطات الصحية",
     "event_history_title": "سجلات التعرض",

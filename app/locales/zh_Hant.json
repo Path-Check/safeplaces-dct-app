@@ -1,5 +1,11 @@
 {
   "_display_name": "繁體中文",
+  "common": {
+    "next": "下一個"
+  },
+  "export": {
+    "exit_warning_cancel": "取消"
+  },
   "import": {
     "button_text": "過去の位置情報をインポートする",
     "google": {

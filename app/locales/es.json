@@ -12,7 +12,11 @@
   },
   "common": {
     "done": "Hecho",
+    "next": "Siguiente",
     "ok": "Ok"
+  },
+  "export": {
+    "exit_warning_cancel": "Cancelar"
   },
   "history": {
     "no_exposure": "No ha habido contacto",

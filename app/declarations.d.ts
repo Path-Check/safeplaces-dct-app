@@ -7,7 +7,8 @@ declare module '*.svg' {
 
 declare module '*.png' {}
 
-declare module '@emtion/native' {
-  const styled: Record<string, unknown>;
+declare module '@emotion/native' {
+  /* eslint-disable @typescript-eslint/no-explicit-any*/
+  const styled: any;
   export default styled;
 }

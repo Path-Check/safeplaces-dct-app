@@ -1,5 +1,11 @@
 {
   "_display_name": "Română",
+  "common": {
+    "next": "Înainte"
+  },
+  "export": {
+    "exit_warning_cancel": "Anulează"
+  },
   "history": {
     "no_exposure": "Totul ok",
     "possible_exposure": "Expunere posibilă",

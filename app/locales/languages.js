@@ -27,6 +27,7 @@ import pt_BR from './pt_BR.json';
 import ro from './ro.json';
 import ru from './ru.json';
 import sk from './sk.json';
+import tl from './tl.json';
 import vi from './vi.json';
 import zh_Hant from './zh_Hant.json';
 
@@ -92,6 +93,7 @@ const DEV_LANGUAGES = __DEV__
       ro: { label: ro._display_name, translation: ro },
       ru: { label: ru._display_name, translation: ru },
       sk: { label: sk._display_name, translation: sk },
+      tl: { label: tl._display_name, translation: tl },
       vi: { label: vi._display_name, translation: vi },
       zh_Hant: { label: zh_Hant._display_name, translation: zh_Hant },
     }
