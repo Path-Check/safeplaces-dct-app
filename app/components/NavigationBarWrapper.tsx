@@ -7,7 +7,6 @@ import { SvgXml } from 'react-native-svg';
 
 import { Icons } from '../assets';
 import Colors from '../constants/colors';
-import { Theme } from './Theme';
 
 /**
  * Navigation bar and status bar
@@ -23,6 +22,16 @@ interface NavigationBarWrapperProps {
   children: JSX.Element;
   title: string;
   onBackPress: () => void;
+}
+export interface ThemeProps {
+  navBar: string;
+  background: string;
+  navBarBorder: string;
+  onNavBar: string;
+}
+
+export interface Theme {
+  theme: ThemeProps;
 }
 
 export const NavigationBarWrapper = ({

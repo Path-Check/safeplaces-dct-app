@@ -66,11 +66,11 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   };
 
   const handleOnPressSimulationButton = (
-    callSimulatedEvent: (cb: (errorString: string) => void) => void,
+    callSimulatedEvent: (cb: (errorString: string | null) => void) => void,
     successMessage: string,
   ) => {
     return () => {
-      const cb = (errorString: string) => {
+      const cb = (errorString: string | null) => {
         if (errorString) {
           showErrorAlert(errorString);
         } else {
