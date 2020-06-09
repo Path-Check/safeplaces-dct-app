@@ -14,7 +14,7 @@ class SecureStorage: NSObject {
   
   @objc static let shared = SecureStorage()
   
-  private let secureStorage: RealmSecureStorage = RealmSecureStorage()
+  private let secureStorage: GPSSecureStorage = GPSSecureStorage()
   
   @objc func saveDeviceLocation(backgroundLocation: MAURLocation) {
     DispatchQueue(label: "realm").async {

@@ -1,3 +1,4 @@
+/* eslint-disable no-import-assign */
 import 'react-native';
 
 import { act, render } from '@testing-library/react-native';

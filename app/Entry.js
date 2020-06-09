@@ -25,6 +25,11 @@ import {
   FEATURE_FLAG_SCREEN_NAME,
   FeatureFlagsScreen,
 } from './views/FeatureFlagToggles';
+import {
+  EN_DEBUG_MENU_SCREEN_NAME,
+  EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME,
+  ENDebugMenu,
+} from './views/Settings/ENDebugMenu';
 import ImportScreen from './views/Import';
 import { LicensesScreen } from './views/Licenses';
 import { Main } from './views/Main';
@@ -36,6 +41,7 @@ import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
 import { SettingsScreen } from './views/Settings';
+import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
 
 const Stack = createStackNavigator();
 
@@ -99,6 +105,11 @@ const MainApp = () => (
       component={ExposureHistoryScreen}
     />
     <Stack.Screen name='AboutScreen' component={AboutScreen} />
+    <Stack.Screen name={EN_DEBUG_MENU_SCREEN_NAME} component={ENDebugMenu} />
+    <Stack.Screen
+      name={EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME}
+      component={ENLocalDiagnosisKeyScreen}
+    />
     <Stack.Screen
       name={FEATURE_FLAG_SCREEN_NAME}
       component={FeatureFlagsScreen}
