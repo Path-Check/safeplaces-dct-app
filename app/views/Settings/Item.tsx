@@ -18,11 +18,11 @@ import { Divider } from '../../components/Divider';
  */
 
 type ItemProps = {
-  label: string;
-  onPress: () => void;
-  description: string;
-  icon: string;
-  last: boolean;
+  label?: string;
+  onPress?: () => void;
+  description?: string;
+  icon?: string;
+  last?: boolean;
 };
 
 export const Item = ({

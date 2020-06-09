@@ -11,8 +11,8 @@ import { View } from 'react-native';
  */
 
 type SectionProps = {
-  last: boolean;
-  children: React.ReactNode;
+  last?: boolean;
+  children?: React.ReactNode;
 };
 
 export const Section = ({ last, children }: SectionProps): JSX.Element => (

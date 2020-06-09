@@ -7,6 +7,7 @@ import { SvgXml } from 'react-native-svg';
 
 import { Icons } from '../assets';
 import Colors from '../constants/colors';
+import { Theme } from './Theme';
 
 /**
  * Navigation bar and status bar
@@ -22,13 +23,6 @@ interface NavigationBarWrapperProps {
   children: JSX.Element;
   title: string;
   onBackPress: () => void;
-}
-
-interface Theme {
-  navBar: string;
-  background: string;
-  navBarBorder: string;
-  onNavBar: string;
 }
 
 export const NavigationBarWrapper = ({
@@ -61,14 +55,14 @@ export const NavigationBarWrapper = ({
   );
 };
 
-const themeNavBar = (theme: Theme) => theme.navBar || Colors.VIOLET;
+const themeNavBar = ({ theme }: Theme) => theme.navBar || Colors.VIOLET;
 
 const TopContainer = styled.SafeAreaView`
   flex: 0;
   background-color: ${themeNavBar};
 `;
 
-const themeBackground = (theme: Theme) =>
+const themeBackground = ({ theme }: Theme) =>
   theme.background || Colors.INTRO_WHITE_BG;
 
 const BottomContainer = styled.SafeAreaView`
@@ -76,7 +70,7 @@ const BottomContainer = styled.SafeAreaView`
   background-color: ${themeBackground};
 `;
 
-const themeNavBarBorder = (theme: Theme) =>
+const themeNavBarBorder = ({ theme }: Theme) =>
   theme.navBarBorder || Colors.NAV_BAR_VIOLET;
 
 const Header = styled.View`
@@ -87,7 +81,7 @@ const Header = styled.View`
   flex-direction: row;
 `;
 
-const themeOnNavBar = (theme: Theme) => theme.onNavBar || Colors.WHITE;
+const themeOnNavBar = ({ theme }: Theme) => theme.onNavBar || Colors.WHITE;
 
 const Title = styled.Text`
   align-self: center;
