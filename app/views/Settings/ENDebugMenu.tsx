@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Alert, BackHandler, ScrollView } from 'react-native';
 
-import { NavigationBarWrapper } from '../../components';
+import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Item } from './Item';
 import { Section } from './Section';
 import {
@@ -15,14 +15,24 @@ import {
   simulateExposureDetectionError,
   getExposureConfiguration,
 } from '../../exposureNotificationsNativeModule';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
+
+type ENDebugMenuProps = {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+};
 
 export const EN_DEBUG_MENU_SCREEN_NAME = 'ENDebugMenu';
 export const EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME = 'ENLocalDiagnosisKeyScreen';
 
-export const ENDebugMenu = ({ navigation }) => {
+export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   useEffect(() => {
     const handleBackPress = () => {
       navigation.goBack();
+      return true;
     };
 
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
@@ -36,11 +46,13 @@ export const ENDebugMenu = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const showErrorAlert = (errorString) => {
-    Alert.alert('Error', errorString, [{ text: 'OK' }], { cancelable: false });
+  const showErrorAlert = (errorString: string) => {
+    Alert.alert('Error', errorString, [{ text: 'OK' }], {
+      cancelable: false,
+    });
   };
 
-  const showSuccessAlert = (messageString) => {
+  const showSuccessAlert = (messageString: string) => {
     Alert.alert(
       'Success',
       messageString,
@@ -55,10 +67,10 @@ export const ENDebugMenu = ({ navigation }) => {
 
   const handleOnPressSimulationButton = (
     callSimulatedEvent,
-    successMessage,
+    successMessage: string,
   ) => {
     return () => {
-      const cb = (errorString) => {
+      const cb = (errorString: string) => {
         if (errorString) {
           showErrorAlert(errorString);
         } else {
