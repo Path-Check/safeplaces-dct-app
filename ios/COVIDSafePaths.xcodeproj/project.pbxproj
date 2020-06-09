@@ -88,7 +88,6 @@
 		B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */; };
 		B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */; };
 		B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E2248A82AE006474EB /* Exposure.swift */; };
-		B5FC37E6248A82E3006474EB /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E5248A82E3006474EB /* LocalStore.swift */; };
 		B5FC37E8248A8302006474EB /* TestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E7248A8302006474EB /* TestResult.swift */; };
 		B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
@@ -332,7 +331,6 @@
 		B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureConfiguration.swift; sourceTree = "<group>"; };
 		B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureConfigurationRequests.swift; sourceTree = "<group>"; };
 		B5FC37E2248A82AE006474EB /* Exposure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exposure.swift; sourceTree = "<group>"; };
-		B5FC37E5248A82E3006474EB /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 		B5FC37E7248A8302006474EB /* TestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResult.swift; sourceTree = "<group>"; };
 		B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ENTemporaryExposureKey+Extensions.swift"; sourceTree = "<group>"; };
 		BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -744,7 +742,6 @@
 		B5FC37E4248A82D6006474EB /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				B5FC37E5248A82E3006474EB /* LocalStore.swift */,
 				B52D88C3248F10FD0071ED51 /* BTESecureStorage.swift */,
 			);
 			path = Storage;
@@ -1292,7 +1289,6 @@
 				B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */,
 				B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */,
 				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
-				B5FC37E6248A82E3006474EB /* LocalStore.swift in Sources */,
 				B596C07024880B7000943B79 /* String+Extensions.swift in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
 				B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */,

@@ -8,9 +8,9 @@ final class ExposureManager: NSObject {
   @objc static let shared = ExposureManager()
   
   let manager = ENManager()
-  
-  private let secureStorage: BTESecureStorage = BTESecureStorage()
-  
+
+  private let secureStorage = BTESecureStorage()
+
   var detectingExposures = false
   
   override init() {
@@ -70,14 +70,14 @@ final class ExposureManager: NSObject {
       } else {
         switch result {
         case let .success((newExposures, nextDiagnosisKeyFileIndex)):
-          LocalStore.shared.nextDiagnosisKeyFileIndex = nextDiagnosisKeyFileIndex
-          LocalStore.shared.exposures.append(contentsOf: newExposures)
-          LocalStore.shared.exposures.sort { $0.date < $1.date }
-          LocalStore.shared.dateLastPerformedExposureDetection = Date()
-          LocalStore.shared.exposureDetectionErrorLocalizedDescription = nil
+          secureStorage.nextDiagnosisKeyFileIndex = nextDiagnosisKeyFileIndex
+          secureStorage.exposures.append(contentsOf: newExposures)
+          secureStorage.exposures.sort { $0.date < $1.date }
+          secureStorage.dateLastPerformedExposureDetection = Date()
+          secureStorage.exposureDetectionErrorLocalizedDescription = nil
           success = true
         case let .failure(error):
-          LocalStore.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
+          secureStorage.exposureDetectionErrorLocalizedDescription = error.localizedDescription
           // Consider posting a user notification that an error occured
           success = false
         }
@@ -86,7 +86,7 @@ final class ExposureManager: NSObject {
       detectingExposures = false
       completionHandler?(success)
     }
-    let nextDiagnosisKeyFileIndex = LocalStore.shared.nextDiagnosisKeyFileIndex
+    let nextDiagnosisKeyFileIndex = secureStorage.nextDiagnosisKeyFileIndex
     
     APIClient.shared.request(DiagnosisKeyUrlListRequest.get(nextDiagnosisKeyFileIndex), requestType: .get) { result in
       
@@ -205,22 +205,22 @@ final class ExposureManager: NSObject {
         }
       }
     case .simulateExposureDetectionError:
-      LocalStore.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
-      completion([NSNull(), LocalStore.shared.exposureDetectionErrorLocalizedDescription])
+      secureStorage.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
+      completion([NSNull(), secureStorage.exposureDetectionErrorLocalizedDescription])
     case .simulateExposure:
       let exposure = Exposure(date: Date() - TimeInterval.random(in: 1...4) * 24 * 60 * 60,
                               duration: TimeInterval(Int.random(in: 1...5) * 60 * 5),
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
-      LocalStore.shared.exposures.append(exposure)
-      completion([NSNull(), LocalStore.shared.exposures])
+      secureStorage.exposures.append(exposure)
+      completion([NSNull(), secureStorage.exposures])
     case .simulatePositiveDiagnosis:
       let testResult = TestResult(id: UUID(),
                                   isAdded: true,
                                   dateAdministered: Date() - TimeInterval.random(in: 0...4) * 24 * 60 * 60,
                                   isShared: .random())
-      LocalStore.shared.testResults[testResult.id] = testResult
-      completion([NSNull(), LocalStore.shared.testResults])
+      secureStorage.testResults[testResult.id] = testResult
+      completion([NSNull(), secureStorage.testResults])
     case .disableExposureNotifications:
       manager.setExposureNotificationEnabled(false) { error in
         if let error = error {
@@ -230,15 +230,15 @@ final class ExposureManager: NSObject {
         }
       }
     case .resetExposureDetectionError:
-      LocalStore.shared.exposureDetectionErrorLocalizedDescription = nil
+      secureStorage.exposureDetectionErrorLocalizedDescription = nil
       completion([NSNull(), NSNull()])
     case .resetLocalExposures:
-      LocalStore.shared.nextDiagnosisKeyFileIndex = 0
-      LocalStore.shared.exposures = []
-      LocalStore.shared.dateLastPerformedExposureDetection = nil
+      secureStorage.nextDiagnosisKeyFileIndex = 0
+      secureStorage.exposures = []
+      secureStorage.dateLastPerformedExposureDetection = nil
       completion([NSNull(), NSNull()])
     case .resetLocalTestResults:
-      LocalStore.shared.testResults = [:]
+      secureStorage.testResults = [:]
       completion([NSNull(), NSNull()])
     case .getAndPostDiagnosisKeys:
       getAndPostTestDiagnosisKeys { error in
