@@ -139,7 +139,9 @@ const PermissionsProvider = ({
     if (Platform.OS === 'ios') {
       await requestLocationForPlatform(PERMISSIONS.IOS.LOCATION_ALWAYS);
     } else if (Platform.OS === 'android') {
-      await requestLocationForPlatform(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+      await requestLocationForPlatform(
+        PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+      );
     }
   };
 

@@ -24,7 +24,10 @@ const Onboarding = (props) => {
     onboarding4Subheader,
   } = useAssets();
 
-  const onNext = () => props.navigation.replace(isGPS ? 'OnboardingPermissions' : 'EnableExposureNotifications')
+  const onNext = () =>
+    props.navigation.replace(
+      isGPS ? 'OnboardingPermissions' : 'EnableExposureNotifications',
+    );
 
   return (
     <View style={styles.mainContainer}>

@@ -35,14 +35,14 @@ export const OnboardingPermissions = () => {
   const handleRequestNotifications = async () => {
     await notification.request();
     moveToNextStep();
-  }
-  
+  };
+
   const dispatch = useDispatch();
   const dispatchOnboardingComplete = () => dispatch(onboardingCompleteAction());
 
   const handleRequestLocation = async () => {
     await location.request();
-    await handleRequestAuthSubscription()
+    await handleRequestAuthSubscription();
     moveToNextStep();
   };
 
@@ -57,39 +57,46 @@ export const OnboardingPermissions = () => {
     nextStepParam: 'location',
     handleButtonPress: handleRequestNotifications,
     icon: Icons.Bell,
-    buttonLabel: languages.t('label.launch_enable_notif')
-  }
+    buttonLabel: languages.t('label.launch_enable_notif'),
+  };
   const locationStep = {
     header: languages.t('onboarding.location_header'),
     subHeader: languages.t('onboarding.location_subheader'),
     nextStepParam: null,
     handleButtonPress: handleRequestLocation,
     icon: Icons.LocationPin,
-    buttonLabel: languages.t('label.launch_allow_location')
-  }
+    buttonLabel: languages.t('label.launch_allow_location'),
+  };
   const steps = {
     notification: notificationStep,
     location: locationStep,
-  }
-  const currentStep = steps[step]
-  const { header, subHeader, icon, nextStepParam, handleButtonPress, buttonLabel } = currentStep;
+  };
+  const currentStep = steps[step];
+  const {
+    header,
+    subHeader,
+    icon,
+    nextStepParam,
+    handleButtonPress,
+    buttonLabel,
+  } = currentStep;
 
   const moveToNextStep = () => {
     if (nextStepParam) {
-      setStep(nextStepParam)
+      setStep(nextStepParam);
     } else {
-      completeOnboarding()
+      completeOnboarding();
     }
   };
 
   const onSkipStep = () => {
-    moveToNextStep()
+    moveToNextStep();
   };
 
   const completeOnboarding = () => {
     SetStoreData(PARTICIPATE, location.status === PermissionStatus.GRANTED);
     dispatchOnboardingComplete();
-  }
+  };
 
   return (
     <Theme use='violet'>
@@ -107,18 +114,10 @@ export const OnboardingPermissions = () => {
           style={styles.mainContainer}>
           <View style={styles.contentContainer}>
             <View style={styles.iconCircle}>
-              <SvgXml
-                xml={icon}
-                width={30}
-                height={30}
-              />
+              <SvgXml xml={icon} width={30} height={30} />
             </View>
-            <Typography style={styles.headerText}>
-              {header}
-            </Typography>
-            <Typography style={styles.subheaderText}>
-              {subHeader}
-            </Typography>
+            <Typography style={styles.headerText}>{header}</Typography>
+            <Typography style={styles.subheaderText}>{subHeader}</Typography>
           </View>
         </ScrollView>
         <View style={[styles.footerContainer]}>
