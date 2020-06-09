@@ -22,7 +22,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - Permission-Notifications (2.1.5):
+  - Permission-Notifications (2.1.4):
     - RNPermissions
   - RCTRequired (0.61.5)
   - RCTTypeSafety (0.61.5):
@@ -257,7 +257,7 @@ PODS:
     - React
   - RNGestureHandler (1.6.1):
     - React
-  - RNPermissions (2.1.5):
+  - RNPermissions (2.1.4):
     - React
   - RNReanimated (1.8.0):
     - React
@@ -448,7 +448,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  Permission-Notifications: 231d0e1db2300b686548587d384ba414e6a93332
+  Permission-Notifications: d437cafc026900006d35981d35a2d694f883f44e
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -485,7 +485,7 @@ SPEC CHECKSUMS:
   RNCPushNotificationIOS: 4d9ffd08f00ef6c1029ebbf4d72fc711eca3ff01
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNPermissions: ad71dd4f767ec254f2cd57592fbee02afee75467
+  RNPermissions: 3635b407c15f2fe591bd2101c8f20aa0912caba8
   RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
   RNScreens: 254da4b84f25971cbb30ed3ddc84131f23cac812
   RNShare: bd6518701db274b8ba282b33620885f2225a5bcf
@@ -494,6 +494,6 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 2bb929df067e0212aae25b810752ee4af4a32778
+PODFILE CHECKSUM: adf6fc698c826bfe6e51285a41621939baa651f5
 
 COCOAPODS: 1.9.1
