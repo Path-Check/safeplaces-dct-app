@@ -1,16 +1,13 @@
-import styled, { css } from '@emotion/native';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, ScrollView, View } from 'react-native';
+import { BackHandler, ScrollView } from 'react-native';
 
 import { Icons } from '../../assets';
 import {
-  Divider,
   FeatureFlag,
   NativePicker,
   NavigationBarWrapper,
 } from '../../components';
-import Colors from '../../constants/colors';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import {
   LOCALE_LIST,
@@ -19,8 +16,10 @@ import {
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
 import { FEATURE_FLAG_SCREEN_NAME } from '../../views/FeatureFlagToggles';
+import { EN_DEBUG_MENU_SCREEN_NAME } from './ENDebugMenu';
 import { GoogleMapsImport } from './GoogleMapsImport';
 import { Item } from './Item';
+import { Section } from './Section';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -137,6 +136,10 @@ export const SettingsScreen = ({ navigation }) => {
           <Item
             label='Feature Flags (Dev mode only)'
             onPress={() => navigation.navigate(FEATURE_FLAG_SCREEN_NAME)}
+          />
+          <Item
+            label='EN Debug Menu'
+            onPress={() => navigation.navigate(EN_DEBUG_MENU_SCREEN_NAME)}
             last
           />
         </Section>
@@ -144,32 +147,3 @@ export const SettingsScreen = ({ navigation }) => {
     </NavigationBarWrapper>
   );
 };
-
-/**
- * Render a white section with blue spacer at the bottom (unless `last == true`)
- *
- * @param {{last?: boolean}} param0
- */
-export const Section = ({ last, children }) => (
-  <>
-    <SectionWrapper>{children}</SectionWrapper>
-
-    <Divider />
-
-    {!last && (
-      <>
-        <View
-          style={css`
-            margin: 2% 0;
-          `}
-        />
-        <Divider />
-      </>
-    )}
-  </>
-);
-
-const SectionWrapper = styled.View`
-  background-color: ${Colors.WHITE};
-  padding: 0px 6.25%;
-`;

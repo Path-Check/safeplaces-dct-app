@@ -12,7 +12,11 @@
   },
   "common": {
     "done": "Fini",
+    "next": "Kontinye",
     "ok": "Ok"
+  },
+  "export": {
+    "exit_warning_cancel": "Anile"
   },
   "history": {
     "no_exposure": "Pa gen kontak",
@@ -54,14 +58,14 @@
     "authorities_input_placeholder": "Kole URL ou an la",
     "authorities_new_in_area_msg_1": "Enskri nan {{count}} nouvo otorite swen sante ou fè konfyans nan zòn ou",
     "authorities_new_in_area_msg_5": "Enskri nan {{count}} nouvo otorite swen sante yo ou fè konfyans nan zòn ou",
+    "authorities_new_in_area_title_1": "Nouvo otorite swen sante",
+    "authorities_new_in_area_title_4": "Nouvo otorite swen sante yo",
     "authorities_new_subscription_msg_1": "Ou te enski nan {{count}} nouvo otorite nan zòn ou",
     "authorities_new_subscription_msg_5": "Ou te enski nan {{count}} nouvo otorite nan zòn ou",
-    "authorities_no_sources": "Ou poko genyen sous done!",
-    "authorities_removal_alert_cancel": "Anile",
-    "authorities_new_in_area_title_1": "Nouvo otorite swen sante",
     "authorities_new_subscription_title_1": "{{count}} Nouvo enskripsyon",
     "authorities_new_subscription_title_5": "{{count}} Nouvo enskripsyon yo",
-    "authorities_new_in_area_title_4": "Nouvo otorite swen sante yo",
+    "authorities_no_sources": "Ou poko genyen sous done!",
+    "authorities_removal_alert_cancel": "Anile",
     "authorities_removal_alert_desc": "Eske ou si ke ou vle retire sous done otorite sa?",
     "authorities_removal_alert_proceed": "Kontinye",
     "authorities_removal_alert_title": "Retire otorite",

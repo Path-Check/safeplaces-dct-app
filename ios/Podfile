@@ -42,13 +42,13 @@ def shared_pods
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
 
+  pod 'Realm', :modular_headers => true
+  pod 'RealmSwift', :modular_headers => true
+
   use_native_modules!
 end
 
 def gps_pods
-  pod 'Realm', :modular_headers => true
-  pod 'RealmSwift', :modular_headers => true
-
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
 end

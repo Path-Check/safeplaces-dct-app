@@ -6,7 +6,11 @@
     "version": "Версия:"
   },
   "common": {
-    "done": "Готово"
+    "done": "Готово",
+    "next": "Далее"
+  },
+  "export": {
+    "exit_warning_cancel": "Отмена"
   },
   "history": {
     "no_exposure": "Неизвестно",
@@ -42,6 +46,8 @@
     "authorities_add_url": "Добавить организацию по ссылке",
     "authorities_desc": "Выберите надёжные органы здравоохранения в вашем регионе, чтобы получать данные о зонах риска. Выберите название организации из международного реестра или введите ссылку организации, которая использует Safe Paths.",
     "authorities_input_placeholder": "Вставьте ссылку сюда",
+    "authorities_new_in_area_msg_0": "Подписаться на {{count}} новый надежный орган здравоохранения в вашем регионе",
+    "authorities_new_in_area_msg_3": "Подписаться на {{count}} новых надежных органов здравоохранения в вашем регионе",
     "authorities_new_in_area_title_0": "Новая организация здравоохранения",
     "authorities_new_in_area_title_3": "Новые организации здравоохранения",
     "authorities_no_sources": "Нет источника данных",
@@ -51,8 +57,6 @@
     "authorities_removal_alert_title": "Удалить организацию",
     "auto_subscribe_checkbox": "Включить автоматическую подписку",
     "choose_provider_subtitle": "Чтобы получать информацию о возможных рисках, вам нужно подписаться на орган здравоохранения.",
-    "authorities_new_in_area_msg_0": "Подписаться на {{count}} новый надежный орган здравоохранения в вашем регионе",
-    "authorities_new_in_area_msg_3": "Подписаться на {{count}} новых надежных органов здравоохранения в вашем регионе",
     "choose_provider_title": "Выбрать орган здравоохранения",
     "default_news_site_name": "Новости Safe Paths",
     "enter_authority_url": "Введите или вставьте URL",

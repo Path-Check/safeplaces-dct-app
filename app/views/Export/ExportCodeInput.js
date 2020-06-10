@@ -193,7 +193,8 @@ export const ExportSelectHA = ({ route, navigation }) => {
               )}
             </View>
             <Button
-              disabled={code.length < CODE_LENGTH || isCheckingCode}
+              disabled={code.length < CODE_LENGTH}
+              loading={isCheckingCode}
               label={t('common.next')}
               onPress={validateCode}
             />

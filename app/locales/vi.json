@@ -1,5 +1,11 @@
 {
   "_display_name": "Tiếng Việt",
+  "common": {
+    "next": "Tiếp theo"
+  },
+  "export": {
+    "exit_warning_cancel": "Hủy"
+  },
   "import": {
     "button_text": "Nhập lịch sử di chuyển trước đây",
     "google": {
