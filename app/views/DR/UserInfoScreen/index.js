@@ -73,7 +73,6 @@ export default function UserInfo({ navigation }) {
           body: JSON.stringify(info),
         },
       );
-      console.log('response: ' + JSON.stringify(response));
       response = await response.json();
       return response;
     } catch (e) {
@@ -101,7 +100,6 @@ export default function UserInfo({ navigation }) {
           body: JSON.stringify(data.body),
         },
       );
-      console.log('response: ' + JSON.stringify(response));
       response = await response.json();
       if (response.valid !== undefined) {
         if (response.valid) {
