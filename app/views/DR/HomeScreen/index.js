@@ -10,7 +10,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import env from 'react-native-config';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -139,11 +138,7 @@ export default class HomeScreen extends Component {
               <View style={styles.mainHeader}>
                 <View style={styles.rowAndCenter}>
                   <Left>
-                    <Text
-                      style={[
-                        styles.text,
-                        { color: env.COLOR_BG || Colors.WHITE },
-                      ]}>
+                    <Text style={[styles.text, { color: Colors.WHITE }]}>
                       {date[0].toUpperCase() + date.slice(1)}
                     </Text>
                   </Left>
