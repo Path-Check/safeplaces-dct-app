@@ -54,7 +54,7 @@ export const OnboardingPermissions = () => {
   const notificationStep = {
     header: languages.t('onboarding.notification_header'),
     subHeader: languages.t('onboarding.notification_subheader'),
-    nextStepParam: 'location',
+    nextStepParam: null,
     handleButtonPress: handleRequestNotifications,
     icon: Icons.Bell,
     buttonLabel: languages.t('label.launch_enable_notif'),
@@ -62,7 +62,7 @@ export const OnboardingPermissions = () => {
   const locationStep = {
     header: languages.t('onboarding.location_header'),
     subHeader: languages.t('onboarding.location_subheader'),
-    nextStepParam: null,
+    nextStepParam: 'notification',
     handleButtonPress: handleRequestLocation,
     icon: Icons.LocationPin,
     buttonLabel: languages.t('label.launch_allow_location'),
