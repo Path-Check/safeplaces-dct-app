@@ -24,8 +24,6 @@ jobs:
       GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
     steps:
       - name: Update .env file
-        run: |
-          printenv >> .env
 
       - uses: actions/checkout@v2
 
@@ -65,7 +63,6 @@ jobs:
   build-ios:
     runs-on: macOS-latest
     env:
-      ENVFILE: .env.release
       MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
       COV_CASES_URL: ${{ secrets.COV_CASES_URL }}
       FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
@@ -74,8 +71,6 @@ jobs:
       GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
     steps:
       - name: Update .env file
-        run: |
-          printenv >> .env.release
 
       - uses: actions/checkout@master
 
