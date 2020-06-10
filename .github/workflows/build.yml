@@ -28,7 +28,7 @@ jobs:
 
       - name: Update .env file
         run: |
-          printenv >> .env.release
+          printenv|sort
 
       - uses: actions/checkout@v2
 
@@ -70,7 +70,7 @@ jobs:
     steps:
       - name: Update .env file
         run: |
-          printenv >> .env.release
+          printenv|sort
 
       - uses: actions/checkout@master
 
