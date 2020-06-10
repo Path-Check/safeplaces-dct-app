@@ -8,18 +8,20 @@ export function useAssets() {
 
   // Onboarding2
   const onboarding2Background = isGPS
-    ? Images.LaunchScreen2
+    ? Images.OnboardingBackground1
     : Images.LaunchScreen2BT;
-  const onboarding2Header = isGPS
-    ? t('label.launch_screen2_header_location')
-    : t('label.launch_screen2_header_bluetooth');
-  const onboarding2Subheader = isGPS
-    ? t('label.launch_screen2_subheader_location')
-    : t('label.launch_screen2_subheader_bluetooth');
+  // const onboarding2Header = isGPS
+  //   ? t('label.launch_screen2_header_location')
+  //   : t('label.launch_screen2_header_bluetooth');
+  const onboarding2Header = 'PathCheck remembers the places you visit and saves them privately on your phone for 14 days.'
+  // const onboarding2Subheader = isGPS
+  //   ? t('label.launch_screen2_subheader_location')
+  //   : t('label.launch_screen2_subheader_bluetooth');
+  const onboarding2Subheader = 'Your PathCheck location diary is encrypted and never leaves your phone unless you choose to send it to your local or regional Health Department.'
 
   // Onboarding3
   const onboarding3Background = isGPS
-    ? Images.LaunchScreen3
+    ? Images.OnboardingBackground2
     : Images.LaunchScreen3BT;
   const onboarding3Header = isGPS
     ? t('label.launch_screen3_header_location')
@@ -30,7 +32,7 @@ export function useAssets() {
 
   // Onboarding4
   const onboarding4Background = isGPS
-    ? Images.LaunchScreen1
+    ? Images.OnboardingBackground3
     : Images.LaunchScreen1BT;
   const onboarding4Header = isGPS
     ? t('label.launch_screen4_header_location')

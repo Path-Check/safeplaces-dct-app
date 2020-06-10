@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: '100%',
-    top: '-10%',
+    // top: '-10%',
     resizeMode: 'cover',
     position: 'absolute',
   },

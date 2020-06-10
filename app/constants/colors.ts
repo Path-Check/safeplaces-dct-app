@@ -12,6 +12,10 @@ const colors = {
   VIOLET: '#4051DB',
   TRANSPARENT: 'transparent',
 
+  //Onboarding
+  ONBOARDING_ICON_LIGHT_BLUE: '#D3D7F8',
+  ONBOARDING_ICON_LIGHT_YELLOW: '#F9EDCC',
+  
   // For notifications
   HIGHEST_RISK: '#e74c3c',
   MIDDLE_RISK: '#e74c3c',
