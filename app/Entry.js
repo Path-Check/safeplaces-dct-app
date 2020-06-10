@@ -66,7 +66,6 @@ const ExportStack = () => (
       cardStyleInterpolator: fade,
       gestureEnabled: false,
     }}>
-    <Stack.Screen name='ExportStart' component={ExportStart} />
     <Stack.Screen name='ExportSelectHA' component={ExportSelectHA} />
     <Stack.Screen name='ExportCodeInput' component={ExportCodeInput} />
     <Stack.Screen
@@ -94,13 +93,6 @@ const MoreTabStack = () => (
     <Stack.Screen
       name={EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME}
       component={ENLocalDiagnosisKeyScreen}
-    />
-    <Stack.Screen
-      name='ExportScreen'
-      component={ExportStack}
-      options={{
-        ...TransitionPresets.ModalSlideFromBottomIOS,
-      }}
     />
   </Stack.Navigator>
 );
@@ -151,8 +143,8 @@ const MainAppTabs = () => {
       {/* We feature flag in settings between whether to send to route or e2e export */}
       {isGPS && (
         <Tab.Screen
-          name='Export'
-          component={ExportStack}
+          name='ExportStart'
+          component={ExportStart}
           options={{
             tabBarLabel: t('navigation.locations'),
             tabBarIcon: ({ focused, size }) => (
@@ -226,6 +218,14 @@ export const Entry = () => {
         ) : (
           <Stack.Screen name={'Onboarding'} component={OnboardingStack} />
         )}
+        {/* Modal View: */}
+        <Stack.Screen
+          name={'ExportFlow'}
+          component={ExportStack}
+          options={{
+            ...TransitionPresets.ModalSlideFromBottomIOS,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

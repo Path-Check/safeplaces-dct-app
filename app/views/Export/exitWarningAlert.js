@@ -17,7 +17,7 @@ const exitWarningAlert = (navigation) => {
       },
       {
         text: i18next.t('export.exit_warning_confirm'),
-        onPress: () => navigation.navigate('SettingsScreen'),
+        onPress: () => navigation.navigate('ExportStart'),
         style: 'destructive',
       },
     ],

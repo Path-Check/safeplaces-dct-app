@@ -19,6 +19,7 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
+import exitWarningAlert from './exitWarningAlert';
 
 const CODE_LENGTH = 6;
 
@@ -166,7 +167,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
             <IconButton
               icon={Icons.Close}
               size={22}
-              onPress={() => navigation.navigate('SettingsScreen')}
+              onPress={() => exitWarningAlert(navigation)}
             />
           </View>
           <View style={{ flex: 1, marginBottom: 20 }}>
