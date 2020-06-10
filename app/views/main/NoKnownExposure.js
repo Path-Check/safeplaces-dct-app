@@ -8,7 +8,6 @@ import { Icons, Images } from '../../assets';
 import { Typography } from '../../components';
 import Colors from '../../constants/colors';
 import { Theme } from '../../constants/themes';
-import { MayoButton } from './MayoButton';
 import { styles } from './style';
 
 export const NoKnownExposure = () => {
@@ -51,7 +50,6 @@ export const NoKnownExposure = () => {
             </Typography>
           </View>
         </View>
-        <MayoButton />
       </ImageBackground>
     </Theme>
   );

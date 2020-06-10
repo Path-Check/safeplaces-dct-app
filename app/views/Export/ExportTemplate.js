@@ -49,13 +49,13 @@ const BackgroundContainer = ({ lightTheme, children }) => {
 };
 
 export const ExportTemplate = ({
-  onClose,
   headline,
   body,
   onNext,
   nextButtonLabel,
   // Optionals:
   buttonSubtitle,
+  onClose,
   icon,
   lightTheme,
   buttonLoading,
@@ -78,9 +78,11 @@ export const ExportTemplate = ({
     <Theme use={lightTheme ? 'default' : 'violet'}>
       <BackgroundContainer lightTheme={lightTheme}>
         <SafeAreaView style={{ flex: 1, paddingBottom: 24 }}>
-          <View style={styles.header}>
-            <IconButton icon={Icons.Close} size={22} onPress={onClose} />
-          </View>
+          {onClose && (
+            <View style={styles.header}>
+              <IconButton icon={Icons.Close} size={22} onPress={onClose} />
+            </View>
+          )}
           <ScrollView
             alwaysBounceVertical={false}
             style={{ flexGrow: 1 }}

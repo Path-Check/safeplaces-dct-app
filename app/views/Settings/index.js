@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import { Icons } from '../../assets';
 import {
@@ -11,7 +11,6 @@ import {
 import { isGPS } from '../../COVIDSafePathsConfig';
 import {
   LOCALE_LIST,
-  getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
@@ -31,21 +30,6 @@ export const SettingsScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  useEffect(() => {
-    const handleBackPress = () => {
-      navigation.goBack();
-      return true;
-    };
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    // TODO: extract into service or hook
-    getUserLocaleOverride().then((locale) => locale && setUserLocale(locale));
-
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-    };
-  }, [navigation]);
-
   const localeChanged = async (locale) => {
     // If user picks manual lang, update and store setting
     try {
@@ -58,7 +42,8 @@ export const SettingsScreen = ({ navigation }) => {
 
   return (
     <NavigationBarWrapper
-      title={t('label.settings_title')}
+      includeBackButton={false}
+      title={t('screen_titles.more')}
       onBackPress={backToMain}>
       <ScrollView>
         <Section>
@@ -76,44 +61,10 @@ export const SettingsScreen = ({ navigation }) => {
             )}
           </NativePicker>
         </Section>
+
         <Section>
-          <Item
-            label={t('label.choose_provider_title')}
-            description={t('label.choose_provider_subtitle')}
-            onPress={() => navigation.navigate('ChooseProviderScreen')}
-          />
-          <Item
-            label={t('label.news_title')}
-            description={t('label.news_subtitle')}
-            onPress={() => navigation.navigate('NewsScreen')}
-            last={!isGPS}
-          />
-          {isGPS ? (
-            <>
-              <Item
-                label={t('label.event_history_title')}
-                description={t('label.event_history_subtitle')}
-                onPress={() => navigation.navigate('ExposureHistoryScreen')}
-              />
-              <FeatureFlag
-                name='export_e2e'
-                fallback={
-                  <Item
-                    label={t('share.title')}
-                    description={t('share.subtitle')}
-                    onPress={() => navigation.navigate('ExportLocally')}
-                    last
-                  />
-                }>
-                <Item
-                  label={t('share.title')}
-                  description={t('share.subtitle')}
-                  onPress={() => navigation.navigate('ExportScreen')}
-                  last
-                />
-              </FeatureFlag>
-            </>
-          ) : null}
+          <Item label={t('screen_titles.faq')} />
+          <Item label={t('screen_titles.report_issue')} last />
         </Section>
 
         {isGPS && (
@@ -126,22 +77,26 @@ export const SettingsScreen = ({ navigation }) => {
 
         <Section last>
           <Item
-            label={t('label.about_title')}
+            label={t('screen_titles.about')}
             onPress={() => navigation.navigate('AboutScreen')}
           />
           <Item
-            label={t('label.legal_page_title')}
+            label={t('screen_titles.legal')}
             onPress={() => navigation.navigate('LicensesScreen')}
+            last={!__DEV__}
           />
           <Item
             label='Feature Flags (Dev mode only)'
             onPress={() => navigation.navigate(FEATURE_FLAG_SCREEN_NAME)}
+            last={isGPS}
           />
-          <Item
-            label='EN Debug Menu'
-            onPress={() => navigation.navigate(EN_DEBUG_MENU_SCREEN_NAME)}
-            last
-          />
+          {!isGPS ? (
+            <Item
+              label='EN Debug Menu'
+              onPress={() => navigation.navigate(EN_DEBUG_MENU_SCREEN_NAME)}
+              last
+            />
+          ) : null}
         </Section>
       </ScrollView>
     </NavigationBarWrapper>

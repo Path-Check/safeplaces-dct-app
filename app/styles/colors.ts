@@ -46,10 +46,11 @@ export const royalerBlue = '#5061e6';
 export const jacksonsPurple = '#1f2c9b';
 export const cornflowerBlue = '#6979f8';
 export const moonRaker = '#e5e7fa';
+export const melrose = '#a5affb';
 
 export const primaryViolet = royalBlue;
 export const secondaryViolet = jacksonsPurple;
-export const tertiaryViolet = moonRaker;
+export const tertiaryViolet = melrose;
 
 // Defaults
 export const defaultRed = '#c20000';

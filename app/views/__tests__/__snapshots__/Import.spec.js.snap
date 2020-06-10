@@ -32,6 +32,7 @@ Array [
           "borderBottomColor": "#5061E6",
           "borderBottomWidth": 1,
           "flexDirection": "row",
+          "height": 55,
         }
       }
     >
@@ -49,7 +50,6 @@ Array [
         style={
           Object {
             "alignItems": "center",
-            "height": 55,
             "justifyContent": "center",
             "opacity": 1,
             "width": 60,

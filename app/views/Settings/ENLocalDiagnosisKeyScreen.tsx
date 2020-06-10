@@ -79,6 +79,7 @@ export const ENLocalDiagnosisKeyScreen = ({
 
   return (
     <NavigationBarWrapper
+      includeBottomNav
       title={'Local Diagnosis Keys'}
       onBackPress={backToDebugMenu}>
       <FlatList
