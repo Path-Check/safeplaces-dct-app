@@ -7,8 +7,8 @@ import Colors from '../constants/colors';
 import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
-import LocationServices, { Reason } from '../services/LocationService';
-import { ExposureNotificationNotAvailablePage } from './main/ExposureNotificationNotAvailablePage';
+import LocationServices from '../services/LocationService';
+import ExposureNotifcationService from '../services/ExposureNotificationService';
 import { ExposurePage } from './main/ExposurePage';
 import { NoKnownExposure } from './main/NoKnownExposure';
 import { OffPage } from './main/OffPage';
@@ -16,6 +16,7 @@ import { styles } from './main/style';
 import { UnknownPage } from './main/UnknownPage';
 
 export const Main = () => {
+  const tracingService = isGPS ? LocationServices : ExposureNotifcationService;
   const navigation = useNavigation();
   if (isPlatformAndroid()) {
     StatusBar.setBackgroundColor(Colors.TRANSPARENT);
@@ -23,22 +24,24 @@ export const Main = () => {
     StatusBar.setTranslucent(true);
   }
 
-  const [location, setLocation] = useState({
+  const [trackingInfo, setTrackingInfo] = useState({
     canTrack: true,
     reason: null,
     hasPotentialExposure: false,
   });
 
   const checkForPossibleExposure = () => {
-    BackgroundTaskServices.start();
-    checkIntersect();
+    if (isGPS) {
+      BackgroundTaskServices.start();
+      checkIntersect();
+    }
   };
 
   const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
-    const state = await LocationServices.checkStatusAndStartOrStop();
-    setLocation(state);
-  }, [setLocation]);
+    const state = await tracingService.checkStatusAndStartOrStop();
+    setTrackingInfo(state);
+  }, [tracingService, setTrackingInfo]);
 
   const handleBackPress = () => {
     BackHandler.exitApp(); // works best when the goBack is async
@@ -46,43 +49,36 @@ export const Main = () => {
   };
 
   useEffect(() => {
-    if (isGPS) {
-      updateStateInfo();
-      // refresh state if user backgrounds app
-      AppState.addEventListener('change', updateStateInfo);
+    updateStateInfo();
+    // refresh state if user backgrounds app
+    AppState.addEventListener('change', updateStateInfo);
 
-      // refresh state if settings change
-      const unsubscribe = navigation.addListener('focus', updateStateInfo);
+    // refresh state if settings change
+    const unsubscribe = navigation.addListener('focus', updateStateInfo);
 
-      // handle back press
-      BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+    // handle back press
+    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
-      return () => {
-        AppState.removeEventListener('change', updateStateInfo);
-        BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-        unsubscribe();
-      };
-    } else {
-      return null;
-    }
+    return () => {
+      AppState.removeEventListener('change', updateStateInfo);
+      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+      unsubscribe();
+    };
   }, [navigation, updateStateInfo]);
 
   let page;
 
-  if (!isGPS) {
-    // A BT specific page for when Exposure Notifications are not available
-    // for the Healthcare Authority chosen.
-    page = <ExposureNotificationNotAvailablePage />;
-  } else if (location.canTrack) {
-    if (location.hasPotentialExposure) {
+  if (trackingInfo.canTrack) {
+    if (trackingInfo.hasPotentialExposure) {
       page = <ExposurePage />;
     } else {
       page = <NoKnownExposure />;
     }
   } else {
     if (
-      location.reason === Reason.LOCATION_OFF ||
-      location.reason === Reason.NOT_AUTHORIZED
+      trackingInfo.reason === tracingService.DEVICE_LOCATION_OFF ||
+      trackingInfo.reason === tracingService.APP_NOT_AUTHORIZED ||
+      trackingInfo.reason === tracingService.DEVICE_EXPOSURE_NOTIFICATIONS_OFF
     ) {
       page = <OffPage />;
     } else {
