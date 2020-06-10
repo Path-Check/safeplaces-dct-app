@@ -4,10 +4,6 @@
     "settings_subtitle": "Self reporting survey",
     "cancel": "Cancel",
     "next": "Next",
-    "agree_question_text": "Purpose of this COVID-19 screening",
-    "agree_question_description": "The screening helps you make decisions about seeking appropriate medical care. It is not intended for the diagnosis or treatment of disease or other conditions.",
-    "agree_option_agree": "I agree",
-    "agree_option_disagree": "I do not agree",
     "agree_alert_title": "Agreement Required",
     "agree_alert_description": "To use the SafePaths COVID-19 screening, please indicate you agree and understand its purpose.",
     "caregiver_title": "Notify Caregiver",
@@ -33,7 +29,19 @@
     "share_cta": "I understand and consent",
     "start_title": "Answer questions about your symptoms and medical history to learn what to do next about COVID-19",
     "start_description": "Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.",
-    "start_cta": "Start"
+    "start_cta": "Start",
+    "questions": {
+      "1": "Purpose of this COVID-19 screening",
+      "2": "Have you been diagnosed with covid?",
+      "2a": "When were you diagnosed?",
+      "3": "How old are you?",
+      "4": "Do you have any chronic conditions?",
+      "5": "Do you have other people in your household who might have significantly greater risk of exposure than you do?",
+      "6": "Do you live in a long-term care facility or nursing home?",
+      "7": "Are you feeling ill?",
+      "8": "Do you have any life-threatening symptoms? Symptoms include, but are not limited to:",
+      "9": "Do you have one or more of the following symptoms?",
+    }
   },
   "_display_name": "English",
   "about": {

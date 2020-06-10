@@ -7,24 +7,21 @@ import Colors from '../../constants/colors';
  * @typedef { import(".").SurveyQuestion } SurveyQuestion
  * @typedef { import(".").SurveyOption } SurveyOption
  */
-import i18n from '../../locales/languages';
-import {
-  OPTION_VALUE_AGREE,
-  OPTION_VALUE_DISAGREE,
-  QUESTION_KEY_AGREE,
-  SCREEN_TYPE_RADIO,
-} from './constants';
 import { Info } from './Info';
+import survey from './survey.json';
 
 /** @type {React.FunctionComponent<{}>} */
 export const Start = ({ navigation }) => {
   let { t } = useTranslation();
+  const question = survey.questions.find((q) => q.question_key === "1");
+  const option = survey.options.find((o) => o.key === question.option_key);
+
   return (
     <Info
       ctaAction={() => {
         navigation.push('Question', {
-          question: agreeQuestion,
-          option: agreeOption,
+          question,
+          option
         });
       }}
       backgroundColor={Colors.SECONDARY_10}
@@ -37,28 +34,4 @@ export const Start = ({ navigation }) => {
   );
 };
 
-/** @type {SurveyQuestion} */
-const agreeQuestion = {
-  option_key: QUESTION_KEY_AGREE,
-  question_description: i18n.t('assessment.agree_question_description'),
-  question_key: QUESTION_KEY_AGREE,
-  question_text: i18n.t('assessment.agree_question_text'),
-  question_type: 'TEXT',
-  required: true,
-  screen_type: SCREEN_TYPE_RADIO,
-};
 
-/** @type {SurveyOption} */
-const agreeOption = {
-  key: QUESTION_KEY_AGREE,
-  values: [
-    {
-      label: i18n.t('assessment.agree_option_agree'),
-      value: OPTION_VALUE_AGREE,
-    },
-    {
-      label: i18n.t('assessment.agree_option_disagree'),
-      value: OPTION_VALUE_DISAGREE,
-    },
-  ],
-};

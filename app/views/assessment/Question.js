@@ -113,7 +113,7 @@ export const Question = ({ onNext, onChange, option, question }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Typography use='headline2'>{question.question_text}</Typography>
+        <Typography use='headline2'>{t(`assessment.questions.${question.question_key}`)}</Typography>
       </View>
       <ScrollView style={styles.scrollView}>
         <View style={styles.scrollViewContent}>

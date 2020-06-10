@@ -1,6 +1,14 @@
 {
   "questions": [
     {
+      "option_key": "option_1",
+      "question_description": "The screening helps you make decisions about seeking appropriate medical care. It is not intended for the diagnosis or treatment of disease or other conditions.",
+      "question_key": "1",
+      "question_type": "TEXT",
+      "required": true,
+      "screen_type": "Radio"
+    },
+    {
       "conditions": [
         {
           "jump_to_key": "2a",
@@ -17,7 +25,6 @@
       ],
       "option_key": "option_2",
       "question_key": "2",
-      "question_text": "Have you been diagnosed with covid?",
       "question_type": "TEXT",
       "required": false,
       "screen_type": "Radio"
@@ -25,7 +32,6 @@
     {
       "option_key": "option_2a",
       "question_key": "2a",
-      "question_text": "When were you diagnosed?",
       "question_type": "DATE",
       "required": false,
       "screen_type": "Date"
@@ -33,7 +39,6 @@
     {
       "option_key": "option_3",
       "question_key": "3",
-      "question_text": "How old are you?",
       "question_type": "TEXT",
       "required": false,
       "screen_type": "Radio"
@@ -41,7 +46,6 @@
     {
       "option_key": "option_4",
       "question_key": "4",
-      "question_text": "Do you have any chronic conditions?",
       "question_type": "MULTI",
       "required": false,
       "screen_type": "Checkbox"
@@ -49,7 +53,6 @@
     {
       "option_key": "option_5",
       "question_key": "5",
-      "question_text": "Do you have other people in your household who might have significantly greater risk of exposure than you do?",
       "question_type": "TEXT",
       "required": false,
       "screen_type": "Radio"
@@ -63,7 +66,6 @@
       ],
       "option_key": "option_6",
       "question_key": "6",
-      "question_text": "Do you live in a long-term care facility or nursing home?",
       "question_type": "TEXT",
       "required": false,
       "screen_type": "Radio"
@@ -77,7 +79,6 @@
       ],
       "option_key": "option_7",
       "question_key": "7",
-      "question_text": "Are you feeling ill?",
       "question_type": "TEXT",
       "required": false,
       "screen_type": "Radio"
@@ -91,7 +92,6 @@
       ],
       "option_key": "option_8",
       "question_key": "8",
-      "question_text": "Do you have any life-threatening symptoms? Symptoms include, but are not limited to:",
       "question_description": "• Moderate to severe difficulty breathing (unable to speak full sentences)\n• Coughing up blood (more than about 1 teaspoon)\n• Signs of low blood pressure (feeling cold, pale, clammy skin, light-headed, too weak to stand)\n• Gasping for air or cannot talk without catching your breath (extremely difficult breathing), Blue-colored lips or face\n• Severe and constant pain or pressure in the chest\n• Severe and constant dizziness or lightheadedness\n• Acting confused (new or worsening)\n• Unconscious or very difficult to wake up\n• Slurred speech (new or worsening)\n• New seizure or seizures that won’t stop",
       "question_type": "TEXT",
       "required": false,
@@ -134,7 +134,6 @@
       ],
       "option_key": "option_9",
       "question_key": "9",
-      "question_text": "Do you have one or more of the following symptoms?",
       "question_type": "MULTI",
       "required": false,
       "screen_type": "Checkbox"
@@ -142,7 +141,6 @@
     {
       "option_key": "option_end",
       "question_key": "end_distancing",
-      "question_text": "",
       "question_type": "End",
       "required": false,
       "screen_type": "EndDistancing"
@@ -150,7 +148,6 @@
     {
       "option_key": "option_end",
       "question_key": "end_emergency",
-      "question_text": "",
       "question_type": "End",
       "required": false,
       "screen_type": "EndEmergency"
@@ -158,7 +155,6 @@
     {
       "option_key": "option_end",
       "question_key": "end_caregiver",
-      "question_text": "",
       "question_type": "End",
       "required": false,
       "screen_type": "EndCaregiver"
@@ -166,13 +162,25 @@
     {
       "option_key": "option_end",
       "question_key": "end_isolate",
-      "question_text": "",
       "question_type": "End",
       "required": false,
       "screen_type": "EndIsolate"
     }
   ],
   "options": [
+    {
+      "key": "option_1",
+      "values": [
+        {
+          "label": "I agree",
+          "value": "0"
+        },
+        {
+          "label": "I do not agree",
+          "value": "1"
+        }
+      ]
+    },
     {
       "key": "option_2",
       "values": [

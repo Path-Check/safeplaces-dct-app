@@ -6,11 +6,14 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import { SvgXml } from 'react-native-svg';
 import { Icons } from '../../assets';
 import Colors from '../../constants/colors';
-import { useSurvey } from '../../helpers/CustomHooks';
 import i18n from '../../locales/languages';
-import { AnswersContext, MetaContext, SurveyContext } from './Context';
+import {
+  AnswersContext,
+  MetaContext,
+} from './Context';
 import { Question } from './Question';
 import { Start } from './Start';
+import survey from './survey.json';
 import {
   END_ROUTES,
   OPTION_VALUE_DISAGREE,
@@ -65,7 +68,6 @@ const Stack = createNativeStackNavigator();
 const Assessment = ({ navigation }) => {
   /** @type {React.MutableRefObject<SurveyAnswers>} */
   const answers = useRef({});
-  const survey = useSurvey();
 
   const QuestionScreen = useMemo(
     // memoize assessment question
@@ -73,7 +75,7 @@ const Assessment = ({ navigation }) => {
       <Question
         {...route.params}
         onNext={() => {
-          onNextQuestion({ answers, navigation, route, survey });
+          onNextQuestion({ answers, navigation, route });
         }}
         onChange={(value) => {
           let { question } = route.params;
@@ -81,7 +83,7 @@ const Assessment = ({ navigation }) => {
         }}
       />
     ),
-    [answers, survey],
+    [answers],
   );
 
   const AssessmentCancel = () => (
@@ -111,96 +113,92 @@ const Assessment = ({ navigation }) => {
 
   return (
     <MetaContext.Provider value={meta}>
-      <SurveyContext.Provider value={survey}>
-        {/* Since answers.current is on object, it won't trigger context updates
-        when mutated, but that's ok — just trying to avoid prop drilling.*/}
-        <AnswersContext.Provider value={answers.current}>
-          <Stack.Navigator
-            initialRouteName='Start'
-            screenOptions={{
-              cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-              cardStyle: {
-                backgroundColor: 'transparent',
+      <AnswersContext.Provider value={answers.current}>
+        <Stack.Navigator
+          initialRouteName='Start'
+          screenOptions={{
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            cardStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}>
+          <Stack.Screen
+            component={Start}
+            name='Start'
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.SECONDARY_10,
               },
-            }}>
-            <Stack.Screen
-              component={Start}
-              name='Start'
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
-                },
-              }}
-            />
-            <Stack.Screen
-              component={QuestionScreen}
-              name='Question'
-              options={screenOptions}
-            />
-            <Stack.Screen
-              component={Complete}
-              name='EndComplete'
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
-                },
-              }}
-            />
-            <Stack.Screen
-              component={Share}
-              name='EndShare'
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
-                },
-              }}
-            />
-            <Stack.Screen
-              component={Caregiver}
-              name={SCREEN_TYPE_CAREGIVER}
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
-                },
-              }}
-            />
-            <Stack.Screen
-              component={Distancing}
-              name={SCREEN_TYPE_DISTANCING}
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
-                },
-              }}
-            />
-            <Stack.Screen
-              component={Emergency}
-              name={SCREEN_TYPE_EMERGENCY}
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
-                },
-              }}
-            />
-            <Stack.Screen
-              component={Isolate}
-              name={SCREEN_TYPE_ISOLATE}
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
-                },
-              }}
-            />
-          </Stack.Navigator>
-        </AnswersContext.Provider>
-      </SurveyContext.Provider>
+            }}
+          />
+          <Stack.Screen
+            component={QuestionScreen}
+            name='Question'
+            options={screenOptions}
+          />
+          <Stack.Screen
+            component={Complete}
+            name='EndComplete'
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.SECONDARY_10,
+              },
+            }}
+          />
+          <Stack.Screen
+            component={Share}
+            name='EndShare'
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.SECONDARY_10,
+              },
+            }}
+          />
+          <Stack.Screen
+            component={Caregiver}
+            name={SCREEN_TYPE_CAREGIVER}
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.SECONDARY_10,
+              },
+            }}
+          />
+          <Stack.Screen
+            component={Distancing}
+            name={SCREEN_TYPE_DISTANCING}
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.SECONDARY_10,
+              },
+            }}
+          />
+          <Stack.Screen
+            component={Emergency}
+            name={SCREEN_TYPE_EMERGENCY}
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.SECONDARY_10,
+              },
+            }}
+          />
+          <Stack.Screen
+            component={Isolate}
+            name={SCREEN_TYPE_ISOLATE}
+            options={{
+              ...screenOptions,
+              headerStyle: {
+                backgroundColor: Colors.SECONDARY_10,
+              },
+            }}
+          />
+        </Stack.Navigator>
+      </AnswersContext.Provider>
     </MetaContext.Provider>
   );
 };
@@ -208,10 +206,9 @@ const Assessment = ({ navigation }) => {
 export default Assessment;
 
 /**
- * @param survey {Survey}
  * @param key {string}
  */
-function getQuestion(survey, key) {
+function getQuestion(key) {
   const question = survey.questions.find((q) => q.question_key === key);
   const option = survey.options.find((o) => o.key === question.option_key);
   return { question, option };
@@ -222,10 +219,9 @@ function getQuestion(survey, key) {
  *   answers: React.MutableRefObject<SurveyAnswers>;
  *   navigation: any;
  *   route: any;
- *   survey: Survey;
  * }}
  */
-function onNextQuestion({ answers, navigation, route, survey }) {
+function onNextQuestion({ answers, navigation, route}) {
   /** @type {{ question: SurveyQuestion }} */
   const { question } = route.params;
   const response = answers.current[question.question_key];
@@ -235,9 +231,9 @@ function onNextQuestion({ answers, navigation, route, survey }) {
     }
   }
 
-  const nextKey = selectNextQuestion(survey, question, response);
+  const nextKey = selectNextQuestion(question, response);
 
-  let nextQuestion = getQuestion(survey, nextKey);
+  let nextQuestion = getQuestion(nextKey);
   if (nextQuestion.question.question_type === SCREEN_TYPE_END) {
     if (END_ROUTES.includes(nextQuestion.question.screen_type))
       return navigation.push(nextQuestion.question.screen_type);
@@ -250,7 +246,7 @@ function onNextQuestion({ answers, navigation, route, survey }) {
   });
 }
 
-function selectNextQuestion(survey, question, answer) {
+function selectNextQuestion(question, answer) {
   let index = survey.questions.findIndex(
     (q) => q.question_key === question.question_key,
   );
