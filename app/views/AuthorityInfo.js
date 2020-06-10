@@ -59,7 +59,7 @@ class AuthorityInfoScreen extends Component {
 
   async toggleAutoSubscribe() {
     this.setState(
-      prevState => ({
+      (prevState) => ({
         isAutoSubscribed: !prevState.isAutoSubscribed,
       }),
       async () => {

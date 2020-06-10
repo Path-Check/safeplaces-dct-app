@@ -25,6 +25,8 @@ interface NavigationBarWrapperProps {
   onBackPress: () => void;
   includeBottomNav: boolean;
   includeBackButton?: boolean;
+  rightTitle?: string;
+  onRightPress?: () => void;
 }
 export interface ThemeProps {
   navBar: string;
@@ -43,7 +45,7 @@ export const NavigationBarWrapper = ({
   onBackPress,
   includeBackButton = true,
   rightTitle,
-  onRightPress
+  onRightPress,
 }: NavigationBarWrapperProps): JSX.Element => {
   const theme = useTheme<{ navBar: string }>();
 
