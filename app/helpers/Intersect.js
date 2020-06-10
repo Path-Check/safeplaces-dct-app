@@ -33,8 +33,8 @@ import {
 import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
 import languages from '../locales/languages';
 
-import getCursor from '../api/healthcareAuthorities/getCursorApi'
-import getHealthAuthorities from '../api/healthcareAuthorities/getHealthcareAuthoritiesApi'
+import getCursor from '../api/healthcareAuthorities/getCursorApi';
+import getHealthAuthorities from '../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
 
 /**
  * Performs "safety" cleanup of the data, to help ensure that we actually have location
@@ -84,9 +84,9 @@ export function discardOldData(
 ) {
   dayjs.extend(dayOfYear);
   const todayDOY = dayjs().dayOfYear();
-  const firstValid = localDataPoints.findIndex((ldp) => (
-    todayDOY - dayjs(ldp.time).dayOfYear() < exposureWindowDays
-  ));
+  const firstValid = localDataPoints.findIndex(
+    (ldp) => todayDOY - dayjs(ldp.time).dayOfYear() < exposureWindowDays,
+  );
   return localDataPoints.slice(firstValid, localDataPoints.length);
 }
 
@@ -134,12 +134,11 @@ export function fillLocationGaps(
   gpsPeriodMS = MIN_LOCATION_UPDATE_MS,
 ) {
   // helper function that creates and populates an array with correct timestamps
-  const generateGapPoints = (startTime, gapSize, gpsPeriodMS) => (
+  const generateGapPoints = (startTime, gapSize, gpsPeriodMS) =>
     [...new Array(gapSize)].map((_, i) => ({
       time: startTime + (i + 1) * gpsPeriodMS,
       hashes: [],
-    }))
-  );
+    }));
 
   const filled = [];
   for (let i = 0; i < localData.length; i++) {
@@ -176,9 +175,9 @@ export function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
   // iterate over recorded GPS data points
   for (const dataPoint of localGPSDataPoints) {
     // check if any of hashes in this GPS data point is contained in the HA's list of concern points
-    const hasCrossedPaths = dataPoint.hashes.some((h) => (
-      concernPointHashes.has(h)
-    ));
+    const hasCrossedPaths = dataPoint.hashes.some((h) =>
+      concernPointHashes.has(h),
+    );
     if (hasCrossedPaths) {
       // paths crossed, set match flag
       dataPoint.hasMatch = true;
@@ -395,34 +394,32 @@ async function asyncCheckIntersect() {
           pages,
         } = await getCursor(authority);
 
-        let currHA = localHAData.find((ha) => (ha.key === name))
+        let currHA = localHAData.find((ha) => ha.key === name);
         if (!currHA) {
           currHA = {
             key: name,
             url: info_website_url,
             cursor: '',
-          }
+          };
           localHAData.push(currHA);
         }
         // start timestamp of the last stored cursor for this HA
         const prevCursorStart = parseTimestampCursor(currHA.cursor)[0];
-        
+
         // Update the news array with the info from the authority
         name_news.push({
           name,
           news_url: info_website_url,
         });
 
-        for (const {
-          startTimestamp,
-          endTimestamp,
-          filename,
-        } of pages) {
+        for (const { startTimestamp, endTimestamp, filename } of pages) {
           // skip pages we read before
           if (prevCursorStart >= startTimestamp) continue;
-          // fetch non-analyzed page 
-          const concernPointsPage = await retrieveUrlAsJson(`${api_endpoint_url}${filename}`);
-          
+          // fetch non-analyzed page
+          const concernPointsPage = await retrieveUrlAsJson(
+            `${api_endpoint_url}${filename}`,
+          );
+
           // check if any of local points hashes are contained in this page
           updateMatchFlags(
             locationArray,
@@ -453,11 +450,12 @@ async function asyncCheckIntersect() {
   //  difference between no data (==-1) and exposure data (>=0), there
   //  are a total of 3 cases to consider.
   if (!dayBins) dayBins = tempDayBins;
-  else dayBins = tempDayBins.map((currentValue, i) => {
-    if (currentValue < 0) return dayBins[i];
-    if (dayBins[i] < 0) return currentValue;
-    return currentValue + dayBins[i];
-  });
+  else
+    dayBins = tempDayBins.map((currentValue, i) => {
+      if (currentValue < 0) return dayBins[i];
+      if (dayBins[i] < 0) return currentValue;
+      return currentValue + dayBins[i];
+    });
 
   // Store the news array for the authorities found.
   SetStoreData(AUTHORITY_NEWS, name_news);
@@ -479,9 +477,7 @@ async function asyncCheckIntersect() {
 }
 
 function parseTimestampCursor(cursorString) {
-  return cursorString ? (
-    cursorString.split('_').map((a) => Number(a))
-  ) : [0, 0];
+  return cursorString ? cursorString.split('_').map((a) => Number(a)) : [0, 0];
 }
 
 /**
