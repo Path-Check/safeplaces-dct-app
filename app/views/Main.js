@@ -65,21 +65,25 @@ export const Main = () => {
   };
 
   useEffect(() => {
-    updateStateInfo();
-    // refresh state if user backgrounds app
-    AppState.addEventListener('change', updateStateInfo);
+    if (isGPS) {
+      updateStateInfo();
+      // refresh state if user backgrounds app
+      AppState.addEventListener('change', updateStateInfo);
 
-    // refresh state if settings change
-    const unsubscribe = navigation.addListener('focus', updateStateInfo);
+      // refresh state if settings change
+      const unsubscribe = navigation.addListener('focus', updateStateInfo);
 
-    // handle back press
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+      // handle back press
+      BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
-    return () => {
-      AppState.removeEventListener('change', updateStateInfo);
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-      unsubscribe();
-    };
+      return () => {
+        AppState.removeEventListener('change', updateStateInfo);
+        BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+        unsubscribe();
+      };
+    } else {
+      return null;
+    }
   }, [navigation, updateStateInfo]);
 
   let page;
