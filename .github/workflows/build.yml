@@ -22,6 +22,7 @@ jobs:
       - name: Update .env file
         run: |
           printenv >> .env
+          cat .env
 
       - uses: actions/checkout@v2
 
