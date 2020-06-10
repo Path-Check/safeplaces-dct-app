@@ -17,7 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ENVFILE: .env.release
-      COLOR_BG: ${{ secrets.COLOR_BG }}
       MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
       COV_CASES_URL: ${{ secrets.COV_CASES_URL }}
       FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
