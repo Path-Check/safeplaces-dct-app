@@ -20,10 +20,10 @@ import Colors from '../constants/colors';
 const widthScale = Math.min(Dimensions.get('window').width / 400, 1.0);
 
 interface NavigationBarWrapperProps {
-  children: JSX.Element;
+  children: React.ReactNode;
   title: string;
   onBackPress: () => void;
-  includeBottomNav: boolean;
+  includeBottomNav?: boolean;
   includeBackButton?: boolean;
 }
 export interface ThemeProps {
