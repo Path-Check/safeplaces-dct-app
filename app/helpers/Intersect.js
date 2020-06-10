@@ -33,6 +33,9 @@ import {
 import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
 import languages from '../locales/languages';
 
+import getCursor from '../api/healthcareAuthorities/getCursorApi'
+import getHealthAuthorities from '../api/healthcareAuthorities/getHealthcareAuthoritiesApi'
+
 /**
  * Performs "safety" cleanup of the data, to help ensure that we actually have location
  *   data in the array.  Also fixes cases with extra info or values coming in as strings.
@@ -81,9 +84,9 @@ export function discardOldData(
 ) {
   dayjs.extend(dayOfYear);
   const todayDOY = dayjs().dayOfYear();
-  const firstValid = localDataPoints.findIndex(
-    (dp) => todayDOY - dayjs(dp.time).dayOfYear() < exposureWindowDays,
-  );
+  const firstValid = localDataPoints.findIndex((ldp) => (
+    todayDOY - dayjs(ldp.time).dayOfYear() < exposureWindowDays
+  ));
   return localDataPoints.slice(firstValid, localDataPoints.length);
 }
 
@@ -93,7 +96,7 @@ export function discardOldData(
  * data points for that day, otherwise zero.
  *
  * This method should be called before filling the gaps
- * in the local points data becouse the filled data would
+ * in the local points data because the filled data would
  * generate the same result as filling day bins with zeros.
  *
  * @param {array} localDataPoints
@@ -121,7 +124,7 @@ export function initLocationBins(
  * larger than <gpsPeriodMS>.
  *
  * The number of elements inserted between two elements is one less
- * than the number of gps periods that occured between the two points.
+ * than the number of gps periods that ocurred between the two points.
  *
  * @param {array} localData - array of stored gps points with gaps
  * @param {int} gpsPeriodMS - local points sampling period
@@ -131,11 +134,12 @@ export function fillLocationGaps(
   gpsPeriodMS = MIN_LOCATION_UPDATE_MS,
 ) {
   // helper function that creates and populates an array with correct timestamps
-  const generateGapPoints = (startTime, gapSize, gpsPeriodMS) =>
+  const generateGapPoints = (startTime, gapSize, gpsPeriodMS) => (
     [...new Array(gapSize)].map((_, i) => ({
       time: startTime + (i + 1) * gpsPeriodMS,
       hashes: [],
-    }));
+    }))
+  );
 
   const filled = [];
   for (let i = 0; i < localData.length; i++) {
@@ -172,9 +176,9 @@ export function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
   // iterate over recorded GPS data points
   for (const dataPoint of localGPSDataPoints) {
     // check if any of hashes in this GPS data point is contained in the HA's list of concern points
-    const hasCrossedPaths = dataPoint.hashes.some((h) =>
-      concernPointHashes.has(h),
-    );
+    const hasCrossedPaths = dataPoint.hashes.some((h) => (
+      concernPointHashes.has(h)
+    ));
     if (hasCrossedPaths) {
       // paths crossed, set match flag
       dataPoint.hasMatch = true;
@@ -193,17 +197,17 @@ export function updateMatchFlags(localGPSDataPoints, concernPointHashes) {
 export function fillDayBins(
   dayBins,
   localGPSDataPoints,
-  concernTimeframeMS = DEFAULT_CONCERN_TIME_FRAME_MINUTES * 60e3,
+  concernTimeFrameMS = DEFAULT_CONCERN_TIME_FRAME_MINUTES * 60e3,
   thresholdMatchPercent = DEFAULT_THRESHOLD_MATCH_PERCENT,
   gpsPeriodMS = MIN_LOCATION_UPDATE_MS,
 ) {
   dayjs.extend(dayOfYear);
-  // number of data points that fit in the timeframe
-  const pointsInFrame = Math.round(concernTimeframeMS / gpsPeriodMS);
-  // number of matches in timeframe for it to be considered as an exposure period
+  // number of data points that fit in the time frame
+  const pointsInFrame = Math.round(concernTimeFrameMS / gpsPeriodMS);
+  // number of matches in time frame for it to be considered as an exposure period
   const thresholdMatches = Math.ceil(pointsInFrame * thresholdMatchPercent);
 
-  // for each element, calculate the number of matches that occured up until that element
+  // for each element, calculate the number of matches that ocurred up until that element
   let matchCount = 0;
   const prevMatchCounts = localGPSDataPoints.map((p) =>
     p.hasMatch ? matchCount++ : matchCount,
@@ -215,7 +219,7 @@ export function fillDayBins(
   // { start (inclusive) , end (non-inclusive) }.
   const exposures = [];
   let currExposure = null;
-  // slide the timeframe over recorded data points
+  // slide the time frame over recorded data points
   for (
     let i = 0, j = i + pointsInFrame;
     j <= localGPSDataPoints.length;
@@ -293,9 +297,9 @@ export function fillDayBins(
   return dayBins;
 }
 
-// rounds the number of miliseconds to nearest valid exposure period
-function roundExposure(difMS, gpsPeriodMS) {
-  return Math.round(difMS / gpsPeriodMS) * gpsPeriodMS;
+// rounds the number of milliseconds to nearest valid exposure period
+function roundExposure(diffMS, gpsPeriodMS) {
+  return Math.round(diffMS / gpsPeriodMS) * gpsPeriodMS;
 }
 
 /**
@@ -344,7 +348,7 @@ export async function checkIntersect() {
 }
 
 /**
- * Async run of the intersection.  Also saves off the news sources that the authories specified,
+ * Async run of the intersection.  Also saves off the news sources that the authorities specified,
  *    since that comes from the authorities in the same download.
  *
  * Returns the array of day bins (mostly for debugging purposes)
@@ -373,54 +377,68 @@ async function asyncCheckIntersect() {
   let tempDayBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS, locationArray);
   locationArray = fillLocationGaps(locationArray, gpsPeriodMS);
 
-  // get the health authorities
-  const authorities = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
-  const updatedAuthorities = [];
+  const authorities = await getHealthAuthorities();
+
+  // we also need locally saved data so we can know the last read page for each HA
+  let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
+  if (!localHAData) localHAData = [];
 
   if (authorities) {
     for (const authority of authorities) {
-      // init last read cursor string that is stored with HA data
-      let cursor = authority.cursor;
-      // start timestamp of the last stored cursor for this HA
-      const prevCursorStart = parseTimestampCursor(cursor)[0];
-
       try {
         let {
-          authority_name,
-          info_website,
+          name,
+          api_endpoint_url,
+          info_website_url,
           notification_threshold_percent,
           notification_threshold_timeframe,
           pages,
-        } = await retrieveUrlAsJson(authority.url);
+        } = await getCursor(authority);
 
+        let currHA = localHAData.find((ha) => (ha.key === name))
+        if (!currHA) {
+          currHA = {
+            key: name,
+            url: info_website_url,
+            cursor: '',
+          }
+          localHAData.push(currHA);
+        }
+        // start timestamp of the last stored cursor for this HA
+        const prevCursorStart = parseTimestampCursor(currHA.cursor)[0];
+        
         // Update the news array with the info from the authority
         name_news.push({
-          name: authority_name,
-          news_url: info_website,
+          name,
+          news_url: info_website_url,
         });
 
-        for (const page of pages) {
+        for (const {
+          startTimestamp,
+          endTimestamp,
+          filename,
+        } of pages) {
           // skip pages we read before
-          if (prevCursorStart > page.startTimestamp) continue;
-          // fetch the page we didn't have before
-          const concernPointsPage = retrieveUrlAsJson(page.filename);
-
+          if (prevCursorStart >= startTimestamp) continue;
+          // fetch non-analyzed page 
+          const concernPointsPage = await retrieveUrlAsJson(`${api_endpoint_url}${filename}`);
+          
           // check if any of local points hashes are contained in this page
           updateMatchFlags(
             locationArray,
             new Set(concernPointsPage.concern_point_hashes),
           );
 
-          cursor = `${page.startTimestamp}_${page.endTimestamp}`;
+          currHA.cursor = `${startTimestamp}_${endTimestamp}`;
         }
 
-        const timeframeMS = notification_threshold_timeframe * 60e3;
-        const matchCoeff = notification_threshold_percent / 100;
+        const timeFrameMS = notification_threshold_timeframe * 60e3;
+        const matchRate = notification_threshold_percent / 100;
         tempDayBins = fillDayBins(
           tempDayBins,
           locationArray,
-          timeframeMS,
-          matchCoeff,
+          timeFrameMS,
+          matchRate,
           gpsPeriodMS,
         );
       } catch (error) {
@@ -428,22 +446,20 @@ async function asyncCheckIntersect() {
         //       Should do better than this.
         console.log('[authority] fetch/parse error :', error);
       }
-      // at last, we update the last read cursor for the current HA
-      updatedAuthorities.push({ ...authority, cursor });
     }
   }
 
   // Update each day's bin with the result from the intersection.  To keep the
   //  difference between no data (==-1) and exposure data (>=0), there
   //  are a total of 3 cases to consider.
-  dayBins = tempDayBins.map((currentValue, i) => {
-    if (dayBins == null) return currentValue;
+  if (!dayBins) dayBins = tempDayBins;
+  else dayBins = tempDayBins.map((currentValue, i) => {
     if (currentValue < 0) return dayBins[i];
     if (dayBins[i] < 0) return currentValue;
     return currentValue + dayBins[i];
   });
 
-  // Store the news arary for the authorities found.
+  // Store the news array for the authorities found.
   SetStoreData(AUTHORITY_NEWS, name_news);
 
   // if any of the bins are > 0, tell the user
@@ -453,15 +469,19 @@ async function asyncCheckIntersect() {
   SetStoreData(CROSSED_PATHS, dayBins); // TODO: Store per authority?
 
   // store updated cursors
-  SetStoreData(AUTHORITY_SOURCE_SETTINGS, updatedAuthorities);
+  SetStoreData(AUTHORITY_SOURCE_SETTINGS, localHAData);
 
   // save off the current time as the last checked time
-  let unixtimeUTC = dayjs().valueOf();
-  SetStoreData(LAST_CHECKED, unixtimeUTC);
+  let unixTimeUTC = dayjs().valueOf();
+  SetStoreData(LAST_CHECKED, unixTimeUTC);
+
+  return dayBins;
 }
 
 function parseTimestampCursor(cursorString) {
-  return cursorString ? cursorString.split('_') : [0, 0];
+  return cursorString ? (
+    cursorString.split('_').map((a) => Number(a))
+  ) : [0, 0];
 }
 
 /**
@@ -477,12 +497,11 @@ function notifyUserOfRisk() {
 /**
  * Return Json retrieved from a URL
  *
- * @param {*} url
+ * @param {string} url
  */
 async function retrieveUrlAsJson(url) {
   let response = await fetch(url);
-  let responseJson = await response.json();
-  return responseJson;
+  if (response.ok) return response.json();
 }
 
 /** Set the app into debug mode */
@@ -493,7 +512,7 @@ export function enableDebugMode() {
   let pseudoBin = [];
   for (let i = 0; i < MAX_EXPOSURE_WINDOW_DAYS; i++) {
     let intersections =
-      Math.max(0, Math.floor(Math.random() * 50 - 20)) * 60 * 1000; // in millis
+      Math.max(0, Math.floor(Math.random() * 50 - 20)) * 60 * 1000; // in milliseconds
     if (intersections == 0 && Math.random() < 0.3) intersections = -1; // about 30% of negative will be set as no data
     pseudoBin.push(intersections);
   }
