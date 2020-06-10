@@ -24,6 +24,8 @@ jobs:
       GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
     steps:
       - name: Update .env file
+        run: |
+          printenv
 
       - uses: actions/checkout@v2
 
@@ -71,7 +73,9 @@ jobs:
       GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
     steps:
       - name: Update .env file
-
+        run: |
+          printenv
+          
       - uses: actions/checkout@master
 
       - name: Set XCode Version
