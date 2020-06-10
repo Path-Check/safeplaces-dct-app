@@ -16,7 +16,6 @@ jobs:
   build-android:
     runs-on: ubuntu-latest
     env:
-      ENVFILE: .env.release
       MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
       COV_CASES_URL: ${{ secrets.COV_CASES_URL }}
       FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
@@ -26,7 +25,7 @@ jobs:
     steps:
       - name: Update .env file
         run: |
-          printenv >> .env.release
+          printenv >> .env
 
       - uses: actions/checkout@v2
 
