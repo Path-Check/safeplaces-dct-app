@@ -13,22 +13,14 @@ on:
       - master
 
 env:
-  MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
-  COV_CASES_URL: ${{ secrets.COV_CASES_URL }}
-  FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
-  REST_COUNTRIES_URL: ${{ secrets.REST_COUNTRIES_URL }}
-  HEALTH_SERVICES_URL: ${{ secrets.HEALTH_SERVICES_URL }} 
-  GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
   ENVFILE: .env.release
+  MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
+  GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
 
 jobs:
   build-android:
     runs-on: ubuntu-latest
     steps:
-
-      - name: Update .env file
-        run: |
-          printenv|sort
 
       - uses: actions/checkout@v2
 
