@@ -13,7 +13,6 @@ on:
       - master
 
 env:
-  ENVFILE: .env.release
   MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
   GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
 
@@ -21,6 +20,10 @@ jobs:
   build-android:
     runs-on: ubuntu-latest
     steps:
+
+      - name: Update .env file
+        run: |
+          printenv >> .env.release
 
       - uses: actions/checkout@v2
 
