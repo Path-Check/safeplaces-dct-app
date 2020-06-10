@@ -13,10 +13,9 @@ test('base', () => {
 
 test('cta', () => {
   const push = jest.fn();
-  const { getByTestId } = render(
-    <Caregiver navigation={{ push }} />,
-    { wrapper: Wrapper },
-  );
+  const { getByTestId } = render(<Caregiver navigation={{ push }} />, {
+    wrapper: Wrapper,
+  });
   const cta = getByTestId('assessment-button');
   fireEvent.press(cta);
   expect(push).toHaveBeenCalledWith('MyRoute');

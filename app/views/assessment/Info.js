@@ -68,11 +68,7 @@ export const Info = ({
         <View style={assessmentStyles.footer}>
           {footer}
           {ctaTitle && (
-            <Button
-              color={ctaColor}
-              onPress={ctaAction}
-              title={ctaTitle}
-            />
+            <Button color={ctaColor} onPress={ctaAction} title={ctaTitle} />
           )}
         </View>
       </ImageBackground>

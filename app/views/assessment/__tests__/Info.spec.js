@@ -30,11 +30,7 @@ test('cta', () => {
 
 test('description', () => {
   const { getByTestId } = render(
-    <Info
-      description='Hello'
-      image={{ uri: 'image.png' }}
-      title='End'
-    />,
+    <Info description='Hello' image={{ uri: 'image.png' }} title='End' />,
   );
   expect(getByTestId('description')).toBeTruthy();
 });

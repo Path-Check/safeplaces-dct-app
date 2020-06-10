@@ -8,11 +8,7 @@ import { Icons } from '../../assets';
 import Colors from '../../constants/colors';
 import { useSurvey } from '../../helpers/CustomHooks';
 import i18n from '../../locales/languages';
-import {
-  AnswersContext,
-  MetaContext,
-  SurveyContext,
-} from './Context';
+import { AnswersContext, MetaContext, SurveyContext } from './Context';
 import { Question } from './Question';
 import { Start } from './Start';
 import {
