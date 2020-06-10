@@ -2,7 +2,7 @@ import PushNotification from 'react-native-push-notification';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import { AUTHORITIES_LIST_URL } from '../constants/authorities';
-import { MEPYD_C5I_SERVICE } from '../constants/DR/baseUrls';
+import { MEPYD_C5I_API_URL, MEPYD_C5I_SERVICE } from '../constants/DR/baseUrls';
 import {
   AUTHORITY_SOURCE_SETTINGS,
   ENABLE_HCA_AUTO_SUBSCRIPTION,
@@ -103,7 +103,7 @@ class HCAService {
     this.offsetLocation(mostNorthEastPoint, 100); //Add +100m to area covered by user
     this.offsetLocation(mostSouthWestPoint, 100);
 
-    const baseUrl = `${MEPYD_C5I_SERVICE}/contact_tracing/api/Contact`;
+    const baseUrl = `${MEPYD_C5I_SERVICE}/${MEPYD_C5I_API_URL}/Contact`;
     const url =
       mostNorthEastPoint && mostSouthWestPoint
         ? `${baseUrl}?NE=${mostNorthEastPoint.latitude},${mostNorthEastPoint.longitude}&SW=${mostSouthWestPoint.latitude},${mostSouthWestPoint.longitude}`

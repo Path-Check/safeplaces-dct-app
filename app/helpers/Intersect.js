@@ -10,6 +10,7 @@ import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import { isPlatformiOS } from './../Util';
+import { GOV_DO_TOKEN } from '../constants/DR/baseUrls';
 import {
   CONCERN_TIME_WINDOW_MINUTES,
   DEFAULT_EXPOSURE_PERIOD_MINUTES,
@@ -398,7 +399,11 @@ function notifyUserOfRisk() {
  * @param {*} url
  */
 async function retrieveUrlAsJson(url) {
-  let response = await fetch(url);
+  let response = await fetch(url, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json', gov_do_token: GOV_DO_TOKEN },
+  });
+
   let responseJson = await response.json();
   return responseJson;
 }
