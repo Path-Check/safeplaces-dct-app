@@ -100,6 +100,7 @@ export default function UserInfo({ navigation }) {
           body: JSON.stringify(data.body),
         },
       );
+
       response = await response.json();
       if (response.valid !== undefined) {
         if (response.valid) {
