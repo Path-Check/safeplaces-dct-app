@@ -155,20 +155,18 @@ export default class LocationServices {
   }
 
   static async findNewAuthorities() {
-    if(!isBackgroundGeolocationStarted) {
+    if (!isBackgroundGeolocationStarted) {
       isBackgroundGeolocationStarted = true;
-      BackgroundTimer.runBackgroundTimer( async () => { 
-
-        //code that will be called every 15 seconds 
+      BackgroundTimer.runBackgroundTimer(async () => {
+        //code that will be called every 15 seconds
         const mostRecentUserLoc = await LocationServices.getLocationData();
 
-        if(mostRecentUserLoc.length > 0) {
+        if (mostRecentUserLoc.length > 0) {
           BackgroundTimer.stopBackgroundTimer();
           HCAService.findNewAuthorities();
         }
-      },15000);     
+      }, 15000);
     }
-       
   }
 
   static async stop() {

@@ -77,15 +77,15 @@ class AddManualURLScreen extends Component {
     );
   }
 
-  setUrlText = urlText => this.setState({ urlText });
+  setUrlText = (urlText) => this.setState({ urlText });
 
   /**
    * Checks if the user selected any authorities whose `url` matches
    * the `url` param.
    * @param {string} url
    */
-  hasExistingAuthorityWithUrl = url => {
-    return this.state.selectedAuthorities.some(x => x.url === url);
+  hasExistingAuthorityWithUrl = (url) => {
+    return this.state.selectedAuthorities.some((x) => x.url === url);
   };
   /**
    * Reset the URL input field to it's original/default settings
@@ -123,7 +123,9 @@ class AddManualURLScreen extends Component {
         />
         <TextInput
           placeholder={'www.healthauthority.com'}
-          onChangeText={urlText => this.setState({ urlText, showError: false })}
+          onChangeText={(urlText) =>
+            this.setState({ urlText, showError: false })
+          }
           value={this.state.urlText}
           style={{
             flex: 1,

@@ -66,7 +66,7 @@ class EditAuthoritiesScreen extends Component {
 
   async fetchAllAuthoritiesFromYML() {
     let ymlAuthorities = await HCAService.getAuthoritiesList();
-    ymlAuthorities = ymlAuthorities.map(function(item) {
+    ymlAuthorities = ymlAuthorities.map(function (item) {
       const key = Object.keys(item)[0];
       const url = Object.values(item)[0][0].url;
       return { key, url };
@@ -81,13 +81,13 @@ class EditAuthoritiesScreen extends Component {
 
   async setSelection() {
     let { usersAuthorities, allHealthAuthorities } = this.state;
-    const selectedAuthoritiesKeys = usersAuthorities.map(function(item) {
+    const selectedAuthoritiesKeys = usersAuthorities.map(function (item) {
       if (item.isManual) {
         allHealthAuthorities.push(item);
       }
       return item.key;
     });
-    const modifiedArray = allHealthAuthorities.map(item =>
+    const modifiedArray = allHealthAuthorities.map((item) =>
       Object.assign({
         ...item,
         isSelected: selectedAuthoritiesKeys.includes(item.key),
@@ -98,7 +98,7 @@ class EditAuthoritiesScreen extends Component {
 
   handleSaveClick() {
     const { allHealthAuthorities } = this.state;
-    const selectedArray = allHealthAuthorities.filter(item => {
+    const selectedArray = allHealthAuthorities.filter((item) => {
       return item.isSelected;
     });
     SetStoreData(AUTHORITY_SOURCE_SETTINGS, selectedArray);
