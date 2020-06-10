@@ -12,27 +12,23 @@ on:
       - release-candidate
       - master
 
+env:
+  MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
+  COV_CASES_URL: ${{ secrets.COV_CASES_URL }}
+  FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
+  REST_COUNTRIES_URL: ${{ secrets.REST_COUNTRIES_URL }}
+  HEALTH_SERVICES_URL: ${{ secrets.HEALTH_SERVICES_URL }} 
+  GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
+  ENVFILE: .env.release
+
 jobs:
   build-android:
     runs-on: ubuntu-latest
-    env:
-      MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
-      COV_CASES_URL: ${{ secrets.COV_CASES_URL }}
-      FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
-      REST_COUNTRIES_URL: ${{ secrets.REST_COUNTRIES_URL }}
-      HEALTH_SERVICES_URL: ${{ secrets.HEALTH_SERVICES_URL }} 
-      GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
     steps:
+
       - name: Update .env file
         run: |
           printenv >> .env.release
-        env:
-          MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
-          COV_CASES_URL: ${{ secrets.COV_CASES_URL }}
-          FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
-          REST_COUNTRIES_URL: ${{ secrets.REST_COUNTRIES_URL }}
-          HEALTH_SERVICES_URL: ${{ secrets.HEALTH_SERVICES_URL }} 
-          GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
 
       - uses: actions/checkout@v2
 
@@ -71,24 +67,10 @@ jobs:
 
   build-ios:
     runs-on: macOS-latest
-    env:
-      MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
-      COV_CASES_URL: ${{ secrets.COV_CASES_URL }}
-      FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
-      REST_COUNTRIES_URL: ${{ secrets.REST_COUNTRIES_URL }}
-      HEALTH_SERVICES_URL: ${{ secrets.HEALTH_SERVICES_URL }}
-      GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
     steps:
       - name: Update .env file
         run: |
           printenv >> .env.release
-        env:
-          MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
-          COV_CASES_URL: ${{ secrets.COV_CASES_URL }}
-          FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
-          REST_COUNTRIES_URL: ${{ secrets.REST_COUNTRIES_URL }}
-          HEALTH_SERVICES_URL: ${{ secrets.HEALTH_SERVICES_URL }} 
-          GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
 
       - uses: actions/checkout@master
 
