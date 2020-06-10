@@ -178,6 +178,10 @@
     "epidemiologic_report_tab": "Reporte epidemiologico",
     "mental_health_advice_tab": "Consejos de salud mental"
   },
+  "maps": {
+    "error_header": "Lo sentimos",
+    "error_message": "Por el momento, no se ha podido obtener los datos deseados. Por favor, inténtelo de nuevo más tarde."
+  },
   "navigation": {
     "home": "Inicio",
     "location_tracker": "Localizacion",

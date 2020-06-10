@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import {
+  Alert,
   Animated,
   Dimensions,
   Easing,
@@ -11,7 +13,7 @@ import {
 
 const { width, height } = Dimensions.get('window');
 
-export default class BottomUpPanel extends Component {
+export class BottomUpPanel extends Component {
   static defaultProps = {
     isOpen: false,
   };
@@ -48,7 +50,7 @@ export default class BottomUpPanel extends Component {
     this.props.isOpen ? this.config.position.end : this.config.position.start,
   );
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.animatedPosition.addListener(value => {
       // Every time that position changes then actualize the related properties. I.e: height, so the view
       // has the interpolated height
@@ -62,7 +64,7 @@ export default class BottomUpPanel extends Component {
   }
 
   // Handle isOpen prop changes to either open or close the window
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // isOpen prop changed to true from false
     if (!this.props.isOpen && nextProps.isOpen) {
       this.open();
@@ -180,13 +182,18 @@ export default class BottomUpPanel extends Component {
   };
 
   toggle = () => {
-    if (!this.state.open) {
+    const { sortedMarkers, t } = this.props;
+    if (sortedMarkers.length === 0) {
+      Alert.alert(t('maps.error_header'), t('maps.error_message'));
+    } else if (!this.state.open) {
       this.open();
     } else {
       this.close();
     }
   };
 }
+
+export default withTranslation()(BottomUpPanel);
 
 const styles = StyleSheet.create({
   container: {

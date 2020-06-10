@@ -183,6 +183,10 @@
     "epidemiologic_report_tab": "Epidemiological report",
     "mental_health_advice_tab": "Mental health tips"
   },
+  "maps": {
+    "error_header": "We are sorry",
+    "error_message": "At the moment, the desired data could not be obtained. Please try again later."
+  },
   "navigation": {
     "home": "Home",
     "location_tracker": "Location",
