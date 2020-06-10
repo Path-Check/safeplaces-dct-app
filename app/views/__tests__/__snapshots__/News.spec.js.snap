@@ -48,8 +48,7 @@ exports[`renders correctly 1`] = `
         }
       }
     />
-    <RCTSafeAreaView
-      emulateUnlessSupported={true}
+    <View
       style={
         Object {
           "backgroundColor": "#F7F8FF",
@@ -267,7 +266,7 @@ exports[`renders correctly 1`] = `
           />
         </View>
       </BVLinearGradient>
-    </RCTSafeAreaView>
+    </View>
   </BVLinearGradient>
 </View>
 `;

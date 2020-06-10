@@ -21,8 +21,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
       }
     }
   />
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+  <View
     style={
       Object {
         "backgroundColor": "#F7F8FF",
@@ -712,7 +711,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         />
       </View>
     </RCTScrollView>
-  </RCTSafeAreaView>
+  </View>
 </View>
 `;
 
@@ -737,8 +736,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
       }
     }
   />
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+  <View
     style={
       Object {
         "backgroundColor": "#F7F8FF",
@@ -1258,6 +1256,6 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         />
       </View>
     </RCTScrollView>
-  </RCTSafeAreaView>
+  </View>
 </View>
 `;

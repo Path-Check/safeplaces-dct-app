@@ -21,8 +21,7 @@ exports[`renders default values from the flags provider 1`] = `
       }
     }
   />
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+  <View
     style={
       Object {
         "backgroundColor": "#F7F8FF",
@@ -264,6 +263,6 @@ exports[`renders default values from the flags provider 1`] = `
         </View>
       </View>
     </View>
-  </RCTSafeAreaView>
+  </View>
 </View>
 `;
