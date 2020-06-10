@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Dimensions,
   ImageBackground,
@@ -17,8 +16,7 @@ import { useAssets } from '../../TracingStrategyAssets';
 import { styles } from './style';
 
 export const OffPage = () => {
-  const { t } = useTranslation();
-  const { offPageCta, offPageButton } = useAssets();
+  const { offPageHeader, offPageCta, offPageButton } = useAssets();
   const size = Dimensions.get('window').height;
 
   return (
@@ -46,7 +44,7 @@ export const OffPage = () => {
           </View>
           <View style={styles.contentBelowPulse}>
             <Text style={styles.mainTextBelow}>
-              {t('label.home_setting_off_header')}
+              {offPageHeader}
             </Text>
             <Typography style={styles.subheaderText}>{offPageCta}</Typography>
             <Button
