@@ -3,7 +3,7 @@ import ExposureNotification
 
 enum DiagnosisKeyListRequest: APIRequest {
 
-  typealias ResponseType = [ExposureKey]
+  typealias ResponseType = Void
 
   case post([ExposureKey])
 
@@ -17,7 +17,7 @@ enum DiagnosisKeyListRequest: APIRequest {
   var path: String {
     switch self {
     case .post:
-      return "diagnosisKeys"
+      return ""
     }
   }
 
@@ -28,55 +28,6 @@ enum DiagnosisKeyListRequest: APIRequest {
       return [
         "diagnosisKeys": params
       ]
-    }
-  }
-
-}
-
-enum DiagnosisKeyURLRequest: APIRequest {
-
-  typealias ResponseType = URL
-
-  case get(URL),
-  delete(URL)
-
-  var method: HTTPMethod {
-    switch self {
-    case .get:
-      return .get
-    case .delete:
-      return .delete
-    }
-  }
-
-  var path: String {
-    switch self {
-    case .get(let url):
-      return "diagnosisKeyFile/\(url)"
-    case .delete(let url):
-      return "diagnosisKeyFile/\(url)"
-    }
-  }
-
-}
-
-enum DiagnosisKeyURLListRequest: APIRequest {
-
-  typealias ResponseType = [URL]
-
-  case get
-
-  var method: HTTPMethod {
-    switch self {
-    case .get:
-      return .get
-    }
-  }
-
-  var path: String {
-    switch self {
-    case .get:
-      return "diagnosisKeyFileURLs"
     }
   }
 

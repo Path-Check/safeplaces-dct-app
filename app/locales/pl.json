@@ -12,7 +12,11 @@
   },
   "common": {
     "done": "Gotowe",
+    "next": "Dalej",
     "ok": "Ok"
+  },
+  "export": {
+    "exit_warning_cancel": "Anuluj"
   },
   "history": {
     "no_exposure": "Brak narażenia",
@@ -54,12 +58,12 @@
     "authorities_input_placeholder": "Wklej swój adres URL",
     "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
     "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
+    "authorities_new_in_area_title_0": "Nowa instytucja opieki zdrowotnej",
+    "authorities_new_in_area_title_3": "Nowe instytucje opieki zdrowotnej",
     "authorities_new_subscription_msg_0": "Subskrybujesz {{count}} nową instytucję opieki zdrowotnej w swojej loklizacji",
     "authorities_new_subscription_msg_3": "Subskrybujesz {{count}} nowe instytucje opieki zdrowotnej w swojej loklizacji",
-    "authorities_new_in_area_title_0": "Nowa instytucja opieki zdrowotnej",
     "authorities_new_subscription_title_0": "{{count}} Nowa subskrybcja",
     "authorities_new_subscription_title_3": "{{count}} Nowe subskrybcje",
-    "authorities_new_in_area_title_3": "Nowe instytucje opieki zdrowotnej",
     "authorities_no_sources": "Brak organów opieki zdrowotnej",
     "authorities_removal_alert_cancel": "Anuluj",
     "authorities_removal_alert_desc": "Czy jesteś pewien, że chcesz usunąć dane dotyczące instytucji?",

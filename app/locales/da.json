@@ -12,7 +12,11 @@
   },
   "common": {
     "done": "Udført",
+    "next": "Næste",
     "ok": "Ok"
+  },
+  "export": {
+    "exit_warning_cancel": "Annullér"
   },
   "history": {
     "no_exposure": "Ingen kendte",

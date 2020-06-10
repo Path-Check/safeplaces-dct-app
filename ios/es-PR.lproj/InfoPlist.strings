@@ -1,0 +1,5 @@
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. Todos los derechos reservados.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Su historial de ubicaciones se guardará en su dispositivo y solo se compartirá con otras personas si usted elige hacerlo.";
+"NSLocationAlwaysUsageDescription" = "Su historial de ubicaciones se guardará en su dispositivo y solo se compartirá con otras personas si usted elige hacerlo.";
+"NSLocationWhenInUseUsageDescription" = "Su historial de ubicaciones se guardará en su dispositivo y solo se compartirá con otras personas si usted elige hacerlo.";
+"NSMotionUsageDescription" = "Usamos su acelerómetro para obtener un historial preciso de la ubicación.";

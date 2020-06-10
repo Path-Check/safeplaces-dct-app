@@ -8,6 +8,8 @@ final class ExposureManager: NSObject {
   @objc static let shared = ExposureManager()
   
   let manager = ENManager()
+
+  private let secureStorage: BTESecureStorage = BTESecureStorage()
   
   var detectingExposures = false
   
@@ -43,7 +45,7 @@ final class ExposureManager: NSObject {
     }
   }
   
-  func detectExposures(completionHandler: ((Bool) -> Void)? = nil) -> Progress {
+  @discardableResult func detectExposures(completionHandler: ((Bool) -> Void)? = nil) -> Progress {
     
     let progress = Progress()
     
@@ -52,16 +54,13 @@ final class ExposureManager: NSObject {
       completionHandler?(false)
       return progress
     }
+
     detectingExposures = true
-    
-    var localURLs = [URL]()
-    
+
     func finish(_ result: Result<([Exposure], Int)>) {
       
-      for localURL in localURLs {
-        APIClient.shared.request(DiagnosisKeyURLRequest.delete(localURL)) { _ in }
-      }
-      
+      // TODO: Delete local diagnosis keys from realm here
+
       let success: Bool
       if progress.isCancelled {
         success = false
@@ -84,70 +83,8 @@ final class ExposureManager: NSObject {
       detectingExposures = false
       completionHandler?(success)
     }
-    let nextDiagnosisKeyFileIndex = LocalStore.shared.nextDiagnosisKeyFileIndex
-    let dispatchGroup = DispatchGroup()
-    var localURLResults = [Result<URL>]()
-    
-    APIClient.shared.request(DiagnosisKeyURLListRequest.get) { result in
-      switch result {
-      case .success(let urls):
-        let prunedUrls = urls[min(nextDiagnosisKeyFileIndex, urls.count)...]
-        for remoteURL in prunedUrls {
-          dispatchGroup.enter()
-          APIClient.shared.request(DiagnosisKeyURLRequest.get(remoteURL)) { result in
-            switch result {
-            case .success:
-              localURLResults.append(result)
-            case .failure(let error):
-              finish(.failure(error))
-            }
-            dispatchGroup.leave()
-          }
-        }
-      case let .failure(error):
-        finish(.failure(error))
-      }
-      dispatchGroup.notify(queue: .main) {
-        for result in localURLResults {
-          switch result {
-          case let .success(localURL):
-            localURLs.append(localURL)
-          case let .failure(error):
-            finish(.failure(error))
-            return
-          }
-        }
-        APIClient.shared.request(ExposureConfigurationRequest.get) { result in
-          switch result {
-          case .success(let configuration):
-            let exposureConfiguration = configuration.asENExposureConfiguration
-            ExposureManager.shared.manager.detectExposures(configuration: exposureConfiguration, diagnosisKeyURLs: localURLs) { summary, error in
-              if let error = error {
-                finish(.failure(error))
-                return
-              }
-              let userExplanation = NSLocalizedString("USER_NOTIFICATION_EXPLANATION", comment: "User notification")
-              ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
-                if let error = error {
-                  finish(.failure(error))
-                  return
-                }
-                let newExposures = exposures!.map { exposure in
-                  Exposure(date: exposure.date,
-                           duration: exposure.duration,
-                           totalRiskScore: exposure.totalRiskScore,
-                           transmissionRiskLevel: exposure.transmissionRiskLevel)
-                }
-                finish(.success((newExposures, nextDiagnosisKeyFileIndex + localURLs.count)))
-              }
-            }
-          case .failure(let error):
-            finish(.failure(error))
-          }
-        }
-      }
-    }
-    
+
+
     return progress
   }
   
@@ -156,17 +93,9 @@ final class ExposureManager: NSObject {
       if let error = error {
         completion(error)
       } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey })) { result in
+        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }), requestType: .post) { result in
           switch result {
-          case .success(let urls):
-            APIClient.shared.request(DiagnosisKeyListRequest.post(urls)) { result in
-              switch result {
-              case .success:
-                break
-              case .failure(let error):
-                completion(error)
-              }
-            }
+          case .success:
             break
           case .failure(let error):
             completion(error)
@@ -181,17 +110,10 @@ final class ExposureManager: NSObject {
     manager.getTestDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
         completion(error)
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey })) { result in
+      } else {
+        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }), requestType: .post) { result in
           switch result {
-          case .success(let urls):
-            APIClient.shared.request(DiagnosisKeyListRequest.post(urls)) { result in
-              switch result {
-              case .success:
-                break
-              case .failure(let error):
-                completion(error)
-              }
-            }
+          case .success:
             break
           case .failure(let error):
             completion(error)
@@ -201,4 +123,92 @@ final class ExposureManager: NSObject {
     }
   }
   
+  @objc func handleDebugAction(_ action: DebugAction, completion: @escaping RCTResponseSenderBlock) {
+    switch action {
+    case .fetchDiagnosisKeys:
+      manager.getDiagnosisKeys { (keys, error) in
+        if let error = error {
+          completion([error, NSNull()])
+        } else {
+          completion([NSNull(), keys!.map { $0.asDictionary }])
+        }
+      }
+    case .detectExposuresNow:
+      detectExposures { success in
+        if success {
+          completion([NSNull(), NSNull()])
+        } else {
+          completion(["Exposure detection error.", NSNull()])
+        }
+      }
+    case .simulateExposureDetectionError:
+      LocalStore.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
+      completion([NSNull(), LocalStore.shared.exposureDetectionErrorLocalizedDescription])
+    case .simulateExposure:
+      let exposure = Exposure(date: Date() - TimeInterval.random(in: 1...4) * 24 * 60 * 60,
+                              duration: TimeInterval(Int.random(in: 1...5) * 60 * 5),
+                              totalRiskScore: .random(in: 1...8),
+                              transmissionRiskLevel: .random(in: 0...7))
+      LocalStore.shared.exposures.append(exposure)
+      completion([NSNull(), LocalStore.shared.exposures])
+    case .simulatePositiveDiagnosis:
+      let testResult = TestResult(id: UUID(),
+                                  isAdded: true,
+                                  dateAdministered: Date() - TimeInterval.random(in: 0...4) * 24 * 60 * 60,
+                                  isShared: .random())
+      LocalStore.shared.testResults[testResult.id] = testResult
+      completion([NSNull(), LocalStore.shared.testResults])
+    case .disableExposureNotifications:
+      manager.setExposureNotificationEnabled(false) { error in
+        if let error = error {
+          completion([error.localizedDescription, NSNull()])
+        } else {
+          completion([NSNull(), NSNull()])
+        }
+      }
+    case .resetExposureDetectionError:
+      LocalStore.shared.exposureDetectionErrorLocalizedDescription = nil
+      completion([NSNull(), NSNull()])
+    case .resetLocalExposures:
+      LocalStore.shared.nextDiagnosisKeyFileIndex = 0
+      LocalStore.shared.exposures = []
+      LocalStore.shared.dateLastPerformedExposureDetection = nil
+      completion([NSNull(), NSNull()])
+    case .resetLocalTestResults:
+      LocalStore.shared.testResults = [:]
+      completion([NSNull(), NSNull()])
+    case .getAndPostDiagnosisKeys:
+      getAndPostTestDiagnosisKeys { error in
+        if let error = error {
+          completion([error.localizedDescription, NSNull()])
+        } else {
+          completion([NSNull(), NSNull()])
+        }
+      }
+    case .getExposureConfiguration:
+      APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .get) { result in
+        switch result {
+        case .success(let configuration):
+          completion([NSNull(), "Configuration: \(configuration)"])
+        case .failure(let error):
+          completion([error.localizedDescription, NSNull()])
+        }
+      }
+    }
+  }
+  
+}
+
+@objc enum DebugAction: Int {
+  case fetchDiagnosisKeys,
+  detectExposuresNow,
+  simulateExposureDetectionError,
+  simulateExposure,
+  simulatePositiveDiagnosis,
+  disableExposureNotifications,
+  resetExposureDetectionError,
+  resetLocalExposures,
+  resetLocalTestResults,
+  getAndPostDiagnosisKeys,
+  getExposureConfiguration
 }
