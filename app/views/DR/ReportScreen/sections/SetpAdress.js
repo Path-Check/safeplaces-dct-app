@@ -1,6 +1,7 @@
 import Geolocation from '@react-native-community/geolocation';
 import { Container, Content, Picker, Text } from 'native-base';
 import React, { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
 import { PermissionsAndroid, Platform } from 'react-native';
 import {
@@ -15,6 +16,8 @@ import Colors from '../../../../constants/colors';
 import provinces from '../../../../constants/DR/Provinces.json';
 
 const StepAdress = ({ setCompleted }) => {
+  const { t } = useTranslation();
+
   const [
     {
       answers: { province, municipality, address, numberPersonLivesWith },
@@ -77,12 +80,12 @@ const StepAdress = ({ setCompleted }) => {
           <ScrollView>
             <View style={styles.formContainer}>
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                Provincia *
+                {t('report.address.province')}
               </Text>
               <Picker
                 note
                 mode='dropdown'
-                placeholder='Selecciona tu provincia'
+                placeholder={t('report.address.province_selection')}
                 style={[
                   styles.rectButtons,
                   {
@@ -110,12 +113,12 @@ const StepAdress = ({ setCompleted }) => {
                 <View>
                   <Text
                     style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                    Municipio *
+                    {t('report.address.municipality')}
                   </Text>
                   <Picker
                     note
                     mode='dropdown'
-                    placeholder='Selecciona el municipio'
+                    placeholder={t('report.address.municipality_selection')}
                     style={[
                       styles.rectButtons,
                       {
@@ -141,7 +144,7 @@ const StepAdress = ({ setCompleted }) => {
                 </View>
               ) : null}
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                Dirección de su domicilio:
+                {t('report.address.house_address')}
               </Text>
               <Input
                 value={address}
@@ -150,7 +153,7 @@ const StepAdress = ({ setCompleted }) => {
                 onChange={text => setSelectedOption('address', text)}
               />
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                ¿Cuántas personas viven con usted? *
+                {t('report.address.number_person_lives_with')}
               </Text>
               <Input
                 length={2}

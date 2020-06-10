@@ -6,7 +6,8 @@
     "version": "الإصدار:"
   },
   "common": {
-    "done": "تم"
+    "done": "منجز",
+    "ok": "حسنا"
   },
   "history": {
     "no_exposure": "لم يتم التعرض",
@@ -59,6 +60,8 @@
     "enter_authority_url": "أدخل أو الصق عنوان ال URL",
     "event_history_subtitle": "افهم تعرضك الشخصي بناءً على المعلومات التي تشاركها السلطات الصحية",
     "event_history_title": "سجلات التعرض",
+    "epidemiologic_report_title": "تقرير وبائي",
+    "epidemiologic_report_subtitle": "يمكنك مراجعة حالة التفريغ الوبائي الخاص بك وتلقي المشورة الصحية.",
     "filter_authorities_by_gps_history": "اختار حسب مواقعك",
     "home_at_risk_header": "ربما تكون قد تعرضت",
     "home_at_risk_subsubtext": "هذا لا يعني أنك مصاب",
@@ -138,6 +141,10 @@
     "push_notification_title": "إصدار التطبيق قديم",
     "update": "تحديث"
   },
+  "positives": {
+    "epidemiologic_report_tab": "تقرير وبائي",
+    "mental_health_advice_tab": "نصائح للصحة النفسية"
+  },
   "navigation": {
     "home": "الصفحة الرئيسية",
     "location_tracker": "موقعك",
@@ -148,5 +155,158 @@
     "news": "أخبار",
     "bulletins": "رسائل إخبارية",
     "advices": "نصائح"
+  },
+  "report": {
+    "title": "نقل",
+    "subtitle": "الرجاء الإجابة على الأسئلة التالية",
+    "yes": "نعم",
+    "no": "لا",
+    "back": "عودة",
+    "continue": "استمر",
+    "close": "قريب",
+    "usage": {
+      "header_subtitle": "الأسئلة التالية تتعلق بـ COVID-19",
+      "subtitle": "ستجيب على بعض الأسئلة حول الأعراض التي تعانيها والسفر والاتصال الذي قمت به مع الآخرين.",
+      "use_myself": "استخدمه لنفسي",
+      "use_others": "استخدم لشخص آخر"
+    },
+    "userInfo": {
+      "api_down_error_msg": "في الوقت الحالي لا يمكننا التحقق من صحة البيانات الخاصة بك. الرجاء معاودة المحاولة في وقت لاحق.",
+      "incorrect_data_error_msg": "بيانات غير صحيحة ، يرجى التحقق.",
+      "insert_data_title": "أدخل بياناتك",
+      "insert_data_subtitle": "سنستخدم هذه البيانات لمراقبة نتائجك بشكل صحيح:",
+      "start_with_id": "ابدأ بمعرف الدومينيكان",
+      "start_with_passport": "ابدأ بجواز السفر",
+      "start_with_nss": "ابدأ برقم الضمان الاجتماعي في جمهورية الدومينيكان (NSS)",
+      "name_and_lastname": "اسم ولقب:",
+      "birthdate": "تاريخ الميلاد:",
+      "tel_number": "رقم الهاتف:",
+      "enter_your": "ادخل",
+      "social_security_number": "رقم الحماية الاجتماعية",
+      "passport_number": "رقم جواز السفر",
+      "id_number": "معرف الدومينيكان"
+    },
+    "callEmergency": {
+      "call_title": "اتصل على 462 *.",
+      "call_subtitle": "بناءً على الأعراض التي أبلغت عنها ، يجب عليك طلب الرعاية على الفور."
+    },
+    "haveSymptoms": {
+      "emergency_title": "هل هذه حالة طارئة؟",
+      "emergency_subtitle_myself": "توقف واتصل على 462 * إذا كان لديك أي من هذه الأعراض:",
+      "emergency_subtitle_others": "توقف واتصل على 462 * إذا كان لدى الشخص الذي ستقوم بتقييمه أي من هذه الأعراض:",
+      "chest_pain": "ألم أو ضغط في الصدر.",
+      "difficulty_breathing": "صعوبة ملحوظة في التنفس.",
+      "dizziness": "دوار دائم وشديد أو دوار خفيف.",
+      "difficulty_speaking": "صعوبة الكلام.",
+      "difficulty_wakeup": "صعوبة الاستيقاظ",
+      "convulsion": "النوبات",
+      "vomit": "القيء أو الإسهال المستمر أو الدموي.",
+      "secretions": "إفرازات دموية من الفم والأنف.",
+      "have_this_symptoms_myself": "لديّ واحد على الأقل من هذه الأعراض",
+      "dont_have_this_symptoms_myself": "ليس لدي أي من هذه الأعراض",
+      "have_this_symptoms_others": "إنهم يواجهون واحدة على الأقل من هذه",
+      "dont_have_this_symptoms_others": "ليس لديهم أي من هذه"
+    },
+    "sex": {
+      "sex_title": "الجنس *",
+      "female": "أنثى",
+      "male": "الذكر"
+    },
+    "symptoms": {
+      "symptoms_title": "هل لديك اي من هذه الأعراض؟ *",
+      "fever": "حمى أو قشعريرة أو عرق",
+      "difficultyBreathing": "ضيق في التنفس وليس شديد",
+      "cough": "سعال جديد أو متفاقم",
+      "soreThroat": "إلتهاب الحلق",
+      "bodyPain": "آلم الجسد",
+      "threwUp": "القيء أو الإسهال",
+      "runnyNose": "سيلان الأنف",
+      "headache": "صداع الراس",
+      "chestPain": "ألم صدر",
+      "convulsions": "التشنجات",
+      "disorientation": "الارتباك",
+      "sleepiness": "النعاس",
+      "runnyNoseWithBlood": "سيلان الأنف أو الفم بالدم",
+      "noSympthoms": "لا شيء مما سبق"
+    },
+    "med_conditions": {
+      "med_cond_title": "هل لديك أي من هذه الحالات الطبية؟ *",
+      "hypertension": "ارتفاع ضغط الدم أو ارتفاع ضغط الدم.",
+      "asthma": "الربو أو أمراض الرئة المزمنة.",
+      "cancer": "علاج السرطان أو بعض الأدوية المثبطة للمناعة.",
+      "immuneDeficiency": "أوجه القصور الموروثة في جهاز المناعة.",
+      "HIV": "فيروس العوز المناعي البشري.",
+      "heartCondition": "أمراض القلب الشديدة.",
+      "diabetes": "داء السكري.",
+      "renalInsufficiency": "قصور كلوي.",
+      "hepaticCirrhosis": "تليف الكبد.",
+      "hardCough": "الأمراض أو الظروف التي تجعل من الصعب السعال.",
+      "obesity": "بدانة.",
+      "malnutrition": "سوء التغذية.",
+      "sickleCellAnemia": "فقر الدم المنجلي.",
+      "tuberculosis": "مرض السل.",
+      "pregnancy": "حمل.",
+      "none": "لا شيء مما سبق"
+    },
+    "cov_contact": {
+      "traveled_title": "خلال الـ 14 يومًا الماضية ، هل سافرت خارج الدولة؟ *",
+      "when_arrived": "متى وصلت إلى البلد؟ *",
+      "country_visited": "في أي مكان / بلد كنت؟ *",
+      "select_country": "حدد البلد",
+      "transportation": "سافر في: *",
+      "airplane": "مطار",
+      "ship": "سفينة",
+      "overland": "برا",
+      "infected_area_title": "في الأيام الـ 14 الماضية ، هل كنت في منطقة أو إقليم معروف أنه ينتشر فيه COVID-19 أو مع انتقال المجتمع؟ *",
+      "infected_subtitle": "اختر كل ما ينطبق.",
+      "infected_contact_title": "في آخر 14 يومًا ، ماذا كان تعرضك للأشخاص الذين تم تشخيص إصابتهم بـ COVID-19؟ *",
+      "used_protection_title": "هل استخدمت معدات الوقاية الشخصية عند تعرضك لأشخاص تم تشخيص إصابتهم بـ COVID-19؟ *",
+      "live_in_area_myself": "أنا أعيش في منطقة انتشر فيها COVID-19 / بث المجتمع.",
+      "live_in_area_others": "إنهم يعيشون في منطقة انتشر فيها COVID-19 / بث المجتمع.",
+      "visited_area_myself": "قمت بزيارة منطقة حيث انتشر COVID-19 / بث المجتمع.",
+      "visited_area_others": "زاروا منطقة حيث انتشر COVID-19 / بث المجتمع.",
+      "dont_know_myself": "لا اعرف.",
+      "dont_know_others": "انهم لا يعلمون.",
+      "none_above": "لا شيء مما سبق.",
+      "live_with_myself": "أعيش مع شخص مصاب بـ COVID-19.",
+      "live_with_others": "إنهم يعيشون مع شخص مصاب بـ COVID-19.",
+      "had_close_contact_myself": "لقد كان لي اتصال وثيق بشخص مصاب بـ COVID-19.",
+      "had_close_contact_others": "كان لديهم اتصال وثيق مع شخص تم تشخيصه بـ COVID-19.",
+      "had_close_contact_subtitle_myself": "كنت على بعد أقل من 6 أقدام (1.5 متر) من شخص مصاب بالمرض ، أو تعرضت للسعال أو العطس.",
+      "had_close_contact_subtitle_others": "كانوا على بعد أقل من 6 أقدام (1.5 متر) من شخص مصاب بالمرض ، أو تعرضوا للسعال أو العطس.",
+      "had_far_contact_myself": "لقد كنت حول شخص تم تشخيصه بـ COVID-19.",
+      "had_far_contact_others": "لقد كانوا حول شخص تم تشخيصه بـ COVID-19.",
+      "had_far_contact_subtitle_myself": "كنت على بعد أكثر من 6 أقدام ولم أتعرض للسعال أو العطس.",
+      "had_far_contact_subtitle_others": "كانوا على بعد أكثر من 6 أقدام ولم أتعرض للسعال أو العطس.",
+      "not_exposed_myself": "لم أتعرض.",
+      "not_exposed_others": "لم يتعرضوا.",
+      "not_exposed_subtitle_myself": "لم أكن على اتصال بشخص لديه COVID-19.",
+      "not_exposed_subtitle_others": "لم يكونوا على اتصال مع شخص لديه COVID-19."
+    },
+    "workInHealth": {
+      "work_in_title": "هل تعيش أو تعمل في مؤسسة صحية؟ *",
+      "work_in_subtitle": "يشمل المستشفيات وغرف الطوارئ وأي مكان متعلق بالطبية أو مرافق رعاية طويلة الأجل.",
+      "work_health_myself": "أعمل في منشأة رعاية طويلة الأجل. يشمل دار رعاية أو مراكز رعاية.",
+      "work_health_others": "إنهم يعملون في منشأة رعاية طويلة الأجل. يشمل دار رعاية أو مراكز رعاية.",
+      "worked_health_myself": "لقد عملت في مستشفى أو مركز مساعدة خلال آخر 14 يومًا.",
+      "worked_health_others": "لقد عملوا في مستشفى أو مركز مساعدة في آخر 14 يومًا.",
+      "plan_work_myself": "أخطط للعمل في مستشفى أو أي مؤسسة صحية أخرى.",
+      "plan_work_others": "يخططون للعمل في مستشفى أو أي مؤسسة صحية أخرى.",
+      "doesnt_work_myself": "أنا لا أعيش أو أعمل في مؤسسة صحية.",
+      "doesnt_work_others": "إنهم لا يعيشون أو يعملون في مؤسسة صحية."
+    },
+    "address": {
+      "province": "المحافظة *",
+      "province_selection": "حدد مقاطعتك",
+      "municipality": "البلدية *",
+      "municipality_selection": "حدد بلديتك",
+      "house_address": "عنوان المنزل:",
+      "number_person_lives_with": "كم شخص يعيش معك؟ *"
+    },
+    "thankYou": {
+      "thanks": "شكرا لك!",
+      "press_end": "اضغط إنهاء لإنهاء العملية",
+      "finish": "إنهاء"
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { Container, Content, Text } from 'native-base';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import {
   heightPercentageToDP as hp,
@@ -11,6 +12,8 @@ import styles from '../../../../components/DR/Header/style';
 import Colors from '../../../../constants/colors';
 
 const ThankYou = () => {
+  const { t } = useTranslation();
+
   return (
     <Content contentContainerStyle={{ flex: 1 }}>
       <Container>
@@ -27,7 +30,7 @@ const ThankYou = () => {
             color={Colors.GREEN}
           />
           <Text style={[styles.subtitles, { alignSelf: 'center' }]}>
-            ¡Gracias!
+            {t('report.thankYou.thanks')}
           </Text>
           <Text
             style={[
@@ -39,7 +42,7 @@ const ThankYou = () => {
                 alignSelf: 'center',
               },
             ]}>
-            Presiona Finalizar para culminar el proceso
+            {t('report.thankYou.press_end')}
           </Text>
         </View>
       </Container>

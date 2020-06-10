@@ -3,6 +3,7 @@ import 'moment/locale/es';
 import moment from 'moment';
 import { Container, Content, Text } from 'native-base';
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -12,6 +13,8 @@ import styles from '../../../../components/DR/Header/style';
 import context from '../../../../components/DR/Reduces/context';
 
 const StepSymptoms = ({ setCompleted }) => {
+  const { t } = useTranslation();
+
   const [
     {
       answers: {
@@ -70,88 +73,88 @@ const StepSymptoms = ({ setCompleted }) => {
           <ScrollView>
             <View style={styles.formContainer}>
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                ¿Presenta alguno de estos síntomas? *
+                {t('report.symptoms.symptoms_title')}
               </Text>
               <Checkbox
-                text='Fiebre, escalofríos o sudor'
+                text={t('report.symptoms.fever')}
                 id='fever'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={fever}
               />
               <Checkbox
-                text='Dificultad para respirar, no severa'
+                text={t('report.symptoms.difficultyBreathing')}
                 id='difficultyBreathing'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={difficultyBreathing}
               />
               <Checkbox
-                text='Tos nueva o que ha empeorado'
+                text={t('report.symptoms.cough')}
                 id='cough'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={cough}
               />
               <Checkbox
-                text='Dolor de garganta'
+                text={t('report.symptoms.soreThroat')}
                 id='soreThroat'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={soreThroat}
               />
               <Checkbox
-                text='Dolor en el cuerpo'
+                text={t('report.symptoms.bodyPain')}
                 id='bodyPain'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={bodyPain}
               />
               <Checkbox
-                text='Vómito o diarrea'
+                text={t('report.symptoms.threwUp')}
                 id='threwUp'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={threwUp}
               />
               <Checkbox
-                text='Secreción nasal'
+                text={t('report.symptoms.runnyNose')}
                 id='runnyNose'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={runnyNose}
               />
               <Checkbox
-                text='Dolor de cabeza'
+                text={t('report.symptoms.headache')}
                 id='headache'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={headache}
               />
               <Checkbox
-                text='Dolor de pecho'
+                text={t('report.symptoms.chestPain')}
                 id='chestPain'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={chestPain}
               />
               <Checkbox
-                text='Convulsiones'
+                text={t('report.symptoms.convulsions')}
                 id='convulsions'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={convulsions}
               />
               <Checkbox
-                text='Desorientación'
+                text={t('report.symptoms.disorientation')}
                 id='disorientation'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={disorientation}
               />
               <Checkbox
-                text='Somnolencia'
+                text={t('report.symptoms.sleepiness')}
                 id='sleepiness'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={sleepiness}
               />
               <Checkbox
-                text='Secreciones nasales o por boca con sangre'
+                text={t('report.symptoms.runnyNoseWithBlood')}
                 id='runnyNoseWithBlood'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={runnyNoseWithBlood}
               />
               <Checkbox
-                text='Ninguno de los anteriores'
+                text={t('report.symptoms.noSympthoms')}
                 id='noSympthoms'
                 setValue={(id, value) => {
                   setGlobalState({

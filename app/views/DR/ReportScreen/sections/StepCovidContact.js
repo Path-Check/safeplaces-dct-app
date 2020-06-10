@@ -3,6 +3,7 @@ import 'moment/locale/es';
 import moment from 'moment';
 import { Container, Content, Picker, Text } from 'native-base';
 import React, { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
 import {
   heightPercentageToDP as hp,
@@ -18,6 +19,8 @@ import Colors from '../../../../constants/colors';
 import { REST_COUNTRIES_SERVICE } from '../../../../constants/DR/baseUrls';
 
 const StepCovidContact = ({ setCompleted }) => {
+  const { t } = useTranslation();
+
   const [
     {
       answers: {
@@ -56,12 +59,29 @@ const StepCovidContact = ({ setCompleted }) => {
   }, []);
 
   const [selection, setSelection] = useState(
-    traveled == true ? 'Sí' : traveled == false ? 'No' : '',
+    traveled == true
+      ? t('report.yes')
+      : traveled == false
+      ? t('report.no')
+      : '',
   );
+
+  const live =
+    usage === 'others'
+      ? t('report.cov_contact.live_in_area_others')
+      : t('report.cov_contact.live_in_area_myself');
+  const visited =
+    usage === 'others'
+      ? t('report.cov_contact.visited_area_others')
+      : t('report.cov_contact.visited_area_myself');
+  const notKnow =
+    usage === 'others'
+      ? t('report.cov_contact.dont_know_others')
+      : t('report.cov_contact.dont_know_myself');
 
   const setOption = option => {
     setSelection(option);
-    if (option === 'Sí') {
+    if (option === t('report.yes')) {
       setSelectedOption('traveled', true);
     } else {
       setSelectedOption('traveled', false);
@@ -102,9 +122,7 @@ const StepCovidContact = ({ setCompleted }) => {
   } else {
     setCompleted(false);
   }
-  const estar = usage === 'others' ? 'estuvo' : 'estuve';
-  const sustantive = usage === 'others' ? 'Ha' : 'He';
-  const saber = usage === 'others' ? 'sabe' : 'se';
+
   return (
     <Container>
       <Content>
@@ -112,18 +130,18 @@ const StepCovidContact = ({ setCompleted }) => {
           <ScrollView>
             <View style={[styles.formContainer, { marginRight: wp('10%') }]}>
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                ¿En los últimos 14 días, ha viajado fuera del país? *
+                {t('report.cov_contact.traveled_title')}
               </Text>
               <ToggleButtons
-                options={['Sí', 'No']}
+                options={[t('report.yes'), t('report.no')]}
                 onSelection={selected => setOption(selected)}
                 selectedOption={selection}
               />
-              {selection === 'Sí' && (
+              {selection === t('report.yes') && (
                 <View>
                   <Text
                     style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                    ¿Cuándo llegó al país? *
+                    {t('report.cov_contact.when_arrived')}
                   </Text>
                   <CalendarButton
                     date={moment(dateArrived).format('DD-MM-YYYY')}
@@ -137,12 +155,12 @@ const StepCovidContact = ({ setCompleted }) => {
                   />
                   <Text
                     style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                    ¿En qué lugar/país estuvo? *
+                    {t('report.cov_contact.country_visited')}
                   </Text>
                   <Picker
                     note
                     mode='dropdown'
-                    placeholder='Selecciona el país'
+                    placeholder={t('report.cov_contact.select_country')}
                     style={[
                       styles.rectButtons,
                       {
@@ -167,10 +185,14 @@ const StepCovidContact = ({ setCompleted }) => {
                   </Picker>
                   <Text
                     style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                    Viajó en: *
+                    {t('report.cov_contact.transportation')}
                   </Text>
                   <ToggleButtons
-                    options={['Avión', 'Barco', 'Terrestre']}
+                    options={[
+                      t('report.cov_contact.airplane'),
+                      t('report.cov_contact.ship'),
+                      t('report.cov_contact.overland'),
+                    ]}
                     onSelection={selected =>
                       setSelectedOption('traveledIn', selected)
                     }
@@ -179,17 +201,13 @@ const StepCovidContact = ({ setCompleted }) => {
                 </View>
               )}
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                ¿En los últimos 14 días, ha estado en un área o territorio donde
-                se conozca que el COVID-19 se haya extendido o con transmisión
-                comunitaria? *
+                {t('report.cov_contact.infected_area_title')}
               </Text>
               <Text style={[styles.text, { marginBottom: 10 }]}>
-                Seleccione todas las que aplican.
+                {t('report.cov_contact.infected_subtitle')}
               </Text>
               <Checkbox
-                text={`${
-                  usage === 'others' ? 'Vive' : 'Vivo'
-                } en un área donde el COVID-19 se ha extendido/transmisión comunitaria.`}
+                text={live}
                 id='liveIn'
                 setValue={(id, value) =>
                   setSelectedOption(id, value, 'dontKnowArea', 'noneAbove')
@@ -197,9 +215,7 @@ const StepCovidContact = ({ setCompleted }) => {
                 initialCheck={liveIn}
               />
               <Checkbox
-                text={`${
-                  usage === 'others' ? 'Visitó' : 'Visité'
-                } un área donde el COVID-19 se ha extendido/transmisión comunitaria.`}
+                text={visited}
                 id='visitedArea'
                 setValue={(id, value) =>
                   setSelectedOption(id, value, 'dontKnowArea', 'noneAbove')
@@ -207,7 +223,7 @@ const StepCovidContact = ({ setCompleted }) => {
                 initialCheck={visitedArea}
               />
               <Checkbox
-                text={`No lo ${saber}.`}
+                text={notKnow}
                 id='dontKnowArea'
                 setValue={(id, value) =>
                   setGlobalState({
@@ -223,7 +239,7 @@ const StepCovidContact = ({ setCompleted }) => {
                 initialCheck={dontKnowArea}
               />
               <Checkbox
-                text={`Ninguna de las anteriores.`}
+                text={t('report.cov_contact.none_above')}
                 id='noneAbove'
                 setValue={(id, value) =>
                   setGlobalState({
@@ -240,13 +256,17 @@ const StepCovidContact = ({ setCompleted }) => {
               />
 
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                ¿En los últimos 14 días, cuál ha sido su exposición con personas
-                diagnosticadas con COVID-19? *
+                {t('report.cov_contact.infected_contact_title')}
+              </Text>
+              <Text style={[styles.text, { marginBottom: 10 }]}>
+                {t('report.cov_contact.infected_subtitle')}
               </Text>
               <Checkbox
-                text={`${
-                  usage === 'others' ? 'Vive' : 'Vivo'
-                } con alguien diagnosticado con COVID-19.`}
+                text={
+                  usage === 'others'
+                    ? t('report.cov_contact.live_with_others')
+                    : t('report.cov_contact.live_with_myself')
+                }
                 id='liveWith'
                 setValue={(id, value) =>
                   setSelectedOption(
@@ -259,7 +279,11 @@ const StepCovidContact = ({ setCompleted }) => {
                 initialCheck={liveWith}
               />
               <Checkbox
-                text={`${sustantive} tenido contacto cercano con alguien diagnosticado con COVID-19.`}
+                text={
+                  usage === 'others'
+                    ? t('report.cov_contact.had_close_contact_others')
+                    : t('report.cov_contact.had_close_contact_myself')
+                }
                 id='hadCloseContact'
                 setValue={(id, value) =>
                   setSelectedOption(
@@ -273,12 +297,16 @@ const StepCovidContact = ({ setCompleted }) => {
               />
               <Text
                 style={[styles.text, { fontSize: 12, marginLeft: wp('9%') }]}>
-                Estaba a menos de 6 pies (1.5 metros) de alguien con la
-                enfermedad, o {sustantive.toLowerCase()} estado expuesto a tos o
-                estornudos.
+                {usage === 'others'
+                  ? t('report.cov_contact.had_close_contact_subtitle_others')
+                  : t('report.cov_contact.had_close_contact_subtitle_myself')}
               </Text>
               <Checkbox
-                text={`${sustantive} estado cerca de alguien diagnosticado con COVID-19.`}
+                text={
+                  usage === 'others'
+                    ? t('report.cov_contact.had_far_contact_others')
+                    : t('report.cov_contact.had_far_contact_myself')
+                }
                 id='hadFarContact'
                 setValue={(id, value) =>
                   setSelectedOption(
@@ -292,11 +320,16 @@ const StepCovidContact = ({ setCompleted }) => {
               />
               <Text
                 style={[styles.text, { fontSize: 12, marginLeft: wp('9%') }]}>
-                Estaba a más de 6 pies de distancia y no {estar} expuesto a tos
-                o estornudos.
+                {usage === 'others'
+                  ? t('report.cov_contact.had_far_contact_subtitle_others')
+                  : t('report.cov_contact.had_far_contact_subtitle_myself')}
               </Text>
               <Checkbox
-                text={`No ${sustantive.toLowerCase()} estado expuesto.`}
+                text={
+                  usage === 'others'
+                    ? t('report.cov_contact.not_exposed_others')
+                    : t('report.cov_contact.not_exposed_myself')
+                }
                 id='notExposed'
                 setValue={(id, value) =>
                   setGlobalState({
@@ -314,11 +347,12 @@ const StepCovidContact = ({ setCompleted }) => {
               />
               <Text
                 style={[styles.text, { fontSize: 12, marginLeft: wp('9%') }]}>
-                No {sustantive.toLowerCase()} estado en contacto con alguien que
-                tiene COVID-19.
+                {usage === 'others'
+                  ? t('report.cov_contact.not_exposed_subtitle_others')
+                  : t('report.cov_contact.not_exposed_subtitle_myself')}
               </Text>
               <Checkbox
-                text={`No lo ${saber}.`}
+                text={notKnow}
                 id='dontKnowExposition'
                 setValue={(id, value) =>
                   setGlobalState({
@@ -338,11 +372,10 @@ const StepCovidContact = ({ setCompleted }) => {
                 <View>
                   <Text
                     style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                    ¿Ha usado equipos de protección personal cuando ha estado
-                    expuesto con personas diagnosticadas con COVID-19? *
+                    {t('report.cov_contact.used_protection_title')}
                   </Text>
                   <ToggleButtons
-                    options={['Sí', 'No']}
+                    options={[t('report.yes'), t('report.no')]}
                     onSelection={selected =>
                       setSelectedOption('usedProtection', selected)
                     }
