@@ -4,6 +4,8 @@ import RealmSwift
 
 final class BTESecureStorage: SafePathsSecureStorage {
 
+  static let shared = BTESecureStorage()
+
   override var keychainIdentifier: String {
     "org.pathcheck.bt.realm"
   }
@@ -12,58 +14,82 @@ final class BTESecureStorage: SafePathsSecureStorage {
     if let key = getEncyrptionKey() {
       if (inMemory) {
         return Realm.Configuration(inMemoryIdentifier: "temp", encryptionKey: key as Data, schemaVersion: 1,
-                                   migrationBlock: { _, _ in }, objectTypes: [ExposureKey.self])
+                                   migrationBlock: { _, _ in }, objectTypes: [UserState.self, Exposure.self, TestResult.self])
       } else {
         return Realm.Configuration(encryptionKey: key as Data, schemaVersion: 1,
-                                   migrationBlock: { _, _ in }, objectTypes: [ExposureKey.self])
+                                   migrationBlock: { _, _ in }, objectTypes: [UserState.self, Exposure.self, TestResult.self])
       }
     } else {
       return nil
     }
   }
 
-  @Persisted(userDefaultsKey: "nextDiagnosisKeyFileIndex", notificationName: .init("LocalStoreNextDiagnosisKeyFileIndexDidChange"), defaultValue: 0)
+  func getUserState(_ completion: ((UserState) -> Void)) {
+    guard let realmConfig = getRealmConfig() else {
+      return
+    }
+    let realm = try! Realm(configuration: realmConfig)
+    let userState = realm.objects(UserState.self)
+      .filter { $0.id == UserState.id }
+    completion(userState.first ?? UserState())
+  }
+
+  func resetUserState(_ completion: ((UserState) -> Void)) {
+    guard let realmConfig = getRealmConfig() else {
+      return
+    }
+    let realm = try! Realm(configuration: realmConfig)
+    try! realm.write {
+      let userState = UserState()
+      realm.add(userState, update: .modified)
+      completion(userState)
+    }
+  }
+
+  @Persisted(keyPath: "nextDiagnosisKeyFileIndex", notificationName: .init("BTESecureStorageNextDiagnosisKeyFileIndexDidChange"), defaultValue: 0)
   var nextDiagnosisKeyFileIndex: Int
 
-  @Persisted(userDefaultsKey: "exposures", notificationName: .init("LocalStoreExposuresDidChange"), defaultValue: [])
-  var exposures: [Exposure]
+  @Persisted(keyPath: "exposures", notificationName: .init("BTESecureStorageExposuresDidChange"), defaultValue: List<Exposure>())
+  var exposures: List<Exposure>
 
-  @Persisted(userDefaultsKey: "dateLastPerformedExposureDetection",
-             notificationName: .init("LocalStoreDateLastPerformedExposureDetectionDidChange"), defaultValue: nil)
+  @Persisted(keyPath: "dateLastPerformedExposureDetection",
+             notificationName: .init("BTESecureStorageDateLastPerformedExposureDetectionDidChange"), defaultValue: nil)
   var dateLastPerformedExposureDetection: Date?
 
-  @Persisted(userDefaultsKey: "exposureDetectionErrorLocalizedDescription", notificationName:
-    .init("LocalStoreExposureDetectionErrorLocalizedDescriptionDidChange"), defaultValue: nil)
-  var exposureDetectionErrorLocalizedDescription: String?
+  @Persisted(keyPath: "exposureDetectionErrorLocalizedDescription", notificationName:
+    .init("BTESecureStorageExposureDetectionErrorLocalizedDescriptionDidChange"), defaultValue: .default)
+  var exposureDetectionErrorLocalizedDescription: String
 
-  @Persisted(userDefaultsKey: "testResults", notificationName: .init("LocalStoreTestResultsDidChange"), defaultValue: [:])
-  var testResults: [UUID: TestResult]
+  @Persisted(keyPath: "testResults", notificationName: .init("BTESecureStorageTestResultsDidChange"), defaultValue: List<TestResult>())
+  var testResults: List<TestResult>
 
 }
+
 
 @propertyWrapper
 class Persisted<Value: Codable> {
 
-  init(userDefaultsKey: String, notificationName: Notification.Name, defaultValue: Value) {
-    self.userDefaultsKey = userDefaultsKey
+  init(keyPath: String, notificationName: Notification.Name, defaultValue: Value) {
+    self.keyPath = keyPath
     self.notificationName = notificationName
-    if let data = UserDefaults.standard.data(forKey: userDefaultsKey) {
-      do {
-        wrappedValue = try JSONDecoder().decode(Value.self, from: data)
-      } catch {
-        wrappedValue = defaultValue
-      }
-    } else {
-      wrappedValue = defaultValue
-    }
+    self.wrappedValue = defaultValue
   }
 
-  let userDefaultsKey: String
+  let keyPath: String
   let notificationName: Notification.Name
 
   var wrappedValue: Value {
     didSet {
-      UserDefaults.standard.set(try! JSONEncoder().encode(wrappedValue), forKey: userDefaultsKey)
+      BTESecureStorage.shared.getUserState { userState in
+        guard let realmConfig = BTESecureStorage.shared.getRealmConfig() else {
+          return
+        }
+        let realm = try! Realm(configuration: realmConfig)
+        try! realm.write {
+          userState.setValue(wrappedValue, forKeyPath: keyPath)
+          realm.add(userState, update: .modified)
+        }
+      }
       NotificationCenter.default.post(name: notificationName, object: nil)
     }
   }
@@ -75,4 +101,26 @@ class Persisted<Value: Codable> {
       block()
     }
   }
+}
+
+
+@objcMembers
+class UserState: Object {
+  static let id = 0
+
+  @objc dynamic var id: Int = UserState.id
+  @objc dynamic var nextDiagnosisKeyFileIndex: Int = 0
+  @objc dynamic var dateLastPerformedExposureDetection: Date? = nil
+  @objc dynamic var exposureDetectionErrorLocalizedDescription: String = .default
+  dynamic var exposures: List<Exposure> = List<Exposure>()
+  dynamic var testResults: List<TestResult> = List<TestResult>()
+
+  override class func primaryKey() -> String? {
+    "id"
+  }
+
+}
+
+extension String {
+  static let `default` = ""
 }
