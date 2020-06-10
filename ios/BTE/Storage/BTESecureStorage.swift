@@ -3,13 +3,13 @@ import Foundation
 import RealmSwift
 
 final class BTESecureStorage: SafePathsSecureStorage {
-  
+
   static let shared = BTESecureStorage()
-  
+
   override var keychainIdentifier: String {
     "org.pathcheck.bt.realm"
   }
-  
+
   override func getRealmConfig() -> Realm.Configuration? {
     if let key = getEncyrptionKey() {
       if (inMemory) {
@@ -23,7 +23,7 @@ final class BTESecureStorage: SafePathsSecureStorage {
       return nil
     }
   }
-  
+
   func getUserState(_ completion: ((UserState) -> Void)) {
     guard let realmConfig = getRealmConfig() else {
       return
@@ -33,7 +33,7 @@ final class BTESecureStorage: SafePathsSecureStorage {
       .filter { $0.id == UserState.id }
     completion(userState.first ?? UserState())
   }
-  
+
   func resetUserState(_ completion: ((UserState) -> Void)) {
     guard let realmConfig = getRealmConfig() else {
       return
@@ -45,22 +45,22 @@ final class BTESecureStorage: SafePathsSecureStorage {
       completion(userState)
     }
   }
-  
-  @Persisted(keyPath: "nextDiagnosisKeyFileIndex", notificationName: .init("BTESecureStorageNextDiagnosisKeyFileIndexDidChange"), defaultValue: 0)
+
+  @Persisted(keyPath: .keyPathNextDiagnosisKeyFileIndex, notificationName: .NextDiagnosisKeyFileIndexDidChange, defaultValue: 0)
   var nextDiagnosisKeyFileIndex: Int
-  
-  @Persisted(keyPath: "exposures", notificationName: .init("BTESecureStorageExposuresDidChange"), defaultValue: List<Exposure>())
+
+  @Persisted(keyPath: .keyPathExposures, notificationName: .ExposuresDidChange, defaultValue: List<Exposure>())
   var exposures: List<Exposure>
-  
-  @Persisted(keyPath: "dateLastPerformedExposureDetection",
-             notificationName: .init("BTESecureStorageDateLastPerformedExposureDetectionDidChange"), defaultValue: nil)
+
+  @Persisted(keyPath: .keyPathDateLastPerformedExposureDetection,
+             notificationName: .DateLastPerformedExposureDetectionDidChange, defaultValue: nil)
   var dateLastPerformedExposureDetection: Date?
-  
-  @Persisted(keyPath: "exposureDetectionErrorLocalizedDescription", notificationName:
-    .init("BTESecureStorageExposureDetectionErrorLocalizedDescriptionDidChange"), defaultValue: .default)
+
+  @Persisted(keyPath: .keyPathExposureDetectionErrorLocalizedDescription, notificationName:
+    .StorageExposureDetectionErrorLocalizedDescriptionDidChange, defaultValue: .default)
   var exposureDetectionErrorLocalizedDescription: String
-  
-  @Persisted(keyPath: "testResults", notificationName: .init("BTESecureStorageTestResultsDidChange"), defaultValue: List<TestResult>())
+
+  @Persisted(keyPath: .keyPathTestResults, notificationName: .StorageTestResultsDidChange, defaultValue: List<TestResult>())
   var testResults: List<TestResult>
-  
+
 }
