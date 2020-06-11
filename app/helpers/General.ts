@@ -1,34 +1,28 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import DocumentPicker from 'react-native-document-picker';
 
-/**
- * Get data from store
- *
- * @param {string} key
- * @param {boolean} isString
- */
-export async function GetStoreData(key, isString = true) {
+/* eslint-disable @typescript-eslint/no-explicit-any*/
+export async function GetStoreData(key: string, isString = true): Promise<any> {
   try {
-    let data = await AsyncStorage.getItem(key);
+    const data = await AsyncStorage.getItem(key);
 
     if (isString) {
       return data;
     }
 
-    return JSON.parse(data);
+    if (data) {
+      return JSON.parse(data);
+    }
   } catch (error) {
     console.log(error.message);
   }
   return false;
 }
 
-/**
- * Set data from store
- *
- * @param {string} key
- * @param {object} item
- */
-export async function SetStoreData(key, item) {
+export async function SetStoreData(
+  key: string,
+  item: Record<string, string> | string,
+): Promise<void> {
   try {
     //we want to wait for the Promise returned by AsyncStorage.setItem()
     //to be resolved to the actual value before returning the value
@@ -42,13 +36,7 @@ export async function SetStoreData(key, item) {
   }
 }
 
-/**
- * Remove data with associated key from store
- *
- * @param {string} key
- * @param {object} item
- */
-export async function RemoveStoreData(key) {
+export async function RemoveStoreData(key: string): Promise<void> {
   try {
     return await AsyncStorage.removeItem(key);
   } catch (error) {
@@ -56,7 +44,7 @@ export async function RemoveStoreData(key) {
   }
 }
 
-export async function pickFile() {
+export async function pickFile(): Promise<string | null> {
   // Pick a single file - returns actual path on Android, file:// uri on iOS
   try {
     const res = await DocumentPicker.pick({
@@ -67,6 +55,7 @@ export async function pickFile() {
   } catch (err) {
     if (DocumentPicker.isCancel(err)) {
       // User cancelled the picker, exit any dialogs or menus and move on
+      return null;
     } else {
       throw err;
     }
