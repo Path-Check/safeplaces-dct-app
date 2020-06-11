@@ -107,11 +107,7 @@ const SelfAssessmentStack = () => (
       cardStyleInterpolator: fade,
       gestureEnabled: false,
     }}>
-    <Stack.Screen
-      name='Assessment'
-      component={Assessment}
-    />
-    <Stack.Screen name='NextStepsScreen' component={NextSteps} />
+    <Stack.Screen name='Assessment' component={Assessment} />
   </Stack.Navigator>
 );
 
