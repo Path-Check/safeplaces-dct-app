@@ -8,7 +8,7 @@ import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
-import ExposureNotifcationService from '../services/ExposureNotificationService';
+import ExposureNotificationService from '../services/ExposureNotificationService';
 import { ExposurePage } from './main/ExposurePage';
 import { NoKnownExposure } from './main/NoKnownExposure';
 import { OffPage } from './main/OffPage';
@@ -16,7 +16,7 @@ import { styles } from './main/style';
 import { UnknownPage } from './main/UnknownPage';
 
 export const Main = () => {
-  const tracingService = isGPS ? LocationServices : ExposureNotifcationService;
+  const tracingService = isGPS ? LocationServices : ExposureNotificationService;
   const navigation = useNavigation();
   if (isPlatformAndroid()) {
     StatusBar.setBackgroundColor(Colors.TRANSPARENT);
