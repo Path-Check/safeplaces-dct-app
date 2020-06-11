@@ -62,7 +62,7 @@ export const OnboardingPermissions = () => {
   const locationStep = {
     header: languages.t('onboarding.location_header'),
     subHeader: languages.t('onboarding.location_subheader'),
-    nextStepParam: 'notification',
+    nextStepParam: null,
     handleButtonPress: handleRequestLocation,
     icon: Icons.LocationPin,
     buttonLabel: languages.t('label.launch_allow_location'),
