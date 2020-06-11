@@ -85,10 +85,10 @@ export function useAssets(): Record<string, string> {
 
   // No Known Exposure Page
   const noKnownExposurePageHeader = isGPS
-  ? t('label.home_no_contact_header_location')
+  ? t('label.home_no_contact_header')
   : t('label.home_no_contact_header_bluetooth');
   const noKnownExposurePageSubheader = isGPS
-  ? t('label.home_no_contact_subtext_location')
+  ? t('label.home_no_contact_subtext')
   : t('label.home_no_contact_subtext_bluetooth');
 
   return {
