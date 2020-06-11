@@ -114,6 +114,7 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.spacer} />
         <View style={styles.spacer} />
       </ScrollView>
+
     </NavigationBarWrapper>
   );
 };
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: '100%',
     backgroundColor: Colors.INTRO_WHITE_BG,
-    paddingHorizontal: 26,
+    paddingHorizontal: 40,
     paddingBottom: 42,
   },
   aboutLabelContainer: {
