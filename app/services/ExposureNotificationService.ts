@@ -1,4 +1,7 @@
-(global as any).ExposureNotificationsOn = true;
+// eslint-disable-next-line
+declare const global: any
+
+global.ExposureNotificationsOn = true;
 
 type ENStatusReason = 'DEVICE_EXPOSURE_NOTIFICATIONS_OFF' | 'ALL_CONDITIONS_MET';
 
@@ -7,8 +10,6 @@ interface ExposureNotificationsState {
   reason: ENStatusReason;
   hasPotentialExposure: boolean;
 }
-
-declare const global: any
 
 export default class ExposureNotificationService {
   public static DEVICE_EXPOSURE_NOTIFICATIONS_OFF: ENStatusReason = 'DEVICE_EXPOSURE_NOTIFICATIONS_OFF';

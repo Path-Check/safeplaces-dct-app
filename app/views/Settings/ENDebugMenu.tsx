@@ -22,6 +22,7 @@ import {
 } from '../../exposureNotificationsNativeModule';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
 
+// eslint-disable-next-line
 declare const global: any
 
 type ENDebugMenuProps = {
