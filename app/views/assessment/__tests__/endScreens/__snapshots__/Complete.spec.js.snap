@@ -30,6 +30,11 @@ exports[`base 1`] = `
       }
     >
       <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/emptyPathBackground.png",
+          }
+        }
         style={
           Array [
             Object {
