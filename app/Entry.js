@@ -20,6 +20,7 @@ import {
   ExportSelectHA,
 } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
+import NextSteps from './views/NextSteps';
 import {
   EN_DEBUG_MENU_SCREEN_NAME,
   EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME,
@@ -82,6 +83,22 @@ const ExportStack = () => (
   </Stack.Navigator>
 );
 
+const ExposureHistoryStack = () => (
+  <Stack.Navigator
+    mode='modal'
+    screenOptions={{
+      ...SCREEN_OPTIONS,
+      cardStyleInterpolator: fade,
+      gestureEnabled: false,
+    }}>
+    <Stack.Screen
+      name='ExposureHistoryScreen'
+      component={ExposureHistoryScreen}
+    />
+    <Stack.Screen name='NextStepsScreen' component={NextSteps} />
+  </Stack.Navigator>
+);
+
 const MoreTabStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
@@ -127,8 +144,8 @@ const MainAppTabs = () => {
         }}
       />
       <Tab.Screen
-        name='ExposureHistoryScreen'
-        component={ExposureHistoryScreen}
+        name='ExposureHistoryStack'
+        component={ExposureHistoryStack}
         options={{
           tabBarLabel: t('navigation.history'),
           tabBarIcon: ({ focused, size }) => (
