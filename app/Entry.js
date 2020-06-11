@@ -90,7 +90,10 @@ const AuthorityTabStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen name='AuthorityInfoScreen' component={AuthorityInfoScreen} />
     <Stack.Screen name='SelectedHAsScreen' component={SelectedHAsScreen} />
-    <Stack.Screen name='EditAuthoritiesScreen' component={EditAuthoritiesScreen} />
+    <Stack.Screen
+      name='EditAuthoritiesScreen'
+      component={EditAuthoritiesScreen}
+    />
     <Stack.Screen name='AddManualURLScreen' component={AddManualURLScreen} />
   </Stack.Navigator>
 );
