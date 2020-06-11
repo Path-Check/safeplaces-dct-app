@@ -78,9 +78,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
   },
-  headerText: {
-    color: Colors.VIOLET,
-  },
   verticalSpacer: {
     flex: 1,
   },

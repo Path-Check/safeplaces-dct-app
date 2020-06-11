@@ -46,10 +46,10 @@ const Onboarding = (props) => {
         <View style={[sharedStyles.iconCircle, styles.iconCircle]}>
           <SvgXml xml={onboarding4Icon} width={30} height={30} />
         </View>
-        <Typography style={styles.headerText} use={Type.Headline2}>
+        <Typography style={sharedStyles.headerText} use={Type.Headline2}>
           {onboarding4Header}
         </Typography>
-        <Typography style={styles.subheaderText}>
+        <Typography style={sharedStyles.subheaderText}>
           {onboarding4Subheader}
         </Typography>
       </View>
@@ -78,15 +78,6 @@ const styles = StyleSheet.create({
     flex: 2,
     alignSelf: 'center',
     justifyContent: 'center',
-  },
-  headerText: {
-    color: Colors.VIOLET,
-  },
-  subheaderText: {
-    marginTop: '6%',
-    color: Colors.VIOLET,
-    fontSize: 16,
-    fontFamily: fontFamily.primaryRegular,
   },
   verticalSpacer: {
     flex: 1,
