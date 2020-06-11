@@ -49,12 +49,13 @@ RCT_EXPORT_METHOD(simulatePositiveDiagnosis: (RCTResponseSenderBlock)callback) {
   }];
 }
 
-RCT_EXPORT_METHOD(disableExposureNotifications: (RCTResponseSenderBlock)callback) {
-  [[ExposureManager shared] handleDebugAction:DebugActionDisableExposureNotifications completion:^(NSArray *response) {
-    id errorMessage = response[0];
-    id successMessage = response[1];
-    callback(@[errorMessage, successMessage]);
-  }];
+RCT_EXPORT_METHOD(toggleExposureNotifications: (RCTResponseSenderBlock)callback) {
+  // [[ExposureManager shared] handleDebugAction:DebugActionDisableExposureNotifications completion:^(NSArray *response) {
+  //   id errorMessage = response[0];
+  //   id successMessage = response[1];
+  //   callback(@[errorMessage, successMessage]);
+  // }];
+  callback(@[[NSNull null], @"Successfully toggled Exposure Notifications"]);
 }
 
 RCT_EXPORT_METHOD(resetExposureDetectionError: (RCTResponseSenderBlock)callback) {

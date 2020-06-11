@@ -13,7 +13,7 @@ import {
   detectExposuresNow,
   simulateExposure,
   simulatePositiveDiagnosis,
-  disableExposureNotifications,
+  toggleExposureNotifications,
   resetExposureDetectionError,
   resetUserENState,
   getAndPostDiagnosisKeys,
@@ -21,6 +21,9 @@ import {
   getExposureConfiguration,
 } from '../../exposureNotificationsNativeModule';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
+
+// eslint-disable-next-line
+declare const global: any;
 
 type ENDebugMenuProps = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -90,6 +93,11 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
     toggleHasExposure();
   };
 
+  const handleOnPressToggleExposureNotifications = () => {
+    handleOnPressSimulationButton(toggleExposureNotifications)();
+    global.ExposureNotificationsOn = !global.ExposureNotificationsOn;
+  };
+
   return (
     <NavigationBarWrapper
       includeBottomNav
@@ -126,10 +134,8 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
             onPress={handleOnPressSimulationButton(simulatePositiveDiagnosis)}
           />
           <Item
-            label='Disable Exposure Notifications'
-            onPress={handleOnPressSimulationButton(
-              disableExposureNotifications,
-            )}
+            label='Toggle Exposure Notifications'
+            onPress={handleOnPressToggleExposureNotifications}
           />
           <Item
             label='Reset Exposure Detection Error'
