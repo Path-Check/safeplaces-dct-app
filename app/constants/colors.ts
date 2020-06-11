@@ -61,6 +61,8 @@ const colors = {
   MONO_SECONDARY: '#757677',
 
   LINK: '#FFDC58',
+
+  UNDERLAY: '#E5E7FA',
 };
 
 export default colors;

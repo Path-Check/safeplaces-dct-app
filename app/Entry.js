@@ -9,7 +9,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import AboutScreen from './views/About';
-import ChooseProviderScreen from './views/ChooseProvider';
+import PartnersOverviewScreen from './views/Partners/PartnersOverview';
+import PartnersEditScreen from './views/Partners/PartnersEdit';
+
 import {
   ExportCodeInput,
   ExportComplete,
@@ -110,6 +112,7 @@ const MainAppTabs = () => {
         style: {
           backgroundColor: Colors.violetTextDark,
           paddingTop: Spacing.small,
+          borderTopColor: Colors.primaryViolet,
         },
       }}>
       <Tab.Screen
@@ -159,8 +162,8 @@ const MainAppTabs = () => {
       )}
 
       <Tab.Screen
-        name='ChooseProviderScreen'
-        component={ChooseProviderScreen}
+        name='Partners'
+        component={PartnersStack}
         options={{
           tabBarLabel: t('navigation.partners'),
           tabBarIcon: ({ focused, size }) => (
@@ -204,6 +207,16 @@ const OnboardingStack = () => (
       name='EnableExposureNotifications'
       component={EnableExposureNotifications}
     />
+  </Stack.Navigator>
+);
+
+const PartnersStack = () => (
+  <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
+    <Stack.Screen
+      name={'PartnersOverview'}
+      component={PartnersOverviewScreen}
+    />
+    <Stack.Screen name={'PartnersEdit'} component={PartnersEditScreen} />
   </Stack.Navigator>
 );
 

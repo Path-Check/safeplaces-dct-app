@@ -20,7 +20,7 @@ import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
-import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
+import healthcareAuthorityOptionsSelector from '../../store/selectors/selectedHealthcareAuthoritiesSelector';
 
 export const ExportSelectHA = ({ navigation }) => {
   const { t } = useTranslation();
@@ -72,7 +72,7 @@ export const ExportSelectHA = ({ navigation }) => {
             keyExtractor={({ name }, i) => `${name}:${i}`}
             renderItem={({ item: HA }) => (
               <TouchableHighlight
-                underlayColor={'#E5E7FA'}
+                underlayColor={Colors.UNDERLAY}
                 style={{
                   paddingVertical: 20,
                   paddingHorizontal: 24,

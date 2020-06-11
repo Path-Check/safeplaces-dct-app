@@ -20,6 +20,7 @@ import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import exitWarningAlert from './exitWarningAlert';
+import exportCodeApi from '../../api/export/exportCodeApi';
 
 const CODE_LENGTH = 6;
 
@@ -125,15 +126,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
-      const checkAccessCodeRoute = `${selectedAuthority.ingest_url}/access-code/valid`;
-      const res = await fetch(`${checkAccessCodeRoute}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ accessCode: code }),
-      });
-      const { valid } = await res.json();
+      const { valid } = await exportCodeApi(selectedAuthority, code);
       if (valid) {
         navigation.navigate('ExportLocationConsent', {
           selectedAuthority,
