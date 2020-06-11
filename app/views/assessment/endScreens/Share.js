@@ -16,10 +16,8 @@ export const Share = ({ navigation }) => {
         navigation.push('EndComplete');
       }}
       icon={Icons.AnonymizedData}
-      backgroundColor={Colors.PRIMARY_50}
-      ctaColor={Colors.WHITE}
+      backgroundColor={Colors.SECONDARY_10}
       ctaTitle={t('assessment.share_cta')}
-      fontColor={Colors.WHITE}
       description={
         <>
           <Trans t={t} i18nKey='assessment.share_description'>
