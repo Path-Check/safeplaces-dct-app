@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { Typography } from '../../components';
@@ -6,9 +6,10 @@ import languages from '../../locales/languages';
 import { useAssets } from '../../TracingStrategyAssets';
 import { ExposureCalendarView } from './ExposureCalendarView';
 import { SingleExposureDetail } from './SingleExposureDetail';
-import { isGPS } from '../../TracingStrategyAssets';
+import { isGPS } from '../../COVIDSafePathsConfig';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
-import HasBeenExposedDetail from './HasBeenExposedDetail';
+import ExposureDatumDetail from './ExposureDatumDetail';
+import Calendar from './Calendar';
 
 import { Spacing } from '../../styles';
 
@@ -19,16 +20,25 @@ import { Spacing } from '../../styles';
  */
 export const DetailedHistory = ({ history }) => {
   const { detailedHistoryPageWhatThisMeansPara } = useAssets();
-  const { hasBeenExposed } = useContext(ExposureNotificationContext);
-  const exposedDays = history.filter((day) => day.exposureMinutes > 0);
+  const { exposureHistory } = useContext(ExposureNotificationContext);
+  const [selectedExposureDatum, setSelectedExposureDatum] = useState(
+    exposureHistory[exposureHistory.length - 1],
+  );
 
   const Divider = () => {
     return <View style={styles.divider} />;
   };
 
   const gpsExposureInfo = () => {
+    const exposedDays = history.filter((day) => day.exposureMinutes > 0);
     return (
       <>
+        <ExposureCalendarView
+          weeks={3}
+          history={history}
+          onSelectDate={handleOnSelectDate}
+        />
+        <Divider />
         {exposedDays.map(({ exposureMinutes, date }) => (
           <SingleExposureDetail
             key={date.format()}
@@ -74,29 +84,28 @@ export const DetailedHistory = ({ history }) => {
     );
   };
 
-  const bteExposureInfo = (hasBeenExposed) => {
-    const exposure = {
-      date: Date.now(),
-      possibleExposureTimeInMin: 45,
-      currentDailyReports: 1,
-    };
-
-    return (
-      <>
-        {hasBeenExposed ? (
-          <View style={styles.detailsContainer}>
-            <HasBeenExposedDetail exposure={exposure} />
-          </View>
-        ) : null}
-      </>
-    );
+  const handleOnSelectDate = (datum) => {
+    setSelectedExposureDatum(datum);
   };
 
   return (
     <>
-      <ExposureCalendarView weeks={3} history={history} />
-      <Divider />
-      {isGPS ? gpsExposureInfo() : bteExposureInfo(hasBeenExposed)}
+      {isGPS ? (
+        gpsExposureInfo()
+      ) : (
+        <>
+          <View styles={styles.calendarContainer}>
+            <Calendar
+              exposureHistory={exposureHistory}
+              onSelectDate={handleOnSelectDate}
+              selectedDatum={selectedExposureDatum}
+            />
+          </View>
+          <View style={styles.detailsContainer}>
+            <ExposureDatumDetail exposureDatum={selectedExposureDatum} />
+          </View>
+        </>
+      )}
     </>
   );
 };

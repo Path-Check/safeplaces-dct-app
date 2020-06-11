@@ -6,6 +6,10 @@ export const baseBorderRadius = 4;
 export const borderRadiusLarge = 8;
 export const borderRadiusMax = 500;
 
+export const hairline = 1;
+export const thin = 2;
+export const thick = 3;
+
 export const roundedBorder: ViewStyle = {
   borderWidth: 1,
   borderRadius: baseBorderRadius,
