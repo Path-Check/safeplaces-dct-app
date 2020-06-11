@@ -15,7 +15,7 @@ import {
   simulatePositiveDiagnosis,
   disableExposureNotifications,
   resetExposureDetectionError,
-  resetLocalExposures,
+  resetUserENState,
   getAndPostDiagnosisKeys,
   simulateExposureDetectionError,
   getExposureConfiguration,
@@ -68,15 +68,18 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   };
 
   const handleOnPressSimulationButton = (
-    callSimulatedEvent: (cb: (errorString: string | null) => void) => void,
-    successMessage: string,
+    callSimulatedEvent: (
+      cb: (errorString: string | null, successString: string | null) => void,
+    ) => void,
   ) => {
     return () => {
-      const cb = (errorString: string | null) => {
+      const cb = (errorString: string | null, successString: string | null) => {
         if (errorString) {
           showErrorAlert(errorString);
+        } else if (successString) {
+          showSuccessAlert(successString);
         } else {
-          showSuccessAlert(successMessage);
+          showSuccessAlert('success');
         }
       };
       callSimulatedEvent(cb);
@@ -102,59 +105,39 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
         <Section>
           <Item
             label='Detect Exposures Now'
-            onPress={handleOnPressSimulationButton(
-              detectExposuresNow,
-              'Exposure Detection Successful.',
-            )}
+            onPress={handleOnPressSimulationButton(detectExposuresNow)}
           />
           <Item
             label='Get Exposure Configuration'
-            onPress={handleOnPressSimulationButton(
-              getExposureConfiguration,
-              'Successfully Fetched Exposure Configuration',
-            )}
+            onPress={handleOnPressSimulationButton(getExposureConfiguration)}
           />
           <Item
             label='Simulate Exposure Detection Error'
             onPress={handleOnPressSimulationButton(
               simulateExposureDetectionError,
-              'Exposure detection error simulation successful.',
             )}
           />
           <Item
             label='Simulate Exposure'
-            onPress={handleOnPressSimulationButton(
-              simulateExposure,
-              'Exposure simulation successful.',
-            )}
+            onPress={handleOnPressSimulationButton(simulateExposure)}
           />
           <Item
             label='Simulate Positive Diagnosis'
-            onPress={handleOnPressSimulationButton(
-              simulatePositiveDiagnosis,
-              'Positive diagnosis simulation successful.',
-            )}
+            onPress={handleOnPressSimulationButton(simulatePositiveDiagnosis)}
           />
           <Item
             label='Disable Exposure Notifications'
             onPress={handleOnPressSimulationButton(
               disableExposureNotifications,
-              'Exposure notifications disabled.',
             )}
           />
           <Item
             label='Reset Exposure Detection Error'
-            onPress={handleOnPressSimulationButton(
-              resetExposureDetectionError,
-              'Reset successful.',
-            )}
+            onPress={handleOnPressSimulationButton(resetExposureDetectionError)}
           />
           <Item
-            label='Reset Local Exposures'
-            onPress={handleOnPressSimulationButton(
-              resetLocalExposures,
-              'Reset successful.',
-            )}
+            label='Reset User EN State'
+            onPress={handleOnPressSimulationButton(resetUserENState)}
             last
           />
         </Section>
@@ -167,10 +150,8 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
           />
           <Item
             label='Get and Post Diagnosis Keys'
-            onPress={handleOnPressSimulationButton(
-              getAndPostDiagnosisKeys,
-              'Diagnosis keys successfully posted.',
-            )}
+            onPress={handleOnPressSimulationButton(getAndPostDiagnosisKeys)}
+            last
           />
         </Section>
       </ScrollView>
