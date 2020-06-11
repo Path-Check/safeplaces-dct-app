@@ -151,13 +151,6 @@ const styles = StyleSheet.create({
   descriptionWrapper: {
     marginBottom: 20,
   },
-  description: {
-    color: Colors.BLACK,
-    fontSize: 20,
-    lineHeight: 22,
-    marginBottom: 10,
-    fontWeight: '300',
-  },
   footer: {
     padding: 20,
   },
