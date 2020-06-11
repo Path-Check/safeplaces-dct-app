@@ -11,6 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import org.pathcheck.covidsafepaths.BuildConfig;
 
+import covidsafepaths.bte.bridge.ExposureNotificationsPackage;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private static Context context;
@@ -24,8 +26,8 @@ public class MainApplication extends Application implements ReactApplication {
 
         @Override
         protected List<ReactPackage> getPackages() {
-          @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
+          packages.add(new ExposureNotificationsPackage());
 
           return packages;
         }
