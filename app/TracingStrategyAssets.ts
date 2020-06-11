@@ -3,28 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Images } from './assets';
 import { isGPS } from './COVIDSafePathsConfig';
 
-export type TracingStrategyAssetMap = {
-  onboarding2Background: string;
-  onboarding2Header: string;
-  onboarding2Subheader: string;
-  onboarding3Background: string;
-  onboarding3Header: string;
-  onboarding3Subheader: string;
-  onboarding4Background: string;
-  onboarding4Header: string;
-  onboarding4Subheader: string;
-  onboarding4Button: string;
-  settingsLoggingActive: string;
-  settingsLoggingInactive: string;
-  aboutHeader: string;
-  legalHeader: string;
-  detailedHistoryWhatThisMeansPara: string;
-  exposurePageSubheader: string;
-  offPageCta: string;
-  offPageButton: string;
-};
-
-export function useAssets(): TracingStrategyAssetMap {
+export function useAssets(): Record<string, string> {
   const { t } = useTranslation();
 
   // Onboarding2
