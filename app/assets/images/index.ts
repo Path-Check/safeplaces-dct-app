@@ -14,6 +14,7 @@ const LaunchScreen3 = require('./launchScreen3.png');
 const LaunchScreen3BT = require('./launchScreen3BT.png');
 const LaunchScreenBackground = require('./launchScreenBackground.png');
 const LaunchScreenBackgroundOverlay = require('./launchScreenBackgroundOverlay.png');
+const EmptyPathBackground = require('./emptyPathBackground.png');
 const Newspaper = require('./newspaper.png');
 const PrivateKitQRCode = require('./privatekit_qrcode.png');
 const SaveIcon = require('./saveIcon.png');
@@ -27,6 +28,7 @@ export const Images = {
   BoxCheckedIcon,
   BoxUncheckedIcon,
   Close,
+  EmptyPathBackground,
   Export,
   ForeArrow,
   HomeScreenBackgroundOverlay,
