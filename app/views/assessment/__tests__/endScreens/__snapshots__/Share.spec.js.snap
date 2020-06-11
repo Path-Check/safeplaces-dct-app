@@ -11,7 +11,7 @@ exports[`base 1`] = `
   }
 >
   <RCTSafeAreaView
-    backgroundColor="#6979F8"
+    backgroundColor="#F8F8FF"
     emulateUnlessSupported={true}
     style={
       Object {
@@ -71,7 +71,6 @@ exports[`base 1`] = `
 "
             />
             <Text
-              color="#FFF"
               style={
                 Object {
                   "fontFamily": "IBMPlexSans-Bold",
@@ -87,7 +86,6 @@ exports[`base 1`] = `
               Publish anonymized data
             </Text>
             <Text
-              color="#FFF"
               style={
                 Object {
                   "fontFamily": "IBMPlexSans",
@@ -138,7 +136,7 @@ I understand that the ,&lt;HA&gt; representative will ask me verbally at the end
                   "paddingVertical": 22,
                 },
                 Object {
-                  "backgroundColor": "#FFF",
+                  "backgroundColor": "#6979F8",
                 },
               ]
             }
