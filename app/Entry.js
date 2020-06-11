@@ -24,7 +24,6 @@ import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import {
   EN_DEBUG_MENU_SCREEN_NAME,
   EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME,
-  FEATURE_FLAG_SCREEN_NAME,
   ENDebugMenu,
 } from './views/Settings/ENDebugMenu';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
@@ -97,10 +96,6 @@ const MoreTabStack = () => (
       component={ENLocalDiagnosisKeyScreen}
     />
     <Stack.Screen
-      name={FEATURE_FLAG_SCREEN_NAME}
-      component={FeatureFlagsScreen}
-    />
-    <Stack.Screen
       name='AssessmentScreen'
       component={AssessmentScreen}
       options={{ stackPresentation: 'modal', headerShown: false }}
@@ -168,7 +163,6 @@ const MainAppTabs = () => {
           }}
         />
       )}
-
       <Tab.Screen
         name='ChooseProviderScreen'
         component={ChooseProviderScreen}
