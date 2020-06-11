@@ -21,8 +21,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
       }
     }
   />
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+  <View
     style={
       Object {
         "backgroundColor": "#F7F8FF",
@@ -40,39 +39,10 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           "borderBottomColor": "#5061E6",
           "borderBottomWidth": 1,
           "flexDirection": "row",
+          "height": 55,
         }
       }
     >
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        style={
-          Object {
-            "alignItems": "center",
-            "height": 55,
-            "justifyContent": "center",
-            "opacity": 1,
-            "width": 60,
-            "zIndex": 1,
-          }
-        }
-      >
-        <SvgXml
-          style={
-            Object {
-              "color": "#FFF",
-              "height": 18,
-              "width": 18,
-            }
-          }
-          xml="
-  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
-    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
-  </svg>
-"
-        />
-      </View>
       <Text
         style={
           Object {
@@ -90,7 +60,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           }
         }
       >
-        Dashboard
+        More
       </Text>
     </View>
     <RCTScrollView>
@@ -290,7 +260,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         >
           <View
             accessible={true}
-            focusable={true}
+            focusable={false}
             isTVSelectable={true}
             style={
               Object {
@@ -326,23 +296,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Your Healthcare Authority
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Select a Healthcare Authority to learn about COVID-19 in your area, where available
+                FAQ
               </Text>
             </View>
           </View>
@@ -356,7 +310,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           />
           <View
             accessible={true}
-            focusable={true}
+            focusable={false}
             isTVSelectable={true}
             style={
               Object {
@@ -392,155 +346,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Latest News
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Find the latest updates from Safe Paths and your local Healthcare Authorities, where available
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Exposure history
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Understand your personal exposure based on information shared by health authorities.
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Share location history
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Your private data can be transferred to health authorities, backed up, or otherwise shared.
+                Report an issue
               </Text>
             </View>
           </View>
@@ -894,56 +700,6 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               </Text>
             </View>
           </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                EN Debug Menu
-              </Text>
-            </View>
-          </View>
         </View>
         <View
           style={
@@ -955,7 +711,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         />
       </View>
     </RCTScrollView>
-  </RCTSafeAreaView>
+  </View>
 </View>
 `;
 
@@ -980,8 +736,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
       }
     }
   />
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+  <View
     style={
       Object {
         "backgroundColor": "#F7F8FF",
@@ -999,39 +754,10 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           "borderBottomColor": "#5061E6",
           "borderBottomWidth": 1,
           "flexDirection": "row",
+          "height": 55,
         }
       }
     >
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        style={
-          Object {
-            "alignItems": "center",
-            "height": 55,
-            "justifyContent": "center",
-            "opacity": 1,
-            "width": 60,
-            "zIndex": 1,
-          }
-        }
-      >
-        <SvgXml
-          style={
-            Object {
-              "color": "#FFF",
-              "height": 18,
-              "width": 18,
-            }
-          }
-          xml="
-  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
-    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
-  </svg>
-"
-        />
-      </View>
       <Text
         style={
           Object {
@@ -1049,7 +775,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           }
         }
       >
-        Dashboard
+        More
       </Text>
     </View>
     <RCTScrollView>
@@ -1249,7 +975,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         >
           <View
             accessible={true}
-            focusable={true}
+            focusable={false}
             isTVSelectable={true}
             style={
               Object {
@@ -1285,23 +1011,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Your Healthcare Authority
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Select a Healthcare Authority to learn about COVID-19 in your area, where available
+                FAQ
               </Text>
             </View>
           </View>
@@ -1315,7 +1025,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           />
           <View
             accessible={true}
-            focusable={true}
+            focusable={false}
             isTVSelectable={true}
             style={
               Object {
@@ -1351,155 +1061,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Latest News
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Find the latest updates from Safe Paths and your local Healthcare Authorities, where available
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Exposure history
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Understand your personal exposure based on information shared by health authorities.
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Share location history
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Your private data can be transferred to health authorities, backed up, or otherwise shared.
+                Report an issue
               </Text>
             </View>
           </View>
@@ -1683,56 +1245,6 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               </Text>
             </View>
           </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                EN Debug Menu
-              </Text>
-            </View>
-          </View>
         </View>
         <View
           style={
@@ -1744,6 +1256,6 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         />
       </View>
     </RCTScrollView>
-  </RCTSafeAreaView>
+  </View>
 </View>
 `;

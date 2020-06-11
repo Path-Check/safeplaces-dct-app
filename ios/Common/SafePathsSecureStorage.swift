@@ -27,10 +27,13 @@ class SafePathsSecureStorage {
       self.keyLastSavedTime = "lastSavedTime"
     }
   }
+
+  var keychainIdentifier: String {
+    "org.pathcheck.covid-safepaths.realm"
+  }
   
   func getEncyrptionKey() -> NSData? {
     // Identifier for our keychain entry - should be unique for your application
-    let keychainIdentifier = "org.pathcheck.covid-safepaths.realm"
     let keychainIdentifierData = keychainIdentifier.data(using: String.Encoding.utf8, allowLossyConversion: false)!
     
     // First check in the keychain for an existing key

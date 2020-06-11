@@ -49,13 +49,13 @@ const BackgroundContainer = ({ lightTheme, children }) => {
 };
 
 export const ExportTemplate = ({
-  onClose,
   headline,
   body,
   onNext,
   nextButtonLabel,
   // Optionals:
   buttonSubtitle,
+  onClose,
   icon,
   lightTheme,
   buttonLoading,
@@ -63,6 +63,7 @@ export const ExportTemplate = ({
   // https://react.i18next.com/latest/trans-component
   bodyLinkText,
   bodyLinkOnPress,
+  ignoreModalStyling, // So first screen can be slightly different in tabs
 }) => {
   useEffect(() => {
     function handleBackPress() {
@@ -78,9 +79,11 @@ export const ExportTemplate = ({
     <Theme use={lightTheme ? 'default' : 'violet'}>
       <BackgroundContainer lightTheme={lightTheme}>
         <SafeAreaView style={{ flex: 1, paddingBottom: 24 }}>
-          <View style={styles.header}>
-            <IconButton icon={Icons.Close} size={22} onPress={onClose} />
-          </View>
+          {onClose && (
+            <View style={styles.header}>
+              <IconButton icon={Icons.Close} size={22} onPress={onClose} />
+            </View>
+          )}
           <ScrollView
             alwaysBounceVertical={false}
             style={{ flexGrow: 1 }}
@@ -131,7 +134,9 @@ export const ExportTemplate = ({
           )}
           {/* Add extra padding on the bottom if available for phone. 
            Interlays with the flexGrow on the scroll view to ensure that scrolling content has priority. */}
-          <View style={{ maxHeight: 20, flexGrow: 1 }} />
+          {!ignoreModalStyling && (
+            <View style={{ maxHeight: 20, flexGrow: 1 }} />
+          )}
         </SafeAreaView>
       </BackgroundContainer>
     </Theme>
