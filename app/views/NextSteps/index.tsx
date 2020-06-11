@@ -32,7 +32,7 @@ const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
   const buttonText = 'Take Self Assessment';
 
   const handleOnPressTakeAssessment = () => {
-    navigation.navigate('AssessmentScreen');
+    navigation.navigate('Assessment');
   };
 
   return (

@@ -1,4 +1,5 @@
 import AnonymizedData from './anonymizedData';
+import AnonymizedDataInverted from './anonymizedDataInverted';
 import BackArrow from './backArrow';
 import Bell from './bell';
 import Checkmark from './checkmark';
@@ -28,6 +29,7 @@ import XmarkIcon from './xmarkIcon';
 
 export const Icons = {
   AnonymizedData,
+  AnonymizedDataInverted,
   BackArrow,
   Bell,
   Checkmark,

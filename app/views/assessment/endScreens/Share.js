@@ -15,7 +15,7 @@ export const Share = ({ navigation }) => {
       ctaAction={() => {
         navigation.push('EndComplete');
       }}
-      icon={Icons.AnonymizedData}
+      icon={Icons.AnonymizedDataInverted}
       backgroundColor={Colors.SECONDARY_10}
       ctaTitle={t('assessment.share_cta')}
       description={
