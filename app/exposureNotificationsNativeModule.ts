@@ -48,13 +48,13 @@ export const simulatePositiveDiagnosis = async (
   debugModule.simulatePositiveDiagnosis(cb);
 };
 
-export const disableExposureNotifications = async (
+export const toggleExposureNotifications = async (
   cb: (
     errorMessage: ENModuleErrorMessage,
     successMesage: ENModuleSuccessMessage,
   ) => void,
 ): Promise<void> => {
-  debugModule.disableExposureNotifications(cb);
+  debugModule.toggleExposureNotifications(cb);
 };
 
 export const resetExposureDetectionError = async (
