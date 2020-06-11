@@ -86,6 +86,15 @@ const ExportStack = () => (
   </Stack.Navigator>
 );
 
+const AuthorityTabStack = () => (
+  <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
+    <Stack.Screen name='AuthorityInfoScreen' component={AuthorityInfoScreen} />
+    <Stack.Screen name='SelectedHAsScreen' component={SelectedHAsScreen} />
+    <Stack.Screen name='EditAuthoritiesScreen' component={EditAuthoritiesScreen} />
+    <Stack.Screen name='AddManualURLScreen' component={AddManualURLScreen} />
+  </Stack.Navigator>
+);
+
 const MoreTabStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
@@ -163,8 +172,8 @@ const MainAppTabs = () => {
       )}
 
       <Tab.Screen
-        name='ChooseProviderScreen'
-        component={ChooseProviderScreen}
+        name='AuthorityTabStack'
+        component={AuthorityTabStack}
         options={{
           tabBarLabel: t('navigation.partners'),
           tabBarIcon: ({ focused, size }) => (
