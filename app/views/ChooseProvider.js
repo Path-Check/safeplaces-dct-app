@@ -324,11 +324,7 @@ class ChooseProviderScreen extends Component {
             <Menu
               name='AuthoritiesMenu'
               renderer={SlideInMenu}
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                paddingHorizontal: 12,
-              }}>
+              style={{ padding: 20 }}>
               <MenuTrigger>
                 <Button
                   label={languages.t('label.authorities_add_button_label')}

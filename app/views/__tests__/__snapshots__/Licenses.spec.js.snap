@@ -21,8 +21,7 @@ exports[`renders correctly 1`] = `
       }
     }
   />
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+  <View
     style={
       Object {
         "backgroundColor": "#F7F8FF",
@@ -225,6 +224,6 @@ Somerville, MA 02144
         />
       </View>
     </View>
-  </RCTSafeAreaView>
+  </View>
 </View>
 `;

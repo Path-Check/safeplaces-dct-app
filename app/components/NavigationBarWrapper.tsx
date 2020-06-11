@@ -80,7 +80,7 @@ const TopContainer = styled.SafeAreaView`
 const themeBackground = ({ theme }: Theme) =>
   theme.background || Colors.INTRO_WHITE_BG;
 
-const BottomContainer = styled.SafeAreaView`
+const BottomContainer = styled.View`
   flex: 1;
   background-color: ${themeBackground};
 `;
