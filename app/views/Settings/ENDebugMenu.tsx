@@ -1,5 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Alert, BackHandler, ScrollView } from 'react-native';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Item } from './Item';
@@ -15,11 +20,7 @@ import {
   simulateExposureDetectionError,
   getExposureConfiguration,
 } from '../../exposureNotificationsNativeModule';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
+import ExposureNotificationContext from '../../ExposureNotificationContext';
 
 type ENDebugMenuProps = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -29,6 +30,7 @@ export const EN_DEBUG_MENU_SCREEN_NAME = 'ENDebugMenu';
 export const EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME = 'ENLocalDiagnosisKeyScreen';
 
 export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
+  const { toggleHasExposure } = useContext(ExposureNotificationContext);
   useEffect(() => {
     const handleBackPress = () => {
       navigation.goBack();
@@ -81,12 +83,22 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
     };
   };
 
+  const handleOnPressToggleExposure = () => {
+    toggleHasExposure();
+  };
+
   return (
     <NavigationBarWrapper
       includeBottomNav
       title={'EN Debug Menu'}
       onBackPress={backToSettings}>
       <ScrollView>
+        <Section>
+          <Item
+            label='Toggle Exposure State'
+            onPress={handleOnPressToggleExposure}
+          />
+        </Section>
         <Section>
           <Item
             label='Detect Exposures Now'
