@@ -1,1 +1,1 @@
-export default from '@react-native-community/async-storage/jest/async-storage-mock';
+export default require('@react-native-community/async-storage/jest/async-storage-mock');

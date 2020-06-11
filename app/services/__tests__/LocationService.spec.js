@@ -3,13 +3,12 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { NativeModules } from 'react-native';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../../constants/storage';
-import { Reason } from '../LocationService';
-import LocationServices from '../LocationService';
+import LocationServices, { MIN_LOCATION_UPDATE_MS } from '../LocationService';
 
 jest.mock('@mauron85/react-native-background-geolocation');
 
 function mockBackgroundGeolocationCheckStatus(data) {
-  BackgroundGeolocation.checkStatus.mockImplementation(callback => {
+  BackgroundGeolocation.checkStatus.mockImplementation((callback) => {
     callback(data);
   });
 }
@@ -18,39 +17,31 @@ function mockBackgroundGeolocationCheckStatus(data) {
 const storage = {};
 
 function resetStorage() {
-  Object.keys(storage).forEach(k => delete storage[k]);
+  Object.keys(storage).forEach((k) => delete storage[k]);
 }
 
 beforeEach(() => {
   resetStorage();
   jest.resetAllMocks();
-  AsyncStorage.getItem.mockImplementation(key => storage[key]);
+  AsyncStorage.getItem.mockImplementation((key) => storage[key]);
 });
 
-describe('LocationData class', () => {
-  let locationData;
+it('has the correct time interval', () => {
+  expect(MIN_LOCATION_UPDATE_MS).toBe(60000 * 5);
+});
 
-  beforeEach(() => {
-    NativeModules.SecureStorageManager.getLocations.mockResolvedValue([
-      1,
-      2,
-      3,
-      4,
-      5,
-    ]);
-    let { LocationData } = require('../LocationService');
-    locationData = new LocationData();
-  });
+it('parses the location data', async () => {
+  NativeModules.SecureStorageManager.getLocations.mockResolvedValue([
+    1,
+    2,
+    3,
+    4,
+    5,
+  ]);
 
-  it('has the correct time interval', () => {
-    expect(locationData.locationInterval).toBe(60000 * 5);
-  });
+  const data = await LocationServices.getLocationData();
 
-  it('parses the location data', async () => {
-    const data = await locationData.getLocationData();
-
-    expect(data.length).toBe(5);
-  });
+  expect(data.length).toBe(5);
 });
 
 describe('LocationServices', () => {
@@ -67,20 +58,6 @@ describe('LocationServices', () => {
       expect(data).toBe(true);
     });
   }); // getHasPotentialExposure
-
-  describe('getParticpating', () => {
-    it('return true when location tracking is on', async () => {
-      AsyncStorage.getItem.mockResolvedValueOnce(true);
-      const data = await LocationServices.getParticpating();
-      expect(data).toBe(true);
-    });
-
-    it('return false when location tracking is on', async () => {
-      AsyncStorage.getItem.mockResolvedValueOnce(false);
-      const data = await LocationServices.getParticpating();
-      expect(data).toBe(false);
-    });
-  });
 
   describe('getBackgroundGeoStatus', () => {
     it('return status based on phone location permissions', async () => {
@@ -113,25 +90,7 @@ describe('LocationServices', () => {
       );
     });
 
-    it('return USER_OFF when particpating is false', async () => {
-      storage[CROSSED_PATHS] = '[0, 0, 0]';
-      storage[PARTICIPATE] = 'false';
-
-      mockBackgroundGeolocationCheckStatus({
-        locationServicesEnabled: true,
-        authorization: BackgroundGeolocation.AUTHORIZED,
-      });
-
-      const data = await LocationServices.checkStatus();
-
-      expect(data).toEqual({
-        canTrack: false,
-        reason: Reason.USER_OFF,
-        hasPotentialExposure: false,
-      });
-    });
-
-    it('return LOCATION_OFF when location services are off', async () => {
+    it('return DEVICE_LOCATION_OFF when location services are off', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
       storage[PARTICIPATE] = 'true';
       mockBackgroundGeolocationCheckStatus({
@@ -141,12 +100,12 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: false,
-        reason: Reason.LOCATION_OFF,
+        reason: LocationServices.DEVICE_LOCATION_OFF,
         hasPotentialExposure: false,
       });
     });
 
-    it('return NOT_AUTHORIZED when BackgroundGeoStatus authorization is NOT_AUTHORIZED ', async () => {
+    it('return APP_NOT_AUTHORIZED when BackgroundGeoStatus authorization is NOT_AUTHORIZED ', async () => {
       storage[CROSSED_PATHS] = '[0, 0, 0]';
       storage[PARTICIPATE] = 'true';
       mockBackgroundGeolocationCheckStatus({
@@ -157,7 +116,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: false,
-        reason: Reason.NOT_AUTHORIZED,
+        reason: LocationServices.APP_NOT_AUTHORIZED,
         hasPotentialExposure: false,
       });
     });
@@ -172,7 +131,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: true,
-        reason: '',
+        reason: LocationServices.ALL_CONDITIONS_MET,
         hasPotentialExposure: false,
       });
     });
@@ -187,7 +146,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: true,
-        reason: '',
+        reason: LocationServices.ALL_CONDITIONS_MET,
         hasPotentialExposure: true,
       });
     });
@@ -214,7 +173,7 @@ describe('LocationServices', () => {
         canTrack: true,
         hasPotentialExposure: false,
         isRunning: true,
-        reason: '',
+        reason: LocationServices.ALL_CONDITIONS_MET,
       });
     });
 
@@ -248,7 +207,7 @@ describe('LocationServices', () => {
 
     const CANNOT_TRACK = {
       locationServicesEnabled: true,
-      authorization: BackgroundGeolocation.NOT_AUTHORIZED,
+      authorization: BackgroundGeolocation.APP_NOT_AUTHORIZED,
     };
 
     it('does not stop the service if already stopped', async () => {

@@ -11,6 +11,8 @@ import { GetStoreData, SetStoreData } from '../helpers/General';
 import ar from './ar.json';
 import da from './da.json';
 import en from './en.json';
+import es_419 from './es_419.json';
+import es_PR from './es_PR.json';
 import es from './es.json';
 import fil from './fil.json';
 import fr from './fr.json';
@@ -25,6 +27,7 @@ import pt_BR from './pt_BR.json';
 import ro from './ro.json';
 import ru from './ru.json';
 import sk from './sk.json';
+import tl from './tl.json';
 import vi from './vi.json';
 import zh_Hant from './zh_Hant.json';
 
@@ -76,6 +79,8 @@ const DEV_LANGUAGES = __DEV__
       ar: { label: ar._display_name, translation: ar },
       da: { label: da._display_name, translation: da },
       es: { label: es._display_name, translation: es },
+      es_419: { label: es_419._display_name, translation: es_419 },
+      es_PR: { label: es_PR._display_name, translation: es_PR },
       fil: { label: fil._display_name, translation: fil },
       fr: { label: fr._display_name, translation: fr },
       id: { label: id._display_name, translation: id },
@@ -88,6 +93,7 @@ const DEV_LANGUAGES = __DEV__
       ro: { label: ro._display_name, translation: ro },
       ru: { label: ru._display_name, translation: ru },
       sk: { label: sk._display_name, translation: sk },
+      tl: { label: tl._display_name, translation: tl },
       vi: { label: vi._display_name, translation: vi },
       zh_Hant: { label: zh_Hant._display_name, translation: zh_Hant },
     }
@@ -144,7 +150,7 @@ export function supportedDeviceLanguageOrEnglish() {
   const locale = getDeviceLocale(); // en_US
   const langCode = getLanguageFromLocale(locale); // en
   const found = Object.keys(LOCALE_NAME).find(
-    l => l === langCode || toIETFLanguageTag(l) === toIETFLanguageTag(locale),
+    (l) => l === langCode || toIETFLanguageTag(l) === toIETFLanguageTag(locale),
   );
   return found || 'en';
 }
@@ -153,7 +159,7 @@ export function supportedDeviceLanguageOrEnglish() {
 setLocale(supportedDeviceLanguageOrEnglish());
 
 // detect user override
-getUserLocaleOverride().then(locale => locale && setLocale(locale));
+getUserLocaleOverride().then((locale) => locale && setLocale(locale));
 
 export default i18next;
 

@@ -1,0 +1,298 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+  pull_request:
+    branches:
+      - develop
+      - master
+
+jobs:
+  build_staging_android_gps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        id: node_cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - name: Install Node Dependencies
+        if: steps.node_cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Setup kernel for react native, increase watchers for release versions.
+        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Set up Ruby 2.6
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - name: Install bundler for ruby package management
+        run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
+        working-directory: ./android
+
+      - name: Cache ruby gems
+        uses: actions/cache@v1
+        id: ruby_cache
+        with:
+          path: android/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/android/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install Ruby Dependencies
+        if: steps.ruby_cache.outputs.cache-hit != 'true'
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+        working-directory: ./android
+
+      - name: Build android Staging artifact
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: 'staging_gps'
+          subdirectory: 'android'
+          bundle-install-path: 'vendor/bundle'
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-gps-staging
+          path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
+
+  build_staging_android_bte:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        id: node_cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - name: Install Node Dependencies
+        if: steps.node_cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Setup kernel for react native, increase watchers for release versions.
+        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Set up Ruby 2.6
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - name: Install bundler for ruby package management
+        run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
+        working-directory: ./android
+
+      - name: Cache ruby gems
+        uses: actions/cache@v1
+        id: ruby_cache
+        with:
+          path: android/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/android/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install Ruby Dependencies
+        if: steps.ruby_cache.outputs.cache-hit != 'true'
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+        working-directory: ./android
+
+      - name: Build android Staging artifact
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: 'staging_bte'
+          subdirectory: 'android'
+          bundle-install-path: 'vendor/bundle'
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-bte-staging
+          path: android/app/build/outputs/apk/bte/staging/app-bte-staging.apk
+
+  build_staging_ios_gps:
+    # Deliberately turned off the pull request logic here
+    # because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Set XCode Version
+        run: sudo xcode-select -s /Applications/Xcode_11.5.app
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        id: node_cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - name: Install Node Dependencies
+        if: steps.node_cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Install bundler for ruby package management
+        run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
+        working-directory: ./ios
+
+      - name: Cache ruby gems
+        uses: actions/cache@v1
+        id: ruby_cache
+        with:
+          path: ios/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/ios/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install Ruby Dependencies
+        if: steps.ruby_cache.outputs.cache-hit != 'true'
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+        working-directory: ./ios
+
+      - name: Install Cocoapods
+        run: bundle exec pod install --repo-update
+        working-directory: ./ios
+
+      - name: Setup SSH Keys and known_hosts
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+            mkdir -p ~/.ssh
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+            ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
+
+      - name: Build iOS Staging artifact for devices
+        uses: maierj/fastlane-action@v1.4.0
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        with:
+          lane: 'staging'
+          subdirectory: 'ios'
+          bundle-install-path: 'vendor/bundle'
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: COVIDSafePaths-staging-gps
+          path: ios/COVIDSafePaths-staging.ipa
+
+  build_staging_ios_bte:
+    # Deliberately turned off the pull request logic here
+    # because GitHub Actions explicitly turns off secrets for pull requests coming from a forked repo
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Set XCode Version
+        run: sudo xcode-select -s /Applications/Xcode_11.5.app
+
+      - name: Cache node_modules/
+        uses: actions/cache@v1
+        id: node_cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-cache-
+
+      - name: Install Node Dependencies
+        if: steps.node_cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Install bundler for ruby package management
+        run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
+        working-directory: ./ios
+
+      - name: Cache ruby gems
+        uses: actions/cache@v1
+        id: ruby_cache
+        with:
+          path: ios/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/ios/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install Ruby Dependencies
+        if: steps.ruby_cache.outputs.cache-hit != 'true'
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+        working-directory: ./ios
+
+      - name: Install Cocoapods
+        run: bundle exec pod install --repo-update
+        working-directory: ./ios
+
+      - name: Setup SSH Keys and known_hosts
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+            mkdir -p ~/.ssh
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+            ssh-add - <<< "${{ secrets.MATCH_SSH_CERT }}"
+
+      - name: Build BTE iOS Production artifact for devices
+        uses: maierj/fastlane-action@v1.4.0
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        with:
+          lane: 'staging_bte'
+          subdirectory: 'ios'
+          bundle-install-path: 'vendor/bundle'
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: COVIDSafePaths-staging-bte
+          path: ios/COVIDSafePaths-bte-staging.ipa

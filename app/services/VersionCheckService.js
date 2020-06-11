@@ -69,8 +69,8 @@ export default class VersionCheckService {
       onPress: () => {
         notificationShown = false;
         Linking.canOpenURL(updateLink).then(
-          supported => supported && Linking.openURL(updateLink),
-          err => console.log(err),
+          (supported) => supported && Linking.openURL(updateLink),
+          (err) => console.log(err),
         );
       },
     };

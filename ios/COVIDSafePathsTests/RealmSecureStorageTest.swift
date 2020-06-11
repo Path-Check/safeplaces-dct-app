@@ -1,5 +1,5 @@
 //
-//  RealmSecureStorageTest.swift
+//  GPSSecureStorageTest.swift
 //  COVIDSafePathsTests
 //
 //  Created by Tyler Roach on 5/5/20.
@@ -8,16 +8,16 @@
 
 import XCTest
 import RealmSwift
-@testable import COVIDSafePaths
+@testable import GPS
 
-class RealmSecureStorageTest: XCTestCase {
+class GPSSecureStorageTest: XCTestCase {
   
-  var secureStorage: RealmSecureStorage?
+  var secureStorage: GPSSecureStorage?
   var hold: Realm?
   
   override func setUp() {
     super.setUp()
-    secureStorage = RealmSecureStorage(inMemory: true)
+    secureStorage = GPSSecureStorage(inMemory: true)
     UserDefaults.standard.removeObject(forKey: secureStorage!.keyLastSavedTime)
     hold = secureStorage!.getRealmInstance()
   }
@@ -231,10 +231,10 @@ class RealmSecureStorageTest: XCTestCase {
     let assumedLocations = secureStorage!.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
     
     XCTAssertEqual(2, assumedLocations.count)
-    XCTAssertEqual(newLocationTimestamp - (RealmSecureStorage.LOCATION_INTERVAL * 2), assumedLocations[1].time)
+    XCTAssertEqual(newLocationTimestamp - (GPSSecureStorage.LOCATION_INTERVAL * 2), assumedLocations[1].time)
     XCTAssertEqual(oldLocation.latitude, assumedLocations[1].latitude)
     XCTAssertEqual(oldLocation.longitude, assumedLocations[1].longitude)
-    XCTAssertEqual(newLocationTimestamp - RealmSecureStorage.LOCATION_INTERVAL, assumedLocations[0].time)
+    XCTAssertEqual(newLocationTimestamp - GPSSecureStorage.LOCATION_INTERVAL, assumedLocations[0].time)
     XCTAssertEqual(oldLocation.latitude, assumedLocations[0].latitude)
     XCTAssertEqual(oldLocation.longitude, assumedLocations[0].longitude)
   }

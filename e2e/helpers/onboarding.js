@@ -25,6 +25,7 @@ export const navigateThroughPermissions = async languageStrings => {
 export const navigateThroughOnboarding = async languageStrings => {
   await navigateThroughPermissions(languageStrings);
   await FinishSetup.isOnScreen(languageStrings);
+  await element(by.label(languageStrings.label.launch_enable_notif)).tap();
   await FinishSetup.takeScreenshot(languageStrings);
-  await FinishSetup.tapButton(languageStrings);
+  await element(by.label(languageStrings.label.launch_allow_location)).tap();
 };

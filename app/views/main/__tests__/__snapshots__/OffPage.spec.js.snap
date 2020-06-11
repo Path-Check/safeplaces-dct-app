@@ -49,12 +49,11 @@ exports[`setting off matches snapshot 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "height": "100%",
           "left": 0,
           "position": "absolute",
           "resizeMode": "contain",
           "right": 0,
-          "top": "-13%",
+          "top": "-17%",
         }
       }
     >
@@ -177,10 +176,10 @@ exports[`setting off matches snapshot 1`] = `
           }
           use="body1"
         >
-          We can’t tell if you’re at risk unless you enable contact tracing in the settings screen.
+          We can’t tell if you’re at risk unless you enable location history in the settings screen.
         </Text>
         <View
-          accessibilityLabel="Enable Contact Tracing"
+          accessibilityLabel="Enable Location Data"
           accessibilityRole="button"
           accessible={true}
           focusable={true}
@@ -220,85 +219,8 @@ exports[`setting off matches snapshot 1`] = `
             }
             use="body1"
           >
-            Enable Contact Tracing
+            Enable Location Data
           </Text>
-        </View>
-      </View>
-    </View>
-    <View>
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "opacity": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignContent": "flex-end",
-              "flexDirection": "column",
-              "justifyContent": "space-between",
-              "padding": 20,
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "#E5E4E6",
-                "fontFamily": "IBMPlexSans-Bold",
-                "fontSize": 18,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "textAlign": "left",
-                "writingDirection": "ltr",
-              }
-            }
-            testID="MayoLinkHeading"
-            use="body1"
-          >
-            More COVID-19 information
-          </Text>
-          <Text
-            style={
-              Object {
-                "color": "#E5E4E6",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 18,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "textAlign": "left",
-                "writingDirection": "ltr",
-              }
-            }
-            testID="MayoLinkLabel"
-            use="body1"
-          >
-            from the Mayo Clinic
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "alignSelf": "center",
-              "paddingLeft": 20,
-              "paddingRight": 20,
-            }
-          }
-        >
-          <Image
-            source={
-              Object {
-                "testUri": "../../../app/assets/images/foreArrow.png",
-              }
-            }
-          />
         </View>
       </View>
     </View>

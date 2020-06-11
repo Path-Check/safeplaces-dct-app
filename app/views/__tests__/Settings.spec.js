@@ -1,3 +1,4 @@
+/* eslint-disable no-import-assign */
 import 'react-native';
 
 import { act, render } from '@testing-library/react-native';
@@ -20,10 +21,9 @@ jest.mock('../../helpers/General', () => {
 
 jest.mock('../../COVIDSafePathsConfig', () => {
   return {
-    config: { tracingStrategy: 'gps' },
+    isGPS: true,
   };
 });
-
 
 jest.useFakeTimers();
 

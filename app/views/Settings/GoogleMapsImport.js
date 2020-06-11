@@ -4,8 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 
 import { Icons } from '../../assets';
-import { Button } from '../../components/Button';
-import { Typography } from '../../components/Typography';
+import { Button, Typography } from '../../components';
 
 export const GoogleMapsImport = ({ navigation }) => {
   const { t } = useTranslation();

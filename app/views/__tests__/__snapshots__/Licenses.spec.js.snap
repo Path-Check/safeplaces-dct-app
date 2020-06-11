@@ -21,8 +21,7 @@ exports[`renders correctly 1`] = `
       }
     }
   />
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+  <View
     style={
       Object {
         "backgroundColor": "#F7F8FF",
@@ -40,6 +39,7 @@ exports[`renders correctly 1`] = `
           "borderBottomColor": "#5061E6",
           "borderBottomWidth": 1,
           "flexDirection": "row",
+          "height": 55,
         }
       }
     >
@@ -50,7 +50,6 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "height": 55,
             "justifyContent": "center",
             "opacity": 1,
             "width": 60,
@@ -225,6 +224,6 @@ Somerville, MA 02144
         />
       </View>
     </View>
-  </RCTSafeAreaView>
+  </View>
 </View>
 `;

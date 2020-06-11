@@ -20,15 +20,17 @@ import {
 import validUrl from 'valid-url';
 
 import { Icons } from '../assets';
-import { Button } from '../components/Button';
-import { Checkbox } from '../components/Checkbox';
-import { DynamicTextInput } from '../components/DynamicTextInput';
-import NavigationBarWrapper from '../components/NavigationBarWrapper';
-import { Typography } from '../components/Typography';
+import {
+  Button,
+  Checkbox,
+  DynamicTextInput,
+  NavigationBarWrapper,
+  Typography,
+} from '../components';
 import Colors from '../constants/colors';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { Theme } from '../constants/themes';
-import { config } from '../COVIDSafePathsConfig';
+import { isGPS } from '../COVIDSafePathsConfig';
 import { SetStoreData } from '../helpers/General';
 import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
@@ -49,7 +51,6 @@ class ChooseProviderScreen extends Component {
       isAuthorityFilterActive: false,
       isAutoSubscribed: false,
     };
-    this.isGPS = config.tracingStrategy === 'gps';
   }
 
   backToMain() {
@@ -101,7 +102,7 @@ class ChooseProviderScreen extends Component {
   async fetchAuthoritiesList(filterByGPSHistory) {
     let authoritiesList = [];
 
-    if (filterByGPSHistory && this.isGPS) {
+    if (filterByGPSHistory && isGPS) {
       authoritiesList = await HCAService.getAuthoritiesFromUserLocHistory();
     } else {
       authoritiesList = await HCAService.getAuthoritiesList();
@@ -113,11 +114,12 @@ class ChooseProviderScreen extends Component {
   // Add selected authorities to state, for display in the FlatList
   addAuthorityToState(authority) {
     let authorityIndex = this.state.authoritiesList.findIndex(
-      x => Object.keys(x)[0] === authority,
+      (x) => Object.keys(x)[0] === authority,
     );
 
     if (
-      this.state.selectedAuthorities.findIndex(x => x.key === authority) === -1
+      this.state.selectedAuthorities.findIndex((x) => x.key === authority) ===
+      -1
     ) {
       this.setState(
         {
@@ -153,15 +155,15 @@ class ChooseProviderScreen extends Component {
     );
   }
 
-  setUrlText = urlText => this.setState({ urlText });
+  setUrlText = (urlText) => this.setState({ urlText });
 
   /**
    * Checks if the user selected any authorities whose `url` matches
    * the `url` param.
    * @param {string} url
    */
-  hasExistingAuthorityWithUrl = url => {
-    return this.state.selectedAuthorities.some(x => x.url === url);
+  hasExistingAuthorityWithUrl = (url) => {
+    return this.state.selectedAuthorities.some((x) => x.url === url);
   };
   /**
    * Reset the URL input field to it's original/default settings
@@ -239,7 +241,7 @@ class ChooseProviderScreen extends Component {
 
   async toggleAutoSubscribe() {
     this.setState(
-      prevState => ({
+      (prevState) => ({
         isAutoSubscribed: !prevState.isAutoSubscribed,
       }),
       async () => {
@@ -254,6 +256,7 @@ class ChooseProviderScreen extends Component {
     return (
       <Theme use='default'>
         <NavigationBarWrapper
+          includeBackButton={false}
           title={languages.t('label.choose_provider_title')}
           onBackPress={this.backToMain.bind(this)}>
           <KeyboardAvoidingView behavior='padding'>
@@ -261,7 +264,7 @@ class ChooseProviderScreen extends Component {
               <Typography style={styles.sectionDescription} use={'body1'}>
                 {languages.t('label.authorities_desc')}
               </Typography>
-              {__DEV__ && this.isGPS && (
+              {__DEV__ && isGPS && (
                 <TouchableOpacity style={styles.autoSubscribe}>
                   <Checkbox
                     label={languages.t('label.auto_subscribe_checkbox')}
@@ -321,11 +324,7 @@ class ChooseProviderScreen extends Component {
             <Menu
               name='AuthoritiesMenu'
               renderer={SlideInMenu}
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                paddingHorizontal: 12,
-              }}>
+              style={{ padding: 20 }}>
               <MenuTrigger>
                 <Button
                   label={languages.t('label.authorities_add_button_label')}
@@ -336,7 +335,7 @@ class ChooseProviderScreen extends Component {
                 />
               </MenuTrigger>
               <MenuOptions>
-                {__DEV__ && this.isGPS && (
+                {__DEV__ && isGPS && (
                   <TouchableOpacity
                     style={styles.authorityFilter}
                     onPress={() => this.toggleFilterAuthoritesByGPSHistory()}>
@@ -346,7 +345,7 @@ class ChooseProviderScreen extends Component {
                       {languages.t('label.filter_authorities_by_gps_history')}
                     </Typography>
                     <Switch
-                      onValueChange={val =>
+                      onValueChange={(val) =>
                         this.filterAuthoritesByGPSHistory({ val })
                       }
                       value={this.state.isAuthorityFilterActive}
@@ -355,7 +354,7 @@ class ChooseProviderScreen extends Component {
                 )}
                 {this.state.authoritiesList === undefined
                   ? null
-                  : this.state.authoritiesList.map(item => {
+                  : this.state.authoritiesList.map((item) => {
                       let name = Object.keys(item)[0];
                       let key = this.state.authoritiesList.indexOf(item);
 

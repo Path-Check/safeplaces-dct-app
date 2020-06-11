@@ -3,24 +3,20 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
-import { Icons } from '../assets';
-import { FeatureFlag } from '../components/FeatureFlag';
-import { IconButton } from '../components/IconButton';
 import Colors from '../constants/colors';
-import { Theme } from '../constants/themes';
-import { config } from '../COVIDSafePathsConfig';
+import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
-import LocationServices, { Reason } from '../services/LocationService';
-import LocationTracking from './LocationTracking';
-import { ExposureNotificationNotAvailablePage } from './main/ExposureNotificationNotAvailablePage';
+import LocationServices from '../services/LocationService';
+import ExposureNotificationService from '../services/ExposureNotificationService';
 import { ExposurePage } from './main/ExposurePage';
 import { NoKnownExposure } from './main/NoKnownExposure';
 import { OffPage } from './main/OffPage';
 import { styles } from './main/style';
 import { UnknownPage } from './main/UnknownPage';
 
-const Main = () => {
+export const Main = () => {
+  const tracingService = isGPS ? LocationServices : ExposureNotificationService;
   const navigation = useNavigation();
   if (isPlatformAndroid()) {
     StatusBar.setBackgroundColor(Colors.TRANSPARENT);
@@ -28,38 +24,24 @@ const Main = () => {
     StatusBar.setTranslucent(true);
   }
 
-  const [location, setLocation] = useState({
+  const [trackingInfo, setTrackingInfo] = useState({
     canTrack: true,
-    reason: '',
+    reason: null,
     hasPotentialExposure: false,
   });
 
-  const SettingsNavButton = () => {
-    return (
-      <Theme use='violet'>
-        <IconButton
-          style={styles.settingsContainer}
-          icon={Icons.SettingsIcon}
-          size={30}
-          onPress={() => {
-            navigation.navigate('SettingsScreen');
-          }}
-          label='default'
-        />
-      </Theme>
-    );
-  };
-
   const checkForPossibleExposure = () => {
-    BackgroundTaskServices.start();
-    checkIntersect();
+    if (isGPS) {
+      BackgroundTaskServices.start();
+      checkIntersect();
+    }
   };
 
   const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
-    const state = await LocationServices.checkStatusAndStartOrStop();
-    setLocation(state);
-  }, [setLocation]);
+    const state = await tracingService.checkStatusAndStartOrStop();
+    setTrackingInfo(state);
+  }, [tracingService, setTrackingInfo]);
 
   const handleBackPress = () => {
     BackHandler.exitApp(); // works best when the goBack is async
@@ -86,40 +68,24 @@ const Main = () => {
 
   let page;
 
-  if (config.tracingStrategy === 'bte') {
-    // A BT specific page for when Exposure Notifications are not available
-    // for the Healthcare Authority chosen.
-    page = <ExposureNotificationNotAvailablePage />;
-  } else if (location.canTrack) {
-    if (location.hasPotentialExposure) {
-      page = <ExposurePage tracingStrategy={config.tracingStrategy} />;
+  if (trackingInfo.canTrack) {
+    if (trackingInfo.hasPotentialExposure) {
+      page = <ExposurePage />;
     } else {
       page = <NoKnownExposure />;
     }
   } else {
-    if (location.reason === Reason.USER_OFF) {
-      page = <OffPage tracingStrategy={config.tracingStrategy} />;
+    if (
+      trackingInfo.reason === tracingService.DEVICE_LOCATION_OFF ||
+      trackingInfo.reason === tracingService.APP_NOT_AUTHORIZED ||
+      trackingInfo.reason === tracingService.DEVICE_EXPOSURE_NOTIFICATIONS_OFF
+    ) {
+      page = <OffPage />;
     } else {
+      // Invariant violation if this occurs
       page = <UnknownPage />;
     }
   }
 
-  return (
-    <View style={styles.backgroundImage}>
-      {page}
-      <SettingsNavButton />
-    </View>
-  );
+  return <View style={styles.backgroundImage}>{page}</View>;
 };
-
-const MainNavigate = props => {
-  return (
-    <FeatureFlag
-      name='better_location_status_checks'
-      fallback={<LocationTracking {...props} tracingStrategy={config.tracingStrategy} />}>
-      <Main />
-    </FeatureFlag>
-  );
-};
-
-export { Main, MainNavigate };
