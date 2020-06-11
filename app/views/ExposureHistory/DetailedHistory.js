@@ -6,7 +6,7 @@ import languages from '../../locales/languages';
 import { useAssets } from '../../TracingStrategyAssets';
 import { ExposureCalendarView } from './ExposureCalendarView';
 import { SingleExposureDetail } from './SingleExposureDetail';
-import { isGPS } from '../../TracingStrategyAssets';
+import { isGPS } from '../../COVIDSafePathsConfig';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
 import ExposureDatumDetail from './ExposureDatumDetail';
 import Calendar from './Calendar';

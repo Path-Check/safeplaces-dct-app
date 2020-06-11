@@ -193,7 +193,11 @@ const MainAppTabs = () => {
           tabBarLabel: t('navigation.selfAssessment'),
           tabBarIcon: ({ focused, size }) => (
             <SvgXml
-              xml={focused ? Icons.SelfAssessmentActive : Icons.SelfAssessmentInactive}
+              xml={
+                focused
+                  ? Icons.SelfAssessmentActive
+                  : Icons.SelfAssessmentInactive
+              }
               width={size}
               height={size}
             />

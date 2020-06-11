@@ -11,7 +11,7 @@ import { defaultTheme } from '../../constants/themes';
 import { GetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { DetailedHistory } from './DetailedHistory';
-import { isGPS } from '../../TracingStrategyAssets';
+import { isGPS } from '../../COVIDSafePathsConfig';
 
 const NO_HISTORY = [];
 
