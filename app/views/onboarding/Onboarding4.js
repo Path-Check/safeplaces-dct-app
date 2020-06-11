@@ -8,9 +8,8 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { Button, Type, Typography } from '../../components';
+import { Button, Typography } from '../../components';
 import Colors from '../../constants/colors';
-import fontFamily from '../../constants/fonts';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
@@ -46,7 +45,7 @@ const Onboarding = (props) => {
         <View style={[sharedStyles.iconCircle, styles.iconCircle]}>
           <SvgXml xml={onboarding4Icon} width={30} height={30} />
         </View>
-        <Typography style={sharedStyles.headerText} use={Type.Headline2}>
+        <Typography style={sharedStyles.headerText}>
           {onboarding4Header}
         </Typography>
         <Typography style={sharedStyles.subheaderText}>
@@ -65,7 +64,6 @@ const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: '100%',
-    top: '-10%',
     resizeMode: 'cover',
     position: 'absolute',
   },

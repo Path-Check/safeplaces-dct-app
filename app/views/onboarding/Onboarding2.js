@@ -8,10 +8,8 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-// import { Icons, Images } from '../../assets';
-import { Button, Type, Typography } from '../../components';
+import { Button, Typography } from '../../components';
 import Colors from '../../constants/colors';
-import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';

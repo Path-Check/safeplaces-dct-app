@@ -27,7 +27,6 @@ export const sharedStyles = StyleSheet.create({
     height: 70,
     width: 70,
     backgroundColor: Colors.ONBOARDING_ICON_LIGHT_BLUE,
-    // backgroundColor: 'red',
     borderRadius: 1000,
     alignItems: 'center',
     justifyContent: 'center',
