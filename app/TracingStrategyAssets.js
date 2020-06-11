@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Images } from './assets';
+import { Images, Icons } from './assets';
 import { isGPS } from './COVIDSafePathsConfig';
 
 export function useAssets() {
@@ -18,6 +18,7 @@ export function useAssets() {
   //   ? t('label.launch_screen2_subheader_location')
   //   : t('label.launch_screen2_subheader_bluetooth');
   const onboarding2Subheader = 'Your PathCheck location diary is encrypted and never leaves your phone unless you choose to send it to your local or regional Health Department.'
+  const onboarding2Icon = Icons.LocationPin
 
   // Onboarding3
   const onboarding3Background = isGPS
@@ -29,6 +30,7 @@ export function useAssets() {
   const onboarding3Subheader = isGPS
     ? t('label.launch_screen3_subheader_location')
     : t('label.launch_screen3_subheader_bluetooth');
+  const onboarding3Icon = Icons.Heart
 
   // Onboarding4
   const onboarding4Background = isGPS
@@ -40,6 +42,7 @@ export function useAssets() {
   const onboarding4Subheader = isGPS
     ? t('label.launch_screen4_subheader_location')
     : t('label.launch_screen4_subheader_bluetooth');
+  const onboarding4Icon = Icons.BellYellow
   const onboarding4Button = isGPS
     ? t('label.launch_set_up_phone_location')
     : t('label.launch_set_up_phone_bluetooth');
@@ -86,12 +89,15 @@ export function useAssets() {
     onboarding2Background,
     onboarding2Header,
     onboarding2Subheader,
+    onboarding2Icon,
     onboarding3Background,
     onboarding3Header,
     onboarding3Subheader,
+    onboarding3Icon,
     onboarding4Background,
     onboarding4Header,
     onboarding4Subheader,
+    onboarding4Icon,
     onboarding4Button,
     settingsLoggingActive,
     settingsLoggingInactive,

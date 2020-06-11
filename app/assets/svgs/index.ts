@@ -1,11 +1,13 @@
 import BackArrow from './backArrow';
 import Bell from './bell';
+import BellYellow from './bellYellow';
 import Checkmark from './checkmark';
 import CheckmarkCircle from './checkmarkCircle';
 import Close from './close';
 import Export from './export';
 import ExposureIcon from './exposureIcon';
 import GoogleMapsLogo from './google-maps-logo';
+import Heart from './heart';
 import IntroGlobe from './intro-locked';
 import IntroSiren from './intro-siren';
 import LanguagesIcon from './languagesIcon';
@@ -27,12 +29,14 @@ import XmarkIcon from './xmarkIcon';
 export const Icons = {
   BackArrow,
   Bell,
+  BellYellow,
   Checkmark,
   CheckmarkCircle,
   Close,
   Export,
   ExposureIcon,
   GoogleMapsLogo,
+  Heart,
   IntroGlobe,
   IntroSiren,
   LanguagesIcon,

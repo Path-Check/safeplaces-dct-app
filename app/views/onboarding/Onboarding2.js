@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { Icons, Images } from '../../assets';
+// import { Icons, Images } from '../../assets';
 import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
@@ -23,6 +23,7 @@ const Onboarding = (props) => {
     onboarding2Background,
     onboarding2Header,
     onboarding2Subheader,
+    onboarding2Icon,
   } = useAssets();
 
   return (
@@ -37,8 +38,8 @@ const Onboarding = (props) => {
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
-        <View style={styles.iconCircle}>
-          <SvgXml xml={Icons.LocationPin} width={30} height={30} />
+        <View style={sharedStyles.iconCircle}>
+          <SvgXml xml={onboarding2Icon} width={30} height={30} />
         </View>
         <Typography style={sharedStyles.headerText}>
           {onboarding2Header}
@@ -82,15 +83,6 @@ const styles = StyleSheet.create({
   },
   verticalSpacer: {
     flex: 1,
-  },
-  iconCircle: {
-    height: 70,
-    width: 70,
-    backgroundColor: Colors.ONBOARDING_ICON_LIGHT_BLUE,
-    borderRadius: 1000,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 28,
   },
 });
 

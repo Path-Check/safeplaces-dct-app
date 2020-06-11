@@ -22,5 +22,15 @@ export const sharedStyles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fontFamily.primaryRegular,
     lineHeight: 24,
-  }
+  },
+  iconCircle: {
+    height: 70,
+    width: 70,
+    backgroundColor: Colors.ONBOARDING_ICON_LIGHT_BLUE,
+    // backgroundColor: 'red',
+    borderRadius: 1000,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 28,
+  },
 });

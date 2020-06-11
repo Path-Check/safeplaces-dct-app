@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
 import { Button, Type, Typography } from '../../components';
 import Colors from '../../constants/colors';
@@ -22,6 +23,7 @@ const Onboarding = (props) => {
     onboarding4Button,
     onboarding4Header,
     onboarding4Subheader,
+    onboarding4Icon,
   } = useAssets();
 
   const onNext = () =>
@@ -41,6 +43,9 @@ const Onboarding = (props) => {
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
+        <View style={[sharedStyles.iconCircle, styles.iconCircle]}>
+          <SvgXml xml={onboarding4Icon} width={30} height={30} />
+        </View>
         <Typography style={styles.headerText} use={Type.Headline2}>
           {onboarding4Header}
         </Typography>
@@ -85,6 +90,9 @@ const styles = StyleSheet.create({
   },
   verticalSpacer: {
     flex: 1,
+  },
+  iconCircle: {
+    backgroundColor: Colors.ONBOARDING_ICON_LIGHT_YELLOW,
   },
 });
 

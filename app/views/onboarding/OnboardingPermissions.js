@@ -12,6 +12,7 @@ import { SvgXml } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
 
 import { Icons, Images } from '../../assets';
+import { sharedStyles } from './styles';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
@@ -113,7 +114,7 @@ export const OnboardingPermissions = () => {
           testID={'onboarding-permissions-screen'}
           style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <View style={styles.iconCircle}>
+            <View style={[sharedStyles.iconCircle, styles.iconCircle]}>
               <SvgXml xml={icon} width={30} height={30} />
             </View>
             <Typography style={styles.headerText}>{header}</Typography>
@@ -172,13 +173,7 @@ const styles = StyleSheet.create({
     marginBottom: 21,
   },
   iconCircle: {
-    height: 70,
-    width: 70,
     backgroundColor: Colors.WHITE,
-    borderRadius: 1000,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 28,
   },
   footerContainer: {
     padding: 24,
