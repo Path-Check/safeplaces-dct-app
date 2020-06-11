@@ -63,19 +63,19 @@ export const SettingsScreen = ({ navigation }) => {
         </Section>
 
         <Section>
-          <Item
-            label={t('label.choose_provider_title')}
-            description={t('label.choose_provider_subtitle')}
-            onPress={() => navigation.navigate('ChooseProviderScreen')}
-          />
-          <Item
-            label={t('label.news_title')}
-            description={t('label.news_subtitle')}
-            onPress={() => navigation.navigate('NewsScreen')}
-            last
-          />
           {isGPS ? (
             <>
+              <Item
+                label={t('label.choose_provider_title')}
+                description={t('label.choose_provider_subtitle')}
+                onPress={() => navigation.navigate('ChooseProviderScreen')}
+              />
+              <Item
+                label={t('label.news_title')}
+                description={t('label.news_subtitle')}
+                onPress={() => navigation.navigate('NewsScreen')}
+                last
+              />
               <Item
                 label={t('label.event_history_title')}
                 description={t('label.event_history_subtitle')}
@@ -100,7 +100,17 @@ export const SettingsScreen = ({ navigation }) => {
                 <Item label={t('screen_titles.report_issue')} last />
               </FeatureFlag>
             </>
-          ) : null}
+          ) : (
+            <>
+              <Item label={t('screen_titles.faq')} />
+              <Item label={t('screen_titles.report_issue')}/>
+              <Item
+                label={t('screen_titles.report_positive_test')}
+                onPress={() => navigation.navigate('ExportFlow')}
+                last
+              />
+            </>
+          )}
         </Section>
 
         {isGPS && (

@@ -55,15 +55,16 @@
   },
   "export": {
     "code_input_body": "The representative from {{name}} will provide a verification code over the phone to link your data with {{name}}.",
+    "code_input_body_bluetooth": "Type in the verification code provided by {{name}} with your test result to verify your diagnosis.",
     "code_input_error": "Try a different code",
     "code_input_title": "Enter your verification code",
+    "code_input_title_bluetooth": "Verify your diagnosis",
     "complete_body": "By sharing your health status and location history anonymously with your community, you’re being proactive about fighting the spread of COVID-19.",
+    "complete_body_bluetooth": "By choosing to share your status and anonymously notify others, you’re helping contain the spread of the virus and protect others in your community.",
     "complete_title": "Thanks for keeping your community safe!",
     "confirm_upload_body": "This will help in contact tracing efforts.\n\nIf you choose not to send your Location History to {{name}}, you are choosing to opt out of contact tracing efforts that help keep your community safe.",
     "consent_button_title": "I understand and consent",
     "consent_button_subtitle": "By proceeding, you agree that your Heathcare Authority can retain your data for a period of time.",
-    "location_consent_title": "Use of location history",
-    "location_consent_body": "Your location history is used by representatives of {{name}} to interview you about places you visited and when you were there.\n\nOnce you send your location history to {{name}}, they will retain your data for a specific period of time.",
     "location_consent_link": "Please view their privacy policy here.",
     "confirm_upload_button": "Send Location History",
     "confirm_upload_title": "Send your location history to your HA",
@@ -72,10 +73,14 @@
     "exit_warning_confirm": "Yes, I'm sure",
     "exit_warning_title": "Are you sure?",
     "publish_consent_body": "During the interview with {{name}} your interviewer can remove private locations, such as homes and apartments. They can also add any additional places you believe should be included.\n\n{{name}} may share the GPS coordinates from your location history, including date, time, and duration of your visits to let others in your community know if they may have crossed paths with the virus.\n\nI understand that the {{name}} representative will ask me verbally at the end of the interview if I consent.",
+    "publish_consent_body_bluetooth": "Sharing your positive diagnosis is optional and can only be done with your consent.\n\nIf you choose to do so, you're helping others in your community make informed decisions about their health and playing your part to contain the spread of the virus.\n\nThe only information shared will be the random set of numbers your phone exchanged over Bluetooth with other phones that were nearby during the past 14 days, along with a weighted risk score based on when your symptoms developed.",
     "publish_consent_title": "Publish anonymized data",
+    "publish_consent_title_bluetooth": "Notify others in your community",
     "select_ha_title": "Select your Healthcare Authority",
     "start_body": "The representative from your Healthcare Authority will walk you through this process during your interview.",
-    "start_title": "Share your location history anonymously with your community if you have tested positive for COVID-19."
+    "start_body_bluetooth": "Choose to anonymously notify others you may have encountered and help your community contain the spread of the virus.",
+    "start_title": "Share your location history anonymously with your community if you have tested positive for COVID-19.",
+    "start_title_bluetooth": "Help contain the spread of the virus and protect others in your community if you're diagnosed or test positive for COVID-19."
   },
   "history": {
     "no_exposure": "No known",
@@ -258,6 +263,7 @@
     "about": "About",
     "faq": "FAQ",
     "report_issue": "Report an issue",
+    "report_positive_test": "Report a positive test result",
     "legal": "Legal",
     "more": "More"
   }

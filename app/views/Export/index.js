@@ -6,3 +6,4 @@ export { default as ExportLocationConsent } from './ExportLocationConsent';
 export { default as ExportConfirmUpload } from './ExportConfirmUpload';
 export { default as ExportComplete } from './ExportComplete';
 export { default as ExportLocally } from './ExportLocally';
+export { default as ExportIntro } from './ExportIntro';
