@@ -13,7 +13,7 @@ export const sharedStyles = StyleSheet.create({
     color: Colors.VIOLET_TEXT_DARK,
     fontSize: 26,
     fontFamily: fontFamily.primaryRegular,
-    fontWeight: "500",
+    fontWeight: '500',
     lineHeight: 32,
   },
   subheaderText: {

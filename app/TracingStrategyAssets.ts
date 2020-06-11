@@ -16,7 +16,7 @@ export function useAssets(): Record<string, string> {
   const onboarding2Subheader = isGPS
     ? t('label.launch_screen2_subheader_location')
     : t('label.launch_screen2_subheader_bluetooth');
-  const onboarding2Icon = Icons.LocationPin
+  const onboarding2Icon = Icons.LocationPin;
 
   // Onboarding3
   const onboarding3Background = isGPS
@@ -28,7 +28,7 @@ export function useAssets(): Record<string, string> {
   const onboarding3Subheader = isGPS
     ? t('label.launch_screen3_subheader_location')
     : t('label.launch_screen3_subheader_bluetooth');
-  const onboarding3Icon = Icons.Heart
+  const onboarding3Icon = Icons.Heart;
 
   // Onboarding4
   const onboarding4Background = isGPS
@@ -40,7 +40,7 @@ export function useAssets(): Record<string, string> {
   const onboarding4Subheader = isGPS
     ? t('label.launch_screen4_subheader_location')
     : t('label.launch_screen4_subheader_bluetooth');
-  const onboarding4Icon = Icons.BellYellow
+  const onboarding4Icon = Icons.BellYellow;
   const onboarding4Button = isGPS
     ? t('label.launch_set_up_phone_location')
     : t('label.launch_set_up_phone_bluetooth');
