@@ -11,6 +11,7 @@ import { defaultTheme } from '../../constants/themes';
 import { GetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { DetailedHistory } from './DetailedHistory';
+import { isGPS } from '../../TracingStrategyAssets';
 
 const NO_HISTORY = [];
 
@@ -20,16 +21,20 @@ export const ExposureHistoryScreen = ({ navigation }) => {
 
   useEffect(() => {
     async function fetchData() {
-      let dayBins = await GetStoreData(CROSSED_PATHS);
+      if (isGPS) {
+        let dayBins = await GetStoreData(CROSSED_PATHS);
 
-      if (dayBins === null) {
-        setHistory(NO_HISTORY);
-        console.log("Can't find Crossed Paths");
+        if (dayBins === null) {
+          setHistory(NO_HISTORY);
+          console.log("Can't find Crossed Paths");
+        } else {
+          console.log('Found Crossed Paths');
+          setHistory(convertToDailyMinutesExposed(dayBins));
+        }
+        setIsLoading(false);
       } else {
-        console.log('Found Crossed Paths');
-        setHistory(convertToDailyMinutesExposed(dayBins));
+        setIsLoading(false);
       }
-      setIsLoading(false);
     }
 
     fetchData();
