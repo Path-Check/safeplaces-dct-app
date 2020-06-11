@@ -10,7 +10,7 @@ export default class ExposureNotificaionService {
       return {
         canTrack: false,
         reason: this.DEVICE_EXPOSURE_NOTIFICATIONS_OFF,
-        hasPotentialExposure: false
+        hasPotentialExposure: false,
       };
     }
 

@@ -14,12 +14,8 @@ const LOCATION_DISABLED_NOTIFICATION_ID = '55';
 // 5 minutes
 export const MIN_LOCATION_UPDATE_MS = 300000;
 
-export const GPSReasons = {
-
-};
-
 export default class LocationServices {
-    /**
+  /**
    * Location services are disabled for the device
    */
   DEVICE_LOCATION_OFF = 'DEVICE_LOCATION_OFF';
