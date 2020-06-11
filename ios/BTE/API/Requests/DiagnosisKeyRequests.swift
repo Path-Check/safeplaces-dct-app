@@ -1,6 +1,32 @@
 import Alamofire
 import ExposureNotification
 
+enum DiagnosisKeyRequest: APIRequest {
+
+  typealias ResponseType = ExposureKey
+
+  case get(URL),
+  delete(URL)
+
+  var method: HTTPMethod {
+    switch self {
+    case .get:
+      return .get
+    case .delete:
+      return .delete
+    }
+  }
+
+  var path: String {
+    return ""
+  }
+
+  var parameters: Parameters? {
+    return nil
+  }
+
+}
+
 enum DiagnosisKeyListRequest: APIRequest {
 
   typealias ResponseType = Void

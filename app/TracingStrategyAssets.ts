@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Images } from './assets';
 import { isGPS } from './COVIDSafePathsConfig';
 
-export function useAssets() {
+export function useAssets(): Record<string, string> {
   const { t } = useTranslation();
 
   // Onboarding2

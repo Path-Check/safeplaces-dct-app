@@ -60,7 +60,7 @@ export const ExportSelectHA = ({ navigation }) => {
               <IconButton
                 icon={Icons.Close}
                 size={22}
-                onPress={() => navigation.navigate('SettingsScreen')}
+                onPress={() => navigation.navigate('ExportStart')}
               />
             </View>
             <Typography use='headline2' style={styles.exportSectionTitles}>

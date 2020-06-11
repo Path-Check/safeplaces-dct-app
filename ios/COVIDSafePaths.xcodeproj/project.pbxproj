@@ -73,9 +73,14 @@
 		B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
 		B52D88C2248F0FD90071ED51 /* GPSSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */; };
 		B52D88C4248F10FD0071ED51 /* BTESecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C3248F10FD0071ED51 /* BTESecureStorage.swift */; };
-		B596C07024880B7000943B79 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596C06F24880B7000943B79 /* String+Extensions.swift */; };
 		B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* PTCExposureManagerModule.m */; };
 		B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */; };
+		B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */; };
+		B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0CE24916A4C00433980 /* DebugAction.swift */; };
+		B5FBB0D124916A7200433980 /* Persisted.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0D024916A7200433980 /* Persisted.swift */; };
+		B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0D224916B3600433980 /* String+Extensions.swift */; };
+		B5FBB0D524916D8900433980 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0D424916D8900433980 /* UserState.swift */; };
+		B5FBB0D724916DE100433980 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0D624916DE100433980 /* Notification+Extensions.swift */; };
 		B5FC37C12489B075006474EB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C02489B075006474EB /* APIClient.swift */; };
 		B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C52489B1B3006474EB /* APIRequest.swift */; };
 		B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C92489B1C1006474EB /* JSON.swift */; };
@@ -87,7 +92,6 @@
 		B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */; };
 		B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */; };
 		B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E2248A82AE006474EB /* Exposure.swift */; };
-		B5FC37E6248A82E3006474EB /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E5248A82E3006474EB /* LocalStore.swift */; };
 		B5FC37E8248A8302006474EB /* TestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E7248A8302006474EB /* TestResult.swift */; };
 		B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
@@ -316,9 +320,14 @@
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
 		B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSSecureStorage.swift; sourceTree = "<group>"; };
 		B52D88C3248F10FD0071ED51 /* BTESecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTESecureStorage.swift; sourceTree = "<group>"; };
-		B596C06F24880B7000943B79 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		B596C0712488127D00943B79 /* PTCExposureManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCExposureManagerModule.m; sourceTree = "<group>"; };
 		B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebugMenuModule.m; sourceTree = "<group>"; };
+		B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisKeyUrlRequests.swift; sourceTree = "<group>"; };
+		B5FBB0CE24916A4C00433980 /* DebugAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugAction.swift; sourceTree = "<group>"; };
+		B5FBB0D024916A7200433980 /* Persisted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persisted.swift; sourceTree = "<group>"; };
+		B5FBB0D224916B3600433980 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		B5FBB0D424916D8900433980 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
+		B5FBB0D624916DE100433980 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		B5FC37C02489B075006474EB /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		B5FC37C52489B1B3006474EB /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		B5FC37C92489B1C1006474EB /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
@@ -330,7 +339,6 @@
 		B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureConfiguration.swift; sourceTree = "<group>"; };
 		B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureConfigurationRequests.swift; sourceTree = "<group>"; };
 		B5FC37E2248A82AE006474EB /* Exposure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exposure.swift; sourceTree = "<group>"; };
-		B5FC37E5248A82E3006474EB /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 		B5FC37E7248A8302006474EB /* TestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResult.swift; sourceTree = "<group>"; };
 		B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ENTemporaryExposureKey+Extensions.swift"; sourceTree = "<group>"; };
 		BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -722,6 +730,7 @@
 			isa = PBXGroup;
 			children = (
 				B5FC37D7248A784F006474EB /* DiagnosisKeyRequests.swift */,
+				B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */,
 				B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */,
 			);
 			path = Requests;
@@ -734,6 +743,7 @@
 				B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */,
 				B5FC37E7248A8302006474EB /* TestResult.swift */,
 				B5FC37E2248A82AE006474EB /* Exposure.swift */,
+				B5FBB0D424916D8900433980 /* UserState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -741,8 +751,8 @@
 		B5FC37E4248A82D6006474EB /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				B5FC37E5248A82E3006474EB /* LocalStore.swift */,
 				B52D88C3248F10FD0071ED51 /* BTESecureStorage.swift */,
+				B5FBB0D024916A7200433980 /* Persisted.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -751,6 +761,8 @@
 			isa = PBXGroup;
 			children = (
 				B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */,
+				B5FBB0D224916B3600433980 /* String+Extensions.swift */,
+				B5FBB0D624916DE100433980 /* Notification+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -785,7 +797,7 @@
 				C5850A63247D5A41007A596B /* Images.xcassets */,
 				C56190A12485332E009A6756 /* BTE-Bridging-Header.h */,
 				C58463E32486C51100BCB842 /* ExposureManager.swift */,
-				B596C06F24880B7000943B79 /* String+Extensions.swift */,
+				B5FBB0CE24916A4C00433980 /* DebugAction.swift */,
 			);
 			path = BTE;
 			sourceTree = "<group>";
@@ -1280,22 +1292,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5FC37E8248A8302006474EB /* TestResult.swift in Sources */,
+				B5FBB0D524916D8900433980 /* UserState.swift in Sources */,
+				B5FBB0D724916DE100433980 /* Notification+Extensions.swift in Sources */,
 				B52D88C4248F10FD0071ED51 /* BTESecureStorage.swift in Sources */,
 				B5FC37CC2489B251006474EB /* Result.swift in Sources */,
 				C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */,
 				B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */,
+				B5FBB0D124916A7200433980 /* Persisted.swift in Sources */,
+				B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */,
 				C5C850CA2480156200A494CA /* AppDelegate.m in Sources */,
 				B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */,
 				B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */,
 				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
-				B5FC37E6248A82E3006474EB /* LocalStore.swift in Sources */,
-				B596C07024880B7000943B79 /* String+Extensions.swift in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
 				B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */,
 				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
+				B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */,
 				B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */,
 				B5FC37C12489B075006474EB /* APIClient.swift in Sources */,
 				B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */,
+				B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */,
 				B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */,
 				B5FC37DD248A78D2006474EB /* ExposureKey.swift in Sources */,
 				B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */,

@@ -9,18 +9,30 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 
-import fontFamily from './../constants/fonts';
+import fontFamily from '../constants/fonts';
 import { Images } from '../assets';
-import { NavigationBarWrapper, Typography } from '../components';
+import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
+import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import { useAssets } from '../TracingStrategyAssets';
 
+type LicensesScreenProps = {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+};
+
 const PRIVACY_POLICY_URL =
   'https://docs.google.com/document/d/17u0f8ni9S0D4w8RCUlMMqxAlXKJAd2oiYGP8NUwkINo/edit';
 
-export const LicensesScreen = ({ navigation }) => {
+export const LicensesScreen = ({
+  navigation,
+}: LicensesScreenProps): JSX.Element => {
   const { t } = useTranslation();
   const { legalHeader } = useAssets();
 
@@ -46,7 +58,7 @@ export const LicensesScreen = ({ navigation }) => {
 
   return (
     <NavigationBarWrapper
-      title={t('label.legal_page_title')}
+      title={t('screen_titles.legal')}
       onBackPress={backToMain}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View>
@@ -74,7 +86,6 @@ export const LicensesScreen = ({ navigation }) => {
           </Typography>
         </View>
       </ScrollView>
-
       <Theme use='charcoal'>
         <TouchableOpacity
           onPress={handleTermsOfUsePressed}

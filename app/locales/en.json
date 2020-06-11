@@ -116,7 +116,6 @@
     "about_header_bluetooth": "PathCheck BT",
     "about_header_location": "PathCheck GPS",
     "about_para": "PathCheck is a global movement to develop free, open-source, privacy-by-design tools for residents, public health officials, and larger communities to flatten the curve of COVID-19, reduce fear, and prevent a surveillance-state response to the pandemic. \n\nFor more information, visit",
-    "about_title": "About",
     "authorities_add_button_label": "Add Healthcare Authority",
     "authorities_add_url": "Add authority via URL",
     "authorities_desc": "Select one or more Healthcare Authorities in your area for information about COVID-19 near you, if available. \n\nEither select a name from the global registry or enter a web address provided by a Healthcare Authority that has implemented PathCheck.",
@@ -148,8 +147,6 @@
     "home_at_risk_subtext_location": "Based on your GPS history, it is possible you were in contact with or close to someone diagnosed with COVID-19.",
     "home_enable_bluetooth": "Enable Contact Tracing",
     "home_enable_location": "Enable Location Data",
-    "home_mayo_link_heading": "More COVID-19 information",
-    "home_mayo_link_label": "from the Mayo Clinic",
     "home_no_contact_header": "No known contact",
     "home_no_contact_subtext": "Based on available data you haven’t been near anyone reported positive for COVID-19.",
     "home_not_available_header_bluetooth": "Exposure history notifications are not yet available",
@@ -208,7 +205,6 @@
     "legal_page_address": "PathCheck\n58 Day Street\nBox 441621\nSomerville, MA 02144",
     "legal_page_header_bluetooth": "PathCheck BT",
     "legal_page_header_location": "PathCheck GPS",
-    "legal_page_title": "Legal",
     "loading_public_data": "loading data...",
     "location_disabled_message": "COVID Safe Paths requires location services.",
     "location_disabled_title": "Location Tracking Was Disabled",
@@ -254,5 +250,19 @@
     "push_notification_message": "Please update your application",
     "push_notification_title": "Application is outdated",
     "update": "Update"
+  },
+  "navigation": {
+    "home": "Home",
+    "history": "History",
+    "locations": "Locations",
+    "partners": "Partners",
+    "more": "More"
+  },
+  "screen_titles": {
+    "about": "About",
+    "faq": "FAQ",
+    "report_issue": "Report an issue",
+    "legal": "Legal",
+    "more": "More"
   }
 }

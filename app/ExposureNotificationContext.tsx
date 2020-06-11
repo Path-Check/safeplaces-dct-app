@@ -6,6 +6,8 @@ import * as ExposureNotifications from './exposureNotificationsNativeModule';
 export type ENAuthorizationStatus = 'authorized' | 'notAuthorized';
 
 interface ExposureNotificationsState {
+  hasBeenExposed: boolean;
+  toggleHasExposure: () => void;
   exposureNotificationAuthorizationStatus: ENAuthorizationStatus;
   requestExposureNotificationAuthorization: () => void;
 }
@@ -13,6 +15,8 @@ interface ExposureNotificationsState {
 const initialStatus: ENAuthorizationStatus = 'notAuthorized';
 
 const ExposureNotificationsContext = createContext<ExposureNotificationsState>({
+  hasBeenExposed: false,
+  toggleHasExposure: () => {},
   exposureNotificationAuthorizationStatus: initialStatus,
   requestExposureNotificationAuthorization: () => {},
 });
@@ -28,6 +32,7 @@ const ExposureNotificationsProvider = ({
     exposureNotificationAuthorizationStatus,
     setExposureNotificationAuthorizationStatus,
   ] = useState<ENAuthorizationStatus>(initialStatus);
+  const [hasBeenExposed, setHasBeenExposed] = useState<boolean>(false);
 
   const requestExposureNotificationAuthorization = () => {
     const cb = (authorizationStatus: ENAuthorizationStatus) => {
@@ -36,9 +41,15 @@ const ExposureNotificationsProvider = ({
     ExposureNotifications.requestAuthorization(cb);
   };
 
+  const toggleHasExposure = () => {
+    setHasBeenExposed(!hasBeenExposed);
+  };
+
   return (
     <ExposureNotificationsContext.Provider
       value={{
+        hasBeenExposed,
+        toggleHasExposure,
         exposureNotificationAuthorizationStatus,
         requestExposureNotificationAuthorization,
       }}>

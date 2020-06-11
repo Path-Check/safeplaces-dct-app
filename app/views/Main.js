@@ -3,10 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
-import { Icons } from '../assets';
-import { IconButton } from '../components';
 import Colors from '../constants/colors';
-import { Theme } from '../constants/themes';
 import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
@@ -32,22 +29,6 @@ export const Main = () => {
     hasPotentialExposure: false,
   });
 
-  const SettingsNavButton = () => {
-    return (
-      <Theme use='violet'>
-        <IconButton
-          style={styles.settingsContainer}
-          icon={Icons.SettingsIcon}
-          size={30}
-          onPress={() => {
-            navigation.navigate('SettingsScreen');
-          }}
-          label='default'
-        />
-      </Theme>
-    );
-  };
-
   const checkForPossibleExposure = () => {
     BackgroundTaskServices.start();
     checkIntersect();
@@ -65,21 +46,25 @@ export const Main = () => {
   };
 
   useEffect(() => {
-    updateStateInfo();
-    // refresh state if user backgrounds app
-    AppState.addEventListener('change', updateStateInfo);
+    if (isGPS) {
+      updateStateInfo();
+      // refresh state if user backgrounds app
+      AppState.addEventListener('change', updateStateInfo);
 
-    // refresh state if settings change
-    const unsubscribe = navigation.addListener('focus', updateStateInfo);
+      // refresh state if settings change
+      const unsubscribe = navigation.addListener('focus', updateStateInfo);
 
-    // handle back press
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+      // handle back press
+      BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
-    return () => {
-      AppState.removeEventListener('change', updateStateInfo);
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-      unsubscribe();
-    };
+      return () => {
+        AppState.removeEventListener('change', updateStateInfo);
+        BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+        unsubscribe();
+      };
+    } else {
+      return null;
+    }
   }, [navigation, updateStateInfo]);
 
   let page;
@@ -106,10 +91,5 @@ export const Main = () => {
     }
   }
 
-  return (
-    <View style={styles.backgroundImage}>
-      {page}
-      <SettingsNavButton />
-    </View>
-  );
+  return <View style={styles.backgroundImage}>{page}</View>;
 };
