@@ -20,8 +20,6 @@ package covidsafepaths.bte.exposurenotifications.notify;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.common.api.ApiException;
@@ -43,7 +41,7 @@ import covidsafepaths.bte.exposurenotifications.common.AppExecutors;
 import covidsafepaths.bte.exposurenotifications.common.TaskToFutureAdapter;
 import covidsafepaths.bte.exposurenotifications.network.DiagnosisKey;
 import covidsafepaths.bte.exposurenotifications.network.DiagnosisKeys;
-import covidsafepaths.bte.exposurenotifications.storage.PositiveDiagnosisEntity;
+import covidsafepaths.bte.exposurenotifications.storage.PositiveDiagnosis;
 import covidsafepaths.bte.exposurenotifications.storage.PositiveDiagnosisRepository;
 
 import static covidsafepaths.bte.exposurenotifications.nearby.ProvideDiagnosisKeysWorker.DEFAULT_API_TIMEOUT;
@@ -60,7 +58,6 @@ public class ShareDiagnosisManager {
     private final PositiveDiagnosisRepository repository;
     private final Context context;
 
-    private final MutableLiveData<ZonedDateTime> testTimestampLiveData = new MutableLiveData<>();
     private final MutableLiveData<Long> existingIdLiveData = new MutableLiveData<>(NO_EXISTING_ID);
 
     public ShareDiagnosisManager(Context context) {
@@ -68,18 +65,18 @@ public class ShareDiagnosisManager {
         this.context = context;
     }
 
-    @NonNull
-    public LiveData<PositiveDiagnosisEntity> getByIdLiveData(long id) {
-        return repository.getByIdLiveData(id);
-    }
+//    @NonNull
+//    public LiveData<PositiveDiagnosisEntity> getByIdLiveData(long id) {
+//        return repository.getByIdLiveData(id);
+//    }
 
     /**
      * TODO currently unused
      * Deletes a given entity
      */
-    public void deleteEntity(PositiveDiagnosisEntity positiveDiagnosisEntity) {
+    public void deleteEntity(PositiveDiagnosis positiveDiagnosis) {
         Futures.addCallback(
-                repository.deleteByIdAsync(positiveDiagnosisEntity.getId()),
+                repository.deleteByIdAsync(positiveDiagnosis.getId()),
                 new FutureCallback<Void>() {
                     @Override
                     public void onSuccess(@NullableDecl Void result) {
@@ -131,8 +128,7 @@ public class ShareDiagnosisManager {
         long positiveDiagnosisId = existingIdLiveData.getValue();
         if (positiveDiagnosisId == NO_EXISTING_ID) {
             // Add flow so add the entity
-            return repository.upsertAsync(
-                    PositiveDiagnosisEntity.create(testTimestampLiveData.getValue(), shared));
+            return repository.insertAsync(new PositiveDiagnosis());
         } else {
             // Update flow so just update the shared status
             return repository.markSharedForIdAsync(positiveDiagnosisId, shared);

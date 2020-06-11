@@ -14,11 +14,6 @@
 
 -keep class androidx.core.app.CoreComponentFactory { *; }
 
-# Room configuration.
--keep class * extends androidx.room.RoomDatabase
--dontwarn androidx.room.paging.**
--keepclassmembers public class * extends androidx.lifecycle.AndroidViewModel { public <init>(...); }
-
 # Guava configuration.
 -dontwarn com.google.errorprone.**
 -dontwarn sun.misc.Unsafe

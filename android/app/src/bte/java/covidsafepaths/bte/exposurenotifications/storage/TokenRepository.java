@@ -19,33 +19,31 @@ package covidsafepaths.bte.exposurenotifications.storage;
 
 import android.content.Context;
 
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.List;
 
 /**
- * Abstracts database access to {@link TokenDao} data source.
+ * Abstracts database access to Realm data source for Tokens.
  */
 public class TokenRepository {
 
-  private final TokenDao tokenDao;
-
   public TokenRepository(Context context) {
-    ExposureNotificationDatabase exposureNotificationDatabase =
-        ExposureNotificationDatabase.getInstance(context);
-    tokenDao = exposureNotificationDatabase.tokenDao();
+    // TODO
   }
 
-  public ListenableFuture<List<TokenEntity>> getAllAsync() {
-    return tokenDao.getAllAsync();
-  }
+//  public ListenableFuture<List<TokenEntity>> getAllAsync() {
+//    // TODO
+//  }
 
   public ListenableFuture<Void> upsertAsync(TokenEntity entity) {
-    return tokenDao.upsertAsync(entity);
+    // TODO
+    return Futures.immediateVoidFuture();
   }
 
   public ListenableFuture<Void> deleteByTokensAsync(String... tokens) {
-    return tokenDao.deleteByTokensAsync(tokens);
+    // TODO
+    return Futures.immediateVoidFuture();
   }
-
 }

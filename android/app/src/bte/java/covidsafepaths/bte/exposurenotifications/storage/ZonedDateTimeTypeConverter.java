@@ -17,8 +17,6 @@
 
 package covidsafepaths.bte.exposurenotifications.storage;
 
-import androidx.room.TypeConverter;
-
 import org.threeten.bp.ZonedDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 
@@ -33,7 +31,6 @@ public class ZonedDateTimeTypeConverter {
 
   private static final DateTimeFormatter sFormatter = DateTimeFormatter.ISO_ZONED_DATE_TIME;
 
-  @TypeConverter
   public static ZonedDateTime toOffsetDateTime(String timestamp) {
     if (timestamp != null) {
       return sFormatter.parse(timestamp, ZonedDateTime.FROM);
@@ -42,7 +39,6 @@ public class ZonedDateTimeTypeConverter {
     }
   }
 
-  @TypeConverter
   public static String fromOffsetDateTime(ZonedDateTime timestamp) {
     if (timestamp != null) {
       return timestamp.format(sFormatter);

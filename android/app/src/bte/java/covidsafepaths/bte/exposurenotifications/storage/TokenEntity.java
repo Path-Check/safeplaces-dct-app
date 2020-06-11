@@ -18,9 +18,6 @@
 package covidsafepaths.bte.exposurenotifications.storage;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import com.google.common.base.Preconditions;
 
@@ -33,18 +30,13 @@ import java.util.Objects;
  * ensure compliance with all applicable laws and requirements with respect to encryption, storage,
  * and retention polices for end user data.
  */
-@Entity
 public class TokenEntity {
 
-  @PrimaryKey
-  @ColumnInfo(name = "token")
   @NonNull
   private String token;
 
-  @ColumnInfo(name = "last_updated_timestamp_ms")
   private long lastUpdatedTimestampMs;
 
-  @ColumnInfo(name = "responded")
   private boolean responded;
 
   TokenEntity(@NonNull String token, boolean responded) {

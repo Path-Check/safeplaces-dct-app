@@ -21,46 +21,40 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.List;
 
 /**
- * Abstracts database access to {@link PositiveDiagnosisDao} data source.
+ * Abstracts database access to Realm data source for Positive Diagnoses.
  */
 public class PositiveDiagnosisRepository {
 
-  private final PositiveDiagnosisDao positiveDiagnosisDao;
-  private final LiveData<List<PositiveDiagnosisEntity>> getAllLiveData;
-
   public PositiveDiagnosisRepository(Context context) {
-    ExposureNotificationDatabase exposureNotificationDatabase =
-        ExposureNotificationDatabase.getInstance(context);
-    positiveDiagnosisDao = exposureNotificationDatabase.positiveDiagnosisDao();
-    getAllLiveData = positiveDiagnosisDao.getAllLiveData();
+    // TODO
   }
 
-  public LiveData<List<PositiveDiagnosisEntity>> getAllLiveData() {
-    return getAllLiveData;
-  }
+//  public LiveData<List<PositiveDiagnosisEntity>> getAllLiveData() {
+//    return getAllLiveData;
+//  }
 
-  public LiveData<PositiveDiagnosisEntity> getByIdLiveData(long id) {
-    // TODO: cache this locally.
-    return positiveDiagnosisDao.getById(id);
-  }
+//  public LiveData<PositiveDiagnosisEntity> getByIdLiveData(long id) {
+//    // TODO
+//  }
 
-  public ListenableFuture<Void> upsertAsync(
-      PositiveDiagnosisEntity entity) {
-    return positiveDiagnosisDao.upsertAsync(entity);
+  public ListenableFuture<Void> insertAsync(PositiveDiagnosis positiveDiagnosis) {
+    return RealmSecureStorageBte.INSTANCE.insertDiagnosisAsync(positiveDiagnosis);
   }
 
   public ListenableFuture<Void> deleteByIdAsync(long id) {
-    return positiveDiagnosisDao.deleteById(id);
+    // TODO
+    return Futures.immediateVoidFuture();
   }
 
   public ListenableFuture<Void> markSharedForIdAsync(long id,
                                                      boolean shared) {
-    return positiveDiagnosisDao.markSharedForId(id, shared);
+    return RealmSecureStorageBte.INSTANCE.markDiagnosisSharedAsync(id, shared);
   }
 
 }

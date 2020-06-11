@@ -21,35 +21,33 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.List;
 
 /**
- * Abstracts database access to {@link ExposureDao} data source.
+ * Abstracts database access to Realm data source for Exposures.
  */
 public class ExposureRepository {
 
-  private final ExposureDao exposureDao;
-  private final LiveData<List<ExposureEntity>> getAllLiveData;
+//  private final LiveData<List<ExposureEntity>> getAllLiveData;
 
   public ExposureRepository(Context context) {
-    ExposureNotificationDatabase exposureNotificationDatabase =
-        ExposureNotificationDatabase.getInstance(context);
-    exposureDao = exposureNotificationDatabase.exposureDao();
-    getAllLiveData = exposureDao.getAllLiveData();
+    // TODO
   }
 
-  public LiveData<List<ExposureEntity>> getAllLiveData() {
-    return getAllLiveData;
-  }
+//  public LiveData<List<ExposureEntity>> getAllLiveData() {
+//    return getAllLiveData;
+//  }
 
   public ListenableFuture<Void> upsertAsync(List<ExposureEntity> entities) {
-    return exposureDao.upsertAsync(entities);
+    // TODO
+    return Futures.immediateVoidFuture();
   }
 
   public ListenableFuture<Void> deleteAllAsync() {
-    return exposureDao.deleteAllAsync();
+    // TODO
+    return Futures.immediateVoidFuture();
   }
-
 }

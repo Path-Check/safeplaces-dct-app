@@ -240,14 +240,8 @@ dependencies {
     // Imports to support Exposure Notifications implementation based on Google sample
     // Annotation processing
     kapt 'com.google.auto.value:auto-value:1.7'
-    // TODO remove and replace with Realm
-    kapt 'androidx.room:room-compiler:2.2.5'
     // Libraries
     bteImplementation 'androidx.work:work-runtime:2.3.4'
-    // TODO remove and replace with Realm
-    bteImplementation 'androidx.room:room-guava:2.2.5'
-    // TODO remove and replace with Realm
-    bteImplementation 'androidx.room:room-runtime:2.2.5'
     bteImplementation 'androidx.concurrent:concurrent-futures:1.0.0'
     bteImplementation 'com.google.android.gms:play-services-base:17.2.1'
     bteImplementation 'com.google.android.gms:play-services-basement:17.2.1'

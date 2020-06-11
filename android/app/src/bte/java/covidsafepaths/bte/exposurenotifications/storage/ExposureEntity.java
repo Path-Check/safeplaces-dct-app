@@ -17,10 +17,6 @@
 
 package covidsafepaths.bte.exposurenotifications.storage;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 import java.util.Objects;
 
 /**
@@ -30,10 +26,8 @@ import java.util.Objects;
  * ensure compliance with all applicable laws and requirements with respect to encryption, storage,
  * and retention polices for end user data.
  */
-@Entity
 public class ExposureEntity {
 
-    @PrimaryKey(autoGenerate = true)
     long id;
 
     /**
@@ -42,14 +36,12 @@ public class ExposureEntity {
      *
      * <p>Represents a date of an exposure in millis since epoch rounded to the day.
      */
-    @ColumnInfo(name = "date_millis_since_epoch")
     private long dateMillisSinceEpoch;
 
     /**
      * The timestamp in millis since epoch for when the exposure notification status update was
      * received.
      */
-    @ColumnInfo(name = "received_timestamp_ms")
     private long receivedTimestampMs;
 
     ExposureEntity(long dateMillisSinceEpoch, long receivedTimestampMs) {
