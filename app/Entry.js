@@ -11,7 +11,6 @@ import isOnboardingCompleteSelector from './store/selectors/isOnboardingComplete
 import AboutScreen from './views/About';
 import AddManualURLScreen from './views/AddManualURL';
 import AuthorityInfoScreen from './views/AuthorityInfo';
-import ChooseProviderScreen from './views/ChooseProvider';
 import EditAuthoritiesScreen from './views/EditAuthorities';
 import {
   ExportCodeInput,
