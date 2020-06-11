@@ -41,7 +41,7 @@ export const secondaryYellow = kournikova;
 export const tertiaryYellow = orangePeel;
 
 // Violets
-export const royalBlue = '#3c4ed8';
+export const royalBlue = '#4051db';
 export const royalerBlue = '#5061e6';
 export const jacksonsPurple = '#1f2c9b';
 export const cornflowerBlue = '#6979f8';
@@ -116,3 +116,6 @@ export const gradientEnd = { x: 1, y: 1 };
 export const primaryGradient = [primaryBlue, tertiaryBlue];
 export const secondaryGradient = [primaryBlue, secondaryBlue];
 export const disabledGradient = [darkGray, darkGray];
+
+// Exposure History
+export const exposureRiskWarning = royalBlue;
