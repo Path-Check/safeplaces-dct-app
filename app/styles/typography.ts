@@ -45,11 +45,21 @@ export const largeFont: TextStyle = {
   fontSize: large,
 };
 
+export const largestFont: TextStyle = {
+  lineHeight: largestLineHeight,
+  fontSize: largest,
+};
+
 // Headers
 export const header1: TextStyle = {
+  ...largestFont,
+  fontWeight: heaviestWeight,
+  color: Colors.primaryText,
+};
+
+export const header2: TextStyle = {
   ...largeFont,
   fontWeight: heavyWeight,
-  color: Colors.primaryText,
 };
 
 export const mainContent: TextStyle = {
@@ -68,9 +78,16 @@ export const label: TextStyle = {
   color: Colors.primaryText,
 };
 
-export const cta: TextStyle = {
+export const ctaButtonOutlined: TextStyle = {
   ...largeFont,
-  color: Colors.primaryText,
+  fontWeight: heavyWeight,
+  color: Colors.primaryBlue,
+};
+
+export const ctaButtonFilled: TextStyle = {
+  ...largeFont,
+  fontWeight: heavyWeight,
+  color: Colors.white,
 };
 
 export const title: TextStyle = {

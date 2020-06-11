@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 36,
     height: 36,
-    borderRadius: Outlines.borderRadiusMax,
+    borderRadius: Outlines.maxBorderRadius,
     borderColor: Colors.transparent,
     borderWidth: Outlines.thick,
   },

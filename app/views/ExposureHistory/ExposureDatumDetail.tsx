@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { TouchableOpacity, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import dayjs from 'dayjs';
 
 import { Typography } from '../../components/Typography';
@@ -8,6 +9,7 @@ import {
   Typography as TypographyStyles,
   Outlines,
   Colors,
+  Buttons,
   Spacing,
 } from '../../styles';
 
@@ -45,20 +47,36 @@ interface PossibleExposureDetailProps {
 const PossibleExposureDetail = ({
   datum: { date, possibleExposureTimeInMin, currentDailyReports },
 }: PossibleExposureDetailProps) => {
+  const navigation = useNavigation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');
   const exposureTime = `Possible Exposure Time: ${possibleExposureTimeInMin}`;
   const dailyReports = `Current daily reports: ${currentDailyReports}`;
   const explainationContent = `For ${possibleExposureTimeInMin} consecutive minutes, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis.`;
 
+  const handleOnPressNextSteps = () => {
+    navigation.navigate('NextStepsScreen');
+  };
+
+  const nextStepsButtonText = 'What should I do next?';
+
   return (
-    <View style={styles.container}>
-      <Typography style={styles.date}>{exposureDate}</Typography>
-      <Typography style={styles.info}>{exposureTime}</Typography>
-      <Typography sytle={styles.info}>{dailyReports}</Typography>
-      <View style={styles.contentContainer}>
-        <Typography style={styles.content}>{explainationContent}</Typography>
+    <>
+      <View style={styles.container}>
+        <Typography style={styles.date}>{exposureDate}</Typography>
+        <Typography style={styles.info}>{exposureTime}</Typography>
+        <Typography sytle={styles.info}>{dailyReports}</Typography>
+        <View style={styles.contentContainer}>
+          <Typography style={styles.content}>{explainationContent}</Typography>
+        </View>
       </View>
-    </View>
+      <TouchableOpacity
+        style={styles.nextStepsButton}
+        onPress={handleOnPressNextSteps}>
+        <Typography style={styles.nextStepsButtonText}>
+          {nextStepsButtonText}
+        </Typography>
+      </TouchableOpacity>
+    </>
   );
 };
 
@@ -115,7 +133,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.lighterGray,
   },
   date: {
-    ...TypographyStyles.header1,
+    ...TypographyStyles.header2,
   },
   info: {
     lineHeight: TypographyStyles.largeLineHeight,
@@ -125,6 +143,13 @@ const styles = StyleSheet.create({
   },
   content: {
     ...TypographyStyles.secondaryContent,
+  },
+  nextStepsButton: {
+    ...Buttons.largeBlueOutline,
+    marginTop: Spacing.xLarge,
+  },
+  nextStepsButtonText: {
+    ...TypographyStyles.ctaButtonOutlined,
   },
 });
 
