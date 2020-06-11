@@ -17,8 +17,8 @@ export const Distancing = ({ navigation }) => {
         navigation.push(completeRoute);
       }}
       backgroundColor={Colors.SECONDARY_10}
-      backgroundImage={Images.EmptyPathBackground}
-      icon={Icons.SelfAssessment}
+      backgroundImage={Images.IsolatePathBackground}
+      icon={Icons.Isolate}
       ctaTitle={t('assessment.distancing_cta')}
       description={
         <Trans t={t} i18nKey='assessment.distancing_description'>

@@ -6,6 +6,7 @@ const Close = require('./closeIcon.png');
 const Export = require('./export.png');
 const ForeArrow = require('./foreArrow.png');
 const HomeScreenBackgroundOverlay = require('./homeScreenBackgroundOverlay.png');
+const IsolatePathBackground = require('./isolatePathBackground.png');
 const LaunchScreen1 = require('./launchScreen1.png');
 const LaunchScreen1BT = require('./launchScreen1BT.png');
 const LaunchScreen2 = require('./launchScreen2.png');
@@ -32,6 +33,7 @@ export const Images = {
   Export,
   ForeArrow,
   HomeScreenBackgroundOverlay,
+  IsolatePathBackground,
   LaunchScreen1,
   LaunchScreen1BT,
   LaunchScreen2,
