@@ -153,7 +153,7 @@
     "launch_notif_header": "Notifications will let you know if you cross paths with an infected person.",
     "launch_notif_subheader": "We won't bother you except to share updates on your potential exposure risks.",
     "launch_notification_access": "Allow notifications",
-    "launch_screen1_header": "The way back to normal starts here.",
+    "launch_screen1_header": "Welcome to PathCheck",
     "launch_screen2_header_bluetooth": "Your phone remembers other devices it meets but won't identify you to other people.",
     "launch_screen2_header_location": "PathCheck remembers the places you visit and saves them privately on your phone for 14 days.",
     "launch_screen2_subheader_bluetooth": "Nearby phones use Bluetooth to share and save random number strings to recall devices nearby.\n\nIf a person reports a positive diagnosis, their phone's recent random IDs are flagged to anonymously notify others. No locations or personal info is shared.",
