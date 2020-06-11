@@ -23,7 +23,7 @@ import {
 import ExposureNotificationContext from '../../ExposureNotificationContext';
 
 // eslint-disable-next-line
-declare const global: any
+declare const global: any;
 
 type ENDebugMenuProps = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -94,9 +94,7 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   };
 
   const handleOnPressToggleExposureNotifications = () => {
-    handleOnPressSimulationButton(
-      toggleExposureNotifications,
-    )();
+    handleOnPressSimulationButton(toggleExposureNotifications)();
     global.ExposureNotificationsOn = !global.ExposureNotificationsOn;
   };
 

@@ -12,7 +12,10 @@ import { useAssets } from '../../TracingStrategyAssets';
 import { styles } from './style';
 
 export const NoKnownExposure = () => {
-  const { noKnownExposurePageHeader, noKnownExposurePageSubheader } = useAssets();
+  const {
+    noKnownExposurePageHeader,
+    noKnownExposurePageSubheader,
+  } = useAssets();
   const size = Dimensions.get('window').height;
 
   return (

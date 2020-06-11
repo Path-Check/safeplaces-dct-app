@@ -18,4 +18,4 @@ export default `<svg width="850" height="850" viewBox="0 0 850 850" fill="none" 
 </linearGradient>
 </defs>
 </svg>
-`
+`;

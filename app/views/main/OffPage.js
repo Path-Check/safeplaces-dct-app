@@ -43,9 +43,7 @@ export const OffPage = () => {
             <Typography style={styles.subsubheaderText} />
           </View>
           <View style={styles.contentBelowPulse}>
-            <Text style={styles.mainTextBelow}>
-              {offPageHeader}
-            </Text>
+            <Text style={styles.mainTextBelow}>{offPageHeader}</Text>
             <Typography style={styles.subheaderText}>{offPageCta}</Typography>
             <Button
               label={offPageButton}

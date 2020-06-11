@@ -1,9 +1,11 @@
 // eslint-disable-next-line
-declare const global: any
+declare const global: any;
 
 global.ExposureNotificationsOn = true;
 
-type ENStatusReason = 'DEVICE_EXPOSURE_NOTIFICATIONS_OFF' | 'ALL_CONDITIONS_MET';
+type ENStatusReason =
+  | 'DEVICE_EXPOSURE_NOTIFICATIONS_OFF'
+  | 'ALL_CONDITIONS_MET';
 
 interface ExposureNotificationsState {
   canTrack: boolean;
@@ -12,11 +14,15 @@ interface ExposureNotificationsState {
 }
 
 export default class ExposureNotificationService {
-  public static DEVICE_EXPOSURE_NOTIFICATIONS_OFF: ENStatusReason = 'DEVICE_EXPOSURE_NOTIFICATIONS_OFF';
+  public static DEVICE_EXPOSURE_NOTIFICATIONS_OFF: ENStatusReason =
+    'DEVICE_EXPOSURE_NOTIFICATIONS_OFF';
   public static ALL_CONDITIONS_MET: ENStatusReason = 'ALL_CONDITIONS_MET';
 
   static checkStatusAndStartOrStop(): ExposureNotificationsState {
-    console.log('[INFO] EN service check status: ', global.ExposureNoficationsOn);
+    console.log(
+      '[INFO] EN service check status: ',
+      global.ExposureNoficationsOn,
+    );
     const isDeviceExposureNotificationEnabled = global.ExposureNotificationsOn;
 
     if (!isDeviceExposureNotificationEnabled) {
