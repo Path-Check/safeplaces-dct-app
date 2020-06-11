@@ -22,6 +22,8 @@ import {
 } from '../../exposureNotificationsNativeModule';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
 
+declare const global: any
+
 type ENDebugMenuProps = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 };

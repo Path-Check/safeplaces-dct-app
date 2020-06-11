@@ -8,6 +8,8 @@ interface ExposureNotificationsState {
   hasPotentialExposure: boolean;
 }
 
+declare const global: any
+
 export default class ExposureNotificationService {
   public static DEVICE_EXPOSURE_NOTIFICATIONS_OFF: ENStatusReason = 'DEVICE_EXPOSURE_NOTIFICATIONS_OFF';
   public static ALL_CONDITIONS_MET: ENStatusReason = 'ALL_CONDITIONS_MET';
