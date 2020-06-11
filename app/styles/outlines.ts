@@ -6,6 +6,11 @@ export const baseBorderRadius = 4;
 export const borderRadiusLarge = 8;
 export const borderRadiusMax = 500;
 
+export const roundedBorder: ViewStyle = {
+  borderWidth: 1,
+  borderRadius: baseBorderRadius,
+};
+
 export const baseShadow: ViewStyle = {
   shadowColor: Colors.black,
   shadowOpacity: 0.2,

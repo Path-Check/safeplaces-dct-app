@@ -16,9 +16,9 @@ export const huge = 52;
 // Line Heights
 export const smallestLineHeight = 16;
 export const smallerLineHeight = 20;
-export const smallLineHeight = 22;
-export const mediumLineHeight = 24;
-export const largeLineHeight = 34;
+export const smallLineHeight = 24;
+export const mediumLineHeight = 28;
+export const largeLineHeight = 32;
 export const largestLineHeight = 40;
 export const hugeLineHeight = 52;
 
@@ -41,13 +41,26 @@ export const mediumFont: TextStyle = {
 };
 
 export const largeFont: TextStyle = {
-  lineHeight: mediumLineHeight,
+  lineHeight: largestLineHeight,
   fontSize: large,
 };
 
-export const content: TextStyle = {
+// Headers
+export const header1: TextStyle = {
+  ...largeFont,
+  fontWeight: heavyWeight,
+  color: Colors.primaryText,
+};
+
+export const mainContent: TextStyle = {
   ...mediumFont,
   color: Colors.primaryText,
+};
+
+export const secondaryContent: TextStyle = {
+  ...mediumFont,
+  color: Colors.secondaryText,
+  lineHeight: mediumLineHeight,
 };
 
 export const label: TextStyle = {
