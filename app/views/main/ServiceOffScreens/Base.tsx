@@ -15,12 +15,13 @@ import { Typography } from '../../../components/Typography';
 import { Button } from '../../../components/Button';
 import { Theme } from '../../../constants/themes';
 import { styles } from '../style';
+import { Asset } from '../../../TracingStrategyAssets';
 
 export interface ServiceOffScreenProps {
-  header: string;
-  subheader: string;
+  header: Asset;
+  subheader: Asset;
   button?: {
-    label: string;
+    label: Asset;
     onPress: (ev: NativeSyntheticEvent<NativeTouchEvent>) => void;
   };
 }
