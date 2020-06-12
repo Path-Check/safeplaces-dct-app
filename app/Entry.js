@@ -128,7 +128,10 @@ const MoreTabStack = () => (
     />
     <Stack.Screen name='AuthorityInfoScreen' component={AuthorityInfoScreen} />
     <Stack.Screen name='SelectedHAsScreen' component={SelectedHAsScreen} />
-    <Stack.Screen name='EditAuthoritiesScreen' component={EditAuthoritiesScreen} />
+    <Stack.Screen
+      name='EditAuthoritiesScreen'
+      component={EditAuthoritiesScreen}
+    />
   </Stack.Navigator>
 );
 

@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 import { Icons } from '../assets';
-import { Button } from '../components/Button';
 import { IconButton } from '../components/IconButton';
 import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
@@ -30,7 +29,7 @@ class EditAuthoritiesScreen extends Component {
       urlText: '',
       usersAuthorities: [],
       isAuthorityFilterActive: false,
-      isAutoSubscribed: false
+      isAutoSubscribed: false,
     };
   }
 

@@ -80,7 +80,7 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('start', () => {
       console.log('[INFO] BackgroundGeolocation service has been started');
-      if(isGPS){
+      if (isGPS) {
         this.findNewAuthorities();
       }
     });
