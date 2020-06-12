@@ -108,6 +108,7 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
           <Item
             label='Toggle Exposure State'
             onPress={handleOnPressToggleExposure}
+            last
           />
         </Section>
         <Section>

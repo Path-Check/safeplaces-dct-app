@@ -9,7 +9,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import AboutScreen from './views/About';
-import ChooseProviderScreen from './views/ChooseProvider';
 import {
   ExportCodeInput,
   ExportComplete,
@@ -20,6 +19,7 @@ import {
   ExportSelectHA,
 } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
+import Assessment from './views/assessment';
 import NextSteps from './views/NextSteps';
 import {
   EN_DEBUG_MENU_SCREEN_NAME,
@@ -99,6 +99,18 @@ const ExposureHistoryStack = () => (
   </Stack.Navigator>
 );
 
+const SelfAssessmentStack = () => (
+  <Stack.Navigator
+    mode='modal'
+    screenOptions={{
+      ...SCREEN_OPTIONS,
+      cardStyleInterpolator: fade,
+      gestureEnabled: false,
+    }}>
+    <Stack.Screen name='Assessment' component={Assessment} />
+  </Stack.Navigator>
+);
+
 const MoreTabStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
@@ -174,15 +186,18 @@ const MainAppTabs = () => {
           }}
         />
       )}
-
       <Tab.Screen
-        name='ChooseProviderScreen'
-        component={ChooseProviderScreen}
+        name='SelfAssessmentStack'
+        component={SelfAssessmentStack}
         options={{
-          tabBarLabel: t('navigation.partners'),
+          tabBarLabel: t('navigation.selfAssessment'),
           tabBarIcon: ({ focused, size }) => (
             <SvgXml
-              xml={focused ? Icons.PartnersActive : Icons.PartnersInactive}
+              xml={
+                focused
+                  ? Icons.SelfAssessmentActive
+                  : Icons.SelfAssessmentInactive
+              }
               width={size}
               height={size}
             />

@@ -31,7 +31,9 @@ const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
 
   const buttonText = 'Take Self Assessment';
 
-  const handleOnPressTakeAssessment = () => {};
+  const handleOnPressTakeAssessment = () => {
+    navigation.navigate('Assessment');
+  };
 
   return (
     <NavigationBarWrapper
