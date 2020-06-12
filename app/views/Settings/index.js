@@ -103,7 +103,7 @@ export const SettingsScreen = ({ navigation }) => {
           ) : (
             <>
               <Item label={t('screen_titles.faq')} />
-              <Item label={t('screen_titles.report_issue')}/>
+              <Item label={t('screen_titles.report_issue')} />
               <Item
                 label={t('screen_titles.report_positive_test')}
                 onPress={() => navigation.navigate('ExportFlow')}

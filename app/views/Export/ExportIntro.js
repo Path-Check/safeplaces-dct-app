@@ -23,7 +23,7 @@ export const ExportIntro = ({ navigation }) => {
     navigation.navigate('ExportCodeInput', {
       selectedAuthority: selectedAuthorityDummy,
     });
-  const onClose = () => navigation.navigate('SettingsScreen');
+  const onClose = () => navigation.goBack();
   return (
     <ExportTemplate
       onNext={onNext}
