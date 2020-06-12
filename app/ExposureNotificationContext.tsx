@@ -35,9 +35,12 @@ export type ExposureHistory = ExposureDatum[];
 interface ExposureNotificationsState {
   exposureHistory: ExposureHistory;
   hasBeenExposed: boolean;
+  userHasNewExposure: boolean;
   toggleHasExposure: () => void;
-  exposureNotificationAuthorizationStatus: ENAuthorizationStatus;
-  requestExposureNotificationAuthorization: () => void;
+  observeExposures: () => void;
+  resetExposures: () => void;
+  authorizationStatus: ENAuthorizationStatus;
+  requestENAuthorization: () => void;
 }
 
 const initialStatus: ENAuthorizationStatus = 'notAuthorized';
@@ -48,7 +51,7 @@ const daysAgo = [...Array(21)].map((_v, idx: number) => {
   return 20 - idx;
 });
 
-const initialExposureHistory: ExposureHistory = daysAgo.map(
+const fakeExposureHistory: ExposureHistory = daysAgo.map(
   (daysAgo: number): ExposureDatum => {
     const date = dayjs(now).subtract(daysAgo, 'day').valueOf();
     if (daysAgo > 10) {
@@ -75,13 +78,20 @@ const initialExposureHistory: ExposureHistory = daysAgo.map(
   },
 );
 
-const ExposureNotificationsContext = createContext<ExposureNotificationsState>({
+const initialState = {
   hasBeenExposed: false,
+  userHasNewExposure: true,
   toggleHasExposure: () => {},
-  exposureHistory: initialExposureHistory,
-  exposureNotificationAuthorizationStatus: initialStatus,
-  requestExposureNotificationAuthorization: () => {},
-});
+  observeExposures: () => {},
+  resetExposures: () => {},
+  exposureHistory: fakeExposureHistory,
+  authorizationStatus: initialStatus,
+  requestENAuthorization: () => {},
+};
+
+const ExposureNotificationsContext = createContext<ExposureNotificationsState>(
+  initialState,
+);
 
 interface ExposureNotificationProviderProps {
   children: JSX.Element;
@@ -90,15 +100,15 @@ interface ExposureNotificationProviderProps {
 const ExposureNotificationsProvider = ({
   children,
 }: ExposureNotificationProviderProps): JSX.Element => {
-  const [
-    exposureNotificationAuthorizationStatus,
-    setExposureNotificationAuthorizationStatus,
-  ] = useState<ENAuthorizationStatus>(initialStatus);
+  const [authorizationStatus, setAuthorizationStatus] = useState<
+    ENAuthorizationStatus
+  >(initialStatus);
   const [hasBeenExposed, setHasBeenExposed] = useState<boolean>(false);
+  const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(true);
 
-  const requestExposureNotificationAuthorization = () => {
+  const requestENAuthorization = () => {
     const cb = (authorizationStatus: ENAuthorizationStatus) => {
-      setExposureNotificationAuthorizationStatus(authorizationStatus);
+      setAuthorizationStatus(authorizationStatus);
     };
     ExposureNotifications.requestAuthorization(cb);
   };
@@ -107,14 +117,25 @@ const ExposureNotificationsProvider = ({
     setHasBeenExposed(!hasBeenExposed);
   };
 
+  const observeExposures = () => {
+    setUserHasNewExposure(false);
+  };
+
+  const resetExposures = () => {
+    setUserHasNewExposure(true);
+  };
+
   return (
     <ExposureNotificationsContext.Provider
       value={{
-        exposureHistory: initialExposureHistory,
+        exposureHistory: fakeExposureHistory,
         hasBeenExposed,
         toggleHasExposure,
-        exposureNotificationAuthorizationStatus,
-        requestExposureNotificationAuthorization,
+        userHasNewExposure,
+        observeExposures,
+        resetExposures,
+        authorizationStatus,
+        requestENAuthorization,
       }}>
       {children}
     </ExposureNotificationsContext.Provider>
