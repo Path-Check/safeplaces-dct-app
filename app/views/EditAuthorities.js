@@ -30,8 +30,7 @@ class EditAuthoritiesScreen extends Component {
       urlText: '',
       usersAuthorities: [],
       isAuthorityFilterActive: false,
-      isAutoSubscribed: false,
-      isTester: true,
+      isAutoSubscribed: false
     };
   }
 
@@ -148,18 +147,6 @@ class EditAuthoritiesScreen extends Component {
               data={this.state.allHealthAuthorities}
               renderItem={({ item, index }) => this.renderRowItem(item, index)}
             />
-            {this.state.isTester && (
-              <View style={styles.footerContainer}>
-                <Button
-                  label={'Manually Add Via URL'}
-                  onPress={() => {
-                    this.props.navigation.navigate('AddManualURLScreen', {
-                      refreshList: () => this.refreshList(),
-                    });
-                  }}
-                />
-              </View>
-            )}
           </View>
         </NavigationBarWrapper>
       </Theme>
@@ -184,9 +171,6 @@ const styles = StyleSheet.create({
     color: Colors.DIVIDER,
     fontSize: 18,
     fontFamily: fontFamily.primaryMedium,
-  },
-  footerContainer: {
-    padding: 20,
   },
   innerRowContainer: {
     flexDirection: 'row',

@@ -36,7 +36,6 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
-import AddManualURLScreen from './views/AddManualURL';
 import AuthorityInfoScreen from './views/AuthorityInfo';
 import EditAuthoritiesScreen from './views/EditAuthorities';
 import SelectedHAsScreen from './views/SelectedHAs';
@@ -130,7 +129,6 @@ const MoreTabStack = () => (
     <Stack.Screen name='AuthorityInfoScreen' component={AuthorityInfoScreen} />
     <Stack.Screen name='SelectedHAsScreen' component={SelectedHAsScreen} />
     <Stack.Screen name='EditAuthoritiesScreen' component={EditAuthoritiesScreen} />
-    <Stack.Screen name='AddManualURLScreen' component={AddManualURLScreen} />
   </Stack.Navigator>
 );
 
