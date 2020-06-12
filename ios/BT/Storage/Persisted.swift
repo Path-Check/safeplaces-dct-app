@@ -15,8 +15,8 @@ class Persisted<Value: Codable> {
 
   var wrappedValue: Value {
     didSet {
-      BTESecureStorage.shared.getUserState { userState in
-        guard let realmConfig = BTESecureStorage.shared.getRealmConfig() else {
+      BTSecureStorage.shared.getUserState { userState in
+        guard let realmConfig = BTSecureStorage.shared.getRealmConfig() else {
           return
         }
         let realm = try! Realm(configuration: realmConfig)

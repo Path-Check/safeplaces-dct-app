@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "bte-logo-512.png",
+      "filename" : "bt-logo-512.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "bte-logo-512@2x.png",
+      "filename" : "bt-logo-512@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "bte-logo-512@3x.png",
+      "filename" : "bt-logo-512@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

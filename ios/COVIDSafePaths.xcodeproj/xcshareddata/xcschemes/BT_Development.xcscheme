@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1140"
+   LastUpgradeVersion = "1130"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -10,13 +10,13 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "echo &quot;.env.bte.staging&quot; &gt; /tmp/envfile   # use .env.bte.staging&#10;">
+               scriptText = "echo &quot;.env.bt&quot; &gt; /tmp/envfile   # use .env.bt&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-                     BuildableName = "BTE.app"
-                     BlueprintName = "BTE"
+                     BuildableName = "BT.app"
+                     BlueprintName = "BT"
                      ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-               BuildableName = "BTE.app"
-               BlueprintName = "BTE"
+               BuildableName = "BT.app"
+               BlueprintName = "BT"
                ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -49,7 +49,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Staging"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -63,18 +63,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-            BuildableName = "BTE.app"
-            BlueprintName = "BTE"
+            BuildableName = "BT.app"
+            BlueprintName = "BT"
             ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "FORCE_BUNDLING"
-            value = "true"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -82,15 +75,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-            BuildableName = "BTE.app"
-            BlueprintName = "BTE"
+            BuildableName = "BT.app"
+            BlueprintName = "BT"
             ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

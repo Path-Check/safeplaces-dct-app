@@ -1,4 +1,4 @@
-package covidsafepaths.bte;
+package covidsafepaths.bt;
 
 import android.app.Application;
 import android.content.Context;
