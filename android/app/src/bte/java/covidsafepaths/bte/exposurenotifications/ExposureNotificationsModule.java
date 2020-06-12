@@ -14,6 +14,7 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.google.android.gms.nearby.Nearby;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
@@ -31,12 +32,15 @@ import covidsafepaths.bte.exposurenotifications.nearby.ProvideDiagnosisKeysWorke
 import covidsafepaths.bte.exposurenotifications.nearby.StateUpdatedWorker;
 import covidsafepaths.bte.exposurenotifications.notify.ShareDiagnosisManager;
 
+import static covidsafepaths.bte.exposurenotifications.ExposureNotificationsModule.MODULE_NAME;
 import static covidsafepaths.bte.exposurenotifications.nearby.StateUpdatedWorker.IS_EXPOSED_KEY;
 
+@ReactModule(name = MODULE_NAME)
 public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
     private static ReactApplicationContext reactContext;
 
-    private static final String MODULE_NAME = "Exposure Notifications";
+    public static final String MODULE_NAME = "PTCExposureManagerModule";
+    public static final String TAG = "ENModule";
     private static final String EXPOSURE_ALERT_EVENT = "ExposureAlertEvent";
 
     private final ExposureNotificationClient exposureNotificationClient;
@@ -82,7 +86,7 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                 .addOnFailureListener(
                         // Assumes exception handling at RN layer
                         exception -> {
-                            Log.e(MODULE_NAME, "Failed to start EN", exception);
+                            Log.e(TAG, "Failed to start EN", exception);
                             promise.reject(exception);
                         })
                 .addOnCanceledListener(() -> promise.reject("CANCEL", "Operation cancelled"));
@@ -109,7 +113,7 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                     cancelDailyProvideDiagnosisKeys();
                 })
                 .addOnFailureListener(
-                        exception -> Log.w(MODULE_NAME, "Failed to stop EN", exception))
+                        exception -> Log.w(TAG, "Failed to stop EN", exception))
                 .addOnCanceledListener(() -> promise.reject("CANCEL", "Operation cancelled"));
     }
 

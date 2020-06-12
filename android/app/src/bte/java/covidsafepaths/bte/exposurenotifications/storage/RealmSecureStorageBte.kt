@@ -83,7 +83,7 @@ object RealmSecureStorageBte {
         }
     }
 
-    private fun getEncryptionKey(): ByteArray {
+    fun getEncryptionKey(): ByteArray {
         val vault: SharedPreferenceVault =
             SharedPreferenceVaultFactory.getAppKeyedCompatAes256Vault(
                 MainApplication.getContext(), MANUALLY_KEYED_PREF_FILE_NAME,

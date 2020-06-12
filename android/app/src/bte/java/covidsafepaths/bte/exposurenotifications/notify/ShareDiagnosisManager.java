@@ -124,7 +124,7 @@ public class ShareDiagnosisManager {
     private ListenableFuture<Void> insertNewDiagnosis(boolean shared) {
         PositiveDiagnosis positiveDiagnosis = new PositiveDiagnosis();
         positiveDiagnosis.setShared(shared);
-        existingIdLiveData.setValue(positiveDiagnosis.getId());
+        existingIdLiveData.postValue(positiveDiagnosis.getId());
         return repository.insertAsync(positiveDiagnosis);
     }
 
@@ -172,13 +172,14 @@ public class ShareDiagnosisManager {
                 .transform(
                         v -> {
                             // Successfully submitted
+                            Log.d(TAG, "Submitted keys to server");
                             return true;
                         },
                         AppExecutors.getLightweightExecutor())
                 .catching(
                         ApiException.class,
                         (e) -> {
-                            // Not successfully submitted,
+                            Log.e(TAG, "Failed to submit keys to server", e);
                             return false;
                         },
                         AppExecutors.getLightweightExecutor());
