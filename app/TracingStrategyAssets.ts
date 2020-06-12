@@ -10,7 +10,7 @@ export function useAssets(): Record<string, Asset> {
 
   // Onboarding2
   const onboarding2Background = isGPS
-    ? Images.LaunchScreen2
+    ? Images.OnboardingBackground1
     : Images.LaunchScreen2BT;
   const onboarding2Header = isGPS
     ? t('label.launch_screen2_header_location')
@@ -18,10 +18,11 @@ export function useAssets(): Record<string, Asset> {
   const onboarding2Subheader = isGPS
     ? t('label.launch_screen2_subheader_location')
     : t('label.launch_screen2_subheader_bluetooth');
+  const onboarding2Icon = Icons.LocationPin;
 
   // Onboarding3
   const onboarding3Background = isGPS
-    ? Images.LaunchScreen3
+    ? Images.OnboardingBackground2
     : Images.LaunchScreen3BT;
   const onboarding3Header = isGPS
     ? t('label.launch_screen3_header_location')
@@ -29,10 +30,11 @@ export function useAssets(): Record<string, Asset> {
   const onboarding3Subheader = isGPS
     ? t('label.launch_screen3_subheader_location')
     : t('label.launch_screen3_subheader_bluetooth');
+  const onboarding3Icon = Icons.Heart;
 
   // Onboarding4
   const onboarding4Background = isGPS
-    ? Images.LaunchScreen1
+    ? Images.OnboardingBackground3
     : Images.LaunchScreen1BT;
   const onboarding4Header = isGPS
     ? t('label.launch_screen4_header_location')
@@ -40,6 +42,7 @@ export function useAssets(): Record<string, Asset> {
   const onboarding4Subheader = isGPS
     ? t('label.launch_screen4_subheader_location')
     : t('label.launch_screen4_subheader_bluetooth');
+  const onboarding4Icon = Icons.BellYellow;
   const onboarding4Button = isGPS
     ? t('label.launch_set_up_phone_location')
     : t('label.launch_set_up_phone_bluetooth');
@@ -144,12 +147,15 @@ export function useAssets(): Record<string, Asset> {
     onboarding2Background,
     onboarding2Header,
     onboarding2Subheader,
+    onboarding2Icon,
     onboarding3Background,
     onboarding3Header,
     onboarding3Subheader,
+    onboarding3Icon,
     onboarding4Background,
     onboarding4Header,
     onboarding4Subheader,
+    onboarding4Icon,
     onboarding4Button,
     settingsLoggingActive,
     settingsLoggingInactive,
