@@ -87,8 +87,7 @@ const Assessment = ({ navigation }) => {
   const AssessmentCancel = () => (
     <TouchableOpacity
       onPress={() => {
-        navigation.goBack();
-        navigation.popToTop();
+        navigation.navigate('Start');
       }}>
       <SvgXml xml={Icons.Close} />
     </TouchableOpacity>
@@ -98,8 +97,7 @@ const Assessment = ({ navigation }) => {
     () => ({
       completeRoute: 'EndShare',
       dismiss: () => {
-        navigation.goBack();
-        navigation.popToTop();
+        navigation.navigate('Start');
       },
     }),
     [navigation],
@@ -133,6 +131,7 @@ const Assessment = ({ navigation }) => {
               name='Start'
               options={{
                 ...screenOptions,
+                headerRight: () => null,
                 headerStyle: {
                   backgroundColor: Colors.SECONDARY_10,
                 },
