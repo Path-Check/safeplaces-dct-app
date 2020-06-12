@@ -11,12 +11,13 @@ import Colors from '../constants/colors';
 import buttonStyle from '../constants/DR/buttonStyles';
 import { Theme } from '../constants/themes';
 import en from '../locales/eula/en.html';
+import es from '../locales/eula/es.html';
 import ht from '../locales/eula/ht.html';
 import { Checkbox } from './Checkbox';
 import { IconButton } from './IconButton';
 import { Typography } from './Typography';
 
-const EULA_FILES = { en, ht };
+const EULA_FILES = { en, ht, es };
 
 const DEFAULT_EULA_URL = 'about:blank';
 

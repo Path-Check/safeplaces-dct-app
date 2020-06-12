@@ -1,5 +1,6 @@
 import { Container, Content, Text } from 'native-base';
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -8,6 +9,8 @@ import styles from '../../../../components/DR/Header/style';
 import context from '../../../../components/DR/Reduces/context';
 
 const StepWorkInHealth = ({ setCompleted }) => {
+  const { t } = useTranslation();
+
   const [
     {
       answers: {
@@ -37,7 +40,7 @@ const StepWorkInHealth = ({ setCompleted }) => {
   } else {
     setCompleted(false);
   }
-  const works = usage === 'others' ? 'Trabaja' : 'Trabajo';
+
   return (
     <Container>
       <Content>
@@ -45,39 +48,47 @@ const StepWorkInHealth = ({ setCompleted }) => {
           <ScrollView>
             <View style={styles.formContainer}>
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                ¿Vive o trabaja en una institución de salud? *
+                {t('report.workInHealth.work_in_title')}
               </Text>
               <Text style={styles.text}>
-                Incluye hospitales, salas de emergencias, cualquier ambiente
-                relacionado con la medicina o centros de cuidados de largo
-                plazo.
+                {t('report.workInHealth.work_in_subtitle')}
               </Text>
               <Checkbox
-                text={`${works} en un centro de cuidado a largo plazo. Incluye asilo de ancianos o centros de asistencia.`}
+                text={
+                  usage === 'others'
+                    ? t('report.workInHealth.work_health_others')
+                    : t('report.workInHealth.work_health_myself')
+                }
                 id='workInHealth'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={workInHealth}
               />
               <Checkbox
-                text={`${
-                  usage === 'others' ? 'Ha' : 'He'
-                } trabajado en un hospital o en un centro de asistencia en los últimos 14 días.`}
+                text={
+                  usage === 'others'
+                    ? t('report.workInHealth.worked_health_others')
+                    : t('report.workInHealth.worked_health_myself')
+                }
                 id='workedInHealth'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={workedInHealth}
               />
               <Checkbox
-                text={`${
-                  usage === 'others' ? 'Planea' : 'Planeo'
-                } trabajar en un hospital o en cualquier otra institución de salud.`}
+                text={
+                  usage === 'others'
+                    ? t('report.workInHealth.plan_work_others')
+                    : t('report.workInHealth.plan_work_myself')
+                }
                 id='planWorkInHealth'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={planWorkInHealth}
               />
               <Checkbox
-                text={`No ${
-                  usage === 'others' ? 'vive' : 'vivo'
-                } ni ${works.toLowerCase()} en una institución de salud.`}
+                text={
+                  usage === 'others'
+                    ? t('report.workInHealth.doesnt_work_others')
+                    : t('report.workInHealth.doesnt_work_myself')
+                }
                 id='doesntWorkInHealth'
                 setValue={(id, value) =>
                   setGlobalState({

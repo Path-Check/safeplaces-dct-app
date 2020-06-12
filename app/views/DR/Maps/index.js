@@ -1,13 +1,14 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView, StyleSheet } from 'react-native';
 
-import languages from '../../../locales/languages';
 import Map from './Map';
 
 const Tab = createMaterialTopTabNavigator();
 
-const index = () => {
+const Index = () => {
+  const { t } = useTranslation();
   return (
     <SafeAreaView style={styles.safeArea}>
       <Tab.Navigator
@@ -20,14 +21,14 @@ const index = () => {
         <Tab.Screen
           name='Hospitals'
           options={{
-            tabBarLabel: languages.t('navigation.hospitals_maps'),
+            tabBarLabel: t('navigation.hospitals_maps'),
           }}
           component={Map}
         />
         <Tab.Screen
           name='Laboratories'
           options={{
-            tabBarLabel: languages.t('navigation.laboratories_maps'),
+            tabBarLabel: t('navigation.laboratories_maps'),
           }}
           component={Map}
         />
@@ -45,4 +46,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default index;
+export default Index;

@@ -1,5 +1,6 @@
 import { Container, Content, Text } from 'native-base';
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -8,6 +9,8 @@ import styles from '../../../../components/DR/Header/style';
 import context from '../../../../components/DR/Reduces/context';
 
 const StepMedicalConditions = ({ setCompleted }) => {
+  const { t } = useTranslation();
+
   const [
     {
       answers: {
@@ -68,100 +71,100 @@ const StepMedicalConditions = ({ setCompleted }) => {
           <ScrollView>
             <View style={styles.formContainer}>
               <Text style={[styles.subtitles, { marginVertical: hp('3%') }]}>
-                ¿Presenta alguna de estas condiciones médicas? *
+                {t('report.med_conditions.med_cond_title')}
               </Text>
               <Checkbox
-                text='Hipertensión o presión alta.'
+                text={t('report.med_conditions.hypertension')}
                 id='hypertension'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={hypertension}
               />
               <Checkbox
-                text='Asma o enfermedad crónica pulmonar.'
+                text={t('report.med_conditions.asthma')}
                 id='asthma'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={asthma}
               />
               <Checkbox
-                text='Tratamiento por cáncer o alguna medicación inmunosupresora.'
+                text={t('report.med_conditions.cancer')}
                 id='cancer'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={cancer}
               />
               <Checkbox
-                text='Deficiencias en el sistema inmune heredadas.'
+                text={t('report.med_conditions.immuneDeficiency')}
                 id='immuneDeficiency'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={immuneDeficiency}
               />
               <Checkbox
-                text='VIH.'
+                text={t('report.med_conditions.HIV')}
                 id='HIV'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={HIV}
               />
               <Checkbox
-                text='Condiciones cardíacas severas.'
+                text={t('report.med_conditions.heartCondition')}
                 id='heartCondition'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={heartCondition}
               />
               <Checkbox
-                text='Diabetes.'
+                text={t('report.med_conditions.diabetes')}
                 id='diabetes'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={diabetes}
               />
               <Checkbox
-                text='Insuficiencia renal.'
+                text={t('report.med_conditions.renalInsufficiency')}
                 id='renalInsufficiency'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={renalInsufficiency}
               />
               <Checkbox
-                text='Cirrosis hepática.'
+                text={t('report.med_conditions.hepaticCirrhosis')}
                 id='hepaticCirrhosis'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={hepaticCirrhosis}
               />
               <Checkbox
-                text='Enfermedades o condiciones que hacen más difícil toser.'
+                text={t('report.med_conditions.hardCough')}
                 id='hardCough'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={hardCough}
               />
               <Checkbox
-                text='Obesidad.'
+                text={t('report.med_conditions.obesity')}
                 id='obesity'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={obesity}
               />
               <Checkbox
-                text='Desnutrición.'
+                text={t('report.med_conditions.malnutrition')}
                 id='malnutrition'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={malnutrition}
               />
               <Checkbox
-                text='Falcemia.'
+                text={t('report.med_conditions.sickleCellAnemia')}
                 id='sickleCellAnemia'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={sickleCellAnemia}
               />
               <Checkbox
-                text='Tuberculosis.'
+                text={t('report.med_conditions.tuberculosis')}
                 id='tuberculosis'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={tuberculosis}
               />
               <Checkbox
-                text='Embarazo.'
+                text={t('report.med_conditions.pregnancy')}
                 id='pregnancy'
                 setValue={(id, value) => setSelectedOption(id, value)}
                 initialCheck={pregnancy}
               />
               <Checkbox
-                text='Ninguno de los anteriores'
+                text={t('report.med_conditions.none')}
                 id='none'
                 setValue={(id, value) => {
                   setGlobalState({

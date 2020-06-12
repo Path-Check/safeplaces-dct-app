@@ -1,5 +1,6 @@
 import Geolocation from '@react-native-community/geolocation';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Dimensions,
   FlatList,
@@ -45,8 +46,20 @@ export default function HospitalMap({ route: { name: type } }) {
     if (type === 'Hospitals') {
       const value = await requestCovid19Hospitals();
       setHospitals(value);
-      Geolocation.getCurrentPosition(
-        ({ coords }) => {
+      Geolocation.getCurrentPosition(({ coords }) => {
+        const { latitude, longitude } = coords;
+        rdCoords.latitude = latitude;
+        rdCoords.longitude = longitude;
+        const sorted = sortByDistance({ latitude, longitude }, value, {
+          yName: 'latitude',
+          xName: 'longitude',
+        });
+        setSortedMarkers(sorted);
+      });
+    } else {
+      await requestCovid19Laboratories().then(value => {
+        setLaboratories(value);
+        Geolocation.getCurrentPosition(({ coords }) => {
           const { latitude, longitude } = coords;
           rdCoords.latitude = latitude;
           rdCoords.longitude = longitude;
@@ -55,27 +68,7 @@ export default function HospitalMap({ route: { name: type } }) {
             xName: 'longitude',
           });
           setSortedMarkers(sorted);
-        },
-        () => {},
-        { enableHighAccuracy: true },
-      );
-    } else {
-      await requestCovid19Laboratories().then(value => {
-        setLaboratories(value);
-        Geolocation.getCurrentPosition(
-          ({ coords }) => {
-            const { latitude, longitude } = coords;
-            rdCoords.latitude = latitude;
-            rdCoords.longitude = longitude;
-            const sorted = sortByDistance({ latitude, longitude }, value, {
-              yName: 'latitude',
-              xName: 'longitude',
-            });
-            setSortedMarkers(sorted);
-          },
-          () => {},
-          { enableHighAccuracy: true },
-        );
+        });
       });
     }
   };
@@ -150,21 +143,27 @@ export default function HospitalMap({ route: { name: type } }) {
     <Icon name='angle-up' style={{ color: 'black' }} size={25} />
   );
 
-  const renderBottomUpPanelHeader = (
-    <View style={styles.listHeader}>
-      {type === 'Hospitals' ? (
-        <Icon name='hospital-o' size={22} color='#4372e8' />
-      ) : (
-        <Icon name='thermometer-quarter' size={22} color='#4372e8' />
-      )}
-      <Text style={styles.cardTitle}>
-        {type === 'Hospitals' ? 'Hospitales' : 'Laboratorios'}
-      </Text>
-      <Text style={styles.cardText}>
-        {`(${selectedMarker.length} acreditados)`}
-      </Text>
-    </View>
-  );
+  const RenderBottomUpPanelHeader = () => {
+    const { t } = useTranslation();
+
+    return (
+      <View style={styles.listHeader}>
+        {type === 'Hospitals' ? (
+          <Icon name='hospital-o' size={22} color='#4372e8' />
+        ) : (
+          <Icon name='thermometer-quarter' size={22} color='#4372e8' />
+        )}
+        <Text style={styles.cardTitle}>
+          {type === 'Hospitals'
+            ? t('navigation.hospitals_maps')
+            : t('navigation.laboratories_maps')}
+        </Text>
+        <Text style={styles.cardText}>
+          {`(${selectedMarker.length} acreditados)`}
+        </Text>
+      </View>
+    );
+  };
 
   return (
     <View style={[styles.flexContainer]}>
@@ -202,11 +201,12 @@ export default function HospitalMap({ route: { name: type } }) {
 
       <BottonUpPanel
         ref={component => setBottomRef(component)}
+        sortedMarkers={sortedMarkers}
         content={renderBottomUpPanelContent}
         icon={renderBottomUpPanelIcon}
         topEnd={height - height * 0.7}
         startHeight={80}
-        headerText={renderBottomUpPanelHeader}
+        headerText={RenderBottomUpPanelHeader()}
         headerTextStyle={{
           backgroundColor: 'white',
         }}
