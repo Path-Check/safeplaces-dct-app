@@ -77,19 +77,19 @@ export const Main = () => {
     };
   }, [navigation, updateStateInfo]);
 
-  let page;
+  let screen;
 
   if (!trackingInfo.canTrack) {
-    page = <TracingOffScreen />;
+    screen = <TracingOffScreen />;
   } else if (notification.status === PermissionStatus.DENIED) {
-    page = <NotificationsOffScreen />;
+    screen = <NotificationsOffScreen />;
   } else if (hasAuthorityInBounds === false) {
-    page = <NoAuthoritiesScreen />;
+    screen = <NoAuthoritiesScreen />;
   } else if (hasSavedAuthorities === false) {
-    page = <SelectAuthorityScreen />;
+    screen = <SelectAuthorityScreen />;
   } else {
-    page = <AllServicesOnScreen />;
+    screen = <AllServicesOnScreen />;
   }
 
-  return <View style={styles.backgroundImage}>{page}</View>;
+  return <View style={styles.backgroundImage}>{screen}</View>;
 };

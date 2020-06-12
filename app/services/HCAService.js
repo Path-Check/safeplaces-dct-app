@@ -136,17 +136,14 @@ class HCAService {
    */
   isValidBoundingBox(region) {
     if (!region) {
-      console.warn('An invalid region was passed: ' + region);
       return false;
     }
 
     if (!region.ne || !isValidCoordinate(region.ne)) {
-      console.warn(`invalid 'ne' field for bounding box: ${region.ne}`);
       return false;
     }
 
     if (!region.sw || !isValidCoordinate(region.sw)) {
-      console.warn(`invalid 'ne' field for bounding box: ${region.sw}`);
       return false;
     }
 
