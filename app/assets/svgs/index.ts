@@ -8,6 +8,7 @@ import Close from './close';
 import Export from './export';
 import ExposureIcon from './exposureIcon';
 import GoogleMapsLogo from './google-maps-logo';
+import Heart from './heart';
 import IntroGlobe from './intro-locked';
 import IntroSiren from './intro-siren';
 import Isolate from './isolate';
@@ -39,6 +40,7 @@ export const Icons = {
   Export,
   ExposureIcon,
   GoogleMapsLogo,
+  Heart,
   IntroGlobe,
   IntroSiren,
   Isolate,

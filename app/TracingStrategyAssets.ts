@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next';
 
-import { Images } from './assets';
+import { Icons, Images } from './assets';
 import { isGPS } from './COVIDSafePathsConfig';
 
-export function useAssets(): Record<string, string> {
+type Asset = string | ((name: string) => string) | null;
+
+export function useAssets(): Record<string, Asset> {
   const { t } = useTranslation();
 
   // Onboarding2
@@ -120,6 +122,53 @@ export function useAssets(): Record<string, string> {
     ? t('home.gps.all_services_on_subheader')
     : t('home.bluetooth.all_services_on_subheader');
 
+  // Export Pages
+
+  const exportExitRoute = isGPS ? 'ExportStart' : 'SettingsScreen';
+
+  // Export Intro/Start
+  const exportStartTitle = isGPS
+    ? t('export.start_title')
+    : t('export.start_title_bluetooth');
+  const exportStartBody = isGPS
+    ? t('export.start_body')
+    : t('export.start_body_bluetooth');
+
+  // Export Code Input
+  const exportCodeTitle = isGPS
+    ? t('export.code_input_title')
+    : t('export.code_input_title_bluetooth');
+  const exportCodeBody = (name: string) => {
+    return isGPS
+      ? t('export.code_input_body', { name })
+      : t('export.code_input_body_bluetooth', { name });
+  };
+  const exportCodeInputNextRoute = isGPS
+    ? 'ExportLocationConsent'
+    : 'ExportPublishConsent';
+
+  // Export Publish
+  const exportPublishBody = (name: string) => {
+    return isGPS
+      ? t('export.publish_consent_body', { name })
+      : t('export.publish_consent_body_bluetooth', { name });
+  };
+  const exportPublishButtonSubtitle = isGPS
+    ? t('export.consent_button_subtitle')
+    : null;
+  const exportPublishTitle = isGPS
+    ? t('export.publish_consent_title')
+    : t('export.publish_consent_title_bluetooth');
+  const exportPublishIcon = isGPS ? Icons.Publish : Icons.Bell;
+  const exportPublishNextRoute = isGPS
+    ? 'ExportConfirmUpload'
+    : 'ExportComplete';
+
+  // Export Complete
+  const exportCompleteBody = isGPS
+    ? t('export.complete_body')
+    : t('export.complete_body_bluetooth');
+
   return {
     onboarding2Background,
     onboarding2Header,
@@ -151,5 +200,17 @@ export function useAssets(): Record<string, string> {
     selectAuthorityScreenButton,
     noAuthoritiesScreenHeader,
     noAuthoritiesScreenSubheader,
+    exportExitRoute,
+    exportStartTitle,
+    exportStartBody,
+    exportCodeTitle,
+    exportCodeBody,
+    exportCodeInputNextRoute,
+    exportPublishBody,
+    exportPublishButtonSubtitle,
+    exportPublishIcon,
+    exportPublishTitle,
+    exportPublishNextRoute,
+    exportCompleteBody,
   };
 }
