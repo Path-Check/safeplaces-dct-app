@@ -1,15 +1,21 @@
 /* eslint-disable react/display-name */
+import React, { useContext, useEffect } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useTranslation } from 'react-i18next';
+import { SvgXml } from 'react-native-svg';
 import { NavigationContainer } from '@react-navigation/native';
 import {
   CardStyleInterpolators,
   TransitionPresets,
   createStackNavigator,
 } from '@react-navigation/stack';
-import React from 'react';
 import { useSelector } from 'react-redux';
-import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
+
+import { Main } from './views/Main';
+import { SettingsScreen } from './views/Settings';
 import AboutScreen from './views/About';
-import ChooseProviderScreen from './views/ChooseProvider';
+import { LicensesScreen } from './views/Licenses';
 import {
   ExportCodeInput,
   ExportComplete,
@@ -20,30 +26,29 @@ import {
   ExportSelectHA,
 } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
+import Assessment from './views/assessment';
+import NextSteps from './views/NextSteps';
 import {
   EN_DEBUG_MENU_SCREEN_NAME,
   EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME,
   ENDebugMenu,
 } from './views/Settings/ENDebugMenu';
+import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
-import { LicensesScreen } from './views/Licenses';
-import { Main } from './views/Main';
 import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
-import { SettingsScreen } from './views/Settings';
-import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useTranslation } from 'react-i18next';
+
+import ExposureNotificationContext from './ExposureNotificationContext';
+import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import { isGPS } from './COVIDSafePathsConfig';
 import * as Icons from './assets/svgs/TabBarNav';
-import { SvgXml } from 'react-native-svg';
 
-import { Colors, Spacing } from './styles';
+import { Affordances, Colors, Spacing } from './styles';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -82,6 +87,44 @@ const ExportStack = () => (
   </Stack.Navigator>
 );
 
+const ExposureHistoryStack = ({ navigation }) => {
+  const { observeExposures } = useContext(ExposureNotificationContext);
+  useEffect(() => {
+    const unsubscribeTabPress = navigation.addListener('tabPress', () => {
+      observeExposures();
+    });
+    return unsubscribeTabPress;
+  }, [navigation, observeExposures]);
+
+  return (
+    <Stack.Navigator
+      mode='modal'
+      screenOptions={{
+        ...SCREEN_OPTIONS,
+        cardStyleInterpolator: fade,
+        gestureEnabled: false,
+      }}>
+      <Stack.Screen
+        name='ExposureHistoryScreen'
+        component={ExposureHistoryScreen}
+      />
+      <Stack.Screen name='NextStepsScreen' component={NextSteps} />
+    </Stack.Navigator>
+  );
+};
+
+const SelfAssessmentStack = () => (
+  <Stack.Navigator
+    mode='modal'
+    screenOptions={{
+      ...SCREEN_OPTIONS,
+      cardStyleInterpolator: fade,
+      gestureEnabled: false,
+    }}>
+    <Stack.Screen name='Assessment' component={Assessment} />
+  </Stack.Navigator>
+);
+
 const MoreTabStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
@@ -99,6 +142,22 @@ const MoreTabStack = () => (
 
 const MainAppTabs = () => {
   const { t } = useTranslation();
+  const { userHasNewExposure } = useContext(ExposureNotificationContext);
+
+  const applyBadge = (icon) => {
+    return (
+      <>
+        <View style={styles.iconBadge} />
+        {icon}
+      </>
+    );
+  };
+
+  const styles = StyleSheet.create({
+    iconBadge: {
+      ...Affordances.iconBadge,
+    },
+  });
 
   return (
     <Tab.Navigator
@@ -127,20 +186,23 @@ const MainAppTabs = () => {
         }}
       />
       <Tab.Screen
-        name='ExposureHistoryScreen'
-        component={ExposureHistoryScreen}
+        name='ExposureHistoryStack'
+        component={ExposureHistoryStack}
         options={{
           tabBarLabel: t('navigation.history'),
-          tabBarIcon: ({ focused, size }) => (
-            <SvgXml
-              xml={focused ? Icons.HistoryActive : Icons.HistoryInactive}
-              width={size}
-              height={size}
-            />
-          ),
+          tabBarIcon: ({ focused, size }) => {
+            const tabIcon = (
+              <SvgXml
+                xml={focused ? Icons.HistoryActive : Icons.HistoryInactive}
+                width={size}
+                height={size}
+              />
+            );
+
+            return userHasNewExposure ? applyBadge(tabIcon) : tabIcon;
+          },
         }}
       />
-      {/* We feature flag in settings between whether to send to route or e2e export */}
       {isGPS && (
         <Tab.Screen
           name='ExportStart'
@@ -157,15 +219,18 @@ const MainAppTabs = () => {
           }}
         />
       )}
-
       <Tab.Screen
-        name='ChooseProviderScreen'
-        component={ChooseProviderScreen}
+        name='SelfAssessmentStack'
+        component={SelfAssessmentStack}
         options={{
-          tabBarLabel: t('navigation.partners'),
+          tabBarLabel: t('navigation.selfAssessment'),
           tabBarIcon: ({ focused, size }) => (
             <SvgXml
-              xml={focused ? Icons.PartnersActive : Icons.PartnersInactive}
+              xml={
+                focused
+                  ? Icons.SelfAssessmentActive
+                  : Icons.SelfAssessmentInactive
+              }
               width={size}
               height={size}
             />

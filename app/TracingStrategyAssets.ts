@@ -76,12 +76,23 @@ export function useAssets(): Record<string, string> {
     : t(`label.home_at_risk_subtext_bluetooth`);
 
   // Off Page
+  const offPageHeader = isGPS
+    ? t('label.home_setting_off_header_location')
+    : t('label.home_setting_off_header_bluetooth');
   const offPageCta = isGPS
     ? t(`label.home_setting_off_subtext_location`)
     : t(`label.home_setting_off_subtext_bluetooth`);
   const offPageButton = isGPS
     ? t(`label.home_enable_location`)
     : t(`label.home_enable_bluetooth`);
+
+  // No Known Exposure Page
+  const noKnownExposurePageHeader = isGPS
+    ? t('label.home_no_contact_header')
+    : t('label.home_no_contact_header_bluetooth');
+  const noKnownExposurePageSubheader = isGPS
+    ? t('label.home_no_contact_subtext')
+    : t('label.home_no_contact_subtext_bluetooth');
 
   return {
     onboarding2Background,
@@ -103,7 +114,10 @@ export function useAssets(): Record<string, string> {
     legalHeader,
     detailedHistoryWhatThisMeansPara,
     exposurePageSubheader,
+    offPageHeader,
     offPageCta,
     offPageButton,
+    noKnownExposurePageHeader,
+    noKnownExposurePageSubheader,
   };
 }

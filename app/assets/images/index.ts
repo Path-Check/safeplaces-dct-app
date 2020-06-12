@@ -6,6 +6,7 @@ const Close = require('./closeIcon.png');
 const Export = require('./export.png');
 const ForeArrow = require('./foreArrow.png');
 const HomeScreenBackgroundOverlay = require('./homeScreenBackgroundOverlay.png');
+const IsolatePathBackground = require('./isolatePathBackground.png');
 const LaunchScreen1 = require('./launchScreen1.png');
 const LaunchScreen1BT = require('./launchScreen1BT.png');
 const LaunchScreen2 = require('./launchScreen2.png');
@@ -17,6 +18,7 @@ const LaunchScreenBackgroundOverlay = require('./launchScreenBackgroundOverlay.p
 const OnboardingBackground1 = require('./onboardingbg1.png');
 const OnboardingBackground2 = require('./onboardingbg2.png');
 const OnboardingBackground3 = require('./onboardingbg3.png');
+const EmptyPathBackground = require('./emptyPathBackground.png');
 const Newspaper = require('./newspaper.png');
 const PrivateKitQRCode = require('./privatekit_qrcode.png');
 const SaveIcon = require('./saveIcon.png');
@@ -30,9 +32,11 @@ export const Images = {
   BoxCheckedIcon,
   BoxUncheckedIcon,
   Close,
+  EmptyPathBackground,
   Export,
   ForeArrow,
   HomeScreenBackgroundOverlay,
+  IsolatePathBackground,
   LaunchScreen1,
   LaunchScreen1BT,
   LaunchScreen2,

@@ -1,3 +1,5 @@
+import AnonymizedData from './anonymizedData';
+import AnonymizedDataInverted from './anonymizedDataInverted';
 import BackArrow from './backArrow';
 import Bell from './bell';
 import BellYellow from './bellYellow';
@@ -10,12 +12,14 @@ import GoogleMapsLogo from './google-maps-logo';
 import Heart from './heart';
 import IntroGlobe from './intro-locked';
 import IntroSiren from './intro-siren';
+import Isolate from './isolate';
 import LanguagesIcon from './languagesIcon';
 import LocationPin from './locationPin';
 import Lock from './lock';
 import PermissionDenied from './permissionDenied';
 import PermissionGranted from './permissionGranted';
 import PermissionUnknown from './permissionUnknown';
+import SelfAssessment from './selfAssessment';
 import Publish from './publish';
 import SettingsIcon from './settingsIcon';
 import StateAtRisk from './stateAtRisk';
@@ -27,6 +31,8 @@ import Warning from './warning';
 import XmarkIcon from './xmarkIcon';
 
 export const Icons = {
+  AnonymizedData,
+  AnonymizedDataInverted,
   BackArrow,
   Bell,
   BellYellow,
@@ -39,12 +45,14 @@ export const Icons = {
   Heart,
   IntroGlobe,
   IntroSiren,
+  Isolate,
   LanguagesIcon,
   LocationPin,
   Lock,
   PermissionDenied,
   PermissionGranted,
   PermissionUnknown,
+  SelfAssessment,
   Publish,
   SettingsIcon,
   StateAtRisk,

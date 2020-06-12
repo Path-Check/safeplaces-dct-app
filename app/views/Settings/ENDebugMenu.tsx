@@ -13,7 +13,7 @@ import {
   detectExposuresNow,
   simulateExposure,
   simulatePositiveDiagnosis,
-  disableExposureNotifications,
+  toggleExposureNotifications,
   resetExposureDetectionError,
   resetUserENState,
   getAndPostDiagnosisKeys,
@@ -21,6 +21,9 @@ import {
   getExposureConfiguration,
 } from '../../exposureNotificationsNativeModule';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
+
+// eslint-disable-next-line
+declare const global: any;
 
 type ENDebugMenuProps = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -30,7 +33,7 @@ export const EN_DEBUG_MENU_SCREEN_NAME = 'ENDebugMenu';
 export const EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME = 'ENLocalDiagnosisKeyScreen';
 
 export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
-  const { toggleHasExposure } = useContext(ExposureNotificationContext);
+  const { resetExposures } = useContext(ExposureNotificationContext);
   useEffect(() => {
     const handleBackPress = () => {
       navigation.goBack();
@@ -86,8 +89,13 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
     };
   };
 
-  const handleOnPressToggleExposure = () => {
-    toggleHasExposure();
+  const handleOnPressResetExposures = () => {
+    resetExposures();
+  };
+
+  const handleOnPressToggleExposureNotifications = () => {
+    handleOnPressSimulationButton(toggleExposureNotifications)();
+    global.ExposureNotificationsOn = !global.ExposureNotificationsOn;
   };
 
   return (
@@ -98,8 +106,9 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
       <ScrollView>
         <Section>
           <Item
-            label='Toggle Exposure State'
-            onPress={handleOnPressToggleExposure}
+            label='Reset Exposures'
+            onPress={handleOnPressResetExposures}
+            last
           />
         </Section>
         <Section>
@@ -126,10 +135,8 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
             onPress={handleOnPressSimulationButton(simulatePositiveDiagnosis)}
           />
           <Item
-            label='Disable Exposure Notifications'
-            onPress={handleOnPressSimulationButton(
-              disableExposureNotifications,
-            )}
+            label='Toggle Exposure Notifications'
+            onPress={handleOnPressToggleExposureNotifications}
           />
           <Item
             label='Reset Exposure Detection Error'
