@@ -1,8 +1,8 @@
+import React, { useEffect, useState } from 'react';
+import { BackHandler, ScrollView } from 'react-native';
 import { css } from '@emotion/native';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-import React, { useEffect, useState } from 'react';
-import { BackHandler, ScrollView } from 'react-native';
 
 import { NavigationBarWrapper, Typography } from '../../components';
 import { MAX_EXPOSURE_WINDOW } from '../../constants/history';

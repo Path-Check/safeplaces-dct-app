@@ -260,7 +260,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         >
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -296,7 +296,23 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                FAQ
+                Your Healthcare Authority
+              </Text>
+              <Text
+                secondary={true}
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 15,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "marginTop": 4,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body3"
+              >
+                Select a Healthcare Authority to learn about COVID-19 in your area, where available
               </Text>
             </View>
           </View>
@@ -310,7 +326,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           />
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -346,7 +362,147 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Report an issue
+                Latest News
+              </Text>
+              <Text
+                secondary={true}
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 15,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "marginTop": 4,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body3"
+              >
+                Find the latest updates from Safe Paths and your local Healthcare Authorities, where available
+              </Text>
+            </View>
+          </View>
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "opacity": 1,
+                "paddingBottom": 18,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 18,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 18,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body1"
+              >
+                Exposure history
+              </Text>
+              <Text
+                secondary={true}
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 15,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "marginTop": 4,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body3"
+              >
+                Understand your personal exposure based on information shared by health authorities.
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 1,
+                "width": "100%",
+              }
+            }
+          />
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "opacity": 1,
+                "paddingBottom": 18,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 18,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 18,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body1"
+              >
+                Share location history
+              </Text>
+              <Text
+                secondary={true}
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 15,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "marginTop": 4,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body3"
+              >
+                Your private data can be transferred to health authorities, backed up, or otherwise shared.
               </Text>
             </View>
           </View>
@@ -975,7 +1131,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         >
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -1011,7 +1167,23 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                FAQ
+                Your Healthcare Authority
+              </Text>
+              <Text
+                secondary={true}
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 15,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "marginTop": 4,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body3"
+              >
+                Select a Healthcare Authority to learn about COVID-19 in your area, where available
               </Text>
             </View>
           </View>
@@ -1025,7 +1197,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           />
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -1061,7 +1233,147 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Report an issue
+                Latest News
+              </Text>
+              <Text
+                secondary={true}
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 15,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "marginTop": 4,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body3"
+              >
+                Find the latest updates from Safe Paths and your local Healthcare Authorities, where available
+              </Text>
+            </View>
+          </View>
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "opacity": 1,
+                "paddingBottom": 18,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 18,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 18,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body1"
+              >
+                Exposure history
+              </Text>
+              <Text
+                secondary={true}
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 15,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "marginTop": 4,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body3"
+              >
+                Understand your personal exposure based on information shared by health authorities.
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 1,
+                "width": "100%",
+              }
+            }
+          />
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "opacity": 1,
+                "paddingBottom": 18,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 18,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 18,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body1"
+              >
+                Share location history
+              </Text>
+              <Text
+                secondary={true}
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 15,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "marginTop": 4,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body3"
+              >
+                Your private data can be transferred to health authorities, backed up, or otherwise shared.
               </Text>
             </View>
           </View>

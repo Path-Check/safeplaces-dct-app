@@ -63,8 +63,44 @@ export const SettingsScreen = ({ navigation }) => {
         </Section>
 
         <Section>
-          <Item label={t('screen_titles.faq')} />
-          <Item label={t('screen_titles.report_issue')} last />
+          <Item
+            label={t('label.choose_provider_title')}
+            description={t('label.choose_provider_subtitle')}
+            onPress={() => navigation.navigate('ChooseProviderScreen')}
+          />
+          <Item
+            label={t('label.news_title')}
+            description={t('label.news_subtitle')}
+            onPress={() => navigation.navigate('NewsScreen')}
+            last
+          />
+          {isGPS ? (
+            <>
+              <Item
+                label={t('label.event_history_title')}
+                description={t('label.event_history_subtitle')}
+                onPress={() => navigation.navigate('ExposureHistoryScreen')}
+              />
+              <FeatureFlag
+                name='export_e2e'
+                fallback={
+                  <Item
+                    label={t('share.title')}
+                    description={t('share.subtitle')}
+                    onPress={() => navigation.navigate('ExportLocally')}
+                    last
+                  />
+                }>
+                <Item
+                  label={t('share.title')}
+                  description={t('share.subtitle')}
+                  onPress={() => navigation.navigate('ExportScreen')}
+                />
+                <Item label={t('screen_titles.faq')} />
+                <Item label={t('screen_titles.report_issue')} last />
+              </FeatureFlag>
+            </>
+          ) : null}
         </Section>
 
         {isGPS && (
