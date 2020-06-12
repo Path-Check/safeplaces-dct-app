@@ -12,4 +12,4 @@ export const xHuge = 44;
 export const xxHuge = 48;
 export const xxxHuge = 52;
 
-export const icon = medium;
+export const icon = large;

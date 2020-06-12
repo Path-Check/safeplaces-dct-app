@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { TouchableOpacity, View, StyleSheet, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { ScrollView } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
-import { Icons } from '../../assets';
 import {
   FeatureFlag,
   NativePicker,
   NavigationBarWrapper,
+  Typography,
 } from '../../components';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import {
@@ -15,12 +16,13 @@ import {
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
 import { GoogleMapsImport } from './GoogleMapsImport';
-import { Item } from './Item';
-import { Section } from './Section';
 import { Screens } from '../../navigation';
 
+import { Icons } from '../../assets';
+import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
+
 export const SettingsScreen = ({ navigation }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
@@ -29,8 +31,11 @@ export const SettingsScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
+  const navigateTo = (screen) => {
+    () => navigation.navigate(screen);
+  };
+
   const localeChanged = async (locale) => {
-    // If user picks manual lang, update and store setting
     try {
       await setUserLocaleOverride(locale);
       setUserLocale(locale);
@@ -39,100 +44,154 @@ export const SettingsScreen = ({ navigation }) => {
     }
   };
 
+  const LanguageSelectionListItem = ({ icon, label, onPress }) => {
+    const iconStyle =
+      i18n.dir() === 'rtl'
+        ? { marginLeft: Spacing.xSmall }
+        : { marginRight: Spacing.xSmall };
+
+    const flexDirection = i18n.dir() === 'rtl' ? 'row-reverse' : 'row';
+
+    return (
+      <TouchableOpacity
+        style={[styles.languageSelectionListItem, { flexDirection }]}
+        onPress={onPress}>
+        <SvgXml xml={icon} style={[styles.icon, iconStyle]} size={24} />
+        <Typography use={'body1'}>{label}</Typography>
+      </TouchableOpacity>
+    );
+  };
+
+  const SettingsListItem = ({ label, onPress, description, style }) => {
+    return (
+      <TouchableOpacity style={[styles.listItem, style]} onPress={onPress}>
+        <Typography use={'body1'}>{label}</Typography>
+        {description ? (
+          <Typography style={styles.descriptionText}>{description}</Typography>
+        ) : null}
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <NavigationBarWrapper
       includeBackButton={false}
       title={t('screen_titles.more')}
       onBackPress={backToMain}>
       <ScrollView>
-        <Section>
+        <View style={styles.section}>
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}
             onValueChange={localeChanged}>
             {({ label, openPicker }) => (
-              <Item
-                last
+              <LanguageSelectionListItem
                 label={label || t('label.unknown')}
                 icon={Icons.LanguagesIcon}
                 onPress={openPicker}
               />
             )}
           </NativePicker>
-        </Section>
+        </View>
 
-        <Section>
-          {isGPS ? (
-            <>
-              <Item
-                label={t('label.event_history_title')}
-                description={t('label.event_history_subtitle')}
-                onPress={() => navigation.navigate(Screens.ExposureHistory)}
-              />
-              <FeatureFlag
-                name='export_e2e'
-                fallback={
-                  <Item
-                    label={t('share.title')}
-                    description={t('share.subtitle')}
-                    onPress={() => navigation.navigate(Screens.ExportLocally)}
-                    last
-                  />
-                }>
-                <Item
+        {isGPS ? (
+          <View style={styles.section}>
+            <SettingsListItem
+              label={t('label.choose_provider_title')}
+              description={t('label.choose_provider_subtitle')}
+              onPress={navigateTo('ChooseProviderScreen')}
+            />
+            <FeatureFlag
+              name='export_e2e'
+              fallback={
+                <SettingsListItem
                   label={t('share.title')}
                   description={t('share.subtitle')}
-                  onPress={() => navigation.navigate(Screens.ExportIntro)}
+                  onPress={navigateTo('ExportLocally')}
+                  style={styles.lastListItem}
                 />
-                <Item label={t('screen_titles.faq')} />
-                <Item label={t('screen_titles.report_issue')} last />
-              </FeatureFlag>
-            </>
-          ) : (
-            <>
-              <Item label={t('screen_titles.faq')} />
-              <Item label={t('screen_titles.report_issue')} />
-              <Item
-                label={t('screen_titles.report_positive_test')}
-                onPress={() => navigation.navigate(Screens.ExportFlow)}
-                last
+              }>
+              <SettingsListItem
+                label={t('share.title')}
+                description={t('share.subtitle')}
+                onPress={navigateTo('ExportScreen')}
               />
-            </>
-          )}
-        </Section>
-
-        {isGPS && (
-          <FeatureFlag name='google_import'>
-            <Section>
-              <GoogleMapsImport navigation={navigation} />
-            </Section>
-          </FeatureFlag>
+            </FeatureFlag>
+            <FeatureFlag name='google_import'>
+              <View style={styles.section}>
+                <GoogleMapsImport navigation={navigation} />
+              </View>
+            </FeatureFlag>
+          </View>
+        ) : (
+          <View style={styles.section}>
+            <SettingsListItem
+              label={t('settings.report_positive_test')}
+              onPress={navigateTo('ExportFlow')}
+              description={t('settings.report_positive_test_description')}
+              style={styles.lastListItem}
+            />
+          </View>
         )}
 
-        <Section last>
-          <Item
+        <View style={styles.section}>
+          <SettingsListItem
             label={t('screen_titles.about')}
-            onPress={() => navigation.navigate(Screens.About)}
+            onPress={navigateTo(Screens.About)}
           />
-          <Item
+          <SettingsListItem
             label={t('screen_titles.legal')}
             onPress={() => navigation.navigate(Screens.Licenses)}
             last={!__DEV__}
           />
-          <Item
-            label='Feature Flags (Dev mode only)'
-            onPress={() => navigation.navigate(Screens.FeatureFlags)}
-            last={isGPS}
-          />
-          {!isGPS ? (
-            <Item
+        </View>
+
+        {__DEV__ ? (
+          <View style={styles.section}>
+            <SettingsListItem
               label='EN Debug Menu'
-              onPress={() => navigation.navigate(Screens.ENDebugMenu)}
-              last
+              onPress={navigateTo(Screens.ENDebugMenu)}
             />
-          ) : null}
-        </Section>
+            <SettingsListItem
+              label='Feature Flags (Dev mode only)'
+              onPress={navigateTo(Screens.FeatureFlag)}
+              style={styles.lastListItem}
+            />
+          </View>
+        ) : null}
       </ScrollView>
     </NavigationBarWrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  section: {
+    flex: 1,
+    backgroundColor: Colors.white,
+    paddingHorizontal: Spacing.small,
+    marginBottom: Spacing.medium,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: Colors.tertiaryViolet,
+  },
+  icon: {
+    maxWidth: Spacing.icon,
+    maxHeight: Spacing.icon,
+  },
+  listItem: {
+    flex: 1,
+    paddingVertical: Spacing.medium,
+    borderBottomWidth: 1,
+    borderColor: Colors.tertiaryViolet,
+  },
+  languageSelectionListItem: {
+    flex: 1,
+    paddingVertical: Spacing.medium,
+  },
+  lastListItem: {
+    borderBottomWidth: 0,
+  },
+  descriptionText: {
+    ...TypographyStyles.description,
+  },
+});
