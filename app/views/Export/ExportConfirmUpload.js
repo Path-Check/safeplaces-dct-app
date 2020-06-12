@@ -22,7 +22,7 @@ export const ExportComplete = ({ navigation, route }) => {
       navigation.navigate('ExportComplete');
       setIsUploading(false);
     } catch (e) {
-      Alert.alert(t('common.something_went_wrong'));
+      Alert.alert(t('common.something_went_wrong'), e.message);
       setIsUploading(false);
     }
   };
