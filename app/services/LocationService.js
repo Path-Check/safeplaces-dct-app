@@ -14,25 +14,21 @@ const LOCATION_DISABLED_NOTIFICATION_ID = '55';
 // 5 minutes
 export const MIN_LOCATION_UPDATE_MS = 300000;
 
-export const Reason = {
+export default class LocationServices {
   /**
    * Location services are disabled for the device
    */
-  DEVICE_LOCATION_OFF: 'DEVICE_LOCATION_OFF',
-
+  DEVICE_LOCATION_OFF = 'DEVICE_LOCATION_OFF';
   /**
    * Location services are disabled for this app
    */
-  APP_NOT_AUTHORIZED: 'APP_NOT_AUTHORIZED',
-
+  APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
   /**
    * User has granted location tracking permissions
    * to the app, and device location services are running
    */
-  ALL_CONDITIONS_MET: 'ALL_CONDITIONS_MET',
-};
+  ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
 
-export default class LocationServices {
   static async start() {
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
@@ -191,7 +187,7 @@ export default class LocationServices {
     if (!isDeviceGpsEnabled) {
       return {
         canTrack: false,
-        reason: Reason.DEVICE_LOCATION_OFF,
+        reason: this.DEVICE_LOCATION_OFF,
         hasPotentialExposure,
         isRunning,
       };
@@ -200,7 +196,7 @@ export default class LocationServices {
     if (!isAppGpsEnabled) {
       return {
         canTrack: false,
-        reason: Reason.APP_NOT_AUTHORIZED,
+        reason: this.APP_NOT_AUTHORIZED,
         hasPotentialExposure,
         isRunning,
       };
@@ -208,7 +204,7 @@ export default class LocationServices {
 
     return {
       canTrack: true,
-      reason: Reason.ALL_CONDITIONS_MET,
+      reason: this.ALL_CONDITIONS_MET,
       hasPotentialExposure,
       isRunning,
     };

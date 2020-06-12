@@ -3,10 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { NativeModules } from 'react-native';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../../constants/storage';
-import LocationServices, {
-  MIN_LOCATION_UPDATE_MS,
-  Reason,
-} from '../LocationService';
+import LocationServices, { MIN_LOCATION_UPDATE_MS } from '../LocationService';
 
 jest.mock('@mauron85/react-native-background-geolocation');
 
@@ -103,7 +100,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: false,
-        reason: Reason.DEVICE_LOCATION_OFF,
+        reason: LocationServices.DEVICE_LOCATION_OFF,
         hasPotentialExposure: false,
       });
     });
@@ -119,7 +116,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: false,
-        reason: Reason.APP_NOT_AUTHORIZED,
+        reason: LocationServices.APP_NOT_AUTHORIZED,
         hasPotentialExposure: false,
       });
     });
@@ -134,7 +131,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: true,
-        reason: Reason.ALL_CONDITIONS_MET,
+        reason: LocationServices.ALL_CONDITIONS_MET,
         hasPotentialExposure: false,
       });
     });
@@ -149,7 +146,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: true,
-        reason: Reason.ALL_CONDITIONS_MET,
+        reason: LocationServices.ALL_CONDITIONS_MET,
         hasPotentialExposure: true,
       });
     });
@@ -176,7 +173,7 @@ describe('LocationServices', () => {
         canTrack: true,
         hasPotentialExposure: false,
         isRunning: true,
-        reason: Reason.ALL_CONDITIONS_MET,
+        reason: LocationServices.ALL_CONDITIONS_MET,
       });
     });
 

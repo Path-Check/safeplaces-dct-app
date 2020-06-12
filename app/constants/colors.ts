@@ -2,6 +2,12 @@ const colors = {
   BLACK: '#000',
   WHITE: '#FFF',
   DODGER_BLUE: '#428AF8',
+
+  PRIMARY_50: '#6979F8',
+  SECONDARY_10: '#F8F8FF',
+  SECONDARY_50: '#E5E7FA',
+  SECONDARY_100: '#A5AFFB',
+
   SILVER: '#BEBEBE',
   TORCH_RED: '#F8262F',
   MISCHKA: '#E5E4E6',
@@ -11,6 +17,7 @@ const colors = {
   VIOLET_ALPHA_06: '#f7f8ff', // cannot use transparency
   VIOLET: '#4051DB',
   TRANSPARENT: 'transparent',
+  DARK_ALPHA: 'rgba(0, 0, 0, 0.7)',
 
   // For notifications
   HIGHEST_RISK: '#e74c3c',

@@ -21,18 +21,22 @@ export const darkGray = '#4e4e4e';
 export const darkestGray = '#2e2e2e';
 export const silver = '#bebebe';
 
+// Reds
+export const red = '#ff0000';
+
+export const primaryRed = red;
+
 // Blues
-export const dogerBlue = '#428af8';
-export const nileBlue = '#222d4d';
-export const navyBlue = '#1d2230';
+export const royalBlue = '#4051db';
+export const royalerBlue = '#5061e6';
 export const midnightBlue = '#161a25';
 
-export const primaryBlue = dogerBlue;
-export const secondaryBlue = nileBlue;
-export const tertiaryBlue = navyBlue;
+export const primaryBlue = royalBlue;
+export const secondaryBlue = midnightBlue;
+export const tertiaryBlue = royalerBlue;
 
 // Yellows
-export const amber = '#ffc000';
+export const amber = '#ffcc00';
 export const kournikova = '#ffdd76';
 export const orangePeel = '#ff9900';
 
@@ -41,8 +45,6 @@ export const secondaryYellow = kournikova;
 export const tertiaryYellow = orangePeel;
 
 // Violets
-export const royalBlue = '#3c4ed8';
-export const royalerBlue = '#5061e6';
 export const jacksonsPurple = '#1f2c9b';
 export const cornflowerBlue = '#6979f8';
 export const moonRaker = '#e5e7fa';
@@ -51,10 +53,6 @@ export const melrose = '#a5affb';
 export const primaryViolet = royalBlue;
 export const secondaryViolet = jacksonsPurple;
 export const tertiaryViolet = melrose;
-
-// Defaults
-export const defaultRed = '#c20000';
-export const defaultBlue = '#007aff';
 
 // Transparent
 export const transparent = 'rgba(0, 0, 0, 0)';
@@ -65,6 +63,8 @@ export const transparentDark = 'rgba(0,0,0,0.7)';
 
 // Accents
 export const defaultAccent = primaryBlue;
+export const defaultBlue = primaryBlue;
+export const defaultRed = primaryRed;
 
 // Backgrounds
 export const primaryBackground = white;
@@ -116,3 +116,6 @@ export const gradientEnd = { x: 1, y: 1 };
 export const primaryGradient = [primaryBlue, tertiaryBlue];
 export const secondaryGradient = [primaryBlue, secondaryBlue];
 export const disabledGradient = [darkGray, darkGray];
+
+// Exposure History
+export const exposureRiskWarning = royalBlue;
