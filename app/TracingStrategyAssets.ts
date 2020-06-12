@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Icons, Images } from './assets';
 import { isGPS } from './COVIDSafePathsConfig';
 
-type Asset = string | ((name: string) => string) | null;
+export type Asset = string | ((name: string) => string) | null;
 
 export function useAssets(): Record<string, Asset> {
   const { t } = useTranslation();
