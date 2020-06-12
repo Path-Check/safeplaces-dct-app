@@ -296,7 +296,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Your Healthcare Authority
+                Healthcare Authority
               </Text>
               <Text
                 secondary={true}
@@ -1167,7 +1167,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Your Healthcare Authority
+                Healthcare Authority
               </Text>
               <Text
                 secondary={true}
