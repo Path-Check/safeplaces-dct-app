@@ -361,4 +361,27 @@ describe('HCAService', () => {
       ).toBe(false);
     });
   });
+
+  describe('hasAuthoritiesInBounds', () => {
+    beforeEach(() => {
+      jest
+        .spyOn(HCAService, 'getAuthoritiesList')
+        .mockResolvedValue(mockHCA.validParsed);
+    });
+
+    it('returns false if there are no authorities in the users most recent location', async () => {
+      jest
+        .spyOn(LocationService, 'getMostRecentUserGps')
+        .mockReturnValueOnce(mockNullMostRecentUserLoc);
+
+      await expect(HCAService.hasAuthoritiesInBounds()).resolves.toBe(false);
+    });
+    it('returns true if there is one or more authorities in the users most recent location', async () => {
+      jest
+        .spyOn(LocationService, 'getMostRecentUserGps')
+        .mockReturnValueOnce(mockMostRecentUserLoc);
+
+      await expect(HCAService.hasAuthoritiesInBounds()).resolves.toBe(true);
+    });
+  });
 });

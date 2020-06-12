@@ -171,7 +171,7 @@ const MainAppTabs = () => {
         inactiveTintColor: Colors.primaryViolet,
         style: {
           backgroundColor: Colors.violetTextDark,
-          paddingTop: Spacing.small,
+          paddingTop: Spacing.xxxSmall,
         },
       }}>
       <Tab.Screen

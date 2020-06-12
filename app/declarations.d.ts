@@ -13,3 +13,8 @@ declare module '@emotion/native' {
   export const css: any;
   export default styled;
 }
+
+declare module 'react-native-pulse' {
+  const Pulse: any;
+  export default Pulse;
+}
