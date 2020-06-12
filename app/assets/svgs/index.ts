@@ -3,7 +3,7 @@ import AnonymizedDataInverted from './anonymizedDataInverted';
 import ArrowNext from './arrow_next';
 import BackArrow from './backArrow';
 import Bell from './bell';
-import GreenCheck from './check';
+import GreenCheck from './green_check';
 import Checkmark from './checkmark';
 import CheckmarkCircle from './checkmarkCircle';
 import Close from './close';

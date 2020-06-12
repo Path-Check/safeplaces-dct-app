@@ -66,7 +66,7 @@ export const SettingsScreen = ({ navigation }) => {
           <Item
             label={t('label.choose_provider_title')}
             description={t('label.choose_provider_subtitle')}
-            onPress={() => navigation.navigate('ChooseProviderScreen')}
+            onPress={() => navigation.navigate('AuthorityInfoScreen')}
           />
           <Item
             label={t('label.news_title')}

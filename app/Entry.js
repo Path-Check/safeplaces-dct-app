@@ -36,6 +36,9 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
+import AddManualURLScreen from './views/AddManualURL';
+import AuthorityInfoScreen from './views/AuthorityInfo';
+import EditAuthoritiesScreen from './views/EditAuthorities';
 import SelectedHAsScreen from './views/SelectedHAs';
 import { SettingsScreen } from './views/Settings';
 import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
@@ -124,6 +127,10 @@ const MoreTabStack = () => (
       name={EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME}
       component={ENLocalDiagnosisKeyScreen}
     />
+    <Stack.Screen name='AuthorityInfoScreen' component={AuthorityInfoScreen} />
+    <Stack.Screen name='SelectedHAsScreen' component={SelectedHAsScreen} />
+    <Stack.Screen name='EditAuthoritiesScreen' component={EditAuthoritiesScreen} />
+    <Stack.Screen name='AddManualURLScreen' component={AddManualURLScreen} />
   </Stack.Navigator>
 );
 
