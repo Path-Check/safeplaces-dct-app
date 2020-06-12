@@ -114,7 +114,6 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.spacer} />
         <View style={styles.spacer} />
       </ScrollView>
-
     </NavigationBarWrapper>
   );
 };
