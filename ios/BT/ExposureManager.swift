@@ -69,14 +69,14 @@ final class ExposureManager: NSObject {
       } else {
         switch result {
         case let .success((newExposures, nextDiagnosisKeyFileIndex)):
-          BTESecureStorage.shared.nextDiagnosisKeyFileIndex = nextDiagnosisKeyFileIndex
-          BTESecureStorage.shared.dateLastPerformedExposureDetection = Date()
-          BTESecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
-          BTESecureStorage.shared.exposures.append(objectsIn: newExposures)
+          BTSecureStorage.shared.nextDiagnosisKeyFileIndex = nextDiagnosisKeyFileIndex
+          BTSecureStorage.shared.dateLastPerformedExposureDetection = Date()
+          BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
+          BTSecureStorage.shared.exposures.append(objectsIn: newExposures)
           detectingExposures = false
           completionHandler?(true)
         case let .failure(error):
-          BTESecureStorage.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
+          BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
           // Consider posting a user notification that an error occured
           detectingExposures = false
           completionHandler?(false)
@@ -85,7 +85,7 @@ final class ExposureManager: NSObject {
       
     }
     
-    BTESecureStorage.shared.getUserState { userState in
+    BTSecureStorage.shared.getUserState { userState in
       APIClient.shared.request(DiagnosisKeyUrlListRequest.get(userState.nextDiagnosisKeyFileIndex), requestType: .get) { result in
         
         let dispatchGroup = DispatchGroup()
@@ -207,23 +207,23 @@ final class ExposureManager: NSObject {
         }
       }
     case .simulateExposureDetectionError:
-      BTESecureStorage.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
-      completion([NSNull(), "Exposure deteaction error message: \(BTESecureStorage.shared.exposureDetectionErrorLocalizedDescription)"])
+      BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
+      completion([NSNull(), "Exposure deteaction error message: \(BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription)"])
     case .simulateExposure:
       let exposure = Exposure(id: UUID().uuidString,
                               date: Date() - TimeInterval.random(in: 1...4) * 24 * 60 * 60,
                               duration: TimeInterval(Int.random(in: 1...5) * 60 * 5),
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
-      BTESecureStorage.shared.exposures.append(exposure)
-      completion([NSNull(), "Exposures: \(BTESecureStorage.shared.exposures)"])
+      BTSecureStorage.shared.exposures.append(exposure)
+      completion([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
     case .simulatePositiveDiagnosis:
       let testResult = TestResult(id: UUID().uuidString,
                                   isAdded: true,
                                   dateAdministered: Date() - TimeInterval.random(in: 0...4) * 24 * 60 * 60,
                                   isShared: .random())
-      BTESecureStorage.shared.testResults.append(testResult)
-      completion([NSNull(), "Test results: \(BTESecureStorage.shared.testResults)"])
+      BTSecureStorage.shared.testResults.append(testResult)
+      completion([NSNull(), "Test results: \(BTSecureStorage.shared.testResults)"])
     case .disableExposureNotifications:
       manager.setExposureNotificationEnabled(false) { error in
         if let error = error {
@@ -233,11 +233,11 @@ final class ExposureManager: NSObject {
         }
       }
     case .resetExposureDetectionError:
-      BTESecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
+      BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
       completion([NSNull(), "Exposure Detection Error: "])
       
     case .resetUserENState:
-      BTESecureStorage.shared.resetUserState { userState in
+      BTSecureStorage.shared.resetUserState { userState in
         completion([NSNull(), "New UserState: \(userState)"])
       }
     case .getAndPostDiagnosisKeys:

@@ -1,6 +1,6 @@
 #import <React/RCTLog.h>
 #import <React/RCTBridgeModule.h>
-#import "BTE-Swift.h"
+#import "BT-Swift.h"
 
 @interface PTCExposureManagerModule: NSObject <RCTBridgeModule>
 @end

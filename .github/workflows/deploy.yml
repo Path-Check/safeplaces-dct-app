@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - gps-release
-      - bte-release
+      - bt-release
     paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
@@ -205,9 +205,9 @@ jobs:
           subdirectory: 'ios'
           bundle-install-path: 'vendor/bundle'
 
-  deploy_ios_bte:
-    # bte-release branch only
-    if: github.event_name == 'push' && github.ref == 'refs/heads/bte-release'
+  deploy_ios_bt:
+    # bt-release branch only
+    if: github.event_name == 'push' && github.ref == 'refs/heads/bt-release'
     runs-on: macOS-latest
     needs: version_bump
     steps:
@@ -273,7 +273,7 @@ jobs:
           MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          lane: 'release_bte'
+          lane: 'release_bt'
           subdirectory: 'ios'
           bundle-install-path: 'vendor/bundle'
 
@@ -292,9 +292,9 @@ jobs:
           subdirectory: 'ios'
           bundle-install-path: 'vendor/bundle'
 
-  deploy_android_bte:
-    # bte-release branch only
-    if: github.event_name == 'push' && github.ref == 'refs/heads/bte-release'
+  deploy_android_bt:
+    # bt-release branch only
+    if: github.event_name == 'push' && github.ref == 'refs/heads/bt-release'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -370,13 +370,13 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           GITHUB_RUN_NUMBER: ${{ github.run_number }}
         with:
-          lane: 'release_bte'
+          lane: 'release_bt'
           subdirectory: 'android'
           bundle-install-path: 'vendor/bundle'
 
       - name: Upload to Google Play beta track
         uses: maierj/fastlane-action@v1.4.0
         with:
-          lane: 'play_store_bte'
+          lane: 'play_store_bt'
           subdirectory: 'android'
           bundle-install-path: 'vendor/bundle'

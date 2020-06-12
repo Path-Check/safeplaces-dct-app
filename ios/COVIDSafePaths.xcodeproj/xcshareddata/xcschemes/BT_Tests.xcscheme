@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C5AA24D124768FFF00BA0A99"
-               BuildableName = "BTETests.xctest"
-               BlueprintName = "BTETests"
+               BuildableName = "BTTests.xctest"
+               BlueprintName = "BTTests"
                ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-               BuildableName = "BTE.app"
-               BlueprintName = "BTE"
+               BuildableName = "BT.app"
+               BlueprintName = "BT"
                ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C5AA24D124768FFF00BA0A99"
-            BuildableName = "BTETests.xctest"
-            BlueprintName = "BTETests"
+            BuildableName = "BTTests.xctest"
+            BlueprintName = "BTTests"
             ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
