@@ -325,7 +325,7 @@ class ChooseProviderScreen extends Component {
               name='AuthoritiesMenu'
               renderer={SlideInMenu}
               style={{ padding: 20 }}>
-              <MenuTrigger disabled={true}>
+              <MenuTrigger disabled>
                 <Button
                   label={languages.t('label.authorities_add_button_label')}
                   onPress={() =>
@@ -392,9 +392,6 @@ class ChooseProviderScreen extends Component {
     );
   }
 }
-
-
-
 
 const styles = StyleSheet.create({
   main: {
@@ -470,7 +467,7 @@ const styles = StyleSheet.create({
   noDataSourceText: {
     textAlign: 'center',
     fontSize: 18,
-  }
+  },
 });
 
 export default withMenuContext(ChooseProviderScreen);
