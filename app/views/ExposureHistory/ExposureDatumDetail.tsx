@@ -35,7 +35,7 @@ const ExposureDatumDetail = ({
       return <UnknownExposureDetail datum={exposureDatum} />;
     }
     case 'NoKnown': {
-      return <NoKnownExposureDetail datum={exposureDatum} />;
+      return <AllServicesOnScreenDetail datum={exposureDatum} />;
     }
   }
 };
@@ -80,13 +80,13 @@ const PossibleExposureDetail = ({
   );
 };
 
-interface NoKnownExposureDetailProps {
+interface AllServicesOnScreenDetailProps {
   datum: NoKnown;
 }
 
-const NoKnownExposureDetail = ({
+const AllServicesOnScreenDetail = ({
   datum: { date },
-}: NoKnownExposureDetailProps) => {
+}: AllServicesOnScreenDetailProps) => {
   const exposureDate = dayjs(date).format('dddd, MMM DD');
   const dailyReports = `Current daily reports: 0`;
   const explainationContent =

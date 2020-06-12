@@ -1,24 +1,37 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Dimensions,
   ImageBackground,
   StatusBar,
-  Text,
   View,
+  Text,
+  NativeSyntheticEvent,
+  NativeTouchEvent,
 } from 'react-native';
-import { openSettings } from 'react-native-permissions';
 import { SvgXml } from 'react-native-svg';
 
-import { Icons, Images } from '../../assets';
-import { Button, Typography } from '../../components';
-import { Theme } from '../../constants/themes';
-import { styles } from './style';
+import { Icons, Images } from '../../../assets';
+import { Typography } from '../../../components/Typography';
+import { Button } from '../../../components/Button';
+import { Theme } from '../../../constants/themes';
+import { styles } from '../style';
 
-export const UnknownPage = () => {
-  const { t } = useTranslation();
-  const buttonLabel = t('label.home_enable_location');
+export interface ServiceOffScreenProps {
+  header: string;
+  subheader: string;
+  button?: {
+    label: string;
+    onPress: (ev: NativeSyntheticEvent<NativeTouchEvent>) => void;
+  };
+}
+
+export const ServiceOffScreen = ({
+  header,
+  subheader,
+  button,
+}: ServiceOffScreenProps): JSX.Element => {
   const size = Dimensions.get('window').height;
+
   return (
     <Theme use='violet'>
       <ImageBackground
@@ -43,19 +56,15 @@ export const UnknownPage = () => {
             <Typography style={styles.subsubheaderText} />
           </View>
           <View style={styles.contentBelowPulse}>
-            <Text style={styles.mainTextBelow}>
-              {t('label.home_unknown_header')}
-            </Text>
-            <Typography style={styles.subheaderText}>
-              {t('label.home_unknown_subtext')}
-            </Typography>
-            <View style={styles.buttonContainer}>
+            <Text style={styles.mainTextBelow}>{header}</Text>
+            <Typography style={styles.subheaderText}>{subheader}</Typography>
+            {button && (
               <Button
-                label={buttonLabel}
-                onPress={openSettings}
+                label={button.label}
+                onPress={button.onPress}
                 style={styles.buttonContainer}
               />
-            </View>
+            )}
           </View>
         </View>
       </ImageBackground>

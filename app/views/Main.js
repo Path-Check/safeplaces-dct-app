@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
@@ -9,26 +9,31 @@ import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
 import ExposureNotificationService from '../services/ExposureNotificationService';
-import { ExposurePage } from './main/ExposurePage';
-import { NoKnownExposure } from './main/NoKnownExposure';
-import { OffPage } from './main/OffPage';
+import { AllServicesOnScreen } from './main/AllServicesOn';
+import {
+  TracingOffScreen,
+  NotificationsOffScreen,
+  SelectAuthorityScreen,
+  NoAuthoritiesScreen,
+} from './main/ServiceOffScreens';
 import { styles } from './main/style';
-import { UnknownPage } from './main/UnknownPage';
+import PermissionsContext, { PermissionStatus } from '../PermissionsContext';
+import { HCAService } from '../services/HCAService';
 
 export const Main = () => {
   const tracingService = isGPS ? LocationServices : ExposureNotificationService;
   const navigation = useNavigation();
+  const { notification } = useContext(PermissionsContext);
+  const [hasAuthorityInBounds, setHasAuthorityInBounds] = useState(undefined);
+  const [hasSavedAuthorities, setHasSavedAuthorities] = useState(undefined);
+
   if (isPlatformAndroid()) {
     StatusBar.setBackgroundColor(Colors.TRANSPARENT);
     StatusBar.setBarStyle('light-content');
     StatusBar.setTranslucent(true);
   }
 
-  const [trackingInfo, setTrackingInfo] = useState({
-    canTrack: true,
-    reason: null,
-    hasPotentialExposure: false,
-  });
+  const [trackingInfo, setTrackingInfo] = useState({ canTrack: true });
 
   const checkForPossibleExposure = () => {
     if (isGPS) {
@@ -39,9 +44,15 @@ export const Main = () => {
 
   const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
-    const state = await tracingService.checkStatusAndStartOrStop();
-    setTrackingInfo(state);
-  }, [tracingService, setTrackingInfo]);
+    const { canTrack } = await tracingService.checkStatusAndStartOrStop();
+    setTrackingInfo({ canTrack });
+
+    const authoritiesInBoundsState = await HCAService.hasAuthoritiesInBounds();
+    setHasAuthorityInBounds(authoritiesInBoundsState);
+
+    const savedAuthoritiesState = await HCAService.hasSavedAuthorities();
+    setHasSavedAuthorities(savedAuthoritiesState);
+  }, [tracingService, setTrackingInfo, setHasAuthorityInBounds]);
 
   const handleBackPress = () => {
     BackHandler.exitApp(); // works best when the goBack is async
@@ -68,23 +79,16 @@ export const Main = () => {
 
   let page;
 
-  if (trackingInfo.canTrack) {
-    if (trackingInfo.hasPotentialExposure) {
-      page = <ExposurePage />;
-    } else {
-      page = <NoKnownExposure />;
-    }
+  if (!trackingInfo.canTrack) {
+    page = <TracingOffScreen />;
+  } else if (notification.status === PermissionStatus.DENIED) {
+    page = <NotificationsOffScreen />;
+  } else if (hasAuthorityInBounds === false) {
+    page = <NoAuthoritiesScreen />;
+  } else if (hasSavedAuthorities === false) {
+    page = <SelectAuthorityScreen />;
   } else {
-    if (
-      trackingInfo.reason === tracingService.DEVICE_LOCATION_OFF ||
-      trackingInfo.reason === tracingService.APP_NOT_AUTHORIZED ||
-      trackingInfo.reason === tracingService.DEVICE_EXPOSURE_NOTIFICATIONS_OFF
-    ) {
-      page = <OffPage />;
-    } else {
-      // Invariant violation if this occurs
-      page = <UnknownPage />;
-    }
+    page = <AllServicesOnScreen />;
   }
 
   return <View style={styles.backgroundImage}>{page}</View>;

@@ -65,31 +65,60 @@ export function useAssets(): Record<string, string> {
     ? t('history.what_does_this_mean_para_location')
     : t('history.what_does_this_mean_para_bluetooth');
 
-  // Dashboard Pages
+  /**
+   * Dashboard Pages
+   */
 
-  // Exposure Page
-  const exposurePageSubheader = isGPS
-    ? t(`label.home_at_risk_subtext_location`)
-    : t(`label.home_at_risk_subtext_bluetooth`);
+  // Exposure Notification Not Available Screen
+  const exposureNotificationsNotAvailableHeader = t(
+    'home.bluetooth.unavailable_header',
+  );
+  const exposureNotificationsNotAvailableSubheader = t(
+    'home.bluetooth.unavailable_subheader',
+  );
 
-  // Off Page
-  const offPageHeader = isGPS
-    ? t('label.home_setting_off_header_location')
-    : t('label.home_setting_off_header_bluetooth');
-  const offPageCta = isGPS
-    ? t(`label.home_setting_off_subtext_location`)
-    : t(`label.home_setting_off_subtext_bluetooth`);
-  const offPageButton = isGPS
-    ? t(`label.home_enable_location`)
-    : t(`label.home_enable_bluetooth`);
+  // Tracing Off Screen
+  const tracingOffScreenHeader = isGPS
+    ? t('home.gps.tracing_off_header')
+    : t('home.bluetooth.tracing_off_header');
+  const tracingOffScreenSubheader = isGPS
+    ? t('home.gps.tracing_off_subheader')
+    : t('home.bluetooth.tracing_off_subheader');
+  const tracingOffScreenButton = isGPS
+    ? t('home.gps.tracing_off_button')
+    : t('home.bluetooth.tracing_off_button');
 
-  // No Known Exposure Page
-  const noKnownExposurePageHeader = isGPS
-    ? t('label.home_no_contact_header')
-    : t('label.home_no_contact_header_bluetooth');
-  const noKnownExposurePageSubheader = isGPS
-    ? t('label.home_no_contact_subtext')
-    : t('label.home_no_contact_subtext_bluetooth');
+  // Notifications Off Screen
+  const notificationsOffScreenHeader = t(
+    'home.shared.notifications_off_header',
+  );
+  const notificationsOffScreenSubheader = t(
+    'home.shared.notifications_off_subheader',
+  );
+  const notificationsOffScreenButton = t(
+    'home.shared.notifications_off_button',
+  );
+
+  // Select Authority Screen
+  const selectAuthorityScreenHeader = t('home.shared.select_authority_header');
+  const selectAuthorityScreenSubheader = t(
+    'home.shared.select_authority_subheader',
+  );
+  const selectAuthorityScreenButton = t('home.shared.select_authority_button');
+
+  // No Authorities Screen
+  const noAuthoritiesScreenHeader = t('home.shared.no_authorities_header');
+  const noAuthoritiesScreenSubheader = t(
+    'home.shared.no_authorities_subheader',
+  );
+
+  // Tracing On Screen
+  const allServicesOnScreenHeader = isGPS
+    ? t('home.gps.all_services_on_header')
+    : t('home.bluetooth.all_services_on_header');
+  const allServicesOnScreenSubheader = isGPS
+    ? t('home.gps.all_services_on_subheader')
+    : t('home.bluetooth.all_services_on_subheader');
 
   return {
     onboarding2Background,
@@ -107,11 +136,20 @@ export function useAssets(): Record<string, string> {
     aboutHeader,
     legalHeader,
     detailedHistoryWhatThisMeansPara,
-    exposurePageSubheader,
-    offPageHeader,
-    offPageCta,
-    offPageButton,
-    noKnownExposurePageHeader,
-    noKnownExposurePageSubheader,
+    tracingOffScreenHeader,
+    tracingOffScreenSubheader,
+    tracingOffScreenButton,
+    allServicesOnScreenHeader,
+    allServicesOnScreenSubheader,
+    exposureNotificationsNotAvailableHeader,
+    exposureNotificationsNotAvailableSubheader,
+    notificationsOffScreenHeader,
+    notificationsOffScreenSubheader,
+    notificationsOffScreenButton,
+    selectAuthorityScreenHeader,
+    selectAuthorityScreenSubheader,
+    selectAuthorityScreenButton,
+    noAuthoritiesScreenHeader,
+    noAuthoritiesScreenSubheader,
   };
 }

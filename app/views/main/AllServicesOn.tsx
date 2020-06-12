@@ -4,17 +4,17 @@ import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
-import { Typography } from '../../components';
+import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import { Theme } from '../../constants/themes';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { useAssets } from '../../TracingStrategyAssets';
 import { styles } from './style';
 
-export const NoKnownExposure = () => {
+export const AllServicesOnScreen = (): JSX.Element => {
   const {
-    noKnownExposurePageHeader,
-    noKnownExposurePageSubheader,
+    allServicesOnScreenHeader,
+    allServicesOnScreenSubheader,
   } = useAssets();
   const size = Dimensions.get('window').height;
 
@@ -50,10 +50,10 @@ export const NoKnownExposure = () => {
           <View style={styles.contentAbovePulse} />
           <View style={styles.contentBelowPulse}>
             <Typography style={styles.mainTextBelow}>
-              {noKnownExposurePageHeader}
+              {allServicesOnScreenHeader}
             </Typography>
             <Typography style={styles.subheaderText}>
-              {noKnownExposurePageSubheader}
+              {allServicesOnScreenSubheader}
             </Typography>
           </View>
         </View>
