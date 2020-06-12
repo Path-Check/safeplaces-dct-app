@@ -11,6 +11,12 @@ class Home {
       element(by.label(languageStrings.home.shared.no_authorities_header)),
     ).toBeVisible();
   }
+
+  async noNotifications(languageStrings) {
+    await expect(
+      element(by.label(languageStrings.home.shared.notifications_off_header)),
+    ).toBeVisible();
+  }
 }
 
 export default new Home();
