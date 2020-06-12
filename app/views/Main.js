@@ -52,7 +52,12 @@ export const Main = () => {
 
     const savedAuthoritiesState = await HCAService.hasSavedAuthorities();
     setHasSavedAuthorities(savedAuthoritiesState);
-  }, [tracingService, setTrackingInfo, setHasAuthorityInBounds]);
+  }, [
+    tracingService,
+    setTrackingInfo,
+    setHasAuthorityInBounds,
+    setHasSavedAuthorities,
+  ]);
 
   const handleBackPress = () => {
     BackHandler.exitApp(); // works best when the goBack is async
