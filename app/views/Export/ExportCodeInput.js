@@ -19,6 +19,7 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
+import { useAssets } from '../../TracingStrategyAssets';
 import exitWarningAlert from './exitWarningAlert';
 
 const CODE_LENGTH = 6;
@@ -115,6 +116,12 @@ const CodeInput = ({ code, length, setCode }) => {
 
 export const ExportSelectHA = ({ route, navigation }) => {
   const { t } = useTranslation();
+  const {
+    exportCodeBody,
+    exportCodeTitle,
+    exportCodeInputNextRoute,
+    exportExitRoute,
+  } = useAssets();
 
   const [code, setCode] = useState('');
   const [isCheckingCode, setIsCheckingCode] = useState(false);
@@ -135,7 +142,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
       });
       const { valid } = await res.json();
       if (valid) {
-        navigation.navigate('ExportLocationConsent', {
+        navigation.navigate(exportCodeInputNextRoute, {
           selectedAuthority,
           code,
         });
@@ -162,21 +169,21 @@ export const ExportSelectHA = ({ route, navigation }) => {
             <IconButton
               icon={Icons.BackArrow}
               size={27}
-              onPress={() => navigation.replace('ExportSelectHA')}
+              onPress={() => navigation.goBack()}
             />
             <IconButton
               icon={Icons.Close}
               size={22}
-              onPress={() => exitWarningAlert(navigation)}
+              onPress={() => exitWarningAlert(navigation, exportExitRoute)}
             />
           </View>
           <View style={{ flex: 1, marginBottom: 20 }}>
             <Typography use='headline2' style={styles.exportSectionTitles}>
-              {t('export.code_input_title')}
+              {exportCodeTitle}
             </Typography>
             <View style={{ height: 8 }} />
             <Typography use='body1'>
-              {t('export.code_input_body', { name: selectedAuthority.name })}
+              {exportCodeBody(selectedAuthority.name)}
             </Typography>
             {/* These flex grows allow for a lot of flexibility across device sizes */}
             <View style={{ maxHeight: 60, flexGrow: 1 }} />

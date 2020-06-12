@@ -18,9 +18,9 @@
 
     <!-- Text -->
     <item
-        android:width="180dp"
-        android:height="19dp"
-        android:drawable="@drawable/ic_splash_logo_text"
+        android:width="115dp"
+        android:height="18dp"
+        android:drawable="@drawable/ic_pathcheck_tm"
         android:gravity="center"
         android:top="450dp" />
 </layer-list>
