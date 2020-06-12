@@ -22,17 +22,6 @@ export const END_ROUTES = [
   SCREEN_TYPE_ISOLATE,
 ];
 
-export const Colors = {
-  BACKGROUND: '#F5F8FC',
-  IMAGE_BACKGROUND: 'rgb(224,236,255)',
-  IMAGE_BACKGROUND_DANGER: 'rgb(255,226,233)',
-  BORDER: 'rgb(173,188,205)',
-  BORDER_SELECTED: 'rgb(0,121,253)',
-  CTA: 'rgb(105,121,248)',
-  DANGER: 'rgb(227,0,58)',
-  TRANSPARENT: 'transparent',
-};
-
 export const SURVEY_GET_API =
   'https://fathomless-mountain-29102.herokuapp.com/v1.0/contactTracingFlorida/survey/2';
 

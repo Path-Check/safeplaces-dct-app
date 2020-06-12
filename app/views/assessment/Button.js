@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
+
+import { Colors } from '../../styles';
 
 /**
  * @typedef { import("react").ReactNode } ReactNode
@@ -18,13 +19,13 @@ export const Button = ({ color, onPress, title, disabled = false }) => {
   let backgroundColor = color
     ? color
     : disabled
-    ? Colors.SECONDARY_50
-    : Colors.PRIMARY_50;
+    ? Colors.moonRaker
+    : Colors.secondaryBlue;
   let textColor = color
     ? color
     : disabled
-    ? Colors.SECONDARY_100
-    : Colors.WHITE;
+    ? Colors.tertiaryViolet
+    : Colors.white;
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   ctaText: {
-    color: Colors.SECONDARY_10,
+    color: Colors.faintGray,
     textAlign: 'center',
   },
 });

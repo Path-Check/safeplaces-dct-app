@@ -109,7 +109,7 @@ exports[`notifications off screen matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 28,
               "fontWeight": "normal",
@@ -124,7 +124,7 @@ exports[`notifications off screen matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Light",
               "fontSize": 16,
               "fontWeight": "normal",
@@ -150,7 +150,7 @@ exports[`notifications off screen matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 26,
               "lineHeight": 34,
@@ -164,7 +164,7 @@ exports[`notifications off screen matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans",
               "fontSize": 18,
               "fontWeight": "normal",
@@ -189,7 +189,7 @@ exports[`notifications off screen matches snapshot 1`] = `
               "alignContent": "center",
               "alignItems": "center",
               "alignSelf": "stretch",
-              "backgroundColor": "#FFF",
+              "backgroundColor": "#ffffff",
               "borderBottomLeftRadius": 8,
               "borderBottomRightRadius": 8,
               "borderColor": "transparent",
@@ -209,7 +209,7 @@ exports[`notifications off screen matches snapshot 1`] = `
           <Text
             style={
               Object {
-                "color": "#4051DB",
+                "color": "#4051db",
                 "fontFamily": "IBMPlexSans-Medium",
                 "fontSize": 20,
                 "fontWeight": "normal",

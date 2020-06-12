@@ -9,10 +9,11 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import { Button, Typography } from '../../components';
-import Colors from '../../constants/colors';
 import languages from '../../locales/languages';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
+
+import { Colors } from '../../styles';
 
 const width = Dimensions.get('window').width;
 
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    backgroundColor: Colors.INTRO_WHITE_BG,
+    backgroundColor: Colors.primaryBackgroundFaintShade,
   },
   contentContainer: {
     width: width * 0.9,

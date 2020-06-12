@@ -119,7 +119,7 @@ exports[`all services on matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 26,
               "fontWeight": "normal",
@@ -136,7 +136,7 @@ exports[`all services on matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans",
               "fontSize": 18,
               "fontWeight": "normal",

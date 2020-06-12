@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
-import Colors from '../constants/colors';
 import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
@@ -20,6 +19,8 @@ import { styles } from './main/style';
 import PermissionsContext, { PermissionStatus } from '../PermissionsContext';
 import { HCAService } from '../services/HCAService';
 
+import { Colors } from '../styles';
+
 export const Main = () => {
   const tracingService = isGPS ? LocationServices : ExposureNotificationService;
   const navigation = useNavigation();
@@ -28,7 +29,7 @@ export const Main = () => {
   const [hasSavedAuthorities, setHasSavedAuthorities] = useState(undefined);
 
   if (isPlatformAndroid()) {
-    StatusBar.setBackgroundColor(Colors.TRANSPARENT);
+    StatusBar.setBackgroundColor(Colors.transparent);
     StatusBar.setBarStyle('light-content');
     StatusBar.setTranslucent(true);
   }

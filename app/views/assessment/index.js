@@ -5,7 +5,6 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import { SvgXml } from 'react-native-svg';
 import { Icons } from '../../assets';
-import Colors from '../../constants/colors';
 import { useSurvey } from '../../helpers/CustomHooks';
 import i18n from '../../locales/languages';
 import { AnswersContext, MetaContext, SurveyContext } from './Context';
@@ -27,6 +26,8 @@ import { Distancing } from './endScreens/Distancing';
 import { Emergency } from './endScreens/Emergency';
 import { Isolate } from './endScreens/Isolate';
 import { Share } from './endScreens/Share';
+
+import { Colors } from '../../styles';
 
 /**
  * @typedef {"Checkbox" | "Date" | Radio" | "EndCaregiver" | "EndDistancing" | "EndEmergency" | "EndIsolate" } SurveyScreen
@@ -108,7 +109,7 @@ const Assessment = ({ navigation }) => {
     headerHideShadow: true,
     headerTitle: '',
     headerStyle: {
-      backgroundColor: Colors.SECONDARY_10,
+      backgroundColor: Colors.primaryBackgroundFaintShade,
     },
     //eslint-disable-next-line
     headerRight: () => <AssessmentCancel />,
@@ -134,7 +135,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
+                  backgroundColor: Colors.primaryBackgroundFaintShade,
                 },
               }}
             />
@@ -149,7 +150,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
+                  backgroundColor: Colors.primaryBackgroundFaintShade,
                 },
               }}
             />
@@ -159,7 +160,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
+                  backgroundColor: Colors.primaryBackgroundFaintShade,
                 },
               }}
             />
@@ -169,7 +170,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
+                  backgroundColor: Colors.primaryBackgroundFaintShade,
                 },
               }}
             />
@@ -179,7 +180,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
+                  backgroundColor: Colors.primaryBackgroundFaintShade,
                 },
               }}
             />
@@ -189,7 +190,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
+                  backgroundColor: Colors.primaryBackgroundFaintShade,
                 },
               }}
             />
@@ -199,7 +200,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions,
                 headerStyle: {
-                  backgroundColor: Colors.SECONDARY_10,
+                  backgroundColor: Colors.primaryBackgroundFaintShade,
                 },
               }}
             />

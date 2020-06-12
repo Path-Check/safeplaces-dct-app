@@ -14,7 +14,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#4051DB",
+        "backgroundColor": "#4051db",
         "flexBasis": 0,
         "flexGrow": 0,
         "flexShrink": 1,
@@ -24,7 +24,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#F7F8FF",
+        "backgroundColor": "#f8f8f8",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
@@ -35,8 +35,8 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#4051DB",
-          "borderBottomColor": "#5061E6",
+          "backgroundColor": "#4051db",
+          "borderBottomColor": "#4051db",
           "borderBottomWidth": 1,
           "flexDirection": "row",
           "height": 55,
@@ -47,7 +47,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         style={
           Object {
             "alignSelf": "center",
-            "color": "#FFF",
+            "color": "#ffffff",
             "fontFamily": "IBMPlexSans-Bold",
             "fontSize": 16,
             "letterSpacing": 1,
@@ -68,7 +68,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#FFF",
+              "backgroundColor": "#ffffff",
               "paddingBottom": 0,
               "paddingLeft": "6.25%",
               "paddingRight": "6.25%",
@@ -149,7 +149,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 focusable={true}
                 style={
                   Object {
-                    "backgroundColor": "#000",
+                    "backgroundColor": "#000000",
                     "flex": 1,
                     "opacity": 0.2,
                   }
@@ -159,7 +159,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#FFF",
+                  "backgroundColor": "#ffffff",
                   "flex": 1,
                 }
               }
@@ -172,7 +172,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#007AFF",
+                        "color": undefined,
                         "fontFamily": "IBMPlexSans",
                         "fontSize": 18,
                         "fontWeight": "bold",
@@ -250,7 +250,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#FFF",
+              "backgroundColor": "#ffffff",
               "paddingBottom": 0,
               "paddingLeft": "6.25%",
               "paddingRight": "6.25%",
@@ -412,7 +412,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#FFF",
+              "backgroundColor": "#ffffff",
               "paddingBottom": 0,
               "paddingLeft": "6.25%",
               "paddingRight": "6.25%",
@@ -582,7 +582,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#FFF",
+              "backgroundColor": "#ffffff",
               "paddingBottom": 0,
               "paddingLeft": "6.25%",
               "paddingRight": "6.25%",
@@ -761,7 +761,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#4051DB",
+        "backgroundColor": "#4051db",
         "flexBasis": 0,
         "flexGrow": 0,
         "flexShrink": 1,
@@ -771,7 +771,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#F7F8FF",
+        "backgroundColor": "#f8f8f8",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
@@ -782,8 +782,8 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#4051DB",
-          "borderBottomColor": "#5061E6",
+          "backgroundColor": "#4051db",
+          "borderBottomColor": "#4051db",
           "borderBottomWidth": 1,
           "flexDirection": "row",
           "height": 55,
@@ -794,7 +794,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         style={
           Object {
             "alignSelf": "center",
-            "color": "#FFF",
+            "color": "#ffffff",
             "fontFamily": "IBMPlexSans-Bold",
             "fontSize": 16,
             "letterSpacing": 1,
@@ -815,7 +815,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#FFF",
+              "backgroundColor": "#ffffff",
               "paddingBottom": 0,
               "paddingLeft": "6.25%",
               "paddingRight": "6.25%",
@@ -896,7 +896,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 focusable={true}
                 style={
                   Object {
-                    "backgroundColor": "#000",
+                    "backgroundColor": "#000000",
                     "flex": 1,
                     "opacity": 0.2,
                   }
@@ -906,7 +906,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#FFF",
+                  "backgroundColor": "#ffffff",
                   "flex": 1,
                 }
               }
@@ -919,7 +919,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#007AFF",
+                        "color": undefined,
                         "fontFamily": "IBMPlexSans",
                         "fontSize": 18,
                         "fontWeight": "bold",
@@ -997,7 +997,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#FFF",
+              "backgroundColor": "#ffffff",
               "paddingBottom": 0,
               "paddingLeft": "6.25%",
               "paddingRight": "6.25%",
@@ -1159,7 +1159,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#FFF",
+              "backgroundColor": "#ffffff",
               "paddingBottom": 0,
               "paddingLeft": "6.25%",
               "paddingRight": "6.25%",

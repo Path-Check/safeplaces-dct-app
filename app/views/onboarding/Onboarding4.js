@@ -9,10 +9,11 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import { Button, Typography } from '../../components';
-import Colors from '../../constants/colors';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
+
+import { Colors } from '../../styles';
 
 const width = Dimensions.get('window').width;
 
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    backgroundColor: Colors.INTRO_WHITE_BG,
+    backgroundColor: Colors.primaryBackgroundFaintShade,
   },
   contentContainer: {
     width: width * 0.9,
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   iconCircle: {
-    backgroundColor: Colors.ONBOARDING_ICON_LIGHT_YELLOW,
+    backgroundColor: Colors.onboardingIconYellow,
   },
 });
 

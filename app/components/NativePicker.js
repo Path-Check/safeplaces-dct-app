@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 
 import { Typography } from '../components/Typography';
-import Colors from '../constants/colors';
 import languages from '../locales/languages';
+
+import { Colors } from '../styles';
 
 /**
  * Native dropdown that abstracts away the UI differences for iOS and Android.
@@ -80,25 +81,25 @@ export class NativePicker extends Component {
             visible={this.state.modalVisible}>
             <View style={{ flex: 2 }}>
               <TouchableWithoutFeedback
-                style={{ flex: 1, backgroundColor: Colors.BLACK, opacity: 0.4 }}
+                style={{ flex: 1, backgroundColor: Colors.black, opacity: 0.4 }}
                 onPress={() => this.setState({ modalVisible: false })}>
                 <View
                   style={{
                     flex: 1,
-                    backgroundColor: Colors.BLACK,
+                    backgroundColor: Colors.black,
                     opacity: 0.2,
                   }}
                 />
               </TouchableWithoutFeedback>
             </View>
-            <View style={{ flex: 1, backgroundColor: Colors.WHITE }}>
+            <View style={{ flex: 1, backgroundColor: Colors.white }}>
               <TouchableWithoutFeedback
                 onPress={() => this.setState({ modalVisible: false })}>
                 <View>
                   <View>
                     <Typography
                       style={{
-                        color: Colors.BLUE_LINK,
+                        color: Colors.linkBlue,
                         fontWeight: 'bold',
                         textAlign: 'right',
                         marginTop: 16,

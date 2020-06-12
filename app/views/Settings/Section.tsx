@@ -1,9 +1,10 @@
 import React from 'react';
+import { View } from 'react-native';
 
 import styled, { css } from '@emotion/native';
-import Colors from '../../constants/colors';
 import { Divider } from '../../components/Divider';
-import { View } from 'react-native';
+
+import { Colors } from '../../styles';
 /**
  * Render a white section with blue spacer at the bottom (unless `last == true`)
  *
@@ -35,6 +36,6 @@ export const Section = ({ last, children }: SectionProps): JSX.Element => (
 );
 
 const SectionWrapper = styled.View`
-  background-color: ${Colors.WHITE};
+  background-color: ${Colors.white};
   padding: 0px 6.25%;
 `;

@@ -11,7 +11,7 @@ exports[`base 1`] = `
   }
 >
   <RCTSafeAreaView
-    backgroundColor="#F8F8FF"
+    backgroundColor="#f8f8f8"
     emulateUnlessSupported={true}
     style={
       Object {
@@ -144,7 +144,7 @@ Tell the emergency operator if you have been in contact with someone with COVID-
                   "paddingVertical": 22,
                 },
                 Object {
-                  "backgroundColor": "#6979F8",
+                  "backgroundColor": "#6979f8",
                 },
               ]
             }
@@ -152,7 +152,7 @@ Tell the emergency operator if you have been in contact with someone with COVID-
             <Text
               style={
                 Object {
-                  "color": "#FFF",
+                  "color": "#ffffff",
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 18,
                   "fontWeight": "normal",
