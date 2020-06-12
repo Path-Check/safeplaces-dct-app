@@ -19,6 +19,10 @@ const colors = {
   TRANSPARENT: 'transparent',
   DARK_ALPHA: 'rgba(0, 0, 0, 0.7)',
 
+  //Onboarding
+  ONBOARDING_ICON_LIGHT_BLUE: '#D3D7F8',
+  ONBOARDING_ICON_LIGHT_YELLOW: '#F9EDCC',
+
   // For notifications
   HIGHEST_RISK: '#e74c3c',
   MIDDLE_RISK: '#e74c3c',
@@ -35,6 +39,7 @@ const colors = {
 
   VIOLET_TEXT: '#3C4ED8',
   VIOLET_TEXT_DARK: '#1F2C9B',
+  VIOLET_TEXT_LIGHT: '#4754C5',
 
   GRAY_BACKGROUND: '#DADADA',
 

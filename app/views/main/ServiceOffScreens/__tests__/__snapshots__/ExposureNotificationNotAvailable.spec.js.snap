@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`setting off matches snapshot 1`] = `
+exports[`exposure notifications not available screen matches snapshot 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -159,7 +159,7 @@ exports[`setting off matches snapshot 1`] = `
             }
           }
         >
-          Unknown
+          Exposure history notifications are not yet available
         </Text>
         <Text
           style={
@@ -176,52 +176,8 @@ exports[`setting off matches snapshot 1`] = `
           }
           use="body1"
         >
-          We can’t tell if you’re at risk unless you enable location history in the settings screen.
+          Your phone is not currently covered by Healthcare Authorities using PathCheck.
         </Text>
-        <View
-          accessibilityLabel="Enable Location Data"
-          accessibilityRole="button"
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          style={
-            Object {
-              "alignContent": "center",
-              "alignItems": "center",
-              "alignSelf": "stretch",
-              "backgroundColor": "#FFF",
-              "borderBottomLeftRadius": 8,
-              "borderBottomRightRadius": 8,
-              "borderColor": "transparent",
-              "borderStyle": "solid",
-              "borderTopLeftRadius": 8,
-              "borderTopRightRadius": 8,
-              "borderWidth": 2,
-              "flexDirection": "row",
-              "height": 54,
-              "justifyContent": "center",
-              "marginTop": 24,
-              "opacity": 1,
-              "paddingHorizontal": 16,
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "#4051DB",
-                "fontFamily": "IBMPlexSans-Medium",
-                "fontSize": 20,
-                "fontWeight": "normal",
-                "lineHeight": 40,
-                "writingDirection": "ltr",
-              }
-            }
-            use="body1"
-          >
-            Enable Location Data
-          </Text>
-        </View>
       </View>
     </View>
   </View>

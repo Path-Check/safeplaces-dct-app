@@ -2,6 +2,7 @@ import AnonymizedData from './anonymizedData';
 import AnonymizedDataInverted from './anonymizedDataInverted';
 import BackArrow from './backArrow';
 import Bell from './bell';
+import BellYellow from './bellYellow';
 import Checkmark from './checkmark';
 import CheckmarkCircle from './checkmarkCircle';
 import ChevronRight from './chevronRight';
@@ -9,6 +10,7 @@ import Close from './close';
 import Export from './export';
 import ExposureIcon from './exposureIcon';
 import GoogleMapsLogo from './google-maps-logo';
+import Heart from './heart';
 import IntroGlobe from './intro-locked';
 import IntroSiren from './intro-siren';
 import Isolate from './isolate';
@@ -34,6 +36,7 @@ export const Icons = {
   AnonymizedDataInverted,
   BackArrow,
   Bell,
+  BellYellow,
   Checkmark,
   CheckmarkCircle,
   ChevronRight,
@@ -41,6 +44,7 @@ export const Icons = {
   Export,
   ExposureIcon,
   GoogleMapsLogo,
+  Heart,
   IntroGlobe,
   IntroSiren,
   Isolate,

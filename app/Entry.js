@@ -23,6 +23,7 @@ import {
   ExportCodeInput,
   ExportComplete,
   ExportConfirmUpload,
+  ExportIntro,
   ExportStart,
   ExportLocationConsent,
   ExportPublishConsent,
@@ -73,7 +74,9 @@ const ExportStack = () => (
       ...SCREEN_OPTIONS,
       cardStyleInterpolator: fade,
       gestureEnabled: false,
-    }}>
+    }}
+    initialRouteName={isGPS ? 'ExportSelectHA' : 'ExportIntro'}>
+    <Stack.Screen name='ExportIntro' component={ExportIntro} />
     <Stack.Screen name='ExportSelectHA' component={ExportSelectHA} />
     <Stack.Screen name='ExportCodeInput' component={ExportCodeInput} />
     <Stack.Screen
@@ -171,8 +174,8 @@ const MainAppTabs = () => {
         inactiveTintColor: Colors.primaryViolet,
         style: {
           backgroundColor: Colors.violetTextDark,
-          paddingTop: Spacing.small,
           borderTopColor: Colors.primaryViolet,
+          paddingVertical: Spacing.xxxSmall,
         },
       }}>
       <Tab.Screen

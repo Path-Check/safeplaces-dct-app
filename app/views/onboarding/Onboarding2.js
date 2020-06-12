@@ -6,10 +6,10 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
-import { Button, Type, Typography } from '../../components';
+import { Button, Typography } from '../../components';
 import Colors from '../../constants/colors';
-import fontFamily from '../../constants/fonts';
 import languages from '../../locales/languages';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
@@ -21,6 +21,7 @@ const Onboarding = (props) => {
     onboarding2Background,
     onboarding2Header,
     onboarding2Subheader,
+    onboarding2Icon,
   } = useAssets();
 
   return (
@@ -35,10 +36,13 @@ const Onboarding = (props) => {
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
-        <Typography style={styles.headerText} use={Type.Headline2}>
+        <View style={sharedStyles.iconCircle}>
+          <SvgXml xml={onboarding2Icon} width={30} height={30} />
+        </View>
+        <Typography style={sharedStyles.headerText}>
           {onboarding2Header}
         </Typography>
-        <Typography style={styles.subheaderText}>
+        <Typography style={sharedStyles.subheaderText}>
           {onboarding2Subheader}
         </Typography>
       </View>
@@ -59,7 +63,6 @@ const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: '100%',
-    top: '-10%',
     resizeMode: 'cover',
     position: 'absolute',
   },
@@ -72,15 +75,6 @@ const styles = StyleSheet.create({
     flex: 2,
     alignSelf: 'center',
     justifyContent: 'center',
-  },
-  headerText: {
-    color: Colors.VIOLET,
-  },
-  subheaderText: {
-    marginTop: '6%',
-    color: Colors.VIOLET,
-    fontSize: 16,
-    fontFamily: fontFamily.primaryRegular,
   },
   verticalSpacer: {
     flex: 1,
