@@ -74,7 +74,6 @@ class AuthorityInfoScreen extends Component {
     return (
       <Theme>
         <NavigationBarWrapper
-          includeBackButton={false}
           title={languages.t('label.choose_provider_title')}
           onBackPress={this.backToMain.bind(this)}>
           <View style={{ flex: 1 }}>

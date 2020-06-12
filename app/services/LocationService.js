@@ -8,6 +8,7 @@ import { GetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 import BackgroundTimer from 'react-native-background-timer';
 import { HCAService } from '../services/HCAService';
+import { isGPS } from '../COVIDSafePathsConfig';
 
 let isBackgroundGeolocationConfigured = false;
 let isBackgroundGeolocationStarted = false;
@@ -79,7 +80,9 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('start', () => {
       console.log('[INFO] BackgroundGeolocation service has been started');
-      this.findNewAuthorities();
+      if(isGPS){
+        this.findNewAuthorities();
+      }
     });
 
     BackgroundGeolocation.on('authorization', (status) => {
