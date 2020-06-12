@@ -20,7 +20,7 @@ import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
-import healthcareAuthorityOptionsSelector from '../../store/selectors/selectedHealthcareAuthoritiesSelector';
+import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
 
 export const ExportSelectHA = ({ navigation }) => {
   const { t } = useTranslation();
