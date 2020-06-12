@@ -132,6 +132,8 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
 
     /**
      * Once user consents, upload diagnosis keys to app server.
+     * // TODO if there is a flow to save a new diagnosis before the user consents to share,
+     * // use "updateDiagnosisShared" on success
      */
     @ReactMethod
     public void sharePositiveDiagnosis(final Promise promise) {
@@ -139,11 +141,13 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
         FutureCallback<Boolean> shareDiagnosisCallback = new FutureCallback<Boolean>() {
             @Override
             public void onSuccess(@NullableDecl Boolean result) {
+                shareDiagnosisManager.saveNewDiagnosis(true);
                 promise.resolve(result);
             }
 
             @Override
             public void onFailure(Throwable t) {
+                shareDiagnosisManager.saveNewDiagnosis(false);
                 promise.reject(t);
             }
         };

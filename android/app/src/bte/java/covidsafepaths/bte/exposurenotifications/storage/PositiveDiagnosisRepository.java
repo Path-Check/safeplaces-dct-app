@@ -31,30 +31,19 @@ import java.util.List;
  */
 public class PositiveDiagnosisRepository {
 
-  public PositiveDiagnosisRepository(Context context) {
-    // TODO
+  public PositiveDiagnosisRepository() {
   }
-
-//  public LiveData<List<PositiveDiagnosisEntity>> getAllLiveData() {
-//    return getAllLiveData;
-//  }
-
-//  public LiveData<PositiveDiagnosisEntity> getByIdLiveData(long id) {
-//    // TODO
-//  }
 
   public ListenableFuture<Void> insertAsync(PositiveDiagnosis positiveDiagnosis) {
     return RealmSecureStorageBte.INSTANCE.insertDiagnosisAsync(positiveDiagnosis);
   }
 
   public ListenableFuture<Void> deleteByIdAsync(long id) {
-    // TODO
-    return Futures.immediateVoidFuture();
+    return RealmSecureStorageBte.INSTANCE.deleteDiagnosisAsync(id);
   }
 
   public ListenableFuture<Void> markSharedForIdAsync(long id,
                                                      boolean shared) {
     return RealmSecureStorageBte.INSTANCE.markDiagnosisSharedAsync(id, shared);
   }
-
 }

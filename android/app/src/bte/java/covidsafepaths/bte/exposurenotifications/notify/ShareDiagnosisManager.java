@@ -32,7 +32,6 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
-import org.threeten.bp.ZonedDateTime;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -61,20 +60,15 @@ public class ShareDiagnosisManager {
     private final MutableLiveData<Long> existingIdLiveData = new MutableLiveData<>(NO_EXISTING_ID);
 
     public ShareDiagnosisManager(Context context) {
-        repository = new PositiveDiagnosisRepository(context);
+        repository = new PositiveDiagnosisRepository();
         this.context = context;
     }
-
-//    @NonNull
-//    public LiveData<PositiveDiagnosisEntity> getByIdLiveData(long id) {
-//        return repository.getByIdLiveData(id);
-//    }
 
     /**
      * TODO currently unused
      * Deletes a given entity
      */
-    public void deleteEntity(PositiveDiagnosis positiveDiagnosis) {
+    public void deleteDiagnosis(PositiveDiagnosis positiveDiagnosis) {
         Futures.addCallback(
                 repository.deleteByIdAsync(positiveDiagnosis.getId()),
                 new FutureCallback<Void>() {
@@ -93,6 +87,7 @@ public class ShareDiagnosisManager {
 
     /**
      * Share the keys.
+     *
      * @return Boolean representing success or failure of sharing keys with service.
      */
     public ListenableFuture<Boolean> share() {
@@ -102,20 +97,22 @@ public class ShareDiagnosisManager {
 
     /**
      * TODO currently unused
-     * Performs the save operation and whether to mark as shared or not.
+     * Performs the save operation once a user reports a positive diagnosis
      */
-    public void save(boolean shared) {
+    public void saveNewDiagnosis(boolean shared) {
         Futures.addCallback(
-                insertOrUpdateDiagnosis(shared),
+                insertNewDiagnosis(shared),
                 new FutureCallback<Void>() {
                     @Override
                     public void onSuccess(@NullableDecl Void result) {
                         // TODO
+                        Log.d(TAG, "Saved new diagnosis");
                     }
 
                     @Override
                     public void onFailure(Throwable t) {
                         // TODO
+                        Log.e(TAG, "Failed to save new diagnosis", t);
                     }
                 },
                 AppExecutors.getLightweightExecutor());
@@ -124,14 +121,24 @@ public class ShareDiagnosisManager {
     /**
      * Inserts current diagnosis into the local database with a shared state.
      */
-    private ListenableFuture<Void> insertOrUpdateDiagnosis(boolean shared) {
-        long positiveDiagnosisId = existingIdLiveData.getValue();
-        if (positiveDiagnosisId == NO_EXISTING_ID) {
-            // Add flow so add the entity
-            return repository.insertAsync(new PositiveDiagnosis());
+    private ListenableFuture<Void> insertNewDiagnosis(boolean shared) {
+        PositiveDiagnosis positiveDiagnosis = new PositiveDiagnosis();
+        positiveDiagnosis.setShared(shared);
+        existingIdLiveData.setValue(positiveDiagnosis.getId());
+        return repository.insertAsync(positiveDiagnosis);
+    }
+
+    /**
+     * TODO unused
+     * If the user has the opportunity to change their mind and share a diagnosis later
+     */
+    public ListenableFuture<Void> updateDiagnosisShared(boolean shared) {
+        long existingId = existingIdLiveData.getValue();
+        if (existingId != NO_EXISTING_ID) {
+            return repository.markSharedForIdAsync(existingIdLiveData.getValue(), shared);
         } else {
-            // Update flow so just update the shared status
-            return repository.markSharedForIdAsync(positiveDiagnosisId, shared);
+            // TODO error state
+            return Futures.immediateVoidFuture();
         }
     }
 
@@ -152,7 +159,7 @@ public class ShareDiagnosisManager {
      *
      * @return a {@link ListenableFuture} of type {@link Boolean} of successfully submitted state
      */
-    private ListenableFuture<Boolean> submitKeysToService(List<TemporaryExposureKey> recentKeys) {
+    public ListenableFuture<Boolean> submitKeysToService(List<TemporaryExposureKey> recentKeys) {
         Builder<DiagnosisKey> builder = new Builder<>();
         for (TemporaryExposureKey k : recentKeys) {
             builder.add(

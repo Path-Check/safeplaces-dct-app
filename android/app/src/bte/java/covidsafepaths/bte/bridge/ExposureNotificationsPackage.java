@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import covidsafepaths.bte.exposurenotifications.DebugMenuModule;
 import covidsafepaths.bte.exposurenotifications.ExposureNotificationsModule;
 
 public class ExposureNotificationsPackage implements ReactPackage {
@@ -19,6 +20,7 @@ public class ExposureNotificationsPackage implements ReactPackage {
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
         modules.add(new ExposureNotificationsModule(reactContext));
+        modules.add(new DebugMenuModule(reactContext));
 
         return modules;
     }
