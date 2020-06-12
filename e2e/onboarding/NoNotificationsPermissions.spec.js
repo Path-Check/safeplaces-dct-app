@@ -22,7 +22,7 @@ describe.each(languages)(
       });
 
       it('Allows the user to go to the Home page and does not display a notification', async () => {
-        await Home.hasNoKnownContact(languageStrings);
+        await Home.allServicesOn(languageStrings);
         await Home.takeScreenshot();
       });
     });

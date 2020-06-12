@@ -21,8 +21,8 @@ describe.each(languages)(
         await navigateThroughOnboarding(languageStrings);
       });
 
-      it('Successfully completes device setup', async () => {
-        await Home.hasNoKnownContact(languageStrings);
+      it('Successfully completes device setup and shows that no authorities are in the area', async () => {
+        await Home.noAuthorities(languageStrings);
         await Home.takeScreenshot();
       });
 

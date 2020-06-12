@@ -22,7 +22,6 @@ describe.each(languages)(
       });
 
       it('Allows the user to go to the Home page but shows a notification that location is required', async () => {
-        // await Home.hasLocationDisabled(languageStrings);
         await Home.takeScreenshot();
       });
 
