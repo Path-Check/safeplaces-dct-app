@@ -33,7 +33,7 @@ export const EN_DEBUG_MENU_SCREEN_NAME = 'ENDebugMenu';
 export const EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME = 'ENLocalDiagnosisKeyScreen';
 
 export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
-  const { toggleHasExposure } = useContext(ExposureNotificationContext);
+  const { resetExposures } = useContext(ExposureNotificationContext);
   useEffect(() => {
     const handleBackPress = () => {
       navigation.goBack();
@@ -89,8 +89,8 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
     };
   };
 
-  const handleOnPressToggleExposure = () => {
-    toggleHasExposure();
+  const handleOnPressResetExposures = () => {
+    resetExposures();
   };
 
   const handleOnPressToggleExposureNotifications = () => {
@@ -106,8 +106,8 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
       <ScrollView>
         <Section>
           <Item
-            label='Toggle Exposure State'
-            onPress={handleOnPressToggleExposure}
+            label='Reset Exposures'
+            onPress={handleOnPressResetExposures}
             last
           />
         </Section>

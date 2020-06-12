@@ -36,7 +36,7 @@ export const secondaryBlue = midnightBlue;
 export const tertiaryBlue = royalerBlue;
 
 // Yellows
-export const amber = '#ffc000';
+export const amber = '#ffcc00';
 export const kournikova = '#ffdd76';
 export const orangePeel = '#ff9900';
 
