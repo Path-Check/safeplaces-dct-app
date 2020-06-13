@@ -92,7 +92,6 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             }
           >
             <SvgXml
-              size={24}
               style={
                 Array [
                   Object {
@@ -227,51 +226,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         >
           <View
             accessible={true}
-            focusable={false}
-            isTVSelectable={true}
-            style={
-              Object {
-                "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
-                "flex": 1,
-                "opacity": 1,
-                "paddingVertical": 20,
-              }
-            }
-          >
-            <Text
-              style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
-              }
-              use="body1"
-            >
-              Your Healthcare Authority
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#161a25",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 15,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
-              }
-              use="body1"
-            >
-              Select a Healthcare Authority to learn about COVID-19 in your area, where available
-            </Text>
-          </View>
-          <View
-            accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -295,7 +250,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               }
               use="body1"
             >
-              Share location history
+              settings.report_positive_test
             </Text>
             <Text
               style={
@@ -310,33 +265,34 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               }
               use="body1"
             >
-              Your private data can be transferred to health authorities, backed up, or otherwise shared.
+              settings.report_positive_test_description
             </Text>
           </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
+            }
+          }
+        >
           <View
             style={
               Object {
-                "backgroundColor": "#ffffff",
-                "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
-                "borderTopWidth": 1,
-                "flex": 1,
-                "marginBottom": 20,
-                "paddingHorizontal": 16,
+                "alignItems": "center",
+                "flexDirection": "row",
+                "paddingTop": 16,
               }
             }
           >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "paddingTop": 18,
-                }
-              }
-            >
-              <SvgXml
-                xml="<svg width=\\"27\\" height=\\"34\\" viewBox=\\"0 0 27 34\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\">
+            <SvgXml
+              xml="<svg width=\\"27\\" height=\\"34\\" viewBox=\\"0 0 27 34\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\">
 <rect width=\\"27\\" height=\\"34\\" fill=\\"url(#pattern0)\\"/>
 <defs>
 <pattern id=\\"pattern0\\" patternContentUnits=\\"objectBoundingBox\\" width=\\"1\\" height=\\"1\\">
@@ -346,118 +302,103 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
 </defs>
 </svg>
 "
-              />
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 21,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginLeft": 8,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Google Maps
-              </Text>
-            </View>
-            <View
+            />
+            <Text
               style={
                 Object {
-                  "paddingBottom": 20,
-                  "paddingLeft": 0,
-                  "paddingRight": 0,
-                  "paddingTop": 20,
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "marginLeft": 16,
+                  "writingDirection": "ltr",
                 }
               }
+              use="body1"
             >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 16,
-                    "fontWeight": "normal",
-                    "lineHeight": 22,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body2"
-              >
-                To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.
-              </Text>
-            </View>
-            <View
-              accessibilityLabel="Import past locations"
-              accessibilityRole="button"
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
+              Google Maps
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "paddingVertical": 20,
+              }
+            }
+          >
+            <Text
               style={
                 Object {
-                  "alignContent": "center",
-                  "alignItems": "center",
-                  "alignSelf": "stretch",
-                  "backgroundColor": "transparent",
-                  "borderBottomLeftRadius": 8,
-                  "borderBottomRightRadius": 8,
-                  "borderColor": "black",
-                  "borderStyle": "solid",
-                  "borderTopLeftRadius": 8,
-                  "borderTopRightRadius": 8,
-                  "borderWidth": 2,
-                  "flexDirection": "row",
-                  "height": 72,
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingHorizontal": 16,
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 16,
+                  "fontWeight": "normal",
+                  "lineHeight": 22,
+                  "writingDirection": "ltr",
                 }
               }
+              use="body2"
             >
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans-Medium",
-                    "fontSize": 20,
-                    "fontWeight": "normal",
-                    "lineHeight": 40,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Import past locations
-              </Text>
-            </View>
-            <View
+              To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "borderColor": "#4051db",
+                "borderRadius": 8,
+                "borderWidth": 1,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 25,
+                "paddingTop": 24,
+              }
+            }
+          >
+            <Text
               style={
                 Object {
-                  "paddingBottom": 20,
-                  "paddingLeft": 0,
-                  "paddingRight": 0,
-                  "paddingTop": 20,
+                  "color": "#4051db",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 19,
+                  "fontWeight": "500",
+                  "lineHeight": 40,
+                  "writingDirection": "ltr",
                 }
               }
+              use="body1"
             >
-              <Text
-                monospace={true}
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexMono",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
+              Import past locations
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "paddingVertical": 20,
+              }
+            }
+          >
+            <Text
+              monospace={true}
+              secondary={true}
+              style={
+                Object {
+                  "fontFamily": "IBMPlexMono",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "writingDirection": "ltr",
                 }
-                use="body3"
-              >
-                Safe Paths has no affiliation with Google and never shares your data.
-              </Text>
-            </View>
+              }
+              use="body3"
+            >
+              Safe Paths has no affiliation with Google and never shares your data.
+            </Text>
           </View>
         </View>
         <View
@@ -475,7 +416,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         >
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -508,7 +449,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             isTVSelectable={true}
             style={
               Object {
-                "borderBottomWidth": 1,
+                "borderBottomWidth": 0,
                 "borderColor": "#a5affb",
                 "flex": 1,
                 "opacity": 1,
@@ -547,7 +488,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         >
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -576,7 +517,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           </View>
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -702,7 +643,6 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             }
           >
             <SvgXml
-              size={24}
               style={
                 Array [
                   Object {
@@ -837,51 +777,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         >
           <View
             accessible={true}
-            focusable={false}
-            isTVSelectable={true}
-            style={
-              Object {
-                "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
-                "flex": 1,
-                "opacity": 1,
-                "paddingVertical": 20,
-              }
-            }
-          >
-            <Text
-              style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
-              }
-              use="body1"
-            >
-              Your Healthcare Authority
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#161a25",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 15,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
-              }
-              use="body1"
-            >
-              Select a Healthcare Authority to learn about COVID-19 in your area, where available
-            </Text>
-          </View>
-          <View
-            accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -905,7 +801,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               }
               use="body1"
             >
-              Share location history
+              settings.report_positive_test
             </Text>
             <Text
               style={
@@ -920,7 +816,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               }
               use="body1"
             >
-              Your private data can be transferred to health authorities, backed up, or otherwise shared.
+              settings.report_positive_test_description
             </Text>
           </View>
         </View>
@@ -936,10 +832,23 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               "paddingHorizontal": 16,
             }
           }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
+            }
+          }
         >
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -972,7 +881,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             isTVSelectable={true}
             style={
               Object {
-                "borderBottomWidth": 1,
+                "borderBottomWidth": 0,
                 "borderColor": "#a5affb",
                 "flex": 1,
                 "opacity": 1,
@@ -1011,7 +920,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         >
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {
@@ -1040,7 +949,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           </View>
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             isTVSelectable={true}
             style={
               Object {

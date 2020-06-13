@@ -1,27 +1,40 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, View, StyleSheet, ScrollView } from 'react-native';
+import {
+  ViewStyle,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
-
 import {
-  FeatureFlag,
-  NativePicker,
-  NavigationBarWrapper,
-  Typography,
-} from '../../components';
-import { isGPS } from '../../COVIDSafePathsConfig';
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
+
 import {
   LOCALE_LIST,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
-import { GoogleMapsImport } from './GoogleMapsImport';
 import { Screens } from '../../navigation';
+import { FeatureFlag } from '../../components/FeatureFlag';
+import { NativePicker } from '../../components/NativePicker';
+import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
+import { Typography } from '../../components/Typography';
+import { isGPS } from '../../COVIDSafePathsConfig';
+import GoogleMapsImport from './GoogleMapsImport';
 
 import { Icons } from '../../assets';
 import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
 
-export const SettingsScreen = ({ navigation }) => {
+interface SettingsScreenProps {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+}
+
+const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   const { t, i18n } = useTranslation();
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
@@ -31,11 +44,11 @@ export const SettingsScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const navigateTo = (screen) => {
-    () => navigation.navigate(screen);
+  const navigateTo = (screen: string) => {
+    return () => navigation.navigate(screen);
   };
 
-  const localeChanged = async (locale) => {
+  const localeChanged = async (locale: string) => {
     try {
       await setUserLocaleOverride(locale);
       setUserLocale(locale);
@@ -44,7 +57,17 @@ export const SettingsScreen = ({ navigation }) => {
     }
   };
 
-  const LanguageSelectionListItem = ({ icon, label, onPress }) => {
+  interface LanguageSelectionListItemProps {
+    icon: string;
+    label: string;
+    onPress: () => void;
+  }
+
+  const LanguageSelectionListItem = ({
+    icon,
+    label,
+    onPress,
+  }: LanguageSelectionListItemProps) => {
     const iconStyle =
       i18n.dir() === 'rtl'
         ? { marginLeft: Spacing.xSmall }
@@ -56,13 +79,25 @@ export const SettingsScreen = ({ navigation }) => {
       <TouchableOpacity
         style={[styles.languageSelectionListItem, { flexDirection }]}
         onPress={onPress}>
-        <SvgXml xml={icon} style={[styles.icon, iconStyle]} size={24} />
+        <SvgXml xml={icon} style={[styles.icon, iconStyle]} />
         <Typography use={'body1'}>{label}</Typography>
       </TouchableOpacity>
     );
   };
 
-  const SettingsListItem = ({ label, onPress, description, style }) => {
+  interface SettingsListItemProps {
+    label: string;
+    onPress: () => void;
+    description?: string;
+    style?: ViewStyle;
+  }
+
+  const SettingsListItem = ({
+    label,
+    onPress,
+    description,
+    style,
+  }: SettingsListItemProps) => {
     return (
       <TouchableOpacity style={[styles.listItem, style]} onPress={onPress}>
         <Typography use={'body1'}>{label}</Typography>
@@ -84,7 +119,13 @@ export const SettingsScreen = ({ navigation }) => {
             items={LOCALE_LIST}
             value={userLocale}
             onValueChange={localeChanged}>
-            {({ label, openPicker }) => (
+            {({
+              label,
+              openPicker,
+            }: {
+              label: string;
+              openPicker: () => void;
+            }) => (
               <LanguageSelectionListItem
                 label={label || t('label.unknown')}
                 icon={Icons.LanguagesIcon}
@@ -94,45 +135,22 @@ export const SettingsScreen = ({ navigation }) => {
           </NativePicker>
         </View>
 
+        <View style={styles.section}>
+          <SettingsListItem
+            label={t('settings.report_positive_test')}
+            onPress={navigateTo('ExportFlow')}
+            description={t('settings.report_positive_test_description')}
+            style={styles.lastListItem}
+          />
+        </View>
+
         {isGPS ? (
           <View style={styles.section}>
-            <SettingsListItem
-              label={t('label.choose_provider_title')}
-              description={t('label.choose_provider_subtitle')}
-              onPress={navigateTo('ChooseProviderScreen')}
-            />
-            <FeatureFlag
-              name='export_e2e'
-              fallback={
-                <SettingsListItem
-                  label={t('share.title')}
-                  description={t('share.subtitle')}
-                  onPress={navigateTo('ExportLocally')}
-                  style={styles.lastListItem}
-                />
-              }>
-              <SettingsListItem
-                label={t('share.title')}
-                description={t('share.subtitle')}
-                onPress={navigateTo('ExportScreen')}
-              />
-            </FeatureFlag>
-            <FeatureFlag name='google_import'>
-              <View style={styles.section}>
-                <GoogleMapsImport navigation={navigation} />
-              </View>
+            <FeatureFlag name={'google_import'}>
+              <GoogleMapsImport navigation={navigation} />
             </FeatureFlag>
           </View>
-        ) : (
-          <View style={styles.section}>
-            <SettingsListItem
-              label={t('settings.report_positive_test')}
-              onPress={navigateTo('ExportFlow')}
-              description={t('settings.report_positive_test_description')}
-              style={styles.lastListItem}
-            />
-          </View>
-        )}
+        ) : null}
 
         <View style={styles.section}>
           <SettingsListItem
@@ -142,7 +160,7 @@ export const SettingsScreen = ({ navigation }) => {
           <SettingsListItem
             label={t('screen_titles.legal')}
             onPress={() => navigation.navigate(Screens.Licenses)}
-            last={!__DEV__}
+            style={styles.lastListItem}
           />
         </View>
 
@@ -154,7 +172,7 @@ export const SettingsScreen = ({ navigation }) => {
             />
             <SettingsListItem
               label='Feature Flags (Dev mode only)'
-              onPress={navigateTo(Screens.FeatureFlag)}
+              onPress={navigateTo(Screens.FeatureFlags)}
               style={styles.lastListItem}
             />
           </View>
@@ -195,3 +213,5 @@ const styles = StyleSheet.create({
     ...TypographyStyles.description,
   },
 });
+
+export default SettingsScreen;
