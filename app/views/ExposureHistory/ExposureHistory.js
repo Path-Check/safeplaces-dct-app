@@ -1,16 +1,17 @@
+import React, { useEffect, useState } from 'react';
+import { BackHandler, ScrollView } from 'react-native';
 import { css } from '@emotion/native';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-import React, { useEffect, useState } from 'react';
-import { BackHandler, ScrollView } from 'react-native';
 
 import { NavigationBarWrapper, Typography } from '../../components';
 import { MAX_EXPOSURE_WINDOW } from '../../constants/history';
 import { CROSSED_PATHS } from '../../constants/storage';
-import { Theme, charcoal, defaultTheme } from '../../constants/themes';
+import { defaultTheme } from '../../constants/themes';
 import { GetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import { DetailedHistory } from './DetailedHistory';
+import { isGPS } from '../../COVIDSafePathsConfig';
 
 const NO_HISTORY = [];
 
@@ -20,16 +21,20 @@ export const ExposureHistoryScreen = ({ navigation }) => {
 
   useEffect(() => {
     async function fetchData() {
-      let dayBins = await GetStoreData(CROSSED_PATHS);
+      if (isGPS) {
+        let dayBins = await GetStoreData(CROSSED_PATHS);
 
-      if (dayBins === null) {
-        setHistory(NO_HISTORY);
-        console.log("Can't find Crossed Paths");
+        if (dayBins === null) {
+          setHistory(NO_HISTORY);
+          console.log("Can't find Crossed Paths");
+        } else {
+          console.log('Found Crossed Paths');
+          setHistory(convertToDailyMinutesExposed(dayBins));
+        }
+        setIsLoading(false);
       } else {
-        console.log('Found Crossed Paths');
-        setHistory(convertToDailyMinutesExposed(dayBins));
+        setIsLoading(false);
       }
-      setIsLoading(false);
     }
 
     fetchData();
@@ -47,38 +52,30 @@ export const ExposureHistoryScreen = ({ navigation }) => {
     };
   }, [navigation]);
 
-  const hasExposure =
-    history?.length && history.some((h) => h.exposureMinutes > 0);
+  const themeBackground = defaultTheme.background;
 
-  const themeBackground = hasExposure
-    ? charcoal.background
-    : defaultTheme.background;
-
-  const themeText = hasExposure
-    ? charcoal.textPrimaryOnBackground
-    : defaultTheme.textPrimaryOnBackground;
+  const themeText = defaultTheme.textPrimaryOnBackground;
 
   return (
-    <Theme use={hasExposure ? 'charcoal' : 'default'}>
-      <NavigationBarWrapper
-        title={languages.t('label.event_history_title')}
-        onBackPress={() => navigation.goBack()}>
-        <ScrollView
-          contentContainerStyle={css`
-            padding: 20px;
-            background-color: ${themeBackground};
-            color: ${themeText};
-          `}>
-          {isLoading ? (
-            <Typography use='body2'>
-              {languages.t('label.loading_public_data')}
-            </Typography>
-          ) : (
-            <DetailedHistory history={history} />
-          )}
-        </ScrollView>
-      </NavigationBarWrapper>
-    </Theme>
+    <NavigationBarWrapper
+      includeBackButton={false}
+      title={languages.t('label.event_history_title')}
+      onBackPress={() => navigation.goBack()}>
+      <ScrollView
+        contentContainerStyle={css`
+          padding: 20px;
+          background-color: ${themeBackground};
+          color: ${themeText};
+        `}>
+        {isLoading ? (
+          <Typography use='body2'>
+            {languages.t('label.loading_public_data')}
+          </Typography>
+        ) : (
+          <DetailedHistory history={history} />
+        )}
+      </ScrollView>
+    </NavigationBarWrapper>
   );
 };
 

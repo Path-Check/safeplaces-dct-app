@@ -9,32 +9,39 @@ import { Icons } from '../assets';
 import Colors from '../constants/colors';
 
 /**
- * Navigation bar and status bar
+ * Navigation bar and status bar. Optionally include bottom nav
  *
  * @param {{
  *   title: string,
  *   onBackPress: () => void,
+ *   includeBottomNav: boolean
  * }} param0
  */
 const widthScale = Math.min(Dimensions.get('window').width / 400, 1.0);
 
 interface NavigationBarWrapperProps {
-  children: JSX.Element;
+  children: React.ReactNode;
   title: string;
   onBackPress: () => void;
+  includeBottomNav?: boolean;
+  includeBackButton?: boolean;
 }
-
-interface Theme {
+export interface ThemeProps {
   navBar: string;
   background: string;
   navBarBorder: string;
   onNavBar: string;
 }
 
+export interface Theme {
+  theme: ThemeProps;
+}
+
 export const NavigationBarWrapper = ({
   children,
   title,
   onBackPress,
+  includeBackButton = true,
 }: NavigationBarWrapperProps): JSX.Element => {
   const theme = useTheme<{ navBar: string }>();
 
@@ -50,9 +57,11 @@ export const NavigationBarWrapper = ({
       <TopContainer />
       <BottomContainer>
         <Header>
-          <BackArrowIcon onPress={() => onBackPress()}>
-            <BackArrowSvg xml={Icons.BackArrow} />
-          </BackArrowIcon>
+          {includeBackButton ? (
+            <BackArrowIcon onPress={() => onBackPress()}>
+              <BackArrowSvg xml={Icons.BackArrow} />
+            </BackArrowIcon>
+          ) : null}
           <Title>{title}</Title>
         </Header>
         {children}
@@ -61,22 +70,22 @@ export const NavigationBarWrapper = ({
   );
 };
 
-const themeNavBar = (theme: Theme) => theme.navBar || Colors.VIOLET;
+const themeNavBar = ({ theme }: Theme) => theme.navBar || Colors.VIOLET;
 
 const TopContainer = styled.SafeAreaView`
   flex: 0;
   background-color: ${themeNavBar};
 `;
 
-const themeBackground = (theme: Theme) =>
+const themeBackground = ({ theme }: Theme) =>
   theme.background || Colors.INTRO_WHITE_BG;
 
-const BottomContainer = styled.SafeAreaView`
+const BottomContainer = styled.View`
   flex: 1;
   background-color: ${themeBackground};
 `;
 
-const themeNavBarBorder = (theme: Theme) =>
+const themeNavBarBorder = ({ theme }: Theme) =>
   theme.navBarBorder || Colors.NAV_BAR_VIOLET;
 
 const Header = styled.View`
@@ -85,9 +94,10 @@ const Header = styled.View`
   border-bottom-color: ${themeNavBarBorder};
   border-bottom-width: 1px;
   flex-direction: row;
+  height: 55px;
 `;
 
-const themeOnNavBar = (theme: Theme) => theme.onNavBar || Colors.WHITE;
+const themeOnNavBar = ({ theme }: Theme) => theme.onNavBar || Colors.WHITE;
 
 const Title = styled.Text`
   align-self: center;
@@ -105,7 +115,6 @@ const Title = styled.Text`
 
 const BackArrowIcon = styled.TouchableOpacity`
   align-items: center;
-  height: 55px;
   justify-content: center;
   width: 60px;
   z-index: 1;

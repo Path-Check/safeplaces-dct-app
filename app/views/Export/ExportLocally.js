@@ -16,7 +16,7 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import { Icons } from '../../assets';
-import { Button, IconButton, Typography } from '../../components';
+import { Button, Typography } from '../../components';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
@@ -41,10 +41,6 @@ const ExportLocally = ({ navigation }) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
   });
-
-  function backToMain() {
-    navigation.goBack();
-  }
 
   async function onShare() {
     try {
@@ -126,15 +122,6 @@ const ExportLocally = ({ navigation }) => {
           end={{ x: 0, y: 1 }}
           colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
           style={{ flex: 1, height: '100%' }}>
-          <View style={styles.headerContainer}>
-            <IconButton
-              icon={Icons.Close}
-              size={18}
-              onPress={() => backToMain()}
-              accessibilityLabel='Close'
-            />
-          </View>
-
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.main}>
               <Typography use='headline2' style={styles.exportSectionTitles}>
@@ -170,13 +157,6 @@ const styles = StyleSheet.create({
   bottomSafeAreaContainer: {
     flex: 1,
     backgroundColor: Colors.VIOLET_BUTTON_DARK,
-  },
-  headerContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: 55,
-    justifyContent: 'flex-end',
-    paddingHorizontal: 26,
   },
   contentContainer: {
     flexDirection: 'column',

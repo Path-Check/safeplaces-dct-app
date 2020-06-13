@@ -6,27 +6,15 @@ class Home {
     await device.takeScreenshot(screenshotText);
   }
 
-  async hasNoKnownContact(languageStrings) {
+  async noAuthorities(languageStrings) {
     await expect(
-      element(by.label(languageStrings.label.home_no_contact_header)),
+      element(by.label(languageStrings.home.shared.no_authorities_header)),
     ).toBeVisible();
   }
 
-  async hasLocationDisabled(languageStrings) {
+  async noNotifications(languageStrings) {
     await expect(
-      element(by.label(languageStrings.label.home_unknown_header)),
-    ).toBeVisible();
-    await expect(
-      element(by.label(languageStrings.label.home_unknown_subtext_location)),
-    ).toBeVisible();
-  }
-
-  async hasLocationHistoryDisabled(languageStrings) {
-    await expect(
-      element(by.label(languageStrings.label.home_setting_off_header)),
-    ).toBeVisible();
-    await expect(
-      element(by.label(languageStrings.label.home_setting_off_subtext_location)),
+      element(by.label(languageStrings.home.shared.notifications_off_header)),
     ).toBeVisible();
   }
 }

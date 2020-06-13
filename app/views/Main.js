@@ -1,63 +1,63 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { AppState, BackHandler, StatusBar, View } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
-import { Icons } from '../assets';
-import { IconButton } from '../components';
 import Colors from '../constants/colors';
-import { Theme } from '../constants/themes';
 import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
-import LocationServices, { Reason } from '../services/LocationService';
-import { ExposureNotificationNotAvailablePage } from './main/ExposureNotificationNotAvailablePage';
-import { ExposurePage } from './main/ExposurePage';
-import { NoKnownExposure } from './main/NoKnownExposure';
-import { OffPage } from './main/OffPage';
+import LocationServices from '../services/LocationService';
+import ExposureNotificationService from '../services/ExposureNotificationService';
+import { AllServicesOnScreen } from './main/AllServicesOn';
+import {
+  TracingOffScreen,
+  NotificationsOffScreen,
+  SelectAuthorityScreen,
+  NoAuthoritiesScreen,
+} from './main/ServiceOffScreens';
 import { styles } from './main/style';
-import { UnknownPage } from './main/UnknownPage';
+import PermissionsContext, { PermissionStatus } from '../PermissionsContext';
+import { HCAService } from '../services/HCAService';
 
 export const Main = () => {
+  const tracingService = isGPS ? LocationServices : ExposureNotificationService;
   const navigation = useNavigation();
+  const { notification } = useContext(PermissionsContext);
+  const [hasAuthorityInBounds, setHasAuthorityInBounds] = useState(undefined);
+  const [hasSavedAuthorities, setHasSavedAuthorities] = useState(undefined);
+
   if (isPlatformAndroid()) {
     StatusBar.setBackgroundColor(Colors.TRANSPARENT);
     StatusBar.setBarStyle('light-content');
     StatusBar.setTranslucent(true);
   }
 
-  const [location, setLocation] = useState({
-    canTrack: true,
-    reason: null,
-    hasPotentialExposure: false,
-  });
-
-  const SettingsNavButton = () => {
-    return (
-      <Theme use='violet'>
-        <IconButton
-          style={styles.settingsContainer}
-          icon={Icons.SettingsIcon}
-          size={30}
-          onPress={() => {
-            navigation.navigate('SettingsScreen');
-          }}
-          label='default'
-        />
-      </Theme>
-    );
-  };
+  const [trackingInfo, setTrackingInfo] = useState({ canTrack: true });
 
   const checkForPossibleExposure = () => {
-    BackgroundTaskServices.start();
-    checkIntersect();
+    if (isGPS) {
+      BackgroundTaskServices.start();
+      checkIntersect();
+    }
   };
 
   const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
-    const state = await LocationServices.checkStatusAndStartOrStop();
-    setLocation(state);
-  }, [setLocation]);
+    const { canTrack } = await tracingService.checkStatusAndStartOrStop();
+    setTrackingInfo({ canTrack });
+
+    const authoritiesInBoundsState = await HCAService.hasAuthoritiesInBounds();
+    setHasAuthorityInBounds(authoritiesInBoundsState);
+
+    const savedAuthoritiesState = await HCAService.hasSavedAuthorities();
+    setHasSavedAuthorities(savedAuthoritiesState);
+  }, [
+    tracingService,
+    setTrackingInfo,
+    setHasAuthorityInBounds,
+    setHasSavedAuthorities,
+  ]);
 
   const handleBackPress = () => {
     BackHandler.exitApp(); // works best when the goBack is async
@@ -82,34 +82,19 @@ export const Main = () => {
     };
   }, [navigation, updateStateInfo]);
 
-  let page;
+  let screen;
 
-  if (!isGPS) {
-    // A BT specific page for when Exposure Notifications are not available
-    // for the Healthcare Authority chosen.
-    page = <ExposureNotificationNotAvailablePage />;
-  } else if (location.canTrack) {
-    if (location.hasPotentialExposure) {
-      page = <ExposurePage />;
-    } else {
-      page = <NoKnownExposure />;
-    }
+  if (!trackingInfo.canTrack) {
+    screen = <TracingOffScreen />;
+  } else if (notification.status === PermissionStatus.DENIED) {
+    screen = <NotificationsOffScreen />;
+  } else if (hasAuthorityInBounds === false) {
+    screen = <NoAuthoritiesScreen />;
+  } else if (hasSavedAuthorities === false) {
+    screen = <SelectAuthorityScreen />;
   } else {
-    if (
-      location.reason === Reason.LOCATION_OFF ||
-      location.reason === Reason.NOT_AUTHORIZED
-    ) {
-      page = <OffPage />;
-    } else {
-      // Invariant violation if this occurs
-      page = <UnknownPage />;
-    }
+    screen = <AllServicesOnScreen />;
   }
 
-  return (
-    <View style={styles.backgroundImage}>
-      {page}
-      <SettingsNavButton />
-    </View>
-  );
+  return <View style={styles.backgroundImage}>{screen}</View>;
 };

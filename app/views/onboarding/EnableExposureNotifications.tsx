@@ -6,17 +6,14 @@ import { SvgXml } from 'react-native-svg';
 import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
 import { Type, Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
-import { Theme } from '../../constants/themes';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
 import { useDispatch } from 'react-redux';
-
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 
+import { Spacing, Colors } from '../../styles';
+
 export const EnableExposureNotifications = (): JSX.Element => {
-  const { requestExposureNotificationAuthorization } = useContext(
-    ExposureNotificationContext,
-  );
+  const { requestENAuthorization } = useContext(ExposureNotificationContext);
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
@@ -28,55 +25,53 @@ export const EnableExposureNotifications = (): JSX.Element => {
   const titleText = t('label.launch_exposure_notif_header');
 
   const handleOnPressEnable = () => {
-    requestExposureNotificationAuthorization();
+    requestENAuthorization();
     dispatchOnboardingComplete();
   };
 
   return (
-    <Theme use='violet'>
-      <ImageBackground
-        source={Images.LaunchScreenBackground}
-        style={styles.backgroundImage}>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor='transparent'
-          translucent
-        />
+    <ImageBackground
+      source={Images.LaunchScreenBackground}
+      style={styles.backgroundImage}>
+      <StatusBar
+        barStyle='light-content'
+        backgroundColor='transparent'
+        translucent
+      />
 
-        <View
-          testID={'onboarding-permissions-screen'}
-          style={styles.mainContainer}>
-          <View style={styles.contentContainer}>
-            <View style={styles.iconContainer}>
-              <SvgXml xml={Icons.ExposureIcon} />
-            </View>
-            <Typography
-              style={styles.headerText}
-              use={Type.Headline2}
-              testID='Header'>
-              {titleText}
-            </Typography>
-            <Typography style={styles.subheaderText} use={Type.Body2}>
-              {subTitleText}
-            </Typography>
+      <View
+        testID={'onboarding-permissions-screen'}
+        style={styles.mainContainer}>
+        <View style={styles.contentContainer}>
+          <View style={styles.iconContainer}>
+            <SvgXml xml={Icons.ExposureIcon} />
           </View>
-
-          <View style={styles.footerContainer}>
-            <Button
-              secondary
-              label={disableButtonLabel}
-              onPress={dispatchOnboardingComplete}
-              testID={'onboarding-permissions-disable-button'}
-            />
-            <Button
-              label={buttonLabel}
-              onPress={handleOnPressEnable}
-              testID={'onboarding-permissions-button'}
-            />
-          </View>
+          <Typography
+            style={styles.headerText}
+            use={Type.Headline2}
+            testID='Header'>
+            {titleText}
+          </Typography>
+          <Typography style={styles.subheaderText} use={Type.Body2}>
+            {subTitleText}
+          </Typography>
         </View>
-      </ImageBackground>
-    </Theme>
+
+        <View style={styles.footerContainer}>
+          <Button
+            secondary
+            label={disableButtonLabel}
+            onPress={dispatchOnboardingComplete}
+            testID={'onboarding-permissions-disable-button'}
+          />
+          <Button
+            label={buttonLabel}
+            onPress={handleOnPressEnable}
+            testID={'onboarding-permissions-button'}
+          />
+        </View>
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -89,7 +84,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    padding: 24,
+    padding: Spacing.large,
   },
   contentContainer: {
     flex: 3,
@@ -101,13 +96,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   headerText: {
-    color: Colors.WHITE,
+    color: Colors.white,
   },
   iconContainer: {
     marginBottom: '10%',
   },
   subheaderText: {
-    color: Colors.WHITE,
+    color: Colors.white,
     marginTop: '3%',
   },
 });
