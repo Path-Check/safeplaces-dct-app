@@ -7,7 +7,7 @@ import { Typography } from './Typography';
 
 const height = Dimensions.get('window').height;
 
-export const NewsItem = ({ item, index, hideSpinner }) => {
+const NewsItem = ({ item, index, hideSpinner }) => {
   return (
     <View key={index} style={styles.singleNews}>
       <View key={index} style={styles.singleNewsHead}>
@@ -52,3 +52,5 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 12,
   },
 });
+
+export default NewsItem;

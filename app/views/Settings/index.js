@@ -71,12 +71,6 @@ export const SettingsScreen = ({ navigation }) => {
                 onPress={() => navigation.navigate('ChooseProviderScreen')}
               />
               <Item
-                label={t('label.news_title')}
-                description={t('label.news_subtitle')}
-                onPress={() => navigation.navigate('NewsScreen')}
-                last
-              />
-              <Item
                 label={t('label.event_history_title')}
                 description={t('label.event_history_subtitle')}
                 onPress={() => navigation.navigate('ExposureHistoryScreen')}
