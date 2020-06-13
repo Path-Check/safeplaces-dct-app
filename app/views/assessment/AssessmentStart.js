@@ -17,12 +17,12 @@ import {
 import { Info } from './Info';
 
 /** @type {React.FunctionComponent<{}>} */
-export const Start = ({ navigation }) => {
+export const AssessmentStart = ({ navigation }) => {
   let { t } = useTranslation();
   return (
     <Info
       ctaAction={() => {
-        navigation.push('Question', {
+        navigation.push('AssessmentQuestion', {
           question: agreeQuestion,
           option: agreeOption,
         });

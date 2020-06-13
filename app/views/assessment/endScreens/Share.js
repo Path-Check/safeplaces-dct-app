@@ -13,7 +13,7 @@ export const Share = ({ navigation }) => {
   return (
     <Info
       ctaAction={() => {
-        navigation.push('EndComplete');
+        navigation.push('AssessmentComplete');
       }}
       icon={Icons.AnonymizedDataInverted}
       backgroundColor={Colors.SECONDARY_10}

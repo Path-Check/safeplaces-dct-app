@@ -9,8 +9,8 @@ import Colors from '../../constants/colors';
 import { useSurvey } from '../../helpers/CustomHooks';
 import i18n from '../../locales/languages';
 import { AnswersContext, MetaContext, SurveyContext } from './Context';
-import { Question } from './Question';
-import { Start } from './Start';
+import { AssessmentQuestion } from './AssessmentQuestion';
+import { AssessmentStart } from './AssessmentStart';
 import {
   END_ROUTES,
   OPTION_VALUE_DISAGREE,
@@ -22,7 +22,7 @@ import {
   SCREEN_TYPE_ISOLATE,
 } from './constants';
 import { Caregiver } from './endScreens/Caregiver';
-import { Complete } from './endScreens/Complete';
+import { AssessmentComplete } from './endScreens/AssessmentComplete';
 import { Distancing } from './endScreens/Distancing';
 import { Emergency } from './endScreens/Emergency';
 import { Isolate } from './endScreens/Isolate';
@@ -70,7 +70,7 @@ const Assessment = ({ navigation }) => {
   const QuestionScreen = useMemo(
     // memoize assessment question
     () => ({ navigation, route }) => (
-      <Question
+      <AssessmentQuestion
         {...route.params}
         onNext={() => {
           onNextQuestion({ answers, navigation, route, survey });
@@ -87,7 +87,7 @@ const Assessment = ({ navigation }) => {
   const AssessmentCancel = () => (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('Start');
+        navigation.navigate('AssessmentStart');
       }}>
       <SvgXml xml={Icons.Close} />
     </TouchableOpacity>
@@ -97,7 +97,7 @@ const Assessment = ({ navigation }) => {
     () => ({
       completeRoute: 'EndShare',
       dismiss: () => {
-        navigation.navigate('Start');
+        navigation.navigate('AssessmentStart');
       },
     }),
     [navigation],
@@ -119,7 +119,7 @@ const Assessment = ({ navigation }) => {
         when mutated, but that's ok — just trying to avoid prop drilling.*/}
         <AnswersContext.Provider value={answers.current}>
           <Stack.Navigator
-            initialRouteName='Start'
+            initialRouteName='AssessmentStart'
             screenOptions={{
               cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
               cardStyle: {
@@ -127,8 +127,8 @@ const Assessment = ({ navigation }) => {
               },
             }}>
             <Stack.Screen
-              component={Start}
-              name='Start'
+              component={AssessmentStart}
+              name='AssessmentStart'
               options={{
                 ...screenOptions,
                 headerRight: () => null,
@@ -139,12 +139,12 @@ const Assessment = ({ navigation }) => {
             />
             <Stack.Screen
               component={QuestionScreen}
-              name='Question'
+              name='AssessmentQuestion'
               options={screenOptions}
             />
             <Stack.Screen
-              component={Complete}
-              name='EndComplete'
+              component={AssessmentComplete}
+              name='AssessmentComplete'
               options={{
                 ...screenOptions,
                 headerStyle: {
@@ -245,11 +245,11 @@ function onNextQuestion({ answers, navigation, route, survey }) {
   if (nextQuestion.question.question_type === SCREEN_TYPE_END) {
     if (END_ROUTES.includes(nextQuestion.question.screen_type))
       return navigation.push(nextQuestion.question.screen_type);
-    navigation.push('EndComplete');
+    navigation.push('AssessmentComplete');
     return;
   }
 
-  navigation.push(`Question`, {
+  navigation.push(`AssessmentQuestion`, {
     ...nextQuestion,
   });
 }

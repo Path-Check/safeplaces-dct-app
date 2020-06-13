@@ -8,7 +8,7 @@ import { MetaContext } from '../Context';
 import { Info } from '../Info';
 
 /** @type {React.FunctionComponent<{}>} */
-export const Complete = () => {
+export const AssessmentComplete = () => {
   let { t } = useTranslation();
   let { dismiss } = useContext(MetaContext);
   return (

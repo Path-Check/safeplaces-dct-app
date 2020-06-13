@@ -4,7 +4,7 @@ import { I18nextProvider } from 'react-i18next';
 
 import i18n from '../../../locales/languages';
 import { AnswersContext } from '../Context';
-import { Question } from '../Question';
+import { AssessmentQuestion } from '../AssessmentQuestion';
 import {
   QUESTION_TYPE_MULTI,
   QUESTION_TYPE_TEXT,
@@ -14,7 +14,7 @@ import {
 
 test('base', () => {
   const { asJSON } = render(
-    <Question
+    <AssessmentQuestion
       onChange={jest.fn()}
       onNext={jest.fn()}
       option={option}
@@ -27,7 +27,7 @@ test('base', () => {
 
 test('supports line breaks in the description', () => {
   const { queryAllByTestId } = render(
-    <Question
+    <AssessmentQuestion
       onChange={jest.fn()}
       onNext={jest.fn()}
       option={option}
@@ -41,7 +41,7 @@ test('supports line breaks in the description', () => {
 test('QUESTION_TYPE_TEXT', () => {
   let onChange = jest.fn();
   const { queryAllByTestId } = render(
-    <Question
+    <AssessmentQuestion
       onChange={onChange}
       onNext={jest.fn()}
       option={option}
@@ -58,7 +58,7 @@ test('QUESTION_TYPE_TEXT', () => {
 test('QUESTION_TYPE_MULTI', () => {
   let onChange = jest.fn();
   const { queryAllByTestId } = render(
-    <Question
+    <AssessmentQuestion
       onChange={onChange}
       onNext={jest.fn()}
       option={option}
