@@ -1,5 +1,13 @@
 {
   "_display_name": "Tagalog",
+  "assessment": {
+    "cancel": "Kanselahin",
+    "caregiver_cta": "Sa susunod",
+    "distancing_cta": "Sa susunod",
+    "isolate_cta": "Sa susunod",
+    "next": "Sa susunod",
+    "start_cta": "Simula"
+  },
   "common": {
     "next": "Sa susunod",
     "ok": "Ok",
