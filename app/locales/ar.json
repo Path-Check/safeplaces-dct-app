@@ -5,6 +5,14 @@
     "operating_system_abbr": "نظام التشغيل:",
     "version": "الإصدار:"
   },
+  "assessment": {
+    "cancel": "إلغاء",
+    "caregiver_cta": "التالى",
+    "complete_cta": "تم",
+    "distancing_cta": "التالى",
+    "isolate_cta": "التالى",
+    "next": "التالى"
+  },
   "common": {
     "done": "تم",
     "next": "التالى"
@@ -41,13 +49,10 @@
     "title": "تنزيل بيانات الموقع"
   },
   "label": {
-    "about_title": "نبذة عنا",
     "authorities_add_button_label": "إضافة هيئة صحية موثوقة",
     "authorities_add_url": "إضافة هيئة صحية عبر رابط",
     "authorities_desc": "اختر الهيئة الصحية الموثوقة في منطقتك للحصول على بيانات التعرض و الانتشار. حدد إما اسمًا من السجل العام ، أو أدخل عنوان الويب الذي قدمته السلطة",
     "authorities_input_placeholder": "الصق عنوان الرابط هنا",
-    "authorities_new_in_area_title_1": "هيئة الرعاية الصحية الجديدة",
-    "authorities_new_in_area_title_5": "هيئات الرعاية الصحية الجديدة",
     "authorities_no_sources": "لا توجد بيانات حتى الآن",
     "authorities_removal_alert_cancel": "إلغاء",
     "authorities_removal_alert_desc": "هل أنت متأكد من أنك تريد إزالة مصدر بيانات هذه الهيئة",
@@ -61,18 +66,6 @@
     "event_history_subtitle": "افهم تعرضك الشخصي بناءً على المعلومات التي تشاركها السلطات الصحية",
     "event_history_title": "سجلات التعرض",
     "filter_authorities_by_gps_history": "اختار حسب مواقعك",
-    "home_at_risk_header": "ربما تكون قد تعرضت",
-    "home_at_risk_subsubtext": "هذا لا يعني أنك مصاب",
-    "home_at_risk_subtext_location": "استنادًا إلى سجل GPS الخاص بك ، من المحتمل أنك كنت على اتصال أو قريبًا من شخص تم تشخيصه بـ COVID-19",
-    "home_enable_location": "تفعيل خدمة الموقع",
-    "home_mayo_link_heading": "مزيد من المعلومات عن COVID-19",
-    "home_mayo_link_label": "من Mayo Clinic \"مايو كلينك\"",
-    "home_no_contact_header": "لم يتم التعرض",
-    "home_no_contact_subtext": "استنادًا إلى البيانات المتاحة ، لم تكن بالقرب من أي شخص تم الإبلاغ عنه إيجابيًا بـ COVID-19",
-    "home_setting_off_header": "غير معروف",
-    "home_setting_off_subtext_location": "لا يمكننا معرفة ما إذا كنت في خطر ما لم تقم بتفعيل سجل المواقع المتتبعة الموجودة في شاشة الإعدادات",
-    "home_unknown_header": "غير معروف",
-    "home_unknown_subtext_location": "لا يمكننا معرفة ما إذا كنت معرضًا للخطر ما لم يكن للتطبيق حق الوصول إلى بيانات موقعك",
     "latest_news": "أحدث الأخبار",
     "launch_access_location": "السماح بتحديد الموقع",
     "launch_authority_access": "اشترك في الهيئات الصحية القريبة",
@@ -90,10 +83,16 @@
     "launch_notif_header": "تتيح لك الإشعارات معرفة ما إذا كنت قريب من شخص مصاب أم لا",
     "launch_notif_subheader": "لن نزعجك إلا لمشاركة التحديثات حول مخاطر التعرض المحتملة",
     "launch_notification_access": "السماح بالإشعارات",
+    "launch_screen1_header": "طريق العودة إلى الوضع الطبيعي يبدأ من هنا",
+    "launch_screen2_header_location": "احصل على إشعار إذا قمت بالعبور بجانب شخص تم تشخيصه بـ COVID-19",
+    "launch_screen2_subheader_location": "المعرفة قوة",
+    "launch_screen3_header_location": "إذا كان اختبارك إيجابيًا، فيمكنك اختيار التبرع بياناتك بشكل مجهول",
+    "launch_screen3_subheader_location": "مما يساعد على الحفاظ على مجتمعك بأكمله آمنًا",
+    "launch_screen4_header_location": "أنت المسيطرة بالكامل. يتم حفظ البيانات فقط على هاتفك",
+    "launch_screen4_subheader_location": "إذا كان الاختبار إيجابيًا ، انت فقط يمكنك اختيار المشاركة",
     "launch_set_up_phone_bluetooth": "تم",
     "launch_set_up_phone_location": "إعداد هاتفي",
     "launch_subheader": "لا تقلق ، لا تترك المعلومات جهازك أبدًا ما لم تقرر المشاركة بها",
-    "legal_page_title": "النظام القانوني",
     "loading_public_data": "جاري تحميل البيانات...",
     "location_disabled_message": "يتطلب تطبيق COVID Safe Paths خدمات الموقع",
     "location_disabled_title": "تم تعطيل خدمة تتبع الموقع",
@@ -111,12 +110,22 @@
     "skip_this_step": "تخطي هذه الخطوة",
     "team": "الفريق",
     "team_para": "يتكون فريقنا من مجموعة من علماء الأوبئة والمهندسين وعلماء البيانات وأخصائيين الخصوصية الرقمية والأساتذة والباحثين من المؤسسات المرموقة ، بما في ذلك: MIT و Harvard و The Mayo Clinic و TripleBlind و EyeNetra و Ernst & Young و Link Ventures",
-    "terms_of_use": "تعليمات الاستخدام"
+    "terms_of_use": "تعليمات الاستخدام",
+    "authorities_new_in_area_title_0": "",
+    "authorities_new_in_area_title_1": "هيئة الرعاية الصحية الجديدة",
+    "authorities_new_in_area_title_2": "",
+    "authorities_new_in_area_title_3": "",
+    "authorities_new_in_area_title_4": "",
+    "authorities_new_in_area_title_5": "هيئات الرعاية الصحية الجديدة"
   },
   "onboarding": {
     "eula_checkbox": "أوافق على اتفاقية الترخيص",
     "eula_continue": "استمر",
     "eula_message": "*يجب أن تقبل لاستخدام تطبيق Safe Paths"
+  },
+  "screen_titles": {
+    "about": "نبذة عنا",
+    "legal": "النظام القانوني"
   },
   "share": {
     "button_text": "مشاركة بيانات الموقع",
@@ -132,5 +141,6 @@
     "push_notification_message": "يرجى تحديث إصدار التطبيق الخاص بك",
     "push_notification_title": "إصدار التطبيق قديم",
     "update": "تحديث"
-  }
+  },
+  "": null
 }
