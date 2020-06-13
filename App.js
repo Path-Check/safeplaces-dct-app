@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { MenuProvider } from 'react-native-popup-menu';
-import { enableScreens } from 'react-native-screens';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -27,8 +26,6 @@ export const UnconnectedApp = () => (
     </MenuProvider>
   </FlagsProvider>
 );
-
-enableScreens();
 
 const App = () => {
   useEffect(() => {
