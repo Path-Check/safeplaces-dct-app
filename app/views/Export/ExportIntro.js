@@ -7,6 +7,7 @@ import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcare
 import { useAssets } from '../../TracingStrategyAssets';
 import ExportTemplate from './ExportTemplate';
 import { Icons } from '../../assets';
+import { Screens } from '../../navigation';
 
 export const ExportIntro = ({ navigation }) => {
   const { t } = useTranslation();
@@ -20,7 +21,7 @@ export const ExportIntro = ({ navigation }) => {
   const selectedAuthorityDummy = authorities[0];
 
   const onNext = () =>
-    navigation.navigate('ExportCodeInput', {
+    navigation.navigate(Screens.ExportCodeInput, {
       selectedAuthority: selectedAuthorityDummy,
     });
   const onClose = () => navigation.goBack();

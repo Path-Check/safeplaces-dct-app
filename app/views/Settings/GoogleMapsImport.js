@@ -3,6 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 
+import { Screens } from '../../navigation';
 import { Icons } from '../../assets';
 import { Button, Typography } from '../../components';
 
@@ -10,7 +11,7 @@ export const GoogleMapsImport = ({ navigation }) => {
   const { t } = useTranslation();
 
   const importPressed = () => {
-    navigation.navigate('ImportScreen');
+    navigation.navigate(Screens.Import);
   };
 
   return (

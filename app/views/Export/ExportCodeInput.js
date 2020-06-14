@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Icons } from '../../assets';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
@@ -21,6 +20,9 @@ import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import { useAssets } from '../../TracingStrategyAssets';
 import exitWarningAlert from './exitWarningAlert';
+import { Icons } from '../../assets';
+import { Screens } from '../../navigation';
+import { isGPS } from '../../COVIDSafePathsConfig';
 
 const CODE_LENGTH = 6;
 
@@ -116,12 +118,13 @@ const CodeInput = ({ code, length, setCode }) => {
 
 export const ExportSelectHA = ({ route, navigation }) => {
   const { t } = useTranslation();
-  const {
-    exportCodeBody,
-    exportCodeTitle,
-    exportCodeInputNextRoute,
-    exportExitRoute,
-  } = useAssets();
+  const { exportCodeBody, exportCodeTitle } = useAssets();
+
+  const exportCodeInputNextRoute = isGPS
+    ? Screens.ExportLocationConsent
+    : Screens.ExportPublishConsent;
+
+  const exportExitRoute = isGPS ? Screens.ExportStart : Screens.Settings;
 
   const [code, setCode] = useState('');
   const [isCheckingCode, setIsCheckingCode] = useState(false);

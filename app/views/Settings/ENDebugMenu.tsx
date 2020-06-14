@@ -21,6 +21,7 @@ import {
   getExposureConfiguration,
 } from '../../exposureNotificationsNativeModule';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
+import { Screens } from '../../navigation';
 
 // eslint-disable-next-line
 declare const global: any;
@@ -28,9 +29,6 @@ declare const global: any;
 type ENDebugMenuProps = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 };
-
-export const EN_DEBUG_MENU_SCREEN_NAME = 'ENDebugMenu';
-export const EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME = 'ENLocalDiagnosisKeyScreen';
 
 export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   const { resetExposures } = useContext(ExposureNotificationContext);
@@ -152,7 +150,7 @@ export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
           <Item
             label='Show Local Diagnosis Keys'
             onPress={() => {
-              navigation.navigate(EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME);
+              navigation.navigate(Screens.ENLocalDiagnosisKey);
             }}
           />
           <Item

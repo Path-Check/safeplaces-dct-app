@@ -8,6 +8,7 @@ import {
 
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
+import { Screens } from '../../navigation';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
@@ -32,7 +33,7 @@ const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
   const buttonText = 'Take Self Assessment';
 
   const handleOnPressTakeAssessment = () => {
-    navigation.navigate('Assessment');
+    navigation.navigate(Screens.SelfAssessment);
   };
 
   return (

@@ -1,11 +1,13 @@
 import React from 'react';
+import { Linking } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { Icons } from '../../assets';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
-import { Linking } from 'react-native';
 import getCursorApi from '../../api/healthcareAuthorities/getCursorApi';
+import { Icons } from '../../assets';
+import { Screens } from '../../navigation';
+
 // NOTE:
 // We don't actually hit the consent endpoint until the next screen. These screens are tied together,
 // So there is one endpoint for both parts.
@@ -15,7 +17,10 @@ export const ExportLocationConsent = ({ navigation, route }) => {
   const { selectedAuthority, code } = route.params;
 
   const onNext = () =>
-    navigation.navigate('ExportPublishConsent', { selectedAuthority, code });
+    navigation.navigate(Screens.ExportPublishConsent, {
+      selectedAuthority,
+      code,
+    });
 
   const onClose = () => exitWarningAlert(navigation);
 

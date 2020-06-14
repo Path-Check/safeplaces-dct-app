@@ -12,7 +12,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SvgXml } from 'react-native-svg';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Icons } from '../../assets';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
@@ -21,6 +20,8 @@ import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
+import { Screens } from '../../navigation';
+import { Icons } from '../../assets';
 
 export const ExportSelectHA = ({ navigation }) => {
   const { t } = useTranslation();
@@ -60,7 +61,7 @@ export const ExportSelectHA = ({ navigation }) => {
               <IconButton
                 icon={Icons.Close}
                 size={22}
-                onPress={() => navigation.navigate('ExportStart')}
+                onPress={() => navigation.navigate(Screens.ExportStart)}
               />
             </View>
             <Typography use='headline2' style={styles.exportSectionTitles}>
@@ -114,7 +115,9 @@ export const ExportSelectHA = ({ navigation }) => {
                 style={styles.exportButton}
                 label={t('common.next')}
                 onPress={() =>
-                  navigation.navigate('ExportCodeInput', { selectedAuthority })
+                  navigation.navigate(Screens.ExportCodeInput, {
+                    selectedAuthority,
+                  })
                 }
                 disabled={!selectedAuthority}
               />

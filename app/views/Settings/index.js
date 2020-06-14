@@ -14,11 +14,10 @@ import {
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
-import { FEATURE_FLAG_SCREEN_NAME } from '../../views/FeatureFlagToggles';
-import { EN_DEBUG_MENU_SCREEN_NAME } from './ENDebugMenu';
 import { GoogleMapsImport } from './GoogleMapsImport';
 import { Item } from './Item';
 import { Section } from './Section';
+import { Screens } from '../../navigation';
 
 export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -66,14 +65,9 @@ export const SettingsScreen = ({ navigation }) => {
           {isGPS ? (
             <>
               <Item
-                label={t('label.choose_provider_title')}
-                description={t('label.choose_provider_subtitle')}
-                onPress={() => navigation.navigate('ChooseProviderScreen')}
-              />
-              <Item
                 label={t('label.event_history_title')}
                 description={t('label.event_history_subtitle')}
-                onPress={() => navigation.navigate('ExposureHistoryScreen')}
+                onPress={() => navigation.navigate(Screens.ExposureHistory)}
               />
               <FeatureFlag
                 name='export_e2e'
@@ -81,14 +75,14 @@ export const SettingsScreen = ({ navigation }) => {
                   <Item
                     label={t('share.title')}
                     description={t('share.subtitle')}
-                    onPress={() => navigation.navigate('ExportLocally')}
+                    onPress={() => navigation.navigate(Screens.ExportLocally)}
                     last
                   />
                 }>
                 <Item
                   label={t('share.title')}
                   description={t('share.subtitle')}
-                  onPress={() => navigation.navigate('ExportScreen')}
+                  onPress={() => navigation.navigate(Screens.ExportIntro)}
                 />
                 <Item label={t('screen_titles.faq')} />
                 <Item label={t('screen_titles.report_issue')} last />
@@ -100,7 +94,7 @@ export const SettingsScreen = ({ navigation }) => {
               <Item label={t('screen_titles.report_issue')} />
               <Item
                 label={t('screen_titles.report_positive_test')}
-                onPress={() => navigation.navigate('ExportFlow')}
+                onPress={() => navigation.navigate(Screens.ExportFlow)}
                 last
               />
             </>
@@ -118,22 +112,22 @@ export const SettingsScreen = ({ navigation }) => {
         <Section last>
           <Item
             label={t('screen_titles.about')}
-            onPress={() => navigation.navigate('AboutScreen')}
+            onPress={() => navigation.navigate(Screens.About)}
           />
           <Item
             label={t('screen_titles.legal')}
-            onPress={() => navigation.navigate('LicensesScreen')}
+            onPress={() => navigation.navigate(Screens.Licenses)}
             last={!__DEV__}
           />
           <Item
             label='Feature Flags (Dev mode only)'
-            onPress={() => navigation.navigate(FEATURE_FLAG_SCREEN_NAME)}
+            onPress={() => navigation.navigate(Screens.FeatureFlags)}
             last={isGPS}
           />
           {!isGPS ? (
             <Item
               label='EN Debug Menu'
-              onPress={() => navigation.navigate(EN_DEBUG_MENU_SCREEN_NAME)}
+              onPress={() => navigation.navigate(Screens.ENDebugMenu)}
               last
             />
           ) : null}
