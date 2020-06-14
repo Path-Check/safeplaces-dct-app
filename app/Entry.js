@@ -26,7 +26,7 @@ import {
   ExportPublishConsent,
   ExportSelectHA,
 } from './views/Export';
-import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
+import ExposureHistoryScreen from './views/ExposureHistory';
 import Assessment from './views/assessment';
 import NextSteps from './views/NextSteps';
 import { ENDebugMenu } from './views/Settings/ENDebugMenu';
@@ -42,7 +42,7 @@ import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions'
 
 import { Screens, Stacks } from './navigation';
 
-import ExposureNotificationContext from './ExposureNotificationContext';
+import ExposureHistoryContext from './ExposureHistoryContext';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import { isGPS } from './COVIDSafePathsConfig';
 import * as Icons from './assets/svgs/TabBarNav';
@@ -92,7 +92,7 @@ const ExportStack = () => (
 );
 
 const ExposureHistoryStack = ({ navigation }) => {
-  const { observeExposures } = useContext(ExposureNotificationContext);
+  const { observeExposures } = useContext(ExposureHistoryContext);
   useEffect(() => {
     const unsubscribeTabPress = navigation.addListener('tabPress', () => {
       observeExposures();
@@ -146,7 +146,7 @@ const MoreTabStack = () => (
 
 const MainAppTabs = () => {
   const { t } = useTranslation();
-  const { userHasNewExposure } = useContext(ExposureNotificationContext);
+  const { userHasNewExposure } = useContext(ExposureHistoryContext);
 
   const applyBadge = (icon) => {
     return (

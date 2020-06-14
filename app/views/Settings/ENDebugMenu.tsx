@@ -15,7 +15,7 @@ import {
   simulateExposureDetectionError,
   getExposureConfiguration,
 } from '../../exposureNotificationsNativeModule';
-import ExposureNotificationContext from '../../ExposureNotificationContext';
+import ExposureNotificationContext from '../../ExposureHistoryContext';
 import { NavigationProp, Screens } from '../../navigation';
 
 // eslint-disable-next-line
