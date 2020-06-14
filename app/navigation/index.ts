@@ -1,3 +1,14 @@
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
+
+export type NavigationProp = NavigationScreenProp<
+  NavigationState,
+  NavigationParams
+>;
+
 export type Screen =
   | 'ExportStart'
   | 'ExportIntro'

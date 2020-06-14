@@ -1,10 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import { Alert, BackHandler, ScrollView } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Item } from './Item';
@@ -21,13 +16,13 @@ import {
   getExposureConfiguration,
 } from '../../exposureNotificationsNativeModule';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
-import { Screens } from '../../navigation';
+import { NavigationProp, Screens } from '../../navigation';
 
 // eslint-disable-next-line
 declare const global: any;
 
 type ENDebugMenuProps = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 };
 
 export const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {

@@ -9,11 +9,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 
 import fontFamily from '../constants/fonts';
 import { Images } from '../assets';
@@ -22,9 +17,10 @@ import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import { useAssets } from '../TracingStrategyAssets';
+import { NavigationProp } from '../navigation';
 
 type LicensesScreenProps = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 };
 
 const PRIVACY_POLICY_URL =

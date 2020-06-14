@@ -1,19 +1,14 @@
 import React from 'react';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-import { Screens } from '../../navigation';
+import { NavigationProp, Screens } from '../../navigation';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
 interface NextStepsProps {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 }
 
 const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
