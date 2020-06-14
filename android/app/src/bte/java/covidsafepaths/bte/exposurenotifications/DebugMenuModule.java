@@ -43,7 +43,7 @@ public class DebugMenuModule extends ReactContextBaseJavaModule {
     /**
      * Debug method to get a fake set of diagnosis keys and post them to the server.
      * Does NOT currently interact with GAEN API
-     * TODO - JS is always interpreting callback as error
+     * TODO - JS is always interpreting callback as error because js layer is expecting an array.
      */
     @ReactMethod
     public void getAndPostDiagnosisKeys(Callback callback) {
