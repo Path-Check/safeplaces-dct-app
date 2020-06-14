@@ -86,16 +86,17 @@ final class ExposureManager: NSObject {
     }
     
     BTESecureStorage.shared.getUserState { userState in
-      APIClient.shared.request(DiagnosisKeyUrlListRequest.get(userState.nextDiagnosisKeyFileIndex), requestType: .get) { result in
+      APIClient.shared.requestString(IndexFileRequest.get, requestType: .index) { result in
         
         let dispatchGroup = DispatchGroup()
         var localURLResults = [Result<URL>]()
         
         switch result {
-        case let .success(remoteURLs):
+        case let .success(indexFileString):
+          let remoteURLs = indexFileString.urls
           for remoteURL in remoteURLs {
             dispatchGroup.enter()
-            APIClient.shared.request(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .get) { result in
+            APIClient.shared.request(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .pull) { result in
               localURLResults.append(result)
               dispatchGroup.leave()
             }
@@ -115,7 +116,7 @@ final class ExposureManager: NSObject {
               return
             }
           }
-          APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .get) { result in
+          APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .pull) { result in
             switch result {
             case let .success(configuration):
               let enConfiguration = configuration.asENExposureConfiguration
@@ -249,7 +250,7 @@ final class ExposureManager: NSObject {
         }
       }
     case .getExposureConfiguration:
-      APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .get) { result in
+      APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .pull) { result in
         switch result {
         case .success(let configuration):
           completion([NSNull(), "Exposure Configuration: \(configuration)"])

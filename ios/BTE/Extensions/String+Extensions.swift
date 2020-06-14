@@ -9,4 +9,8 @@ extension String {
   static let keyPathDateLastPerformedExposureDetection = "dateLastPerformedExposureDetection"
   static let keyPathExposures = "exposures"
   static let keyPathNextDiagnosisKeyFileIndex = "nextDiagnosisKeyFileIndex"
+
+  var urls: [URL] {
+    []
+  }
 }

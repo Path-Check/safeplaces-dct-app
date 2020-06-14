@@ -2,23 +2,28 @@ import Alamofire
 
 enum RequestType {
   case post,
-  get
+  pull,
+  index
 }
 
 final class APIClient {
 
   let postUrl: URL
   let pullUrl: URL
+  let indexFileUrl: URL
   static let shared = APIClient(
     postUrl: URL(string: "https://exposure-2kabcv6c4a-uc.a.run.app")!,
-    pullUrl: URL(string: "https://federationout-2kabcv6c4a-uc.a.run.app")!
+    pullUrl: URL(string: "https://federationout-2kabcv6c4a-uc.a.run.app")!,
+    //    indexFileUrl: URL(string: "https://storage.googleapis.com")!
+    indexFileUrl: URL(string: "https://www.w3.org/TR/PNG")!
   )
 
   private let sessionManager: SessionManager
 
-  init(postUrl: URL, pullUrl: URL) {
+  init(postUrl: URL, pullUrl: URL, indexFileUrl: URL) {
     self.postUrl = postUrl
     self.pullUrl = pullUrl
+    self.indexFileUrl = indexFileUrl
 
     let configuration = URLSessionConfiguration.default
 
@@ -64,6 +69,19 @@ final class APIClient {
     requestDecodables(request, requestType: requestType, completion: completion)
   }
 
+  func requestString<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<T.ResponseType>) -> Void) where T.ResponseType == String {
+    dataRequest(for: request, requestType: requestType)
+      .validate(validate)
+      .responseData { response in
+        switch response.result {
+        case .success(let data):
+          completion(.success(String(decoding: data, as: UTF8.self)))
+        case .failure(let error):
+          completion(.failure(error))
+        }
+    }
+  }
+
   func cancelAllRequests() {
     sessionManager.session.getAllTasks { tasks in
       tasks.forEach { $0.cancel() }
@@ -82,7 +100,15 @@ private extension APIClient {
   }
 
   func dataRequest<T: APIRequest>(for request: T, requestType: RequestType) -> DataRequest {
-    let baseUrl = requestType == .post ? postUrl : pullUrl
+    var baseUrl: URL!
+    switch requestType {
+    case .post:
+      baseUrl = postUrl
+    case .pull:
+      baseUrl = pullUrl
+    case .index:
+      baseUrl = indexFileUrl
+    }
     return sessionManager.request(
       baseUrl.appendingPathComponent(request.path, isDirectory: false),
       method: request.method,
