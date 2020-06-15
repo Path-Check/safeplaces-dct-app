@@ -1,10 +1,12 @@
 import moment from 'moment';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import DatePicker from 'react-native-datepicker';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function CalendarButton({ onChange, date, minDate = '' }) {
+  const { t } = useTranslation();
   return (
     <DatePicker
       mode='date'
@@ -23,8 +25,8 @@ export default function CalendarButton({ onChange, date, minDate = '' }) {
           style={{ marginRight: 10 }}
         />
       }
-      confirmBtnText={'Aceptar'}
-      cancelBtnText={'Cancelar'}
+      confirmBtnText={t('common.ok')}
+      cancelBtnText={t('label.cancel')}
       style={{ width: wp('40%'), backgroundColor: '#EFF4F9' }}
       customStyles={{
         dateInput: {
