@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     ...Buttons.largeBlueOutline,
   },
   buttonText: {
-    ...TypographyStyles.ctaButtonOutlined,
+    ...TypographyStyles.buttonTextDark,
   },
   disclaimerText: {
     ...TypographyStyles.disclaimer,

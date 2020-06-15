@@ -25,6 +25,11 @@ const primaryBlue: ViewStyle = {
   borderColor: Colors.primaryBlue,
 };
 
+const white: ViewStyle = {
+  backgroundColor: Colors.white,
+  borderColor: Colors.white,
+};
+
 // Outline
 const outlined: ViewStyle = {
   borderWidth: 1,
@@ -39,9 +44,14 @@ export const largeBlueOutline: ViewStyle = {
   ...outlined,
 };
 
-// Combinations
 export const largeBlue: ViewStyle = {
   ...base,
   ...large,
   ...primaryBlue,
+};
+
+export const largeWhite: ViewStyle = {
+  ...base,
+  ...large,
+  ...white,
 };

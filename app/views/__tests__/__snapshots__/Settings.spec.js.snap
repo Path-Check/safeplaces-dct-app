@@ -403,7 +403,6 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                     "color": "#4051db",
                     "fontSize": 19,
                     "fontWeight": "500",
-                    "lineHeight": 40,
                   },
                 ]
               }
