@@ -135,6 +135,7 @@ export default function UserInfo({ navigation }) {
       }
       return response;
     } catch (e) {
+      setLoading(false);
       console.log('ha ocurrido un error', e);
     }
   };
