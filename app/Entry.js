@@ -18,6 +18,7 @@ import EpidemiologicScreen from './views/DR/EpidemiologicalResponseScreen';
 import Details from './views/DR/News/Details';
 import Report from './views/DR/ReportScreen/ReportScreenQuestions';
 import ResultsScreen from './views/DR/ReportScreen/Results';
+import Sponsors from './views/DR/Sponsors';
 import UserInfo from './views/DR/UserInfoScreen/index';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
@@ -26,7 +27,6 @@ import { LicensesScreen } from './views/Licenses';
 import LocationTracking from './views/LocationTracking';
 import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
-import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import Onboarding5 from './views/onboarding/Onboarding5';
 import { SettingsScreen } from './views/Settings';
@@ -191,6 +191,11 @@ class Entry extends Component {
           <Stack.Screen
             name='Details'
             component={Details}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Sponsors'
+            component={Sponsors}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
