@@ -21,7 +21,7 @@ exports[`allows small override 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#6979F8",
+        "backgroundColor": "#4051db",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -41,7 +41,7 @@ exports[`allows small override 1`] = `
       small={true}
       style={
         Object {
-          "color": "#FFF",
+          "color": "#ffffff",
           "fontFamily": "IBMPlexSans-Medium",
           "fontSize": 14,
           "fontWeight": "normal",
@@ -78,7 +78,7 @@ exports[`changes color based on theme 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#6979F8",
+        "backgroundColor": "#4051db",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -97,7 +97,7 @@ exports[`changes color based on theme 1`] = `
     <Text
       style={
         Object {
-          "color": "#FFF",
+          "color": "#ffffff",
           "fontFamily": "IBMPlexSans-Medium",
           "fontSize": 20,
           "fontWeight": "normal",
@@ -121,7 +121,7 @@ exports[`changes color based on theme 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#FFF",
+        "backgroundColor": "#ffffff",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -140,7 +140,7 @@ exports[`changes color based on theme 1`] = `
     <Text
       style={
         Object {
-          "color": "#3C475B",
+          "color": "#4e4e4e",
           "fontFamily": "IBMPlexSans-Medium",
           "fontSize": 20,
           "fontWeight": "normal",
@@ -164,7 +164,7 @@ exports[`changes color based on theme 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#FFF",
+        "backgroundColor": "#ffffff",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -183,7 +183,7 @@ exports[`changes color based on theme 1`] = `
     <Text
       style={
         Object {
-          "color": "#4051DB",
+          "color": "#4051db",
           "fontFamily": "IBMPlexSans-Medium",
           "fontSize": 20,
           "fontWeight": "normal",
@@ -220,7 +220,7 @@ exports[`renders a violet 72px button on default theme 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#6979F8",
+        "backgroundColor": "#4051db",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -239,7 +239,7 @@ exports[`renders a violet 72px button on default theme 1`] = `
     <Text
       style={
         Object {
-          "color": "#FFF",
+          "color": "#ffffff",
           "fontFamily": "IBMPlexSans-Medium",
           "fontSize": 20,
           "fontWeight": "normal",
@@ -276,7 +276,7 @@ exports[`renders an icon and space-between if supplied 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#6979F8",
+        "backgroundColor": "#4051db",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -295,7 +295,7 @@ exports[`renders an icon and space-between if supplied 1`] = `
     <Text
       style={
         Object {
-          "color": "#FFF",
+          "color": "#ffffff",
           "fontFamily": "IBMPlexSans-Medium",
           "fontSize": 20,
           "fontWeight": "normal",
@@ -343,7 +343,7 @@ exports[`renders different color for secondary 1`] = `
         "backgroundColor": "transparent",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
-        "borderColor": "#6979F8",
+        "borderColor": "#4051db",
         "borderStyle": "solid",
         "borderTopLeftRadius": 8,
         "borderTopRightRadius": 8,
@@ -360,7 +360,7 @@ exports[`renders different color for secondary 1`] = `
       secondary={true}
       style={
         Object {
-          "color": "#6979F8",
+          "color": "#4051db",
           "fontFamily": "IBMPlexSans-Medium",
           "fontSize": 20,
           "fontWeight": "normal",

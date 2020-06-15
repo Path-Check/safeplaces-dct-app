@@ -12,16 +12,19 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Icons } from '../../assets';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import { useAssets } from '../../TracingStrategyAssets';
 import exitWarningAlert from './exitWarningAlert';
 import exportCodeApi from '../../api/export/exportCodeApi';
+import { Screens } from '../../navigation';
+import { isGPS } from '../../COVIDSafePathsConfig';
+
+import { Icons } from '../../assets';
+import { Colors } from '../../styles';
 
 const CODE_LENGTH = 6;
 
@@ -117,12 +120,13 @@ const CodeInput = ({ code, length, setCode }) => {
 
 export const ExportSelectHA = ({ route, navigation }) => {
   const { t } = useTranslation();
-  const {
-    exportCodeBody,
-    exportCodeTitle,
-    exportCodeInputNextRoute,
-    exportExitRoute,
-  } = useAssets();
+  const { exportCodeBody, exportCodeTitle } = useAssets();
+
+  const exportCodeInputNextRoute = isGPS
+    ? Screens.ExportLocationConsent
+    : Screens.ExportPublishConsent;
+
+  const exportExitRoute = isGPS ? Screens.ExportStart : Screens.Settings;
 
   const [code, setCode] = useState('');
   const [isCheckingCode, setIsCheckingCode] = useState(false);
@@ -153,7 +157,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
     <Theme use='default'>
       <StatusBar
         barStyle='dark-content'
-        backgroundColor={Colors.INTRO_WHITE_BG}
+        backgroundColor={Colors.primaryBackgroundFaintShade}
         translucent={false}
       />
       <SafeAreaView style={styles.wrapper}>
@@ -209,7 +213,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   errorSubtitle: {
     marginTop: 8,
-    color: Colors.RED_TEXT,
+    color: Colors.errorText,
   },
   headerIcons: {
     flexDirection: 'row',
@@ -220,7 +224,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     paddingBottom: 44,
-    backgroundColor: Colors.INTRO_WHITE_BG,
+    backgroundColor: Colors.primaryBackgroundFaintShade,
   },
   container: {
     paddingHorizontal: 24,
@@ -229,7 +233,7 @@ const styles = StyleSheet.create({
   },
   characterInput: {
     fontSize: 20,
-    color: Colors.VIOLET_TEXT_DARK,
+    color: Colors.violetTextDark,
     textAlign: 'center',
     flexGrow: 1,
     aspectRatio: 1,
@@ -238,7 +242,7 @@ const styles = StyleSheet.create({
     marginRight: 6,
   },
   exportSectionTitles: {
-    color: Colors.VIOLET_TEXT_DARK,
+    color: Colors.violetTextDark,
     fontWeight: '500',
     fontFamily: fontFamily.primaryMedium,
   },

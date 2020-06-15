@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 
 import { Button, NavigationBarWrapper, Typography } from '../components';
-import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { pickFile } from '../helpers/General';
 import {
@@ -12,6 +11,8 @@ import {
   NoRecentLocationsError,
   importTakeoutData,
 } from '../helpers/GoogleTakeOutAutoImport';
+
+import { Colors } from '../styles';
 
 const makeImportResults = (label = '', error = false) => ({
   error,
@@ -134,10 +135,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: 'center',
     fontFamily: fontFamily.primaryRegular,
-    color: colors.VIOLET_TEXT,
+    color: Colors.violetText,
   },
   importResultsError: {
-    color: colors.RED_TEXT,
+    color: Colors.errorText,
   },
 });
 export default ImportScreen;

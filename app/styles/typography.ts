@@ -62,6 +62,13 @@ export const header2: TextStyle = {
   fontWeight: heavyWeight,
 };
 
+export const title: TextStyle = {
+  ...largeFont,
+  fontWeight: heaviestWeight,
+  color: Colors.primaryText,
+};
+
+// Content
 export const mainContent: TextStyle = {
   ...mediumFont,
   color: Colors.primaryText,
@@ -73,26 +80,13 @@ export const secondaryContent: TextStyle = {
   lineHeight: mediumLineHeight,
 };
 
-export const label: TextStyle = {
+export const description: TextStyle = {
   ...smallFont,
   color: Colors.primaryText,
 };
 
-export const ctaButtonOutlined: TextStyle = {
-  ...largeFont,
-  fontWeight: heavyWeight,
-  color: Colors.primaryBlue,
-};
-
-export const ctaButtonFilled: TextStyle = {
-  ...largeFont,
-  fontWeight: heavyWeight,
-  color: Colors.white,
-};
-
-export const title: TextStyle = {
-  ...largeFont,
-  fontWeight: heaviestWeight,
+export const label: TextStyle = {
+  ...smallFont,
   color: Colors.primaryText,
 };
 
@@ -100,6 +94,11 @@ export const error: TextStyle = {
   color: Colors.defaultRed,
   fontSize: smaller,
   fontWeight: heavyWeight,
+};
+
+// Tappables
+export const tappableListItem: TextStyle = {
+  fontSize: larger,
 };
 
 // Buttons
@@ -122,4 +121,16 @@ export const borderlessButtonText: TextStyle = {
   color: Colors.defaultBlue,
   fontSize: medium,
   fontWeight: heaviestWeight,
+};
+
+export const ctaButtonOutlined: TextStyle = {
+  ...largeFont,
+  fontWeight: heavyWeight,
+  color: Colors.primaryBlue,
+};
+
+export const ctaButtonFilled: TextStyle = {
+  ...largeFont,
+  fontWeight: heavyWeight,
+  color: Colors.white,
 };

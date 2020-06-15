@@ -11,7 +11,7 @@ exports[`base 1`] = `
   }
 >
   <RCTSafeAreaView
-    backgroundColor="#F8F8FF"
+    backgroundColor="#f8f8f8"
     emulateUnlessSupported={true}
     style={
       Object {
@@ -135,7 +135,7 @@ The Boston Public Health Commission will retain your anonymous data for a specif
                   "paddingVertical": 22,
                 },
                 Object {
-                  "backgroundColor": "#6979F8",
+                  "backgroundColor": "#6979f8",
                 },
               ]
             }
@@ -143,7 +143,7 @@ The Boston Public Health Commission will retain your anonymous data for a specif
             <Text
               style={
                 Object {
-                  "color": "#FFF",
+                  "color": "#ffffff",
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 18,
                   "fontWeight": "normal",

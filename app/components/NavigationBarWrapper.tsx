@@ -6,7 +6,7 @@ import { Dimensions, StatusBar, Platform } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import { Icons } from '../assets';
-import Colors from '../constants/colors';
+import { Colors } from '../styles';
 
 /**
  * Navigation bar and status bar. Optionally include bottom nav
@@ -45,7 +45,7 @@ export const NavigationBarWrapper = ({
 }: NavigationBarWrapperProps): JSX.Element => {
   const theme = useTheme<{ navBar: string }>();
 
-  const barColor = (theme && theme.navBar) || Colors.VIOLET;
+  const barColor = (theme && theme.navBar) || Colors.primaryViolet;
 
   return (
     <>
@@ -70,7 +70,7 @@ export const NavigationBarWrapper = ({
   );
 };
 
-const themeNavBar = ({ theme }: Theme) => theme.navBar || Colors.VIOLET;
+const themeNavBar = ({ theme }: Theme) => theme.navBar || Colors.primaryViolet;
 
 const TopContainer = styled.SafeAreaView`
   flex: 0;
@@ -78,7 +78,7 @@ const TopContainer = styled.SafeAreaView`
 `;
 
 const themeBackground = ({ theme }: Theme) =>
-  theme.background || Colors.INTRO_WHITE_BG;
+  theme.background || Colors.primaryBackgroundFaintShade;
 
 const BottomContainer = styled.View`
   flex: 1;
@@ -86,7 +86,7 @@ const BottomContainer = styled.View`
 `;
 
 const themeNavBarBorder = ({ theme }: Theme) =>
-  theme.navBarBorder || Colors.NAV_BAR_VIOLET;
+  theme.navBarBorder || Colors.primaryViolet;
 
 const Header = styled.View`
   align-items: center;
@@ -97,7 +97,7 @@ const Header = styled.View`
   height: 55px;
 `;
 
-const themeOnNavBar = ({ theme }: Theme) => theme.onNavBar || Colors.WHITE;
+const themeOnNavBar = ({ theme }: Theme) => theme.onNavBar || Colors.white;
 
 const Title = styled.Text`
   align-self: center;
@@ -123,7 +123,7 @@ const BackArrowIcon = styled.TouchableOpacity`
 const BackArrowSvg = styled(SvgXml)`
   height: 18px;
   width: 18px;
-  color: ${Colors.WHITE};
+  color: ${Colors.white};
 `;
 
 NavigationBarWrapper.propTypes = {

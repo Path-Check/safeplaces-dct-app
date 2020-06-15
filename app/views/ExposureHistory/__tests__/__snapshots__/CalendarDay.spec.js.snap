@@ -28,7 +28,7 @@ exports[`no exposure matches snapshot 1`] = `
         Object {
           "alignContent": "center",
           "alignItems": "center",
-          "backgroundColor": "#ffc000",
+          "backgroundColor": "#ffcc00",
           "borderBottomLeftRadius": 18,
           "borderBottomRightRadius": 18,
           "borderColor": "transparent",
@@ -46,7 +46,7 @@ exports[`no exposure matches snapshot 1`] = `
         riskLevel="possible"
         style={
           Object {
-            "color": "#FFF",
+            "color": "#ffffff",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -109,7 +109,7 @@ exports[`no risk takes prio over today 1`] = `
         riskLevel="none"
         style={
           Object {
-            "color": "#FFF",
+            "color": "#ffffff",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -154,7 +154,7 @@ exports[`possible exposure matches snapshot 1`] = `
         Object {
           "alignContent": "center",
           "alignItems": "center",
-          "backgroundColor": "#ffc000",
+          "backgroundColor": "#ffcc00",
           "borderBottomLeftRadius": 18,
           "borderBottomRightRadius": 18,
           "borderColor": "transparent",
@@ -172,7 +172,7 @@ exports[`possible exposure matches snapshot 1`] = `
         riskLevel="possible"
         style={
           Object {
-            "color": "#FFF",
+            "color": "#ffffff",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -217,7 +217,7 @@ exports[`some risk takes prio over today 1`] = `
         Object {
           "alignContent": "center",
           "alignItems": "center",
-          "backgroundColor": "#ffc000",
+          "backgroundColor": "#ffcc00",
           "borderBottomLeftRadius": 18,
           "borderBottomRightRadius": 18,
           "borderColor": "transparent",
@@ -235,7 +235,7 @@ exports[`some risk takes prio over today 1`] = `
         riskLevel="possible"
         style={
           Object {
-            "color": "#FFF",
+            "color": "#ffffff",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,

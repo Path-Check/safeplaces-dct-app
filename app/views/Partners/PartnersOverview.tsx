@@ -89,7 +89,7 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
         </Typography>
         <View style={{ width: 16 }} />
         <Switch
-          trackColor={{ true: '#6979F8', false: '#6979F8' }}
+          trackColor={{ true: Colors.PRIMARY_50, false: Colors.WHITE }}
           value={toggleActive}
           onValueChange={setToggleActive}
         />
