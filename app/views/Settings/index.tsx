@@ -135,15 +135,6 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </NativePicker>
         </View>
 
-        <View style={styles.section}>
-          <SettingsListItem
-            label={t('settings.report_positive_test')}
-            onPress={navigateTo('ExportFlow')}
-            description={t('settings.report_positive_test_description')}
-            style={styles.lastListItem}
-          />
-        </View>
-
         {isGPS ? (
           <View style={styles.section}>
             <FeatureFlag name={'google_import'}>
