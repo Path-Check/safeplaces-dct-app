@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState, useContext } from 'react';
-import { AppState, BackHandler, StatusBar, View } from 'react-native';
+import { AppState, BackHandler, StatusBar } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
 import { isGPS } from '../COVIDSafePathsConfig';
@@ -14,7 +14,6 @@ import {
   NotificationsOffScreen,
   SelectAuthorityScreen,
 } from './main/ServiceOffScreens';
-import { styles } from './main/style';
 import PermissionsContext, { PermissionStatus } from '../PermissionsContext';
 
 import { Colors } from '../styles';
@@ -72,17 +71,13 @@ export const Main = () => {
     };
   }, [navigation, updateStateInfo]);
 
-  let screen;
-
   if (!trackingInfo.canTrack) {
-    screen = <TracingOffScreen />;
+    return <TracingOffScreen />;
   } else if (notification.status === PermissionStatus.DENIED) {
-    screen = <NotificationsOffScreen />;
+    return <NotificationsOffScreen />;
   } else if (hasSelectedAuthorities === false) {
-    screen = <SelectAuthorityScreen />;
+    return <SelectAuthorityScreen />;
   } else {
-    screen = <AllServicesOnScreen />;
+    return <AllServicesOnScreen />;
   }
-
-  return <View style={styles.backgroundImage}>{screen}</View>;
 };

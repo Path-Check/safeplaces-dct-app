@@ -225,64 +225,6 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           }
         >
           <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "borderBottomWidth": 0,
-                "borderColor": "#a5affb",
-                "flex": 1,
-                "opacity": 1,
-                "paddingVertical": 20,
-              }
-            }
-          >
-            <Text
-              style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
-              }
-              use="body1"
-            >
-              settings.report_positive_test
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#161a25",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 15,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
-              }
-              use="body1"
-            >
-              settings.report_positive_test_description
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#ffffff",
-              "borderBottomWidth": 1,
-              "borderColor": "#a5affb",
-              "borderTopWidth": 1,
-              "flex": 1,
-              "marginBottom": 20,
-              "paddingHorizontal": 16,
-            }
-          }
-        >
-          <View
             style={
               Object {
                 "alignItems": "center",
@@ -761,64 +703,6 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               </View>
             </View>
           </Modal>
-        </View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#ffffff",
-              "borderBottomWidth": 1,
-              "borderColor": "#a5affb",
-              "borderTopWidth": 1,
-              "flex": 1,
-              "marginBottom": 20,
-              "paddingHorizontal": 16,
-            }
-          }
-        >
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "borderBottomWidth": 0,
-                "borderColor": "#a5affb",
-                "flex": 1,
-                "opacity": 1,
-                "paddingVertical": 20,
-              }
-            }
-          >
-            <Text
-              style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
-              }
-              use="body1"
-            >
-              settings.report_positive_test
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#161a25",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 15,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
-              }
-              use="body1"
-            >
-              settings.report_positive_test_description
-            </Text>
-          </View>
         </View>
         <View
           style={
