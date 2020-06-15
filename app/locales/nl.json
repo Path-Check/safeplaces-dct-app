@@ -51,7 +51,7 @@
   "label": {
     "authorities_add_button_label": "Voeg een vertrouwde bron toe",
     "authorities_add_url": "Voeg autoriteit toe via URL",
-    "authorities_desc": "Kies vertrouwde gezondheidsinstanties in uw regio om blootstellingsgegevens te verkrijgen. Selecteer een naam uit het wereldwijde register of voer het webadres in dat is verstrekt door een autoriteit die Safe Paths heeft geïmplementeerd.",
+    "authorities_desc": "Kies vertrouwde gezondheidsinstanties in uw regio om blootstellingsgegevens te verkrijgen. Selecteer een naam uit het wereldwijde register of voer het webadres in dat is verstrekt door een autoriteit die PathCheck heeft geïmplementeerd.",
     "authorities_input_placeholder": "Plak hier uw URL",
     "authorities_new_in_area_msg": "Meld u aan voor {{count}} nieuwe gezondheidinstantie in uw regio",
     "authorities_new_in_area_title": "{\"one\":\"Nieuwe gezondheidsinstantie\",\"other\":\"Nieuwe gezondheidsinstanties\"}",
@@ -63,7 +63,7 @@
     "auto_subscribe_checkbox": "Automatisch abonnement inschakelen",
     "choose_provider_subtitle": "Om op de hoogte te blijven van mogelijke blootstellingen, kunt u het best abonneren op een gezondheidsinstantie.",
     "choose_provider_title": "Kies een gezondheidsinstantie",
-    "default_news_site_name": "Safe Paths nieuws",
+    "default_news_site_name": "PathCheck nieuws",
     "enter_authority_url": "URL invoeren of plakken",
     "event_history_subtitle": "Herken uw persoonlijke blootstelling met informatie van gezondheidsinstanties.",
     "event_history_title": "Blootstelling geschiedenis",
@@ -118,7 +118,7 @@
   "onboarding": {
     "eula_checkbox": "Ik accepteer de licentieovereenkomst",
     "eula_continue": "Ga verder",
-    "eula_message": "*U moet accepteren om Safe Paths te gebruiken"
+    "eula_message": "*U moet accepteren om PathCheck te gebruiken"
   },
   "screen_titles": {
     "about": "Informatie",

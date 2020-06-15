@@ -16,7 +16,7 @@
   "import": {
     "button_text": "過去の位置情報をインポートする",
     "google": {
-      "disclaimer": "Safe Paths與Google不存在從屬關係也不會分享您的資料",
+      "disclaimer": "PathCheck與Google不存在從屬關係也不會分享您的資料",
       "title": "Google 地圖"
     },
     "subtitle": "確認您下載此應用程式前，是否與新冠病毒確診者接觸，您可以載入您個人位置歷史資訊",
@@ -25,7 +25,7 @@
   "label": {
     "authorities_add_button_label": "新增可信來源",
     "authorities_add_url": "新增可信的疾病管制機構網頁超連結",
-    "authorities_desc": "選擇您所在地區受信任的醫療機構，獲取其潛在感染高風險路徑數據。從全局註冊表(global registry)選取資料集名稱或從使用Safe Paths的官方網頁超連結",
+    "authorities_desc": "選擇您所在地區受信任的醫療機構，獲取其潛在感染高風險路徑數據。從全局註冊表(global registry)選取資料集名稱或從使用PathCheck的官方網頁超連結",
     "authorities_input_placeholder": "在此貼上網頁超連結",
     "authorities_no_sources": "尚無資料來源",
     "authorities_removal_alert_cancel": "取消",
@@ -34,7 +34,7 @@
     "authorities_removal_alert_title": "移除疾病管制官方機構",
     "choose_provider_subtitle": "如要了解潛在接觸情況，您需要向疾病管制機構訂閱",
     "choose_provider_title": "選擇疾病管制機構",
-    "default_news_site_name": "Safe Paths 新聞",
+    "default_news_site_name": "PathCheck 新聞",
     "event_history_subtitle": "從疾病管制機構共享的數據了解您個人接觸風險",
     "event_history_title": "接觸歷史",
     "latest_news": "最新新聞",
