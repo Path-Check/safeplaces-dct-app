@@ -48,11 +48,13 @@ export const Main = () => {
     const { canTrack } = await tracingService.checkStatusAndStartOrStop();
     setTrackingInfo({ canTrack });
 
-    const authoritiesInBoundsState = await HCAService.hasAuthoritiesInBounds();
-    setHasAuthorityInBounds(authoritiesInBoundsState);
+    if (isGPS) {
+      const authoritiesInBoundsState = await HCAService.hasAuthoritiesInBounds();
+      setHasAuthorityInBounds(authoritiesInBoundsState);
 
-    const savedAuthoritiesState = await HCAService.hasSavedAuthorities();
-    setHasSavedAuthorities(savedAuthoritiesState);
+      const savedAuthoritiesState = await HCAService.hasSavedAuthorities();
+      setHasSavedAuthorities(savedAuthoritiesState);
+    }
   }, [
     tracingService,
     setTrackingInfo,
