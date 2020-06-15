@@ -217,10 +217,11 @@ jobs:
           subdirectory: 'ios'
           bundle-install-path: 'vendor/bundle'
 
+
   deploy_ios_bt:
     # bt-release branch only
     if: github.event_name == 'push' && github.ref == 'refs/heads/bt-release'
-    runs-on: macOS-latest
+    runs-on: macos-latest
     needs: version_bump
     steps:
       - uses: actions/checkout@master
@@ -304,6 +305,7 @@ jobs:
           subdirectory: 'ios'
           bundle-install-path: 'vendor/bundle'
 
+<<<<<<< HEAD
   deploy_android_bt:
     # bt-release branch only
     if: github.event_name == 'push' && github.ref == 'refs/heads/bt-release'

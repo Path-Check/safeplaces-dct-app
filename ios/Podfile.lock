@@ -1,6 +1,4 @@
 PODS:
-  - "@mauron85_react-native-background-geolocation (0.6.3)":
-    - React
   - Alamofire (4.9.1)
   - boost-for-react-native (1.63.0)
   - BVLinearGradient (2.5.6):
@@ -24,9 +22,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - Permission-LocationAlways (2.1.4):
-    - RNPermissions
-  - Permission-Notifications (2.1.4):
+  - Permission-Notifications (2.1.5):
     - RNPermissions
   - RCTRequired (0.61.5)
   - RCTTypeSafety (0.61.5):
@@ -197,9 +193,7 @@ PODS:
     - React
   - react-native-document-picker (3.2.0):
     - React
-  - react-native-geolocation (2.0.2):
-    - React
-  - react-native-safe-area-context (3.0.5):
+  - react-native-safe-area-context (3.0.6):
     - React
   - react-native-splash-screen (3.2.0):
     - React
@@ -244,34 +238,34 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
-  - Realm (4.4.1):
-    - Realm/Headers (= 4.4.1)
-  - Realm/Headers (4.4.1)
-  - RealmSwift (4.4.1):
-    - Realm (= 4.4.1)
+  - Realm (5.0.2):
+    - Realm/Headers (= 5.0.2)
+  - Realm/Headers (5.0.2)
+  - RealmSwift (5.0.2):
+    - Realm (= 5.0.2)
   - rn-fetch-blob (0.12.0):
     - React-Core
-  - RNBackgroundFetch (3.0.4):
+  - RNBackgroundFetch (3.1.0):
     - React
-  - RNCAsyncStorage (1.10.0):
+  - RNCAsyncStorage (1.11.0):
     - React
   - RNCMaskedView (0.1.5):
     - React
-  - RNCPushNotificationIOS (1.2.0):
+  - RNCPushNotificationIOS (1.2.2):
     - React
-  - RNDateTimePicker (2.3.2):
+  - RNDateTimePicker (2.4.2):
     - React
   - RNFS (2.16.6):
     - React
   - RNGestureHandler (1.6.1):
     - React
-  - RNPermissions (2.1.4):
+  - RNPermissions (2.1.5):
     - React
-  - RNReanimated (1.8.0):
+  - RNReanimated (1.9.0):
     - React
-  - RNScreens (2.8.0):
+  - RNScreens (2.9.0):
     - React
-  - RNShare (3.3.2):
+  - RNShare (3.5.0):
     - React
   - RNSVG (12.1.0):
     - React
@@ -287,7 +281,6 @@ PODS:
   - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
-  - "@mauron85_react-native-background-geolocation (from `../node_modules/@mauron85/react-native-background-geolocation`)"
   - Alamofire (~> 4.9.1)
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -295,7 +288,6 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways.podspec`)
   - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -311,7 +303,6 @@ DEPENDENCIES:
   - react-native-background-timer (from `../node_modules/react-native-background-timer`)
   - react-native-config (from `../node_modules/react-native-config`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
-  - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-uuid-generator (from `../node_modules/react-native-uuid-generator`)
@@ -357,8 +348,6 @@ SPEC REPOS:
     - ZIPFoundation
 
 EXTERNAL SOURCES:
-  "@mauron85_react-native-background-geolocation":
-    :path: "../node_modules/@mauron85/react-native-background-geolocation"
   BVLinearGradient:
     :path: "../node_modules/react-native-linear-gradient"
   DoubleConversion:
@@ -371,8 +360,6 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
-  Permission-LocationAlways:
-    :path: "../node_modules/react-native-permissions/ios/LocationAlways.podspec"
   Permission-Notifications:
     :path: "../node_modules/react-native-permissions/ios/Notifications.podspec"
   RCTRequired:
@@ -399,8 +386,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-config"
   react-native-document-picker:
     :path: "../node_modules/react-native-document-picker"
-  react-native-geolocation:
-    :path: "../node_modules/@react-native-community/geolocation"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
@@ -463,7 +448,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  "@mauron85_react-native-background-geolocation": fa34ab82e94212be16ef6e75c32bcb707b0a1524
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
@@ -472,8 +456,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  Permission-LocationAlways: 48085521ad224052f5b25c3fdc6d0e996d162428
-  Permission-Notifications: d437cafc026900006d35981d35a2d694f883f44e
+  Permission-Notifications: 231d0e1db2300b686548587d384ba414e6a93332
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -486,8 +469,7 @@ SPEC CHECKSUMS:
   react-native-background-timer: 1f7d560647b40e6a60b01c452ba29c54bf581fc4
   react-native-config: 8f6b2b9e017f6a5e92a97353c768e19e67294bb1
   react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
-  react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
-  react-native-safe-area-context: e768fca90207ee68924b3d0877633f2ce9cc9d68
+  react-native-safe-area-context: e22a8ca00f758273d2408953965cb8db67da7925
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-uuid-generator: 82ffa2a1cac94242ebed52c4dedc5044d3412717
   react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
@@ -502,26 +484,26 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
-  RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
+  Realm: 6b6f096671b64b04d08974177cabb2ff9343d153
+  RealmSwift: a3db6be0488bf3e1d5314c2956cefe98a65cdd01
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
-  RNBackgroundFetch: 388cf1595934d22fed275b8db9b48a28bb4eb7b6
-  RNCAsyncStorage: 6d99641f8e6f15d169d695d8ef184bf187903f11
+  RNBackgroundFetch: 8dbb63141792f1473e863a0797ffbd5d987af2fc
+  RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
-  RNCPushNotificationIOS: 4d9ffd08f00ef6c1029ebbf4d72fc711eca3ff01
-  RNDateTimePicker: 4bd49e09f91ca73d69119a9e1173b0d43b82f5e5
+  RNCPushNotificationIOS: 4c97a36dbec42dba411cc35e6dac25e34a805fde
+  RNDateTimePicker: bacbf754c3298b061c7eaa0a5352cbb2ede8d5a2
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNPermissions: 3635b407c15f2fe591bd2101c8f20aa0912caba8
-  RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
-  RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244
-  RNShare: bd6518701db274b8ba282b33620885f2225a5bcf
+  RNPermissions: ad71dd4f767ec254f2cd57592fbee02afee75467
+  RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
+  RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
+  RNShare: 9e0ab1939761051b074c8eb5e7d746f4d5a8ee0e
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNZipArchive: ab51bc004a31657f34010254a9182014c6a81217
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: 9ea91427dcab32db09cce2e3c6201a754ae32e66
+PODFILE CHECKSUM: 6e76e13a2d59c3efc7e6f3f65249931569f1919d
 
 COCOAPODS: 1.9.1

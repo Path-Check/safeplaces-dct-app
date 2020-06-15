@@ -1,10 +1,12 @@
-import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import { NativeModules } from 'react-native';
+// import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 import PushNotification from 'react-native-push-notification';
 
 import { CROSSED_PATHS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
+
+const BackgroundGeolocation = {};
 
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION_ID = '55';
@@ -40,7 +42,7 @@ export default class LocationServices {
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
     if (isBackgroundGeolocationConfigured) {
-      BackgroundGeolocation.start();
+      // BackgroundGeolocation.start();
       return;
     }
 
