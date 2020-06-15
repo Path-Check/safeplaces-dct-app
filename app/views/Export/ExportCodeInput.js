@@ -1,4 +1,3 @@
-import { useTheme } from 'emotion-theming';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -30,7 +29,6 @@ const CODE_LENGTH = 6;
 
 const CodeInput = ({ code, length, setCode }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const theme = useTheme();
 
   let characters = [];
   for (let i = 0; i < length; i++) characters.push(code[i]);
@@ -103,7 +101,7 @@ const CodeInput = ({ code, length, setCode }) => {
           style={[
             styles.characterInput,
             {
-              borderColor: character ? theme.primary : theme.disabledLight,
+              borderColor: character ? Colors.primaryBorder : Colors.melrose,
             },
           ]}
           keyboardType={'number-pad'}

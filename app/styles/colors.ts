@@ -115,6 +115,7 @@ export const violetText = royalBlue;
 export const violetTextLight = indigo;
 export const violetTextDark = jacksonsPurple;
 export const linkText = violetText;
+export const linkTextInvert = amber;
 export const errorText = persimmon;
 
 // Forms
