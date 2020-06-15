@@ -119,7 +119,7 @@
     "auto_subscribe_checkbox": "Habilitar suscripción automática",
     "choose_provider_subtitle": "Selecciona una Autoridad de Salud para saber sobre COVID-19 en tu área, donde esté disponible",
     "choose_provider_title": "Su Autoridad de Salud",
-    "default_news_site_name": "Noticias de Safe Paths",
+    "default_news_site_name": "Noticias de PathCheck",
     "enter_authority_url": "Escriba o pegue el URL",
     "event_history_subtitle": "Comprenda su exposición personal basándose en la información compartida por las autoridades sanitarias.",
     "event_history_title": "Historial de exposición",
@@ -170,15 +170,15 @@
     "legal_page_header_bluetooth": "BT de PathCheck",
     "legal_page_header_location": "GPS de PathCheck",
     "loading_public_data": "cargando datos...",
-    "location_disabled_message": "COVID Safe Paths requiere servicios de ubicación.",
+    "location_disabled_message": "PathCheck requiere servicios de ubicación.",
     "location_disabled_title": "El seguimiento de la Localización fue Desactivado",
-    "location_enabled_message": "COVID Safe Paths almacena de forma segura sus coordenadas de GPS una vez cada cinco minutos en este dispositivo.",
-    "location_enabled_title": "COVID Safe Paths Habilitado",
+    "location_enabled_message": "PathCheck almacena de forma segura sus coordenadas de GPS una vez cada cinco minutos en este dispositivo.",
+    "location_enabled_title": "PathCheck Habilitado",
     "logging_active_bluetooth": "Notificación de Exposición Activa",
     "logging_active_location": "Ubicación Activa",
     "logging_inactive_bluetooth": "Notificación de Exposición Inactiva",
     "logging_inactive_location": "Ubicación Inactiva",
-    "news_subtitle": "Encuentre las últimas actualizaciones de Safe Paths y su Autoridad de Salud local, donde están disponibles",
+    "news_subtitle": "Encuentre las últimas actualizaciones de PathCheck y su Autoridad de Salud local, donde están disponibles",
     "news_title": "Noticias más recientes",
     "no_data": "No hay datos",
     "privacy_policy": "Política de privacidad",
@@ -199,7 +199,7 @@
   "onboarding": {
     "eula_checkbox": "Acepto el acuerdo de licencia",
     "eula_continue": "Continuar",
-    "eula_message": "*Debes aceptar para poder usar Safe Paths"
+    "eula_message": "*Debes aceptar para poder usar PathCheck"
   },
   "screen_titles": {
     "about": "Acerca de",
@@ -216,7 +216,7 @@
     "title": "Compartir el historial de ubicaciones"
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths debe ser actualizado (update disponible)",
+    "alert_label": "PathCheck debe ser actualizado (update disponible)",
     "alert_sublabel": "¿Actualizar a una nueva versión?",
     "later": "Más tarde",
     "push_notification_message": "Por favor actualice su aplicación",

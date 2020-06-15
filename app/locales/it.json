@@ -98,7 +98,7 @@
     "error": "Si è verificato un errore durante l'importazione dei dati.",
     "google": {
       "already_imported": "Il file Takeout fornito è già stato importato.",
-      "disclaimer": "Safe Paths non ha alcuna affiliazione a Google e non condivide mai i tuoi dati.",
+      "disclaimer": "PathCheck non ha alcuna affiliazione a Google e non condivide mai i tuoi dati.",
       "file_open_error": "Impossibile aprire il file. \nAssicurati che il file sia aperto da Google Drive",
       "instructions_detailed": "Visita Google Takeout ed esporta la tua Cronologia delle posizioni utilizzando le seguenti impostazioni: \n1. Metodo di consegna: \"Aggiungi a Drive\" \n2. Frequenza: \"Esporta una volta\" \n3. Tipo e dimensione del file: \".zip\" e \"1 GB\" \n4. Google ti invierà un'email quando l'esportazione è pronta \n5. Ritorna qui per importare le posizioni",
       "instructions_first": "L'aggiunta dei dati di localizzazione di Google ti aiuterà a costruzione un primo storico delle tue posizioni recenti.",
@@ -118,7 +118,7 @@
     "about_para": "PathCheck è un movimento globale per sviluppare strumenti gratuiti, open-source, e orientati alla privacy per i residenti, i funzionari della sanità pubblica e le comunità più grandi al fine di appiattire la curva di COVID-19, ridurre la paura e prevenire una risposta dello stato di sorveglianza alla pandemia. \n\nPer ulteriori informazioni, visitare il sito",
     "authorities_add_button_label": "Aggiungi istituzione sanitaria",
     "authorities_add_url": "Aggiungi istituzione sanitaria via URL",
-    "authorities_desc": "Seleziona le istituzioni sanitarie nella tua area per ottenere i dati sulle possibilità di esposizione.\n\nSeleziona un nome dal registro globale o inserisci l'indirizzo internet fornito da una istituzione sanitaria che partecipa a Safe Paths.",
+    "authorities_desc": "Seleziona le istituzioni sanitarie nella tua area per ottenere i dati sulle possibilità di esposizione.\n\nSeleziona un nome dal registro globale o inserisci l'indirizzo internet fornito da una istituzione sanitaria che partecipa a PathCheck.",
     "authorities_input_placeholder": "Incolla l'indirizzo qui",
     "authorities_new_in_area_msg": "Iscritto ad {{count}} Istitituzione Sanitaria accreditata per la tua area.",
     "authorities_new_in_area_title": "Nuova Istituzione Sanitaria",
@@ -135,7 +135,7 @@
     "auto_subscribe_checkbox": "Attiva sottoscrizione automatica",
     "choose_provider_subtitle": "Per essere informato sulle possibilità di esposizione devi aggiungere almeno una Istituzione Sanitaria.",
     "choose_provider_title": "Seleziona le Istituzioni Sanitarie",
-    "default_news_site_name": "Novità su Safe Paths",
+    "default_news_site_name": "Novità su PathCheck",
     "enter_authority_url": "Inserisci o incolla l'URL",
     "event_history_subtitle": "Controlla la tua possibile esposizione sulla base delle informazioni condivise dalle istituzioni sanitarie",
     "event_history_title": "Storico delle esposizioni",
@@ -189,10 +189,10 @@
     "legal_page_header_bluetooth": "PathCheck BT",
     "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "Caricando i dati…",
-    "location_disabled_message": "COVID Safe Paths ha bisogno dei servizi di localizzazione",
+    "location_disabled_message": "PathCheck ha bisogno dei servizi di localizzazione",
     "location_disabled_title": "Il tracciamento della posizione è stato disabilitato",
-    "location_enabled_message": "COVID Safe Paths sta registrando in sicurezza le tue coordinate GPS ogni 5 minuti su questo dispositivo.",
-    "location_enabled_title": "COVID Safe Paths è abilitato",
+    "location_enabled_message": "PathCheck sta registrando in sicurezza le tue coordinate GPS ogni 5 minuti su questo dispositivo.",
+    "location_enabled_title": "PathCheck è abilitato",
     "logging_active_bluetooth": "Notifiche di esposizione attive",
     "logging_active_location": "Localizzazione attiva",
     "logging_inactive_bluetooth": "Notifiche di esposizione inattive",
@@ -220,7 +220,7 @@
   "onboarding": {
     "eula_checkbox": "Accetto il contratto di licenza",
     "eula_continue": "Continua",
-    "eula_message": "*È necessario accettare per utilizzare Safe Paths",
+    "eula_message": "*È necessario accettare per utilizzare PathCheck",
     "location_header": "Per determinare quando potresti aver incrociato percorsi con il virus, PathCheck necessita dell'accesso alla posizione.",
     "location_subheader": "Il diario di localizzazione PathCheck include solo coordinate GPS, date e orari. \n\n I tuoi dati non saranno condivisi con nessuno a meno che tu non scelga di farlo.",
     "notification_header": "Desideri ricevere notifiche quando potresti aver incrociato percorsi con il virus?"
@@ -240,7 +240,7 @@
     "title": "Condividi lo storico delle posizioni"
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths non è aggiornata",
+    "alert_label": "PathCheck non è aggiornata",
     "alert_sublabel": "Vuoi aggiornare a una nuova versione?",
     "later": "Più tardi",
     "push_notification_message": "Per favore aggiorna l'applicazione",

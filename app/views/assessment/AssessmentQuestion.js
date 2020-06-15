@@ -26,7 +26,7 @@ import { Colors } from '../../styles';
  *   option: SurveyOption
  *   question: SurveyQuestion
  * }>} */
-export const Question = ({ onNext, onChange, option, question }) => {
+export const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
   const { t } = useTranslation();
   const answers = useContext(AnswersContext);
   const [selectedValues, setSelectedValues] = useState(

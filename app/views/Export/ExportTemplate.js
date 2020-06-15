@@ -112,7 +112,7 @@ export const ExportTemplate = ({
               <TouchableOpacity onPress={bodyLinkOnPress}>
                 <Typography
                   style={{
-                    color: Colors.linkText,
+                    color: Colors.linkTextInvert,
                     textDecorationLine: 'underline',
                   }}
                   use='body1'>

@@ -225,6 +225,67 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           }
         >
           <View
+<<<<<<< HEAD
+=======
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "borderBottomWidth": 0,
+                "borderColor": "#a5affb",
+                "flex": 1,
+                "opacity": 1,
+                "paddingVertical": 20,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              Report a positive test result
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#161a25",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              Share Covid-19 exporsure information with your health authority with a provided code
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <View
+>>>>>>> develop
             style={
               Object {
                 "alignItems": "center",
@@ -339,7 +400,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               }
               use="body3"
             >
-              Safe Paths has no affiliation with Google and never shares your data.
+              PathCheck has no affiliation with Google and never shares your data.
             </Text>
           </View>
         </View>
@@ -716,6 +777,67 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               "paddingHorizontal": 16,
             }
           }
+<<<<<<< HEAD
+=======
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "borderBottomWidth": 0,
+                "borderColor": "#a5affb",
+                "flex": 1,
+                "opacity": 1,
+                "paddingVertical": 20,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              Report a positive test result
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#161a25",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "writingDirection": "ltr",
+                }
+              }
+              use="body1"
+            >
+              Share Covid-19 exporsure information with your health authority with a provided code
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
+            }
+          }
+>>>>>>> develop
         />
         <View
           style={

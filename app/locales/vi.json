@@ -16,7 +16,7 @@
   "import": {
     "button_text": "Nhập lịch sử di chuyển trước đây",
     "google": {
-      "disclaimer": "Safe Paths không liên kết với Google và không bao giờ chia sẻ dữ liệu của bạn.",
+      "disclaimer": "PathCheck không liên kết với Google và không bao giờ chia sẻ dữ liệu của bạn.",
       "title": "Bản đồ Google"
     },
     "subtitle": "Để biết bạn có tiếp xúc với người bị nhiễm COVID-19 trước khi bạn bắt đầu sử dụng Ứng dụng này hay không, bạn có thể nhập lịch sử vị trí trước đó của mình.",
@@ -25,7 +25,7 @@
   "label": {
     "authorities_add_button_label": "Thêm nguồn thông tin tin cậy",
     "authorities_add_url": "Thêm cơ quan có thẩm quyền qua liên kết",
-    "authorities_desc": "Chọn cơ sở Y tế phụ trách khu vực của bạn để tải về dữ liệu phơi nhiễm. Chọn tên từ danh sách được công bố hoặc nhập địa chỉ web được cung cấp bởi các cơ quan có thẩm quyền đã triển khai Safe Paths",
+    "authorities_desc": "Chọn cơ sở Y tế phụ trách khu vực của bạn để tải về dữ liệu phơi nhiễm. Chọn tên từ danh sách được công bố hoặc nhập địa chỉ web được cung cấp bởi các cơ quan có thẩm quyền đã triển khai PathCheck",
     "authorities_input_placeholder": "Dán đường dẫn liên kết tại đây",
     "authorities_no_sources": "Chưa có nguồn dữ liệu",
     "authorities_removal_alert_cancel": "Hủy",
@@ -34,7 +34,7 @@
     "authorities_removal_alert_title": "Xoá Cơ quan có thẩm quyền",
     "choose_provider_subtitle": "Để được thông báo về khả năng lây nhiễm, bạn cần đăng ký liên kết với dữ liệu từ cơ sở Y tế hoặc cơ quan có thẩm quyền.",
     "choose_provider_title": "Chọn cơ sở y tế",
-    "default_news_site_name": "Thông tin cập nhật về Safe Paths",
+    "default_news_site_name": "Thông tin cập nhật về PathCheck",
     "event_history_subtitle": "Biết được khả năng phơi nhiễm của bạn dựa vào dữ liệu mà các cơ sở y tế chia sẻ.",
     "event_history_title": "Lịch sử phơi nhiễm",
     "latest_news": "Tin mới nhất",
@@ -60,10 +60,10 @@
     "launch_set_up_phone_location": "Cài đặt điện thoại",
     "launch_subheader": "Đừng lo lắng, dữ liệu không bao giờ được gửi ra ngoài khỏi thiết bị của bạn trừ khi bạn quyết định chia sẻ.",
     "loading_public_data": "đang tải dữ liệu ...",
-    "location_disabled_message": "COVID Safe Paths yêu cầu dịch cho phép sử dụng dịch vụ vị trí",
+    "location_disabled_message": "PathCheck yêu cầu dịch cho phép sử dụng dịch vụ vị trí",
     "location_disabled_title": "Theo dõi vị trí đã bị vô hiệu hóa",
-    "location_enabled_message": "Safe Paths sẽ lưu thông tin GPS của bạn một cách an toàn, chỉ trên thiết bị của bạn, 5 phút một lần",
-    "location_enabled_title": "Safe Paths đã được kích hoạt",
+    "location_enabled_message": "PathCheck sẽ lưu thông tin GPS của bạn một cách an toàn, chỉ trên thiết bị của bạn, 5 phút một lần",
+    "location_enabled_title": "PathCheck đã được kích hoạt",
     "news_subtitle": "Xem các thông tin mới nhất về COVID-19 từ",
     "news_title": "Tin mới nhất",
     "no_data": "Không có dữ liệu",

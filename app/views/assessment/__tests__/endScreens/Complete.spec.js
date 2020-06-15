@@ -4,7 +4,7 @@ import { I18nextProvider } from 'react-i18next';
 
 import i18n from '../../../../locales/languages';
 import { MetaContext } from '../../Context';
-import { Complete } from '../../endScreens/Complete';
+import { AssessmentComplete } from '../../endScreens/AssessmentComplete';
 
 let meta;
 
@@ -15,14 +15,14 @@ beforeEach(() => {
 });
 
 test('base', () => {
-  const { asJSON } = render(<Complete />, { wrapper: Wrapper });
+  const { asJSON } = render(<AssessmentComplete />, { wrapper: Wrapper });
   expect(asJSON()).toMatchSnapshot();
 });
 
 test('cta', () => {
   const dismiss = jest.fn();
   meta.dismiss = dismiss;
-  const { getByTestId } = render(<Complete />, {
+  const { getByTestId } = render(<AssessmentComplete />, {
     wrapper: Wrapper,
   });
   const cta = getByTestId('assessment-button');
