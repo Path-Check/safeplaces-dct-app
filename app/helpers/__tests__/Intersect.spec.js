@@ -16,6 +16,10 @@ import {
   normalizeAndSortLocations,
 } from '../Intersect';
 
+jest.mock('../../constants/DR/baseUrls', () => ({
+  GOV_DO_TOKEN: '',
+}));
+
 // Base moment used in all tests.
 // This is SUPER hacky ... it will effectively ensure that tests run near noon (unless otherwise offset)
 //

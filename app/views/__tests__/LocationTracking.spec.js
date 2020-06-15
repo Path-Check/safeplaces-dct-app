@@ -10,6 +10,12 @@ const navigationMock = {
   addListener: jest.fn(),
 };
 
+jest.mock('../../constants/DR/baseUrls', () => ({
+  MEPYD_C5I_API_URL: 'contact_tracing/api',
+  MEPYD_C5I_SERVICE: 'https://webapps.mepyd.gob.do',
+  GOV_DO_TOKEN: '',
+}));
+
 beforeEach(() => {
   BackgroundGeolocation.checkStatus.mockReturnValue(jest.fn());
   BackgroundGeolocation.configure.mockReturnValue(jest.fn());
