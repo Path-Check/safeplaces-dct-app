@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { useAssets } from '../../../TracingStrategyAssets';
 import { ServiceOffScreen } from './Base';
-import { Screens } from '../../../navigation';
+import { Stacks } from '../../../navigation';
 
 export const SelectAuthorityScreen = (): JSX.Element => {
   const navigation = useNavigation();
@@ -14,7 +14,7 @@ export const SelectAuthorityScreen = (): JSX.Element => {
   } = useAssets();
 
   const onPress = () => {
-    navigation.navigate(Screens.ChooseProvider);
+    navigation.navigate(Stacks.Partners);
   };
 
   return (
