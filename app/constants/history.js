@@ -12,7 +12,13 @@ export const DEFAULT_EXPOSURE_PERIOD_MINUTES = 5;
  * The value in minutes of how long an exposure at a location is
  *    considered concerning.
  */
-export const CONCERN_TIME_WINDOW_MINUTES = 4 * 60; // 4 hours, in minutes
+export const DEFAULT_CONCERN_TIME_FRAME_MINUTES = 30;
+
+/**
+ * The value between 0 and 100 representing the required precentage of matches
+ *    in one time frame for it to be considered concerning.
+ */
+export const DEFAULT_THRESHOLD_MATCH_PERCENT = 66;
 
 /**
  * The value in minutes of how frequently we should check intersection data if
