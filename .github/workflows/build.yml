@@ -40,7 +40,12 @@ jobs:
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
       - name: Bundle JS
-        run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
+        env:
+         MEPYD_C5I_URL: ${{ secrets.MEPYD_C5I_URL }}
+         GOV_DO_TOKEN: ${{ secrets.GOV_DO_TOKEN }}
+        run: |
+          printenv >> .env
+          npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
 
       - run: ./gradlew assembleDevDebug --no-daemon
         working-directory: ./android
@@ -50,10 +55,14 @@ jobs:
         with:
           name: Debug APK
           path: android/app/build/outputs/apk/dev/debug/app-dev-debug.apk
-          
+
   build-ios:
     runs-on: macOS-latest
     steps:
+      - name: Update .env file
+        run: |
+          printenv|sort
+
       - uses: actions/checkout@master
 
       - name: Set XCode Version

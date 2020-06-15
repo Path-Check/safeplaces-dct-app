@@ -25,7 +25,11 @@ import Input from '../../../components/DR/Input/index';
 import PhoneInput from '../../../components/DR/PhoneInput/index';
 import context from '../../../components/DR/Reduces/context.js';
 import Colors from '../../../constants/colors';
-import { MEPYD_C5I_SERVICE } from '../../../constants/DR/baseUrls';
+import {
+  GOV_DO_TOKEN,
+  MEPYD_C5I_API_URL,
+  MEPYD_C5I_SERVICE,
+} from '../../../constants/DR/baseUrls';
 
 export default function UserInfo({ navigation }) {
   navigation.setOptions({
@@ -68,10 +72,13 @@ export default function UserInfo({ navigation }) {
   const validateCovidPositive = async info => {
     try {
       let response = await fetch(
-        `${MEPYD_C5I_SERVICE}:443/contact_tracing/api/Form`,
+        `${MEPYD_C5I_SERVICE}:443/${MEPYD_C5I_API_URL}/Form`,
         {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            gov_do_token: GOV_DO_TOKEN,
+          },
           body: JSON.stringify(info),
         },
       );
@@ -92,13 +99,17 @@ export default function UserInfo({ navigation }) {
   const validate = async data => {
     try {
       let response = await fetch(
-        `${MEPYD_C5I_SERVICE}/contact_tracing/api/Person`,
+        `${MEPYD_C5I_SERVICE}/${MEPYD_C5I_API_URL}/Person`,
         {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            gov_do_token: GOV_DO_TOKEN,
+          },
           body: JSON.stringify(data.body),
         },
       );
+
       response = await response.json();
       setLoading(false);
       if (response.valid !== undefined) {
@@ -124,6 +135,7 @@ export default function UserInfo({ navigation }) {
       }
       return response;
     } catch (e) {
+      setLoading(false);
       console.log('ha ocurrido un error', e);
     }
   };
