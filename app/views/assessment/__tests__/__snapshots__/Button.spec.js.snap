@@ -37,17 +37,26 @@ exports[`base 1`] = `
     >
       <Text
         style={
-          Object {
-            "color": "#ffffff",
-            "fontFamily": "IBMPlexSans",
-            "fontSize": 18,
-            "fontWeight": "normal",
-            "lineHeight": 24,
-            "textAlign": "center",
-            "writingDirection": "ltr",
-          }
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontSize": 17,
+              "lineHeight": 28,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Array [
+              Object {
+                "color": "#f8f8f8",
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#ffffff",
+              },
+            ],
+          ]
         }
-        use="body1"
       >
         Next
       </Text>
@@ -93,17 +102,26 @@ exports[`color 1`] = `
     >
       <Text
         style={
-          Object {
-            "color": "red",
-            "fontFamily": "IBMPlexSans",
-            "fontSize": 18,
-            "fontWeight": "normal",
-            "lineHeight": 24,
-            "textAlign": "center",
-            "writingDirection": "ltr",
-          }
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontSize": 17,
+              "lineHeight": 28,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Array [
+              Object {
+                "color": "#f8f8f8",
+                "textAlign": "center",
+              },
+              Object {
+                "color": "red",
+              },
+            ],
+          ]
         }
-        use="body1"
       >
         Next
       </Text>
@@ -149,17 +167,26 @@ exports[`disabled 1`] = `
     >
       <Text
         style={
-          Object {
-            "color": "#a5affb",
-            "fontFamily": "IBMPlexSans",
-            "fontSize": 18,
-            "fontWeight": "normal",
-            "lineHeight": 24,
-            "textAlign": "center",
-            "writingDirection": "ltr",
-          }
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontSize": 17,
+              "lineHeight": 28,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Array [
+              Object {
+                "color": "#f8f8f8",
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#a5affb",
+              },
+            ],
+          ]
         }
-        use="body1"
       >
         Next
       </Text>

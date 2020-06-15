@@ -64,16 +64,22 @@ exports[`base 1`] = `
             <SvgXml />
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans-Bold",
-                  "fontSize": 26,
-                  "fontWeight": "bold",
-                  "lineHeight": 34,
-                  "marginVertical": 30,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#4051db",
+                    "fontFamily": "IBMPlexSans-Bold",
+                    "fontSize": 28,
+                    "fontWeight": "500",
+                    "lineHeight": 40,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "marginVertical": 30,
+                  },
+                ]
               }
-              use="headline2"
             >
               End
             </Text>

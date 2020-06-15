@@ -29,6 +29,20 @@ export const baseWeight = '400';
 export const heavyWeight = '500';
 export const heaviestWeight = '700';
 
+// Font Families
+export const baseFontFamily = 'IBMPlexSans';
+export const boldFontFamily = 'IBMPlexSans-Bold';
+export const monospaceFontFamily = 'IBMPlexMono';
+
+export const bold: TextStyle = {
+  fontFamily: boldFontFamily,
+  fontWeight: heavyWeight,
+};
+
+export const monospace: TextStyle = {
+  fontFamily: monospaceFontFamily,
+};
+
 // Standard Font Types
 export const smallFont: TextStyle = {
   lineHeight: smallLineHeight,
@@ -50,16 +64,22 @@ export const largestFont: TextStyle = {
   fontSize: largest,
 };
 
+export const hugeFont: TextStyle = {
+  lineHeight: hugeLineHeight,
+  fontSize: huge,
+};
+
 // Headers
 export const header1: TextStyle = {
-  ...largestFont,
-  fontWeight: heaviestWeight,
-  color: Colors.primaryText,
+  ...hugeFont,
+  ...bold,
+  color: Colors.violetText,
 };
 
 export const header2: TextStyle = {
-  ...largeFont,
-  fontWeight: heavyWeight,
+  ...largestFont,
+  ...bold,
+  color: Colors.violetText,
 };
 
 export const title: TextStyle = {
@@ -80,9 +100,22 @@ export const secondaryContent: TextStyle = {
   lineHeight: mediumLineHeight,
 };
 
+export const tertirayContent: TextStyle = {
+  ...smallFont,
+  color: Colors.tertiaryText,
+  lineHeight: smallLineHeight,
+};
+
 export const description: TextStyle = {
   ...smallFont,
   color: Colors.primaryText,
+  lineHeight: smallerLineHeight,
+};
+
+export const disclaimer: TextStyle = {
+  ...smallFont,
+  ...monospace,
+  color: Colors.secondaryText,
 };
 
 export const label: TextStyle = {
@@ -98,7 +131,8 @@ export const error: TextStyle = {
 
 // Tappables
 export const tappableListItem: TextStyle = {
-  fontSize: larger,
+  ...mediumFont,
+  color: Colors.violetText,
 };
 
 // Buttons
