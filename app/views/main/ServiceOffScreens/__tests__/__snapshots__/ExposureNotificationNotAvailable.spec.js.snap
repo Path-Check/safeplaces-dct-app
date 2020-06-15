@@ -109,7 +109,7 @@ exports[`exposure notifications not available screen matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 28,
               "fontWeight": "normal",
@@ -124,7 +124,7 @@ exports[`exposure notifications not available screen matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Light",
               "fontSize": 16,
               "fontWeight": "normal",
@@ -150,7 +150,7 @@ exports[`exposure notifications not available screen matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 26,
               "lineHeight": 34,
@@ -164,7 +164,7 @@ exports[`exposure notifications not available screen matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans",
               "fontSize": 18,
               "fontWeight": "normal",

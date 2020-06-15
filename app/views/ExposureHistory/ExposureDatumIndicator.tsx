@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text, ViewStyle, TextStyle, StyleSheet } from 'react-native';
 import dayjs from 'dayjs';
 
-import { ExposureDatum } from '../../ExposureNotificationContext';
+import { DateTimeUtils } from '../../helpers';
+import { ExposureDatum } from '../../ExposureHistoryContext';
 import { Outlines, Colors, Typography } from '../../styles';
 
 interface ExposureDatumIndicatorProps {
@@ -10,15 +11,7 @@ interface ExposureDatumIndicatorProps {
   isSelected: boolean;
 }
 
-type Posix = number;
-
 type IndicatorStyle = [ViewStyle, TextStyle];
-
-const isToday = (date: Posix): boolean => {
-  const beginningOfDay = dayjs(Date.now()).startOf('day').valueOf();
-  const endOfDay = dayjs(Date.now()).endOf('day').valueOf();
-  return beginningOfDay <= date && endOfDay >= date;
-};
 
 const ExposureDatumIndicator = ({
   exposureDatum,
@@ -58,7 +51,7 @@ const ExposureDatumIndicator = ({
     circleStyle,
     textStyle,
   ]: IndicatorStyle): IndicatorStyle => {
-    if (isToday(exposureDatum.date)) {
+    if (DateTimeUtils.isToday(exposureDatum.date)) {
       return [
         circleStyle,
 
@@ -89,9 +82,12 @@ const ExposureDatumIndicator = ({
     }
   };
 
-  const [circleStyle, textStyle] = applyIsTodayStyle(
-    applyIsSelectedStyle(applyRiskStyle([styles.circleBase, styles.textBase])),
-  );
+  const baseStyles: IndicatorStyle = [styles.circleBase, styles.textBase];
+
+  const [circleStyle, textStyle] = [baseStyles]
+    .map(applyIsTodayStyle)
+    .map(applyRiskStyle)
+    .flatMap(applyIsSelectedStyle);
 
   const dayNumber = dayjs(exposureDatum.date).format('D');
 

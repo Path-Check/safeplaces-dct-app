@@ -14,7 +14,7 @@ exports[`renders correctly 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#4051DB",
+        "backgroundColor": "#4051db",
         "flexBasis": 0,
         "flexGrow": 0,
         "flexShrink": 1,
@@ -24,7 +24,7 @@ exports[`renders correctly 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#F7F8FF",
+        "backgroundColor": "#f8f8f8",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
@@ -35,8 +35,8 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#4051DB",
-          "borderBottomColor": "#5061E6",
+          "backgroundColor": "#4051db",
+          "borderBottomColor": "#4051db",
           "borderBottomWidth": 1,
           "flexDirection": "row",
           "height": 55,
@@ -60,7 +60,7 @@ exports[`renders correctly 1`] = `
         <SvgXml
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "height": 18,
               "width": 18,
             }
@@ -76,7 +76,7 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "alignSelf": "center",
-            "color": "#FFF",
+            "color": "#ffffff",
             "fontFamily": "IBMPlexSans-Bold",
             "fontSize": 16,
             "letterSpacing": 1,
@@ -95,7 +95,7 @@ exports[`renders correctly 1`] = `
     <RCTScrollView
       contentContainerStyle={
         Object {
-          "backgroundColor": "#F7F8FF",
+          "backgroundColor": "#f8f8f8",
           "paddingHorizontal": 26,
           "paddingVertical": 40,
           "width": "100%",
@@ -107,7 +107,7 @@ exports[`renders correctly 1`] = `
           <Text
             style={
               Object {
-                "color": "#000",
+                "color": "#000000",
                 "fontFamily": "IBMPlexSans-Bold",
                 "fontSize": 26,
                 "fontWeight": "bold",
@@ -123,7 +123,7 @@ exports[`renders correctly 1`] = `
           <Text
             style={
               Object {
-                "color": "#000",
+                "color": "#000000",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 18,
                 "fontWeight": "normal",
@@ -142,7 +142,7 @@ Somerville, MA 02144
           <Text
             style={
               Object {
-                "color": "#3C4ED8",
+                "color": "#4051db",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 16,
                 "fontWeight": "normal",
@@ -159,7 +159,7 @@ Somerville, MA 02144
           <Text
             style={
               Object {
-                "color": "#3C4ED8",
+                "color": "#4051db",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 16,
                 "fontWeight": "normal",
@@ -182,7 +182,7 @@ Somerville, MA 02144
       isTVSelectable={true}
       style={
         Object {
-          "backgroundColor": "#4051DB",
+          "backgroundColor": "#4051db",
           "flexDirection": "row",
           "justifyContent": "space-between",
           "opacity": 1,
@@ -194,7 +194,7 @@ Somerville, MA 02144
       <Text
         style={
           Object {
-            "color": "#FFF",
+            "color": "#ffffff",
             "fontFamily": "IBMPlexSans",
             "fontSize": 18,
             "fontWeight": "normal",

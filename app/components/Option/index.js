@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import Icon from '../../assets/svgs/check';
-import Colors from '../../constants/colors';
-import { Colors as AssessmentColors } from '../../views/assessment/constants';
 import { OptionSelect } from './OptionSelect';
+
+import { Colors } from '../../styles';
 
 export function Option({ isValidType, isSelected, inputType, title, onPress }) {
   return (
@@ -25,8 +25,8 @@ export function Option({ isValidType, isSelected, inputType, title, onPress }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.WHITE,
-    borderColor: AssessmentColors.BORDER,
+    backgroundColor: Colors.white,
+    borderColor: Colors.secondaryBorder,
     borderRadius: 8,
     borderWidth: 1,
     marginBottom: 16,
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   containerSelected: {
-    backgroundColor: Colors.SECONDARY_50,
-    borderColor: Colors.PRIMARY_50,
+    backgroundColor: Colors.secondaryBackground,
+    borderColor: Colors.primaryViolet,
   },
   primary: {
     alignItems: 'center',

@@ -139,6 +139,10 @@
       "no_authorities_subheader": "Your phone is outside any areas covered by Health Department on PathCheck \n\n You will be notified when Health Departments are added near you"
     }
   },
+  "settings": {
+    "share_test_result": "Report a positive test result",
+    "share_test_result_description": "Share Covid-19 exporsure information with your health authority with a provided code"
+  },
   "label": {
     "about_header_bluetooth": "PathCheck BT",
     "about_header_location": "PathCheck GPS",

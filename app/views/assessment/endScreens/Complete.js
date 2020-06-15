@@ -3,9 +3,10 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { Icons, Images } from '../../../assets';
 import { Typography } from '../../../components/Typography';
-import Colors from '../../../constants/colors';
 import { MetaContext } from '../Context';
 import { Info } from '../Info';
+
+import { Colors } from '../../../styles';
 
 /** @type {React.FunctionComponent<{}>} */
 export const Complete = () => {
@@ -14,7 +15,7 @@ export const Complete = () => {
   return (
     <Info
       ctaAction={dismiss}
-      backgroundColor={Colors.SECONDARY_10}
+      backgroundColor={Colors.primaryBackgroundFaintShade}
       backgroundImage={Images.EmptyPathBackground}
       icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.complete_cta')}

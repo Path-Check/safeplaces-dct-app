@@ -3,9 +3,10 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { Icons, Images } from '../../../assets';
 import { Typography } from '../../../components/Typography';
-import Colors from '../../../constants/colors';
 import { MetaContext } from '../Context';
 import { Info } from '../Info';
+
+import { Colors } from '../../../styles';
 
 /** @type {React.FunctionComponent<{}>} */
 export const Distancing = ({ navigation }) => {
@@ -16,7 +17,7 @@ export const Distancing = ({ navigation }) => {
       ctaAction={() => {
         navigation.push(completeRoute);
       }}
-      backgroundColor={Colors.SECONDARY_10}
+      backgroundColor={Colors.primaryBackgroundFaintShade}
       backgroundImage={Images.IsolatePathBackground}
       icon={Icons.Isolate}
       ctaTitle={t('assessment.distancing_cta')}

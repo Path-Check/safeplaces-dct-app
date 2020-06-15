@@ -14,7 +14,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#6979F8",
+        "backgroundColor": "#6979f8",
         "flex": 0,
       }
     }
@@ -23,7 +23,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#3A4CD7",
+        "backgroundColor": "#4051db",
         "flex": 1,
       }
     }
@@ -32,7 +32,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
       colors={
         Array [
           4285102584,
-          4282010839,
+          4282405339,
         ]
       }
       endPoint={
@@ -77,7 +77,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#FFF",
+                  "color": "#ffffff",
                   "fontFamily": "IBMPlexSans-Medium",
                   "fontSize": 26,
                   "fontWeight": "normal",
@@ -93,7 +93,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#FFF",
+                  "color": "#ffffff",
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 18,
                   "fontWeight": "normal",
@@ -109,7 +109,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#FFF",
+                  "color": "#ffffff",
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 18,
                   "fontWeight": "normal",
@@ -133,7 +133,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                   "alignContent": "center",
                   "alignItems": "center",
                   "alignSelf": "stretch",
-                  "backgroundColor": "#FFF",
+                  "backgroundColor": "#ffffff",
                   "borderBottomLeftRadius": 8,
                   "borderBottomRightRadius": 8,
                   "borderColor": "transparent",
@@ -153,7 +153,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#4051DB",
+                    "color": "#4051db",
                     "fontFamily": "IBMPlexSans-Medium",
                     "fontSize": 20,
                     "fontWeight": "normal",

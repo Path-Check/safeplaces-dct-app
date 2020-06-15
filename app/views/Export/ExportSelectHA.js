@@ -15,13 +15,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
 import { Screens } from '../../navigation';
+
 import { Icons } from '../../assets';
+import { Colors } from '../../styles';
 
 export const ExportSelectHA = ({ navigation }) => {
   const { t } = useTranslation();
@@ -46,7 +47,7 @@ export const ExportSelectHA = ({ navigation }) => {
     <Theme use='default'>
       <StatusBar
         barStyle='dark-content'
-        backgroundColor={Colors.INTRO_WHITE_BG}
+        backgroundColor={Colors.primaryBackgroundFaintShade}
         translucent={false}
       />
       <View style={styles.wrapper}>
@@ -132,7 +133,7 @@ export const ExportSelectHA = ({ navigation }) => {
 const Separator = () => (
   <View
     style={{
-      backgroundColor: Colors.DIVIDER,
+      backgroundColor: Colors.tertiaryViolet,
       height: StyleSheet.hairlineWidth,
       width: '100%',
     }}
@@ -140,15 +141,15 @@ const Separator = () => (
 );
 
 const styles = StyleSheet.create({
-  wrapper: { flex: 1, backgroundColor: Colors.INTRO_WHITE_BG },
+  wrapper: { flex: 1, backgroundColor: Colors.primaryBackgroundFaintShade },
   exportSectionTitles: {
     fontWeight: '500',
-    color: Colors.VIOLET_TEXT_DARK,
+    color: Colors.violetTextDark,
     fontFamily: fontFamily.primaryMedium,
   },
   card: {
-    backgroundColor: Colors.WHITE,
-    shadowColor: Colors.BLACK,
+    backgroundColor: Colors.white,
+    shadowColor: Colors.black,
     shadowOffset: {
       width: 0,
       height: 2,
