@@ -1,6 +1,6 @@
 import { Button, Container, Content, Text } from 'native-base';
 import React, { useContext } from 'react';
-import { ScrollView, View } from 'react-native';
+import { Image, ScrollView, View } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -377,6 +377,16 @@ export default function Results({ navigation }) {
                     ]}
                   />
                 )}
+              <Image
+                resizeMode='contain'
+                style={{
+                  height: 70,
+                  width: 80,
+                  alignSelf: 'center',
+                  marginTop: 10,
+                }}
+                source={require('../../../assets/images/logo_msp.png')}
+              />
               <Button
                 style={[
                   styles.buttons,
@@ -390,7 +400,7 @@ export default function Results({ navigation }) {
                 onPress={() => {
                   navigation.navigate('HomeScreen');
                 }}>
-                <Text style={[styles.buttonText, { color: '#fff' }]}>
+                <Text style={[styles.buttonText, { color: Colors.WHITE }]}>
                   Cerrar
                 </Text>
               </Button>
