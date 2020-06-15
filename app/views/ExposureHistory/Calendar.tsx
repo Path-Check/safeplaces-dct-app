@@ -4,10 +4,7 @@ import dayjs from 'dayjs';
 
 import { Typography } from '../../components/Typography';
 import ExposureDatumIndicator from './ExposureDatumIndicator';
-import {
-  ExposureHistory,
-  ExposureDatum,
-} from '../../ExposureNotificationContext';
+import { ExposureHistory, ExposureDatum } from '../../ExposureHistoryContext';
 
 import { Spacing } from '../../styles';
 
@@ -83,7 +80,6 @@ const Calendar = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: Spacing.small,
   },
   calendarContainer: { flex: 1 },
   calendarRow: {
