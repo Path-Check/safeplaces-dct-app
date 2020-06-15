@@ -376,15 +376,15 @@ async function asyncCheckIntersect() {
   let tempDayBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS, locationArray);
   locationArray = fillLocationGaps(locationArray, gpsPeriodMS);
 
-  const authorities = await getHealthAuthorities();
-
   // we also need locally saved data so we can know the last read page for each HA
   let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
   if (!localHAData) localHAData = [];
 
-  if (authorities) {
-    for (const authority of authorities) {
-      try {
+  try {
+    const authorities = await getHealthAuthorities();
+
+    if (authorities) {
+      for (const authority of authorities) {
         let {
           name,
           api_endpoint_url,
@@ -438,12 +438,12 @@ async function asyncCheckIntersect() {
           matchRate,
           gpsPeriodMS,
         );
-      } catch (error) {
-        // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
-        //       Should do better than this.
-        console.log('[authority] fetch/parse error :', error);
       }
     }
+  } catch (error) {
+    // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
+    //       Should do better than this.
+    console.log('[authority] fetch/parse error :', error);
   }
 
   // Update each day's bin with the result from the intersection.  To keep the
