@@ -1,6 +1,5 @@
 import { languages } from '../helpers/language';
 import { navigateThroughOnboarding } from '../helpers/onboarding';
-import Home from '../pages/Home.po.js';
 
 describe.each(languages)(
   `Permissions test suite in %s`,
