@@ -25,7 +25,7 @@
     "authorities_removal_alert_proceed": "Ituloy",
     "authorities_removal_alert_title": "Tanggalin ang awtoridad",
     "choose_provider_title": "Pumili ng awtoridad sa kalusugan",
-    "default_news_site_name": "Safe Paths Balita",
+    "default_news_site_name": "PathCheck Balita",
     "event_history_title": "Kasaysayan ng paglalantad",
     "latest_news": "Pinakabagong Balita",
     "launch_access_location": "Pag-access sa lokasyon",
@@ -57,10 +57,10 @@
     "legal": "Legal"
   },
   "version_update": {
-    "alert_label": "Ang COVID Safe Paths bersyon ay luma na",
+    "alert_label": "Ang PathCheck bersyon ay luma na",
     "alert_sublabel": "Mag-update sa bagong bersyon?",
     "later": "Kalaunan",
-    "push_notification_message": "Mangyaring i-update ang iyong COVID Safe Paths Software.",
+    "push_notification_message": "Mangyaring i-update ang iyong PathCheck Software.",
     "push_notification_title": "Ang aplikasyon ay luma na",
     "update": "I-update"
   }

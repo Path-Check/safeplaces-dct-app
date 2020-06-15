@@ -34,7 +34,7 @@
     "error": "Er is iets misgegaan bij het importeren van uw gegevens.",
     "google": {
       "already_imported": "Dit Takeout bestand is al eerder geïmporteerd/",
-      "disclaimer": "COVID Safe Paths is niet aangesloten bij Google en zal nooit uw data delen.",
+      "disclaimer": "PathCheck is niet aangesloten bij Google en zal nooit uw data delen.",
       "file_open_error": "Kon het bestand niet openen. \nZorg ervoor dat het bestand wordt geopend vanuit Google Drive",
       "instructions_detailed": "Bezoek Google Takeout en exporteer uw locatiegeschiedenis met de volgende instellingen: \n 1. Bezorgmethode: 'Toevoegen aan Drive' \n 2. Frequentie: \"eenmaal exporteren\" \n 3. Bestandstype en -grootte: \".zip\" en \"1GB\" \n 4. Google stuurt een e-mail wanneer de export klaar is \n 5. Keer hier terug om locaties uit Google Drive te importeren",
       "instructions_first": "Door locatiegegevens van Google toe te voegen, krijgt u een voorsprong bij het bouwen van uw recente locaties.",
@@ -96,10 +96,10 @@
     "launch_set_up_phone_location": "Stel mijn telefoon in",
     "launch_subheader": "Geen zorgen, de informatie verlaat nooit uw telefoon zonder uw nadrukkelijke toestemming.",
     "loading_public_data": "Gegevens worden geladen ...",
-    "location_disabled_message": "COVID Safe Paths vereist locatie diensten.",
+    "location_disabled_message": "PathCheck vereist locatie diensten.",
     "location_disabled_title": "Het traceren van locatie is uitgeschakeld",
-    "location_enabled_message": "COVID Safe Paths slaat uw GPS-coördinaten eens in de vijf minuten veilig op dit apparaat op.",
-    "location_enabled_title": "COVID Safe Paths ingeschakeld",
+    "location_enabled_message": "PathCheck slaat uw GPS-coördinaten eens in de vijf minuten veilig op dit apparaat op.",
+    "location_enabled_title": "PathCheck ingeschakeld",
     "logging_active_location": "Locatie actief",
     "logging_inactive_location": "Locatie inactief",
     "news_subtitle": "Lees meer over de laatste COVID-19 nieuws op de website van uw gezondheidsinstantie.",
@@ -132,7 +132,7 @@
     "title": "Deel locatie geschiedenis"
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths is verouderd",
+    "alert_label": "PathCheck is verouderd",
     "alert_sublabel": "Update naar een nieuwe versie?",
     "later": "Later",
     "push_notification_message": "Update uw applicatie",

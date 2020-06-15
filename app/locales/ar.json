@@ -34,7 +34,7 @@
     "error": "حدث خطأ أثناء الحصول علي بياناتك.",
     "google": {
       "already_imported": "تم تحميل ملف Takeout المقدم بالفعل.",
-      "disclaimer": "لا يرتبط تطبيق Safe Paths بـ Google ولا تشارك بياناتك مطلقًا.",
+      "disclaimer": "لا يرتبط تطبيق PathCheck بـ Google ولا تشارك بياناتك مطلقًا.",
       "file_open_error": "تعذر فتح الملف. \n من فضلك ، تأكد من فتح الملف من Google Drive",
       "instructions_detailed": "قم بزيارة Google Takeout واحصل على سجل المواقع الخاص بك باستخدام الإعدادات التالية:\n1. طريقة التسليم: \"add to drive\"\n2. التكرار: \"export once\"\n3. نوع الملف وحجمه: \".zip\" و \"1 غيغابايت\"\n4. ترسل Google بريدًا إلكترونيًا عندما يكون البيانات جاهزه\n5. ارجع هنا لتنزيل بيانات المواقع. خيارات الاستيراد:\n- التنزيل من جوجل درايف\n- التنزيل من المتصفح ، ثم الاستيراد من ملفات الهاتف المحلية. تأكد من أن تكون على شبكة WiFi لأن الملفات يمكن أن تكون كبيرة.",
       "instructions_first": "ستمنحك إضافة بيانات الموقع من Google السبق في معرفة مواقعك الأخيرة.",
@@ -94,10 +94,10 @@
     "launch_set_up_phone_location": "إعداد هاتفي",
     "launch_subheader": "لا تقلق ، لا تترك المعلومات جهازك أبدًا ما لم تقرر المشاركة بها",
     "loading_public_data": "جاري تحميل البيانات...",
-    "location_disabled_message": "يتطلب تطبيق COVID Safe Paths خدمات الموقع",
+    "location_disabled_message": "يتطلب تطبيق PathCheck خدمات الموقع",
     "location_disabled_title": "تم تعطيل خدمة تتبع الموقع",
-    "location_enabled_message": "يقوم تطبيق COVID Safe Paths بتخزين إحداثيات موقعك بأمان مرة واحدة كل خمس دقائق على هذا الجهاز",
-    "location_enabled_title": "تم تفعيل تطبيق COVID Safe Paths",
+    "location_enabled_message": "يقوم تطبيق PathCheck بتخزين إحداثيات موقعك بأمان مرة واحدة كل خمس دقائق على هذا الجهاز",
+    "location_enabled_title": "تم تفعيل تطبيق PathCheck",
     "logging_active_location": "خدمة تتبع الموقع مفعلة",
     "logging_inactive_location": "خدمة تتبع الموقع غير مفعلة",
     "news_subtitle": "اقرأ عن آخر تحديثات COVID من السلطات الصحية الخاصة بك وبشكل عام",
@@ -121,7 +121,7 @@
   "onboarding": {
     "eula_checkbox": "أوافق على اتفاقية الترخيص",
     "eula_continue": "استمر",
-    "eula_message": "*يجب أن تقبل لاستخدام تطبيق Safe Paths"
+    "eula_message": "*يجب أن تقبل لاستخدام تطبيق PathCheck"
   },
   "screen_titles": {
     "about": "نبذة عنا",
@@ -135,7 +135,7 @@
     "title": "تفعيل خدمة الموقع"
   },
   "version_update": {
-    "alert_label": "إصدار COVID Safe Paths قديم",
+    "alert_label": "إصدار PathCheck قديم",
     "alert_sublabel": "هل تريد التحديث إلى إصدار جديد؟",
     "later": "في وقت لاحق",
     "push_notification_message": "يرجى تحديث إصدار التطبيق الخاص بك",

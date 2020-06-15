@@ -59,7 +59,7 @@ const ExportLocally = ({ navigation }) => {
       );
       const title = 'COVIDSafePaths.json';
       const filename = unixtimeUTC + '.json';
-      const message = 'Here is my location log from COVID Safe Paths.';
+      const message = 'Here is my location log from PathCheck.';
       if (isPlatformiOS()) {
         const url = RNFS.DocumentDirectoryPath + '/' + filename;
         await RNFS.writeFile(url, jsonData, 'utf8')
