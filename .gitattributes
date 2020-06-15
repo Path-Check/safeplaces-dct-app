@@ -1,1 +1,5 @@
 *.pbxproj -text
+
+.env filter=ignoreline
+.env.release filter=ignoreline
+

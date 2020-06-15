@@ -35,7 +35,11 @@ import { Button } from '../components/Button';
 import NextSteps from '../components/DR/LocationTracking/NextSteps';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-import { MEPYD_C5I_SERVICE } from '../constants/DR/baseUrls';
+import {
+  GOV_DO_TOKEN,
+  MEPYD_C5I_API_URL,
+  MEPYD_C5I_SERVICE,
+} from '../constants/DR/baseUrls';
 import fontFamily from '../constants/fonts';
 import {
   COVID_ID,
@@ -225,9 +229,12 @@ class LocationTracking extends Component {
             covidId: covidId,
           });
 
-          fetch(`${MEPYD_C5I_SERVICE}/contact_tracing/api/UserTrace`, {
+          fetch(`${MEPYD_C5I_SERVICE}/${MEPYD_C5I_API_URL}/UserTrace`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+              'Content-Type': 'application/json',
+              gov_do_token: GOV_DO_TOKEN,
+            },
             body,
           })
             .then(function(response) {
