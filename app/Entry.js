@@ -151,8 +151,8 @@ const MainAppTabs = () => {
   const applyBadge = (icon) => {
     return (
       <>
-        <View style={styles.iconBadge} />
         {icon}
+        <View style={styles.iconBadge} />
       </>
     );
   };
