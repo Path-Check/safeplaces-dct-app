@@ -101,6 +101,10 @@ const StepAdress = ({ setCompleted }) => {
                   setSelectedOption('province', value);
                   setMunicipalities(value);
                 }}>
+                <Picker.Item
+                  label={t('report.address.province_selection')}
+                  value={null}
+                />
                 {provinces.Provincias.map(provincia => (
                   <Picker.Item
                     label={provincia.Nombre}
@@ -133,6 +137,10 @@ const StepAdress = ({ setCompleted }) => {
                     onValueChange={value => {
                       setSelectedOption('municipality', value);
                     }}>
+                    <Picker.Item
+                      label={t('report.address.municipality_selection')}
+                      value={null}
+                    />
                     {municipios.map((municipio, index) => (
                       <Picker.Item
                         label={municipio}

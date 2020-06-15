@@ -31,7 +31,6 @@ export default function ReportScreen({ navigation }) {
             title={t('report.title')}
             text={t('report.usage.header_subtitle')}
             navigation={navigation}
-            close
             style={{ height: hp('18%') }}
           />
           <View style={styles.formContainer}>

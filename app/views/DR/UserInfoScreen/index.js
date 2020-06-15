@@ -5,7 +5,12 @@ import moment from 'moment';
 import { Button, Card, Container, Content, Text } from 'native-base';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, TouchableHighlight, View } from 'react-native';
+import {
+  ActivityIndicator,
+  ScrollView,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -29,6 +34,7 @@ export default function UserInfo({ navigation }) {
   const { t } = useTranslation();
 
   const [showDialog, setShowDialog] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [showValidationDialog, setShowValidationDialog] = useState(false);
   const [usePassport, setUsePassport] = useState(false);
   const [useIdCard, setUseIdCard] = useState(false);
@@ -94,6 +100,7 @@ export default function UserInfo({ navigation }) {
         },
       );
       response = await response.json();
+      setLoading(false);
       if (response.valid !== undefined) {
         if (response.valid) {
           getAge(birth);
@@ -123,6 +130,7 @@ export default function UserInfo({ navigation }) {
 
   const sendDataToApi = async () => {
     let data = { body: {} };
+    setLoading(true);
     if (useIdCard) {
       data.body = {
         cid: cid,
@@ -200,7 +208,6 @@ export default function UserInfo({ navigation }) {
                 <Text>{t('report.close')}</Text>
               </Button>
             </Dialog>
-
             <Dialog
               onTouchOutside={() => closeDialog(true)}
               visible={showDialog}
@@ -212,6 +219,14 @@ export default function UserInfo({ navigation }) {
                   style={{ marginTop: -10 }}>
                   <Icon name='times' size={25} color={Colors.GREEN} />
                 </Button>
+                {loading && (
+                  <ActivityIndicator
+                    size={30}
+                    animating={loading}
+                    color={Colors.BLUE_RIBBON}
+                  />
+                )}
+
                 {error && (
                   <Text style={[styles.text, { color: Colors.RED_TEXT }]}>
                     {t('report.userInfo.incorrect_data_error_msg')}
@@ -290,13 +305,12 @@ export default function UserInfo({ navigation }) {
                   minDate='01-01-1900'
                 />
                 <Button
-                  disabled={disabled}
+                  disabled={disabled || loading}
                   style={[
                     styles.buttons,
                     {
-                      backgroundColor: disabled
-                        ? Colors.DARK_GREEN
-                        : Colors.GREEN,
+                      backgroundColor:
+                        disabled || loading ? Colors.DARK_GREEN : Colors.GREEN,
                       marginTop: 18,
                     },
                   ]}
@@ -313,6 +327,7 @@ export default function UserInfo({ navigation }) {
               text={t('report.userInfo.insert_data_subtitle')}
               navigation={navigation}
               close
+              iconName='chevron-left'
               style={{ height: wp('38%') }}
             />
             <View
