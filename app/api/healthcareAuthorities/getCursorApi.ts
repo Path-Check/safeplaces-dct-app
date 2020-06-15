@@ -11,10 +11,6 @@ export type Cursor = {
   version: string;
   name: string;
   publish_date_utc: number;
-  info_website_url: string;
-  api_endpoint_url: string; // Where cursor is hosted
-  privacy_policy_url: string;
-  reference_website_url: string;
   notification_threshold_percent: number;
   notification_threshold_count: number;
   pages: Page[];

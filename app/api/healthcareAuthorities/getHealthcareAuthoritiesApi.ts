@@ -13,9 +13,10 @@ export type HealthcareAuthority = {
     ne: Coordinates;
     sw: Coordinates;
   };
-  ingest_url: string;
-  publish_url: string;
+  org_id: string;
   cursor_url: string;
+  public_api: string;
+  internal_id: string;
 };
 
 const getHealthcareAuthoritiesApi = async (): Promise<
@@ -28,7 +29,12 @@ const getHealthcareAuthoritiesApi = async (): Promise<
   if (!Array.isArray(authorities)) {
     throw new Error('authorities yaml did not return an array of authorities');
   }
-  return authorities;
+  return authorities.map((ha: HealthcareAuthority) => ({
+    ...ha,
+    // HAs have public facing Ids in the yaml. We construct a unique identifier
+    // based on the base route and the org. This guarantees uniqueness.
+    internal_id: `api:${ha.public_api}|org:${ha.org_id}`,
+  }));
 };
 
 export default getHealthcareAuthoritiesApi;

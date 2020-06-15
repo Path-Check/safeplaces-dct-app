@@ -74,7 +74,7 @@ export const ExportSelectHA = ({ navigation }) => {
             keyExtractor={({ name }, i) => `${name}:${i}`}
             renderItem={({ item: HA }) => (
               <TouchableHighlight
-                underlayColor={'#E5E7FA'}
+                underlayColor={Colors.UNDERLAY}
                 style={{
                   paddingVertical: 20,
                   paddingHorizontal: 24,

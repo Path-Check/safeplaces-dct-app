@@ -44,7 +44,10 @@
   },
   "authorities": {
     "invalid_url_body": "The URL you entered was invalid, please try again",
-    "invalid_url_title": "Invalid URL"
+    "info_body": "Local and regional Health Departments can share information and resources about COVID-19 for their area, including verified data that allows PathCheck to estimate when you may have crossed paths with the virus.",
+    "title": "Health Departments",
+    "view_button_label": "View your Health Departments",
+    "automatically_follow": "Automatically follow Health Departments nearby"
   },
   "common": {
     "done": "Done",
