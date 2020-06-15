@@ -137,9 +137,9 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
 
         <View style={styles.section}>
           <SettingsListItem
-            label={t('settings.report_positive_test')}
+            label={t('settings.share_test_result')}
             onPress={navigateTo('ExportFlow')}
-            description={t('settings.report_positive_test_description')}
+            description={t('settings.share_test_result_description')}
             style={styles.lastListItem}
           />
         </View>
