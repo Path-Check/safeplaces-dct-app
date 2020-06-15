@@ -47,7 +47,7 @@
     "error": "Coś poszło nie tak podczas importowania danych.",
     "google": {
       "already_imported": "Podany plik Takeout został już zaimportowany.",
-      "disclaimer": "Safe Paths nie jest powiązane z Google i nigdy nie udostępnia Twoich danych.",
+      "disclaimer": "PathCheck nie jest powiązane z Google i nigdy nie udostępnia Twoich danych.",
       "file_open_error": "Nie można otworzyć pliku. \nUpewnij się, że plik jest otwarty z Dysku Google",
       "instructions_detailed": "Odwiedź Google Takeout i wyeksportuj Historię Lokalizacji przy użyciu następujących ustawień: \n 1. Sposób dostawy: „Dodaj do Dysku” \n 2. Częstotliwość: „Eksportuj raz” \n 3. Typ i rozmiar pliku: „.zip” i „1 GB” \n 4. Google wysyła wiadomość email, gdy eksport jest gotowy \n 5. Wróć tutaj, aby zaimportować lokalizacje z Dysku Google",
       "instructions_first": "Dodanie danych lokalizacyjnych z Google zapewni Ci szybki start w tworzeniu Twoich ostatnich lokalizacji",
@@ -83,7 +83,7 @@
     "auto_subscribe_checkbox": "Włącz automatyczną subskrypcję",
     "choose_provider_subtitle": "Wybierz organ opieki zdrowotnej, aby uzyskać informacje na temat COVID-19 w Twojej okolicy, jeśli są dostępne",
     "choose_provider_title": "Twój organ opieki zdrowotnej",
-    "default_news_site_name": "Safe Paths Informacje",
+    "default_news_site_name": "PathCheck Informacje",
     "enter_authority_url": "Wprowadź lub wklej adres URL",
     "event_history_subtitle": "Dowiedz się o swoim osobistym narażeniu na ryzyko zakażenia na podstawie informacji udostępnionych przez instytucje opieki zdrowotnej.",
     "event_history_title": "Historia narażenia na zakażenie",
@@ -129,15 +129,15 @@
     "legal_page_header_bluetooth": "PathCheck Bluetooth",
     "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "ładowanie danych...",
-    "location_disabled_message": "COVID Safe Paths wymaga dostępu do usług lokalizacyjnych.",
+    "location_disabled_message": "PathCheck wymaga dostępu do usług lokalizacyjnych.",
     "location_disabled_title": "Śledzenie lokalizacji zostało wyłączone",
-    "location_enabled_message": "COVID Safe Paths bezpiecznie przechowuje współrzędne GPS na tym urządzeniu raz na pięć minut.",
-    "location_enabled_title": "Włączono COVID Safe Paths",
+    "location_enabled_message": "PathCheck bezpiecznie przechowuje współrzędne GPS na tym urządzeniu raz na pięć minut.",
+    "location_enabled_title": "Włączono PathCheck",
     "logging_active_bluetooth": "Powiadomienia o narażeniu Aktywne",
     "logging_active_location": "Lokalizacja Aktywna",
     "logging_inactive_bluetooth": "Powiadomienia o narażeniu Nieaktywne",
     "logging_inactive_location": "Lokalizacja Nieaktywna",
-    "news_subtitle": "Znajdź najnowsze aktualizacje z Safe Paths i lokalnych organów opieki zdrowotnej, jeśli są dostępne.",
+    "news_subtitle": "Znajdź najnowsze aktualizacje z PathCheck i lokalnych organów opieki zdrowotnej, jeśli są dostępne.",
     "news_title": "Najnowsze informacje",
     "no_data": "Brak danych",
     "privacy_policy": "Polityka prywatności",
@@ -155,7 +155,7 @@
   "onboarding": {
     "eula_checkbox": "Akceptuję umowę licencyjną",
     "eula_continue": "Dalej",
-    "eula_message": "*Musisz zaakceptować, jeśli chcesz korzystać z Safe Paths"
+    "eula_message": "*Musisz zaakceptować, jeśli chcesz korzystać z PathCheck"
   },
   "screen_titles": {
     "about": "O nas",
@@ -169,7 +169,7 @@
     "title": "Udostępnij historię lokalizacji"
   },
   "version_update": {
-    "alert_label": "Aplikacja COVID Safe Paths jest nieaktualna",
+    "alert_label": "Aplikacja PathCheck jest nieaktualna",
     "alert_sublabel": "Zaktualizować do nowej wersji?",
     "later": "Później",
     "push_notification_message": "Proszę zaktualizować swoją aplikację",

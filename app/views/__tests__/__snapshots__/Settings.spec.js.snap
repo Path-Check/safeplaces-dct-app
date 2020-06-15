@@ -397,7 +397,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               }
               use="body3"
             >
-              Safe Paths has no affiliation with Google and never shares your data.
+              PathCheck has no affiliation with Google and never shares your data.
             </Text>
           </View>
         </View>
