@@ -16,11 +16,12 @@ import languages, {
 } from './../../locales/languages';
 import { Images } from '../../assets';
 import { NativePicker, Typography } from '../../components';
-import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import { EulaModal } from '../EulaModal';
 import { sharedStyles } from './styles';
+
+import { Colors } from '../../styles';
 
 const width = Dimensions.get('window').width;
 
@@ -131,21 +132,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     lineHeight: 35,
-    color: Colors.WHITE,
+    color: Colors.white,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
   },
   // eslint-disable-next-line react-native/no-color-literals
   languageSelector: {
     borderWidth: 1,
-    borderColor: Colors.WHITE,
+    borderColor: Colors.white,
     paddingVertical: 4,
     paddingHorizontal: 11,
     borderRadius: 100,
   },
   languageSelectorText: {
     fontSize: 16,
-    color: Colors.WHITE,
+    color: Colors.white,
     paddingVertical: 4,
     paddingHorizontal: 20,
     textAlign: 'center',

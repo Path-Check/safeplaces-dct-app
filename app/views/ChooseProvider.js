@@ -19,7 +19,6 @@ import {
 } from 'react-native-popup-menu';
 import validUrl from 'valid-url';
 
-import { Icons } from '../assets';
 import {
   Button,
   Checkbox,
@@ -27,7 +26,6 @@ import {
   NavigationBarWrapper,
   Typography,
 } from '../components';
-import Colors from '../constants/colors';
 import { AUTHORITY_SOURCE_SETTINGS, LAST_CHECKED } from '../constants/storage';
 import { Theme } from '../constants/themes';
 import { isGPS } from '../COVIDSafePathsConfig';
@@ -36,6 +34,9 @@ import { checkIntersect } from '../helpers/Intersect';
 import languages from '../locales/languages';
 import { HCAService } from '../services/HCAService';
 import { KeyboardAvoidingView } from './common/KeyboardAvoidingView';
+
+import { Icons } from '../assets';
+import { Colors } from '../styles';
 
 const { SlideInMenu } = renderers;
 
@@ -415,20 +416,20 @@ const styles = StyleSheet.create({
   sectionDescription: {
     marginTop: 12,
     overflow: 'scroll',
-    color: Colors.VIOLET_TEXT,
+    color: Colors.violetText,
   },
   authorityFilter: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 5,
-    backgroundColor: Colors.LIGHT_GRAY,
+    backgroundColor: Colors.lightGray,
     borderTopWidth: 3,
-    borderTopColor: Colors.DIVIDER,
+    borderTopColor: Colors.tertiaryViolet,
     justifyContent: 'space-between',
   },
   authorityFilterText: {
     padding: 10,
-    color: Colors.VIOLET_TEXT,
+    color: Colors.violetText,
   },
   menuOptionText: {
     padding: 10,

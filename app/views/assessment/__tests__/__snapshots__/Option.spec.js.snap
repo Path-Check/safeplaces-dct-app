@@ -25,8 +25,8 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "#FFF",
-            "borderColor": "rgb(173,188,205)",
+            "backgroundColor": "#ffffff",
+            "borderColor": "#333333",
             "borderRadius": 8,
             "borderWidth": 1,
             "marginBottom": 16,
@@ -50,7 +50,7 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "rgb(173,188,205)",
+                "borderColor": "#4051db",
                 "borderRadius": 40,
                 "borderWidth": 2,
                 "height": 20,
@@ -65,7 +65,7 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
         <Text
           style={
             Object {
-              "color": "#000",
+              "color": "#000000",
               "flex": 1,
               "flexWrap": "wrap",
               "fontFamily": "IBMPlexSans",
@@ -111,8 +111,8 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "#FFF",
-            "borderColor": "rgb(173,188,205)",
+            "backgroundColor": "#ffffff",
+            "borderColor": "#333333",
             "borderRadius": 8,
             "borderWidth": 1,
             "marginBottom": 16,
@@ -136,7 +136,7 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "rgb(173,188,205)",
+                "borderColor": "#4051db",
                 "borderRadius": 40,
                 "borderWidth": 2,
                 "height": 20,
@@ -151,7 +151,7 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
         <Text
           style={
             Object {
-              "color": "#000",
+              "color": "#000000",
               "flex": 1,
               "flexWrap": "wrap",
               "fontFamily": "IBMPlexSans",

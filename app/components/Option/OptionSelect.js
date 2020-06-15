@@ -3,13 +3,13 @@ import { StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 import {
-  Colors as AssessmentColors,
   SCREEN_TYPE_CHECKBOX,
   SCREEN_TYPE_DATE,
   SCREEN_TYPE_RADIO,
 } from '../../views/assessment/constants';
+
+import { Colors } from '../../styles';
 
 const INDICATOR_WIDTH = 20;
 const INDICATOR_MARGIN = 10;
@@ -49,7 +49,7 @@ export function OptionSelect({
 const styles = StyleSheet.create({
   indicator: {
     alignItems: 'center',
-    borderColor: AssessmentColors.BORDER,
+    borderColor: Colors.primaryViolet,
     borderRadius: INDICATOR_WIDTH * 2,
     borderWidth: 2,
     height: INDICATOR_WIDTH,
@@ -58,12 +58,12 @@ const styles = StyleSheet.create({
     width: INDICATOR_WIDTH,
   },
   indicatorSelected: {
-    backgroundColor: Colors.PRIMARY_50,
-    borderColor: Colors.PRIMARY_50,
+    backgroundColor: Colors.secondaryBlue,
+    borderColor: Colors.secondaryBlue,
   },
   title: {
     flex: 1,
     flexWrap: 'wrap',
-    color: Colors.BLACK,
+    color: Colors.black,
   },
 });

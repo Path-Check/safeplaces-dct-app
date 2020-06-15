@@ -13,7 +13,7 @@ import {
 import { useSelector } from 'react-redux';
 
 import { Main } from './views/Main';
-import { SettingsScreen } from './views/Settings';
+import SettingsScreen from './views/Settings';
 import AboutScreen from './views/About';
 import { LicensesScreen } from './views/Licenses';
 import {
@@ -29,7 +29,7 @@ import {
 import ExposureHistoryScreen from './views/ExposureHistory';
 import Assessment from './views/assessment';
 import NextSteps from './views/NextSteps';
-import { ENDebugMenu } from './views/Settings/ENDebugMenu';
+import ENDebugMenu from './views/Settings/ENDebugMenu';
 import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
