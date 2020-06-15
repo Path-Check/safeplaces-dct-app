@@ -327,6 +327,7 @@ export default function UserInfo({ navigation }) {
               text={t('report.userInfo.insert_data_subtitle')}
               navigation={navigation}
               close
+              iconName='chevron-left'
               style={{ height: wp('38%') }}
             />
             <View
