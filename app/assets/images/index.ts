@@ -15,6 +15,9 @@ const LaunchScreen3 = require('./launchScreen3.png');
 const LaunchScreen3BT = require('./launchScreen3BT.png');
 const LaunchScreenBackground = require('./launchScreenBackground.png');
 const LaunchScreenBackgroundOverlay = require('./launchScreenBackgroundOverlay.png');
+const OnboardingBackground1 = require('./onboardingbg1.png');
+const OnboardingBackground2 = require('./onboardingbg2.png');
+const OnboardingBackground3 = require('./onboardingbg3.png');
 const EmptyPathBackground = require('./emptyPathBackground.png');
 const Newspaper = require('./newspaper.png');
 const PrivateKitQRCode = require('./privatekit_qrcode.png');
@@ -42,6 +45,9 @@ export const Images = {
   LaunchScreen3BT,
   LaunchScreenBackground,
   LaunchScreenBackgroundOverlay,
+  OnboardingBackground1,
+  OnboardingBackground2,
+  OnboardingBackground3,
   Newspaper,
   PrivateKitQRCode,
   SaveIcon,

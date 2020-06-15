@@ -6,6 +6,8 @@ import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
 import exportConsentApi from '../../api/export/exportConsentApi';
 import { useAssets } from '../../TracingStrategyAssets';
+import { isGPS } from '../../COVIDSafePathsConfig';
+import { Screens } from '../../navigation';
 
 export const ExportPublishConsent = ({ navigation, route }) => {
   const [isConsenting, setIsConsenting] = useState(false);
@@ -16,8 +18,10 @@ export const ExportPublishConsent = ({ navigation, route }) => {
     exportPublishButtonSubtitle,
     exportPublishIcon,
     exportPublishTitle,
-    exportPublishNextRoute,
   } = useAssets();
+  const exportPublishNextRoute = isGPS
+    ? Screens.ExportConfirmUpload
+    : Screens.ExportComplete;
   const onClose = () => exitWarningAlert(navigation, exportExitRoute);
 
   const { selectedAuthority, code } = route.params;

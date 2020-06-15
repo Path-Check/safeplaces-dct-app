@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 import { Button } from './Button';
 import { AnswersContext } from './Context';
 import { Option } from './Option';
@@ -14,6 +13,7 @@ import {
   SCREEN_TYPE_RADIO,
 } from './constants';
 
+import { Colors } from '../../styles';
 /**
  * @typedef { import(".").SurveyQuestion } SurveyQuestion
  * @typedef { import(".").SurveyOption } SurveyOption
@@ -135,7 +135,7 @@ export const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.SECONDARY_10,
+    backgroundColor: Colors.primaryBackgroundFaintShade,
   },
   header: {
     paddingHorizontal: 20,

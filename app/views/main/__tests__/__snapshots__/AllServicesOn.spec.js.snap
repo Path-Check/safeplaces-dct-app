@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`no known exposure matches snapshot 1`] = `
+exports[`all services on matches snapshot 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -119,7 +119,7 @@ exports[`no known exposure matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 26,
               "fontWeight": "normal",
@@ -131,12 +131,12 @@ exports[`no known exposure matches snapshot 1`] = `
           }
           use="body1"
         >
-          No known contact
+          PathCheck
         </Text>
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans",
               "fontSize": 18,
               "fontWeight": "normal",
@@ -148,7 +148,7 @@ exports[`no known exposure matches snapshot 1`] = `
           }
           use="body1"
         >
-          Based on available data you haven’t been near anyone reported positive for COVID-19.
+          PathCheck is privately saving the places you visit and comparing your locations to data from your local Health Department
         </Text>
       </View>
     </View>

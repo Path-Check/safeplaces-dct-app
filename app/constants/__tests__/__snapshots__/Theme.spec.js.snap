@@ -13,7 +13,7 @@ exports[`changes text color based on theme 1`] = `
   <Text
     style={
       Object {
-        "color": "#FFF",
+        "color": "#ffffff",
         "fontFamily": "IBMPlexSans",
         "fontSize": 18,
         "fontWeight": "normal",
@@ -28,7 +28,7 @@ exports[`changes text color based on theme 1`] = `
   <Text
     style={
       Object {
-        "color": "#4051DB",
+        "color": "#4051db",
         "fontFamily": "IBMPlexSans",
         "fontSize": 18,
         "fontWeight": "normal",
@@ -56,14 +56,14 @@ exports[`includes extra background View if setBackground=true 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#3C475B",
+        "backgroundColor": "#4e4e4e",
       }
     }
   >
     <Text
       style={
         Object {
-          "color": "#FFF",
+          "color": "#ffffff",
           "fontFamily": "IBMPlexSans-Bold",
           "fontSize": 52,
           "fontWeight": "bold",

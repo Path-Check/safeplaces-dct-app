@@ -19,7 +19,11 @@ import { Spacing } from '../../styles';
  * @param {{history: !import('../../constants/history').History}} param0
  */
 export const DetailedHistory = ({ history }) => {
-  const { detailedHistoryPageWhatThisMeansPara } = useAssets();
+  const {
+    detailedHistoryPageWhatThisMeansPara,
+    allServicesOnScreenHeader,
+    allServicesOnScreenSubheader,
+  } = useAssets();
   const { exposureHistory } = useContext(ExposureNotificationContext);
   const [selectedExposureDatum, setSelectedExposureDatum] = useState(
     exposureHistory[exposureHistory.length - 1],
@@ -49,12 +53,8 @@ export const DetailedHistory = ({ history }) => {
 
         {exposedDays.length === 0 ? (
           <>
-            <Typography use='headline3'>
-              {languages.t('label.home_no_contact_header')}
-            </Typography>
-            <Typography use='body3'>
-              {languages.t('label.home_no_contact_subtext')}
-            </Typography>
+            <Typography use='headline3'>{allServicesOnScreenHeader}</Typography>
+            <Typography use='body3'>{allServicesOnScreenSubheader}</Typography>
             <Divider />
           </>
         ) : (

@@ -136,17 +136,14 @@ class HCAService {
    */
   isValidBoundingBox(region) {
     if (!region) {
-      console.error('An invalid region was passed: ' + region);
       return false;
     }
 
     if (!region.ne || !isValidCoordinate(region.ne)) {
-      console.error(`invalid 'ne' field for bounding box: ${region.ne}`);
       return false;
     }
 
     if (!region.sw || !isValidCoordinate(region.sw)) {
-      console.error(`invalid 'ne' field for bounding box: ${region.sw}`);
       return false;
     }
 
@@ -162,7 +159,11 @@ class HCAService {
   isPointInAuthorityBounds(point, authority) {
     const region = this.getAuthorityBounds(authority);
 
-    if (!isValidCoordinate(point) || !this.isValidBoundingBox(region)) {
+    if (
+      !point ||
+      !isValidCoordinate(point) ||
+      !this.isValidBoundingBox(region)
+    ) {
       return false;
     } else {
       const { latitude: pointLat, longitude: pointLon } = point;
@@ -214,6 +215,23 @@ class HCAService {
         this.isPointInAuthorityBounds(mostRecentUserLoc, authority) &&
         !userAuthorities.includes(authority),
     );
+  }
+
+  /**
+   * Returns a boolean value indicating whether or not the user is currently
+   * in the bounds of any authorities.
+   *
+   * @returns boolean
+   */
+  async hasAuthoritiesInBounds() {
+    const mostRecentUserLoc = await LocationService.getMostRecentUserGps();
+    const authoritiesList = await this.getAuthoritiesList();
+
+    const authoritiesInBounds = authoritiesList.filter((authority) =>
+      this.isPointInAuthorityBounds(mostRecentUserLoc, authority),
+    );
+
+    return authoritiesInBounds.length > 0;
   }
 
   /**

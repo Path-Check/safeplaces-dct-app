@@ -6,13 +6,14 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
-import { Button, Type, Typography } from '../../components';
-import Colors from '../../constants/colors';
-import fontFamily from '../../constants/fonts';
+import { Button, Typography } from '../../components';
 import languages from '../../locales/languages';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
+
+import { Colors } from '../../styles';
 
 const width = Dimensions.get('window').width;
 
@@ -21,6 +22,7 @@ const Onboarding = (props) => {
     onboarding3Background,
     onboarding3Header,
     onboarding3Subheader,
+    onboarding3Icon,
   } = useAssets();
 
   return (
@@ -35,10 +37,13 @@ const Onboarding = (props) => {
         style={styles.backgroundImage}
       />
       <View style={styles.contentContainer}>
-        <Typography style={styles.headerText} use={Type.Headline2}>
+        <View style={sharedStyles.iconCircle}>
+          <SvgXml xml={onboarding3Icon} width={30} height={30} />
+        </View>
+        <Typography style={sharedStyles.headerText}>
           {onboarding3Header}
         </Typography>
-        <Typography style={styles.subheaderText}>
+        <Typography style={sharedStyles.subheaderText}>
           {onboarding3Subheader}
         </Typography>
       </View>
@@ -59,28 +64,18 @@ const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: '100%',
-    top: '-10%',
     resizeMode: 'cover',
     position: 'absolute',
   },
   mainContainer: {
     flex: 1,
-    backgroundColor: Colors.INTRO_WHITE_BG,
+    backgroundColor: Colors.primaryBackgroundFaintShade,
   },
   contentContainer: {
     width: width * 0.9,
     flex: 2,
     alignSelf: 'center',
     justifyContent: 'center',
-  },
-  headerText: {
-    color: Colors.VIOLET,
-  },
-  subheaderText: {
-    marginTop: '6%',
-    color: Colors.VIOLET,
-    fontSize: 16,
-    fontFamily: fontFamily.primaryRegular,
   },
   verticalSpacer: {
     flex: 1,

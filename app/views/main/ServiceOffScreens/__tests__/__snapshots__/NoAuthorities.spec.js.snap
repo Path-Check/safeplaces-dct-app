@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`setting off matches snapshot 1`] = `
+exports[`no authorities screen matches snapshot 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -109,7 +109,7 @@ exports[`setting off matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 28,
               "fontWeight": "normal",
@@ -124,7 +124,7 @@ exports[`setting off matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Light",
               "fontSize": 16,
               "fontWeight": "normal",
@@ -150,7 +150,7 @@ exports[`setting off matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 26,
               "lineHeight": 34,
@@ -159,12 +159,12 @@ exports[`setting off matches snapshot 1`] = `
             }
           }
         >
-          Unknown
+          No local Health Department
         </Text>
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans",
               "fontSize": 18,
               "fontWeight": "normal",
@@ -176,52 +176,10 @@ exports[`setting off matches snapshot 1`] = `
           }
           use="body1"
         >
-          We can’t tell if you’re at risk unless you enable location history in the settings screen.
+          Your phone is outside any areas covered by Health Department on PathCheck 
+
+ You will be notified when Health Departments are added near you
         </Text>
-        <View
-          accessibilityLabel="Enable Location Data"
-          accessibilityRole="button"
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          style={
-            Object {
-              "alignContent": "center",
-              "alignItems": "center",
-              "alignSelf": "stretch",
-              "backgroundColor": "#FFF",
-              "borderBottomLeftRadius": 8,
-              "borderBottomRightRadius": 8,
-              "borderColor": "transparent",
-              "borderStyle": "solid",
-              "borderTopLeftRadius": 8,
-              "borderTopRightRadius": 8,
-              "borderWidth": 2,
-              "flexDirection": "row",
-              "height": 54,
-              "justifyContent": "center",
-              "marginTop": 24,
-              "opacity": 1,
-              "paddingHorizontal": 16,
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "color": "#4051DB",
-                "fontFamily": "IBMPlexSans-Medium",
-                "fontSize": 20,
-                "fontWeight": "normal",
-                "lineHeight": 40,
-                "writingDirection": "ltr",
-              }
-            }
-            use="body1"
-          >
-            Enable Location Data
-          </Text>
-        </View>
       </View>
     </View>
   </View>

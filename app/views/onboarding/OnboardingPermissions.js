@@ -12,9 +12,9 @@ import { SvgXml } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
 
 import { Icons, Images } from '../../assets';
+import { sharedStyles } from './styles';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 import { PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
@@ -22,6 +22,8 @@ import languages from '../../locales/languages';
 import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import fontFamily from '../../constants/fonts';
+
+import { Colors } from '../../styles';
 
 const width = Dimensions.get('window').width;
 
@@ -113,7 +115,7 @@ export const OnboardingPermissions = () => {
           testID={'onboarding-permissions-screen'}
           style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <View style={styles.iconCircle}>
+            <View style={[sharedStyles.iconCircle, styles.iconCircle]}>
               <SvgXml xml={icon} width={30} height={30} />
             </View>
             <Typography style={styles.headerText}>{header}</Typography>
@@ -157,12 +159,12 @@ const styles = StyleSheet.create({
   },
   headerText: {
     lineHeight: 32,
-    color: Colors.WHITE,
+    color: Colors.white,
     fontSize: 26,
     fontFamily: fontFamily.primaryRegular,
   },
   subheaderText: {
-    color: Colors.WHITE,
+    color: Colors.white,
     marginTop: 24,
     lineHeight: 24,
     fontSize: 18,
@@ -172,13 +174,7 @@ const styles = StyleSheet.create({
     marginBottom: 21,
   },
   iconCircle: {
-    height: 70,
-    width: 70,
-    backgroundColor: Colors.WHITE,
-    borderRadius: 1000,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 28,
+    backgroundColor: Colors.white,
   },
   footerContainer: {
     padding: 24,

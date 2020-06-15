@@ -1,18 +1,14 @@
 import React from 'react';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
+import { NavigationProp, Screens } from '../../navigation';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
 interface NextStepsProps {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 }
 
 const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
@@ -32,7 +28,7 @@ const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
   const buttonText = 'Take Self Assessment';
 
   const handleOnPressTakeAssessment = () => {
-    navigation.navigate('Assessment');
+    navigation.navigate(Screens.SelfAssessment);
   };
 
   return (

@@ -5,6 +5,14 @@
     "operating_system_abbr": "OS:",
     "version": "Verzia:"
   },
+  "assessment": {
+    "cancel": "Ukončiť",
+    "caregiver_cta": "Ďalej",
+    "complete_cta": "Hotovo",
+    "distancing_cta": "Ďalej",
+    "isolate_cta": "Ďalej",
+    "next": "Ďalej"
+  },
   "common": {
     "done": "Hotovo",
     "next": "Ďalej"
@@ -41,15 +49,11 @@
     "title": "Importovať polohy"
   },
   "label": {
-    "about_title": "O",
     "authorities_add_button_label": "Pridať dôveryhodný zdroj",
     "authorities_add_url": "Pridať úrad prostredníctvom URL",
     "authorities_desc": "Ak chceš získať údaje o tvojom vystavení sa riziku, vyber dôveryhodné zdravotné úrady v tvojej oblasti. Vyber meno z globálneho registra alebo zadaj webovú adresu poskytnutú orgánom, ktorú implementoval Safe Paths.",
     "authorities_input_placeholder": "Sem vlož tvoje URL",
-    "authorities_new_in_area_msg_0": "Prihlásiť sa na odber informácií od nového dôveryhodného zdravotného úradu v tvojej lokalite",
-    "authorities_new_in_area_msg_3": "Prihlásiť sa na odber informácií od nových dôveryhodných zdravotných úradov v tvojej lokalite",
-    "authorities_new_in_area_title_0": "Nový zdravotný úrad",
-    "authorities_new_in_area_title_3": "Nové zdravotné úrady",
+    "authorities_new_in_area_title": "{\"one\":\"Nov\\u00fd zdravotn\\u00fd \\u00farad\",\"few\":\"\",\"many\":\"\",\"other\":\"Nov\\u00e9 zdravotn\\u00e9 \\u00farady\"}",
     "authorities_no_sources": "Zatiaľ žiadny zdroj údajov",
     "authorities_removal_alert_cancel": "Ukončiť",
     "authorities_removal_alert_desc": "Si si istý/á, že chceš odstrániť zdroj údajov tohto úradu?",
@@ -63,18 +67,6 @@
     "event_history_subtitle": "Zisti o svojom osobnom vystavení sa riziku na základe informácií zdieľaných zdravotnými úradmi.",
     "event_history_title": "História vystavenia riziku",
     "filter_authorities_by_gps_history": "Filtruj na základe tvojich geografických polôh",
-    "home_at_risk_header": "Môžeš byť vystavený/á riziku",
-    "home_at_risk_subsubtext": "Toto znamená, že nie si nakazený/á",
-    "home_at_risk_subtext_location": "Na základe histórie tvojho GPS, je možné, že si bol/a v kontakte alebo blízko niekoho, komu bol diagnostikovaný COVID-19",
-    "home_enable_location": "Povoliť údaje o polohe",
-    "home_mayo_link_heading": "Viac informácií o COVID-19",
-    "home_mayo_link_label": "z Mayo Clinic",
-    "home_no_contact_header": "Žiadny známy kontakt",
-    "home_no_contact_subtext": "Na základe dostupných dát si nebol/a v blízkosti nikoho, kto je nahlásený ako pozitívne testovaný na COVID-19.",
-    "home_setting_off_header": "Neznámy",
-    "home_setting_off_subtext_location": "Kým nepovolíš aplikácii prístup k tvojej polohe, nemôžeme ti povedať, či si v ohrození.",
-    "home_unknown_header": "Neznámy",
-    "home_unknown_subtext_location": "Kým nepovolíš aplikácii prístup k tvojej polohe, nemôžeme ti povedať, či si v ohrození.",
     "latest_news": "Najnovšie oznámenia",
     "launch_access_location": "Prístup k polohe",
     "launch_authority_access": "Prihlásiť na odber informácií od okolitých zdravotných úradov",
@@ -102,7 +94,6 @@
     "launch_set_up_phone_bluetooth": "Hotovo",
     "launch_set_up_phone_location": "Nastaviť môj telefón",
     "launch_subheader": "Neboj sa, informácie nikdy neopustia tvoj telefón, pokiaľ sa ich vyslovene nerozhodneš zdieľať.",
-    "legal_page_title": "Právne oznámenie",
     "loading_public_data": "Dáta sa načítavajú",
     "location_disabled_message": "COVID Safe Paths vyžaduje lokalizačné služby.",
     "location_disabled_title": "Sledovanie polohy bolo deaktivované.",
@@ -120,12 +111,20 @@
     "skip_this_step": "Preskoč tento krok",
     "team": "Tím",
     "team_para": "Náš tím je zložený z konzorcia epidemiológov, inžinierov, vedcov, evanjelistov v oblasti digitálneho súkromia, profesorov a výskumníkov z uznávaných inštitúcií zahŕňajúc: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young a Link Ventures.",
-    "terms_of_use": "Podmienky používania"
+    "terms_of_use": "Podmienky používania",
+    "authorities_new_in_area_msg_0": "Prihlásiť sa na odber informácií od nového dôveryhodného zdravotného úradu v tvojej lokalite",
+    "authorities_new_in_area_msg_1": "",
+    "authorities_new_in_area_msg_2": "",
+    "authorities_new_in_area_msg_3": "Prihlásiť sa na odber informácií od nových dôveryhodných zdravotných úradov v tvojej lokalite"
   },
   "onboarding": {
     "eula_checkbox": "Súhlasím s licenčnou zmluvou",
     "eula_continue": "Pokračovať",
     "eula_message": "*Musíš prijať podmienky používania na to, aby si mohol používať Safe Paths"
+  },
+  "screen_titles": {
+    "about": "O",
+    "legal": "Právne oznámenie"
   },
   "share": {
     "button_text": "Zdieľať svoje údaje o polohe",
@@ -141,5 +140,6 @@
     "push_notification_message": "Prosím, aktualizuj si aplikáciu",
     "push_notification_title": "Aplikácia je neaktuálna",
     "update": "Aktualizovať"
-  }
+  },
+  "": null
 }

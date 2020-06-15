@@ -6,6 +6,14 @@
     "tracing_strategy": "Estrategia de rastreo:",
     "version": "Versión:"
   },
+  "assessment": {
+    "cancel": "Cancelar",
+    "caregiver_cta": "Siguiente",
+    "complete_cta": "Hecho",
+    "distancing_cta": "Siguiente",
+    "isolate_cta": "Siguiente",
+    "next": "Siguiente"
+  },
   "authorities": {
     "invalid_url_body": "La URL que introdujo no era válida, por favor inténtelo de nuevo",
     "invalid_url_title": "URL no válida"
@@ -27,6 +35,12 @@
     "what_does_this_mean_para_location": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19. Esto no significa que te hayas infectado, pero sí que podrías estarlo.\n\nPara obtener más información sobre lo que debes hacer, puedes consultar el sitio web de Mayo Clinic.",
     "what_if_no_symptoms": "¿Qué pasa si no tengo síntomas?",
     "what_if_no_symptoms_para": "Si no tienes síntomas, pero quieres hacerte la prueba, puedes ir al punto de pruebas más cercano. \n\nLas personas sin síntomas también pueden tener el COVID e infectar a otros. Respetar el distanciamiento social y evitar el contacto con grupos grandes o personas en riesgo (ancianos, personas con otros problemas médicos) es importante para controlar tanto tú riesgo como el de los demás."
+  },
+  "home": {
+    "bluetooth": {
+      "unavailable_header": "Las notificaciones del historial de exposición no están aún disponibles",
+      "unavailable_subheader": "Su teléfono no está cubierto por las Autoridades de Salud que utilizan PathCheck."
+    }
   },
   "import": {
     "button_text": "Importar ubicaciones",
@@ -51,13 +65,11 @@
     "about_header_bluetooth": "PathCheck Bluetooth",
     "about_header_location": "PathCheck GPS",
     "about_para": "PathCheck es un movimiento global para crear herramientas gratuitas, de código abierto y respuetuosas con la privacidad para ciudadanos, funcionarios de salud pública y comunidades locales, con el fin de aplanar la curva del COVID-19, reducir el miedo y evitar un excesivo control estatal después de la pandemia.\n\n Para más información, visite",
-    "about_title": "Acerca de",
     "authorities_add_button_label": "Añadir fuente de datos fiable",
     "authorities_add_url": "Añadir organismo vía web",
     "authorities_desc": "Elige las autoridades sanitarias de tu zona para obtener datos sobre posibles contactos con el COVID. Selecciona un nombre de la lista global, o introduce la URL del sitio web de una autoridad sanitaria que haya usado Safe Paths.",
     "authorities_input_placeholder": "Introduce la URL aquí",
     "authorities_new_in_area_msg": "Suscribirse a {{count}} nueva autoridad sanitaria fiable en tu zona",
-    "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona",
     "authorities_new_in_area_title": "Autoridad sanitaria nueva",
     "authorities_new_in_area_title_plural": "Autoridades sanitarias nuevas",
     "authorities_new_subscription_msg": "Te has suscrito a {{count}} nueva autoridad en tu zona",
@@ -77,24 +89,6 @@
     "event_history_subtitle": "Entiende tu exposición al COVID-19 según los datos publicados por las autoridades sanitarias.",
     "event_history_title": "Historial de exposición",
     "filter_authorities_by_gps_history": "Filtrar por sus ubicaciones",
-    "home_at_risk_header": "Puedes haberte expuesto al COVID",
-    "home_at_risk_subsubtext": "Esto no implica que te hayas infectado.",
-    "home_at_risk_subtext_bluetooth": "De acuerdo a tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien diagnosticado con COVID-19.",
-    "home_at_risk_subtext_location": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19.",
-    "home_enable_bluetooth": "Habilitar rastreabilidad de contactos",
-    "home_enable_location": "Permitir acceso a tu ubicación",
-    "home_mayo_link_heading": "Más información del COVID-19",
-    "home_mayo_link_label": "de expertos de la Mayo Clinic",
-    "home_no_contact_header": "No ha habido contacto",
-    "home_no_contact_subtext": "Según los datos disponibles, no has estado cerca de nadie que haya dado positivo en COVID-19.",
-    "home_not_available_header_bluetooth": "Las notificaciones del historial de exposición no están aún disponibles",
-    "home_not_available_subtext_bluetooth": "Su teléfono no está cubierto por las Autoridades de Salud que utilizan PathCheck.",
-    "home_setting_off_header": "Desconocido",
-    "home_setting_off_subtext_bluetooth": "No podemos saber si está en riesgo a menos que habilite la rastreabilidad de contactos en la pantalla de configuración.",
-    "home_setting_off_subtext_location": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",
-    "home_unknown_header": "Desconocido",
-    "home_unknown_subtext_bluetooth": "No podemos saber si está en riesgo a menos que habilite la rastreabilidad de contactos en la aplicación.",
-    "home_unknown_subtext_location": "Si no permites a la app el acceso a tu ubicación no puedes saber si has estado en riesgo",
     "import_success": "Importado con éxito",
     "latest_news": "Últimas noticias",
     "launch_access_bluetooth": "Permitir rastreabilidad de contactos",
@@ -135,7 +129,6 @@
     "legal_page_address": "PathCheck \n 58 Day Street \n Box 441621 \n Somerville, MA 02144",
     "legal_page_header_bluetooth": "PathCheck Bluetooth",
     "legal_page_header_location": "PathCheck GPS",
-    "legal_page_title": "Aviso legal",
     "loading_public_data": "cargando datos…",
     "location_disabled_message": "COVID Safe Paths necesita tu ubicación.",
     "location_disabled_title": "Registro de ubicación desactivado",
@@ -154,6 +147,7 @@
     "see_exposure_history": "Ver historial de exposición",
     "settings_title": "Panel de control",
     "skip_this_step": "Omitir este paso",
+    "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona",
     "team": "Equipo",
     "team_para": "El equipo se compone de un consorcio de epidemiólogos, ingenieros, analistas de datos, defensores de la privacidad digital, profesores e investigadores de instituciones reconocidas como MIT, Harvard, la Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young y Link Ventures.",
     "terms_of_use": "Condiciones de uso"
@@ -162,6 +156,10 @@
     "eula_checkbox": "Acepto el acuerdo de licencia",
     "eula_continue": "Continuar",
     "eula_message": "*Debe aceptar para poder utilizar Safe Paths"
+  },
+  "screen_titles": {
+    "about": "Acerca de",
+    "legal": "Aviso legal"
   },
   "share": {
     "button_text": "Comparte tus datos",

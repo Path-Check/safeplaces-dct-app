@@ -4,6 +4,13 @@ import { useNavigation } from '@react-navigation/native';
 import dayjs from 'dayjs';
 
 import { Typography } from '../../components/Typography';
+import {
+  ExposureDatum,
+  Possible,
+  Unknown,
+  NoKnown,
+} from '../../ExposureNotificationContext';
+import { Screens } from '../../navigation';
 
 import {
   Typography as TypographyStyles,
@@ -12,13 +19,6 @@ import {
   Buttons,
   Spacing,
 } from '../../styles';
-
-import {
-  ExposureDatum,
-  Possible,
-  Unknown,
-  NoKnown,
-} from '../../ExposureNotificationContext';
 
 interface ExposureDatumDetailsProps {
   exposureDatum: ExposureDatum;
@@ -54,7 +54,7 @@ const PossibleExposureDetail = ({
   const explainationContent = `For ${possibleExposureTimeInMin} consecutive minutes, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis.`;
 
   const handleOnPressNextSteps = () => {
-    navigation.navigate('NextStepsScreen');
+    navigation.navigate(Screens.NextSteps);
   };
 
   const nextStepsButtonText = 'What should I do next?';

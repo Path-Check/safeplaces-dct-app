@@ -7,7 +7,7 @@ import React from 'react';
 import { getBuildtimeFlags } from '../../constants/flagsEnv';
 import { FlagsProvider } from '../../helpers/Flags';
 import * as languages from '../../locales/languages';
-import { SettingsScreen } from '../Settings';
+import SettingsScreen from '../Settings';
 
 jest.mock('../../constants/flagsEnv', () => ({
   getBuildtimeFlags: jest.fn(),

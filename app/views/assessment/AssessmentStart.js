@@ -1,8 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Icons, Images } from '../../assets';
-import Colors from '../../constants/colors';
 /**
  * @typedef { import(".").SurveyQuestion } SurveyQuestion
  * @typedef { import(".").SurveyOption } SurveyOption
@@ -16,6 +14,9 @@ import {
 } from './constants';
 import { Info } from './Info';
 
+import { Colors } from '../../styles';
+import { Icons, Images } from '../../assets';
+
 /** @type {React.FunctionComponent<{}>} */
 export const AssessmentStart = ({ navigation }) => {
   let { t } = useTranslation();
@@ -27,7 +28,7 @@ export const AssessmentStart = ({ navigation }) => {
           option: agreeOption,
         });
       }}
-      backgroundColor={Colors.SECONDARY_10}
+      backgroundColor={Colors.primaryBackgroundFaintShade}
       backgroundImage={Images.EmptyPathBackground}
       icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.start_cta')}

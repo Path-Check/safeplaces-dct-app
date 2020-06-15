@@ -1,5 +1,12 @@
 {
   "_display_name": "Indonesia",
+  "assessment": {
+    "cancel": "Batal",
+    "caregiver_cta": "Selanjutnya",
+    "distancing_cta": "Selanjutnya",
+    "isolate_cta": "Selanjutnya",
+    "next": "Selanjutnya"
+  },
   "common": {
     "next": "Selanjutnya"
   },
@@ -25,7 +32,6 @@
     "title": "Impor Data Lokasi"
   },
   "label": {
-    "about_title": "Tentang",
     "authorities_add_button_label": "Tambah Sumber Terpercaya",
     "authorities_add_url": "Tambah Otoritas via URL",
     "authorities_desc": "Pilih otoritas kesehatan tepercaya di wilayah Anda untuk mendapatkan data paparan. Pilih nama dari registri global, atau masukkan alamat web yang diberikan oleh otoritas kesehatan yang telah menggunakan Safe Paths.",
@@ -40,16 +46,6 @@
     "default_news_site_name": "Berita Safe Paths",
     "event_history_subtitle": "Pahami paparan pribadi Anda berdasarkan informasi yang dibagikan oleh otoritas kesehatan.",
     "event_history_title": "Riwayat paparan",
-    "home_at_risk_header": "Anda Mungkin Terpapar",
-    "home_at_risk_subsubtext": "Ini tidak berarti Anda terinfeksi.",
-    "home_at_risk_subtext_location": "Berdasarkan riwayat GPS Anda, ada kemungkinan Anda melakukan kontak atau dekat dengan seseorang yang didiagnosis dengan COVID-19.",
-    "home_enable_location": "Aktifkan Data Lokasi",
-    "home_mayo_link_heading": "Informasi COVID-19",
-    "home_mayo_link_label": "Dari Mayo Clinic",
-    "home_no_contact_header": "Tidak ada Kontak",
-    "home_no_contact_subtext": "Berdasarkan data yang tersedia Anda belum berada di dekat orang yang dilaporkan positif untuk COVID-19.",
-    "home_unknown_header": "Tidak dikenal",
-    "home_unknown_subtext_location": "Kami tidak dapat memberi tahu apakah Anda berisiko atau tidak, kecuali Anda mengizinkan aplikasi untuk mengakses lokasi Anda.",
     "latest_news": "Berita Terbaru",
     "launch_access_location": "Akses Lokasi",
     "launch_done_header": "Selesai",
@@ -72,7 +68,6 @@
     "launch_screen4_subheader_location": "Jika Anda dinyatakan positif, Anda dapat memilih untuk berbagi atau tidak.",
     "launch_set_up_phone_location": "Siapkan Perangkat Saya",
     "launch_subheader": "Jangan khawatir, informasi tidak akan pernah dibagikan, kecuali Anda secara eksplisit memutuskan untuk berbagi.",
-    "legal_page_title": "Hukum",
     "loading_public_data": "memuat data...",
     "location_disabled_message": "COVID Safe Paths membutuhkan layanan lokasi.",
     "location_disabled_title": "Pelacakan Lokasi Dinonaktifkan",
@@ -88,6 +83,10 @@
     "team": "Tim",
     "team_para": "Tim kami terdiri dari konsorsium ahli epidemiologi, insinyur, ilmuwan, ahli privasi digital, profesor dan peneliti dari lembaga terkemuka, termasuk: MIT, Harvard, Klinik Mayo, TripleBlind, EyeNetra, Ernst & Young dan Link Ventures.",
     "terms_of_use": "Syarat Penggunaan"
+  },
+  "screen_titles": {
+    "about": "Tentang",
+    "legal": "Hukum"
   },
   "share": {
     "button_text": "Bagikan riwayat lokasi",

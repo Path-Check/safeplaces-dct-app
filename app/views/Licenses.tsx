@@ -9,22 +9,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 
 import fontFamily from '../constants/fonts';
 import { Images } from '../assets';
 import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
-import Colors from '../constants/colors';
 import { Theme } from '../constants/themes';
 import { useAssets } from '../TracingStrategyAssets';
+import { NavigationProp } from '../navigation';
+
+import { Colors } from '../styles';
 
 type LicensesScreenProps = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 };
 
 const PRIVACY_POLICY_URL =
@@ -106,21 +103,21 @@ export const LicensesScreen = ({
 
 const styles = StyleSheet.create({
   body: {
-    color: Colors.BLACK,
+    color: Colors.black,
     marginBottom: 24,
   },
   contentContainer: {
     width: '100%',
-    backgroundColor: Colors.INTRO_WHITE_BG,
+    backgroundColor: Colors.primaryBackgroundFaintShade,
     paddingHorizontal: 26,
     paddingVertical: 40,
   },
   heading: {
-    color: Colors.BLACK,
+    color: Colors.black,
     marginBottom: 12,
   },
   hyperlink: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.violetText,
     fontSize: 16,
     marginBottom: 12,
     fontFamily: fontFamily.primaryRegular,
@@ -129,7 +126,7 @@ const styles = StyleSheet.create({
   termsInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.VIOLET,
+    backgroundColor: Colors.primaryViolet,
     paddingVertical: 25,
     paddingHorizontal: 15,
   },

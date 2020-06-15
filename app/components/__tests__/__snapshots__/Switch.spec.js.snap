@@ -20,8 +20,8 @@ exports[`renders as off by default 1`] = `
       }
     }
     testID="switch"
-    thumbTintColor="#FFF"
-    tintColor="#DADADA"
+    thumbTintColor="#ffffff"
+    tintColor="#4e4e4e"
     value={false}
   />
 </View>
@@ -47,8 +47,8 @@ exports[`renders on 1`] = `
       }
     }
     testID="switch"
-    thumbTintColor="#FFF"
-    tintColor="#DADADA"
+    thumbTintColor="#ffffff"
+    tintColor="#4e4e4e"
     value={true}
   />
 </View>

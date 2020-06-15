@@ -13,7 +13,7 @@ import {
 import { useSelector } from 'react-redux';
 
 import { Main } from './views/Main';
-import { SettingsScreen } from './views/Settings';
+import SettingsScreen from './views/Settings';
 import AboutScreen from './views/About';
 import { LicensesScreen } from './views/Licenses';
 import {
@@ -29,11 +29,7 @@ import {
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import Assessment from './views/assessment';
 import NextSteps from './views/NextSteps';
-import {
-  EN_DEBUG_MENU_SCREEN_NAME,
-  EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME,
-  ENDebugMenu,
-} from './views/Settings/ENDebugMenu';
+import ENDebugMenu from './views/Settings/ENDebugMenu';
 import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
@@ -43,6 +39,8 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
+
+import { Screens, Stacks } from './navigation';
 
 import ExposureNotificationContext from './ExposureNotificationContext';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
@@ -72,21 +70,24 @@ const ExportStack = () => (
       cardStyleInterpolator: fade,
       gestureEnabled: false,
     }}
-    initialRouteName={isGPS ? 'ExportSelectHA' : 'ExportIntro'}>
-    <Stack.Screen name='ExportIntro' component={ExportIntro} />
-    <Stack.Screen name='ExportSelectHA' component={ExportSelectHA} />
-    <Stack.Screen name='ExportCodeInput' component={ExportCodeInput} />
+    initialRouteName={isGPS ? Screens.ExportSelectHA : Screens.ExportIntro}>
+    <Stack.Screen name={Screens.ExportIntro} component={ExportIntro} />
+    <Stack.Screen name={Screens.ExportSelectHA} component={ExportSelectHA} />
+    <Stack.Screen name={Screens.ExportCodeInput} component={ExportCodeInput} />
     <Stack.Screen
-      name='ExportLocationConsent'
+      name={Screens.ExportLocationConsent}
       component={ExportLocationConsent}
     />
     <Stack.Screen
-      name='ExportPublishConsent'
+      name={Screens.ExportPublishConsent}
       component={ExportPublishConsent}
     />
-    <Stack.Screen name='ExportConfirmUpload' component={ExportConfirmUpload} />
-    <Stack.Screen name='ExportDone' component={ExportCodeInput} />
-    <Stack.Screen name='ExportComplete' component={ExportComplete} />
+    <Stack.Screen
+      name={Screens.ExportConfirmUpload}
+      component={ExportConfirmUpload}
+    />
+    <Stack.Screen name={Screens.ExportDone} component={ExportCodeInput} />
+    <Stack.Screen name={Screens.ExportComplete} component={ExportComplete} />
   </Stack.Navigator>
 );
 
@@ -108,10 +109,10 @@ const ExposureHistoryStack = ({ navigation }) => {
         gestureEnabled: false,
       }}>
       <Stack.Screen
-        name='ExposureHistoryScreen'
+        name={Screens.ExposureHistory}
         component={ExposureHistoryScreen}
       />
-      <Stack.Screen name='NextStepsScreen' component={NextSteps} />
+      <Stack.Screen name={Screens.NextSteps} component={NextSteps} />
     </Stack.Navigator>
   );
 };
@@ -124,20 +125,20 @@ const SelfAssessmentStack = () => (
       cardStyleInterpolator: fade,
       gestureEnabled: false,
     }}>
-    <Stack.Screen name='Assessment' component={Assessment} />
+    <Stack.Screen name={Screens.SelfAssessment} component={Assessment} />
   </Stack.Navigator>
 );
 
 const MoreTabStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
-    <Stack.Screen name='SettingsScreen' component={SettingsScreen} />
-    <Stack.Screen name='AboutScreen' component={AboutScreen} />
-    <Stack.Screen name='LicensesScreen' component={LicensesScreen} />
-    <Stack.Screen name='FeatureFlagsScreen' component={FeatureFlagsScreen} />
-    <Stack.Screen name='ImportScreen' component={ImportScreen} />
-    <Stack.Screen name={EN_DEBUG_MENU_SCREEN_NAME} component={ENDebugMenu} />
+    <Stack.Screen name={Screens.Settings} component={SettingsScreen} />
+    <Stack.Screen name={Screens.About} component={AboutScreen} />
+    <Stack.Screen name={Screens.Licenses} component={LicensesScreen} />
+    <Stack.Screen name={Screens.FeatureFlags} component={FeatureFlagsScreen} />
+    <Stack.Screen name={Screens.Import} component={ImportScreen} />
+    <Stack.Screen name={Screens.ENDebugMenu} component={ENDebugMenu} />
     <Stack.Screen
-      name={EN_LOCAL_DIAGNOSIS_KEYS_SCREEN_NAME}
+      name={Screens.ENLocalDiagnosisKey}
       component={ENLocalDiagnosisKeyScreen}
     />
   </Stack.Navigator>
@@ -150,8 +151,8 @@ const MainAppTabs = () => {
   const applyBadge = (icon) => {
     return (
       <>
-        <View style={styles.iconBadge} />
         {icon}
+        <View style={styles.iconBadge} />
       </>
     );
   };
@@ -164,18 +165,18 @@ const MainAppTabs = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName='Main'
+      initialRouteName={Stacks.Main}
       tabBarOptions={{
         showLabel: false,
         activeTintColor: Colors.white,
         inactiveTintColor: Colors.primaryViolet,
         style: {
           backgroundColor: Colors.violetTextDark,
-          paddingTop: Spacing.small,
+          paddingTop: Spacing.xxxSmall,
         },
       }}>
       <Tab.Screen
-        name='Main'
+        name={Stacks.Main}
         component={Main}
         options={{
           tabBarLabel: t('navigation.home'),
@@ -189,7 +190,7 @@ const MainAppTabs = () => {
         }}
       />
       <Tab.Screen
-        name='ExposureHistoryStack'
+        name={Stacks.ExposureHistory}
         component={ExposureHistoryStack}
         options={{
           tabBarLabel: t('navigation.history'),
@@ -208,7 +209,7 @@ const MainAppTabs = () => {
       />
       {isGPS && (
         <Tab.Screen
-          name='ExportStart'
+          name={Screens.ExportStart}
           component={ExportStart}
           options={{
             tabBarLabel: t('navigation.locations'),
@@ -223,7 +224,7 @@ const MainAppTabs = () => {
         />
       )}
       <Tab.Screen
-        name='SelfAssessmentStack'
+        name={Stacks.SelfAssessment}
         component={SelfAssessmentStack}
         options={{
           tabBarLabel: t('navigation.selfAssessment'),
@@ -241,7 +242,7 @@ const MainAppTabs = () => {
         }}
       />
       <Tab.Screen
-        name='MoreScreen'
+        name={Stacks.More}
         component={MoreTabStack}
         options={{
           tabBarLabel: t('navigation.more'),
@@ -260,16 +261,16 @@ const MainAppTabs = () => {
 
 const OnboardingStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
-    <Stack.Screen name='Onboarding1' component={Onboarding1} />
-    <Stack.Screen name='Onboarding2' component={Onboarding2} />
-    <Stack.Screen name='Onboarding3' component={Onboarding3} />
-    <Stack.Screen name='Onboarding4' component={Onboarding4} />
+    <Stack.Screen name={Screens.Onboarding1} component={Onboarding1} />
+    <Stack.Screen name={Screens.Onboarding2} component={Onboarding2} />
+    <Stack.Screen name={Screens.Onboarding3} component={Onboarding3} />
+    <Stack.Screen name={Screens.Onboarding4} component={Onboarding4} />
     <Stack.Screen
-      name='OnboardingPermissions'
+      name={Screens.OnboardingPermissions}
       component={OnboardingPermissions}
     />
     <Stack.Screen
-      name='EnableExposureNotifications'
+      name={Screens.EnableExposureNotifications}
       component={EnableExposureNotifications}
     />
   </Stack.Navigator>
@@ -284,11 +285,11 @@ export const Entry = () => {
         {onboardingComplete ? (
           <Stack.Screen name={'App'} component={MainAppTabs} />
         ) : (
-          <Stack.Screen name={'Onboarding'} component={OnboardingStack} />
+          <Stack.Screen name={Stacks.Onboarding} component={OnboardingStack} />
         )}
         {/* Modal View: */}
         <Stack.Screen
-          name={'ExportFlow'}
+          name={Screens.ExportFlow}
           component={ExportStack}
           options={{
             ...TransitionPresets.ModalSlideFromBottomIOS,

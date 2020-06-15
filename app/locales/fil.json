@@ -1,5 +1,12 @@
 {
   "_display_name": "Filipino",
+  "assessment": {
+    "cancel": "Magkansela",
+    "caregiver_cta": "Susunod",
+    "distancing_cta": "Susunod",
+    "isolate_cta": "Susunod",
+    "next": "Susunod"
+  },
   "common": {
     "next": "Susunod"
   },
@@ -10,7 +17,6 @@
     "title": "Mag-import ng lokasyon"
   },
   "label": {
-    "about_title": "Tungkol",
     "authorities_add_button_label": "Magdagdag ng Pinagkakatiwalaang Pinagmulan",
     "authorities_add_url": "Magdagdag ng awtoridad sa pamamagitan ng URL",
     "authorities_input_placeholder": "I-paste ang iyong URL dito",
@@ -21,14 +27,6 @@
     "choose_provider_title": "Pumili ng awtoridad sa kalusugan",
     "default_news_site_name": "Safe Paths Balita",
     "event_history_title": "Kasaysayan ng paglalantad",
-    "home_at_risk_header": "Ikaw ay Maaaring Malantad",
-    "home_at_risk_subsubtext": "Hindi ito nangangahulugang ikaw ay nahawaan.",
-    "home_enable_location": "Paganahin ang Lokasyon gamit ang Data",
-    "home_mayo_link_heading": "Karagdagang impormasyon tungkol sa Covid-19",
-    "home_mayo_link_label": "mula sa Mayo Clinic",
-    "home_no_contact_header": "Walang nakahalubilo na nagkasakit o may sakit na.",
-    "home_setting_off_header": "Hindi kilala",
-    "home_unknown_header": "Hindi kilala",
     "latest_news": "Pinakabagong Balita",
     "launch_access_location": "Pag-access sa lokasyon",
     "launch_done_header": "Tapos na.",
@@ -45,7 +43,6 @@
     "launch_screen3_header_location": "Kung ikaw ay kumpirmadong may COVID-19, maaari mong ibahagi sa amin ang iyong detalye nang di nagpapakilala.",
     "launch_screen3_subheader_location": "Ito ay makakatulong upang mapanatiling ligtas ang ating komunidad.",
     "launch_subheader": "Walang kailangan ipag-alala dahil ang mga impormasyong iyong inilagay ay dito lamang mananatili sa iyong aparato maaliban na lamang kung bibigyan nyo ng pahintulot na ipamahagi ito sa iba.",
-    "legal_page_title": "Legal",
     "loading_public_data": "Naglo-load ng datos ...",
     "news_title": "Pinakabagong balita",
     "no_data": "Walang datos",
@@ -54,6 +51,10 @@
   "onboarding": {
     "eula_checkbox": "Tinatanggap ko ang kasunduan ito.",
     "eula_continue": "Ituloy"
+  },
+  "screen_titles": {
+    "about": "Tungkol",
+    "legal": "Legal"
   },
   "version_update": {
     "alert_label": "Ang COVID Safe Paths bersyon ay luma na",

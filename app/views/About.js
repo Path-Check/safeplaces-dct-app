@@ -15,8 +15,9 @@ import packageJson from '../../package.json';
 import fontFamily from './../constants/fonts';
 import { Icons } from '../assets';
 import { NavigationBarWrapper, Typography } from '../components';
-import Colors from '../constants/colors';
 import { useAssets } from '../TracingStrategyAssets';
+
+import { Colors } from '../styles';
 
 export const AboutScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -122,8 +123,8 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexDirection: 'column',
     width: '100%',
-    backgroundColor: Colors.INTRO_WHITE_BG,
-    paddingHorizontal: 26,
+    backgroundColor: Colors.primaryBackground,
+    paddingHorizontal: 40,
     paddingBottom: 42,
   },
   aboutLabelContainer: {
@@ -135,19 +136,19 @@ const styles = StyleSheet.create({
     marginTop: 36,
   },
   aboutSectionTitles: {
-    color: Colors.BLACK,
+    color: Colors.primaryText,
     marginTop: 14,
     lineHeight: 32,
   },
   aboutSectionPara: {
-    color: Colors.BLACK,
+    color: Colors.primaryText,
     fontSize: 16,
     lineHeight: 22.5,
     marginTop: 12,
     fontFamily: fontFamily.primaryRegular,
   },
   hyperlink: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.linkText,
     fontSize: 16,
     lineHeight: 22.5,
     marginTop: 12,
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   aboutSectionParaBold: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.primaryViolet,
     fontSize: 16,
     lineHeight: 22.5,
     marginTop: 20,
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    color: Colors.PRIMARY_TEXT,
+    color: Colors.primaryText,
     alignItems: 'flex-start',
     marginRight: 20,
   },

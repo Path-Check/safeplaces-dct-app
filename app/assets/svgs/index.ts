@@ -2,6 +2,7 @@ import AnonymizedData from './anonymizedData';
 import AnonymizedDataInverted from './anonymizedDataInverted';
 import BackArrow from './backArrow';
 import Bell from './bell';
+import BellYellow from './bellYellow';
 import Checkmark from './checkmark';
 import CheckmarkCircle from './checkmarkCircle';
 import Close from './close';
@@ -34,6 +35,7 @@ export const Icons = {
   AnonymizedDataInverted,
   BackArrow,
   Bell,
+  BellYellow,
   Checkmark,
   CheckmarkCircle,
   Close,
