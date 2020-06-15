@@ -9,7 +9,7 @@ import { Info } from '../Info';
 import { Colors } from '../../../styles';
 
 /** @type {React.FunctionComponent<{}>} */
-export const Complete = () => {
+export const AssessmentComplete = () => {
   let { t } = useTranslation();
   let { dismiss } = useContext(MetaContext);
   return (
