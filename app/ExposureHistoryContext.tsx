@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 
 import { startListening } from './exposureNotificationsNativeModule';
+import { isGPS } from './COVIDSafePathsConfig';
 
 type Posix = number;
 
@@ -98,13 +99,17 @@ const ExposureHistoryProvider = ({
   };
 
   useEffect(() => {
-    const subscription = startListening((exposures: Possible[]) => {
-      console.log(exposures);
-    });
+    if (isGPS) {
+      const subscription = startListening((exposures: Possible[]) => {
+        console.log(exposures);
+      });
 
-    return () => {
-      subscription.remove();
-    };
+      return () => {
+        subscription.remove();
+      };
+    } else {
+      return () => {};
+    }
   }, []);
 
   const observeExposures = () => {
