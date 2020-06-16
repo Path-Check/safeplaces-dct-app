@@ -16,8 +16,9 @@ const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
     navigation.goBack();
   };
 
-  const headerText =
-    'The Boston Public Health Department recommends you take a self-assessment';
+  const healthAuthority = 'The PathCheck Health Department';
+
+  const headerText = `${healthAuthority} recommends you take a self-assessment`;
 
   const contentTextOne =
     'It is possible that you may have crossed paths with somebody who has been diagnosed with COVID-19.';
