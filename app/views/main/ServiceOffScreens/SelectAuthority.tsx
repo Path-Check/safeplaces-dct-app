@@ -14,7 +14,7 @@ export const SelectAuthorityScreen = (): JSX.Element => {
   } = useAssets();
 
   const onPress = () => {
-    navigation.navigate(Screens.ChooseProvider);
+    navigation.navigate(Screens.PartnersEdit);
   };
 
   return (
