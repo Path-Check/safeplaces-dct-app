@@ -7,11 +7,6 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 
 import { Icons } from '../../assets';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
@@ -25,12 +20,13 @@ import type { HealthcareAuthority } from '../../store/types';
 import selectedHealthcareAuthoritiesSelector from '../../store/selectors/selectedHealthcareAuthoritiesSelector';
 import customUrlhealthcareAuthorityOptionsSelector from '../../store/selectors/customUrlhealthcareAuthorityOptionsSelector';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
+import { Screens, NavigationProp } from '../../navigation';
 
 import toggleSelectedHealthcareAuthorityAction from '../../store/actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
 import { Button } from '../../components/Button';
 
 type PartnersEditScreenProps = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 };
 
 const Separator = () => (
@@ -129,7 +125,7 @@ const PartnersScreen = ({
       <View style={{ padding: 24 }}>
         <Button
           label={t('authorities.custom_url')}
-          onPress={() => navigation.navigate('PartnersCustomUrl')}
+          onPress={() => navigation.navigate(Screens.PartnersCustomUrl)}
         />
       </View>
     </NavigationBarWrapper>

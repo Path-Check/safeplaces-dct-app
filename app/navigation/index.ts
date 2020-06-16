@@ -36,7 +36,10 @@ export type Screen =
   | 'EnableExposureNotifications'
   | 'ExportFlow'
   | 'SelfAssessment'
-  | 'ChooseProvider';
+  | 'ChooseProvider'
+  | 'PartnersOverview'
+  | 'PartnersEdit'
+  | 'PartnersCustomUrl';
 
 export const Screens: { [key in Screen]: Screen } = {
   ExportStart: 'ExportStart',
@@ -66,6 +69,9 @@ export const Screens: { [key in Screen]: Screen } = {
   ExportFlow: 'ExportFlow',
   SelfAssessment: 'SelfAssessment',
   ChooseProvider: 'ChooseProvider',
+  PartnersOverview: 'PartnersOverview',
+  PartnersEdit: 'PartnersEdit',
+  PartnersCustomUrl: 'PartnersCustomUrl',
 };
 
 export type Stack =
@@ -74,7 +80,8 @@ export type Stack =
   | 'ExposureHistory'
   | 'SelfAssessment'
   | 'Export'
-  | 'More';
+  | 'More'
+  | 'Partners';
 
 export const Stacks: { [key in Stack]: Stack } = {
   Main: 'Main',
@@ -83,4 +90,5 @@ export const Stacks: { [key in Stack]: Stack } = {
   SelfAssessment: 'SelfAssessment',
   Export: 'Export',
   More: 'More',
+  Partners: 'Partners',
 };

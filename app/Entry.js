@@ -230,7 +230,7 @@ const MainAppTabs = () => {
       )}
       {isGPS ? (
         <Tab.Screen
-          name='Partners'
+          name={Stacks.Partners}
           component={PartnersStack}
           options={{
             tabBarLabel: t('navigation.partners'),
@@ -301,12 +301,12 @@ const OnboardingStack = () => (
 const PartnersStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen
-      name={'PartnersOverview'}
+      name={Screens.PartnersOverview}
       component={PartnersOverviewScreen}
     />
-    <Stack.Screen name={'PartnersEdit'} component={PartnersEditScreen} />
+    <Stack.Screen name={Screens.PartnersEdit} component={PartnersEditScreen} />
     <Stack.Screen
-      name={'PartnersCustomUrl'}
+      name={Screens.PartnersCustomUrl}
       component={PartnersCustomUrlScreen}
     />
   </Stack.Navigator>

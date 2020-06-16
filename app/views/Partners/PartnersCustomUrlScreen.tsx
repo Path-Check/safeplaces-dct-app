@@ -1,23 +1,17 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View, TextInput, Alert } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
-
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-
 import { useDispatch, useSelector } from 'react-redux';
 import getHealthcareAuthoritiesAction from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import { Typography } from '../../components/Typography';
-
 import { Button } from '../../components/Button';
-import { Colors } from '../../styles';
+import { RootState } from '../../store/types';
+import { NavigationProp } from '../../navigation';
+import { Forms } from '../../styles';
 
 type PartnersEditScreenProps = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 };
 
 const PartnersScreen = ({
@@ -31,8 +25,7 @@ const PartnersScreen = ({
 
   // This is testing code only,we omit selector:
   const fetchCustomStatus = useSelector(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (state: any) => state.healthcareAuthorities.request.status,
+    (state: RootState) => state.healthcareAuthorities.request.status,
   );
 
   const onRequestComplete = useCallback(() => {
@@ -63,7 +56,17 @@ const PartnersScreen = ({
         <Typography use={'headline2'}>
           {t('authorities.url_instructions')}
         </Typography>
-        <TextInput value={url} onChangeText={setUrl} style={styles.textInput} />
+        <TextInput
+          value={url}
+          onChangeText={setUrl}
+          style={[
+            Forms.textInputFormField,
+            {
+              marginVertical: 24,
+              flex: undefined, // cancel flex set by textInputFormField
+            },
+          ]}
+        />
         <Button label={t('common.add')} onPress={searchForUrl} />
       </View>
     </NavigationBarWrapper>
@@ -73,12 +76,4 @@ export default PartnersScreen;
 
 const styles = StyleSheet.create({
   wrapper: { padding: 24 },
-  textInput: {
-    fontSize: 20,
-    borderColor: Colors.primaryBorder,
-    borderWidth: 2,
-    borderRadius: 10,
-    padding: 12,
-    marginVertical: 24,
-  },
 });
