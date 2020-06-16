@@ -99,13 +99,13 @@ const ExposureHistoryProvider = ({
   };
 
   useEffect(() => {
-    if (isGPS) {
+    if (!isGPS) {
       const subscription = startListening((exposures: Possible[]) => {
         console.log(exposures);
       });
 
       return () => {
-        subscription.remove();
+        subscription?.remove();
       };
     } else {
       return () => {};
