@@ -66,6 +66,8 @@
     "auto_subscribe_checkbox": "Enable auto subscription",
     "auroraMsp_title": "Chat with AuroraMSP",
     "auroraMsp_description": "Have direct contact with more than 200 doctors.",
+    "answers_form_next_step": "Next steps:",
+    "answers_form_recomendations": "Test recomendation:",
     "bulletin_title": "Bulletins",
     "bulletin_description": "Read about the latest COVID bulletins updates from your health authority.",
     "cancel": "Cancel",
@@ -201,6 +203,87 @@
     "news": "News",
     "bulletins": "Bulletins",
     "advices": "Advices"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "Results",
+      "text": "Based on the answers, these are the results:"
+    },
+    "social_distance": {
+      "title": "You should practice social distancing",
+      "subtitle": {
+        "no_traveled": "At this time, you do not have symptoms of COVID-19, so we recommend that you continue with the preventive measures of “washing hands with soap and water frequently and applying social distancing”",
+        "traveled": "Helps stop the spread. When you're out of the house, stay at least six feet away from other people, avoid groups, and only use public transportation if necessary."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Maintain social distance",
+          "content": "Stay at least one (1) meter away from anyone, avoid being in groups, and only use public transportation if necessary."
+        },
+        "step_two": {
+          "title": "Always remember to “wash your hands with soap and water frequently and practice social distancing”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Monitor symptoms",
+          "content": "Watch for COVID-19 symptoms such as cough, fever, and shortness of breath. Also, check and measure your temperature twice a day for two weeks.\nIf you have any symptoms of danger (vomiting or persistent or bloody diarrhea, marked difficulty in breathing, drowsiness or seizures), immediately go to the nearest health center or call *462."
+        },
+        "step_four": {
+          "title": "Quarantine at home",
+          "content": "You may have been exposed. You should stay home for the next 14 days and see if any symptoms appear. You should also try to limit your contact with others outside the home."
+        },
+        "step_five": {
+          "title": "Ask about your medication",
+          "content": "If you are currently taking prescription medications, you should contact your doctor for a 30-day supply."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "No proof needed at this time",
+          "content": {
+            "no_sympthoms": "From now on, your answers will need not be tested. If you have any symptoms such as fever, cough, runny nose, slight difficulty breathing, sore throat, head or body pain, please complete this questionnaire again or contact the Aurora platform through the telephone numbers 809-449-6262, 809 409 6262 and 809-352-6262.",
+            "has_sympthoms":"From now on, your answers will need not be tested. If you have any symptoms such as fever, cough, runny nose, slight difficulty breathing, sore throat, head or body pain, please complete this questionnaire again or contact the Aurora platform through the telephone numbers 809-449-6262, 809 409 6262 and 809-352-6262.\nIf you have any symptoms of danger (vomiting or persistent or bloody diarrhea, marked difficulty breathing, drowsiness or seizures), immediately go to the nearest health center or call * 462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Must do home isolation",
+        "has_health_problems": "Contact your doctor"
+      },
+      "subtitle": {
+        "none": "According to his answers, he should stay at home and away from others. If you can, have a room and a bathroom that are just for you. This can be difficult when you are not feeling well, but it will protect those around you.",
+        "has_health_problems": "Your answers are to speak to a medical professional about having the COVID-19 test."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Isolate",
+          "content": "You must stay away from others for 14 days after the onset of your symptoms. Your isolation may end if your symptoms improve significantly and if you have not had a fever for at least 72 hours without the use of medications. By isolating, you can reduce the spread of COVID-19 and protect others."
+        },
+        "step_two": {
+          "title": "Rest and take care of yourself",
+          "content": "Eat right, drink fluids, and get plenty of rest."
+        },
+        "step_three": {
+          "title": "Monitor symptoms",
+          "content": "Watch for COVID-19 symptoms such as cough, fever, and shortness of breath. Also, check and measure your temperature twice a day for two weeks. If you have any symptoms of danger (vomiting or persistent or bloody diarrhea, marked difficulty breathing, drowsiness or seizures) immediately go to the nearest health center or call *462"
+        },
+        "step_four": {
+          "title": "Take precautions",
+          "content": "As an essential worker, you should talk to your job about taking specific steps to help protect and protect those around you. You should wear appropriate personal protective equipment, including face masks or fabric face covers in case of shortages. Additionally, you must maintain a physical distance of six feet as much as possible at work and always outside of work. You should also clean your hands frequently and avoid touching your face."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Contact someone to take the test",
+          "content": "Your answers may be possible to discuss the COVID - 19 test. You should contact your doctor, or contact the Aurora platform at 809-449-6262, 809 409 6262 and 809-352-6262 or call *462 for more information. Trial access may vary by location and provider. Check the laboratories that are authorized by the Ministry of Public Health available in your province of residence."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“With your help, staying at home and following health recommendations, we can face COVID-19”"
+    }
   },
   "report": {
     "title": "Report",

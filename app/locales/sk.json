@@ -60,6 +60,8 @@
     "auto_subscribe_checkbox": "Povoliť automatické predplatné",
     "auroraMsp_title": "Chat s AuroraMSP",
     "auroraMsp_description": "Majte priamy kontakt s viac ako 200 lekármi.",
+    "answers_form_next_step": "Ďalšie kroky:",
+    "answers_form_recomendations": "Odporúčanie testu:",
     "bulletin_title": "bulletiny",
     "bulletin_description": "Prečítajte si najnovšie informácie o bulletinoch COVID od vášho zdravotného úradu.",
     "case_day_label": "Prípady dňa",
@@ -188,6 +190,87 @@
     "news": "Správy",
     "bulletins": "Bulletiny",
     "advices": "Avíza"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "výsledok",
+      "text": "Na základe odpovedí sú to výsledky:"
+    },
+    "social_distance": {
+      "title": "Mali by ste praktizovať sociálne dištancovanie",
+      "subtitle": {
+        "no_traveled": "V súčasnosti nemáte príznaky COVID-19, preto vám odporúčame pokračovať v preventívnych opatreniach „častým umývaním rúk mydlom a vodou a uplatňovaním sociálnej dištancie“",
+        "traveled": "Pomáha zastaviť šírenie. Keď ste mimo domu, zostaňte aspoň 6 metrov od iných ľudí, vyhýbajte sa skupinám a verejnú dopravu používajte iba v prípade potreby."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Udržujte sociálnu vzdialenosť",
+          "content": "Zdržte sa aspoň 1 meter od kohokoľvek, vyhýbajte sa skupinám a verejnú dopravu používajte iba v prípade potreby."
+        },
+        "step_two": {
+          "title": "Nezabudnite „často si umyť ruky mydlom a vodou a praktizovať sociálne dištancovanie“",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Monitorujte príznaky",
+          "content": "Sledujte príznaky COVID-19, ako je kašeľ, horúčka a dýchavičnosť. Skontrolujte a merajte teplotu dvakrát denne po dobu dvoch týždňov.\nAk máte akékoľvek príznaky nebezpečenstva (vracanie alebo pretrvávajúce alebo krvavé hnačky, značné ťažkosti s dýchaním, ospalosť alebo záchvaty), okamžite choďte do najbližšieho zdravotného strediska alebo zavolajte na číslo *462."
+        },
+        "step_four": {
+          "title": "Karanténa doma",
+          "content": "Možno ste boli vystavení. Mali by ste zostať doma ďalších 14 dní a zistiť, či sa nevyskytnú nejaké príznaky. Mali by ste sa tiež pokúsiť obmedziť kontakt s ostatnými mimo domova."
+        },
+        "step_five": {
+          "title": "Spýtajte sa na svoje lieky",
+          "content": "Ak v súčasnosti užívate lieky na predpis, mali by ste sa skontaktovať so svojím lekárom, aby vám poskytol 30-dňovú dodávku."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "No proof needed at this time",
+          "content": {
+            "no_sympthoms": "Odteraz už nemusíte byť testovaní. Ak máte akékoľvek príznaky, ako je horúčka, kašeľ, výtok z nosa, mierne ťažkosti s dýchaním, bolesť hrdla, bolesť hlavy alebo tela, vyplňte tento dotazník znova alebo sa obráťte na platformu Aurora na telefónnych číslach 809-449-6262, 809 409 6262 a 809-352-6262.",
+            "has_sympthoms":"Odteraz už nemusíte byť testovaní. Ak máte akékoľvek príznaky, ako je horúčka, kašeľ, výtok z nosa, mierne ťažkosti s dýchaním, bolesť hrdla, bolesť hlavy alebo tela, vyplňte tento dotazník znova alebo sa obráťte na platformu Aurora na telefónnych číslach 809-449-6262, 809 409 6262 a 809-352-6262.\nAk máte akékoľvek príznaky nebezpečenstva (vracanie alebo pretrvávajúce alebo krvavé hnačky, značné ťažkosti s dýchaním, ospalosť alebo záchvaty), okamžite choďte do najbližšieho zdravotného strediska alebo zavolajte na číslo *462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Musí to byť izolácia domu",
+        "has_health_problems": "Kontaktujte svojho lekára"
+      },
+      "subtitle": {
+        "none": "Podľa jeho odpovedí by mal zostať doma a od ostatných. Ak je to možné, majte izbu a kúpeľňu, ktorá je práve pre vás. Môže to byť ťažké, ak sa necítite dobre, ale ochráni to ľudí okolo vás.",
+        "has_health_problems": "Vaše odpovede majú hovoriť s lekárom o vykonaní testu COVID-19."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "izolovať",
+          "content": "Musíte sa držať ďalej od ostatných 14 dní po objavení sa vašich príznakov. Izolácia sa môže skončiť, ak sa vaše príznaky výrazne zlepšia a ak ste nemali horúčku najmenej 72 hodín bez použitia liekov. Izolovaním môžete obmedziť šírenie COVID-19 a chrániť ostatných."
+        },
+        "step_two": {
+          "title": "Odpočívaj a postaraj sa o seba",
+          "content": "Jedzte správne, pite tekutiny a odpočiňte si."
+        },
+        "step_three": {
+          "title": "Monitorujte príznaky",
+          "content": "Sledujte príznaky COVID-19, ako je kašeľ, horúčka a dýchavičnosť. Skontrolujte a merajte teplotu dvakrát denne po dobu dvoch týždňov. Ak máte akékoľvek príznaky nebezpečenstva (vracanie alebo pretrvávajúce alebo krvavé hnačky, značné ťažkosti s dýchaním, ospalosť alebo záchvaty), okamžite choďte do najbližšieho zdravotného strediska alebo volajte * 462"
+        },
+        "step_four": {
+          "title": "Prijmite bezpečnostné opatrenia",
+          "content": "Ako nevyhnutný pracovník by ste sa mali so svojou prácou porozprávať o podniknutí konkrétnych krokov na ochranu a ochranu ľudí vo vašom okolí. Mali by ste nosiť vhodné osobné ochranné pomôcky vrátane masky na tvár alebo textilných krytov tváre v prípade nedostatkov. Okrem toho musíte v práci a vždy mimo práce udržiavať čo najväčšiu fyzickú vzdialenosť šesť stôp. Mali by ste si tiež často čistiť ruky a nedotýkať sa tváre."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Kontaktujte niekoho, kto urobí test",
+          "content": "Vaše odpovede môžu byť diskutované o teste COVID - 19. Mali by ste sa spojiť so svojím lekárom alebo sa obrátiť na platformu Aurora na telefónnom čísle 809-449-6262, 809 409 6262 a 809-352-6262 alebo zavolať na číslo * 462 pre ďalšie informácie. Skúšobný prístup sa môže líšiť v závislosti od miesta a poskytovateľa. Skontrolujte laboratóriá, ktoré sú autorizované ministerstvom zdravotníctva a ktoré sú k dispozícii vo vašej krajine pobytu."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“S vašou pomocou, pobytom doma a dodržiavaním zdravotných odporúčaní môžeme čeliť COVID-19”"
+    }
   },
   "report": {
     "title": "správa",

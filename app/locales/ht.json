@@ -49,6 +49,8 @@
     "authorities_removal_alert_title": "Retire otorite",
     "authorities_title": "Sous ou ka fè konfyans",
     "auto_subscribe_checkbox": "Aktive abònman otomatik",
+    "answers_form_next_step": "Pwochen etap yo:",
+    "answers_form_recomendations": "Rekòmandasyon pou egzamen an:",
     "choose_provider_subtitle": "Pou kapab toujou rete enfòme a ekspozisyon yo, ou bezwen enskri nan yon otorite.",
     "choose_provider_title": "Chwazi otorite a",
     "commitment": "Angajman",
@@ -146,5 +148,86 @@
     "news": "Nouvèl",
     "bulletins": "Bilten",
     "advices": "Konsèy"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "Rezilta yo",
+      "text": "Baze sou repons yo, sa yo se rezilta yo:"
+    },
+    "social_distance": {
+      "title": "Ou ta dwe pratike distans sosyal",
+      "subtitle": {
+        "no_traveled": "Nan moman sa a, ou pa gen sentòm COVID-19, kidonk nou rekòmande pou ou kontinye ak mezi prevansyon “lave men avèk savon ak dlo souvan epi aplike distans sosyal”",
+        "traveled": "Ede sispann gaye a. Lè w ap soti nan kay la, rete omwen sis pye lwen lòt moun, evite gwoup, epi sèlman itilize transpò piblik si sa nesesè."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Kenbe distans sosyal la",
+          "content": "Rete omwen yon (1) mèt lwen nenpòt moun, evite ke ou nan gwoup, epi itilize sèlman transpò piblik si sa nesesè."
+        },
+        "step_two": {
+          "title": "Toujou sonje “lave men ou avèk savon ak dlo souvan epi pratike distans sosyal”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Siveye sentòm yo",
+          "content": "Siveye sentòm COVID-19 tankou tous, lafyèv ak souf kout. Epitou, tcheke epi mezire tanperati ou de fwa nan yon jounen pandan de semèn.\nSi ou genyen nenpòt sentòm danje (vomisman oswa dyare pèsistan oswa san, gwo difikilte pou respire, somnolans oswa kriz), imedyatman ale nan sant sante ki pi pre a oswa rele *462."
+        },
+        "step_four": {
+          "title": "Karantèn nan kay la",
+          "content": "Ou ka ekspoze. Ou ta dwe rete lakay ou pou 14 jou kap vini yo epi wè si gen nenpòt sentòm parèt. Ou ta dwe eseye tou kontakte ou avèk lòt moun ki pa lakay ou."
+        },
+        "step_five": {
+          "title": "Mande enfòmasyon sou medikaman ou yo",
+          "content": "Si w ap pran medikaman sou preskripsyon kounye a, ou ta dwe kontakte doktè ou pou yon rezèv pou 30-jou."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Pa gen prèv ki nesesè nan moman sa a",
+          "content": {
+            "no_sympthoms": "Depi kounye a, repons ou yo pap bezwen fè tès la. Si ou gen nenpòt sentòm tankou lafyèv, tous, nen k ap koule, ti difikilte pou respire, doulè nan gòj, tèt ou oswa doulè nan kò, tanpri ranpli kesyonè sa a ankò oswa kontakte platfòm Aurora nan nimewo telefòn 809-449-6262, 809 409 6262 ak 809-352-6262.",
+            "has_sympthoms":"Depi kounye a, repons ou yo pap bezwen fè tès la. Si ou gen nenpòt sentòm tankou lafyèv, tous, nen k ap koule, ti difikilte pou respire, doulè nan gòj, tèt ou oswa doulè nan kò, tanpri ranpli kesyonè sa a ankò oswa kontakte platfòm Aurora nan nimewo telefòn 809-449-6262, 809 409 6262 ak 809-352-6262.\nSi ou gen nenpòt sentòm danje (vomisman oswa dyare pèsistan oswa san, ki gen difikilte pou respire, somnolans oswa kriz), ale imedyatman nan sant sante ki pi pre a oswa rele *462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Dwe fè izòlman lakay ou",
+        "has_health_problems": "Kontakte doktè ou"
+      },
+      "subtitle": {
+        "none": "Dapre repons li yo, li ta dwe rete nan kay la ak lwen lòt moun. Si ou kapab, gen yon chanm ak yon twalèt ki jis pou ou. Sa ka difisil lè ou pa santi w byen, men li pwoteje moun ki bò kote ou yo.",
+        "has_health_problems": "Repons ou yo se pale ak yon pwofesyonèl medikal sou gen COVID-19 tès la."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Izole",
+          "content": "Ou dwe rete lwen lòt moun pandan 14 jou apre kòmansman sentòm ou yo. Izolasyon ou ka fini si sentòm ou yo amelyore siyifikativman ak si ou pa te gen yon lafyèv pou omwen 72 èdtan san yo pa itilize nan medikaman. Pa izole, ou ka diminye pwopagasyon COVID-19 ak pwoteje lòt moun."
+        },
+        "step_two": {
+          "title": "Repoze epi pran swen tèt ou",
+          "content": "Manje byen, bwè likid, epi pran anpil repo."
+        },
+        "step_three": {
+          "title": "Siveye sentòm yo",
+          "content": "Siveye sentòm COVID-19 tankou tous, lafyèv ak souf kout. Epitou, tcheke epi mezire tanperati ou de fwa nan yon jounen pandan de semèn. Si ou gen nenpòt sentòm danje (vomisman oswa dyare pèsistan oswa san, ki gen difikilte pou respire, somnolans oswa kriz) ale imedyatman nan sant sante ki pi pre a oswa rele *462"
+        },
+        "step_four": {
+          "title": "Pran prekosyon",
+          "content": "Kòm yon travayè esansyèl, ou ta dwe pale ak travay ou sou pran etap espesifik yo ede pwoteje ak pwoteje moun ki bò kote ou. Ou ta dwe mete ekipman apwopriye pwoteksyon pèsonèl, ki gen ladan mask figi oswa twal figi kouvri nan ka ta gen mank. Anplis de sa, ou dwe kenbe yon distans fizik nan sis pye otank posib nan travay ak toujou deyò nan travay. Ou ta dwe tou netwaye men ou souvan, epi evite manyen figi ou."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Kontakte yon moun pou pran tès la",
+          "content": "Repons ou yo ka posib pou diskite tès COVID - 19 la. Ou ta dwe kontakte doktè ou, oswa kontakte platfòm nan Aurora nan 809-449-6262, 809 409 6262 ak 809-352-6262 oswa rele * 462 pou plis enfòmasyon. Aksè esè ka varye selon lokalite ak founisè. Tcheke laboratwa yo ki otorize pa Ministè Sante Piblik la ki disponib nan pwovens ou nan rezidans."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“Avèk èd ou, rete lakay ou epi apre rekòmandasyon sante nou yo, nou ka fè fas a COVID-19”"
+    }
   }
 }

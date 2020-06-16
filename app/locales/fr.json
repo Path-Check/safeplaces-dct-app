@@ -27,6 +27,8 @@
     "authorities_removal_alert_proceed": "Continuer",
     "authorities_removal_alert_title": "Supprimer une autorité",
     "authorities_title": "Sources de confiance",
+    "answers_form_next_step": "Prochaines étapes:",
+    "answers_form_recomendations": "Recommandation de test:",
     "choose_provider_subtitle": "Pour vous tenir informé·e des risques d’exposition, vous devez souscrire à une autorité sanitaire.",
     "choose_provider_title": "Choisissez votre autorité sanitaire",
     "commitment": "Engagement",
@@ -101,6 +103,87 @@
     "news": "Nouvelles",
     "bulletins": "Bulletins",
     "advices": "Des conseils"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "Résultats",
+      "text": "Sur la base des réponses, ce sont les résultats:"
+    },
+    "social_distance": {
+      "title": "Vous devez pratiquer la distance sociale",
+      "subtitle": {
+        "no_traveled": "À l'heure actuelle, vous ne présentez aucun symptôme de COVID-19, nous vous recommandons donc de continuer avec les mesures préventives de “se laver les mains à l'eau et au savon fréquemment et appliquer une distance sociale”",
+        "traveled": "Aide à arrêter la propagation. Lorsque vous n'êtes pas à la maison, restez à au moins six pieds des autres, évitez les groupes et n'utilisez les transports en commun que si nécessaire."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Maintenir la distance sociale",
+          "content": "Restez à au moins un (1) mètre de toute personne, évitez d'être en groupe et n'utilisez les transports en commun que si nécessaire."
+        },
+        "step_two": {
+          "title": "N'oubliez pas de “se laver les mains avec de l'eau et du savon fréquemment et pratiquer la distanciation sociale”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Surveiller les symptômes",
+          "content": "Surveillez les symptômes de COVID-19 tels que toux, fièvre et essoufflement. Vérifiez et mesurez également votre température deux fois par jour pendant deux semaines.\nSi vous présentez des symptômes de danger (vomissements ou diarrhée persistante ou sanglante, difficultés respiratoires marquées, somnolence ou convulsions), rendez-vous immédiatement au centre de santé le plus proche ou appelez *462."
+        },
+        "step_four": {
+          "title": "Mise en quarantaine à domicile",
+          "content": "Vous avez peut-être été exposé. Vous devez rester à la maison pendant les 14 prochains jours et voir si des symptômes apparaissent. Vous devriez également essayer de limiter vos contacts avec d'autres personnes en dehors de la maison."
+        },
+        "step_five": {
+          "title": "Renseignez-vous sur vos médicaments",
+          "content": "Si vous prenez actuellement des médicaments sur ordonnance, vous devez contacter votre médecin pour un approvisionnement de 30 jours."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Aucune preuve requise pour le moment",
+          "content": {
+            "no_sympthoms": "Désormais, vos réponses n'auront plus besoin d'être testées. Si vous présentez des symptômes tels que fièvre, toux, écoulement nasal, légère difficulté à respirer, maux de gorge, douleur à la tête ou au corps, veuillez à nouveau remplir ce questionnaire ou contacter la plateforme Aurora aux numéros de téléphone 809-449-6262, 809 409 6262 et 809-352-6262.",
+            "has_sympthoms":"Désormais, vos réponses n'auront plus besoin d'être testées. Si vous présentez des symptômes tels que fièvre, toux, écoulement nasal, légère difficulté à respirer, maux de gorge, douleur à la tête ou au corps, veuillez à nouveau remplir ce questionnaire ou contacter la plateforme Aurora aux numéros de téléphone 809-449-6262, 809 409 6262 et 809-352-6262.\nSi vous présentez des symptômes de danger (vomissements ou diarrhée persistante ou sanglante, difficultés respiratoires marquées, somnolence ou convulsions), rendez-vous immédiatement au centre de santé le plus proche ou appelez *462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Doit isoler la maison",
+        "has_health_problems": "Contactez votre médecin"
+      },
+      "subtitle": {
+        "none": "According to his answers, he should stay at home and away from others. If you can, have a room and a bathroom that are just for you. This can be difficult when you are not feeling well, but it will protect those around you.",
+        "has_health_problems": "Selon ses réponses, il devrait rester à la maison et loin des autres. Si vous le pouvez, ayez une chambre et une salle de bain rien que pour vous. Cela peut être difficile lorsque vous ne vous sentez pas bien, mais cela protégera ceux qui vous entourent."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Isoler",
+          "content": "Vous devez rester à l'écart des autres pendant 14 jours après le début de vos symptômes. Votre isolement peut cesser si vos symptômes s'améliorent de manière significative et si vous n'avez pas eu de fièvre depuis au moins 72 heures sans utiliser de médicaments. En isolant, vous pouvez réduire la propagation du COVID-19 et protéger les autres."
+        },
+        "step_two": {
+          "title": "Reposez-vous et prenez soin de vous",
+          "content": "Mangez bien, buvez des liquides et prenez beaucoup de repos."
+        },
+        "step_three": {
+          "title": "Surveiller les symptômes",
+          "content": "Surveillez les symptômes de COVID-19 tels que toux, fièvre et essoufflement. Vérifiez et mesurez également votre température deux fois par jour pendant deux semaines. Si vous présentez des symptômes de danger (vomissements ou diarrhée persistante ou sanglante, difficultés respiratoires marquées, somnolence ou convulsions), rendez-vous immédiatement au centre de santé le plus proche ou appelez *462"
+        },
+        "step_four": {
+          "title": "Prenez vos précautions",
+          "content": "En tant que travailleur essentiel, vous devriez parler à votre travail de la prise de mesures spécifiques pour aider à protéger et à protéger ceux qui vous entourent. Vous devez porter un équipement de protection individuelle approprié, y compris des masques faciaux ou des couvertures en tissu en cas de pénurie. De plus, vous devez maintenir une distance physique de six pieds autant que possible au travail et toujours en dehors du travail. Vous devez également vous laver les mains fréquemment et éviter de toucher votre visage."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Contactez quelqu'un pour passer le test",
+          "content": "Vos réponses peuvent être possibles pour discuter du test COVID - 19. Vous devez contacter votre médecin, ou contacter la plate-forme Aurora au 809-449-6262, 809 409 6262 et 809-352-6262 ou appeler le * 462 pour plus d'informations. L'accès à l'essai peut varier selon l'emplacement et le fournisseur. Vérifiez les laboratoires autorisés par le ministère de la Santé publique disponibles dans votre province de résidence."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“Avec votre aide, en restant à la maison et en suivant les recommandations de santé, nous pouvons faire face à COVID-19”"
+    }
   },
   "report": {
     "title": "Rapport",

@@ -64,6 +64,8 @@
     "auto_subscribe_checkbox": "Activați abonarea automată",
     "auroraMsp_title": "Discutați cu AuroraMSP",
     "auroraMsp_description": "Aveți contact direct cu peste 200 de medici.",
+    "answers_form_next_step": "Pasii urmatori:",
+    "answers_form_recomendations": "Recomandare test:",
     "bulletin_title": "buletine",
     "bulletin_description": "Citiți despre cele mai recente actualizări ale buletinelor COVID de la autoritatea dumneavoastră de sănătate.",
     "case_day_label": "Cazurile zilei",
@@ -192,6 +194,87 @@
     "news": "Știri",
     "bulletins": "Buletine",
     "advices": "Sfaturi"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "Rezultate",
+      "text": "Pe baza răspunsurilor, acestea sunt rezultatele:"
+    },
+    "social_distance": {
+      "title": "Ar trebui să practicați distanțarea socială",
+      "subtitle": {
+        "no_traveled": "În acest moment, nu aveți simptome ale COVID-19, de aceea vă recomandăm să continuați cu măsurile preventive de „spălare frecventă a mâinilor cu apă și săpun și aplicarea distanțării sociale”",
+        "traveled": "Ajută la oprirea răspândirii. Când ieșiți din casă, stați la cel puțin șase metri față de alte persoane, evitați grupurile și utilizați transportul public doar dacă este necesar."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Mențineți distanța socială",
+          "content": "Stați la cel puțin un (1) metru distanță de oricine, evitați să vă aflați în grupuri și folosiți transportul public doar dacă este necesar."
+        },
+        "step_two": {
+          "title": "Amintiți-vă întotdeauna „să vă spălați frecvent mâinile cu apă și săpun și să practicați distanțarea socială”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Monitorizați simptomele",
+          "content": "Urmăriți care sunt simptomele COVID-19, cum ar fi tuse, febră și lipsa respirației. De asemenea, verificați și măsurați temperatura de două ori pe zi timp de două săptămâni.\nDacă aveți simptome de pericol (vărsături sau diaree persistentă sau sângeroasă, dificultăți mari de respirație, somnolență sau convulsii), mergeți imediat la cel mai apropiat centru de sănătate sau apelați * 462."
+        },
+        "step_four": {
+          "title": "Carantină acasă",
+          "content": "Este posibil să fi fost expus. Ar trebui să stai acasă pentru următoarele 14 zile și să vezi dacă apar simptome. De asemenea, ar trebui să încercați să vă limitați contactul cu alții din afara casei."
+        },
+        "step_five": {
+          "title": "Întrebați-vă despre medicamente",
+          "content": "Dacă luați în prezent medicamente pe bază de rețetă, trebuie să vă adresați medicului pentru o livrare de 30 de zile."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Nu există nicio dovadă în acest moment",
+          "content": {
+            "no_sympthoms": "De acum înainte, răspunsurile dvs. nu vor fi testate. Dacă aveți simptome precum febră, tuse, nas curgător, dificultăți ușoare de respirație, dureri în gât, dureri de cap sau de corp, vă rugăm să completați din nou acest chestionar sau să contactați platforma Aurora prin numerele de telefon 809-449-6262, 809 409 6262 și 809-352-6262.",
+            "has_sympthoms":"De acum înainte, răspunsurile dvs. nu vor fi testate. Dacă aveți simptome precum febră, tuse, nas curgător, dificultăți ușoare de respirație, dureri în gât, dureri de cap sau de corp, vă rugăm să completați din nou acest chestionar sau să contactați platforma Aurora prin numerele de telefon 809-449-6262, 809 409 6262 și 809-352-6262.\nDacă aveți simptome de pericol (vărsături sau diaree persistentă sau sângeroasă, dificultăți mari de respirație, somnolență sau convulsii), mergeți imediat la cel mai apropiat centru de sănătate sau apelați * 462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Trebuie să facem izolare la domiciliu",
+        "has_health_problems": "Contactați medicul"
+      },
+      "subtitle": {
+        "none": "Conform răspunsurilor sale, ar trebui să stea acasă și departe de ceilalți. Dacă poți, ai o cameră și o baie care sunt doar pentru tine. Acest lucru poate fi dificil atunci când nu te simți bine, dar îi va proteja pe cei din jurul tău.",
+        "has_health_problems": "Răspunsurile dvs. sunt să vorbiți cu un profesionist medical despre efectuarea testului COVID-19."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Izola",
+          "content": "Trebuie să stați departe de ceilalți timp de 14 zile după debutul simptomelor. Izolarea dvs. se poate încheia dacă simptomele dvs. se îmbunătățesc semnificativ și dacă nu ați avut febră timp de cel puțin 72 de ore fără utilizarea medicamentelor. Prin izolarea, puteți reduce răspândirea COVID-19 și proteja pe alții."
+        },
+        "step_two": {
+          "title": "Odihnește-te și ai grijă de tine",
+          "content": "Mănâncă corect, bea lichide și odihnește-te mult."
+        },
+        "step_three": {
+          "title": "Monitorizați simptomele",
+          "content": "Urmăriți care sunt simptomele COVID-19, cum ar fi tuse, febră și lipsa respirației. De asemenea, verificați și măsurați temperatura de două ori pe zi timp de două săptămâni. Dacă aveți simptome de pericol (vărsături sau diaree persistentă sau sângeroasă, dificultăți mari de respirație, somnolență sau convulsii) mergeți imediat la cel mai apropiat centru de sănătate sau apelați * 462"
+        },
+        "step_four": {
+          "title": "Ia măsuri de precauție",
+          "content": "Ca lucrător esențial, ar trebui să discutați cu locul de muncă despre luarea unor măsuri specifice pentru a ajuta la protejarea și protejarea celor din jurul vostru. Ar trebui să purtați echipament de protecție personală adecvat, inclusiv măști pentru față sau huse pentru țesături în caz de lipsă. În plus, trebuie să mențineți o distanță fizică de 6 metri cât mai mult posibil la locul de muncă și întotdeauna în afara muncii. De asemenea, ar trebui să vă curățați mâinile frecvent și să evitați să vă atingeți fața."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Contactați cineva pentru a face testul",
+          "content": "Răspunsurile dvs. pot fi posibile pentru a discuta testul COVID-19. Ar trebui să vă adresați medicului dumneavoastră sau să contactați platforma Aurora la numărul de telefon 809-449-6262, 809 409 6262 și 809-352-6262 sau să sunați la * 462 pentru mai multe informații. Accesul încercărilor poate varia în funcție de locație și de furnizor. Verificați laboratoarele care sunt autorizate de Ministerul Sănătății Publice disponibile în provincia dvs. de reședință."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“Cu ajutorul tău, stând acasă și urmând recomandările de sănătate, ne putem confrunta cu COVID-19”"
+    }
   },
   "report": {
     "title": "Raport",

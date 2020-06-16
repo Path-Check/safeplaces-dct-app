@@ -192,6 +192,87 @@
     "bulletins": "Buletin",
     "advices": "Saran"
   },
+  "answers_translate": {
+    "header": {
+      "title": "Hasil",
+      "text": "Berdasarkan jawaban, inilah hasilnya:"
+    },
+    "social_distance": {
+      "title": "Anda harus berlatih menjaga jarak sosial",
+      "subtitle": {
+        "no_traveled": "Pada saat ini, Anda tidak memiliki gejala COVID-19, jadi kami sarankan Anda melanjutkan dengan tindakan pencegahan “sering mencuci tangan dengan sabun dan air dan menerapkan jarak sosial”",
+        "traveled": "Membantu menghentikan penyebaran. Ketika Anda berada di luar rumah, tinggal setidaknya enam kaki dari orang lain, hindari kelompok, dan hanya menggunakan transportasi umum jika perlu."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Pertahankan jarak sosial",
+          "content": "Tinggal setidaknya satu (1) meter dari siapa pun, hindari berada dalam kelompok, dan hanya menggunakan transportasi umum jika perlu."
+        },
+        "step_two": {
+          "title": "Selalu ingat untuk “sering mencuci tangan dengan sabun dan air dan berlatih menjaga jarak sosial”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Pantau gejala",
+          "content": "Perhatikan gejala COVID-19 seperti batuk, demam, dan sesak napas. Juga, periksa dan ukur suhu Anda dua kali sehari selama dua minggu.\nJika Anda memiliki gejala bahaya (muntah atau diare yang persisten atau berdarah, kesulitan bernafas, mengantuk, atau kejang), segera kunjungi pusat kesehatan terdekat atau hubungi *462."
+        },
+        "step_four": {
+          "title": "Karantina di rumah",
+          "content": "Anda mungkin telah terpapar. Anda harus tinggal di rumah selama 14 hari berikutnya dan melihat apakah ada gejala yang muncul. Anda juga harus membatasi kontak Anda dengan orang lain di luar rumah."
+        },
+        "step_five": {
+          "title": "Tanyakan tentang pengobatan Anda",
+          "content": "Jika saat ini Anda menggunakan obat resep, Anda harus menghubungi dokter Anda untuk persediaan 30 hari."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Tidak ada bukti yang dibutuhkan saat ini",
+          "content": {
+            "no_sympthoms": "Mulai sekarang, jawaban Anda tidak perlu diuji. Jika Anda memiliki gejala seperti demam, batuk, pilek, sulit bernapas, sakit tenggorokan, sakit kepala atau tubuh, silakan isi kuesioner ini lagi atau hubungi platform Aurora melalui nomor telepon 809-449-6262, 809 409 6262 dan 809-352-6262.",
+            "has_sympthoms":"Mulai sekarang, jawaban Anda tidak perlu diuji. Jika Anda memiliki gejala seperti demam, batuk, pilek, sulit bernapas, sakit tenggorokan, sakit kepala atau tubuh, silakan isi kuesioner ini lagi atau hubungi platform Aurora melalui nomor telepon 809-449-6262, 809 409 6262 dan 809-352-6262.\nJika Anda memiliki gejala bahaya (muntah atau diare persisten atau berdarah, ditandai kesulitan bernafas, kantuk atau kejang), segera pergi ke pusat kesehatan terdekat atau hubungi *462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Harus melakukan isolasi di rumah",
+        "has_health_problems": "Hubungi dokter Anda"
+      },
+      "subtitle": {
+        "none": "Menurut jawabannya, ia harus tinggal di rumah dan jauh dari orang lain. Jika Anda bisa, punya kamar dan kamar mandi yang hanya untuk Anda. Ini bisa sulit ketika Anda sedang tidak enak badan, tetapi itu akan melindungi orang-orang di sekitar Anda.",
+        "has_health_problems": "Jawaban Anda adalah berbicara dengan profesional medis tentang menjalani tes COVID-19."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Memisahkan",
+          "content": "Anda harus menjauh dari orang lain selama 14 hari setelah timbulnya gejala Anda. Isolasi Anda dapat berakhir jika gejala Anda membaik secara signifikan dan jika Anda belum pernah demam selama 72 jam tanpa menggunakan obat-obatan. Dengan mengisolasi, Anda dapat mengurangi penyebaran COVID-19 dan melindungi orang lain."
+        },
+        "step_two": {
+          "title": "Beristirahat dan jaga dirimu",
+          "content": "Makan dengan benar, minum cairan, dan banyak istirahat."
+        },
+        "step_three": {
+          "title": "Pantau gejala",
+          "content": "Perhatikan gejala COVID-19 seperti batuk, demam, dan sesak napas. Juga, periksa dan ukur suhu Anda dua kali sehari selama dua minggu. Jika Anda memiliki gejala bahaya (muntah atau diare persisten, ditandai kesulitan bernafas, kantuk atau kejang) segera pergi ke pusat kesehatan terdekat atau hubungi *462"
+        },
+        "step_four": {
+          "title": "Ambil tindakan pencegahan",
+          "content": "Sebagai pekerja penting, Anda harus berbicara dengan pekerjaan Anda tentang mengambil langkah-langkah spesifik untuk membantu melindungi dan melindungi orang-orang di sekitar Anda. Anda harus mengenakan peralatan pelindung pribadi yang sesuai, termasuk masker wajah atau kain penutup muka jika terjadi kekurangan. Selain itu, Anda harus menjaga jarak fisik sejauh enam kaki sebanyak mungkin di tempat kerja dan selalu di luar pekerjaan. Anda juga harus sering membersihkan tangan dan menghindari menyentuh wajah Anda."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Hubungi seseorang untuk mengikuti tes",
+          "content": "Jawaban Anda dimungkinkan untuk mendiskusikan tes COVID - 19. Anda harus menghubungi dokter Anda, atau hubungi platform Aurora di 809-449-6262, 809 409 6262 dan 809-352-6262 atau hubungi * 462 untuk informasi lebih lanjut. Akses uji coba dapat bervariasi berdasarkan lokasi dan penyedia. Periksa laboratorium yang disahkan oleh Departemen Kesehatan Masyarakat yang tersedia di provinsi tempat tinggal Anda."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“Dengan bantuan Anda, tinggal di rumah dan mengikuti rekomendasi kesehatan, kami dapat menghadapi COVID-19”"
+    }
+  },
   "report": {
     "title": "Melaporkan",
     "subtitle": "Harap jawab pertanyaan berikut",

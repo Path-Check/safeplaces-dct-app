@@ -60,6 +60,8 @@
     "auto_subscribe_checkbox": "Włącz automatyczną subskrypcję",
     "auroraMsp_title": "Czat z AuroraMSP",
     "auroraMsp_description": "Bezpośredni kontakt z ponad 200 lekarzami.",
+    "answers_form_next_step": "Następne kroki:",
+    "answers_form_recomendations": "Rekomendacja testu:",
     "bulletin_title": "Biuletyny",
     "bulletin_description": "Przeczytaj o najnowszych aktualizacjach biuletynów COVID od twojego urzędu zdrowia.",
     "case_day_label": "Przypadki dnia",
@@ -188,6 +190,87 @@
     "news": "Aktualności",
     "bulletins": "Biuletyny",
     "advices": "Porady"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "Wyniki",
+      "text": "Na podstawie odpowiedzi są to wyniki:"
+    },
+    "social_distance": {
+      "title": "Powinieneś ćwiczyć dystans społeczny",
+      "subtitle": {
+        "no_traveled": "W tej chwili nie masz objawów COVID-19, dlatego zalecamy kontynuowanie działań zapobiegawczych polegających na „częstym myciu rąk mydłem i wodą i stosowaniu dystansu społecznego”",
+        "traveled": "Pomaga zatrzymać rozprzestrzenianie się. Kiedy jesteś poza domem, trzymaj się co najmniej sześć stóp od innych ludzi, unikaj grup i korzystaj tylko z transportu publicznego, jeśli to konieczne."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Zachowaj dystans społeczny",
+          "content": "Trzymaj się przynajmniej jednego (1) metra od nikogo, unikaj przebywania w grupach i korzystaj z transportu publicznego tylko w razie potrzeby."
+        },
+        "step_two": {
+          "title": "Zawsze pamiętaj, aby „często myć ręce wodą z mydłem i ćwiczyć dystans społeczny”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Monitoruj objawy",
+          "content": "Uważaj na objawy COVID-19, takie jak kaszel, gorączka i duszność. Sprawdź i zmierz swoją temperaturę dwa razy dziennie przez dwa tygodnie.\nJeśli masz jakiekolwiek objawy zagrożenia (wymioty lub uporczywa lub krwawa biegunka, wyraźne trudności w oddychaniu, senność lub drgawki), natychmiast udaj się do najbliższego centrum zdrowia lub zadzwoń *462."
+        },
+        "step_four": {
+          "title": "Kwarantanna w domu",
+          "content": "Być może zostałeś narażony. Powinieneś zostać w domu przez następne 14 dni i sprawdzić, czy pojawią się jakiekolwiek objawy. Powinieneś także spróbować ograniczyć kontakt z innymi osobami poza domem."
+        },
+        "step_five": {
+          "title": "Zapytaj o swoje leki",
+          "content": "Jeśli obecnie przyjmujesz leki na receptę, powinieneś skontaktować się z lekarzem w celu uzyskania zapasów na 30 dni."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "W tej chwili nie jest potrzebny żaden dowód",
+          "content": {
+            "no_sympthoms": "Odtąd twoje odpowiedzi nie będą musiały być testowane. Jeśli masz jakiekolwiek objawy, takie jak gorączka, kaszel, katar, niewielkie trudności w oddychaniu, ból gardła, ból głowy lub ciała, wypełnij ten kwestionariusz ponownie lub skontaktuj się z platformą Aurora pod numerami telefonicznymi 809-449-6262, 809 409 6262 i 809–352–6262.",
+            "has_sympthoms":"Odtąd twoje odpowiedzi nie będą musiały być testowane. Jeśli masz jakiekolwiek objawy, takie jak gorączka, kaszel, katar, niewielkie trudności w oddychaniu, ból gardła, ból głowy lub ciała, wypełnij ten kwestionariusz ponownie lub skontaktuj się z platformą Aurora pod numerami telefonicznymi 809-449-6262, 809 409 6262 i 809–352–6262.\nJeśli masz jakiekolwiek objawy zagrożenia (wymioty lub uporczywa lub krwawa biegunka, wyraźne trudności w oddychaniu, senność lub drgawki), natychmiast udaj się do najbliższego ośrodka zdrowia lub zadzwoń * 462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Musisz zrobić izolację domu",
+        "has_health_problems": "Skontaktuj się z lekarzem"
+      },
+      "subtitle": {
+        "none": "Według jego odpowiedzi powinien pozostać w domu i trzymać się z dala od innych. Jeśli możesz, miej pokój i łazienkę, które są właśnie dla Ciebie. Może to być trudne, gdy nie czujesz się dobrze, ale ochroni to ludzi wokół ciebie.",
+        "has_health_problems": "Twoje odpowiedzi dotyczą rozmowy z lekarzem na temat testu COVID-19."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Izolować",
+          "content": "Musisz pozostać z dala od innych przez 14 dni po wystąpieniu objawów. Twoja izolacja może się skończyć, jeśli objawy znacznie się poprawią i jeśli nie miałeś gorączki przez co najmniej 72 godziny bez stosowania leków. Izolując, możesz zmniejszyć rozprzestrzenianie się COVID-19 i chronić innych."
+        },
+        "step_two": {
+          "title": "Odpocznij i zadbaj o siebie",
+          "content": "Jedz dobrze, pij płyny i odpocznij."
+        },
+        "step_three": {
+          "title": "Monitoruj objawy",
+          "content": "Uważaj na objawy COVID-19, takie jak kaszel, gorączka i duszność. Sprawdź i zmierz swoją temperaturę dwa razy dziennie przez dwa tygodnie. Jeśli wystąpią jakiekolwiek objawy zagrożenia (wymioty lub uporczywa lub krwawa biegunka, wyraźne trudności w oddychaniu, senność lub drgawki), natychmiast udaj się do najbliższego ośrodka zdrowia lub zadzwoń * 462"
+        },
+        "step_four": {
+          "title": "Podejmij środki ostrożności",
+          "content": "Jako niezbędny pracownik powinieneś porozmawiać ze swoją pracą o podjęciu konkretnych kroków, aby pomóc chronić i chronić osoby wokół ciebie. Powinieneś nosić odpowiedni sprzęt ochrony osobistej, w tym maski na twarz lub materiałowe osłony na twarz w przypadku niedoborów. Ponadto musisz zachować fizyczną odległość sześciu stóp, jak najwięcej w pracy i zawsze poza pracą. Powinieneś również często myć ręce i unikać dotykania twarzy."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Skontaktuj się z kimś, aby wziąć udział w teście",
+          "content": "Możliwe są odpowiedzi na pytania dotyczące testu COVID - 19. Należy skontaktować się z lekarzem lub skontaktować się z platformą Aurora pod numerami 809-449-6262, 809 409 6262 i 809-352-6262 lub zadzwonić na * 462, aby uzyskać więcej informacji. Dostęp próbny może się różnić w zależności od lokalizacji i dostawcy. Sprawdź laboratoria autoryzowane przez Ministerstwo Zdrowia Publicznego dostępne w twojej prowincji zamieszkania."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“Z twoją pomocą, pozostając w domu i przestrzegając zaleceń zdrowotnych, możemy zmierzyć się z COVID-19”"
+    }
   },
   "report": {
     "title": "Raport",

@@ -64,6 +64,8 @@
     "auto_subscribe_checkbox": "Cho phép đăng ký tự động",
     "auroraMsp_title": "Trò chuyện với AuroraMSP",
     "auroraMsp_description": "Có liên hệ trực tiếp với hơn 200 bác sĩ.",
+    "answers_form_next_step": "Bước tiếp theo:",
+    "answers_form_recomendations": "Đề nghị kiểm tra:",
     "bulletin_title": "Bản tin",
     "bulletin_description": "Đọc về các bản cập nhật bản tin COVID mới nhất từ cơ quan y tế của bạn.",
     "case_day_label": "Các trường hợp trong ngày",
@@ -192,6 +194,87 @@
     "news": "Tin tức",
     "bulletins": "Bản tin",
     "advices": "Lời khuyên"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "Các kết quả",
+      "text": "Dựa trên các câu trả lời, đây là những kết quả:"
+    },
+    "social_distance": {
+      "title": "Bạn nên thực hành cách xa xã hội",
+      "subtitle": {
+        "no_traveled": "Tại thời điểm này, bạn không có triệu chứng COVID-19, vì vậy chúng tôi khuyên bạn nên tiếp tục với các biện pháp phòng ngừa “rửa tay bằng xà phòng và nước thường xuyên và áp dụng phương pháp xã hội”",
+        "traveled": "Giúp ngăn chặn sự lây lan. Khi bạn ra khỏi nhà, hãy tránh xa người khác ít nhất sáu feet, tránh các nhóm và chỉ sử dụng phương tiện giao thông công cộng nếu cần thiết."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Duy trì khoảng cách xã hội",
+          "content": "Tránh xa bất cứ ai ít nhất một (1) mét, tránh đi theo nhóm và chỉ sử dụng phương tiện giao thông công cộng nếu cần thiết."
+        },
+        "step_two": {
+          "title": "Luôn nhớ “rửa tay bằng xà phòng và nước thường xuyên và thực hành cách xa xã hội”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Theo dõi triệu chứng",
+          "content": "Theo dõi các triệu chứng COVID-19 như ho, sốt và khó thở. Ngoài ra, kiểm tra và đo nhiệt độ của bạn hai lần một ngày trong hai tuần.\nNếu bạn có bất kỳ triệu chứng nguy hiểm nào (nôn mửa hoặc tiêu chảy kéo dài hoặc có máu, khó thở, buồn ngủ hoặc co giật), hãy đến ngay trung tâm y tế gần nhất hoặc gọi * 462."
+        },
+        "step_four": {
+          "title": "Kiểm dịch tại nhà",
+          "content": "Bạn có thể đã được tiếp xúc. Bạn nên ở nhà trong 14 ngày tiếp theo và xem có bất kỳ triệu chứng nào xuất hiện không. Bạn cũng nên cố gắng hạn chế tiếp xúc với những người khác bên ngoài nhà."
+        },
+        "step_five": {
+          "title": "Hỏi về thuốc của bạn",
+          "content": "Nếu bạn hiện đang dùng thuốc theo toa, bạn nên liên hệ với bác sĩ để được cung cấp trong 30 ngày."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Không cần bằng chứng tại thời điểm này",
+          "content": {
+            "no_sympthoms": "Từ bây giờ, câu trả lời của bạn sẽ không cần phải được kiểm tra. Nếu bạn có bất kỳ triệu chứng nào như sốt, ho, sổ mũi, khó thở nhẹ, đau họng, đau đầu hoặc đau cơ thể, vui lòng hoàn thành lại bảng câu hỏi này hoặc liên hệ với nền tảng Aurora qua các số điện thoại 809-449-6262, 809 409 6262 và 809-352-6262.",
+            "has_sympthoms":"Từ bây giờ, câu trả lời của bạn sẽ không cần phải được kiểm tra. Nếu bạn có bất kỳ triệu chứng nào như sốt, ho, sổ mũi, khó thở nhẹ, đau họng, đau đầu hoặc đau cơ thể, vui lòng hoàn thành lại bảng câu hỏi này hoặc liên hệ với nền tảng Aurora qua các số điện thoại 809-449-6262, 809 409 6262 và 809-352-6262.\nNếu bạn có bất kỳ triệu chứng nguy hiểm nào (nôn mửa hoặc tiêu chảy kéo dài hoặc có máu, khó thở, buồn ngủ hoặc co giật), hãy đến ngay trung tâm y tế gần nhất hoặc gọi *462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Phải cách ly nhà.",
+        "has_health_problems": "Liên lạc với bác sĩ của bạn"
+      },
+      "subtitle": {
+        "none": "Theo câu trả lời của anh ấy, anh ấy nên ở nhà và tránh xa những người khác. Nếu bạn có thể, có một phòng và một phòng tắm dành riêng cho bạn. Điều này có thể khó khăn khi bạn cảm thấy không khỏe, nhưng nó sẽ bảo vệ những người xung quanh bạn.",
+        "has_health_problems": "Câu trả lời của bạn là nói chuyện với một chuyên gia y tế về việc xét nghiệm COVID-19."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Cô lập",
+          "content": "Bạn phải tránh xa những người khác trong 14 ngày sau khi xuất hiện các triệu chứng của bạn. Sự cô lập của bạn có thể kết thúc nếu các triệu chứng của bạn cải thiện đáng kể và nếu bạn không bị sốt ít nhất 72 giờ mà không sử dụng thuốc. Bằng cách cách ly, bạn có thể giảm sự lây lan của COVID-19 và bảo vệ những người khác."
+        },
+        "step_two": {
+          "title": "Nghỉ ngơi và chăm sóc bản thân",
+          "content": "Ăn đúng, uống nước và nghỉ ngơi nhiều."
+        },
+        "step_three": {
+          "title": "Theo dõi triệu chứng",
+          "content": "Theo dõi các triệu chứng COVID-19 như ho, sốt và khó thở. Ngoài ra, kiểm tra và đo nhiệt độ của bạn hai lần một ngày trong hai tuần. Nếu bạn có bất kỳ triệu chứng nguy hiểm nào (nôn mửa hoặc tiêu chảy kéo dài hoặc có máu, khó thở, buồn ngủ hoặc co giật) ngay lập tức hãy đến trung tâm y tế gần nhất hoặc gọi * 462"
+        },
+        "step_four": {
+          "title": "Thận trọng",
+          "content": "Là một công nhân thiết yếu, bạn nên nói chuyện với công việc của mình về việc thực hiện các bước cụ thể để giúp bảo vệ và bảo vệ những người xung quanh. Bạn nên đeo thiết bị bảo hộ cá nhân phù hợp, bao gồm khẩu trang hoặc khăn che mặt trong trường hợp thiếu. Ngoài ra, bạn phải duy trì khoảng cách vật lý là sáu feet càng nhiều càng tốt tại nơi làm việc và luôn ở ngoài công việc. Bạn cũng nên làm sạch tay thường xuyên và tránh chạm vào mặt."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Liên lạc với ai đó để làm bài kiểm tra",
+          "content": "Câu trả lời của bạn có thể thảo luận về bài kiểm tra COVID - 19. Bạn nên liên hệ với bác sĩ của mình hoặc liên hệ với nền tảng Aurora theo số 809-449-6262, 809 409 6262 và 809-352-6262 hoặc gọi * 462 để biết thêm thông tin. Truy cập dùng thử có thể thay đổi theo vị trí và nhà cung cấp. Kiểm tra các phòng thí nghiệm được Bộ Y tế Công cộng cho phép ở tỉnh cư trú của bạn."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“Với sự giúp đỡ của bạn, ở nhà và làm theo các khuyến nghị về sức khỏe, chúng tôi có thể đối mặt với COVID-19”"
+    }
   },
   "report": {
     "title": "Báo cáo",

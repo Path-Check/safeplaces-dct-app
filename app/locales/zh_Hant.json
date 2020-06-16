@@ -55,6 +55,8 @@
     "auto_subscribe_checkbox": "启用自动订阅",
     "auroraMsp_title": "与AuroraMSP聊天",
     "auroraMsp_description": "与200多名医生直接接触。",
+    "answers_form_next_step": "下一步:",
+    "answers_form_recomendations": "测试建议:",
     "bulletin_title": "公告栏",
     "bulletin_description": "从您的卫生当局了解最新的COVID公告更新。",
     "case_day_label": "今日案例",
@@ -183,6 +185,87 @@
     "news": "新闻",
     "bulletins": "公告栏",
     "advices": "忠告"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "结果",
+      "text": "根据答案，得出以下结果："
+    },
+    "social_distance": {
+      "title": "You should practice social distancing",
+      "subtitle": {
+        "no_traveled": "目前，您没有COVID-19的症状，因此我们建议您继续采取以下预防措施：“经常用肥皂和水洗手，并与社会保持距离”",
+        "traveled": "帮助阻止传播。 当您出门在外时，请与他人保持至少六英尺的距离，避免成群结伴，仅在必要时使用公共交通工具。"
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "保持社交距离",
+          "content": "与任何人保持至少一（1）米的距离，避免成群结队，仅在必要时使用公共交通工具。"
+        },
+        "step_two": {
+          "title": "永远记住 “经常用肥皂和水洗手并进行社交疏导”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "监测症状",
+          "content": "注意COVID-19症状，例如咳嗽，发烧和呼吸急促。 另外，请连续两周每天两次检查并测量温度。\n如果您有任何危险症状（呕吐，持续性或血性腹泻，明显的呼吸困难，嗜睡或癫痫发作），请立即去就近的医疗中心或致电 *462。"
+        },
+        "step_four": {
+          "title": "在家隔离",
+          "content": "您可能已经暴露了。 接下来的14天您应该待在家里，看看是否出现任何症状。 您还应该尝试限制与家中其他人的联系。"
+        },
+        "step_five": {
+          "title": "询问您的药物",
+          "content": "If you are currently taking prescription medications, you should contact your doctor for a 30-day supply."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "目前无需证明",
+          "content": {
+            "no_sympthoms": "从现在开始，您的答案将不再需要测试。 如果您有任何症状，例如发烧，咳嗽，流鼻涕，呼吸困难，喉咙痛，头或身体疼痛，请再次填写此问卷或通过电话809-449-6262、809 409 6262和Aurora平台联系。 809-352-6262。",
+            "has_sympthoms":"从现在开始，您的答案将不再需要测试。 如果您有任何症状，例如发烧，咳嗽，流鼻涕，呼吸困难，喉咙痛，头或身体疼痛，请再次填写此问卷或通过电话809-449-6262、809 409 6262和Aurora平台联系。 809-352-6262。\n如果您有任何危险症状（呕吐，持续性或血性腹泻，明显的呼吸困难，嗜睡或癫痫发作），请立即去就近的医疗中心或致电 *462。"
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "必须做家庭隔离",
+        "has_health_problems": "联系你的医生"
+      },
+      "subtitle": {
+        "none": "根据他的回答，他应该待在家里，远离他人。 如果可以的话，请为您准备一个房间和一个浴室。 当您感觉不适时，这可能会很困难，但是它将保护您周围的人。",
+        "has_health_problems": "您的答案是与医学专家讨论有关COVID-19测试的问题。"
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "隔离",
+          "content": "症状发作后，您必须远离他人14天。 如果症状明显好转，并且如果至少72个小时没有发烧，则您的隔离可能会结束。 通过隔离，您可以减少COVID-19的传播并保护其他人。"
+        },
+        "step_two": {
+          "title": "休息并照顾好自己",
+          "content": "正确饮食，多喝水，多休息。"
+        },
+        "step_three": {
+          "title": "监测症状",
+          "content": "注意COVID-19症状，例如咳嗽，发烧和呼吸急促。 另外，请连续两周每天两次检查并测量温度。 如果您有任何危险症状（呕吐，持续性或血性腹泻，明显的呼吸困难，嗜睡或癫痫发作），请立即就近就医或致电 *462"
+        },
+        "step_four": {
+          "title": "未雨绸缪",
+          "content": "作为必不可少的工作人员，您应该与您的工作讨论如何采取特定步骤来保护和保护周围的人。 您应该穿戴适当的个人防护设备，包括面罩或织物面罩，以防短缺。 此外，您在工作中必须保持六英尺的物理距离，并且始终不在工作范围内。 您还应该经常清洁双手，并避免触摸脸部。"
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "联系某人参加考试",
+          "content": "您的答案可能有可能讨论COVID-19测试。 您应该与医生联系，或通过809-449-6262、809 409 6262和809-352-6262与Aurora平台联系，或致电* 462了解更多信息。 尝试访问权限可能会因位置和提供者而异。 检查您所居住省份的公共卫生部授权的实验室。"
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "在您的帮助下，待在家里并遵循健康建议，我们将面对COVID-19"
+    }
   },
   "report": {
     "title": "报告",

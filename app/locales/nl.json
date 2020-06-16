@@ -61,6 +61,8 @@
     "auto_subscribe_checkbox": "Schakel automatisch abonnement in",
     "auroraMsp_title": "Chat met AuroraMSP",
     "auroraMsp_description": "Heb direct contact met meer dan 200 artsen.",
+    "answers_form_next_step": "Volgende stappen:",
+    "answers_form_recomendations": "Test aanbeveling:",
     "bulletin_title": "Bulletins",
     "bulletin_description": "Lees meer over de nieuwste COVID-bulletins-updates van uw gezondheidsinstantie.",
     "case_day_label": "Gevallen van de dag",
@@ -185,6 +187,87 @@
     "news": "Nieuws",
     "bulletins": "Bulletins",
     "advices": "Adviezen"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "Resultaten",
+      "text": "Op basis van de antwoorden zijn dit de resultaten:"
+    },
+    "social_distance": {
+      "title": "Je moet sociale afstand nemen",
+      "subtitle": {
+        "no_traveled": "Op dit moment heeft u geen symptomen van COVID-19, dus we raden u aan door te gaan met de preventieve maatregelen van “handen regelmatig wassen met water en zeep en sociale afstand nemen”",
+        "traveled": "Helpt de verspreiding te stoppen. Als u het huis uit bent, blijf dan minstens zes voet verwijderd van andere mensen, vermijd groepen en gebruik alleen het openbaar vervoer als dat nodig is."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Bewaar sociale afstand",
+          "content": "Blijf minimaal één (1) meter verwijderd van iedereen, vermijd het om in groepen te zijn en gebruik alleen het openbaar vervoer als dat nodig is."
+        },
+        "step_two": {
+          "title": "Onthoud altijd dat “Was uw handen regelmatig met water en zeep en oefen sociale afstand”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Monitor symptomen",
+          "content": "Let op COVID-19-symptomen zoals hoesten, koorts en kortademigheid. Controleer en meet ook gedurende twee weken twee keer per dag uw temperatuur.\nAls u symptomen van gevaar heeft (braken of aanhoudende of bloederige diarree, duidelijke ademhalingsmoeilijkheden, slaperigheid of toevallen), ga dan onmiddellijk naar het dichtstbijzijnde gezondheidscentrum of bel *462."
+        },
+        "step_four": {
+          "title": "Thuis in quarantaine plaatsen",
+          "content": "Mogelijk bent u blootgesteld. U moet de komende 14 dagen thuis blijven en kijken of er symptomen optreden. Je moet ook proberen je contact met anderen buitenshuis te beperken."
+        },
+        "step_five": {
+          "title": "Vraag naar uw medicatie",
+          "content": "Als u momenteel voorgeschreven medicijnen gebruikt, moet u contact opnemen met uw arts voor een levering van 30 dagen."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Op dit moment is er geen bewijs nodig",
+          "content": {
+            "no_sympthoms": "Voortaan hoeven uw antwoorden niet getest te worden. Als u symptomen heeft zoals koorts, hoest, loopneus, lichte ademhalingsmoeilijkheden, keelpijn, hoofd- of lichaamspijn, vul dan deze vragenlijst opnieuw in of neem contact op met het Aurora-platform via de telefoonnummers 809-449-6262, 809 409 6262 en 809-352-6262.",
+            "has_sympthoms":"Voortaan hoeven uw antwoorden niet getest te worden. Als u symptomen heeft zoals koorts, hoest, loopneus, lichte ademhalingsmoeilijkheden, keelpijn, hoofd- of lichaamspijn, vul dan deze vragenlijst opnieuw in of neem contact op met het Aurora-platform via de telefoonnummers 809-449-6262, 809 409 6262 en 809-352-6262.\nAls u symptomen van gevaar heeft (braken of aanhoudende of bloederige diarree, duidelijke ademhalingsproblemen, slaperigheid of toevallen), ga dan onmiddellijk naar het dichtstbijzijnde gezondheidscentrum of bel *462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Moet huisisolatie doen",
+        "has_health_problems": "Neem contact op met uw arts"
+      },
+      "subtitle": {
+        "none": "Volgens zijn antwoorden zou hij thuis moeten blijven en weg van anderen. Als je kunt, heb dan een kamer en een badkamer die speciaal voor jou zijn. Dit kan moeilijk zijn als u zich niet goed voelt, maar het beschermt de mensen om u heen.",
+        "has_health_problems": "Uw antwoorden zijn om met een medische professional te praten over het hebben van de COVID-19-test."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Isoleren",
+          "content": "U moet 14 dagen na het begin van uw symptomen bij anderen uit de buurt blijven. Uw isolatie kan eindigen als uw symptomen aanzienlijk verbeteren en als u gedurende ten minste 72 uur geen koorts heeft gehad zonder het gebruik van medicijnen. Door te isoleren, kunt u de verspreiding van COVID-19 verminderen en anderen beschermen."
+        },
+        "step_two": {
+          "title": "Rust en zorg voor jezelf",
+          "content": "Eet goed, drink vloeistoffen en krijg voldoende rust."
+        },
+        "step_three": {
+          "title": "Monitor symptomen",
+          "content": "Let op COVID-19-symptomen zoals hoesten, koorts en kortademigheid. Controleer en meet ook gedurende twee weken twee keer per dag uw temperatuur. Als u symptomen van gevaar heeft (braken of aanhoudende of bloederige diarree, ernstige ademhalingsproblemen, slaperigheid of toevallen), ga dan onmiddellijk naar het dichtstbijzijnde gezondheidscentrum of bel *462"
+        },
+        "step_four": {
+          "title": "Voorzorgsmaatregelen nemen",
+          "content": "Als essentiële werknemer moet u met uw werk praten over het nemen van specifieke stappen om de mensen om u heen te helpen beschermen en beschermen. U moet geschikte persoonlijke beschermingsmiddelen dragen, inclusief gezichtsmaskers of stoffen gezichtsbedekkingen in geval van tekorten. Bovendien moet u op het werk en altijd buiten het werk een fysieke afstand van zes voet houden. Je moet ook je handen regelmatig schoonmaken en je gezicht niet aanraken."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Neem contact op met iemand om de test te doen",
+          "content": "Uw antwoorden zijn wellicht mogelijk om de COVID-19-test te bespreken. Neem contact op met uw arts of neem contact op met het Aurora-platform op 809-449-6262, 809 409 6262 en 809-352-6262 of bel * 462 voor meer informatie. Proeftoegang kan per locatie en provider verschillen. Controleer de laboratoria die zijn geautoriseerd door het Ministerie van Volksgezondheid in uw provincie van verblijf."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“Met uw hulp, thuisblijven en gezondheidsaanbevelingen volgen, kunnen we COVID-19 onder ogen zien”"
+    }
   },
   "report": {
     "title": "Verslag doen van",

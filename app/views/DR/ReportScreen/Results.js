@@ -1,5 +1,6 @@
 import { Button, Container, Content, Text } from 'native-base';
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Image, ScrollView, View } from 'react-native';
 import {
   heightPercentageToDP as hp,
@@ -16,6 +17,8 @@ export default function Results({ navigation }) {
   navigation.setOptions({
     headerShown: false,
   });
+  const { t } = useTranslation();
+
   const [
     {
       answers: {
@@ -117,8 +120,8 @@ export default function Results({ navigation }) {
         <ScrollView>
           <View style={{ flex: 1 }}>
             <Header
-              title='Resultados'
-              text='En base a las respuestas, estos son los resultados:'
+              title={t('answers_translate.header.title')}
+              text={t('answers_translate.header.text')}
               navigation={navigation}
               style={{ height: hp('18%') }}
             />
@@ -129,25 +132,32 @@ export default function Results({ navigation }) {
                 notExpostion &&
                 doesntWorkInHealth && (
                   <ResultsContent
-                    title='Deberías practicar distancia social'
-                    subtitle='En este momento, usted no presenta síntomas de COVID-19, por lo que le recomendamos que continúes con las medidas preventivas de “lavado de manos con agua y jabón de manera frecuente y aplicar el distanciamiento social”'
+                    title={t('answers_translate.social_distance.title')}
+                    subtitle={t(
+                      'answers_translate.social_distance.subtitle.no_traveled',
+                    )}
                     image={require('../../../assets/images/socialDistancing.jpg')}
                     nextSteps={[
                       {
-                        title: 'Mantener el distanciamiento social',
-                        content:
-                          'Manténgase al menos a un (1) metro de distancia de cualquier persona, evite estar en grupos y sólo use el transporte público si es necesario.',
+                        title: t(
+                          'answers_translate.social_distance.next_steps.step_one.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.next_steps.step_one.content',
+                        ),
                       },
                     ]}
                     recomendations={[
                       {
-                        title: 'No se necesita prueba en este momento',
-                        content:
-                          'A partir de ahora, sus respuestas sugieren que no necesita hacerse la prueba. Si llega a presentar algún síntoma como fiebre, tos, secreción nasal, ligera dificultad para respirar, dolor de garganta, cabeza o del cuerpo, vuelva a completar este cuestionario o contáctese con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262.\nSi presenta algún síntoma de peligro (vómito o diarrea persistente o con sangre, dificultad marcada para respirar, somnolencia o convulsiones) acuda de forma inmediata al centro de salud más cercano o llame al *462.',
+                        title: t(
+                          'answers_translate.social_distance.recomendations.tip.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.recomendations.tip.content.no_sympthoms',
+                        ),
                       },
                       {
-                        title:
-                          '“Con tu ayuda, quedandote en casa y siguiendo las recomendaciones de salud, ponemos enfrentar al COVID-19”',
+                        title: t('answers_translate.thanksfull.title'),
                         content: '',
                       },
                     ]}
@@ -159,35 +169,46 @@ export default function Results({ navigation }) {
                 (notExpostion || hadContact) &&
                 (doesntWorkInHealth || liveInFacility) && (
                   <ResultsContent
-                    title='Deberías practicar distancia social'
-                    subtitle='Ayuda a detener la propagación. Cuando esté fuera de la casa, manténgase al menos a seis pies de distancia de otras personas, evite grupos y solo use el transporte público si es necesario.'
+                    title={t('answers_translate.social_distance.title')}
+                    subtitle={t(
+                      'answers_translate.social_distance.subtitle.traveled',
+                    )}
                     image={require('../../../assets/images/socialDistancing.jpg')}
                     nextSteps={[
                       {
-                        title:
-                          'Recuerda siempre “lavado de manos con agua y jabón de manera frecuente y aplicar el distanciamiento social”',
+                        title: t(
+                          'answers_translate.social_distance.next_steps.step_two.title',
+                        ),
                         content: '',
                       },
                       {
-                        title: 'Mantener el distanciamiento social',
-                        content:
-                          'Manténgase al menos a un (1) metro de distancia de cualquier persona, evite estar en grupos y sólo use el transporte público si es necesario.',
+                        title: t(
+                          'answers_translate.social_distance.next_steps.step_one.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.next_steps.step_one.content',
+                        ),
                       },
                       {
-                        title: 'Monitorear síntomas',
-                        content:
-                          'Esté atento a los síntomas de COVID-19, como tos, fiebre y dificultad para respirar. Además, revise y mida su temperatura dos veces al día durante dos semanas.\nSi presenta algún síntoma de peligro (vómito o diarrea persistente o con sangre, dificultad marcada para respirar, somnolencia o convulsiones) acuda de forma inmediata al centro de salud más cercano o llame al *462.',
+                        title: t(
+                          'answers_translate.social_distance.next_steps.step_three.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.next_steps.step_three.content',
+                        ),
                       },
                     ]}
                     recomendations={[
                       {
-                        title: 'No se necesita prueba en este momento',
-                        content:
-                          'A partir de ahora, sus respuestas sugieren que no necesita hacerse la prueba. Si llega a presentar algún síntoma como fiebre, tos, secreción nasal, ligera dificultad para respirar, dolor de garganta, cabeza o del cuerpo, vuelva a completar este cuestionario  o contáctese con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262.',
+                        title: t(
+                          'answers_translate.social_distance.recomendations.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.recomendations.tip.content.no_sympthoms',
+                        ),
                       },
                       {
-                        title:
-                          '“Con tu ayuda, quedandote en casa y siguiendo las recomendaciones de salud, ponemos enfrentar al COVID-19”',
+                        title: t('answers_translate.thanksfull.title'),
                         content: '',
                       },
                     ]}
@@ -199,30 +220,40 @@ export default function Results({ navigation }) {
                 notExpostion &&
                 (doesntWorkInHealth || liveInFacility) && (
                   <ResultsContent
-                    title='Deberías practicar distancia social'
-                    subtitle='En este momento, usted no presenta síntomas de COVID-19, por lo que recomendamos que continúe con las medidas preventivas de “lavado de manos con agua y jabón de manera frecuente y aplicar el distanciamiento social”'
+                    title={t('answers_translate.social_distance.title')}
+                    subtitle={t(
+                      'answers_translate.social_distance.subtitle.no_traveled',
+                    )}
                     image={require('../../../assets/images/socialDistancing.jpg')}
                     nextSteps={[
                       {
-                        title: 'Mantener el distanciamiento social',
-                        content:
-                          'Manténgase al menos a un (1) metro de distancia de cualquier persona, evite estar en grupos y sólo use el transporte público si es necesario.',
+                        title: t(
+                          'answers_translate.social_distance.next_steps.step_one.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.next_steps.step_one.content',
+                        ),
                       },
                       {
-                        title: 'Preguntar sobre su medicación',
-                        content:
-                          'Si actualmente está tomando medicamentos recetados, debe comunicarse con su médico para obtener un suministro para 30 días.',
+                        title: t(
+                          'answers_translate.social_distance.next_steps.step_five.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.next_steps.step_five.content',
+                        ),
                       },
                     ]}
                     recomendations={[
                       {
-                        title: 'No se necesita prueba en este momento',
-                        content:
-                          'A partir de ahora, sus respuestas sugieren que no necesita hacerse la prueba. Si llega a presentar algún síntoma como fiebre, tos, secreción nasal, ligera dificultad para respirar, dolor de garganta, cabeza o del cuerpo, vuelva a completar este cuestionario o contáctese con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262.\nSi presenta algún síntoma de peligro (vómito o diarrea persistente o con sangre, dificultad marcada para respirar, somnolencia o convulsiones) acuda de forma inmediata al centro de salud más cercano o llame al *462.',
+                        title: t(
+                          'answers_translate.social_distance.recomendations.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.recomendations.tip.content.has_sympthoms',
+                        ),
                       },
                       {
-                        title:
-                          '“Con tu ayuda, quedandote en casa y siguiendo las recomendaciones de salud, ponemos enfrentar al COVID-19”',
+                        title: t('answers_translate.thanksfull.title'),
                         content: '',
                       },
                     ]}
@@ -233,30 +264,40 @@ export default function Results({ navigation }) {
                 hadContact &&
                 (doesntWorkInHealth || liveInFacility) && (
                   <ResultsContent
-                    title='Deberías practicar distancia social'
-                    subtitle='Ayuda a detener la propagación. Cuando esté fuera de la casa, manténgase al menos a seis pies de distancia de otras personas, evite grupos y solo use el transporte público si es necesario.'
+                    title={t('answers_translate.social_distance.title')}
+                    subtitle={t(
+                      'answers_translate.social_distance.subtitle.no_traveled',
+                    )}
                     image={require('../../../assets/images/socialDistancing.jpg')}
                     nextSteps={[
                       {
-                        title: 'Cuarentena en casa',
-                        content:
-                          'Es posible que haya estado expuesto. Debe quedarse en casa durante los próximos 14 días y ver si aparece algún síntoma.También debe intentar limitar su contacto con otras personas fuera del hogar.',
+                        title: t(
+                          'answers_translate.social_distance.next_steps.step_four.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.next_steps.step_four.content',
+                        ),
                       },
                       {
-                        title: 'Monitorear síntomas',
-                        content:
-                          'Esté atento a los síntomas de COVID-19, como tos, fiebre y dificultad para respirar. Además, revise y mida su temperatura dos veces al día durante dos semanas. Si presenta algún síntoma de peligro (vómito o diarrea persistente o con sangre, dificultad marcada para respirar, somnolencia o convulsiones) acuda de forma inmediata al centro de salud más cercano o llame al *462.',
+                        title: t(
+                          'answers_translate.social_distance.next_steps.step_three.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.next_steps.step_three.content',
+                        ),
                       },
                     ]}
                     recomendations={[
                       {
-                        title: 'No se necesita prueba en este momento',
-                        content:
-                          'A partir de ahora, sus respuestas sugieren que no necesita hacerse la prueba. Si llega a presentar algún síntoma como fiebre, tos, secreción nasal, ligera dificultad para respirar, dolor de garganta, cabeza o del cuerpo, vuelva a completar este cuestionario  o contáctese con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262.',
+                        title: t(
+                          'answers_translate.social_distance.recomendations.title',
+                        ),
+                        content: t(
+                          'answers_translate.social_distance.recomendations.tip.content.no_sympthoms',
+                        ),
                       },
                       {
-                        title:
-                          '“Con tu ayuda, quedandote en casa y siguiendo las recomendaciones de salud, ponemos enfrentar al COVID-19”',
+                        title: t('answers_translate.thanksfull.title'),
                         content: '',
                       },
                     ]}
@@ -267,36 +308,48 @@ export default function Results({ navigation }) {
                 (hadContact || notExpostion) &&
                 doesntWorkInHealth && (
                   <ResultsContent
-                    title='Debe hacer aislamiento domiciliario'
-                    subtitle='Según sus respuestas, debe quedarse en casa y lejos de los demás. Si puedes, ten una habitación y un baño que sean solo para ti. Esto puede ser difícil cuando no te sientes bien, pero protegerá a los que te rodean.'
+                    title={t('answers_translate.home_insolation.title.none')}
+                    subtitle={t(
+                      'answers_translate.home_insolation.subtitle.none',
+                    )}
                     image={require('../../../assets/images/selfIsolation.jpg')}
                     nextSteps={[
                       {
-                        title: 'Aislarse',
-                        content:
-                          'Debe mantenerse alejado de los demás por 14 días a partir de la aparición de sus síntomas. Su aislamiento puede terminar si sus síntomas mejoran significativamente y si no ha tenido fiebre durante al menos 72 horas sin el uso de medicamentos. Al aislarse, puede reducir la propagación de COVID-19 y proteger a los demás.',
+                        title: t(
+                          'answers_translate.home_insolation.next_steps.step_one.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.next_steps.step_one.content',
+                        ),
                       },
                       {
-                        title: 'Descansar y cuidarse',
-                        content:
-                          'Coma bien, tome líquidos y descanse lo suficiente.',
+                        title: t(
+                          'answers_translate.home_insolation.next_steps.step_two.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.next_steps.step_two.content',
+                        ),
                       },
                       {
-                        title: 'Monitorear síntomas',
-                        content:
-                          'Esté atento a los síntomas de COVID-19, como tos, fiebre y dificultad para respirar. Además, revise y mida su temperatura dos veces al día durante dos semanas. Si presenta algún síntoma de peligro (vómito o diarrea persistente o con sangre, dificultad marcada para respirar, somnolencia o convulsiones) acuda de forma inmediata al centro de salud más cercano o llame al *462',
+                        title: t(
+                          'answers_translate.home_insolation.next_steps.step_three.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.next_steps.step_three.content',
+                        ),
                       },
                     ]}
                     recomendations={[
                       {
-                        title:
-                          'Comuníquese con alguien para realizar la prueba',
-                        content:
-                          'Sus respuestas sugieren que es posible que deba hacerse la prueba de COVID‑19. Debe comunicarse con su médico, o contactarse con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262 o llamar al *462 para obtener más información. El acceso de prueba puede variar según la ubicación y el proveedor. Verifique los laboratorios autorizados por el Ministerio de Salud Pública disponibles en su provincia de residencia.',
+                        title: t(
+                          'answers_translate.home_insolation.recomendations.tip.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.recomendations.tip.content',
+                        ),
                       },
                       {
-                        title:
-                          '“Con tu ayuda, quedandote en casa y siguiendo las recomendaciones de salud, ponemos enfrentar al COVID-19”',
+                        title: t('answers_translate.thanksfull.title'),
                         content: '',
                       },
                     ]}
@@ -307,30 +360,45 @@ export default function Results({ navigation }) {
                 (hadContact || notExpostion) &&
                 doesntWorkInHealth && (
                   <ResultsContent
-                    title='Contacte a su médico'
-                    subtitle='Sus respuestas sugieren que debe hablar con un profesional médico acerca de hacerse la prueba de COVID‑19.'
+                    title={t(
+                      'answers_translate.home_insolation.title.has_health_problems',
+                    )}
+                    subtitle={t(
+                      'answers_translate.home_insolation.subtitle.has_health_problems',
+                    )}
                     image={require('../../../assets/images/contactDoctor.jpg')}
                     nextSteps={[
                       {
-                        title: 'Aislarse',
-                        content:
-                          'Debe mantenerse alejado de los demás por 14 días a partir de la aparición de sus síntomas. Su aislamiento puede terminar si sus síntomas mejoran significativamente y si no ha tenido fiebre durante al menos 72 horas sin el uso de medicamentos. Al aislarse, puede reducir la propagación de COVID-19 y proteger a los demás.',
+                        title: t(
+                          'answers_translate.home_insolation.next_steps.step_one.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.next_steps.step_one.content',
+                        ),
                       },
                       {
-                        title: 'Descansar y cuidarse',
-                        content:
-                          'Coma bien, tome líquidos y descanse lo suficiente.',
+                        title: t(
+                          'answers_translate.home_insolation.next_steps.step_two.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.next_steps.step_two.content',
+                        ),
                       },
                       {
-                        title:
-                          'Comuniquese con alguien para realizar la prueba',
-                        content:
-                          'Sus respuestas sugieren que es posible que deba hacerse la prueba de COVID‑19. Debe comunicarse con su médico, o contactarse con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262 o llamar al *462 para obtener más información. El acceso de prueba puede variar según la ubicación y el proveedor. Verifique los laboratorios autorizados por el Ministerio de Salud Pública disponibles en su provincia de residencia.',
+                        title: t(
+                          'answers_translate.home_insolation.recomendations.tip.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.recomendations.tip.content',
+                        ),
                       },
                       {
-                        title: 'Monitorear síntomas',
-                        content:
-                          'Esté atento a los síntomas de COVID-19, como tos, fiebre y dificultad para respirar. Además, revise y mida su temperatura dos veces al día durante dos semanas. Si presenta algún síntoma de peligro (vómito o diarrea persistente o con sangre, dificultad marcada para respirar, somnolencia o convulsiones) acuda de forma inmediata al centro de salud más cercano o llame al *462.',
+                        title: t(
+                          'answers_translate.home_insolation.next_steps.step_three.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.next_steps.step_three.content',
+                        ),
                       },
                     ]}
                   />
@@ -339,39 +407,56 @@ export default function Results({ navigation }) {
                 (hadContact || traveled || hasHealthProblems) &&
                 liveInFacility && (
                   <ResultsContent
-                    title='Contacte a su médico'
-                    subtitle='Sus respuestas sugieren que debe hablar con un profesional médico acerca de hacerse la prueba de COVID‑19.'
+                    title={t(
+                      'answers_translate.home_insolation.title.has_health_problems',
+                    )}
+                    subtitle={t(
+                      'answers_translate.home_insolation.subtitle.has_health_problems',
+                    )}
                     image={require('../../../assets/images/callSupervisor.jpg')}
                     nextSteps={[
                       {
-                        title: 'Aislarse',
-                        content:
-                          'Debe mantenerse alejado de los demás por 14 días a partir de la aparición de sus síntomas. Su aislamiento puede terminar si sus síntomas mejoran significativamente y si no ha tenido fiebre durante al menos 72 horas sin el uso de medicamentos. Al aislarse, puede reducir la propagación de COVID-19 y proteger a los demás.',
+                        title: t(
+                          'answers_translate.home_insolation.next_steps.step_one.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.next_steps.step_one.content',
+                        ),
                       },
                       {
-                        title: 'Toma precauciones',
-                        content:
-                          'Como trabajador esencial, debe hablar con su trabajo acerca de tomar los pasos apropiados para ayudar a protegerse y proteger a quienes lo rodean. Debe usar equipo de protección personal adecuado, incluidas máscaras faciales o cubiertas faciales de tela en caso de escasez. Además, debe mantener una distancia física de seis pies tanto como sea posible en el trabajo y siempre fuera del trabajo. También debe limpiarse las manos con frecuencia y evitar tocarse la cara.',
+                        title: t(
+                          'answers_translate.home_insolation.next_steps.step_four.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.next_steps.step_four.content',
+                        ),
                       },
                       {
-                        title: 'Descansar y cuidarse',
-                        content:
-                          'Coma bien, tome líquidos y descanse lo suficiente.',
+                        title: t(
+                          'answers_translate.home_insolation.next_steps.step_two.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.next_steps.step_two.content',
+                        ),
                       },
                       {
-                        title:
-                          'Comuníquese con alguien para realizar la prueba',
-                        content:
-                          'sus respuestas sugieren que es posible que deba hacerse la prueba de COVID‑19. Debe comunicarse con su médico, o contactarse con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262 o llamar al *462 para obtener más información. El acceso de prueba puede variar según la ubicación y el proveedor. Verifique los laboratorios autorizados por el Ministerio de Salud Pública disponibles en su provincia de residencia.',
+                        title: t(
+                          'answers_translate.home_insolation.recomendations.tip.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.recomendations.tip.content',
+                        ),
                       },
                       {
-                        title: 'Monitorear síntomas',
-                        content:
-                          'Esté atento a los síntomas de COVID-19, como tos, fiebre y dificultad para respirar. Además, revise y mida su temperatura dos veces al día durante dos semanas. Si presenta algún síntoma de peligro (vómito o diarrea persistente o con sangre, dificultad marcada para respirar, somnolencia o convulsiones) acuda de forma inmediata al centro de salud más cercano o llame al *462.',
+                        title: t(
+                          'answers_translate.home_insolation.next_steps.step_three.title',
+                        ),
+                        content: t(
+                          'answers_translate.home_insolation.next_steps.step_three.content',
+                        ),
                       },
                       {
-                        title:
-                          '“Con tu ayuda, quedandote en casa y siguiendo las recomendaciones de salud, ponemos enfrentar al COVID-19”',
+                        title: t('answers_translate.thanksfull.title'),
                         content: '',
                       },
                     ]}

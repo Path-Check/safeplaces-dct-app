@@ -13,6 +13,8 @@
     "authorities_removal_alert_proceed": "Ituloy",
     "authorities_removal_alert_title": "Tanggalin ang awtoridad",
     "authorities_title": "Pinagkakatiwalaang mga mapagkukunan",
+    "answers_form_next_step": "Mga susunod na hakbang:",
+    "answers_form_recomendations": "Rekomendasyon sa pagsubok:",
     "choose_provider_title": "Pumili ng awtoridad sa kalusugan",
     "commitment": "Pangako",
     "default_news_site_name": "Safe Paths Balita",
@@ -69,5 +71,86 @@
     "news": "Balita",
     "bulletins": "Mga bulletins",
     "advices": "Mga payo"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "Mga Resulta",
+      "text": "Batay sa mga sagot, ito ang mga resulta:"
+    },
+    "social_distance": {
+      "title": "Dapat kang magsanay ng panlipunan",
+      "subtitle": {
+        "no_traveled": "Sa oras na ito, wala kang mga sintomas ng COVID-19, kaya inirerekumenda namin na magpatuloy ka sa pag-iwas sa mga hakbang ng  “paghuhugas ng kamay gamit ang sabon at tubig nang madalas at paglalapat ng panlipunan”",
+        "traveled": "Tumutulong na itigil ang pagkalat. Kung wala ka sa bahay, manatiling hindi bababa sa anim na talampakan ang layo mula sa ibang tao, iwasan ang mga grupo, at gumamit lamang ng pampublikong transportasyon kung kinakailangan."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Panatilihin ang distansya sa lipunan",
+          "content": "Manatiling hindi bababa sa isang (1) metro ang layo sa sinuman, iwasang makasama, at gumamit lamang ng pampublikong transportasyon kung kinakailangan."
+        },
+        "step_two": {
+          "title": "Laging tandaan na “hugasan ang iyong mga kamay ng sabon at tubig nang madalas at magsanay ng panlipunan na paglalakbay”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Subaybayan ang mga sintomas",
+          "content": "Panoorin ang mga sintomas ng COVID-19 tulad ng ubo, lagnat, at igsi ng paghinga. Gayundin, suriin at sukatin ang iyong temperatura nang dalawang beses sa isang araw para sa dalawang linggo.\nKung mayroon kang anumang mga sintomas ng panganib (pagsusuka o tuloy-tuloy o duguang pagtatae, minarkahan ng kahirapan sa paghinga, pag-aantok o pag-agaw), agad na pumunta sa pinakamalapit na sentro ng kalusugan o tumawag *462."
+        },
+        "step_four": {
+          "title": "Quarantine sa bahay",
+          "content": "Maaaring nalantad ka. Dapat kang manatili sa bahay sa susunod na 14 araw at tingnan kung lumitaw ang anumang mga sintomas. Dapat mo ring subukang limitahan ang iyong pakikipag-ugnay sa iba sa labas ng bahay."
+        },
+        "step_five": {
+          "title": "Magtanong tungkol sa iyong gamot",
+          "content": "Kung kasalukuyang umiinom ka ng mga iniresetang gamot, dapat kang makipag-ugnay sa iyong doktor para sa isang 30-araw na supply."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Walang kinakailangang patunay sa oras na ito",
+          "content": {
+            "no_sympthoms": "Mula ngayon, ang iyong mga sagot ay hindi kailangang masuri. Kung mayroon kang anumang mga sintomas tulad ng lagnat, ubo, matipid na ilong, bahagyang paghihirap sa paghinga, namamagang lalamunan, sakit sa ulo o sakit sa katawan, mangyaring kumpletuhin muli ang talatanungan o makipag-ugnay sa Aurora platform sa pamamagitan ng mga numero ng telepono 809-449-6262, 809 409 6262 at 809-352-6262.",
+            "has_sympthoms":"Mula ngayon, ang iyong mga sagot ay hindi kailangang masuri. Kung mayroon kang anumang mga sintomas tulad ng lagnat, ubo, matipid na ilong, bahagyang paghihirap sa paghinga, namamagang lalamunan, sakit sa ulo o sakit sa katawan, mangyaring kumpletuhin muli ang talatanungan o makipag-ugnay sa Aurora platform sa pamamagitan ng mga numero ng telepono 809-449-6262, 809 409 6262 at 809-352-6262.\nKung mayroon kang anumang mga sintomas ng panganib (pagsusuka o tuloy-tuloy o duguang pagtatae, minarkahan ng kahirapan sa paghinga, pag-aantok o mga seizure), agad na pumunta sa pinakamalapit na sentro ng kalusugan o tumawag *462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Kailangang gawin ang paghihiwalay sa bahay",
+        "has_health_problems": "Makipag-ugnay sa iyong doktor"
+      },
+      "subtitle": {
+        "none": "Ayon sa kanyang mga sagot, dapat siyang manatili sa bahay at malayo sa iba. Kung kaya mo, magkaroon ng isang silid at banyo na para lamang sa iyo. Maaari itong maging mahirap kapag hindi ka nakakaramdam ng maayos, ngunit maprotektahan nito ang mga nasa paligid mo.",
+        "has_health_problems": "Ang iyong mga sagot ay upang makipag-usap sa isang medikal na propesyonal tungkol sa pagkakaroon ng pagsubok sa COVID-19."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Paghiwalayin",
+          "content": "Dapat kang lumayo sa iba sa loob ng 14 na araw pagkatapos ng simula ng iyong mga sintomas. Ang iyong paghihiwalay ay maaaring magtapos kung ang iyong mga sintomas ay mapabuti nang malaki at kung hindi ka nagkaroon ng lagnat ng hindi bababa sa 72 oras nang walang paggamit ng mga gamot. Sa pamamagitan ng paghiwalay, maaari mong bawasan ang pagkalat ng COVID-19 at protektahan ang iba."
+        },
+        "step_two": {
+          "title": "Pahinga at alagaan ang iyong sarili",
+          "content": "Kumain ng tama, uminom ng likido, at makakuha ng maraming pahinga."
+        },
+        "step_three": {
+          "title": "Subaybayan ang mga sintomas",
+          "content": "Panoorin ang mga sintomas ng COVID-19 tulad ng ubo, lagnat, at igsi ng paghinga. Gayundin, suriin at sukatin ang iyong temperatura nang dalawang beses sa isang araw para sa dalawang linggo. Kung mayroon kang anumang mga sintomas ng panganib (pagsusuka o tuloy-tuloy o duguang pagtatae, minarkahan ng kahirapan sa paghinga, pag-aantok o pag-agaw) agad na pumunta sa pinakamalapit na sentro ng kalusugan o tumawag * 462"
+        },
+        "step_four": {
+          "title": "Mag ingat",
+          "content": "Bilang isang mahalagang manggagawa, dapat kang makipag-usap sa iyong trabaho tungkol sa pagkuha ng mga tiyak na hakbang upang makatulong na maprotektahan at maprotektahan ang mga nakapaligid sa iyo. Dapat kang magsuot ng naaangkop na personal na kagamitan sa proteksyon, kabilang ang mga maskara sa mukha o mga takip ng mukha sa tela kung sakaling may mga kakulangan. Bilang karagdagan, dapat mong mapanatili ang isang pisikal na distansya ng anim na talampakan hangga't maaari sa trabaho at palaging nasa labas ng trabaho. Dapat mo ring linisin ang iyong mga kamay nang madalas at iwasang hawakan ang iyong mukha."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Makipag-ugnay sa isang tao upang kumuha ng pagsubok",
+          "content": "Ang iyong mga sagot ay maaaring posible upang talakayin ang COVID - 19 na pagsubok. Dapat kang makipag-ugnay sa iyong doktor, o makipag-ugnay sa platform ng Aurora sa 809-449-6262, 809 409 6262 at 809-352-6262 o tumawag sa * 462 para sa karagdagang impormasyon. Ang pag-access sa pagsubok ay maaaring mag-iba ayon sa lokasyon at provider. Suriin ang mga laboratoryo na pinahihintulutan ng Ministry of Public Health na magagamit sa iyong paninirahan na lalawigan."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“Sa iyong tulong, manatili sa bahay at pagsunod sa mga rekomendasyon sa kalusugan, maaari naming harapin ang COVID-19”"
+    }
   }
 }

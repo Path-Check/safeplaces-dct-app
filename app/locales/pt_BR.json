@@ -61,6 +61,8 @@
     "auto_subscribe_checkbox": "Ativar assinatura automática",
     "auroraMsp_title": "Conversar com AuroraMSP",
     "auroraMsp_description": "Tenha contato direto com mais de 200 médicos.",
+    "answers_form_next_step": "Seguintes passos:",
+    "answers_form_recomendations": "Recomendação de teste:",
     "bulletin_title": "Boletins",
     "bulletin_description": "Leia sobre as atualizações mais recentes dos boletins COVID da sua autoridade de saúde.",
     "case_day_label": "Casos do dia",
@@ -189,6 +191,87 @@
     "news": "Notícia",
     "bulletins": "Boletins",
     "advices": "Conselhos"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "Resultados",
+      "text": "Com base nas respostas, estes são os resultados:"
+    },
+    "social_distance": {
+      "title": "Você deve praticar o distanciamento social",
+      "subtitle": {
+        "no_traveled": "No momento, você não apresenta sintomas do COVID-19; portanto, recomendamos que você continue com as medidas preventivas de “lavar as mãos com água e sabão com freqüência e aplicar o distanciamento social”.",
+        "traveled": "Ajuda a parar a propagação. Quando estiver fora de casa, fique a pelo menos um metro e oitenta de distância de outras pessoas, evite grupos e use apenas o transporte público, se necessário."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Manter distância social",
+          "content": "Fique a pelo menos um (1) metro de distância de qualquer pessoa, evite estar em grupos e use apenas o transporte público, se necessário."
+        },
+        "step_two": {
+          "title": "Lembre-se sempre de “lave as mãos com água e sabão frequentemente e pratique o afastamento social”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Monitorar sintomas",
+          "content": "Observe os sintomas do COVID-19, como tosse, febre e falta de ar. Além disso, verifique e meça sua temperatura duas vezes por dia durante duas semanas.\nSe você tiver algum sintoma de perigo (vômito ou diarréia persistente ou com sangue, dificuldade acentuada na respiração, sonolência ou convulsões), vá imediatamente ao centro de saúde mais próximo ou ligue para * 462."
+        },
+        "step_four": {
+          "title": "Quarentena em casa",
+          "content": "Você pode ter sido exposto. Você deve ficar em casa pelos próximos 14 dias e ver se algum sintoma aparece. Você também deve tentar limitar seu contato com outras pessoas fora de casa."
+        },
+        "step_five": {
+          "title": "Pergunte sobre o seu medicamento",
+          "content": "Se você estiver atualmente tomando medicamentos prescritos, entre em contato com seu médico para obter um suprimento de 30 dias."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Nenhuma prova necessária no momento",
+          "content": {
+            "no_sympthoms": "A partir de agora, suas respostas não precisarão ser testadas. Se você tiver sintomas como febre, tosse, coriza, dificuldade em respirar, dor de garganta, dor de cabeça ou no corpo, preencha este questionário novamente ou entre em contato com a plataforma Aurora através dos números de telefone 809-449-6262, 809 409 6262 e 809-352-6262.",
+            "has_sympthoms":"A partir de agora, suas respostas não precisarão ser testadas. Se você tiver sintomas como febre, tosse, coriza, dificuldade em respirar, dor de garganta, dor de cabeça ou no corpo, preencha este questionário novamente ou entre em contato com a plataforma Aurora através dos números de telefone 809-449-6262, 809 409 6262 e 809-352-6262.\nSe você tiver algum sintoma de perigo (vômito ou diarréia persistente ou com sangue, dificuldade acentuada em respirar, sonolência ou convulsões), vá imediatamente ao centro de saúde mais próximo ou ligue para * 462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Deve fazer o isolamento em casa",
+        "has_health_problems": "Contacte o seu médico"
+      },
+      "subtitle": {
+        "none": "De acordo com suas respostas, ele deve ficar em casa e longe dos outros. Se você puder, tenha um quarto e um banheiro adequados para você. Isso pode ser difícil quando você não está se sentindo bem, mas protegerá as pessoas ao seu redor.",
+        "has_health_problems": "Suas respostas são falar com um profissional médico sobre o teste COVID-19."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Isolar",
+          "content": "Você deve ficar longe dos outros por 14 dias após o início dos seus sintomas. Seu isolamento pode terminar se seus sintomas melhorarem significativamente e se você não tiver febre há pelo menos 72 horas sem o uso de medicamentos. Ao isolar, você pode reduzir a propagação do COVID-19 e proteger outras pessoas."
+        },
+        "step_two": {
+          "title": "Descanse e cuide-se",
+          "content": "Coma bem, beba líquidos e descanse bastante."
+        },
+        "step_three": {
+          "title": "Monitorar sintomas",
+          "content": "Observe os sintomas do COVID-19, como tosse, febre e falta de ar. Além disso, verifique e meça sua temperatura duas vezes por dia durante duas semanas. Se você tiver algum sintoma de perigo (vômito ou diarréia persistente ou com sangue, dificuldade acentuada em respirar, sonolência ou convulsões), vá imediatamente ao centro de saúde mais próximo ou ligue para * 462"
+        },
+        "step_four": {
+          "title": "Tome precauções",
+          "content": "Como trabalhador essencial, você deve conversar com seu trabalho sobre como tomar medidas específicas para ajudar a proteger e proteger as pessoas ao seu redor. Você deve usar equipamento de proteção individual adequado, incluindo máscaras ou coberturas de tecido em caso de falta. Além disso, você deve manter uma distância física de seis pés o máximo possível no trabalho e sempre fora do trabalho. Você também deve limpar as mãos com frequência e evitar tocar no rosto."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Entre em contato com alguém para fazer o teste",
+          "content": "Suas respostas podem ser possíveis para discutir o teste COVID-19. Você deve entrar em contato com seu médico ou entrar em contato com a plataforma Aurora em 809-449-6262, 809 409 6262 e 809-352-6262 ou ligue para * 462 para obter mais informações. O acesso à avaliação pode variar de acordo com o local e o fornecedor. Verifique os laboratórios autorizados pelo Ministério da Saúde Pública disponíveis em sua província de residência."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“Com a sua ajuda, ficando em casa e seguindo as recomendações de saúde, podemos enfrentar o COVID-19”"
+    }
   },
   "report": {
     "title": "Relatório",

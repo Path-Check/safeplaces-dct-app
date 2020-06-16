@@ -60,6 +60,8 @@
     "auto_subscribe_checkbox": "Aktivér automatisk abonnement",
     "auroraMsp_title": "Chat med AuroraMSP",
     "auroraMsp_description": "Har direkte kontakt med mere end 200 læger.",
+    "answers_form_next_step": "Næste skridt:",
+    "answers_form_recomendations": "Testanbefaling:",
     "bulletin_title": "Bulletins",
     "bulletin_description": "Læs om de seneste COVID-bulletinsopdateringer fra din sundhedsmyndighed.",
     "case_day_label": "Tilfælde af dagen",
@@ -188,6 +190,87 @@
     "news": "Nyheder",
     "bulletins": "Bulletins",
     "advices": "Tips"
+  },
+  "answers_translate": {
+    "header": {
+      "title": "Resultater",
+      "text": "Baseret på svarene er dette resultaterne:"
+    },
+    "social_distance": {
+      "title": "Du skal øve dig på social afstand",
+      "subtitle": {
+        "no_traveled": "På dette tidspunkt har du ikke symptomer på COVID-19, så vi anbefaler, at du fortsætter med de forebyggende foranstaltninger med at “vaske hænder med sæbe og vand ofte og anvende social afstand”",
+        "traveled": "Hjælper med at stoppe spredningen. Når du er ude af huset, skal du holde dig mindst seks meter væk fra andre mennesker, undgå grupper og kun bruge offentlig transport, hvis det er nødvendigt."
+      },
+      "next_steps": {
+        "step_one": {
+          "title": "Bevar social afstand",
+          "content": "Bliv mindst en (1) meter væk fra nogen, undgå at være i grupper, og brug kun offentlig transport, hvis det er nødvendigt."
+        },
+        "step_two": {
+          "title": "Husk altid at “vaske hænderne med sæbe og vand ofte og øve social distancering”",
+          "content": ""
+        },
+        "step_three": {
+          "title": "Overvåg symptomer",
+          "content": "Vær opmærksom på COVID-19 symptomer såsom hoste, feber og åndenød. Kontroller og mål også din temperatur to gange om dagen i to uger.\nHvis du har symptomer på fare (opkast eller vedvarende eller blodig diarré, markeret åndedrætsbesvær, døsighed eller anfald), skal du straks gå til det nærmeste sundhedscenter eller ringe *462."
+        },
+        "step_four": {
+          "title": "Karantæne derhjemme",
+          "content": "Du er måske blevet udsat for. Du skal være hjemme i de næste 14 dage og se, om der optræder symptomer. Du skal også prøve at begrænse din kontakt med andre uden for hjemmet."
+        },
+        "step_five": {
+          "title": "Spørg om din medicin",
+          "content": "Hvis du i øjeblikket tager receptpligtig medicin, skal du kontakte din læge for en 30-dages forsyning."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Intet bevis kræves på dette tidspunkt",
+          "content": {
+            "no_sympthoms": "Fra nu af behøver dine svar ikke at blive testet. Hvis du har symptomer som feber, hoste, løbende næse, let åndedrætsbesvær, ondt i halsen, hoved eller krop, skal du udfylde dette spørgeskema igen eller kontakte Aurora-platformen via telefonnumrene 809-449-6262, 809 409 6262 og 809-352-6262.",
+            "has_sympthoms":"Fra nu af behøver dine svar ikke at blive testet. Hvis du har symptomer som feber, hoste, løbende næse, let åndedrætsbesvær, ondt i halsen, hoved eller krop, skal du udfylde dette spørgeskema igen eller kontakte Aurora-platformen via telefonnumrene 809-449-6262, 809 409 6262 og 809-352-6262.\nHvis du har symptomer på fare (opkast eller vedvarende eller blodig diarré, markeret åndedrætsbesvær, døsighed eller anfald), skal du straks gå til det nærmeste sundhedscenter eller ringe *462."
+          }
+        }
+      }
+    },
+    "home_insolation": {
+      "title": {
+        "none": "Skal gøre hjemmeisolering",
+        "has_health_problems": "Kontakt din læge"
+      },
+      "subtitle": {
+        "none": "Ifølge hans svar skulle han forblive hjemme og væk fra andre. Hvis du kan, har du et værelse og et badeværelse, der er lige til dig. Dette kan være svært, når du ikke har det godt, men det vil beskytte dem omkring dig.",
+        "has_health_problems": "Dine svar er at tale med en læge om COVID-19-testen."
+      },
+      "next_steps":{
+        "step_one": {
+          "title": "Isolere",
+          "content": "Du skal holde dig væk fra andre i 14 dage efter begyndelsen af dine symptomer. Din isolering kan ende, hvis dine symptomer forbedres markant, og hvis du ikke har haft feber i mindst 72 timer uden brug af medicin. Ved at isolere kan du reducere spredningen af COVID-19 og beskytte andre."
+        },
+        "step_two": {
+          "title": "Hvil og pas på dig selv",
+          "content": "Spis rigtigt, drik væske og få masser af hvile."
+        },
+        "step_three": {
+          "title": "Overvåg symptomer",
+          "content": "Vær opmærksom på COVID-19 symptomer såsom hoste, feber og åndenød. Kontroller og mål også din temperatur to gange om dagen i to uger. Hvis du har symptomer på fare (opkast eller vedvarende eller blodig diarré, markeret åndedrætsbesvær, døsighed eller anfald), skal du straks gå til det nærmeste sundhedscenter eller ringe * 462"
+        },
+        "step_four": {
+          "title": "Tag forholdsregler",
+          "content": "Som en vigtig arbejdstager skal du tale med dit job om at tage specifikke skridt til at hjælpe med at beskytte og beskytte dem omkring dig. Du bør bære passende personligt beskyttelsesudstyr, inklusive ansigtsmasker eller ansigtsbeklædning af stof i tilfælde af mangel. Derudover skal du opretholde en fysisk afstand på seks meter så meget som muligt på arbejdet og altid uden for arbejdet. Du skal også rense dine hænder ofte og undgå at røre ved dit ansigt."
+        }
+      },
+      "recomendations": {
+        "tip": {
+          "title": "Kontakt nogen for at tage testen",
+          "content": "Dine svar kan være muligt at diskutere COVID - 19 testen. Du skal kontakte din læge eller kontakte Aurora-platformen på 809-449-6262, 809 409 6262 og 809-352-6262 eller ringe * 462 for mere information. Prøveadgang kan variere afhængigt af placering og udbyder. Kontroller de laboratorier, der er autoriseret af ministeriet for folkesundhed, der er tilgængelige i din boprovins."
+        }
+      }
+    },
+    "thanksfull":{
+      "title": "“Med din hjælp, at blive hjemme og følge sundhedsanbefalinger, kan vi stå over for COVID-19”"
+    }
   },
   "report": {
     "title": "Rapport",

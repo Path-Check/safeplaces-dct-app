@@ -1,5 +1,6 @@
 import { Text } from 'native-base';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Image, View } from 'react-native';
 
 import styles from './Header/style';
@@ -14,6 +15,7 @@ export default function ResultsContent({
   subLinkText = null,
   navigation = null,
 }) {
+  const { t } = useTranslation();
   return (
     <View>
       <Image
@@ -45,7 +47,7 @@ export default function ResultsContent({
           </Text>
         )}
       </Text>
-      <Text style={styles.textBold}>Siguientes pasos:</Text>
+      <Text style={styles.textBold}>{t('label.answers_form_next_step')}</Text>
       <View style={styles.bottomLine} />
       <View style={{ marginTop: 10 }}>
         {nextSteps.map((step, index) => (
@@ -65,7 +67,9 @@ export default function ResultsContent({
       </View>
       {recomendations && (
         <View>
-          <Text style={styles.textBold}>Recomendación de prueba:</Text>
+          <Text style={styles.textBold}>
+            {t('label.answers_form_recomendations')}
+          </Text>
           <View style={styles.bottomLine} />
           <View style={{ marginTop: 10 }}>
             {recomendations.map((step, index) => (
