@@ -135,6 +135,7 @@
     "location_match_description": "Sprawdź, czy miałeś kontakt z osobą zainfekowaną",
     "logging_active": "Lokalizacja aktywna",
     "logging_inactive": "Lokalizacja nieaktywna",
+    "more_info": "Więcej informacji",
     "news_subtitle": "Przeczytaj o najnowszych aktualizacjach COVID od twojego urzędu zdrowia i ogólnie.",
     "news_title": "Aktualności",
     "no_data": "Brak danych",
@@ -284,7 +285,7 @@
       "header_subtitle": "Poniższe pytania dotyczą COVID-19",
       "subtitle": "Odpowiesz na niektóre pytania dotyczące twoich objawów, podróży i kontaktu z innymi.",
       "use_myself": "Użyj dla siebie",
-      "use_others": "Użyj dla kogoś innego"
+      "use_others": "Użyj dla członka rodziny"
     },
     "userInfo": {
       "api_down_error_msg": "W tej chwili nie możemy zweryfikować twoich danych. Spróbuj ponownie później.",

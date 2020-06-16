@@ -76,6 +76,7 @@
     "location_disabled_title": "Le suivi de la position a été désactivé",
     "location_enabled_message": "COVID Safe Paths enregistre de façon sécurisée vos coordonnées GPS toutes les cinq minutes sur cet appareil.",
     "location_enabled_title": "COVID Safe Paths activé",
+    "more_info": "Plus d'informations",
     "news_subtitle": "Obtenez les dernières nouvelles sur le COVID-19 par vos autorités sanitaires et en général.",
     "news_title": "Dernières nouvelles",
     "no_data": "Pas de données",
@@ -197,7 +198,7 @@
       "header_subtitle": "Les questions suivantes sont liées à COVID-19",
       "subtitle": "Vous répondrez à quelques questions sur vos symptômes, vos déplacements et les contacts que vous avez eus avec les autres.",
       "use_myself": "Utiliser pour moi",
-      "use_others": "Utiliser pour quelqu'un d'autre"
+      "use_others": "Utilisation pour un membre de la famille"
     },
     "userInfo": {
       "api_down_error_msg": "Pour le moment, nous ne pouvons pas valider vos données. Veuillez réessayer plus tard.",

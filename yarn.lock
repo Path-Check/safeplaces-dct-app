@@ -7850,9 +7850,10 @@ react-native-ble-advertiser@0.0.10:
   resolved "https://registry.yarnpkg.com/react-native-ble-advertiser/-/react-native-ble-advertiser-0.0.10.tgz#1ab85d2a944f3f0eed3beddc4ce76ae5edecf8ce"
   integrity sha512-4l8Tkb2ki7RwSwh11dARQS1Hs7qRuexRvHZ0Mv6TbrqAA15gij0TKf5IUTueeML6rVqnsV8VykJ2aHuvjsAjfw==
 
-react-native-config@luggit/react-native-config#1eb6ac01991210ddad2989857359a0f6ee35d734:
-  version "0.11.7"
-  resolved "https://codeload.github.com/luggit/react-native-config/tar.gz/1eb6ac01991210ddad2989857359a0f6ee35d734"
+react-native-config@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.2.1.tgz#f80454fc58ea89b549819ccb4bdab26518a9f0db"
+  integrity sha512-u7MDku3fUUKAtxfUFLLwnj4htBYO840EBGdlDB9ry/eX1TY+asHwULaUkAj9x+pJo4vSpIp8GtYxxi8dLzDtJw==
 
 react-native-datepicker@^1.7.2:
   version "1.7.2"

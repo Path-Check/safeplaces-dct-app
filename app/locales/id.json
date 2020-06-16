@@ -136,6 +136,7 @@
     "location_match_description": "Periksa apakah Anda memiliki kontak dengan seseorang yang terinfeksi",
     "logging_active": "Lokasi Aktif",
     "logging_inactive": "Lokasi tidak aktif",
+    "more_info": "Info lebih lanjut",
     "news_subtitle": "Baca tentang pembaruan COVID terbaru dari otoritas kesehatan Anda dan secara umum.",
     "news_title": "Berita",
     "no_data": "Tidak ada data",
@@ -285,7 +286,7 @@
       "header_subtitle": "Pertanyaan-pertanyaan berikut terkait dengan COVID-19",
       "subtitle": "Anda akan menjawab beberapa pertanyaan tentang gejala Anda, perjalanan dan kontak yang Anda miliki dengan orang lain.",
       "use_myself": "Gunakan untuk Diri Sendiri",
-      "use_others": "Gunakan untuk orang lain"
+      "use_others": "Gunakan untuk anggota keluarga"
     },
     "userInfo": {
       "api_down_error_msg": "Saat ini kami tidak dapat memvalidasi data Anda. Silakan coba lagi nanti.",

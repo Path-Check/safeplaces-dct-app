@@ -138,6 +138,7 @@
     "location_match_title": "Kiểm tra liên lạc",
     "location_match_description": "Kiểm tra nếu bạn đã liên lạc với người bị nhiễm bệnh",
     "logging_active": "Vị trí hoạt động",
+    "more_info": "Thêm thông tin",
     "logging_inactive": "Vị trí không hoạt động",
     "news_subtitle": "Đọc về các cập nhật COVID mới nhất từ cơ quan y tế của bạn và nói chung.",
     "news_title": "Tin tức",
@@ -288,7 +289,7 @@
       "header_subtitle": "Các câu hỏi sau đây có liên quan đến COVID-19",
       "subtitle": "Bạn sẽ trả lời một số câu hỏi về các triệu chứng của bạn, du lịch và liên hệ bạn đã có với người khác.",
       "use_myself": "Sử dụng cho bản thân",
-      "use_others": "Sử dụng cho người khác"
+      "use_others": "Sử dụng cho một thành viên gia đình"
     },
     "userInfo": {
       "api_down_error_msg": "Tại thời điểm này, chúng tôi không thể xác nhận dữ liệu của bạn. Vui lòng thử lại sau.",

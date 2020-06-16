@@ -136,6 +136,7 @@
     "location_match_description": "Verifique se você teve contato com alguém infectado",
     "logging_active": "Localização ativa",
     "logging_inactive": "Local inativo",
+    "more_info": "Mais informações",
     "news_subtitle": "Leia sobre as atualizações mais recentes do COVID da sua autoridade de saúde e em geral.",
     "news_title": "Notícia",
     "no_data": "Sem dados",
@@ -285,7 +286,7 @@
       "header_subtitle": "As seguintes perguntas estão relacionadas ao COVID-19",
       "subtitle": "Você responderá a algumas perguntas sobre seus sintomas, viagens e o contato que teve com outras pessoas.",
       "use_myself": "Use para mim mesmo",
-      "use_others": "Use para outra pessoa"
+      "use_others": "Use para um membro da família"
     },
     "userInfo": {
       "api_down_error_msg": "No momento, não podemos validar seus dados. Por favor, tente novamente mais tarde.",

@@ -135,6 +135,7 @@
     "location_match_description": "Kontroller, om du har haft kontakt med en inficeret",
     "logging_active": "Placering aktiv",
     "logging_inactive": "Placering inaktiv",
+    "more_info": "Mere Info",
     "news_subtitle": "Læs om de seneste COVID-opdateringer fra din sundhedsmyndighed og generelt.",
     "news_title": "Nyheder",
     "no_data": "Ingen data",
@@ -284,7 +285,7 @@
       "header_subtitle": "Følgende spørgsmål er relateret til COVID-19",
       "subtitle": "Du besvarer nogle spørgsmål om dine symptomer, rejser og den kontakt, du har haft med andre.",
       "use_myself": "Brug til mig selv",
-      "use_others": "Brug til en anden"
+      "use_others": "Brug til et familiemedlem"
     },
     "userInfo": {
       "api_down_error_msg": "På dette tidspunkt kan vi ikke validere dine data. Prøv igen senere.",

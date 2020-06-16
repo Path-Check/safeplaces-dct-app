@@ -135,6 +135,7 @@
     "location_match_description": "Controlla se hai avuto contatti con qualcuno infetto",
     "logging_active": "Posizione attiva",
     "logging_inactive": "Posizione inattiva",
+    "more_info": "Ulteriori informazioni",
     "news_subtitle": "Leggi gli ultimi aggiornamenti COVID dalla tua autorità sanitaria e in generale.",
     "news_title": "notizia",
     "no_data": "Nessun dato",
@@ -284,7 +285,7 @@
       "header_subtitle": "Le seguenti domande sono correlate a COVID-19",
       "subtitle": "Risponderai ad alcune domande sui sintomi, i viaggi e il contatto che hai avuto con altri.",
       "use_myself": "Utilizzare per me stesso",
-      "use_others": "Utilizzare per qualcun altro"
+      "use_others": "Utilizzare per un membro della famiglia"
     },
     "userInfo": {
       "api_down_error_msg": "Al momento non possiamo convalidare i tuoi dati. Per favore riprova più tardi.",

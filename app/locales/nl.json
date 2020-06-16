@@ -136,6 +136,7 @@
     "location_match_description": "Controleer of je contact hebt gehad met iemand die besmet is",
     "logging_active": "Locatie actief",
     "logging_inactive": "Locatie inactief",
+    "more_info": "Meer informatie",
     "news_subtitle": "Lees over de nieuwste COVID-updates van uw gezondheidsinstantie en in het algemeen.",
     "news_title": "Nieuws",
     "no_data": "Geen informatie",
@@ -281,7 +282,7 @@
       "header_subtitle": "De volgende vragen hebben betrekking op COVID-19",
       "subtitle": "Je beantwoordt enkele vragen over je symptomen, reizen en het contact dat je met anderen hebt gehad.",
       "use_myself": "Gebruik voor mezelf",
-      "use_others": "Gebruik voor iemand anders"
+      "use_others": "Gebruik voor een familielid"
     },
     "userInfo": {
       "api_down_error_msg": "Op dit moment kunnen we uw gegevens niet valideren. Probeer het later opnieuw.",

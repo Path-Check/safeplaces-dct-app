@@ -77,13 +77,6 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = COVIDSafePaths;
 		};
-		2E9077652439A903005C98DE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E9077612439A903005C98DE /* SplashScreen.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D7682761D8E76B80014119E;
-			remoteInfo = SplashScreen;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -130,7 +123,6 @@
 		276AB15B245291DE00D39B58 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		27F931562459E28800E1024C /* SecureStorageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecureStorageManager.m; sourceTree = "<group>"; };
 		27F931592459E2BD00E1024C /* SecureStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageManager.swift; sourceTree = "<group>"; };
-		2E9077612439A903005C98DE /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		3CADAF81F25CF0AEB8EE6F82 /* Pods-COVIDSafePaths.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths.beta.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths.beta.xcconfig"; sourceTree = "<group>"; };
 		3E10CA5A72D06133B886B461 /* libPods-COVIDSafePaths-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-COVIDSafePaths-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41038D978FEE48AD9709F232 /* IBMPlexSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Light.ttf"; path = "../app/assets/fonts/IBMPlexSans-Light.ttf"; sourceTree = "<group>"; };
@@ -374,18 +366,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2E9077622439A903005C98DE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2E9077662439A903005C98DE /* libSplashScreen.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				2E9077612439A903005C98DE /* SplashScreen.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -509,10 +492,6 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 2E9077622439A903005C98DE /* Products */;
-					ProjectRef = 2E9077612439A903005C98DE /* SplashScreen.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -523,13 +502,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		2E9077662439A903005C98DE /* libSplashScreen.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSplashScreen.a;
-			remoteRef = 2E9077652439A903005C98DE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -806,7 +778,9 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -833,7 +807,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -869,7 +845,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				INFOPLIST_FILE = COVIDSafePaths/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -959,7 +934,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				INFOPLIST_FILE = COVIDSafePaths/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1103,7 +1077,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				INFOPLIST_FILE = COVIDSafePaths/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1186,7 +1159,9 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1271,7 +1246,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				INFOPLIST_FILE = COVIDSafePaths/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1350,7 +1324,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

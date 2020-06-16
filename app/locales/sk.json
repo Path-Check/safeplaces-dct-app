@@ -135,6 +135,7 @@
     "location_match_description": "Skontrolujte, či ste mali kontakt s niekým infikovaným",
     "logging_active": "Poloha aktívna",
     "logging_inactive": "Poloha neaktívna",
+    "more_info": "Viac informácií",
     "news_subtitle": "Prečítajte si informácie o najnovších aktualizáciách COVID od vášho zdravotného úradu a všeobecne.",
     "news_title": "správy",
     "no_data": "Žiadne dáta",
@@ -284,7 +285,7 @@
       "header_subtitle": "Nasledujúce otázky sa týkajú COVID-19",
       "subtitle": "Odpoviete na niekoľko otázok týkajúcich sa vašich príznakov, cestovania a kontaktu, ktorý ste mali s ostatnými.",
       "use_myself": "Použite pre seba",
-      "use_others": "Použite pre niekoho iného"
+      "use_others": "Použitie pre člena rodiny"
     },
     "userInfo": {
       "api_down_error_msg": "Momentálne nemôžeme overiť vaše údaje. Skúste neskôr prosím.",

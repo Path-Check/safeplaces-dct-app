@@ -130,6 +130,7 @@
     "location_match_description": "检查您是否与感染者接触",
     "logging_active": "位置有效",
     "logging_inactive": "位置无效",
+    "more_info": "更多信息",
     "news_subtitle": "从您的卫生部门以及一般情况下，了解最新的COVID更新。",
     "news_title": "新闻",
     "no_data": "没有数据",
@@ -279,7 +280,7 @@
       "header_subtitle": "以下问题与COVID-19有关",
       "subtitle": "您将回答有关您的症状，旅行以及与他人的联系的一些问题。",
       "use_myself": "为自己使用",
-      "use_others": "用于其他人"
+      "use_others": "用于家庭成员"
     },
     "userInfo": {
       "api_down_error_msg": "目前，我们无法验证您的数据。请稍后再试。",
