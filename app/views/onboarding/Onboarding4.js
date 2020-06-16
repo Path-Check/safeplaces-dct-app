@@ -2,18 +2,19 @@ import React from 'react';
 import {
   Dimensions,
   ImageBackground,
+  TouchableOpacity,
   StatusBar,
   StyleSheet,
   View,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { Button, Typography } from '../../components';
+import { Typography } from '../../components';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
 
-import { Colors } from '../../styles';
+import { Buttons, Colors, Typography as TypographyStyles } from '../../styles';
 
 const width = Dimensions.get('window').width;
 
@@ -26,7 +27,7 @@ const Onboarding = (props) => {
     onboarding4Icon,
   } = useAssets();
 
-  const onNext = () =>
+  const handleOnPressNext = () =>
     props.navigation.replace(
       isGPS ? 'OnboardingPermissions' : 'EnableExposureNotifications',
     );
@@ -55,7 +56,9 @@ const Onboarding = (props) => {
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>
-        <Button label={onboarding4Button} onPress={onNext} />
+        <TouchableOpacity style={styles.button} onPress={handleOnPressNext}>
+          <Typography style={styles.buttonText}>{onboarding4Button}</Typography>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -83,6 +86,12 @@ const styles = StyleSheet.create({
   },
   iconCircle: {
     backgroundColor: Colors.onboardingIconYellow,
+  },
+  button: {
+    ...Buttons.largeBlue,
+  },
+  buttonText: {
+    ...TypographyStyles.buttonTextLight,
   },
 });
 

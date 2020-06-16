@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Dimensions,
+  TouchableOpacity,
   ImageBackground,
   StatusBar,
   StyleSheet,
@@ -8,12 +9,12 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { Button, Typography } from '../../components';
+import { Typography } from '../../components';
 import languages from '../../locales/languages';
 import { useAssets } from '../../TracingStrategyAssets';
 import { sharedStyles } from './styles';
 
-import { Colors } from '../../styles';
+import { Buttons, Colors, Typography as TypographyStyles } from '../../styles';
 
 const width = Dimensions.get('window').width;
 
@@ -49,12 +50,15 @@ const Onboarding = (props) => {
       </View>
       <View style={styles.verticalSpacer} />
       <View style={sharedStyles.footerContainer}>
-        <Button
-          label={languages.t('label.launch_next')}
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => {
             props.navigation.replace('Onboarding4');
-          }}
-        />
+          }}>
+          <Typography style={styles.buttonText}>
+            {languages.t('label.launch_next')}
+          </Typography>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -79,6 +83,12 @@ const styles = StyleSheet.create({
   },
   verticalSpacer: {
     flex: 1,
+  },
+  button: {
+    ...Buttons.largeBlue,
+  },
+  buttonText: {
+    ...TypographyStyles.buttonTextLight,
   },
 });
 
