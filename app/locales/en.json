@@ -47,9 +47,14 @@
     "info_body": "Local and regional Health Departments can share information and resources about COVID-19 for their area, including verified data that allows PathCheck to estimate when you may have crossed paths with the virus.",
     "title": "Health Departments",
     "view_button_label": "View your Health Departments",
-    "automatically_follow": "Automatically follow Health Departments nearby"
+    "custom_url": "Manually Add Via URL",
+    "automatically_follow": "Automatically follow Health Departments nearby",
+    "url_instructions": "Enter a URL for the Health Department you would like to add",
+    "custom_url_title": "Add Via Url",
+    "invalid_url": "Invalid YAML URL"
   },
   "common": {
+    "add": "Add",
     "done": "Done",
     "next": "Next",
     "ok": "Ok",

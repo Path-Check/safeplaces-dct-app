@@ -37,7 +37,8 @@ export type Screen =
   | 'ExportFlow'
   | 'SelfAssessment'
   | 'PartnersOverview'
-  | 'PartnersEdit';
+  | 'PartnersEdit'
+  | 'PartnersCustomUrl';
 
 export const Screens: { [key in Screen]: Screen } = {
   ExportStart: 'ExportStart',
@@ -68,6 +69,7 @@ export const Screens: { [key in Screen]: Screen } = {
   SelfAssessment: 'SelfAssessment',
   PartnersOverview: 'PartnersOverview',
   PartnersEdit: 'PartnersEdit',
+  PartnersCustomUrl: 'PartnersCustomUrl',
 };
 
 export type Stack =

@@ -17,6 +17,7 @@ import SettingsScreen from './views/Settings';
 import AboutScreen from './views/About';
 import PartnersOverviewScreen from './views/Partners/PartnersOverview';
 import PartnersEditScreen from './views/Partners/PartnersEdit';
+import PartnersCustomUrlScreen from './views/Partners/PartnersCustomUrlScreen';
 
 import { LicensesScreen } from './views/Licenses';
 import {
@@ -229,7 +230,7 @@ const MainAppTabs = () => {
       )}
       {isGPS ? (
         <Tab.Screen
-          name='Partners'
+          name={Stacks.Partners}
           component={PartnersStack}
           options={{
             tabBarLabel: t('navigation.partners'),
@@ -300,10 +301,14 @@ const OnboardingStack = () => (
 const PartnersStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen
-      name={'PartnersOverview'}
+      name={Screens.PartnersOverview}
       component={PartnersOverviewScreen}
     />
-    <Stack.Screen name={'PartnersEdit'} component={PartnersEditScreen} />
+    <Stack.Screen name={Screens.PartnersEdit} component={PartnersEditScreen} />
+    <Stack.Screen
+      name={Screens.PartnersCustomUrl}
+      component={PartnersCustomUrlScreen}
+    />
   </Stack.Navigator>
 );
 
