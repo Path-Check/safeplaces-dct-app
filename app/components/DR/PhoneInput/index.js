@@ -18,11 +18,12 @@ export default function PhoneInput({
         ? str.match(/^(\d{3})(\d{1,3})$/)
         : str.match(/^(\d{3})(\d{3})(\d{1,4})$/);
     if (match) {
-      const first = match[1].length === 3 ? `(${match[1]}) ` : match[1];
+      const first =
+        match[1].length === 3 && match[2] ? `(${match[1]}) ` : match[1];
       // eslint-disable-next-line
       const second =
         match[2] && match[2].length >= 1
-          ? match[2].length === 3
+          ? match[2].length === 3 && match[3]
             ? `${match[2]}-`
             : match[2]
           : '';
