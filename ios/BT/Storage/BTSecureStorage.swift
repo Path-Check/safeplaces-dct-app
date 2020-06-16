@@ -2,9 +2,9 @@ import ExposureNotification
 import Foundation
 import RealmSwift
 
-final class BTESecureStorage: SafePathsSecureStorage {
+final class BTSecureStorage: SafePathsSecureStorage {
 
-  static let shared = BTESecureStorage()
+  static let shared = BTSecureStorage()
 
   override var keychainIdentifier: String {
     "org.pathcheck.bt.realm"

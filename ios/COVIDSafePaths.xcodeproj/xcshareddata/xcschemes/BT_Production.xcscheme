@@ -10,13 +10,13 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "echo &quot;.env.bte.release&quot; &gt; /tmp/envfile   # use .env.bte.release&#10;">
+               scriptText = "echo &quot;.env.bt.release&quot; &gt; /tmp/envfile   # use .env.bt.release&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-                     BuildableName = "BTE.app"
-                     BlueprintName = "BTE"
+                     BuildableName = "BT.app"
+                     BlueprintName = "BT"
                      ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C53FD07D24719AD1006D3268"
-               BuildableName = "BTE.app"
-               BlueprintName = "BTE"
+               BuildableName = "BT.app"
+               BlueprintName = "BT"
                ReferencedContainer = "container:COVIDSafePaths.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

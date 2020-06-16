@@ -124,7 +124,7 @@ dev_setup.bat
 ```
 yarn run-android-gps ## for the location enabled app
 
-yarn run-android-bte ## for the bluetooth enabled app
+yarn run-android-bt ## for the bluetooth enabled app
 ```
 
 Device storage can be cleared by long-pressing on the app icon in the simulator, clicking "App info", then "Storage", and lastly, "Clear Storage".
@@ -142,7 +142,7 @@ Then, run the application:
 ```
 yarn run-ios-gps ## for the location enabled app
 
-yarn run-ios-bte ## for the bluetooth enabled app
+yarn run-ios-bt ## for the bluetooth enabled app
 ```
 
 Device storage can be cleared by clicking "Hardware" on the system toolbar, and then "Erase all content and settings".

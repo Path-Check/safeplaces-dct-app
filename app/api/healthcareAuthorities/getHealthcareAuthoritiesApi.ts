@@ -19,12 +19,10 @@ export type HealthcareAuthority = {
   internal_id: string;
 };
 
-const getHealthcareAuthoritiesApi = async (): Promise<
-  HealthcareAuthority[]
-> => {
-  const yamlString = await fetch(AUTHORITIES_LIST_URL_MVP1).then((res) =>
-    res.text(),
-  );
+const getHealthcareAuthoritiesApi = async (
+  yamlUrl: string = AUTHORITIES_LIST_URL_MVP1,
+): Promise<HealthcareAuthority[]> => {
+  const yamlString = await fetch(yamlUrl).then((res) => res.text());
   const { authorities } = Yaml.safeLoad(yamlString);
   if (!Array.isArray(authorities)) {
     throw new Error('authorities yaml did not return an array of authorities');

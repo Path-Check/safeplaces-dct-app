@@ -15,7 +15,7 @@ class Persisted<Value: Codable> {
 
   var wrappedValue: Value {
     didSet {
-      BTESecureStorage.shared.setUserValue(value: wrappedValue, keyPath: keyPath, notificationName: notificationName)
+      BTSecureStorage.shared.setUserValue(value: wrappedValue, keyPath: keyPath, notificationName: notificationName)
     }
   }
 
