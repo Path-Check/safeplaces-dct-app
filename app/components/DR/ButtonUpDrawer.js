@@ -13,7 +13,7 @@ import {
 
 const { width, height } = Dimensions.get('window');
 
-export class BottomUpPanel extends Component {
+class BottomUpPanel extends Component {
   static defaultProps = {
     isOpen: false,
   };
@@ -193,7 +193,7 @@ export class BottomUpPanel extends Component {
   };
 }
 
-export default withTranslation()(BottomUpPanel);
+export default withTranslation('translation', { withRef: true })(BottomUpPanel);
 
 const styles = StyleSheet.create({
   container: {
