@@ -73,10 +73,11 @@
 		B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
 		B52D88C2248F0FD90071ED51 /* GPSSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */; };
 		B52D88C4248F10FD0071ED51 /* BTSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */; };
-		B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B5582D43249943DE001458A9 /* ExposureEventEmitter.m */; };
 		B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */; };
 		B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */; };
 		B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* PTCExposureManagerModule.m */; };
+		B5B58730249805FA0006D2B5 /* ExposureEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B5872F249805FA0006D2B5 /* ExposureEventEmitter.m */; };
+		B5C490A6249856AE00588A5F /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C490A5249856AE00588A5F /* Encodable+Extensions.swift */; };
 		B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */; };
 		B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */; };
 		B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0CE24916A4C00433980 /* DebugAction.swift */; };
@@ -148,6 +149,7 @@
 		C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */; };
 		C5C850C7248014F700A494CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C850C6248014F700A494CA /* main.m */; };
 		C5C850CA2480156200A494CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C850C92480156200A494CA /* AppDelegate.m */; };
+		C5D4DA52249A409A0091818A /* ExposureEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4DA51249A409A0091818A /* ExposureEventEmitter.m */; };
 		C5EF723724864F8500AA39D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EF72202485D0E600AA39D5 /* main.m */; };
 		D43E27B6F1E045D798270A11 /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4904B061CC24439783E20928 /* IBMPlexSans-SemiBold.ttf */; };
 		D668C3DAB08B4FCBB01E8C2D /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C8EDCCEFCE4874A747E404 /* IBMPlexMono-Light.ttf */; };
@@ -323,10 +325,11 @@
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
 		B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSSecureStorage.swift; sourceTree = "<group>"; };
 		B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSecureStorage.swift; sourceTree = "<group>"; };
-		B5582D43249943DE001458A9 /* ExposureEventEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExposureEventEmitter.m; sourceTree = "<group>"; };
 		B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		B596C0712488127D00943B79 /* PTCExposureManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCExposureManagerModule.m; sourceTree = "<group>"; };
+		B5B5872F249805FA0006D2B5 /* ExposureEventEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExposureEventEmitter.m; sourceTree = "<group>"; };
+		B5C490A5249856AE00588A5F /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebugMenuModule.m; sourceTree = "<group>"; };
 		B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisKeyUrlRequests.swift; sourceTree = "<group>"; };
 		B5FBB0CE24916A4C00433980 /* DebugAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugAction.swift; sourceTree = "<group>"; };
@@ -363,6 +366,7 @@
 		C5C850F8248125A800A494CA /* libBackgroundGeolocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBackgroundGeolocation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C850FB24812AAB00A494CA /* GPS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GPS-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5CAF9029B3AE69C411463F3 /* Pods-COVIDSafePathsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePathsTests.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePathsTests/Pods-COVIDSafePathsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C5D4DA51249A409A0091818A /* ExposureEventEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExposureEventEmitter.m; sourceTree = "<group>"; };
 		C5EF72202485D0E600AA39D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = bridge/main.m; sourceTree = "<group>"; };
 		C6CBA4DBBF104AC1AB920555 /* IBMPlexSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-BoldItalic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		C840FB7884D64E6FA97ECC2C /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../app/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
@@ -692,6 +696,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				08CFC7C2232A41A8F8E9E0B0 /* Pods */,
 				13AEDF79CAC944D79C55B9D6 /* Resources */,
+				B5C490AF249919E900588A5F /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -715,6 +720,14 @@
 				271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		B5C490AF249919E900588A5F /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B5B5872F249805FA0006D2B5 /* ExposureEventEmitter.m */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		B5FC37BD2489B05F006474EB /* API */ = {
@@ -771,6 +784,7 @@
 				B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */,
 				B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */,
 				B5FBB0D624916DE100433980 /* Notification+Extensions.swift */,
+				B5C490A5249856AE00588A5F /* Encodable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -815,7 +829,7 @@
 			children = (
 				B596C0712488127D00943B79 /* PTCExposureManagerModule.m */,
 				B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */,
-				B5582D43249943DE001458A9 /* ExposureEventEmitter.m */,
+				C5D4DA51249A409A0091818A /* ExposureEventEmitter.m */,
 			);
 			path = bridge;
 			sourceTree = "<group>";
@@ -1307,6 +1321,7 @@
 				B5FC37CC2489B251006474EB /* Result.swift in Sources */,
 				C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */,
 				B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */,
+				C5D4DA52249A409A0091818A /* ExposureEventEmitter.m in Sources */,
 				B5FBB0D124916A7200433980 /* Persisted.swift in Sources */,
 				B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */,
 				C5C850CA2480156200A494CA /* AppDelegate.m in Sources */,
@@ -1314,9 +1329,9 @@
 				B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */,
 				B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */,
 				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
-				B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
 				B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */,
+				B5B58730249805FA0006D2B5 /* ExposureEventEmitter.m in Sources */,
 				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
 				B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */,
 				B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */,
@@ -1324,6 +1339,7 @@
 				B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */,
 				B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */,
 				B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */,
+				B5C490A6249856AE00588A5F /* Encodable+Extensions.swift in Sources */,
 				B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */,
 				B5FC37DD248A78D2006474EB /* ExposureKey.swift in Sources */,
 				B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */,

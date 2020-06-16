@@ -22,12 +22,6 @@ const ExposureDatumIndicator = ({
     textStyle,
   ]: IndicatorStyle): IndicatorStyle => {
     switch (exposureDatum.kind) {
-      case 'Unknown': {
-        return [
-          { ...circleStyle },
-          { ...textStyle, color: Colors.tertiaryViolet },
-        ];
-      }
       case 'NoKnown': {
         return [
           { ...circleStyle },

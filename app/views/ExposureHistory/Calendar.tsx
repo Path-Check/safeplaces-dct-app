@@ -39,7 +39,7 @@ const Calendar = ({
               key={`calendar-day-${datum.date}`}
               onPress={() => onSelectDate(datum)}>
               <ExposureDatumIndicator
-                isSelected={datum.id === selectedDatum.id}
+                isSelected={datum.date === selectedDatum.date}
                 exposureDatum={datum}
               />
             </TouchableOpacity>

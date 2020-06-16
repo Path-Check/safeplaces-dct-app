@@ -475,42 +475,6 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             isTVSelectable={true}
             style={
               Object {
-                "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
-                "flex": 1,
-                "opacity": 1,
-                "paddingVertical": 20,
-              }
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2e2e2e",
-                    "fontSize": 17,
-                    "lineHeight": 28,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Object {
-                    "color": "#4051db",
-                    "fontSize": 17,
-                    "lineHeight": 28,
-                  },
-                ]
-              }
-            >
-              EN Debug Menu
-            </Text>
-          </View>
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
                 "borderBottomWidth": 0,
                 "borderColor": "#a5affb",
                 "flex": 1,
@@ -879,42 +843,6 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             }
           }
         >
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
-                "flex": 1,
-                "opacity": 1,
-                "paddingVertical": 20,
-              }
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2e2e2e",
-                    "fontSize": 17,
-                    "lineHeight": 28,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Object {
-                    "color": "#4051db",
-                    "fontSize": 17,
-                    "lineHeight": 28,
-                  },
-                ]
-              }
-            >
-              EN Debug Menu
-            </Text>
-          </View>
           <View
             accessible={true}
             focusable={true}
