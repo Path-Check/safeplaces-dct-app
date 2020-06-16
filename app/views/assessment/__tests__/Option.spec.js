@@ -55,26 +55,26 @@ describe('SCREEN_TYPE_DATE', () => {
     );
     expect(getByTestId('label').children).toEqual(['Label']);
   });
-  // test('on iOS, selecting the date picker immediatley invokes the onSelect handler with the current date', () => {
-  //   jest.doMock('../../../Util', () => ({
-  //     isPlatformIOS: () => true,
-  //   }));
-  //   let onSelect = jest.fn();
-  //   const { getByTestId } = render(
-  //     <Option
-  //       index={0}
-  //       onSelect={onSelect}
-  //       option={{
-  //         label: 'Label',
-  //         value: 'Value',
-  //       }}
-  //       type={SCREEN_TYPE_DATE}
-  //     />,
-  //   );
-  //   fireEvent.press(getByTestId('option'));
-  //   expect(onSelect).toHaveBeenCalledWith(String(Date()));
-  //   expect(getByTestId('label').children[0]).toMatch(/\d\d?\/\d\d?\/\d\d\d\d/);
-  // });
+  test('on iOS, selecting the date picker immediatley invokes the onSelect handler with the current date', () => {
+    jest.doMock('../../../Util', () => ({
+      isPlatformIOS: () => true,
+    }));
+    let onSelect = jest.fn();
+    const { getByTestId } = render(
+      <Option
+        index={0}
+        onSelect={onSelect}
+        option={{
+          label: 'Label',
+          value: 'Value',
+        }}
+        type={SCREEN_TYPE_DATE}
+      />,
+    );
+    fireEvent.press(getByTestId('option'));
+    expect(onSelect).toHaveBeenCalledWith(new Date().toDateString());
+    expect(getByTestId('label').children[0]).toMatch(/\d\d?\/\d\d?\/\d\d\d\d/);
+  });
   test('shows the date picker', () => {
     const { getByTestId } = render(
       <Option
