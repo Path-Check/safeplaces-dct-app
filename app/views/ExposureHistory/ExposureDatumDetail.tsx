@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     marginTop: Spacing.xLarge,
   },
   nextStepsButtonText: {
-    ...TypographyStyles.ctaButtonOutlined,
+    ...TypographyStyles.buttonTextDark,
   },
 });
 

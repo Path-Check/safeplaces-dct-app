@@ -137,34 +137,16 @@ export const tappableListItem: TextStyle = {
 
 // Buttons
 export const buttonText: TextStyle = {
-  fontSize: medium,
+  fontSize: large,
   fontWeight: heavyWeight,
 };
 
-export const darkButtonText: TextStyle = {
+export const buttonTextDark: TextStyle = {
   ...buttonText,
-  color: Colors.white,
+  color: Colors.primaryViolet,
 };
 
-export const baseWeightButtonText: TextStyle = {
+export const buttonTextLight: TextStyle = {
   ...buttonText,
-  fontWeight: baseWeight,
-};
-
-export const borderlessButtonText: TextStyle = {
-  color: Colors.defaultBlue,
-  fontSize: medium,
-  fontWeight: heaviestWeight,
-};
-
-export const ctaButtonOutlined: TextStyle = {
-  ...largeFont,
-  fontWeight: heavyWeight,
-  color: Colors.primaryBlue,
-};
-
-export const ctaButtonFilled: TextStyle = {
-  ...largeFont,
-  fontWeight: heavyWeight,
   color: Colors.white,
 };
