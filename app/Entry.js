@@ -17,6 +17,7 @@ import SettingsScreen from './views/Settings';
 import AboutScreen from './views/About';
 import PartnersOverviewScreen from './views/Partners/PartnersOverview';
 import PartnersEditScreen from './views/Partners/PartnersEdit';
+import PartnersCustomUrlScreen from './views/Partners/PartnersCustomUrlScreen';
 
 import { LicensesScreen } from './views/Licenses';
 import {
@@ -304,6 +305,10 @@ const PartnersStack = () => (
       component={PartnersOverviewScreen}
     />
     <Stack.Screen name={'PartnersEdit'} component={PartnersEditScreen} />
+    <Stack.Screen
+      name={'PartnersCustomUrl'}
+      component={PartnersCustomUrlScreen}
+    />
   </Stack.Navigator>
 );
 
