@@ -108,15 +108,18 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             />
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  undefined,
+                ]
               }
-              use="body1"
             >
               English
             </Text>
@@ -161,19 +164,24 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 <View>
                   <Text
                     style={
-                      Object {
-                        "color": undefined,
-                        "fontFamily": "IBMPlexSans",
-                        "fontSize": 18,
-                        "fontWeight": "bold",
-                        "lineHeight": 24,
-                        "marginRight": 22,
-                        "marginTop": 16,
-                        "textAlign": "right",
-                        "writingDirection": "ltr",
-                      }
+                      Array [
+                        Object {
+                          "color": "#2e2e2e",
+                          "fontSize": 17,
+                          "lineHeight": 28,
+                        },
+                        Object {
+                          "writingDirection": "ltr",
+                        },
+                        Object {
+                          "color": undefined,
+                          "fontWeight": "bold",
+                          "marginRight": 22,
+                          "marginTop": 16,
+                          "textAlign": "right",
+                        },
+                      ]
                     }
-                    use="body1"
                   >
                     Done
                   </Text>
@@ -247,16 +255,20 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             />
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "marginLeft": 16,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
               }
-              use="body1"
             >
               Google Maps
             </Text>
@@ -270,15 +282,18 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           >
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 16,
-                  "fontWeight": "normal",
-                  "lineHeight": 22,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#4e4e4e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  undefined,
+                ]
               }
-              use="body2"
             >
               To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.
             </Text>
@@ -304,16 +319,22 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           >
             <Text
               style={
-                Object {
-                  "color": "#4051db",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 19,
-                  "fontWeight": "500",
-                  "lineHeight": 40,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 19,
+                    "fontWeight": "500",
+                  },
+                ]
               }
-              use="body1"
             >
               Import past locations
             </Text>
@@ -326,18 +347,24 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             }
           >
             <Text
-              monospace={true}
-              secondary={true}
               style={
-                Object {
-                  "fontFamily": "IBMPlexMono",
-                  "fontSize": 15,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4e4e4e",
+                    "fontFamily": "IBMPlexMono",
+                    "fontSize": 15,
+                    "lineHeight": 24,
+                  },
+                ]
               }
-              use="body3"
             >
               PathCheck has no affiliation with Google and never shares your data.
             </Text>
@@ -372,15 +399,22 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           >
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
-              use="body1"
             >
               About
             </Text>
@@ -401,15 +435,22 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           >
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
-              use="body1"
             >
               Legal
             </Text>
@@ -444,15 +485,22 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           >
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
-              use="body1"
             >
               EN Debug Menu
             </Text>
@@ -473,15 +521,22 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           >
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
-              use="body1"
             >
               Feature Flags (Dev mode only)
             </Text>
@@ -601,15 +656,18 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             />
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  undefined,
+                ]
               }
-              use="body1"
             >
               English
             </Text>
@@ -654,19 +712,24 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 <View>
                   <Text
                     style={
-                      Object {
-                        "color": undefined,
-                        "fontFamily": "IBMPlexSans",
-                        "fontSize": 18,
-                        "fontWeight": "bold",
-                        "lineHeight": 24,
-                        "marginRight": 22,
-                        "marginTop": 16,
-                        "textAlign": "right",
-                        "writingDirection": "ltr",
-                      }
+                      Array [
+                        Object {
+                          "color": "#2e2e2e",
+                          "fontSize": 17,
+                          "lineHeight": 28,
+                        },
+                        Object {
+                          "writingDirection": "ltr",
+                        },
+                        Object {
+                          "color": undefined,
+                          "fontWeight": "bold",
+                          "marginRight": 22,
+                          "marginTop": 16,
+                          "textAlign": "right",
+                        },
+                      ]
                     }
-                    use="body1"
                   >
                     Done
                   </Text>
@@ -746,15 +809,22 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           >
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
-              use="body1"
             >
               About
             </Text>
@@ -775,15 +845,22 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           >
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
-              use="body1"
             >
               Legal
             </Text>
@@ -818,15 +895,22 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           >
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
-              use="body1"
             >
               EN Debug Menu
             </Text>
@@ -847,15 +931,22 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
           >
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
-              use="body1"
             >
               Feature Flags (Dev mode only)
             </Text>

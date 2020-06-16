@@ -66,7 +66,7 @@ const Calendar = ({
 
   return (
     <View style={styles.container}>
-      <Typography use='headline3'>{title}</Typography>
+      <Typography use='headline1'>{title}</Typography>
       <View style={styles.calendarContainer}>
         <DayLabels />
         <CalendarRow week={week1} />

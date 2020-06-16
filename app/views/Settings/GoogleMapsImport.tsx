@@ -47,7 +47,7 @@ const GoogleMapsImport = ({
       </TouchableOpacity>
 
       <View style={styles.description}>
-        <Typography use='body3' secondary monospace>
+        <Typography style={styles.disclaimerText}>
           {t('import.google.disclaimer')}
         </Typography>
       </View>
@@ -71,7 +71,10 @@ const styles = StyleSheet.create({
     ...Buttons.largeBlueOutline,
   },
   buttonText: {
-    ...TypographyStyles.ctaButtonOutlined,
+    ...TypographyStyles.buttonTextDark,
+  },
+  disclaimerText: {
+    ...TypographyStyles.disclaimer,
   },
 });
 

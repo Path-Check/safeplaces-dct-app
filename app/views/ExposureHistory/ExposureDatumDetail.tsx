@@ -68,7 +68,7 @@ const PossibleExposureDetail = ({
       <View style={styles.container}>
         <Typography style={styles.date}>{exposureDate}</Typography>
         <Typography style={styles.info}>{exposureTime}</Typography>
-        <Typography sytle={styles.info}>{dailyReports}</Typography>
+        <Typography style={styles.info}>{dailyReports}</Typography>
         <View style={styles.contentContainer}>
           <Typography style={styles.content}>{explainationContent}</Typography>
         </View>
@@ -100,7 +100,7 @@ const NoKnownExposureDetail = ({
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
-      <Typography sytle={styles.info}>{dailyReports}</Typography>
+      <Typography style={styles.info}>{dailyReports}</Typography>
       <View style={styles.contentContainer}>
         <Typography style={styles.content}>{explainationContent}</Typography>
       </View>
@@ -122,7 +122,7 @@ const UnknownExposureDetail = ({
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
-      <Typography sytle={styles.info}>{subTitleText}</Typography>
+      <Typography style={styles.info}>{subTitleText}</Typography>
       <View style={styles.contentContainer}>
         <Typography style={styles.content}>{explainationContent}</Typography>
       </View>
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     marginTop: Spacing.xLarge,
   },
   nextStepsButtonText: {
-    ...TypographyStyles.ctaButtonOutlined,
+    ...TypographyStyles.buttonTextDark,
   },
 });
 

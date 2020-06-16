@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     ...Buttons.largeBlue,
   },
   buttonText: {
-    ...TypographyStyles.ctaButtonFilled,
+    ...TypographyStyles.buttonTextLight,
   },
 });
 
