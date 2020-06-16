@@ -80,6 +80,8 @@ _Safe Paths_ is built on [React Native](https://reactnative.dev/docs/getting-sta
 
 Read the [contribution guidelines](CONTRIBUTING.md).
 
+If you're looking for a first ticket - please check out the backlog for a bug or first story [JIRA project.](https://pathcheck.atlassian.net/secure/RapidBoard.jspa?rapidView=9&projectKey=SAF&view=planning.nodetail&selectedIssue=SAF-264&issueLimit=100)
+
 ## Architecture
 
 View the [architecture diagram](docs/Private_Kit_Diagram.png) for a basic overview on the sequencing of generalized events and services that are used by Safe Paths.
