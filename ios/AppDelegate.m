@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  BTE
+//  BT
 //
 //  Created by John Schoeman on 5/28/20.
 //  Copyright © 2020 Path Check Inc. All rights reserved.
@@ -15,7 +15,7 @@
 #import <RNCPushNotificationIOS.h>
 #import <UserNotifications/UserNotifications.h>
 #import <RNSplashScreen.h>
-#import <BTE-Swift.h>
+#import <BT-Swift.h>
 
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
