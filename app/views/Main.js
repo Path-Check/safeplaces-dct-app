@@ -75,7 +75,7 @@ export const Main = () => {
     return <TracingOffScreen />;
   } else if (notification.status === PermissionStatus.DENIED) {
     return <NotificationsOffScreen />;
-  } else if (hasSelectedAuthorities === false) {
+  } else if (hasSelectedAuthorities === false && isGPS) {
     return <SelectAuthorityScreen />;
   } else {
     return <AllServicesOnScreen />;
