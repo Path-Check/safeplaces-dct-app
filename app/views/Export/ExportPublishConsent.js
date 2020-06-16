@@ -13,7 +13,6 @@ export const ExportPublishConsent = ({ navigation, route }) => {
   const [isConsenting, setIsConsenting] = useState(false);
   const { t } = useTranslation();
   const {
-    exportExitRoute,
     exportPublishBody,
     exportPublishButtonSubtitle,
     exportPublishIcon,
@@ -22,6 +21,7 @@ export const ExportPublishConsent = ({ navigation, route }) => {
   const exportPublishNextRoute = isGPS
     ? Screens.ExportConfirmUpload
     : Screens.ExportComplete;
+  const exportExitRoute = isGPS ? Screens.ExportStart : Screens.Settings;
   const onClose = () => exitWarningAlert(navigation, exportExitRoute);
 
   const { selectedAuthority, code } = route.params;
