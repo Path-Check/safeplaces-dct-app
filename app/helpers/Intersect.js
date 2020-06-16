@@ -33,7 +33,7 @@ import {
 import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
 import languages from '../locales/languages';
 
-import { store } from '../store'
+import { store } from '../store';
 
 import getCursor from '../api/healthcareAuthorities/getCursorApi';
 
@@ -382,7 +382,7 @@ async function asyncCheckIntersect() {
   if (!localHAData) localHAData = [];
 
   const { selectedAuthorities } = store.getState().healthcareAuthorities;
-  
+
   for (const authority of selectedAuthorities) {
     try {
       let {
