@@ -37,21 +37,24 @@ const outlined: ViewStyle = {
 };
 
 // Combinations
-export const largeBlueOutline: ViewStyle = {
-  ...base,
-  ...large,
-  ...primaryBlue,
-  ...outlined,
-};
-
 export const largeBlue: ViewStyle = {
   ...base,
   ...large,
   ...primaryBlue,
 };
 
+export const largeBlueOutline: ViewStyle = {
+  ...largeBlue,
+  ...outlined,
+};
+
 export const largeWhite: ViewStyle = {
   ...base,
   ...large,
   ...white,
+};
+
+export const largeWhiteOutline: ViewStyle = {
+  ...largeWhite,
+  ...outlined,
 };

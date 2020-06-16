@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import {
+  TouchableOpacity,
+  Linking,
+  Modal,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Linking, Modal, StyleSheet, View } from 'react-native';
 import loadLocalResource from 'react-native-local-resource';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
@@ -11,7 +17,12 @@ import es_PR from '../locales/eula/es_PR.html';
 import ht from '../locales/eula/ht.html';
 
 import { Icons } from '../assets';
-import { Colors } from '../styles';
+import {
+  Spacing,
+  Buttons,
+  Colors,
+  Typography as TypographyStyles,
+} from '../styles';
 
 const EULA_FILES = { en, es_PR, ht };
 
@@ -48,12 +59,14 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
 
   const canContinue = boxChecked;
 
+  const handleOnPressGetStarted = () => setModalVisibility(true);
   return (
     <>
-      <Button
-        label={t('label.launch_get_started')}
-        onPress={() => setModalVisibility(true)}
-      />
+      <TouchableOpacity style={styles.button} onPress={handleOnPressGetStarted}>
+        <Typography style={styles.buttonText}>
+          {t('label.launch_get_started')}
+        </Typography>
+      </TouchableOpacity>
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
           <SafeAreaView style={{ flex: 1 }}>
@@ -78,14 +91,16 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
           </SafeAreaView>
           <SafeAreaView style={{ backgroundColor: Colors.secondaryBlue }}>
             <View style={styles.ctaBox}>
-              <Checkbox
-                label={t('onboarding.eula_checkbox')}
-                onPress={() => toggleCheckbox(!boxChecked)}
-                checked={boxChecked}
-              />
-              <Typography style={styles.smallDescriptionText}>
-                {t('onboarding.eula_message')}
-              </Typography>
+              <View style={styles.checkboxContainer}>
+                <Checkbox
+                  label={t('onboarding.eula_checkbox')}
+                  onPress={() => toggleCheckbox(!boxChecked)}
+                  checked={boxChecked}
+                />
+                <Typography style={styles.smallDescriptionText}>
+                  {t('onboarding.eula_message')}
+                </Typography>
+              </View>
               <Button
                 label={t('onboarding.eula_continue')}
                 disabled={!canContinue}
@@ -112,9 +127,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
   },
   ctaBox: {
-    padding: 15,
-    paddingTop: 0,
+    paddingHorizontal: Spacing.medium,
     backgroundColor: Colors.secondaryBlue,
+  },
+  checkboxContainer: {
+    paddingVertical: Spacing.medium,
   },
   closeIcon: {
     marginBottom: 6,
@@ -122,7 +139,13 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   smallDescriptionText: {
-    fontSize: 14,
-    marginVertical: 12,
+    ...TypographyStyles.label,
+    color: Colors.invertedText,
+  },
+  button: {
+    ...Buttons.largeWhite,
+  },
+  buttonText: {
+    ...TypographyStyles.buttonTextDark,
   },
 });

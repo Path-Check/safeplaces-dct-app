@@ -44,6 +44,11 @@ export const monospace: TextStyle = {
 };
 
 // Standard Font Types
+export const tinyFont: TextStyle = {
+  lineHeight: smallestLineHeight,
+  fontSize: tiny,
+};
+
 export const smallFont: TextStyle = {
   lineHeight: smallLineHeight,
   fontSize: small,

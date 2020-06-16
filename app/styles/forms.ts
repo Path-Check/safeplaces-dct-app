@@ -1,4 +1,4 @@
-import { TextStyle } from 'react-native';
+import { ViewStyle, TextStyle } from 'react-native';
 
 import * as Colors from './colors';
 import * as Spacing from './spacing';
@@ -7,8 +7,8 @@ import * as Typography from './typography';
 
 // Global Form Styles
 export const textInputFormField: TextStyle = {
-  color: Colors.primaryText,
   flex: 1,
+  color: Colors.primaryText,
   backgroundColor: Colors.formInputBackground,
   borderRadius: Outlines.baseBorderRadius,
   borderColor: Colors.formInputBorder,
@@ -27,4 +27,20 @@ export const required: TextStyle = {
   fontSize: 12,
   color: Colors.primaryText,
   marginTop: 6,
+};
+
+export const checkbox: ViewStyle = {
+  flexDirection: 'row',
+  alignItems: 'center',
+};
+
+export const checkboxIcon: ViewStyle = {
+  width: 25,
+  height: 25,
+  marginRight: Spacing.medium,
+};
+
+export const checkboxText: TextStyle = {
+  ...Typography.mediumFont,
+  color: Colors.invertedText,
 };
