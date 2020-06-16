@@ -8,7 +8,7 @@ import * as Typography from './typography';
 // Global Form Styles
 export const textInputFormField: TextStyle = {
   color: Colors.primaryText,
-  // flex: 1,
+  flex: 1,
   backgroundColor: Colors.formInputBackground,
   borderRadius: Outlines.baseBorderRadius,
   borderColor: Colors.formInputBorder,
