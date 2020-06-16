@@ -152,7 +152,7 @@ exports[`exposure notifications not available screen matches snapshot 1`] = `
             ]
           }
         >
-          Your phone is not currently covered by Healthcare Authorities using PathCheck.
+          Your phone is not currently covered by Healthcare Authorities using PathCheck
         </Text>
       </View>
     </View>
