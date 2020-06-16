@@ -159,7 +159,7 @@ final class ExposureManager: NSObject {
       if let error = error {
         completion(error)
       } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }), requestType: .post) { result in
+        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }, [.US]), requestType: .post) { result in
           switch result {
           case .success:
             break
@@ -177,7 +177,7 @@ final class ExposureManager: NSObject {
       if let error = error {
         completion(error)
       } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }), requestType: .post) { result in
+        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }, [.US]), requestType: .post) { result in
           switch result {
           case .success:
             completion(nil)
@@ -216,7 +216,9 @@ final class ExposureManager: NSObject {
                               duration: TimeInterval(Int.random(in: 1...5) * 60 * 5),
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
-      BTESecureStorage.shared.exposures.append(exposure)
+      let exposures = BTESecureStorage.shared.exposures
+      exposures.append(exposure)
+      BTESecureStorage.shared.exposures = exposures
       completion([NSNull(), "Exposures: \(BTESecureStorage.shared.exposures)"])
     case .simulatePositiveDiagnosis:
       let testResult = TestResult(id: UUID().uuidString,
@@ -258,6 +260,9 @@ final class ExposureManager: NSObject {
           completion([error.localizedDescription, NSNull()])
         }
       }
+    case .resetExposures:
+      BTESecureStorage.shared.exposures = List<Exposure>()
+      completion([NSNull(), "Current # exposures: \(BTESecureStorage.shared.exposures.count)"])
     }
   }
   

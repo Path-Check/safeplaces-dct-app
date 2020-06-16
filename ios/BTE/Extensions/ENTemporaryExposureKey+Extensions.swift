@@ -4,18 +4,18 @@ import ExposureNotification
 extension ENTemporaryExposureKey {
 
   var asCodableKey: ExposureKey {
-    ExposureKey(keyData: keyData,
+    ExposureKey(key: keyData,
                 rollingPeriod: rollingPeriod,
                 rollingStartNumber: rollingStartNumber,
-                transmissionRiskLevel: transmissionRiskLevel)
+                transmissionRisk: transmissionRiskLevel)
   }
 
   var asDictionary : [String: Any] {
     return [
-      "keyData": keyData,
+      "key": keyData,
       "rollingPeriod": rollingPeriod,
       "rollingStartNumber": rollingStartNumber,
-      "transmissionRiskLevel": transmissionRiskLevel
+      "transmissionRisk": transmissionRisk
     ]
   }
 

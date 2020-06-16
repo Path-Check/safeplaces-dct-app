@@ -7,6 +7,7 @@
   disableExposureNotifications,
   resetExposureDetectionError,
   resetUserENState,
+  resetExposures,
   getAndPostDiagnosisKeys,
   getExposureConfiguration
 }

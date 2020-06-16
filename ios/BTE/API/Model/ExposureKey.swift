@@ -3,9 +3,9 @@ import ExposureNotification
 
 struct ExposureKey: Codable {
 
-  let keyData: Data
+  let key: Data
   let rollingPeriod: ENIntervalNumber
   let rollingStartNumber: ENIntervalNumber
-  let transmissionRiskLevel: ENRiskLevel
+  let transmissionRisk: ENRiskLevel
 
 }
