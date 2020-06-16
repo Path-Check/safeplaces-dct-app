@@ -12,61 +12,20 @@ exports[`body1 is regular 1`] = `
 >
   <Text
     style={
-      Object {
-        "color": "#4051db",
-        "fontFamily": "IBMPlexSans",
-        "fontSize": 18,
-        "fontWeight": "normal",
-        "lineHeight": 24,
-        "writingDirection": "ltr",
-      }
+      Array [
+        Object {
+          "color": "#2e2e2e",
+          "fontSize": 17,
+          "lineHeight": 28,
+        },
+        Object {
+          "writingDirection": "ltr",
+        },
+        undefined,
+      ]
     }
-    use="body1"
   >
     body1
-  </Text>
-</View>
-`;
-
-exports[`changes color based on theme 1`] = `
-<View
-  collapsable={true}
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <Text
-    style={
-      Object {
-        "color": "#ffffff",
-        "fontFamily": "IBMPlexSans",
-        "fontSize": 18,
-        "fontWeight": "normal",
-        "lineHeight": 24,
-        "writingDirection": "ltr",
-      }
-    }
-    use="body1"
-  >
-    white
-  </Text>
-  <Text
-    style={
-      Object {
-        "color": "#4051db",
-        "fontFamily": "IBMPlexSans",
-        "fontSize": 18,
-        "fontWeight": "normal",
-        "lineHeight": 24,
-        "writingDirection": "ltr",
-      }
-    }
-    use="body1"
-  >
-    violet
   </Text>
 </View>
 `;
@@ -83,16 +42,20 @@ exports[`headline1 is large and bold 1`] = `
 >
   <Text
     style={
-      Object {
-        "color": "#4051db",
-        "fontFamily": "IBMPlexSans-Bold",
-        "fontSize": 52,
-        "fontWeight": "bold",
-        "lineHeight": 52,
-        "writingDirection": "ltr",
-      }
+      Array [
+        Object {
+          "color": "#4051db",
+          "fontFamily": "IBMPlexSans-Bold",
+          "fontSize": 52,
+          "fontWeight": "500",
+          "lineHeight": 52,
+        },
+        Object {
+          "writingDirection": "ltr",
+        },
+        undefined,
+      ]
     }
-    use="headline1"
   >
     headline1
   </Text>

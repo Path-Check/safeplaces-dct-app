@@ -36,7 +36,6 @@ export type Screen =
   | 'EnableExposureNotifications'
   | 'ExportFlow'
   | 'SelfAssessment'
-  | 'ChooseProvider'
   | 'PartnersOverview'
   | 'PartnersEdit'
   | 'PartnersCustomUrl';
@@ -68,7 +67,6 @@ export const Screens: { [key in Screen]: Screen } = {
   EnableExposureNotifications: 'EnableExposureNotifications',
   ExportFlow: 'ExportFlow',
   SelfAssessment: 'SelfAssessment',
-  ChooseProvider: 'ChooseProvider',
   PartnersOverview: 'PartnersOverview',
   PartnersEdit: 'PartnersEdit',
   PartnersCustomUrl: 'PartnersCustomUrl',

@@ -106,7 +106,7 @@ export const switchDisabled = lightGray;
 export const switchEnabled = defaultBlue;
 
 // Text
-export const primaryText = midnightBlue;
+export const primaryText = darkestGray;
 export const secondaryText = darkGray;
 export const tertiaryText = secondaryBlue;
 export const invertedText = white;

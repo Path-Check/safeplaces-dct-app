@@ -23,18 +23,3 @@ it('body1 is regular', () => {
 
   expect(asJSON()).toMatchSnapshot();
 });
-
-it('changes color based on theme', () => {
-  const { asJSON } = render(
-    <>
-      <Theme use='charcoal'>
-        <Typography use='body1'>white</Typography>
-      </Theme>
-      <Theme use='default'>
-        <Typography use='body1'>violet</Typography>
-      </Theme>
-    </>,
-  );
-
-  expect(asJSON()).toMatchSnapshot();
-});

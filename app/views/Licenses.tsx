@@ -14,7 +14,6 @@ import fontFamily from '../constants/fonts';
 import { Images } from '../assets';
 import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
-import { Theme } from '../constants/themes';
 import { useAssets } from '../TracingStrategyAssets';
 import { NavigationProp } from '../navigation';
 
@@ -33,6 +32,8 @@ export const LicensesScreen = ({
   const { t } = useTranslation();
   const { legalHeader } = useAssets();
 
+  const legalHeaderText: string = legalHeader as string;
+
   const backToMain = () => {
     navigation.goBack();
   };
@@ -42,16 +43,19 @@ export const LicensesScreen = ({
     return true;
   };
 
-  const handleTermsOfUsePressed = () => {
-    Linking.openURL(PRIVACY_POLICY_URL);
-  };
-
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
   });
+
+  const infoAddress = 'info@pathcheck.org';
+  const pathCheckAddress = 'covidsafepaths.org';
+
+  const handleOnPressOpenUrl = (url: string) => {
+    return () => Linking.openURL(url);
+  };
 
   return (
     <NavigationBarWrapper
@@ -60,43 +64,29 @@ export const LicensesScreen = ({
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View>
           <Typography style={styles.heading} use='headline2'>
-            {legalHeader}
+            {legalHeaderText}
           </Typography>
           <Typography style={styles.body} use='body1'>
             {t('label.legal_page_address')}
           </Typography>
-          <Typography
-            style={styles.hyperlink}
-            onPress={() => {
-              Linking.openURL('mailto:info@pathcheck.org');
-            }}>
-            {/* eslint-disable-next-line react-native/no-raw-text */}
-            {'info@pathcheck.org'}
-          </Typography>
-          <Typography
-            style={styles.hyperlink}
-            onPress={() => {
-              Linking.openURL('https://covidsafepaths.org/');
-            }}>
-            {/* eslint-disable-next-line react-native/no-raw-text */}
-            {'covidsafepaths.org'}
-          </Typography>
+          <TouchableOpacity
+            onPress={handleOnPressOpenUrl('mailto:info@pathcheck.org')}>
+            <Typography style={styles.hyperlink}>{infoAddress}</Typography>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleOnPressOpenUrl('covidsafepaths.org')}>
+            <Typography style={styles.hyperlink}>{pathCheckAddress}</Typography>
+          </TouchableOpacity>
         </View>
       </ScrollView>
-      <Theme use='charcoal'>
-        <TouchableOpacity
-          onPress={handleTermsOfUsePressed}
-          style={styles.termsInfoRow}>
-          <Typography
-            use='body1'
-            onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}>
-            {t('label.privacy_policy')}
-          </Typography>
-          <View style={styles.arrowContainer}>
-            <Image source={Images.ForeArrow} />
-          </View>
-        </TouchableOpacity>
-      </Theme>
+      <TouchableOpacity
+        style={styles.termsInfoRow}
+        onPress={handleOnPressOpenUrl(PRIVACY_POLICY_URL)}>
+        <Typography use='body1'>{t('label.privacy_policy')}</Typography>
+        <View style={styles.arrowContainer}>
+          <Image source={Images.ForeArrow} />
+        </View>
+      </TouchableOpacity>
     </NavigationBarWrapper>
   );
 };

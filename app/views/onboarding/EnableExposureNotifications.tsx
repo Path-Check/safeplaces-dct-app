@@ -5,13 +5,13 @@ import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
 import { Button } from '../../components/Button';
-import { Type, Typography } from '../../components/Typography';
+import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
 import { useDispatch } from 'react-redux';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 
-import { Spacing, Colors } from '../../styles';
+import { Spacing, Colors, Typography as TypographyStyles } from '../../styles';
 
 export const EnableExposureNotifications = (): JSX.Element => {
   const { requestENAuthorization } = useContext(ExposureNotificationContext);
@@ -50,13 +50,11 @@ export const EnableExposureNotifications = (): JSX.Element => {
             </View>
             <Typography
               style={styles.headerText}
-              use={Type.Headline2}
+              use={'headline2'}
               testID='Header'>
               {titleText}
             </Typography>
-            <Typography style={styles.subheaderText} use={Type.Body2}>
-              {subTitleText}
-            </Typography>
+            <Typography style={styles.subheaderText}>{subTitleText}</Typography>
           </View>
 
           <View style={styles.footerContainer}>
@@ -99,12 +97,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   headerText: {
+    ...TypographyStyles.header1,
     color: Colors.white,
   },
   iconContainer: {
     marginBottom: '10%',
   },
   subheaderText: {
+    ...TypographyStyles.header2,
     color: Colors.white,
     marginTop: '3%',
   },

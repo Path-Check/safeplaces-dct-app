@@ -100,7 +100,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   }: SettingsListItemProps) => {
     return (
       <TouchableOpacity style={[styles.listItem, style]} onPress={onPress}>
-        <Typography use={'body1'}>{label}</Typography>
+        <Typography style={styles.listItemText}>{label}</Typography>
         {description ? (
           <Typography style={styles.descriptionText}>{description}</Typography>
         ) : null}
@@ -135,14 +135,16 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </NativePicker>
         </View>
 
-        <View style={styles.section}>
-          <SettingsListItem
-            label={t('settings.share_test_result')}
-            onPress={navigateTo('ExportFlow')}
-            description={t('settings.share_test_result_description')}
-            style={styles.lastListItem}
-          />
-        </View>
+        {!isGPS && (
+          <View style={styles.section}>
+            <SettingsListItem
+              label={t('settings.share_test_result')}
+              onPress={navigateTo('ExportFlow')}
+              description={t('settings.share_test_result_description')}
+              style={styles.lastListItem}
+            />
+          </View>
+        )}
 
         {isGPS ? (
           <View style={styles.section}>
@@ -201,6 +203,9 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.medium,
     borderBottomWidth: 1,
     borderColor: Colors.tertiaryViolet,
+  },
+  listItemText: {
+    ...TypographyStyles.tappableListItem,
   },
   languageSelectionListItem: {
     flex: 1,

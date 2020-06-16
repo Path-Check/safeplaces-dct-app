@@ -106,73 +106,117 @@ exports[`renders correctly 1`] = `
         <View>
           <Text
             style={
-              Object {
-                "color": "#000000",
-                "fontFamily": "IBMPlexSans-Bold",
-                "fontSize": 26,
-                "fontWeight": "bold",
-                "lineHeight": 34,
-                "marginBottom": 12,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#4051db",
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 28,
+                  "fontWeight": "500",
+                  "lineHeight": 40,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "color": "#000000",
+                  "marginBottom": 12,
+                },
+              ]
             }
-            use="headline2"
           >
             PathCheck GPS
           </Text>
           <Text
             style={
-              Object {
-                "color": "#000000",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 18,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "marginBottom": 24,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "color": "#000000",
+                  "marginBottom": 24,
+                },
+              ]
             }
-            use="body1"
           >
             PathCheck
 58 Day Street
 Box 441621
 Somerville, MA 02144
           </Text>
-          <Text
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
             style={
               Object {
-                "color": "#4051db",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "marginBottom": 12,
-                "textDecorationLine": "underline",
-                "writingDirection": "ltr",
+                "opacity": 1,
               }
             }
-            use="body1"
           >
-            info@pathcheck.org
-          </Text>
-          <Text
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 16,
+                    "marginBottom": 12,
+                    "textDecorationLine": "underline",
+                  },
+                ]
+              }
+            >
+              info@pathcheck.org
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
             style={
               Object {
-                "color": "#4051db",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "marginBottom": 12,
-                "textDecorationLine": "underline",
-                "writingDirection": "ltr",
+                "opacity": 1,
               }
             }
-            use="body1"
           >
-            covidsafepaths.org
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 16,
+                    "marginBottom": 12,
+                    "textDecorationLine": "underline",
+                  },
+                ]
+              }
+            >
+              covidsafepaths.org
+            </Text>
+          </View>
         </View>
       </View>
     </RCTScrollView>
@@ -193,16 +237,18 @@ Somerville, MA 02144
     >
       <Text
         style={
-          Object {
-            "color": "#ffffff",
-            "fontFamily": "IBMPlexSans",
-            "fontSize": 18,
-            "fontWeight": "normal",
-            "lineHeight": 24,
-            "writingDirection": "ltr",
-          }
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontSize": 17,
+              "lineHeight": 28,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            undefined,
+          ]
         }
-        use="body1"
       >
         Privacy Policy
       </Text>

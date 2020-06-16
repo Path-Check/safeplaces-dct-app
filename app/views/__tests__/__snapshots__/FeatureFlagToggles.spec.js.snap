@@ -93,39 +93,44 @@ exports[`renders default values from the flags provider 1`] = `
       </Text>
     </View>
     <Text
-      bold={true}
       style={
-        Object {
-          "color": "#4051db",
-          "fontFamily": "IBMPlexSans-Bold",
-          "fontSize": 18,
-          "fontWeight": "bold",
-          "lineHeight": 24,
-          "marginHorizontal": 15,
-          "paddingTop": 7.5,
-          "textAlign": "center",
-          "writingDirection": "ltr",
-        }
+        Array [
+          Object {
+            "color": "#2e2e2e",
+            "fontSize": 17,
+            "lineHeight": 28,
+          },
+          Object {
+            "writingDirection": "ltr",
+          },
+          Object {
+            "marginHorizontal": 15,
+            "paddingTop": 7.5,
+            "textAlign": "center",
+          },
+        ]
       }
-      use="body1"
     >
       Notice
     </Text>
     <Text
       style={
-        Object {
-          "color": "#4051db",
-          "fontFamily": "IBMPlexSans",
-          "fontSize": 16,
-          "fontWeight": "normal",
-          "lineHeight": 22,
-          "marginHorizontal": 15,
-          "paddingTop": 7.5,
-          "textAlign": "center",
-          "writingDirection": "ltr",
-        }
+        Array [
+          Object {
+            "color": "#4e4e4e",
+            "fontSize": 17,
+            "lineHeight": 28,
+          },
+          Object {
+            "writingDirection": "ltr",
+          },
+          Object {
+            "marginHorizontal": 15,
+            "paddingTop": 7.5,
+            "textAlign": "center",
+          },
+        ]
       }
-      use="body2"
     >
       This screen is only available when running the application in development or testing
     </Text>
@@ -164,19 +169,21 @@ exports[`renders default values from the flags provider 1`] = `
           value={false}
         />
         <Text
-          bold={true}
           style={
-            Object {
-              "color": "#4051db",
-              "fontFamily": "IBMPlexSans-Bold",
-              "fontSize": 18,
-              "fontWeight": "bold",
-              "lineHeight": 24,
-              "paddingLeft": 15,
-              "writingDirection": "ltr",
-            }
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "paddingLeft": 15,
+              },
+            ]
           }
-          use="body1"
         >
           Exposure Mode
         </Text>
@@ -214,48 +221,54 @@ exports[`renders default values from the flags provider 1`] = `
           }
         >
           <Text
-            bold={true}
             style={
-              Object {
-                "color": "#4051db",
-                "fontFamily": "IBMPlexSans-Bold",
-                "fontSize": 18,
-                "fontWeight": "bold",
-                "lineHeight": 24,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                undefined,
+              ]
             }
-            use="body1"
           >
             FOO BAR
           </Text>
           <Text
             style={
-              Object {
-                "color": "#4051db",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "fontWeight": "normal",
-                "lineHeight": 22,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#4e4e4e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                undefined,
+              ]
             }
-            use="body2"
           >
             Default:
             <Text
               style={
-                Object {
-                  "color": "#4051db",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 15,
-                  "fontStyle": "italic",
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#6979f8",
+                    "fontSize": 15,
+                    "lineHeight": 24,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "fontStyle": "italic",
+                  },
+                ]
               }
-              use="body3"
             >
                On
             </Text>
