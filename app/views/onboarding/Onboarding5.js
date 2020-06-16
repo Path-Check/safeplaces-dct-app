@@ -1,5 +1,6 @@
 import { Button, Text } from 'native-base';
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import {
   Dimensions,
   ImageBackground,
@@ -26,14 +27,12 @@ import BackgroundImage from './../../assets/images/launchScreenBackground.png';
 import { isPlatformiOS } from './../../Util';
 import IconDenied from '../../assets/svgs/permissionDenied';
 import IconGranted from '../../assets/svgs/permissionGranted';
-import IconUnknown from '../../assets/svgs/permissionUnknown';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import buttonStyle from '../../constants/DR/buttonStyles';
 import { PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
-import languages from '../../locales/languages';
 import { HCAService } from '../../services/HCAService';
 import { sharedStyles } from './styles';
 
@@ -181,10 +180,11 @@ class Onboarding extends Component {
   }
 
   getAuthSubscriptionStatus() {
+    const { t } = this.props;
     return (
       <>
         <PermissionDescription
-          title={languages.t('label.launch_authority_access')}
+          title={t('label.launch_authority_access')}
           status={this.state.authSubscriptionStatus}
         />
         <View style={styles.divider} />
@@ -314,15 +314,17 @@ class Onboarding extends Component {
   }
 
   getTitleText() {
+    const { t } = this.props;
+
     switch (this.state.currentStep) {
       case StepEnum.LOCATION:
-        return languages.t('label.launch_location_header');
+        return t('label.launch_location_header');
       case StepEnum.NOTIFICATIONS:
-        return languages.t('label.launch_notif_header');
+        return t('label.launch_notif_header');
       case StepEnum.HCA_SUBSCRIPTION:
-        return languages.t('label.launch_authority_header');
+        return t('label.launch_authority_header');
       case StepEnum.DONE:
-        return languages.t('label.launch_done_header');
+        return t('label.launch_done_header');
     }
   }
 
@@ -338,31 +340,32 @@ class Onboarding extends Component {
   }
 
   getSubtitleText() {
+    const { t } = this.props;
     let style, text;
 
     switch (this.state.currentStep) {
       case StepEnum.LOCATION:
         [style, text] = [
           styles.subheaderText,
-          languages.t('label.launch_location_subheader'),
+          t('label.launch_location_subheader'),
         ];
         break;
       case StepEnum.NOTIFICATIONS:
         [style, text] = [
           styles.subheaderText,
-          languages.t('label.launch_notif_subheader'),
+          t('label.launch_notif_subheader'),
         ];
         break;
       case StepEnum.HCA_SUBSCRIPTION:
         [style, text] = [
           styles.subheaderTextWide,
-          languages.t('label.launch_authority_subheader'),
+          t('label.launch_authority_subheader'),
         ];
         break;
       case StepEnum.DONE:
         [style, text] = [
           styles.subheaderText,
-          languages.t('label.launch_done_subheader'),
+          t('label.launch_done_subheader'),
         ];
         break;
     }
@@ -375,11 +378,13 @@ class Onboarding extends Component {
   }
 
   getLocationPermission() {
+    const { t } = this.props;
+
     return (
       <>
         <View style={styles.divider} />
         <PermissionDescription
-          title={languages.t('label.launch_location_access')}
+          title={t('label.launch_location_access')}
           status={this.state.locationPermission}
         />
         <View style={styles.divider} />
@@ -388,11 +393,13 @@ class Onboarding extends Component {
   }
 
   getNotificationsPermissionIfIOS() {
+    const { t } = this.props;
+
     return (
       isPlatformiOS() && (
         <>
           <PermissionDescription
-            title={languages.t('label.launch_notification_access')}
+            title={t('label.launch_notification_access')}
             status={this.state.notificationPermission}
           />
           <View style={styles.divider} />
@@ -402,24 +409,28 @@ class Onboarding extends Component {
   }
 
   getButtonText() {
+    const { t } = this.props;
+
     switch (this.state.currentStep) {
       case StepEnum.LOCATION:
-        return languages.t('label.launch_enable_location');
+        return t('label.launch_enable_location');
       case StepEnum.NOTIFICATIONS:
-        return languages.t('label.launch_enable_notif');
+        return t('label.launch_enable_notif');
       case StepEnum.HCA_SUBSCRIPTION:
-        return languages.t('label.launch_enable_auto_subscription');
+        return t('label.launch_enable_auto_subscription');
       case StepEnum.DONE:
-        return languages.t('label.launch_finish_set_up');
+        return t('label.launch_finish_set_up');
     }
   }
 
   getSkipStepButton() {
+    const { t } = this.props;
+
     if (this.state.currentStep !== StepEnum.DONE) {
       return (
         <TouchableOpacity onPress={this.skipCurrentStep.bind(this)}>
           <Typography style={styles.skipThisStepBtn} use={'body1'}>
-            {languages.t('label.skip_this_step')}
+            {t('label.skip_this_step')}
           </Typography>
         </TouchableOpacity>
       );
@@ -529,4 +540,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboarding;
+export default withTranslation()(Onboarding);

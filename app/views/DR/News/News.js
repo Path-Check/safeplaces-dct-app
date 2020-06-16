@@ -1,5 +1,6 @@
 import { Button, Text } from 'native-base';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
 
 import imgNews from '../../../assets/images/news.jpg';
@@ -8,11 +9,11 @@ import DataList from '../../../components/DR/ActionCards/List';
 import { FIREBASE_SERVICE } from '../../../constants/DR/baseUrls';
 import buttonStyle from '../../../constants/DR/buttonStyles';
 import fetch from '../../../helpers/Fetch';
-import languages from '../../../locales/languages';
 
 const NEWS_URL = `${FIREBASE_SERVICE}/news`;
 
 function NewsScreen({ navigation }) {
+  const { t } = useTranslation();
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isNotLastPage, setIsNotLastPage] = useState(true);
@@ -46,7 +47,7 @@ function NewsScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <HeaderImage imgUrl={imgNews} title={languages.t('label.news_title')} />
+      <HeaderImage imgUrl={imgNews} title={t('label.news_title')} />
       <ScrollView>
         <DataList
           data={news}
@@ -62,7 +63,7 @@ function NewsScreen({ navigation }) {
               style={{ ...buttonStyle.buttonStyle, marginLeft: 0 }}
               onPress={onPress}>
               <Text style={buttonStyle.buttonText}>
-                {languages.t('label.launch_next')}
+                {t('label.launch_next')}
               </Text>
             </Button>
           )}

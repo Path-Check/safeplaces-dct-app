@@ -3,6 +3,7 @@ import 'moment/locale/es';
 import moment from 'moment';
 import { Button, Card, Left, Text } from 'native-base';
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import {
   RefreshControl,
   SafeAreaView,
@@ -23,11 +24,10 @@ import {
   LocationMatch,
 } from '../../../components/DR/ActionCards/ActionCards.js';
 import Colors from '../../../constants/colors';
-import languages from '../../../locales/languages';
 import { getAllCases } from '../../../services/DR/getAllCases.js';
 import styles from './style';
 
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -115,6 +115,7 @@ export default class HomeScreen extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const date = moment(new Date(), 'DD/MM/YYYY').format('MMMM YYYY');
     const {
       getUpdateDate,
@@ -155,7 +156,7 @@ export default class HomeScreen extends Component {
                           styles.subtitles,
                           { alignSelf: 'center', marginVertical: hp('1%') },
                         ]}>
-                        {languages.t('label.current_situation_label')}
+                        {t('label.current_situation_label')}
                       </Text>
                       <Text
                         style={[styles.dateSubtitle, { alignSelf: 'center' }]}>
@@ -168,7 +169,7 @@ export default class HomeScreen extends Component {
                       <Card style={styles.infoCards}>
                         <Text style={[styles.dataText]}>{cases}</Text>
                         <Text style={styles.text}>
-                          {languages.t('label.positive_label')}
+                          {t('label.positive_label')}
                         </Text>
                       </Card>
                     </TouchableOpacity>
@@ -182,7 +183,7 @@ export default class HomeScreen extends Component {
                           {deaths}
                         </Text>
                         <Text style={styles.text}>
-                          {languages.t('label.deceased_label')}
+                          {t('label.deceased_label')}
                         </Text>
                       </Card>
                     </TouchableOpacity>
@@ -193,7 +194,7 @@ export default class HomeScreen extends Component {
                           {recovered}
                         </Text>
                         <Text style={styles.text}>
-                          {languages.t('label.recovered_label')}
+                          {t('label.recovered_label')}
                         </Text>
                       </Card>
                     </TouchableOpacity>
@@ -203,7 +204,7 @@ export default class HomeScreen extends Component {
                           {todayCases}
                         </Text>
                         <Text style={styles.text}>
-                          {languages.t('label.case_day_label')}
+                          {t('label.case_day_label')}
                         </Text>
                       </Card>
                     </TouchableOpacity>
@@ -217,7 +218,7 @@ export default class HomeScreen extends Component {
                           styles.text,
                           { color: Colors.GRAY, textAlign: 'center' },
                         ]}>
-                        {languages.t('label.home_screen_bottom_text')}
+                        {t('label.home_screen_bottom_text')}
                       </Text>
                     </View>
                   </View>
@@ -237,7 +238,7 @@ export default class HomeScreen extends Component {
                           textAlign: 'center',
                         },
                       ]}>
-                      {languages.t('label.sponsor_title')}
+                      {t('label.sponsor_title')}
                     </Text>
                   </Button>
                 </View>
@@ -250,3 +251,5 @@ export default class HomeScreen extends Component {
     );
   }
 }
+
+export default withTranslation()(HomeScreen);

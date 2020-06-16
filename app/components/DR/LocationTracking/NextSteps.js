@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 
 import { Button } from '../../../components/Button';
-import languages from '../../../locales/languages';
 
 class NextSteps extends Component {
   constructor(props) {
@@ -10,9 +10,10 @@ class NextSteps extends Component {
   }
 
   render() {
+    const { t } = this.props;
     let buttonLabel;
     let buttonFunction;
-    buttonLabel = languages.t('label.exposure_next_steps');
+    buttonLabel = t('label.exposure_next_steps');
     buttonFunction = () => {
       this.props.navigation.navigate('ExposedResponse');
     };
@@ -34,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NextSteps;
+export default withTranslation()(NextSteps);

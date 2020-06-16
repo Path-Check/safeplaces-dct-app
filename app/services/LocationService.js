@@ -85,7 +85,10 @@ export class LocationData {
    * @param {*} region - Object with a `ne` and `sw` field that each contain a GPS point
    */
   isPointInBoundingBox(point, region) {
-    if (point && !this.isValidPoint(point) || !this.isValidBoundingBox(region)) {
+    if (
+      (point && !this.isValidPoint(point)) ||
+      !this.isValidBoundingBox(region)
+    ) {
       return false;
     } else {
       const { latitude: pointLat, longitude: pointLon } = point;

@@ -75,7 +75,6 @@ const DEV_LANGUAGES = __DEV__
   ? {
       ar: { label: ar._display_name, translation: ar },
       da: { label: da._display_name, translation: da },
-      es: { label: es._display_name, translation: es },
       fil: { label: fil._display_name, translation: fil },
       fr: { label: fr._display_name, translation: fr },
       id: { label: id._display_name, translation: id },
@@ -102,8 +101,8 @@ i18next.use(initReactI18next).init({
   fallbackLng: 'en', // If language detector fails
   returnEmptyString: false,
   resources: {
-    en: { label: en._display_name, translation: en },
     es: { label: es._display_name, translation: es },
+    en: { label: en._display_name, translation: en },
     ...DEV_LANGUAGES,
   },
 });

@@ -5,7 +5,6 @@ import { View } from 'react-native';
 
 import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
 import Colors from '../../../constants/colors';
-import languages from '../../../locales/languages';
 import EpidemiologicalStatus from './epidemiologicalStatus';
 import MentalHealthAdvices from './mentalHealthAdvices';
 
@@ -28,11 +27,11 @@ const EpidemiologicScreen = ({ navigation }) => {
             },
           }}>
           <TopBar.Screen
-            name={languages.t('positives.epidemiologic_report_tab')}
+            name={t('positives.epidemiologic_report_tab')}
             component={EpidemiologicalStatus}
           />
           <TopBar.Screen
-            name={languages.t('positives.mental_health_advice_tab')}
+            name={t('positives.mental_health_advice_tab')}
             component={MentalHealthAdvices}
           />
         </TopBar.Navigator>

@@ -1,11 +1,11 @@
 import merge from 'lodash/merge';
 
 import * as english from '../../app/locales/en.json';
-import * as haitian from '../../app/locales/ht.json';
+import * as spanish from '../../app/locales/es.json';
 
 const languageStrings = {
   'en-US': english,
-  'ht-HT': haitian,
+  es: spanish,
 };
 
 export const languages = Object.entries(languageStrings).map(

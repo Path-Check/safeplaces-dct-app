@@ -18,7 +18,7 @@ import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
 
-export const AboutScreen = ({ navigation }) => {
+const AboutScreen = ({ navigation }) => {
   const backToMain = () => {
     navigation.goBack();
   };

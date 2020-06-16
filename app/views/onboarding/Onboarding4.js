@@ -1,5 +1,6 @@
 import { Button, Text } from 'native-base';
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 import {
   Dimensions,
   ImageBackground,
@@ -17,12 +18,12 @@ import { Type, Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import buttonStyle from '../../constants/DR/buttonStyles';
 import fontFamily from '../../constants/fonts';
-import languages from '../../locales/languages';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
 
 const Onboarding = props => {
+  const { t } = props;
   return (
     <View style={styles.mainContainer}>
       <StatusBar
@@ -36,10 +37,10 @@ const Onboarding = props => {
       />
       <View style={styles.contentContainer}>
         <Typography style={styles.headerText} use={Type.Headline2}>
-          {languages.t('label.launch_screen4_header')}
+          {t('label.launch_screen4_header')}
         </Typography>
         <Typography style={styles.subheaderText}>
-          {languages.t('label.launch_screen4_subheader')}
+          {t('label.launch_screen4_subheader')}
         </Typography>
       </View>
       <View style={sharedStyles.footerContainer}>
@@ -49,7 +50,7 @@ const Onboarding = props => {
           }}
           style={{ ...buttonStyle.buttonStyle, height: hp('7%') }}>
           <Text style={{ ...buttonStyle.buttonText, fontSize: wp('4.3%') }}>
-            {languages.t('label.launch_set_up_phone')}
+            {t('label.launch_set_up_phone')}
           </Text>
         </Button>
       </View>
@@ -88,4 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboarding;
+export default withTranslation()(Onboarding);
