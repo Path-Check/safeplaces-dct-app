@@ -5,13 +5,13 @@ import RealmSwift
 @objcMembers
 class Exposure: Object, Codable {
   var id: String!
-  var date: Date!
+  var date: Int!
   var duration: TimeInterval!
   var totalRiskScore: ENRiskScore!
   var transmissionRiskLevel: ENRiskLevel!
 
   init(id: String,
-       date: Date,
+       date: Int,
        duration: TimeInterval,
        totalRiskScore: ENRiskScore,
        transmissionRiskLevel: ENRiskScore) {

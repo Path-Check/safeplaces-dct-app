@@ -132,7 +132,7 @@ final class ExposureManager: NSObject {
                   }
                   let newExposures = exposures!.map { exposure in
                     Exposure(id: UUID().uuidString,
-                             date: exposure.date,
+                             date: exposure.date.posixRepresentation,
                              duration: exposure.duration,
                              totalRiskScore: exposure.totalRiskScore,
                              transmissionRiskLevel: exposure.transmissionRiskLevel)
@@ -211,11 +211,13 @@ final class ExposureManager: NSObject {
       completion([NSNull(), "Exposure deteaction error message: \(BTESecureStorage.shared.exposureDetectionErrorLocalizedDescription)"])
     case .simulateExposure:
       let exposure = Exposure(id: UUID().uuidString,
-                              date: Date() - TimeInterval.random(in: 1...4) * 24 * 60 * 60,
-                              duration: TimeInterval(Int.random(in: 1...5) * 60 * 5),
+                              date: Date().posixRepresentation - Int(TimeInterval.random(in: 1...4)) * 24 * 60 * 60 * 1000,
+                              duration: TimeInterval(Int.random(in: 1...5) * 60 * 5 * 1000),
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
-      BTESecureStorage.shared.exposures.append(exposure)
+      let exposures = BTESecureStorage.shared.exposures
+      exposures.append(exposure)
+      BTESecureStorage.shared.exposures = exposures
       completion([NSNull(), "Exposures: \(BTESecureStorage.shared.exposures)"])
     case .simulatePositiveDiagnosis:
       let testResult = TestResult(id: UUID().uuidString,
@@ -257,6 +259,9 @@ final class ExposureManager: NSObject {
           completion([error.localizedDescription, NSNull()])
         }
       }
+    case .resetExposures:
+      BTESecureStorage.shared.exposures = List<Exposure>()
+      completion([NSNull(), "Exposures: \(BTESecureStorage.shared.exposures)"])
     }
   }
   

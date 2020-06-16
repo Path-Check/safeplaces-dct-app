@@ -1,5 +1,7 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import dayjs from 'dayjs';
+
+import { startListening } from './exposureNotificationsNativeModule';
 
 type Posix = number;
 
@@ -94,6 +96,16 @@ const ExposureHistoryProvider = ({
   const toggleHasExposure = () => {
     setHasBeenExposed(!hasBeenExposed);
   };
+
+  useEffect(() => {
+    const subscription = startListening((exposures: Possible[]) => {
+      console.log(exposures);
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   const observeExposures = () => {
     setUserHasNewExposure(false);

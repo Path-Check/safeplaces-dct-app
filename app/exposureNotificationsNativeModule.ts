@@ -1,7 +1,12 @@
-import { NativeModules } from 'react-native';
+import {
+  NativeEventEmitter,
+  NativeModules,
+  EventSubscription,
+} from 'react-native';
 
 import { ENAuthorizationStatus } from './ExposureNotificationContext';
 import { ENDiagnosisKey } from './views/Settings/ENLocalDiagnosisKeyScreen';
+import { Possible } from './ExposureHistoryContext';
 
 const exposureNotificationModule = NativeModules.PTCExposureManagerModule;
 const debugModule = NativeModules.DebugMenuModule;
@@ -37,6 +42,15 @@ export const simulateExposure = async (
   ) => void,
 ): Promise<void> => {
   debugModule.simulateExposure(cb);
+};
+
+export const resetExposure = async (
+  cb: (
+    errorMessage: ENModuleErrorMessage,
+    successMesage: ENModuleSuccessMessage,
+  ) => void,
+): Promise<void> => {
+  debugModule.resetExposure(cb);
 };
 
 export const simulatePositiveDiagnosis = async (
@@ -100,4 +114,31 @@ export const getExposureConfiguration = async (
   ) => void,
 ): Promise<void> => {
   debugModule.getExposureConfiguration(cb);
+};
+
+export const resetExposures = async (
+  cb: (
+    errorMessage: ENModuleErrorMessage,
+    successMesage: ENModuleSuccessMessage,
+  ) => void,
+): Promise<void> => {
+  debugModule.resetExposures(cb);
+};
+
+const ExposureEvents = new NativeEventEmitter(
+  NativeModules.ExposureEventEmitter,
+);
+
+type exposureEventCallback = (exsposures: Possible[]) => void;
+
+export const startListening = (
+  cb: exposureEventCallback,
+): EventSubscription => {
+  return ExposureEvents.addListener(
+    'EXPOSURES_CHANGED',
+    (jsonString: string) => {
+      const exposures: Possible[] = JSON.parse(jsonString);
+      cb(exposures);
+    },
+  );
 };
