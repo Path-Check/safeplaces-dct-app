@@ -12,7 +12,8 @@ import {
 import { WebView } from 'react-native-webview';
 
 import foreArrow from './../assets/images/foreArrow.png';
-import licenses from './../assets/LICENSE.json';
+import englishLicense from './../assets/LICENSE.json';
+import spanishLicense from './../assets/SPANISH_LICENSE.json';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
@@ -22,7 +23,7 @@ const PRIVACY_POLICY_URL =
   'https://docs.google.com/document/d/17u0f8ni9S0D4w8RCUlMMqxAlXKJAd2oiYGP8NUwkINo/edit';
 
 export const LicensesScreen = ({ navigation }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const backToMain = () => {
     navigation.goBack();
@@ -44,14 +45,14 @@ export const LicensesScreen = ({ navigation }) => {
     };
   });
 
-  function getLicenses() {
+  function getLicenses(license) {
     let result = '<html>';
     result +=
       '<style>  html, body { font-size: 40px; margin: 0; padding: 0; } </style>';
     result += '<body>';
 
-    for (let i = 0; i < licenses.terms_and_licenses.length; i++) {
-      const element = licenses.terms_and_licenses[i];
+    for (let i = 0; i < license.terms_and_licenses.length; i++) {
+      const element = license.terms_and_licenses[i];
 
       result += '<H2>' + element.name + '</H2><P>';
       result += element.text.replace(/\n/g, '<br/>');
@@ -71,7 +72,9 @@ export const LicensesScreen = ({ navigation }) => {
           <WebView
             originWhitelist={['*']}
             source={{
-              html: getLicenses(),
+              html: getLicenses(
+                i18n.language === 'es' ? spanishLicense : englishLicense,
+              ),
             }}
             style={{
               marginTop: 15,
