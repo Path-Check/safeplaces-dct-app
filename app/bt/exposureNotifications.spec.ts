@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
 import { DateTimeUtils } from '../helpers';
-import { Possible, ExposureDatum } from '../ExposureHistoryContext';
+import { Possible, ExposureDatum } from '../exposureHistory';
 import { toExposureHistory, RawExposure } from './exposureNotifications';
 
 describe('toExposureHistory', () => {

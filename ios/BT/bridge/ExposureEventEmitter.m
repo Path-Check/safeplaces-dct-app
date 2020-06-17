@@ -2,13 +2,18 @@
 #import <React/RCTEventEmitter.h>
 
 // Notification/Event Names
-NSString *const onExposureRecordUpdated = @"onExposureRecordUpdated";
 NSString *const onENAuthorizationStatusUpdated = @"onENAuthorizationStatusUpdated";
+NSString *const onExposuresChanged = @"onExposureRecordUpdated";
 
 @interface ExposureEventEmitter : RCTEventEmitter <RCTBridgeModule>
 @end
 
 @implementation ExposureEventEmitter
+
++ (BOOL)requiresMainQueueSetup
+{
+  return YES;  // only do this if your module initialization relies on calling UIKit!
+}
 
 RCT_EXPORT_MODULE();
 
@@ -24,7 +29,7 @@ RCT_EXPORT_MODULE();
 
 - (NSArray<NSString *> *)supportedEvents {
   return @[
-    onExposureRecordUpdated,
+    onExposuresChanged,
     onENAuthorizationStatusUpdated
   ];
 }

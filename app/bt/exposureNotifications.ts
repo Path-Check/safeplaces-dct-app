@@ -1,14 +1,19 @@
 import dayjs from 'dayjs';
 
-import { Possible, NoKnown, ExposureHistory } from '../ExposureHistoryContext';
+import {
+  Possible,
+  NoKnown,
+  ExposureHistory,
+  blankHistory,
+} from '../exposureHistory';
 
-type Posix = number;
 type UUID = string;
+type Posix = number;
 
 export interface RawExposure {
+  id: UUID;
   date: Posix;
   duration: number;
-  id: UUID;
   totalRiskScore: number;
   transmissionRiskLevel: number;
 }
@@ -67,21 +72,4 @@ const groupedByDate = (
     }
     return result;
   }, {});
-};
-
-const blankHistory = (): NoKnown[] => {
-  const now = Date.now();
-  const daysAgo = [...Array(21)].map((_v, idx: number) => {
-    return 20 - idx;
-  });
-
-  return daysAgo.map(
-    (daysAgo: number): NoKnown => {
-      const date = dayjs(now).subtract(daysAgo, 'day').startOf('day').valueOf();
-      return {
-        kind: 'NoKnown',
-        date,
-      };
-    },
-  );
 };

@@ -3,7 +3,7 @@ import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import dayjs from 'dayjs';
 
-import { ExposureDatum, Possible, NoKnown } from '../../ExposureHistoryContext';
+import { ExposureDatum, Possible, NoKnown } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import { TimeHelpers } from '../utils';
 import { Screens } from '../../navigation';

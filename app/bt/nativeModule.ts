@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import { ENAuthorizationStatus } from '../ExposureNotificationContext';
-import { ExposureHistory } from '../ExposureHistoryContext';
+import { ExposureHistory } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureHistory } from './exposureNotifications';
 
@@ -42,12 +42,6 @@ export const requestAuthorization = async (
   cb: (authorizationStatus: ENAuthorizationStatus) => void,
 ): Promise<void> => {
   exposureNotificationModule.requestExposureNotificationAuthorization(cb);
-};
-
-export const requestDeauthorization = async (
-  cb: (authorizationStatus: ENAuthorizationStatus) => void,
-): Promise<void> => {
-  exposureNotificationModule.requestExposureNotificationDeauthorization(cb);
 };
 
 // Debug Module

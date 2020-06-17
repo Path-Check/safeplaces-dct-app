@@ -2,25 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 
 import { isGPS } from './COVIDSafePathsConfig';
 import { BTNativeModule } from './bt';
-
-type Posix = number;
-
-export interface Possible {
-  kind: 'Possible';
-  date: Posix;
-  duration: number;
-  totalRiskScore: number;
-  transmissionRiskLevel: number;
-}
-
-export interface NoKnown {
-  kind: 'NoKnown';
-  date: Posix;
-}
-
-export type ExposureDatum = Possible | NoKnown;
-
-export type ExposureHistory = ExposureDatum[];
+import { ExposureHistory, blankHistory } from './exposureHistory';
 
 interface ExposureHistoryState {
   exposureHistory: ExposureHistory;
@@ -49,7 +31,9 @@ interface ExposureHistoryProps {
 const ExposureHistoryProvider = ({
   children,
 }: ExposureHistoryProps): JSX.Element => {
-  const [exposureHistory, setExposureHistory] = useState<ExposureHistory>([]);
+  const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
+    blankHistory(),
+  );
   const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(true);
 
   useEffect(() => {
