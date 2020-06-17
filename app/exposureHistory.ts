@@ -19,10 +19,12 @@ export type ExposureDatum = Possible | NoKnown;
 
 export type ExposureHistory = ExposureDatum[];
 
+const HISTORY_LENGTH = 21;
+
 export const blankHistory = (): NoKnown[] => {
   const now = Date.now();
-  const daysAgo = [...Array(21)].map((_v, idx: number) => {
-    return 20 - idx;
+  const daysAgo = [...Array(HISTORY_LENGTH)].map((_v, idx: number) => {
+    return HISTORY_LENGTH - 1 - idx;
   });
 
   return daysAgo.map(
