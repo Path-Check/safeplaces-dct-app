@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState, useContext } from 'react';
-import { AppState, BackHandler, StatusBar, View } from 'react-native';
+import { AppState, BackHandler, StatusBar } from 'react-native';
 
 import { isPlatformAndroid } from './../Util';
 import { isGPS } from '../COVIDSafePathsConfig';
@@ -13,20 +13,19 @@ import {
   TracingOffScreen,
   NotificationsOffScreen,
   SelectAuthorityScreen,
-  NoAuthoritiesScreen,
 } from './main/ServiceOffScreens';
-import { styles } from './main/style';
 import PermissionsContext, { PermissionStatus } from '../PermissionsContext';
-import { HCAService } from '../services/HCAService';
 
 import { Colors } from '../styles';
+import { useSelector } from 'react-redux';
+import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
 
 export const Main = () => {
   const tracingService = isGPS ? LocationServices : ExposureNotificationService;
   const navigation = useNavigation();
   const { notification } = useContext(PermissionsContext);
-  const [hasAuthorityInBounds, setHasAuthorityInBounds] = useState(undefined);
-  const [hasSavedAuthorities, setHasSavedAuthorities] = useState(undefined);
+  const hasSelectedAuthorities =
+    useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
 
   if (isPlatformAndroid()) {
     StatusBar.setBackgroundColor(Colors.transparent);
@@ -47,18 +46,7 @@ export const Main = () => {
     checkForPossibleExposure();
     const { canTrack } = await tracingService.checkStatusAndStartOrStop();
     setTrackingInfo({ canTrack });
-
-    const authoritiesInBoundsState = await HCAService.hasAuthoritiesInBounds();
-    setHasAuthorityInBounds(authoritiesInBoundsState);
-
-    const savedAuthoritiesState = await HCAService.hasSavedAuthorities();
-    setHasSavedAuthorities(savedAuthoritiesState);
-  }, [
-    tracingService,
-    setTrackingInfo,
-    setHasAuthorityInBounds,
-    setHasSavedAuthorities,
-  ]);
+  }, [tracingService, setTrackingInfo]);
 
   const handleBackPress = () => {
     BackHandler.exitApp(); // works best when the goBack is async
@@ -83,19 +71,13 @@ export const Main = () => {
     };
   }, [navigation, updateStateInfo]);
 
-  let screen;
-
   if (!trackingInfo.canTrack) {
-    screen = <TracingOffScreen />;
+    return <TracingOffScreen />;
   } else if (notification.status === PermissionStatus.DENIED) {
-    screen = <NotificationsOffScreen />;
-  } else if (hasAuthorityInBounds === false) {
-    screen = <NoAuthoritiesScreen />;
-  } else if (hasSavedAuthorities === false) {
-    screen = <SelectAuthorityScreen />;
+    return <NotificationsOffScreen />;
+  } else if (hasSelectedAuthorities === false && isGPS) {
+    return <SelectAuthorityScreen />;
   } else {
-    screen = <AllServicesOnScreen />;
+    return <AllServicesOnScreen />;
   }
-
-  return <View style={styles.backgroundImage}>{screen}</View>;
 };

@@ -1,16 +1,27 @@
 import React, { useContext } from 'react';
+import {
+  TouchableOpacity,
+  ImageBackground,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, StatusBar, StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { Icons, Images } from '../../assets';
-import { Button } from '../../components/Button';
-import { Type, Typography } from '../../components/Typography';
+import { Typography } from '../../components/Typography';
+import { Theme } from '../../constants/themes';
 import ExposureNotificationContext from '../../ExposureNotificationContext';
 import { useDispatch } from 'react-redux';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 
-import { Spacing, Colors } from '../../styles';
+import {
+  Spacing,
+  Buttons,
+  Colors,
+  Typography as TypographyStyles,
+} from '../../styles';
+import { Icons, Images } from '../../assets';
 
 export const EnableExposureNotifications = (): JSX.Element => {
   const { requestENAuthorization } = useContext(ExposureNotificationContext);
@@ -29,49 +40,59 @@ export const EnableExposureNotifications = (): JSX.Element => {
     dispatchOnboardingComplete();
   };
 
+  const handleOnPressDontEnable = () => {
+    dispatchOnboardingComplete();
+  };
+
   return (
-    <ImageBackground
-      source={Images.LaunchScreenBackground}
-      style={styles.backgroundImage}>
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor='transparent'
-        translucent
-      />
+    <Theme use='violet'>
+      <ImageBackground
+        source={Images.LaunchScreenBackground}
+        style={styles.backgroundImage}>
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent
+        />
 
-      <View
-        testID={'onboarding-permissions-screen'}
-        style={styles.mainContainer}>
-        <View style={styles.contentContainer}>
-          <View style={styles.iconContainer}>
-            <SvgXml xml={Icons.ExposureIcon} />
+        <View
+          testID={'onboarding-permissions-screen'}
+          style={styles.mainContainer}>
+          <View style={styles.contentContainer}>
+            <View style={styles.iconContainer}>
+              <SvgXml xml={Icons.ExposureIcon} />
+            </View>
+            <Typography
+              style={styles.headerText}
+              use={'headline2'}
+              testID='Header'>
+              {titleText}
+            </Typography>
+            <Typography style={styles.subheaderText}>{subTitleText}</Typography>
           </View>
-          <Typography
-            style={styles.headerText}
-            use={Type.Headline2}
-            testID='Header'>
-            {titleText}
-          </Typography>
-          <Typography style={styles.subheaderText} use={Type.Body2}>
-            {subTitleText}
-          </Typography>
-        </View>
 
-        <View style={styles.footerContainer}>
-          <Button
-            secondary
-            label={disableButtonLabel}
-            onPress={dispatchOnboardingComplete}
-            testID={'onboarding-permissions-disable-button'}
-          />
-          <Button
-            label={buttonLabel}
-            onPress={handleOnPressEnable}
-            testID={'onboarding-permissions-button'}
-          />
+          <View style={styles.footerContainer}>
+            <TouchableOpacity
+              style={styles.dontEnableButton}
+              onPress={handleOnPressDontEnable}
+              testID={'onboarding-permissions-disable-button'}>
+              <Typography style={styles.dontEnableButtonText}>
+                {disableButtonLabel}
+              </Typography>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.enableButton}
+              onPress={handleOnPressEnable}
+              testID={'onboarding-permissions-button'}>
+              <Typography style={styles.enableButtonText}>
+                {buttonLabel}
+              </Typography>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </ImageBackground>
+      </ImageBackground>
+    </Theme>
   );
 };
 
@@ -96,13 +117,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   headerText: {
+    ...TypographyStyles.header2,
     color: Colors.white,
   },
   iconContainer: {
-    marginBottom: '10%',
+    paddingBottom: Spacing.large,
   },
   subheaderText: {
-    color: Colors.white,
-    marginTop: '3%',
+    ...TypographyStyles.mainContent,
+    color: Colors.invertedText,
+  },
+  enableButton: {
+    ...Buttons.largeWhite,
+  },
+  enableButtonText: {
+    ...TypographyStyles.buttonTextDark,
+  },
+  dontEnableButton: {
+    ...Buttons.largeWhiteOutline,
+  },
+  dontEnableButtonText: {
+    ...TypographyStyles.buttonTextLight,
   },
 });

@@ -18,7 +18,7 @@ test('cta', () => {
   });
   const cta = getByTestId('assessment-button');
   fireEvent.press(cta);
-  expect(push).toHaveBeenCalledWith('EndComplete');
+  expect(push).toHaveBeenCalledWith('AssessmentComplete');
 });
 
 function Wrapper({ children }) {

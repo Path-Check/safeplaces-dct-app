@@ -105,38 +105,7 @@ exports[`no authorities screen matches snapshot 1`] = `
             "paddingBottom": 40,
           }
         }
-      >
-        <Text
-          style={
-            Object {
-              "color": "#ffffff",
-              "fontFamily": "IBMPlexSans-Medium",
-              "fontSize": 28,
-              "fontWeight": "normal",
-              "lineHeight": 34,
-              "marginBottom": 24,
-              "textAlign": "center",
-              "writingDirection": "ltr",
-            }
-          }
-          use="body1"
-        />
-        <Text
-          style={
-            Object {
-              "color": "#ffffff",
-              "fontFamily": "IBMPlexSans-Light",
-              "fontSize": 16,
-              "fontWeight": "normal",
-              "lineHeight": 24.5,
-              "marginBottom": 24,
-              "textAlign": "center",
-              "writingDirection": "ltr",
-            }
-          }
-          use="body1"
-        />
-      </View>
+      />
       <View
         style={
           Object {
@@ -163,18 +132,25 @@ exports[`no authorities screen matches snapshot 1`] = `
         </Text>
         <Text
           style={
-            Object {
-              "color": "#ffffff",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 18,
-              "fontWeight": "normal",
-              "lineHeight": 24.5,
-              "marginBottom": 24,
-              "textAlign": "center",
-              "writingDirection": "ltr",
-            }
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 18,
+                "lineHeight": 24.5,
+                "marginBottom": 24,
+                "textAlign": "center",
+              },
+            ]
           }
-          use="body1"
         >
           Your phone is outside any areas covered by Health Department on PathCheck 
 

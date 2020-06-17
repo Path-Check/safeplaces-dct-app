@@ -7,4 +7,4 @@ export { IconButton } from './IconButton';
 export { NativePicker } from './NativePicker';
 export { NavigationBarWrapper } from './NavigationBarWrapper';
 export { Switch } from './Switch';
-export { Type, Typography } from './Typography';
+export { Typography } from './Typography';

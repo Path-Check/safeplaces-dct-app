@@ -3,6 +3,7 @@ const BackgroundAtRisk = require('./backgroundAtRisk.png');
 const BoxCheckedIcon = require('./boxCheckedIcon.png');
 const BoxUncheckedIcon = require('./boxUncheckedIcon.png');
 const Close = require('./closeIcon.png');
+const Doctors = require('./doctors.png');
 const Export = require('./export.png');
 const ForeArrow = require('./foreArrow.png');
 const HomeScreenBackgroundOverlay = require('./homeScreenBackgroundOverlay.png');
@@ -32,6 +33,7 @@ export const Images = {
   BoxCheckedIcon,
   BoxUncheckedIcon,
   Close,
+  Doctors,
   EmptyPathBackground,
   Export,
   ForeArrow,

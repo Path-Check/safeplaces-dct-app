@@ -25,7 +25,7 @@
   "import": {
     "button_text": "Impor lokasi sebelumnya",
     "google": {
-      "disclaimer": "Safe Paths tidak memiliki afiliasi dengan Google dan tidak pernah membagikan data Anda.",
+      "disclaimer": "PathCheck tidak memiliki afiliasi dengan Google dan tidak pernah membagikan data Anda.",
       "title": "Google Maps"
     },
     "subtitle": "Untuk melihat apakah Anda pernah bertemu seseorang dengan COVID-19 sebelum mengunduh aplikasi ini, Anda dapat mengimpor riwayat lokasi pribadi Anda.",
@@ -34,7 +34,7 @@
   "label": {
     "authorities_add_button_label": "Tambah Sumber Terpercaya",
     "authorities_add_url": "Tambah Otoritas via URL",
-    "authorities_desc": "Pilih otoritas kesehatan tepercaya di wilayah Anda untuk mendapatkan data paparan. Pilih nama dari registri global, atau masukkan alamat web yang diberikan oleh otoritas kesehatan yang telah menggunakan Safe Paths.",
+    "authorities_desc": "Pilih otoritas kesehatan tepercaya di wilayah Anda untuk mendapatkan data paparan. Pilih nama dari registri global, atau masukkan alamat web yang diberikan oleh otoritas kesehatan yang telah menggunakan PathCheck.",
     "authorities_input_placeholder": "Paste URL disini",
     "authorities_no_sources": "Belum ada data",
     "authorities_removal_alert_cancel": "Batal",
@@ -43,7 +43,7 @@
     "authorities_removal_alert_title": "Hapus Otiritas kesehatan",
     "choose_provider_subtitle": "Untuk mendapat informasi tentang paparan, Anda harus berlangganan ke otoritas kesehatan.",
     "choose_provider_title": "Pilih Otoritas kesehatan",
-    "default_news_site_name": "Berita Safe Paths",
+    "default_news_site_name": "Berita PathCheck",
     "event_history_subtitle": "Pahami paparan pribadi Anda berdasarkan informasi yang dibagikan oleh otoritas kesehatan.",
     "event_history_title": "Riwayat paparan",
     "latest_news": "Berita Terbaru",
@@ -69,10 +69,10 @@
     "launch_set_up_phone_location": "Siapkan Perangkat Saya",
     "launch_subheader": "Jangan khawatir, informasi tidak akan pernah dibagikan, kecuali Anda secara eksplisit memutuskan untuk berbagi.",
     "loading_public_data": "memuat data...",
-    "location_disabled_message": "COVID Safe Paths membutuhkan layanan lokasi.",
+    "location_disabled_message": "PathCheck membutuhkan layanan lokasi.",
     "location_disabled_title": "Pelacakan Lokasi Dinonaktifkan",
-    "location_enabled_message": "COVID Safe Paths akan menyimpan lokasi anda setiap 5 menit sekali",
-    "location_enabled_title": "COVID Safe Paths Diaktifkan",
+    "location_enabled_message": "PathCheck akan menyimpan lokasi anda setiap 5 menit sekali",
+    "location_enabled_title": "PathCheck Diaktifkan",
     "news_subtitle": "Baca Informasi COVID terbaru dari otoritas kesehatan Anda",
     "news_title": "Berita Terbaru",
     "no_data": "Tidak ada data",

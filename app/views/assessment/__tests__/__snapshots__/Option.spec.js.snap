@@ -64,19 +64,23 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
         />
         <Text
           style={
-            Object {
-              "color": "#000000",
-              "flex": 1,
-              "flexWrap": "wrap",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 18,
-              "fontWeight": "normal",
-              "lineHeight": 24,
-              "writingDirection": "ltr",
-            }
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#000000",
+                "flex": 1,
+                "flexWrap": "wrap",
+              },
+            ]
           }
           testID="label"
-          use="body1"
         >
           Label
         </Text>
@@ -150,19 +154,23 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
         />
         <Text
           style={
-            Object {
-              "color": "#000000",
-              "flex": 1,
-              "flexWrap": "wrap",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 18,
-              "fontWeight": "normal",
-              "lineHeight": 24,
-              "writingDirection": "ltr",
-            }
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#000000",
+                "flex": 1,
+                "flexWrap": "wrap",
+              },
+            ]
           }
           testID="label"
-          use="body1"
         >
           Label
         </Text>

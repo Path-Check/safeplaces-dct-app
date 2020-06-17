@@ -118,46 +118,67 @@ Array [
         >
           <Text
             style={
-              Object {
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "marginTop": 12,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginTop": 12,
+                },
+              ]
             }
-            use="body1"
           >
             Adding location data from Google will give you a head start on building your recent locations.
           </Text>
           <Text
             style={
-              Object {
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "marginTop": 12,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginTop": 12,
+                },
+              ]
             }
-            use="body1"
           >
             Before you can import, you must first "Take out" your location data from Google.
           </Text>
           <Text
             style={
-              Object {
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "marginTop": 12,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginTop": 12,
+                },
+              ]
             }
-            use="body1"
           >
             Visit Google Takeout and export your Location History using the following settings: 
 1. Delivery method: "Add to Drive" 
@@ -202,17 +223,24 @@ Array [
             testID="google-takeout-link"
           >
             <Text
-              small={true}
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans-Medium",
-                  "fontSize": 14,
-                  "fontWeight": "normal",
-                  "lineHeight": 21,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "fontFamily": "IBMPlexSans-Medium",
+                    "fontSize": 14,
+                    "fontWeight": "normal",
+                    "lineHeight": 21,
+                  },
+                ]
               }
-              use="body1"
             >
               Visit Google Takeout
             </Text>
@@ -253,17 +281,24 @@ Array [
             testID="google-takeout-import-btn"
           >
             <Text
-              small={true}
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans-Medium",
-                  "fontSize": 14,
-                  "fontWeight": "normal",
-                  "lineHeight": 21,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "fontFamily": "IBMPlexSans-Medium",
+                    "fontSize": 14,
+                    "fontWeight": "normal",
+                    "lineHeight": 21,
+                  },
+                ]
               }
-              use="body1"
             >
               Import Locations
             </Text>

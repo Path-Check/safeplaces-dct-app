@@ -1,4 +1,3 @@
-import { useTheme } from 'emotion-theming';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -19,6 +18,7 @@ import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import { useAssets } from '../../TracingStrategyAssets';
 import exitWarningAlert from './exitWarningAlert';
+import exportCodeApi from '../../api/export/exportCodeApi';
 import { Screens } from '../../navigation';
 import { isGPS } from '../../COVIDSafePathsConfig';
 
@@ -29,7 +29,6 @@ const CODE_LENGTH = 6;
 
 const CodeInput = ({ code, length, setCode }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const theme = useTheme();
 
   let characters = [];
   for (let i = 0; i < length; i++) characters.push(code[i]);
@@ -102,7 +101,7 @@ const CodeInput = ({ code, length, setCode }) => {
           style={[
             styles.characterInput,
             {
-              borderColor: character ? theme.primary : theme.disabledLight,
+              borderColor: character ? Colors.primaryBorder : Colors.melrose,
             },
           ]}
           keyboardType={'number-pad'}
@@ -136,15 +135,10 @@ export const ExportSelectHA = ({ route, navigation }) => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
-      const checkAccessCodeRoute = `${selectedAuthority.ingest_url}/access-code/valid`;
-      const res = await fetch(`${checkAccessCodeRoute}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ accessCode: code }),
-      });
-      const { valid } = await res.json();
+      let { valid } = await exportCodeApi(selectedAuthority, code);
+
+      if (!isGPS) valid = code === '123456';
+
       if (valid) {
         navigation.navigate(exportCodeInputNextRoute, {
           selectedAuthority,

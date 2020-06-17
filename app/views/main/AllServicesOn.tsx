@@ -19,6 +19,9 @@ export const AllServicesOnScreen = (): JSX.Element => {
   } = useAssets();
   const size = Dimensions.get('window').height;
 
+  const allServicesOnScreenHeaderText: string = allServicesOnScreenHeader as string;
+  const allServicesOnScreenSubheaderText: string = allServicesOnScreenSubheader as string;
+
   return (
     <Theme use='violet'>
       <ImageBackground
@@ -51,10 +54,10 @@ export const AllServicesOnScreen = (): JSX.Element => {
           <View style={styles.contentAbovePulse} />
           <View style={styles.contentBelowPulse}>
             <Typography style={styles.mainTextBelow}>
-              {allServicesOnScreenHeader}
+              {allServicesOnScreenHeaderText}
             </Typography>
             <Typography style={styles.subheaderText}>
-              {allServicesOnScreenSubheader}
+              {allServicesOnScreenSubheaderText}
             </Typography>
           </View>
         </View>

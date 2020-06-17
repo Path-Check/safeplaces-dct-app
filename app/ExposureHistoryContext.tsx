@@ -1,5 +1,8 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import dayjs from 'dayjs';
+
+import { startListening } from './exposureNotificationsNativeModule';
+import { isGPS } from './COVIDSafePathsConfig';
 
 type Posix = number;
 
@@ -94,6 +97,20 @@ const ExposureHistoryProvider = ({
   const toggleHasExposure = () => {
     setHasBeenExposed(!hasBeenExposed);
   };
+
+  useEffect(() => {
+    if (!isGPS) {
+      const subscription = startListening((exposures: Possible[]) => {
+        console.log(exposures);
+      });
+
+      return () => {
+        subscription?.remove();
+      };
+    } else {
+      return () => {};
+    }
+  }, []);
 
   const observeExposures = () => {
     setUserHasNewExposure(false);

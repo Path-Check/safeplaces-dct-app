@@ -47,7 +47,7 @@
     "error": "Yon bagay mal mache pandan done ou yo ap enpòte.",
     "google": {
       "already_imported": "Fichye Takeout la te enpòte deja.",
-      "disclaimer": "Chase Kowona (\"Safe Paths\") pa gen okenn afilyasyon ak Google epi li pa janm pataje done ou yo.",
+      "disclaimer": "Chase Kowona (\"PathCheck\") pa gen okenn afilyasyon ak Google epi li pa janm pataje done ou yo.",
       "file_open_error": "Fichye a pa te kapab louvri. \nTanpri, asire ou ke fichye a louvri nan Google drive",
       "instructions_detailed": "Vizite Google Takeout epi ekspòte list lokalizasyon pa mwayen sa yo: \n 1. Metòd livrezon: \"Ajoute nan Drive\" \n 2. Frekans: \"Ekspòte yon fwa\" \n 3. Tip fichye & gwosè: \".zip\" ak \"1GB\" \n 4. Google ap voye yon imèl lè ekspòtasyon an pare \n 5. Retounen isit la pou enpòte lokalizasyon apati Google Drive",
       "instructions_first": "Ajoute done lokalizasyon ki sòti sou Google ap ba ou komansman yon ide sou dènye lokalizasyon ou yo.",
@@ -67,7 +67,7 @@
     "about_para": "PathCheck se yon mouvman mondyal pou devlope zouti lib, sous louvri, konfidansyalite pa desen pou rezidan yo, ofisyèl sante piblik yo, ak pi gwo kominote pou aplatii koub COVID-19, redwi laperèz, epi prevni yon repons siveyans-eta pandemi a.. \n\n Pou plis enfòmasyon, vizite",
     "authorities_add_button_label": "Ajoute yon sous ou fè konfyans",
     "authorities_add_url": "Ajoute otorite a pati yon URL",
-    "authorities_desc": "Chwazi otorite ke ou fè konfyans nan zòn ou an pou jwenn done ekspoze yo. Swa ou chwazi yon non ki soti nan rejis global la, oswa antre non adrès entènèt yon otorite, ki te aplike Chase Kowona (\"Safe Paths\"), te bay.",
+    "authorities_desc": "Chwazi otorite ke ou fè konfyans nan zòn ou an pou jwenn done ekspoze yo. Swa ou chwazi yon non ki soti nan rejis global la, oswa antre non adrès entènèt yon otorite, ki te aplike Chase Kowona (\"PathCheck\"), te bay.",
     "authorities_input_placeholder": "Kole URL ou an la",
     "authorities_new_in_area_title_1": "Nouvo otorite swen sante",
     "authorities_new_in_area_title_4": "Nouvo otorite swen sante yo",
@@ -83,7 +83,7 @@
     "auto_subscribe_checkbox": "Aktive abònman otomatik",
     "choose_provider_subtitle": "Pou kapab toujou rete enfòme a ekspozisyon yo, ou bezwen enskri nan yon otorite.",
     "choose_provider_title": "Chwazi otorite a",
-    "default_news_site_name": "Nouvèl sou Chase Kowona (\"Safe Paths\")",
+    "default_news_site_name": "Nouvèl sou Chase Kowona (\"PathCheck\")",
     "enter_authority_url": "Antre oswa kole URL",
     "event_history_subtitle": "Konprann ekspozisyon pèsonèl ou daprè enfòmasyon Otorite a pataje.",
     "event_history_title": "Lis ekspozisyon",
@@ -129,10 +129,10 @@
     "legal_page_header_bluetooth": "PathCheck BT",
     "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "Chajman done...",
-    "location_disabled_message": "Chase Kowona (\"Safe Paths\") mande sèvis lokalizasyon",
+    "location_disabled_message": "Chase Kowona (\"PathCheck\") mande sèvis lokalizasyon",
     "location_disabled_title": "GPS ou te dezaktive",
-    "location_enabled_message": "Chase Kowona (\"Safe Paths\") ap byen estoke kowòdone GPS ou yon fwa chak senk minit sou aparèy sa a.",
-    "location_enabled_title": "Chase Kowona (\"Safe Paths\") active",
+    "location_enabled_message": "Chase Kowona (\"PathCheck\") ap byen estoke kowòdone GPS ou yon fwa chak senk minit sou aparèy sa a.",
+    "location_enabled_title": "Chase Kowona (\"PathCheck\") active",
     "logging_active_bluetooth": "Notifikasyon ekspozisyon aktif",
     "logging_active_location": "Lokalizasyon aktif",
     "logging_inactive_bluetooth": "Notifikasyon ekspozisyon inaktif",
@@ -155,7 +155,7 @@
   "onboarding": {
     "eula_checkbox": "Mwen aksepte akò lisans la",
     "eula_continue": "Kontinye",
-    "eula_message": "*Ou dwe aksepte pou itilize Safe Paths 'Chase Kowona"
+    "eula_message": "*Ou dwe aksepte pou itilize PathCheck 'Chase Kowona"
   },
   "screen_titles": {
     "about": "Apropo",
@@ -169,7 +169,7 @@
     "title": "Pataje lis lokalizasyon"
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths pa ajou",
+    "alert_label": "PathCheck pa ajou",
     "alert_sublabel": "Mete ajou nan yon nouvo vèsyon?",
     "later": "Pita",
     "push_notification_message": "Tanpri mete ajou aplikasyon ou an",

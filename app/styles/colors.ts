@@ -106,7 +106,7 @@ export const switchDisabled = lightGray;
 export const switchEnabled = defaultBlue;
 
 // Text
-export const primaryText = midnightBlue;
+export const primaryText = darkestGray;
 export const secondaryText = darkGray;
 export const tertiaryText = secondaryBlue;
 export const invertedText = white;
@@ -115,6 +115,7 @@ export const violetText = royalBlue;
 export const violetTextLight = indigo;
 export const violetTextDark = jacksonsPurple;
 export const linkText = violetText;
+export const linkTextInvert = amber;
 export const errorText = persimmon;
 
 // Forms

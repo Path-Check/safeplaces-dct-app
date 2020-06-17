@@ -14,11 +14,10 @@ import { SvgXml } from 'react-native-svg';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
-import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 
 import { Icons } from '../../assets';
-import { Colors } from '../../styles';
+import { Colors, Typography as TypographyStyles } from '../../styles';
 
 const BackgroundContainer = ({ lightTheme, children }) => {
   if (lightTheme) {
@@ -103,16 +102,16 @@ export const ExportTemplate = ({
               </View>
             )}
 
-            <Typography use='headline2' style={styles.exportSectionTitles}>
+            <Typography style={styles.exportSectionTitles}>
               {headline}
             </Typography>
             <View style={{ height: 8 }} />
-            <Typography use='body1'>{body}</Typography>
+            <Typography style={styles.contentText}>{body}</Typography>
             {bodyLinkText && (
               <TouchableOpacity onPress={bodyLinkOnPress}>
                 <Typography
                   style={{
-                    color: Colors.linkText,
+                    color: Colors.linkTextInvert,
                     textDecorationLine: 'underline',
                   }}
                   use='body1'>
@@ -145,6 +144,11 @@ export const ExportTemplate = ({
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Colors.faintGray,
+    flex: 1,
+    paddingHorizontal: 24,
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -160,13 +164,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   exportSectionTitles: {
-    fontWeight: '500',
-    fontFamily: fontFamily.primaryMedium,
+    ...TypographyStyles.header2,
+    color: Colors.white,
   },
-  container: {
-    backgroundColor: Colors.faintGray,
-    flex: 1,
-    paddingHorizontal: 24,
+  contentText: {
+    ...TypographyStyles.secondaryContent,
+    color: Colors.white,
   },
 });
 

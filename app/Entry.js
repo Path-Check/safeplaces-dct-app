@@ -15,6 +15,10 @@ import { useSelector } from 'react-redux';
 import { Main } from './views/Main';
 import SettingsScreen from './views/Settings';
 import AboutScreen from './views/About';
+import PartnersOverviewScreen from './views/Partners/PartnersOverview';
+import PartnersEditScreen from './views/Partners/PartnersEdit';
+import PartnersCustomUrlScreen from './views/Partners/PartnersCustomUrlScreen';
+
 import { LicensesScreen } from './views/Licenses';
 import {
   ExportCodeInput,
@@ -151,8 +155,8 @@ const MainAppTabs = () => {
   const applyBadge = (icon) => {
     return (
       <>
-        <View style={styles.iconBadge} />
         {icon}
+        <View style={styles.iconBadge} />
       </>
     );
   };
@@ -172,7 +176,8 @@ const MainAppTabs = () => {
         inactiveTintColor: Colors.primaryViolet,
         style: {
           backgroundColor: Colors.violetTextDark,
-          paddingTop: Spacing.xxxSmall,
+          borderTopColor: Colors.primaryViolet,
+          paddingVertical: Spacing.xxxSmall,
         },
       }}>
       <Tab.Screen
@@ -203,7 +208,7 @@ const MainAppTabs = () => {
               />
             );
 
-            return userHasNewExposure ? applyBadge(tabIcon) : tabIcon;
+            return !isGPS && userHasNewExposure ? applyBadge(tabIcon) : tabIcon;
           },
         }}
       />
@@ -223,24 +228,41 @@ const MainAppTabs = () => {
           }}
         />
       )}
-      <Tab.Screen
-        name={Stacks.SelfAssessment}
-        component={SelfAssessmentStack}
-        options={{
-          tabBarLabel: t('navigation.selfAssessment'),
-          tabBarIcon: ({ focused, size }) => (
-            <SvgXml
-              xml={
-                focused
-                  ? Icons.SelfAssessmentActive
-                  : Icons.SelfAssessmentInactive
-              }
-              width={size}
-              height={size}
-            />
-          ),
-        }}
-      />
+      {isGPS ? (
+        <Tab.Screen
+          name={Stacks.Partners}
+          component={PartnersStack}
+          options={{
+            tabBarLabel: t('navigation.partners'),
+            tabBarIcon: ({ focused, size }) => (
+              <SvgXml
+                xml={focused ? Icons.PartnersActive : Icons.PartnersInactive}
+                width={size}
+                height={size}
+              />
+            ),
+          }}
+        />
+      ) : (
+        <Tab.Screen
+          name={Stacks.SelfAssessment}
+          component={SelfAssessmentStack}
+          options={{
+            tabBarLabel: t('navigation.selfAssessment'),
+            tabBarIcon: ({ focused, size }) => (
+              <SvgXml
+                xml={
+                  focused
+                    ? Icons.SelfAssessmentActive
+                    : Icons.SelfAssessmentInactive
+                }
+                width={size}
+                height={size}
+              />
+            ),
+          }}
+        />
+      )}
       <Tab.Screen
         name={Stacks.More}
         component={MoreTabStack}
@@ -272,6 +294,20 @@ const OnboardingStack = () => (
     <Stack.Screen
       name={Screens.EnableExposureNotifications}
       component={EnableExposureNotifications}
+    />
+  </Stack.Navigator>
+);
+
+const PartnersStack = () => (
+  <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
+    <Stack.Screen
+      name={Screens.PartnersOverview}
+      component={PartnersOverviewScreen}
+    />
+    <Stack.Screen name={Screens.PartnersEdit} component={PartnersEditScreen} />
+    <Stack.Screen
+      name={Screens.PartnersCustomUrl}
+      component={PartnersCustomUrlScreen}
     />
   </Stack.Navigator>
 );

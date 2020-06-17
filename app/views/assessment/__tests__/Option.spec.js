@@ -72,7 +72,7 @@ describe('SCREEN_TYPE_DATE', () => {
       />,
     );
     fireEvent.press(getByTestId('option'));
-    expect(onSelect).toHaveBeenCalledWith(String(Date()));
+    expect(onSelect).toHaveBeenCalledWith(new Date().toDateString());
     expect(getByTestId('label').children[0]).toMatch(/\d\d?\/\d\d?\/\d\d\d\d/);
   });
   test('shows the date picker', () => {
