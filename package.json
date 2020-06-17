@@ -115,6 +115,7 @@
     "react-native-svg": "^12.0.3",
     "react-native-uuid-generator": "^6.1.1",
     "react-native-vector-icons": "^6.6.0",
+    "react-native-version-check": "^3.4.1",
     "react-native-webview": "^9.4.0",
     "react-native-wizard": "^2.0.0",
     "react-native-zip-archive": "^5.0.1",

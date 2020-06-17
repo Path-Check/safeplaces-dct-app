@@ -179,8 +179,8 @@
     "title": "Share location history"
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths is outdated",
-    "alert_sublabel": "Update to a new version?",
+    "alert_label": "COVID RD is outdated",
+    "alert_sublabel": "Do you want to upgrade to the new version?",
     "later": "Later",
     "push_notification_message": "Please update your application",
     "push_notification_title": "Application is outdated",
@@ -243,7 +243,7 @@
           "title": "No proof needed at this time",
           "content": {
             "no_sympthoms": "From now on, your answers will need not be tested. If you have any symptoms such as fever, cough, runny nose, slight difficulty breathing, sore throat, head or body pain, please complete this questionnaire again or contact the Aurora platform through the telephone numbers 809-449-6262, 809 409 6262 and 809-352-6262.",
-            "has_sympthoms":"From now on, your answers will need not be tested. If you have any symptoms such as fever, cough, runny nose, slight difficulty breathing, sore throat, head or body pain, please complete this questionnaire again or contact the Aurora platform through the telephone numbers 809-449-6262, 809 409 6262 and 809-352-6262.\nIf you have any symptoms of danger (vomiting or persistent or bloody diarrhea, marked difficulty breathing, drowsiness or seizures), immediately go to the nearest health center or call * 462."
+            "has_sympthoms": "From now on, your answers will need not be tested. If you have any symptoms such as fever, cough, runny nose, slight difficulty breathing, sore throat, head or body pain, please complete this questionnaire again or contact the Aurora platform through the telephone numbers 809-449-6262, 809 409 6262 and 809-352-6262.\nIf you have any symptoms of danger (vomiting or persistent or bloody diarrhea, marked difficulty breathing, drowsiness or seizures), immediately go to the nearest health center or call * 462."
           }
         }
       }
@@ -257,7 +257,7 @@
         "none": "According to his answers, he should stay at home and away from others. If you can, have a room and a bathroom that are just for you. This can be difficult when you are not feeling well, but it will protect those around you.",
         "has_health_problems": "Your answers are to speak to a medical professional about having the COVID-19 test."
       },
-      "next_steps":{
+      "next_steps": {
         "step_one": {
           "title": "Isolate",
           "content": "You must stay away from others for 14 days after the onset of your symptoms. Your isolation may end if your symptoms improve significantly and if you have not had a fever for at least 72 hours without the use of medications. By isolating, you can reduce the spread of COVID-19 and protect others."
@@ -282,7 +282,7 @@
         }
       }
     },
-    "thanksfull":{
+    "thanksfull": {
       "title": "“With your help, staying at home and following health recommendations, we can face COVID-19”"
     }
   },
