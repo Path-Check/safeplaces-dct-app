@@ -3,9 +3,8 @@ import { StyleSheet, View, BackHandler, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-import ExposureHistoryContext, {
-  ExposureDatum,
-} from '../../ExposureHistoryContext';
+import ExposureHistoryContext from '../../ExposureHistoryContext';
+import { ExposureDatum } from '../../exposureHistory';
 import ExposureDatumDetail from './ExposureDatumDetail';
 import Calendar from './Calendar';
 import { NavigationProp } from '../../navigation';
@@ -21,9 +20,11 @@ const ExposureHistoryScreen = ({
 }: ExposureHistoryScreenProps): JSX.Element => {
   const { t } = useTranslation();
   const { exposureHistory } = useContext(ExposureHistoryContext);
-  const [selectedExposureDatum, setSelectedExposureDatum] = useState(
-    exposureHistory[exposureHistory.length - 1],
-  );
+  const [
+    selectedExposureDatum,
+    setSelectedExposureDatum,
+  ] = useState<ExposureDatum | null>(null);
+
   useEffect(() => {
     const handleBackPress = () => {
       navigation.goBack();
@@ -55,7 +56,9 @@ const ExposureHistoryScreen = ({
           />
         </View>
         <View style={styles.detailsContainer}>
-          <ExposureDatumDetail exposureDatum={selectedExposureDatum} />
+          {selectedExposureDatum ? (
+            <ExposureDatumDetail exposureDatum={selectedExposureDatum} />
+          ) : null}
         </View>
       </ScrollView>
     </NavigationBarWrapper>

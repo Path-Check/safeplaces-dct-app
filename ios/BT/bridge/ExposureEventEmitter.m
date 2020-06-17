@@ -2,12 +2,17 @@
 #import <React/RCTEventEmitter.h>
 
 // Notification/Event Names
-NSString *const onExposuresChanged = @"EXPOSURES_CHANGED";
+NSString *const onExposuresChanged = @"onExposureRecordUpdated";
 
 @interface ExposureEventEmitter : RCTEventEmitter <RCTBridgeModule>
 @end
 
 @implementation ExposureEventEmitter
+
++ (BOOL)requiresMainQueueSetup
+{
+  return YES;  // only do this if your module initialization relies on calling UIKit!
+}
 
 RCT_EXPORT_MODULE();
 

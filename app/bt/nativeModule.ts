@@ -4,19 +4,37 @@ import {
   EventSubscription,
 } from 'react-native';
 
-import { ENAuthorizationStatus } from './ExposureNotificationContext';
-import { ENDiagnosisKey } from './views/Settings/ENLocalDiagnosisKeyScreen';
-import { Possible } from './ExposureHistoryContext';
-import { isGPS } from './COVIDSafePathsConfig';
+import { ENAuthorizationStatus } from '../ExposureNotificationContext';
+import { ExposureHistory } from '../exposureHistory';
+import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
+import { RawExposure, toExposureHistory } from './exposureNotifications';
+
+export const subscribeToExposureEvents = (
+  cb: (exposureHistory: ExposureHistory) => void,
+): EventSubscription => {
+  const ExposureEvents = new NativeEventEmitter(
+    NativeModules.ExposureEventEmitter,
+  );
+
+  return ExposureEvents.addListener(
+    'onExposureRecordUpdated',
+    (rawExposure: string) => {
+      const rawExposures: RawExposure[] = JSON.parse(rawExposure);
+      cb(toExposureHistory(rawExposures));
+    },
+  );
+};
 
 const exposureNotificationModule = NativeModules.PTCExposureManagerModule;
-const debugModule = NativeModules.DebugMenuModule;
 
 export const requestAuthorization = async (
   cb: (authorizationStatus: ENAuthorizationStatus) => void,
 ): Promise<void> => {
   exposureNotificationModule.requestExposureNotificationAuthorization(cb);
 };
+
+// Debug Module
+const debugModule = NativeModules.DebugMenuModule;
 
 export const fetchDiagnosisKeys = async (
   cb: (errorMessage: string, diagnosisKeys: ENDiagnosisKey[]) => void,
@@ -124,25 +142,4 @@ export const resetExposures = async (
   ) => void,
 ): Promise<void> => {
   debugModule.resetExposures(cb);
-};
-
-type exposureEventCallback = (exsposures: Possible[]) => void;
-
-export const startListening = (
-  cb: exposureEventCallback,
-): EventSubscription | null => {
-  if (isGPS) {
-    return null;
-  } else {
-    const ExposureEvents = new NativeEventEmitter(
-      NativeModules.ExposureEventEmitter,
-    );
-    return ExposureEvents.addListener(
-      'EXPOSURES_CHANGED',
-      (jsonString: string) => {
-        const exposures: Possible[] = JSON.parse(jsonString);
-        cb(exposures);
-      },
-    );
-  }
 };
