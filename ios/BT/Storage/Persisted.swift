@@ -15,17 +15,7 @@ class Persisted<Value: Codable> {
 
   var wrappedValue: Value {
     didSet {
-      BTSecureStorage.shared.getUserState { userState in
-        guard let realmConfig = BTSecureStorage.shared.getRealmConfig() else {
-          return
-        }
-        let realm = try! Realm(configuration: realmConfig)
-        try! realm.write {
-          userState.setValue(wrappedValue, forKeyPath: keyPath)
-          realm.add(userState, update: .modified)
-        }
-      }
-      NotificationCenter.default.post(name: notificationName, object: nil)
+      BTSecureStorage.shared.setUserValue(value: wrappedValue, keyPath: keyPath, notificationName: notificationName)
     }
   }
 

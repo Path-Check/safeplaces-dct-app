@@ -8,5 +8,6 @@
   resetExposureDetectionError,
   resetUserENState,
   getAndPostDiagnosisKeys,
-  getExposureConfiguration
+  getExposureConfiguration,
+  resetExposures
 }

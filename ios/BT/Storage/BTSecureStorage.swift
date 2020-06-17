@@ -10,6 +10,13 @@ final class BTSecureStorage: SafePathsSecureStorage {
     "org.pathcheck.bt.realm"
   }
 
+  private lazy var realmConfig: Realm.Configuration = {
+    guard let realmConfig = getRealmConfig() else {
+      fatalError("Missing realm configuration")
+    }
+    return realmConfig
+  }()
+
   override func getRealmConfig() -> Realm.Configuration? {
     if let key = getEncyrptionKey() {
       if (inMemory) {
@@ -25,13 +32,19 @@ final class BTSecureStorage: SafePathsSecureStorage {
   }
 
   func getUserState(_ completion: ((UserState) -> Void)) {
-    guard let realmConfig = getRealmConfig() else {
-      return
-    }
     let realm = try! Realm(configuration: realmConfig)
-    let userState = realm.objects(UserState.self)
-      .filter { $0.id == UserState.id }
-    completion(userState.first ?? UserState())
+    let userState = realm.object(ofType: UserState.self, forPrimaryKey: 0)
+    completion(userState ?? UserState())
+  }
+
+  func setUserValue<Value: Codable>(value: Value, keyPath: String, notificationName: Notification.Name) {
+      let realm = try! Realm(configuration: realmConfig)
+      try! realm.write {
+        realm.create(UserState.self, value: [keyPath: value], update: .modified)
+        let encodedValue = try JSONEncoder().encode(value)
+        let stringRepresentation = String(data: encodedValue, encoding: .utf8)!
+        NotificationCenter.default.post(name: notificationName, object: stringRepresentation)
+    }
   }
 
   func resetUserState(_ completion: ((UserState) -> Void)) {

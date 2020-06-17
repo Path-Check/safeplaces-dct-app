@@ -74,6 +74,14 @@ RCT_EXPORT_METHOD(resetUserENState: (RCTResponseSenderBlock)callback) {
   }];
 }
 
+RCT_EXPORT_METHOD(resetExposures: (RCTResponseSenderBlock)callback) {
+  [[ExposureManager shared] handleDebugAction:DebugActionResetExposures completion:^(NSArray *response) {
+    id errorMessage = response[0];
+    id successMessage = response[1];
+    callback(@[errorMessage, successMessage]);
+  }];
+}
+
 RCT_EXPORT_METHOD(getAndPostDiagnosisKeys: (RCTResponseSenderBlock)callback) {
   [[ExposureManager shared] handleDebugAction:DebugActionGetAndPostDiagnosisKeys completion:^(NSArray *response) {
     id errorMessage = response[0];

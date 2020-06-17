@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   ViewStyle,
@@ -18,11 +18,11 @@ import {
   toggleExposureNotifications,
   resetExposureDetectionError,
   resetUserENState,
+  resetExposures,
   getAndPostDiagnosisKeys,
   simulateExposureDetectionError,
   getExposureConfiguration,
 } from '../../exposureNotificationsNativeModule';
-import ExposureNotificationContext from '../../ExposureHistoryContext';
 import { NavigationProp, Screens } from '../../navigation';
 
 import { Colors, Spacing } from '../../styles';
@@ -35,7 +35,6 @@ type ENDebugMenuProps = {
 };
 
 const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
-  const { resetExposures } = useContext(ExposureNotificationContext);
   useEffect(() => {
     const handleBackPress = () => {
       navigation.goBack();
@@ -91,10 +90,6 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
     };
   };
 
-  const handleOnPressResetExposures = () => {
-    resetExposures();
-  };
-
   const handleOnPressToggleExposureNotifications = () => {
     handleOnPressSimulationButton(toggleExposureNotifications)();
     global.ExposureNotificationsOn = !global.ExposureNotificationsOn;
@@ -128,7 +123,7 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
           <DebugMenuListItem
             label='Reset Exposures'
             style={styles.lastListItem}
-            onPress={handleOnPressResetExposures}
+            onPress={handleOnPressSimulationButton(resetExposures)}
           />
         </View>
         <View style={styles.section}>
