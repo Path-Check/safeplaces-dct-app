@@ -9,13 +9,12 @@ import { ExposureHistory } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureHistory } from './exposureNotifications';
 
-const ExposureEvents = new NativeEventEmitter(
-  NativeModules.ExposureEventEmitter,
-);
-
 export const subscribeToExposureEvents = (
   cb: (exposureHistory: ExposureHistory) => void,
 ): EventSubscription => {
+  const ExposureEvents = new NativeEventEmitter(
+    NativeModules.ExposureEventEmitter,
+  );
   return ExposureEvents.addListener(
     'onExposureRecordUpdated',
     (rawExposure: string) => {
@@ -28,6 +27,9 @@ export const subscribeToExposureEvents = (
 export const subscribeToENAuthorizationStatusEvents = (
   cb: (status: ENAuthorizationStatus) => void,
 ): EventSubscription => {
+  const ExposureEvents = new NativeEventEmitter(
+    NativeModules.ExposureEventEmitter,
+  );
   return ExposureEvents.addListener(
     'onENAuthorizationStatusUpdated',
     (status: ENAuthorizationStatus) => {

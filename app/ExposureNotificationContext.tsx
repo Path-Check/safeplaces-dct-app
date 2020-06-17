@@ -3,20 +3,14 @@ import React, { createContext, useState, useEffect } from 'react';
 import { isGPS } from './COVIDSafePathsConfig';
 import { BTNativeModule } from './bt';
 
-export enum ENAuthorizationStatus {
-  UNKNOWN = 0,
-  RESTRICTED = 1,
-  NOT_AUTHORIZED = 2,
-  AUTHORIZED = 3,
-}
+export type ENAuthorizationStatus = `NOT_AUTHORIZED` | `AUTHORIZED`;
 
 interface ExposureNotificationsState {
   authorizationStatus: ENAuthorizationStatus;
   requestENAuthorization: () => void;
 }
 
-const initialStatus: ENAuthorizationStatus =
-  ENAuthorizationStatus.NOT_AUTHORIZED;
+const initialStatus: ENAuthorizationStatus = 'NOT_AUTHORIZED';
 
 const initialState = {
   authorizationStatus: initialStatus,

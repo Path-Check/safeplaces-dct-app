@@ -34,8 +34,9 @@ final class ExposureManager: NSObject {
   
   @objc func requestExposureNotificationAuthorization(authorized: Bool, callback: @escaping RCTResponseSenderBlock) {
     manager.setExposureNotificationEnabled(authorized) { error in
+      let status = ENManager.authorizationStatus == .authorized ? "AUTHORIZED" : "NOT_AUTHORIZED"
       NotificationCenter.default.post(Notification(name: Notification.Name.AuthorizationStatusDidChange,
-                                                   object: ENManager.authorizationStatus.rawValue,
+                                                   object: status,
                                                    userInfo: nil))
     }
   }
