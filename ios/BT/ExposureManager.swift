@@ -60,7 +60,12 @@ final class ExposureManager: NSObject {
     func finish(_ result: Result<([Exposure], Int)>) {
       
       for localURL in localURLs {
-        APIClient.shared.request(DiagnosisKeyRequest.delete(localURL), requestType: .post, completion: { _ in })
+        // Delete downloaded file from file system
+        do {
+          try FileManager.default.removeItem(at: localURL)
+        } catch {
+          completionHandler?(false)
+        }
       }
       
       if progress.isCancelled {
@@ -93,10 +98,10 @@ final class ExposureManager: NSObject {
         
         switch result {
         case let .success(indexFileString):
-          let remoteURLs = indexFileString.urls
+          let remoteURLs = indexFileString.gaenFilePaths
           for remoteURL in remoteURLs {
             dispatchGroup.enter()
-            APIClient.shared.request(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .pull) { result in
+            APIClient.shared.downloadRequest(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .pull) { result in
               localURLResults.append(result)
               dispatchGroup.leave()
             }
@@ -116,35 +121,28 @@ final class ExposureManager: NSObject {
               return
             }
           }
-          APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .pull) { result in
-            switch result {
-            case let .success(configuration):
-              let enConfiguration = configuration.asENExposureConfiguration
-              ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: localURLs) { summary, error in
-                if let error = error {
-                  finish(.failure(error))
-                  return
-                }
-                let userExplanation = NSLocalizedString("USER_NOTIFICATION_EXPLANATION", comment: "User notification")
-                ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
-                  if let error = error {
-                    finish(.failure(error))
-                    return
-                  }
-                  let newExposures = exposures!.map { exposure in
-                    Exposure(id: UUID().uuidString,
-                             date: exposure.date.posixRepresentation,
-                             duration: exposure.duration,
-                             totalRiskScore: exposure.totalRiskScore,
-                             transmissionRiskLevel: exposure.transmissionRiskLevel)
-                  }
-                  finish(.success((newExposures, userState.nextDiagnosisKeyFileIndex + localURLs.count)))
-                }
-              }
-              
-            case let .failure(error):
+
+          // TODO: Fetch configuration from API
+          let enConfiguration = ExposureConfiguration.placeholder.asENExposureConfiguration
+          ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: localURLs) { summary, error in
+            if let error = error {
               finish(.failure(error))
               return
+            }
+            let userExplanation = NSLocalizedString("USER_NOTIFICATION_EXPLANATION", comment: "User notification")
+            ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
+              if let error = error {
+                finish(.failure(error))
+                return
+              }
+              let newExposures = exposures!.map { exposure in
+                Exposure(id: UUID().uuidString,
+                         date: exposure.date.posixRepresentation,
+                         duration: exposure.duration,
+                         totalRiskScore: exposure.totalRiskScore,
+                         transmissionRiskLevel: exposure.transmissionRiskLevel)
+              }
+              finish(.success((newExposures, userState.nextDiagnosisKeyFileIndex + localURLs.count)))
             }
           }
         }
@@ -263,7 +261,7 @@ final class ExposureManager: NSObject {
       }
     case .resetExposures:
       BTSecureStorage.shared.exposures = List<Exposure>()
-        completion([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures.count)"])
+      completion([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures.count)"])
     }
   }
   

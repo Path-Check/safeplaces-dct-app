@@ -14,7 +14,7 @@ enum IndexFileRequest: APIRequest {
   }
 
   var path: String {
-    return "iso_8859-1.txt"
+    "exposure-notification-export-svhfv/spl-be/index.txt"
   }
 
 }

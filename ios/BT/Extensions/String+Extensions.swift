@@ -10,7 +10,7 @@ extension String {
   static let keyPathExposures = "exposures"
   static let keyPathNextDiagnosisKeyFileIndex = "nextDiagnosisKeyFileIndex"
 
-  var urls: [URL] {
-    []
+  var gaenFilePaths: [String] {
+    split(separator: "\n").map { String($0) }
   }
 }

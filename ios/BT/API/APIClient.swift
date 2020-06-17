@@ -47,6 +47,16 @@ final class APIClient {
     }
   }
 
+  func downloadRequest<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<URL>) -> Void) {
+    downloadRequest(for: request, fileName: request.path).responseData { response in
+      guard let destinationUrl = response.destinationURL else {
+        completion(.failure(GenericError.unknown))
+        return
+      }
+      completion(.success(destinationUrl))
+    }
+  }
+
   func request<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<JSONObject>) -> Void) where T.ResponseType == JSONObject {
     dataRequest(for: request, requestType: requestType)
       .validate(validate)
@@ -96,6 +106,17 @@ private extension APIClient {
   enum Key {
     static let error = "error"
     static let errorMessage = "error_description"
+  }
+
+  func downloadRequest<T: APIRequest>(for request: T, fileName: String) -> DownloadRequest {
+    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+      var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+      documentsURL.appendPathComponent(fileName)
+      return (documentsURL, [.removePreviousFile])
+    }
+    let r = sessionManager.download(pullUrl.appendingPathComponent(request.path, isDirectory: false), to: destination)
+    debugPrint(r)
+    return r
   }
 
   func dataRequest<T: APIRequest>(for request: T, requestType: RequestType) -> DataRequest {
