@@ -38,6 +38,22 @@ jest.mock('react-native-popup-menu', () => ({
   MenuTrigger: 'MenuTrigger',
 }));
 
+jest.mock('redux', () => ({
+  createStore: () => {},
+  combineReducers: () => {},
+  applyMiddleware: () => {},
+}));
+
+jest.mock('redux-persist', () => ({
+  createMigrate: () => {},
+  persistReducer: () => {},
+  persistStore: () => {},
+}));
+
+jest.mock('redux-devtools-extension', () => ({
+  composeWithDevTools: () => {},
+}));
+
 jest.mock('@react-navigation/native', () => {
   return {
     createAppContainer: jest
