@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
-import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
+
+import { Colors } from '../../styles';
 
 export const sharedStyles = StyleSheet.create({
   footerContainer: {
@@ -10,7 +11,7 @@ export const sharedStyles = StyleSheet.create({
     width: '100%',
   },
   headerText: {
-    color: Colors.VIOLET_TEXT_DARK,
+    color: Colors.violetTextDark,
     fontSize: 26,
     fontFamily: fontFamily.primaryRegular,
     fontWeight: '500',
@@ -18,7 +19,7 @@ export const sharedStyles = StyleSheet.create({
   },
   subheaderText: {
     marginTop: '6%',
-    color: Colors.VIOLET_TEXT_LIGHT,
+    color: Colors.violetTextDark,
     fontSize: 16,
     fontFamily: fontFamily.primaryRegular,
     lineHeight: 24,
@@ -26,7 +27,7 @@ export const sharedStyles = StyleSheet.create({
   iconCircle: {
     height: 70,
     width: 70,
-    backgroundColor: Colors.ONBOARDING_ICON_LIGHT_BLUE,
+    backgroundColor: Colors.onboardingIconBlue,
     borderRadius: 1000,
     alignItems: 'center',
     justifyContent: 'center',

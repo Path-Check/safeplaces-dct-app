@@ -21,7 +21,7 @@ exports[`allows small override 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#6979F8",
+        "backgroundColor": "#4051db",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -38,18 +38,24 @@ exports[`allows small override 1`] = `
     }
   >
     <Text
-      small={true}
       style={
-        Object {
-          "color": "#FFF",
-          "fontFamily": "IBMPlexSans-Medium",
-          "fontSize": 14,
-          "fontWeight": "normal",
-          "lineHeight": 21,
-          "writingDirection": "ltr",
-        }
+        Array [
+          Object {
+            "color": "#2e2e2e",
+            "fontSize": 17,
+            "lineHeight": 28,
+          },
+          Object {
+            "writingDirection": "ltr",
+          },
+          Object {
+            "fontFamily": "IBMPlexSans-Medium",
+            "fontSize": 14,
+            "fontWeight": "normal",
+            "lineHeight": 21,
+          },
+        ]
       }
-      use="body1"
     >
       Small
     </Text>
@@ -78,7 +84,7 @@ exports[`changes color based on theme 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#6979F8",
+        "backgroundColor": "#4051db",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -96,16 +102,23 @@ exports[`changes color based on theme 1`] = `
   >
     <Text
       style={
-        Object {
-          "color": "#FFF",
-          "fontFamily": "IBMPlexSans-Medium",
-          "fontSize": 20,
-          "fontWeight": "normal",
-          "lineHeight": 40,
-          "writingDirection": "ltr",
-        }
+        Array [
+          Object {
+            "color": "#2e2e2e",
+            "fontSize": 17,
+            "lineHeight": 28,
+          },
+          Object {
+            "writingDirection": "ltr",
+          },
+          Object {
+            "fontFamily": "IBMPlexSans-Medium",
+            "fontSize": 20,
+            "fontWeight": "normal",
+            "lineHeight": 40,
+          },
+        ]
       }
-      use="body1"
     >
       onDefault
     </Text>
@@ -121,7 +134,7 @@ exports[`changes color based on theme 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#FFF",
+        "backgroundColor": "#ffffff",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -139,16 +152,23 @@ exports[`changes color based on theme 1`] = `
   >
     <Text
       style={
-        Object {
-          "color": "#3C475B",
-          "fontFamily": "IBMPlexSans-Medium",
-          "fontSize": 20,
-          "fontWeight": "normal",
-          "lineHeight": 40,
-          "writingDirection": "ltr",
-        }
+        Array [
+          Object {
+            "color": "#2e2e2e",
+            "fontSize": 17,
+            "lineHeight": 28,
+          },
+          Object {
+            "writingDirection": "ltr",
+          },
+          Object {
+            "fontFamily": "IBMPlexSans-Medium",
+            "fontSize": 20,
+            "fontWeight": "normal",
+            "lineHeight": 40,
+          },
+        ]
       }
-      use="body1"
     >
       onCharcoal
     </Text>
@@ -164,7 +184,7 @@ exports[`changes color based on theme 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#FFF",
+        "backgroundColor": "#ffffff",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -182,16 +202,23 @@ exports[`changes color based on theme 1`] = `
   >
     <Text
       style={
-        Object {
-          "color": "#4051DB",
-          "fontFamily": "IBMPlexSans-Medium",
-          "fontSize": 20,
-          "fontWeight": "normal",
-          "lineHeight": 40,
-          "writingDirection": "ltr",
-        }
+        Array [
+          Object {
+            "color": "#2e2e2e",
+            "fontSize": 17,
+            "lineHeight": 28,
+          },
+          Object {
+            "writingDirection": "ltr",
+          },
+          Object {
+            "fontFamily": "IBMPlexSans-Medium",
+            "fontSize": 20,
+            "fontWeight": "normal",
+            "lineHeight": 40,
+          },
+        ]
       }
-      use="body1"
     >
       onViolet
     </Text>
@@ -220,7 +247,7 @@ exports[`renders a violet 72px button on default theme 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#6979F8",
+        "backgroundColor": "#4051db",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -238,16 +265,23 @@ exports[`renders a violet 72px button on default theme 1`] = `
   >
     <Text
       style={
-        Object {
-          "color": "#FFF",
-          "fontFamily": "IBMPlexSans-Medium",
-          "fontSize": 20,
-          "fontWeight": "normal",
-          "lineHeight": 40,
-          "writingDirection": "ltr",
-        }
+        Array [
+          Object {
+            "color": "#2e2e2e",
+            "fontSize": 17,
+            "lineHeight": 28,
+          },
+          Object {
+            "writingDirection": "ltr",
+          },
+          Object {
+            "fontFamily": "IBMPlexSans-Medium",
+            "fontSize": 20,
+            "fontWeight": "normal",
+            "lineHeight": 40,
+          },
+        ]
       }
-      use="body1"
     >
       Default
     </Text>
@@ -276,7 +310,7 @@ exports[`renders an icon and space-between if supplied 1`] = `
         "alignContent": "center",
         "alignItems": "center",
         "alignSelf": "stretch",
-        "backgroundColor": "#6979F8",
+        "backgroundColor": "#4051db",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
         "borderColor": "transparent",
@@ -294,16 +328,23 @@ exports[`renders an icon and space-between if supplied 1`] = `
   >
     <Text
       style={
-        Object {
-          "color": "#FFF",
-          "fontFamily": "IBMPlexSans-Medium",
-          "fontSize": 20,
-          "fontWeight": "normal",
-          "lineHeight": 40,
-          "writingDirection": "ltr",
-        }
+        Array [
+          Object {
+            "color": "#2e2e2e",
+            "fontSize": 17,
+            "lineHeight": 28,
+          },
+          Object {
+            "writingDirection": "ltr",
+          },
+          Object {
+            "fontFamily": "IBMPlexSans-Medium",
+            "fontSize": 20,
+            "fontWeight": "normal",
+            "lineHeight": 40,
+          },
+        ]
       }
-      use="body1"
     >
       Button
     </Text>
@@ -343,7 +384,7 @@ exports[`renders different color for secondary 1`] = `
         "backgroundColor": "transparent",
         "borderBottomLeftRadius": 8,
         "borderBottomRightRadius": 8,
-        "borderColor": "#6979F8",
+        "borderColor": "#4051db",
         "borderStyle": "solid",
         "borderTopLeftRadius": 8,
         "borderTopRightRadius": 8,
@@ -357,18 +398,24 @@ exports[`renders different color for secondary 1`] = `
     }
   >
     <Text
-      secondary={true}
       style={
-        Object {
-          "color": "#6979F8",
-          "fontFamily": "IBMPlexSans-Medium",
-          "fontSize": 20,
-          "fontWeight": "normal",
-          "lineHeight": 40,
-          "writingDirection": "ltr",
-        }
+        Array [
+          Object {
+            "color": "#2e2e2e",
+            "fontSize": 17,
+            "lineHeight": 28,
+          },
+          Object {
+            "writingDirection": "ltr",
+          },
+          Object {
+            "fontFamily": "IBMPlexSans-Medium",
+            "fontSize": 20,
+            "fontWeight": "normal",
+            "lineHeight": 40,
+          },
+        ]
       }
-      use="body1"
     >
       Button
     </Text>

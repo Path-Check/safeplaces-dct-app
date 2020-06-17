@@ -105,38 +105,7 @@ exports[`select authority screen matches snapshot 1`] = `
             "paddingBottom": 40,
           }
         }
-      >
-        <Text
-          style={
-            Object {
-              "color": "#FFF",
-              "fontFamily": "IBMPlexSans-Medium",
-              "fontSize": 28,
-              "fontWeight": "normal",
-              "lineHeight": 34,
-              "marginBottom": 24,
-              "textAlign": "center",
-              "writingDirection": "ltr",
-            }
-          }
-          use="body1"
-        />
-        <Text
-          style={
-            Object {
-              "color": "#FFF",
-              "fontFamily": "IBMPlexSans-Light",
-              "fontSize": 16,
-              "fontWeight": "normal",
-              "lineHeight": 24.5,
-              "marginBottom": 24,
-              "textAlign": "center",
-              "writingDirection": "ltr",
-            }
-          }
-          use="body1"
-        />
-      </View>
+      />
       <View
         style={
           Object {
@@ -150,7 +119,7 @@ exports[`select authority screen matches snapshot 1`] = `
         <Text
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 26,
               "lineHeight": 34,
@@ -163,18 +132,25 @@ exports[`select authority screen matches snapshot 1`] = `
         </Text>
         <Text
           style={
-            Object {
-              "color": "#FFF",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 18,
-              "fontWeight": "normal",
-              "lineHeight": 24.5,
-              "marginBottom": 24,
-              "textAlign": "center",
-              "writingDirection": "ltr",
-            }
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 18,
+                "lineHeight": 24.5,
+                "marginBottom": 24,
+                "textAlign": "center",
+              },
+            ]
           }
-          use="body1"
         >
           Allow PathCheck to add your local Health Department or select one yourself to receive info about COVID-19 in your area
         </Text>
@@ -189,7 +165,7 @@ exports[`select authority screen matches snapshot 1`] = `
               "alignContent": "center",
               "alignItems": "center",
               "alignSelf": "stretch",
-              "backgroundColor": "#FFF",
+              "backgroundColor": "#ffffff",
               "borderBottomLeftRadius": 8,
               "borderBottomRightRadius": 8,
               "borderColor": "transparent",
@@ -208,16 +184,23 @@ exports[`select authority screen matches snapshot 1`] = `
         >
           <Text
             style={
-              Object {
-                "color": "#4051DB",
-                "fontFamily": "IBMPlexSans-Medium",
-                "fontSize": 20,
-                "fontWeight": "normal",
-                "lineHeight": 40,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "fontFamily": "IBMPlexSans-Medium",
+                  "fontSize": 20,
+                  "fontWeight": "normal",
+                  "lineHeight": 40,
+                },
+              ]
             }
-            use="body1"
           >
             Add Health Department
           </Text>

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { MenuProvider } from 'react-native-popup-menu';
-import { enableScreens } from 'react-native-screens';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -8,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Theme } from './app/constants/themes';
 import { Entry } from './app/Entry';
 import { ExposureNotificationsProvider } from './app/ExposureNotificationContext';
+import { ExposureHistoryProvider } from './app/ExposureHistoryContext';
 import { FlagsProvider } from './app/helpers/Flags';
 import { PermissionsProvider } from './app/PermissionsContext';
 import VersionCheckService from './app/services/VersionCheckService';
@@ -20,15 +20,15 @@ export const UnconnectedApp = () => (
       <Theme use='default'>
         <PermissionsProvider>
           <ExposureNotificationsProvider>
-            <Entry />
+            <ExposureHistoryProvider>
+              <Entry />
+            </ExposureHistoryProvider>
           </ExposureNotificationsProvider>
         </PermissionsProvider>
       </Theme>
     </MenuProvider>
   </FlagsProvider>
 );
-
-enableScreens();
 
 const App = () => {
   useEffect(() => {

@@ -2,59 +2,57 @@ import styled from '@emotion/native';
 import { ThemeProvider } from 'emotion-theming';
 import React from 'react';
 
-import Color from './colors';
+import { Colors } from '../styles';
 
 /** Violet on pale violet bg. e.g. Settings */
 export const defaultTheme = {
-  background: Color.VIOLET_ALPHA_06,
-  textPrimaryOnBackground: Color.VIOLET,
-  textSecondaryOnBackground: Color.BLACK,
+  background: Colors.faintGray,
+  textPrimaryOnBackground: Colors.violetText,
+  textSecondaryOnBackground: Colors.black,
 
-  navBar: Color.VIOLET,
-  onNavBar: Color.WHITE,
+  navBar: Colors.primaryViolet,
+  onNavBar: Colors.white,
 
   /** E.g. button bg */
-  primary: Color.VIOLET_BUTTON,
+  primary: Colors.primaryViolet,
   /** E.g. button text color */
-  onPrimary: Color.WHITE,
+  onPrimary: Colors.white,
 
-  success: Color.SUCCESS,
-  warning: Color.WARNING,
+  success: Colors.success,
+  warning: Colors.warning,
   disabled: 'rgba(64, 81, 219, 0.6)',
-  disabledLight: Color.VIOLET_BUTTON_LIGHT,
-  border: Color.DIVIDER,
+  disabledLight: Colors.secondaryViolet,
+  border: Colors.tertiaryViolet,
 };
 
 /** White on violet bg. E.g. Main screen */
 export const violet = {
   ...defaultTheme,
-  background: `linear-gradient(245.21deg, ${Color.VIOLET_BUTTON} 0%, ${Color.VIOLET_BUTTON_DARK} 100%);`,
-  textPrimaryOnBackground: Color.WHITE,
+  background: `linear-gradient(245.21deg, ${Colors.primaryViolet} 0%, ${Colors.violetButtonDark} 100%);`,
+  textPrimaryOnBackground: Colors.white,
   textSecondaryOnBackground: 'rgba(255, 255, 255, 0.6)',
 
-  navBarBorder: Color.VIOLET, // no visible border
+  navBarBorder: Colors.primaryViolet, // no visible border
 
-  primary: Color.WHITE,
-  onPrimary: Color.VIOLET,
+  primary: Colors.white,
+  onPrimary: Colors.primaryViolet,
   disabled: '#ececec',
   disabledLight: '#ececec',
 };
 
-/** White on gray bg. E.g. Possible exposure mode on default screen */
 export const charcoal = {
   ...defaultTheme,
-  background: Color.DARK_GRAY,
-  textPrimaryOnBackground: Color.WHITE,
-  textSecondaryOnBackground: Color.LIGHT_GRAY,
+  background: Colors.darkGray,
+  textPrimaryOnBackground: Colors.white,
+  textSecondaryOnBackground: Colors.lightGray,
 
-  navBar: Color.DARK_GRAY,
-  navBarBorder: Color.DARK_GRAY, // no visible border
+  navBar: Colors.darkGray,
+  navBarBorder: Colors.darkGray, // no visible border
 
-  primary: Color.WHITE,
-  onPrimary: Color.DARK_GRAY,
+  primary: Colors.white,
+  onPrimary: Colors.darkGray,
 
   disabled: '#A9AFBA',
-  disabledLight: '#A9AFBA',
 };
 
 const THEME_MAP = {

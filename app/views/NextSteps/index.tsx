@@ -1,18 +1,14 @@
 import React from 'react';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
+import { NavigationProp, Screens } from '../../navigation';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
 interface NextStepsProps {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 }
 
 const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
@@ -20,8 +16,9 @@ const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
     navigation.goBack();
   };
 
-  const headerText =
-    'The Boston Public Health Department recommends you take a self-assessment';
+  const healthAuthority = 'The PathCheck Health Department';
+
+  const headerText = `${healthAuthority} recommends you take a self-assessment`;
 
   const contentTextOne =
     'It is possible that you may have crossed paths with somebody who has been diagnosed with COVID-19.';
@@ -32,7 +29,7 @@ const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
   const buttonText = 'Take Self Assessment';
 
   const handleOnPressTakeAssessment = () => {
-    navigation.navigate('Assessment');
+    navigation.navigate(Screens.SelfAssessment);
   };
 
   return (
@@ -87,7 +84,7 @@ const styles = StyleSheet.create({
     ...Buttons.largeBlue,
   },
   buttonText: {
-    ...TypographyStyles.ctaButtonFilled,
+    ...TypographyStyles.buttonTextLight,
   },
 });
 

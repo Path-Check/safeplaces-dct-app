@@ -14,7 +14,7 @@ exports[`base 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#F8F8FF",
+        "backgroundColor": "#f8f8f8",
         "flex": 1,
       }
     }
@@ -29,15 +29,20 @@ exports[`base 1`] = `
     >
       <Text
         style={
-          Object {
-            "fontFamily": "IBMPlexSans-Bold",
-            "fontSize": 26,
-            "fontWeight": "bold",
-            "lineHeight": 34,
-            "writingDirection": "ltr",
-          }
+          Array [
+            Object {
+              "color": "#4051db",
+              "fontFamily": "IBMPlexSans-Bold",
+              "fontSize": 28,
+              "fontWeight": "500",
+              "lineHeight": 40,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            undefined,
+          ]
         }
-        use="headline2"
       >
         What is the answer?
       </Text>
@@ -73,8 +78,8 @@ exports[`base 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#FFF",
-                    "borderColor": "rgb(173,188,205)",
+                    "backgroundColor": "#ffffff",
+                    "borderColor": "#333333",
                     "borderRadius": 8,
                     "borderWidth": 1,
                     "marginBottom": 16,
@@ -98,7 +103,7 @@ exports[`base 1`] = `
                     Array [
                       Object {
                         "alignItems": "center",
-                        "borderColor": "rgb(173,188,205)",
+                        "borderColor": "#4051db",
                         "borderRadius": 40,
                         "borderWidth": 2,
                         "height": 20,
@@ -112,19 +117,23 @@ exports[`base 1`] = `
                 />
                 <Text
                   style={
-                    Object {
-                      "color": "#000",
-                      "flex": 1,
-                      "flexWrap": "wrap",
-                      "fontFamily": "IBMPlexSans",
-                      "fontSize": 18,
-                      "fontWeight": "normal",
-                      "lineHeight": 24,
-                      "writingDirection": "ltr",
-                    }
+                    Array [
+                      Object {
+                        "color": "#2e2e2e",
+                        "fontSize": 17,
+                        "lineHeight": 28,
+                      },
+                      Object {
+                        "writingDirection": "ltr",
+                      },
+                      Object {
+                        "color": "#000000",
+                        "flex": 1,
+                        "flexWrap": "wrap",
+                      },
+                    ]
                   }
                   testID="label"
-                  use="body1"
                 >
                   A
                 </Text>
@@ -146,8 +155,8 @@ exports[`base 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#FFF",
-                    "borderColor": "rgb(173,188,205)",
+                    "backgroundColor": "#ffffff",
+                    "borderColor": "#333333",
                     "borderRadius": 8,
                     "borderWidth": 1,
                     "marginBottom": 16,
@@ -171,7 +180,7 @@ exports[`base 1`] = `
                     Array [
                       Object {
                         "alignItems": "center",
-                        "borderColor": "rgb(173,188,205)",
+                        "borderColor": "#4051db",
                         "borderRadius": 40,
                         "borderWidth": 2,
                         "height": 20,
@@ -185,19 +194,23 @@ exports[`base 1`] = `
                 />
                 <Text
                   style={
-                    Object {
-                      "color": "#000",
-                      "flex": 1,
-                      "flexWrap": "wrap",
-                      "fontFamily": "IBMPlexSans",
-                      "fontSize": 18,
-                      "fontWeight": "normal",
-                      "lineHeight": 24,
-                      "writingDirection": "ltr",
-                    }
+                    Array [
+                      Object {
+                        "color": "#2e2e2e",
+                        "fontSize": 17,
+                        "lineHeight": 28,
+                      },
+                      Object {
+                        "writingDirection": "ltr",
+                      },
+                      Object {
+                        "color": "#000000",
+                        "flex": 1,
+                        "flexWrap": "wrap",
+                      },
+                    ]
                   }
                   testID="label"
-                  use="body1"
                 >
                   B
                 </Text>
@@ -234,24 +247,33 @@ exports[`base 1`] = `
                 "paddingVertical": 22,
               },
               Object {
-                "backgroundColor": "#E5E7FA",
+                "backgroundColor": "#e5e7fa",
               },
             ]
           }
         >
           <Text
             style={
-              Object {
-                "color": "#A5AFFB",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 18,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "textAlign": "center",
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Array [
+                  Object {
+                    "color": "#f8f8f8",
+                    "textAlign": "center",
+                  },
+                  Object {
+                    "color": "#a5affb",
+                  },
+                ],
+              ]
             }
-            use="body1"
           >
             Next
           </Text>

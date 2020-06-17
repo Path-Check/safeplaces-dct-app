@@ -6,7 +6,7 @@ Array [
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#4051DB",
+        "backgroundColor": "#4051db",
         "flexBasis": 0,
         "flexGrow": 0,
         "flexShrink": 1,
@@ -16,7 +16,7 @@ Array [
   <View
     style={
       Object {
-        "backgroundColor": "#F7F8FF",
+        "backgroundColor": "#f8f8f8",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
@@ -27,8 +27,8 @@ Array [
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#4051DB",
-          "borderBottomColor": "#5061E6",
+          "backgroundColor": "#4051db",
+          "borderBottomColor": "#4051db",
           "borderBottomWidth": 1,
           "flexDirection": "row",
           "height": 55,
@@ -59,7 +59,7 @@ Array [
         <SvgXml
           style={
             Object {
-              "color": "#FFF",
+              "color": "#ffffff",
               "height": 18,
               "width": 18,
             }
@@ -75,7 +75,7 @@ Array [
         style={
           Object {
             "alignSelf": "center",
-            "color": "#FFF",
+            "color": "#ffffff",
             "fontFamily": "IBMPlexSans-Bold",
             "fontSize": 16,
             "letterSpacing": 1,
@@ -118,46 +118,67 @@ Array [
         >
           <Text
             style={
-              Object {
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "marginTop": 12,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginTop": 12,
+                },
+              ]
             }
-            use="body1"
           >
             Adding location data from Google will give you a head start on building your recent locations.
           </Text>
           <Text
             style={
-              Object {
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "marginTop": 12,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginTop": 12,
+                },
+              ]
             }
-            use="body1"
           >
             Before you can import, you must first "Take out" your location data from Google.
           </Text>
           <Text
             style={
-              Object {
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 16,
-                "fontWeight": "normal",
-                "lineHeight": 24,
-                "marginTop": 12,
-                "writingDirection": "ltr",
-              }
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontSize": 17,
+                  "lineHeight": 28,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginTop": 12,
+                },
+              ]
             }
-            use="body1"
           >
             Visit Google Takeout and export your Location History using the following settings: 
 1. Delivery method: "Add to Drive" 
@@ -202,17 +223,24 @@ Array [
             testID="google-takeout-link"
           >
             <Text
-              small={true}
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans-Medium",
-                  "fontSize": 14,
-                  "fontWeight": "normal",
-                  "lineHeight": 21,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "fontFamily": "IBMPlexSans-Medium",
+                    "fontSize": 14,
+                    "fontWeight": "normal",
+                    "lineHeight": 21,
+                  },
+                ]
               }
-              use="body1"
             >
               Visit Google Takeout
             </Text>
@@ -253,17 +281,24 @@ Array [
             testID="google-takeout-import-btn"
           >
             <Text
-              small={true}
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans-Medium",
-                  "fontSize": 14,
-                  "fontWeight": "normal",
-                  "lineHeight": 21,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "fontFamily": "IBMPlexSans-Medium",
+                    "fontSize": 14,
+                    "fontWeight": "normal",
+                    "lineHeight": 21,
+                  },
+                ]
               }
-              use="body1"
             >
               Import Locations
             </Text>

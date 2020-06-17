@@ -125,10 +125,6 @@ export function useAssets(): Record<string, Asset> {
     ? t('home.gps.all_services_on_subheader')
     : t('home.bluetooth.all_services_on_subheader');
 
-  // Export Pages
-
-  const exportExitRoute = isGPS ? 'ExportStart' : 'SettingsScreen';
-
   // Export Intro/Start
   const exportStartTitle = isGPS
     ? t('export.start_title')
@@ -146,9 +142,6 @@ export function useAssets(): Record<string, Asset> {
       ? t('export.code_input_body', { name })
       : t('export.code_input_body_bluetooth', { name });
   };
-  const exportCodeInputNextRoute = isGPS
-    ? 'ExportLocationConsent'
-    : 'ExportPublishConsent';
 
   // Export Publish
   const exportPublishBody = (name: string) => {
@@ -163,9 +156,6 @@ export function useAssets(): Record<string, Asset> {
     ? t('export.publish_consent_title')
     : t('export.publish_consent_title_bluetooth');
   const exportPublishIcon = isGPS ? Icons.Publish : Icons.Bell;
-  const exportPublishNextRoute = isGPS
-    ? 'ExportConfirmUpload'
-    : 'ExportComplete';
 
   // Export Complete
   const exportCompleteBody = isGPS
@@ -206,17 +196,14 @@ export function useAssets(): Record<string, Asset> {
     selectAuthorityScreenButton,
     noAuthoritiesScreenHeader,
     noAuthoritiesScreenSubheader,
-    exportExitRoute,
     exportStartTitle,
     exportStartBody,
     exportCodeTitle,
     exportCodeBody,
-    exportCodeInputNextRoute,
     exportPublishBody,
     exportPublishButtonSubtitle,
     exportPublishIcon,
     exportPublishTitle,
-    exportPublishNextRoute,
     exportCompleteBody,
   };
 }

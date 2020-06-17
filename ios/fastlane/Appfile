@@ -4,7 +4,7 @@ itc_team_id("121372784") # App Store Connect Team ID
 team_id("79Z8HUPGC3") # Developer Portal Team ID
 
 for_platform :ios do
-  for_lane :release_bte do
+  for_lane :release_bt do
     app_identifier "org.pathcheck.bt"
   end
 

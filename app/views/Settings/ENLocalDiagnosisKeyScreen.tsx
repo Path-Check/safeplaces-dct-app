@@ -10,11 +10,7 @@ import {
 
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Typography } from '../../components/Typography';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
+import { NavigationProp } from '../../navigation';
 
 import * as ExposureNotifications from './../../../app/exposureNotificationsNativeModule';
 
@@ -23,7 +19,7 @@ export type ENDiagnosisKey = {
 };
 
 type ENLocalDiagnosisKeyScreenProp = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 };
 
 export const ENLocalDiagnosisKeyScreen = ({

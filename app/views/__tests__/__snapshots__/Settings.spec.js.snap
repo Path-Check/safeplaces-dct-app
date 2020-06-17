@@ -14,7 +14,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#4051DB",
+        "backgroundColor": "#4051db",
         "flexBasis": 0,
         "flexGrow": 0,
         "flexShrink": 1,
@@ -24,7 +24,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#F7F8FF",
+        "backgroundColor": "#f8f8f8",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
@@ -35,8 +35,8 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#4051DB",
-          "borderBottomColor": "#5061E6",
+          "backgroundColor": "#4051db",
+          "borderBottomColor": "#4051db",
           "borderBottomWidth": 1,
           "flexDirection": "row",
           "height": 55,
@@ -47,7 +47,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         style={
           Object {
             "alignSelf": "center",
-            "color": "#FFF",
+            "color": "#ffffff",
             "fontFamily": "IBMPlexSans-Bold",
             "fontSize": 16,
             "letterSpacing": 1,
@@ -68,11 +68,13 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#FFF",
-              "paddingBottom": 0,
-              "paddingLeft": "6.25%",
-              "paddingRight": "6.25%",
-              "paddingTop": 0,
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
             }
           }
         >
@@ -82,54 +84,45 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             isTVSelectable={true}
             style={
               Object {
-                "alignItems": "center",
+                "flex": 1,
                 "flexDirection": "row",
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
+                "paddingVertical": 20,
               }
             }
           >
             <SvgXml
-              size={24}
               style={
-                Object {
-                  "marginRight": 12,
-                  "marginTop": 2.5,
-                  "maxHeight": 24,
-                  "maxWidth": 24,
-                }
+                Array [
+                  Object {
+                    "maxHeight": 24,
+                    "maxWidth": 24,
+                  },
+                  Object {
+                    "marginRight": 12,
+                  },
+                ]
               }
               xml="<?xml version=\\"1.0\\"?>
 <svg xmlns=\\"http://www.w3.org/2000/svg\\" id=\\"Layer_1\\" enable-background=\\"new 0 0 512.418 512.418\\" height=\\"512px\\" viewBox=\\"0 0 512.418 512.418\\" width=\\"512px\\"><g><path d=\\"m437.335 75.082c-100.1-100.102-262.136-100.118-362.252 0-100.103 100.102-100.118 262.136 0 362.253 100.1 100.102 262.136 100.117 362.252 0 100.103-100.102 100.117-262.136 0-362.253zm-10.706 325.739c-11.968-10.702-24.77-20.173-38.264-28.335 8.919-30.809 14.203-64.712 15.452-99.954h75.309c-3.405 47.503-21.657 92.064-52.497 128.289zm-393.338-128.289h75.309c1.249 35.242 6.533 69.145 15.452 99.954-13.494 8.162-26.296 17.633-38.264 28.335-30.84-36.225-49.091-80.786-52.497-128.289zm52.498-160.936c11.968 10.702 24.77 20.173 38.264 28.335-8.919 30.809-14.203 64.712-15.452 99.954h-75.31c3.406-47.502 21.657-92.063 52.498-128.289zm154.097 31.709c-26.622-1.904-52.291-8.461-76.088-19.278 13.84-35.639 39.354-78.384 76.088-88.977zm0 32.708v63.873h-98.625c1.13-29.812 5.354-58.439 12.379-84.632 27.043 11.822 56.127 18.882 86.246 20.759zm0 96.519v63.873c-30.119 1.877-59.203 8.937-86.246 20.759-7.025-26.193-11.249-54.82-12.379-84.632zm0 96.581v108.254c-36.732-10.593-62.246-53.333-76.088-88.976 23.797-10.817 49.466-17.374 76.088-19.278zm32.646 0c26.622 1.904 52.291 8.461 76.088 19.278-13.841 35.64-39.354 78.383-76.088 88.976zm0-32.708v-63.873h98.625c-1.13 29.812-5.354 58.439-12.379 84.632-27.043-11.822-56.127-18.882-86.246-20.759zm0-96.519v-63.873c30.119-1.877 59.203-8.937 86.246-20.759 7.025 26.193 11.249 54.82 12.379 84.632zm0-96.581v-108.254c36.734 10.593 62.248 53.338 76.088 88.977-23.797 10.816-49.466 17.373-76.088 19.277zm73.32-91.957c20.895 9.15 40.389 21.557 57.864 36.951-8.318 7.334-17.095 13.984-26.26 19.931-8.139-20.152-18.536-39.736-31.604-56.882zm-210.891 56.882c-9.165-5.947-17.941-12.597-26.26-19.931 17.475-15.394 36.969-27.801 57.864-36.951-13.068 17.148-23.465 36.732-31.604 56.882zm.001 295.958c8.138 20.151 18.537 39.736 31.604 56.882-20.895-9.15-40.389-21.557-57.864-36.951 8.318-7.334 17.095-13.984 26.26-19.931zm242.494 0c9.165 5.947 17.942 12.597 26.26 19.93-17.475 15.394-36.969 27.801-57.864 36.951 13.067-17.144 23.465-36.729 31.604-56.881zm26.362-164.302c-1.249-35.242-6.533-69.146-15.452-99.954 13.494-8.162 26.295-17.633 38.264-28.335 30.84 36.225 49.091 80.786 52.497 128.289z\\" data-original=\\"#000000\\" class=\\"active-path\\" data-old_color=\\"#000000\\" fill=\\"#3C4ED8\\"/></g> </svg>"
             />
-            <View
+            <Text
               style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  undefined,
+                ]
               }
             >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                English
-              </Text>
-            </View>
+              English
+            </Text>
           </View>
           <Modal
             animationType="slide"
@@ -149,7 +142,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 focusable={true}
                 style={
                   Object {
-                    "backgroundColor": "#000",
+                    "backgroundColor": "#000000",
                     "flex": 1,
                     "opacity": 0.2,
                   }
@@ -159,7 +152,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#FFF",
+                  "backgroundColor": "#ffffff",
                   "flex": 1,
                 }
               }
@@ -171,19 +164,24 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 <View>
                   <Text
                     style={
-                      Object {
-                        "color": "#007AFF",
-                        "fontFamily": "IBMPlexSans",
-                        "fontSize": 18,
-                        "fontWeight": "bold",
-                        "lineHeight": 24,
-                        "marginRight": 22,
-                        "marginTop": 16,
-                        "textAlign": "right",
-                        "writingDirection": "ltr",
-                      }
+                      Array [
+                        Object {
+                          "color": "#2e2e2e",
+                          "fontSize": 17,
+                          "lineHeight": 28,
+                        },
+                        Object {
+                          "writingDirection": "ltr",
+                        },
+                        Object {
+                          "color": undefined,
+                          "fontWeight": "bold",
+                          "marginRight": 22,
+                          "marginTop": 16,
+                          "textAlign": "right",
+                        },
+                      ]
                     }
-                    use="body1"
                   >
                     Done
                   </Text>
@@ -224,323 +222,13 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
         <View
           style={
             Object {
-              "height": 1,
-              "width": "100%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "marginBottom": "2%",
-              "marginLeft": 0,
-              "marginRight": 0,
-              "marginTop": "2%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "height": 1,
-              "width": "100%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "backgroundColor": "#FFF",
-              "paddingBottom": 0,
-              "paddingLeft": "6.25%",
-              "paddingRight": "6.25%",
-              "paddingTop": 0,
-            }
-          }
-        >
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Your Healthcare Authority
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Select a Healthcare Authority to learn about COVID-19 in your area, where available
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Latest News
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Find the latest updates from Safe Paths and your local Healthcare Authorities, where available
-              </Text>
-            </View>
-          </View>
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Exposure history
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Understand your personal exposure based on information shared by health authorities.
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Share location history
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Your private data can be transferred to health authorities, backed up, or otherwise shared.
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "height": 1,
-              "width": "100%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "marginBottom": "2%",
-              "marginLeft": 0,
-              "marginRight": 0,
-              "marginTop": "2%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "height": 1,
-              "width": "100%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "backgroundColor": "#FFF",
-              "paddingBottom": 0,
-              "paddingLeft": "6.25%",
-              "paddingRight": "6.25%",
-              "paddingTop": 0,
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
             }
           }
         >
@@ -549,7 +237,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "paddingTop": 18,
+                "paddingTop": 16,
               }
             }
           >
@@ -567,16 +255,20 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             />
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 21,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "marginLeft": 8,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
               }
-              use="body1"
             >
               Google Maps
             </Text>
@@ -584,67 +276,65 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             style={
               Object {
-                "paddingBottom": 20,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 20,
+                "paddingVertical": 20,
               }
             }
           >
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 16,
-                  "fontWeight": "normal",
-                  "lineHeight": 22,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#4e4e4e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  undefined,
+                ]
               }
-              use="body2"
             >
               To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.
             </Text>
           </View>
           <View
-            accessibilityLabel="Import past locations"
-            accessibilityRole="button"
             accessible={true}
             focusable={true}
             isTVSelectable={true}
             style={
               Object {
-                "alignContent": "center",
                 "alignItems": "center",
-                "alignSelf": "stretch",
-                "backgroundColor": "transparent",
-                "borderBottomLeftRadius": 8,
-                "borderBottomRightRadius": 8,
-                "borderColor": "black",
-                "borderStyle": "solid",
-                "borderTopLeftRadius": 8,
-                "borderTopRightRadius": 8,
-                "borderWidth": 2,
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "borderColor": "#4051db",
+                "borderRadius": 8,
+                "borderWidth": 1,
                 "flexDirection": "row",
-                "height": 72,
                 "justifyContent": "center",
                 "opacity": 1,
-                "paddingHorizontal": 16,
+                "paddingBottom": 25,
+                "paddingTop": 24,
               }
             }
           >
             <Text
-              secondary={true}
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans-Medium",
-                  "fontSize": 20,
-                  "fontWeight": "normal",
-                  "lineHeight": 40,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 19,
+                    "fontWeight": "500",
+                  },
+                ]
               }
-              use="body1"
             >
               Import past locations
             </Text>
@@ -652,65 +342,44 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           <View
             style={
               Object {
-                "paddingBottom": 20,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 20,
+                "paddingVertical": 20,
               }
             }
           >
             <Text
-              monospace={true}
-              secondary={true}
               style={
-                Object {
-                  "fontFamily": "IBMPlexMono",
-                  "fontSize": 15,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4e4e4e",
+                    "fontFamily": "IBMPlexMono",
+                    "fontSize": 15,
+                    "lineHeight": 24,
+                  },
+                ]
               }
-              use="body3"
             >
-              Safe Paths has no affiliation with Google and never shares your data.
+              PathCheck has no affiliation with Google and never shares your data.
             </Text>
           </View>
         </View>
         <View
           style={
             Object {
-              "height": 1,
-              "width": "100%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "marginBottom": "2%",
-              "marginLeft": 0,
-              "marginRight": 0,
-              "marginTop": "2%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "height": 1,
-              "width": "100%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "backgroundColor": "#FFF",
-              "paddingBottom": 0,
-              "paddingLeft": "6.25%",
-              "paddingRight": "6.25%",
-              "paddingTop": 0,
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
             }
           }
         >
@@ -720,151 +389,159 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             isTVSelectable={true}
             style={
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
+                "borderBottomWidth": 1,
+                "borderColor": "#a5affb",
+                "flex": 1,
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
+                "paddingVertical": 20,
               }
             }
           >
-            <View
+            <Text
               style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
             >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                About
-              </Text>
-            </View>
+              About
+            </Text>
           </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
           <View
             accessible={true}
             focusable={true}
             isTVSelectable={true}
             style={
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
+                "borderBottomWidth": 0,
+                "borderColor": "#a5affb",
+                "flex": 1,
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
+                "paddingVertical": 20,
               }
             }
           >
-            <View
+            <Text
               style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
             >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Legal
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Feature Flags (Dev mode only)
-              </Text>
-            </View>
+              Legal
+            </Text>
           </View>
         </View>
         <View
           style={
             Object {
-              "height": 1,
-              "width": "100%",
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
             }
           }
-        />
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "borderBottomWidth": 1,
+                "borderColor": "#a5affb",
+                "flex": 1,
+                "opacity": 1,
+                "paddingVertical": 20,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
+              }
+            >
+              EN Debug Menu
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "borderBottomWidth": 0,
+                "borderColor": "#a5affb",
+                "flex": 1,
+                "opacity": 1,
+                "paddingVertical": 20,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
+              }
+            >
+              Feature Flags (Dev mode only)
+            </Text>
+          </View>
+        </View>
       </View>
     </RCTScrollView>
   </View>
@@ -885,7 +562,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#4051DB",
+        "backgroundColor": "#4051db",
         "flexBasis": 0,
         "flexGrow": 0,
         "flexShrink": 1,
@@ -895,7 +572,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#F7F8FF",
+        "backgroundColor": "#f8f8f8",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
@@ -906,8 +583,8 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#4051DB",
-          "borderBottomColor": "#5061E6",
+          "backgroundColor": "#4051db",
+          "borderBottomColor": "#4051db",
           "borderBottomWidth": 1,
           "flexDirection": "row",
           "height": 55,
@@ -918,7 +595,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         style={
           Object {
             "alignSelf": "center",
-            "color": "#FFF",
+            "color": "#ffffff",
             "fontFamily": "IBMPlexSans-Bold",
             "fontSize": 16,
             "letterSpacing": 1,
@@ -939,11 +616,13 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#FFF",
-              "paddingBottom": 0,
-              "paddingLeft": "6.25%",
-              "paddingRight": "6.25%",
-              "paddingTop": 0,
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
             }
           }
         >
@@ -953,54 +632,45 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             isTVSelectable={true}
             style={
               Object {
-                "alignItems": "center",
+                "flex": 1,
                 "flexDirection": "row",
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
+                "paddingVertical": 20,
               }
             }
           >
             <SvgXml
-              size={24}
               style={
-                Object {
-                  "marginRight": 12,
-                  "marginTop": 2.5,
-                  "maxHeight": 24,
-                  "maxWidth": 24,
-                }
+                Array [
+                  Object {
+                    "maxHeight": 24,
+                    "maxWidth": 24,
+                  },
+                  Object {
+                    "marginRight": 12,
+                  },
+                ]
               }
               xml="<?xml version=\\"1.0\\"?>
 <svg xmlns=\\"http://www.w3.org/2000/svg\\" id=\\"Layer_1\\" enable-background=\\"new 0 0 512.418 512.418\\" height=\\"512px\\" viewBox=\\"0 0 512.418 512.418\\" width=\\"512px\\"><g><path d=\\"m437.335 75.082c-100.1-100.102-262.136-100.118-362.252 0-100.103 100.102-100.118 262.136 0 362.253 100.1 100.102 262.136 100.117 362.252 0 100.103-100.102 100.117-262.136 0-362.253zm-10.706 325.739c-11.968-10.702-24.77-20.173-38.264-28.335 8.919-30.809 14.203-64.712 15.452-99.954h75.309c-3.405 47.503-21.657 92.064-52.497 128.289zm-393.338-128.289h75.309c1.249 35.242 6.533 69.145 15.452 99.954-13.494 8.162-26.296 17.633-38.264 28.335-30.84-36.225-49.091-80.786-52.497-128.289zm52.498-160.936c11.968 10.702 24.77 20.173 38.264 28.335-8.919 30.809-14.203 64.712-15.452 99.954h-75.31c3.406-47.502 21.657-92.063 52.498-128.289zm154.097 31.709c-26.622-1.904-52.291-8.461-76.088-19.278 13.84-35.639 39.354-78.384 76.088-88.977zm0 32.708v63.873h-98.625c1.13-29.812 5.354-58.439 12.379-84.632 27.043 11.822 56.127 18.882 86.246 20.759zm0 96.519v63.873c-30.119 1.877-59.203 8.937-86.246 20.759-7.025-26.193-11.249-54.82-12.379-84.632zm0 96.581v108.254c-36.732-10.593-62.246-53.333-76.088-88.976 23.797-10.817 49.466-17.374 76.088-19.278zm32.646 0c26.622 1.904 52.291 8.461 76.088 19.278-13.841 35.64-39.354 78.383-76.088 88.976zm0-32.708v-63.873h98.625c-1.13 29.812-5.354 58.439-12.379 84.632-27.043-11.822-56.127-18.882-86.246-20.759zm0-96.519v-63.873c30.119-1.877 59.203-8.937 86.246-20.759 7.025 26.193 11.249 54.82 12.379 84.632zm0-96.581v-108.254c36.734 10.593 62.248 53.338 76.088 88.977-23.797 10.816-49.466 17.373-76.088 19.277zm73.32-91.957c20.895 9.15 40.389 21.557 57.864 36.951-8.318 7.334-17.095 13.984-26.26 19.931-8.139-20.152-18.536-39.736-31.604-56.882zm-210.891 56.882c-9.165-5.947-17.941-12.597-26.26-19.931 17.475-15.394 36.969-27.801 57.864-36.951-13.068 17.148-23.465 36.732-31.604 56.882zm.001 295.958c8.138 20.151 18.537 39.736 31.604 56.882-20.895-9.15-40.389-21.557-57.864-36.951 8.318-7.334 17.095-13.984 26.26-19.931zm242.494 0c9.165 5.947 17.942 12.597 26.26 19.93-17.475 15.394-36.969 27.801-57.864 36.951 13.067-17.144 23.465-36.729 31.604-56.881zm26.362-164.302c-1.249-35.242-6.533-69.146-15.452-99.954 13.494-8.162 26.295-17.633 38.264-28.335 30.84 36.225 49.091 80.786 52.497 128.289z\\" data-original=\\"#000000\\" class=\\"active-path\\" data-old_color=\\"#000000\\" fill=\\"#3C4ED8\\"/></g> </svg>"
             />
-            <View
+            <Text
               style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  undefined,
+                ]
               }
             >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                English
-              </Text>
-            </View>
+              English
+            </Text>
           </View>
           <Modal
             animationType="slide"
@@ -1020,7 +690,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 focusable={true}
                 style={
                   Object {
-                    "backgroundColor": "#000",
+                    "backgroundColor": "#000000",
                     "flex": 1,
                     "opacity": 0.2,
                   }
@@ -1030,7 +700,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#FFF",
+                  "backgroundColor": "#ffffff",
                   "flex": 1,
                 }
               }
@@ -1042,19 +712,24 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 <View>
                   <Text
                     style={
-                      Object {
-                        "color": "#007AFF",
-                        "fontFamily": "IBMPlexSans",
-                        "fontSize": 18,
-                        "fontWeight": "bold",
-                        "lineHeight": 24,
-                        "marginRight": 22,
-                        "marginTop": 16,
-                        "textAlign": "right",
-                        "writingDirection": "ltr",
-                      }
+                      Array [
+                        Object {
+                          "color": "#2e2e2e",
+                          "fontSize": 17,
+                          "lineHeight": 28,
+                        },
+                        Object {
+                          "writingDirection": "ltr",
+                        },
+                        Object {
+                          "color": undefined,
+                          "fontWeight": "bold",
+                          "marginRight": 22,
+                          "marginTop": 16,
+                          "textAlign": "right",
+                        },
+                      ]
                     }
-                    use="body1"
                   >
                     Done
                   </Text>
@@ -1095,37 +770,26 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
         <View
           style={
             Object {
-              "height": 1,
-              "width": "100%",
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
             }
           }
         />
         <View
           style={
             Object {
-              "marginBottom": "2%",
-              "marginLeft": 0,
-              "marginRight": 0,
-              "marginTop": "2%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "height": 1,
-              "width": "100%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "backgroundColor": "#FFF",
-              "paddingBottom": 0,
-              "paddingLeft": "6.25%",
-              "paddingRight": "6.25%",
-              "paddingTop": 0,
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
             }
           }
         >
@@ -1135,123 +799,35 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             isTVSelectable={true}
             style={
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
+                "borderBottomWidth": 1,
+                "borderColor": "#a5affb",
+                "flex": 1,
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
+                "paddingVertical": 20,
               }
             }
           >
-            <View
+            <Text
               style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
             >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Your Healthcare Authority
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Select a Healthcare Authority to learn about COVID-19 in your area, where available
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Latest News
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Find the latest updates from Safe Paths and your local Healthcare Authorities, where available
-              </Text>
-            </View>
+              About
+            </Text>
           </View>
           <View
             accessible={true}
@@ -1259,159 +835,47 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             isTVSelectable={true}
             style={
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
+                "borderBottomWidth": 0,
+                "borderColor": "#a5affb",
+                "flex": 1,
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
+                "paddingVertical": 20,
               }
             }
           >
-            <View
+            <Text
               style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
             >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Exposure history
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Understand your personal exposure based on information shared by health authorities.
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Share location history
-              </Text>
-              <Text
-                secondary={true}
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 15,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "marginTop": 4,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body3"
-              >
-                Your private data can be transferred to health authorities, backed up, or otherwise shared.
-              </Text>
-            </View>
+              Legal
+            </Text>
           </View>
         </View>
         <View
           style={
             Object {
-              "height": 1,
-              "width": "100%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "marginBottom": "2%",
-              "marginLeft": 0,
-              "marginRight": 0,
-              "marginTop": "2%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "height": 1,
-              "width": "100%",
-            }
-          }
-        />
-        <View
-          style={
-            Object {
-              "backgroundColor": "#FFF",
-              "paddingBottom": 0,
-              "paddingLeft": "6.25%",
-              "paddingRight": "6.25%",
-              "paddingTop": 0,
+              "backgroundColor": "#ffffff",
+              "borderBottomWidth": 1,
+              "borderColor": "#a5affb",
+              "borderTopWidth": 1,
+              "flex": 1,
+              "marginBottom": 20,
+              "paddingHorizontal": 16,
             }
           }
         >
@@ -1421,151 +885,73 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             isTVSelectable={true}
             style={
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
+                "borderBottomWidth": 1,
+                "borderColor": "#a5affb",
+                "flex": 1,
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
+                "paddingVertical": 20,
               }
             }
           >
-            <View
+            <Text
               style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
             >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                About
-              </Text>
-            </View>
+              EN Debug Menu
+            </Text>
           </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
           <View
             accessible={true}
             focusable={true}
             isTVSelectable={true}
             style={
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
+                "borderBottomWidth": 0,
+                "borderColor": "#a5affb",
+                "flex": 1,
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
+                "paddingVertical": 20,
               }
             }
           >
-            <View
+            <Text
               style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#4051db",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                ]
               }
             >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Legal
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "height": 1,
-                "width": "100%",
-              }
-            }
-          />
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 18,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Object {
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "lineHeight": 24,
-                    "writingDirection": "ltr",
-                  }
-                }
-                use="body1"
-              >
-                Feature Flags (Dev mode only)
-              </Text>
-            </View>
+              Feature Flags (Dev mode only)
+            </Text>
           </View>
         </View>
-        <View
-          style={
-            Object {
-              "height": 1,
-              "width": "100%",
-            }
-          }
-        />
       </View>
     </RCTScrollView>
   </View>

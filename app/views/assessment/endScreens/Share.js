@@ -3,8 +3,9 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { Icons } from '../../../assets';
 import { Typography } from '../../../components/Typography';
-import Colors from '../../../constants/colors';
 import { Info } from '../Info';
+
+import { Colors } from '../../../styles';
 
 /** @type {React.FunctionComponent<{}>} */
 export const Share = ({ navigation }) => {
@@ -13,10 +14,10 @@ export const Share = ({ navigation }) => {
   return (
     <Info
       ctaAction={() => {
-        navigation.push('EndComplete');
+        navigation.push('AssessmentComplete');
       }}
       icon={Icons.AnonymizedDataInverted}
-      backgroundColor={Colors.SECONDARY_10}
+      backgroundColor={Colors.primaryBackgroundFaintShade}
       ctaTitle={t('assessment.share_cta')}
       description={
         <>

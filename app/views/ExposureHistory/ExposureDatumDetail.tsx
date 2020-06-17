@@ -3,7 +3,15 @@ import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import dayjs from 'dayjs';
 
+import {
+  ExposureDatum,
+  Possible,
+  Unknown,
+  NoKnown,
+} from '../../ExposureHistoryContext';
 import { Typography } from '../../components/Typography';
+import { TimeHelpers } from '../utils';
+import { Screens } from '../../navigation';
 
 import {
   Typography as TypographyStyles,
@@ -12,13 +20,6 @@ import {
   Buttons,
   Spacing,
 } from '../../styles';
-
-import {
-  ExposureDatum,
-  Possible,
-  Unknown,
-  NoKnown,
-} from '../../ExposureNotificationContext';
 
 interface ExposureDatumDetailsProps {
   exposureDatum: ExposureDatum;
@@ -47,14 +48,17 @@ interface PossibleExposureDetailProps {
 const PossibleExposureDetail = ({
   datum: { date, possibleExposureTimeInMin, currentDailyReports },
 }: PossibleExposureDetailProps) => {
+  const exposureDurationText = TimeHelpers.durationMsToString(
+    possibleExposureTimeInMin * 60 * 1000,
+  );
   const navigation = useNavigation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');
-  const exposureTime = `Possible Exposure Time: ${possibleExposureTimeInMin}`;
+  const exposureTime = `Possible Exposure Time: ${exposureDurationText}`;
   const dailyReports = `Current daily reports: ${currentDailyReports}`;
-  const explainationContent = `For ${possibleExposureTimeInMin} consecutive minutes, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis.`;
+  const explainationContent = `For ${exposureDurationText}, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis.`;
 
   const handleOnPressNextSteps = () => {
-    navigation.navigate('NextStepsScreen');
+    navigation.navigate(Screens.NextSteps);
   };
 
   const nextStepsButtonText = 'What should I do next?';
@@ -64,18 +68,20 @@ const PossibleExposureDetail = ({
       <View style={styles.container}>
         <Typography style={styles.date}>{exposureDate}</Typography>
         <Typography style={styles.info}>{exposureTime}</Typography>
-        <Typography sytle={styles.info}>{dailyReports}</Typography>
+        <Typography style={styles.info}>{dailyReports}</Typography>
         <View style={styles.contentContainer}>
           <Typography style={styles.content}>{explainationContent}</Typography>
         </View>
       </View>
-      <TouchableOpacity
-        style={styles.nextStepsButton}
-        onPress={handleOnPressNextSteps}>
-        <Typography style={styles.nextStepsButtonText}>
-          {nextStepsButtonText}
-        </Typography>
-      </TouchableOpacity>
+      <View style={styles.ctaContainer}>
+        <TouchableOpacity
+          style={styles.nextStepsButton}
+          onPress={handleOnPressNextSteps}>
+          <Typography style={styles.nextStepsButtonText}>
+            {nextStepsButtonText}
+          </Typography>
+        </TouchableOpacity>
+      </View>
     </>
   );
 };
@@ -94,7 +100,7 @@ const NoKnownExposureDetail = ({
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
-      <Typography sytle={styles.info}>{dailyReports}</Typography>
+      <Typography style={styles.info}>{dailyReports}</Typography>
       <View style={styles.contentContainer}>
         <Typography style={styles.content}>{explainationContent}</Typography>
       </View>
@@ -116,7 +122,7 @@ const UnknownExposureDetail = ({
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
-      <Typography sytle={styles.info}>{subTitleText}</Typography>
+      <Typography style={styles.info}>{subTitleText}</Typography>
       <View style={styles.contentContainer}>
         <Typography style={styles.content}>{explainationContent}</Typography>
       </View>
@@ -144,12 +150,15 @@ const styles = StyleSheet.create({
   content: {
     ...TypographyStyles.secondaryContent,
   },
+  ctaContainer: {
+    marginBottom: Spacing.medium,
+  },
   nextStepsButton: {
     ...Buttons.largeBlueOutline,
     marginTop: Spacing.xLarge,
   },
   nextStepsButtonText: {
-    ...TypographyStyles.ctaButtonOutlined,
+    ...TypographyStyles.buttonTextDark,
   },
 });
 

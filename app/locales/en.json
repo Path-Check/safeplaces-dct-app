@@ -44,9 +44,17 @@
   },
   "authorities": {
     "invalid_url_body": "The URL you entered was invalid, please try again",
-    "invalid_url_title": "Invalid URL"
+    "info_body": "Local and regional Health Departments can share information and resources about COVID-19 for their area, including verified data that allows PathCheck to estimate when you may have crossed paths with the virus.",
+    "title": "Health Departments",
+    "view_button_label": "View your Health Departments",
+    "custom_url": "Manually Add Via URL",
+    "automatically_follow": "Automatically follow Health Departments nearby",
+    "url_instructions": "Enter a URL for the Health Department you would like to add",
+    "custom_url_title": "Add Via Url",
+    "invalid_url": "Invalid YAML URL"
   },
   "common": {
+    "add": "Add",
     "done": "Done",
     "next": "Next",
     "ok": "Ok",
@@ -80,7 +88,9 @@
     "start_body": "The representative from your Healthcare Authority will walk you through this process during your interview.",
     "start_body_bluetooth": "Choose to anonymously notify others you may have encountered and help your community contain the spread of the virus.",
     "start_title": "Share your location history anonymously with your community if you have tested positive for COVID-19.",
-    "start_title_bluetooth": "Help contain the spread of the virus and protect others in your community if you're diagnosed or test positive for COVID-19."
+    "start_title_bluetooth": "Help contain the spread of the virus and protect others in your community if you're diagnosed or test positive for COVID-19.",
+    "location_consent_title": "Use of location history",
+    "location_consent_body": "Your location history is used by representatives of {{name}} to interview you about places you visited and when you were there.\n\nOnce you send your location history to {{name}}, they will retain your data for a specific period of time."
   },
   "history": {
     "no_exposure": "No known",
@@ -97,7 +107,7 @@
     "error": "Something went wrong while importing your data.",
     "google": {
       "already_imported": "Provided Takeout file has already been imported.",
-      "disclaimer": "Safe Paths has no affiliation with Google and never shares your data.",
+      "disclaimer": "PathCheck has no affiliation with Google and never shares your data.",
       "file_open_error": "Could not open the file. \nPlease, make sure the file is opened from Google Drive",
       "instructions_detailed": "Visit Google Takeout and export your Location History using the following settings: \n1. Delivery method: \"Add to Drive\" \n2. Frequency: \"Export once\" \n3. File type & size: \".zip\" and \"1GB\"\n4. Google sends an email when the export is ready \n5. Return here to import locations from Google Drive",
       "instructions_first": "Adding location data from Google will give you a head start on building your recent locations.",
@@ -122,11 +132,11 @@
     "bluetooth": {
       "all_services_on_header": "PathCheck",
       "all_services_on_subheader": "Exposure notifications are on",
-      "tracing_off_header": "Notifications Disabled",
-      "tracing_off_subheader": "You will not receive notifications about possible exposures",
-      "tracing_off_button": "Allow Notifications",
+      "tracing_off_header": "Exposure Notifications Disabled",
+      "tracing_off_subheader": "Enable Exposure Notifications to receive information about possible exposures",
+      "tracing_off_button": "Allow Exposure Notifications",
       "unavailable_header": "Exposure history notifications are not yet available",
-      "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck."
+      "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck"
     },
     "shared": {
       "notifications_off_header": "Notifications Disabled",
@@ -138,6 +148,10 @@
       "no_authorities_header": "No local Health Department",
       "no_authorities_subheader": "Your phone is outside any areas covered by Health Department on PathCheck \n\n You will be notified when Health Departments are added near you"
     }
+  },
+  "settings": {
+    "share_test_result": "Report a positive test result",
+    "share_test_result_description": "Share Covid-19 exporsure information with your health authority with a provided code"
   },
   "label": {
     "about_header_bluetooth": "PathCheck BT",
@@ -163,7 +177,7 @@
     "auto_subscribe_checkbox": "Enable auto subscription",
     "choose_provider_subtitle": "Select a Healthcare Authority to learn about COVID-19 in your area, where available",
     "choose_provider_title": "Your Healthcare Authority",
-    "default_news_site_name": "Safe Paths News",
+    "default_news_site_name": "PathCheck News",
     "enter_authority_url": "Enter or paste URL",
     "event_history_subtitle": "Understand your personal exposure based on information shared by health authorities.",
     "event_history_title": "Exposure history",
@@ -214,15 +228,15 @@
     "legal_page_header_bluetooth": "PathCheck BT",
     "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "loading data...",
-    "location_disabled_message": "COVID Safe Paths requires location services.",
+    "location_disabled_message": "PathCheck requires location services.",
     "location_disabled_title": "Location Tracking Was Disabled",
-    "location_enabled_message": "COVID Safe Paths is securely storing your GPS coordinates once every five minutes on this device.",
-    "location_enabled_title": "COVID Safe Paths Enabled",
+    "location_enabled_message": "PathCheck is securely storing your GPS coordinates once every five minutes on this device.",
+    "location_enabled_title": "PathCheck Enabled",
     "logging_active_bluetooth": "Exposure Notifications Active",
     "logging_active_location": "Location Active",
     "logging_inactive_bluetooth": "Exposure Notifications Inactive",
     "logging_inactive_location": "Location Inactive",
-    "news_subtitle": "Find the latest updates from Safe Paths and your local Healthcare Authorities, where available",
+    "news_subtitle": "Find the latest updates from PathCheck and your local Healthcare Authorities, where available",
     "news_title": "Latest News",
     "no_data": "No data",
     "privacy_policy": "Privacy Policy",
@@ -239,7 +253,7 @@
   "onboarding": {
     "eula_checkbox": "I accept the licensing agreement",
     "eula_continue": "Continue",
-    "eula_message": "*You must accept in order to use Safe Paths",
+    "eula_message": "*You must accept in order to use PathCheck",
     "notification_header": "Would you like to recieve notifications when you may have crossed paths with the virus?",
     "notification_subheader": "To recieve exposure notifications, you need to be in an area covered by a local Health Department partner.\n\nIf there are no local or regional partner Health Department in your area yet, get notified when new Health Departments are added near you.",
     "location_header": "To determine when you may have crossed paths with the virus, PathCheck needs location access.",
@@ -253,7 +267,7 @@
     "title": "Share location history"
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths is outdated",
+    "alert_label": "PathCheck is outdated",
     "alert_sublabel": "Update to a new version?",
     "later": "Later",
     "push_notification_message": "Please update your application",
@@ -271,7 +285,6 @@
     "about": "About",
     "faq": "FAQ",
     "report_issue": "Report an issue",
-    "report_positive_test": "Report a positive test result",
     "legal": "Legal",
     "more": "More"
   }

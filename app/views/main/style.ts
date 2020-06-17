@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
+import { Colors } from '../../styles';
 
 const PULSE_GAP = 80;
 
@@ -54,14 +54,14 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 34,
     marginBottom: 24,
-    color: Colors.WHITE,
+    color: Colors.white,
     fontSize: 28,
     fontFamily: fontFamily.primaryMedium,
   },
   mainTextBelow: {
     textAlign: 'center',
     lineHeight: 34,
-    color: Colors.WHITE,
+    color: Colors.white,
     fontSize: 26,
     fontFamily: fontFamily.primaryMedium,
     marginBottom: 24,
@@ -70,14 +70,14 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
     textAlign: 'center',
     lineHeight: 24.5,
-    color: Colors.WHITE,
+    color: Colors.white,
     fontSize: 18,
     fontFamily: fontFamily.primaryRegular,
   },
   subsubheaderText: {
     textAlign: 'center',
     lineHeight: 24.5,
-    color: Colors.WHITE,
+    color: Colors.white,
     fontSize: 16,
     fontFamily: fontFamily.primaryLight,
     marginBottom: 24,
@@ -94,13 +94,13 @@ export const styles = StyleSheet.create({
   },
   mainMayoHeader: {
     textAlign: 'left',
-    color: Colors.MISCHKA,
+    color: Colors.lightGray,
     fontSize: 18,
     fontFamily: fontFamily.primaryBold,
   },
   mainMayoSubtext: {
     textAlign: 'left',
-    color: Colors.MISCHKA,
+    color: Colors.lightGray,
     fontSize: 18,
     fontFamily: fontFamily.primaryRegular,
   },

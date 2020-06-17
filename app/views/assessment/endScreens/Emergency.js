@@ -4,8 +4,9 @@ import { Linking } from 'react-native';
 
 import { Icons, Images } from '../../../assets';
 import { Typography } from '../../../components/Typography';
-import Colors from '../../../constants/colors';
 import { Info } from '../Info';
+
+import { Colors } from '../../../styles';
 
 /** @type {React.FunctionComponent<{}>} */
 export const Emergency = () => {
@@ -16,7 +17,7 @@ export const Emergency = () => {
         // TODO: This would need to be localized per country
         Linking.openURL('tel:911');
       }}
-      backgroundColor={Colors.SECONDARY_10}
+      backgroundColor={Colors.primaryBackgroundFaintShade}
       backgroundImage={Images.IsolatePathBackground}
       icon={Icons.Isolate}
       ctaTitle={t('assessment.emergency_cta')}

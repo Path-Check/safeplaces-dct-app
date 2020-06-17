@@ -5,7 +5,7 @@ const exportConsentApi = async (
   consent: boolean,
   code: number,
 ): Promise<void> => {
-  const endpoint = `${authority.ingest_url}/consent`;
+  const endpoint = `${authority.public_api}/consent`;
   const res = await fetch(endpoint, {
     method: 'POST',
     headers: {

@@ -33,6 +33,8 @@ export const ServiceOffScreen = ({
 }: ServiceOffScreenProps): JSX.Element => {
   const size = Dimensions.get('window').height;
 
+  const subheaderText: string = subheader as string;
+
   return (
     <Theme use='violet'>
       <ImageBackground
@@ -52,13 +54,12 @@ export const ServiceOffScreen = ({
         </View>
 
         <View style={styles.mainContainer}>
-          <View style={styles.contentAbovePulse}>
-            <Typography style={styles.mainTextAbove} />
-            <Typography style={styles.subsubheaderText} />
-          </View>
+          <View style={styles.contentAbovePulse} />
           <View style={styles.contentBelowPulse}>
             <Text style={styles.mainTextBelow}>{header}</Text>
-            <Typography style={styles.subheaderText}>{subheader}</Typography>
+            <Typography style={styles.subheaderText}>
+              {subheaderText}
+            </Typography>
             {button && (
               <Button
                 label={button.label}

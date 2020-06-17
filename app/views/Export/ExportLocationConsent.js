@@ -1,11 +1,13 @@
 import React from 'react';
+import { Linking, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { Icons } from '../../assets';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
-import { Linking } from 'react-native';
-import getCursorApi from '../../api/healthcareAuthorities/getCursorApi';
+import getConfigurationApi from '../../api/healthcareAuthorities/getConfigurationApi';
+import { Icons } from '../../assets';
+import { Screens } from '../../navigation';
+
 // NOTE:
 // We don't actually hit the consent endpoint until the next screen. These screens are tied together,
 // So there is one endpoint for both parts.
@@ -15,14 +17,26 @@ export const ExportLocationConsent = ({ navigation, route }) => {
   const { selectedAuthority, code } = route.params;
 
   const onNext = () =>
-    navigation.navigate('ExportPublishConsent', { selectedAuthority, code });
+    navigation.navigate(Screens.ExportPublishConsent, {
+      selectedAuthority,
+      code,
+    });
 
   const onClose = () => exitWarningAlert(navigation);
 
   // Fetch here to ensure we show the up to date privacy policy
   const onPressLink = async () => {
-    const { privacy_policy_url } = await getCursorApi(selectedAuthority);
-    Linking.openURL(privacy_policy_url);
+    try {
+      const { privacyPolicyUrl } = await getConfigurationApi(selectedAuthority);
+      try {
+        await Linking.openURL(privacyPolicyUrl);
+      } catch (e) {
+        // Isolate linking errors from api errors:
+        throw new Error(`Unable to open link: ${privacyPolicyUrl}`);
+      }
+    } catch (e) {
+      Alert.alert(t('common.something_went_wrong'), e.message);
+    }
   };
 
   return (

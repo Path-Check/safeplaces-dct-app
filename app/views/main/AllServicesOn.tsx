@@ -5,11 +5,12 @@ import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 import { Theme } from '../../constants/themes';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { useAssets } from '../../TracingStrategyAssets';
 import { styles } from './style';
+
+import { Colors } from '../../styles';
 
 export const AllServicesOnScreen = (): JSX.Element => {
   const {
@@ -17,6 +18,9 @@ export const AllServicesOnScreen = (): JSX.Element => {
     allServicesOnScreenSubheader,
   } = useAssets();
   const size = Dimensions.get('window').height;
+
+  const allServicesOnScreenHeaderText: string = allServicesOnScreenHeader as string;
+  const allServicesOnScreenSubheaderText: string = allServicesOnScreenSubheader as string;
 
   return (
     <Theme use='violet'>
@@ -32,7 +36,7 @@ export const AllServicesOnScreen = (): JSX.Element => {
           {isGPS && (
             <Pulse
               image={{ exportImage: Images.Export }}
-              color={Colors.PULSE_WHITE}
+              color={Colors.lightestGray}
               numPulses={3}
               diameter={400}
               speed={20}
@@ -50,10 +54,10 @@ export const AllServicesOnScreen = (): JSX.Element => {
           <View style={styles.contentAbovePulse} />
           <View style={styles.contentBelowPulse}>
             <Typography style={styles.mainTextBelow}>
-              {allServicesOnScreenHeader}
+              {allServicesOnScreenHeaderText}
             </Typography>
             <Typography style={styles.subheaderText}>
-              {allServicesOnScreenSubheader}
+              {allServicesOnScreenSubheaderText}
             </Typography>
           </View>
         </View>

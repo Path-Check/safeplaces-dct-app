@@ -11,7 +11,7 @@ exports[`base 1`] = `
   }
 >
   <RCTSafeAreaView
-    backgroundColor="#F8F8FF"
+    backgroundColor="#f8f8f8"
     emulateUnlessSupported={true}
     style={
       Object {
@@ -77,32 +77,42 @@ exports[`base 1`] = `
             />
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans-Bold",
-                  "fontSize": 26,
-                  "fontWeight": "bold",
-                  "lineHeight": 34,
-                  "marginVertical": 30,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#4051db",
+                    "fontFamily": "IBMPlexSans-Bold",
+                    "fontSize": 28,
+                    "fontWeight": "500",
+                    "lineHeight": 40,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "marginVertical": 30,
+                  },
+                ]
               }
-              use="headline2"
             >
               Answer questions about your symptoms and medical history to learn what to do next about COVID-19
             </Text>
             <Text
               style={
-                Object {
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "marginBottom": 20,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "marginBottom": 20,
+                  },
+                ]
               }
               testID="description"
-              use="body1"
             >
               Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.
             </Text>
@@ -136,24 +146,33 @@ exports[`base 1`] = `
                   "paddingVertical": 22,
                 },
                 Object {
-                  "backgroundColor": "#6979F8",
+                  "backgroundColor": "#6979f8",
                 },
               ]
             }
           >
             <Text
               style={
-                Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "textAlign": "center",
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Array [
+                    Object {
+                      "color": "#f8f8f8",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#ffffff",
+                    },
+                  ],
+                ]
               }
-              use="body1"
             >
               Start
             </Text>

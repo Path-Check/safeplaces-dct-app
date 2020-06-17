@@ -5,6 +5,7 @@ import Bell from './bell';
 import BellYellow from './bellYellow';
 import Checkmark from './checkmark';
 import CheckmarkCircle from './checkmarkCircle';
+import ChevronRight from './chevronRight';
 import Close from './close';
 import Export from './export';
 import ExposureIcon from './exposureIcon';
@@ -38,6 +39,7 @@ export const Icons = {
   BellYellow,
   Checkmark,
   CheckmarkCircle,
+  ChevronRight,
   Close,
   Export,
   ExposureIcon,
