@@ -149,6 +149,10 @@ export const SettingsScreen = ({ navigation }) => {
             label={t('label.legal_page_title')}
             onPress={() => navigation.navigate('LicensesScreen')}
           />
+          <Item
+            label={t('label.label_faqs')}
+            onPress={() => navigation.navigate('FAQ')}
+          />
         </Section>
       </ScrollView>
     </NavigationBarWrapper>

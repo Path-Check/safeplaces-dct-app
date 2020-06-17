@@ -15,6 +15,7 @@ import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import AuroraScreen from './views/DR/Aurora';
 import EpidemiologicScreen from './views/DR/EpidemiologicalResponseScreen';
+import FAQ from './views/DR/FAQ';
 import Details from './views/DR/News/Details';
 import Report from './views/DR/ReportScreen/ReportScreenQuestions';
 import ResultsScreen from './views/DR/ReportScreen/Results';
@@ -196,6 +197,11 @@ class Entry extends Component {
           <Stack.Screen
             name='Sponsors'
             component={Sponsors}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='FAQ'
+            component={FAQ}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
