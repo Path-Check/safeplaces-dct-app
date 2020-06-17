@@ -167,7 +167,7 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
 
     @ReactMethod
     public void configure(final ReadableMap options, final Callback success, final Callback error) {
-        checkGPSPermission();
+        checkGPSPermission(options.getString("enableAutoStartDialogueTitle"));
         runOnBackgroundThread(new Runnable() {
             @Override
             public void run() {
@@ -449,7 +449,7 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
         });
     }
 
-    private void checkGPSPermission() {
+    private void checkGPSPermission(enableAutoStartDialogueTitle) {
 
         android.location.LocationManager locationManager = (android.location.LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
         boolean gpsStatus = locationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER);
@@ -465,11 +465,11 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
         Log.e("isAutoStartEnabled===", isAutoStartEnabled + "");
 
         if(!isAutoStartEnabled) {
-            addAutoStartup();
+            addAutoStartup(enableAutoStartDialogueTitle);
         }
     }
 
-    private void addAutoStartup() {
+    private void addAutoStartup(enableAutoStartDialogueTitle) {
 
         try {
             final Intent intent = new Intent();
@@ -497,7 +497,8 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
                         // Setting Dialog Title
                         alertDialog.setTitle("AutoStart Settings");
                         // Setting Dialog Message
-                        alertDialog.setMessage("Autostart settings should be enabled in order to get proper location upddates. Please enable it and contribute to detect the Corona. If you have already done that then please ignore it.");
+                        // alertDialog.setMessage("Autostart settings should be enabled in order to get proper location upddates. Please enable it and contribute to detect the Corona. If you have already done that then please ignore it.");
+                        alertDialog.setMessage(enableAutoStartDialogueTitle);
                         alertDialog.setCancelable(false);
 
                         // On pressing Settings button

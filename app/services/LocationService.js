@@ -56,6 +56,7 @@ export default class LocationServices {
       distanceFilter: 5,
       notificationTitle: languages.t('label.location_enabled_title'),
       notificationText: languages.t('label.location_enabled_message'),
+      enableAutoStartDialogueTitle: 'Hello',
       debug: false,
       startOnBoot: true,
       stopOnTerminate: false,
