@@ -1,5 +1,6 @@
 import styled from '@emotion/native';
 import { useTheme } from 'emotion-theming';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { Dimensions, StatusBar, Platform } from 'react-native';
@@ -44,7 +45,8 @@ export const NavigationBarWrapper = ({
   includeBackButton = true,
 }: NavigationBarWrapperProps): JSX.Element => {
   const theme = useTheme<{ navBar: string }>();
-
+  
+  const { t } = useTranslation();
   const barColor = (theme && theme.navBar) || Colors.primaryViolet;
 
   return (
@@ -59,7 +61,7 @@ export const NavigationBarWrapper = ({
         <Header>
           {includeBackButton ? (
             <BackArrowIcon onPress={() => onBackPress()}>
-              <BackArrowSvg xml={Icons.BackArrow} />
+              <BackArrowSvg accessibilityLabel={t('label.go_back')} xml={Icons.BackArrow} />
             </BackArrowIcon>
           ) : null}
           <Title>{title}</Title>
