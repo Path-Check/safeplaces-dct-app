@@ -1,9 +1,8 @@
 import React from 'react';
 import { useAssets } from '../../../TracingStrategyAssets';
 import { ServiceOffScreen } from './Base';
-import { openSettings } from 'react-native-permissions';
 
-export const TracingOffScreen = (): JSX.Element => {
+export const TracingOffScreen = ({ onPress }): JSX.Element => {
   const {
     tracingOffScreenHeader,
     tracingOffScreenSubheader,
@@ -14,7 +13,7 @@ export const TracingOffScreen = (): JSX.Element => {
     <ServiceOffScreen
       header={tracingOffScreenHeader}
       subheader={tracingOffScreenSubheader}
-      button={{ label: tracingOffScreenButton, onPress: openSettings }}
+      button={{ label: tracingOffScreenButton, onPress }}
     />
   );
 };

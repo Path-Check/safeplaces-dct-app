@@ -12,7 +12,7 @@ import {
 } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 
-import { Main } from './views/Main';
+import { GPSMain, BTMain } from './views/Main';
 import SettingsScreen from './views/Settings';
 import AboutScreen from './views/About';
 import PartnersOverviewScreen from './views/Partners/PartnersOverview';
@@ -182,7 +182,7 @@ const MainAppTabs = () => {
       }}>
       <Tab.Screen
         name={Stacks.Main}
-        component={Main}
+        component={isGPS ? GPSMain : BTMain}
         options={{
           tabBarLabel: t('navigation.home'),
           tabBarIcon: ({ focused, size }) => (
