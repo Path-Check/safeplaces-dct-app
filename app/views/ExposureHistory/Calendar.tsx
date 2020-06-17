@@ -2,16 +2,16 @@ import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import dayjs from 'dayjs';
 
+import { ExposureHistory, ExposureDatum } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import ExposureDatumIndicator from './ExposureDatumIndicator';
-import { ExposureHistory, ExposureDatum } from '../../ExposureHistoryContext';
 
 import { Spacing } from '../../styles';
 
 interface CalendarProps {
   exposureHistory: ExposureHistory;
   onSelectDate: (exposureDatum: ExposureDatum) => void;
-  selectedDatum: ExposureDatum;
+  selectedDatum: ExposureDatum | null;
 }
 
 const Calendar = ({
@@ -39,7 +39,9 @@ const Calendar = ({
               key={`calendar-day-${datum.date}`}
               onPress={() => onSelectDate(datum)}>
               <ExposureDatumIndicator
-                isSelected={datum.id === selectedDatum.id}
+                isSelected={
+                  selectedDatum ? datum.date === selectedDatum.date : false
+                }
                 exposureDatum={datum}
               />
             </TouchableOpacity>

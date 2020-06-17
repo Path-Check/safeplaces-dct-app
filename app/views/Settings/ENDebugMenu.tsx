@@ -11,18 +11,7 @@ import {
 
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Typography } from '../../components/Typography';
-import {
-  detectExposuresNow,
-  simulateExposure,
-  simulatePositiveDiagnosis,
-  toggleExposureNotifications,
-  resetExposureDetectionError,
-  resetUserENState,
-  resetExposures,
-  getAndPostDiagnosisKeys,
-  simulateExposureDetectionError,
-  getExposureConfiguration,
-} from '../../exposureNotificationsNativeModule';
+import { BTNativeModule } from '../../bt';
 import { NavigationProp, Screens } from '../../navigation';
 
 import { Colors, Spacing } from '../../styles';
@@ -91,7 +80,7 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   };
 
   const handleOnPressToggleExposureNotifications = () => {
-    handleOnPressSimulationButton(toggleExposureNotifications)();
+    handleOnPressSimulationButton(BTNativeModule.toggleExposureNotifications)();
     global.ExposureNotificationsOn = !global.ExposureNotificationsOn;
   };
 
@@ -123,31 +112,41 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
           <DebugMenuListItem
             label='Reset Exposures'
             style={styles.lastListItem}
-            onPress={handleOnPressSimulationButton(resetExposures)}
+            onPress={handleOnPressSimulationButton(
+              BTNativeModule.resetExposures,
+            )}
           />
         </View>
         <View style={styles.section}>
           <DebugMenuListItem
             label='Detect Exposures Now'
-            onPress={handleOnPressSimulationButton(detectExposuresNow)}
+            onPress={handleOnPressSimulationButton(
+              BTNativeModule.detectExposuresNow,
+            )}
           />
           <DebugMenuListItem
             label='Get Exposure Configuration'
-            onPress={handleOnPressSimulationButton(getExposureConfiguration)}
+            onPress={handleOnPressSimulationButton(
+              BTNativeModule.getExposureConfiguration,
+            )}
           />
           <DebugMenuListItem
             label='Simulate Exposure Detection Error'
             onPress={handleOnPressSimulationButton(
-              simulateExposureDetectionError,
+              BTNativeModule.simulateExposureDetectionError,
             )}
           />
           <DebugMenuListItem
             label='Simulate Exposure'
-            onPress={handleOnPressSimulationButton(simulateExposure)}
+            onPress={handleOnPressSimulationButton(
+              BTNativeModule.simulateExposure,
+            )}
           />
           <DebugMenuListItem
             label='Simulate Positive Diagnosis'
-            onPress={handleOnPressSimulationButton(simulatePositiveDiagnosis)}
+            onPress={handleOnPressSimulationButton(
+              BTNativeModule.simulatePositiveDiagnosis,
+            )}
           />
           <DebugMenuListItem
             label='Toggle Exposure Notifications'
@@ -155,12 +154,16 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
           />
           <DebugMenuListItem
             label='Reset Exposure Detection Error'
-            onPress={handleOnPressSimulationButton(resetExposureDetectionError)}
+            onPress={handleOnPressSimulationButton(
+              BTNativeModule.resetExposureDetectionError,
+            )}
           />
           <DebugMenuListItem
             label='Reset User EN State'
             style={styles.lastListItem}
-            onPress={handleOnPressSimulationButton(resetUserENState)}
+            onPress={handleOnPressSimulationButton(
+              BTNativeModule.resetUserENState,
+            )}
           />
         </View>
         <View style={styles.section}>
@@ -173,7 +176,9 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
           <DebugMenuListItem
             label='Get and Post Diagnosis Keys'
             style={styles.lastListItem}
-            onPress={handleOnPressSimulationButton(getAndPostDiagnosisKeys)}
+            onPress={handleOnPressSimulationButton(
+              BTNativeModule.getAndPostDiagnosisKeys,
+            )}
           />
         </View>
       </ScrollView>

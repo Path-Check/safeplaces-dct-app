@@ -166,12 +166,18 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           />
         </View>
 
-        {__DEV__ ? (
+        {!isGPS ? (
           <View style={styles.section}>
             <SettingsListItem
               label='EN Debug Menu'
               onPress={navigateTo(Screens.ENDebugMenu)}
+              style={styles.lastListItem}
             />
+          </View>
+        ) : null}
+
+        {__DEV__ ? (
+          <View style={styles.section}>
             <SettingsListItem
               label='Feature Flags (Dev mode only)'
               onPress={navigateTo(Screens.FeatureFlags)}
