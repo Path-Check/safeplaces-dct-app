@@ -25,12 +25,29 @@ export const subscribeToExposureEvents = (
   );
 };
 
+export const subscribeToENAuthorizationStatusEvents = (
+  cb: (status: ENAuthorizationStatus) => void,
+): EventSubscription => {
+  return ExposureEvents.addListener(
+    'onENAuthorizationStatusUpdated',
+    (status: ENAuthorizationStatus) => {
+      cb(status);
+    },
+  );
+};
+
 const exposureNotificationModule = NativeModules.PTCExposureManagerModule;
 
 export const requestAuthorization = async (
   cb: (authorizationStatus: ENAuthorizationStatus) => void,
 ): Promise<void> => {
   exposureNotificationModule.requestExposureNotificationAuthorization(cb);
+};
+
+export const requestDeauthorization = async (
+  cb: (authorizationStatus: ENAuthorizationStatus) => void,
+): Promise<void> => {
+  exposureNotificationModule.requestExposureNotificationDeauthorization(cb);
 };
 
 // Debug Module
@@ -72,15 +89,6 @@ export const resetExposure = async (
   debugModule.resetExposure(cb);
 };
 
-export const simulatePositiveDiagnosis = async (
-  cb: (
-    errorMessage: ENModuleErrorMessage,
-    successMesage: ENModuleSuccessMessage,
-  ) => void,
-): Promise<void> => {
-  debugModule.simulatePositiveDiagnosis(cb);
-};
-
 export const toggleExposureNotifications = async (
   cb: (
     errorMessage: ENModuleErrorMessage,
@@ -97,15 +105,6 @@ export const resetExposureDetectionError = async (
   ) => void,
 ): Promise<void> => {
   debugModule.resetExposureDetectionError(cb);
-};
-
-export const resetUserENState = async (
-  cb: (
-    errorMessage: ENModuleErrorMessage,
-    successMesage: ENModuleSuccessMessage,
-  ) => void,
-): Promise<void> => {
-  debugModule.resetUserENState(cb);
 };
 
 export const getAndPostDiagnosisKeys = async (

@@ -32,142 +32,14 @@ final class ExposureManager: NSObject {
     manager.invalidate()
   }
   
-  @objc func requestExposureNotificationAuthorization(_ callback: @escaping RCTResponseSenderBlock) {
-    manager.setExposureNotificationEnabled(true) { error in
-      if let error = error as? ENError, error.code == .notAuthorized {
-        callback([String.notAuthorized])
-      } else if let error = error {
-        callback([error.localizedDescription])
-      } else {
-        callback([String.authorized])
-      }
+  @objc func requestExposureNotificationAuthorization(authorized: Bool, callback: @escaping RCTResponseSenderBlock) {
+    manager.setExposureNotificationEnabled(authorized) { error in
+      NotificationCenter.default.post(Notification(name: Notification.Name.AuthorizationStatusDidChange, object: ENManager.authorizationStatus.rawValue, userInfo: nil))
     }
   }
   
   @discardableResult func detectExposures(completionHandler: ((Bool) -> Void)? = nil) -> Progress {
-    
-    let progress = Progress()
-    
-    // Disallow concurrent exposure detection, because if allowed we might try to detect the same diagnosis keys more than once
-    guard !detectingExposures else {
-      completionHandler?(false)
-      return progress
-    }
-    detectingExposures = true
-    
-    var localURLs = [URL]()
-    
-    func finish(_ result: Result<([Exposure], Int)>) {
-      
-      for localURL in localURLs {
-        APIClient.shared.request(DiagnosisKeyRequest.delete(localURL), requestType: .post, completion: { _ in })
-      }
-      
-      if progress.isCancelled {
-        detectingExposures = false
-        completionHandler?(false)
-      } else {
-        switch result {
-        case let .success((newExposures, nextDiagnosisKeyFileIndex)):
-          BTSecureStorage.shared.nextDiagnosisKeyFileIndex = nextDiagnosisKeyFileIndex
-          BTSecureStorage.shared.dateLastPerformedExposureDetection = Date()
-          BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
-          BTSecureStorage.shared.exposures.append(objectsIn: newExposures)
-          detectingExposures = false
-          completionHandler?(true)
-        case let .failure(error):
-          BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
-          // Consider posting a user notification that an error occured
-          detectingExposures = false
-          completionHandler?(false)
-        }
-      }
-      
-    }
-    
-    BTSecureStorage.shared.getUserState { userState in
-      APIClient.shared.request(DiagnosisKeyUrlListRequest.get(userState.nextDiagnosisKeyFileIndex), requestType: .get) { result in
-        
-        let dispatchGroup = DispatchGroup()
-        var localURLResults = [Result<URL>]()
-        
-        switch result {
-        case let .success(remoteURLs):
-          for remoteURL in remoteURLs {
-            dispatchGroup.enter()
-            APIClient.shared.request(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .get) { result in
-              localURLResults.append(result)
-              dispatchGroup.leave()
-            }
-          }
-          
-        case let .failure(error):
-          finish(.failure(error))
-          return
-        }
-        dispatchGroup.notify(queue: .main) {
-          for result in localURLResults {
-            switch result {
-            case let .success(localURL):
-              localURLs.append(localURL)
-            case let .failure(error):
-              finish(.failure(error))
-              return
-            }
-          }
-          APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .get) { result in
-            switch result {
-            case let .success(configuration):
-              let enConfiguration = configuration.asENExposureConfiguration
-              ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: localURLs) { summary, error in
-                if let error = error {
-                  finish(.failure(error))
-                  return
-                }
-                let userExplanation = NSLocalizedString("USER_NOTIFICATION_EXPLANATION", comment: "User notification")
-                ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
-                  if let error = error {
-                    finish(.failure(error))
-                    return
-                  }
-                  let newExposures = exposures!.map { exposure in
-                    Exposure(id: UUID().uuidString,
-                             date: exposure.date.posixRepresentation,
-                             duration: exposure.duration,
-                             totalRiskScore: exposure.totalRiskScore,
-                             transmissionRiskLevel: exposure.transmissionRiskLevel)
-                  }
-                  finish(.success((newExposures, userState.nextDiagnosisKeyFileIndex + localURLs.count)))
-                }
-              }
-              
-            case let .failure(error):
-              finish(.failure(error))
-              return
-            }
-          }
-        }
-      }
-    }
-    
-    return progress
-  }
-  
-  func getAndPostDiagnosisKeys(completion: @escaping (Error?) -> Void) {
-    manager.getDiagnosisKeys { temporaryExposureKeys, error in
-      if let error = error {
-        completion(error)
-      } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }), requestType: .post) { result in
-          switch result {
-          case .success:
-            break
-          case .failure(let error):
-            completion(error)
-          }
-        }
-      }
-    }
+    Progress()
   }
   
   // Includes today's key, requires com.apple.developer.exposure-notification-test entitlement
@@ -219,29 +91,9 @@ final class ExposureManager: NSObject {
       exposures.append(exposure)
       BTSecureStorage.shared.exposures = exposures
       completion([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
-    case .simulatePositiveDiagnosis:
-      let testResult = TestResult(id: UUID().uuidString,
-                                  isAdded: true,
-                                  dateAdministered: Date() - TimeInterval.random(in: 0...4) * 24 * 60 * 60,
-                                  isShared: .random())
-      BTSecureStorage.shared.testResults.append(testResult)
-      completion([NSNull(), "Test results: \(BTSecureStorage.shared.testResults)"])
-    case .disableExposureNotifications:
-      manager.setExposureNotificationEnabled(false) { error in
-        if let error = error {
-          completion([error.localizedDescription, NSNull()])
-        } else {
-          completion([NSNull(), "Exposure Notifications disabled."])
-        }
-      }
     case .resetExposureDetectionError:
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
       completion([NSNull(), "Exposure Detection Error: "])
-      
-    case .resetUserENState:
-      BTSecureStorage.shared.resetUserState { userState in
-        completion([NSNull(), "New UserState: \(userState)"])
-      }
     case .getAndPostDiagnosisKeys:
       getAndPostTestDiagnosisKeys { error in
         if let error = error {
@@ -250,18 +102,14 @@ final class ExposureManager: NSObject {
           completion([NSNull(), "Local diagnosis keys successfully fetched and posted."])
         }
       }
-    case .getExposureConfiguration:
-      APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .get) { result in
-        switch result {
-        case .success(let configuration):
-          completion([NSNull(), "Exposure Configuration: \(configuration)"])
-        case .failure(let error):
-          completion([error.localizedDescription, NSNull()])
-        }
-      }
     case .resetExposures:
       BTSecureStorage.shared.exposures = List<Exposure>()
       completion([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
+    case .toggleENAuthorization:
+      let authorized = ENManager.authorizationStatus == .authorized ? false : true
+      requestExposureNotificationAuthorization(authorized: authorized) { result in
+        completion([NSNull(), "EN Enabled: \(self.manager.exposureNotificationEnabled)"])
+      }
     }
   }
   

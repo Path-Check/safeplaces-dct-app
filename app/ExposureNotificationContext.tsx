@@ -1,15 +1,22 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
+import { isGPS } from './COVIDSafePathsConfig';
 import { BTNativeModule } from './bt';
 
-export type ENAuthorizationStatus = 'authorized' | 'notAuthorized';
+export enum ENAuthorizationStatus {
+  UNKNOWN = 0,
+  RESTRICTED = 1,
+  NOT_AUTHORIZED = 2,
+  AUTHORIZED = 3,
+}
 
 interface ExposureNotificationsState {
   authorizationStatus: ENAuthorizationStatus;
   requestENAuthorization: () => void;
 }
 
-const initialStatus: ENAuthorizationStatus = 'notAuthorized';
+const initialStatus: ENAuthorizationStatus =
+  ENAuthorizationStatus.NOT_AUTHORIZED;
 
 const initialState = {
   authorizationStatus: initialStatus,
@@ -30,6 +37,22 @@ const ExposureNotificationsProvider = ({
   const [authorizationStatus, setAuthorizationStatus] = useState<
     ENAuthorizationStatus
   >(initialStatus);
+
+  useEffect(() => {
+    if (!isGPS) {
+      const subscription = BTNativeModule.subscribeToENAuthorizationStatusEvents(
+        (status: ENAuthorizationStatus) => {
+          setAuthorizationStatus(status);
+        },
+      );
+
+      return () => {
+        subscription?.remove();
+      };
+    } else {
+      return () => {};
+    }
+  }, []);
 
   const requestENAuthorization = () => {
     const cb = (authorizationStatus: ENAuthorizationStatus) => {

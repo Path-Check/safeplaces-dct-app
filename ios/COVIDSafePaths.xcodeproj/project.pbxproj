@@ -76,7 +76,6 @@
 		B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */; };
 		B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */; };
 		B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* PTCExposureManagerModule.m */; };
-		B5B58730249805FA0006D2B5 /* ExposureEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B5872F249805FA0006D2B5 /* ExposureEventEmitter.m */; };
 		B5C490A6249856AE00588A5F /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C490A5249856AE00588A5F /* Encodable+Extensions.swift */; };
 		B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */; };
 		B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */; };
@@ -96,7 +95,6 @@
 		B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */; };
 		B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */; };
 		B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E2248A82AE006474EB /* Exposure.swift */; };
-		B5FC37E8248A8302006474EB /* TestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E7248A8302006474EB /* TestResult.swift */; };
 		B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
 		BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */; };
@@ -348,7 +346,6 @@
 		B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureConfiguration.swift; sourceTree = "<group>"; };
 		B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureConfigurationRequests.swift; sourceTree = "<group>"; };
 		B5FC37E2248A82AE006474EB /* Exposure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exposure.swift; sourceTree = "<group>"; };
-		B5FC37E7248A8302006474EB /* TestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResult.swift; sourceTree = "<group>"; };
 		B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ENTemporaryExposureKey+Extensions.swift"; sourceTree = "<group>"; };
 		BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
@@ -760,7 +757,6 @@
 			children = (
 				B5FC37DC248A78D2006474EB /* ExposureKey.swift */,
 				B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */,
-				B5FC37E7248A8302006474EB /* TestResult.swift */,
 				B5FC37E2248A82AE006474EB /* Exposure.swift */,
 				B5FBB0D424916D8900433980 /* UserState.swift */,
 			);
@@ -1314,7 +1310,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5FC37E8248A8302006474EB /* TestResult.swift in Sources */,
 				B5FBB0D524916D8900433980 /* UserState.swift in Sources */,
 				B5FBB0D724916DE100433980 /* Notification+Extensions.swift in Sources */,
 				B52D88C4248F10FD0071ED51 /* BTSecureStorage.swift in Sources */,
@@ -1331,7 +1326,6 @@
 				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
 				B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */,
-				B5B58730249805FA0006D2B5 /* ExposureEventEmitter.m in Sources */,
 				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
 				B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */,
 				B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */,

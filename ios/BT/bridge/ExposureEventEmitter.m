@@ -3,6 +3,7 @@
 
 // Notification/Event Names
 NSString *const onExposureRecordUpdated = @"onExposureRecordUpdated";
+NSString *const onENAuthorizationStatusUpdated = @"onENAuthorizationStatusUpdated";
 
 @interface ExposureEventEmitter : RCTEventEmitter <RCTBridgeModule>
 @end
@@ -24,6 +25,7 @@ RCT_EXPORT_MODULE();
 - (NSArray<NSString *> *)supportedEvents {
   return @[
     onExposureRecordUpdated,
+    onENAuthorizationStatusUpdated
   ];
 }
 
