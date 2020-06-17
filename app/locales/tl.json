@@ -6,7 +6,20 @@
     "distancing_cta": "Sa susunod",
     "isolate_cta": "Sa susunod",
     "next": "Sa susunod",
-    "start_cta": "Simula"
+    "share_cta": "Naiintindihan ko at pumapayag ako",
+    "share_cta_skip": "Salamat na lang, ayaw ko'ng magbahagi ng data",
+    "share_description": "Ang anonimong, o walang pangalan na, na data ay tumutulong sa Boston Public Health Commission sa paganalisa, pagsubaybay at pagpigil sa paglaganap ng COVID-19. Ang iyong data ay isasama sa impormasyon ng ibang gumagamit ng PathCheck na pinili ang makipagbigay-alam.",
+    "share_screening_description": "Ipamahagi ang anonimo, o walang pangalan, na sagot sa mga screening questions sa iyong Departamentong Pangkalusugan.",
+    "share_screening_title": "Anonimong, o walang pangalan na, Data ng Screening",
+    "start_cta": "Simula",
+    "start_description": "Ang impormasyon mo ay pribado, hindi kilala at encrypted.  Walang data ang ilalabas sa iyong cellphone na walang pahintulot na nangaling sa iyo.",
+    "start_title": "Sagutin ang mga tanong tungkol sa iyong mga sintomas at medical history upang malaman ang susunod na hakbang na gagawin hinggil sa COVID-19"
+  },
+  "authorities": {
+    "automatically_follow": "Awtomatikong sundan ang pinakamalapit na Departamentong Pangkalusugan",
+    "info_body": "Ang mga lokal at rehiyonal na mga Departamentong Pangkalusugan ay maaaring makipagbahagi ng impormasyon at kaalaman sa isa't isa, tungkol sa COVID-19 sa kanilang lugar, kasama ang beripikadong impormasyon na nagpapahintulot sa PathCheck upang tantiyahin kung kailan mo posibleng nahawa o nakasalamuha ang tao o bagay na mayroon virus.",
+    "title": "Departamentong Pangkalusugan",
+    "view_button_label": "Tingnan ang iyong mga Departamentong Pangkalusugan"
   },
   "common": {
     "next": "Sa susunod",
@@ -14,17 +27,65 @@
     "start": "Simula"
   },
   "export": {
+    "code_input_body_bluetooth": "I-type ang iyonv verification code na binigay ng {{name}} kasama ng resulta ng iyong pagsuri upang beripikahin ang iyong diagnosis",
+    "code_input_title_bluetooth": "Beripikahin ang iyong diagnosis o pagsusuri",
+    "complete_body_bluetooth": "Ang pagpiling pribadong ipamahagi ang iyong istado at ipagbigay-alam sa iba ay makakatulong sa pagpigil ng paglaganap ng virus at protektahan ang mga mamamayan sa iyong kumunidad.",
     "complete_title": "Salamat sa iyong pagpapanatili na ligtas ang iyong komunidad!",
     "exit_warning_body": "Kailangan mong umpisahan muli ang prosesong ito",
     "exit_warning_cancel": "Kanselahin",
     "exit_warning_confirm": "Oo, ako ay sigurado",
-    "exit_warning_title": "Sigurado ka ba?"
+    "exit_warning_title": "Sigurado ka ba?",
+    "location_consent_body": "Ang iyong location history ay gingamit ng mga kagawad ng {{name}} upang pakipanayam sa iyo ukol sa mga lokasyong iyong binisita at kung kailan ka nagpunta roon.\n\nPagkatapos mong ipadala ang iyong location history {{name}}, ang impormasyon mo ay manantili sa kanila sa loob ng partikular na oras.",
+    "location_consent_title": "Paggamit ng location history",
+    "publish_consent_body_bluetooth": "Ang pagbigay-alam ng iyong positibong pagsusuri ay opsyonal at pwede lamang magawa kasama ng iyong pahintulot.\n\nKung pipiliin mong gawin ito, tumutulong ka sa mga mamamayan sa iyong kumunidad na gumawa ng may kaalamang desisyon tungkol sa kanilang kalusugan at ikaw ay tatayo bilang parte sa pagpigil ng pagkalat ng virus.\n\nAng tanging impormasyon na ibabahagi ay mga random na numbero sa iyong cellphone na nagpalitan sa pamamagitan ng Bluetooth sa ibang kalapitang cellphone sa loob ng 14 na araw, kasama ng weighted risk score na base sa oras kung kailan simula kang nakaranas ng mga sintomas.",
+    "publish_consent_title_bluetooth": "Ipagbigay alam sa iyong kumunidad",
+    "start_body_bluetooth": "Piliing hindi magpakilala habang pinagbibigay alam na maaring nahawa o nakasalamuha ang mayroon virus at tulungan ay iyong kumunidad ha pigilan ang paglaganap ng virus.",
+    "start_title_bluetooth": "Tulungang pigilan ang paglaganap ng virus at protektakan ang mamamayan sa iyong kumunidad kung ikaw ay nasuri na o pumositibo sa COVID-19."
+  },
+  "home": {
+    "bluetooth": {
+      "all_services_on_header": "PathCheck",
+      "all_services_on_subheader": "Naka-on ang Exposure Notifications",
+      "tracing_off_button": "Payagan ang Exposure Notifications",
+      "tracing_off_header": "Huwag paganahin ang Exposure Notifications",
+      "tracing_off_subheader": "Paganahin ang Exposure Notifications upong makatanggap ng impormasyon tungkol sa posibleng pagkahawa or pagkasalamuha sa mayroong may virus",
+      "unavailable_header": "Wala pang ipormasyong ang nakuha tungkol sa mga Exposure history notifications ng posibleng pagkahawa or pagkasalamuha sa mayroong may virus",
+      "unavailable_subheader": "Ang iyong cellphone ay hindi sakop ng mga awtoridad na nangangalaga sa kalusugan na gumagamit ng PathCheck"
+    },
+    "gps": {
+      "all_services_on_header": "PathCheck",
+      "all_services_on_subheader": "Ang mga impormasyon ng mga lokasyon na iyong binisita ay pribadong kinokolelekta ng PathCheck at ikinukumpara ang data na galing sa iyong Departamentong Pangkalusugan",
+      "tracing_off_button": "Payagan ang Location Access",
+      "tracing_off_header": "Huwag paganahin ang Location Access",
+      "tracing_off_subheader": "Kailangan ng PathCheck payagan ang Location Access sa Setting upang pribadong kolektahin ang impormasyon tungkol sa mga lugar na iyong binibisita"
+    },
+    "shared": {
+      "no_authorities_header": "Walang lokal na Departamentong Pangkalusugan",
+      "no_authorities_subheader": "Ang iyong cellphone ay nasa labas sa lugar na nasasakupan ng Departamentong Pangkalusugan sa PathCheck\n\nIkaw ay aabisuhan kapag mayroong Departamentong Pangkalusugan na malapit sa iyo ay naidagdag",
+      "notifications_off_button": "Payagan ang mga abiso o Notifications",
+      "notifications_off_header": "Huwag paganahin ang mga abiso o notifications",
+      "notifications_off_subheader": "Hindi ka makatatanggap ng mga abiso o notifications tungkol sa mga posibleng pagkahawa at pagkasalamuha sa mayroong virus o kung kailang mayroong bagong Departamentong Pangkalusugan ang naidagdag sa iyong lugar ",
+      "select_authority_button": "Idagdag ang Departamentong Pangkalusugan",
+      "select_authority_header": "Walang napiling lokal na Departamentong Pangkalusugan ",
+      "select_authority_subheader": "Payagan ang PathCheck na idagdag ang iyong lokal na Departamentong Pangkalusugan o pumili ng isa para iyo na makatanggap ng impormasyon tungkol sa COVID-19 sa inyong lugar"
+    }
   },
   "label": {
     "launch_disable_exposure_notif": "Huwag Paganahin",
     "launch_enable_bluetooth": "Paganahin Ang Bluetooth",
     "launch_enable_exposure_notif": "Paganahin",
     "launch_screen2_subheader_location": "Ang kaalaman ay kapangyarihan.",
-    "launch_set_up_phone_bluetooth": "Sa susunod"
+    "launch_set_up_phone_bluetooth": "Sa susunod",
+    "legal_page_address": "PathCheck\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_header_bluetooth": "PathCheck BT",
+    "legal_page_header_location": "PathCheck GPS",
+    "unknown": "Hindi Alam"
+  },
+  "screen_titles": {
+    "report_positive_test": "Ipagbigay-alam ang postibong resulta ng pagsusuri"
+  },
+  "settings": {
+    "share_test_result": "Ipagbigay-alam ang postibong resulta ng pagsusuri",
+    "share_test_result_description": "Ipabahagi ang impormasyon tungkol sa pagkahawa o pagkasalamuha sa mayroong may COVID-19 sa iyong awtoridad na pangkalusugan, sa pamamagitan ng nakalaang code"
   }
 }
