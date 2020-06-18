@@ -12,9 +12,9 @@ final class APIClient {
   let downloadKeyFile: URL
   let indexFileUrl: URL
   static let shared = APIClient(
-    postKeysUrl: URL(string: "https://exposure-2kabcv6c4a-uc.a.run.app")!,
-    downloadKeyFile: URL(string: "https://federationout-2kabcv6c4a-uc.a.run.app")!,
-    indexFileUrl: URL(string: "https://storage.googleapis.com")!
+    postKeysUrl: URL(string: ReactNativeConfig.env(for: .postKeysUrl))!,
+    downloadKeyFile: URL(string: ReactNativeConfig.env(for: .downloadKeyFile))!,
+    indexFileUrl: URL(string: ReactNativeConfig.env(for: .indexFileUrl))!
   )
 
   private let sessionManager: SessionManager
