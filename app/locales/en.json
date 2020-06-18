@@ -191,7 +191,14 @@
   },
   "positives": {
     "epidemiologic_report_tab": "Epidemiological report",
-    "mental_health_advice_tab": "Mental health tips"
+    "mental_health_advice_tab": "Mental health tips",
+    "status": "Status:",
+    "epidemiological_discharge":"Epidemiological Discharge",
+    "waiting_lab": "Waiting for the lab results",
+    "covid_free": "Congratulations, you are COVID-19 free!",
+    "how_feel_today": "How do you feel today?",
+    "feel_bad": "I don't feel well",
+    "feel_great": "I feel great!"
   },
   "maps": {
     "error_header": "We are sorry",

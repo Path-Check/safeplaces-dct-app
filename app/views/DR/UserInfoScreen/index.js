@@ -59,6 +59,7 @@ export default function UserInfo({ navigation }) {
     setGlobalState,
   ] = useContext(context);
 
+  const use = usage === '' ? 'mySelf' : usage;
   const closeDialog = final => {
     setError(false);
     setShowDialog(false);
@@ -118,7 +119,7 @@ export default function UserInfo({ navigation }) {
           let { positive } = await validateCovidPositive(data.body);
           closeDialog(false);
           if (positive) {
-            if (usage === 'mySelf') {
+            if (use === 'mySelf') {
               storeData('positive', positive);
               storeData('UserPersonalInfo', data.body);
             }
@@ -136,6 +137,7 @@ export default function UserInfo({ navigation }) {
       return response;
     } catch (e) {
       setLoading(false);
+      setShowValidationDialog(true);
       console.log('ha ocurrido un error', e);
     }
   };

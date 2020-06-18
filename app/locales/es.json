@@ -146,9 +146,9 @@
     "push_at_risk_message": "Has estado cerca de alguien con COVID-19",
     "push_at_risk_title": "Puedes estar en riesgo",
     "privacy_policy": "Política de privacidad",
-    "faq_page_title":"Preguntas Frecuentes",
-    "health_resources":"Publicaciones de Epidemiología",
-    "label_faqs":"Preguntas frecuentes",
+    "faq_page_title": "Preguntas Frecuentes",
+    "health_resources": "Publicaciones de Epidemiología",
+    "label_faqs": "Preguntas frecuentes",
     "recovered_label": "Recuperados",
     "recommendations_title": "Recomendaciones",
     "recommendations_description": "Informate acerca del COVID-19, sus sintomas, preguntas frecuentes y medidas de prevencion.",
@@ -187,8 +187,16 @@
   },
   "positives": {
     "epidemiologic_report_tab": "Reporte epidemiologico",
-    "mental_health_advice_tab": "Consejos de salud mental"
-  },
+    "mental_health_advice_tab": "Consejos de salud mental",
+    "status": "Estado:",
+    "epidemiological_discharge": "Alta Epidemiológica",
+    "waiting_lab": "En espera de los resultados del laboratorio",
+    "covid_free": "¡Felicidades, eres libre de COVID-19!",
+    "how_feel_today": "¿Cómo te sientes hoy?",
+    "feel_bad": "No me siento bien",
+    "feel_great": "¡Me siento genial!"
+
+   },
   "maps": {
     "error_header": "Lo sentimos",
     "error_message": "Por el momento, no se ha podido obtener los datos deseados. Por favor, inténtelo de nuevo más tarde."

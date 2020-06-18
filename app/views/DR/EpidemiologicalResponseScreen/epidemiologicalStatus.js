@@ -1,5 +1,6 @@
 import { Button, Text } from 'native-base';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Image, View } from 'react-native';
 import {
   heightPercentageToDP as hp,
@@ -16,6 +17,7 @@ const EpidemiologicalStatus = ({ navigation }) => {
   //Change for a call to the goverment's epidemiology department API, to validate the status of the user
   //by the moment the response state is always waiting dor results.
   const valid = true;
+  const { t } = useTranslation();
 
   const [todaysFeeling, setTodaysFeeling] = useState('');
   const [showDialog, setShowDialog] = useState(false);
@@ -36,10 +38,12 @@ const EpidemiologicalStatus = ({ navigation }) => {
             style={{ marginTop: -10 }}>
             <Icon name='times' size={25} color={Colors.GREEN} />
           </Button>
-          <Text style={styles.textSemiBold}>¿Cómo te sientes hoy?</Text>
+          <Text style={styles.textSemiBold}>
+            {t('positives.how_feel_today')}
+          </Text>
           <ToggleButtons
             btnStyle={{ width: '85%' }}
-            options={['¡Me siento genial!', 'No me siento bien']}
+            options={[t('positives.feel_great'), t('positives.feel_bad')]}
             onSelection={selected => setTodaysFeeling(selected)}
             selectedOption={todaysFeeling}
           />
@@ -57,18 +61,22 @@ const EpidemiologicalStatus = ({ navigation }) => {
             ]}
             onPress={() => {
               closeDialog();
-              if (todaysFeeling === 'No me siento bien') {
+              if (todaysFeeling === t('positives.feel_bad')) {
                 navigation.navigate('Report');
               }
             }}>
-            <Text>Aceptar</Text>
+            <Text style={[styles.text, { color: Colors.WHITE }]}>
+              {t('label.accept')}
+            </Text>
           </Button>
         </View>
       </Dialog>
       <View style={styles.formContainer}>
-        <Text style={styles.subtitles}>Alta Epidemiológica</Text>
+        <Text style={styles.subtitles}>
+          {t('positives.epidemiological_discharge')}
+        </Text>
         <View style={styles.bottomLine} />
-        <Text>Estado:</Text>
+        <Text>{t('positives.status')}</Text>
 
         <View
           style={{
@@ -97,7 +105,7 @@ const EpidemiologicalStatus = ({ navigation }) => {
                     fontSize: wp('5%'),
                   },
                 ]}>
-                En espera de los resultados del laboratorio
+                {t('positives.waiting_lab')}
               </Text>
             </View>
           ) : (
@@ -139,7 +147,9 @@ const EpidemiologicalStatus = ({ navigation }) => {
         <Button
           style={[styles.buttons, { width: wp('70%') }]}
           onPress={() => setShowDialog(true)}>
-          <Text>¿Cómo te sientes hoy?</Text>
+          <Text style={[styles.text, { color: Colors.WHITE }]}>
+            {t('positives.how_feel_today')}
+          </Text>
         </Button>
       </View>
     </View>
