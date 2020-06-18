@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, NativeModules } from 'react-native';
 
-import { Icons } from '../../assets';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
 import exportUploadApi from '../../api/export/exportUploadApi';
+import { Screens } from '../../navigation';
+import { Icons } from '../../assets';
 
 export const ExportComplete = ({ navigation, route }) => {
   const { t } = useTranslation();
@@ -19,10 +20,10 @@ export const ExportComplete = ({ navigation, route }) => {
     try {
       const concernPoints = await NativeModules.SecureStorageManager.getLocations();
       await exportUploadApi(selectedAuthority, concernPoints, code);
-      navigation.navigate('ExportComplete');
+      navigation.navigate(Screens.ExportComplete);
       setIsUploading(false);
     } catch (e) {
-      Alert.alert(t('common.something_went_wrong'));
+      Alert.alert(t('common.something_went_wrong'), e.message);
       setIsUploading(false);
     }
   };

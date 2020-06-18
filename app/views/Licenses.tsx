@@ -9,22 +9,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 
 import fontFamily from '../constants/fonts';
 import { Images } from '../assets';
 import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
-import Colors from '../constants/colors';
-import { Theme } from '../constants/themes';
 import { useAssets } from '../TracingStrategyAssets';
+import { NavigationProp } from '../navigation';
+
+import { Colors } from '../styles';
 
 type LicensesScreenProps = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 };
 
 const PRIVACY_POLICY_URL =
@@ -36,6 +32,8 @@ export const LicensesScreen = ({
   const { t } = useTranslation();
   const { legalHeader } = useAssets();
 
+  const legalHeaderText: string = legalHeader as string;
+
   const backToMain = () => {
     navigation.goBack();
   };
@@ -45,16 +43,19 @@ export const LicensesScreen = ({
     return true;
   };
 
-  const handleTermsOfUsePressed = () => {
-    Linking.openURL(PRIVACY_POLICY_URL);
-  };
-
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     };
   });
+
+  const infoAddress = 'info@pathcheck.org';
+  const pathCheckAddress = 'covidsafepaths.org';
+
+  const handleOnPressOpenUrl = (url: string) => {
+    return () => Linking.openURL(url);
+  };
 
   return (
     <NavigationBarWrapper
@@ -63,64 +64,50 @@ export const LicensesScreen = ({
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View>
           <Typography style={styles.heading} use='headline2'>
-            {legalHeader}
+            {legalHeaderText}
           </Typography>
           <Typography style={styles.body} use='body1'>
             {t('label.legal_page_address')}
           </Typography>
-          <Typography
-            style={styles.hyperlink}
-            onPress={() => {
-              Linking.openURL('mailto:info@pathcheck.org');
-            }}>
-            {/* eslint-disable-next-line react-native/no-raw-text */}
-            {'info@pathcheck.org'}
-          </Typography>
-          <Typography
-            style={styles.hyperlink}
-            onPress={() => {
-              Linking.openURL('https://covidsafepaths.org/');
-            }}>
-            {/* eslint-disable-next-line react-native/no-raw-text */}
-            {'covidsafepaths.org'}
-          </Typography>
+          <TouchableOpacity
+            onPress={handleOnPressOpenUrl('mailto:info@pathcheck.org')}>
+            <Typography style={styles.hyperlink}>{infoAddress}</Typography>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleOnPressOpenUrl('covidsafepaths.org')}>
+            <Typography style={styles.hyperlink}>{pathCheckAddress}</Typography>
+          </TouchableOpacity>
         </View>
       </ScrollView>
-      <Theme use='charcoal'>
-        <TouchableOpacity
-          onPress={handleTermsOfUsePressed}
-          style={styles.termsInfoRow}>
-          <Typography
-            use='body1'
-            onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}>
-            {t('label.privacy_policy')}
-          </Typography>
-          <View style={styles.arrowContainer}>
-            <Image source={Images.ForeArrow} />
-          </View>
-        </TouchableOpacity>
-      </Theme>
+      <TouchableOpacity
+        style={styles.termsInfoRow}
+        onPress={handleOnPressOpenUrl(PRIVACY_POLICY_URL)}>
+        <Typography use='body1'>{t('label.privacy_policy')}</Typography>
+        <View style={styles.arrowContainer}>
+          <Image source={Images.ForeArrow} />
+        </View>
+      </TouchableOpacity>
     </NavigationBarWrapper>
   );
 };
 
 const styles = StyleSheet.create({
   body: {
-    color: Colors.BLACK,
+    color: Colors.black,
     marginBottom: 24,
   },
   contentContainer: {
     width: '100%',
-    backgroundColor: Colors.INTRO_WHITE_BG,
+    backgroundColor: Colors.primaryBackgroundFaintShade,
     paddingHorizontal: 26,
     paddingVertical: 40,
   },
   heading: {
-    color: Colors.BLACK,
+    color: Colors.black,
     marginBottom: 12,
   },
   hyperlink: {
-    color: Colors.VIOLET_TEXT,
+    color: Colors.violetText,
     fontSize: 16,
     marginBottom: 12,
     fontFamily: fontFamily.primaryRegular,
@@ -129,7 +116,7 @@ const styles = StyleSheet.create({
   termsInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.VIOLET,
+    backgroundColor: Colors.primaryViolet,
     paddingVertical: 25,
     paddingHorizontal: 15,
   },

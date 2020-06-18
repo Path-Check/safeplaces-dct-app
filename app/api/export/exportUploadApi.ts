@@ -9,7 +9,7 @@ const exportUploadApi = async (
   concernPoints: ConcernPoint[],
   code: number,
 ): Promise<void> => {
-  const endpoint = `${authority.ingest_url}/upload`;
+  const endpoint = `${authority.public_api}/upload`;
   const res = await fetch(endpoint, {
     method: 'POST',
     headers: {
@@ -19,7 +19,7 @@ const exportUploadApi = async (
   });
   const success = res.status === 201;
   if (!success) {
-    throw res.status;
+    throw new Error(`Export Upload API failed with status code: ${res.status}`);
   }
   return;
 };

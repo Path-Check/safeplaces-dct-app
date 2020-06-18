@@ -1,5 +1,8 @@
 {
   "_display_name": "Español (LA)",
+  "assessment": {
+    "complete_cta": "Hecho"
+  },
   "label": {
     "launch_screen2_header_location": "Reciba notificaciones si se cruza con alguien que más tarde fue diagnosticado con COVID-19.",
     "launch_screen2_subheader_bluetooth": "La fecha y la duración del encuentro se registran junto con una estimación de cuán cerca pudieron haber estado los dos teléfonos.",

@@ -29,7 +29,26 @@ export const baseWeight = '400';
 export const heavyWeight = '500';
 export const heaviestWeight = '700';
 
+// Font Families
+export const baseFontFamily = 'IBMPlexSans';
+export const boldFontFamily = 'IBMPlexSans-Bold';
+export const monospaceFontFamily = 'IBMPlexMono';
+
+export const bold: TextStyle = {
+  fontFamily: boldFontFamily,
+  fontWeight: heavyWeight,
+};
+
+export const monospace: TextStyle = {
+  fontFamily: monospaceFontFamily,
+};
+
 // Standard Font Types
+export const tinyFont: TextStyle = {
+  lineHeight: smallestLineHeight,
+  fontSize: tiny,
+};
+
 export const smallFont: TextStyle = {
   lineHeight: smallLineHeight,
   fontSize: small,
@@ -45,13 +64,36 @@ export const largeFont: TextStyle = {
   fontSize: large,
 };
 
+export const largestFont: TextStyle = {
+  lineHeight: largestLineHeight,
+  fontSize: largest,
+};
+
+export const hugeFont: TextStyle = {
+  lineHeight: hugeLineHeight,
+  fontSize: huge,
+};
+
 // Headers
 export const header1: TextStyle = {
+  ...hugeFont,
+  ...bold,
+  color: Colors.violetText,
+};
+
+export const header2: TextStyle = {
+  ...largestFont,
+  ...bold,
+  color: Colors.violetText,
+};
+
+export const title: TextStyle = {
   ...largeFont,
-  fontWeight: heavyWeight,
+  fontWeight: heaviestWeight,
   color: Colors.primaryText,
 };
 
+// Content
 export const mainContent: TextStyle = {
   ...mediumFont,
   color: Colors.primaryText,
@@ -63,19 +105,26 @@ export const secondaryContent: TextStyle = {
   lineHeight: mediumLineHeight,
 };
 
-export const label: TextStyle = {
+export const tertirayContent: TextStyle = {
+  ...smallFont,
+  color: Colors.tertiaryText,
+  lineHeight: smallLineHeight,
+};
+
+export const description: TextStyle = {
   ...smallFont,
   color: Colors.primaryText,
+  lineHeight: smallerLineHeight,
 };
 
-export const cta: TextStyle = {
-  ...largeFont,
-  color: Colors.primaryText,
+export const disclaimer: TextStyle = {
+  ...smallFont,
+  ...monospace,
+  color: Colors.secondaryText,
 };
 
-export const title: TextStyle = {
-  ...largeFont,
-  fontWeight: heaviestWeight,
+export const label: TextStyle = {
+  ...smallFont,
   color: Colors.primaryText,
 };
 
@@ -85,24 +134,24 @@ export const error: TextStyle = {
   fontWeight: heavyWeight,
 };
 
+// Tappables
+export const tappableListItem: TextStyle = {
+  ...mediumFont,
+  color: Colors.violetText,
+};
+
 // Buttons
 export const buttonText: TextStyle = {
-  fontSize: medium,
+  fontSize: large,
   fontWeight: heavyWeight,
 };
 
-export const darkButtonText: TextStyle = {
+export const buttonTextDark: TextStyle = {
+  ...buttonText,
+  color: Colors.primaryViolet,
+};
+
+export const buttonTextLight: TextStyle = {
   ...buttonText,
   color: Colors.white,
-};
-
-export const baseWeightButtonText: TextStyle = {
-  ...buttonText,
-  fontWeight: baseWeight,
-};
-
-export const borderlessButtonText: TextStyle = {
-  color: Colors.defaultBlue,
-  fontSize: medium,
-  fontWeight: heaviestWeight,
 };

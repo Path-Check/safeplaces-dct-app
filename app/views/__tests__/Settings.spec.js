@@ -7,7 +7,7 @@ import React from 'react';
 import { getBuildtimeFlags } from '../../constants/flagsEnv';
 import { FlagsProvider } from '../../helpers/Flags';
 import * as languages from '../../locales/languages';
-import { SettingsScreen } from '../Settings';
+import SettingsScreen from '../Settings';
 
 jest.mock('../../constants/flagsEnv', () => ({
   getBuildtimeFlags: jest.fn(),
@@ -34,10 +34,12 @@ describe('<Settings />', () => {
   beforeEach(() => {
     BACKUP_LOCALE_LIST = languages.LOCALE_LIST;
     BACKUP_LOCALE_NAME = languages.LOCALE_NAME;
+    // eslint-disable-next-line no-import-assign
     languages.LOCALE_LIST = [
       { label: 'English', value: 'en' },
       { label: 'Other', value: 'ot' },
     ];
+    // eslint-disable-next-line no-import-assign
     languages.LOCALE_NAME = [{ en: 'English', ot: 'Other' }];
 
     jest.spyOn(languages, 'getUserLocaleOverride').mockResolvedValue(undefined);
@@ -45,7 +47,9 @@ describe('<Settings />', () => {
   });
 
   afterEach(() => {
+    // eslint-disable-next-line no-import-assign
     languages.LOCALE_LIST = BACKUP_LOCALE_LIST;
+    // eslint-disable-next-line no-import-assign
     languages.LOCALE_NAME = BACKUP_LOCALE_NAME;
   });
 

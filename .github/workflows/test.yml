@@ -5,13 +5,13 @@ on:
     branches:
       - develop
       - master
-      - bte-release
+      - bt-release
       - gps-release
   pull_request:
     branches:
       - develop
       - master
-      - bte-release
+      - bt-release
       - gps-release
 
 jobs:
@@ -59,11 +59,11 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: ./gradlew :app:connectedGpsDebugAndroidTest :app:connectedBteDebugAndroidTest --no-daemon
+      - name: ./gradlew :app:connectedGpsDebugAndroidTest :app:connectedBtDebugAndroidTest --no-daemon
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 28
-          script: ./gradlew :app:connectedGpsDebugAndroidTest :app:connectedBteDebugAndroidTest --no-daemon
+          script: ./gradlew :app:connectedGpsDebugAndroidTest :app:connectedBtDebugAndroidTest --no-daemon
           working-directory: ./android
 
   unit-test-ios:

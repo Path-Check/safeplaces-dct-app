@@ -13,6 +13,12 @@ NativeModules.SecureStorageManager = NativeModules.SecureStorageManager || {
   migrateExistingLocations: jest.fn(),
 };
 
+// Exposure event emitter
+NativeModules.ExposureEventEmitter = NativeModules.ExposureEventEmitter || {
+  startListening: jest.fn(),
+  addListener: jest.fn(),
+};
+
 jest.mock('react-native-pulse');
 jest.mock('@mauron85/react-native-background-geolocation');
 
@@ -36,6 +42,22 @@ jest.mock('react-native-popup-menu', () => ({
   MenuOptions: 'MenuOptions',
   MenuOption: 'MenuOption',
   MenuTrigger: 'MenuTrigger',
+}));
+
+jest.mock('redux', () => ({
+  createStore: () => {},
+  combineReducers: () => {},
+  applyMiddleware: () => {},
+}));
+
+jest.mock('redux-persist', () => ({
+  createMigrate: () => {},
+  persistReducer: () => {},
+  persistStore: () => {},
+}));
+
+jest.mock('redux-devtools-extension', () => ({
+  composeWithDevTools: () => {},
 }));
 
 jest.mock('@react-navigation/native', () => {

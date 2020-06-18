@@ -5,6 +5,14 @@
     "operating_system_abbr": "OS:",
     "version": "Versie:"
   },
+  "assessment": {
+    "cancel": "Annuleer",
+    "caregiver_cta": "Volgende",
+    "complete_cta": "Klaar",
+    "distancing_cta": "Volgende",
+    "isolate_cta": "Volgende",
+    "next": "Volgende"
+  },
   "common": {
     "done": "Klaar",
     "next": "Volgende"
@@ -26,7 +34,7 @@
     "error": "Er is iets misgegaan bij het importeren van uw gegevens.",
     "google": {
       "already_imported": "Dit Takeout bestand is al eerder geïmporteerd/",
-      "disclaimer": "COVID Safe Paths is niet aangesloten bij Google en zal nooit uw data delen.",
+      "disclaimer": "PathCheck is niet aangesloten bij Google en zal nooit uw data delen.",
       "file_open_error": "Kon het bestand niet openen. \nZorg ervoor dat het bestand wordt geopend vanuit Google Drive",
       "instructions_detailed": "Bezoek Google Takeout en exporteer uw locatiegeschiedenis met de volgende instellingen: \n 1. Bezorgmethode: 'Toevoegen aan Drive' \n 2. Frequentie: \"eenmaal exporteren\" \n 3. Bestandstype en -grootte: \".zip\" en \"1GB\" \n 4. Google stuurt een e-mail wanneer de export klaar is \n 5. Keer hier terug om locaties uit Google Drive te importeren",
       "instructions_first": "Door locatiegegevens van Google toe te voegen, krijgt u een voorsprong bij het bouwen van uw recente locaties.",
@@ -41,15 +49,12 @@
     "title": "Importeer locaties"
   },
   "label": {
-    "about_title": "Informatie",
     "authorities_add_button_label": "Voeg een vertrouwde bron toe",
     "authorities_add_url": "Voeg autoriteit toe via URL",
-    "authorities_desc": "Kies vertrouwde gezondheidsinstanties in uw regio om blootstellingsgegevens te verkrijgen. Selecteer een naam uit het wereldwijde register of voer het webadres in dat is verstrekt door een autoriteit die Safe Paths heeft geïmplementeerd.",
+    "authorities_desc": "Kies vertrouwde gezondheidsinstanties in uw regio om blootstellingsgegevens te verkrijgen. Selecteer een naam uit het wereldwijde register of voer het webadres in dat is verstrekt door een autoriteit die PathCheck heeft geïmplementeerd.",
     "authorities_input_placeholder": "Plak hier uw URL",
     "authorities_new_in_area_msg": "Meld u aan voor {{count}} nieuwe gezondheidinstantie in uw regio",
-    "authorities_new_in_area_msg_plural": "Meld u aan voor {{count}} nieuwe gezondheidinstanties in uw regio",
-    "authorities_new_in_area_title": "Nieuwe gezondheidsinstantie",
-    "authorities_new_in_area_title_plural": "Nieuwe gezondheidsinstanties",
+    "authorities_new_in_area_title": "{\"one\":\"Nieuwe gezondheidsinstantie\",\"other\":\"Nieuwe gezondheidsinstanties\"}",
     "authorities_no_sources": "Nog geen gegevensbron",
     "authorities_removal_alert_cancel": "Annuleer",
     "authorities_removal_alert_desc": "U gaat de gegevensbron van deze autoriteit verwijderen. Weet u dat zeker?",
@@ -58,23 +63,11 @@
     "auto_subscribe_checkbox": "Automatisch abonnement inschakelen",
     "choose_provider_subtitle": "Om op de hoogte te blijven van mogelijke blootstellingen, kunt u het best abonneren op een gezondheidsinstantie.",
     "choose_provider_title": "Kies een gezondheidsinstantie",
-    "default_news_site_name": "Safe Paths nieuws",
+    "default_news_site_name": "PathCheck nieuws",
     "enter_authority_url": "URL invoeren of plakken",
     "event_history_subtitle": "Herken uw persoonlijke blootstelling met informatie van gezondheidsinstanties.",
     "event_history_title": "Blootstelling geschiedenis",
     "filter_authorities_by_gps_history": "Filter op uw locaties",
-    "home_at_risk_header": "U wordt mogelijk blootgesteld",
-    "home_at_risk_subsubtext": "Dit betekent echter niet dat u besmet bent.",
-    "home_at_risk_subtext_location": "Uit uw locatiegeschiedenis blijkt dat u in de buurt was of contact had met iemand met de diagnose COVID-19.",
-    "home_enable_location": "Locatiegegevens inschakelen",
-    "home_mayo_link_heading": "Meer COVID-19 informatie",
-    "home_mayo_link_label": "van de Mayo Clinic (Verenigde Staten)",
-    "home_no_contact_header": "Geen bekend contact",
-    "home_no_contact_subtext": "Op basis van beschikbare gegevens bent u nog nooit in de buurt van iemand geweest met de diagnose COVID-19.",
-    "home_setting_off_header": "Onbekend",
-    "home_setting_off_subtext_location": "We kunnen niet zeggen of u risico loopt, tenzij u de app toegang geeft tot uw locatie op het instellingen scherm.",
-    "home_unknown_header": "Onbekend",
-    "home_unknown_subtext_location": "We kunnen niet zeggen of u risico loopt, tenzij u de app toegang geeft tot uw locatie.",
     "latest_news": "Laatste nieuws",
     "launch_access_location": "Locatie toegang",
     "launch_authority_access": "Abonneer u op nabijgelegen gezondheidsautoriteiten",
@@ -102,12 +95,11 @@
     "launch_set_up_phone_bluetooth": "Klaar",
     "launch_set_up_phone_location": "Stel mijn telefoon in",
     "launch_subheader": "Geen zorgen, de informatie verlaat nooit uw telefoon zonder uw nadrukkelijke toestemming.",
-    "legal_page_title": "Juridisch",
     "loading_public_data": "Gegevens worden geladen ...",
-    "location_disabled_message": "COVID Safe Paths vereist locatie diensten.",
+    "location_disabled_message": "PathCheck vereist locatie diensten.",
     "location_disabled_title": "Het traceren van locatie is uitgeschakeld",
-    "location_enabled_message": "COVID Safe Paths slaat uw GPS-coördinaten eens in de vijf minuten veilig op dit apparaat op.",
-    "location_enabled_title": "COVID Safe Paths ingeschakeld",
+    "location_enabled_message": "PathCheck slaat uw GPS-coördinaten eens in de vijf minuten veilig op dit apparaat op.",
+    "location_enabled_title": "PathCheck ingeschakeld",
     "logging_active_location": "Locatie actief",
     "logging_inactive_location": "Locatie inactief",
     "news_subtitle": "Lees meer over de laatste COVID-19 nieuws op de website van uw gezondheidsinstantie.",
@@ -120,12 +112,17 @@
     "skip_this_step": "Deze stap overslaan",
     "team": "Team",
     "team_para": "Ons team bestaat uit een consortium van epidemiologen, ingenieurs, data wetenschappers, digitale privacy-evangelisten, professoren en onderzoekers van gerenommeerde instellingen, waaronder: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young en Link Ventures.",
-    "terms_of_use": "Gebruiksvoorwaarden"
+    "terms_of_use": "Gebruiksvoorwaarden",
+    "authorities_new_in_area_msg_plural": "Meld u aan voor {{count}} nieuwe gezondheidinstanties in uw regio"
   },
   "onboarding": {
     "eula_checkbox": "Ik accepteer de licentieovereenkomst",
     "eula_continue": "Ga verder",
-    "eula_message": "*U moet accepteren om Safe Paths te gebruiken"
+    "eula_message": "*U moet accepteren om PathCheck te gebruiken"
+  },
+  "screen_titles": {
+    "about": "Informatie",
+    "legal": "Juridisch"
   },
   "share": {
     "button_text": "Deel uw locatie gegevens",
@@ -135,11 +132,12 @@
     "title": "Deel locatie geschiedenis"
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths is verouderd",
+    "alert_label": "PathCheck is verouderd",
     "alert_sublabel": "Update naar een nieuwe versie?",
     "later": "Later",
     "push_notification_message": "Update uw applicatie",
     "push_notification_title": "Applicatie is verouderd",
     "update": "Update"
-  }
+  },
+  "": null
 }

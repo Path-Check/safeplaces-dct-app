@@ -3,6 +3,7 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH"/>
 
+
     <application android:name="covidsafepaths.bt.MainApplication">
         <receiver
             android:name="covidsafepaths.bt.exposurenotifications.ExposureNotificationBroadcastReceiver"

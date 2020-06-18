@@ -1,15 +1,14 @@
 import React from 'react';
 import { Switch as RNSwitch } from 'react-native';
 
-import Colors from '../constants/colors';
+import { Colors } from '../styles';
 
-// TODO(https://pathcheck.atlassian.net/browse/SAF-230): make theme aware
 export const Switch = ({
   onValueChange,
   value = false,
-  trackColor = { false: Colors.GRAY_BACKGROUND, true: Colors.SUCCESS },
+  trackColor = { false: Colors.darkGray, true: Colors.success },
   testID = 'switch',
-  thumbColor = Colors.WHITE,
+  thumbColor = Colors.white,
   style,
 }) => {
   return (

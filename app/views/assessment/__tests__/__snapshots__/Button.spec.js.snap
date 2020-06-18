@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`base 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="assessment-button"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 10,
+            "paddingHorizontal": 14,
+            "paddingVertical": 22,
+          },
+          Object {
+            "backgroundColor": "#6979f8",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontSize": 17,
+              "lineHeight": 28,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Array [
+              Object {
+                "color": "#f8f8f8",
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#ffffff",
+              },
+            ],
+          ]
+        }
+      >
+        Next
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`color 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="assessment-button"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 10,
+            "paddingHorizontal": 14,
+            "paddingVertical": 22,
+          },
+          Object {
+            "backgroundColor": "red",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontSize": 17,
+              "lineHeight": 28,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Array [
+              Object {
+                "color": "#f8f8f8",
+                "textAlign": "center",
+              },
+              Object {
+                "color": "red",
+              },
+            ],
+          ]
+        }
+      >
+        Next
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`disabled 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="assessment-button"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 10,
+            "paddingHorizontal": 14,
+            "paddingVertical": 22,
+          },
+          Object {
+            "backgroundColor": "#e5e7fa",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontSize": 17,
+              "lineHeight": 28,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Array [
+              Object {
+                "color": "#f8f8f8",
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#a5affb",
+              },
+            ],
+          ]
+        }
+      >
+        Next
+      </Text>
+    </View>
+  </View>
+</View>
+`;

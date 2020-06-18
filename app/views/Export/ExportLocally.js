@@ -15,12 +15,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import { Icons } from '../../assets';
 import { Button, Typography } from '../../components';
-import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import { isPlatformiOS } from '../../Util';
+
+import { Icons } from '../../assets';
+import { Colors } from '../../styles';
 
 const base64 = RNFetchBlob.base64;
 
@@ -58,7 +59,7 @@ const ExportLocally = ({ navigation }) => {
       );
       const title = 'COVIDSafePaths.json';
       const filename = unixtimeUTC + '.json';
-      const message = 'Here is my location log from COVID Safe Paths.';
+      const message = 'Here is my location log from PathCheck.';
       if (isPlatformiOS()) {
         const url = RNFS.DocumentDirectoryPath + '/' + filename;
         await RNFS.writeFile(url, jsonData, 'utf8')
@@ -112,7 +113,7 @@ const ExportLocally = ({ navigation }) => {
     <Theme use='violet'>
       <StatusBar
         barStyle='light-content'
-        backgroundColor={Colors.VIOLET_BUTTON}
+        backgroundColor={Colors.secondaryBlue}
         translucent={false}
       />
       <SafeAreaView style={styles.topSafeAreaContainer} />
@@ -120,7 +121,7 @@ const ExportLocally = ({ navigation }) => {
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
-          colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
+          colors={[Colors.secondaryBlue, Colors.primaryBlue]}
           style={{ flex: 1, height: '100%' }}>
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.main}>
@@ -152,11 +153,11 @@ const styles = StyleSheet.create({
   // Container covers the entire screen
   topSafeAreaContainer: {
     flex: 0,
-    backgroundColor: Colors.VIOLET_BUTTON,
+    backgroundColor: Colors.secondaryBlue,
   },
   bottomSafeAreaContainer: {
     flex: 1,
-    backgroundColor: Colors.VIOLET_BUTTON_DARK,
+    backgroundColor: Colors.primaryBlue,
   },
   contentContainer: {
     flexDirection: 'column',

@@ -5,6 +5,14 @@
     "operating_system_abbr": "نظام التشغيل:",
     "version": "الإصدار:"
   },
+  "assessment": {
+    "cancel": "إلغاء",
+    "caregiver_cta": "التالى",
+    "complete_cta": "تم",
+    "distancing_cta": "التالى",
+    "isolate_cta": "التالى",
+    "next": "التالى"
+  },
   "common": {
     "done": "تم",
     "next": "التالى"
@@ -26,7 +34,7 @@
     "error": "حدث خطأ أثناء الحصول علي بياناتك.",
     "google": {
       "already_imported": "تم تحميل ملف Takeout المقدم بالفعل.",
-      "disclaimer": "لا يرتبط تطبيق Safe Paths بـ Google ولا تشارك بياناتك مطلقًا.",
+      "disclaimer": "لا يرتبط تطبيق PathCheck بـ Google ولا تشارك بياناتك مطلقًا.",
       "file_open_error": "تعذر فتح الملف. \n من فضلك ، تأكد من فتح الملف من Google Drive",
       "instructions_detailed": "قم بزيارة Google Takeout واحصل على سجل المواقع الخاص بك باستخدام الإعدادات التالية:\n1. طريقة التسليم: \"add to drive\"\n2. التكرار: \"export once\"\n3. نوع الملف وحجمه: \".zip\" و \"1 غيغابايت\"\n4. ترسل Google بريدًا إلكترونيًا عندما يكون البيانات جاهزه\n5. ارجع هنا لتنزيل بيانات المواقع. خيارات الاستيراد:\n- التنزيل من جوجل درايف\n- التنزيل من المتصفح ، ثم الاستيراد من ملفات الهاتف المحلية. تأكد من أن تكون على شبكة WiFi لأن الملفات يمكن أن تكون كبيرة.",
       "instructions_first": "ستمنحك إضافة بيانات الموقع من Google السبق في معرفة مواقعك الأخيرة.",
@@ -41,13 +49,10 @@
     "title": "تنزيل بيانات الموقع"
   },
   "label": {
-    "about_title": "نبذة عنا",
     "authorities_add_button_label": "إضافة هيئة صحية موثوقة",
     "authorities_add_url": "إضافة هيئة صحية عبر رابط",
     "authorities_desc": "اختر الهيئة الصحية الموثوقة في منطقتك للحصول على بيانات التعرض و الانتشار. حدد إما اسمًا من السجل العام ، أو أدخل عنوان الويب الذي قدمته السلطة",
     "authorities_input_placeholder": "الصق عنوان الرابط هنا",
-    "authorities_new_in_area_title_1": "هيئة الرعاية الصحية الجديدة",
-    "authorities_new_in_area_title_5": "هيئات الرعاية الصحية الجديدة",
     "authorities_no_sources": "لا توجد بيانات حتى الآن",
     "authorities_removal_alert_cancel": "إلغاء",
     "authorities_removal_alert_desc": "هل أنت متأكد من أنك تريد إزالة مصدر بيانات هذه الهيئة",
@@ -61,18 +66,6 @@
     "event_history_subtitle": "افهم تعرضك الشخصي بناءً على المعلومات التي تشاركها السلطات الصحية",
     "event_history_title": "سجلات التعرض",
     "filter_authorities_by_gps_history": "اختار حسب مواقعك",
-    "home_at_risk_header": "ربما تكون قد تعرضت",
-    "home_at_risk_subsubtext": "هذا لا يعني أنك مصاب",
-    "home_at_risk_subtext_location": "استنادًا إلى سجل GPS الخاص بك ، من المحتمل أنك كنت على اتصال أو قريبًا من شخص تم تشخيصه بـ COVID-19",
-    "home_enable_location": "تفعيل خدمة الموقع",
-    "home_mayo_link_heading": "مزيد من المعلومات عن COVID-19",
-    "home_mayo_link_label": "من Mayo Clinic \"مايو كلينك\"",
-    "home_no_contact_header": "لم يتم التعرض",
-    "home_no_contact_subtext": "استنادًا إلى البيانات المتاحة ، لم تكن بالقرب من أي شخص تم الإبلاغ عنه إيجابيًا بـ COVID-19",
-    "home_setting_off_header": "غير معروف",
-    "home_setting_off_subtext_location": "لا يمكننا معرفة ما إذا كنت في خطر ما لم تقم بتفعيل سجل المواقع المتتبعة الموجودة في شاشة الإعدادات",
-    "home_unknown_header": "غير معروف",
-    "home_unknown_subtext_location": "لا يمكننا معرفة ما إذا كنت معرضًا للخطر ما لم يكن للتطبيق حق الوصول إلى بيانات موقعك",
     "latest_news": "أحدث الأخبار",
     "launch_access_location": "السماح بتحديد الموقع",
     "launch_authority_access": "اشترك في الهيئات الصحية القريبة",
@@ -100,12 +93,11 @@
     "launch_set_up_phone_bluetooth": "تم",
     "launch_set_up_phone_location": "إعداد هاتفي",
     "launch_subheader": "لا تقلق ، لا تترك المعلومات جهازك أبدًا ما لم تقرر المشاركة بها",
-    "legal_page_title": "النظام القانوني",
     "loading_public_data": "جاري تحميل البيانات...",
-    "location_disabled_message": "يتطلب تطبيق COVID Safe Paths خدمات الموقع",
+    "location_disabled_message": "يتطلب تطبيق PathCheck خدمات الموقع",
     "location_disabled_title": "تم تعطيل خدمة تتبع الموقع",
-    "location_enabled_message": "يقوم تطبيق COVID Safe Paths بتخزين إحداثيات موقعك بأمان مرة واحدة كل خمس دقائق على هذا الجهاز",
-    "location_enabled_title": "تم تفعيل تطبيق COVID Safe Paths",
+    "location_enabled_message": "يقوم تطبيق PathCheck بتخزين إحداثيات موقعك بأمان مرة واحدة كل خمس دقائق على هذا الجهاز",
+    "location_enabled_title": "تم تفعيل تطبيق PathCheck",
     "logging_active_location": "خدمة تتبع الموقع مفعلة",
     "logging_inactive_location": "خدمة تتبع الموقع غير مفعلة",
     "news_subtitle": "اقرأ عن آخر تحديثات COVID من السلطات الصحية الخاصة بك وبشكل عام",
@@ -118,12 +110,22 @@
     "skip_this_step": "تخطي هذه الخطوة",
     "team": "الفريق",
     "team_para": "يتكون فريقنا من مجموعة من علماء الأوبئة والمهندسين وعلماء البيانات وأخصائيين الخصوصية الرقمية والأساتذة والباحثين من المؤسسات المرموقة ، بما في ذلك: MIT و Harvard و The Mayo Clinic و TripleBlind و EyeNetra و Ernst & Young و Link Ventures",
-    "terms_of_use": "تعليمات الاستخدام"
+    "terms_of_use": "تعليمات الاستخدام",
+    "authorities_new_in_area_title_0": "",
+    "authorities_new_in_area_title_1": "هيئة الرعاية الصحية الجديدة",
+    "authorities_new_in_area_title_2": "",
+    "authorities_new_in_area_title_3": "",
+    "authorities_new_in_area_title_4": "",
+    "authorities_new_in_area_title_5": "هيئات الرعاية الصحية الجديدة"
   },
   "onboarding": {
     "eula_checkbox": "أوافق على اتفاقية الترخيص",
     "eula_continue": "استمر",
-    "eula_message": "*يجب أن تقبل لاستخدام تطبيق Safe Paths"
+    "eula_message": "*يجب أن تقبل لاستخدام تطبيق PathCheck"
+  },
+  "screen_titles": {
+    "about": "نبذة عنا",
+    "legal": "النظام القانوني"
   },
   "share": {
     "button_text": "مشاركة بيانات الموقع",
@@ -133,11 +135,12 @@
     "title": "تفعيل خدمة الموقع"
   },
   "version_update": {
-    "alert_label": "إصدار COVID Safe Paths قديم",
+    "alert_label": "إصدار PathCheck قديم",
     "alert_sublabel": "هل تريد التحديث إلى إصدار جديد؟",
     "later": "في وقت لاحق",
     "push_notification_message": "يرجى تحديث إصدار التطبيق الخاص بك",
     "push_notification_title": "إصدار التطبيق قديم",
     "update": "تحديث"
-  }
+  },
+  "": null
 }

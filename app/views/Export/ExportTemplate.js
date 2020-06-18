@@ -11,13 +11,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SvgXml } from 'react-native-svg';
 
-import { Icons } from '../../assets';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
-import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
+
+import { Icons } from '../../assets';
+import { Colors, Typography as TypographyStyles } from '../../styles';
 
 const BackgroundContainer = ({ lightTheme, children }) => {
   if (lightTheme) {
@@ -25,7 +25,7 @@ const BackgroundContainer = ({ lightTheme, children }) => {
       <View style={styles.container}>
         <StatusBar
           barStyle={'dark-content'}
-          backgroundColor={Colors.INTRO_WHITE_BG}
+          backgroundColor={Colors.faintGray}
           translucent={false}
         />
         {children}
@@ -36,11 +36,11 @@ const BackgroundContainer = ({ lightTheme, children }) => {
     <LinearGradient
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
-      colors={[Colors.VIOLET_BUTTON, Colors.VIOLET_BUTTON_DARK]}
+      colors={[Colors.secondaryBlue, Colors.primaryBlue]}
       style={styles.container}>
       <StatusBar
         barStyle={'light-content'}
-        backgroundColor={Colors.VIOLET_BUTTON}
+        backgroundColor={Colors.secondaryBlue}
         translucent={false}
       />
       {children}
@@ -102,16 +102,16 @@ export const ExportTemplate = ({
               </View>
             )}
 
-            <Typography use='headline2' style={styles.exportSectionTitles}>
+            <Typography style={styles.exportSectionTitles}>
               {headline}
             </Typography>
             <View style={{ height: 8 }} />
-            <Typography use='body1'>{body}</Typography>
+            <Typography style={styles.contentText}>{body}</Typography>
             {bodyLinkText && (
               <TouchableOpacity onPress={bodyLinkOnPress}>
                 <Typography
                   style={{
-                    color: Colors.LINK,
+                    color: Colors.linkTextInvert,
                     textDecorationLine: 'underline',
                   }}
                   use='body1'>
@@ -144,6 +144,11 @@ export const ExportTemplate = ({
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Colors.faintGray,
+    flex: 1,
+    paddingHorizontal: 24,
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -153,19 +158,18 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 70,
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.white,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 30,
   },
   exportSectionTitles: {
-    fontWeight: '500',
-    fontFamily: fontFamily.primaryMedium,
+    ...TypographyStyles.header2,
+    color: Colors.white,
   },
-  container: {
-    backgroundColor: Colors.INTRO_WHITE_BG,
-    flex: 1,
-    paddingHorizontal: 24,
+  contentText: {
+    ...TypographyStyles.secondaryContent,
+    color: Colors.white,
   },
 });
 

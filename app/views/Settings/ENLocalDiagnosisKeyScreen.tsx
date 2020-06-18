@@ -10,20 +10,16 @@ import {
 
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Typography } from '../../components/Typography';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
+import { NavigationProp } from '../../navigation';
 
-import * as ExposureNotifications from './../../../app/exposureNotificationsNativeModule';
+import { BTNativeModule } from './../../../app/bt';
 
 export type ENDiagnosisKey = {
   rollingStartNumber: number;
 };
 
 type ENLocalDiagnosisKeyScreenProp = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 };
 
 export const ENLocalDiagnosisKeyScreen = ({
@@ -38,7 +34,7 @@ export const ENLocalDiagnosisKeyScreen = ({
       }
       setDiagnosisKeys(diagnosisKeys);
     };
-    ExposureNotifications.fetchDiagnosisKeys(cb);
+    BTNativeModule.fetchDiagnosisKeys(cb);
   };
 
   const [diagnosisKeys, setDiagnosisKeys] = useState<ENDiagnosisKey[]>(

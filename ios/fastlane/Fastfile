@@ -28,16 +28,16 @@ before_all do
 end
 
 platform :ios do
-    BTE_APP_ID = "org.pathcheck.bt"
+    BT_APP_ID = "org.pathcheck.bt"
     GPS_APP_ID = "org.pathcheck.covid-safepaths"
     GPS_PROFILE = "match AppStore org.pathcheck.covid-safepaths"
-    BTE_PROFILE = "match AppStore org.pathcheck.bt"
+    BT_PROFILE = "match AppStore org.pathcheck.bt"
     DEBUG_PROFILE = "match Develop org.pathcheck.covid-safepaths"
     ADHOC_PROFILE = "match AdHoc org.pathcheck.covid-safepaths"
-    BTE_STAGING_SCHEME = "BTE_Staging"
+    BT_STAGING_SCHEME = "BT_Staging"
     GPS_STAGING_SCHEME = "GPS_Staging"
     TEAM = "79Z8HUPGC3"
-    BTE_SCHEME = "BTE_Production"
+    BT_SCHEME = "BT_Production"
     GPS_SCHEME = "GPS_Production"
     WORKSPACE = "COVIDSafePaths.xcworkspace"
     PROJECT = "COVIDSafePaths.xcodeproj"
@@ -81,11 +81,11 @@ platform :ios do
       )
     end
 
-    desc "Push a new BTE Staging build for automation"
-    lane :staging_bte do
+    desc "Push a new  Staging build for automation"
+    lane :staging_bt do
 
       signing_bundle_details = {
-        :BUNDLE_IDENTIFIER => BTE_APP_ID,
+        :BUNDLE_IDENTIFIER => BT_APP_ID,
         :PROVISIONING_PROFILE_SPECIFIER => ADHOC_PROFILE,
         :DEVELOPMENT_TEAM => TEAM
       }
@@ -100,12 +100,12 @@ platform :ios do
 
       build_ios_app(
         workspace: WORKSPACE,
-        scheme: BTE_STAGING_SCHEME,
+        scheme: BT_STAGING_SCHEME,
         configuration: "Staging",
         export_method: "ad-hoc",
         silent: true,
         clean: true,
-        output_name: "COVIDSafePaths-bte-staging.ipa",
+        output_name: "COVIDSafePaths-bt-staging.ipa",
       )
     end
 
@@ -149,8 +149,8 @@ platform :ios do
       )
   end
 
-    desc "Push a new BTE Release build to TestFlight"
-    lane :release_bte do
+    desc "Push a new BT Release build to TestFlight"
+    lane :release_bt do
       # Sets the app store version:
       # https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion
       increment_build_number(
@@ -165,8 +165,8 @@ platform :ios do
       )
 
       signing_bundle_details = {
-        :BUNDLE_IDENTIFIER => BTE_APP_ID,
-        :PROVISIONING_PROFILE_SPECIFIER => BTE_PROFILE,
+        :BUNDLE_IDENTIFIER => BT_APP_ID,
+        :PROVISIONING_PROFILE_SPECIFIER => BT_PROFILE,
         :DEVELOPMENT_TEAM => TEAM
       }
 
@@ -181,11 +181,11 @@ platform :ios do
 
       build_ios_app(
         workspace: WORKSPACE,
-        scheme: BTE_SCHEME,
+        scheme: BT_SCHEME,
         configuration: "Release",
         silent: true,
         clean: true,
-        output_name: "COVIDSafePaths-bte.ipa",
+        output_name: "COVIDSafePaths-bt.ipa",
       )
   end
 

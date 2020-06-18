@@ -6,4 +6,4 @@ export const AUTHORITIES_LIST_URL =
 
 // TODO: consolidate these two URLs into one after we reconcile the logic happening in the HA provider with the new redux logic.
 export const AUTHORITIES_LIST_URL_MVP1 =
-  'https://raw.githubusercontent.com/Path-Check/trusted-authorities/master/staging/authorites.1.0.0.yaml';
+  'https://raw.githubusercontent.com/Path-Check/trusted-authorities/master/staging/authorities.1.0.1.yaml';

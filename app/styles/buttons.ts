@@ -2,21 +2,21 @@ import { ViewStyle } from 'react-native';
 
 import * as Colors from './colors';
 import * as Outlines from './outlines';
-import * as Layout from './layout';
+import * as Spacing from './spacing';
 
 const base: ViewStyle = {
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
+  borderRadius: Outlines.baseBorderRadius,
 };
 
 // Size
 export const baseHeight = 50;
 
 const large: ViewStyle = {
-  paddingTop: 10,
-  paddingBottom: 11,
-  width: Layout.baseFullWidthWithMargin,
+  paddingTop: Spacing.large,
+  paddingBottom: Spacing.large + 1,
 };
 
 // Color
@@ -25,46 +25,36 @@ const primaryBlue: ViewStyle = {
   borderColor: Colors.primaryBlue,
 };
 
-const primaryBlack: ViewStyle = {
-  backgroundColor: Colors.darkGray,
-  borderColor: Colors.darkGray,
-};
-
-const primaryYellow: ViewStyle = {
-  backgroundColor: Colors.primaryYellow,
-  borderColor: Colors.primaryYellow,
+const white: ViewStyle = {
+  backgroundColor: Colors.white,
+  borderColor: Colors.white,
 };
 
 // Outline
-const rounded: ViewStyle = {
-  borderRadius: Outlines.borderRadiusMax,
+const outlined: ViewStyle = {
+  borderWidth: 1,
+  backgroundColor: Colors.transparent,
 };
 
 // Combinations
 export const largeBlue: ViewStyle = {
   ...base,
   ...large,
-  ...rounded,
   ...primaryBlue,
 };
 
-export const largeBlack: ViewStyle = {
-  ...base,
-  ...large,
-  ...rounded,
-  ...primaryBlack,
+export const largeBlueOutline: ViewStyle = {
+  ...largeBlue,
+  ...outlined,
 };
 
-export const largeYellow: ViewStyle = {
+export const largeWhite: ViewStyle = {
   ...base,
   ...large,
-  ...rounded,
-  ...primaryYellow,
+  ...white,
 };
 
-export const borderOnly = (buttonStyle: ViewStyle): ViewStyle => {
-  return {
-    ...buttonStyle,
-    backgroundColor: Colors.transparent,
-  };
+export const largeWhiteOutline: ViewStyle = {
+  ...largeWhite,
+  ...outlined,
 };

@@ -5,6 +5,14 @@
     "operating_system_abbr": "OS:",
     "version": "പതിപ്പ്:"
   },
+  "assessment": {
+    "cancel": "റദ്ദാക്കുക",
+    "caregiver_cta": "അടുത്തത്",
+    "complete_cta": "ചെയ്‌തു",
+    "distancing_cta": "അടുത്തത്",
+    "isolate_cta": "അടുത്തത്",
+    "next": "അടുത്തത്"
+  },
   "authorities": {
     "invalid_url_body": "നിങ്ങൾ നൽകിയ URL അസാധുവാണ്, ദയവായി വീണ്ടും ശ്രമിക്കുക",
     "invalid_url_title": "അസാധുവായ URL"
@@ -46,19 +54,14 @@
     "title": "ഇംപോർട്ട് ലൊക്കേഷനുകൾ"
   },
   "label": {
-    "about_title": "വിവരങ്ങൾ",
     "authorities_add_button_label": "വിശ്വസനീയമായ ഉറവിടം ചേർക്കുക",
     "authorities_add_url": "URL വഴി ഉറവിടം ചേർക്കുക",
     "authorities_desc": "എക്‌സ്‌പോഷർ ഡാറ്റ നേടുന്നതിന് നിങ്ങളുടെ പ്രദേശത്തെ വിശ്വസനീയ ആരോഗ്യ സംരക്ഷണ അധികാരികളെ തിരഞ്ഞെടുക്കുക. ഒന്നുകിൽ ആഗോള രജിസ്ട്രിയിൽ നിന്ന് ഒരു പേര് തിരഞ്ഞെടുക്കുക, അല്ലെങ്കിൽ സെയ്ഫ് പാത്ത് നടപ്പിലാക്കിയ ഒരു അതോറിറ്റി നൽകിയ വെബ് വിലാസം നൽകുക.",
     "authorities_input_placeholder": "നിങ്ങളുടെ URL ഇവിടെ ചേർക്കുക",
     "authorities_new_in_area_msg": "നിങ്ങളുടെ സ്ഥാനത്ത്  {{count}} പുതിയ വിശ്വസനീയ ആരോഗ്യ സംരക്ഷണ അതോറിറ്റി സബ്‌സ്‌ക്രൈബുചെയ്യുക",
-    "authorities_new_in_area_msg_plural": "നിങ്ങളുടെ സ്ഥലത്തെ  {{count}} പുതിയ വിശ്വസനീയ ആരോഗ്യ സംരക്ഷണ അതോറിറ്റികളിലേക്ക് സബ്‌സ്‌ക്രൈബുചെയ്യുക",
-    "authorities_new_in_area_title": "പുതിയ ആരോഗ്യ അതോറിറ്റി",
-    "authorities_new_in_area_title_plural": "പുതിയ ആരോഗ്യ സംരക്ഷണ അധികാരികൾ",
-    "authorities_new_subscription_msg": "\nനിങ്ങളുടെ ലൊക്കേഷനിൽ {{count}} പുതിയ അതോറിറ്റിയിലേക്ക് നിങ്ങൾ സബ്‌സ്‌ക്രൈബുചെയ്‌തു",
-    "authorities_new_subscription_msg_plural": "\nനിങ്ങളുടെ സ്ഥാനത്തെ {{count}} പുതിയ അധികാരികളിലേക്ക് നിങ്ങൾ സബ്‌സ്‌ക്രൈബുചെയ്‌തു",
-    "authorities_new_subscription_title": "{{count}} പുതിയ സബ്‌സ്‌ക്രിപ്‌ഷൻ",
-    "authorities_new_subscription_title_plural": "{{count}} പുതിയ സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ",
+    "authorities_new_in_area_title": "{\"one\":\"\\u0d2a\\u0d41\\u0d24\\u0d3f\\u0d2f \\u0d06\\u0d30\\u0d47\\u0d3e\\u0d17\\u0d4d\\u0d2f \\u0d05\\u0d24\\u0d4b\\u0d31\\u0d3f\\u0d31\\u0d4d\\u0d31\\u0d3f\",\"other\":\"\\u0d2a\\u0d41\\u0d24\\u0d3f\\u0d2f \\u0d06\\u0d30\\u0d4b\\u0d17\\u0d4d\\u0d2f \\u0d38\\u0d02\\u0d30\\u0d15\\u0d4d\\u0d37\\u0d23 \\u0d05\\u0d27\\u0d3f\\u0d15\\u0d3e\\u0d30\\u0d3f\\u0d15\\u0d7e\"}",
+    "authorities_new_subscription_msg": "{\"one\":\"\\n\\u0d28\\u0d3f\\u0d19\\u0d4d\\u0d19\\u0d33\\u0d41\\u0d1f\\u0d46 \\u0d32\\u0d4a\\u0d15\\u0d4d\\u0d15\\u0d47\\u0d37\\u0d28\\u0d3f\\u0d7d [%1$s:count] \\u0d2a\\u0d41\\u0d24\\u0d3f\\u0d2f \\u0d05\\u0d24\\u0d4b\\u0d31\\u0d3f\\u0d31\\u0d4d\\u0d31\\u0d3f\\u0d2f\\u0d3f\\u0d32\\u0d47\\u0d15\\u0d4d\\u0d15\\u0d4d \\u0d28\\u0d3f\\u0d19\\u0d4d\\u0d19\\u0d7e \\u0d38\\u0d2c\\u0d4d\\u200c\\u0d38\\u0d4d\\u200c\\u0d15\\u0d4d\\u0d30\\u0d48\\u0d2c\\u0d41\\u0d1a\\u0d46\\u0d2f\\u0d4d\\u200c\\u0d24\\u0d41\",\"other\":\"\\n\\u0d28\\u0d3f\\u0d19\\u0d4d\\u0d19\\u0d33\\u0d41\\u0d1f\\u0d46 \\u0d38\\u0d4d\\u0d25\\u0d3e\\u0d28\\u0d24\\u0d4d\\u0d24\\u0d46 [%1$s:count] \\u0d2a\\u0d41\\u0d24\\u0d3f\\u0d2f \\u0d05\\u0d27\\u0d3f\\u0d15\\u0d3e\\u0d30\\u0d3f\\u0d15\\u0d33\\u0d3f\\u0d32\\u0d47\\u0d15\\u0d4d\\u0d15\\u0d4d \\u0d28\\u0d3f\\u0d19\\u0d4d\\u0d19\\u0d7e \\u0d38\\u0d2c\\u0d4d\\u200c\\u0d38\\u0d4d\\u200c\\u0d15\\u0d4d\\u0d30\\u0d48\\u0d2c\\u0d41\\u0d1a\\u0d46\\u0d2f\\u0d4d\\u200c\\u0d24\\u0d41\"}",
+    "authorities_new_subscription_title": "{\"one\":\"[%1$s:count] \\u0d2a\\u0d41\\u0d24\\u0d3f\\u0d2f \\u0d38\\u0d2c\\u0d4d\\u200c\\u0d38\\u0d4d\\u200c\\u0d15\\u0d4d\\u0d30\\u0d3f\\u0d2a\\u0d4d\\u200c\\u0d37\\u0d7b\",\"other\":\"[%1$s:count] \\u0d2a\\u0d41\\u0d24\\u0d3f\\u0d2f \\u0d38\\u0d2c\\u0d4d\\u200c\\u0d38\\u0d4d\\u200c\\u0d15\\u0d4d\\u0d30\\u0d3f\\u0d2a\\u0d4d\\u200c\\u0d37\\u0d28\\u0d41\\u0d15\\u0d7e\"}",
     "authorities_no_sources": "ഇതുവരെ ഡാറ്റ ഉറവിടങ്ങളൊന്നുമില്ല",
     "authorities_removal_alert_cancel": "റദ്ദാക്കുക",
     "authorities_removal_alert_desc": "ഈ അതോറിറ്റി ഡാറ്റ ഉറവിടം നീക്കംചെയ്യണമെന്ന് നിങ്ങൾക്ക് ഉറപ്പാണോ?",
@@ -72,18 +75,6 @@
     "event_history_subtitle": "ആരോഗ്യ അധികാരികൾ പങ്കിട്ട വിവരങ്ങളെ അടിസ്ഥാനമാക്കി നിങ്ങളുടെ എക്സ്പോഷർ മനസ്സിലാക്കുക.",
     "event_history_title": "എക്സ്പോഷർ ചരിത്രം",
     "filter_authorities_by_gps_history": "നിങ്ങളുടെ ലൊക്കേഷനുകൾ പ്രകാരം ഫിൽട്ടർ ചെയ്യുക",
-    "home_at_risk_header": "You May Be Exposed",
-    "home_at_risk_subsubtext": "നിങ്ങൾ രോഗബാധിതനാണെന്ന് ഇതിനർത്ഥമില്ല",
-    "home_at_risk_subtext_location": "നിങ്ങളുടെ ജി‌പി‌എസ് ചരിത്രത്തെ അടിസ്ഥാനമാക്കി, നിങ്ങൾ‌ COVID-19 രോഗനിർണയം നടത്തിയ ഒരാളുമായി സമ്പർക്കം പുലർത്തുകയോ അല്ലെങ്കിൽ‌ അവരുമായി അടുത്തിടപഴകുകയോ ചെയ്‌തിരിക്കാം.",
-    "home_enable_location": "ലൊക്കേഷൻ ഡാറ്റ അനുവദിക്കുക",
-    "home_mayo_link_heading": "കൂടുതൽ COVID-19 വിവരങ്ങൾ",
-    "home_mayo_link_label": "മയോ ക്ലിനിക്കിൽ നിന്ന്",
-    "home_no_contact_header": "അറിയപ്പെടുന്ന കോൺടാക്റ്റുകളൊന്നുമില്ല",
-    "home_no_contact_subtext": "ലഭ്യമായ ഡാറ്റയെ അടിസ്ഥാനമാക്കി നിങ്ങൾ COVID-19 പോസിറ്റീവ് ആണെന്ന് റിപ്പോർട്ടുചെയ്ത ആരുടെയും അടുത്ത് സമ്പർക്കം ഉണ്ടായിട്ടില്ല.",
-    "home_setting_off_header": "അജ്ഞാതം",
-    "home_setting_off_subtext_location": "ക്രമീകരണ സ്ക്രീനിൽ ലൊക്കേഷൻ ചരിത്രം പ്രാപ്‌തമാക്കിയില്ലെങ്കിൽ നിങ്ങൾക്ക് അപകടസാധ്യത ഉണ്ടോ എന്ന് ഞങ്ങൾക്ക് പറയാനാവില്ല.",
-    "home_unknown_header": "അജ്ഞാതം",
-    "home_unknown_subtext_location": "നിങ്ങളുടെ ലൊക്കേഷൻ ആക്‌സസ്സുചെയ്യാൻ അപ്ലിക്കേഷൻ പ്രാപ്‌തമാക്കിയില്ലെങ്കിൽ നിങ്ങൾക്ക് അപകടസാധ്യതയുണ്ടോ ഞങ്ങൾക്ക് പറയാനാവില്ല.",
     "latest_news": "പുതിയ വാർത്ത",
     "launch_access_location": "ലൊക്കേഷൻ ആക്‌സസ്സ്",
     "launch_authority_access": "അടുത്തുള്ള ആരോഗ്യ അതോറിറ്റികൾക്ക് സബ് സ്ക്രൈബ് ചെയ്യുക",
@@ -111,7 +102,6 @@
     "launch_set_up_phone_bluetooth": "ചെയ്‌തു",
     "launch_set_up_phone_location": "എന്റെ ഫോൺ സജ്ജമാക്കുക",
     "launch_subheader": "വിഷമിക്കേണ്ട, നിങ്ങളുടെ സമ്മതമില്ലാതെ ഡാറ്റ വിവരങ്ങൾ ഒരിക്കലും നിങ്ങളുടെ ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല.",
-    "legal_page_title": "നിയമപരമായ വിവരങ്ങൾ",
     "loading_public_data": "ഡാറ്റ ലോഡുചെയ്യുന്നു ...",
     "location_disabled_message": "COVID സെയ്ഫ് പാത്ത്-ന് ലൊക്കേഷൻ സേവനങ്ങൾ ആവശ്യമാണ്.",
     "location_disabled_title": "ലൊക്കേഷൻ ട്രാക്കിംഗ് പ്രവർത്തനരഹിതമാക്കി.",
@@ -130,12 +120,17 @@
     "skip_this_step": "ഈ ഘട്ടം ഒഴിവാക്കുക",
     "team": "ടീം",
     "team_para": "എപ്പിഡെമിയോളജിസ്റ്റുകൾ, എഞ്ചിനീയർമാർ, ഡാറ്റാ ശാസ്ത്രജ്ഞർ, ഡിജിറ്റൽ സ്വകാര്യതാ സുവിശേഷകർ, പ്രൊഫസർമാർ, പ്രശസ്ത സ്ഥാപനങ്ങളിൽ നിന്നുള്ള ഗവേഷകർ എന്നിവരുടെ ഒരു കൺസോർഷ്യം ഉൾപ്പെടുന്നതാണ് ഞങ്ങളുടെ ടീം: എംഐടി, ഹാർവാർഡ്, മയോ ക്ലിനിക്, ട്രിപ്പിൾബ്ലൈൻഡ്, ഐനെട്ര, ഏണസ്റ്റ് & യംഗ്, ലിങ്ക് സംരംഭം.",
-    "terms_of_use": "നിബന്ധനകൾ"
+    "terms_of_use": "നിബന്ധനകൾ",
+    "authorities_new_in_area_msg_plural": "നിങ്ങളുടെ സ്ഥലത്തെ  {{count}} പുതിയ വിശ്വസനീയ ആരോഗ്യ സംരക്ഷണ അതോറിറ്റികളിലേക്ക് സബ്‌സ്‌ക്രൈബുചെയ്യുക"
   },
   "onboarding": {
     "eula_checkbox": "ലൈസൻസിംഗ് കരാർ ഞാൻ അംഗീകരിക്കുന്നു",
     "eula_continue": "തുടരുക",
-    "eula_message": "*Safe Paths ഉപയോഗിക്കുന്നതിന് നിങ്ങൾ അംഗീകരിക്കണം"
+    "eula_message": "*PathCheck ഉപയോഗിക്കുന്നതിന് നിങ്ങൾ അംഗീകരിക്കണം"
+  },
+  "screen_titles": {
+    "about": "വിവരങ്ങൾ",
+    "legal": "നിയമപരമായ വിവരങ്ങൾ"
   },
   "share": {
     "button_text": "ലൊക്കേഷൻ ഡാറ്റ പങ്കിടുക",
@@ -145,7 +140,7 @@
     "title": "ലൊക്കേഷൻ ചരിത്രം പങ്കിടുക."
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths കാലഹരണപ്പെട്ടതാണ്",
+    "alert_label": "PathCheck കാലഹരണപ്പെട്ടതാണ്",
     "alert_sublabel": "ഒരു പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റ് ചെയ്യണോ?",
     "later": "പിന്നീട്",
     "push_notification_message": "നിങ്ങളുടെ അപ്ലിക്കേഷൻ അപ്‌ഡേറ്റ് ചെയ്യുക",

@@ -14,7 +14,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#6979F8",
+        "backgroundColor": "#6979f8",
         "flex": 0,
       }
     }
@@ -23,7 +23,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#3A4CD7",
+        "backgroundColor": "#4051db",
         "flex": 1,
       }
     }
@@ -32,7 +32,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
       colors={
         Array [
           4285102584,
-          4282010839,
+          4282405339,
         ]
       }
       endPoint={
@@ -76,49 +76,62 @@ exports[`<ExportScreen /> renders correctly 1`] = `
           >
             <Text
               style={
-                Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans-Medium",
-                  "fontSize": 26,
-                  "fontWeight": "normal",
-                  "lineHeight": 34,
-                  "marginTop": 9,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#4051db",
+                    "fontFamily": "IBMPlexSans-Bold",
+                    "fontSize": 28,
+                    "fontWeight": "500",
+                    "lineHeight": 40,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "fontFamily": "IBMPlexSans-Medium",
+                    "fontWeight": "normal",
+                    "marginTop": 9,
+                  },
+                ]
               }
-              use="headline2"
             >
               Share location history
             </Text>
             <Text
               style={
-                Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "marginTop": 22,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "marginTop": 22,
+                  },
+                ]
               }
-              use="body1"
             >
               If you test positive for COVID-19, please do your part by sharing your location history with local authorities.
             </Text>
             <Text
               style={
-                Object {
-                  "color": "#FFF",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 24,
-                  "marginTop": 22,
-                  "writingDirection": "ltr",
-                }
+                Array [
+                  Object {
+                    "color": "#2e2e2e",
+                    "fontSize": 17,
+                    "lineHeight": 28,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "marginTop": 22,
+                  },
+                ]
               }
-              use="body1"
             >
               Location is shared as a simple list of times and places, no additional information.
             </Text>
@@ -133,7 +146,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                   "alignContent": "center",
                   "alignItems": "center",
                   "alignSelf": "stretch",
-                  "backgroundColor": "#FFF",
+                  "backgroundColor": "#ffffff",
                   "borderBottomLeftRadius": 8,
                   "borderBottomRightRadius": 8,
                   "borderColor": "transparent",
@@ -152,16 +165,23 @@ exports[`<ExportScreen /> renders correctly 1`] = `
             >
               <Text
                 style={
-                  Object {
-                    "color": "#4051DB",
-                    "fontFamily": "IBMPlexSans-Medium",
-                    "fontSize": 20,
-                    "fontWeight": "normal",
-                    "lineHeight": 40,
-                    "writingDirection": "ltr",
-                  }
+                  Array [
+                    Object {
+                      "color": "#2e2e2e",
+                      "fontSize": 17,
+                      "lineHeight": 28,
+                    },
+                    Object {
+                      "writingDirection": "ltr",
+                    },
+                    Object {
+                      "fontFamily": "IBMPlexSans-Medium",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "lineHeight": 40,
+                    },
+                  ]
                 }
-                use="body1"
               >
                 Share location data
               </Text>

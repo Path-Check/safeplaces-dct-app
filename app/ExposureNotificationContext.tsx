@@ -1,25 +1,24 @@
-/*global JSX*/
 import React, { createContext, useState } from 'react';
 
-import * as ExposureNotifications from './exposureNotificationsNativeModule';
+import { BTNativeModule } from './bt';
 
 export type ENAuthorizationStatus = 'authorized' | 'notAuthorized';
 
 interface ExposureNotificationsState {
-  hasBeenExposed: boolean;
-  toggleHasExposure: () => void;
-  exposureNotificationAuthorizationStatus: ENAuthorizationStatus;
-  requestExposureNotificationAuthorization: () => void;
+  authorizationStatus: ENAuthorizationStatus;
+  requestENAuthorization: () => void;
 }
 
 const initialStatus: ENAuthorizationStatus = 'notAuthorized';
 
-const ExposureNotificationsContext = createContext<ExposureNotificationsState>({
-  hasBeenExposed: false,
-  toggleHasExposure: () => {},
-  exposureNotificationAuthorizationStatus: initialStatus,
-  requestExposureNotificationAuthorization: () => {},
-});
+const initialState = {
+  authorizationStatus: initialStatus,
+  requestENAuthorization: () => {},
+};
+
+const ExposureNotificationsContext = createContext<ExposureNotificationsState>(
+  initialState,
+);
 
 interface ExposureNotificationProviderProps {
   children: JSX.Element;
@@ -28,30 +27,22 @@ interface ExposureNotificationProviderProps {
 const ExposureNotificationsProvider = ({
   children,
 }: ExposureNotificationProviderProps): JSX.Element => {
-  const [
-    exposureNotificationAuthorizationStatus,
-    setExposureNotificationAuthorizationStatus,
-  ] = useState<ENAuthorizationStatus>(initialStatus);
-  const [hasBeenExposed, setHasBeenExposed] = useState<boolean>(false);
+  const [authorizationStatus, setAuthorizationStatus] = useState<
+    ENAuthorizationStatus
+  >(initialStatus);
 
-  const requestExposureNotificationAuthorization = () => {
+  const requestENAuthorization = () => {
     const cb = (authorizationStatus: ENAuthorizationStatus) => {
-      setExposureNotificationAuthorizationStatus(authorizationStatus);
+      setAuthorizationStatus(authorizationStatus);
     };
-    ExposureNotifications.requestAuthorization(cb);
-  };
-
-  const toggleHasExposure = () => {
-    setHasBeenExposed(!hasBeenExposed);
+    BTNativeModule.requestAuthorization(cb);
   };
 
   return (
     <ExposureNotificationsContext.Provider
       value={{
-        hasBeenExposed,
-        toggleHasExposure,
-        exposureNotificationAuthorizationStatus,
-        requestExposureNotificationAuthorization,
+        authorizationStatus,
+        requestENAuthorization,
       }}>
       {children}
     </ExposureNotificationsContext.Provider>

@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react';
 import {
-  Dimensions,
+  TouchableOpacity,
   ImageBackground,
   Platform,
-  ScrollView,
   StatusBar,
   StyleSheet,
   View,
@@ -11,19 +10,22 @@ import {
 import { SvgXml } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
 
-import { Icons, Images } from '../../assets';
-import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 import { PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
-import fontFamily from '../../constants/fonts';
 
-const width = Dimensions.get('window').width;
+import { sharedStyles } from './styles';
+import { Icons, Images } from '../../assets';
+import {
+  Spacing,
+  Buttons,
+  Colors,
+  Typography as TypographyStyles,
+} from '../../styles';
 
 export const OnboardingPermissions = () => {
   const isiOS = Platform.OS === 'ios';
@@ -89,7 +91,7 @@ export const OnboardingPermissions = () => {
     }
   };
 
-  const onSkipStep = () => {
+  const handleOnPressMaybeLater = () => {
     moveToNextStep();
   };
 
@@ -97,6 +99,8 @@ export const OnboardingPermissions = () => {
     SetStoreData(PARTICIPATE, location.status === PermissionStatus.GRANTED);
     dispatchOnboardingComplete();
   };
+
+  const dontEnableText = 'Maybe Later';
 
   return (
     <Theme use='violet'>
@@ -109,30 +113,35 @@ export const OnboardingPermissions = () => {
           translucent
         />
 
-        <ScrollView
+        <View
           testID={'onboarding-permissions-screen'}
           style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <View style={styles.iconCircle}>
+            <View style={[sharedStyles.iconCircle, styles.iconCircle]}>
               <SvgXml xml={icon} width={30} height={30} />
             </View>
             <Typography style={styles.headerText}>{header}</Typography>
             <Typography style={styles.subheaderText}>{subHeader}</Typography>
           </View>
-        </ScrollView>
-        <View style={[styles.footerContainer]}>
-          <Button
-            label={'Maybe Later'}
-            secondary
-            style={styles.marginBottom}
-            onPress={onSkipStep}
-            testID={'onboarding-permissions-skip-button'}
-          />
-          <Button
-            label={buttonLabel}
-            onPress={handleButtonPress}
-            testID={'onboarding-permissions-button'}
-          />
+          <View style={styles.footerContainer}>
+            <TouchableOpacity
+              style={styles.dontEnableButton}
+              onPress={handleOnPressMaybeLater}
+              testID={'onboarding-permissions-skip-button'}>
+              <Typography style={styles.dontEnableButtonText}>
+                {dontEnableText}
+              </Typography>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.enableButton}
+              onPress={handleButtonPress}
+              testID={'onboarding-permissions-button'}>
+              <Typography style={styles.enableButtonText}>
+                {buttonLabel}
+              </Typography>
+            </TouchableOpacity>
+          </View>
         </View>
       </ImageBackground>
     </Theme>
@@ -148,40 +157,39 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
+    padding: Spacing.large,
   },
   contentContainer: {
-    width: width * 0.9,
-    flex: 1,
-    alignSelf: 'center',
-    marginTop: 70,
-  },
-  headerText: {
-    lineHeight: 32,
-    color: Colors.WHITE,
-    fontSize: 26,
-    fontFamily: fontFamily.primaryRegular,
-  },
-  subheaderText: {
-    color: Colors.WHITE,
-    marginTop: 24,
-    lineHeight: 24,
-    fontSize: 18,
-    fontFamily: fontFamily.primaryRegular,
-  },
-  marginBottom: {
-    marginBottom: 21,
-  },
-  iconCircle: {
-    height: 70,
-    width: 70,
-    backgroundColor: Colors.WHITE,
-    borderRadius: 1000,
-    alignItems: 'center',
+    flex: 3,
     justifyContent: 'center',
-    marginBottom: 28,
   },
   footerContainer: {
-    padding: 24,
+    flex: 1,
     width: '100%',
+    justifyContent: 'space-around',
+  },
+  headerText: {
+    ...TypographyStyles.header2,
+    color: Colors.invertedText,
+  },
+  subheaderText: {
+    ...TypographyStyles.mainContent,
+    color: Colors.invertedText,
+    paddingTop: Spacing.medium,
+  },
+  iconCircle: {
+    backgroundColor: Colors.white,
+  },
+  enableButton: {
+    ...Buttons.largeWhite,
+  },
+  enableButtonText: {
+    ...TypographyStyles.buttonTextDark,
+  },
+  dontEnableButton: {
+    ...Buttons.largeWhiteOutline,
+  },
+  dontEnableButtonText: {
+    ...TypographyStyles.buttonTextLight,
   },
 });

@@ -80,6 +80,8 @@ _Safe Paths_ is built on [React Native](https://reactnative.dev/docs/getting-sta
 
 Read the [contribution guidelines](CONTRIBUTING.md).
 
+If you're looking for a first ticket - please check out the backlog for a bug or first story [JIRA project.](https://pathcheck.atlassian.net/secure/RapidBoard.jspa?rapidView=9&projectKey=SAF&view=planning.nodetail&selectedIssue=SAF-264&issueLimit=100)
+
 ## Architecture
 
 View the [architecture diagram](docs/Private_Kit_Diagram.png) for a basic overview on the sequencing of generalized events and services that are used by Safe Paths.
@@ -124,7 +126,7 @@ dev_setup.bat
 ```
 yarn run-android-gps ## for the location enabled app
 
-yarn run-android-bte ## for the bluetooth enabled app
+yarn run-android-bt ## for the bluetooth enabled app
 ```
 
 Device storage can be cleared by long-pressing on the app icon in the simulator, clicking "App info", then "Storage", and lastly, "Clear Storage".
@@ -142,7 +144,7 @@ Then, run the application:
 ```
 yarn run-ios-gps ## for the location enabled app
 
-yarn run-ios-bte ## for the bluetooth enabled app
+yarn run-ios-bt ## for the bluetooth enabled app
 ```
 
 Device storage can be cleared by clicking "Hardware" on the system toolbar, and then "Erase all content and settings".

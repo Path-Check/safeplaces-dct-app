@@ -1,5 +1,12 @@
 {
   "_display_name": "繁體中文",
+  "assessment": {
+    "cancel": "取消",
+    "caregiver_cta": "下一個",
+    "distancing_cta": "下一個",
+    "isolate_cta": "下一個",
+    "next": "下一個"
+  },
   "common": {
     "next": "下一個"
   },
@@ -9,17 +16,16 @@
   "import": {
     "button_text": "過去の位置情報をインポートする",
     "google": {
-      "disclaimer": "Safe Paths與Google不存在從屬關係也不會分享您的資料",
+      "disclaimer": "PathCheck與Google不存在從屬關係也不會分享您的資料",
       "title": "Google 地圖"
     },
     "subtitle": "確認您下載此應用程式前，是否與新冠病毒確診者接觸，您可以載入您個人位置歷史資訊",
     "title": "輸入位置資訊"
   },
   "label": {
-    "about_title": "關於",
     "authorities_add_button_label": "新增可信來源",
     "authorities_add_url": "新增可信的疾病管制機構網頁超連結",
-    "authorities_desc": "選擇您所在地區受信任的醫療機構，獲取其潛在感染高風險路徑數據。從全局註冊表(global registry)選取資料集名稱或從使用Safe Paths的官方網頁超連結",
+    "authorities_desc": "選擇您所在地區受信任的醫療機構，獲取其潛在感染高風險路徑數據。從全局註冊表(global registry)選取資料集名稱或從使用PathCheck的官方網頁超連結",
     "authorities_input_placeholder": "在此貼上網頁超連結",
     "authorities_no_sources": "尚無資料來源",
     "authorities_removal_alert_cancel": "取消",
@@ -28,17 +34,9 @@
     "authorities_removal_alert_title": "移除疾病管制官方機構",
     "choose_provider_subtitle": "如要了解潛在接觸情況，您需要向疾病管制機構訂閱",
     "choose_provider_title": "選擇疾病管制機構",
-    "default_news_site_name": "Safe Paths 新聞",
+    "default_news_site_name": "PathCheck 新聞",
     "event_history_subtitle": "從疾病管制機構共享的數據了解您個人接觸風險",
     "event_history_title": "接觸歷史",
-    "home_at_risk_header": "您可能有高接觸風險",
-    "home_at_risk_subsubtext": "這並不代表您被感染了",
-    "home_at_risk_subtext_location": "根據您的路徑歷史資訊，您有可能曾經與新冠病毒確診者或接觸者接觸",
-    "home_enable_location": "開啟位置數據",
-    "home_no_contact_header": "無已知接觸",
-    "home_no_contact_subtext": "根據已知數據，您並未接觸任何新冠病毒確診者",
-    "home_unknown_header": "未知",
-    "home_unknown_subtext_location": "我們無法告知您是否曝露在接觸風險中，除非您允許此應用程式取得您位置資訊\"",
     "latest_news": "最新新聞",
     "launch_access_location": "取得位置",
     "launch_done_header": "全部完成",
@@ -61,12 +59,11 @@
     "launch_screen4_subheader_location": "如果您確診了，您可以自主選擇是否分享資料",
     "launch_set_up_phone_location": "設定我的手機",
     "launch_subheader": "別擔心，除非您確認要分享資訊，此資訊不會離開您手機\"",
-    "legal_page_title": "法遵",
     "loading_public_data": "資料下載中...",
-    "location_disabled_message": "COVID Safe Paths 需要位置服務",
+    "location_disabled_message": "PathCheck 需要位置服務",
     "location_disabled_title": "位置資訊已禁用",
-    "location_enabled_message": "COVID Safe Paths 每五分鐘在此裝置安全的儲存您的路徑資訊",
-    "location_enabled_title": "啟用 COVID Safe Paths",
+    "location_enabled_message": "PathCheck 每五分鐘在此裝置安全的儲存您的路徑資訊",
+    "location_enabled_title": "啟用 PathCheck",
     "news_subtitle": "從您在地與其他主要健康權威機構中，閱讀更多關於新冠病毒的最新資訊",
     "news_title": "最新資訊",
     "no_data": "沒有資料",
@@ -76,6 +73,10 @@
     "team": "團隊",
     "team_para": "我們團隊是由一群來自知名機構的傳染病學家、工程師、資料科學家、數位隱私倡導者、教授以及研究員、包含：MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young and Link Ventures.",
     "terms_of_use": "使用條款"
+  },
+  "screen_titles": {
+    "about": "關於",
+    "legal": "法遵"
   },
   "share": {
     "button_text": "分享位置資訊",

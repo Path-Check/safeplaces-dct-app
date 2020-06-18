@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { BackHandler, StyleSheet, View } from 'react-native';
 
 import { NavigationBarWrapper, Switch, Typography } from '../components';
-import Colors from '../constants/colors';
 import { getBuildtimeFlags } from '../constants/flagsEnv';
 import { DEBUG_MODE } from '../constants/storage';
 import { Theme } from '../constants/themes';
@@ -11,6 +10,8 @@ import { getCleanedFlagName } from '../helpers/Flags';
 import { GetStoreData } from '../helpers/General';
 import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
 import { useFlags } from '../services/hooks/useFlags';
+
+import { Colors } from '../styles';
 
 export const FEATURE_FLAG_SCREEN_NAME = 'FeatureFlagsScreen';
 
@@ -63,14 +64,14 @@ export const ExposureModeToggleRow = () => {
       <Switch
         value={isExposed}
         onValueChange={toggleExposureMode}
-        trackColor={{ false: Colors.GRAY_BACKGROUND, true: Colors.RED_TEXT }}
+        trackColor={{ false: Colors.mediumGray, true: Colors.errorText }}
       />
       <Typography
         use='body1'
         bold
         style={
           isExposed
-            ? { ...styles.toggleRowText, color: Colors.RED_TEXT }
+            ? { ...styles.toggleRowText, color: Colors.errorText }
             : styles.toggleRowText
         }>
         Exposure Mode

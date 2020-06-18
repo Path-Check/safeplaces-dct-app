@@ -1,5 +1,12 @@
 {
   "_display_name": "Română",
+  "assessment": {
+    "cancel": "Anulează",
+    "caregiver_cta": "Înainte",
+    "distancing_cta": "Înainte",
+    "isolate_cta": "Înainte",
+    "next": "Înainte"
+  },
   "common": {
     "next": "Înainte"
   },
@@ -18,17 +25,16 @@
   "import": {
     "button_text": "Importa istoric locații",
     "google": {
-      "disclaimer": "Safe Paths nu are nici o afiliere cu Google și nu dezvaluie NICIODATĂ datele dumneavoastră.",
+      "disclaimer": "PathCheck nu are nici o afiliere cu Google și nu dezvaluie NICIODATĂ datele dumneavoastră.",
       "title": "Hărți Google"
     },
     "subtitle": "Pentru a verifica dacă v-ați intersectat cu cineva găsit pozitiv COVID-19 înainte de a fi descarcat această aplicație, puteți importa istoricul personal al locațiilor dumneavoastră.",
     "title": "Importa Istoric"
   },
   "label": {
-    "about_title": "Despre",
     "authorities_add_button_label": "Adaugă Sursa de Încredere",
     "authorities_add_url": "Adaugă autoritate prin URL",
-    "authorities_desc": "Alegeți autorități de sănătate de încredere din zona dumneavoastră pentru a obține datele expunerilor. Puteți selecta un nume din registrul global, sau puteți introduce o adresă web pusa la dispoziție de institutiile care au implementat Safe Paths.",
+    "authorities_desc": "Alegeți autorități de sănătate de încredere din zona dumneavoastră pentru a obține datele expunerilor. Puteți selecta un nume din registrul global, sau puteți introduce o adresă web pusa la dispoziție de institutiile care au implementat PathCheck.",
     "authorities_input_placeholder": "Scrie URL-ul aici",
     "authorities_no_sources": "Nu există încă o sursă de date",
     "authorities_removal_alert_cancel": "Anulează",
@@ -37,21 +43,9 @@
     "authorities_removal_alert_title": "Șterge Sursă",
     "choose_provider_subtitle": "Pentru informații despre expuneri, trebuie să vă abonati la o autoritate de sănătate.",
     "choose_provider_title": "Alege autoritate sănătate",
-    "default_news_site_name": "Știri Safe Paths",
+    "default_news_site_name": "Știri PathCheck",
     "event_history_subtitle": "Familiarizati-vă cu expunerile dumneavoastră, luând în calcul informațiile puse la dispoziție de autoritațile de sănătate",
     "event_history_title": "Istoricul expunerilor",
-    "home_at_risk_header": "Expunere Posibilă",
-    "home_at_risk_subsubtext": "Atentie - nu înseamnă ca sunteți sigur infectat,",
-    "home_at_risk_subtext_location": "Având în vedere istoricul dumneavoastră GPS, este posibil să vă fi intersectat cu cineva găsit pozitiv cu COVID-19.",
-    "home_enable_location": "Activați Datele Despre Locație",
-    "home_mayo_link_heading": "Mai multe informații despre COVID-19",
-    "home_mayo_link_label": "de la Clinica Mayo",
-    "home_no_contact_header": "Nu aveți intersectări cunoscute",
-    "home_no_contact_subtext": "Conform datelor curente, nu ați fost în contact cu nici o persoană raportată pozitiv cu COVID-19",
-    "home_setting_off_header": "Necunoscut",
-    "home_setting_off_subtext_location": "Nu se poate estima dacă aveți risc de expunere dacă nu activați istoricul locațiilor in configurația aplicației.",
-    "home_unknown_header": "Necunoscut",
-    "home_unknown_subtext_location": "Nu se poate estima dacă aveți risc de expunere dacă nu permiteți aplicației sa acceseze locația telefonului.",
     "latest_news": "Ultimele Știri",
     "launch_access_location": "Acces locație",
     "launch_done_header": "Configurare finalizata",
@@ -74,11 +68,10 @@
     "launch_screen4_subheader_location": "Dacă sunteți găsit pozitiv, doar dumneavoastră puteți decide dacă împărțiți datele cu cineva.",
     "launch_set_up_phone_location": "Configurează Telefonul",
     "launch_subheader": "Stați fără griji, informațiile nu părăsesc niciodată telefonul decât dacă decideți explicit exportarea lor.",
-    "legal_page_title": "Legal",
     "loading_public_data": "încărcare date...",
-    "location_disabled_message": "COVID Safe Paths are nevoie de serviciile de localizare pentru a funcționa.",
+    "location_disabled_message": "PathCheck are nevoie de serviciile de localizare pentru a funcționa.",
     "location_disabled_title": "Jurnalul Locațiilor Dezactivat",
-    "location_enabled_message": "COVID Safe Paths memorează în siguranța coordonatele GPS o data la 5 minute DOAR pe acces dispozitiv.",
+    "location_enabled_message": "PathCheck memorează în siguranța coordonatele GPS o data la 5 minute DOAR pe acces dispozitiv.",
     "location_enabled_title": "Jurnalul Locațiilor Activat",
     "logging_active_location": "Jurnal Pornit",
     "logging_inactive_location": "Jurnal Oprit",
@@ -92,6 +85,10 @@
     "team": "Echipa",
     "team_para": "Echipa noastră este formata dintr-un consorțiu de epidemiologi, ingineri, oameni de stiință de date, promotori a siguranței datelor personale, cat si profesori și cercetatori de la instituții cu reputație, ce includ: MIT, Harvard, Clinica Mayo, TripleBlind, EyeNetra, Ernst & Young și Link Ventures.",
     "terms_of_use": "Termeni de folosire"
+  },
+  "screen_titles": {
+    "about": "Despre",
+    "legal": "Legal"
   },
   "share": {
     "button_text": "Trimite locațiile",
