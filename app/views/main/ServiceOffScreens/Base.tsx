@@ -16,6 +16,7 @@ import { Button } from '../../../components/Button';
 import { Theme } from '../../../constants/themes';
 import { styles } from '../style';
 import { Asset } from '../../../TracingStrategyAssets';
+import { useStatusBarEffect } from '../../../navigation';
 
 export interface ServiceOffScreenProps {
   header: Asset;
@@ -34,17 +35,13 @@ export const ServiceOffScreen = ({
   const size = Dimensions.get('window').height;
 
   const subheaderText: string = subheader as string;
+  useStatusBarEffect('light-content');
 
   return (
     <Theme use='violet'>
       <ImageBackground
         source={Images.LaunchScreenBackground}
         style={styles.backgroundImage}>
-        <StatusBar
-          barStyle='light-content'
-          backgroundColor='transparent'
-          translucent
-        />
         <View style={styles.pulseContainer}>
           <SvgXml
             xml={Icons.StateUnknown}
