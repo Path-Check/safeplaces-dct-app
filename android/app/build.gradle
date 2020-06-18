@@ -241,21 +241,21 @@ dependencies {
     // Annotation processing
     kapt 'com.google.auto.value:auto-value:1.7'
     // Libraries
-    bteImplementation 'androidx.work:work-runtime:2.3.4'
-    bteImplementation 'androidx.concurrent:concurrent-futures:1.0.0'
-    bteImplementation 'com.google.android.gms:play-services-base:17.2.1'
-    bteImplementation 'com.google.android.gms:play-services-basement:17.2.1'
-    bteImplementation 'com.google.android.gms:play-services-tasks:17.0.2'
-    bteImplementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
-    bteImplementation 'com.google.guava:guava:29.0-android'
-    bteImplementation 'com.google.auto.value:auto-value-annotations:1.7'
-    bteImplementation 'com.android.volley:volley:1.1.1'
-    bteImplementation 'commons-io:commons-io:2.5'
+    btImplementation 'androidx.work:work-runtime:2.3.4'
+    btImplementation 'androidx.concurrent:concurrent-futures:1.0.0'
+    btImplementation 'com.google.android.gms:play-services-base:17.2.1'
+    btImplementation 'com.google.android.gms:play-services-basement:17.2.1'
+    btImplementation 'com.google.android.gms:play-services-tasks:17.0.2'
+    btImplementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
+    btImplementation 'com.google.guava:guava:29.0-android'
+    btImplementation 'com.google.auto.value:auto-value-annotations:1.7'
+    btImplementation 'com.android.volley:volley:1.1.1'
+    btImplementation 'commons-io:commons-io:2.5'
     // Google EN library not available via Maven
-    bteImplementation project(path: ':play-services-nearby-18.0.2-eap')
+    btImplementation project(path: ':play-services-nearby-18.0.2-eap')
     // Stetho for debugging Realm
-    bteImplementation 'com.facebook.stetho:stetho:1.5.0'
-    bteImplementation 'com.uphyca:stetho_realm:2.3.0'
+    btImplementation 'com.facebook.stetho:stetho:1.5.0'
+    btImplementation 'com.uphyca:stetho_realm:2.3.0'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/"
