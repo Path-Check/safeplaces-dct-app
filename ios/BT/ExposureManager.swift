@@ -32,19 +32,20 @@ final class ExposureManager: NSObject {
     manager.invalidate()
   }
   
-  @objc func requestExposureNotificationAuthorization(authorized: Bool, callback: @escaping RCTResponseSenderBlock) {
+  @objc func requestExposureNotificationAuthorization(enabled: Bool, callback: @escaping RCTResponseSenderBlock) {
     // Ensure exposure notifications are enabled if the app is authorized. The app
     // could get into a state where it is authorized, but exposure
     // notifications are not enabled,  if the user initially denied Exposure Notifications
     // during onboarding, but then flipped on the "COVID-19 Exposure Notifications" switch
     // in Settings.
-    manager.setExposureNotificationEnabled(authorized) { error in
+    manager.setExposureNotificationEnabled(enabled) { error in
       if error == nil {
         let status = self.manager.exposureNotificationEnabled ? "AUTHORIZED" : "NOT_AUTHORIZED"
         NotificationCenter.default.post(Notification(name: Notification.Name.AuthorizationStatusDidChange,
                                                      object: status,
                                                      userInfo: nil))
       }
+      callback([error])
     }
   }
   
@@ -238,8 +239,8 @@ final class ExposureManager: NSObject {
       BTSecureStorage.shared.exposures = List<Exposure>()
       completion([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
     case .toggleENAuthorization:
-      let nextAuthorizationStatus = manager.exposureNotificationEnabled ? false : true
-      requestExposureNotificationAuthorization(authorized: authorized) { result in
+      let enabled = manager.exposureNotificationEnabled ? false : true
+      requestExposureNotificationAuthorization(enabled: enabled) { result in
         completion([NSNull(), "EN Enabled: \(self.manager.exposureNotificationEnabled)"])
       }
     }
