@@ -5,10 +5,10 @@ import {
   Modal,
   StyleSheet,
   View,
+  SafeAreaView,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import loadLocalResource from 'react-native-local-resource';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 
 import { Button, Checkbox, IconButton, Typography } from '../components';

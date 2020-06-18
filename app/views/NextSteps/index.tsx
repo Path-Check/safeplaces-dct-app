@@ -3,7 +3,7 @@ import { TouchableOpacity, View, StyleSheet } from 'react-native';
 
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-import { NavigationProp, Screens } from '../../navigation';
+import { NavigationProp, Screens, useStatusBarEffect } from '../../navigation';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
@@ -12,6 +12,8 @@ interface NextStepsProps {
 }
 
 const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
+  useStatusBarEffect('light-content');
+
   const handleOnBackPress = () => {
     navigation.goBack();
   };

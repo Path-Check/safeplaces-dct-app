@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   hyperlink: {
-    color: Colors.violetText,
+    color: Colors.linkText,
     fontSize: 16,
     marginBottom: 12,
     fontFamily: fontFamily.primaryRegular,

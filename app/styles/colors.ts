@@ -20,6 +20,7 @@ export const mediumGray = '#606060';
 export const darkGray = '#4e4e4e';
 export const darkestGray = '#2e2e2e';
 export const silver = '#bebebe';
+export const porcelain = '#ecfof1';
 
 // Reds
 export const red = '#ff0000';
@@ -53,14 +54,15 @@ export const secondaryYellow = kournikova;
 export const tertiaryYellow = orangePeel;
 
 // Violets
-export const jacksonsPurple = '#1f2c9b';
-export const moonRaker = '#e5e7fa';
-export const melrose = '#a5affb';
-export const indigo = '#4754C5';
+const jacksonsPurple = '#1f2c9b';
+const moonRaker = '#e5e7fa';
+const indigo = '#4754C5';
+const melrose = '#a5affb';
 
-export const primaryViolet = royalBlue;
-export const secondaryViolet = jacksonsPurple;
-export const tertiaryViolet = melrose;
+export const primaryViolet = jacksonsPurple;
+export const secondaryViolet = indigo;
+export const tertiaryViolet = moonRaker;
+export const quaternaryViolet = melrose;
 
 // Transparent
 export const transparent = 'rgba(0, 0, 0, 0)';
@@ -75,7 +77,7 @@ export const defaultBlue = primaryBlue;
 export const defaultRed = primaryRed;
 
 // Backgrounds
-export const primaryBackground = white;
+export const primaryBackground = faintGray;
 export const primaryBackgroundFaintShade = faintGray;
 export const secondaryBackground = moonRaker;
 export const tertiaryBackground = lighterGray;
@@ -89,8 +91,10 @@ export const primaryBorder = primaryViolet;
 export const secondaryBorder = gray;
 
 // Nav
-export const mainNav = royalerBlue;
-export const mainNavBorder = applyOpacity(royalerBlue, 0.6);
+export const mainNav = primaryViolet;
+export const navBar = primaryViolet;
+export const mainNavBorder = secondaryViolet;
+export const androidStatusBarBackground = porcelain;
 
 // Icons
 export const icon = mediumGray;
@@ -109,12 +113,15 @@ export const switchEnabled = defaultBlue;
 export const primaryText = darkestGray;
 export const secondaryText = darkGray;
 export const tertiaryText = secondaryBlue;
+
 export const invertedText = white;
 export const invertedSecondaryText = lightGray;
-export const violetText = royalBlue;
-export const violetTextLight = indigo;
-export const violetTextDark = jacksonsPurple;
-export const linkText = violetText;
+
+export const primaryHeaderText = primaryViolet;
+export const secondaryHeaderText = secondaryViolet;
+export const tertiaryHeaderText = tertiaryViolet;
+
+export const linkText = primaryViolet;
 export const linkTextInvert = amber;
 export const errorText = persimmon;
 

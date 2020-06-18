@@ -2,6 +2,7 @@
 #import <React/RCTEventEmitter.h>
 
 // Notification/Event Names
+NSString *const onEnabledStatusUpdated = @"onEnabledStatusUpdated";
 NSString *const onExposuresChanged = @"onExposureRecordUpdated";
 
 @interface ExposureEventEmitter : RCTEventEmitter <RCTBridgeModule>
@@ -29,6 +30,7 @@ RCT_EXPORT_MODULE();
 - (NSArray<NSString *> *)supportedEvents {
   return @[
     onExposuresChanged,
+    onEnabledStatusUpdated
   ];
 }
 

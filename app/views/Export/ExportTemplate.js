@@ -5,10 +5,10 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import { BackHandler } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { SvgXml } from 'react-native-svg';
 
 import { Button } from '../../components/Button';
