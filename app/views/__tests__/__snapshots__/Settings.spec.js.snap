@@ -838,19 +838,6 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 "paddingHorizontal": 16,
               }
             }
-          />
-          <View
-            style={
-              Object {
-                "backgroundColor": "#ffffff",
-                "borderBottomWidth": 1,
-                "borderColor": "#e5e7fa",
-                "borderTopWidth": 1,
-                "flex": 1,
-                "marginBottom": 20,
-                "paddingHorizontal": 16,
-              }
-            }
           >
             <View
               accessible={true}

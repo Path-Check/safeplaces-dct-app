@@ -21,19 +21,6 @@ on:
       - app/locales/*.sh
 
 jobs:
-  # Only run on a final merge into develop, uploads all changed keys to Lokalised
-  lokalise-upload:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: upload english files
-        run: yarn i18n:push
-        env:
-          LOKALISE_TOKEN: ${{ secrets.LOKALISE_TOKEN }}
-
   # Run on PRs, checks for any added keys that are missing in the app/locales/en.json file
   check-i18n:
     runs-on: ubuntu-latest

@@ -1,0 +1,24 @@
+name: i18n
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - app/locales/en.json
+      - app/locales/eula/en.html
+      - ios/en.lproj/*.strings
+      - android/app/src/main/res/values/strings.xml
+      - .github/workflows/*.yml
+      - app/locales/*.sh
+
+jobs:
+  lokalise-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: upload english files
+        run: yarn i18n:push
+        env:
+          LOKALISE_TOKEN: ${{ secrets.LOKALISE_TOKEN }}
