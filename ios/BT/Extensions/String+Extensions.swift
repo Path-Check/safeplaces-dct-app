@@ -8,7 +8,6 @@ extension String {
   static let keyPathExposureDetectionErrorLocalizedDescription = "exposureDetectionErrorLocalizedDescription"
   static let keyPathDateLastPerformedExposureDetection = "dateLastPerformedExposureDetection"
   static let keyPathExposures = "exposures"
-  static let keyPathNextDiagnosisKeyFileIndex = "nextDiagnosisKeyFileIndex"
 
   var gaenFilePaths: [String] {
     split(separator: "\n").map { String($0) }

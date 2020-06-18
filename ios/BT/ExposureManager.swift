@@ -57,7 +57,7 @@ final class ExposureManager: NSObject {
     
     var localURLs = [URL]()
     
-    func finish(_ result: Result<([Exposure], Int)>) {
+    func finish(_ result: Result<[Exposure]>) {
       
       for localURL in localURLs {
         // Delete downloaded file from file system
@@ -65,6 +65,7 @@ final class ExposureManager: NSObject {
           try FileManager.default.removeItem(at: localURL)
         } catch {
           completionHandler?(false)
+          return
         }
       }
       
@@ -73,8 +74,7 @@ final class ExposureManager: NSObject {
         completionHandler?(false)
       } else {
         switch result {
-        case let .success((newExposures, nextDiagnosisKeyFileIndex)):
-          BTSecureStorage.shared.nextDiagnosisKeyFileIndex = nextDiagnosisKeyFileIndex
+        case let .success(newExposures):
           BTSecureStorage.shared.dateLastPerformedExposureDetection = Date()
           BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
           BTSecureStorage.shared.exposures.append(objectsIn: newExposures)
@@ -142,7 +142,7 @@ final class ExposureManager: NSObject {
                          totalRiskScore: exposure.totalRiskScore,
                          transmissionRiskLevel: exposure.transmissionRiskLevel)
               }
-              finish(.success((newExposures, userState.nextDiagnosisKeyFileIndex + localURLs.count)))
+              finish(.success(newExposures))
             }
           }
         }
@@ -218,44 +218,15 @@ final class ExposureManager: NSObject {
       exposures.append(exposure)
       BTSecureStorage.shared.exposures = exposures
       completion([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
-    case .simulatePositiveDiagnosis:
-      let testResult = TestResult(id: UUID().uuidString,
-                                  isAdded: true,
-                                  dateAdministered: Date() - TimeInterval.random(in: 0...4) * 24 * 60 * 60,
-                                  isShared: .random())
-      BTSecureStorage.shared.testResults.append(testResult)
-      completion([NSNull(), "Test results: \(BTSecureStorage.shared.testResults)"])
-    case .disableExposureNotifications:
-      manager.setExposureNotificationEnabled(false) { error in
-        if let error = error {
-          completion([error.localizedDescription, NSNull()])
-        } else {
-          completion([NSNull(), "Exposure Notifications disabled."])
-        }
-      }
     case .resetExposureDetectionError:
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
       completion([NSNull(), "Exposure Detection Error: "])
-      
-    case .resetUserENState:
-      BTSecureStorage.shared.resetUserState { userState in
-        completion([NSNull(), "New UserState: \(userState)"])
-      }
     case .getAndPostDiagnosisKeys:
       getAndPostTestDiagnosisKeys { error in
         if let error = error {
           completion([error.localizedDescription, NSNull()])
         } else {
           completion([NSNull(), "Local diagnosis keys successfully fetched and posted."])
-        }
-      }
-    case .getExposureConfiguration:
-      APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .pull) { result in
-        switch result {
-        case .success(let configuration):
-          completion([NSNull(), "Exposure Configuration: \(configuration)"])
-        case .failure(let error):
-          completion([error.localizedDescription, NSNull()])
         }
       }
     case .resetExposures:
