@@ -107,7 +107,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   };
 
   return (
-    <NavigationBarWrapper title={'More'} includeBackButton={false}>
+    <NavigationBarWrapper title={'More'}>
       <ScrollView style={styles.container}>
         <View style={styles.section}>
           <NativePicker

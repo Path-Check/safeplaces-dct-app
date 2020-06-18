@@ -101,7 +101,9 @@ const CodeInput = ({ code, length, setCode }) => {
           style={[
             styles.characterInput,
             {
-              borderColor: character ? Colors.primaryBorder : Colors.melrose,
+              borderColor: character
+                ? Colors.primaryBorder
+                : Colors.quaternaryViolet,
             },
           ]}
           keyboardType={'number-pad'}

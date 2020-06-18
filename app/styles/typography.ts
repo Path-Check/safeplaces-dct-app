@@ -69,6 +69,11 @@ export const largeFont: TextStyle = {
   fontSize: large,
 };
 
+export const largerFont: TextStyle = {
+  lineHeight: largestLineHeight,
+  fontSize: larger,
+};
+
 export const largestFont: TextStyle = {
   lineHeight: largestLineHeight,
   fontSize: largest,
@@ -83,24 +88,24 @@ export const hugeFont: TextStyle = {
 export const header1: TextStyle = {
   ...hugeFont,
   ...bold,
-  color: Colors.violetText,
+  color: Colors.primaryHeaderText,
 };
 
 export const header2: TextStyle = {
   ...largestFont,
   ...bold,
-  color: Colors.violetText,
+  color: Colors.primaryHeaderText,
 };
 
 export const header3: TextStyle = {
-  ...mediumFont,
-  ...mediumBold,
-  color: Colors.violetText,
+  ...largerFont,
+  ...bold,
+  color: Colors.primaryHeaderText,
 };
 
 export const header4: TextStyle = {
   ...smallFont,
-  color: Colors.violetText,
+  color: Colors.secondaryHeaderText,
 };
 
 export const title: TextStyle = {
@@ -160,7 +165,7 @@ export const navHeader: TextStyle = {
 // Tappables
 export const tappableListItem: TextStyle = {
   ...mediumFont,
-  color: Colors.violetText,
+  color: Colors.primaryViolet,
 };
 
 // Buttons
@@ -177,4 +182,9 @@ export const buttonTextDark: TextStyle = {
 export const buttonTextLight: TextStyle = {
   ...buttonText,
   color: Colors.white,
+};
+
+export const buttonTextTinyDark: TextStyle = {
+  ...buttonTextDark,
+  ...tinyFont,
 };

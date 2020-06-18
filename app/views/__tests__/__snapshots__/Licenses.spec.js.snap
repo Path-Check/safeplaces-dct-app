@@ -120,7 +120,7 @@ exports[`renders correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#4051db",
+                    "color": "#1f2c9b",
                     "fontFamily": "IBMPlexSans-Bold",
                     "fontSize": 28,
                     "fontWeight": "500",
@@ -183,7 +183,7 @@ Somerville, MA 02144
                       "writingDirection": "ltr",
                     },
                     Object {
-                      "color": "#4051db",
+                      "color": "#1f2c9b",
                       "fontFamily": "IBMPlexSans",
                       "fontSize": 16,
                       "marginBottom": 12,
@@ -217,7 +217,7 @@ Somerville, MA 02144
                       "writingDirection": "ltr",
                     },
                     Object {
-                      "color": "#4051db",
+                      "color": "#1f2c9b",
                       "fontFamily": "IBMPlexSans",
                       "fontSize": 16,
                       "marginBottom": 12,
@@ -238,7 +238,7 @@ Somerville, MA 02144
         isTVSelectable={true}
         style={
           Object {
-            "backgroundColor": "#4051db",
+            "backgroundColor": "#1f2c9b",
             "flexDirection": "row",
             "justifyContent": "space-between",
             "opacity": 1,
