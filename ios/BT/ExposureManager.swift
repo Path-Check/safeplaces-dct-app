@@ -210,11 +210,10 @@ final class ExposureManager: NSObject {
       completion([NSNull(), "Exposure deteaction error message: \(BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription)"])
     case .simulateExposure:
       let exposure = Exposure(id: UUID().uuidString,
-                              date: Date().posixRepresentation - Int(TimeInterval.random(in: 1...4)) * 24 * 60 * 60 * 1000,
-                              duration: TimeInterval(Int.random(in: 1...5) * 60 * 5 * 1000),
+                              date: Date().posixRepresentation - Int(TimeInterval.random(in: 0...13)) * 24 * 60 * 60 * 1000,
+                              duration: TimeInterval(Int.random(in: 1...10) * 60 * 5 * 1000),
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
-
       let exposures = BTSecureStorage.shared.exposures
       exposures.append(exposure)
       BTSecureStorage.shared.exposures = exposures

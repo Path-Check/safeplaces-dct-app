@@ -1,14 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StyleSheet, View, BackHandler, ScrollView } from 'react-native';
-import { useTranslation } from 'react-i18next';
+import {
+  StatusBar,
+  StyleSheet,
+  View,
+  BackHandler,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
 
-import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-import ExposureHistoryContext, {
-  ExposureDatum,
-} from '../../ExposureHistoryContext';
+import ExposureHistoryContext from '../../ExposureHistoryContext';
+import { ExposureDatum } from '../../exposureHistory';
 import ExposureDatumDetail from './ExposureDatumDetail';
 import Calendar from './Calendar';
-import { NavigationProp } from '../../navigation';
+import { useStatusBarEffect, NavigationProp } from '../../navigation';
 
 import { Spacing } from '../../styles';
 
@@ -19,11 +23,14 @@ interface ExposureHistoryScreenProps {
 const ExposureHistoryScreen = ({
   navigation,
 }: ExposureHistoryScreenProps): JSX.Element => {
-  const { t } = useTranslation();
   const { exposureHistory } = useContext(ExposureHistoryContext);
-  const [selectedExposureDatum, setSelectedExposureDatum] = useState(
-    exposureHistory[exposureHistory.length - 1],
-  );
+  const [
+    selectedExposureDatum,
+    setSelectedExposureDatum,
+  ] = useState<ExposureDatum | null>(null);
+
+  useStatusBarEffect('dark-content');
+
   useEffect(() => {
     const handleBackPress = () => {
       navigation.goBack();
@@ -42,10 +49,8 @@ const ExposureHistoryScreen = ({
   };
 
   return (
-    <NavigationBarWrapper
-      includeBackButton={false}
-      title={t('label.event_history_title')}
-      onBackPress={() => navigation.goBack()}>
+    <SafeAreaView>
+      <StatusBar barStyle={'dark-content'} />
       <ScrollView style={styles.container}>
         <View style={styles.calendarContainer}>
           <Calendar
@@ -55,10 +60,12 @@ const ExposureHistoryScreen = ({
           />
         </View>
         <View style={styles.detailsContainer}>
-          <ExposureDatumDetail exposureDatum={selectedExposureDatum} />
+          {selectedExposureDatum ? (
+            <ExposureDatumDetail exposureDatum={selectedExposureDatum} />
+          ) : null}
         </View>
       </ScrollView>
-    </NavigationBarWrapper>
+    </SafeAreaView>
   );
 };
 

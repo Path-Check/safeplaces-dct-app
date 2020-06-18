@@ -1,5 +1,5 @@
-import { act, fireEvent, render, wait } from '@testing-library/react-native';
 import React from 'react';
+import { act, fireEvent, render, wait } from '@testing-library/react-native';
 
 import { FlagsProvider } from '../../helpers/Flags';
 import { FeatureFlagsScreen } from '../FeatureFlagToggles';

@@ -3,7 +3,7 @@ import { View, Text, ViewStyle, TextStyle, StyleSheet } from 'react-native';
 import dayjs from 'dayjs';
 
 import { DateTimeUtils } from '../../helpers';
-import { ExposureDatum } from '../../ExposureHistoryContext';
+import { ExposureDatum } from '../../exposureHistory';
 import { Outlines, Colors, Typography } from '../../styles';
 
 interface ExposureDatumIndicatorProps {
@@ -22,12 +22,6 @@ const ExposureDatumIndicator = ({
     textStyle,
   ]: IndicatorStyle): IndicatorStyle => {
     switch (exposureDatum.kind) {
-      case 'Unknown': {
-        return [
-          { ...circleStyle },
-          { ...textStyle, color: Colors.tertiaryViolet },
-        ];
-      }
       case 'NoKnown': {
         return [
           { ...circleStyle },

@@ -7,7 +7,7 @@ extension ENTemporaryExposureKey {
     ExposureKey(key: keyData,
                 rollingPeriod: rollingPeriod,
                 rollingStartNumber: rollingStartNumber,
-                transmissionRisk: ENRiskLevel(Int(Double.random(in: 1...8))))
+                transmissionRisk: transmissionRiskLevel)
   }
 
   var asDictionary : [String: Any] {

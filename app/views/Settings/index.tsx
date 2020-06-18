@@ -19,13 +19,13 @@ import {
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
-import { Screens } from '../../navigation';
 import { FeatureFlag } from '../../components/FeatureFlag';
 import { NativePicker } from '../../components/NativePicker';
-import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Typography } from '../../components/Typography';
+import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import GoogleMapsImport from './GoogleMapsImport';
+import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
 import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
@@ -40,9 +40,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     supportedDeviceLanguageOrEnglish(),
   );
 
-  const backToMain = () => {
-    navigation.goBack();
-  };
+  useStatusBarEffect('light-content');
 
   const navigateTo = (screen: string) => {
     return () => navigation.navigate(screen);
@@ -109,11 +107,8 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   };
 
   return (
-    <NavigationBarWrapper
-      includeBackButton={false}
-      title={t('screen_titles.more')}
-      onBackPress={backToMain}>
-      <ScrollView>
+    <NavigationBarWrapper title={'More'} includeBackButton={false}>
+      <ScrollView style={styles.container}>
         <View style={styles.section}>
           <NativePicker
             items={LOCALE_LIST}
@@ -166,12 +161,18 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           />
         </View>
 
-        {__DEV__ ? (
+        {!isGPS ? (
           <View style={styles.section}>
             <SettingsListItem
               label='EN Debug Menu'
               onPress={navigateTo(Screens.ENDebugMenu)}
+              style={styles.lastListItem}
             />
+          </View>
+        ) : null}
+
+        {__DEV__ ? (
+          <View style={styles.section}>
             <SettingsListItem
               label='Feature Flags (Dev mode only)'
               onPress={navigateTo(Screens.FeatureFlags)}
@@ -185,6 +186,9 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Colors.primaryBackgroundFaintShade,
+  },
   section: {
     flex: 1,
     backgroundColor: Colors.white,

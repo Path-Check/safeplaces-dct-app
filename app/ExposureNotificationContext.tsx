@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 
-import * as ExposureNotifications from './exposureNotificationsNativeModule';
+import { BTNativeModule } from './bt';
 
 export type ENAuthorizationStatus = 'authorized' | 'notAuthorized';
 
@@ -35,7 +35,7 @@ const ExposureNotificationsProvider = ({
     const cb = (authorizationStatus: ENAuthorizationStatus) => {
       setAuthorizationStatus(authorizationStatus);
     };
-    ExposureNotifications.requestAuthorization(cb);
+    BTNativeModule.requestAuthorization(cb);
   };
 
   return (

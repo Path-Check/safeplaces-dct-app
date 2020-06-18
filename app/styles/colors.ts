@@ -20,6 +20,7 @@ export const mediumGray = '#606060';
 export const darkGray = '#4e4e4e';
 export const darkestGray = '#2e2e2e';
 export const silver = '#bebebe';
+export const porcelain = '#ecfof1';
 
 // Reds
 export const red = '#ff0000';
@@ -75,7 +76,7 @@ export const defaultBlue = primaryBlue;
 export const defaultRed = primaryRed;
 
 // Backgrounds
-export const primaryBackground = white;
+export const primaryBackground = faintGray;
 export const primaryBackgroundFaintShade = faintGray;
 export const secondaryBackground = moonRaker;
 export const tertiaryBackground = lighterGray;
@@ -90,7 +91,9 @@ export const secondaryBorder = gray;
 
 // Nav
 export const mainNav = royalerBlue;
-export const mainNavBorder = applyOpacity(royalerBlue, 0.6);
+export const navBar = secondaryViolet;
+export const mainNavBorder = secondaryViolet;
+export const androidStatusBarBackground = porcelain;
 
 // Icons
 export const icon = mediumGray;

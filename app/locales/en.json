@@ -127,7 +127,9 @@
       "tracing_off_subheader": "PathCheck needs location access in Settings to privately save the places you visit",
       "tracing_off_button": "Allow Location Access",
       "all_services_on_header": "PathCheck",
-      "all_services_on_subheader": "PathCheck is privately saving the places you visit and comparing your locations to data from your local Health Department"
+      "all_services_on_subheader": "PathCheck is privately saving the places you visit and comparing your locations to data from your local Health Department",
+      "auto_start_header": "Auto Start Disabled",
+      "auto_start_subheader": "PathCheck needs to be able to auto start to privately save the places you visit. Please enable it in your app settings"
     },
     "bluetooth": {
       "all_services_on_header": "PathCheck",
@@ -279,6 +281,7 @@
     "history": "History",
     "locations": "Locations",
     "partners": "Partners",
+    "self_assessment": "Health",
     "more": "More"
   },
   "screen_titles": {
