@@ -56,6 +56,10 @@ export default class LocationServices {
       distanceFilter: 5,
       notificationTitle: languages.t('label.location_enabled_title'),
       notificationText: languages.t('label.location_enabled_message'),
+      enableAutoStartDialogueTitle: languages.t('home.gps.auto_start_header'),
+      enableAutoStartDialogueText: languages.t('home.gps.auto_start_subheader'),
+      enableLocationDialogueTitle: languages.t('home.gps.tracing_off_header'),
+      enableLocationDialogueText: languages.t('home.gps.tracing_off_subheader'),
       debug: false,
       startOnBoot: true,
       stopOnTerminate: false,
@@ -79,7 +83,7 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('authorization', (status) => {
       console.log(
-        '[INFO] BackgroundGeolocation authorization status: ' + status,
+          '[INFO] BackgroundGeolocation authorization status: ' + status,
       );
 
       if (status === BackgroundGeolocation.AUTHORIZED) {
@@ -140,8 +144,8 @@ export default class LocationServices {
 
     console.log('[INFO] BackgroundGeolocation service is running', isRunning);
     console.log(
-      '[INFO] BackgroundGeolocation services enabled',
-      locationServicesEnabled,
+        '[INFO] BackgroundGeolocation services enabled',
+        locationServicesEnabled,
     );
     console.log('[INFO] BackgroundGeolocation auth status: ' + authorization);
 
@@ -169,8 +173,8 @@ export default class LocationServices {
   static async getBackgroundGeoStatus() {
     return new Promise((resolve, reject) => {
       BackgroundGeolocation.checkStatus(
-        (status) => resolve(status),
-        (e) => reject(e),
+          (status) => resolve(status),
+          (e) => reject(e),
       );
     });
   }
