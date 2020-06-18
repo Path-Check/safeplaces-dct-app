@@ -31,12 +31,17 @@ export const heaviestWeight = '700';
 
 // Font Families
 export const baseFontFamily = 'IBMPlexSans';
+export const mediumFontFamily = 'IBMPlexSans-Medium';
 export const boldFontFamily = 'IBMPlexSans-Bold';
 export const monospaceFontFamily = 'IBMPlexMono';
 
 export const bold: TextStyle = {
   fontFamily: boldFontFamily,
   fontWeight: heavyWeight,
+};
+
+export const mediumBold: TextStyle = {
+  fontFamily: mediumFontFamily,
 };
 
 export const monospace: TextStyle = {
@@ -87,6 +92,17 @@ export const header2: TextStyle = {
   color: Colors.violetText,
 };
 
+export const header3: TextStyle = {
+  ...mediumFont,
+  ...mediumBold,
+  color: Colors.violetText,
+};
+
+export const header4: TextStyle = {
+  ...smallFont,
+  color: Colors.violetText,
+};
+
 export const title: TextStyle = {
   ...largeFont,
   fontWeight: heaviestWeight,
@@ -132,6 +148,13 @@ export const error: TextStyle = {
   color: Colors.defaultRed,
   fontSize: smaller,
   fontWeight: heavyWeight,
+};
+
+// Navigation
+export const navHeader: TextStyle = {
+  ...largeFont,
+  ...bold,
+  color: Colors.white,
 };
 
 // Tappables

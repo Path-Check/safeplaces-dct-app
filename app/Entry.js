@@ -51,7 +51,7 @@ import isOnboardingCompleteSelector from './store/selectors/isOnboardingComplete
 import { isGPS } from './COVIDSafePathsConfig';
 import * as Icons from './assets/svgs/TabBarNav';
 
-import { Affordances, Colors, Spacing } from './styles';
+import { Affordances, Spacing, Colors, Layout } from './styles';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -175,9 +175,9 @@ const MainAppTabs = () => {
         activeTintColor: Colors.white,
         inactiveTintColor: Colors.primaryViolet,
         style: {
-          backgroundColor: Colors.violetTextDark,
-          borderTopColor: Colors.primaryViolet,
-          paddingVertical: Spacing.xxxSmall,
+          backgroundColor: Colors.navBar,
+          paddingTop: Spacing.xSmall,
+          height: Layout.navBar,
         },
       }}>
       <Tab.Screen
@@ -248,7 +248,7 @@ const MainAppTabs = () => {
           name={Stacks.SelfAssessment}
           component={SelfAssessmentStack}
           options={{
-            tabBarLabel: t('navigation.selfAssessment'),
+            tabBarLabel: t('navigation.self_assessment'),
             tabBarIcon: ({ focused, size }) => (
               <SvgXml
                 xml={
