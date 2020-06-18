@@ -8,7 +8,7 @@ import Colors from '../colors';
 export default {
   buttonText: {
     fontSize: wp('5%'),
-    textTransform: 'capitalize',
+    textTransform: 'uppercase',
     color: Colors.WHITE,
     paddingVertical: 4,
     paddingHorizontal: 11,

@@ -241,9 +241,9 @@
         "tip": {
           "title": "No se necesita prueba en este momento",
           "content": {
-            "no_sympthoms":"A partir de ahora, sus respuestas sugieren que no necesita hacerse la prueba. Si llega a presentar algún síntoma como fiebre, tos, secreción nasal, ligera dificultad para respirar, dolor de garganta, cabeza o del cuerpo, vuelva a completar este cuestionario  o contáctese con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262.",
-            "has_sympthoms": "A partir de ahora, sus respuestas sugieren que no necesita hacerse la prueba. Si llega a presentar algún síntoma como fiebre, tos, secreción nasal, ligera dificultad para respirar, dolor de garganta, cabeza o del cuerpo, vuelva a completar este cuestionario o contáctese con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262.\nSi presenta algún síntoma de peligro (vómito o diarrea persistente o con sangre, dificultad marcada para respirar, somnolencia o convulsiones) acuda de forma inmediata al centro de salud más cercano o llame al *462." 
-          }        
+            "no_sympthoms": "A partir de ahora, sus respuestas sugieren que no necesita hacerse la prueba. Si llega a presentar algún síntoma como fiebre, tos, secreción nasal, ligera dificultad para respirar, dolor de garganta, cabeza o del cuerpo, vuelva a completar este cuestionario  o contáctese con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262.",
+            "has_sympthoms": "A partir de ahora, sus respuestas sugieren que no necesita hacerse la prueba. Si llega a presentar algún síntoma como fiebre, tos, secreción nasal, ligera dificultad para respirar, dolor de garganta, cabeza o del cuerpo, vuelva a completar este cuestionario o contáctese con la plataforma Aurora a través de los teléfonos 809-449-6262, 809 409 6262 y 809-352-6262.\nSi presenta algún síntoma de peligro (vómito o diarrea persistente o con sangre, dificultad marcada para respirar, somnolencia o convulsiones) acuda de forma inmediata al centro de salud más cercano o llame al *462."
+          }
         }
       }
     },
@@ -256,7 +256,7 @@
         "none": "Según sus respuestas, debe quedarse en casa y lejos de los demás. Si puedes, ten una habitación y un baño que sean solo para ti. Esto puede ser difícil cuando no te sientes bien, pero protegerá a los que te rodean.",
         "has_health_problems": "Sus respuestas sugieren que debe hablar con un profesional médico acerca de hacerse la prueba de COVID‑19."
       },
-      "next_steps":{
+      "next_steps": {
         "step_one": {
           "title": "Aislarse",
           "content": "Debe mantenerse alejado de los demás por 14 días a partir de la aparición de sus síntomas. Su aislamiento puede terminar si sus síntomas mejoran significativamente y si no ha tenido fiebre durante al menos 72 horas sin el uso de medicamentos. Al aislarse, puede reducir la propagación de COVID-19 y proteger a los demás."
@@ -281,7 +281,7 @@
         }
       }
     },
-    "thanksfull":{
+    "thanksfull": {
       "title": "“Con tu ayuda, quedandote en casa y siguiendo las recomendaciones de salud, podemos enfrentar al COVID-19”"
     }
   },
