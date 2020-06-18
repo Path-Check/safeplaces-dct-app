@@ -1,8 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState, useContext } from 'react';
-import { AppState, BackHandler, StatusBar } from 'react-native';
+import { AppState, BackHandler } from 'react-native';
 
-import { isPlatformAndroid } from './../Util';
 import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';

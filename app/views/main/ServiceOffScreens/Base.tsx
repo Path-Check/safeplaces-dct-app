@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Dimensions,
   ImageBackground,
-  StatusBar,
   View,
   Text,
   NativeSyntheticEvent,

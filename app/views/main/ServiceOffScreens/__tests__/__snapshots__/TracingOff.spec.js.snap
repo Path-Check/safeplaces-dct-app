@@ -194,6 +194,7 @@ exports[`tracing off screen matches snapshot 1`] = `
                   "writingDirection": "ltr",
                 },
                 Object {
+                  "color": "#1f2c9b",
                   "fontFamily": "IBMPlexSans-Medium",
                   "fontSize": 20,
                   "fontWeight": "normal",
