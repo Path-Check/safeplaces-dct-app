@@ -21,7 +21,6 @@ import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 
 import { SvgXml } from 'react-native-svg';
-import colors from '../../constants/colors';
 
 // For fixing image width issues
 const win = Dimensions.get('window');
@@ -36,7 +35,9 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
   const navigateToViewHAs = () => navigation.navigate('PartnersEdit');
 
   return (
-    <NavigationBarWrapper title={t('authorities.title')}>
+    <NavigationBarWrapper
+      title={t('authorities.title')}
+      includeBackButton={false}>
       <ScrollView
         style={styles.backgroundWrapper}
         alwaysBounceVertical={false}
@@ -65,6 +66,7 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
               {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems: 'center',
                 paddingVertical: 20,
               },
             ]}>
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   bottomSheet: {
-    backgroundColor: colors.WHITE,
+    backgroundColor: Colors.WHITE,
     padding: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -119,6 +121,6 @@ const styles = StyleSheet.create({
     // TODO: Standardize bottom sheets. We mix shadows & borders.
     // Since this is on a main tab, borders are consistent.
     borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.VIOLET_BUTTON_LIGHT,
+    borderTopColor: Colors.VIOLET_BUTTON_LIGHT,
   },
 });

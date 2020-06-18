@@ -23,6 +23,7 @@ import { Screens } from '../../navigation';
 
 import { Icons } from '../../assets';
 import { Colors } from '../../styles';
+import OldColors from '../../constants/colors';
 
 export const ExportSelectHA = ({ navigation }) => {
   const { t } = useTranslation();
@@ -74,7 +75,7 @@ export const ExportSelectHA = ({ navigation }) => {
             keyExtractor={({ name }, i) => `${name}:${i}`}
             renderItem={({ item: HA }) => (
               <TouchableHighlight
-                underlayColor={Colors.moonRaker}
+                underlayColor={OldColors.UNDERLAY}
                 style={{
                   paddingVertical: 20,
                   paddingHorizontal: 24,
@@ -110,7 +111,7 @@ export const ExportSelectHA = ({ navigation }) => {
           />
         </SafeAreaView>
         <View style={styles.card}>
-          <SafeAreaView style={{ paddingBottom: 44, paddingTop: 44 }}>
+          <SafeAreaView style={{ marginVertical: 44 }}>
             <View style={{ paddingHorizontal: 24 }}>
               <Button
                 style={styles.exportButton}

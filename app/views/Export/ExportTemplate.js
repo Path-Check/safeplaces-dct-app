@@ -78,7 +78,7 @@ export const ExportTemplate = ({
   return (
     <Theme use={lightTheme ? 'default' : 'violet'}>
       <BackgroundContainer lightTheme={lightTheme}>
-        <SafeAreaView style={{ flex: 1, paddingBottom: 24 }}>
+        <SafeAreaView style={{ flex: 1, marginBottom: 24 }}>
           {onClose && (
             <View style={styles.header}>
               <IconButton icon={Icons.Close} size={22} onPress={onClose} />
@@ -102,11 +102,21 @@ export const ExportTemplate = ({
               </View>
             )}
 
-            <Typography style={styles.exportSectionTitles}>
+            <Typography
+              style={[
+                styles.exportSectionTitles,
+                lightTheme && { color: Colors.primaryHeaderText },
+              ]}>
               {headline}
             </Typography>
             <View style={{ height: 8 }} />
-            <Typography style={styles.contentText}>{body}</Typography>
+            <Typography
+              style={[
+                styles.contentText,
+                lightTheme && { color: Colors.primaryText },
+              ]}>
+              {body}
+            </Typography>
             {bodyLinkText && (
               <TouchableOpacity onPress={bodyLinkOnPress}>
                 <Typography
@@ -128,7 +138,9 @@ export const ExportTemplate = ({
             loading={buttonLoading}
           />
           {buttonSubtitle && (
-            <Typography style={{ paddingTop: 10 }} use='body3'>
+            <Typography
+              style={{ paddingTop: 10, color: Colors.white }}
+              use='body3'>
               {buttonSubtitle}
             </Typography>
           )}

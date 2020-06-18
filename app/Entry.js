@@ -178,6 +178,7 @@ const MainAppTabs = () => {
           backgroundColor: Colors.navBar,
           paddingTop: Spacing.xSmall,
           height: Layout.navBar,
+          borderTopColor: Colors.navBar,
         },
       }}>
       <Tab.Screen

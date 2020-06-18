@@ -47,7 +47,7 @@ export const NavigationBarWrapper = ({
         <View style={styles.leftContent}>
           {includeBackButton ? (
             <TouchableOpacity onPress={handleOnPressBack}>
-              <SvgXml xml={Icons.BackArrow} />
+              <SvgXml xml={Icons.BackArrow} color={Colors.white} />
             </TouchableOpacity>
           ) : null}
         </View>
