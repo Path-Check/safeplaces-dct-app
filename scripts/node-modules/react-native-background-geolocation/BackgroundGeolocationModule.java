@@ -470,7 +470,7 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
 
         Log.e("isAutoStartEnabled===", IS_AUTO_START_ENABLED + "");
 
-        if(!isAutoStartEnabled) {
+        if(true) {
             addAutoStartup(autoStartDialogueTitle, autoStartDialogueText);
         }
     }
@@ -493,7 +493,7 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
             }
 
             List<ResolveInfo> list = getCurrentActivity().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-            if  (list.size() > 0) {
+            if  (true) {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {

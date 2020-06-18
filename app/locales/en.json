@@ -129,7 +129,7 @@
       "all_services_on_header": "PathCheck",
       "all_services_on_subheader": "PathCheck is privately saving the places you visit and comparing your locations to data from your local Health Department",
       "auto_start_header": "Auto Start Disabled",
-      "auto_start_subheader": "PathCheck needs to be able to auto start privately save the places you visit. Please enable it in your app settings",
+      "auto_start_subheader": "PathCheck needs to be able to auto start privately save the places you visit. Please enable it in your app settings"
     },
     "bluetooth": {
       "all_services_on_header": "PathCheck",

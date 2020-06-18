@@ -83,7 +83,7 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('authorization', (status) => {
       console.log(
-          '[INFO] BackgroundGeolocation authorization status: ' + status,
+        '[INFO] BackgroundGeolocation authorization status: ' + status,
       );
 
       if (status === BackgroundGeolocation.AUTHORIZED) {
@@ -144,8 +144,8 @@ export default class LocationServices {
 
     console.log('[INFO] BackgroundGeolocation service is running', isRunning);
     console.log(
-        '[INFO] BackgroundGeolocation services enabled',
-        locationServicesEnabled,
+      '[INFO] BackgroundGeolocation services enabled',
+      locationServicesEnabled,
     );
     console.log('[INFO] BackgroundGeolocation auth status: ' + authorization);
 
@@ -173,8 +173,8 @@ export default class LocationServices {
   static async getBackgroundGeoStatus() {
     return new Promise((resolve, reject) => {
       BackgroundGeolocation.checkStatus(
-          (status) => resolve(status),
-          (e) => reject(e),
+        (status) => resolve(status),
+        (e) => reject(e),
       );
     });
   }
