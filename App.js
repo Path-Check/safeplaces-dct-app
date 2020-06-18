@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { Theme } from './app/constants/themes';
+import { isGPS } from './app/COVIDSafePathsConfig';
 import { Entry } from './app/Entry';
 import { ExposureNotificationsProvider } from './app/ExposureNotificationContext';
 import { ExposureHistoryProvider } from './app/ExposureHistoryContext';
@@ -18,13 +19,19 @@ export const UnconnectedApp = () => (
   <FlagsProvider>
     <MenuProvider>
       <Theme use='default'>
-        <PermissionsProvider>
+        {isGPS ? (
+          <PermissionsProvider>
+            <ExposureHistoryProvider>
+            <Entry />
+            </ExposureHistoryProvider>
+          </PermissionsProvider>
+        ) : (
           <ExposureNotificationsProvider>
             <ExposureHistoryProvider>
               <Entry />
             </ExposureHistoryProvider>
           </ExposureNotificationsProvider>
-        </PermissionsProvider>
+        )}
       </Theme>
     </MenuProvider>
   </FlagsProvider>

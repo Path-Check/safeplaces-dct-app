@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-import { isGPS } from './COVIDSafePathsConfig';
 import { BTNativeModule } from './bt';
 
 type Enablement = `DISABLED` | `ENABLED`;
@@ -36,19 +35,15 @@ const ExposureNotificationsProvider = ({
   );
 
   useEffect(() => {
-    if (!isGPS) {
-      const subscription = BTNativeModule.subscribeToEnabledStatusEvents(
-        (status: DeviceStatus) => {
-          setAuthorizationStatus(status);
-        },
-      );
+    const subscription = BTNativeModule.subscribeToEnabledStatusEvents(
+      (status: DeviceStatus) => {
+        setAuthorizationStatus(status);
+      },
+    );
 
-      return () => {
-        subscription?.remove();
-      };
-    } else {
-      return () => {};
-    }
+    return () => {
+      subscription?.remove();
+    };
   }, []);
 
   const requestENAuthorization = () => {
