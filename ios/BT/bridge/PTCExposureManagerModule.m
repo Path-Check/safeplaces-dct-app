@@ -13,8 +13,4 @@ RCT_EXPORT_METHOD(requestExposureNotificationAuthorization: (RCTResponseSenderBl
   [[ExposureManager shared] requestExposureNotificationAuthorizationWithAuthorized:YES callback:callback];
 }
 
-RCT_EXPORT_METHOD(requestExposureNotificationDeauthorization: (RCTResponseSenderBlock)callback) {
-  [[ExposureManager shared] requestExposureNotificationAuthorizationWithAuthorized:NO callback:callback];
-}
-
 @end

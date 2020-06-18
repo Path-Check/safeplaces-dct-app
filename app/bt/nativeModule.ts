@@ -33,6 +33,7 @@ export const subscribeToENAuthorizationStatusEvents = (
   return ExposureEvents.addListener(
     'onENAuthorizationStatusUpdated',
     (status: ENAuthorizationStatus) => {
+      console.log('status: ' + status);
       cb(status);
     },
   );

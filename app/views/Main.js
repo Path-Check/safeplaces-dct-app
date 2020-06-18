@@ -7,6 +7,7 @@ import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
+import ExposureNotificationService from '../services/ExposureNotificationService';
 import { AllServicesOnScreen } from './main/AllServicesOn';
 import {
   TracingOffScreen,
@@ -20,7 +21,7 @@ import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
 
 export const Main = () => {
-  const tracingService = isGPS ? LocationServices : null;
+  const tracingService = isGPS ? LocationServices : ExposureNotificationService;
   const navigation = useNavigation();
   const { notification } = useContext(PermissionsContext);
   const hasSelectedAuthorities =
@@ -43,6 +44,8 @@ export const Main = () => {
 
   const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
+    const { canTrack } = await tracingService.checkStatusAndStartOrStop();
+    setTrackingInfo({ canTrack });
   }, [tracingService, setTrackingInfo]);
 
   const handleBackPress = () => {
