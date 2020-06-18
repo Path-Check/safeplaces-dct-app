@@ -36,7 +36,26 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             "flex": 1,
           }
         }
-      />
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <SvgXml
+            xml="
+  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
+  </svg>
+"
+          />
+        </View>
+      </View>
       <View
         style={
           Object {
@@ -98,7 +117,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               Object {
                 "backgroundColor": "#ffffff",
                 "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
+                "borderColor": "#e5e7fa",
                 "borderTopWidth": 1,
                 "flex": 1,
                 "marginBottom": 20,
@@ -252,7 +271,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               Object {
                 "backgroundColor": "#ffffff",
                 "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
+                "borderColor": "#e5e7fa",
                 "borderTopWidth": 1,
                 "flex": 1,
                 "marginBottom": 20,
@@ -357,7 +376,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                       "writingDirection": "ltr",
                     },
                     Object {
-                      "color": "#4051db",
+                      "color": "#1f2c9b",
                       "fontSize": 19,
                       "fontWeight": "500",
                     },
@@ -403,7 +422,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               Object {
                 "backgroundColor": "#ffffff",
                 "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
+                "borderColor": "#e5e7fa",
                 "borderTopWidth": 1,
                 "flex": 1,
                 "marginBottom": 20,
@@ -418,7 +437,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               style={
                 Object {
                   "borderBottomWidth": 1,
-                  "borderColor": "#a5affb",
+                  "borderColor": "#e5e7fa",
                   "flex": 1,
                   "opacity": 1,
                   "paddingVertical": 20,
@@ -437,7 +456,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                       "writingDirection": "ltr",
                     },
                     Object {
-                      "color": "#4051db",
+                      "color": "#1f2c9b",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -454,7 +473,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               style={
                 Object {
                   "borderBottomWidth": 0,
-                  "borderColor": "#a5affb",
+                  "borderColor": "#e5e7fa",
                   "flex": 1,
                   "opacity": 1,
                   "paddingVertical": 20,
@@ -473,7 +492,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                       "writingDirection": "ltr",
                     },
                     Object {
-                      "color": "#4051db",
+                      "color": "#1f2c9b",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -489,7 +508,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               Object {
                 "backgroundColor": "#ffffff",
                 "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
+                "borderColor": "#e5e7fa",
                 "borderTopWidth": 1,
                 "flex": 1,
                 "marginBottom": 20,
@@ -504,7 +523,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               style={
                 Object {
                   "borderBottomWidth": 0,
-                  "borderColor": "#a5affb",
+                  "borderColor": "#e5e7fa",
                   "flex": 1,
                   "opacity": 1,
                   "paddingVertical": 20,
@@ -523,7 +542,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                       "writingDirection": "ltr",
                     },
                     Object {
-                      "color": "#4051db",
+                      "color": "#1f2c9b",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -577,7 +596,26 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             "flex": 1,
           }
         }
-      />
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <SvgXml
+            xml="
+  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
+  </svg>
+"
+          />
+        </View>
+      </View>
       <View
         style={
           Object {
@@ -639,7 +677,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               Object {
                 "backgroundColor": "#ffffff",
                 "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
+                "borderColor": "#e5e7fa",
                 "borderTopWidth": 1,
                 "flex": 1,
                 "marginBottom": 20,
@@ -793,7 +831,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               Object {
                 "backgroundColor": "#ffffff",
                 "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
+                "borderColor": "#e5e7fa",
                 "borderTopWidth": 1,
                 "flex": 1,
                 "marginBottom": 20,
@@ -806,7 +844,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               Object {
                 "backgroundColor": "#ffffff",
                 "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
+                "borderColor": "#e5e7fa",
                 "borderTopWidth": 1,
                 "flex": 1,
                 "marginBottom": 20,
@@ -821,7 +859,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               style={
                 Object {
                   "borderBottomWidth": 1,
-                  "borderColor": "#a5affb",
+                  "borderColor": "#e5e7fa",
                   "flex": 1,
                   "opacity": 1,
                   "paddingVertical": 20,
@@ -840,7 +878,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                       "writingDirection": "ltr",
                     },
                     Object {
-                      "color": "#4051db",
+                      "color": "#1f2c9b",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -857,7 +895,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               style={
                 Object {
                   "borderBottomWidth": 0,
-                  "borderColor": "#a5affb",
+                  "borderColor": "#e5e7fa",
                   "flex": 1,
                   "opacity": 1,
                   "paddingVertical": 20,
@@ -876,7 +914,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                       "writingDirection": "ltr",
                     },
                     Object {
-                      "color": "#4051db",
+                      "color": "#1f2c9b",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -892,7 +930,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               Object {
                 "backgroundColor": "#ffffff",
                 "borderBottomWidth": 1,
-                "borderColor": "#a5affb",
+                "borderColor": "#e5e7fa",
                 "borderTopWidth": 1,
                 "flex": 1,
                 "marginBottom": 20,
@@ -907,7 +945,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               style={
                 Object {
                   "borderBottomWidth": 0,
-                  "borderColor": "#a5affb",
+                  "borderColor": "#e5e7fa",
                   "flex": 1,
                   "opacity": 1,
                   "paddingVertical": 20,
@@ -926,7 +964,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                       "writingDirection": "ltr",
                     },
                     Object {
-                      "color": "#4051db",
+                      "color": "#1f2c9b",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
