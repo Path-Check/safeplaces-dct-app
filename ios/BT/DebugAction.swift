@@ -3,11 +3,8 @@
   detectExposuresNow,
   simulateExposureDetectionError,
   simulateExposure,
-  simulatePositiveDiagnosis,
-  disableExposureNotifications,
   resetExposureDetectionError,
-  resetUserENState,
   getAndPostDiagnosisKeys,
-  getExposureConfiguration,
-  resetExposures
+  resetExposures,
+  toggleENAuthorization
 }

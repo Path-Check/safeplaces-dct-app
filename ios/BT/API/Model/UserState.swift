@@ -10,7 +10,6 @@ class UserState: Object {
   @objc dynamic var dateLastPerformedExposureDetection: Date? = nil
   @objc dynamic var exposureDetectionErrorLocalizedDescription: String = .default
   dynamic var exposures: List<Exposure> = List<Exposure>()
-  dynamic var testResults: List<TestResult> = List<TestResult>()
 
   override class func primaryKey() -> String? {
     "id"

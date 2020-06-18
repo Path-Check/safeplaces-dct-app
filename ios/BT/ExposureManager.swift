@@ -32,37 +32,43 @@ final class ExposureManager: NSObject {
     manager.invalidate()
   }
   
-  @objc func requestExposureNotificationAuthorization(_ callback: @escaping RCTResponseSenderBlock) {
-    manager.setExposureNotificationEnabled(true) { error in
-      if let error = error as? ENError, error.code == .notAuthorized {
-        callback([String.notAuthorized])
-      } else if let error = error {
-        callback([error.localizedDescription])
-      } else {
-        callback([String.authorized])
+  @objc func requestExposureNotificationAuthorization(enabled: Bool, callback: @escaping RCTResponseSenderBlock) {
+    // Ensure exposure notifications are enabled if the app is authorized. The app
+    // could get into a state where it is authorized, but exposure
+    // notifications are not enabled,  if the user initially denied Exposure Notifications
+    // during onboarding, but then flipped on the "COVID-19 Exposure Notifications" switch
+    // in Settings.
+    manager.setExposureNotificationEnabled(enabled) { error in
+      if error == nil {
+        let enablement = self.manager.exposureNotificationEnabled ? "ENABLED" : "DISABLED"
+        let authorization = ENManager.authorizationStatus == .authorized ? "AUTHORIZED" : "UNAUTHORIZED"
+        NotificationCenter.default.post(Notification(name: Notification.Name.AuthorizationStatusDidChange,
+                                                     object: [authorization, enablement],
+                                                     userInfo: nil))
       }
+      callback([error])
     }
   }
   
   @discardableResult func detectExposures(completionHandler: ((Bool) -> Void)? = nil) -> Progress {
-    
+
     let progress = Progress()
-    
+
     // Disallow concurrent exposure detection, because if allowed we might try to detect the same diagnosis keys more than once
     guard !detectingExposures else {
       completionHandler?(false)
       return progress
     }
     detectingExposures = true
-    
+
     var localURLs = [URL]()
-    
+
     func finish(_ result: Result<([Exposure], Int)>) {
-      
+
       for localURL in localURLs {
         APIClient.shared.request(DiagnosisKeyRequest.delete(localURL), requestType: .post, completion: { _ in })
       }
-      
+
       if progress.isCancelled {
         detectingExposures = false
         completionHandler?(false)
@@ -82,15 +88,15 @@ final class ExposureManager: NSObject {
           completionHandler?(false)
         }
       }
-      
+
     }
-    
+
     BTSecureStorage.shared.getUserState { userState in
       APIClient.shared.request(DiagnosisKeyUrlListRequest.get(userState.nextDiagnosisKeyFileIndex), requestType: .get) { result in
-        
+
         let dispatchGroup = DispatchGroup()
         var localURLResults = [Result<URL>]()
-        
+
         switch result {
         case let .success(remoteURLs):
           for remoteURL in remoteURLs {
@@ -100,7 +106,7 @@ final class ExposureManager: NSObject {
               dispatchGroup.leave()
             }
           }
-          
+
         case let .failure(error):
           finish(.failure(error))
           return
@@ -140,7 +146,7 @@ final class ExposureManager: NSObject {
                   finish(.success((newExposures, userState.nextDiagnosisKeyFileIndex + localURLs.count)))
                 }
               }
-              
+
             case let .failure(error):
               finish(.failure(error))
               return
@@ -149,10 +155,10 @@ final class ExposureManager: NSObject {
         }
       }
     }
-    
+
     return progress
   }
-  
+
   func getAndPostDiagnosisKeys(completion: @escaping (Error?) -> Void) {
     manager.getDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
@@ -219,29 +225,9 @@ final class ExposureManager: NSObject {
       exposures.append(exposure)
       BTSecureStorage.shared.exposures = exposures
       completion([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
-    case .simulatePositiveDiagnosis:
-      let testResult = TestResult(id: UUID().uuidString,
-                                  isAdded: true,
-                                  dateAdministered: Date() - TimeInterval.random(in: 0...4) * 24 * 60 * 60,
-                                  isShared: .random())
-      BTSecureStorage.shared.testResults.append(testResult)
-      completion([NSNull(), "Test results: \(BTSecureStorage.shared.testResults)"])
-    case .disableExposureNotifications:
-      manager.setExposureNotificationEnabled(false) { error in
-        if let error = error {
-          completion([error.localizedDescription, NSNull()])
-        } else {
-          completion([NSNull(), "Exposure Notifications disabled."])
-        }
-      }
     case .resetExposureDetectionError:
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
       completion([NSNull(), "Exposure Detection Error: "])
-      
-    case .resetUserENState:
-      BTSecureStorage.shared.resetUserState { userState in
-        completion([NSNull(), "New UserState: \(userState)"])
-      }
     case .getAndPostDiagnosisKeys:
       getAndPostTestDiagnosisKeys { error in
         if let error = error {
@@ -250,18 +236,14 @@ final class ExposureManager: NSObject {
           completion([NSNull(), "Local diagnosis keys successfully fetched and posted."])
         }
       }
-    case .getExposureConfiguration:
-      APIClient.shared.request(ExposureConfigurationRequest.get, requestType: .get) { result in
-        switch result {
-        case .success(let configuration):
-          completion([NSNull(), "Exposure Configuration: \(configuration)"])
-        case .failure(let error):
-          completion([error.localizedDescription, NSNull()])
-        }
-      }
     case .resetExposures:
       BTSecureStorage.shared.exposures = List<Exposure>()
       completion([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
+    case .toggleENAuthorization:
+      let enabled = manager.exposureNotificationEnabled ? false : true
+      requestExposureNotificationAuthorization(enabled: enabled) { result in
+        completion([NSNull(), "EN Enabled: \(self.manager.exposureNotificationEnabled)"])
+      }
     }
   }
   

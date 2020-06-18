@@ -41,33 +41,16 @@ RCT_EXPORT_METHOD(simulateExposure: (RCTResponseSenderBlock)callback) {
   }];
 }
 
-RCT_EXPORT_METHOD(simulatePositiveDiagnosis: (RCTResponseSenderBlock)callback) {
-  [[ExposureManager shared] handleDebugAction:DebugActionSimulatePositiveDiagnosis completion:^(NSArray *response) {
-    id errorMessage = response[0];
-    id successMessage = response[1];
-    callback(@[errorMessage, successMessage]);
-  }];
-}
-
 RCT_EXPORT_METHOD(toggleExposureNotifications: (RCTResponseSenderBlock)callback) {
-  // [[ExposureManager shared] handleDebugAction:DebugActionDisableExposureNotifications completion:^(NSArray *response) {
-  //   id errorMessage = response[0];
-  //   id successMessage = response[1];
-  //   callback(@[errorMessage, successMessage]);
-  // }];
-  callback(@[[NSNull null], @"Successfully toggled Exposure Notifications"]);
+   [[ExposureManager shared] handleDebugAction:DebugActionToggleENAuthorization completion:^(NSArray *response) {
+     id errorMessage = response[0];
+     id successMessage = response[1];
+     callback(@[errorMessage, successMessage]);
+   }];
 }
 
 RCT_EXPORT_METHOD(resetExposureDetectionError: (RCTResponseSenderBlock)callback) {
   [[ExposureManager shared] handleDebugAction:DebugActionResetExposureDetectionError completion:^(NSArray *response) {
-    id errorMessage = response[0];
-    id successMessage = response[1];
-    callback(@[errorMessage, successMessage]);
-  }];
-}
-
-RCT_EXPORT_METHOD(resetUserENState: (RCTResponseSenderBlock)callback) {
-  [[ExposureManager shared] handleDebugAction:DebugActionResetUserENState completion:^(NSArray *response) {
     id errorMessage = response[0];
     id successMessage = response[1];
     callback(@[errorMessage, successMessage]);
@@ -84,14 +67,6 @@ RCT_EXPORT_METHOD(resetExposures: (RCTResponseSenderBlock)callback) {
 
 RCT_EXPORT_METHOD(getAndPostDiagnosisKeys: (RCTResponseSenderBlock)callback) {
   [[ExposureManager shared] handleDebugAction:DebugActionGetAndPostDiagnosisKeys completion:^(NSArray *response) {
-    id errorMessage = response[0];
-    id successMessage = response[1];
-    callback(@[errorMessage, successMessage]);
-  }];
-}
-
-RCT_EXPORT_METHOD(getExposureConfiguration: (RCTResponseSenderBlock)callback) {
-  [[ExposureManager shared] handleDebugAction:DebugActionGetExposureConfiguration completion:^(NSArray *response) {
     id errorMessage = response[0];
     id successMessage = response[1];
     callback(@[errorMessage, successMessage]);

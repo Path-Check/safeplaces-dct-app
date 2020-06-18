@@ -15,13 +15,13 @@ import { BTNativeModule } from '../../bt';
 import { NavigationProp, Screens } from '../../navigation';
 
 import { Colors, Spacing } from '../../styles';
-
-// eslint-disable-next-line
-declare const global: any;
+import { toggleExposureNotifications } from '../../bt/nativeModule';
 
 type ENDebugMenuProps = {
   navigation: NavigationProp;
 };
+
+const DEBUG_VERIFICATION_CODE = '111111';
 
 const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   useEffect(() => {
@@ -80,8 +80,20 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   };
 
   const handleOnPressToggleExposureNotifications = () => {
-    handleOnPressSimulationButton(BTNativeModule.toggleExposureNotifications)();
-    global.ExposureNotificationsOn = !global.ExposureNotificationsOn;
+    handleOnPressSimulationButton(toggleExposureNotifications)();
+  };
+
+  const showDebugVerificationCode = () => {
+    Alert.alert(
+      'Debug Verification Code:',
+      DEBUG_VERIFICATION_CODE,
+      [
+        {
+          text: 'OK',
+        },
+      ],
+      { cancelable: false },
+    );
   };
 
   interface DebugMenuListItemProps {
@@ -143,10 +155,8 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
             )}
           />
           <DebugMenuListItem
-            label='Simulate Positive Diagnosis'
-            onPress={handleOnPressSimulationButton(
-              BTNativeModule.simulatePositiveDiagnosis,
-            )}
+            label='Show Debug Verification Code'
+            onPress={showDebugVerificationCode}
           />
           <DebugMenuListItem
             label='Toggle Exposure Notifications'
@@ -156,13 +166,6 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
             label='Reset Exposure Detection Error'
             onPress={handleOnPressSimulationButton(
               BTNativeModule.resetExposureDetectionError,
-            )}
-          />
-          <DebugMenuListItem
-            label='Reset User EN State'
-            style={styles.lastListItem}
-            onPress={handleOnPressSimulationButton(
-              BTNativeModule.resetUserENState,
             )}
           />
         </View>
