@@ -10,25 +10,21 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 
 import ExposureHistoryContext from '../../ExposureHistoryContext';
 import { ExposureDatum } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import ExposureDatumDetail from './ExposureDatumDetail';
 import Calendar from './Calendar';
-import { useStatusBarEffect, NavigationProp } from '../../navigation';
+import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
-interface ExposureHistoryScreenProps {
-  navigation: NavigationProp;
-}
-
-const ExposureHistoryScreen = ({
-  navigation,
-}: ExposureHistoryScreenProps): JSX.Element => {
+const ExposureHistoryScreen = (): JSX.Element => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const { exposureHistory } = useContext(ExposureHistoryContext);
   const [
     selectedExposureDatum,
@@ -54,7 +50,9 @@ const ExposureHistoryScreen = ({
     setSelectedExposureDatum(datum);
   };
 
-  const handleOnPressMoreInfo = () => {};
+  const handleOnPressMoreInfo = () => {
+    navigation.navigate(Screens.MoreInfo);
+  };
 
   const titleText = t('screen_titles.exposure_history');
   const lastDaysText = t('exposure_history.last_days');

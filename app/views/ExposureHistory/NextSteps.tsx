@@ -1,17 +1,15 @@
 import React from 'react';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-import { NavigationProp, Screens, useStatusBarEffect } from '../../navigation';
+import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
-interface NextStepsProps {
-  navigation: NavigationProp;
-}
-
-const NextSteps = ({ navigation }: NextStepsProps): JSX.Element => {
+const NextSteps = (): JSX.Element => {
+  const navigation = useNavigation();
   useStatusBarEffect('light-content');
 
   const handleOnBackPress = () => {
