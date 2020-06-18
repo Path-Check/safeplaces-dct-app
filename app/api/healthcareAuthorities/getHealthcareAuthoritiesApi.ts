@@ -1,5 +1,6 @@
 import Yaml from 'js-yaml';
 import env from 'react-native-config';
+
 const { AUTHORITIES_YAML_ROUTE } = env;
 
 type Coordinates = {
