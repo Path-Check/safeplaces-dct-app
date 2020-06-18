@@ -54,14 +54,15 @@ export const secondaryYellow = kournikova;
 export const tertiaryYellow = orangePeel;
 
 // Violets
-export const jacksonsPurple = '#1f2c9b';
-export const moonRaker = '#e5e7fa';
-export const melrose = '#a5affb';
-export const indigo = '#4754C5';
+const jacksonsPurple = '#1f2c9b';
+const moonRaker = '#e5e7fa';
+const indigo = '#4754C5';
+const melrose = '#a5affb';
 
-export const primaryViolet = royalBlue;
-export const secondaryViolet = jacksonsPurple;
-export const tertiaryViolet = melrose;
+export const primaryViolet = jacksonsPurple;
+export const secondaryViolet = indigo;
+export const tertiaryViolet = moonRaker;
+export const quaternaryViolet = melrose;
 
 // Transparent
 export const transparent = 'rgba(0, 0, 0, 0)';
@@ -90,8 +91,8 @@ export const primaryBorder = primaryViolet;
 export const secondaryBorder = gray;
 
 // Nav
-export const mainNav = royalerBlue;
-export const navBar = secondaryViolet;
+export const mainNav = primaryViolet;
+export const navBar = primaryViolet;
 export const mainNavBorder = secondaryViolet;
 export const androidStatusBarBackground = porcelain;
 
@@ -112,12 +113,15 @@ export const switchEnabled = defaultBlue;
 export const primaryText = darkestGray;
 export const secondaryText = darkGray;
 export const tertiaryText = secondaryBlue;
+
 export const invertedText = white;
 export const invertedSecondaryText = lightGray;
-export const violetText = royalBlue;
-export const violetTextLight = indigo;
-export const violetTextDark = jacksonsPurple;
-export const linkText = violetText;
+
+export const primaryHeaderText = primaryViolet;
+export const secondaryHeaderText = secondaryViolet;
+export const tertiaryHeaderText = tertiaryViolet;
+
+export const linkText = primaryViolet;
 export const linkTextInvert = amber;
 export const errorText = persimmon;
 

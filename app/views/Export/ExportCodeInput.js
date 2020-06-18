@@ -101,7 +101,9 @@ const CodeInput = ({ code, length, setCode }) => {
           style={[
             styles.characterInput,
             {
-              borderColor: character ? Colors.primaryBorder : Colors.melrose,
+              borderColor: character
+                ? Colors.primaryBorder
+                : Colors.quaternaryViolet,
             },
           ]}
           keyboardType={'number-pad'}
@@ -149,7 +151,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
       }
       setIsCheckingCode(false);
     } catch (e) {
-      Alert.alert(t('common.something_went_wrong'));
+      Alert.alert(t('common.something_went_wrong'), e.message);
       setIsCheckingCode(false);
     }
   };

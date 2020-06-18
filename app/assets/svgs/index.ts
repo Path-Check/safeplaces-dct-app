@@ -13,6 +13,7 @@ import GoogleMapsLogo from './google-maps-logo';
 import Heart from './heart';
 import IntroGlobe from './intro-locked';
 import IntroSiren from './intro-siren';
+import IconQuestionMark from './icon-question-mark';
 import Isolate from './isolate';
 import LanguagesIcon from './languagesIcon';
 import LocationPin from './locationPin';
@@ -45,6 +46,7 @@ export const Icons = {
   ExposureIcon,
   GoogleMapsLogo,
   Heart,
+  IconQuestionMark,
   IntroGlobe,
   IntroSiren,
   Isolate,

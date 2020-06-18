@@ -97,7 +97,6 @@
 		B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */; };
 		B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */; };
 		B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E2248A82AE006474EB /* Exposure.swift */; };
-		B5FC37E8248A8302006474EB /* TestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E7248A8302006474EB /* TestResult.swift */; };
 		B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
 		BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */; };
@@ -1316,7 +1315,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5FC37E8248A8302006474EB /* TestResult.swift in Sources */,
 				B5FBB0D524916D8900433980 /* UserState.swift in Sources */,
 				B5FBB0D724916DE100433980 /* Notification+Extensions.swift in Sources */,
 				B54CBF26249A72E700218477 /* Region.swift in Sources */,

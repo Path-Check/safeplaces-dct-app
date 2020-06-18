@@ -4,6 +4,7 @@
   simulateExposureDetectionError,
   simulateExposure,
   resetExposureDetectionError,
+  getAndPostDiagnosisKeys,
   resetExposures,
-  getAndPostDiagnosisKeys
+  toggleENAuthorization
 }

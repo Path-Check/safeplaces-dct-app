@@ -21,10 +21,10 @@ final class BTSecureStorage: SafePathsSecureStorage {
     if let key = getEncyrptionKey() {
       if (inMemory) {
         return Realm.Configuration(inMemoryIdentifier: "temp", encryptionKey: key as Data, schemaVersion: 1,
-                                   migrationBlock: { _, _ in }, objectTypes: [UserState.self, Exposure.self, TestResult.self])
+                                   migrationBlock: { _, _ in }, objectTypes: [UserState.self, Exposure.self])
       } else {
         return Realm.Configuration(encryptionKey: key as Data, schemaVersion: 1,
-                                   migrationBlock: { _, _ in }, objectTypes: [UserState.self, Exposure.self, TestResult.self])
+                                   migrationBlock: { _, _ in }, objectTypes: [UserState.self, Exposure.self])
       }
     } else {
       return nil
@@ -69,8 +69,5 @@ final class BTSecureStorage: SafePathsSecureStorage {
   @Persisted(keyPath: .keyPathExposureDetectionErrorLocalizedDescription, notificationName:
     .StorageExposureDetectionErrorLocalizedDescriptionDidChange, defaultValue: .default)
   var exposureDetectionErrorLocalizedDescription: String
-
-  @Persisted(keyPath: .keyPathTestResults, notificationName: .StorageTestResultsDidChange, defaultValue: List<TestResult>())
-  var testResults: List<TestResult>
 
 }
