@@ -14,7 +14,9 @@ const exportCodeApi = async (
   });
   const success = res.status === 200;
   if (!success) {
-    throw res.status;
+    throw new Error(
+      `Export code validation API failed with status code: ${res.status}`,
+    );
   }
   return await res.json();
 };
