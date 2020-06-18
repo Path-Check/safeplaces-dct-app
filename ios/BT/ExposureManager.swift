@@ -238,7 +238,7 @@ final class ExposureManager: NSObject {
       BTSecureStorage.shared.exposures = List<Exposure>()
       completion([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
     case .toggleENAuthorization:
-      let authorized = manager.exposureNotificationEnabled ? false : true
+      let nextAuthorizationStatus = manager.exposureNotificationEnabled ? false : true
       requestExposureNotificationAuthorization(authorized: authorized) { result in
         completion([NSNull(), "EN Enabled: \(self.manager.exposureNotificationEnabled)"])
       }
