@@ -96,7 +96,7 @@ final class ExposureManager: NSObject {
         }
 
         BTSecureStorage.shared.getUserState { userState in
-            APIClient.shared.requestString(IndexFileRequest.get, requestType: .index) { result in
+            APIClient.shared.requestString(IndexFileRequest.get, requestType: .indexFile) { result in
                 let dispatchGroup = DispatchGroup()
                 var localURLResults = [Result<URL>]()
 
@@ -105,7 +105,7 @@ final class ExposureManager: NSObject {
                     let remoteURLs = indexFileString.gaenFilePaths
                     for remoteURL in remoteURLs {
                         dispatchGroup.enter()
-                        APIClient.shared.downloadRequest(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .pull) { result in
+                        APIClient.shared.downloadRequest(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .downloadKeyFile) { result in
                             localURLResults.append(result)
                             dispatchGroup.leave()
                         }
@@ -161,7 +161,7 @@ final class ExposureManager: NSObject {
             if let error = error {
                 completion(error)
             } else {
-                APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }, [.US]), requestType: .post) { result in
+                APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }, [.US]), requestType: .postKeys) { result in
                     switch result {
                     case .success:
                         break
@@ -179,7 +179,7 @@ final class ExposureManager: NSObject {
             if let error = error {
                 completion(error)
             } else {
-                APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }, [.US]), requestType: .post) { result in
+                APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }, [.US]), requestType: .postKeys) { result in
                     switch result {
                     case .success:
                         completion(nil)

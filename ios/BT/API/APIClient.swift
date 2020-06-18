@@ -1,27 +1,27 @@
 import Alamofire
 
 enum RequestType {
-  case post,
-  pull,
-  index
+  case postKeys,
+  downloadKeyFile,
+  indexFile
 }
 
 final class APIClient {
 
-  let postUrl: URL
-  let pullUrl: URL
+  let postKeysUrl: URL
+  let downloadKeyFile: URL
   let indexFileUrl: URL
   static let shared = APIClient(
-    postUrl: URL(string: "https://exposure-2kabcv6c4a-uc.a.run.app")!,
-    pullUrl: URL(string: "https://federationout-2kabcv6c4a-uc.a.run.app")!,
+    postKeysUrl: URL(string: "https://exposure-2kabcv6c4a-uc.a.run.app")!,
+    downloadKeyFile: URL(string: "https://federationout-2kabcv6c4a-uc.a.run.app")!,
     indexFileUrl: URL(string: "https://storage.googleapis.com")!
   )
 
   private let sessionManager: SessionManager
 
-  init(postUrl: URL, pullUrl: URL, indexFileUrl: URL) {
-    self.postUrl = postUrl
-    self.pullUrl = pullUrl
+  init(postKeysUrl: URL, downloadKeyFile: URL, indexFileUrl: URL) {
+    self.postKeysUrl = postKeysUrl
+    self.downloadKeyFile = downloadKeyFile
     self.indexFileUrl = indexFileUrl
 
     let configuration = URLSessionConfiguration.default
@@ -114,7 +114,7 @@ private extension APIClient {
       documentsURL.appendPathComponent(fileName)
       return (documentsURL, [.removePreviousFile])
     }
-    let r = sessionManager.download(pullUrl.appendingPathComponent(request.path, isDirectory: false), to: destination)
+    let r = sessionManager.download(downloadKeyFile.appendingPathComponent(request.path, isDirectory: false), to: destination)
     debugPrint(r)
     return r
   }
@@ -122,11 +122,11 @@ private extension APIClient {
   func dataRequest<T: APIRequest>(for request: T, requestType: RequestType) -> DataRequest {
     var baseUrl: URL!
     switch requestType {
-    case .post:
-      baseUrl = postUrl
-    case .pull:
-      baseUrl = pullUrl
-    case .index:
+    case .postKeys:
+      baseUrl = postKeysUrl
+    case .downloadKeyFile:
+      baseUrl = downloadKeyFile
+    case .indexFile:
       baseUrl = indexFileUrl
     }
     let r = sessionManager.request(
