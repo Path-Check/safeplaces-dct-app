@@ -147,11 +147,11 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         )}
 
         {isGPS ? (
-          <View style={styles.section}>
-            <FeatureFlag name={'google_import'}>
+          <FeatureFlag name={'google_import'}>
+            <View style={styles.section}>
               <GoogleMapsImport navigation={navigation} />
-            </FeatureFlag>
-          </View>
+            </View>
+          </FeatureFlag>
         ) : null}
 
         <View style={styles.section}>
