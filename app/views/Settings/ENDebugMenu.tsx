@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   ViewStyle,
@@ -7,6 +7,7 @@ import {
   Alert,
   BackHandler,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
@@ -24,6 +25,7 @@ type ENDebugMenuProps = {
 const DEBUG_VERIFICATION_CODE = '111111';
 
 const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const handleBackPress = () => {
       navigation.goBack();
@@ -66,7 +68,13 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
     ) => void,
   ) => {
     return () => {
+      // Update loading state
+      setLoading(true);
+
       const cb = (errorString: string | null, successString: string | null) => {
+        // Update loading state
+        setLoading(false);
+
         if (errorString) {
           showErrorAlert(errorString);
         } else if (successString) {
@@ -119,72 +127,78 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
       includeBottomNav
       title={'EN Debug Menu'}
       onBackPress={backToSettings}>
-      <ScrollView>
-        <View style={styles.section}>
-          <DebugMenuListItem
-            label='Reset Exposures'
-            style={styles.lastListItem}
-            onPress={handleOnPressSimulationButton(
-              BTNativeModule.resetExposures,
-            )}
-          />
+      {loading ? (
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <ActivityIndicator size={'large'} />
         </View>
-        <View style={styles.section}>
-          <DebugMenuListItem
-            label='Detect Exposures Now'
-            onPress={handleOnPressSimulationButton(
-              BTNativeModule.detectExposuresNow,
-            )}
-          />
-          <DebugMenuListItem
-            label='Get Exposure Configuration'
-            onPress={handleOnPressSimulationButton(
-              BTNativeModule.getExposureConfiguration,
-            )}
-          />
-          <DebugMenuListItem
-            label='Simulate Exposure Detection Error'
-            onPress={handleOnPressSimulationButton(
-              BTNativeModule.simulateExposureDetectionError,
-            )}
-          />
-          <DebugMenuListItem
-            label='Simulate Exposure'
-            onPress={handleOnPressSimulationButton(
-              BTNativeModule.simulateExposure,
-            )}
-          />
-          <DebugMenuListItem
-            label='Show Debug Verification Code'
-            onPress={showDebugVerificationCode}
-          />
-          <DebugMenuListItem
-            label='Toggle Exposure Notifications'
-            onPress={handleOnPressToggleExposureNotifications}
-          />
-          <DebugMenuListItem
-            label='Reset Exposure Detection Error'
-            onPress={handleOnPressSimulationButton(
-              BTNativeModule.resetExposureDetectionError,
-            )}
-          />
-        </View>
-        <View style={styles.section}>
-          <DebugMenuListItem
-            label='Show Local Diagnosis Keys'
-            onPress={() => {
-              navigation.navigate(Screens.ENLocalDiagnosisKey);
-            }}
-          />
-          <DebugMenuListItem
-            label='Get and Post Diagnosis Keys'
-            style={styles.lastListItem}
-            onPress={handleOnPressSimulationButton(
-              BTNativeModule.getAndPostDiagnosisKeys,
-            )}
-          />
-        </View>
-      </ScrollView>
+      ) : (
+        <ScrollView>
+          <View style={styles.section}>
+            <DebugMenuListItem
+              label='Reset Exposures'
+              style={styles.lastListItem}
+              onPress={handleOnPressSimulationButton(
+                BTNativeModule.resetExposures,
+              )}
+            />
+          </View>
+          <View style={styles.section}>
+            <DebugMenuListItem
+              label='Detect Exposures Now'
+              onPress={handleOnPressSimulationButton(
+                BTNativeModule.detectExposuresNow,
+              )}
+            />
+            <DebugMenuListItem
+              label='Get Exposure Configuration'
+              onPress={handleOnPressSimulationButton(
+                BTNativeModule.getExposureConfiguration,
+              )}
+            />
+            <DebugMenuListItem
+              label='Simulate Exposure Detection Error'
+              onPress={handleOnPressSimulationButton(
+                BTNativeModule.simulateExposureDetectionError,
+              )}
+            />
+            <DebugMenuListItem
+              label='Simulate Exposure'
+              onPress={handleOnPressSimulationButton(
+                BTNativeModule.simulateExposure,
+              )}
+            />
+            <DebugMenuListItem
+              label='Show Debug Verification Code'
+              onPress={showDebugVerificationCode}
+            />
+            <DebugMenuListItem
+              label='Toggle Exposure Notifications'
+              onPress={handleOnPressToggleExposureNotifications}
+            />
+            <DebugMenuListItem
+              label='Reset Exposure Detection Error'
+              onPress={handleOnPressSimulationButton(
+                BTNativeModule.resetExposureDetectionError,
+              )}
+            />
+          </View>
+          <View style={styles.section}>
+            <DebugMenuListItem
+              label='Show Local Diagnosis Keys'
+              onPress={() => {
+                navigation.navigate(Screens.ENLocalDiagnosisKey);
+              }}
+            />
+            <DebugMenuListItem
+              label='Get and Post Diagnosis Keys'
+              style={styles.lastListItem}
+              onPress={handleOnPressSimulationButton(
+                BTNativeModule.getAndPostDiagnosisKeys,
+              )}
+            />
+          </View>
+        </ScrollView>
+      )}
     </NavigationBarWrapper>
   );
 };
