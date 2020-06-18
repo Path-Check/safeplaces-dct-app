@@ -36,10 +36,7 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
   const navigateToViewHAs = () => navigation.navigate('PartnersEdit');
 
   return (
-    <NavigationBarWrapper
-      title={t('authorities.title')}
-      includeBackButton={false}
-      onBackPress={() => {}}>
+    <NavigationBarWrapper title={t('authorities.title')}>
       <ScrollView
         style={styles.backgroundWrapper}
         alwaysBounceVertical={false}

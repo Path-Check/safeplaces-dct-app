@@ -1,8 +1,13 @@
+import { useCallback } from 'react';
+import { Platform, StatusBar } from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
+import { useFocusEffect } from '@react-navigation/native';
+
+import { Colors } from '../styles';
 
 export type NavigationProp = NavigationScreenProp<
   NavigationState,
@@ -89,4 +94,16 @@ export const Stacks: { [key in Stack]: Stack } = {
   Export: 'Export',
   More: 'More',
   Partners: 'Partners',
+};
+
+type BarStyle = 'dark-content' | 'light-content';
+
+export const useStatusBarEffect = (barStyle: BarStyle): void => {
+  useFocusEffect(
+    useCallback(() => {
+      StatusBar.setBarStyle(barStyle);
+      Platform.OS === 'android' &&
+        StatusBar.setBackgroundColor(Colors.androidStatusBarBackground);
+    }, [barStyle]),
+  );
 };
