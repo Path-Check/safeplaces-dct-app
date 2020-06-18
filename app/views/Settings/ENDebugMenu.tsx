@@ -21,6 +21,8 @@ type ENDebugMenuProps = {
   navigation: NavigationProp;
 };
 
+const DEBUG_VERIFICATION_CODE = '111111';
+
 const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   useEffect(() => {
     const handleBackPress = () => {
@@ -84,7 +86,7 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   const showDebugVerificationCode = () => {
     Alert.alert(
       'Debug Verification Code:',
-      '111111',
+      DEBUG_VERIFICATION_CODE,
       [
         {
           text: 'OK',

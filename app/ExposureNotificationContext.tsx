@@ -3,14 +3,14 @@ import React, { createContext, useState, useEffect } from 'react';
 import { isGPS } from './COVIDSafePathsConfig';
 import { BTNativeModule } from './bt';
 
-export type ENAuthorizationStatus = `NOT_AUTHORIZED` | `AUTHORIZED`;
+export type EnabledStatus = `DISABLED` | `ENABLED`;
 
 interface ExposureNotificationsState {
-  authorizationStatus: ENAuthorizationStatus;
+  authorizationStatus: EnabledStatus;
   requestENAuthorization: () => void;
 }
 
-const initialStatus: ENAuthorizationStatus = 'NOT_AUTHORIZED';
+const initialStatus: EnabledStatus = 'DISABLED';
 
 const initialState = {
   authorizationStatus: initialStatus,
@@ -28,14 +28,14 @@ interface ExposureNotificationProviderProps {
 const ExposureNotificationsProvider = ({
   children,
 }: ExposureNotificationProviderProps): JSX.Element => {
-  const [authorizationStatus, setAuthorizationStatus] = useState<
-    ENAuthorizationStatus
-  >(initialStatus);
+  const [authorizationStatus, setAuthorizationStatus] = useState<EnabledStatus>(
+    initialStatus,
+  );
 
   useEffect(() => {
     if (!isGPS) {
-      const subscription = BTNativeModule.subscribeToENAuthorizationStatusEvents(
-        (status: ENAuthorizationStatus) => {
+      const subscription = BTNativeModule.subscribeToEnabledStatusEvents(
+        (status: EnabledStatus) => {
           setAuthorizationStatus(status);
         },
       );
@@ -49,7 +49,7 @@ const ExposureNotificationsProvider = ({
   }, []);
 
   const requestENAuthorization = () => {
-    const cb = (authorizationStatus: ENAuthorizationStatus) => {
+    const cb = (authorizationStatus: EnabledStatus) => {
       setAuthorizationStatus(authorizationStatus);
     };
     BTNativeModule.requestAuthorization(cb);

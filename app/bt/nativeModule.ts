@@ -4,7 +4,7 @@ import {
   EventSubscription,
 } from 'react-native';
 
-import { ENAuthorizationStatus } from '../ExposureNotificationContext';
+import { EnabledStatus } from '../ExposureNotificationContext';
 import { ExposureHistory } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureHistory } from './exposureNotifications';
@@ -24,16 +24,15 @@ export const subscribeToExposureEvents = (
   );
 };
 
-export const subscribeToENAuthorizationStatusEvents = (
-  cb: (status: ENAuthorizationStatus) => void,
+export const subscribeToEnabledStatusEvents = (
+  cb: (status: EnabledStatus) => void,
 ): EventSubscription => {
   const ExposureEvents = new NativeEventEmitter(
     NativeModules.ExposureEventEmitter,
   );
   return ExposureEvents.addListener(
-    'onENAuthorizationStatusUpdated',
-    (status: ENAuthorizationStatus) => {
-      console.log('status: ' + status);
+    'onEnabledStatusUpdated',
+    (status: EnabledStatus) => {
       cb(status);
     },
   );
@@ -42,7 +41,7 @@ export const subscribeToENAuthorizationStatusEvents = (
 const exposureNotificationModule = NativeModules.PTCExposureManagerModule;
 
 export const requestAuthorization = async (
-  cb: (authorizationStatus: ENAuthorizationStatus) => void,
+  cb: (authorizationStatus: EnabledStatus) => void,
 ): Promise<void> => {
   exposureNotificationModule.requestExposureNotificationAuthorization(cb);
 };
