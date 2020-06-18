@@ -40,7 +40,7 @@ final class ExposureManager: NSObject {
     // in Settings.
     manager.setExposureNotificationEnabled(enabled) { error in
       if error == nil {
-        let status = self.manager.exposureNotificationEnabled ? "AUTHORIZED" : "NOT_AUTHORIZED"
+        let status = self.manager.exposureNotificationEnabled ? "ENABLED" : "DISABLED"
         NotificationCenter.default.post(Notification(name: Notification.Name.AuthorizationStatusDidChange,
                                                      object: status,
                                                      userInfo: nil))
