@@ -22,6 +22,65 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
     <View
       style={
         Object {
+          "alignItems": "center",
+          "backgroundColor": "#1f2c9b",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "paddingHorizontal": 16,
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 3,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 19,
+                "fontWeight": "500",
+                "lineHeight": 40,
+              },
+            ]
+          }
+        >
+          More
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
           "backgroundColor": "#f8f8f8",
           "flex": 1,
         }
@@ -541,6 +600,65 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
       }
     }
   >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#1f2c9b",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "paddingHorizontal": 16,
+          "paddingVertical": 8,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 3,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 19,
+                "fontWeight": "500",
+                "lineHeight": 40,
+              },
+            ]
+          }
+        >
+          More
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
     <View
       style={
         Object {

@@ -12,6 +12,7 @@ interface NavigationBarWrapperProps {
   children: React.ReactNode;
   title: string;
   onBackPress?: () => void;
+  includeBottomNav?: boolean;
   includeBackButton?: boolean;
 }
 
@@ -42,19 +43,19 @@ export const NavigationBarWrapper = ({
 
   return (
     <SafeAreaView style={styles.container}>
-      {includeBackButton ? (
-        <View style={styles.headerContainer}>
-          <View style={styles.leftContent}>
+      <View style={styles.headerContainer}>
+        <View style={styles.leftContent}>
+          {includeBackButton ? (
             <TouchableOpacity onPress={handleOnPressBack}>
               <SvgXml xml={Icons.BackArrow} color={Colors.white} />
             </TouchableOpacity>
-          </View>
-          <View style={styles.middleContent}>
-            <Typography style={styles.headerText}>{title}</Typography>
-          </View>
-          <View style={styles.rightContent} />
+          ) : null}
         </View>
-      ) : null}
+        <View style={styles.middleContent}>
+          <Typography style={styles.headerText}>{title}</Typography>
+        </View>
+        <View style={styles.rightContent} />
+      </View>
       <View style={styles.contentContainer}>{children}</View>
     </SafeAreaView>
   );
