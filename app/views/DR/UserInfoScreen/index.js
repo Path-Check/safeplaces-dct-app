@@ -30,6 +30,7 @@ import {
   MEPYD_C5I_API_URL,
   MEPYD_C5I_SERVICE,
 } from '../../../constants/DR/baseUrls';
+import { COVID_POSITIVE } from '../../../constants/storage';
 
 export default function UserInfo({ navigation }) {
   navigation.setOptions({
@@ -120,7 +121,7 @@ export default function UserInfo({ navigation }) {
           closeDialog(false);
           if (positive) {
             if (use === 'mySelf') {
-              storeData('positive', positive);
+              storeData(COVID_POSITIVE, positive);
               storeData('UserPersonalInfo', data.body);
             }
             navigation.navigate('EpidemiologicResponse');

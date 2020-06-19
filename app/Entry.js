@@ -33,7 +33,6 @@ import Onboarding5 from './views/onboarding/Onboarding5';
 import { SettingsScreen } from './views/Settings';
 
 const Stack = createStackNavigator();
-
 class Entry extends Component {
   constructor(props) {
     super(props);

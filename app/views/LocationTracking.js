@@ -24,7 +24,6 @@ import { SvgXml } from 'react-native-svg';
 
 import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import exportImage from './../assets/images/export.png';
-import foreArrow from './../assets/images/foreArrow.png';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import settingsIcon from './../assets/svgs/settingsIcon';
 import StateAtRisk from './../assets/svgs/stateAtRisk';
@@ -35,14 +34,8 @@ import { Button } from '../components/Button';
 import NextSteps from '../components/DR/LocationTracking/NextSteps';
 import { Typography } from '../components/Typography';
 import Colors from '../constants/colors';
-import {
-  GOV_DO_TOKEN,
-  MEPYD_C5I_API_URL,
-  MEPYD_C5I_SERVICE,
-} from '../constants/DR/baseUrls';
 import fontFamily from '../constants/fonts';
 import {
-  COVID_ID,
   CROSSED_PATHS,
   DEBUG_MODE,
   LOCATION_DATA,
@@ -130,14 +123,12 @@ class LocationTracking extends Component {
           .then(result => {
             switch (result) {
               case RESULTS.GRANTED:
-                LocationServices.start();
                 this.checkIfUserAtRisk();
                 HCAService.findNewAuthorities();
                 return;
               case RESULTS.UNAVAILABLE:
               case RESULTS.BLOCKED:
                 console.log('NO LOCATION');
-                LocationServices.stop();
                 this.setState({ currentState: StateEnum.UNKNOWN });
             }
           })
@@ -146,7 +137,6 @@ class LocationTracking extends Component {
           });
       } else {
         this.setState({ currentState: StateEnum.SETTING_OFF });
-        LocationServices.stop();
       }
     });
   }
@@ -217,37 +207,6 @@ class LocationTracking extends Component {
           RemoveStoreData(LOCATION_DATA);
         });
       }
-    });
-
-    BackgroundGeolocation.on('location', async location => {
-      GetStoreData(COVID_ID)
-        .then(covidId => {
-          const body = JSON.stringify({
-            latitude: location.latitude,
-            longitude: location.longitude,
-            time: location.time,
-            covidId: covidId,
-          });
-
-          fetch(`${MEPYD_C5I_SERVICE}/${MEPYD_C5I_API_URL}/UserTrace`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              gov_do_token: GOV_DO_TOKEN,
-            },
-            body,
-          })
-            .then(function(response) {
-              return response.json();
-            })
-            .then(data => {
-              return data;
-            })
-            .catch(error => {
-              console.error('[ERROR] ' + error);
-            });
-        })
-        .catch(error => console.log('[ERROR] ' + error));
     });
   }
 

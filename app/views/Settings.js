@@ -12,7 +12,7 @@ import { FeatureFlag } from '../components/FeatureFlag';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import { PARTICIPATE } from '../constants/storage';
+import { COVID_POSITIVE, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import {
   LOCALE_LIST,
@@ -119,7 +119,7 @@ export const SettingsScreen = ({ navigation }) => {
             label={t('label.epidemiologic_report_title')}
             description={t('label.epidemiologic_report_subtitle')}
             onPress={async () => {
-              const value = await AsyncStorage.getItem('positive');
+              const value = await AsyncStorage.getItem(COVID_POSITIVE);
               if (value !== null) {
                 navigation.navigate('EpidemiologicResponse');
               } else {

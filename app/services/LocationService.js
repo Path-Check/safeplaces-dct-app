@@ -3,12 +3,22 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { NativeModules, Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
-import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
+import {
+  GOV_DO_TOKEN,
+  MEPYD_C5I_API_URL,
+  MEPYD_C5I_SERVICE,
+} from '../constants/DR/baseUrls';
+import {
+  COVID_POSITIVE,
+  CROSSED_PATHS,
+  PARTICIPATE,
+} from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION = '55';
+const COVID_BASE_ID = '5590D7B3781E7592F6638F0D0D778282';
 
 export const Reason = {
   LOCATION_OFF: 'LOCATION_OFF',
@@ -132,7 +142,6 @@ export default class LocationServices {
     const locationData = new LocationData();
 
     BackgroundGeolocation.configure({
-      maxLocations: 0,
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
       stationaryRadius: 5,
       distanceFilter: 5,
@@ -189,6 +198,36 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('foreground', () => {
       console.log('[INFO] App is in foreground');
+    });
+
+    BackgroundGeolocation.on('location', async location => {
+      GetStoreData(COVID_POSITIVE, false).then(isPositive => {
+        if (isPositive) {
+          const body = JSON.stringify({
+            latitude: location.latitude,
+            longitude: location.longitude,
+            time: location.time,
+            covidId: COVID_BASE_ID,
+          });
+          fetch(`${MEPYD_C5I_SERVICE}/${MEPYD_C5I_API_URL}/UserTrace`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              gov_do_token: GOV_DO_TOKEN,
+            },
+            body,
+          })
+            .then(function(response) {
+              return response.json();
+            })
+            .then(data => {
+              return data;
+            })
+            .catch(error => {
+              console.error('[ERROR] ' + error);
+            });
+        }
+      });
     });
 
     BackgroundGeolocation.on('abort_requested', () => {
