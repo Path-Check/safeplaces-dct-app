@@ -92,6 +92,7 @@ const Label = styled(Typography)`
   font-size: ${getFontSize};
   line-height: ${getLineHeight};
   font-weight: normal;
+  color: ${({ theme }) => theme.textPrimaryOnBackground};
 `;
 
 const Icon = styled(SvgXml)`

@@ -15,6 +15,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
     style={
       Object {
         "backgroundColor": "#1f2c9b",
+        "flex": 1,
       }
     }
   >
@@ -36,26 +37,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
             "flex": 1,
           }
         }
-      >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
-        >
-          <SvgXml
-            xml="
-  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
-    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
-  </svg>
-"
-          />
-        </View>
-      </View>
+      />
       <View
         style={
           Object {
@@ -100,7 +82,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
       style={
         Object {
           "backgroundColor": "#f8f8f8",
-          "height": "100%",
+          "flex": 1,
         }
       }
     >
@@ -575,6 +557,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
     style={
       Object {
         "backgroundColor": "#1f2c9b",
+        "flex": 1,
       }
     }
   >
@@ -596,26 +579,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
             "flex": 1,
           }
         }
-      >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
-        >
-          <SvgXml
-            xml="
-  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
-    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
-  </svg>
-"
-          />
-        </View>
-      </View>
+      />
       <View
         style={
           Object {
@@ -660,7 +624,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
       style={
         Object {
           "backgroundColor": "#f8f8f8",
-          "height": "100%",
+          "flex": 1,
         }
       }
     >

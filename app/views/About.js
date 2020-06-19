@@ -8,6 +8,7 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Text,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
@@ -55,6 +56,8 @@ export const AboutScreen = ({ navigation }) => {
         </View>
         <Typography style={styles.aboutSectionPara}>
           {t('label.about_para')}
+          {/* Space between the copy & link*/}
+          <Text> </Text>
           <Typography
             style={styles.hyperlink}
             onPress={() => {

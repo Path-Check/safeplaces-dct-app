@@ -1,8 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState, useContext } from 'react';
-import { AppState, BackHandler, StatusBar } from 'react-native';
+import { AppState, BackHandler } from 'react-native';
 
-import { isPlatformAndroid } from './../Util';
 import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
@@ -16,9 +15,9 @@ import {
 } from './main/ServiceOffScreens';
 import PermissionsContext, { PermissionStatus } from '../PermissionsContext';
 
-import { Colors } from '../styles';
 import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
+import { useStatusBarEffect } from '../navigation';
 
 export const Main = () => {
   const tracingService = isGPS ? LocationServices : ExposureNotificationService;
@@ -27,11 +26,7 @@ export const Main = () => {
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
 
-  if (isPlatformAndroid()) {
-    StatusBar.setBackgroundColor(Colors.transparent);
-    StatusBar.setBarStyle('light-content');
-    StatusBar.setTranslucent(true);
-  }
+  useStatusBarEffect('light-content');
 
   const [trackingInfo, setTrackingInfo] = useState({ canTrack: true });
 

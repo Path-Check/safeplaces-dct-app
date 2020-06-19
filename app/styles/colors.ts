@@ -85,6 +85,10 @@ export const quaternaryBackground = lightGray;
 export const invertedSecondaryBackground = tertiaryBlue;
 export const invertedTertiaryBackground = secondaryBlue;
 export const invertedQuaternaryBackground = primaryBlue;
+export const bottomSheetBackground = white;
+
+// Underlays, corresponding to the background to be used for
+export const underlayPrimaryBackground = moonRaker;
 
 // Borders
 export const primaryBorder = primaryViolet;
