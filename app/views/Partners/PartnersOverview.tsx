@@ -121,6 +121,6 @@ const styles = StyleSheet.create({
     // TODO: Standardize bottom sheets. We mix shadows & borders.
     // Since this is on a main tab, borders are consistent.
     borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: Colors.VIOLET_BUTTON_LIGHT,
+    borderTopColor: Colors.primaryViolet,
   },
 });
