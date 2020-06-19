@@ -131,9 +131,9 @@
     "launch_screen4_subheader": "If you test positive, you alone can choose whether to share.",
     "launch_set_up_phone": "Set up my phone",
     "legal_page_title": "Legal",
-    "label_faqs":"FAQS",
-    "faq_page_title":"Frequently Ask Questions",
-    "health_resources":"Health publications",
+    "label_faqs": "FAQS",
+    "faq_page_title": "Frequently Ask Questions",
+    "health_resources": "Health publications",
     "phone_line_label": "Information line",
     "loading_public_data": "loading data...",
     "location_disabled_message": "COVID Safe Paths requires location services.",
@@ -193,7 +193,7 @@
     "epidemiologic_report_tab": "Epidemiological report",
     "mental_health_advice_tab": "Mental health tips",
     "status": "Status:",
-    "epidemiological_discharge":"Epidemiological Discharge",
+    "epidemiological_discharge": "Epidemiological Discharge",
     "waiting_lab": "Waiting for the lab results",
     "covid_free": "Congratulations, you are COVID-19 free!",
     "how_feel_today": "How do you feel today?",
@@ -201,6 +201,7 @@
     "feel_great": "I feel great!"
   },
   "maps": {
+    "error_location": "At the moment we have not been able to locate you. Make sure you have GPS activated.",
     "error_header": "We are sorry",
     "error_message": "At the moment, the desired data could not be obtained. Please try again later."
   },
@@ -253,7 +254,7 @@
           "title": "No proof needed at this time",
           "content": {
             "no_sympthoms": "From now on, your answers will need not be tested. If you have any symptoms such as fever, cough, runny nose, slight difficulty breathing, sore throat, head or body pain, please complete this questionnaire again or contact the Aurora platform through the telephone numbers 809-449-6262, 809 409 6262 and 809-352-6262.",
-            "has_sympthoms":"From now on, your answers will need not be tested. If you have any symptoms such as fever, cough, runny nose, slight difficulty breathing, sore throat, head or body pain, please complete this questionnaire again or contact the Aurora platform through the telephone numbers 809-449-6262, 809 409 6262 and 809-352-6262.\nIf you have any symptoms of danger (vomiting or persistent or bloody diarrhea, marked difficulty breathing, drowsiness or seizures), immediately go to the nearest health center or call * 462."
+            "has_sympthoms": "From now on, your answers will need not be tested. If you have any symptoms such as fever, cough, runny nose, slight difficulty breathing, sore throat, head or body pain, please complete this questionnaire again or contact the Aurora platform through the telephone numbers 809-449-6262, 809 409 6262 and 809-352-6262.\nIf you have any symptoms of danger (vomiting or persistent or bloody diarrhea, marked difficulty breathing, drowsiness or seizures), immediately go to the nearest health center or call * 462."
           }
         }
       }
@@ -267,7 +268,7 @@
         "none": "According to his answers, he should stay at home and away from others. If you can, have a room and a bathroom that are just for you. This can be difficult when you are not feeling well, but it will protect those around you.",
         "has_health_problems": "Your answers are to speak to a medical professional about having the COVID-19 test."
       },
-      "next_steps":{
+      "next_steps": {
         "step_one": {
           "title": "Isolate",
           "content": "You must stay away from others for 14 days after the onset of your symptoms. Your isolation may end if your symptoms improve significantly and if you have not had a fever for at least 72 hours without the use of medications. By isolating, you can reduce the spread of COVID-19 and protect others."
@@ -292,7 +293,7 @@
         }
       }
     },
-    "thanksfull":{
+    "thanksfull": {
       "title": "“With your help, staying at home and following health recommendations, we can face COVID-19”"
     }
   },

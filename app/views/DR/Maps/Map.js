@@ -25,13 +25,15 @@ import {
   requestCovid19Hospitals,
   requestCovid19Laboratories,
 } from '../../../helpers/Request';
+import MapDialog from './MapDialog';
 
 const latitudeDelta = 0.0052;
 const longitudeDelta = 0.0081;
-const rdCoords = { latitude: 0, longitude: 0 };
+const rdCoords = { latitude: 18.7357, longitude: 70.1627 };
 const { height } = Dimensions.get('window');
 
 export default function HospitalMap({ route: { name: type } }) {
+  const [showDialog, setShowDialog] = useState(false);
   const [hospitals, setHospitals] = useState([]);
   const [laboratories, setLaboratories] = useState([]);
   const [coordinates, setCoordinates] = useState(rdCoords);
@@ -46,20 +48,8 @@ export default function HospitalMap({ route: { name: type } }) {
     if (type === 'Hospitals') {
       const value = await requestCovid19Hospitals();
       setHospitals(value);
-      Geolocation.getCurrentPosition(({ coords }) => {
-        const { latitude, longitude } = coords;
-        rdCoords.latitude = latitude;
-        rdCoords.longitude = longitude;
-        const sorted = sortByDistance({ latitude, longitude }, value, {
-          yName: 'latitude',
-          xName: 'longitude',
-        });
-        setSortedMarkers(sorted);
-      });
-    } else {
-      await requestCovid19Laboratories().then(value => {
-        setLaboratories(value);
-        Geolocation.getCurrentPosition(({ coords }) => {
+      Geolocation.getCurrentPosition(
+        ({ coords }) => {
           const { latitude, longitude } = coords;
           rdCoords.latitude = latitude;
           rdCoords.longitude = longitude;
@@ -68,7 +58,43 @@ export default function HospitalMap({ route: { name: type } }) {
             xName: 'longitude',
           });
           setSortedMarkers(sorted);
-        });
+        },
+        error => {
+          const { latitude, longitude } = rdCoords;
+          const sorted = sortByDistance({ latitude, longitude }, value, {
+            yName: 'latitude',
+            xName: 'longitude',
+          });
+          setSortedMarkers(sorted);
+          console.log(error);
+          setShowDialog(true);
+        },
+      );
+    } else {
+      await requestCovid19Laboratories().then(value => {
+        setLaboratories(value);
+        Geolocation.getCurrentPosition(
+          ({ coords }) => {
+            const { latitude, longitude } = coords;
+            rdCoords.latitude = latitude;
+            rdCoords.longitude = longitude;
+            const sorted = sortByDistance({ latitude, longitude }, value, {
+              yName: 'latitude',
+              xName: 'longitude',
+            });
+            setSortedMarkers(sorted);
+          },
+          error => {
+            const { latitude, longitude } = rdCoords;
+            const sorted = sortByDistance({ latitude, longitude }, value, {
+              yName: 'latitude',
+              xName: 'longitude',
+            });
+            setSortedMarkers(sorted);
+            console.log(error);
+            setShowDialog(true);
+          },
+        );
       });
     }
   };
@@ -101,6 +127,9 @@ export default function HospitalMap({ route: { name: type } }) {
   const renderBottomUpPanelContent = () => (
     <View style={[styles.row, { flex: 0, backgroundColor: '#fff' }]}>
       <View style={styles.listContainer}>
+        {showDialog && type === 'Hospitals' && (
+          <MapDialog showDialog={showDialog} setShowDialog={setShowDialog} />
+        )}
         <FlatList
           style={styles.list}
           contentContainerStyle={{ paddingBottom: 100, paddingLeft: 5 }}
