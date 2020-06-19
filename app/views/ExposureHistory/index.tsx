@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import {
-  Text,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -19,6 +18,7 @@ import ExposureDatumDetail from './ExposureDatumDetail';
 import { DateTimeUtils } from '../../helpers';
 import Calendar from './Calendar';
 import { Screens, useStatusBarEffect } from '../../navigation';
+import { isGPS } from '../../COVIDSafePathsConfig';
 
 import { Icons } from '../../assets';
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
@@ -56,30 +56,33 @@ const ExposureHistoryScreen = (): JSX.Element => {
 
   const titleText = t('screen_titles.exposure_history');
   const lastDaysText = t('exposure_history.last_days');
-  const lastUpdatedText = 'Updated 6 hours ago';
 
   const showExposureDetail =
     selectedDatum && !DateTimeUtils.isInFuture(selectedDatum.date);
 
   return (
     <SafeAreaView>
-      <ScrollView style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        contentInset={{ top: 0, bottom: 140 }}>
         <View style={styles.header}>
           <View style={styles.headerRow}>
             <Typography style={styles.headerText}>{titleText}</Typography>
-            <TouchableOpacity
-              onPress={handleOnPressMoreInfo}
-              style={styles.moreInfoButton}>
-              <SvgXml xml={Icons.IconQuestionMark} />
-            </TouchableOpacity>
+            {!isGPS ? (
+              <TouchableOpacity
+                onPress={handleOnPressMoreInfo}
+                style={styles.moreInfoButton}>
+                <SvgXml xml={Icons.IconQuestionMark} />
+              </TouchableOpacity>
+            ) : null}
           </View>
-          <View style={styles.headerRow}>
-            <Typography style={styles.subHeaderText}>{lastDaysText}</Typography>
-            <Text style={styles.subHeaderText}>{' \u2022 '}</Text>
-            <Typography style={styles.subHeaderText}>
-              {lastUpdatedText}
-            </Typography>
-          </View>
+          {!isGPS ? (
+            <View style={styles.headerRow}>
+              <Typography style={styles.subHeaderText}>
+                {lastDaysText}
+              </Typography>
+            </View>
+          ) : null}
         </View>
         <View style={styles.calendarContainer}>
           <Calendar
