@@ -2,7 +2,12 @@ import React, { createContext, useState, useEffect } from 'react';
 
 import { isGPS } from './COVIDSafePathsConfig';
 import { BTNativeModule } from './bt';
-import { ExposureHistory, blankHistory } from './exposureHistory';
+import {
+  ExposureInfo,
+  ExposureHistory,
+  calendarDays,
+  toExposureHistory,
+} from './exposureHistory';
 
 interface ExposureHistoryState {
   exposureHistory: ExposureHistory;
@@ -28,18 +33,22 @@ interface ExposureHistoryProps {
   children: JSX.Element;
 }
 
+const blankHistory = toExposureHistory({}, calendarDays(Date.now(), 21));
+
 const ExposureHistoryProvider = ({
   children,
 }: ExposureHistoryProps): JSX.Element => {
   const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
-    blankHistory(),
+    blankHistory,
   );
   const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(true);
 
   useEffect(() => {
     if (!isGPS) {
       const subscription = BTNativeModule.subscribeToExposureEvents(
-        (exposureHistory: ExposureHistory) => {
+        (exposureInfo: ExposureInfo) => {
+          const days = calendarDays(Date.now(), 21);
+          const exposureHistory = toExposureHistory(exposureInfo, days);
           setExposureHistory(exposureHistory);
         },
       );

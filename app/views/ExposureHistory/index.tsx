@@ -16,6 +16,7 @@ import ExposureHistoryContext from '../../ExposureHistoryContext';
 import { ExposureDatum } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import ExposureDatumDetail from './ExposureDatumDetail';
+import { DateTimeUtils } from '../../helpers';
 import Calendar from './Calendar';
 import { Screens, useStatusBarEffect } from '../../navigation';
 
@@ -26,10 +27,9 @@ const ExposureHistoryScreen = (): JSX.Element => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const { exposureHistory } = useContext(ExposureHistoryContext);
-  const [
-    selectedExposureDatum,
-    setSelectedExposureDatum,
-  ] = useState<ExposureDatum | null>(null);
+  const [selectedDatum, setSelectedDatum] = useState<ExposureDatum | null>(
+    null,
+  );
 
   useStatusBarEffect('dark-content');
 
@@ -47,7 +47,7 @@ const ExposureHistoryScreen = (): JSX.Element => {
   }, [navigation]);
 
   const handleOnSelectDate = (datum: ExposureDatum) => {
-    setSelectedExposureDatum(datum);
+    setSelectedDatum(datum);
   };
 
   const handleOnPressMoreInfo = () => {
@@ -57,6 +57,9 @@ const ExposureHistoryScreen = (): JSX.Element => {
   const titleText = t('screen_titles.exposure_history');
   const lastDaysText = t('exposure_history.last_days');
   const lastUpdatedText = 'Updated 6 hours ago';
+
+  const showExposureDetail =
+    selectedDatum && !DateTimeUtils.isInFuture(selectedDatum.date);
 
   return (
     <SafeAreaView>
@@ -82,12 +85,12 @@ const ExposureHistoryScreen = (): JSX.Element => {
           <Calendar
             exposureHistory={exposureHistory}
             onSelectDate={handleOnSelectDate}
-            selectedDatum={selectedExposureDatum}
+            selectedDatum={selectedDatum}
           />
         </View>
         <View style={styles.detailsContainer}>
-          {selectedExposureDatum ? (
-            <ExposureDatumDetail exposureDatum={selectedExposureDatum} />
+          {selectedDatum && showExposureDetail ? (
+            <ExposureDatumDetail exposureDatum={selectedDatum} />
           ) : null}
         </View>
       </ScrollView>

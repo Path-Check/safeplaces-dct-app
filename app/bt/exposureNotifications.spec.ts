@@ -1,33 +1,25 @@
 import dayjs from 'dayjs';
 
 import { DateTimeUtils } from '../helpers';
-import { Possible, ExposureDatum } from '../exposureHistory';
-import { toExposureHistory, RawExposure } from './exposureNotifications';
+import { Possible } from '../exposureHistory';
+import { toExposureInfo, RawExposure } from './exposureNotifications';
 
 describe('toExposureHistory', () => {
   describe('when there are no exposure notifications', () => {
-    it('returns a history of NoKnown Exposures for the past 21 days', () => {
+    it('returns an empty ExposureInfo', () => {
       const rawExposures: RawExposure[] = [];
-      const today = Date.now();
-      const twentyDaysAgo = dayjs(today).subtract(20, 'day').valueOf();
 
-      const result = toExposureHistory(rawExposures);
+      const result = toExposureInfo(rawExposures);
 
-      const lastDay = result[result.length - 1].date;
-      const firstDay = result[0].date;
-      expect(result.length).toBe(21);
-      expect(
-        result.every((datum: ExposureDatum) => datum.kind === 'NoKnown'),
-      ).toBe(true);
-      expect(dayjs(lastDay).isSame(today, 'day')).toBe(true);
-      expect(dayjs(firstDay).isSame(twentyDaysAgo, 'day')).toBe(true);
+      expect(result).toEqual({});
     });
   });
 
   describe('when there was a possible exposure two days ago', () => {
-    it('returns a history with a PossibleExposure 2 days ago', () => {
+    it('returns an ExposureInfo with a PossibleExposure at the correct date', () => {
       const today = Date.now();
       const twoDaysAgo = dayjs(today).subtract(2, 'day').valueOf();
+      const beginningOfTwoDaysAgo = DateTimeUtils.beginningOfDay(twoDaysAgo);
       const duration = 30 * 60 * 1000;
       const rawExposures: RawExposure[] = [
         {
@@ -46,9 +38,10 @@ describe('toExposureHistory', () => {
         transmissionRiskLevel: 3,
       };
 
-      const result = toExposureHistory(rawExposures);
+      const result = toExposureInfo(rawExposures);
 
-      expect(result[result.length - 3]).toEqual(expected);
+      expect(Object.keys(result).length).toEqual(1);
+      expect(result[beginningOfTwoDaysAgo]).toEqual(expected);
     });
   });
 
@@ -90,9 +83,9 @@ describe('toExposureHistory', () => {
         transmissionRiskLevel: 5,
       };
 
-      const result = toExposureHistory(rawExposures);
+      const result = toExposureInfo(rawExposures);
 
-      expect(result[result.length - 1]).toEqual(expected);
+      expect(result[beginningOfDay]).toEqual(expected);
     });
   });
 });

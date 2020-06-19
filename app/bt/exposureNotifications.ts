@@ -1,11 +1,6 @@
 import dayjs from 'dayjs';
 
-import {
-  Possible,
-  NoKnown,
-  ExposureHistory,
-  blankHistory,
-} from '../exposureHistory';
+import { Possible, ExposureInfo } from '../exposureHistory';
 
 type UUID = string;
 type Posix = number;
@@ -18,22 +13,9 @@ export interface RawExposure {
   transmissionRiskLevel: number;
 }
 
-export const toExposureHistory = (
-  rawExposures: RawExposure[],
-): ExposureHistory => {
+export const toExposureInfo = (rawExposures: RawExposure[]): ExposureInfo => {
   const possibleExposures = rawExposures.map(toPossible);
-  const byDate = groupedByDate(possibleExposures, combinePossibles);
-
-  const base = blankHistory();
-
-  return base.map((datum: NoKnown) => {
-    const date = datum.date;
-    if (byDate[date]) {
-      return byDate[date];
-    } else {
-      return datum;
-    }
-  });
+  return groupedByDate(possibleExposures, combinePossibles);
 };
 
 const toPossible = (r: RawExposure): Possible => {
