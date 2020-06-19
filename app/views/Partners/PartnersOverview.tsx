@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   bottomSheet: {
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.primaryBackground,
     padding: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
