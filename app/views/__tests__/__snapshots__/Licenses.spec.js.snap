@@ -140,8 +140,8 @@ exports[`renders correctly 1`] = `
             <View
               style={
                 Object {
-                  "paddingLeft": 24,
-                  "paddingTop": 10,
+                  "paddingLeft": 20,
+                  "paddingTop": 12,
                 }
               }
             >

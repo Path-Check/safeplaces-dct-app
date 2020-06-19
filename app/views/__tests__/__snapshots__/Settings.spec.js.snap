@@ -258,32 +258,36 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
           </View>
           <View
             style={
-              Array [
-                Object {
-                  "backgroundColor": "#ffffff",
-                  "borderBottomWidth": 1,
-                  "borderColor": "#e5e7fa",
-                  "borderTopWidth": 1,
-                  "flex": 1,
-                  "marginBottom": 20,
-                },
-                Object {
-                  "paddingHorizontal": 16,
-                },
-              ]
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderBottomWidth": 1,
+                "borderColor": "#e5e7fa",
+                "borderTopWidth": 1,
+                "flex": 1,
+                "marginBottom": 20,
+              }
             }
           >
             <View
               style={
                 Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "paddingTop": 16,
+                  "flex": 1,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 20,
                 }
               }
             >
-              <SvgXml
-                xml="<svg width=\\"27\\" height=\\"34\\" viewBox=\\"0 0 27 34\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\">
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "paddingBottom": 12,
+                  }
+                }
+              >
+                <SvgXml
+                  xml="<svg width=\\"27\\" height=\\"34\\" viewBox=\\"0 0 27 34\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\">
 <rect width=\\"27\\" height=\\"34\\" fill=\\"url(#pattern0)\\"/>
 <defs>
 <pattern id=\\"pattern0\\" patternContentUnits=\\"objectBoundingBox\\" width=\\"1\\" height=\\"1\\">
@@ -293,34 +297,27 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
 </defs>
 </svg>
 "
-              />
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#2e2e2e",
-                      "fontSize": 17,
-                      "lineHeight": 28,
-                    },
-                    Object {
-                      "writingDirection": "ltr",
-                    },
-                    Object {
-                      "marginLeft": 16,
-                    },
-                  ]
-                }
-              >
-                Google Maps
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "paddingVertical": 20,
-                }
-              }
-            >
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#2e2e2e",
+                        "fontSize": 17,
+                        "lineHeight": 28,
+                      },
+                      Object {
+                        "writingDirection": "ltr",
+                      },
+                      Object {
+                        "marginLeft": 8,
+                      },
+                    ]
+                  }
+                >
+                  Google Maps
+                </Text>
+              </View>
               <Text
                 style={
                   Array [
@@ -338,55 +335,63 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               >
                 To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.
               </Text>
-            </View>
-            <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "rgba(0, 0, 0, 0)",
-                  "borderColor": "#4051db",
-                  "borderRadius": 8,
-                  "borderWidth": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingBottom": 25,
-                  "paddingTop": 24,
-                }
-              }
-            >
-              <Text
+              <View
                 style={
-                  Array [
-                    Object {
-                      "color": "#2e2e2e",
-                      "fontSize": 17,
-                      "lineHeight": 28,
-                    },
-                    Object {
-                      "writingDirection": "ltr",
-                    },
-                    Object {
-                      "color": "#1f2c9b",
-                      "fontSize": 19,
-                      "fontWeight": "500",
-                    },
-                  ]
+                  Object {
+                    "marginVertical": 20,
+                  }
                 }
               >
-                Import past locations
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "paddingVertical": 20,
-                }
-              }
-            >
+                <View
+                  accessibilityLabel="Import past locations"
+                  accessibilityRole="button"
+                  accessible={true}
+                  focusable={true}
+                  isTVSelectable={true}
+                  style={
+                    Object {
+                      "alignContent": "center",
+                      "alignItems": "center",
+                      "alignSelf": "stretch",
+                      "borderBottomLeftRadius": 8,
+                      "borderBottomRightRadius": 8,
+                      "borderColor": "transparent",
+                      "borderStyle": "solid",
+                      "borderTopLeftRadius": 8,
+                      "borderTopRightRadius": 8,
+                      "borderWidth": 2,
+                      "flexDirection": "row",
+                      "height": 72,
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "paddingHorizontal": 16,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#2e2e2e",
+                          "fontSize": 17,
+                          "lineHeight": 28,
+                        },
+                        Object {
+                          "writingDirection": "ltr",
+                        },
+                        Object {
+                          "fontFamily": "IBMPlexSans-Medium",
+                          "fontSize": 20,
+                          "fontWeight": "normal",
+                          "lineHeight": 40,
+                        },
+                      ]
+                    }
+                  >
+                    Import past locations
+                  </Text>
+                </View>
+              </View>
               <Text
                 style={
                   Array [
