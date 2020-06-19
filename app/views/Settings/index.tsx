@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ViewStyle,
   TouchableOpacity,
@@ -16,6 +16,8 @@ import {
 
 import {
   LOCALE_LIST,
+  getLanguageFromLocale,
+  getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
@@ -36,9 +38,20 @@ interface SettingsScreenProps {
 
 const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   const { t, i18n } = useTranslation();
+
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
+
+  useEffect(() => {
+    const setOverrideLocale = async () => {
+      const userSelectedLocale = await getUserLocaleOverride();
+      if (userSelectedLocale) {
+        setUserLocale(getLanguageFromLocale(userSelectedLocale));
+      }
+    };
+    setOverrideLocale();
+  }, []);
 
   useStatusBarEffect('light-content');
 
