@@ -1,18 +1,12 @@
 import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
-import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 
 import { ExposureHistory, ExposureDatum } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import ExposureDatumIndicator from './ExposureDatumIndicator';
 
-import {
-  Colors,
-  Buttons,
-  Spacing,
-  Typography as TypographyStyles,
-} from '../../styles';
+import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
 
 interface CalendarProps {
   exposureHistory: ExposureHistory;
@@ -25,7 +19,6 @@ const Calendar = ({
   onSelectDate,
   selectedDatum,
 }: CalendarProps): JSX.Element => {
-  const { t } = useTranslation();
   const lastMonth = dayjs().subtract(1, 'month');
   const title = `${lastMonth.format('MMMM')} | ${dayjs().format(
     'MMMM',
@@ -75,20 +68,10 @@ const Calendar = ({
     );
   };
 
-  const handleOnPressLegend = () => {};
-  const legendButtonText = t('exposure_history.legend_button');
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Typography style={styles.monthText}>{title}</Typography>
-        <TouchableOpacity
-          onPress={handleOnPressLegend}
-          style={styles.legendButton}>
-          <Typography style={styles.legendButtonText}>
-            {legendButtonText}
-          </Typography>
-        </TouchableOpacity>
       </View>
       <View style={styles.calendarContainer}>
         <DayLabels />
@@ -111,13 +94,6 @@ const styles = StyleSheet.create({
   monthText: {
     ...TypographyStyles.label,
     color: Colors.secondaryHeaderText,
-  },
-  legendButton: {
-    ...Buttons.tinyTeritiaryRounded,
-    borderWidth: 1,
-  },
-  legendButtonText: {
-    ...TypographyStyles.buttonTextTinyDark,
   },
   calendarContainer: { flex: 1, paddingVertical: Spacing.small },
   calendarRow: {
