@@ -1,10 +1,12 @@
 import dayjs from 'dayjs';
 
-type Posix = number;
+export type Posix = number;
 
 export const isToday = (date: Posix): boolean => {
-  const endOfDay = dayjs(Date.now()).endOf('day').valueOf();
-  return beginningOfDay(date) <= date && endOfDay >= date;
+  const now = Date.now();
+  const beginningOfToday = beginningOfDay(now);
+  const endOfToday = dayjs(now).endOf('day').valueOf();
+  return beginningOfToday <= date && endOfToday >= date;
 };
 
 export const beginningOfDay = (date: Posix): Posix => {
