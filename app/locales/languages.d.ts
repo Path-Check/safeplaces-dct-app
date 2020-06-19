@@ -17,6 +17,4 @@ export const useLanguageDirection: () =>
   | 'rtl'
   | 'ltr'
   | undefined = languageDirection;
-export const getLanguageFromLocale: (
-  locale: string
-) => string = localeLanguage;
+export const getLanguageFromLocale: (locale: string) => string = localeLanguage;

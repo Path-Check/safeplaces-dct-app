@@ -39,15 +39,17 @@ interface SettingsScreenProps {
 const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   const { t, i18n } = useTranslation();
 
-  const [userLocale, setUserLocale] = useState(supportedDeviceLanguageOrEnglish());
-  
+  const [userLocale, setUserLocale] = useState(
+    supportedDeviceLanguageOrEnglish(),
+  );
+
   useEffect(() => {
     const setOverrideLocale = async () => {
       const userSelectedLocale = await getUserLocaleOverride();
       if (userSelectedLocale) {
         setUserLocale(getLanguageFromLocale(userSelectedLocale));
       }
-    }
+    };
     setOverrideLocale();
   }, []);
 
