@@ -1,5 +1,7 @@
 import Yaml from 'js-yaml';
-import { AUTHORITIES_LIST_URL_MVP1 } from '../../constants/authorities';
+import env from 'react-native-config';
+
+const { AUTHORITIES_YAML_ROUTE } = env;
 
 type Coordinates = {
   latitude: number;
@@ -20,7 +22,7 @@ export type HealthcareAuthority = {
 };
 
 const getHealthcareAuthoritiesApi = async (
-  yamlUrl: string = AUTHORITIES_LIST_URL_MVP1,
+  yamlUrl: string = AUTHORITIES_YAML_ROUTE,
 ): Promise<HealthcareAuthority[]> => {
   const yamlString = await fetch(yamlUrl).then((res) => res.text());
   const { authorities } = Yaml.safeLoad(yamlString);

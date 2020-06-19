@@ -121,15 +121,6 @@ export const simulateExposureDetectionError = async (
   debugModule.simulateExposureDetectionError(cb);
 };
 
-export const getExposureConfiguration = async (
-  cb: (
-    errorMessage: ENModuleErrorMessage,
-    successMesage: ENModuleSuccessMessage,
-  ) => void,
-): Promise<void> => {
-  debugModule.getExposureConfiguration(cb);
-};
-
 export const resetExposures = async (
   cb: (
     errorMessage: ENModuleErrorMessage,

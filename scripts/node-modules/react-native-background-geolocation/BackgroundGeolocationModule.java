@@ -465,10 +465,10 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
             showSettingsAlert(locationDialogueTitle, locationDialogueText);
         }
 
-        SharedPreferences pref = mContext.getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        SharedPreferences pref = mContext.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         boolean isAutoStartEnabled=pref.getBoolean(IS_AUTO_START_ENABLED, false);
 
-        Log.e("isAutoStartEnabled===", IS_AUTO_START_ENABLED + "");
+        Log.e("isAutoStartEnabled===", isAutoStartEnabled + "");
 
         if(!isAutoStartEnabled) {
             addAutoStartup(autoStartDialogueTitle, autoStartDialogueText);
