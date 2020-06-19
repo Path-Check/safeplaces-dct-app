@@ -96,7 +96,3 @@ android/app/src/main/assets/index.android.bundle
 
 # Local Realm Artifact
 safepaths.realm
-
-# env files
-.env.gps*
-.env.bt*

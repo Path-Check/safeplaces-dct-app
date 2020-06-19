@@ -19,9 +19,9 @@
 
 Help us stop COVID-19.
 
-COVID Safe Paths is a mobile app for digital contract tracing (DCT) sponsored by Path Check a nonprofit and developed by a growing global community of engineers, designers, and contributors. Safe Paths is based on research originally conducted at the MIT Media Lab. 
+COVID Safe Paths is a mobile app for digital contract tracing (DCT) sponsored by Path Check a nonprofit and developed by a growing global community of engineers, designers, and contributors. Safe Paths is based on research originally conducted at the MIT Media Lab.
 
-## Privacy Preserving 
+## Privacy Preserving
 
 What’s truly special about Safe Paths is our strong commitment to preserving the privacy of individual users. We're building an application that can help contain outbreaks of COVID-19 without forcing users to sacrifice their personal privacy. For example, if a user chooses to use Safe Paths to maintain a record of their locations use a time stamped GPS log, which stores 14 days of data in 5 minute increments. The location log is stored on the user's phone. The logged data only leaves the device if the user chooses to send the information to an authorized public health authority (PHA) as part of the contact tracing process.
 
@@ -29,30 +29,31 @@ What’s truly special about Safe Paths is our strong commitment to preserving t
 
 Safe Paths is designed to support a range of DCT and public health use cases. Currently the main build uses GPS for location tracking with GAEN BT tracing strategies in active development. Our roadmap includes adding support for other location and proximity technologies, symptom tracking, and communication with PHAs.
 
-### Project Aurora and the Google Apple Exposure Notification API (GAEN) 
+### Project Aurora and the Google Apple Exposure Notification API (GAEN)
 
-Project Aurora is the code name for a build from Safe Paths for an app that is fully compliant with GAEN. This build will not include GPS, and it will be compliant with all the rules and requirements for GAEN apps. [Learn more about Project Aurora.](https://covidsafepaths.org/a-new-open-source-solution-for-the-google-apple-exposure-notification-api/) 
+Project Aurora is the code name for a build from Safe Paths for an app that is fully compliant with GAEN. This build will not include GPS, and it will be compliant with all the rules and requirements for GAEN apps. [Learn more about Project Aurora.](https://covidsafepaths.org/a-new-open-source-solution-for-the-google-apple-exposure-notification-api/)
 
-## Multiple Implementation Strategies 
+## Multiple Implementation Strategies
 
 The Safe Paths app is being developed to support a variety of build 'flavors' of the application around core health and tracing functionality. Reach out to our team to discuss creating a flavor for your use-case.
 
 ### Path Check Release of COVID Safe Paths
-Safe Paths is available as an app published by Path Check in the [Apple App Store](https://apps.apple.com/us/app/covid-safe-paths/id1508266966) and the [Google Play App Store](https://play.google.com/store/apps/details?id=org.pathcheck.covidsafepaths). Any authorized pubic health authority can use Safe Paths. 
 
-### Custom Builds 
+Safe Paths is available as an app published by Path Check in the [Apple App Store](https://apps.apple.com/us/app/covid-safe-paths/id1508266966) and the [Google Play App Store](https://play.google.com/store/apps/details?id=org.pathcheck.covidsafepaths). Any authorized pubic health authority can use Safe Paths.
+
+### Custom Builds
 
 We welcome public health authorities and other organizations implementing digital contact tracing strategies to create custom builds for their specific needs, incorporate Safe Paths features into their applications, or create downstream projects that stay linked to the Safe Paths project. If intending to fork the repository and develop off of it, be aware that this comes "at your own risk" for continued maintenance.
 
 ### GAEN Instances
 
-The rules for GAEN require that each public health authority release their own application. The goal with Project Aurora is to support this deployment strategy. 
+The rules for GAEN require that each public health authority release their own application. The goal with Project Aurora is to support this deployment strategy.
 
 ## End-to-End System
 
 Safe Paths is designed to work with Safe Places, a tool for contact tracing teams to work with location data in the course of contact tracing interviews and to publish points of concern. Without having to sharing their own location history, a Safe Paths user can download the points of concern from their PHA to identify if they have had risk of an exposure.
 
-## Broad Non-Developer Community 
+## Broad Non-Developer Community
 
 One of the important aspects of the Safe Paths open source project is that it's supported by a large community of volunteers in addition to the open source developer community. Spanning as diverse domains as product management, user research, cryptography, security, compliance, design, and videography more than 1,400 Path Check volunteers are working together to support Safe Paths and help drive adoption around the world.
 
@@ -62,7 +63,7 @@ One of the important aspects of the Safe Paths open source project is that it's 
 
 Original White Paper: [Apps Gone Rogue: Maintaining Personal Privacy in an Epidemic](https://drive.google.com/file/d/1nwOR4drE3YdkCkyy_HBd6giQPPhLEkRc/view?usp=sharing)
 
-[COVID Safe Paths Slack](covidsafepaths.slack.com) - This is where the community lives. 
+[COVID Safe Paths Slack](covidsafepaths.slack.com) - This is where the community lives.
 
 ### Downloads for COVID Safe Paths
 
@@ -98,7 +99,6 @@ We are following a white labeling strategy to accomplish this. That is, we have
 two build targets for each app which use the same codebase. For development, we
 are preferring to keep as much code as possible common between the two targets.
 
-
 ## Developer Setup
 
 First, run the appropriate setup script for your system. This will install relevant packages, walk through Android Studio configuration, etc.
@@ -116,6 +116,15 @@ dev_setup.sh
 ```
 dev_setup.bat
 ```
+
+Then, add your own values for each environment variable in the following 6 `.env` files:
+
+- .env.bt
+- .env.bt.staging
+- .env.bt.release
+- .env.gps
+- .env.gps.staging
+- .env.gps.release
 
 ## Running
 
@@ -170,11 +179,12 @@ This project is using
 [typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
 
 Run the complier with:
+
 ```
 yarn tsc
 ```
 
-Not every file *needs* to be written in TypeScript, but we are preferring to use
+Not every file _needs_ to be written in TypeScript, but we are preferring to use
 TypeScript in general.
 
 Note that for React-Native projects, TypeScript complication is handled by the
