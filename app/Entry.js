@@ -32,7 +32,8 @@ import {
 } from './views/Export';
 import ExposureHistoryScreen from './views/ExposureHistory';
 import Assessment from './views/assessment';
-import NextSteps from './views/NextSteps';
+import NextSteps from './views/ExposureHistory/NextSteps';
+import MoreInfo from './views/ExposureHistory/MoreInfo';
 import ENDebugMenu from './views/Settings/ENDebugMenu';
 import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
@@ -117,6 +118,7 @@ const ExposureHistoryStack = ({ navigation }) => {
         component={ExposureHistoryScreen}
       />
       <Stack.Screen name={Screens.NextSteps} component={NextSteps} />
+      <Stack.Screen name={Screens.MoreInfo} component={MoreInfo} />
     </Stack.Navigator>
   );
 };
