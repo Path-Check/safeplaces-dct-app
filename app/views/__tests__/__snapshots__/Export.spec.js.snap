@@ -175,6 +175,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                       "writingDirection": "ltr",
                     },
                     Object {
+                      "color": "#1f2c9b",
                       "fontFamily": "IBMPlexSans-Medium",
                       "fontSize": 20,
                       "fontWeight": "normal",

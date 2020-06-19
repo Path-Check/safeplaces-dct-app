@@ -18,10 +18,9 @@ import {
 import { Images, Icons } from '../../assets';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 
 import { SvgXml } from 'react-native-svg';
-import colors from '../../constants/colors';
+import { Colors } from '../../styles';
 
 // For fixing image width issues
 const win = Dimensions.get('window');
@@ -36,7 +35,9 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
   const navigateToViewHAs = () => navigation.navigate('PartnersEdit');
 
   return (
-    <NavigationBarWrapper title={t('authorities.title')}>
+    <NavigationBarWrapper
+      title={t('authorities.title')}
+      includeBackButton={false}>
       <ScrollView
         style={styles.backgroundWrapper}
         alwaysBounceVertical={false}
@@ -57,7 +58,7 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
         {/* Outside horizontal padding so touchable is full width */}
         <View style={styles.divider} />
         <TouchableHighlight
-          underlayColor={Colors.UNDERLAY}
+          underlayColor={Colors.underlayPrimaryBackground}
           onPress={navigateToViewHAs}>
           <View
             style={[
@@ -65,16 +66,18 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
               {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems: 'center',
                 paddingVertical: 20,
               },
             ]}>
             <Typography use={'body1'} style={{ fontWeight: '500' }}>
               {t('authorities.view_button_label')}
             </Typography>
-            <SvgXml xml={Icons.ChevronRight} height={20} />
+            <SvgXml xml={Icons.ChevronRight} />
           </View>
         </TouchableHighlight>
-        <View style={[styles.divider, { marginHorizontal: 24 }]} />
+        <View style={styles.divider} />
+        <View style={{ height: 24 }} />
       </ScrollView>
       <View style={styles.bottomSheet}>
         <Typography
@@ -86,7 +89,10 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
         </Typography>
         <View style={{ width: 16 }} />
         <Switch
-          trackColor={{ true: Colors.PRIMARY_50, false: Colors.WHITE }}
+          trackColor={{
+            true: Colors.switchEnabled,
+            false: Colors.switchDisabled,
+          }}
           value={toggleActive}
           onValueChange={setToggleActive}
         />
@@ -98,20 +104,19 @@ export default PartnersScreen;
 
 const styles = StyleSheet.create({
   backgroundWrapper: {
-    backgroundColor: Colors.INTRO_WHITE_BG,
+    backgroundColor: Colors.primaryBackground,
     flex: 1,
   },
   divider: {
-    height: StyleSheet.hairlineWidth,
-    width: '100%',
-    backgroundColor: Colors.VIOLET_BUTTON_LIGHT,
+    height: 1,
+    backgroundColor: Colors.formInputBorder,
     marginHorizontal: 24,
   },
   horizontalPadding: {
     paddingHorizontal: 24,
   },
   bottomSheet: {
-    backgroundColor: colors.WHITE,
+    backgroundColor: Colors.bottomSheetBackground,
     padding: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -119,6 +124,6 @@ const styles = StyleSheet.create({
     // TODO: Standardize bottom sheets. We mix shadows & borders.
     // Since this is on a main tab, borders are consistent.
     borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.VIOLET_BUTTON_LIGHT,
+    borderTopColor: Colors.formInputBorder,
   },
 });
