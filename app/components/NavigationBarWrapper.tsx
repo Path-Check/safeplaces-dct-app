@@ -63,6 +63,7 @@ export const NavigationBarWrapper = ({
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: Colors.navBar,
   },
   headerContainer: {
@@ -88,6 +89,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     backgroundColor: Colors.primaryBackground,
-    height: '100%',
+    flex: 1,
   },
 });

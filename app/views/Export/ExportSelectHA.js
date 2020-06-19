@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
-import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
@@ -23,7 +22,6 @@ import { Screens } from '../../navigation';
 
 import { Icons } from '../../assets';
 import { Colors } from '../../styles';
-import OldColors from '../../constants/colors';
 
 export const ExportSelectHA = ({ navigation }) => {
   const { t } = useTranslation();
@@ -66,7 +64,7 @@ export const ExportSelectHA = ({ navigation }) => {
                 onPress={() => navigation.navigate(Screens.ExportStart)}
               />
             </View>
-            <Typography use='headline2' style={styles.exportSectionTitles}>
+            <Typography use='headline2'>
               {t('export.select_ha_title')}
             </Typography>
           </View>
@@ -75,7 +73,7 @@ export const ExportSelectHA = ({ navigation }) => {
             keyExtractor={({ name }, i) => `${name}:${i}`}
             renderItem={({ item: HA }) => (
               <TouchableHighlight
-                underlayColor={OldColors.UNDERLAY}
+                underlayColor={Colors.underlayPrimaryBackground}
                 style={{
                   paddingVertical: 20,
                   paddingHorizontal: 24,
@@ -134,7 +132,7 @@ export const ExportSelectHA = ({ navigation }) => {
 const Separator = () => (
   <View
     style={{
-      backgroundColor: Colors.tertiaryViolet,
+      backgroundColor: Colors.formInputBorder,
       height: StyleSheet.hairlineWidth,
       width: '100%',
     }}
@@ -143,11 +141,6 @@ const Separator = () => (
 
 const styles = StyleSheet.create({
   wrapper: { flex: 1, backgroundColor: Colors.primaryBackgroundFaintShade },
-  exportSectionTitles: {
-    fontWeight: '500',
-    color: Colors.violetTextDark,
-    fontFamily: fontFamily.primaryMedium,
-  },
   card: {
     backgroundColor: Colors.white,
     shadowColor: Colors.black,

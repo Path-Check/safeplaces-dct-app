@@ -178,9 +178,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
             />
           </View>
           <View style={{ flex: 1, marginBottom: 20 }}>
-            <Typography use='headline2' style={styles.exportSectionTitles}>
-              {exportCodeTitle}
-            </Typography>
+            <Typography use='headline2'>{exportCodeTitle}</Typography>
             <View style={{ height: 8 }} />
             <Typography use='body1'>
               {exportCodeBody(selectedAuthority.name)}
