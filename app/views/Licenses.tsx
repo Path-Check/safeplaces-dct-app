@@ -65,7 +65,7 @@ export const LicensesScreen = ({
         alwaysBounceVertical={false}>
         <View>
           <Typography use='headline2'>{legalHeaderText}</Typography>
-          <View style={{ paddingTop: 10, paddingLeft: 24 }}>
+          <View style={{ paddingTop: Spacing.xSmall, paddingLeft: Spacing.medium }}>
             <Typography use='body2'>{t('label.legal_page_address')}</Typography>
             <View style={{ height: 20 }} />
             <Typography
