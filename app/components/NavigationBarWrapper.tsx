@@ -12,7 +12,6 @@ interface NavigationBarWrapperProps {
   children: React.ReactNode;
   title: string;
   onBackPress?: () => void;
-  includeBottomNav?: boolean;
   includeBackButton?: boolean;
 }
 

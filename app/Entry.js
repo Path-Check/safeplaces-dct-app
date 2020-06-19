@@ -110,8 +110,6 @@ const ExposureHistoryStack = ({ navigation }) => {
       mode='modal'
       screenOptions={{
         ...SCREEN_OPTIONS,
-        cardStyleInterpolator: fade,
-        gestureEnabled: false,
       }}>
       <Stack.Screen
         name={Screens.ExposureHistory}

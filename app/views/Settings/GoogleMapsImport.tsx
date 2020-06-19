@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 import {
@@ -12,7 +12,8 @@ import { Typography } from '../../components/Typography';
 import { Screens } from '../../navigation';
 
 import { Icons } from '../../assets';
-import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
+import { Spacing, Typography as TypographyStyles } from '../../styles';
+import { Button } from '../../components/Button';
 
 interface GoogleMapsImportProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -36,21 +37,15 @@ const GoogleMapsImport = ({
         </Typography>
       </View>
 
-      <View style={styles.description}>
-        <Typography use='body2'>{t('import.subtitle')}</Typography>
+      <Typography use='body2'>{t('import.subtitle')}</Typography>
+
+      <View style={styles.buttonWrapper}>
+        <Button onPress={handleImportPressed} label={t('import.button_text')} />
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleImportPressed}>
-        <Typography style={styles.buttonText}>
-          {t('import.button_text')}
-        </Typography>
-      </TouchableOpacity>
-
-      <View style={styles.description}>
-        <Typography style={styles.disclaimerText}>
-          {t('import.google.disclaimer')}
-        </Typography>
-      </View>
+      <Typography style={styles.disclaimerText}>
+        {t('import.google.disclaimer')}
+      </Typography>
     </>
   );
 };
@@ -59,16 +54,13 @@ const styles = StyleSheet.create({
   title: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: Spacing.small,
+    paddingBottom: Spacing.xSmall,
   },
   titleText: {
-    marginLeft: Spacing.small,
+    marginLeft: Spacing.xxSmall,
   },
-  description: {
-    paddingVertical: Spacing.medium,
-  },
-  button: {
-    ...Buttons.largeBlueOutline,
+  buttonWrapper: {
+    marginVertical: Spacing.medium,
   },
   buttonText: {
     ...TypographyStyles.buttonTextDark,

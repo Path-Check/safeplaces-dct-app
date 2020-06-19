@@ -61,20 +61,16 @@ const ExposureHistoryScreen = (): JSX.Element => {
     selectedDatum && !DateTimeUtils.isInFuture(selectedDatum.date);
 
   return (
-    <SafeAreaView>
-      <ScrollView
-        style={styles.container}
-        contentInset={{ top: 0, bottom: 140 }}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView style={styles.container} alwaysBounceVertical={false}>
         <View style={styles.header}>
           <View style={styles.headerRow}>
             <Typography style={styles.headerText}>{titleText}</Typography>
-            {!isGPS ? (
-              <TouchableOpacity
-                onPress={handleOnPressMoreInfo}
-                style={styles.moreInfoButton}>
-                <SvgXml xml={Icons.IconQuestionMark} />
-              </TouchableOpacity>
-            ) : null}
+            <TouchableOpacity
+              onPress={handleOnPressMoreInfo}
+              style={styles.moreInfoButton}>
+              <SvgXml xml={Icons.IconQuestionMark} />
+            </TouchableOpacity>
           </View>
           {!isGPS ? (
             <View style={styles.headerRow}>

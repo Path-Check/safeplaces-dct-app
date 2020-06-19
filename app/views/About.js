@@ -10,15 +10,13 @@ import {
   View,
   Text,
 } from 'react-native';
-import { SvgXml } from 'react-native-svg';
 
 import packageJson from '../../package.json';
 import fontFamily from './../constants/fonts';
-import { Icons } from '../assets';
 import { NavigationBarWrapper, Typography } from '../components';
 import { useAssets } from '../TracingStrategyAssets';
 
-import { Colors } from '../styles';
+import { Colors, Spacing } from '../styles';
 
 export const AboutScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -44,17 +42,15 @@ export const AboutScreen = ({ navigation }) => {
     <NavigationBarWrapper
       title={t('screen_titles.about')}
       onBackPress={backToMain}>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <ScrollView
+        contentContainerStyle={styles.contentContainer}
+        alwaysBounceVertical={false}>
         <View style={styles.spacer} />
         <View style={styles.spacer} />
 
-        <View style={styles.aboutLabelContainer}>
-          <SvgXml style={styles.aboutSectionIconLock} xml={Icons.Lock} />
-          <Typography style={styles.aboutSectionTitles} use='headline2'>
-            {aboutHeader}
-          </Typography>
-        </View>
-        <Typography style={styles.aboutSectionPara}>
+        <Typography use='headline2'>{aboutHeader}</Typography>
+        <View style={{ height: 10 }} />
+        <Typography use='body2'>
           {t('label.about_para')}
           {/* Space between the copy & link*/}
           <Text> </Text>
@@ -125,38 +121,11 @@ export const AboutScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   contentContainer: {
     flexDirection: 'column',
-    width: '100%',
     backgroundColor: Colors.primaryBackground,
-    paddingHorizontal: 40,
-    paddingBottom: 42,
-  },
-  aboutLabelContainer: {
-    flexDirection: 'column',
-  },
-  aboutSectionIconLock: {
-    width: 20,
-    height: 26.67,
-    marginTop: 36,
-  },
-  aboutSectionTitles: {
-    color: Colors.primaryText,
-    marginTop: 14,
-    lineHeight: 32,
-  },
-  aboutSectionPara: {
-    color: Colors.primaryText,
-    fontSize: 16,
-    lineHeight: 22.5,
-    marginTop: 12,
-    fontFamily: fontFamily.primaryRegular,
+    paddingHorizontal: Spacing.medium,
   },
   hyperlink: {
     color: Colors.linkText,
-    fontSize: 16,
-    lineHeight: 22.5,
-    marginTop: 12,
-    alignSelf: 'center',
-    fontFamily: fontFamily.primaryRegular,
     textDecorationLine: 'underline',
   },
   aboutSectionParaBold: {
