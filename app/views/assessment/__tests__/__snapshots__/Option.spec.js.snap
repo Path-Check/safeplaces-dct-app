@@ -50,7 +50,7 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "#4051db",
+                "borderColor": "#1f2c9b",
                 "borderRadius": 40,
                 "borderWidth": 2,
                 "height": 20,
@@ -140,7 +140,7 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "#4051db",
+                "borderColor": "#1f2c9b",
                 "borderRadius": 40,
                 "borderWidth": 2,
                 "height": 20,

@@ -4,7 +4,7 @@ import {
   EventSubscription,
 } from 'react-native';
 
-import { ENAuthorizationStatus } from '../ExposureNotificationContext';
+import { DeviceStatus } from '../ExposureNotificationContext';
 import { ExposureHistory } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureHistory } from './exposureNotifications';
@@ -15,7 +15,6 @@ export const subscribeToExposureEvents = (
   const ExposureEvents = new NativeEventEmitter(
     NativeModules.ExposureEventEmitter,
   );
-
   return ExposureEvents.addListener(
     'onExposureRecordUpdated',
     (rawExposure: string) => {
@@ -25,10 +24,24 @@ export const subscribeToExposureEvents = (
   );
 };
 
+export const subscribeToEnabledStatusEvents = (
+  cb: (status: DeviceStatus) => void,
+): EventSubscription => {
+  const ExposureEvents = new NativeEventEmitter(
+    NativeModules.ExposureEventEmitter,
+  );
+  return ExposureEvents.addListener(
+    'onEnabledStatusUpdated',
+    (status: DeviceStatus) => {
+      cb(status);
+    },
+  );
+};
+
 const exposureNotificationModule = NativeModules.PTCExposureManagerModule;
 
 export const requestAuthorization = async (
-  cb: (authorizationStatus: ENAuthorizationStatus) => void,
+  cb: (authorizationStatus: DeviceStatus) => void,
 ): Promise<void> => {
   exposureNotificationModule.requestExposureNotificationAuthorization(cb);
 };
@@ -72,15 +85,6 @@ export const resetExposure = async (
   debugModule.resetExposure(cb);
 };
 
-export const simulatePositiveDiagnosis = async (
-  cb: (
-    errorMessage: ENModuleErrorMessage,
-    successMesage: ENModuleSuccessMessage,
-  ) => void,
-): Promise<void> => {
-  debugModule.simulatePositiveDiagnosis(cb);
-};
-
 export const toggleExposureNotifications = async (
   cb: (
     errorMessage: ENModuleErrorMessage,
@@ -99,15 +103,6 @@ export const resetExposureDetectionError = async (
   debugModule.resetExposureDetectionError(cb);
 };
 
-export const resetUserENState = async (
-  cb: (
-    errorMessage: ENModuleErrorMessage,
-    successMesage: ENModuleSuccessMessage,
-  ) => void,
-): Promise<void> => {
-  debugModule.resetUserENState(cb);
-};
-
 export const getAndPostDiagnosisKeys = async (
   cb: (
     errorMessage: ENModuleErrorMessage,
@@ -124,15 +119,6 @@ export const simulateExposureDetectionError = async (
   ) => void,
 ): Promise<void> => {
   debugModule.simulateExposureDetectionError(cb);
-};
-
-export const getExposureConfiguration = async (
-  cb: (
-    errorMessage: ENModuleErrorMessage,
-    successMesage: ENModuleSuccessMessage,
-  ) => void,
-): Promise<void> => {
-  debugModule.getExposureConfiguration(cb);
 };
 
 export const resetExposures = async (

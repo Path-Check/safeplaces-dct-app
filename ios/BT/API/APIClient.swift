@@ -1,24 +1,28 @@
 import Alamofire
 
 enum RequestType {
-  case post,
-  get
+  case postKeys,
+  downloadKeyFile,
+  indexFile
 }
 
 final class APIClient {
 
-  let postUrl: URL
-  let pullUrl: URL
+  let postKeysUrl: URL
+  let downloadKeyFile: URL
+  let indexFileUrl: URL
   static let shared = APIClient(
-    postUrl: URL(string: "https://exposure-2kabcv6c4a-uc.a.run.app")!,
-    pullUrl: URL(string: "https://federationout-2kabcv6c4a-uc.a.run.app")!
+    postKeysUrl: URL(string: ReactNativeConfig.env(for: .postKeysUrl))!,
+    downloadKeyFile: URL(string: ReactNativeConfig.env(for: .downloadKeyFile))!,
+    indexFileUrl: URL(string: ReactNativeConfig.env(for: .indexFileUrl))!
   )
 
   private let sessionManager: SessionManager
 
-  init(postUrl: URL, pullUrl: URL) {
-    self.postUrl = postUrl
-    self.pullUrl = pullUrl
+  init(postKeysUrl: URL, downloadKeyFile: URL, indexFileUrl: URL) {
+    self.postKeysUrl = postKeysUrl
+    self.downloadKeyFile = downloadKeyFile
+    self.indexFileUrl = indexFileUrl
 
     let configuration = URLSessionConfiguration.default
 
@@ -43,6 +47,16 @@ final class APIClient {
     }
   }
 
+  func downloadRequest<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<URL>) -> Void) {
+    downloadRequest(for: request, fileName: request.path).responseData { response in
+      guard let destinationUrl = response.destinationURL else {
+        completion(.failure(GenericError.unknown))
+        return
+      }
+      completion(.success(destinationUrl))
+    }
+  }
+
   func request<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<JSONObject>) -> Void) where T.ResponseType == JSONObject {
     dataRequest(for: request, requestType: requestType)
       .validate(validate)
@@ -64,6 +78,19 @@ final class APIClient {
     requestDecodables(request, requestType: requestType, completion: completion)
   }
 
+  func requestString<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<T.ResponseType>) -> Void) where T.ResponseType == String {
+    dataRequest(for: request, requestType: requestType)
+      .validate(validate)
+      .responseData { response in
+        switch response.result {
+        case .success(let data):
+          completion(.success(String(decoding: data, as: UTF8.self)))
+        case .failure(let error):
+          completion(.failure(error))
+        }
+    }
+  }
+
   func cancelAllRequests() {
     sessionManager.session.getAllTasks { tasks in
       tasks.forEach { $0.cancel() }
@@ -81,14 +108,35 @@ private extension APIClient {
     static let errorMessage = "error_description"
   }
 
+  func downloadRequest<T: APIRequest>(for request: T, fileName: String) -> DownloadRequest {
+    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+      var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+      documentsURL.appendPathComponent(fileName)
+      return (documentsURL, [.removePreviousFile])
+    }
+    let r = sessionManager.download(downloadKeyFile.appendingPathComponent(request.path, isDirectory: false), to: destination)
+    debugPrint(r)
+    return r
+  }
+
   func dataRequest<T: APIRequest>(for request: T, requestType: RequestType) -> DataRequest {
-    let baseUrl = requestType == .post ? postUrl : pullUrl
-    return sessionManager.request(
+    var baseUrl: URL!
+    switch requestType {
+    case .postKeys:
+      baseUrl = postKeysUrl
+    case .downloadKeyFile:
+      baseUrl = downloadKeyFile
+    case .indexFile:
+      baseUrl = indexFileUrl
+    }
+    let r = sessionManager.request(
       baseUrl.appendingPathComponent(request.path, isDirectory: false),
       method: request.method,
       parameters: request.parameters,
       encoding: request.encoding
     )
+    debugPrint(r)
+    return r
   }
 
   func validate(request: URLRequest?, response: HTTPURLResponse, data: Data?) -> Request.ValidationResult {

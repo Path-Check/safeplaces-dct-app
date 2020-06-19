@@ -1,12 +1,18 @@
 import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 
 import { ExposureHistory, ExposureDatum } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import ExposureDatumIndicator from './ExposureDatumIndicator';
 
-import { Spacing } from '../../styles';
+import {
+  Colors,
+  Buttons,
+  Spacing,
+  Typography as TypographyStyles,
+} from '../../styles';
 
 interface CalendarProps {
   exposureHistory: ExposureHistory;
@@ -19,8 +25,11 @@ const Calendar = ({
   onSelectDate,
   selectedDatum,
 }: CalendarProps): JSX.Element => {
+  const { t } = useTranslation();
   const lastMonth = dayjs().subtract(1, 'month');
-  const title = `${lastMonth.format('MMMM')}/${dayjs().format('MMMM')}`;
+  const title = `${lastMonth.format('MMMM')} | ${dayjs().format(
+    'MMMM',
+  )}`.toUpperCase();
 
   const week1 = exposureHistory.slice(0, 7);
   const week2 = exposureHistory.slice(7, 14);
@@ -66,9 +75,21 @@ const Calendar = ({
     );
   };
 
+  const handleOnPressLegend = () => {};
+  const legendButtonText = t('exposure_history.legend_button');
+
   return (
     <View style={styles.container}>
-      <Typography use='headline1'>{title}</Typography>
+      <View style={styles.header}>
+        <Typography style={styles.monthText}>{title}</Typography>
+        <TouchableOpacity
+          onPress={handleOnPressLegend}
+          style={styles.legendButton}>
+          <Typography style={styles.legendButtonText}>
+            {legendButtonText}
+          </Typography>
+        </TouchableOpacity>
+      </View>
       <View style={styles.calendarContainer}>
         <DayLabels />
         <CalendarRow week={week1} />
@@ -83,7 +104,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  calendarContainer: { flex: 1 },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  monthText: {
+    ...TypographyStyles.label,
+    color: Colors.secondaryHeaderText,
+  },
+  legendButton: {
+    ...Buttons.tinyTeritiaryRounded,
+    borderWidth: 1,
+  },
+  legendButtonText: {
+    ...TypographyStyles.buttonTextTinyDark,
+  },
+  calendarContainer: { flex: 1, paddingVertical: Spacing.small },
   calendarRow: {
     flex: 1,
     paddingVertical: Spacing.xSmall,

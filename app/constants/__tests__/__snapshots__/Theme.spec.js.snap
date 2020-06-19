@@ -68,7 +68,7 @@ exports[`includes extra background View if setBackground=true 1`] = `
       style={
         Array [
           Object {
-            "color": "#4051db",
+            "color": "#1f2c9b",
             "fontFamily": "IBMPlexSans-Bold",
             "fontSize": 52,
             "fontWeight": "500",

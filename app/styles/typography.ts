@@ -31,12 +31,17 @@ export const heaviestWeight = '700';
 
 // Font Families
 export const baseFontFamily = 'IBMPlexSans';
+export const mediumFontFamily = 'IBMPlexSans-Medium';
 export const boldFontFamily = 'IBMPlexSans-Bold';
 export const monospaceFontFamily = 'IBMPlexMono';
 
 export const bold: TextStyle = {
   fontFamily: boldFontFamily,
   fontWeight: heavyWeight,
+};
+
+export const mediumBold: TextStyle = {
+  fontFamily: mediumFontFamily,
 };
 
 export const monospace: TextStyle = {
@@ -64,6 +69,11 @@ export const largeFont: TextStyle = {
   fontSize: large,
 };
 
+export const largerFont: TextStyle = {
+  lineHeight: largestLineHeight,
+  fontSize: larger,
+};
+
 export const largestFont: TextStyle = {
   lineHeight: largestLineHeight,
   fontSize: largest,
@@ -78,13 +88,24 @@ export const hugeFont: TextStyle = {
 export const header1: TextStyle = {
   ...hugeFont,
   ...bold,
-  color: Colors.violetText,
+  color: Colors.primaryHeaderText,
 };
 
 export const header2: TextStyle = {
   ...largestFont,
   ...bold,
-  color: Colors.violetText,
+  color: Colors.primaryHeaderText,
+};
+
+export const header3: TextStyle = {
+  ...largerFont,
+  ...bold,
+  color: Colors.primaryHeaderText,
+};
+
+export const header4: TextStyle = {
+  ...smallFont,
+  color: Colors.secondaryHeaderText,
 };
 
 export const title: TextStyle = {
@@ -134,10 +155,17 @@ export const error: TextStyle = {
   fontWeight: heavyWeight,
 };
 
+// Navigation
+export const navHeader: TextStyle = {
+  ...largeFont,
+  ...bold,
+  color: Colors.white,
+};
+
 // Tappables
 export const tappableListItem: TextStyle = {
   ...mediumFont,
-  color: Colors.violetText,
+  color: Colors.primaryViolet,
 };
 
 // Buttons
@@ -154,4 +182,9 @@ export const buttonTextDark: TextStyle = {
 export const buttonTextLight: TextStyle = {
   ...buttonText,
   color: Colors.white,
+};
+
+export const buttonTextTinyDark: TextStyle = {
+  ...buttonTextDark,
+  ...tinyFont,
 };

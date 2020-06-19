@@ -24,11 +24,7 @@ exports[`allows size override 1`] = `
   >
     <SvgXml
       height={48}
-      style={
-        Object {
-          "color": "#4051db",
-        }
-      }
+      style={Object {}}
       width={48}
       xml="<g />"
     />
@@ -83,11 +79,7 @@ exports[`changes color based on theme 1`] = `
   >
     <SvgXml
       height={24}
-      style={
-        Object {
-          "color": "#4051db",
-        }
-      }
+      style={Object {}}
       width={24}
       xml="<g />"
     />
@@ -157,11 +149,7 @@ exports[`renders the icon in a touchable opacity 1`] = `
   >
     <SvgXml
       height={24}
-      style={
-        Object {
-          "color": "#4051db",
-        }
-      }
+      style={Object {}}
       width={24}
       xml="<g />"
     />

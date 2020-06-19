@@ -2,8 +2,17 @@
   package="org.pathcheck.covidsafepaths">
 
     <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
-    <application android:name="covidsafepaths.bt.MainApplication"/>
+
+    <application android:name="covidsafepaths.bt.MainApplication">
+        <receiver
+            android:name="covidsafepaths.bt.exposurenotifications.ExposureNotificationBroadcastReceiver"
+            android:permission="com.google.android.gms.nearby.exposurenotification.EXPOSURE_CALLBACK"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.exposurenotification.ACTION_EXPOSURE_STATE_UPDATED" />
+            </intent-filter>
+        </receiver>
+    </application>
 
 </manifest>

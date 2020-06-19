@@ -12,7 +12,7 @@ extension ENTemporaryExposureKey {
 
   var asDictionary : [String: Any] {
     return [
-      "keyData": keyData,
+      "key": keyData,
       "rollingPeriod": rollingPeriod,
       "rollingStartNumber": rollingStartNumber,
       "transmissionRisk": transmissionRiskLevel

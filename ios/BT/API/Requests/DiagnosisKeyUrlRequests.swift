@@ -3,9 +3,9 @@ import ExposureNotification
 
 enum DiagnosisKeyUrlRequest: APIRequest {
 
-  typealias ResponseType = URL
+  typealias ResponseType = Void
 
-  case get(URL)
+  case get(String)
 
   var method: HTTPMethod {
     switch self {
@@ -15,7 +15,10 @@ enum DiagnosisKeyUrlRequest: APIRequest {
   }
 
   var path: String {
-    return ""
+    switch self {
+    case .get(let path):
+      return path
+    }
   }
 
   var parameters: Parameters? {
