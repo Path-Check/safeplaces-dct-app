@@ -2,11 +2,14 @@ import Foundation
 import ExposureNotification
 import RealmSwift
 import UserNotifications
+import BackgroundTasks
 
 @objc(ExposureManager)
 final class ExposureManager: NSObject {
   
   @objc static let shared = ExposureManager()
+
+  private static let backgroundTaskIdentifier = Bundle.main.bundleIdentifier! + ".exposure-notification"
   
   let manager = ENManager()
   
@@ -36,6 +39,9 @@ final class ExposureManager: NSObject {
         }
       }
     }
+
+    // Schedule background task if needed whenever EN authorization status changes
+    NotificationCenter.default.addObserver(self, selector: #selector(scheduleBackgroundTaskIfNeeded), name: .AuthorizationStatusDidChange, object: nil)
   }
   
   deinit {
@@ -251,8 +257,67 @@ final class ExposureManager: NSObject {
     case .toggleENAuthorization:
       let enabled = manager.exposureNotificationEnabled ? false : true
       requestExposureNotificationAuthorization(enabled: enabled) { result in
+        self.notifyUserBlueToothOffIfNeeded()
         completion([NSNull(), "EN Enabled: \(self.manager.exposureNotificationEnabled)"])
       }
+    }
+  }
+
+  @objc func registerBackgroundTask() {
+    notifyUserBlueToothOffIfNeeded()
+    BGTaskScheduler.shared.register(forTaskWithIdentifier: ExposureManager.backgroundTaskIdentifier, using: .main) { [weak self] task in
+
+      // Notify the user if bluetooth is off
+      self?.notifyUserBlueToothOffIfNeeded()
+
+      // Perform the exposure detection
+      let progress = ExposureManager.shared.detectExposures { success in
+        task.setTaskCompleted(success: success)
+      }
+
+      // Handle running out of time
+      task.expirationHandler = {
+        progress.cancel()
+        BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = NSLocalizedString("BACKGROUND_TIMEOUT", comment: "Error")
+      }
+
+      // Schedule the next background task
+      self?.scheduleBackgroundTaskIfNeeded()
+    }
+  }
+
+}
+
+private extension ExposureManager {
+
+  @objc func scheduleBackgroundTaskIfNeeded() {
+    guard ENManager.authorizationStatus == .authorized else { return }
+    let taskRequest = BGProcessingTaskRequest(identifier: ExposureManager.backgroundTaskIdentifier)
+    taskRequest.requiresNetworkConnectivity = true
+    do {
+      try BGTaskScheduler.shared.submit(taskRequest)
+    } catch {
+      print("Unable to schedule background task: \(error)")
+    }
+  }
+
+  func notifyUserBlueToothOffIfNeeded() {
+    let identifier = String.bluetoothNotificationIdentifier
+    if ENManager.authorizationStatus == .authorized && manager.exposureNotificationStatus == .bluetoothOff {
+      let content = UNMutableNotificationContent()
+      content.title = String.bluetoothNotificationTitle.localized
+      content.body = String.bluetoothNotificationBody.localized
+      content.sound = .default
+      let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
+      UNUserNotificationCenter.current().add(request) { error in
+        DispatchQueue.main.async {
+          if let error = error {
+            print("Error showing error user notification: \(error)")
+          }
+        }
+      }
+    } else {
+      UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
     }
   }
 }
