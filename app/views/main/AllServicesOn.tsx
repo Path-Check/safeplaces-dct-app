@@ -12,15 +12,23 @@ import { styles } from './style';
 
 import { Colors } from '../../styles';
 
-export const AllServicesOnScreen = (): JSX.Element => {
+type AllServicesOnProps = {
+  noHaAvailable: boolean;
+};
+
+export const AllServicesOnScreen = ({
+  noHaAvailable,
+}: AllServicesOnProps): JSX.Element => {
   const {
     allServicesOnScreenHeader,
     allServicesOnScreenSubheader,
+    allServicesOnNoHaAvailableSubHeader,
   } = useAssets();
   const size = Dimensions.get('window').height;
 
   const allServicesOnScreenHeaderText: string = allServicesOnScreenHeader as string;
   const allServicesOnScreenSubheaderText: string = allServicesOnScreenSubheader as string;
+  const allServicesOnNoHaAvailableSubHeaderText: string = allServicesOnNoHaAvailableSubHeader as string;
 
   return (
     <Theme use='violet'>
@@ -59,6 +67,11 @@ export const AllServicesOnScreen = (): JSX.Element => {
             <Typography style={styles.subheaderText}>
               {allServicesOnScreenSubheaderText}
             </Typography>
+            {noHaAvailable && (
+              <Typography style={styles.subheaderText}>
+                {allServicesOnNoHaAvailableSubHeaderText}
+              </Typography>
+            )}
           </View>
         </View>
       </ImageBackground>

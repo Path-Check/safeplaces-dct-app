@@ -124,6 +124,10 @@ export function useAssets(): Record<string, Asset> {
   const allServicesOnScreenSubheader = isGPS
     ? t('home.gps.all_services_on_subheader')
     : t('home.bluetooth.all_services_on_subheader');
+  // This is just for release without HAs enabled. GPS only.
+  const allServicesOnNoHaAvailableSubHeader = isGPS
+    ? t('home.gps.all_services_on_no_ha_available')
+    : '';
 
   // Export Intro/Start
   const exportStartTitle = isGPS
@@ -186,6 +190,7 @@ export function useAssets(): Record<string, Asset> {
     tracingOffScreenButton,
     allServicesOnScreenHeader,
     allServicesOnScreenSubheader,
+    allServicesOnNoHaAvailableSubHeader,
     exposureNotificationsNotAvailableHeader,
     exposureNotificationsNotAvailableSubheader,
     notificationsOffScreenHeader,

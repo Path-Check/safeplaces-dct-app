@@ -10,14 +10,13 @@ import {
   View,
 } from 'react-native';
 
-import fontFamily from '../constants/fonts';
 import { Images } from '../assets';
 import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import { useAssets } from '../TracingStrategyAssets';
 import { NavigationProp } from '../navigation';
 
-import { Colors } from '../styles';
+import { Colors, Spacing } from '../styles';
 
 type LicensesScreenProps = {
   navigation: NavigationProp;
@@ -61,28 +60,36 @@ export const LicensesScreen = ({
     <NavigationBarWrapper
       title={t('screen_titles.legal')}
       onBackPress={backToMain}>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <ScrollView
+        contentContainerStyle={styles.contentContainer}
+        alwaysBounceVertical={false}>
         <View>
-          <Typography style={styles.heading} use='headline2'>
-            {legalHeaderText}
-          </Typography>
-          <Typography style={styles.body} use='body1'>
-            {t('label.legal_page_address')}
-          </Typography>
-          <TouchableOpacity
-            onPress={handleOnPressOpenUrl('mailto:info@pathcheck.org')}>
-            <Typography style={styles.hyperlink}>{infoAddress}</Typography>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleOnPressOpenUrl('covidsafepaths.org')}>
-            <Typography style={styles.hyperlink}>{pathCheckAddress}</Typography>
-          </TouchableOpacity>
+          <Typography use='headline2'>{legalHeaderText}</Typography>
+          <View
+            style={{ paddingTop: Spacing.xSmall, paddingLeft: Spacing.medium }}>
+            <Typography use='body2'>{t('label.legal_page_address')}</Typography>
+            <View style={{ height: 20 }} />
+            <Typography
+              use='body2'
+              onPress={handleOnPressOpenUrl('mailto:info@pathcheck.org')}
+              style={styles.hyperlink}>
+              {infoAddress}
+            </Typography>
+            <Typography
+              use='body2'
+              onPress={handleOnPressOpenUrl('covidsafepaths.org')}
+              style={styles.hyperlink}>
+              {pathCheckAddress}
+            </Typography>
+          </View>
         </View>
       </ScrollView>
       <TouchableOpacity
         style={styles.termsInfoRow}
         onPress={handleOnPressOpenUrl(PRIVACY_POLICY_URL)}>
-        <Typography use='body1'>{t('label.privacy_policy')}</Typography>
+        <Typography style={{ color: Colors.white }} use='body1'>
+          {t('label.privacy_policy')}
+        </Typography>
         <View style={styles.arrowContainer}>
           <Image source={Images.ForeArrow} />
         </View>
@@ -92,31 +99,19 @@ export const LicensesScreen = ({
 };
 
 const styles = StyleSheet.create({
-  body: {
-    color: Colors.black,
-    marginBottom: 24,
-  },
   contentContainer: {
-    width: '100%',
     backgroundColor: Colors.primaryBackgroundFaintShade,
-    paddingHorizontal: 26,
-    paddingVertical: 40,
-  },
-  heading: {
-    color: Colors.black,
-    marginBottom: 12,
+    paddingHorizontal: 24,
+    paddingTop: 24,
   },
   hyperlink: {
     color: Colors.linkText,
-    fontSize: 16,
-    marginBottom: 12,
-    fontFamily: fontFamily.primaryRegular,
     textDecorationLine: 'underline',
   },
   termsInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.primaryViolet,
+    backgroundColor: Colors.primaryBlue,
     paddingVertical: 25,
     paddingHorizontal: 15,
   },

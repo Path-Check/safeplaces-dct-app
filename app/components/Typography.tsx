@@ -12,6 +12,7 @@ interface TypographyProps {
   style?: TextStyle;
   testID?: string;
   children: JSX.Element | string;
+  onPress?: () => void;
 }
 
 export const Typography = ({
@@ -19,6 +20,7 @@ export const Typography = ({
   style,
   testID,
   children,
+  onPress,
 }: TypographyProps): JSX.Element => {
   const writingDirection = useLanguageDirection();
 
@@ -45,7 +47,10 @@ export const Typography = ({
   const textStyle = useToStyle();
 
   return (
-    <Text style={[textStyle, { writingDirection }, style]} testID={testID}>
+    <Text
+      onPress={onPress}
+      style={[textStyle, { writingDirection }, style]}
+      testID={testID}>
       {children}
     </Text>
   );

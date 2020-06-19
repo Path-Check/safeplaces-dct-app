@@ -8,6 +8,7 @@ import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { useStatusBarEffect } from '../../navigation';
 
 import { Spacing, Typography as TypographyStyles } from '../../styles';
+import { isGPS } from '../../COVIDSafePathsConfig';
 
 const MoreInfo = (): JSX.Element => {
   const { t } = useTranslation();
@@ -18,22 +19,27 @@ const MoreInfo = (): JSX.Element => {
     navigation.goBack();
   };
 
-  const headerTextOne = t('exposure_history.why_did_i_get_an_en');
-  const contentTextOne = t('exposure_history.why_did_i_get_an_en_para');
+  const headerTextOne = isGPS
+    ? t('exposure_history.more_info_gps.why_did_i_get_an_en')
+    : t('exposure_history.more_info_bt.why_did_i_get_an_en');
 
-  const headerTextTwo = t('exposure_history.how_does_this_work');
-  const contentTextTwo = t('exposure_history.how_does_this_work_para');
+  const contentTextOne = isGPS
+    ? t('exposure_history.more_info_gps.why_did_i_get_an_en_para')
+    : t('exposure_history.more_info_bt.why_did_i_get_an_en_para');
+
+  const headerTextTwo = isGPS
+    ? t('exposure_history.more_info_gps.how_does_this_work')
+    : t('exposure_history.more_info_bt.how_does_this_work');
+
+  const contentTextTwo = isGPS
+    ? t('exposure_history.more_info_gps.how_does_this_work_para')
+    : t('exposure_history.more_info_bt.how_does_this_work_para');
 
   const title = 'More Info';
 
   return (
-    <NavigationBarWrapper
-      includeBottomNav
-      title={title}
-      onBackPress={handleOnBackPress}>
-      <ScrollView
-        style={styles.container}
-        contentInset={{ top: 0, bottom: 140 }}>
+    <NavigationBarWrapper title={title} onBackPress={handleOnBackPress}>
+      <ScrollView style={styles.container}>
         <View style={styles.contentContainer}>
           <Typography style={styles.headerText}>{headerTextOne}</Typography>
           <Typography style={styles.contentText}>{contentTextOne}</Typography>

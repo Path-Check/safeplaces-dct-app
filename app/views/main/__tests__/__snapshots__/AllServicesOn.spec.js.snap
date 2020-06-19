@@ -162,7 +162,7 @@ exports[`all services on matches snapshot 1`] = `
             ]
           }
         >
-          PathCheck is privately saving the places you visit and comparing your locations to data from your local Health Department
+          PathCheck is saving the places you visit to create your private location diary
         </Text>
       </View>
     </View>

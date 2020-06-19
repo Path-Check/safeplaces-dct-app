@@ -33,10 +33,7 @@ const NextSteps = (): JSX.Element => {
   };
 
   return (
-    <NavigationBarWrapper
-      includeBottomNav
-      title={'Next Steps'}
-      onBackPress={handleOnBackPress}>
+    <NavigationBarWrapper title={'Next Steps'} onBackPress={handleOnBackPress}>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <Typography style={styles.headerText}>{headerText}</Typography>

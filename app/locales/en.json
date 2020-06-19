@@ -105,10 +105,18 @@
   "exposure_history": {
     "legend_button": "LEGEND",
     "last_days": "Last 21 days",
-    "why_did_i_get_an_en": "Why did I get an exposure notification?",
-    "why_did_i_get_an_en_para": "You will receive an exposure notification when someone you crossed paths with later recieves a confirmed, positive diagnosis or test for COVID-19 and chooses to notify others",
-    "how_does_this_work": "How does this work?",
-    "how_does_this_work_para": "When Exposure Notifications are on, your phone uses Bluetooth to swap and save random number strings (called ramdom IDs) from any phones it encounters that also have Exposure Notifications enabled. Random IDs won’t identify you personally to other users and change many times a day to protect your privacy. Date and duration of the encounter are recorded along with an estimate of how close the two phones may have been. When a person reports a positive diagnosis, their phone’s recent random IDs are flagged to anonymously notify others. No locations or personal info is shared."
+    "more_info_bt": {
+      "why_did_i_get_an_en": "Why did I get an exposure notification?",
+      "why_did_i_get_an_en_para": "You will receive an exposure notification when someone you crossed paths with later recieves a confirmed, positive diagnosis or test for COVID-19 and chooses to notify others",
+      "how_does_this_work": "How does this work?",
+      "how_does_this_work_para": "When Exposure Notifications are on, your phone uses Bluetooth to swap and save random number strings (called ramdom IDs) from any phones it encounters that also have Exposure Notifications enabled. Random IDs won’t identify you personally to other users and change many times a day to protect your privacy. Date and duration of the encounter are recorded along with an estimate of how close the two phones may have been. When a person reports a positive diagnosis, their phone’s recent random IDs are flagged to anonymously notify others. No locations or personal info is shared."
+    },
+    "more_info_gps": {
+      "why_did_i_get_an_en": "Why did I get an exposure notification?",
+      "why_did_i_get_an_en_para": "You will receive exposure notifications whenever your PathCheck app estimates that your phone was within 100 feet of another member of your community who later received a positive diagnosis and chose to share their location diary with their local Health Department.",
+      "how_does_this_work": "How does this work?",
+      "how_does_this_work_para": "Your PathCheck app saves the places you’ve taken your phone for the past 14 days into an encrypted list, whenever location access is turned on. This list is comprised of just GPS coordinates, dates, and times, and is only stored on your phone. Your local and regional Health Departments on PathCheck can send your app encrypted collections of anonymized GPS coordinates, dates, and times gathered from their community members who later received positive diagnoses and chose to share. Your phone then compares your location history to that sent by your local Health Department to determine if you should receive an exposure notification."
+    }
   },
   "import": {
     "button_text": "Import past locations",
@@ -135,7 +143,8 @@
       "tracing_off_subheader": "PathCheck needs location access in Settings to privately save the places you visit",
       "tracing_off_button": "Allow Location Access",
       "all_services_on_header": "PathCheck",
-      "all_services_on_subheader": "PathCheck is privately saving the places you visit and comparing your locations to data from your local Health Department",
+      "all_services_on_subheader": "PathCheck is saving the places you visit to create your private location diary",
+      "all_services_on_no_ha_available": "Your phone is currently outside any areas covered by Health Departments",
       "auto_start_header": "Auto Start Disabled",
       "auto_start_subheader": "PathCheck needs to be able to auto start to privately save the places you visit. Please enable it in your app settings"
     },
