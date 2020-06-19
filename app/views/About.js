@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexDirection: 'column',
     backgroundColor: Colors.primaryBackground,
-    paddingHorizontal: 24,
+    paddingHorizontal: Spacing.medium,
   },
   hyperlink: {
     color: Colors.linkText,
