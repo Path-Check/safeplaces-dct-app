@@ -41,7 +41,7 @@ export const subscribeToEnabledStatusEvents = (
 const exposureNotificationModule = NativeModules.PTCExposureManagerModule;
 
 export const requestAuthorization = async (
-  cb: (authorizationStatus: DeviceStatus) => void,
+  cb: (deviceStatus: DeviceStatus) => void,
 ): Promise<void> => {
   exposureNotificationModule.requestExposureNotificationAuthorization(cb);
 };

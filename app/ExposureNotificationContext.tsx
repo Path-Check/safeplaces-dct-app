@@ -8,15 +8,17 @@ type Authorization = `UNAUTHORIZED` | `AUTHORIZED`;
 export type DeviceStatus = [Authorization, Enablement];
 
 interface ExposureNotificationsState {
-  authorizationStatus: DeviceStatus;
+  deviceStatus: DeviceStatus;
   requestENAuthorization: () => void;
+  getIsENAuthorizedAndEnabled: () => boolean;
 }
 
 const initialStatus: DeviceStatus = ['UNAUTHORIZED', 'DISABLED'];
 
 const initialState = {
-  authorizationStatus: initialStatus,
+  deviceStatus: initialStatus,
   requestENAuthorization: () => {},
+  getIsENAuthorizedAndEnabled: () => false,
 };
 
 const ExposureNotificationsContext = createContext<ExposureNotificationsState>(
@@ -30,14 +32,12 @@ interface ExposureNotificationProviderProps {
 const ExposureNotificationsProvider = ({
   children,
 }: ExposureNotificationProviderProps): JSX.Element => {
-  const [authorizationStatus, setAuthorizationStatus] = useState<DeviceStatus>(
-    initialStatus,
-  );
+  const [deviceStatus, setDeviceStatus] = useState<DeviceStatus>(initialStatus);
 
   useEffect(() => {
     const subscription = BTNativeModule.subscribeToEnabledStatusEvents(
       (status: DeviceStatus) => {
-        setAuthorizationStatus(status);
+        setDeviceStatus(status);
       },
     );
 
@@ -47,17 +47,23 @@ const ExposureNotificationsProvider = ({
   }, []);
 
   const requestENAuthorization = () => {
-    const cb = (authorizationStatus: DeviceStatus) => {
-      setAuthorizationStatus(authorizationStatus);
+    const cb = (deviceStatus: DeviceStatus) => {
+      setDeviceStatus(deviceStatus);
     };
     BTNativeModule.requestAuthorization(cb);
+  };
+
+  const getIsENAuthorizedAndEnabled = () => {
+    console.log(deviceStatus);
+    return deviceStatus[0] === 'AUTHORIZED' && deviceStatus[1] === 'ENABLED';
   };
 
   return (
     <ExposureNotificationsContext.Provider
       value={{
-        authorizationStatus,
+        deviceStatus,
         requestENAuthorization,
+        getIsENAuthorizedAndEnabled,
       }}>
       {children}
     </ExposureNotificationsContext.Provider>
