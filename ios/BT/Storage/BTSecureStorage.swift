@@ -59,9 +59,6 @@ final class BTSecureStorage: SafePathsSecureStorage {
     }
   }
 
-  @Persisted(keyPath: .keyPathNextDiagnosisKeyFileIndex, notificationName: .NextDiagnosisKeyFileIndexDidChange, defaultValue: 0)
-  var nextDiagnosisKeyFileIndex: Int
-
   @Persisted(keyPath: .keyPathExposures, notificationName: .ExposuresDidChange, defaultValue: List<Exposure>())
   var exposures: List<Exposure>
 

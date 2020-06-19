@@ -31,7 +31,7 @@ enum DiagnosisKeyListRequest: APIRequest {
 
   typealias ResponseType = Void
 
-  case post([ExposureKey])
+  case post([ExposureKey], [Region])
 
   var method: HTTPMethod {
     switch self {
@@ -49,12 +49,16 @@ enum DiagnosisKeyListRequest: APIRequest {
 
   var parameters: Parameters? {
     switch self {
-    case .post(let diagnosisKeys):
-      let params = diagnosisKeys.map { try? $0.toJson() as? JSONObject }
+    case .post(let diagnosisKeys, let regions):
+      let keys = diagnosisKeys.map { try? $0.toJson() as? JSONObject }
       return [
-        "diagnosisKeys": params
+        "temporaryExposureKeys": keys,
+        "regions": regions.map { $0.rawValue },
+        "appPackageName": Bundle.main.bundleIdentifier!,
+        "verificationPayload": "TODO",
+        "hmackey": "TODO",
+        "padding": String(decoding: Data(), as: UTF8.self)
       ]
     }
   }
-
 }

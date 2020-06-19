@@ -150,12 +150,6 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
               )}
             />
             <DebugMenuListItem
-              label='Get Exposure Configuration'
-              onPress={handleOnPressSimulationButton(
-                BTNativeModule.getExposureConfiguration,
-              )}
-            />
-            <DebugMenuListItem
               label='Simulate Exposure Detection Error'
               onPress={handleOnPressSimulationButton(
                 BTNativeModule.simulateExposureDetectionError,
