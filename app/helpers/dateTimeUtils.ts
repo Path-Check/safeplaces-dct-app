@@ -12,3 +12,7 @@ export const isToday = (date: Posix): boolean => {
 export const beginningOfDay = (date: Posix): Posix => {
   return dayjs(date).startOf('day').valueOf();
 };
+
+export const isInFuture = (date: Posix): boolean => {
+  return date > Date.now();
+};
