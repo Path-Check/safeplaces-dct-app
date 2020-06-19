@@ -16,7 +16,7 @@ import { Typography } from '../components/Typography';
 import { useAssets } from '../TracingStrategyAssets';
 import { NavigationProp } from '../navigation';
 
-import { Colors } from '../styles';
+import { Colors, Spacing } from '../styles';
 
 type LicensesScreenProps = {
   navigation: NavigationProp;
@@ -65,7 +65,8 @@ export const LicensesScreen = ({
         alwaysBounceVertical={false}>
         <View>
           <Typography use='headline2'>{legalHeaderText}</Typography>
-          <View style={{ paddingTop: Spacing.xSmall, paddingLeft: Spacing.medium }}>
+          <View
+            style={{ paddingTop: Spacing.xSmall, paddingLeft: Spacing.medium }}>
             <Typography use='body2'>{t('label.legal_page_address')}</Typography>
             <View style={{ height: 20 }} />
             <Typography
