@@ -5,7 +5,7 @@ import { useLanguageDirection } from '../locales/languages';
 
 import { Typography as TypographyStyles } from '../styles';
 
-type TypographicUse = 'headline1' | 'headline2' | 'body1' | 'body2' | 'body3';
+type TypographicUse = 'headline1' | 'headline2' | 'headline3' | 'body1' | 'body2' | 'body3' | 'body4';
 
 interface TypographyProps {
   use?: TypographicUse;
@@ -30,6 +30,9 @@ export const Typography = ({
       case 'headline2': {
         return TypographyStyles.header2;
       }
+      case 'headline3': {
+        return TypographyStyles.header3;
+      }
       case 'body1': {
         return TypographyStyles.mainContent;
       }
@@ -38,6 +41,9 @@ export const Typography = ({
       }
       case 'body3': {
         return TypographyStyles.tertirayContent;
+      }
+      case 'body4': {
+        return TypographyStyles.quaternaryContent;
       }
     }
   };

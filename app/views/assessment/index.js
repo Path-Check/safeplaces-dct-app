@@ -10,6 +10,7 @@ import i18n from '../../locales/languages';
 import { AnswersContext, MetaContext, SurveyContext } from './Context';
 import { AssessmentQuestion } from './AssessmentQuestion';
 import { AssessmentStart } from './AssessmentStart';
+import { Agreement } from './Agreement';
 import {
   END_ROUTES,
   OPTION_VALUE_DISAGREE,
@@ -87,10 +88,20 @@ const Assessment = ({ navigation }) => {
 
   const AssessmentCancel = () => (
     <TouchableOpacity
+      style={{paddingRight: 25}}
       onPress={() => {
         navigation.navigate('AssessmentStart');
       }}>
-      <SvgXml xml={Icons.Close} />
+      <SvgXml xml={Icons.Close} color={Colors.tertiaryViolet} />
+    </TouchableOpacity>
+  );
+
+
+  const AssessmentBack = () => (
+    <TouchableOpacity
+      style={{paddingLeft: 25}}
+      onPress={() => navigation.pop()}>
+      <SvgXml xml={Icons.BackArrow} color={Colors.tertiaryViolet} />
     </TouchableOpacity>
   );
 
@@ -103,15 +114,16 @@ const Assessment = ({ navigation }) => {
     }),
     [navigation],
   );
-  const screenOptions = {
+  const screenOptions = (backgroundColor = Colors.primaryBackgroundFaintShade) => ({
     headerHideShadow: true,
     headerTitle: '',
     headerStyle: {
-      backgroundColor: Colors.primaryBackgroundFaintShade,
+      backgroundColor: backgroundColor,
+      shadowOffset: { height: 0, width: 0 } // this removes the header border
     },
-    //eslint-disable-next-line
-    headerRight: () => <AssessmentCancel />,
-  };
+    headerLeft: AssessmentBack,
+    headerRight: AssessmentCancel
+  });
 
   return (
     <MetaContext.Provider value={meta}>
@@ -124,20 +136,22 @@ const Assessment = ({ navigation }) => {
             screenOptions={{
               cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
               cardStyle: {
-                backgroundColor: 'transparent',
+                backgroundColor: Colors.transparent,
               },
             }}>
             <Stack.Screen
               component={AssessmentStart}
               name='AssessmentStart'
               options={{
-                ...screenOptions,
-                headerRight: () => null,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                },
+                ...screenOptions(),
+                headerLeft: () => null,
               }}
             />
+            <Stack.Screen
+              component={Agreement}
+              name='Agreement'
+              options={{...screenOptions(Colors.invertedQuaternaryBackground)}}
+            /> 
             <Stack.Screen
               component={QuestionScreen}
               name='AssessmentQuestion'
@@ -146,62 +160,32 @@ const Assessment = ({ navigation }) => {
             <Stack.Screen
               component={AssessmentComplete}
               name='AssessmentComplete'
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                },
-              }}
+              options={screenOptions}
             />
             <Stack.Screen
               component={Share}
               name='EndShare'
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                },
-              }}
+              options={screenOptions}
             />
             <Stack.Screen
               component={Caregiver}
               name={SCREEN_TYPE_CAREGIVER}
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                },
-              }}
+              options={screenOptions}
             />
             <Stack.Screen
               component={Distancing}
               name={SCREEN_TYPE_DISTANCING}
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                },
-              }}
+              options={screenOptions}
             />
             <Stack.Screen
               component={Emergency}
               name={SCREEN_TYPE_EMERGENCY}
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                },
-              }}
+              options={screenOptions}
             />
             <Stack.Screen
               component={Isolate}
               name={SCREEN_TYPE_ISOLATE}
-              options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                },
-              }}
+              options={screenOptions}
             />
           </Stack.Navigator>
         </AnswersContext.Provider>

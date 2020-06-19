@@ -82,6 +82,12 @@ export const header2: TextStyle = {
   color: Colors.violetText,
 };
 
+export const header3: TextStyle = {
+  ...largestFont,
+  ...bold,
+  color: Colors.invertedText,
+};
+
 export const title: TextStyle = {
   ...largeFont,
   fontWeight: heaviestWeight,
@@ -103,6 +109,12 @@ export const secondaryContent: TextStyle = {
 export const tertirayContent: TextStyle = {
   ...smallFont,
   color: Colors.tertiaryText,
+  lineHeight: smallLineHeight,
+};
+
+export const quaternaryContent: TextStyle = {
+  ...smallFont,
+  color: Colors.invertedText,
   lineHeight: smallLineHeight,
 };
 

@@ -33,7 +33,11 @@
     "share_cta": "I understand and consent",
     "start_title": "Answer questions about your symptoms and medical history to learn what to do next about COVID-19",
     "start_description": "Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.",
-    "start_cta": "Start"
+    "start_cta": "Start",
+    "agreement_title": "This is not for diagnosis",
+    "agreement_description": "The screening helps you make decisions about seeking appropriate medical care. It is not intended for the diagnosis or treatment of disease or other conditions.",
+    "agreement_cta": "I understand and consent",
+    "agreement_footer": "By proceeding, you agree that your survey results are not intended for diagnosis or treatment."
   },
   "_display_name": "English",
   "about": {

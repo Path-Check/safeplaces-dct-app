@@ -29,10 +29,12 @@ export const Info = ({
   backgroundImage,
   children,
   ctaAction,
-  ctaColor,
+  ctaBackgroundColor,
+  ctaTextColor,
   ctaTitle,
   description,
-  fontColor,
+  titleStyle = 'headline2',
+  descriptionStyle = 'body1',
   footer,
   icon,
   title,
@@ -48,15 +50,13 @@ export const Info = ({
           <View style={assessmentStyles.scrollViewContent}>
             <SvgXml xml={icon} />
             <Typography
-              color={fontColor}
-              use='headline2'
-              style={assessmentStyles.headingSpacing}>
+              use={titleStyle}
+              style={[assessmentStyles.headingSpacing]}>
               {title}
             </Typography>
             {description && (
               <Typography
-                color={fontColor}
-                use='body1'
+                use={descriptionStyle}
                 style={assessmentStyles.description}
                 testID='description'>
                 {description}
@@ -66,10 +66,14 @@ export const Info = ({
           </View>
         </ScrollView>
         <View style={assessmentStyles.footer}>
-          {footer}
           {ctaTitle && (
-            <Button color={ctaColor} onPress={ctaAction} title={ctaTitle} />
-          )}
+            <Button
+            backgroundColor={ctaBackgroundColor}
+            textColor={ctaTextColor} 
+            onPress={ctaAction} 
+            title={ctaTitle} />
+            )}
+          {footer}
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -79,17 +83,20 @@ export const Info = ({
 export const assessmentStyles = StyleSheet.create({
   container: {
     flex: 1,
+    borderTopWidth: 0
   },
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
+    borderTopWidth: 0
   },
   scrollView: {
     flex: 1,
   },
   scrollViewContent: {
     padding: 20,
+    borderTopWidth: 0
   },
   headingSpacing: {
     marginVertical: 30,

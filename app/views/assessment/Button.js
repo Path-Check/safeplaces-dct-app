@@ -10,22 +10,26 @@ import { Colors } from '../../styles';
  */
 
 /** @type {React.FunctionComponent<{
- *   color?: string;
+ *   textColor?: string;
+ *   backgroundColor?: string;
  *   onPress: () => void;
  *   title: string;
  *   disabled: boolean;
  * }>} */
-export const Button = ({ color, onPress, title, disabled = false }) => {
-  let backgroundColor = color
-    ? color
-    : disabled
-    ? Colors.moonRaker
-    : Colors.secondaryBlue;
-  let textColor = color
-    ? color
-    : disabled
-    ? Colors.tertiaryViolet
-    : Colors.white;
+export const Button = ({ textColor, backgroundColor, onPress, title, disabled = false }) => {
+
+  const dynamicBackgroundColor = () => {
+    if (backgroundColor) return backgroundColor
+    else if (disabled) return Colors.moonRaker
+    else return Colors.secondaryBlue  
+  }
+
+  const dynamicTextColor = () => {
+    if (textColor) return textColor
+    else if (disabled) return Colors.tertiaryViolet
+    else return Colors.white  
+  }
+
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -35,10 +39,10 @@ export const Button = ({ color, onPress, title, disabled = false }) => {
         style={[
           styles.cta,
           {
-            backgroundColor: backgroundColor,
+            backgroundColor: dynamicBackgroundColor(),
           },
         ]}>
-        <Typography use='body1' style={[styles.ctaText, { color: textColor }]}>
+        <Typography use='body1' style={[styles.ctaText, { color: dynamicTextColor() }]}>
           {title}
         </Typography>
       </View>
