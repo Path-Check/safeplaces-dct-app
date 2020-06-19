@@ -20,10 +20,10 @@ final class BTSecureStorage: SafePathsSecureStorage {
   override func getRealmConfig() -> Realm.Configuration? {
     if let key = getEncyrptionKey() {
       if (inMemory) {
-        return Realm.Configuration(inMemoryIdentifier: "temp", encryptionKey: key as Data, schemaVersion: 1,
+        return Realm.Configuration(inMemoryIdentifier: "temp", encryptionKey: key as Data, schemaVersion: 2,
                                    migrationBlock: { _, _ in }, objectTypes: [UserState.self, Exposure.self])
       } else {
-        return Realm.Configuration(encryptionKey: key as Data, schemaVersion: 1,
+        return Realm.Configuration(encryptionKey: key as Data, schemaVersion: 2,
                                    migrationBlock: { _, _ in }, objectTypes: [UserState.self, Exposure.self])
       }
     } else {
