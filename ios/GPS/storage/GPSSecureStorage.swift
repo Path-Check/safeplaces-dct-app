@@ -24,9 +24,21 @@ final class GPSSecureStorage: SafePathsSecureStorage {
     } else {
       UserDefaults.standard.set(currentTime, forKey: keyLastSavedTime)
     }
+    
+    let state = UIApplication.shared.applicationState
+    // Check whether the app in background | inactive state or not
+    if state == .background || state == .inactive {
+      saveLocationsInbackground(newlocation: backgroundLocation)
+    }
 
     guard let realmConfig = getRealmConfig() else { return }
     let realm = try! Realm(configuration: realmConfig)
+
+    // Get our Realm file's parent directory
+    let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path
+
+    // Disable file protection for this directory
+    try! FileManager.default.setAttributes([FileAttributeKey.protectionKey: FileProtectionType.none], ofItemAtPath: folderPath)
 
     let realmResults = realm.objects(Location.self)
       .filter("\(Location.KEY_SOURCE)=\(Location.SOURCE_DEVICE)")
@@ -52,6 +64,13 @@ final class GPSSecureStorage: SafePathsSecureStorage {
       return
     }
     let realm = try! Realm(configuration: realmConfig)
+    
+    // Get our Realm file's parent directory
+    let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path
+
+    // Disable file protection for this directory
+    try! FileManager.default.setAttributes([FileAttributeKey.protectionKey: FileProtectionType.none], ofItemAtPath: folderPath)
+    
     let locationsToInsert = locations.compactMap {
       Location.fromImportLocation(dictionary: $0 as? NSDictionary, source: source)
     }.filter { $0.time >= getCutoffTime()}
@@ -67,6 +86,13 @@ final class GPSSecureStorage: SafePathsSecureStorage {
       return
     }
     let realm = try! Realm(configuration: realmConfig)
+    
+    // Get our Realm file's parent directory
+    let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path
+
+    // Disable file protection for this directory
+    try! FileManager.default.setAttributes([FileAttributeKey.protectionKey: FileProtectionType.none], ofItemAtPath: folderPath)
+    
     let realmResults = realm.objects(Location.self)
       .filter("\(Location.KEY_TIME)>=\(getCutoffTime())")
       .sorted(byKeyPath: Location.KEY_TIME, ascending: true)
@@ -79,6 +105,13 @@ final class GPSSecureStorage: SafePathsSecureStorage {
       return
     }
     let realm = try! Realm(configuration: realmConfig)
+    
+    // Get our Realm file's parent directory
+    let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path
+
+    // Disable file protection for this directory
+    try! FileManager.default.setAttributes([FileAttributeKey.protectionKey: FileProtectionType.none], ofItemAtPath: folderPath)
+    
     let realmResults = realm.objects(Location.self)
       .filter("\(Location.KEY_TIME)<\(getCutoffTime())")
     try! realm.write {
@@ -125,6 +158,24 @@ final class GPSSecureStorage: SafePathsSecureStorage {
 
   func getCutoffTime() -> Int {
     return Int(Date().timeIntervalSince1970) - (GPSSecureStorage.DAYS_TO_KEEP * 86400)
+  }
+  
+  func saveLocationsInbackground(newlocation: MAURLocation) {
+    
+    let locationDict:NSDictionary = newlocation.toDictionary()! as NSDictionary
+    let userDefaults = UserDefaults.standard
+    var locationList: [NSDictionary]
+    
+    if let newLocationsList = userDefaults.array(forKey: keyBackgroundNewLocations) as? [NSDictionary] {
+      locationList = newLocationsList
+      locationList.append(locationDict)
+      
+    } else {
+      locationList = [NSDictionary]()
+      locationList.append(locationDict)
+    }
+    
+    userDefaults.set(locationList, forKey: keyBackgroundNewLocations)
   }
 
 }

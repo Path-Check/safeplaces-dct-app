@@ -17,10 +17,13 @@ import RealmSwift
 class SafePathsSecureStorage {
   
   let keyLastSavedTime: String
+  let keyBackgroundNewLocations: String
+
   let inMemory: Bool
   
   init(inMemory: Bool = false) {
     self.inMemory = inMemory
+    self.keyBackgroundNewLocations = "backgroundNewLocations"
     if (inMemory) {
       self.keyLastSavedTime = "lastSavedTimeInMemory"
     } else {

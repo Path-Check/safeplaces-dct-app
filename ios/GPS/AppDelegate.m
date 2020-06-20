@@ -133,4 +133,30 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [self getLocationsOfBackground];
+}
+
+- (void)getLocationsOfBackground {
+  
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+  NSArray *locationsList = [defaults arrayForKey:@"backgroundNewLocations"];
+  if(locationsList != nil) {
+    for (MAURLocation* locationDict in locationsList) {
+      MAURLocation *location = [[MAURLocation alloc] init];
+      [location setAccuracy:[locationDict valueForKey:@"accuracy"]];
+      [location setAltitude:[locationDict valueForKey:@"altitude"]];
+      [location setAltitudeAccuracy:[locationDict valueForKey:@"altitudeAccuracy"]];
+      [location setHeading:[locationDict valueForKey:@"heading"]];
+      [location setLatitude:[locationDict valueForKey:@"latitude"]];
+      [location setLongitude:[locationDict valueForKey:@"longitude"]];
+      [location setSpeed:[locationDict valueForKey:@"speed"]];
+      [location setTime:[locationDict valueForKey:@"time"]];
+
+      [[SecureStorage shared] saveDeviceLocationWithBackgroundLocation:location];
+    }
+    [defaults setObject:@[] forKey:@"backgroundNewLocations"];
+  }
+}
 @end
