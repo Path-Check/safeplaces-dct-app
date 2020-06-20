@@ -79,6 +79,7 @@
 		B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */; };
 		B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */; };
 		B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* PTCExposureManagerModule.m */; };
+		B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */; };
 		B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */; };
 		B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */; };
 		B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0CE24916A4C00433980 /* DebugAction.swift */; };
@@ -331,6 +332,7 @@
 		B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		B596C0712488127D00943B79 /* PTCExposureManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCExposureManagerModule.m; sourceTree = "<group>"; };
 		B5C490A72498F84000588A5F /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExposureManager+Extensions.swift"; sourceTree = "<group>"; };
 		B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebugMenuModule.m; sourceTree = "<group>"; };
 		B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisKeyUrlRequests.swift; sourceTree = "<group>"; };
 		B5FBB0CE24916A4C00433980 /* DebugAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugAction.swift; sourceTree = "<group>"; };
@@ -731,6 +733,33 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		B5E29D4A249E3A7D00E686DC /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				B5FBB0D224916B3600433980 /* String+Extensions.swift */,
+				B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */,
+				B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */,
+				B5FBB0D624916DE100433980 /* Notification+Extensions.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		B5E29D4D249E3A8700E686DC /* Exposure Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */,
+			);
+			path = "Exposure Notifications";
+			sourceTree = "<group>";
+		};
+		B5E29D4E249E3A8F00E686DC /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		B5FC37BD2489B05F006474EB /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -782,11 +811,9 @@
 		B5FC37F2248A9934006474EB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */,
-				B5FBB0D224916B3600433980 /* String+Extensions.swift */,
-				B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */,
-				B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */,
-				B5FBB0D624916DE100433980 /* Notification+Extensions.swift */,
+				B5E29D4E249E3A8F00E686DC /* Other */,
+				B5E29D4D249E3A8700E686DC /* Exposure Notifications */,
+				B5E29D4A249E3A7D00E686DC /* Foundation */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1339,6 +1366,7 @@
 				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
 				B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */,
 				B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */,
+				B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */,
 				B5FC37C12489B075006474EB /* APIClient.swift in Sources */,
 				B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */,
 				B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */,
