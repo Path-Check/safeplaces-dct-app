@@ -52,7 +52,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/native": "^10.0.27",
-    "@mauron85/react-native-background-geolocation": "^0.6.3",
+    "@mauron85/react-native-background-geolocation": "github:Path-Check/react-native-background-geolocation",
     "@react-native-community/async-storage": "^1.8.1",
     "@react-native-community/datetimepicker": "^2.3.2",
     "@react-native-community/geolocation": "^2.0.2",
