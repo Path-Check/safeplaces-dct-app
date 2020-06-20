@@ -36,6 +36,9 @@
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
 
+  // Register background task
+  [[ExposureManager shared] registerBackgroundTask];
+
   [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
   return YES;
 }
@@ -65,6 +68,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
   [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
 }
+
 // Required for the registrationError event.
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
@@ -86,7 +90,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   return FALSE;
 }
 
--(BOOL) hasNotificationPermissions {
+- (BOOL)hasNotificationPermissions {
   //Checking local notification permission or not.
   UIUserNotificationSettings *grantedSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
   if (grantedSettings.types != UIUserNotificationTypeNone){
