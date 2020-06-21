@@ -68,12 +68,12 @@ jobs:
 
       - name: Build Android Release
         run: |
-          cd android && ./gradlew assembleDebug
+          cd android && ./gradlew assembleGps
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: app-gps-debug.apk
-          path: android/app/build/outputs/apk/gps/debug/app-gps-debug.apk
+          name: app-gps-staging.apk
+          path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
 
   build_staging_android_bt:
     runs-on: ubuntu-latest
