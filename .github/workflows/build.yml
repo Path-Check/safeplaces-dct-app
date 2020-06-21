@@ -66,6 +66,15 @@ jobs:
           bundle install --jobs 4 --retry 3
         working-directory: ./android
 
+      - name: Build Android Release
+        run: |
+          cd android && ./gradlew assembleDebug
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/
+
   build_staging_android_bt:
     runs-on: ubuntu-latest
     steps:
