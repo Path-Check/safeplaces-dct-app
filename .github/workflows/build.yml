@@ -66,15 +66,6 @@ jobs:
           bundle install --jobs 4 --retry 3
         working-directory: ./android
 
-      - name: Assemble Debug APK
-        run: ./gradlew clean assembleGpsStaging
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-gps-staging
-          path: app/build/outputs/apk/gps/staging/app-gps-staging.apk
-
   build_staging_android_bt:
     runs-on: ubuntu-latest
     steps:
