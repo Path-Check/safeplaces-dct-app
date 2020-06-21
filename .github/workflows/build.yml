@@ -130,15 +130,12 @@ jobs:
           bundle install --jobs 4 --retry 3
         working-directory: ./android
 
-      - name: Build android Staging artifact
-        uses: maierj/fastlane-action@v1.4.0
-        with:
-          lane: 'staging_bt'
-          subdirectory: 'android'
-          bundle-install-path: 'vendor/bundle'
+  - name: Build Android Release
+    run: |
+      cd android && ./gradlew assembleRelease
+  - name: Upload Artifact
+    uses: actions/upload-artifact@v1
+    with:
+      name: app-release.apk
+      path: android/app/build/outputs/apk/release/
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v1
-        with:
-          name: app-bt-staging
-          path: android/app/build/outputs/apk/bt/staging/app-bt-staging.apk
