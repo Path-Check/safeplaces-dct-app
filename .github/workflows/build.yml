@@ -72,8 +72,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: app-release.apk
-          path: android/app/build/outputs/apk/release/
+          name: app-gps-debug.apk
+          path: android/app/build/outputs/apk/gps/debug
 
   build_staging_android_bt:
     runs-on: ubuntu-latest
