@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Assemble Debug APK
-        run: ./android/gradlew clean assembleGpsStaging
+        run: ./android/gradlew assembleGpsStaging
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
