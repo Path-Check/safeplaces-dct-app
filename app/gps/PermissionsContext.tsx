@@ -9,8 +9,7 @@ import {
   Permission,
 } from 'react-native-permissions';
 
-import { isGPS } from './COVIDSafePathsConfig';
-import { HCAService } from './services/HCAService.js';
+import { HCAService } from '../services/HCAService.js';
 
 export enum PermissionStatus {
   UNKNOWN,
@@ -96,7 +95,7 @@ const PermissionsProvider = ({
       const isiOS = Platform.OS === 'ios';
       const isDev = __DEV__;
       await Promise.all([
-        isGPS ? checkLocationPermission() : null,
+        checkLocationPermission(),
         isiOS ? checkNotificationPermission() : null,
         // TODO(https://pathcheck.atlassian.net/browse/SAF-232): Put HCA auto sub logic behind a feature flag
         isDev && isiOS ? checkAuthSubscriptionPermission() : null,
