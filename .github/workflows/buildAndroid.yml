@@ -21,10 +21,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Assemble Debug APK
-        run: ./gradlew clean assembleGpsStaging
+        run: ./android/gradlew clean assembleGpsStaging
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
           name: app-gps-staging
-          path: app/build/outputs/apk/gps/staging/app-gps-staging.apk
+          path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
