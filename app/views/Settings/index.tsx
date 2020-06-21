@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {
   ViewStyle,
-  TouchableOpacity,
   View,
   StyleSheet,
   ScrollView,
+  TouchableHighlight,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
@@ -87,12 +87,15 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     const flexDirection = i18n.dir() === 'rtl' ? 'row-reverse' : 'row';
 
     return (
-      <TouchableOpacity
-        style={[styles.languageSelectionListItem, { flexDirection }]}
+      <TouchableHighlight
+        underlayColor={Colors.underlayPrimaryBackground}
+        style={[styles.listItem]}
         onPress={onPress}>
-        <SvgXml xml={icon} style={[styles.icon, iconStyle]} />
-        <Typography use={'body1'}>{label}</Typography>
-      </TouchableOpacity>
+        <View style={{ flexDirection }}>
+          <SvgXml xml={icon} style={[styles.icon, iconStyle]} />
+          <Typography use={'body1'}>{label}</Typography>
+        </View>
+      </TouchableHighlight>
     );
   };
 
@@ -110,12 +113,19 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     style,
   }: SettingsListItemProps) => {
     return (
-      <TouchableOpacity style={[styles.listItem, style]} onPress={onPress}>
-        <Typography style={styles.listItemText}>{label}</Typography>
-        {description ? (
-          <Typography style={styles.descriptionText}>{description}</Typography>
-        ) : null}
-      </TouchableOpacity>
+      <TouchableHighlight
+        underlayColor={Colors.underlayPrimaryBackground}
+        style={[styles.listItem, style]}
+        onPress={onPress}>
+        <View>
+          <Typography style={styles.listItemText}>{label}</Typography>
+          {description ? (
+            <Typography style={styles.descriptionText}>
+              {description}
+            </Typography>
+          ) : null}
+        </View>
+      </TouchableHighlight>
     );
   };
 
@@ -159,7 +169,9 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         {isGPS ? (
           <FeatureFlag name={'google_import'}>
             <View style={styles.section}>
-              <GoogleMapsImport navigation={navigation} />
+              <View style={styles.listItem}>
+                <GoogleMapsImport navigation={navigation} />
+              </View>
             </View>
           </FeatureFlag>
         ) : null}
@@ -169,6 +181,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
             label={t('screen_titles.about')}
             onPress={navigateTo(Screens.About)}
           />
+          <Divider />
           <SettingsListItem
             label={t('screen_titles.legal')}
             onPress={() => navigation.navigate(Screens.Licenses)}
@@ -200,14 +213,21 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   );
 };
 
+const Divider = () => <View style={styles.divider} />;
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.primaryBackgroundFaintShade,
   },
+  divider: {
+    marginHorizontal: Spacing.small,
+    flex: 1,
+    height: 1,
+    backgroundColor: Colors.tertiaryViolet,
+  },
   section: {
     flex: 1,
     backgroundColor: Colors.white,
-    paddingHorizontal: Spacing.small,
     marginBottom: Spacing.medium,
     borderTopWidth: 1,
     borderBottomWidth: 1,
@@ -219,16 +239,11 @@ const styles = StyleSheet.create({
   },
   listItem: {
     flex: 1,
+    paddingHorizontal: Spacing.small,
     paddingVertical: Spacing.medium,
-    borderBottomWidth: 1,
-    borderColor: Colors.tertiaryViolet,
   },
   listItemText: {
     ...TypographyStyles.tappableListItem,
-  },
-  languageSelectionListItem: {
-    flex: 1,
-    paddingVertical: Spacing.medium,
   },
   lastListItem: {
     borderBottomWidth: 0,

@@ -11,7 +11,7 @@ import { AllServicesOnScreen } from './main/AllServicesOn';
 import {
   TracingOffScreen,
   NotificationsOffScreen,
-  SelectAuthorityScreen,
+  // SelectAuthorityScreen,
 } from './main/ServiceOffScreens';
 import PermissionsContext, { PermissionStatus } from '../PermissionsContext';
 
@@ -71,7 +71,9 @@ export const Main = () => {
   } else if (notification.status === PermissionStatus.DENIED) {
     return <NotificationsOffScreen />;
   } else if (hasSelectedAuthorities === false && isGPS) {
-    return <SelectAuthorityScreen />;
+    // TODO: enable this for testing versions of app
+    // return <SelectAuthorityScreen />;
+    return <AllServicesOnScreen noHaAvailable />;
   } else {
     return <AllServicesOnScreen />;
   }

@@ -79,24 +79,27 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
         <View style={styles.divider} />
         <View style={{ height: 24 }} />
       </ScrollView>
-      <View style={styles.bottomSheet}>
-        <Typography
-          style={{
-            // Prevent from forcing overflow on parent
-            flex: 1,
-          }}>
-          {t('authorities.automatically_follow')}
-        </Typography>
-        <View style={{ width: 16 }} />
-        <Switch
-          trackColor={{
-            true: Colors.switchEnabled,
-            false: Colors.switchDisabled,
-          }}
-          value={toggleActive}
-          onValueChange={setToggleActive}
-        />
-      </View>
+      {/* UI is ready, this is currently not a feature though. */}
+      {__DEV__ && (
+        <View style={styles.bottomSheet}>
+          <Typography
+            style={{
+              // Prevent from forcing overflow on parent
+              flex: 1,
+            }}>
+            {t('authorities.automatically_follow')}
+          </Typography>
+          <View style={{ width: 16 }} />
+          <Switch
+            trackColor={{
+              true: Colors.switchEnabled,
+              false: Colors.switchDisabled,
+            }}
+            value={toggleActive}
+            onValueChange={setToggleActive}
+          />
+        </View>
+      )}
     </NavigationBarWrapper>
   );
 };

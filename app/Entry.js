@@ -52,7 +52,7 @@ import isOnboardingCompleteSelector from './store/selectors/isOnboardingComplete
 import { isGPS } from './COVIDSafePathsConfig';
 import * as Icons from './assets/svgs/TabBarNav';
 
-import { Affordances, Spacing, Colors, Layout } from './styles';
+import { Layout, Affordances, Spacing, Colors } from './styles';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -110,8 +110,6 @@ const ExposureHistoryStack = ({ navigation }) => {
       mode='modal'
       screenOptions={{
         ...SCREEN_OPTIONS,
-        cardStyleInterpolator: fade,
-        gestureEnabled: false,
       }}>
       <Stack.Screen
         name={Screens.ExposureHistory}
@@ -178,9 +176,9 @@ const MainAppTabs = () => {
         inactiveTintColor: Colors.primaryViolet,
         style: {
           backgroundColor: Colors.navBar,
+          borderTopColor: Colors.navBar,
           paddingTop: Spacing.xSmall,
           height: Layout.navBar,
-          borderTopColor: Colors.navBar,
         },
       }}>
       <Tab.Screen

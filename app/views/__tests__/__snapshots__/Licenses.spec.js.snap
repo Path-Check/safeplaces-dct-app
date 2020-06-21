@@ -107,12 +107,12 @@ exports[`renders correctly 1`] = `
       }
     >
       <RCTScrollView
+        alwaysBounceVertical={false}
         contentContainerStyle={
           Object {
             "backgroundColor": "#f8f8f8",
-            "paddingHorizontal": 26,
-            "paddingVertical": 40,
-            "width": "100%",
+            "paddingHorizontal": 24,
+            "paddingTop": 24,
           }
         }
       >
@@ -131,45 +131,17 @@ exports[`renders correctly 1`] = `
                   Object {
                     "writingDirection": "ltr",
                   },
-                  Object {
-                    "color": "#000000",
-                    "marginBottom": 12,
-                  },
+                  undefined,
                 ]
               }
             >
               PathCheck GPS
             </Text>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2e2e2e",
-                    "fontSize": 17,
-                    "lineHeight": 28,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Object {
-                    "color": "#000000",
-                    "marginBottom": 24,
-                  },
-                ]
-              }
-            >
-              PathCheck
-58 Day Street
-Box 441621
-Somerville, MA 02144
-            </Text>
             <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
               style={
                 Object {
-                  "opacity": 1,
+                  "paddingLeft": 20,
+                  "paddingTop": 12,
                 }
               }
             >
@@ -177,7 +149,34 @@ Somerville, MA 02144
                 style={
                   Array [
                     Object {
-                      "color": "#2e2e2e",
+                      "color": "#4e4e4e",
+                      "fontSize": 17,
+                      "lineHeight": 28,
+                    },
+                    Object {
+                      "writingDirection": "ltr",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                PathCheck
+58 Day Street
+Box 441621
+Somerville, MA 02144
+              </Text>
+              <View
+                style={
+                  Object {
+                    "height": 20,
+                  }
+                }
+              />
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#4e4e4e",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -186,9 +185,6 @@ Somerville, MA 02144
                     },
                     Object {
                       "color": "#1f2c9b",
-                      "fontFamily": "IBMPlexSans",
-                      "fontSize": 16,
-                      "marginBottom": 12,
                       "textDecorationLine": "underline",
                     },
                   ]
@@ -196,22 +192,11 @@ Somerville, MA 02144
               >
                 info@pathcheck.org
               </Text>
-            </View>
-            <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-            >
               <Text
                 style={
                   Array [
                     Object {
-                      "color": "#2e2e2e",
+                      "color": "#4e4e4e",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -220,9 +205,6 @@ Somerville, MA 02144
                     },
                     Object {
                       "color": "#1f2c9b",
-                      "fontFamily": "IBMPlexSans",
-                      "fontSize": 16,
-                      "marginBottom": 12,
                       "textDecorationLine": "underline",
                     },
                   ]
@@ -240,7 +222,7 @@ Somerville, MA 02144
         isTVSelectable={true}
         style={
           Object {
-            "backgroundColor": "#1f2c9b",
+            "backgroundColor": "#4051db",
             "flexDirection": "row",
             "justifyContent": "space-between",
             "opacity": 1,
@@ -260,7 +242,9 @@ Somerville, MA 02144
               Object {
                 "writingDirection": "ltr",
               },
-              undefined,
+              Object {
+                "color": "#ffffff",
+              },
             ]
           }
         >

@@ -123,10 +123,7 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   };
 
   return (
-    <NavigationBarWrapper
-      includeBottomNav
-      title={'EN Debug Menu'}
-      onBackPress={backToSettings}>
+    <NavigationBarWrapper title={'EN Debug Menu'} onBackPress={backToSettings}>
       {loading ? (
         <View style={{ flex: 1, justifyContent: 'center' }}>
           <ActivityIndicator size={'large'} />
