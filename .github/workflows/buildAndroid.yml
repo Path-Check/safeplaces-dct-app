@@ -11,20 +11,26 @@ on:
       - master
 
 jobs:
-  testing:
-    name: Build APK
-
+  install-and-test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Clone Repo
-        uses: actions/checkout@v2
-
-      - name: Assemble Debug APK
-        run: ./android/gradlew ./android/assembleGps
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
+      - uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: |
+          npm install
+  build-android:
+    needs: install-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: |
+          npm install
+      - name: Build Android Release
+        run: |
+          cd android && ./gradlew assembleRelease
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
         with:
-          name: app-gps-staging
-          path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/
