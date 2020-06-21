@@ -66,18 +66,14 @@ jobs:
           bundle install --jobs 4 --retry 3
         working-directory: ./android
 
-      - name: Build android Staging artifact
-        uses: maierj/fastlane-action@v1.4.0
-        with:
-          lane: 'staging_gps'
-          subdirectory: 'android'
-          bundle-install-path: 'vendor/bundle'
+      - name: Assemble Debug APK
+        run: ./gradlew clean assembleGpsStaging
 
       - name: Upload APK
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: app-gps-staging
-          path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
+          path: app/build/outputs/apk/gps/staging/app-gps-staging.apk
 
   build_staging_android_bt:
     runs-on: ubuntu-latest
