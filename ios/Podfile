@@ -58,6 +58,7 @@ def bt_pods
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
   pod 'Alamofire', '~> 4.9.1'
+  pod 'SSZipArchive'
 end
 
 target 'GPS' do

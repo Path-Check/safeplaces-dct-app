@@ -2,38 +2,34 @@ import Alamofire
 
 enum RequestType {
   case postKeys,
-  downloadKeyFile,
-  indexFile
+  downloadKeys
 }
 
 final class APIClient {
-
+  
   let postKeysUrl: URL
-  let downloadKeyFile: URL
-  let indexFileUrl: URL
+  let downloadKeysUrl: URL
   static let shared = APIClient(
     postKeysUrl: URL(string: ReactNativeConfig.env(for: .postKeysUrl))!,
-    downloadKeyFile: URL(string: ReactNativeConfig.env(for: .downloadKeyFile))!,
     indexFileUrl: URL(string: ReactNativeConfig.env(for: .indexFileUrl))!
   )
-
+  
   private let sessionManager: SessionManager
-
-  init(postKeysUrl: URL, downloadKeyFile: URL, indexFileUrl: URL) {
+  
+  init(postKeysUrl: URL, indexFileUrl: URL) {
     self.postKeysUrl = postKeysUrl
-    self.downloadKeyFile = downloadKeyFile
-    self.indexFileUrl = indexFileUrl
-
+    self.downloadKeysUrl = indexFileUrl
+    
     let configuration = URLSessionConfiguration.default
-
+    
     let headers = SessionManager.defaultHTTPHeaders
-
+    
     configuration.httpAdditionalHeaders = headers
     configuration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-
+    
     sessionManager = SessionManager(configuration: configuration)
   }
-
+  
   func request<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping GenericCompletion) where T.ResponseType == Void {
     dataRequest(for: request, requestType: requestType)
       .validate(validate)
@@ -46,7 +42,7 @@ final class APIClient {
         }
     }
   }
-
+  
   func downloadRequest<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<URL>) -> Void) {
     downloadRequest(for: request, fileName: request.path).responseData { response in
       guard let destinationUrl = response.destinationURL else {
@@ -56,7 +52,7 @@ final class APIClient {
       completion(.success(destinationUrl))
     }
   }
-
+  
   func request<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<JSONObject>) -> Void) where T.ResponseType == JSONObject {
     dataRequest(for: request, requestType: requestType)
       .validate(validate)
@@ -69,15 +65,15 @@ final class APIClient {
         }
     }
   }
-
+  
   func request<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<T.ResponseType>) -> Void) where T.ResponseType: Decodable {
     requestDecodable(request, requestType: requestType, completion: completion)
   }
-
+  
   func requestList<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<[T.ResponseType.Element]>) -> Void) where T.ResponseType: Collection, T.ResponseType.Element: Decodable {
     requestDecodables(request, requestType: requestType, completion: completion)
   }
-
+  
   func requestString<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<T.ResponseType>) -> Void) where T.ResponseType == String {
     dataRequest(for: request, requestType: requestType)
       .validate(validate)
@@ -90,44 +86,47 @@ final class APIClient {
         }
     }
   }
-
+  
   func cancelAllRequests() {
     sessionManager.session.getAllTasks { tasks in
       tasks.forEach { $0.cancel() }
     }
   }
-
+  
+  static var documentsDirectory: URL? {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    
+    return paths.first
+  }
+  
 }
 
 // MARK: - Private
 
 private extension APIClient {
-
+  
   enum Key {
     static let error = "error"
     static let errorMessage = "error_description"
   }
-
+  
   func downloadRequest<T: APIRequest>(for request: T, fileName: String) -> DownloadRequest {
     let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-      var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-      documentsURL.appendPathComponent(fileName)
-      return (documentsURL, [.removePreviousFile])
+      let destinationURL = APIClient.documentsDirectory?.appendingPathComponent(fileName) ?? URL(string: .default)!
+      return (destinationURL, [.createIntermediateDirectories, .removePreviousFile])
     }
-    let r = sessionManager.download(downloadKeyFile.appendingPathComponent(request.path, isDirectory: false), to: destination)
+    let r = sessionManager.download(downloadKeysUrl.appendingPathComponent(request.path, isDirectory: false), to: destination)
     debugPrint(r)
     return r
   }
-
+  
   func dataRequest<T: APIRequest>(for request: T, requestType: RequestType) -> DataRequest {
     var baseUrl: URL!
     switch requestType {
     case .postKeys:
       baseUrl = postKeysUrl
-    case .downloadKeyFile:
-      baseUrl = downloadKeyFile
-    case .indexFile:
-      baseUrl = indexFileUrl
+    case .downloadKeys:
+      baseUrl = downloadKeysUrl
     }
     let r = sessionManager.request(
       baseUrl.appendingPathComponent(request.path, isDirectory: false),
@@ -138,12 +137,12 @@ private extension APIClient {
     debugPrint(r)
     return r
   }
-
+  
   func validate(request: URLRequest?, response: HTTPURLResponse, data: Data?) -> Request.ValidationResult {
     if (200...399).contains(response.statusCode) {
       return .success
     }
-
+    
     // Attempt to deserialize structured error, if it exists
     if let data = data, let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? JSONObject, let errorJson = json[Key.error] as? JSONObject {
       do {
@@ -152,11 +151,11 @@ private extension APIClient {
         return .failure(error)
       }
     }
-
+    
     // Fallback on a simple status code error
     return .failure(GenericError(statusCode: response.statusCode))
   }
-
+  
   func requestDecodable<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<T.ResponseType>) -> Void) where T.ResponseType: Decodable {
     dataRequest(for: request, requestType: requestType)
       .validate(validate)
@@ -175,7 +174,7 @@ private extension APIClient {
         }
     }
   }
-
+  
   func requestDecodables<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<[T.ResponseType.Element]>) -> Void) where T.ResponseType: Collection, T.ResponseType.Element: Decodable {
     requestDecodable(CollectionAPIRequest(request: request), requestType: requestType) { result in
       switch result {
@@ -186,27 +185,27 @@ private extension APIClient {
       }
     }
   }
-
+  
 }
 
 private struct CollectionAPIRequest<T: APIRequest>: APIRequest where T.ResponseType: Collection, T.ResponseType.Element: Decodable {
-
+  
   typealias ResponseType = ResultsContainer<T.ResponseType.Element>
-
+  
   let request: T
-
+  
   var method: HTTPMethod {
     return request.method
   }
-
+  
   var path: String {
     return request.path
   }
-
+  
   var parameters: Parameters? {
     return request.parameters
   }
-
+  
 }
 
 private struct ResultsContainer<T: Decodable>: Decodable {
@@ -214,7 +213,7 @@ private struct ResultsContainer<T: Decodable>: Decodable {
 }
 
 private extension GenericError {
-
+  
   init(statusCode: Int) {
     switch statusCode {
     case 400:
@@ -227,7 +226,7 @@ private extension GenericError {
       self = .unknown
     }
   }
-
+  
 }
 
 private extension DateFormatter {
