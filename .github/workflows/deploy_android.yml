@@ -15,7 +15,6 @@ jobs:
     # gps-release branch only
     if: github.event_name == 'push' && github.ref == 'refs/heads/android-gps-release'
     runs-on: ubuntu-latest
-    needs: version_bump
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
