@@ -13,6 +13,7 @@ import VersionCheckService from './app/services/VersionCheckService';
 import { store, persistor } from './app/store';
 import btStrategy from './app/bt';
 import gpsStrategy from './app/gps';
+import 'array-flat-polyfill';
 
 const determineTracingStrategy = () => {
   switch (Config.TRACING_STRATEGY) {
