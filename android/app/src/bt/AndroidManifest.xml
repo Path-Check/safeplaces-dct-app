@@ -2,6 +2,7 @@
   package="org.pathcheck.covidsafepaths">
 
     <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 
     <application android:name="covidsafepaths.bt.MainApplication">
