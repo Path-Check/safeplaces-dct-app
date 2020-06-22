@@ -22,6 +22,14 @@
     "what_if_no_symptoms": "Ce fac în cazul în care nu am simptome COVID-19?",
     "what_if_no_symptoms_para": "Dacă nu aveți simptome nu înseamna ca nu suneți un posibil purtator de virus. \n\nȘi persoanele care nu prezintă simptome pot fi purtători și pot infecta alte persoane. Din acest motiv, se recomandă distantarea socială și evitarea intrării în contact cu grupuri mari sau cu persoane cu grad mare de risc (persoane în varstă sau cu alte probleme grave de sănătate) pentru a micsora posibilitatea de a infecta alte persoane."
   },
+  "home": {
+    "bluetooth": {
+      "all_services_on_header": "PathCheck"
+    },
+    "gps": {
+      "all_services_on_header": "PathCheck"
+    }
+  },
   "import": {
     "button_text": "Importa istoric locații",
     "google": {
@@ -32,6 +40,8 @@
     "title": "Importa Istoric"
   },
   "label": {
+    "about_header_bluetooth": "PathCheck BT",
+    "about_header_location": "PathCheck GPS",
     "authorities_add_button_label": "Adaugă Sursa de Încredere",
     "authorities_add_url": "Adaugă autoritate prin URL",
     "authorities_desc": "Alegeți autorități de sănătate de încredere din zona dumneavoastră pentru a obține datele expunerilor. Puteți selecta un nume din registrul global, sau puteți introduce o adresă web pusa la dispoziție de institutiile care au implementat PathCheck.",
@@ -46,6 +56,7 @@
     "default_news_site_name": "Știri PathCheck",
     "event_history_subtitle": "Familiarizati-vă cu expunerile dumneavoastră, luând în calcul informațiile puse la dispoziție de autoritațile de sănătate",
     "event_history_title": "Istoricul expunerilor",
+    "home_no_contact_header_bluetooth": "PathCheck",
     "latest_news": "Ultimele Știri",
     "launch_access_location": "Acces locație",
     "launch_done_header": "Configurare finalizata",
@@ -59,7 +70,6 @@
     "launch_notif_header": "Notificarile va vor informa dacă v-ați intersectat cu o persoană infectată.",
     "launch_notif_subheader": "Nu va vom deranja decât în cazul în care aveți risc de expunere.",
     "launch_notification_access": "Permite Notificari",
-    "launch_screen1_header": "Calea înapoi spre normalitate incepe aici",
     "launch_screen2_header_location": "Primeste notificari în cazul în care te-ai intersectat cu cineva ce a fost ulterior găsit pozitiv cu COVID-19.",
     "launch_screen2_subheader_location": "Informația este putere.",
     "launch_screen3_header_location": "Dacă veți fi găsit pozitiv în viitor, aveți posibilitatea de a dona în mod anonim traseele dumneavoastră.",
@@ -68,6 +78,9 @@
     "launch_screen4_subheader_location": "Dacă sunteți găsit pozitiv, doar dumneavoastră puteți decide dacă împărțiți datele cu cineva.",
     "launch_set_up_phone_location": "Configurează Telefonul",
     "launch_subheader": "Stați fără griji, informațiile nu părăsesc niciodată telefonul decât dacă decideți explicit exportarea lor.",
+    "legal_page_address": "PathCheck\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_header_bluetooth": "PathCheck BT",
+    "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "încărcare date...",
     "location_disabled_message": "PathCheck are nevoie de serviciile de localizare pentru a funcționa.",
     "location_disabled_title": "Jurnalul Locațiilor Dezactivat",

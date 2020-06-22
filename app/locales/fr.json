@@ -13,6 +13,14 @@
   "export": {
     "exit_warning_cancel": "Annuler"
   },
+  "home": {
+    "bluetooth": {
+      "all_services_on_header": "PathCheck"
+    },
+    "gps": {
+      "all_services_on_header": "PathCheck"
+    }
+  },
   "import": {
     "button_text": "Importer les positions passées",
     "error": "Un erreur s'est produite lors de l'importation de vos données.",
@@ -29,6 +37,8 @@
     "title": "Importer les positions"
   },
   "label": {
+    "about_header_bluetooth": "PathCheck BT",
+    "about_header_location": "PathCheck GPS",
     "authorities_add_button_label": "Ajouter une source de confiance",
     "authorities_add_url": "Ajouter une autorité par URL",
     "authorities_desc": "Choisissez une autorité sanitaire de confiance dans votre région pour obtenir les données d’exposition. Vous pouvez sélectionner un nom dans la liste globale, ou entrer l’adresse web fournie par une autorité qui a mis en place PathCheck.",
@@ -43,6 +53,7 @@
     "default_news_site_name": "Nouvelles PathCheck (en anglais)",
     "event_history_subtitle": "Comprendre son exposition personnelle à partie des informations partagées par les autorités sanitaires.",
     "event_history_title": "Historique d’exposition",
+    "home_no_contact_header_bluetooth": "PathCheck",
     "latest_news": "Dernières nouvelles",
     "launch_access_location": "Accès à la position",
     "launch_done_header": "Terminé",
@@ -56,7 +67,6 @@
     "launch_notif_header": "Les notifications vous permettront de savoir si vous croisez une personne infectée.",
     "launch_notif_subheader": "Nous ne vous dérangerons que pour vous tenir à jour de vos risques d’exposition.",
     "launch_notification_access": "Autoriser les notifications",
-    "launch_screen1_header": "Le retour à la normal commence ici.",
     "launch_screen2_header_location": "Recevez une notification si vous avez croisé une personne qui a été ultérieurement diagnostiquée positive à la COVID-19.",
     "launch_screen2_subheader_location": "Le savoir, c'est le pouvoir.",
     "launch_screen3_header_location": "Si vous êtes diagnostiqué·e positif·ve à la COVID-19, vous pourrez partager vos données anonymement",
@@ -65,6 +75,9 @@
     "launch_screen4_subheader_location": "Si vous êtes diagnostiqué·e positif·ve, vous seul·e pourrez choisir de partager vos données.",
     "launch_set_up_phone_location": "Configurer mon appareil",
     "launch_subheader": "Ne vous inquiétez pas, aucune information ne quitte votre appareil sans que vous la partagiez explicitement.",
+    "legal_page_address": "PathCheck\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_header_bluetooth": "PathCheck BT",
+    "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "chargement des données...",
     "location_disabled_message": "PathCheck a besoin des services de position.",
     "location_disabled_title": "Le suivi de la position a été désactivé",
@@ -82,7 +95,8 @@
   },
   "screen_titles": {
     "about": "À propos",
-    "legal": "Juridique"
+    "legal": "Juridique",
+    "more": "Plus"
   },
   "share": {
     "button_text": "Partager les données de position",
@@ -90,5 +104,11 @@
     "paragraph_second": "L’historique partagé est une simple liste de lieux et de dates, sans informations supplémentaires.",
     "subtitle": "Vos données de position peuvent être envoyées aux autorités sanitaires, sauvegardées, ou partagées autrement.",
     "title": "Partager votre historique de position"
+  },
+  "version_update": {
+    "later": "Plus tard",
+    "push_notification_message": "Veuillez mettre à jour votre application",
+    "push_notification_title": "L'application est obsolète",
+    "update": "Mise à jour"
   }
 }

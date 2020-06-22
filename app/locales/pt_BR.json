@@ -15,16 +15,26 @@
     "next": "Próximo"
   },
   "authorities": {
+    "automatically_follow": "Seguir automaticamente os Departamentos de Saúde próximos",
+    "custom_url": "Adicionar manualmente via URL",
+    "custom_url_title": "Adicionar via URL",
+    "info_body": "Os departamentos de saúde locais e regionais podem compartilhar informações e recursos sobre a COVID-19 para sua área, incluindo dados verificados que permitem a PathCheck estimar quando você pode ter cruzado os caminhos com o vírus.",
+    "invalid_url": "URL inválido do YAML",
     "invalid_url_body": "A URL que você inseriu era inválida, por favor tente novamente",
-    "invalid_url_title": "URL inválida"
+    "title": "Departamentos de Saúde",
+    "url_instructions": "Digite um URL para o Departamento de Saúde que você gostaria de adicionar",
+    "view_button_label": "Veja os seus Departamentos de Saúde"
   },
   "common": {
+    "add": "Adicionar",
     "done": "Feito",
     "next": "Próximo",
     "ok": "Ok"
   },
   "export": {
-    "exit_warning_cancel": "Cancelar"
+    "exit_warning_cancel": "Cancelar",
+    "location_consent_body": "Seu histórico de localização é usado por um(a) representantes de {{name}} para entrevistá-lo(a) sobre lugares que você visitou e quando você esteve lá.\n\nUma vez que você enviar seu histórico de localização para {{name}}, eles reterão seus dados por um período específico de tempo.",
+    "location_consent_title": "Uso do histórico de localização"
   },
   "history": {
     "no_exposure": "Sem exposição conhecida",
@@ -38,8 +48,20 @@
   },
   "home": {
     "bluetooth": {
+      "all_services_on_header": "PathCheck",
       "unavailable_header": "As notificações do histórico de exposição ainda não estão disponíveis",
       "unavailable_subheader": "Seu telefone não está coberto atualmente pelas autoridades de saúde usando PathCheck."
+    },
+    "gps": {
+      "all_services_on_header": "PathCheck"
+    },
+    "shared": {
+      "no_authorities_header": "Nenhum Departamento de Saúde local",
+      "no_authorities_subheader": "Seu telefone está fora das áreas cobertas pelos Departamentos de Saúde listados no PathCheck \n\nVocê será notificado quando Departamentos de Saúde próximos forem adicionados",
+      "notifications_off_button": "Permitir notificações",
+      "select_authority_button": "Adicionar Departamento de Saúde",
+      "select_authority_header": "Nenhum Departamento de Saúde local selecionado",
+      "select_authority_subheader": "Permita que o PathCheck adicione seu Departamento de Saúde local ou selecione um para receber informações sobre o COVID-19 em sua área"
     }
   },
   "import": {
@@ -62,7 +84,7 @@
     "title": "Importar Localizações"
   },
   "label": {
-    "about_header_bluetooth": "BT do PathCheck",
+    "about_header_bluetooth": "BT do Pathcheck",
     "about_header_location": "GPS do PathCheck",
     "about_para": "O PathCheck é um movimento global para desenvolver ferramentas gratuitas, de código aberto e privacidade por design para residentes, funcionários da saúde pública e grandes comunidades para achatar a curva do COVID-19, reduzir o medo e impedir uma resposta vigilante do estado à pandemia. \n\nPara mais informações, visite",
     "authorities_add_button_label": "Adicionar Fonte Confiável",
@@ -89,6 +111,7 @@
     "event_history_subtitle": "Entenda a sua exposição pessoal a partir de informações compartilhadas com as autoridades de saúde.",
     "event_history_title": "Histórico de exposição",
     "filter_authorities_by_gps_history": "Filtrar por suas localizações",
+    "home_no_contact_header_bluetooth": "PathCheck",
     "import_success": "Importado com sucesso",
     "latest_news": "Últimas Notícias",
     "launch_access_bluetooth": "Permita o rastreamento de contato",
@@ -110,8 +133,7 @@
     "launch_notif_header": "As notificações avisam se você cruzou com alguém infectado.",
     "launch_notif_subheader": "O aplicativo somente envia notificações sobre o seu risco de exposição, nada mais.",
     "launch_notification_access": "Permitir Notificações",
-    "launch_screen1_header": "O caminho de volta à normalidade começa aqui.",
-    "launch_screen2_header_bluetooth": "O PathCheck permite que seu telefone mantenha um registro anônimo de outros telefones que encontra durante o seu dia.",
+    "launch_screen1_header": "Bem-vindo ao PathCheck",
     "launch_screen2_header_location": "Seja notificado se você cruzou com alguém que veio a ser diagnosticado com COVID-19.",
     "launch_screen2_subheader_bluetooth": "A data e a duração do encontro são registradas juntamente com uma estimativa de quão próximos os dois telefones podem ter estado.",
     "launch_screen2_subheader_location": "Conhecimento é poder.",
@@ -139,6 +161,7 @@
     "logging_inactive_bluetooth": "Notificações de exposição inativas",
     "logging_inactive_location": "Localização Inativa",
     "news_subtitle": "Leia as últimas atualizações sobre COVID de sua autoridade de saúde e em geral.",
+    "authorities_new_in_area_msg_plural": "Se inscreva em {{count}} novas autoridades de saúde de confiança em sua área.",
     "news_title": "Últimas notícias",
     "no_data": "Sem dados",
     "privacy_policy": "Política de Privacidade",
@@ -147,10 +170,10 @@
     "see_exposure_history": "Veja seu histórico de exposição",
     "settings_title": "Painel de controle",
     "skip_this_step": "Pule este passo",
-    "authorities_new_in_area_msg_plural": "Se inscreva em {{count}} novas autoridades de saúde de confiança em sua área.",
     "team": "Equipe",
     "team_para": "Nossa equipe é formada por epidemiologistas, engenheiros, cientistas de dados, especialistas em privacidade digital, professores e pesquisadores de instituições renomadas, como: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young, e Link Ventures.",
-    "terms_of_use": "Termos de uso"
+    "terms_of_use": "Termos de uso",
+    "unknown": "desconhecido"
   },
   "onboarding": {
     "eula_checkbox": "Eu aceito o acordo de licenciamento",
@@ -159,7 +182,12 @@
   },
   "screen_titles": {
     "about": "Sobre",
-    "legal": "Legal"
+    "legal": "Legal",
+    "more": "Mais"
+  },
+  "settings": {
+    "share_test_result": "Relatar um resultado positivo no teste",
+    "share_test_result_description": "Compartilhe as informações de exportação do Covid-19 com a sua autoridade sanitária com um código fornecido"
   },
   "share": {
     "button_text": "Compartilhar dados de localização",
