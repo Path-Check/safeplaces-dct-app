@@ -19,11 +19,10 @@ type OnboardingNotificationsProps = {
 const OnboardingNotifications = ({
   navigation,
 }: OnboardingNotificationsProps): JSX.Element => {
-  const { authSubscription, location } = useContext(PermissionsContext);
+  const { notification } = useContext(PermissionsContext);
 
   const requestNotifications = async () => {
-    await location.request();
-    await authSubscription.request();
+    await notification.request();
     continueOnboarding();
   };
 
