@@ -20,10 +20,8 @@ const OnboardingLocations = (): JSX.Element => {
 
   const dispatch = useDispatch();
   const completeOnboarding = () => {
-    // TODO: investigate if this is broken. This is directly copied from our old OnboardingPermissions, but the types look wrong.
-    const storeData = ((location.status ===
-      PermissionStatus.GRANTED) as unknown) as string;
-    SetStoreData(PARTICIPATE, storeData);
+    const storeData = location.status === PermissionStatus.GRANTED;
+    SetStoreData(PARTICIPATE, JSON.stringify(storeData));
     dispatch(onboardingCompleteAction());
   };
 
