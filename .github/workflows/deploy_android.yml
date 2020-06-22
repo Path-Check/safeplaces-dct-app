@@ -87,7 +87,6 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          GITHUB_RUN_NUMBER: '100'
         with:
           lane: 'release_gps'
           subdirectory: 'android'

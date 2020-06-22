@@ -33,13 +33,6 @@ platform :android do
 
   desc "GPS: Build a Release AAB"
   lane :release_gps do
-
-    build_number =  ENV["GITHUB_RUN_NUMBER"]
-
-    increment_version_code(
-      gradle_file_path: "app/build.gradle",
-      version_code: build_number
-    )
   
     gradle(
       task: "bundle",
