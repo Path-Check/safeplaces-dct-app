@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { NativeModules } from 'react-native';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../../constants/storage';
-import LocationServices, { MIN_LOCATION_UPDATE_MS } from '../LocationService';
+import LocationServices, { MIN_LOCATION_UPDATE_MS, DEVICE_LOCATION_OFF, APP_NOT_AUTHORIZED, ALL_CONDITIONS_MET } from '../LocationService';
 
 jest.mock('@mauron85/react-native-background-geolocation');
 
@@ -100,7 +100,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: false,
-        reason: LocationServices.DEVICE_LOCATION_OFF,
+        reason: DEVICE_LOCATION_OFF,
         hasPotentialExposure: false,
       });
     });
@@ -110,13 +110,13 @@ describe('LocationServices', () => {
       storage[PARTICIPATE] = 'true';
       mockBackgroundGeolocationCheckStatus({
         locationServicesEnabled: true,
-        authorization: BackgroundGeolocation.NOT_AUTHORIZED,
+        authorization: APP_NOT_AUTHORIZED,
       });
 
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: false,
-        reason: LocationServices.APP_NOT_AUTHORIZED,
+        reason: APP_NOT_AUTHORIZED,
         hasPotentialExposure: false,
       });
     });
@@ -131,7 +131,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: true,
-        reason: LocationServices.ALL_CONDITIONS_MET,
+        reason: ALL_CONDITIONS_MET,
         hasPotentialExposure: false,
       });
     });
@@ -146,7 +146,7 @@ describe('LocationServices', () => {
       const data = await LocationServices.checkStatus();
       expect(data).toEqual({
         canTrack: true,
-        reason: LocationServices.ALL_CONDITIONS_MET,
+        reason: ALL_CONDITIONS_MET,
         hasPotentialExposure: true,
       });
     });
@@ -173,7 +173,7 @@ describe('LocationServices', () => {
         canTrack: true,
         hasPotentialExposure: false,
         isRunning: true,
-        reason: LocationServices.ALL_CONDITIONS_MET,
+        reason: ALL_CONDITIONS_MET,
       });
     });
 
@@ -207,7 +207,7 @@ describe('LocationServices', () => {
 
     const CANNOT_TRACK = {
       locationServicesEnabled: true,
-      authorization: BackgroundGeolocation.APP_NOT_AUTHORIZED,
+      authorization: APP_NOT_AUTHORIZED,
     };
 
     it('does not stop the service if already stopped', async () => {

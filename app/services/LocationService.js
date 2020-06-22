@@ -18,16 +18,16 @@ export const MIN_LOCATION_UPDATE_MS = 300000;
 /**
  * Location services are disabled for the device
  */
-const DEVICE_LOCATION_OFF = 'DEVICE_LOCATION_OFF';
+export const DEVICE_LOCATION_OFF = 'DEVICE_LOCATION_OFF';
 /**
  * Location services are disabled for this app
  */
-const APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
+export const APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
 /**
  * User has granted location tracking permissions
  * to the app, and device location services are running
  */
-const ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
+export const ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
 
 export default class LocationServices {
   static async start() {
