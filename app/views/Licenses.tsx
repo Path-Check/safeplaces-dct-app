@@ -22,8 +22,7 @@ type LicensesScreenProps = {
   navigation: NavigationProp;
 };
 
-const PRIVACY_POLICY_URL =
-  'https://docs.google.com/document/d/17u0f8ni9S0D4w8RCUlMMqxAlXKJAd2oiYGP8NUwkINo/edit';
+const PRIVACY_POLICY_URL = 'https://covidsafepaths.org/privacy-policy/';
 
 export const LicensesScreen = ({
   navigation,
