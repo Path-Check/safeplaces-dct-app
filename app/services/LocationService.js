@@ -14,21 +14,22 @@ const LOCATION_DISABLED_NOTIFICATION_ID = '55';
 // 5 minutes
 export const MIN_LOCATION_UPDATE_MS = 300000;
 
-export default class LocationServices {
-  /**
-   * Location services are disabled for the device
-   */
-  DEVICE_LOCATION_OFF = 'DEVICE_LOCATION_OFF';
-  /**
-   * Location services are disabled for this app
-   */
-  APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
-  /**
-   * User has granted location tracking permissions
-   * to the app, and device location services are running
-   */
-  ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
+//Device Location Statuses
+/**
+ * Location services are disabled for the device
+ */
+const DEVICE_LOCATION_OFF = 'DEVICE_LOCATION_OFF';
+/**
+ * Location services are disabled for this app
+ */
+const APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
+/**
+ * User has granted location tracking permissions
+ * to the app, and device location services are running
+ */
+const ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
 
+export default class LocationServices {
   static async start() {
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
@@ -180,27 +181,41 @@ export default class LocationServices {
   }
 
   static async checkStatus() {
+    console.log('CHECK STATUS')
     const hasPotentialExposure = await this.getHasPotentialExposure();
+
+    // const {
+    //   authorization: isAppGpsEnabled,
+    //   isRunning,
+    //   locationServicesEnabled: isDeviceGpsEnabled,
+    // } = await this.getBackgroundGeoStatus();
+
+    const resp = await this.getBackgroundGeoStatus();
+
+    console.log('RESP')
+    console.log(resp)
 
     const {
       authorization: isAppGpsEnabled,
       isRunning,
       locationServicesEnabled: isDeviceGpsEnabled,
-    } = await this.getBackgroundGeoStatus();
+    } = resp;
 
+    console.log({isAppGpsEnabled, isRunning, isDeviceGpsEnabled})
     if (!isDeviceGpsEnabled) {
       return {
         canTrack: false,
-        reason: this.DEVICE_LOCATION_OFF,
+        reason: DEVICE_LOCATION_OFF,
         hasPotentialExposure,
         isRunning,
       };
     }
 
-    if (!isAppGpsEnabled) {
+    // isAppGpsEnabled 0 = Never Use Location, isAppGpsEnabled 99 = Ask Next Time
+    if (!isAppGpsEnabled === 0 || isAppGpsEnabled === 99) {
       return {
         canTrack: false,
-        reason: this.APP_NOT_AUTHORIZED,
+        reason: APP_NOT_AUTHORIZED,
         hasPotentialExposure,
         isRunning,
       };
@@ -208,7 +223,7 @@ export default class LocationServices {
 
     return {
       canTrack: true,
-      reason: this.ALL_CONDITIONS_MET,
+      reason: ALL_CONDITIONS_MET,
       hasPotentialExposure,
       isRunning,
     };
@@ -222,11 +237,15 @@ export default class LocationServices {
    * - If the user has opted in and perissions are available, start.
    */
   static async checkStatusAndStartOrStop() {
+    console.log('checkStatusAndStartOrStop')
     const status = await this.checkStatus();
+    console.log('STATUS')
+    console.log(status)
 
     const { canTrack, isRunning } = status;
 
     if (canTrack && !isRunning) {
+      console.log('canTrack && !isRunning')
       this.start();
     }
 
