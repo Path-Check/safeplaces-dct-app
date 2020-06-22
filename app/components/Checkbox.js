@@ -12,7 +12,7 @@ export const Checkbox = ({ label, onPress, checked }) => {
       style={styles.checkbox}
       onPress={onPress}
       accessible
-      accessibilityRole={'checkbox'}
+      accessibilityRole='checkbox'
       accessibilityLabel={label}>
       <Image
         source={checked ? Images.BoxCheckedIcon : Images.BoxUncheckedIcon}
