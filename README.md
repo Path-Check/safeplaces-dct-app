@@ -126,7 +126,7 @@ Then, add your own values for each environment variable in the following 6 `.env
 - .env.gps.staging
 - .env.gps.release
 
-### For Safe Paths Developers
+### For PathCheck Developers
 
 Update git submodules:
 
