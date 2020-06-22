@@ -1,16 +1,15 @@
 import React from 'react';
 import {
-  Dimensions,
   ImageBackground,
   StatusBar,
   StyleSheet,
   View,
   ScrollView,
+  ImageSourcePropType,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-
-import { Typography, Button } from '../../components';
-import { sharedStyles } from './styles';
+import { Button } from '../../components/Button';
+import { Typography } from '../../components/Typography';
 
 import { Colors, Spacing } from '../../styles';
 import { Theme } from '../../constants/themes';
@@ -24,8 +23,8 @@ type OnboardingTemplateProps = {
   secondaryButtonLabel?: string;
   secondaryButtonOnPress?: () => void;
   theme: 'light' | 'dark';
-  background: any;
-  invertIcon?: bolean;
+  background: ImageSourcePropType;
+  invertIcon?: boolean;
 };
 
 const OnboardingTemplate = ({
@@ -58,13 +57,13 @@ const OnboardingTemplate = ({
             </View>
             <Typography
               use={'headline2'}
-              style={theme === 'dark' && styles.lightText}>
+              style={theme === 'dark' ? styles.lightText : {}}>
               {title}
             </Typography>
             <View style={{ height: Spacing.medium }} />
             <Typography
-              usee={'body2'}
-              style={theme === 'dark' && styles.lightText}>
+              use={'body2'}
+              style={theme === 'dark' ? styles.lightText : {}}>
               {body}
             </Typography>
           </ScrollView>
