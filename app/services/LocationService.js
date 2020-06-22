@@ -181,27 +181,14 @@ export default class LocationServices {
   }
 
   static async checkStatus() {
-    console.log('CHECK STATUS')
     const hasPotentialExposure = await this.getHasPotentialExposure();
-
-    // const {
-    //   authorization: isAppGpsEnabled,
-    //   isRunning,
-    //   locationServicesEnabled: isDeviceGpsEnabled,
-    // } = await this.getBackgroundGeoStatus();
-
-    const resp = await this.getBackgroundGeoStatus();
-
-    console.log('RESP')
-    console.log(resp)
 
     const {
       authorization: isAppGpsEnabled,
       isRunning,
       locationServicesEnabled: isDeviceGpsEnabled,
-    } = resp;
+    } = await this.getBackgroundGeoStatus();
 
-    console.log({isAppGpsEnabled, isRunning, isDeviceGpsEnabled})
     if (!isDeviceGpsEnabled) {
       return {
         canTrack: false,
@@ -210,8 +197,10 @@ export default class LocationServices {
         isRunning,
       };
     }
-
-    // isAppGpsEnabled 0 = Never Use Location, isAppGpsEnabled 99 = Ask Next Time
+    /* 
+      On Android: isAppGpsEnabled = 0 means Never Use Location
+      On IOS: isAppGpsEnabled = 0 means Never Use Location. isAppGpsEnabled = 99 means Ask Next Time
+    */
     if (!isAppGpsEnabled === 0 || isAppGpsEnabled === 99) {
       return {
         canTrack: false,
@@ -237,15 +226,11 @@ export default class LocationServices {
    * - If the user has opted in and perissions are available, start.
    */
   static async checkStatusAndStartOrStop() {
-    console.log('checkStatusAndStartOrStop')
     const status = await this.checkStatus();
-    console.log('STATUS')
-    console.log(status)
 
     const { canTrack, isRunning } = status;
 
     if (canTrack && !isRunning) {
-      console.log('canTrack && !isRunning')
       this.start();
     }
 
