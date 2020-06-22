@@ -30,7 +30,7 @@ Push a new GPS Staging build for automation
 ```
 fastlane ios staging_bt
 ```
-Push a new BT Staging build for automation
+Push a new  Staging build for automation
 ### ios release
 ```
 fastlane ios release

@@ -11,7 +11,6 @@ import {
   Text,
 } from 'react-native';
 
-import packageJson from '../../package.json';
 import fontFamily from './../constants/fonts';
 import { NavigationBarWrapper, Typography } from '../components';
 import { useAssets } from '../TracingStrategyAssets';
@@ -19,6 +18,7 @@ import { useAssets } from '../TracingStrategyAssets';
 import { Colors, Spacing } from '../styles';
 
 export const AboutScreen = ({ navigation }) => {
+  const version = '1.1.0 (2)';
   const { t } = useTranslation();
   const { aboutHeader } = useAssets();
 
@@ -91,7 +91,7 @@ export const AboutScreen = ({ navigation }) => {
           <View>
             <View style={styles.row}>
               <Typography style={styles.aboutSectionParaBold}>
-                {packageJson.version}
+                {version}
               </Typography>
             </View>
 

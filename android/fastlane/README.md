@@ -21,31 +21,31 @@ or alternatively using `brew cask install fastlane`
 fastlane android test
 ```
 Runs Android (Native) unit tests
-### android staging
+### android staging_gps
 ```
-fastlane android staging
+fastlane android staging_gps
 ```
-Build a Staging APK and AAB
-### android release
+GPS: Build a Staging AAB
+### android release_gps
 ```
-fastlane android release
+fastlane android release_gps
 ```
-Build a Release APK and AAB
-### android play_store
+GPS: Build a Release AAB
+### android play_store_gps
 ```
-fastlane android play_store
+fastlane android play_store_gps
 ```
 Upload to google play store beta track
 ### android staging_bt
 ```
 fastlane android staging_bt
 ```
-Build a Staging APK and AAB
+Build a Staging AAB
 ### android release_bt
 ```
 fastlane android release_bt
 ```
-Build a Release APK and AAB
+Build a Release AAB
 ### android play_store_bt
 ```
 fastlane android play_store_bt
