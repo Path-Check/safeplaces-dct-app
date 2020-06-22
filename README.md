@@ -126,6 +126,20 @@ Then, add your own values for each environment variable in the following 6 `.env
 - .env.gps.staging
 - .env.gps.release
 
+### For Safe Paths Developers
+
+Update git submodules:
+
+```
+ git submodule update --init
+```
+
+copy `.env` files to the project root:
+
+```
+sh copy_env.sh
+```
+
 ## Running
 
 **Note:** In some cases, these procedures can lead to the error `Failed to load bundle - Could not connect to development server`. In these cases, kill all other react-native processes and try it again.
