@@ -133,4 +133,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [[SecureStorage shared] saveBackgroundLocations];
+}
+
 @end
