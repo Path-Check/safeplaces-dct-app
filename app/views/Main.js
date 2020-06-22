@@ -13,7 +13,9 @@ import {
   NotificationsOffScreen,
   // SelectAuthorityScreen,
 } from './main/ServiceOffScreens';
-import PermissionsContext, { PermissionStatus } from '../PermissionsContext';
+import PermissionsContext, {
+  PermissionStatus,
+} from '../gps/PermissionsContext';
 
 import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';

@@ -24,6 +24,7 @@ import { Screens, NavigationProp } from '../../navigation';
 
 import toggleSelectedHealthcareAuthorityAction from '../../store/actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
 import { Button } from '../../components/Button';
+import { FeatureFlag } from '../../components/FeatureFlag';
 
 type PartnersEditScreenProps = {
   navigation: NavigationProp;
@@ -122,12 +123,14 @@ const PartnersScreen = ({
         }
         ItemSeparatorComponent={() => <Separator />}
       />
-      <View style={{ padding: 24 }}>
-        <Button
-          label={t('authorities.custom_url')}
-          onPress={() => navigation.navigate(Screens.PartnersCustomUrl)}
-        />
-      </View>
+      <FeatureFlag name={'custom_url'}>
+        <View style={{ padding: 24 }}>
+          <Button
+            label={t('authorities.custom_url')}
+            onPress={() => navigation.navigate(Screens.PartnersCustomUrl)}
+          />
+        </View>
+      </FeatureFlag>
     </NavigationBarWrapper>
   );
 };
