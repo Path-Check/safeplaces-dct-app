@@ -10,23 +10,6 @@ on:
       - 'CHANGELOG.md'
 
 jobs:
-  version_bump:
-    name: "Bump version"
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.ref }}
-
-    - name: Bump version and push tag
-      uses: TriPSs/conventional-changelog-action@v2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        git-message: 'chore(release): {version}'
-        preset: 'angular'
-        tag-prefix: ''
-        output-file: 'CHANGELOG.md'
 
   deploy_android_gps:
     # gps-release branch only
