@@ -17,7 +17,7 @@
     "complete_description": "Continue to use this app and take this screening <1>again in the next week</1> to help protect yourself and your community.",
     "complete_cta": "Done",
     "distancing_title": "Distancing & PPE",
-    "distancing_description": "Please follow your local, state, or national guidlines for <1>social distancing</1> and Personal Protection Equipment (PPE) like masks and/or gloves. No additional action is needed at this time.",
+    "distancing_description": "Please follow your local, state, or national guidelines for <1>social distancing</1> and Personal Protection Equipment (PPE) like masks and/or gloves. No additional action is needed at this time.",
     "distancing_cta": "Next",
     "emergency_title": "Emergency Services",
     "emergency_description": "You may be having a <1>medical emergency</1>. Immediate medical attention is needed.\n\nTell the emergency operator if you have been in contact with someone with COVID-19 or if you have recently been to an area where COVID-19 is spreading.",
@@ -170,7 +170,7 @@
   },
   "settings": {
     "share_test_result": "Report a positive test result",
-    "share_test_result_description": "Share Covid-19 exporsure information with your health authority with a provided code"
+    "share_test_result_description": "Share Covid-19 exposure information with your health authority with a provided code"
   },
   "label": {
     "about_header_bluetooth": "PathCheck BT",
@@ -216,7 +216,7 @@
     "launch_enable_location": "Enable Location",
     "launch_enable_notif": "Enable Notifications",
     "launch_enable_exposure_notif": "Enable",
-    "launch_exposure_notif_subheader": "To be notified about updates to your exposure history, your phone needs permission to exchange anonymous Bluetooth random ID with other devices.\n\nExposure Notifcations only work with other devices with the setting enabled.\n\nYou can turn off this notifications at any time.",
+    "launch_exposure_notif_subheader": "To be notified about updates to your exposure history, your phone needs permission to exchange anonymous Bluetooth random ID with other devices.\n\nExposure Notifications only work with other devices with the setting enabled.\n\nYou can turn off this notifications at any time.",
     "launch_exposure_notif_header": "Enable Exposure Notifications",
     "launch_allow_location": "Allow Location Access",
     "launch_finish_set_up": "Finish Setup",
@@ -273,8 +273,8 @@
     "eula_checkbox": "I accept the licensing agreement",
     "eula_continue": "Continue",
     "eula_message": "*You must accept in order to use PathCheck",
-    "notification_header": "Would you like to recieve notifications when you may have crossed paths with the virus?",
-    "notification_subheader": "To recieve exposure notifications, you need to be in an area covered by a local Health Department partner.\n\nIf there are no local or regional partner Health Department in your area yet, get notified when new Health Departments are added near you.",
+    "notification_header": "Would you like to receive notifications when you may have crossed paths with the virus?",
+    "notification_subheader": "To receive exposure notifications, you need to be in an area covered by a local Health Department partner.\n\nIf there are no local or regional partner Health Department in your area yet, get notified when new Health Departments are added near you.",
     "location_header": "To determine when you may have crossed paths with the virus, PathCheck needs location access.",
     "location_subheader": "Your PathCheck location diary only includes GPS coordinates, dates, and times.\n\nYour data will not be shared with anyone unless you choose to do so."
   },
