@@ -20,6 +20,7 @@ import toggleSelectedHealthcareAuthorityAction from '../../store/actions/healthc
 import { Button } from '../../components/Button';
 import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
 import { Spacing } from '../../styles';
+import { FeatureFlag } from '../../components/FeatureFlag';
 
 type PartnersEditScreenProps = {
   navigation: NavigationProp;
@@ -118,12 +119,14 @@ const PartnersScreen = ({
         }
         ItemSeparatorComponent={() => <Separator />}
       />
-      <View style={{ padding: 24 }}>
-        <Button
-          label={t('authorities.custom_url')}
-          onPress={() => navigation.navigate(Screens.PartnersCustomUrl)}
-        />
-      </View>
+      <FeatureFlag name={'custom_url'}>
+        <View style={{ padding: 24 }}>
+          <Button
+            label={t('authorities.custom_url')}
+            onPress={() => navigation.navigate(Screens.PartnersCustomUrl)}
+          />
+        </View>
+      </FeatureFlag>
     </NavigationBarWrapper>
   );
 };
