@@ -1,4 +1,4 @@
 /* Body text of notification when app is closed on iOS */
-"ios.app_closed_alert_text" = "PathCheck moet actief zijn";
+"ios.app_closed_alert_text" = "PathCheck slaat uw GPS-coördinaten eens in de vijf minuten veilig op dit apparaat op.";
 /* Title of notification when app is closed on iOS */
 "ios.app_closed_alert_title" = "PathCheck was afgesloten";
