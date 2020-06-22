@@ -37,8 +37,6 @@ const NextSteps = (): JSX.Element => {
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <Typography style={styles.headerText}>{headerText}</Typography>
-        </View>
-        <View style={styles.contentContainer}>
           <Typography style={styles.contentText}>{contentTextOne}</Typography>
           <Typography style={styles.contentText}>{contentTextTwo}</Typography>
         </View>
@@ -57,17 +55,13 @@ const NextSteps = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
     padding: Spacing.medium,
   },
   headerContainer: {
     flex: 1,
   },
   headerText: {
-    ...TypographyStyles.header1,
-  },
-  contentContainer: {
-    flex: 2,
+    ...TypographyStyles.header2,
   },
   contentText: {
     ...TypographyStyles.mainContent,

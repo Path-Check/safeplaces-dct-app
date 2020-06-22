@@ -22,6 +22,11 @@
     "what_if_no_symptoms": "Bagaimana jika saya tidak menunjukkan gejala?",
     "what_if_no_symptoms_para": "Jika Anda tidak memiliki gejala tetapi masih ingin diuji, Anda dapat pergi ke fasilitas pengujian terdekat.\n\n Individu yang tidak menunjukkan gejala kadang-kadang masih dapat mengalami infeksi dan menginfeksi orang lain. Berhati-hati dengan jarak sosial dan melakukan kontak dengan kelompok besar atau individu yang berisiko (orang tua, mereka yang memiliki masalah medis lainnya) adalah penting untuk mengelola risiko Anda dan risiko terhadap orang lain."
   },
+  "home": {
+    "gps": {
+      "all_services_on_header": "PathCheck"
+    }
+  },
   "import": {
     "button_text": "Impor lokasi sebelumnya",
     "google": {
@@ -32,6 +37,8 @@
     "title": "Impor Data Lokasi"
   },
   "label": {
+    "about_header_bluetooth": "PathCheck BT",
+    "about_header_location": "PathCheck GPS",
     "authorities_add_button_label": "Tambah Sumber Terpercaya",
     "authorities_add_url": "Tambah Otoritas via URL",
     "authorities_desc": "Pilih otoritas kesehatan tepercaya di wilayah Anda untuk mendapatkan data paparan. Pilih nama dari registri global, atau masukkan alamat web yang diberikan oleh otoritas kesehatan yang telah menggunakan PathCheck.",
@@ -46,6 +53,7 @@
     "default_news_site_name": "Berita PathCheck",
     "event_history_subtitle": "Pahami paparan pribadi Anda berdasarkan informasi yang dibagikan oleh otoritas kesehatan.",
     "event_history_title": "Riwayat paparan",
+    "home_no_contact_header_bluetooth": "PathCheck",
     "latest_news": "Berita Terbaru",
     "launch_access_location": "Akses Lokasi",
     "launch_done_header": "Selesai",
@@ -59,7 +67,7 @@
     "launch_notif_header": "Anda akan mendapatkan Notifikasi jika Anda berpapasan dengan orang yang terinfeksi.",
     "launch_notif_subheader": "Kami tidak akan mengganggu Anda kecuali untuk menginformasikan resiko tentang paparan",
     "launch_notification_access": "Izinkan Notifikasi",
-    "launch_screen1_header": "Jalan kembali ke normal dimulai di sini.",
+    "launch_screen1_header": "Selamat datang di PathCheck",
     "launch_screen2_header_location": "Dapatkan pemberitahuan jika Anda berpapasan dengan Orang yang didiagnosis COVID-19.",
     "launch_screen2_subheader_location": "Pengetahuan adalah kekuatan.",
     "launch_screen3_header_location": "Jika Anda dinyatakan positif, Anda dapat memilih untuk menyumbangkan data Anda secara anonim",
@@ -68,6 +76,9 @@
     "launch_screen4_subheader_location": "Jika Anda dinyatakan positif, Anda dapat memilih untuk berbagi atau tidak.",
     "launch_set_up_phone_location": "Siapkan Perangkat Saya",
     "launch_subheader": "Jangan khawatir, informasi tidak akan pernah dibagikan, kecuali Anda secara eksplisit memutuskan untuk berbagi.",
+    "legal_page_address": "PathCheck\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_header_bluetooth": "PathCheck BT",
+    "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "memuat data...",
     "location_disabled_message": "PathCheck membutuhkan layanan lokasi.",
     "location_disabled_title": "Pelacakan Lokasi Dinonaktifkan",
@@ -86,7 +97,8 @@
   },
   "screen_titles": {
     "about": "Tentang",
-    "legal": "Hukum"
+    "legal": "Hukum",
+    "more": "Lebih"
   },
   "share": {
     "button_text": "Bagikan riwayat lokasi",
