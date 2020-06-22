@@ -15,7 +15,9 @@ import { PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
-import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
+import PermissionsContext, {
+  PermissionStatus,
+} from '../../gps/PermissionsContext';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 
 import { sharedStyles } from './styles';

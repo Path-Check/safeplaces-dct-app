@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import {
   ScrollView,
-  StatusBar,
   StyleSheet,
   View,
   TouchableOpacity,
@@ -18,19 +17,11 @@ import { Theme } from '../../constants/themes';
 
 import { Icons } from '../../assets';
 import { Colors, Typography as TypographyStyles } from '../../styles';
+import { useStatusBarEffect } from '../../navigation';
 
 const BackgroundContainer = ({ lightTheme, children }) => {
   if (lightTheme) {
-    return (
-      <View style={styles.container}>
-        <StatusBar
-          barStyle={'dark-content'}
-          backgroundColor={Colors.faintGray}
-          translucent={false}
-        />
-        {children}
-      </View>
-    );
+    return <View style={styles.container}>{children}</View>;
   }
   return (
     <LinearGradient
@@ -38,11 +29,6 @@ const BackgroundContainer = ({ lightTheme, children }) => {
       end={{ x: 0, y: 1 }}
       colors={[Colors.secondaryBlue, Colors.primaryBlue]}
       style={styles.container}>
-      <StatusBar
-        barStyle={'light-content'}
-        backgroundColor={Colors.secondaryBlue}
-        translucent={false}
-      />
       {children}
     </LinearGradient>
   );
@@ -65,6 +51,7 @@ export const ExportTemplate = ({
   bodyLinkOnPress,
   ignoreModalStyling, // So first screen can be slightly different in tabs
 }) => {
+  useStatusBarEffect(lightTheme ? 'dark-content' : 'light-content');
   useEffect(() => {
     function handleBackPress() {
       onClose();

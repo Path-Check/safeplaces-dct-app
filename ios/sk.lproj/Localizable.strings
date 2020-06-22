@@ -1,4 +1,4 @@
 /* Body text of notification when app is closed on iOS */
-"ios.app_closed_alert_text" = "PathCheck vyžaduje spustenie.";
+"ios.app_closed_alert_text" = "PathCheck bezpečne ukladá vaše GPS súradnice každých päť minút.";
 /* Title of notification when app is closed on iOS */
 "ios.app_closed_alert_title" = "Aplikácia PathCheck bola zatvorená";

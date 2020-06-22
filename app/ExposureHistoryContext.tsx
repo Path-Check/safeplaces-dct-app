@@ -1,7 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-import { isGPS } from './COVIDSafePathsConfig';
-import { BTNativeModule } from './bt';
 import {
   ExposureInfo,
   ExposureHistory,
@@ -29,14 +27,25 @@ const ExposureHistoryContext = createContext<ExposureHistoryState>(
   initialState,
 );
 
+export type ExposureInfoSubscription = (
+  cb: (exposureInfo: ExposureInfo) => void,
+) => { remove: () => void };
+
 interface ExposureHistoryProps {
   children: JSX.Element;
+  exposureInfoSubscription: ExposureInfoSubscription;
 }
 
-const blankHistory = toExposureHistory({}, calendarDays(Date.now(), 21));
+const CALENDAR_DAY_COUNT = 21;
+
+const blankHistory = toExposureHistory(
+  {},
+  calendarDays(Date.now(), CALENDAR_DAY_COUNT),
+);
 
 const ExposureHistoryProvider = ({
   children,
+  exposureInfoSubscription,
 }: ExposureHistoryProps): JSX.Element => {
   const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
     blankHistory,
@@ -44,22 +53,16 @@ const ExposureHistoryProvider = ({
   const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!isGPS) {
-      const subscription = BTNativeModule.subscribeToExposureEvents(
-        (exposureInfo: ExposureInfo) => {
-          const days = calendarDays(Date.now(), 21);
-          const exposureHistory = toExposureHistory(exposureInfo, days);
-          setExposureHistory(exposureHistory);
-        },
-      );
+    const subscription = exposureInfoSubscription(
+      (exposureInfo: ExposureInfo) => {
+        const days = calendarDays(Date.now(), CALENDAR_DAY_COUNT);
+        const exposureHistory = toExposureHistory(exposureInfo, days);
+        setExposureHistory(exposureHistory);
+      },
+    );
 
-      return () => {
-        subscription?.remove();
-      };
-    } else {
-      return () => {};
-    }
-  }, []);
+    return subscription.remove;
+  }, [exposureInfoSubscription]);
 
   const observeExposures = () => {
     setUserHasNewExposure(false);
