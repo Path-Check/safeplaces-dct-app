@@ -8,7 +8,21 @@ final class GPSSecureStorage: SafePathsSecureStorage {
   private static let MINIMUM_TIME_INTERVAL = 60 * 4
   private static let MAX_BACKFILL_TIME = 60 * 60 * 24
 
-  func saveDeviceLocation(backgroundLocation: MAURLocation) {
+  func persistSavedBackgroundLocations() {
+    objc_sync_enter(keyBackgroundNewLocations)
+
+    let userDefaults = UserDefaults.standard
+    let locationDicts = userDefaults.array(forKey: keyBackgroundNewLocations) as? [NSDictionary] ?? [NSDictionary]()
+    let locations = locationDicts.map(MAURLocation.init)
+
+    locations.forEach(saveLocation)
+
+    userDefaults.removeObject(forKey: keyBackgroundNewLocations)
+
+    objc_sync_exit(keyBackgroundNewLocations)
+  }
+
+  func saveDeviceLocation(_ backgroundLocation: MAURLocation, backgrounded: Bool) {
     // The geolocation library sometimes returns nil times.
     // Almost immediately after these locations, we receive an identical location containing a time.
     guard backgroundLocation.time != nil else {
@@ -19,42 +33,20 @@ final class GPSSecureStorage: SafePathsSecureStorage {
     // Using UserDefaults here since realm reads are async and we could end up saving multiple locations before a query for the most recent record returns
     let currentTime = Int(backgroundLocation.time.timeIntervalSince1970)
     let lastSavedTime = UserDefaults.standard.integer(forKey: keyLastSavedTime)
+
     if (currentTime - lastSavedTime < GPSSecureStorage.MINIMUM_TIME_INTERVAL) {
       return
     } else {
       UserDefaults.standard.set(currentTime, forKey: keyLastSavedTime)
     }
-    
-    let state = UIApplication.shared.applicationState
-    // Check whether the app in background | inactive state or not
-    if state == .background || state == .inactive {
-      saveLocationsInbackground(newlocation: backgroundLocation)
+
+    // When the app is backgrounded, persist locations via a different method,
+    // to be saved to Realm when the app resumes
+    if backgrounded {
+      saveLocationInbackground(newlocation: backgroundLocation)
     }
-
-    guard let realmConfig = getRealmConfig() else { return }
-    let realm = try! Realm(configuration: realmConfig)
-
-    // Get our Realm file's parent directory
-    let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path
-
-    // Disable file protection for this directory
-    try! FileManager.default.setAttributes([FileAttributeKey.protectionKey: FileProtectionType.none], ofItemAtPath: folderPath)
-
-    let realmResults = realm.objects(Location.self)
-      .filter("\(Location.KEY_SOURCE)=\(Location.SOURCE_DEVICE)")
-      .sorted(byKeyPath: Location.KEY_TIME, ascending: false)
-    let previousLocation = realmResults.first
-    let previousTime = previousLocation?.time ?? 0
-    if currentTime - previousTime > GPSSecureStorage.MINIMUM_TIME_INTERVAL {
-      let assumedLocations = createAssumedLocations(previousLocation: previousLocation, newLocation: backgroundLocation)
-      try! realm.write {
-        realm.add(assumedLocations, update: .modified)
-      }
-    }
-
-    let location = Location.fromBackgroundLocation(backgroundLocation: backgroundLocation)
-    try! realm.write {
-      realm.add(location, update: .modified)
+    else {
+      saveLocation(newLocation: backgroundLocation)
     }
   }
 
@@ -63,14 +55,9 @@ final class GPSSecureStorage: SafePathsSecureStorage {
       resolve(false)
       return
     }
-    let realm = try! Realm(configuration: realmConfig)
-    
-    // Get our Realm file's parent directory
-    let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path
 
-    // Disable file protection for this directory
-    try! FileManager.default.setAttributes([FileAttributeKey.protectionKey: FileProtectionType.none], ofItemAtPath: folderPath)
-    
+    let realm = try! Realm(configuration: realmConfig)
+
     let locationsToInsert = locations.compactMap {
       Location.fromImportLocation(dictionary: $0 as? NSDictionary, source: source)
     }.filter { $0.time >= getCutoffTime()}
@@ -85,13 +72,8 @@ final class GPSSecureStorage: SafePathsSecureStorage {
       resolve(NSArray())
       return
     }
-    let realm = try! Realm(configuration: realmConfig)
-    
-    // Get our Realm file's parent directory
-    let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path
 
-    // Disable file protection for this directory
-    try! FileManager.default.setAttributes([FileAttributeKey.protectionKey: FileProtectionType.none], ofItemAtPath: folderPath)
+    let realm = try! Realm(configuration: realmConfig)
     
     let realmResults = realm.objects(Location.self)
       .filter("\(Location.KEY_TIME)>=\(getCutoffTime())")
@@ -104,13 +86,8 @@ final class GPSSecureStorage: SafePathsSecureStorage {
     guard let realmConfig = getRealmConfig() else {
       return
     }
-    let realm = try! Realm(configuration: realmConfig)
-    
-    // Get our Realm file's parent directory
-    let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path
 
-    // Disable file protection for this directory
-    try! FileManager.default.setAttributes([FileAttributeKey.protectionKey: FileProtectionType.none], ofItemAtPath: folderPath)
+    let realm = try! Realm(configuration: realmConfig)
     
     let realmResults = realm.objects(Location.self)
       .filter("\(Location.KEY_TIME)<\(getCutoffTime())")
@@ -159,23 +136,46 @@ final class GPSSecureStorage: SafePathsSecureStorage {
   func getCutoffTime() -> Int {
     return Int(Date().timeIntervalSince1970) - (GPSSecureStorage.DAYS_TO_KEEP * 86400)
   }
+
+  func saveLocation(newLocation: MAURLocation) {
+    guard let realmConfig = getRealmConfig() else { return }
+
+    let realm = try! Realm(configuration: realmConfig)
+
+    let realmResults = realm.objects(Location.self)
+      .filter("\(Location.KEY_SOURCE)=\(Location.SOURCE_DEVICE)")
+      .sorted(byKeyPath: Location.KEY_TIME, ascending: false)
+
+    let previousLocation = realmResults.first
+    let currentTime = Int(newLocation.time.timeIntervalSince1970)
+    let previousTime = previousLocation?.time ?? 0
+
+    if currentTime - previousTime > GPSSecureStorage.MINIMUM_TIME_INTERVAL {
+      let assumedLocations = createAssumedLocations(previousLocation: previousLocation, newLocation: newLocation)
+      try? realm.write {
+        realm.add(assumedLocations, update: .modified)
+      }
+    }
+
+    let location = Location.fromBackgroundLocation(backgroundLocation: newLocation)
+
+    try? realm.write {
+      realm.add(location, update: .modified)
+    }
+  }
   
-  func saveLocationsInbackground(newlocation: MAURLocation) {
-    
+  func saveLocationInbackground(newlocation: MAURLocation) {
+    objc_sync_enter(keyBackgroundNewLocations)
+
     let locationDict:NSDictionary = newlocation.toDictionary()! as NSDictionary
     let userDefaults = UserDefaults.standard
-    var locationList: [NSDictionary]
-    
-    if let newLocationsList = userDefaults.array(forKey: keyBackgroundNewLocations) as? [NSDictionary] {
-      locationList = newLocationsList
-      locationList.append(locationDict)
-      
-    } else {
-      locationList = [NSDictionary]()
-      locationList.append(locationDict)
-    }
+    var locationList = userDefaults.array(forKey: keyBackgroundNewLocations) as? [NSDictionary] ?? [NSDictionary]()
+
+    locationList.append(locationDict)
     
     userDefaults.set(locationList, forKey: keyBackgroundNewLocations)
+
+    objc_sync_exit(keyBackgroundNewLocations)
   }
 
 }

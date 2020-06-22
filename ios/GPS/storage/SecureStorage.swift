@@ -15,12 +15,25 @@ class SecureStorage: NSObject {
   @objc static let shared = SecureStorage()
   
   private let secureStorage: GPSSecureStorage = GPSSecureStorage()
-  
-  @objc func saveDeviceLocation(backgroundLocation: MAURLocation) {
+
+  @objc func saveBackgroundLocations() {
     DispatchQueue(label: "realm").async {
       autoreleasepool { [weak self] in
         guard let `self` = self else { return }
-        self.secureStorage.saveDeviceLocation(backgroundLocation: backgroundLocation)
+        self.secureStorage.persistSavedBackgroundLocations()
+      }
+    }
+  }
+  
+  @objc func saveDeviceLocation(backgroundLocation: MAURLocation) {
+    DispatchQueue.main.async {
+      let backgrounded = [UIApplication.State.inactive, .background].contains(UIApplication.shared.applicationState)
+
+      DispatchQueue(label: "realm").async {
+        autoreleasepool { [weak self] in
+          guard let `self` = self else { return }
+          self.secureStorage.saveDeviceLocation(backgroundLocation, backgrounded: backgrounded)
+        }
       }
     }
   }

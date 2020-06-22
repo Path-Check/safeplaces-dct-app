@@ -48,6 +48,24 @@ public extension MAURLocation {
     }
   }
 
+  convenience init(dictionary: NSDictionary) {
+    self.init()
+
+    if let timeMillis = dictionary["time"] as? NSNumber {
+      time = Date(timeIntervalSince1970: timeMillis.doubleValue / 1000.0)
+    } else {
+      time = Date()
+    }
+
+    accuracy = dictionary["accuracy"] as? NSNumber
+    altitude = dictionary["altitude"] as? NSNumber
+    altitudeAccuracy = dictionary["altitudeAccuracy"] as? NSNumber
+    heading = dictionary["heading"] as? NSNumber
+    latitude = dictionary["latitude"] as? NSNumber
+    longitude = dictionary["longitude"] as? NSNumber
+    speed = dictionary["speed"] as? NSNumber
+  }
+
   /// Apply scrypt hash algorithm on a String
   ///
   /// - Parameters:

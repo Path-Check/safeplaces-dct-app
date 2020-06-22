@@ -134,55 +134,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-  [self getLocationsOfBackground];
+  [[SecureStorage shared] saveBackgroundLocations];
 }
 
-- (void)getLocationsOfBackground {
-  
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-  NSArray *locationsList = [defaults arrayForKey:@"backgroundNewLocations"];
-  if(locationsList != nil) {
-    for (MAURLocation* locationDict in locationsList) {
-      MAURLocation *location = [[MAURLocation alloc] init];
-      NSDate *date = [NSDate date];
-      
-      if([locationDict valueForKey:@"time"] != nil) {
-        NSNumber *timestamp = [locationDict valueForKey:@"time"];
-        date = [NSDate dateWithTimeIntervalSince1970:[timestamp doubleValue]/1000];
-      }
-      
-      if([locationDict valueForKey:@"accuracy"] != nil) {
-        [location setAccuracy:[locationDict valueForKey:@"accuracy"]];
-      }
-      if([locationDict valueForKey:@"altitude"] != nil) {
-        [location setAltitude:[locationDict valueForKey:@"altitude"]];
-      }
-      if([locationDict valueForKey:@"altitudeAccuracy"] != nil) {
-        [location setAltitudeAccuracy:[locationDict valueForKey:@"altitudeAccuracy"]];
-      }
-      if([locationDict valueForKey:@"heading"] != nil) {
-        [location setHeading:[locationDict valueForKey:@"heading"]];
-      }
-      if([locationDict valueForKey:@"latitude"] != nil) {
-        [location setLatitude:[locationDict valueForKey:@"latitude"]];
-      }
-      if([locationDict valueForKey:@"longitude"] != nil) {
-        [location setLongitude:[locationDict valueForKey:@"longitude"]];
-      }
-      if([locationDict valueForKey:@"speed"] != nil) {
-        [location setSpeed:[locationDict valueForKey:@"speed"]];
-      }
-    
-      [location setTime:date];
-
-      [[SecureStorage shared] saveDeviceLocationWithBackgroundLocation:location];
-    }
-    
-    NSArray *array = [[NSMutableArray alloc] init];
-    [defaults setObject:array forKey:@"backgroundNewLocations"];
-    [defaults synchronize];
-
-  }
-}
 @end
