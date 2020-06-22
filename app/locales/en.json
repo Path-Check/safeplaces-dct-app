@@ -276,7 +276,8 @@
     "notification_header": "Would you like to receive notifications when you may have crossed paths with the virus?",
     "notification_subheader": "To receive exposure notifications, you need to be in an area covered by a local Health Department partner.\n\nIf there are no local or regional partner Health Department in your area yet, get notified when new Health Departments are added near you.",
     "location_header": "To determine when you may have crossed paths with the virus, PathCheck needs location access.",
-    "location_subheader": "Your PathCheck location diary only includes GPS coordinates, dates, and times.\n\nYour data will not be shared with anyone unless you choose to do so."
+    "location_subheader": "Your PathCheck location diary only includes GPS coordinates, dates, and times.\n\nYour data will not be shared with anyone unless you choose to do so.",
+    "maybe_later": "Maybe Later"
   },
   "share": {
     "button_text": "Share location data",
