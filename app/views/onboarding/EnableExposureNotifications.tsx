@@ -11,7 +11,7 @@ import { SvgXml } from 'react-native-svg';
 
 import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
-import ExposureNotificationContext from '../../ExposureNotificationContext';
+import ExposureNotificationContext from '../../bt/ExposureNotificationContext';
 import { useDispatch } from 'react-redux';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 
