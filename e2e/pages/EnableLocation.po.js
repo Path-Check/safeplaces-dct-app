@@ -3,7 +3,7 @@ const screenShotWithMenuText = 'Location Permissions Dialog';
 
 class EnableLocation {
   async tapButton(languageStrings) {
-    await element(by.label(languageStrings.label.launch_enable_location)).tap();
+    await element(by.label(languageStrings.label.launch_allow_location)).tap();
   }
 
   async takeScreenshot() {

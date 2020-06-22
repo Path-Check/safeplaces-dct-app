@@ -29,7 +29,7 @@ const Onboarding4 = (props) => {
       iconXml={onboarding4Icon}
       title={onboarding4Header}
       body={onboarding4Subheader}
-      primaryButtonLabel={t('label.launch_next')}
+      primaryButtonLabel={t('label.launch_set_up_phone_location')}
       primaryButtonOnPress={handleOnPressNext}
     />
   );

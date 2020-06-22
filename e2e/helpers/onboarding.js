@@ -5,7 +5,7 @@ import Onboarding3 from '../pages/Onboarding3.po.js';
 import Onboarding4 from '../pages/Onboarding4.po.js';
 import SignEula from '../pages/SignEula.po.js';
 
-export const navigateThroughPermissions = async languageStrings => {
+export const navigateThroughPermissions = async (languageStrings) => {
   await Onboarding1.isOnScreen(languageStrings);
   await Onboarding1.tapButton(languageStrings);
 
@@ -22,10 +22,11 @@ export const navigateThroughPermissions = async languageStrings => {
   await Onboarding4.tapButton(languageStrings);
 };
 
-export const navigateThroughOnboarding = async languageStrings => {
+export const navigateThroughOnboarding = async (languageStrings) => {
   await navigateThroughPermissions(languageStrings);
-  await FinishSetup.isOnScreen(languageStrings);
+  await FinishSetup.isOnScreenNotifications(languageStrings);
   await element(by.label(languageStrings.label.launch_enable_notif)).tap();
   await FinishSetup.takeScreenshot(languageStrings);
+  await FinishSetup.isOnScreenLocation(languageStrings);
   await element(by.label(languageStrings.label.launch_allow_location)).tap();
 };

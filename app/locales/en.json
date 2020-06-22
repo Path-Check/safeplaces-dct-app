@@ -213,7 +213,6 @@
     "launch_done_subheader": "You’re ready to roll. Remember, you can always update your preferences later.",
     "launch_enable_auto_subscription": "Enable auto subscription",
     "launch_enable_bluetooth": "Enable Bluetooth",
-    "launch_enable_location": "Enable Location",
     "launch_enable_notif": "Enable Notifications",
     "launch_enable_exposure_notif": "Enable",
     "launch_exposure_notif_subheader": "To be notified about updates to your exposure history, your phone needs permission to exchange anonymous Bluetooth random ID with other devices.\n\nExposure Notifications only work with other devices with the setting enabled.\n\nYou can turn off this notifications at any time.",
