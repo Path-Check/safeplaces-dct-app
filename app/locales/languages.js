@@ -80,6 +80,7 @@ const DEV_LANGUAGES = __DEV__
       es: { label: es._display_name, translation: es },
       es_419: { label: es_419._display_name, translation: es_419 },
       es_PR: { label: es_PR._display_name, translation: es_PR },
+      ht: { label: ht._display_name, translation: ht },
       fil: { label: fil._display_name, translation: fil },
       fr: { label: fr._display_name, translation: fr },
       id: { label: id._display_name, translation: id },
@@ -108,7 +109,6 @@ i18next.use(initReactI18next).init({
   returnEmptyString: false,
   resources: {
     en: { label: en._display_name, translation: en },
-    ht: { label: ht._display_name, translation: ht },
     ...DEV_LANGUAGES,
   },
 });
