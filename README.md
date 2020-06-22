@@ -137,7 +137,7 @@ Update git submodules:
 copy `.env` files to the project root:
 
 ```
-sh copy_env.sh
+sh setup_env.sh
 ```
 
 ## Running
