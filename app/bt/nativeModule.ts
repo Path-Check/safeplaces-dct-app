@@ -4,7 +4,7 @@ import {
   EventSubscription,
 } from 'react-native';
 
-import { DeviceStatus } from '../ExposureNotificationContext';
+import { DeviceStatus } from './ExposureNotificationContext';
 import { ExposureInfo } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureInfo } from './exposureNotifications';

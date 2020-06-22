@@ -14,7 +14,7 @@ enum IndexFileRequest: APIRequest {
   }
 
   var path: String {
-    "exposure-notification-export-svhfv/spl-be/index.txt"
+    "spl-be/index.txt"
   }
 
 }

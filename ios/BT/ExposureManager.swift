@@ -79,18 +79,20 @@ final class ExposureManager: NSObject {
     }
     detectingExposures = true
     
-    var localURLs = [URL]()
-    
+    var localCompressedURLs = [URL]()
+    var localUncompressedURLs = [URL]()
+
     func finish(_ result: Result<[Exposure]>) {
-      for localURL in localURLs {
-        // Delete downloaded file from file system
-        do {
-          try FileManager.default.removeItem(at: localURL)
-        } catch {
-          completionHandler?(false)
-          return
-        }
+      // Delete downloaded file from file system
+      do {
+        try localCompressedURLs.cleanup()
+        try localUncompressedURLs.cleanup()
+      } catch {
+        completionHandler?(false)
+        return
       }
+
+      progress.cancel()
       
       if progress.isCancelled {
         detectingExposures = false
@@ -114,17 +116,17 @@ final class ExposureManager: NSObject {
     }
     
     BTSecureStorage.shared.getUserState { userState in
-      APIClient.shared.requestString(IndexFileRequest.get, requestType: .indexFile) { result in
+      APIClient.shared.requestString(IndexFileRequest.get, requestType: .downloadKeys) { result in
         let dispatchGroup = DispatchGroup()
-        var localURLResults = [Result<URL>]()
+        var localCompressedURLResults = [Result<URL>]()
         
         switch result {
         case let .success(indexFileString):
           let remoteURLs = indexFileString.gaenFilePaths
           for remoteURL in remoteURLs {
             dispatchGroup.enter()
-            APIClient.shared.downloadRequest(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .downloadKeyFile) { result in
-              localURLResults.append(result)
+            APIClient.shared.downloadRequest(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .downloadKeys) { result in
+              localCompressedURLResults.append(result)
               dispatchGroup.leave()
             }
           }
@@ -135,37 +137,40 @@ final class ExposureManager: NSObject {
         }
 
         dispatchGroup.notify(queue: .main) {
-          for result in localURLResults {
+          for result in localCompressedURLResults {
             switch result {
             case let .success(localURL):
-              localURLs.append(localURL)
+              localCompressedURLs.append(localURL)
             case let .failure(error):
               finish(.failure(error))
               return
             }
           }
-          
-          // TODO: Fetch configuration from API
-          let enConfiguration = ExposureConfiguration.placeholder.asENExposureConfiguration
-          ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: localURLs) { summary, error in
-            if let error = error {
-              finish(.failure(error))
-              return
-            }
-            let userExplanation = NSLocalizedString("USER_NOTIFICATION_EXPLANATION", comment: "User notification")
-            ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
+
+          localCompressedURLs.decompress { (uncompressedUrls) in
+            localUncompressedURLs = uncompressedUrls
+            // TODO: Fetch configuration from API
+            let enConfiguration = ExposureConfiguration.placeholder.asENExposureConfiguration
+            ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: uncompressedUrls) { summary, error in
               if let error = error {
                 finish(.failure(error))
                 return
               }
-              let newExposures = exposures!.map { exposure in
-                Exposure(id: UUID().uuidString,
-                         date: exposure.date.posixRepresentation,
-                         duration: exposure.duration,
-                         totalRiskScore: exposure.totalRiskScore,
-                         transmissionRiskLevel: exposure.transmissionRiskLevel)
+              let userExplanation = NSLocalizedString("USER_NOTIFICATION_EXPLANATION", comment: "User notification")
+              ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
+                if let error = error {
+                  finish(.failure(error))
+                  return
+                }
+                let newExposures = exposures!.map { exposure in
+                  Exposure(id: UUID().uuidString,
+                           date: exposure.date.posixRepresentation,
+                           duration: exposure.duration,
+                           totalRiskScore: exposure.totalRiskScore,
+                           transmissionRiskLevel: exposure.transmissionRiskLevel)
+                }
+                finish(.success(newExposures))
               }
-              finish(.success(newExposures))
             }
           }
         }
@@ -206,12 +211,12 @@ final class ExposureManager: NSObject {
         APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey },
                                                               [.US]),
                                  requestType: .postKeys) { result in
-          switch result {
-          case .success:
-            break
-          case .failure(let error):
-            completion(error)
-          }
+                                  switch result {
+                                  case .success:
+                                    break
+                                  case .failure(let error):
+                                    completion(error)
+                                  }
         }
       }
     }

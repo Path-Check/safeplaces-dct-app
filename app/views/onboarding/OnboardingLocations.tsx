@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
-import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
+import PermissionsContext, {
+  PermissionStatus,
+} from '../../gps/PermissionsContext';
 
 import { Icons, Images } from '../../assets';
 
