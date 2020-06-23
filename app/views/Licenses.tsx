@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  BackHandler,
   Image,
   Linking,
   ScrollView,
@@ -22,8 +21,7 @@ type LicensesScreenProps = {
   navigation: NavigationProp;
 };
 
-const PRIVACY_POLICY_URL =
-  'https://docs.google.com/document/d/17u0f8ni9S0D4w8RCUlMMqxAlXKJAd2oiYGP8NUwkINo/edit';
+const PRIVACY_POLICY_URL = 'https://covidsafepaths.org/privacy-policy/';
 
 export const LicensesScreen = ({
   navigation,
@@ -36,18 +34,6 @@ export const LicensesScreen = ({
   const backToMain = () => {
     navigation.goBack();
   };
-
-  const handleBackPress = () => {
-    backToMain();
-    return true;
-  };
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-    };
-  });
 
   const infoAddress = 'info@pathcheck.org';
   const pathCheckAddress = 'covidsafepaths.org';

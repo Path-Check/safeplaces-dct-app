@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  BackHandler,
   NativeModules,
   SafeAreaView,
   ScrollView,
@@ -28,20 +27,8 @@ const base64 = RNFetchBlob.base64;
 // NOTE:
 // This is the old way we export. This is still the default, but will
 // become flipped behind the feature flag once we have staging for uploading.
-const ExportLocally = ({ navigation }) => {
+const ExportLocally = () => {
   const { t } = useTranslation();
-  function handleBackPress() {
-    navigation.goBack();
-    return true;
-  }
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    return function cleanup() {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-    };
-  });
 
   async function onShare() {
     try {

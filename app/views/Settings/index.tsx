@@ -91,7 +91,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         underlayColor={Colors.underlayPrimaryBackground}
         style={[styles.listItem]}
         onPress={onPress}>
-        <View style={{ flexDirection }}>
+        <View style={{ flexDirection, alignItems: 'center' }}>
           <SvgXml xml={icon} style={[styles.icon, iconStyle]} />
           <Typography use={'body1'}>{label}</Typography>
         </View>

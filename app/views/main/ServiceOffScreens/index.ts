@@ -1,4 +1,3 @@
-export { ExposureNotificationNotAvailableScreen } from './ExposureNotificationNotAvailable';
 export { TracingOffScreen } from './TracingOff';
 export { NotificationsOffScreen } from './NotificationsOff';
 export { SelectAuthorityScreen } from './SelectAuthority';

@@ -12,7 +12,6 @@ import {
 } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 
-import { Main } from './views/Main';
 import SettingsScreen from './views/Settings';
 import AboutScreen from './views/About';
 import PartnersOverviewScreen from './views/Partners/PartnersOverview';
@@ -51,8 +50,10 @@ import { Screens, Stacks } from './navigation';
 import ExposureHistoryContext from './ExposureHistoryContext';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import { isGPS } from './COVIDSafePathsConfig';
-import * as Icons from './assets/svgs/TabBarNav';
+import { isPlatformAndroid } from './Util';
+import TracingStrategyContext from './TracingStrategyContext';
 
+import * as Icons from './assets/svgs/TabBarNav';
 import { Layout, Affordances, Spacing, Colors } from './styles';
 
 const Tab = createBottomTabNavigator();
@@ -152,6 +153,7 @@ const MoreTabStack = () => (
 const MainAppTabs = () => {
   const { t } = useTranslation();
   const { userHasNewExposure } = useContext(ExposureHistoryContext);
+  const { homeScreenComponent } = useContext(TracingStrategyContext);
 
   const applyBadge = (icon) => {
     return (
@@ -178,13 +180,13 @@ const MainAppTabs = () => {
         style: {
           backgroundColor: Colors.navBar,
           borderTopColor: Colors.navBar,
-          paddingTop: Spacing.xSmall,
+          paddingTop: isPlatformAndroid() ? 0 : Spacing.xSmall,
           height: Layout.navBar,
         },
       }}>
       <Tab.Screen
         name={Stacks.Main}
-        component={Main}
+        component={homeScreenComponent}
         options={{
           tabBarLabel: t('navigation.home'),
           tabBarIcon: ({ focused, size }) => (

@@ -57,24 +57,24 @@ export const AllServicesOnScreen = ({
             height={size ? size : 80}
           />
         </View>
-
-        <View style={styles.mainContainer}>
-          <View style={styles.contentAbovePulse} />
-          <View style={styles.contentBelowPulse}>
-            <Typography style={styles.mainTextBelow}>
-              {allServicesOnScreenHeaderText}
-            </Typography>
-            <Typography style={styles.subheaderText}>
-              {allServicesOnScreenSubheaderText}
-            </Typography>
-            {noHaAvailable && (
-              <Typography style={styles.subheaderText}>
-                {allServicesOnNoHaAvailableSubHeaderText}
-              </Typography>
-            )}
-          </View>
-        </View>
       </ImageBackground>
+
+      <View style={styles.mainContainer}>
+        <View style={styles.contentAbovePulse} />
+        <View style={styles.contentBelowPulse}>
+          <Typography style={styles.mainTextBelow}>
+            {allServicesOnScreenHeaderText}
+          </Typography>
+          <Typography style={styles.subheaderText}>
+            {allServicesOnScreenSubheaderText}
+          </Typography>
+          {noHaAvailable && (
+            <Typography style={styles.subheaderText}>
+              {allServicesOnNoHaAvailableSubHeaderText}
+            </Typography>
+          )}
+        </View>
+      </View>
     </Theme>
   );
 };

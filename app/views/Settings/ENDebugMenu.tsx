@@ -16,7 +16,6 @@ import { BTNativeModule } from '../../bt';
 import { NavigationProp, Screens } from '../../navigation';
 
 import { Colors, Spacing } from '../../styles';
-import { toggleExposureNotifications } from '../../bt/nativeModule';
 
 type ENDebugMenuProps = {
   navigation: NavigationProp;
@@ -85,10 +84,6 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
       };
       callSimulatedEvent(cb);
     };
-  };
-
-  const handleOnPressToggleExposureNotifications = () => {
-    handleOnPressSimulationButton(toggleExposureNotifications)();
   };
 
   const showDebugVerificationCode = () => {
@@ -164,7 +159,9 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
             />
             <DebugMenuListItem
               label='Toggle Exposure Notifications'
-              onPress={handleOnPressToggleExposureNotifications}
+              onPress={handleOnPressSimulationButton(
+                BTNativeModule.toggleExposureNotifications,
+              )}
             />
             <DebugMenuListItem
               label='Reset Exposure Detection Error'

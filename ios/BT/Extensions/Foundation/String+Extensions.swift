@@ -14,6 +14,7 @@ extension String {
   static let bluetoothNotificationTitle = "Bluetooth Off"
   static let bluetoothNotificationBody = "You must enable bluetooth to receive Exposure Notifications."
   static let bluetoothNotificationIdentifier = "bluetooth-off"
+  static let genericSuccess = "success"
 
   var gaenFilePaths: [String] {
     split(separator: "\n").map { String($0) }
