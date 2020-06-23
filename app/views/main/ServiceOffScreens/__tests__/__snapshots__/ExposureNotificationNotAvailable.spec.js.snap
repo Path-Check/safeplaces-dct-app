@@ -15,9 +15,10 @@ exports[`exposure notifications not available screen matches snapshot 1`] = `
     style={
       Object {
         "flex": 1,
-        "height": "100%",
+        "height": "110%",
         "justifyContent": "flex-end",
         "resizeMode": "cover",
+        "top": 0,
         "width": "100%",
       }
     }
@@ -38,7 +39,7 @@ exports[`exposure notifications not available screen matches snapshot 1`] = `
             "top": 0,
           },
           Object {
-            "height": "100%",
+            "height": "110%",
             "width": "100%",
           },
           undefined,
@@ -83,78 +84,78 @@ exports[`exposure notifications not available screen matches snapshot 1`] = `
 </svg>"
       />
     </View>
+  </View>
+  <View
+    style={
+      Object {
+        "height": "100%",
+        "left": 0,
+        "paddingBottom": 12,
+        "paddingHorizontal": 24,
+        "position": "absolute",
+        "right": 0,
+        "top": "-10%",
+      }
+    }
+  >
     <View
       style={
         Object {
-          "height": "100%",
-          "left": 0,
-          "paddingBottom": 12,
-          "paddingHorizontal": "12%",
-          "position": "absolute",
-          "right": 0,
-          "top": "-10%",
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "flex-end",
+          "paddingBottom": 40,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "flex-start",
+          "paddingTop": 80,
         }
       }
     >
-      <View
+      <Text
         style={
           Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "flex-end",
-            "paddingBottom": 40,
-          }
-        }
-      />
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "flex-start",
-            "paddingTop": 80,
+            "color": "#ffffff",
+            "fontFamily": "IBMPlexSans-Medium",
+            "fontSize": 26,
+            "lineHeight": 34,
+            "marginBottom": 24,
+            "textAlign": "center",
           }
         }
       >
-        <Text
-          style={
+        Exposure history notifications are not yet available
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontSize": 17,
+              "lineHeight": 28,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
             Object {
               "color": "#ffffff",
-              "fontFamily": "IBMPlexSans-Medium",
-              "fontSize": 26,
-              "lineHeight": 34,
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 18,
+              "lineHeight": 24.5,
               "marginBottom": 24,
               "textAlign": "center",
-            }
-          }
-        >
-          Exposure history notifications are not yet available
-        </Text>
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#2e2e2e",
-                "fontSize": 17,
-                "lineHeight": 28,
-              },
-              Object {
-                "writingDirection": "ltr",
-              },
-              Object {
-                "color": "#ffffff",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 18,
-                "lineHeight": 24.5,
-                "marginBottom": 24,
-                "textAlign": "center",
-              },
-            ]
-          }
-        >
-          Your phone is not currently covered by Healthcare Authorities using PathCheck
-        </Text>
-      </View>
+            },
+          ]
+        }
+      >
+        Your phone is not currently covered by Healthcare Authorities using PathCheck
+      </Text>
     </View>
   </View>
 </View>
