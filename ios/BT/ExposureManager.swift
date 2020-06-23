@@ -67,6 +67,9 @@ final class ExposureManager: NSObject {
       callback([[deviceState.0, deviceState.1]])
     }
   }
+
+  var downloadedPackages = [DownloadedPackage]()
+  var localUncompressedURLs = [URL]()
   
   @discardableResult func detectExposures(completionHandler: ((Bool) -> Void)? = nil) -> Progress {
     
@@ -78,14 +81,11 @@ final class ExposureManager: NSObject {
       return progress
     }
     detectingExposures = true
-    
-    var localCompressedURLs = [URL]()
-    var localUncompressedURLs = [URL]()
+
 
     func finish(_ result: Result<[Exposure]>) {
       // Delete downloaded file from file system
       do {
-        try localCompressedURLs.cleanup()
         try localUncompressedURLs.cleanup()
       } catch {
         completionHandler?(false)
@@ -118,15 +118,20 @@ final class ExposureManager: NSObject {
     BTSecureStorage.shared.getUserState { userState in
       APIClient.shared.requestString(IndexFileRequest.get, requestType: .downloadKeys) { result in
         let dispatchGroup = DispatchGroup()
-        var localCompressedURLResults = [Result<URL>]()
-        
+
         switch result {
         case let .success(indexFileString):
           let remoteURLs = indexFileString.gaenFilePaths
           for remoteURL in remoteURLs {
             dispatchGroup.enter()
             APIClient.shared.downloadRequest(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .downloadKeys) { result in
-              localCompressedURLResults.append(result)
+              switch result {
+              case .success (let package):
+                self.downloadedPackages.append(package)
+              case .failure(let error):
+                // TODO: Handle error
+                break
+              }
               dispatchGroup.leave()
             }
           }
@@ -137,21 +142,12 @@ final class ExposureManager: NSObject {
         }
 
         dispatchGroup.notify(queue: .main) {
-          for result in localCompressedURLResults {
-            switch result {
-            case let .success(localURL):
-              localCompressedURLs.append(localURL)
-            case let .failure(error):
-              finish(.failure(error))
-              return
-            }
-          }
+          self.downloadedPackages.unpack { urls in
+            self.localUncompressedURLs = urls
 
-          localCompressedURLs.decompress { (uncompressedUrls) in
-            localUncompressedURLs = uncompressedUrls
             // TODO: Fetch configuration from API
             let enConfiguration = ExposureConfiguration.placeholder.asENExposureConfiguration
-            ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: uncompressedUrls) { summary, error in
+            ExposureManager.shared.manager.detectExposures(configuration: ENExposureConfiguration(), diagnosisKeyURLs: self.localUncompressedURLs) { summary, error in
               if let error = error {
                 finish(.failure(error))
                 return
@@ -213,7 +209,7 @@ final class ExposureManager: NSObject {
                                  requestType: .postKeys) { result in
                                   switch result {
                                   case .success:
-                                    break
+                                    completion(nil)
                                   case .failure(let error):
                                     completion(error)
                                   }

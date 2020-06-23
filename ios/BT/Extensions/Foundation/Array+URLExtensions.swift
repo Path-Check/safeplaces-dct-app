@@ -1,36 +1,41 @@
 import Foundation
-import SSZipArchive
 
-extension Array where Element == URL {
+extension Array where Element == DownloadedPackage {
 
-  func decompress(_ completion: @escaping (([URL]) -> Void)) {
+  func unpack(_ completion: @escaping (([URL]) -> Void)) {
+    guard count > 0 else {
+      completion([])
+      return
+    }
     var uncompressedFileUrls = [URL]()
-    for idx in (0..<count) {
-      let url = self[idx]
-
-      if let uncompressedUrl = APIClient.documentsDirectory?.appendingPathComponent("\(idx)"),
-        let filePath = URL(string: "\(uncompressedUrl.path)\(String.binPath)") {
-        SSZipArchive.unzipFile(atPath: url.path, toDestination: uncompressedUrl.path)
-
-        uncompressedFileUrls.append(filePath)
+    do {
+      for idx in (0..<count) {
+        let keyPackage = self[idx]
+        let filename = UUID().uuidString
+        uncompressedFileUrls.append(try keyPackage.writeKeysEntry(toDirectory: APIClient.documentsDirectory!, filename: filename))
+        uncompressedFileUrls.append(try keyPackage.writeSignatureEntry(toDirectory: APIClient.documentsDirectory!, filename: filename))
+        if idx == count - 1 {
+          completion(uncompressedFileUrls)
+        }
       }
-      if idx == count - 1 {
-        completion(uncompressedFileUrls)
-      }
+    } catch {
+      uncompressedFileUrls.cleanup()
+      completion([])
     }
 
   }
 
-  func cleanup() throws {
-    do {
-      try forEach { try FileManager.default.removeItem(at: $0) }
-    } catch {
-      throw GenericError.unknown
-    }
+}
+
+extension Array where Element == URL {
+
+  func cleanup() {
+    forEach { try? FileManager.default.removeItem(at: $0) }
   }
 
 }
 
 private extension String {
   static let binPath: String = "/export.bin"
+  static let sigPath: String = "/export.sig"
 }

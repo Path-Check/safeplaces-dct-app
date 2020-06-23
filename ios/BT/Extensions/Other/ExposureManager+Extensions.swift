@@ -38,7 +38,7 @@ extension ExposureManager {
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
       completion([NSNull(), "Exposure Detection Error: "])
     case .getAndPostDiagnosisKeys:
-      getAndPostTestDiagnosisKeys { error in
+      getAndPostDiagnosisKeys { error in
         if let error = error {
           completion([error.localizedDescription, NSNull()])
         } else {

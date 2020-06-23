@@ -70,6 +70,12 @@
 		A5EA4480D4CC4B468D4B4DDC /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 997AE6137471448A99893BC8 /* IBMPlexMono-SemiBoldItalic.ttf */; };
 		B2138BE26880EEA67E6D1C0E /* libPods-GPSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3297E1A39360171CB7CC3C8 /* libPods-GPSTests.a */; };
 		B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
+		B507A9EE24A197FF00E039D5 /* DownloadedPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507A9ED24A197FF00E039D5 /* DownloadedPackage.swift */; };
+		B507A9FE24A2431100E039D5 /* BTPublicKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507A9FD24A2431100E039D5 /* BTPublicKeyStore.swift */; };
+		B507AA0024A2435F00E039D5 /* TEKSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507A9FF24A2435F00E039D5 /* TEKSignature.swift */; };
+		B507AA0224A243EE00E039D5 /* TEKExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507AA0124A243EE00E039D5 /* TEKExport.swift */; };
+		B507AA0424A24ED000E039D5 /* TEK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507AA0324A24ED000E039D5 /* TEK.swift */; };
+		B507AA0724A2533200E039D5 /* DownloadPackage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507AA0624A2533200E039D5 /* DownloadPackage+Helpers.swift */; };
 		B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
 		B52D88C2248F0FD90071ED51 /* GPSSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */; };
 		B52D88C4248F10FD0071ED51 /* BTSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */; };
@@ -324,6 +330,12 @@
 		B2A5822E244CEA9F000F39A6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B3297E1A39360171CB7CC3C8 /* libPods-GPSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
+		B507A9ED24A197FF00E039D5 /* DownloadedPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedPackage.swift; sourceTree = "<group>"; };
+		B507A9FD24A2431100E039D5 /* BTPublicKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTPublicKeyStore.swift; sourceTree = "<group>"; };
+		B507A9FF24A2435F00E039D5 /* TEKSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEKSignature.swift; sourceTree = "<group>"; };
+		B507AA0124A243EE00E039D5 /* TEKExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEKExport.swift; sourceTree = "<group>"; };
+		B507AA0324A24ED000E039D5 /* TEK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEK.swift; sourceTree = "<group>"; };
+		B507AA0624A2533200E039D5 /* DownloadPackage+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DownloadPackage+Helpers.swift"; sourceTree = "<group>"; };
 		B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSSecureStorage.swift; sourceTree = "<group>"; };
 		B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSecureStorage.swift; sourceTree = "<group>"; };
 		B54CBF25249A72E700218477 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
@@ -719,6 +731,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B507AA0524A2531000E039D5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B507AA0624A2533200E039D5 /* DownloadPackage+Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		B52D88BF248F0F130071ED51 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -766,6 +786,7 @@
 		B5FC37BD2489B05F006474EB /* API */ = {
 			isa = PBXGroup;
 			children = (
+				B507AA0524A2531000E039D5 /* Helpers */,
 				B5FC37DB248A78C3006474EB /* Model */,
 				B5FC37D12489C25D006474EB /* Requests */,
 				B5FC37C02489B075006474EB /* APIClient.swift */,
@@ -793,6 +814,10 @@
 			isa = PBXGroup;
 			children = (
 				B5FC37DC248A78D2006474EB /* ExposureKey.swift */,
+				B507A9ED24A197FF00E039D5 /* DownloadedPackage.swift */,
+				B507A9FF24A2435F00E039D5 /* TEKSignature.swift */,
+				B507AA0124A243EE00E039D5 /* TEKExport.swift */,
+				B507AA0324A24ED000E039D5 /* TEK.swift */,
 				B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */,
 				B5FC37E7248A8302006474EB /* TestResult.swift */,
 				B54CBF25249A72E700218477 /* Region.swift */,
@@ -807,6 +832,7 @@
 			children = (
 				B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */,
 				B5FBB0D024916A7200433980 /* Persisted.swift */,
+				B507A9FD24A2431100E039D5 /* BTPublicKeyStore.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -1353,30 +1379,36 @@
 				B54CBF26249A72E700218477 /* Region.swift in Sources */,
 				B54CBF32249A738500218477 /* IndexFileRequests.swift in Sources */,
 				B52D88C4248F10FD0071ED51 /* BTSecureStorage.swift in Sources */,
+				B507AA0424A24ED000E039D5 /* TEK.swift in Sources */,
 				B5FC37CC2489B251006474EB /* Result.swift in Sources */,
 				C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */,
 				B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */,
 				B5FBB0D124916A7200433980 /* Persisted.swift in Sources */,
 				B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */,
+				B507A9FE24A2431100E039D5 /* BTPublicKeyStore.swift in Sources */,
 				C5C850CA2480156200A494CA /* AppDelegate.m in Sources */,
 				B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */,
 				B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */,
 				B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */,
 				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
 				B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */,
+				B507AA0024A2435F00E039D5 /* TEKSignature.swift in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
 				B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */,
 				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
 				B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */,
+				B507A9EE24A197FF00E039D5 /* DownloadedPackage.swift in Sources */,
 				B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */,
 				B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */,
 				B5FC37C12489B075006474EB /* APIClient.swift in Sources */,
 				B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */,
+				B507AA0724A2533200E039D5 /* DownloadPackage+Helpers.swift in Sources */,
 				B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */,
 				B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */,
 				B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */,
 				B5FC37DD248A78D2006474EB /* ExposureKey.swift in Sources */,
 				B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */,
+				B507AA0224A243EE00E039D5 /* TEKExport.swift in Sources */,
 				B5E79437249E666B00BD8596 /* Array+URLExtensions.swift in Sources */,
 				B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */,
 				B5FC37D02489B3DE006474EB /* StructuredError.swift in Sources */,
@@ -2162,9 +2194,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
+				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.covid-safepaths";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2197,9 +2229,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
+				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.covid-safepaths";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2232,9 +2264,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
+				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.covid-safepaths";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2266,9 +2298,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
+				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.covid-safepaths";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

@@ -43,13 +43,17 @@ final class APIClient {
     }
   }
   
-  func downloadRequest<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<URL>) -> Void) {
-    downloadRequest(for: request, fileName: request.path).responseData { response in
-      guard let destinationUrl = response.destinationURL else {
+  func downloadRequest<T: APIRequest>(_ request: T, requestType: RequestType, completion: @escaping (Result<DownloadedPackage>) -> Void) {
+    downloadRequest(for: request).responseData { response in
+      guard let data = response.result.value else {
         completion(.failure(GenericError.unknown))
         return
       }
-      completion(.success(destinationUrl))
+        if let downloadedPackage = DownloadedPackage(compressedData: data) {
+          completion(.success(downloadedPackage))
+        } else {
+          completion(.failure(GenericError.unknown))
+        }
     }
   }
   
@@ -110,16 +114,12 @@ private extension APIClient {
     static let errorMessage = "error_description"
   }
   
-  func downloadRequest<T: APIRequest>(for request: T, fileName: String) -> DownloadRequest {
-    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-      let destinationURL = APIClient.documentsDirectory?.appendingPathComponent(fileName) ?? URL(string: .default)!
-      return (destinationURL, [.createIntermediateDirectories, .removePreviousFile])
-    }
-    let r = sessionManager.download(downloadKeysUrl.appendingPathComponent(request.path, isDirectory: false), to: destination)
+  func downloadRequest<T: APIRequest>(for request: T) -> DataRequest {
+    let r = sessionManager.request(downloadKeysUrl.appendingPathComponent(request.path))
     debugPrint(r)
     return r
   }
-  
+
   func dataRequest<T: APIRequest>(for request: T, requestType: RequestType) -> DataRequest {
     var baseUrl: URL!
     switch requestType {
