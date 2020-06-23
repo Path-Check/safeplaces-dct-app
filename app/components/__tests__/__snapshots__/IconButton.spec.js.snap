@@ -24,11 +24,7 @@ exports[`allows size override 1`] = `
   >
     <SvgXml
       height={48}
-      style={
-        Object {
-          "color": undefined,
-        }
-      }
+      style={Object {}}
       width={48}
       xml="<g />"
     />
@@ -62,7 +58,7 @@ exports[`changes color based on theme 1`] = `
       height={24}
       style={
         Object {
-          "color": undefined,
+          "color": "#ffffff",
         }
       }
       width={24}
@@ -83,11 +79,7 @@ exports[`changes color based on theme 1`] = `
   >
     <SvgXml
       height={24}
-      style={
-        Object {
-          "color": undefined,
-        }
-      }
+      style={Object {}}
       width={24}
       xml="<g />"
     />
@@ -122,7 +114,7 @@ exports[`renders different color for secondary 1`] = `
       secondary={true}
       style={
         Object {
-          "color": undefined,
+          "color": "#000000",
         }
       }
       width={24}
@@ -157,11 +149,7 @@ exports[`renders the icon in a touchable opacity 1`] = `
   >
     <SvgXml
       height={24}
-      style={
-        Object {
-          "color": undefined,
-        }
-      }
+      style={Object {}}
       width={24}
       xml="<g />"
     />
