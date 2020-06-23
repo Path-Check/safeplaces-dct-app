@@ -19,7 +19,7 @@ const Onboarding4 = (props) => {
     props.navigation.replace(
       isGPS
         ? // Skip notification permissions on android
-          isPlatformiOS
+          isPlatformiOS()
           ? Screens.OnboardingNotificationPermissions
           : Screens.OnboardingLocationPermissions
         : Screens.EnableExposureNotifications,
