@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <!-- Shown on app info, app switcher, etc -->
-  <string name="app_name" translatable="false">PathCheck BT</string>
+  <string name="app_name" translatable="false">PathCheck GPS</string>
   <!-- Shown below icon on launcher only -->
-  <string name="app_name_short" translatable="false">PathCheck BT</string>
+  <string name="app_name_short" translatable="false">PathCheck GPS</string>
   <!-- Channel label for notifications shown in App > Notifications > Path Check BT -->
-  <string name="notification_channel_description">PathCheck BT notifications</string>
-<!--  TODO remove and put into build.gradle -->
+  <string name="notification_channel_description">PathCheck GPS notifications</string>
+  <!--  TODO remove and put into build.gradle -->
   <!-- Server URI for diagnosis key upload -->
   <string name="key_server_upload_uri">https://exposure-2kabcv6c4a-uc.a.run.app/</string>
   <!-- Server URI for diagnosis key file download -->

@@ -45,6 +45,7 @@ platform :ios do
 
     lane :sync_local_certs do
       match(
+        clone_branch_directly: true,
         type: 'appstore',
         readonly: true,
         keychain_name: "tech_at_safepaths_keychain",

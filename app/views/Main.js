@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState, useContext } from 'react';
-import { AppState, BackHandler } from 'react-native';
+import { AppState } from 'react-native';
 
 import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
@@ -13,7 +13,9 @@ import {
   NotificationsOffScreen,
   // SelectAuthorityScreen,
 } from './main/ServiceOffScreens';
-import PermissionsContext, { PermissionStatus } from '../PermissionsContext';
+import PermissionsContext, {
+  PermissionStatus,
+} from '../gps/PermissionsContext';
 
 import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
@@ -43,11 +45,6 @@ export const Main = () => {
     setTrackingInfo({ canTrack });
   }, [tracingService, setTrackingInfo]);
 
-  const handleBackPress = () => {
-    BackHandler.exitApp(); // works best when the goBack is async
-    return true;
-  };
-
   useEffect(() => {
     updateStateInfo();
     // refresh state if user backgrounds app
@@ -56,12 +53,8 @@ export const Main = () => {
     // refresh state if settings change
     const unsubscribe = navigation.addListener('focus', updateStateInfo);
 
-    // handle back press
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
     return () => {
       AppState.removeEventListener('change', updateStateInfo);
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
       unsubscribe();
     };
   }, [navigation, updateStateInfo]);

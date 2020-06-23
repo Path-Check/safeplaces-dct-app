@@ -65,6 +65,8 @@
     "@reduxjs/toolkit": "^1.3.6",
     "@types/js-yaml": "^3.12.4",
     "@types/react-redux": "^7.1.9",
+    "@types/semver": "^7.2.0",
+    "array-flat-polyfill": "^1.0.1",
     "dayjs": "^1.8.24",
     "emotion-theming": "^10.0.27",
     "geolib": "^3.2.1",
@@ -117,6 +119,7 @@
     "@babel/runtime": "^7.8.4",
     "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
+    "@testing-library/jest-native": "^3.1.0",
     "@testing-library/react-native": "^5.0.3",
     "@types/jest": "^25.2.3",
     "@types/react": "^16.9.35",
@@ -152,7 +155,7 @@
     "prettier": "^2.0.5",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-version": "^4.0.0",
-    "react-test-renderer": "16.9.0",
+    "react-test-renderer": "^16.13.1",
     "typescript": "^3.9.3"
   },
   "importSort": {

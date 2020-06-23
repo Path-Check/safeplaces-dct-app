@@ -1,14 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import fontFamily from '../../constants/fonts';
-import { Colors } from '../../styles';
+import { Colors, Spacing } from '../../styles';
 
 const PULSE_GAP = 80;
 
+const { height } = Dimensions.get('window');
+const IS_SMALL = height < 700;
+
 export const styles = StyleSheet.create({
   backgroundImage: {
+    top: IS_SMALL ? '-10%' : 0,
     width: '100%',
-    height: '100%',
+    height: '110%',
     resizeMode: 'cover',
     flex: 1,
     justifyContent: 'flex-end',
@@ -19,11 +23,11 @@ export const styles = StyleSheet.create({
     // aligns the center of the main container with center of pulse
     // so that two `flex: 1` views will be have a reasonable chance at natural
     // flex flow for above and below the pulse.
-    top: '-10%',
+    top: IS_SMALL ? '-20%' : '-10%',
     left: 0,
     right: 0,
     height: '100%',
-    paddingHorizontal: '12%',
+    paddingHorizontal: Spacing.large,
     paddingBottom: 12,
   },
   contentAbovePulse: {

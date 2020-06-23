@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
   View,
-  BackHandler,
   ScrollView,
   SafeAreaView,
 } from 'react-native';
@@ -21,7 +20,12 @@ import { Screens, useStatusBarEffect } from '../../navigation';
 import { isGPS } from '../../COVIDSafePathsConfig';
 
 import { Icons } from '../../assets';
-import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
+import {
+  Buttons,
+  Spacing,
+  Typography as TypographyStyles,
+  Colors,
+} from '../../styles';
 
 const ExposureHistoryScreen = (): JSX.Element => {
   const { t } = useTranslation();
@@ -32,19 +36,6 @@ const ExposureHistoryScreen = (): JSX.Element => {
   );
 
   useStatusBarEffect('dark-content');
-
-  useEffect(() => {
-    const handleBackPress = () => {
-      navigation.goBack();
-      return true;
-    };
-
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-    };
-  }, [navigation]);
 
   const handleOnSelectDate = (datum: ExposureDatum) => {
     setSelectedDatum(datum);
@@ -100,6 +91,7 @@ const ExposureHistoryScreen = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     padding: Spacing.medium,
+    backgroundColor: Colors.primaryBackground,
   },
   header: {},
   headerRow: {

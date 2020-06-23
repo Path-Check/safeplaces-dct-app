@@ -7,6 +7,7 @@ import { Typography } from './Typography';
 
 import { Icons } from '../assets';
 import { Spacing, Colors, Typography as TypographyStyles } from '../styles';
+import { isPlatformAndroid } from '../Util';
 
 interface NavigationBarWrapperProps {
   children: React.ReactNode;
@@ -46,7 +47,11 @@ export const NavigationBarWrapper = ({
         <View style={styles.leftContent}>
           {includeBackButton ? (
             <TouchableOpacity onPress={handleOnPressBack}>
-              <SvgXml xml={Icons.BackArrow} color={Colors.white} />
+              <SvgXml
+                xml={Icons.BackArrow}
+                color={Colors.white}
+                style={{ paddingTop: Spacing.xSmall }}
+              />
             </TouchableOpacity>
           ) : null}
         </View>
@@ -64,6 +69,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.navBar,
+    paddingTop: isPlatformAndroid() ? Spacing.xSmall : 0,
   },
   headerContainer: {
     flexDirection: 'row',

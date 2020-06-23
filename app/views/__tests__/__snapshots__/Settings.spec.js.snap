@@ -16,6 +16,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
       Object {
         "backgroundColor": "#1f2c9b",
         "flex": 1,
+        "paddingTop": 0,
       }
     }
   >
@@ -123,6 +124,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
               <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "flexDirection": "row",
                   }
                 }
@@ -602,6 +604,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
       Object {
         "backgroundColor": "#1f2c9b",
         "flex": 1,
+        "paddingTop": 0,
       }
     }
   >
@@ -709,6 +712,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
               <View
                 style={
                   Object {
+                    "alignItems": "center",
                     "flexDirection": "row",
                   }
                 }

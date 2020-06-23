@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ActivityIndicator,
   StatusBar,
   StyleSheet,
   TouchableHighlight,
@@ -15,13 +14,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
+import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
 import { Theme } from '../../constants/themes';
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
+
 import { Screens } from '../../navigation';
 
 import { Icons } from '../../assets';
-import { Colors } from '../../styles';
+import { Colors, Spacing } from '../../styles';
 
 export const ExportSelectHA = ({ navigation }) => {
   const { t } = useTranslation();
@@ -101,8 +102,8 @@ export const ExportSelectHA = ({ navigation }) => {
             contentContainerStyle={{ flexGrow: 1 }}
             data={authorities}
             ListEmptyComponent={
-              <View style={{ flex: 1, justifyContent: 'center' }}>
-                <ActivityIndicator size={'large'} />
+              <View style={styles.listEmptyWrapper}>
+                <NoAuthoritiesMessage />
               </View>
             }
             ItemSeparatorComponent={() => <Separator />}
@@ -141,6 +142,12 @@ const Separator = () => (
 
 const styles = StyleSheet.create({
   wrapper: { flex: 1, backgroundColor: Colors.primaryBackgroundFaintShade },
+  listEmptyWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: Spacing.xLarge,
+  },
   card: {
     backgroundColor: Colors.white,
     shadowColor: Colors.black,
