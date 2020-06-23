@@ -2,17 +2,21 @@
 const screenshotText = 'Finish Setup Page';
 
 class FinishSetup {
-  async tapButton() {
-    await element(by.id('onboarding-permissions-button')).tap();
-  }
-
   async takeScreenshot() {
     await device.takeScreenshot(screenshotText);
   }
-
-  async isOnScreen() {
+  async isOnScreenLocation(languageStrings) {
     // eslint-disable-next-line jest/no-standalone-expect
-    await expect(element(by.id('onboarding-permissions-screen'))).toBeVisible();
+    await expect(
+      element(by.label(languageStrings.label.launch_allow_location)),
+    ).toBeVisible();
+  }
+
+  async isOnScreenNotifications(languageStrings) {
+    // eslint-disable-next-line jest/no-standalone-expect
+    await expect(
+      element(by.label(languageStrings.label.launch_enable_notif)),
+    ).toBeVisible();
   }
 }
 
