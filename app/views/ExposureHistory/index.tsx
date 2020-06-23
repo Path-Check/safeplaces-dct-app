@@ -60,7 +60,7 @@ const ExposureHistoryScreen = (): JSX.Element => {
             <TouchableOpacity
               onPress={handleOnPressMoreInfo}
               style={styles.moreInfoButton}>
-              <SvgXml xml={Icons.IconQuestionMark} />
+              <SvgXml xml={Icons.QuestionMark} />
             </TouchableOpacity>
           </View>
           {!isGPS ? (
