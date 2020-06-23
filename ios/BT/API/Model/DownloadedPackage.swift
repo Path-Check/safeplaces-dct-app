@@ -3,7 +3,6 @@ import ZIPFoundation
 import CryptoKit
 
 struct DownloadedPackage {
-  // MARK: Creating a Key Package
 
   init(keysBin: Data, signature: Data) {
     bin = keysBin
@@ -21,47 +20,9 @@ struct DownloadedPackage {
     }
   }
 
-  // MARK: Properties
-
   let bin: Data
   let signature: Data
 
-  // MARK: - Verification
-
-  typealias Verification = (DownloadedPackage) -> Bool
-  struct Verifier {
-    private let keyProvider: PublicKeyProviding
-
-    init(key provider: @escaping PublicKeyProviding = PublicKeyStore.get) {
-      self.keyProvider = provider
-    }
-
-    func verify(_ package: DownloadedPackage) -> Bool {
-      guard
-        let bundleId = Bundle.main.bundleIdentifier
-        else {
-          return false
-      }
-
-        let signatureData: Data = package.signature
-        guard
-          let publicKey = try? keyProvider(bundleId),
-          let signature = try? P256.Signing.ECDSASignature(derRepresentation: signatureData)
-          else {
-            return false
-        }
-
-        if publicKey.isValidSignature(signature, for: package.bin) {
-          return true
-        }
-
-      return false
-    }
-
-    func callAsFunction(_ package: DownloadedPackage) -> Bool {
-      verify(package)
-    }
-  }
 }
 
 private extension Archive {

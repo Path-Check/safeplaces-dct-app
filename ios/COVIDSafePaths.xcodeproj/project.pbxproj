@@ -72,8 +72,6 @@
 		B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
 		B507A9EE24A197FF00E039D5 /* DownloadedPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507A9ED24A197FF00E039D5 /* DownloadedPackage.swift */; };
 		B507A9FE24A2431100E039D5 /* BTPublicKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507A9FD24A2431100E039D5 /* BTPublicKeyStore.swift */; };
-		B507AA0024A2435F00E039D5 /* TEKSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507A9FF24A2435F00E039D5 /* TEKSignature.swift */; };
-		B507AA0224A243EE00E039D5 /* TEKExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507AA0124A243EE00E039D5 /* TEKExport.swift */; };
 		B507AA0424A24ED000E039D5 /* TEK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507AA0324A24ED000E039D5 /* TEK.swift */; };
 		B507AA0724A2533200E039D5 /* DownloadPackage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507AA0624A2533200E039D5 /* DownloadPackage+Helpers.swift */; };
 		B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
@@ -86,7 +84,7 @@
 		B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */; };
 		B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* PTCExposureManagerModule.m */; };
 		B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */; };
-		B5E79437249E666B00BD8596 /* Array+URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E79436249E666B00BD8596 /* Array+URLExtensions.swift */; };
+		B5E79437249E666B00BD8596 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E79436249E666B00BD8596 /* Array+Extensions.swift */; };
 		B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */; };
 		B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */; };
 		B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0CE24916A4C00433980 /* DebugAction.swift */; };
@@ -332,8 +330,6 @@
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
 		B507A9ED24A197FF00E039D5 /* DownloadedPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedPackage.swift; sourceTree = "<group>"; };
 		B507A9FD24A2431100E039D5 /* BTPublicKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTPublicKeyStore.swift; sourceTree = "<group>"; };
-		B507A9FF24A2435F00E039D5 /* TEKSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEKSignature.swift; sourceTree = "<group>"; };
-		B507AA0124A243EE00E039D5 /* TEKExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEKExport.swift; sourceTree = "<group>"; };
 		B507AA0324A24ED000E039D5 /* TEK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEK.swift; sourceTree = "<group>"; };
 		B507AA0624A2533200E039D5 /* DownloadPackage+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DownloadPackage+Helpers.swift"; sourceTree = "<group>"; };
 		B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSSecureStorage.swift; sourceTree = "<group>"; };
@@ -346,7 +342,7 @@
 		B596C0712488127D00943B79 /* PTCExposureManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCExposureManagerModule.m; sourceTree = "<group>"; };
 		B5C490A72498F84000588A5F /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExposureManager+Extensions.swift"; sourceTree = "<group>"; };
-		B5E79436249E666B00BD8596 /* Array+URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+URLExtensions.swift"; sourceTree = "<group>"; };
+		B5E79436249E666B00BD8596 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebugMenuModule.m; sourceTree = "<group>"; };
 		B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisKeyUrlRequests.swift; sourceTree = "<group>"; };
 		B5FBB0CE24916A4C00433980 /* DebugAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugAction.swift; sourceTree = "<group>"; };
@@ -759,7 +755,7 @@
 			isa = PBXGroup;
 			children = (
 				B5FBB0D224916B3600433980 /* String+Extensions.swift */,
-				B5E79436249E666B00BD8596 /* Array+URLExtensions.swift */,
+				B5E79436249E666B00BD8596 /* Array+Extensions.swift */,
 				B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */,
 				B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */,
 				B5FBB0D624916DE100433980 /* Notification+Extensions.swift */,
@@ -815,8 +811,6 @@
 			children = (
 				B5FC37DC248A78D2006474EB /* ExposureKey.swift */,
 				B507A9ED24A197FF00E039D5 /* DownloadedPackage.swift */,
-				B507A9FF24A2435F00E039D5 /* TEKSignature.swift */,
-				B507AA0124A243EE00E039D5 /* TEKExport.swift */,
 				B507AA0324A24ED000E039D5 /* TEK.swift */,
 				B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */,
 				B5FC37E7248A8302006474EB /* TestResult.swift */,
@@ -1392,7 +1386,6 @@
 				B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */,
 				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
 				B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */,
-				B507AA0024A2435F00E039D5 /* TEKSignature.swift in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
 				B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */,
 				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
@@ -1408,8 +1401,7 @@
 				B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */,
 				B5FC37DD248A78D2006474EB /* ExposureKey.swift in Sources */,
 				B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */,
-				B507AA0224A243EE00E039D5 /* TEKExport.swift in Sources */,
-				B5E79437249E666B00BD8596 /* Array+URLExtensions.swift in Sources */,
+				B5E79437249E666B00BD8596 /* Array+Extensions.swift in Sources */,
 				B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */,
 				B5FC37D02489B3DE006474EB /* StructuredError.swift in Sources */,
 			);

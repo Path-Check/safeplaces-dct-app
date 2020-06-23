@@ -8,7 +8,7 @@ import BackgroundTasks
 final class ExposureManager: NSObject {
   
   @objc static let shared = ExposureManager()
-  
+
   private static let backgroundTaskIdentifier = Bundle.main.bundleIdentifier! + ".exposure-notification"
   
   let manager = ENManager()
@@ -39,7 +39,7 @@ final class ExposureManager: NSObject {
         }
       }
     }
-    
+
     // Schedule background task if needed whenever EN authorization status changes
     NotificationCenter.default.addObserver(self, selector: #selector(scheduleBackgroundTaskIfNeeded), name: .AuthorizationStatusDidChange, object: nil)
   }
@@ -67,10 +67,10 @@ final class ExposureManager: NSObject {
       }
     }
   }
-  
+
   /// Downloaded archives from the GAEN server
   var downloadedPackages = [DownloadedPackage]()
-  
+
   /// Local urls of the bin/sig files from each archive
   var localUncompressedURLs = [URL]()
   
@@ -83,13 +83,13 @@ final class ExposureManager: NSObject {
       completionHandler?(false)
       return progress
     }
-    
+
     detectingExposures = true
-    
+
     func finish(_ result: Result<[Exposure]>) {
-      
+
       cleanup()
-      
+
       progress.cancel()
       
       if progress.isCancelled {
@@ -116,7 +116,7 @@ final class ExposureManager: NSObject {
     BTSecureStorage.shared.getUserState { userState in
       APIClient.shared.requestString(IndexFileRequest.get, requestType: .downloadKeys) { result in
         let dispatchGroup = DispatchGroup()
-        
+
         switch result {
         case let .success(indexFileString):
           let remoteURLs = indexFileString.gaenFilePaths
@@ -140,10 +140,10 @@ final class ExposureManager: NSObject {
         dispatchGroup.notify(queue: .main) {
           self.downloadedPackages.unpack { urls in
             self.localUncompressedURLs = urls
-            
+
             // TODO: Fetch configuration from API
             let enConfiguration = ExposureConfiguration.placeholder.asENExposureConfiguration
-            ExposureManager.shared.manager.detectExposures(configuration: ENExposureConfiguration(), diagnosisKeyURLs: self.localUncompressedURLs) { summary, error in
+            ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: self.localUncompressedURLs) { summary, error in
               if let error = error {
                 finish(.failure(error))
                 return
@@ -171,25 +171,25 @@ final class ExposureManager: NSObject {
     
     return progress
   }
-  
+
   @objc func registerBackgroundTask() {
     notifyUserBlueToothOffIfNeeded()
     BGTaskScheduler.shared.register(forTaskWithIdentifier: ExposureManager.backgroundTaskIdentifier, using: .main) { [weak self] task in
-      
+
       // Notify the user if bluetooth is off
       self?.notifyUserBlueToothOffIfNeeded()
-      
+
       // Perform the exposure detection
       let progress = ExposureManager.shared.detectExposures { success in
         task.setTaskCompleted(success: success)
       }
-      
+
       // Handle running out of time
       task.expirationHandler = {
         progress.cancel()
         BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = NSLocalizedString("BACKGROUND_TIMEOUT", comment: "Error")
       }
-      
+
       // Schedule the next background task
       self?.scheduleBackgroundTaskIfNeeded()
     }
@@ -213,11 +213,11 @@ final class ExposureManager: NSObject {
       }
     }
   }
-  
+
 }
 
 private extension ExposureManager {
-  
+
   @objc func scheduleBackgroundTaskIfNeeded() {
     guard ENManager.authorizationStatus == .authorized else { return }
     let taskRequest = BGProcessingTaskRequest(identifier: ExposureManager.backgroundTaskIdentifier)
@@ -228,10 +228,10 @@ private extension ExposureManager {
       print("Unable to schedule background task: \(error)")
     }
   }
-  
+
   func notifyUserBlueToothOffIfNeeded() {
     let identifier = String.bluetoothNotificationIdentifier
-    
+
     // Bluetooth must be enabled in order for the device to exchange keys with other devices
     if ENManager.authorizationStatus == .authorized && manager.exposureNotificationStatus == .bluetoothOff {
       let content = UNMutableNotificationContent()
@@ -250,17 +250,17 @@ private extension ExposureManager {
       UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
     }
   }
-  
+
   func cleanup() {
     // Delete downloaded files from file system
     localUncompressedURLs.cleanup()
     localUncompressedURLs = []
     downloadedPackages = []
   }
-  
+
   func postExposureDetectionErrorNotification() {
     let identifier = String.exposureDetectionErrorNotificationIdentifier
-    
+
     let content = UNMutableNotificationContent()
     content.title = String.exposureDetectionErrorNotificationTitle.localized
     content.body = String.exposureDetectionErrorNotificationBody.localized
@@ -274,5 +274,5 @@ private extension ExposureManager {
       }
     }
   }
-  
+
 }
