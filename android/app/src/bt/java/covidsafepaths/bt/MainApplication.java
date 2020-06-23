@@ -67,42 +67,7 @@ public class MainApplication extends Application implements ReactApplication {
         Realm.init(this);
         initializeStetho(this);
         initializeFlipper(this); // Remove this line if you don't want Flipper enabled
-        initExposureNotifications();
-    }
-
-    private void initExposureNotifications() {
-        ExposureNotificationClientWrapper.get(this)
-                .start()
-                .addOnSuccessListener(
-                        unused -> {
-                            Log.d("HERE123", "Success");
-                        })
-                .addOnFailureListener(
-                        exception -> {
-                            if (!(exception instanceof ApiException)) {
-                                Log.e("HELLO123", "Unknown error when attempting to start API", exception);
-                                return;
-                            }
-                            ApiException apiException = (ApiException) exception;
-                            if (apiException.getStatusCode()
-                                    == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
-                                Log.d("HERE123", "RESOLUTION_REQUIRED");
-//                                if (inFlightResolutionLiveData.getValue()) {
-//                                    Log.e(TAG, "Error, has in flight resolution", exception);
-//                                    return;
-//                                } else {
-//                                    inFlightResolutionLiveData.setValue(true);
-//                                    resolutionRequiredLiveEvent.postValue(apiException);
-//                                }
-                            } else {
-                                Log.d("HERE123", "else exception");
-//                                Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
-//                                apiErrorLiveEvent.call();
-//                                inFlightLiveData.setValue(false);
-                            }
-                        })
-                .addOnCanceledListener(() ->
-                Log.d("HERE123", "Add on canceled"));
+        Log.d("HERE123", "MainApplication BT");
     }
 
     /**

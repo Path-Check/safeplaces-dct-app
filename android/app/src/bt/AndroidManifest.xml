@@ -6,6 +6,27 @@
 
 
     <application android:name="covidsafepaths.bt.MainApplication">
+
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:label="@string/app_name_short"><!-- launcher name -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true"
+            android:launchMode="singleTask">
+        </activity>
+
         <receiver
             android:name="covidsafepaths.bt.exposurenotifications.ExposureNotificationBroadcastReceiver"
             android:permission="com.google.android.gms.nearby.exposurenotification.EXPOSURE_CALLBACK"
@@ -15,5 +36,6 @@
             </intent-filter>
         </receiver>
     </application>
+
 
 </manifest>

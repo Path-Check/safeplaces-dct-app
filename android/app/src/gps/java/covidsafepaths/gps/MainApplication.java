@@ -2,6 +2,8 @@ package covidsafepaths.gps;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.marianhello.bgloc.BackgroundGeolocationFacade;
@@ -58,6 +60,7 @@ public class MainApplication extends Application implements ReactApplication {
     initializeGeolocationTransformer();
     // Ignore assignment. Creating to begin heavy encryption work
     SecureStorage wrapper = SecureStorage.INSTANCE;
+    Log.d("HERE123", "MainApplication GPS");
   }
 
   /**

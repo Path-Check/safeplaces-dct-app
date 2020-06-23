@@ -1,14 +1,15 @@
-package covidsafepaths.gps;
+package org.pathcheck.covidsafepaths;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.igorbelyayev.rnlocalresource.RNLocalResourcePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
-
 import org.devio.rn.splashscreen.SplashScreen;
-import org.pathcheck.covidsafepaths.R;
 
 public class MainActivity extends ReactActivity {
 
@@ -16,6 +17,7 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     SplashScreen.show(this, R.style.SplashTheme);
     super.onCreate(savedInstanceState);
+    Log.d("HERE123", "MainActivity GPS");
   }
 
   /**
