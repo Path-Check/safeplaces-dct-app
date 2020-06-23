@@ -10,7 +10,7 @@
     "format": "yarn prettier --write",
     "lint": "eslint ./",
     "validate": "yarn prettier --list-different && yarn tsc && yarn lint",
-    "run-android-bt": "react-native run-android --variant=btDebug --appId=org.pathcheck.covidsafepathsBt.mn",
+    "run-android-bt": "react-native run-android --variant=btDebug --appId=org.pathcheck.covidsafepathsBt",
     "run-android-gps": "react-native run-android --variant=gpsDebug --appId=org.pathcheck.covidsafepaths",
     "run-ios-bt": "yarn install:pod && react-native run-ios --scheme \"BT_Development\" --simulator \"iPhone 11 (13.5)\"",
     "run-ios-gps": "yarn install:pod && react-native run-ios --scheme \"GPS_Development\"",
