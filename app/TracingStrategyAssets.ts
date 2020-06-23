@@ -74,14 +74,6 @@ export function useAssets(): Record<string, Asset> {
    * Dashboard Pages
    */
 
-  // Exposure Notification Not Available Screen
-  const exposureNotificationsNotAvailableHeader = t(
-    'home.bluetooth.unavailable_header',
-  );
-  const exposureNotificationsNotAvailableSubheader = t(
-    'home.bluetooth.unavailable_subheader',
-  );
-
   // Tracing Off Screen
   const tracingOffScreenHeader = isGPS
     ? t('home.gps.tracing_off_header')
@@ -191,8 +183,6 @@ export function useAssets(): Record<string, Asset> {
     allServicesOnScreenHeader,
     allServicesOnScreenSubheader,
     allServicesOnNoHaAvailableSubHeader,
-    exposureNotificationsNotAvailableHeader,
-    exposureNotificationsNotAvailableSubheader,
     notificationsOffScreenHeader,
     notificationsOffScreenSubheader,
     notificationsOffScreenButton,

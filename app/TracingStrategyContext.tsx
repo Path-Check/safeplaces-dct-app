@@ -4,10 +4,16 @@ import { ExposureHistoryProvider } from './ExposureHistoryContext';
 
 interface TracingStrategyContextState {
   name: string;
+  homeScreenComponent: () => JSX.Element;
 }
+
+const DefaultHomeScreenComponent = () => {
+  return <></>;
+};
 
 const defaultState = {
   name: 'initializingTracingStrategy',
+  homeScreenComponent: DefaultHomeScreenComponent,
 };
 
 const TracingStrategyContext = createContext<TracingStrategyContextState>(
@@ -29,6 +35,7 @@ const TracingStrategyProvider = ({
     <TracingStrategyContext.Provider
       value={{
         name: strategy.name,
+        homeScreenComponent: strategy.homeScreenComponent,
       }}>
       <StrategyPermissionsProvider>
         <ExposureHistoryProvider
