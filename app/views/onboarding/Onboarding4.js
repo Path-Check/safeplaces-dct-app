@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import OnboardingTemplate from './OnboardingTemplate';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
+import { isPlatformiOS } from '../../Util';
 
 const Onboarding4 = (props) => {
   const {
@@ -17,7 +18,10 @@ const Onboarding4 = (props) => {
   const handleOnPressNext = () =>
     props.navigation.replace(
       isGPS
-        ? Screens.OnboardingNotificationPermissions
+        ? // Skip notification permissions on android
+          isPlatformiOS
+          ? Screens.OnboardingNotificationPermissions
+          : Screens.OnboardingLocationPermissions
         : Screens.EnableExposureNotifications,
     );
 
