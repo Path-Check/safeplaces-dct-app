@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  BackHandler,
   Dimensions,
   Linking,
   Platform,
@@ -18,25 +17,13 @@ import { useAssets } from '../TracingStrategyAssets';
 import { Colors, Spacing } from '../styles';
 
 export const AboutScreen = ({ navigation }) => {
-  const version = '1.1.0 (2)';
+  const version = '1.1.0 (4)';
   const { t } = useTranslation();
   const { aboutHeader } = useAssets();
 
   const backToMain = () => {
     navigation.goBack();
   };
-
-  useEffect(() => {
-    const handleBackPress = () => {
-      navigation.goBack();
-      return true;
-    };
-
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-  }, [navigation]);
 
   return (
     <NavigationBarWrapper
