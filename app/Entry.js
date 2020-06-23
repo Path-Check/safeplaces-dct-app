@@ -239,7 +239,7 @@ const MainAppTabs = () => {
             tabBarLabel: t('navigation.partners'),
             tabBarIcon: ({ focused, size }) => (
               <SvgXml
-                xml={focused ? Icons.PartnersActive : Icons.PartnersInactive}
+                xml={focused ? Icons.ShieldActive : Icons.ShieldInactive}
                 width={size}
                 height={size}
               />
