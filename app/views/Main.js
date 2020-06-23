@@ -37,7 +37,8 @@ export const Main = () => {
     checkForPossibleExposure();
     const { canTrack } = await LocationServices.checkStatusAndStartOrStop();
     setTrackingInfo({ canTrack });
-  }, [setTrackingInfo]);
+    NotificationService.configure(notification.status);
+  }, [setTrackingInfo, notification.status]);
 
   useEffect(() => {
     updateStateInfo();
@@ -52,10 +53,6 @@ export const Main = () => {
       unsubscribe();
     };
   }, [navigation, updateStateInfo]);
-
-  useEffect(() => {
-    NotificationService.configure(notification.status);
-  }, [notification.status]);
 
   if (!trackingInfo.canTrack) {
     return <TracingOffScreen />;

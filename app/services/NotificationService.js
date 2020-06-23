@@ -3,14 +3,9 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import { PermissionStatus } from '../gps/PermissionsContext';
 
-let isNotificationConfigured = false;
-
 export default class NotificationService {
   static async configure(notificationStatus) {
-    if (
-      !isNotificationConfigured &&
-      notificationStatus === PermissionStatus.GRANTED
-    ) {
+    if (notificationStatus === PermissionStatus.GRANTED) {
       PushNotification.configure({
         // (required) Called when a remote or local notification is opened or received
         onNotification(notification) {
