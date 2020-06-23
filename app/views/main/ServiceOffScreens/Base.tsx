@@ -48,24 +48,22 @@ export const ServiceOffScreen = ({
             height={size ? size : 80}
           />
         </View>
-
-        <View style={styles.mainContainer}>
-          <View style={styles.contentAbovePulse} />
-          <View style={styles.contentBelowPulse}>
-            <Text style={styles.mainTextBelow}>{header}</Text>
-            <Typography style={styles.subheaderText}>
-              {subheaderText}
-            </Typography>
-            {button && (
-              <Button
-                label={button.label}
-                onPress={button.onPress}
-                style={styles.buttonContainer}
-              />
-            )}
-          </View>
-        </View>
       </ImageBackground>
+
+      <View style={styles.mainContainer}>
+        <View style={styles.contentAbovePulse} />
+        <View style={styles.contentBelowPulse}>
+          <Text style={styles.mainTextBelow}>{header}</Text>
+          <Typography style={styles.subheaderText}>{subheaderText}</Typography>
+          {button && (
+            <Button
+              label={button.label}
+              onPress={button.onPress}
+              style={styles.buttonContainer}
+            />
+          )}
+        </View>
+      </View>
     </Theme>
   );
 };
