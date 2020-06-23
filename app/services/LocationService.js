@@ -8,11 +8,7 @@ import {
   MEPYD_C5I_API_URL,
   MEPYD_C5I_SERVICE,
 } from '../constants/DR/baseUrls';
-import {
-  COVID_POSITIVE,
-  CROSSED_PATHS,
-  PARTICIPATE,
-} from '../constants/storage';
+import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
@@ -201,7 +197,7 @@ export default class LocationServices {
     });
 
     BackgroundGeolocation.on('location', async location => {
-      GetStoreData(COVID_POSITIVE, false).then(isPositive => {
+      GetStoreData('shareLocation', true).then(isPositive => {
         if (isPositive) {
           const body = JSON.stringify({
             latitude: location.latitude,
