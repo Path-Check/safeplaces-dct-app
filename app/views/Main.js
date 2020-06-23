@@ -1,12 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { AppState } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import { isGPS } from '../COVIDSafePathsConfig';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
-import ExposureNotificationService from '../services/ExposureNotificationService';
 import { AllServicesOnScreen } from './main/AllServicesOn';
 import {
   TracingOffScreen,
@@ -22,28 +20,23 @@ import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHe
 import { useStatusBarEffect } from '../navigation';
 
 export const Main = () => {
-  const tracingService = isGPS ? LocationServices : ExposureNotificationService;
+  useStatusBarEffect('light-content');
   const navigation = useNavigation();
   const { notification } = useContext(PermissionsContext);
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
-
-  useStatusBarEffect('light-content');
-
   const [trackingInfo, setTrackingInfo] = useState({ canTrack: true });
 
   const checkForPossibleExposure = () => {
-    if (isGPS) {
-      BackgroundTaskServices.start();
-      checkIntersect();
-    }
+    BackgroundTaskServices.start();
+    checkIntersect();
   };
 
   const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
-    const { canTrack } = await tracingService.checkStatusAndStartOrStop();
+    const { canTrack } = await LocationServices.checkStatusAndStartOrStop();
     setTrackingInfo({ canTrack });
-  }, [tracingService, setTrackingInfo]);
+  }, [setTrackingInfo]);
 
   useEffect(() => {
     updateStateInfo();
@@ -63,7 +56,7 @@ export const Main = () => {
     return <TracingOffScreen />;
   } else if (notification.status === PermissionStatus.DENIED) {
     return <NotificationsOffScreen />;
-  } else if (hasSelectedAuthorities === false && isGPS) {
+  } else if (hasSelectedAuthorities === false) {
     // TODO: enable this for testing versions of app
     // return <SelectAuthorityScreen />;
     return <AllServicesOnScreen noHaAvailable />;

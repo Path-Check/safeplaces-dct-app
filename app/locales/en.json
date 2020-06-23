@@ -149,11 +149,11 @@
       "auto_start_subheader": "PathCheck needs to be able to auto start to privately save the places you visit. Please enable it in your app settings"
     },
     "bluetooth": {
-      "all_services_on_header": "PathCheck",
-      "all_services_on_subheader": "Exposure notifications are on",
       "tracing_off_header": "Exposure Notifications Disabled",
       "tracing_off_subheader": "Enable Exposure Notifications to receive information about possible exposures",
       "tracing_off_button": "Allow Exposure Notifications",
+      "all_services_on_header": "PathCheck",
+      "all_services_on_subheader": "Exposure notifications are on",
       "unavailable_header": "Exposure history notifications are not yet available",
       "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck"
     },

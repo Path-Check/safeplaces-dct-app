@@ -55,16 +55,16 @@ final class ExposureManager: NSObject {
     // during onboarding, but then flipped on the "COVID-19 Exposure Notifications" switch
     // in Settings.
     manager.setExposureNotificationEnabled(enabled) { error in
-      var deviceState = (AuthorizationState.UNAUTHORIZED, EnabledState.DISABLED)
-      if error == nil {
+      if let error = error {
+        callback([error])
+      } else {
         let enablement = self.manager.exposureNotificationEnabled ? EnabledState.ENABLED : EnabledState.DISABLED
         let authorization = ENManager.authorizationStatus == .authorized ? AuthorizationState.AUTHORIZED : AuthorizationState.UNAUTHORIZED
         NotificationCenter.default.post(Notification(name: Notification.Name.AuthorizationStatusDidChange,
-                                                     object: [authorization, enablement],
+                                                     object: [authorization.rawValue, enablement.rawValue],
                                                      userInfo: nil))
-        deviceState = (authorization, enablement)
+        callback([String.genericSuccess])
       }
-      callback([[deviceState.0, deviceState.1]])
     }
   }
   
@@ -135,7 +135,6 @@ final class ExposureManager: NSObject {
           finish(.failure(error))
           return
         }
-
         dispatchGroup.notify(queue: .main) {
           for result in localCompressedURLResults {
             switch result {

@@ -15,15 +15,18 @@ const Onboarding4 = (props) => {
   } = useAssets();
   const { t } = useTranslation();
 
-  const handleOnPressNext = () =>
+  const gpsNext = () =>
     props.navigation.replace(
-      isGPS
-        ? // Skip notification permissions on android
-          isPlatformiOS()
-          ? Screens.OnboardingNotificationPermissions
-          : Screens.OnboardingLocationPermissions
-        : Screens.EnableExposureNotifications,
+      // Skip notification permissions on android
+      isPlatformiOS()
+        ? Screens.OnboardingNotificationPermissions
+        : Screens.OnboardingLocationPermissions,
     );
+
+  const btNext = () =>
+    props.navigation.replace(Screens.EnableExposureNotifications);
+
+  const handleOnPressNext = isGPS ? gpsNext : btNext;
 
   return (
     <OnboardingTemplate
