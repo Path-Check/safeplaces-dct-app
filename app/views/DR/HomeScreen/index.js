@@ -172,49 +172,42 @@ class HomeScreen extends Component {
                     </View>
                   </View>
                   <View style={styles.actualSituationContainer}>
-                    <TouchableOpacity>
-                      <Card style={styles.infoCards}>
-                        <Text style={[styles.dataText]}>{cases}</Text>
-                        <Text style={styles.text}>
-                          {t('label.positive_label')}
-                        </Text>
-                      </Card>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                      <Card style={styles.infoCards}>
-                        <Text
-                          style={[
-                            styles.dataText,
-                            { color: Colors.BUTTON_LIGHT_TEX },
-                          ]}>
-                          {deaths}
-                        </Text>
-                        <Text style={styles.text}>
-                          {t('label.deceased_label')}
-                        </Text>
-                      </Card>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                      <Card style={styles.infoCards}>
-                        <Text
-                          style={[styles.dataText, { color: Colors.GREEN }]}>
-                          {recovered}
-                        </Text>
-                        <Text style={styles.text}>
-                          {t('label.recovered_label')}
-                        </Text>
-                      </Card>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                      <Card style={styles.infoCards}>
-                        <Text style={[styles.dataText, { color: Colors.SUN }]}>
-                          {todayCases}
-                        </Text>
-                        <Text style={styles.text}>
-                          {t('label.case_day_label')}
-                        </Text>
-                      </Card>
-                    </TouchableOpacity>
+                    <Card style={styles.infoCards}>
+                      <Text style={[styles.dataText]}>{cases}</Text>
+                      <Text style={styles.text}>
+                        {t('label.positive_label')}
+                      </Text>
+                    </Card>
+
+                    <Card style={styles.infoCards}>
+                      <Text
+                        style={[
+                          styles.dataText,
+                          { color: Colors.BUTTON_LIGHT_TEX },
+                        ]}>
+                        {deaths}
+                      </Text>
+                      <Text style={styles.text}>
+                        {t('label.deceased_label')}
+                      </Text>
+                    </Card>
+
+                    <Card style={styles.infoCards}>
+                      <Text style={[styles.dataText, { color: Colors.GREEN }]}>
+                        {recovered}
+                      </Text>
+                      <Text style={styles.text}>
+                        {t('label.recovered_label')}
+                      </Text>
+                    </Card>
+                    <Card style={styles.infoCards}>
+                      <Text style={[styles.dataText, { color: Colors.SUN }]}>
+                        {todayCases}
+                      </Text>
+                      <Text style={styles.text}>
+                        {t('label.case_day_label')}
+                      </Text>
+                    </Card>
                   </View>
                   <LocationMatch navigation={this.props.navigation} />
                   <Aurora navigation={this.props.navigation} />
