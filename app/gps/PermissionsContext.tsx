@@ -73,7 +73,7 @@ const initialState = {
     check: () => {},
     request: () => {},
   },
-  requestNotificationSettings: () => {}
+  requestNotificationSettings: () => {},
 };
 
 const PermissionsContext = createContext<PermissionContextState>(initialState);
@@ -169,7 +169,7 @@ const PermissionsProvider = ({
     if (statusToEnum(status) === PermissionStatus.DENIED) {
       openSettings();
     }
-  }
+  };
 
   return (
     <PermissionsContext.Provider
