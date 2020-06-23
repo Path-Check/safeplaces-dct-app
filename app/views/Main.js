@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
+import NotificationService from '../services/NotificationService';
 import { AllServicesOnScreen } from './main/AllServicesOn';
 import {
   TracingOffScreen,
@@ -36,7 +37,8 @@ export const Main = () => {
     checkForPossibleExposure();
     const { canTrack } = await LocationServices.checkStatusAndStartOrStop();
     setTrackingInfo({ canTrack });
-  }, [setTrackingInfo]);
+    NotificationService.configure(notification.status);
+  }, [setTrackingInfo, notification.status]);
 
   useEffect(() => {
     updateStateInfo();

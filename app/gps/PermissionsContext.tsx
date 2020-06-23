@@ -8,6 +8,7 @@ import {
   requestNotifications,
   Permission,
 } from 'react-native-permissions';
+import { openSettings } from 'react-native-permissions';
 
 import { HCAService } from '../services/HCAService.js';
 
@@ -17,7 +18,7 @@ export enum PermissionStatus {
   DENIED,
 }
 
-const statusToEnum = (status: string) => {
+export const statusToEnum = (status: string | void): PermissionStatus => {
   switch (status) {
     case 'unknown': {
       return PermissionStatus.UNKNOWN;
@@ -53,6 +54,7 @@ interface PermissionContextState {
     check: () => void;
     request: () => void;
   };
+  requestNotificationSettings: () => void;
 }
 
 const initialState = {
@@ -71,6 +73,7 @@ const initialState = {
     check: () => {},
     request: () => {},
   },
+  requestNotificationSettings: () => {},
 };
 
 const PermissionsContext = createContext<PermissionContextState>(initialState);
@@ -152,12 +155,20 @@ const PermissionsProvider = ({
   const requestNotificationPermission = async () => {
     const { status } = await requestNotifications(['alert', 'sound']);
     setNotificationPermission(statusToEnum(status));
+    return status;
   };
 
   const requestAuthSubscriptionPermission = async () => {
     await HCAService.enableAutoSubscription();
     const status = PermissionStatus.GRANTED;
     setAuthSubscriptionPermission(status);
+  };
+
+  const requestNotificationSettings = async () => {
+    const status = await requestNotificationPermission();
+    if (statusToEnum(status) === PermissionStatus.DENIED) {
+      openSettings();
+    }
   };
 
   return (
@@ -178,6 +189,7 @@ const PermissionsProvider = ({
           check: checkAuthSubscriptionPermission,
           request: requestAuthSubscriptionPermission,
         },
+        requestNotificationSettings,
       }}>
       {children}
     </PermissionsContext.Provider>
