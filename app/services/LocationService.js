@@ -29,6 +29,13 @@ export const APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
  */
 export const ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
 
+/* 
+  On Android: isAppGpsEnabled = 0 means Never Use Location
+  On IOS: isAppGpsEnabled = 0 means Never Use Location. isAppGpsEnabled = 99 means Ask Next Time
+*/
+const NEVER_USE_LOCATION_STATUS = 0
+const ASK_NEXT_TIME_STATUS = 99
+
 export default class LocationServices {
   static async start() {
     // handles edge cases around Android where start might get called again even though
@@ -197,11 +204,7 @@ export default class LocationServices {
         isRunning,
       };
     }
-    /* 
-      On Android: isAppGpsEnabled = 0 means Never Use Location
-      On IOS: isAppGpsEnabled = 0 means Never Use Location. isAppGpsEnabled = 99 means Ask Next Time
-    */
-    if (!isAppGpsEnabled === 0 || isAppGpsEnabled === 99) {
+    if (!isAppGpsEnabled === NEVER_USE_LOCATION_STATUS || isAppGpsEnabled === ASK_NEXT_TIME_STATUS) {
       return {
         canTrack: false,
         reason: APP_NOT_AUTHORIZED,
