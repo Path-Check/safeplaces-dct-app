@@ -3,7 +3,12 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { NativeModules } from 'react-native';
 
 import { CROSSED_PATHS, PARTICIPATE } from '../../constants/storage';
-import LocationServices, { MIN_LOCATION_UPDATE_MS, DEVICE_LOCATION_OFF, APP_NOT_AUTHORIZED, ALL_CONDITIONS_MET } from '../LocationService';
+import LocationServices, {
+  MIN_LOCATION_UPDATE_MS,
+  DEVICE_LOCATION_OFF,
+  APP_NOT_AUTHORIZED,
+  ALL_CONDITIONS_MET,
+} from '../LocationService';
 
 jest.mock('@mauron85/react-native-background-geolocation');
 
