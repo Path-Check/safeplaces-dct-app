@@ -117,6 +117,29 @@ dev_setup.sh
 dev_setup.bat
 ```
 
+Then, add your own values for each environment variable in the following 6 `.env` files:
+
+- .env.bt
+- .env.bt.staging
+- .env.bt.release
+- .env.gps
+- .env.gps.staging
+- .env.gps.release
+
+### For PathCheck Developers
+
+Update git submodules:
+
+```
+ git submodule update --init
+```
+
+copy `.env` files to the project root:
+
+```
+sh setup_env.sh
+```
+
 ## Running
 
 **Note:** In some cases, these procedures can lead to the error `Failed to load bundle - Could not connect to development server`. In these cases, kill all other react-native processes and try it again.

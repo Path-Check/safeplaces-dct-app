@@ -38,7 +38,8 @@ export type Screen =
   | 'Onboarding2'
   | 'Onboarding3'
   | 'Onboarding4'
-  | 'OnboardingPermissions'
+  | 'OnboardingLocationPermissions'
+  | 'OnboardingNotificationPermissions'
   | 'EnableExposureNotifications'
   | 'ExportFlow'
   | 'SelfAssessment'
@@ -70,7 +71,8 @@ export const Screens: { [key in Screen]: Screen } = {
   Onboarding2: 'Onboarding2',
   Onboarding3: 'Onboarding3',
   Onboarding4: 'Onboarding4',
-  OnboardingPermissions: 'OnboardingPermissions',
+  OnboardingLocationPermissions: 'OnboardingLocationPermissions',
+  OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',
   EnableExposureNotifications: 'EnableExposureNotifications',
   ExportFlow: 'ExportFlow',
   SelfAssessment: 'SelfAssessment',
