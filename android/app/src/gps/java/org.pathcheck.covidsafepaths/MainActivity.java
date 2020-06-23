@@ -17,7 +17,6 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     SplashScreen.show(this, R.style.SplashTheme);
     super.onCreate(savedInstanceState);
-    Log.d("HERE123", "MainActivity GPS");
   }
 
   /**

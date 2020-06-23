@@ -60,7 +60,6 @@ public class MainApplication extends Application implements ReactApplication {
     initializeGeolocationTransformer();
     // Ignore assignment. Creating to begin heavy encryption work
     SecureStorage wrapper = SecureStorage.INSTANCE;
-    Log.d("HERE123", "MainApplication GPS");
   }
 
   /**

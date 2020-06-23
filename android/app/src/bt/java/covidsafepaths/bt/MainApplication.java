@@ -67,7 +67,6 @@ public class MainApplication extends Application implements ReactApplication {
         Realm.init(this);
         initializeStetho(this);
         initializeFlipper(this); // Remove this line if you don't want Flipper enabled
-        Log.d("HERE123", "MainApplication BT");
     }
 
     /**

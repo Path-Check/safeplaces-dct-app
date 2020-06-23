@@ -213,7 +213,7 @@ android {
             dimension "version"
         }
         bt {
-            applicationId 'org.pathcheck.covidsafepathsBt.mn'
+            applicationId 'org.pathcheck.covidsafepathsBt'
             dimension "version"
         }
     }
