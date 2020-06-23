@@ -7,7 +7,10 @@ let isNotificationConfigured = false;
 
 export default class NotificationService {
   static async configure(notificationStatus) {
-    if (!isNotificationConfigured && notificationStatus === PermissionStatus.GRANTED) {
+    if (
+      !isNotificationConfigured &&
+      notificationStatus === PermissionStatus.GRANTED
+    ) {
       PushNotification.configure({
         // (required) Called when a remote or local notification is opened or received
         onNotification(notification) {

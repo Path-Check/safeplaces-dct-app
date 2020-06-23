@@ -54,7 +54,7 @@ export const Main = () => {
   }, [navigation, updateStateInfo]);
 
   useEffect(() => {
-    NotificationService.configure(notification.status)
+    NotificationService.configure(notification.status);
   }, [notification.status]);
 
   if (!trackingInfo.canTrack) {
