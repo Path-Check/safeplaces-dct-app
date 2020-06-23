@@ -54,6 +54,7 @@ import { isGPS } from './COVIDSafePathsConfig';
 import * as Icons from './assets/svgs/TabBarNav';
 
 import { Layout, Affordances, Spacing, Colors } from './styles';
+import { isPlatformAndroid } from './Util';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -178,7 +179,7 @@ const MainAppTabs = () => {
         style: {
           backgroundColor: Colors.navBar,
           borderTopColor: Colors.navBar,
-          paddingTop: Spacing.xSmall,
+          paddingTop: isPlatformAndroid() ? 0 : Spacing.xSmall,
           height: Layout.navBar,
         },
       }}>
