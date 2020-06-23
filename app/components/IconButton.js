@@ -19,8 +19,10 @@ export const IconButton = ({
   accessibilityLabel,
   secondary,
   size,
+  color,
   ...otherProps
 }) => {
+  const Icon = color ? SvgXml : ThemedSvgXml;
   return (
     <Container accessibilityLabel={accessibilityLabel} {...otherProps}>
       <Icon
@@ -28,6 +30,10 @@ export const IconButton = ({
         secondary={secondary}
         width={size || 24}
         height={size || 24}
+        color={color}
+        style={{
+          color,
+        }}
       />
     </Container>
   );
@@ -38,6 +44,6 @@ const Container = styled.TouchableOpacity`
   align-content: center;
 `;
 
-const Icon = styled(SvgXml)`
+const ThemedSvgXml = styled(SvgXml)`
   color: ${themeTextColor};
 `;

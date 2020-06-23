@@ -53,13 +53,14 @@ export const ExportTemplate = ({
 }) => {
   useStatusBarEffect(lightTheme ? 'dark-content' : 'light-content');
   useEffect(() => {
-    function handleBackPress() {
-      onClose();
+    if (onClose) {
+      const handleBackPress = () => {
+        onClose();
+      };
+      BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     }
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
   }, [onClose]);
 
   return (
