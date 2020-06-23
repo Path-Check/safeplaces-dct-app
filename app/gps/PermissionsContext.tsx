@@ -17,7 +17,7 @@ export enum PermissionStatus {
   DENIED,
 }
 
-export const statusToEnum = (status: string | void) : PermissionStatus => {
+export const statusToEnum = (status: string | void): PermissionStatus => {
   switch (status) {
     case 'unknown': {
       return PermissionStatus.UNKNOWN;
@@ -152,7 +152,7 @@ const PermissionsProvider = ({
   const requestNotificationPermission = async () => {
     const { status } = await requestNotifications(['alert', 'sound']);
     setNotificationPermission(statusToEnum(status));
-    return status
+    return status;
   };
 
   const requestAuthSubscriptionPermission = async () => {
