@@ -43,7 +43,8 @@ import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
-import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
+import OnboardingNotifications from './views/onboarding/OnboardingNotifications';
+import OnboardingLocations from './views/onboarding/OnboardingLocations';
 
 import { Screens, Stacks } from './navigation';
 
@@ -289,8 +290,12 @@ const OnboardingStack = () => (
     <Stack.Screen name={Screens.Onboarding3} component={Onboarding3} />
     <Stack.Screen name={Screens.Onboarding4} component={Onboarding4} />
     <Stack.Screen
-      name={Screens.OnboardingPermissions}
-      component={OnboardingPermissions}
+      name={Screens.OnboardingNotificationPermissions}
+      component={OnboardingNotifications}
+    />
+    <Stack.Screen
+      name={Screens.OnboardingLocationPermissions}
+      component={OnboardingLocations}
     />
     <Stack.Screen
       name={Screens.EnableExposureNotifications}
