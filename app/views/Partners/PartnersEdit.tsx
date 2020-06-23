@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  StyleSheet,
-  View,
-  TouchableHighlight,
-  FlatList,
-  ActivityIndicator,
-} from 'react-native';
+import { StyleSheet, View, TouchableHighlight, FlatList } from 'react-native';
 
 import { Icons } from '../../assets';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
@@ -24,6 +18,8 @@ import { Screens, NavigationProp } from '../../navigation';
 
 import toggleSelectedHealthcareAuthorityAction from '../../store/actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
 import { Button } from '../../components/Button';
+import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
+import { Spacing } from '../../styles';
 import { FeatureFlag } from '../../components/FeatureFlag';
 
 type PartnersEditScreenProps = {
@@ -117,8 +113,8 @@ const PartnersScreen = ({
         contentContainerStyle={{ flexGrow: 1 }}
         data={authorities}
         ListEmptyComponent={
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            <ActivityIndicator size={'large'} />
+          <View style={styles.listEmptyWrapper}>
+            <NoAuthoritiesMessage />
           </View>
         }
         ItemSeparatorComponent={() => <Separator />}
@@ -134,4 +130,13 @@ const PartnersScreen = ({
     </NavigationBarWrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  listEmptyWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: Spacing.xLarge,
+  },
+});
 export default PartnersScreen;
