@@ -8,6 +8,7 @@ import LocationServices, {
   DEVICE_LOCATION_OFF,
   APP_NOT_AUTHORIZED,
   ALL_CONDITIONS_MET,
+  NEVER_USE_LOCATION_STATUS,
 } from '../LocationService';
 
 jest.mock('@mauron85/react-native-background-geolocation');
@@ -115,7 +116,8 @@ describe('LocationServices', () => {
       storage[PARTICIPATE] = 'true';
       mockBackgroundGeolocationCheckStatus({
         locationServicesEnabled: true,
-        authorization: APP_NOT_AUTHORIZED,
+        authorization: NEVER_USE_LOCATION_STATUS,
+        isRunning: false,
       });
 
       const data = await LocationServices.checkStatus();
@@ -123,6 +125,7 @@ describe('LocationServices', () => {
         canTrack: false,
         reason: APP_NOT_AUTHORIZED,
         hasPotentialExposure: false,
+        isRunning: false,
       });
     });
 
@@ -212,7 +215,7 @@ describe('LocationServices', () => {
 
     const CANNOT_TRACK = {
       locationServicesEnabled: true,
-      authorization: APP_NOT_AUTHORIZED,
+      authorization: NEVER_USE_LOCATION_STATUS,
     };
 
     it('does not stop the service if already stopped', async () => {
