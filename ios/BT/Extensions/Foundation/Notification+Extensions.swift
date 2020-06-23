@@ -5,3 +5,4 @@ extension Notification.Name {
   public static let ExposuresDidChange = Notification.Name(rawValue: "onExposureRecordUpdated")
   public static let AuthorizationStatusDidChange = Notification.Name(rawValue: "onEnabledStatusUpdated")
 }
+
