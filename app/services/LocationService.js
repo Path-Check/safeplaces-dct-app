@@ -14,21 +14,29 @@ const LOCATION_DISABLED_NOTIFICATION_ID = '55';
 // 5 minutes
 export const MIN_LOCATION_UPDATE_MS = 300000;
 
-export default class LocationServices {
-  /**
-   * Location services are disabled for the device
-   */
-  DEVICE_LOCATION_OFF = 'DEVICE_LOCATION_OFF';
-  /**
-   * Location services are disabled for this app
-   */
-  APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
-  /**
-   * User has granted location tracking permissions
-   * to the app, and device location services are running
-   */
-  ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
+//Device Location Statuses
+/**
+ * Location services are disabled for the device
+ */
+export const DEVICE_LOCATION_OFF = 'DEVICE_LOCATION_OFF';
+/**
+ * Location services are disabled for this app
+ */
+export const APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
+/**
+ * User has granted location tracking permissions
+ * to the app, and device location services are running
+ */
+export const ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
 
+/* 
+  On Android: isAppGpsEnabled = 0 means Never Use Location
+  On IOS: isAppGpsEnabled = 0 means Never Use Location. isAppGpsEnabled = 99 means Ask Next Time
+*/
+export const NEVER_USE_LOCATION_STATUS = 0;
+export const ASK_NEXT_TIME_STATUS = 99;
+
+export default class LocationServices {
   static async start() {
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
@@ -191,16 +199,18 @@ export default class LocationServices {
     if (!isDeviceGpsEnabled) {
       return {
         canTrack: false,
-        reason: this.DEVICE_LOCATION_OFF,
+        reason: DEVICE_LOCATION_OFF,
         hasPotentialExposure,
         isRunning,
       };
     }
-
-    if (!isAppGpsEnabled) {
+    if (
+      isAppGpsEnabled === NEVER_USE_LOCATION_STATUS ||
+      isAppGpsEnabled === ASK_NEXT_TIME_STATUS
+    ) {
       return {
         canTrack: false,
-        reason: this.APP_NOT_AUTHORIZED,
+        reason: APP_NOT_AUTHORIZED,
         hasPotentialExposure,
         isRunning,
       };
@@ -208,7 +218,7 @@ export default class LocationServices {
 
     return {
       canTrack: true,
-      reason: this.ALL_CONDITIONS_MET,
+      reason: ALL_CONDITIONS_MET,
       hasPotentialExposure,
       isRunning,
     };
