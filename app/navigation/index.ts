@@ -7,8 +7,6 @@ import {
 } from 'react-navigation';
 import { useFocusEffect } from '@react-navigation/native';
 
-import { Colors } from '../styles';
-
 export type NavigationProp = NavigationScreenProp<
   NavigationState,
   NavigationParams
@@ -106,8 +104,7 @@ export const useStatusBarEffect = (barStyle: BarStyle): void => {
   useFocusEffect(
     useCallback(() => {
       StatusBar.setBarStyle(barStyle);
-      Platform.OS === 'android' &&
-        StatusBar.setBackgroundColor(Colors.androidStatusBarBackground);
+      Platform.OS === 'android' && StatusBar.setTranslucent(true);
     }, [barStyle]),
   );
 };

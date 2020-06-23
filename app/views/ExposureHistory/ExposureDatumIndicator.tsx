@@ -61,7 +61,6 @@ const ExposureDatumIndicator = ({
         {
           ...circleStyle,
         },
-
         {
           ...textStyle,
           fontWeight: Typography.heaviestWeight,

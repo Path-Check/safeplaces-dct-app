@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-raw-text */
 import React, { useEffect, useState } from 'react';
-import { BackHandler, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { NavigationBarWrapper, Switch, Typography } from '../components';
 import { getBuildtimeFlags } from '../constants/flagsEnv';
@@ -104,19 +104,6 @@ export const FlagToggleList = () => {
 };
 
 export const FeatureFlagsScreen = ({ navigation }) => {
-  useEffect(() => {
-    const handleBackPress = () => {
-      navigation.goBack();
-      return true;
-    };
-
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-    };
-  }, [navigation]);
-
   const backToMain = () => {
     navigation.goBack();
   };
