@@ -206,7 +206,7 @@ const MainAppTabs = () => {
           tabBarIcon: ({ focused, size }) => {
             const tabIcon = (
               <SvgXml
-                xml={focused ? Icons.HistoryActive : Icons.HistoryInactive}
+                xml={focused ? Icons.CalendarActive : Icons.CalendarInactive}
                 width={size}
                 height={size}
               />
@@ -240,7 +240,7 @@ const MainAppTabs = () => {
             tabBarLabel: t('navigation.partners'),
             tabBarIcon: ({ focused, size }) => (
               <SvgXml
-                xml={focused ? Icons.PartnersActive : Icons.PartnersInactive}
+                xml={focused ? Icons.ShieldActive : Icons.ShieldInactive}
                 width={size}
                 height={size}
               />
