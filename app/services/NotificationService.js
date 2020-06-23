@@ -17,7 +17,6 @@ export default class NotificationService {
         // https://github.com/zo0r/react-native-push-notification#usage
         requestPermissions: Platform.OS === 'ios',
       });
-      isNotificationConfigured = true;
     }
   }
 }
