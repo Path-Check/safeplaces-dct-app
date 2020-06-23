@@ -1,6 +1,5 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import { CROSSED_PATHS } from '../constants/storage';

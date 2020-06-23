@@ -19,7 +19,10 @@ export const NotificationsOffScreen = (): JSX.Element => {
     <ServiceOffScreen
       header={notificationsOffScreenHeader}
       subheader={notificationsOffScreenSubheader}
-      button={{ label: notificationsOffScreenButton, onPress: requestNotifications }}
+      button={{
+        label: notificationsOffScreenButton,
+        onPress: requestNotifications,
+      }}
     />
   );
 };
