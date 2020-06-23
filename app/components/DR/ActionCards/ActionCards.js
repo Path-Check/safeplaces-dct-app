@@ -1,5 +1,5 @@
 import { Badge, Button, Card, CardItem, Left, Right, Text } from 'native-base';
-import React from 'react';
+import React, { Component } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, View } from 'react-native';
 import {
@@ -9,45 +9,78 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Colors from '../../../constants/colors';
+import { GetStoreData } from '../../../helpers/General';
+import languages from '../../../locales/languages';
 import styles from './styles';
 
 const { ORANGE, GREEN, BLUE_RIBBON } = Colors;
 
-export function Feels({ navigation }) {
-  const { t } = useTranslation();
-  return (
-    <View>
-      <Card style={styles.bigCards}>
-        <View style={styles.auroraContainer}>
-          <Icon name='heartbeat' color={ORANGE} size={wp('7%')} />
-          <Text style={[styles.textHeader, { marginLeft: 8 }]}>
-            {t('label.report_symptoms_title')}
-          </Text>
-        </View>
-        <View style={{ flexDirection: 'column' }}>
-          <Text style={[styles.text, { width: '90%' }]}>
-            {t('label.report_symptoms_description')}
-          </Text>
-          <View style={{ justifyContent: 'center' }}>
-            <Button
-              onPress={() => navigation.navigate('ReportScreen')}
-              style={[
-                styles.buttons,
-                {
-                  backgroundColor: GREEN,
-                  width: wp('70%'),
-                  marginTop: 15,
-                },
-              ]}>
-              <Text style={styles.buttonText}>
-                {t('label.report_symptoms_label')}
-              </Text>
-            </Button>
+export class Feels extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      positive: false,
+    };
+  }
+
+  isPositiveCovid = async () => {
+    const positive = await GetStoreData('positive', false);
+    if (positive) this.props.handler();
+    return positive;
+  };
+
+  async componentDidMount() {
+    this.setState({ positive: await this.isPositiveCovid() });
+  }
+
+  render() {
+    const {
+      props: { navigation },
+      state: { positive },
+    } = this;
+    return (
+      <View>
+        <Card style={styles.bigCards}>
+          <View style={styles.auroraContainer}>
+            <Icon name='heartbeat' color={ORANGE} size={wp('7%')} />
+            <Text style={[styles.textHeader, { marginLeft: 8 }]}>
+              {languages.t('label.report_symptoms_title')}
+            </Text>
           </View>
-        </View>
-      </Card>
-    </View>
-  );
+          <View style={{ flexDirection: 'column' }}>
+            <Text style={[styles.text, { width: '90%' }]}>
+              {positive
+                ? languages.t('label.positive_symptoms_description')
+                : languages.t('label.report_symptoms_description')}
+            </Text>
+            <View style={{ justifyContent: 'center' }}>
+              <Button
+                onPress={() =>
+                  navigation.navigate(
+                    positive ? 'EpidemiologicResponse' : 'ReportScreen',
+                  )
+                }
+                style={[
+                  styles.buttons,
+                  {
+                    backgroundColor: GREEN,
+                    width: wp('70%'),
+                    marginTop: 15,
+                  },
+                ]}>
+                <Text style={styles.buttonText}>
+                  {positive
+                    ? languages.t('label.positive_symptoms_label')
+                    : languages.t('label.report_symptoms_label')}
+                </Text>
+              </Button>
+            </View>
+          </View>
+        </Card>
+      </View>
+    );
+  }
 }
 
 export function Aurora({ navigation }) {
