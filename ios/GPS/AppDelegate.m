@@ -124,7 +124,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 - (void)applicationWillTerminate:(UIApplication *)application {
   if([self isFirstTimeClosing] && [self hasNotificationPermissions]) {
     // Show local notification at first time only when app quit.
-    [self notifThatWeAreStillTracking];
+    // This is alerting frequently, and without localization, so removing for now.
+    // [self notisfThatWeAreStillTracking];
   }
 }
 

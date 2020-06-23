@@ -159,8 +159,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 71
-        versionName "1.1.0 (5)"
+        versionCode 72
+        versionName "1.1.0 (6)"
     }
     splits {
         abi {
