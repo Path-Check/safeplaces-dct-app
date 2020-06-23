@@ -152,7 +152,7 @@ const PermissionsProvider = ({
   const requestNotificationPermission = async () => {
     const { status } = await requestNotifications(['alert', 'sound']);
     setNotificationPermission(statusToEnum(status));
-    return status
+    return status;
   };
 
   const requestAuthSubscriptionPermission = async () => {

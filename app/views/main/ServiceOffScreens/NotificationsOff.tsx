@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import { useAssets } from '../../../TracingStrategyAssets';
 import { ServiceOffScreen } from './Base';
-import PermissionsContext, { statusToEnum, PermissionStatus } from '../../../gps/PermissionsContext';
+import PermissionsContext, {
+  statusToEnum,
+  PermissionStatus,
+} from '../../../gps/PermissionsContext';
 import { openSettings } from 'react-native-permissions';
 
 export const NotificationsOffScreen = (): JSX.Element => {
@@ -23,7 +26,10 @@ export const NotificationsOffScreen = (): JSX.Element => {
     <ServiceOffScreen
       header={notificationsOffScreenHeader}
       subheader={notificationsOffScreenSubheader}
-      button={{ label: notificationsOffScreenButton, onPress: requestNotifications }}
+      button={{
+        label: notificationsOffScreenButton,
+        onPress: requestNotifications,
+      }}
     />
   );
 };
