@@ -63,7 +63,7 @@ export const LicensesScreen = ({
             </Typography>
             <Typography
               use='body2'
-              onPress={handleOnPressOpenUrl('covidsafepaths.org')}
+              onPress={handleOnPressOpenUrl('https://covidsafepaths.org/')}
               style={styles.hyperlink}>
               {pathCheckAddress}
             </Typography>
