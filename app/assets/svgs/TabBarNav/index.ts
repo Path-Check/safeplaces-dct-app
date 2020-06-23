@@ -5,3 +5,4 @@ export { MoreActive, MoreInactive } from './More';
 export { PartnersActive, PartnersInactive } from './Partners';
 export { NotificationIcon } from './NotificationIcon';
 export { SelfAssessmentActive, SelfAssessmentInactive } from './SelfAssessment';
+export { CalendarActive, CalendarInactive } from './Calendar';
