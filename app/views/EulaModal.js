@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import loadLocalResource from 'react-native-local-resource';
@@ -69,6 +70,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
       </TouchableOpacity>
       <Modal animationType='slide' transparent visible={modalVisible}>
         <View style={styles.container}>
+          <StatusBar barStyle={'dark-content'} />
           <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 7, paddingHorizontal: 5 }}>
               <IconButton
@@ -127,11 +129,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
   },
   ctaBox: {
-    paddingHorizontal: Spacing.medium,
+    padding: Spacing.medium,
     backgroundColor: Colors.secondaryBlue,
   },
   checkboxContainer: {
-    paddingVertical: Spacing.medium,
+    paddingBottom: Spacing.medium,
   },
   closeIcon: {
     marginBottom: 6,

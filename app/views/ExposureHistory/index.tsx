@@ -21,7 +21,12 @@ import { Screens, useStatusBarEffect } from '../../navigation';
 import { isGPS } from '../../COVIDSafePathsConfig';
 
 import { Icons } from '../../assets';
-import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
+import {
+  Buttons,
+  Spacing,
+  Typography as TypographyStyles,
+  Colors,
+} from '../../styles';
 
 const ExposureHistoryScreen = (): JSX.Element => {
   const { t } = useTranslation();
@@ -100,6 +105,7 @@ const ExposureHistoryScreen = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     padding: Spacing.medium,
+    backgroundColor: Colors.primaryBackground,
   },
   header: {},
   headerRow: {

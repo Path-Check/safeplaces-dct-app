@@ -7,8 +7,6 @@ import {
 } from 'react-navigation';
 import { useFocusEffect } from '@react-navigation/native';
 
-import { Colors } from '../styles';
-
 export type NavigationProp = NavigationScreenProp<
   NavigationState,
   NavigationParams
@@ -38,7 +36,8 @@ export type Screen =
   | 'Onboarding2'
   | 'Onboarding3'
   | 'Onboarding4'
-  | 'OnboardingPermissions'
+  | 'OnboardingLocationPermissions'
+  | 'OnboardingNotificationPermissions'
   | 'EnableExposureNotifications'
   | 'ExportFlow'
   | 'SelfAssessment'
@@ -70,7 +69,8 @@ export const Screens: { [key in Screen]: Screen } = {
   Onboarding2: 'Onboarding2',
   Onboarding3: 'Onboarding3',
   Onboarding4: 'Onboarding4',
-  OnboardingPermissions: 'OnboardingPermissions',
+  OnboardingLocationPermissions: 'OnboardingLocationPermissions',
+  OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',
   EnableExposureNotifications: 'EnableExposureNotifications',
   ExportFlow: 'ExportFlow',
   SelfAssessment: 'SelfAssessment',
@@ -104,8 +104,7 @@ export const useStatusBarEffect = (barStyle: BarStyle): void => {
   useFocusEffect(
     useCallback(() => {
       StatusBar.setBarStyle(barStyle);
-      Platform.OS === 'android' &&
-        StatusBar.setBackgroundColor(Colors.androidStatusBarBackground);
+      Platform.OS === 'android' && StatusBar.setTranslucent(true);
     }, [barStyle]),
   );
 };

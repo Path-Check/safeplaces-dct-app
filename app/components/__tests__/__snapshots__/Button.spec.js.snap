@@ -415,7 +415,7 @@ exports[`renders different color for secondary 1`] = `
             "writingDirection": "ltr",
           },
           Object {
-            "color": "#ffffff",
+            "color": "#1f2c9b",
             "fontFamily": "IBMPlexSans-Medium",
             "fontSize": 20,
             "fontWeight": "normal",
