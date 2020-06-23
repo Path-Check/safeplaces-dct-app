@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  BackHandler,
   Image,
   Linking,
   ScrollView,
@@ -35,18 +34,6 @@ export const LicensesScreen = ({
   const backToMain = () => {
     navigation.goBack();
   };
-
-  const handleBackPress = () => {
-    backToMain();
-    return true;
-  };
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-    };
-  });
 
   const infoAddress = 'info@pathcheck.org';
   const pathCheckAddress = 'covidsafepaths.org';

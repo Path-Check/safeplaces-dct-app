@@ -136,8 +136,7 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.medium,
   },
   closeIcon: {
-    marginBottom: 6,
-    marginRight: 8,
+    padding: Spacing.xSmall,
     alignSelf: 'flex-end',
   },
   smallDescriptionText: {
