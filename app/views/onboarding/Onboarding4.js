@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import OnboardingTemplate from './OnboardingTemplate';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
+import { isPlatformiOS } from '../../Util';
 
 const Onboarding4 = (props) => {
   const {
@@ -14,12 +15,18 @@ const Onboarding4 = (props) => {
   } = useAssets();
   const { t } = useTranslation();
 
-  const handleOnPressNext = () =>
+  const gpsNext = () =>
     props.navigation.replace(
-      isGPS
+      // Skip notification permissions on android
+      isPlatformiOS()
         ? Screens.OnboardingNotificationPermissions
-        : Screens.EnableExposureNotifications,
+        : Screens.OnboardingLocationPermissions,
     );
+
+  const btNext = () =>
+    props.navigation.replace(Screens.EnableExposureNotifications);
+
+  const handleOnPressNext = isGPS ? gpsNext : btNext;
 
   return (
     <OnboardingTemplate
