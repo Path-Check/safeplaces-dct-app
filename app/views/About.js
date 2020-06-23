@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  BackHandler,
   Dimensions,
   Linking,
   Platform,
@@ -25,18 +24,6 @@ export const AboutScreen = ({ navigation }) => {
   const backToMain = () => {
     navigation.goBack();
   };
-
-  useEffect(() => {
-    const handleBackPress = () => {
-      navigation.goBack();
-      return true;
-    };
-
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-  }, [navigation]);
 
   return (
     <NavigationBarWrapper

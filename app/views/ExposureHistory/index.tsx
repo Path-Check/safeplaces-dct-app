@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
   View,
-  BackHandler,
   ScrollView,
   SafeAreaView,
 } from 'react-native';
@@ -37,19 +36,6 @@ const ExposureHistoryScreen = (): JSX.Element => {
   );
 
   useStatusBarEffect('dark-content');
-
-  useEffect(() => {
-    const handleBackPress = () => {
-      navigation.goBack();
-      return true;
-    };
-
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-    };
-  }, [navigation]);
 
   const handleOnSelectDate = (datum: ExposureDatum) => {
     setSelectedDatum(datum);

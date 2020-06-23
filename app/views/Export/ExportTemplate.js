@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -18,6 +18,7 @@ import { Theme } from '../../constants/themes';
 import { Icons } from '../../assets';
 import { Colors, Typography as TypographyStyles } from '../../styles';
 import { useStatusBarEffect } from '../../navigation';
+import { useFocusEffect } from '@react-navigation/native';
 
 const BackgroundContainer = ({ lightTheme, children }) => {
   if (lightTheme) {
@@ -52,7 +53,7 @@ export const ExportTemplate = ({
   ignoreModalStyling, // So first screen can be slightly different in tabs
 }) => {
   useStatusBarEffect(lightTheme ? 'dark-content' : 'light-content');
-  useEffect(() => {
+  useFocusEffect(() => {
     if (onClose) {
       const handleBackPress = () => {
         onClose();
