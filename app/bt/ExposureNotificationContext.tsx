@@ -8,14 +8,14 @@ type Authorization = `UNAUTHORIZED` | `AUTHORIZED`;
 export type DeviceStatus = [Authorization, Enablement];
 
 interface ExposureNotificationsState {
-  authorizationStatus: DeviceStatus;
+  deviceStatus: DeviceStatus;
   requestENAuthorization: () => void;
 }
 
 const initialStatus: DeviceStatus = ['UNAUTHORIZED', 'DISABLED'];
 
 const initialState = {
-  authorizationStatus: initialStatus,
+  deviceStatus: initialStatus,
   requestENAuthorization: () => {},
 };
 
@@ -30,14 +30,12 @@ interface ExposureNotificationProviderProps {
 const ExposureNotificationsProvider = ({
   children,
 }: ExposureNotificationProviderProps): JSX.Element => {
-  const [authorizationStatus, setAuthorizationStatus] = useState<DeviceStatus>(
-    initialStatus,
-  );
+  const [deviceStatus, setDeviceStatus] = useState<DeviceStatus>(initialStatus);
 
   useEffect(() => {
     const subscription = BTNativeModule.subscribeToEnabledStatusEvents(
       (status: DeviceStatus) => {
-        setAuthorizationStatus(status);
+        setDeviceStatus(status);
       },
     );
 
@@ -47,16 +45,14 @@ const ExposureNotificationsProvider = ({
   }, []);
 
   const requestENAuthorization = () => {
-    const cb = (authorizationStatus: DeviceStatus) => {
-      setAuthorizationStatus(authorizationStatus);
-    };
-    BTNativeModule.requestAuthorization(cb);
+    const handleNativeResponse = () => {};
+    BTNativeModule.requestAuthorization(handleNativeResponse);
   };
 
   return (
     <ExposureNotificationsContext.Provider
       value={{
-        authorizationStatus,
+        deviceStatus,
         requestENAuthorization,
       }}>
       {children}

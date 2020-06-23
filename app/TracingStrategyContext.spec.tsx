@@ -31,12 +31,15 @@ describe('TracingStrategyProvider', () => {
   describe('when given a tracing strategy with a permissions provider, expsoureInfo subscription, and a name', () => {
     it('renders with the correct name, mounts the permssions provider, and subscribes to the exspousre info events', async () => {
       const removeSubscriptionMock = jest.fn();
-      const FakePermissionsProvider = ({
+      const PermissionsProvider = ({
         children,
       }: {
         children: JSX.Element;
       }): JSX.Element => {
-        return <View testID={'fake-permissions-provider'}>{children}</View>;
+        return <View testID={'permissions-provider'}>{children}</View>;
+      };
+      const HomeScreen = () => {
+        return <View testID={'home-screen'} />;
       };
 
       const strategy: TracingStrategy = {
@@ -44,13 +47,14 @@ describe('TracingStrategyProvider', () => {
         exposureInfoSubscription: () => {
           return { remove: removeSubscriptionMock };
         },
-        permissionsProvider: FakePermissionsProvider,
+        permissionsProvider: PermissionsProvider,
+        homeScreenComponent: HomeScreen,
       };
 
       const { getByTestId, unmount } = renderTracingStrategyProvider(strategy);
 
       const name = getByTestId('tracing-strategy-name');
-      const permissionsProvider = getByTestId('fake-permissions-provider');
+      const permissionsProvider = getByTestId('permissions-provider');
 
       expect(name).toHaveTextContent('test-strategy');
       expect(permissionsProvider).toBeTruthy();

@@ -32,16 +32,30 @@ export const subscribeToEnabledStatusEvents = (
   );
   return ExposureEvents.addListener(
     'onEnabledStatusUpdated',
-    (status: DeviceStatus) => {
+    (data: string[]) => {
+      const status = toStatus(data);
       cb(status);
     },
   );
 };
 
+const toStatus = (data: string[]): DeviceStatus => {
+  const networkAuthorization = data[0];
+  const networkEnablement = data[1];
+  const result: DeviceStatus = ['UNAUTHORIZED', 'DISABLED'];
+  if (networkAuthorization === 'AUTHORIZED') {
+    result[0] = 'AUTHORIZED';
+  }
+  if (networkEnablement === 'ENABLED') {
+    result[1] = 'ENABLED';
+  }
+  return result;
+};
+
 const exposureNotificationModule = NativeModules.PTCExposureManagerModule;
 
 export const requestAuthorization = async (
-  cb: (authorizationStatus: DeviceStatus) => void,
+  cb: (data: string) => void,
 ): Promise<void> => {
   exposureNotificationModule.requestExposureNotificationAuthorization(cb);
 };

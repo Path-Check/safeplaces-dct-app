@@ -2162,9 +2162,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
+				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.covid-safepaths";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2197,9 +2197,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
+				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.covid-safepaths";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2232,9 +2232,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
+				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.covid-safepaths";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2266,9 +2266,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.pathcheck.covid-safepaths";
+				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
 				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.covid-safepaths";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
 				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
