@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     position: 'absolute',
-    top: Layout.screenHeight / 2 - 40,
+    top: Layout.screenHeight / 3,
     width: '100%',
   },
   headerText: {

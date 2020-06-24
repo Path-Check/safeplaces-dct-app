@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {
   TouchableOpacity,
   ImageBackground,
+  ScrollView,
   StatusBar,
   StyleSheet,
   View,
@@ -58,7 +59,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
         <View
           testID={'onboarding-permissions-screen'}
           style={styles.mainContainer}>
-          <View style={styles.contentContainer}>
+          <ScrollView style={styles.contentContainer}>
             <View style={styles.iconContainer}>
               <SvgXml xml={Icons.ExposureIcon} />
             </View>
@@ -69,24 +70,24 @@ export const EnableExposureNotifications = (): JSX.Element => {
               {titleText}
             </Typography>
             <Typography style={styles.subheaderText}>{subTitleText}</Typography>
-          </View>
+          </ScrollView>
 
           <View style={styles.footerContainer}>
-            <TouchableOpacity
-              style={styles.dontEnableButton}
-              onPress={handleOnPressDontEnable}
-              testID={'onboarding-permissions-disable-button'}>
-              <Typography style={styles.dontEnableButtonText}>
-                {disableButtonLabel}
-              </Typography>
-            </TouchableOpacity>
-
             <TouchableOpacity
               style={styles.enableButton}
               onPress={handleOnPressEnable}
               testID={'onboarding-permissions-button'}>
               <Typography style={styles.enableButtonText}>
                 {buttonLabel}
+              </Typography>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.dontEnableButton}
+              onPress={handleOnPressDontEnable}
+              testID={'onboarding-permissions-disable-button'}>
+              <Typography style={styles.dontEnableButtonText}>
+                {disableButtonLabel}
               </Typography>
             </TouchableOpacity>
           </View>
@@ -108,17 +109,16 @@ const styles = StyleSheet.create({
     padding: Spacing.large,
   },
   contentContainer: {
-    flex: 3,
-    justifyContent: 'center',
+    paddingTop: Spacing.large,
   },
   footerContainer: {
-    flex: 1,
+    height: 'auto',
     width: '100%',
-    justifyContent: 'space-around',
   },
   headerText: {
     ...TypographyStyles.header2,
     color: Colors.white,
+    marginBottom: Spacing.small,
   },
   iconContainer: {
     paddingBottom: Spacing.large,
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
   subheaderText: {
     ...TypographyStyles.mainContent,
     color: Colors.invertedText,
+    marginBottom: Spacing.xHuge,
   },
   enableButton: {
     ...Buttons.largeWhite,
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     ...TypographyStyles.buttonTextDark,
   },
   dontEnableButton: {
-    ...Buttons.largeWhiteOutline,
+    ...Buttons.largeSecondary,
   },
   dontEnableButtonText: {
     ...TypographyStyles.buttonTextLight,

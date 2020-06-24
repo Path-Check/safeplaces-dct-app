@@ -46,7 +46,7 @@ exports[`HomeScreen renders 1`] = `
     <View
       style={
         Object {
-          "bottom": -667,
+          "bottom": -444.6666666666667,
           "left": -375,
           "position": "absolute",
         }
@@ -98,7 +98,7 @@ exports[`HomeScreen renders 1`] = `
           style={
             Object {
               "position": "absolute",
-              "top": 627,
+              "top": 444.6666666666667,
               "width": "100%",
             }
           }

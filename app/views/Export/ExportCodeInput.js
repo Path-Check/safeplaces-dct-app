@@ -14,7 +14,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
-import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import { useAssets } from '../../TracingStrategyAssets';
 import exitWarningAlert from './exitWarningAlert';
@@ -241,11 +240,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
     marginRight: 6,
-  },
-  exportSectionTitles: {
-    color: Colors.violetTextDark,
-    fontWeight: '500',
-    fontFamily: fontFamily.primaryMedium,
   },
 });
 
