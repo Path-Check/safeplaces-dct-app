@@ -100,6 +100,7 @@ project.ext.react = [
     devDisabledInGpsStaging: true,
     devDisabledInBtStaging: true,
     enableHermes: false,  // clean and rebuild if changing
+    bundleInGpsRelease: true,
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
