@@ -67,7 +67,6 @@
     "@types/react-redux": "^7.1.9",
     "array-flat-polyfill": "^1.0.1",
     "@types/semver": "^7.2.0",
-    "array-flat-polyfill": "^1.0.1",
     "dayjs": "^1.8.24",
     "emotion-theming": "^10.0.27",
     "geolib": "^3.2.1",
