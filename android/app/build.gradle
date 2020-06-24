@@ -101,6 +101,7 @@ project.ext.react = [
     devDisabledInBtStaging: true,
     enableHermes: false,  // clean and rebuild if changing
     bundleInGpsRelease: true,
+    devDisabledInGpsRelease: true,
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -160,8 +161,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 201
-        versionName "1.0.812"
+        versionCode 202
+        versionName "1.0.202"
     }
     splits {
         abi {
