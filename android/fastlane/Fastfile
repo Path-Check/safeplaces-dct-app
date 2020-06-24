@@ -31,9 +31,16 @@ platform :android do
     )
   end 
 
+  desc "CLEAN"
+  lane :clean do
+    gradle(
+      task: "clean"
+    )
+  end
+
   desc "GPS: Build a Release AAB"
   lane :release_gps do
-  
+
     gradle(
       task: "bundle",
       build_type: "gpsRelease",

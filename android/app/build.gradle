@@ -159,7 +159,7 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 72
+        versionCode 73
         versionName "1.1.0 (6)"
     }
     splits {
