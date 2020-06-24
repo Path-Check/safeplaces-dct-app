@@ -36,7 +36,7 @@ platform :android do
   
     gradle(
       task: "bundle",
-      build_type: "gpsRelease",
+      build_type: "clean gpsRelease",
       print_command: false,
       properties: {
         "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
