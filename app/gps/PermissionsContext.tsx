@@ -54,6 +54,7 @@ interface PermissionContextState {
     check: () => void;
     request: () => void;
   };
+  requestLocationSettings: () => void;
   requestNotificationSettings: () => void;
 }
 
@@ -73,6 +74,7 @@ const initialState = {
     check: () => {},
     request: () => {},
   },
+  requestLocationSettings: () => {},
   requestNotificationSettings: () => {},
 };
 
@@ -138,18 +140,23 @@ const PermissionsProvider = ({
   };
 
   const requestLocationPermission = async () => {
+    let status;
     if (Platform.OS === 'ios') {
-      await requestLocationForPlatform(PERMISSIONS.IOS.LOCATION_ALWAYS);
+      status = await requestLocationForPlatform(
+        PERMISSIONS.IOS.LOCATION_ALWAYS,
+      );
     } else if (Platform.OS === 'android') {
-      await requestLocationForPlatform(
+      status = await requestLocationForPlatform(
         PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
       );
     }
+    return status;
   };
 
   const requestLocationForPlatform = async (permission: Permission) => {
     const status = await request(permission);
     setLocationPermission(statusToEnum(status));
+    return status;
   };
 
   const requestNotificationPermission = async () => {
@@ -166,6 +173,13 @@ const PermissionsProvider = ({
 
   const requestNotificationSettings = async () => {
     const status = await requestNotificationPermission();
+    if (statusToEnum(status) === PermissionStatus.DENIED) {
+      openSettings();
+    }
+  };
+
+  const requestLocationSettings = async () => {
+    const status = await requestLocationPermission();
     if (statusToEnum(status) === PermissionStatus.DENIED) {
       openSettings();
     }
@@ -189,6 +203,7 @@ const PermissionsProvider = ({
           check: checkAuthSubscriptionPermission,
           request: requestAuthSubscriptionPermission,
         },
+        requestLocationSettings,
         requestNotificationSettings,
       }}>
       {children}
