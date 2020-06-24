@@ -33,10 +33,14 @@ platform :android do
 
   desc "GPS: Build a Release AAB"
   lane :release_gps do
+
+    gradle(
+      task: "clean"
+    )
   
     gradle(
       task: "bundle",
-      build_type: "clean gpsRelease",
+      build_type: "gpsRelease",
       print_command: false,
       properties: {
         "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
