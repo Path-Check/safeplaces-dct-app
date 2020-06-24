@@ -36,8 +36,6 @@ export const Main = () => {
   const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
     const locationStatus = await LocationServices.checkStatusAndStartOrStop();
-    console.log('locationStatus')
-    console.log(locationStatus)
     setCanTrack(locationStatus.canTrack);
     notification.check();
     NotificationService.configure(notification.status);
