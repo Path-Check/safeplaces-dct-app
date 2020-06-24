@@ -161,8 +161,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 205
-        versionName "1.0.205"
+        versionCode 300
+        versionName "1.0.300"
     }
     splits {
         abi {
