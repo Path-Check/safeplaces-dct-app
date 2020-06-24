@@ -13,7 +13,7 @@ jobs:
 
   deploy_android_gps:
     # gps-release branch only
-    if: github.event_name == 'push' && github.ref == 'refs/heads/dl-test-exposure-notification-access
+    if: github.event_name == 'push' && github.ref == 'refs/heads/dl-test-exposure-notification-access'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
