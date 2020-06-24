@@ -26,7 +26,7 @@ export const Main = () => {
   const { notification } = useContext(PermissionsContext);
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
-  const [trackingInfo, setTrackingInfo] = useState({ canTrack: true });
+  const [canTrack, setCanTrack] = useState(true);
 
   const checkForPossibleExposure = () => {
     BackgroundTaskServices.start();
@@ -35,11 +35,13 @@ export const Main = () => {
 
   const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
-    const { canTrack } = await LocationServices.checkStatusAndStartOrStop();
-    setTrackingInfo({ canTrack });
+    const locationStatus = await LocationServices.checkStatusAndStartOrStop();
+    console.log('locationStatus')
+    console.log(locationStatus)
+    setCanTrack(locationStatus.canTrack);
     notification.check();
     NotificationService.configure(notification.status);
-  }, [setTrackingInfo, notification.status]);
+  }, [setCanTrack, notification.status]);
 
   useEffect(() => {
     updateStateInfo();
@@ -55,7 +57,7 @@ export const Main = () => {
     };
   }, [navigation, updateStateInfo]);
 
-  if (!trackingInfo.canTrack) {
+  if (!canTrack) {
     return <TracingOffScreen />;
   } else if (notification.status === PermissionStatus.DENIED) {
     return <NotificationsOffScreen />;
