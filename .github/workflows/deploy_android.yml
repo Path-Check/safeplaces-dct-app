@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - dl-fix-gps-deploy
+      - jj/fix-gps-deploy-remove-env
     paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
