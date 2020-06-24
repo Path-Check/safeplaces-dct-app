@@ -9,10 +9,9 @@ on:
       - 'CHANGELOG.md'
 
 jobs:
-
   deploy_android_gps:
     # gps-release branch only
-    if: github.event_name == 'push' && github.ref == 'refs/heads/dl-fix-gps-deploy'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/jj/fix-gps-deploy-remove-env'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
