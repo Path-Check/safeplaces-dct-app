@@ -1,7 +1,7 @@
 import Yaml from 'js-yaml';
-import env from 'react-native-config';
 
-const { AUTHORITIES_YAML_ROUTE } = env;
+const AUTHORITIES_YAML_ROUTE =
+  'https://raw.githubusercontent.com/Path-Check/trusted-authorities/master/production/authorities.1.0.1.yaml';
 
 type Coordinates = {
   latitude: number;

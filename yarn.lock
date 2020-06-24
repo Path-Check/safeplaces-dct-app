@@ -7106,10 +7106,6 @@ react-native-background-timer@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-native-background-timer/-/react-native-background-timer-2.2.0.tgz#ff82d30899209b924983cc00e6ce174b8de5054a"
 
-react-native-config@luggit/react-native-config#1eb6ac01991210ddad2989857359a0f6ee35d734:
-  version "0.11.7"
-  resolved "https://codeload.github.com/luggit/react-native-config/tar.gz/1eb6ac01991210ddad2989857359a0f6ee35d734"
-
 "react-native-document-picker@github:rparet/react-native-document-picker":
   version "3.2.0"
   resolved "https://codeload.github.com/rparet/react-native-document-picker/tar.gz/e71a56183c49c3d967b00abaa9ee7327ef4c376b"
