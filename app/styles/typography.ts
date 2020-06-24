@@ -160,6 +160,7 @@ export const navHeader: TextStyle = {
   ...largeFont,
   ...bold,
   color: Colors.white,
+  textTransform: 'uppercase',
 };
 
 // Tappables
