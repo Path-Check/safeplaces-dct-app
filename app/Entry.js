@@ -28,6 +28,7 @@ import {
   ExportLocationConsent,
   ExportPublishConsent,
   ExportSelectHA,
+  ExportLocally,
 } from './views/Export';
 import ExposureHistoryScreen from './views/ExposureHistory';
 import Assessment from './views/assessment';
@@ -147,6 +148,7 @@ const MoreTabStack = () => (
       name={Screens.ENLocalDiagnosisKey}
       component={ENLocalDiagnosisKeyScreen}
     />
+    <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
   </Stack.Navigator>
 );
 
