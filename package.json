@@ -81,6 +81,7 @@
     "react-native-app-intro-slider": "^3.0.0",
     "react-native-background-fetch": "^3.0.4",
     "react-native-background-timer": "^2.2.0",
+    "react-native-config": "^1.2.1",
     "react-native-document-picker": "github:rparet/react-native-document-picker",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "^1.6.1",
