@@ -1,1 +1,1 @@
-export const getBuildtimeFlags = {};
+export const getBuildtimeFlags = () => ({});
