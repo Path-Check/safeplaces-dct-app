@@ -36,7 +36,7 @@ export const LicensesScreen = ({
   };
 
   const infoAddress = 'info@pathcheck.org';
-  const pathCheckAddress = 'covidsafepaths.org';
+  const pathCheckAddress = 'pathcheck.org';
 
   const handleOnPressOpenUrl = (url: string) => {
     return () => Linking.openURL(url);
@@ -63,7 +63,7 @@ export const LicensesScreen = ({
             </Typography>
             <Typography
               use='body2'
-              onPress={handleOnPressOpenUrl('covidsafepaths.org')}
+              onPress={handleOnPressOpenUrl('https://covidsafepaths.org/')}
               style={styles.hyperlink}>
               {pathCheckAddress}
             </Typography>
