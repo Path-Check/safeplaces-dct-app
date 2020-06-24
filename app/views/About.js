@@ -17,7 +17,7 @@ import { useAssets } from '../TracingStrategyAssets';
 import { Colors, Spacing } from '../styles';
 
 export const AboutScreen = ({ navigation }) => {
-  const version = '1.1.0 (6)';
+  const version = '1.1.0 (7)';
   const { t } = useTranslation();
   const { aboutHeader } = useAssets();
 
