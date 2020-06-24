@@ -1,5 +1,5 @@
 import { Button, Container, Content, Text } from 'native-base';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import {
@@ -8,25 +8,44 @@ import {
 } from 'react-native-responsive-screen';
 
 import Header from '../../../components/DR/Header';
+import context from '../../../components/DR/Reduces/context.js';
 import Colors from '../../../constants/colors';
 import styles from './style';
 
-export default function main({ navigation }) {
+export default function ReportScreen({
+  navigation,
+  route: {
+    params: { type },
+  },
+}) {
+  navigation.setOptions({
+    headerShown: false,
+  });
   const { t } = useTranslation();
 
+  const [, setGlobalState] = useContext(context);
+
+  const setSelectedOption = selected => {
+    setGlobalState({
+      type: 'ADD_ANSWERS',
+      value: { usage: selected },
+    });
+  };
   return (
     <Container>
       <Content>
         <View style={{ flex: 1 }}>
           <Header
             title={t('report.title')}
-            text={t('report.usage.header_selector')}
+            text={t('report.usage.header_subtitle')}
+            close
+            iconName='chevron-left'
             navigation={navigation}
             style={{ height: hp('18%') }}
           />
           <View style={styles.formContainer}>
             <Text style={[styles.text, { marginVertical: 30, fontSize: 17 }]}>
-              {t('report.usage.selector')}
+              {t('report.usage.subtitle')}
             </Text>
             <Button
               style={[
@@ -39,19 +58,21 @@ export default function main({ navigation }) {
                 },
               ]}
               onPress={() => {
-                navigation.navigate('ReportType', { type: 'PositiveReport' });
+                setSelectedOption('mySelf');
+                navigation.navigate('UserInfo', { type });
               }}>
               <Text
                 style={[
                   styles.text,
                   { color: Colors.WHITE, textTransform: 'capitalize' },
                 ]}>
-                {t('report.usage.positive_select')}
+                {t('report.usage.use_myself')}
               </Text>
             </Button>
             <Button
               onPress={() => {
-                navigation.navigate('ReportType', { type: false });
+                setSelectedOption('others');
+                navigation.navigate('UserInfo', { type });
               }}
               style={[
                 styles.buttons,
@@ -66,7 +87,7 @@ export default function main({ navigation }) {
                   styles.text,
                   { color: Colors.BLUE_RIBBON, textTransform: 'capitalize' },
                 ]}>
-                {t('report.usage.symptons_select')}
+                {t('report.usage.use_others')}
               </Text>
             </Button>
           </View>

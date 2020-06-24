@@ -308,13 +308,18 @@
     "continue": "Continue",
     "close": "Close",
     "usage": {
+      "header_selector": "Select what you want to report",
       "header_subtitle": "The following questions are related to COVID-19",
+      "selector": "You can report if you are COVID positive or report your current symptoms for some tips",
       "subtitle": "You will answer some questions about your symptoms, travel and the contact you have had with others.",
+      "positive_select": "I am positive",
+      "symptoms_select": "Report Symptoms",
       "use_myself": "Use for Myself",
       "use_others": "Use for a family member"
     },
     "userInfo": {
       "api_down_error_msg": "At this time we cannot validate your data. Please try again later.",
+      "is_not_positive_msg": "The identity card carrier has negative COVID.",
       "incorrect_data_error_msg": "Incorrect data, please check.",
       "insert_data_title": "Enter your data",
       "insert_data_subtitle": "We will use these data to properly monitor your results:",

@@ -17,7 +17,8 @@ import AuroraScreen from './views/DR/Aurora';
 import EpidemiologicScreen from './views/DR/EpidemiologicalResponseScreen';
 import FAQ from './views/DR/FAQ';
 import Details from './views/DR/News/Details';
-import Report from './views/DR/ReportScreen/ReportScreenQuestions';
+import Report from './views/DR/ReportScreen/';
+import ReportType from './views/DR/ReportScreen/ReportType';
 import ResultsScreen from './views/DR/ReportScreen/Results';
 import Sponsors from './views/DR/Sponsors';
 import UserInfo from './views/DR/UserInfoScreen/index';
@@ -171,6 +172,11 @@ class Entry extends Component {
           <Stack.Screen
             name='UserInfo'
             component={UserInfo}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ReportType'
+            component={ReportType}
             options={{ headerShown: false }}
           />
           <Stack.Screen
