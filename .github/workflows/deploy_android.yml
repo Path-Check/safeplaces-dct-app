@@ -10,7 +10,6 @@ on:
       - 'CHANGELOG.md'
 
 jobs:
-
   deploy_android_gps:
     # gps-release branch only
     if: github.event_name == 'push' && github.ref == 'refs/heads/android-gps-release'
@@ -35,13 +34,13 @@ jobs:
       - name: Setup kernel for react native, increase watchers for release versions.
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
-      - name: Cache gradle
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+      # - name: Cache gradle
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: ~/.gradle/caches
+      #     key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-gradle-
 
       - name: Set up Ruby 2.6
         uses: actions/setup-ruby@v1
@@ -80,6 +79,11 @@ jobs:
           GOOGLE_PLAY_STORE_SECRET: ${{ secrets.GOOGLE_PLAY_STORE_SECRET }}
         run: echo $GOOGLE_PLAY_STORE_SECRET | base64 -di > json_key.json && cp json_key.json app/json_key.json
         working-directory: ./android
+
+      - name: CLEAN
+        with:
+          lane: 'clean_gps'
+          subdirectory: 'android'
 
       - name: Build android Beta artifact
         uses: maierj/fastlane-action@v1.4.0
