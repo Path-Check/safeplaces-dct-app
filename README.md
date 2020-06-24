@@ -131,7 +131,7 @@ Then, add your own values for each environment variable in the following 6 `.env
 Update git submodules:
 
 ```
- git submodule update --init
+git submodule update --remote --merge
 ```
 
 copy `.env` files to the project root:
