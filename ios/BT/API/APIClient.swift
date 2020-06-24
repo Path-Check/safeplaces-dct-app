@@ -11,14 +11,14 @@ final class APIClient {
   let downloadKeysUrl: URL
   static let shared = APIClient(
     postKeysUrl: URL(string: ReactNativeConfig.env(for: .postKeysUrl))!,
-    indexFileUrl: URL(string: ReactNativeConfig.env(for: .indexFileUrl))!
+    downloadKeysUrl: URL(string: ReactNativeConfig.env(for: .downloadKeysUrl))!
   )
   
   private let sessionManager: SessionManager
   
-  init(postKeysUrl: URL, indexFileUrl: URL) {
+  init(postKeysUrl: URL, downloadKeysUrl: URL) {
     self.postKeysUrl = postKeysUrl
-    self.downloadKeysUrl = indexFileUrl
+    self.downloadKeysUrl = downloadKeysUrl
     
     let configuration = URLSessionConfiguration.default
     

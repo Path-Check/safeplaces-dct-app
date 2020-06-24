@@ -10,7 +10,7 @@ extension String {
   static let keyPathExposures = "exposures"
   static let postKeysUrl = "POST_DIAGNOSIS_KEYS_URL"
   static let downloadKeyFile = "DOWNLOAD_KEY_FILE_URL"
-  static let indexFileUrl = "INDEX_FILE_URL"
+  static let hmackey = "HMAC_KEY"
   static let bluetoothNotificationTitle = "Bluetooth Off"
   static let bluetoothNotificationBody = "You must enable bluetooth to receive Exposure Notifications."
   static let bluetoothNotificationIdentifier = "bluetooth-off"
