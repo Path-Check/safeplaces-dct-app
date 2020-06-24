@@ -37,6 +37,7 @@ export const Main = () => {
     checkForPossibleExposure();
     const { canTrack } = await LocationServices.checkStatusAndStartOrStop();
     setTrackingInfo({ canTrack });
+    notification.check();
     NotificationService.configure(notification.status);
   }, [setTrackingInfo, notification.status]);
 
