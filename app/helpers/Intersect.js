@@ -445,13 +445,23 @@ async function asyncCheckIntersect() {
   return dayBins;
 }
 
+let runningJobs = {};
+
 export async function asyncIntersectCheckForSingleHA(authority) {
+  if (runningJobs[authority]) {
+    console.log('skip');
+    return;
+  }
+  console.log(runningJobs);
+
+  runningJobs[authority] = true;
+
   // Fetch previous dayBins for intersections
   let dayBins = await GetStoreData(CROSSED_PATHS, false);
 
   const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
 
-  let { locationArray, tempDayBins } = getTransformedLocalDataAndDayBins(
+  let { locationArray, tempDayBins } = await getTransformedLocalDataAndDayBins(
     gpsPeriodMS,
   );
 
@@ -471,6 +481,8 @@ export async function asyncIntersectCheckForSingleHA(authority) {
     // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
     //       Should do better than this.
     console.log('[authority] fetch/parse error :', error);
+  } finally {
+    runningJobs[authority] = false;
   }
 
   // Update each day's bin with the result from the intersection.  To keep the

@@ -16,7 +16,7 @@ type HealthCareReducerState = {
   availableAuthorities: HealthcareAuthority[];
   availableCustomAuthorities: HealthcareAuthority[];
   selectedAuthorities: HealthcareAuthority[];
-  currentlySelectedAuthority: any; // TODO: change this
+  currentlySelectedAuthority: HealthcareAuthority; // TODO: change this
   request: ApiRequest;
 };
 
@@ -80,11 +80,12 @@ const healthcareAuthoritiesReducer = createReducer(initialState, (builder) =>
         if (overrideValue) {
           state.selectedAuthorities.push(authority);
         }
-    })
+      },
+    )
     .addCase(
       getCurrentlySelectedAuthority,
       (state, { payload: { authority, selectedValue } }) => {
-        if (selectedValue) state.currentlySelectedAuthority = authority
+        if (selectedValue) state.currentlySelectedAuthority = authority;
       },
     ),
 );

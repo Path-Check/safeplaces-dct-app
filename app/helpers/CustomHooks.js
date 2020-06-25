@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import isEqual from 'lodash/isEqual';
 
 import i18n from '../locales/languages';
 import survey_en from '../views/assessment/survey.en.json';
@@ -13,3 +14,15 @@ export function useSurvey() {
   });
   return survey;
 }
+
+const deepCompare = (value) => {
+  const ref = useRef();
+  if (!isEqual(value, ref.current)) {
+    ref.current = value;
+  }
+  return ref.current;
+};
+
+export const useDeepCompareEffect = (callback, dependencies) => {
+  useEffect(callback, deepCompare(dependencies));
+};

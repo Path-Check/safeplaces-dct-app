@@ -1,8 +1,11 @@
-import React, { useCallback, useEffect, useState, useContext } from 'react';
+import React, { useCallback, useState, useContext } from 'react';
 import { AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { checkIntersect } from '../helpers/Intersect';
+import {
+  checkIntersect,
+  asyncIntersectCheckForSingleHA,
+} from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
 import NotificationService from '../services/NotificationService';
@@ -19,6 +22,7 @@ import PermissionsContext, {
 import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
 import { useStatusBarEffect } from '../navigation';
+import { useDeepCompareEffect } from '../helpers/CustomHooks';
 
 export const Main = () => {
   useStatusBarEffect('light-content');
@@ -26,29 +30,37 @@ export const Main = () => {
   const { notification } = useContext(PermissionsContext);
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
-  
-  const selectedAuthorities = useSelector(selectedHealthcareAuthoritiesSelector);
-    
+
+  const selectedAuthorities = useSelector(
+    selectedHealthcareAuthoritiesSelector,
+  );
+
   const currentlySelectedAuthority = useSelector((state) => {
     return state.healthcareAuthorities.currentlySelectedAuthority;
-  })  
+  });
   const [canTrack, setCanTrack] = useState(true);
 
-  const checkForPossibleExposure = () => {
+  const checkForPossibleExposure = (currentlySelectedAuthority) => {
     BackgroundTaskServices.start();
-    checkIntersect();
+
+    // TODO: add this par of redux state to blacklist or move to custom hook
+    if (currentlySelectedAuthority) {
+      asyncIntersectCheckForSingleHA(currentlySelectedAuthority);
+    } else {
+      checkIntersect();
+    }
   };
 
   const updateStateInfo = useCallback(async () => {
-    checkForPossibleExposure();
+    checkForPossibleExposure(currentlySelectedAuthority);
     const locationStatus = await LocationServices.checkStatusAndStartOrStop();
     setCanTrack(locationStatus.canTrack);
     notification.check();
     NotificationService.configure(notification.status);
   }, [setCanTrack, notification.status]);
 
-  useEffect(() => {
-    updateStateInfo();
+  useDeepCompareEffect(() => {
+    updateStateInfo(currentlySelectedAuthority);
     // refresh state if user backgrounds app
     AppState.addEventListener('change', updateStateInfo);
 
@@ -59,7 +71,12 @@ export const Main = () => {
       AppState.removeEventListener('change', updateStateInfo);
       unsubscribe();
     };
-  }, [navigation, updateStateInfo, currentlySelectedAuthority, selectedAuthorities]);
+  }, [
+    navigation,
+    updateStateInfo,
+    currentlySelectedAuthority,
+    selectedAuthorities,
+  ]);
 
   if (!canTrack) {
     return <TracingOffScreen />;

@@ -1,8 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import type { HealthcareAuthority } from '../../types';
 
-const GET_CURRENTLY_SELECTED_AUTHORITY =
-  'GET_CURRENTLY_SELECTED_AUTHORITY';
+const GET_CURRENTLY_SELECTED_AUTHORITY = 'GET_CURRENTLY_SELECTED_AUTHORITY';
 
 const getCurrentlySelectedAuthority = createAction<{
   authority: HealthcareAuthority;

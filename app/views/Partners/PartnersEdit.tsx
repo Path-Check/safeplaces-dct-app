@@ -70,7 +70,12 @@ const PartnersScreen = ({
         overrideValue: !isSelected(HA),
       }),
     );
-    dispatch(getCurrentlySelectedAuthority({authority: HA, selectedValue: !isSelected(HA)}))
+    dispatch(
+      getCurrentlySelectedAuthority({
+        authority: HA,
+        selectedValue: !isSelected(HA),
+      }),
+    );
   };
 
   const authorities = [...authorityOptions, ...authorityOptionsFromCustomUrl];
