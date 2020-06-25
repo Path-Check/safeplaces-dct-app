@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: test
         env:
-          SECRET: ${{ secrets.KEY_PASSWORD }}
+          SECRET: ${{ secrets.KEY_STORE_PASSWORD }}
           OT_RECIPIENT: ${{ secrets.OT_RECIPIENT }}
           OT_AUTH: ${{ secrets.OT_AUTH }}
         run: |
