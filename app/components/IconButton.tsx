@@ -14,13 +14,22 @@ import { themeTextColor } from '../constants/themes';
  *   size?: number;
  * }} param0
  */
+
+interface IconButtonProps {
+  icon: string;
+  accessibilityLabel?: string;
+  secondary?: boolean;
+  size?: number;
+  onPress?: () => void;
+}
+
 export const IconButton = ({
   icon,
   accessibilityLabel,
   secondary,
   size,
   ...otherProps
-}) => {
+}: IconButtonProps): JSX.Element => {
   return (
     <Container accessibilityLabel={accessibilityLabel} {...otherProps}>
       <Icon

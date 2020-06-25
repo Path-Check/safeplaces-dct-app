@@ -123,7 +123,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
 
   const exportCodeInputNextRoute = isGPS
     ? Screens.ExportLocationConsent
-    : Screens.ExportPublishConsent;
+    : Screens.PublishConsent;
 
   const exportExitRoute = isGPS ? Screens.ExportStart : Screens.Settings;
 
