@@ -32,6 +32,7 @@ export const Info = ({
   ctaBackgroundColor,
   ctaTextColor,
   ctaTitle,
+  scrollStyle,
   description,
   titleStyle = 'headline2',
   descriptionStyle = 'body1',
@@ -47,8 +48,12 @@ export const Info = ({
         source={backgroundImage}
         style={assessmentStyles.backgroundImage}>
         <ScrollView style={assessmentStyles.scrollView}>
-          <View style={assessmentStyles.scrollViewContent}>
-            <SvgXml xml={icon} />
+          <View style={[assessmentStyles.scrollViewContent, scrollStyle]}>
+            {icon && 
+              // <View style={{alignItems: 'center'}}>
+                <SvgXml xml={icon} />
+              // </View>
+            }
             <Typography
               use={titleStyle}
               style={[assessmentStyles.headingSpacing]}>
@@ -106,5 +111,9 @@ export const assessmentStyles = StyleSheet.create({
   },
   description: {
     marginBottom: 20,
+    // TODO: remove on refactor
+    textAlign: 'center',
+    fontSize: 18,
+    lineHeight: 24
   },
 });

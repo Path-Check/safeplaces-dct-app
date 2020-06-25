@@ -17,14 +17,16 @@ export const Share = ({ navigation }) => {
         navigation.push('AssessmentComplete');
       }}
       icon={Icons.AnonymizedDataInverted}
-      backgroundColor={Colors.primaryBackgroundFaintShade}
+      backgroundColor={Colors.invertedQuaternaryBackground}
+      titleStyle='headline3'
+      descriptionStyle='body4'
+      ctaBackgroundColor={Colors.white}
+      ctaTextColor={Colors.violetTextLight}
       ctaTitle={t('assessment.share_cta')}
       description={
-        <>
-          <Trans t={t} i18nKey='assessment.share_description'>
-            <Typography />
-          </Trans>
-        </>
+        <Trans t={t} i18nKey='assessment.share_description'>
+          <Typography />
+        </Trans>
       }
       title={t('assessment.share_title')}
     />

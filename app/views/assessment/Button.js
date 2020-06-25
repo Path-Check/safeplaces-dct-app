@@ -16,7 +16,7 @@ import { Colors } from '../../styles';
  *   title: string;
  *   disabled: boolean;
  * }>} */
-export const Button = ({ textColor, backgroundColor, onPress, title, disabled = false }) => {
+export const Button = ({ textColor, backgroundColor, onPress, title, buttonStyle, textStyle, disabled = false }) => {
 
   const dynamicBackgroundColor = () => {
     if (backgroundColor) return backgroundColor
@@ -30,6 +30,8 @@ export const Button = ({ textColor, backgroundColor, onPress, title, disabled = 
     else return Colors.white  
   }
 
+  //const borderStyle = border ? {borderWidth: 1, borderColor: "#20232a"} : {}
+
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -38,11 +40,10 @@ export const Button = ({ textColor, backgroundColor, onPress, title, disabled = 
       <View
         style={[
           styles.cta,
-          {
-            backgroundColor: dynamicBackgroundColor(),
-          },
+          buttonStyle,
+          {backgroundColor: dynamicBackgroundColor()}
         ]}>
-        <Typography use='body1' style={[styles.ctaText, { color: dynamicTextColor() }]}>
+        <Typography use='body1' style={[styles.ctaText, textStyle, { color: dynamicTextColor() }]}>
           {title}
         </Typography>
       </View>

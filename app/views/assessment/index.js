@@ -11,6 +11,7 @@ import { AnswersContext, MetaContext, SurveyContext } from './Context';
 import { AssessmentQuestion } from './AssessmentQuestion';
 import { AssessmentStart } from './AssessmentStart';
 import { Agreement } from './Agreement';
+import { EmergencyAssessment } from './EmergencyAssessment';
 import {
   END_ROUTES,
   OPTION_VALUE_DISAGREE,
@@ -114,7 +115,7 @@ const Assessment = ({ navigation }) => {
     }),
     [navigation],
   );
-  const screenOptions = (backgroundColor = Colors.primaryBackgroundFaintShade) => ({
+  const screenOptions = (backgroundColor = Colors.surveyPrimaryBackground) => ({
     headerHideShadow: true,
     headerTitle: '',
     headerStyle: {
@@ -153,24 +154,29 @@ const Assessment = ({ navigation }) => {
               options={{...screenOptions(Colors.invertedQuaternaryBackground)}}
             /> 
             <Stack.Screen
+              component={EmergencyAssessment}
+              name='EmergencyAssessment'
+              options={screenOptions()}
+            /> 
+            <Stack.Screen
               component={QuestionScreen}
               name='AssessmentQuestion'
-              options={screenOptions}
+              options={screenOptions()}
             />
             <Stack.Screen
               component={AssessmentComplete}
               name='AssessmentComplete'
-              options={screenOptions}
+              options={screenOptions()}
             />
             <Stack.Screen
               component={Share}
               name='EndShare'
-              options={screenOptions}
+              options={{...screenOptions(Colors.invertedQuaternaryBackground)}}
             />
             <Stack.Screen
               component={Caregiver}
               name={SCREEN_TYPE_CAREGIVER}
-              options={screenOptions}
+              options={screenOptions()}
             />
             <Stack.Screen
               component={Distancing}
@@ -180,12 +186,12 @@ const Assessment = ({ navigation }) => {
             <Stack.Screen
               component={Emergency}
               name={SCREEN_TYPE_EMERGENCY}
-              options={screenOptions}
+              options={screenOptions()}
             />
             <Stack.Screen
               component={Isolate}
               name={SCREEN_TYPE_ISOLATE}
-              options={screenOptions}
+              options={screenOptions()}
             />
           </Stack.Navigator>
         </AnswersContext.Provider>

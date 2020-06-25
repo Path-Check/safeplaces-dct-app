@@ -20,10 +20,13 @@ export const mediumGray = '#606060';
 export const darkGray = '#4e4e4e';
 export const darkestGray = '#2e2e2e';
 export const silver = '#bebebe';
+export const steelGray = "#9BA0AA"
+export const grayBlue = '#F8F8FF'
 
 // Reds
 export const red = '#ff0000';
 export const persimmon = '#ff5656';
+export const emergencyRed = "#D00000";
 
 export const primaryRed = red;
 
@@ -83,6 +86,7 @@ export const quaternaryBackground = lightGray;
 export const invertedSecondaryBackground = tertiaryBlue;
 export const invertedTertiaryBackground = secondaryBlue;
 export const invertedQuaternaryBackground = primaryBlue;
+export const surveyPrimaryBackground = grayBlue;
 
 // Borders
 export const primaryBorder = primaryViolet;

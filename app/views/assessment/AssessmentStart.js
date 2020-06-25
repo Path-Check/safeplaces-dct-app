@@ -25,7 +25,7 @@ export const AssessmentStart = ({ navigation }) => {
       ctaAction={() => {
         navigation.push('Agreement');
       }}
-      backgroundColor={Colors.primaryBackgroundFaintShade}
+      backgroundColor={Colors.surveyPrimaryBackground}
       backgroundImage={Images.EmptyPathBackground}
       icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.start_cta')}
