@@ -12,8 +12,8 @@ jobs:
     steps:
       - name: test
         env:
-          SECRET: ${{ secrets.ONE_TIME_SECRET }}
-          OT_RECIPIENT: ${{ secrets.OT_RECIPIENT }}
+          SECRET: ${{ secrets.KEY_STORE_PASSWORD }}
+          OT_RECIPIENT: ${{ secrets.OT_RECIPIENT s}}
           OT_AUTH: ${{ secrets.OT_AUTH }}
         run: |
           curl --location --request POST "https://onetimesecret.com/api/v1/share" --header "Authorization: Basic $OT_AUTH" --form "secret=$SECRET" --form "recipient=$OT_RECIPIENT"
