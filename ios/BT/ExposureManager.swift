@@ -195,19 +195,19 @@ final class ExposureManager: NSObject {
     }
   }
   
-  func getAndPostDiagnosisKeys(completion: @escaping (Error?) -> Void) {
+  @objc func getAndPostDiagnosisKeys(callback: @escaping RCTResponseSenderBlock) {
     manager.getDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
-        completion(error)
+        callback([error])
       } else {
         APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey },
                                                               [.US]),
                                  requestType: .postKeys) { result in
                                   switch result {
                                   case .success:
-                                    completion(nil)
+                                    callback([NSNull(), String.genericSuccess])
                                   case .failure(let error):
-                                    completion(error)
+                                    callback([error, NSNull()])
                                   }
         }
       }

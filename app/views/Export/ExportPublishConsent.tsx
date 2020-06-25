@@ -4,12 +4,26 @@ import { Alert } from 'react-native';
 
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
-import exportConsentApi from '../../api/export/exportConsentApi';
 import { useAssets } from '../../TracingStrategyAssets';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
+import * as BTNativeModule from '../../bt/nativeModule';
+import {
+  NavigationScreenProp,
+  NavigationState,
+  NavigationParams,
+  NavigationRoute,
+} from 'react-navigation';
 
-export const ExportPublishConsent = ({ navigation, route }) => {
+interface ExportPublishConsentProps {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  route: NavigationRoute;
+}
+
+export const ExportPublishConsent = ({
+  navigation,
+  route,
+}: ExportPublishConsentProps): JSX.Element => {
   const [isConsenting, setIsConsenting] = useState(false);
   const { t } = useTranslation();
   const {
@@ -24,18 +38,23 @@ export const ExportPublishConsent = ({ navigation, route }) => {
   const exportExitRoute = isGPS ? Screens.ExportStart : Screens.Settings;
   const onClose = () => exitWarningAlert(navigation, exportExitRoute);
 
-  const { selectedAuthority, code } = route.params;
+  const selectedAuthority = route.params?.selectedAuthority;
+  const code = route.params?.code;
 
   const consent = async () => {
     setIsConsenting(true);
-    try {
-      await exportConsentApi(selectedAuthority, true, code);
+    const cb = (errorMessage: string, successMessage: string) => {
+      if (successMessage != null) {
+        navigation.navigate(exportPublishNextRoute, {
+          selectedAuthority,
+          code,
+        });
+      } else {
+        Alert.alert(errorMessage);
+      }
       setIsConsenting(false);
-      navigation.navigate(exportPublishNextRoute, { selectedAuthority, code });
-    } catch (e) {
-      Alert.alert('Something went wrong');
-      setIsConsenting(false);
-    }
+    };
+    BTNativeModule.submitDiagnosisKeys(cb);
   };
 
   return (
@@ -45,7 +64,9 @@ export const ExportPublishConsent = ({ navigation, route }) => {
       nextButtonLabel={t('export.consent_button_title')}
       buttonSubtitle={exportPublishButtonSubtitle}
       headline={exportPublishTitle}
-      body={exportPublishBody(selectedAuthority.name)}
+      body={(exportPublishBody as (name: string) => string)(
+        selectedAuthority.name,
+      )}
       buttonLoading={isConsenting}
       icon={exportPublishIcon}
     />
