@@ -18,7 +18,6 @@ import {
   MIN_CHECK_INTERSECT_INTERVAL,
 } from '../constants/history';
 import {
-  AUTHORITY_NEWS,
   AUTHORITY_SOURCE_SETTINGS,
   CROSSED_PATHS,
   LAST_CHECKED,
@@ -201,6 +200,9 @@ export function fillDayBins(
   thresholdMatchPercent = DEFAULT_THRESHOLD_MATCH_PERCENT,
   gpsPeriodMS = MIN_LOCATION_UPDATE_MS,
 ) {
+  // skip the intersection calculation if there are no local data points
+  if (!localGPSDataPoints.length) return dayBins;
+
   dayjs.extend(dayOfYear);
   // number of data points that fit in the time frame
   const pointsInFrame = Math.round(concernTimeFrameMS / gpsPeriodMS);
@@ -323,6 +325,20 @@ export async function migrateOldData() {
 /** The old data has been migrated already for this session/app. */
 let hasMigratedOldData = false;
 
+const getTransformedLocalDataAndDayBins = async (gpsPeriodMS) => {
+  // get the saved set of locations for the user, already sorted, and fill in the gaps
+  const locationArray = await NativeModules.SecureStorageManager.getLocations();
+  const locationArrayWithoutOldData = discardOldData(locationArray, MAX_EXPOSURE_WINDOW_DAYS);
+  // generate an array with the asked number of day bins
+  const tempDayBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS, locationArrayWithoutOldData);
+  const locationArrayWithoutGaps = fillLocationGaps(locationArrayWithoutOldData, gpsPeriodMS);
+
+  return {
+    locationArray: locationArrayWithoutGaps,
+    tempDayBins
+  };
+}
+
 /**
  * Kicks off the intersection process.  Immediately returns after starting the
  * background intersection.  Typically would be run about every 12 hours, but
@@ -365,18 +381,13 @@ async function asyncCheckIntersect() {
   // Fetch previous dayBins for intersections
   let dayBins = await GetStoreData(CROSSED_PATHS, false);
 
-  // Init the array for the news urls
-  let name_news = [];
-
   const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
 
-  // get the saved set of locations for the user, already sorted, and fill in the gaps
-  let locationArray = await NativeModules.SecureStorageManager.getLocations();
-  locationArray = discardOldData(locationArray, MAX_EXPOSURE_WINDOW_DAYS);
-  // generate an array with the asked number of day bins
-  let tempDayBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS, locationArray);
-  locationArray = fillLocationGaps(locationArray, gpsPeriodMS);
-
+  let {
+    locationArray,
+    tempDayBins
+  } = await getTransformedLocalDataAndDayBins(gpsPeriodMS);
+  
   // we also need locally saved data so we can know the last read page for each HA
   let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
   if (!localHAData) localHAData = [];
@@ -385,57 +396,11 @@ async function asyncCheckIntersect() {
 
   for (const authority of selectedAuthorities) {
     try {
-      let {
-        name,
-        api_endpoint_url,
-        info_website_url,
-        notification_threshold_percent,
-        notification_threshold_timeframe,
-        pages,
-      } = await getCursor(authority);
-
-      let currHA = localHAData.find((ha) => ha.key === name);
-      if (!currHA) {
-        currHA = {
-          key: name,
-          url: info_website_url,
-          cursor: '',
-        };
-        localHAData.push(currHA);
-      }
-      // start timestamp of the last stored cursor for this HA
-      const prevCursorStart = parseTimestampCursor(currHA.cursor)[0];
-
-      // Update the news array with the info from the authority
-      name_news.push({
-        name,
-        news_url: info_website_url,
-      });
-
-      for (const { startTimestamp, endTimestamp, filename } of pages) {
-        // skip pages we read before
-        if (prevCursorStart >= startTimestamp) continue;
-        // fetch non-analyzed page
-        const concernPointsPage = await retrieveUrlAsJson(
-          `${api_endpoint_url}${filename}`,
-        );
-
-        // check if any of local points hashes are contained in this page
-        updateMatchFlags(
-          locationArray,
-          new Set(concernPointsPage.concern_point_hashes),
-        );
-
-        currHA.cursor = `${startTimestamp}_${endTimestamp}`;
-      }
-
-      const timeFrameMS = notification_threshold_timeframe * 60e3;
-      const matchRate = notification_threshold_percent / 100;
-      tempDayBins = fillDayBins(
-        tempDayBins,
+      tempDayBins = await performIntersectionForSingleHA(
+        authority,
+        localHAData,
         locationArray,
-        timeFrameMS,
-        matchRate,
+        tempDayBins,
         gpsPeriodMS,
       );
     } catch (error) {
@@ -456,8 +421,61 @@ async function asyncCheckIntersect() {
       return currentValue + dayBins[i];
     });
 
-  // Store the news array for the authorities found.
-  SetStoreData(AUTHORITY_NEWS, name_news);
+  // if any of the bins are > 0, tell the user
+  if (dayBins.some((a) => a > 0)) notifyUserOfRisk();
+
+  // store the results
+  SetStoreData(CROSSED_PATHS, dayBins); // TODO: Store per authority?
+
+  // store updated cursors
+  SetStoreData(AUTHORITY_SOURCE_SETTINGS, localHAData);
+
+  // save off the current time as the last checked time
+  let unixTimeUTC = dayjs().valueOf();
+  SetStoreData(LAST_CHECKED, unixTimeUTC);
+
+  return dayBins;
+}
+
+export async function asyncIntersectCheckForSingleHA(authority) {
+  // Fetch previous dayBins for intersections
+  let dayBins = await GetStoreData(CROSSED_PATHS, false);
+
+  const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
+
+  let {
+    locationArray,
+    tempDayBins
+  } = getTransformedLocalDataAndDayBins(gpsPeriodMS);
+
+  // we also need locally saved data so we can know the last read page for each HA
+  let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
+  if (!localHAData) localHAData = [];
+
+  try {
+    tempDayBins = await performIntersectionForSingleHA(
+      authority,
+      localHAData,
+      locationArray,
+      tempDayBins,
+      gpsPeriodMS,
+    );
+  } catch (error) {
+    // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
+    //       Should do better than this.
+    console.log('[authority] fetch/parse error :', error);
+  }
+
+  // Update each day's bin with the result from the intersection.  To keep the
+  //  difference between no data (==-1) and exposure data (>=0), there
+  //  are a total of 3 cases to consider.
+  if (!dayBins) dayBins = tempDayBins;
+  else
+    dayBins = tempDayBins.map((currentValue, i) => {
+      if (currentValue < 0) return dayBins[i];
+      if (dayBins[i] < 0) return currentValue;
+      return currentValue + dayBins[i];
+    });
 
   // if any of the bins are > 0, tell the user
   if (dayBins.some((a) => a > 0)) notifyUserOfRisk();
@@ -475,8 +493,50 @@ async function asyncCheckIntersect() {
   return dayBins;
 }
 
-function parseTimestampCursor(cursorString) {
-  return cursorString ? cursorString.split('_').map((a) => Number(a)) : [0, 0];
+const performIntersectionForSingleHA = async (authority, localHAData, locationArray, oldDayBins, gpsPeriodMS) => {
+  let {
+    name,
+    api_endpoint_url,
+    info_website_url,
+    notification_threshold_percent,
+    notification_threshold_timeframe,
+    pages,
+  } = await getCursor(authority);
+
+  let currHA = localHAData.find((ha) => ha.key === name);
+  if (!currHA) {
+    currHA = {
+      key: name,
+      url: info_website_url,
+      cursor: '',
+    };
+    localHAData.push(currHA);
+  }
+
+  for (const { startTimestamp, endTimestamp, filename } of pages) {
+    // fetch non-analyzed page
+    const pageURL = `${api_endpoint_url}${filename}`;
+    const concernPointsPage = await retrieveUrlAsJson(pageURL);
+
+    // check if any of local points hashes are contained in this page
+    updateMatchFlags(
+      locationArray,
+      new Set(concernPointsPage.concern_point_hashes),
+    );
+
+    currHA.cursor = `${startTimestamp}_${endTimestamp}`;
+  }
+
+  const timeFrameMS = notification_threshold_timeframe * 60e3;
+  const matchRate = notification_threshold_percent / 100;
+
+  return fillDayBins(
+    oldDayBins,
+    locationArray,
+    timeFrameMS,
+    matchRate,
+    gpsPeriodMS,
+  );
 }
 
 /**
