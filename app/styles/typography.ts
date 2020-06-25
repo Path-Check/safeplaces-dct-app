@@ -108,12 +108,6 @@ export const header4: TextStyle = {
   color: Colors.secondaryHeaderText,
 };
 
-export const header3: TextStyle = {
-  ...largestFont,
-  ...bold,
-  color: Colors.invertedText,
-};
-
 export const title: TextStyle = {
   ...largeFont,
   fontWeight: heaviestWeight,

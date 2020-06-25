@@ -96,16 +96,15 @@ const Assessment = ({ navigation }) => {
       onPress={() => {
         navigation.navigate('AssessmentStart');
       }}>
-      <SvgXml xml={Icons.Close} color={Colors.tertiaryViolet} />
+      <SvgXml xml={Icons.Close} fill={Colors.quaternaryViolet} />
     </TouchableOpacity>
   );
-
 
   const AssessmentBack = () => (
     <TouchableOpacity
       style={{paddingLeft: 25}}
       onPress={() => navigation.pop()}>
-      <SvgXml xml={Icons.BackArrow} color={Colors.tertiaryViolet} />
+      <SvgXml xml={Icons.BackArrow} color={Colors.quaternaryViolet} />
     </TouchableOpacity>
   );
 
