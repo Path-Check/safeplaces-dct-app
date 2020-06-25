@@ -31,12 +31,15 @@ const Details = ({
   };
 
   useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+    const unsubscribe = navigation.addListener('focus', () => {
+      BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+    });
 
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+      unsubscribe;
     };
-  }, []);
+  }, [navigation]);
 
   return (
     <NavigationBarWrapper title='Atrás' onBackPress={backToMain.bind(this)}>
