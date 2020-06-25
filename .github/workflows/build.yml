@@ -90,18 +90,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Checkout submodules
-        uses: actions/checkout@v2
-        with:
-          repository: Path-Check/pathcheck-mobile-resources
-          token: ${{ secrets.ACCESS_TOKEN }}
-          path: pathcheck-mobile-resources
-          ref: master
-
-      - name: Setup env
-        run: sh ./setup_env.sh
-        shell: bash
-
       - name: Cache node modules
         id: node_cache
         uses: actions/cache@v2
