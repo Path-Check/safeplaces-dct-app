@@ -50,7 +50,7 @@ const ExposureHistoryProvider = ({
   const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
     blankHistory,
   );
-  const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(true);
+  const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(false);
 
   useEffect(() => {
     const subscription = exposureInfoSubscription(

@@ -16,7 +16,7 @@ const NextSteps = (): JSX.Element => {
     navigation.goBack();
   };
 
-  const healthAuthority = 'The PathCheck Health Department';
+  const healthAuthority = 'Boston Public Health Commission';
 
   const headerText = `${healthAuthority} recommends you take a self-assessment`;
 
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerText: {
-    ...TypographyStyles.header2,
+    ...TypographyStyles.header3,
   },
   contentText: {
     ...TypographyStyles.mainContent,
