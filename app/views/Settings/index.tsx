@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ViewStyle,
-  TouchableOpacity,
   View,
   StyleSheet,
   ScrollView,
+  TouchableHighlight,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
@@ -16,16 +16,18 @@ import {
 
 import {
   LOCALE_LIST,
+  getLanguageFromLocale,
+  getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
-import { Screens } from '../../navigation';
 import { FeatureFlag } from '../../components/FeatureFlag';
 import { NativePicker } from '../../components/NativePicker';
-import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Typography } from '../../components/Typography';
+import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import GoogleMapsImport from './GoogleMapsImport';
+import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
 import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
@@ -36,13 +38,22 @@ interface SettingsScreenProps {
 
 const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   const { t, i18n } = useTranslation();
+
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
 
-  const backToMain = () => {
-    navigation.goBack();
-  };
+  useEffect(() => {
+    const setOverrideLocale = async () => {
+      const userSelectedLocale = await getUserLocaleOverride();
+      if (userSelectedLocale) {
+        setUserLocale(getLanguageFromLocale(userSelectedLocale));
+      }
+    };
+    setOverrideLocale();
+  }, []);
+
+  useStatusBarEffect('light-content');
 
   const navigateTo = (screen: string) => {
     return () => navigation.navigate(screen);
@@ -76,12 +87,15 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     const flexDirection = i18n.dir() === 'rtl' ? 'row-reverse' : 'row';
 
     return (
-      <TouchableOpacity
-        style={[styles.languageSelectionListItem, { flexDirection }]}
+      <TouchableHighlight
+        underlayColor={Colors.underlayPrimaryBackground}
+        style={[styles.listItem]}
         onPress={onPress}>
-        <SvgXml xml={icon} style={[styles.icon, iconStyle]} />
-        <Typography use={'body1'}>{label}</Typography>
-      </TouchableOpacity>
+        <View style={{ flexDirection, alignItems: 'center' }}>
+          <SvgXml xml={icon} style={[styles.icon, iconStyle]} />
+          <Typography use={'body1'}>{label}</Typography>
+        </View>
+      </TouchableHighlight>
     );
   };
 
@@ -99,21 +113,27 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     style,
   }: SettingsListItemProps) => {
     return (
-      <TouchableOpacity style={[styles.listItem, style]} onPress={onPress}>
-        <Typography style={styles.listItemText}>{label}</Typography>
-        {description ? (
-          <Typography style={styles.descriptionText}>{description}</Typography>
-        ) : null}
-      </TouchableOpacity>
+      <TouchableHighlight
+        underlayColor={Colors.underlayPrimaryBackground}
+        style={[styles.listItem, style]}
+        onPress={onPress}>
+        <View>
+          <Typography style={styles.listItemText}>{label}</Typography>
+          {description ? (
+            <Typography style={styles.descriptionText}>
+              {description}
+            </Typography>
+          ) : null}
+        </View>
+      </TouchableHighlight>
     );
   };
 
   return (
     <NavigationBarWrapper
-      includeBackButton={false}
-      title={t('screen_titles.more')}
-      onBackPress={backToMain}>
-      <ScrollView>
+      title={t('navigation.more')}
+      includeBackButton={false}>
+      <ScrollView style={styles.container}>
         <View style={styles.section}>
           <NativePicker
             items={LOCALE_LIST}
@@ -135,21 +155,25 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </NativePicker>
         </View>
 
-        <View style={styles.section}>
-          <SettingsListItem
-            label={t('settings.share_test_result')}
-            onPress={navigateTo('ExportFlow')}
-            description={t('settings.share_test_result_description')}
-            style={styles.lastListItem}
-          />
-        </View>
+        {!isGPS && (
+          <View style={styles.section}>
+            <SettingsListItem
+              label={t('settings.share_test_result')}
+              onPress={navigateTo('ExportFlow')}
+              description={t('settings.share_test_result_description')}
+              style={styles.lastListItem}
+            />
+          </View>
+        )}
 
         {isGPS ? (
-          <View style={styles.section}>
-            <FeatureFlag name={'google_import'}>
-              <GoogleMapsImport navigation={navigation} />
-            </FeatureFlag>
-          </View>
+          <FeatureFlag name={'google_import'}>
+            <View style={styles.section}>
+              <View style={styles.listItem}>
+                <GoogleMapsImport navigation={navigation} />
+              </View>
+            </View>
+          </FeatureFlag>
         ) : null}
 
         <View style={styles.section}>
@@ -157,6 +181,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
             label={t('screen_titles.about')}
             onPress={navigateTo(Screens.About)}
           />
+          <Divider />
           <SettingsListItem
             label={t('screen_titles.legal')}
             onPress={() => navigation.navigate(Screens.Licenses)}
@@ -164,12 +189,28 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           />
         </View>
 
-        {__DEV__ ? (
+        {!isGPS ? (
           <View style={styles.section}>
             <SettingsListItem
               label='EN Debug Menu'
               onPress={navigateTo(Screens.ENDebugMenu)}
+              style={styles.lastListItem}
             />
+          </View>
+        ) : null}
+
+        <FeatureFlag name={'download_locally'}>
+          <View style={styles.section}>
+            <SettingsListItem
+              label={'Download Locally'}
+              onPress={navigateTo(Screens.ExportLocally)}
+              style={styles.lastListItem}
+            />
+          </View>
+        </FeatureFlag>
+
+        {__DEV__ ? (
+          <View style={styles.section}>
             <SettingsListItem
               label='Feature Flags (Dev mode only)'
               onPress={navigateTo(Screens.FeatureFlags)}
@@ -182,11 +223,21 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   );
 };
 
+const Divider = () => <View style={styles.divider} />;
+
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Colors.primaryBackgroundFaintShade,
+  },
+  divider: {
+    marginHorizontal: Spacing.small,
+    flex: 1,
+    height: 1,
+    backgroundColor: Colors.tertiaryViolet,
+  },
   section: {
     flex: 1,
     backgroundColor: Colors.white,
-    paddingHorizontal: Spacing.small,
     marginBottom: Spacing.medium,
     borderTopWidth: 1,
     borderBottomWidth: 1,
@@ -198,16 +249,11 @@ const styles = StyleSheet.create({
   },
   listItem: {
     flex: 1,
+    paddingHorizontal: Spacing.small,
     paddingVertical: Spacing.medium,
-    borderBottomWidth: 1,
-    borderColor: Colors.tertiaryViolet,
   },
   listItemText: {
     ...TypographyStyles.tappableListItem,
-  },
-  languageSelectionListItem: {
-    flex: 1,
-    paddingVertical: Spacing.medium,
   },
   lastListItem: {
     borderBottomWidth: 0,

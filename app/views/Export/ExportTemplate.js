@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   ScrollView,
-  StatusBar,
   StyleSheet,
   View,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import { BackHandler } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { SvgXml } from 'react-native-svg';
 
 import { Button } from '../../components/Button';
@@ -18,19 +17,12 @@ import { Theme } from '../../constants/themes';
 
 import { Icons } from '../../assets';
 import { Colors, Typography as TypographyStyles } from '../../styles';
+import { useStatusBarEffect } from '../../navigation';
+import { useFocusEffect } from '@react-navigation/native';
 
 const BackgroundContainer = ({ lightTheme, children }) => {
   if (lightTheme) {
-    return (
-      <View style={styles.container}>
-        <StatusBar
-          barStyle={'dark-content'}
-          backgroundColor={Colors.faintGray}
-          translucent={false}
-        />
-        {children}
-      </View>
-    );
+    return <View style={styles.container}>{children}</View>;
   }
   return (
     <LinearGradient
@@ -38,11 +30,6 @@ const BackgroundContainer = ({ lightTheme, children }) => {
       end={{ x: 0, y: 1 }}
       colors={[Colors.secondaryBlue, Colors.primaryBlue]}
       style={styles.container}>
-      <StatusBar
-        barStyle={'light-content'}
-        backgroundColor={Colors.secondaryBlue}
-        translucent={false}
-      />
       {children}
     </LinearGradient>
   );
@@ -65,20 +52,22 @@ export const ExportTemplate = ({
   bodyLinkOnPress,
   ignoreModalStyling, // So first screen can be slightly different in tabs
 }) => {
-  useEffect(() => {
-    function handleBackPress() {
-      onClose();
+  useStatusBarEffect(lightTheme ? 'dark-content' : 'light-content');
+  useFocusEffect(() => {
+    if (onClose) {
+      const handleBackPress = () => {
+        onClose();
+      };
+      BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     }
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
   }, [onClose]);
 
   return (
     <Theme use={lightTheme ? 'default' : 'violet'}>
       <BackgroundContainer lightTheme={lightTheme}>
-        <SafeAreaView style={{ flex: 1, paddingBottom: 24 }}>
+        <SafeAreaView style={{ flex: 1, marginBottom: 24 }}>
           {onClose && (
             <View style={styles.header}>
               <IconButton icon={Icons.Close} size={22} onPress={onClose} />
@@ -102,11 +91,21 @@ export const ExportTemplate = ({
               </View>
             )}
 
-            <Typography style={styles.exportSectionTitles}>
+            <Typography
+              style={[
+                styles.exportSectionTitles,
+                lightTheme && { color: Colors.primaryHeaderText },
+              ]}>
               {headline}
             </Typography>
             <View style={{ height: 8 }} />
-            <Typography style={styles.contentText}>{body}</Typography>
+            <Typography
+              style={[
+                styles.contentText,
+                lightTheme && { color: Colors.primaryText },
+              ]}>
+              {body}
+            </Typography>
             {bodyLinkText && (
               <TouchableOpacity onPress={bodyLinkOnPress}>
                 <Typography
@@ -128,7 +127,9 @@ export const ExportTemplate = ({
             loading={buttonLoading}
           />
           {buttonSubtitle && (
-            <Typography style={{ paddingTop: 10 }} use='body3'>
+            <Typography
+              style={{ paddingTop: 10, color: Colors.white }}
+              use='body3'>
               {buttonSubtitle}
             </Typography>
           )}

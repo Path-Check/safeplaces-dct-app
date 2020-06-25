@@ -1,5 +1,7 @@
 import Yaml from 'js-yaml';
-import { AUTHORITIES_LIST_URL_MVP1 } from '../../constants/authorities';
+import env from 'react-native-config';
+
+const { AUTHORITIES_YAML_ROUTE } = env;
 
 type Coordinates = {
   latitude: number;
@@ -19,13 +21,12 @@ export type HealthcareAuthority = {
   internal_id: string;
 };
 
-const getHealthcareAuthoritiesApi = async (): Promise<
-  HealthcareAuthority[]
-> => {
-  const yamlString = await fetch(AUTHORITIES_LIST_URL_MVP1).then((res) =>
-    res.text(),
-  );
-  const { authorities } = Yaml.safeLoad(yamlString);
+const getHealthcareAuthoritiesApi = async (
+  yamlUrl: string = AUTHORITIES_YAML_ROUTE,
+): Promise<HealthcareAuthority[]> => {
+  const yamlString = await fetch(yamlUrl).then((res) => res.text());
+  let { authorities } = Yaml.safeLoad(yamlString);
+  if (authorities === null) authorities = [];
   if (!Array.isArray(authorities)) {
     throw new Error('authorities yaml did not return an array of authorities');
   }

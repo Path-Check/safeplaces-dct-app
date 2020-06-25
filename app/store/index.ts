@@ -12,7 +12,7 @@ const enhancers = composeWithDevTools(
   applyMiddleware(thunk, createImmutableStateInvariantMiddleware()),
 );
 
-export const STORE_VERSION = 0;
+export const STORE_VERSION = 1;
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,

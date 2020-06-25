@@ -1,17 +1,27 @@
 import React, { useContext } from 'react';
+import {
+  TouchableOpacity,
+  ImageBackground,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, StatusBar, StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { Icons, Images } from '../../assets';
-import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
-import ExposureNotificationContext from '../../ExposureNotificationContext';
+import ExposureNotificationContext from '../../bt/ExposureNotificationContext';
 import { useDispatch } from 'react-redux';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 
-import { Spacing, Colors, Typography as TypographyStyles } from '../../styles';
+import {
+  Spacing,
+  Buttons,
+  Colors,
+  Typography as TypographyStyles,
+} from '../../styles';
+import { Icons, Images } from '../../assets';
 
 export const EnableExposureNotifications = (): JSX.Element => {
   const { requestENAuthorization } = useContext(ExposureNotificationContext);
@@ -27,6 +37,10 @@ export const EnableExposureNotifications = (): JSX.Element => {
 
   const handleOnPressEnable = () => {
     requestENAuthorization();
+    dispatchOnboardingComplete();
+  };
+
+  const handleOnPressDontEnable = () => {
     dispatchOnboardingComplete();
   };
 
@@ -58,17 +72,23 @@ export const EnableExposureNotifications = (): JSX.Element => {
           </View>
 
           <View style={styles.footerContainer}>
-            <Button
-              secondary
-              label={disableButtonLabel}
-              onPress={dispatchOnboardingComplete}
-              testID={'onboarding-permissions-disable-button'}
-            />
-            <Button
-              label={buttonLabel}
+            <TouchableOpacity
+              style={styles.dontEnableButton}
+              onPress={handleOnPressDontEnable}
+              testID={'onboarding-permissions-disable-button'}>
+              <Typography style={styles.dontEnableButtonText}>
+                {disableButtonLabel}
+              </Typography>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.enableButton}
               onPress={handleOnPressEnable}
-              testID={'onboarding-permissions-button'}
-            />
+              testID={'onboarding-permissions-button'}>
+              <Typography style={styles.enableButtonText}>
+                {buttonLabel}
+              </Typography>
+            </TouchableOpacity>
           </View>
         </View>
       </ImageBackground>
@@ -97,15 +117,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   headerText: {
-    ...TypographyStyles.header1,
+    ...TypographyStyles.header2,
     color: Colors.white,
   },
   iconContainer: {
-    marginBottom: '10%',
+    paddingBottom: Spacing.large,
   },
   subheaderText: {
-    ...TypographyStyles.header2,
-    color: Colors.white,
-    marginTop: '3%',
+    ...TypographyStyles.mainContent,
+    color: Colors.invertedText,
+  },
+  enableButton: {
+    ...Buttons.largeWhite,
+  },
+  enableButtonText: {
+    ...TypographyStyles.buttonTextDark,
+  },
+  dontEnableButton: {
+    ...Buttons.largeWhiteOutline,
+  },
+  dontEnableButtonText: {
+    ...TypographyStyles.buttonTextLight,
   },
 });

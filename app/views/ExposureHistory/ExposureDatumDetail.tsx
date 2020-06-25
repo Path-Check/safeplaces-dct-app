@@ -3,12 +3,7 @@ import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import dayjs from 'dayjs';
 
-import {
-  ExposureDatum,
-  Possible,
-  Unknown,
-  NoKnown,
-} from '../../ExposureHistoryContext';
+import { ExposureDatum, Possible, NoKnown } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import { TimeHelpers } from '../utils';
 import { Screens } from '../../navigation';
@@ -32,9 +27,6 @@ const ExposureDatumDetail = ({
     case 'Possible': {
       return <PossibleExposureDetail datum={exposureDatum} />;
     }
-    case 'Unknown': {
-      return <UnknownExposureDetail datum={exposureDatum} />;
-    }
     case 'NoKnown': {
       return <NoKnownExposureDetail datum={exposureDatum} />;
     }
@@ -46,15 +38,12 @@ interface PossibleExposureDetailProps {
 }
 
 const PossibleExposureDetail = ({
-  datum: { date, possibleExposureTimeInMin, currentDailyReports },
+  datum: { date, duration },
 }: PossibleExposureDetailProps) => {
-  const exposureDurationText = TimeHelpers.durationMsToString(
-    possibleExposureTimeInMin * 60 * 1000,
-  );
+  const exposureDurationText = TimeHelpers.durationMsToString(duration);
   const navigation = useNavigation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');
   const exposureTime = `Possible Exposure Time: ${exposureDurationText}`;
-  const dailyReports = `Current daily reports: ${currentDailyReports}`;
   const explainationContent = `For ${exposureDurationText}, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis.`;
 
   const handleOnPressNextSteps = () => {
@@ -68,7 +57,6 @@ const PossibleExposureDetail = ({
       <View style={styles.container}>
         <Typography style={styles.date}>{exposureDate}</Typography>
         <Typography style={styles.info}>{exposureTime}</Typography>
-        <Typography style={styles.info}>{dailyReports}</Typography>
         <View style={styles.contentContainer}>
           <Typography style={styles.content}>{explainationContent}</Typography>
         </View>
@@ -101,28 +89,6 @@ const NoKnownExposureDetail = ({
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
       <Typography style={styles.info}>{dailyReports}</Typography>
-      <View style={styles.contentContainer}>
-        <Typography style={styles.content}>{explainationContent}</Typography>
-      </View>
-    </View>
-  );
-};
-
-interface UnknownExposureDetailProps {
-  datum: Unknown;
-}
-
-const UnknownExposureDetail = ({
-  datum: { date },
-}: UnknownExposureDetailProps) => {
-  const exposureDate = dayjs(date).format('dddd, MMM DD');
-  const subTitleText = 'Exposure notifications disabled';
-  const explainationContent =
-    'You did not have exposure notifications enabled on this day.';
-  return (
-    <View style={styles.container}>
-      <Typography style={styles.date}>{exposureDate}</Typography>
-      <Typography style={styles.info}>{subTitleText}</Typography>
       <View style={styles.contentContainer}>
         <Typography style={styles.content}>{explainationContent}</Typography>
       </View>

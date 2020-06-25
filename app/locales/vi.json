@@ -13,6 +13,11 @@
   "export": {
     "exit_warning_cancel": "Hủy"
   },
+  "home": {
+    "bluetooth": {
+      "all_services_on_header": "PathCheck"
+    }
+  },
   "import": {
     "button_text": "Nhập lịch sử di chuyển trước đây",
     "google": {
@@ -23,6 +28,7 @@
     "title": "Nhập các vị trí địa điểm"
   },
   "label": {
+    "about_header_location": "PathCheck GPS",
     "authorities_add_button_label": "Thêm nguồn thông tin tin cậy",
     "authorities_add_url": "Thêm cơ quan có thẩm quyền qua liên kết",
     "authorities_desc": "Chọn cơ sở Y tế phụ trách khu vực của bạn để tải về dữ liệu phơi nhiễm. Chọn tên từ danh sách được công bố hoặc nhập địa chỉ web được cung cấp bởi các cơ quan có thẩm quyền đã triển khai PathCheck",
@@ -37,6 +43,7 @@
     "default_news_site_name": "Thông tin cập nhật về PathCheck",
     "event_history_subtitle": "Biết được khả năng phơi nhiễm của bạn dựa vào dữ liệu mà các cơ sở y tế chia sẻ.",
     "event_history_title": "Lịch sử phơi nhiễm",
+    "home_no_contact_header_bluetooth": "PathCheck",
     "latest_news": "Tin mới nhất",
     "launch_access_location": "Truy cập vị trí",
     "launch_done_header": "Đã hoàn thành",
@@ -50,7 +57,6 @@
     "launch_notif_header": "Thông báo sẽ cho biết khi bạn có khả năng tiếp xúc gần với người bị xác định dương tính",
     "launch_notif_subheader": "Chúng tôi sẽ không làm phiền bạn ngoại trừ việc chia sẻ thông tin về các rủi ro phơi nhiễm của bạn",
     "launch_notification_access": "Cho phép bật thông báo",
-    "launch_screen1_header": "Khởi đầu của việc đưa cuộc sống trở lại bình thường",
     "launch_screen2_header_location": "Nhận thông báo nếu bạn có khả năng tiêp xúc gần với người được chẩn đoán nhiễm COVID-19.",
     "launch_screen2_subheader_location": "Thông tin, kiến thức là sức mạnh",
     "launch_screen3_header_location": "Nếu kết quả xét nghiệm của bạn dương tính, bạn có thể chọn ẨN DANH để chia sẻ dữ liệu vị trí di chuyển của mình, không ai biết đó là dữ liệu của bạn.",
@@ -59,6 +65,9 @@
     "launch_screen4_subheader_location": "Nếu bạn kiểm tra dương tính, CHỈ MÌNH BẠN có quyền quyết định có chia sẻ dữ liệu di chuyển của mình hay không",
     "launch_set_up_phone_location": "Cài đặt điện thoại",
     "launch_subheader": "Đừng lo lắng, dữ liệu không bao giờ được gửi ra ngoài khỏi thiết bị của bạn trừ khi bạn quyết định chia sẻ.",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_header_bluetooth": "PathCheck BT",
+    "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "đang tải dữ liệu ...",
     "location_disabled_message": "PathCheck yêu cầu dịch cho phép sử dụng dịch vụ vị trí",
     "location_disabled_title": "Theo dõi vị trí đã bị vô hiệu hóa",

@@ -31,6 +31,7 @@ export const heaviestWeight = '700';
 
 // Font Families
 export const baseFontFamily = 'IBMPlexSans';
+export const mediumFontFamily = 'IBMPlexSans-Medium';
 export const boldFontFamily = 'IBMPlexSans-Bold';
 export const monospaceFontFamily = 'IBMPlexMono';
 
@@ -39,11 +40,20 @@ export const bold: TextStyle = {
   fontWeight: heavyWeight,
 };
 
+export const mediumBold: TextStyle = {
+  fontFamily: mediumFontFamily,
+};
+
 export const monospace: TextStyle = {
   fontFamily: monospaceFontFamily,
 };
 
 // Standard Font Types
+export const tinyFont: TextStyle = {
+  lineHeight: smallestLineHeight,
+  fontSize: tiny,
+};
+
 export const smallFont: TextStyle = {
   lineHeight: smallLineHeight,
   fontSize: small,
@@ -57,6 +67,11 @@ export const mediumFont: TextStyle = {
 export const largeFont: TextStyle = {
   lineHeight: largestLineHeight,
   fontSize: large,
+};
+
+export const largerFont: TextStyle = {
+  lineHeight: largestLineHeight,
+  fontSize: larger,
 };
 
 export const largestFont: TextStyle = {
@@ -73,13 +88,24 @@ export const hugeFont: TextStyle = {
 export const header1: TextStyle = {
   ...hugeFont,
   ...bold,
-  color: Colors.violetText,
+  color: Colors.primaryHeaderText,
 };
 
 export const header2: TextStyle = {
   ...largestFont,
   ...bold,
-  color: Colors.violetText,
+  color: Colors.primaryHeaderText,
+};
+
+export const header3: TextStyle = {
+  ...largerFont,
+  ...bold,
+  color: Colors.primaryHeaderText,
+};
+
+export const header4: TextStyle = {
+  ...smallFont,
+  color: Colors.secondaryHeaderText,
 };
 
 export const header3: TextStyle = {
@@ -141,10 +167,18 @@ export const error: TextStyle = {
   fontWeight: heavyWeight,
 };
 
+// Navigation
+export const navHeader: TextStyle = {
+  ...largeFont,
+  ...bold,
+  color: Colors.white,
+  textTransform: 'uppercase',
+};
+
 // Tappables
 export const tappableListItem: TextStyle = {
   ...mediumFont,
-  color: Colors.violetText,
+  color: Colors.primaryViolet,
 };
 
 // Buttons
@@ -161,4 +195,9 @@ export const buttonTextDark: TextStyle = {
 export const buttonTextLight: TextStyle = {
   ...buttonText,
   color: Colors.white,
+};
+
+export const buttonTextTinyDark: TextStyle = {
+  ...buttonTextDark,
+  ...tinyFont,
 };

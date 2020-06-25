@@ -5,13 +5,13 @@ on:
     branches:
       - develop
       - master
-      - bte-release
+      - bt-release
       - gps-release
   pull_request:
     branches:
       - develop
       - master
-      - bte-release
+      - bt-release
       - gps-release
 
 jobs:
@@ -36,35 +36,6 @@ jobs:
       - run: yarn test
         env:
           CI: true
-
-  unit-test-android:
-    needs: unit-test
-    runs-on: macOS-latest # macOS-latest is required, tests need HAXM emulator
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Cache node_modules/
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
-      - run: yarn --frozen-lockfile
-
-      - name: Cache gradle
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-      - name: ./gradlew :app:connectedGpsDebugAndroidTest :app:connectedBteDebugAndroidTest --no-daemon
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 28
-          script: ./gradlew :app:connectedGpsDebugAndroidTest :app:connectedBteDebugAndroidTest --no-daemon
-          working-directory: ./android
 
   unit-test-ios:
     runs-on: macOS-latest

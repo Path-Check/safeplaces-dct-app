@@ -29,6 +29,14 @@
     "what_if_no_symptoms": "Čo ak nevykazujem žiadny symptómy?",
     "what_if_no_symptoms_para": "Ak nemáš žiadne symptómy, ale aj tak by si sa chcel/a otestovať, navštív najbližšiu testovaciu stanicu. \n\nJednotlivci, ktorí nevykazujú žiadne symptómy, môžu prenášať infekciu a nakaziť iných ľudí. Buď opatrný/á pri spoločenskom dištancovaní a prichádzaní do kontaktu s veľkými skupinami ľudí alebo ohrozenými jednotlivcami (staršími osobami a osobami s vážnymi zdravotnými problémami), je dôležité, aby si zvládol/la svoje riziko aj riziko pre ostatných."
   },
+  "home": {
+    "bluetooth": {
+      "all_services_on_header": "PathCheck"
+    },
+    "gps": {
+      "all_services_on_header": "PathCheck"
+    }
+  },
   "import": {
     "button_text": "Importovať históriu polôh",
     "error": "Pri importovaní údajov sa vyskytla chyba.",
@@ -49,6 +57,8 @@
     "title": "Importovať polohy"
   },
   "label": {
+    "about_header_bluetooth": "PathCheck BT",
+    "about_header_location": "PathCheck GPS",
     "authorities_add_button_label": "Pridať dôveryhodný zdroj",
     "authorities_add_url": "Pridať úrad prostredníctvom URL",
     "authorities_desc": "Ak chceš získať údaje o tvojom vystavení sa riziku, vyber dôveryhodné zdravotné úrady v tvojej oblasti. Vyber meno z globálneho registra alebo zadaj webovú adresu poskytnutú orgánom, ktorú implementoval PathCheck.",
@@ -67,6 +77,7 @@
     "event_history_subtitle": "Zisti o svojom osobnom vystavení sa riziku na základe informácií zdieľaných zdravotnými úradmi.",
     "event_history_title": "História vystavenia riziku",
     "filter_authorities_by_gps_history": "Filtruj na základe tvojich geografických polôh",
+    "home_no_contact_header_bluetooth": "PathCheck",
     "latest_news": "Najnovšie oznámenia",
     "launch_access_location": "Prístup k polohe",
     "launch_authority_access": "Prihlásiť na odber informácií od okolitých zdravotných úradov",
@@ -84,7 +95,6 @@
     "launch_notif_header": "Upozornenia ti oznámia, či si sa stretol/la s infikovanou osobou.",
     "launch_notif_subheader": "Nebudeme ťa obťažovať, len čo sa týka zdieľania aktualizácie o tvojich možných vystaveniach sa riziku.",
     "launch_notification_access": "Povoliť oznámenia",
-    "launch_screen1_header": "Tu začína cesta späť k normálu.",
     "launch_screen2_header_location": "Dostať upozornenie, ak si sa stretol/la s niekým, komu bol neskôr diagnostikovaný COVID-19.",
     "launch_screen2_subheader_location": "Vedomosti sú sila.",
     "launch_screen3_header_location": "Ak si bol/a pozitívne testovaný, môžeš sa rozhodnúť, či budeš zdieľať svoje dáta anonymne",
@@ -94,6 +104,9 @@
     "launch_set_up_phone_bluetooth": "Hotovo",
     "launch_set_up_phone_location": "Nastaviť môj telefón",
     "launch_subheader": "Neboj sa, informácie nikdy neopustia tvoj telefón, pokiaľ sa ich vyslovene nerozhodneš zdieľať.",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_header_bluetooth": "PathCheck BT",
+    "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "Dáta sa načítavajú",
     "location_disabled_message": "PathCheck vyžaduje lokalizačné služby.",
     "location_disabled_title": "Sledovanie polohy bolo deaktivované.",
@@ -124,7 +137,8 @@
   },
   "screen_titles": {
     "about": "O",
-    "legal": "Právne oznámenie"
+    "legal": "Právne oznámenie",
+    "more": "Viac"
   },
   "share": {
     "button_text": "Zdieľať svoje údaje o polohe",

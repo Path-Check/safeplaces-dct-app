@@ -36,19 +36,19 @@ Build a Release APK and AAB
 fastlane android play_store
 ```
 Upload to google play store beta track
-### android staging_bte
+### android staging_bt
 ```
-fastlane android staging_bte
+fastlane android staging_bt
 ```
 Build a Staging APK and AAB
-### android release_bte
+### android release_bt
 ```
-fastlane android release_bte
+fastlane android release_bt
 ```
 Build a Release APK and AAB
-### android play_store_bte
+### android play_store_bt
 ```
-fastlane android play_store_bte
+fastlane android play_store_bt
 ```
 Upload to google play store beta track
 

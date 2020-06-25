@@ -47,6 +47,10 @@ allprojects {
             // All of Detox' artifacts are provided via the npm module
             url "$rootDir/../node_modules/detox/Detox-android"
         }
+        maven {
+            // Stetho Realm for debugging local data
+            url 'https://github.com/WickeDev/stetho-realm/raw/master/maven-repo'
+        }
 
         google()
         jcenter()

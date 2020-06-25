@@ -15,9 +15,10 @@ exports[`select authority screen matches snapshot 1`] = `
     style={
       Object {
         "flex": 1,
-        "height": "100%",
+        "height": "110%",
         "justifyContent": "flex-end",
         "resizeMode": "cover",
+        "top": 0,
         "width": "100%",
       }
     }
@@ -38,7 +39,7 @@ exports[`select authority screen matches snapshot 1`] = `
             "top": 0,
           },
           Object {
-            "height": "100%",
+            "height": "110%",
             "width": "100%",
           },
           undefined,
@@ -83,53 +84,106 @@ exports[`select authority screen matches snapshot 1`] = `
 </svg>"
       />
     </View>
+  </View>
+  <View
+    style={
+      Object {
+        "height": "100%",
+        "left": 0,
+        "paddingBottom": 12,
+        "paddingHorizontal": 24,
+        "position": "absolute",
+        "right": 0,
+        "top": "-10%",
+      }
+    }
+  >
     <View
       style={
         Object {
-          "height": "100%",
-          "left": 0,
-          "paddingBottom": 12,
-          "paddingHorizontal": "12%",
-          "position": "absolute",
-          "right": 0,
-          "top": "-10%",
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "flex-end",
+          "paddingBottom": 40,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "flex-start",
+          "paddingTop": 80,
         }
       }
     >
-      <View
+      <Text
         style={
           Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "flex-end",
-            "paddingBottom": 40,
-          }
-        }
-      />
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "flex-start",
-            "paddingTop": 80,
+            "color": "#ffffff",
+            "fontFamily": "IBMPlexSans-Medium",
+            "fontSize": 26,
+            "lineHeight": 34,
+            "marginBottom": 24,
+            "textAlign": "center",
           }
         }
       >
-        <Text
-          style={
+        No local Health Department Selected
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontSize": 17,
+              "lineHeight": 28,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
             Object {
               "color": "#ffffff",
-              "fontFamily": "IBMPlexSans-Medium",
-              "fontSize": 26,
-              "lineHeight": 34,
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 18,
+              "lineHeight": 24.5,
               "marginBottom": 24,
               "textAlign": "center",
-            }
+            },
+          ]
+        }
+      >
+        Allow PathCheck to add your local Health Department or select one yourself to receive info about COVID-19 in your area
+      </Text>
+      <View
+        accessibilityLabel="Add Health Department"
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        style={
+          Object {
+            "alignContent": "center",
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "#ffffff",
+            "borderBottomLeftRadius": 8,
+            "borderBottomRightRadius": 8,
+            "borderColor": "transparent",
+            "borderStyle": "solid",
+            "borderTopLeftRadius": 8,
+            "borderTopRightRadius": 8,
+            "borderWidth": 2,
+            "flexDirection": "row",
+            "height": 54,
+            "justifyContent": "center",
+            "marginTop": 24,
+            "opacity": 1,
+            "paddingHorizontal": 16,
           }
-        >
-          No local Health Department Selected
-        </Text>
+        }
+      >
         <Text
           style={
             Array [
@@ -142,69 +196,17 @@ exports[`select authority screen matches snapshot 1`] = `
                 "writingDirection": "ltr",
               },
               Object {
-                "color": "#ffffff",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 18,
-                "lineHeight": 24.5,
-                "marginBottom": 24,
-                "textAlign": "center",
+                "color": "#1f2c9b",
+                "fontFamily": "IBMPlexSans-Medium",
+                "fontSize": 20,
+                "fontWeight": "normal",
+                "lineHeight": 40,
               },
             ]
           }
         >
-          Allow PathCheck to add your local Health Department or select one yourself to receive info about COVID-19 in your area
+          Add Health Department
         </Text>
-        <View
-          accessibilityLabel="Add Health Department"
-          accessibilityRole="button"
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          style={
-            Object {
-              "alignContent": "center",
-              "alignItems": "center",
-              "alignSelf": "stretch",
-              "backgroundColor": "#ffffff",
-              "borderBottomLeftRadius": 8,
-              "borderBottomRightRadius": 8,
-              "borderColor": "transparent",
-              "borderStyle": "solid",
-              "borderTopLeftRadius": 8,
-              "borderTopRightRadius": 8,
-              "borderWidth": 2,
-              "flexDirection": "row",
-              "height": 54,
-              "justifyContent": "center",
-              "marginTop": 24,
-              "opacity": 1,
-              "paddingHorizontal": 16,
-            }
-          }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#2e2e2e",
-                  "fontSize": 17,
-                  "lineHeight": 28,
-                },
-                Object {
-                  "writingDirection": "ltr",
-                },
-                Object {
-                  "fontFamily": "IBMPlexSans-Medium",
-                  "fontSize": 20,
-                  "fontWeight": "normal",
-                  "lineHeight": 40,
-                },
-              ]
-            }
-          >
-            Add Health Department
-          </Text>
-        </View>
       </View>
     </View>
   </View>

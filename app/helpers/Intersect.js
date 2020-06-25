@@ -33,8 +33,9 @@ import {
 import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
 import languages from '../locales/languages';
 
+import { store } from '../store';
+
 import getCursor from '../api/healthcareAuthorities/getCursorApi';
-import getHealthAuthorities from '../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
 
 /**
  * Performs "safety" cleanup of the data, to help ensure that we actually have location
@@ -380,70 +381,68 @@ async function asyncCheckIntersect() {
   let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
   if (!localHAData) localHAData = [];
 
-  try {
-    const authorities = await getHealthAuthorities();
+  const { selectedAuthorities } = store.getState().healthcareAuthorities;
 
-    if (authorities) {
-      for (const authority of authorities) {
-        let {
-          name,
-          api_endpoint_url,
-          info_website_url,
-          notification_threshold_percent,
-          notification_threshold_timeframe,
-          pages,
-        } = await getCursor(authority);
+  for (const authority of selectedAuthorities) {
+    try {
+      let {
+        name,
+        api_endpoint_url,
+        info_website_url,
+        notification_threshold_percent,
+        notification_threshold_timeframe,
+        pages,
+      } = await getCursor(authority);
 
-        let currHA = localHAData.find((ha) => ha.key === name);
-        if (!currHA) {
-          currHA = {
-            key: name,
-            url: info_website_url,
-            cursor: '',
-          };
-          localHAData.push(currHA);
-        }
-        // start timestamp of the last stored cursor for this HA
-        const prevCursorStart = parseTimestampCursor(currHA.cursor)[0];
-
-        // Update the news array with the info from the authority
-        name_news.push({
-          name,
-          news_url: info_website_url,
-        });
-
-        for (const { startTimestamp, endTimestamp, filename } of pages) {
-          // skip pages we read before
-          if (prevCursorStart >= startTimestamp) continue;
-          // fetch non-analyzed page
-          const concernPointsPage = await retrieveUrlAsJson(
-            `${api_endpoint_url}${filename}`,
-          );
-
-          // check if any of local points hashes are contained in this page
-          updateMatchFlags(
-            locationArray,
-            new Set(concernPointsPage.concern_point_hashes),
-          );
-
-          currHA.cursor = `${startTimestamp}_${endTimestamp}`;
-        }
-
-        const timeFrameMS = notification_threshold_timeframe * 60e3;
-        const matchRate = notification_threshold_percent / 100;
-        tempDayBins = fillDayBins(
-          tempDayBins,
-          locationArray,
-          timeFrameMS,
-          matchRate,
-          gpsPeriodMS,
-        );
+      let currHA = localHAData.find((ha) => ha.key === name);
+      if (!currHA) {
+        currHA = {
+          key: name,
+          url: info_website_url,
+          cursor: '',
+        };
+        localHAData.push(currHA);
       }
+      // start timestamp of the last stored cursor for this HA
+      const prevCursorStart = parseTimestampCursor(currHA.cursor)[0];
+
+      // Update the news array with the info from the authority
+      name_news.push({
+        name,
+        news_url: info_website_url,
+      });
+
+      for (const { startTimestamp, endTimestamp, filename } of pages) {
+        // skip pages we read before
+        if (prevCursorStart >= startTimestamp) continue;
+        // fetch non-analyzed page
+        const concernPointsPage = await retrieveUrlAsJson(
+          `${api_endpoint_url}${filename}`,
+        );
+
+        // check if any of local points hashes are contained in this page
+        updateMatchFlags(
+          locationArray,
+          new Set(concernPointsPage.concern_point_hashes),
+        );
+
+        currHA.cursor = `${startTimestamp}_${endTimestamp}`;
+      }
+
+      const timeFrameMS = notification_threshold_timeframe * 60e3;
+      const matchRate = notification_threshold_percent / 100;
+      tempDayBins = fillDayBins(
+        tempDayBins,
+        locationArray,
+        timeFrameMS,
+        matchRate,
+        gpsPeriodMS,
+      );
+    } catch (error) {
+      // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
+      //       Should do better than this.
+      console.log('[authority] fetch/parse error :', error);
     }
-  } catch (error) {
-    // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
-    //       Should do better than this.
-    console.log('[authority] fetch/parse error :', error);
   }
 
   // Update each day's bin with the result from the intersection.  To keep the

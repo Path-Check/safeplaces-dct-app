@@ -1,79 +1,24 @@
-import React, { createContext, useState } from 'react';
-import dayjs from 'dayjs';
+import React, { createContext, useState, useEffect } from 'react';
 
-type Posix = number;
-
-export interface Possible {
-  kind: 'Possible';
-  id: string;
-  date: Posix;
-  possibleExposureTimeInMin: number;
-  currentDailyReports: number;
-}
-
-export interface NoKnown {
-  kind: 'NoKnown';
-  id: string;
-  date: Posix;
-}
-
-export interface Unknown {
-  kind: 'Unknown';
-  id: string;
-  date: Posix;
-}
-
-export type ExposureDatum = Possible | NoKnown | Unknown;
-
-export type ExposureHistory = ExposureDatum[];
+import {
+  ExposureInfo,
+  ExposureHistory,
+  calendarDays,
+  toExposureHistory,
+} from './exposureHistory';
 
 interface ExposureHistoryState {
   exposureHistory: ExposureHistory;
   hasBeenExposed: boolean;
   userHasNewExposure: boolean;
-  toggleHasExposure: () => void;
   observeExposures: () => void;
   resetExposures: () => void;
 }
 
-const now: Posix = Date.now();
-
-const daysAgo = [...Array(21)].map((_v, idx: number) => {
-  return 20 - idx;
-});
-
-const fakeExposureHistory: ExposureHistory = daysAgo.map(
-  (daysAgo: number): ExposureDatum => {
-    const date = dayjs(now).subtract(daysAgo, 'day').valueOf();
-    if (daysAgo > 10) {
-      return {
-        kind: 'Unknown',
-        id: daysAgo.toString(),
-        date,
-      };
-    } else if (daysAgo === 3) {
-      return {
-        kind: 'Possible',
-        id: daysAgo.toString(),
-        date,
-        possibleExposureTimeInMin: 124,
-        currentDailyReports: 1,
-      };
-    } else {
-      return {
-        kind: 'NoKnown',
-        id: daysAgo.toString(),
-        date,
-      };
-    }
-  },
-);
-
 const initialState = {
-  exposureHistory: fakeExposureHistory,
+  exposureHistory: [],
   hasBeenExposed: false,
   userHasNewExposure: true,
-  toggleHasExposure: () => {},
   observeExposures: () => {},
   resetExposures: () => {},
 };
@@ -82,18 +27,42 @@ const ExposureHistoryContext = createContext<ExposureHistoryState>(
   initialState,
 );
 
+export type ExposureInfoSubscription = (
+  cb: (exposureInfo: ExposureInfo) => void,
+) => { remove: () => void };
+
 interface ExposureHistoryProps {
   children: JSX.Element;
+  exposureInfoSubscription: ExposureInfoSubscription;
 }
+
+const CALENDAR_DAY_COUNT = 21;
+
+const blankHistory = toExposureHistory(
+  {},
+  calendarDays(Date.now(), CALENDAR_DAY_COUNT),
+);
 
 const ExposureHistoryProvider = ({
   children,
+  exposureInfoSubscription,
 }: ExposureHistoryProps): JSX.Element => {
-  const [hasBeenExposed, setHasBeenExposed] = useState<boolean>(false);
+  const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
+    blankHistory,
+  );
   const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(true);
-  const toggleHasExposure = () => {
-    setHasBeenExposed(!hasBeenExposed);
-  };
+
+  useEffect(() => {
+    const subscription = exposureInfoSubscription(
+      (exposureInfo: ExposureInfo) => {
+        const days = calendarDays(Date.now(), CALENDAR_DAY_COUNT);
+        const exposureHistory = toExposureHistory(exposureInfo, days);
+        setExposureHistory(exposureHistory);
+      },
+    );
+
+    return subscription.remove;
+  }, [exposureInfoSubscription]);
 
   const observeExposures = () => {
     setUserHasNewExposure(false);
@@ -102,13 +71,14 @@ const ExposureHistoryProvider = ({
   const resetExposures = () => {
     setUserHasNewExposure(true);
   };
+
+  const hasBeenExposed = false;
   return (
     <ExposureHistoryContext.Provider
       value={{
-        exposureHistory: fakeExposureHistory,
+        exposureHistory,
         hasBeenExposed,
         userHasNewExposure,
-        toggleHasExposure,
         observeExposures,
         resetExposures,
       }}>

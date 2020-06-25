@@ -1,8 +1,11 @@
+import { useCallback } from 'react';
+import { Platform, StatusBar } from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
+import { useFocusEffect } from '@react-navigation/native';
 
 export type NavigationProp = NavigationScreenProp<
   NavigationState,
@@ -20,7 +23,9 @@ export type Screen =
   | 'ExportDone'
   | 'ExportComplete'
   | 'ExposureHistory'
+  | 'ExportLocally'
   | 'NextSteps'
+  | 'MoreInfo'
   | 'ENDebugMenu'
   | 'ENLocalDiagnosisKey'
   | 'Settings'
@@ -32,11 +37,14 @@ export type Screen =
   | 'Onboarding2'
   | 'Onboarding3'
   | 'Onboarding4'
-  | 'OnboardingPermissions'
+  | 'OnboardingLocationPermissions'
+  | 'OnboardingNotificationPermissions'
   | 'EnableExposureNotifications'
   | 'ExportFlow'
   | 'SelfAssessment'
-  | 'ChooseProvider';
+  | 'PartnersOverview'
+  | 'PartnersEdit'
+  | 'PartnersCustomUrl';
 
 export const Screens: { [key in Screen]: Screen } = {
   ExportStart: 'ExportStart',
@@ -49,7 +57,9 @@ export const Screens: { [key in Screen]: Screen } = {
   ExportDone: 'ExportDone',
   ExportComplete: 'ExportComplete',
   ExposureHistory: 'ExposureHistory',
+  ExportLocally: 'ExportLocally',
   NextSteps: 'NextSteps',
+  MoreInfo: 'MoreInfo',
   ENDebugMenu: 'ENDebugMenu',
   ENLocalDiagnosisKey: 'ENLocalDiagnosisKey',
   Settings: 'Settings',
@@ -61,11 +71,14 @@ export const Screens: { [key in Screen]: Screen } = {
   Onboarding2: 'Onboarding2',
   Onboarding3: 'Onboarding3',
   Onboarding4: 'Onboarding4',
-  OnboardingPermissions: 'OnboardingPermissions',
+  OnboardingLocationPermissions: 'OnboardingLocationPermissions',
+  OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',
   EnableExposureNotifications: 'EnableExposureNotifications',
   ExportFlow: 'ExportFlow',
   SelfAssessment: 'SelfAssessment',
-  ChooseProvider: 'ChooseProvider',
+  PartnersOverview: 'PartnersOverview',
+  PartnersEdit: 'PartnersEdit',
+  PartnersCustomUrl: 'PartnersCustomUrl',
 };
 
 export type Stack =
@@ -74,7 +87,8 @@ export type Stack =
   | 'ExposureHistory'
   | 'SelfAssessment'
   | 'Export'
-  | 'More';
+  | 'More'
+  | 'Partners';
 
 export const Stacks: { [key in Stack]: Stack } = {
   Main: 'Main',
@@ -83,4 +97,16 @@ export const Stacks: { [key in Stack]: Stack } = {
   SelfAssessment: 'SelfAssessment',
   Export: 'Export',
   More: 'More',
+  Partners: 'Partners',
+};
+
+type BarStyle = 'dark-content' | 'light-content';
+
+export const useStatusBarEffect = (barStyle: BarStyle): void => {
+  useFocusEffect(
+    useCallback(() => {
+      StatusBar.setBarStyle(barStyle);
+      Platform.OS === 'android' && StatusBar.setTranslucent(true);
+    }, [barStyle]),
+  );
 };

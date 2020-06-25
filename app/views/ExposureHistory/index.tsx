@@ -1,72 +1,118 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { StyleSheet, View, BackHandler, ScrollView } from 'react-native';
+import React, { useState, useContext } from 'react';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
+import { SvgXml } from 'react-native-svg';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 
-import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-import ExposureHistoryContext, {
-  ExposureDatum,
-} from '../../ExposureHistoryContext';
+import ExposureHistoryContext from '../../ExposureHistoryContext';
+import { ExposureDatum } from '../../exposureHistory';
+import { Typography } from '../../components/Typography';
 import ExposureDatumDetail from './ExposureDatumDetail';
+import { DateTimeUtils } from '../../helpers';
 import Calendar from './Calendar';
-import { NavigationProp } from '../../navigation';
+import { Screens, useStatusBarEffect } from '../../navigation';
+import { isGPS } from '../../COVIDSafePathsConfig';
 
-import { Spacing } from '../../styles';
+import { Icons } from '../../assets';
+import {
+  Buttons,
+  Spacing,
+  Typography as TypographyStyles,
+  Colors,
+} from '../../styles';
 
-interface ExposureHistoryScreenProps {
-  navigation: NavigationProp;
-}
-
-const ExposureHistoryScreen = ({
-  navigation,
-}: ExposureHistoryScreenProps): JSX.Element => {
+const ExposureHistoryScreen = (): JSX.Element => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const { exposureHistory } = useContext(ExposureHistoryContext);
-  const [selectedExposureDatum, setSelectedExposureDatum] = useState(
-    exposureHistory[exposureHistory.length - 1],
+  const [selectedDatum, setSelectedDatum] = useState<ExposureDatum | null>(
+    null,
   );
-  useEffect(() => {
-    const handleBackPress = () => {
-      navigation.goBack();
-      return true;
-    };
 
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-    };
-  }, [navigation]);
+  useStatusBarEffect('dark-content');
 
   const handleOnSelectDate = (datum: ExposureDatum) => {
-    setSelectedExposureDatum(datum);
+    setSelectedDatum(datum);
   };
 
+  const handleOnPressMoreInfo = () => {
+    navigation.navigate(Screens.MoreInfo);
+  };
+
+  const titleText = t('screen_titles.exposure_history');
+  const lastDaysText = t('exposure_history.last_days');
+
+  const showExposureDetail =
+    selectedDatum && !DateTimeUtils.isInFuture(selectedDatum.date);
+
   return (
-    <NavigationBarWrapper
-      includeBackButton={false}
-      title={t('label.event_history_title')}
-      onBackPress={() => navigation.goBack()}>
-      <ScrollView style={styles.container}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView style={styles.container} alwaysBounceVertical={false}>
+        <View style={styles.header}>
+          <View style={styles.headerRow}>
+            <Typography style={styles.headerText}>{titleText}</Typography>
+            <TouchableOpacity
+              onPress={handleOnPressMoreInfo}
+              style={styles.moreInfoButton}>
+              <SvgXml xml={Icons.QuestionMark} />
+            </TouchableOpacity>
+          </View>
+          {!isGPS ? (
+            <View style={styles.headerRow}>
+              <Typography style={styles.subHeaderText}>
+                {lastDaysText}
+              </Typography>
+            </View>
+          ) : null}
+        </View>
         <View style={styles.calendarContainer}>
           <Calendar
             exposureHistory={exposureHistory}
             onSelectDate={handleOnSelectDate}
-            selectedDatum={selectedExposureDatum}
+            selectedDatum={selectedDatum}
           />
         </View>
         <View style={styles.detailsContainer}>
-          <ExposureDatumDetail exposureDatum={selectedExposureDatum} />
+          {selectedDatum && showExposureDetail ? (
+            <ExposureDatumDetail exposureDatum={selectedDatum} />
+          ) : null}
         </View>
       </ScrollView>
-    </NavigationBarWrapper>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: Spacing.medium,
+    padding: Spacing.medium,
+    backgroundColor: Colors.primaryBackground,
   },
-  calendarContainer: {},
+  header: {},
+  headerRow: {
+    flexDirection: 'row',
+    marginTop: Spacing.xSmall,
+  },
+  headerText: {
+    ...TypographyStyles.header2,
+    marginRight: Spacing.medium,
+  },
+  subHeaderText: {
+    ...TypographyStyles.header4,
+  },
+  moreInfoButton: {
+    ...Buttons.tinyTeritiaryRounded,
+    minHeight: 44,
+    minWidth: 44,
+  },
+  calendarContainer: {
+    marginTop: Spacing.xxLarge,
+  },
   detailsContainer: {
     flex: 1,
     marginTop: Spacing.small,

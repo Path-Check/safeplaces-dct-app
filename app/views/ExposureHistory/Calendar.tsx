@@ -2,16 +2,16 @@ import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import dayjs from 'dayjs';
 
+import { ExposureHistory, ExposureDatum } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import ExposureDatumIndicator from './ExposureDatumIndicator';
-import { ExposureHistory, ExposureDatum } from '../../ExposureHistoryContext';
 
-import { Spacing } from '../../styles';
+import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
 
 interface CalendarProps {
   exposureHistory: ExposureHistory;
   onSelectDate: (exposureDatum: ExposureDatum) => void;
-  selectedDatum: ExposureDatum;
+  selectedDatum: ExposureDatum | null;
 }
 
 const Calendar = ({
@@ -20,7 +20,9 @@ const Calendar = ({
   selectedDatum,
 }: CalendarProps): JSX.Element => {
   const lastMonth = dayjs().subtract(1, 'month');
-  const title = `${lastMonth.format('MMMM')}/${dayjs().format('MMMM')}`;
+  const title = `${lastMonth.format('MMMM')} | ${dayjs().format(
+    'MMMM',
+  )}`.toUpperCase();
 
   const week1 = exposureHistory.slice(0, 7);
   const week2 = exposureHistory.slice(7, 14);
@@ -39,7 +41,9 @@ const Calendar = ({
               key={`calendar-day-${datum.date}`}
               onPress={() => onSelectDate(datum)}>
               <ExposureDatumIndicator
-                isSelected={datum.id === selectedDatum.id}
+                isSelected={
+                  selectedDatum ? datum.date === selectedDatum.date : false
+                }
                 exposureDatum={datum}
               />
             </TouchableOpacity>
@@ -66,7 +70,9 @@ const Calendar = ({
 
   return (
     <View style={styles.container}>
-      <Typography use='headline1'>{title}</Typography>
+      <View style={styles.header}>
+        <Typography style={styles.monthText}>{title}</Typography>
+      </View>
       <View style={styles.calendarContainer}>
         <DayLabels />
         <CalendarRow week={week1} />
@@ -81,7 +87,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  calendarContainer: { flex: 1 },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  monthText: {
+    ...TypographyStyles.label,
+    color: Colors.secondaryHeaderText,
+  },
+  calendarContainer: { flex: 1, paddingVertical: Spacing.small },
   calendarRow: {
     flex: 1,
     paddingVertical: Spacing.xSmall,

@@ -29,6 +29,14 @@
     "what_if_no_symptoms": "Wat als ik geen symptomen vertoon?",
     "what_if_no_symptoms_para": "Personen die geen symptomen vertonen, kunnen soms nog steeds de infectie dragen en anderen infecteren. Wees voorzichtig met sociale zaken en neem altijd 1.5 meter afstand. Wees extra voorzichtig met individuen met een risico (ouderen en personen met andere medische problemen). Het is belangrijk om zowel uw risico als het risico voor anderen te beperken. Voor meer informatie kunt u naar de website van het RIVM."
   },
+  "home": {
+    "bluetooth": {
+      "all_services_on_header": "PathCheck"
+    },
+    "gps": {
+      "all_services_on_header": "PathCheck"
+    }
+  },
   "import": {
     "button_text": "Importeer eerdere locaties",
     "error": "Er is iets misgegaan bij het importeren van uw gegevens.",
@@ -49,6 +57,8 @@
     "title": "Importeer locaties"
   },
   "label": {
+    "about_header_bluetooth": "PathCheck BT",
+    "about_header_location": "PathCheck GPS",
     "authorities_add_button_label": "Voeg een vertrouwde bron toe",
     "authorities_add_url": "Voeg autoriteit toe via URL",
     "authorities_desc": "Kies vertrouwde gezondheidsinstanties in uw regio om blootstellingsgegevens te verkrijgen. Selecteer een naam uit het wereldwijde register of voer het webadres in dat is verstrekt door een autoriteit die PathCheck heeft geïmplementeerd.",
@@ -68,6 +78,7 @@
     "event_history_subtitle": "Herken uw persoonlijke blootstelling met informatie van gezondheidsinstanties.",
     "event_history_title": "Blootstelling geschiedenis",
     "filter_authorities_by_gps_history": "Filter op uw locaties",
+    "home_no_contact_header_bluetooth": "PathCheck",
     "latest_news": "Laatste nieuws",
     "launch_access_location": "Locatie toegang",
     "launch_authority_access": "Abonneer u op nabijgelegen gezondheidsautoriteiten",
@@ -85,7 +96,6 @@
     "launch_notif_header": "Meldingen waarschuwen u als u in contact bent geweest met een besmet persoon.",
     "launch_notif_subheader": "We zullen u nooit lastig vallen. Alleen voor meldingen voor potentiële blootstelling.",
     "launch_notification_access": "Meldingen activeren",
-    "launch_screen1_header": "Terugkeren naar normaal start hier.",
     "launch_screen2_header_location": "Ontvang meldingen als u iemand tegen bent gekomen met de diagnose COVID-19.",
     "launch_screen2_subheader_location": "Kennis is macht.",
     "launch_screen3_header_location": "Als u ook positief test op COVID-19, kunt u ervoor kiezen om uw gegevens anoniem te doneren.",
@@ -95,6 +105,9 @@
     "launch_set_up_phone_bluetooth": "Klaar",
     "launch_set_up_phone_location": "Stel mijn telefoon in",
     "launch_subheader": "Geen zorgen, de informatie verlaat nooit uw telefoon zonder uw nadrukkelijke toestemming.",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_header_bluetooth": "PathCheck BT",
+    "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "Gegevens worden geladen ...",
     "location_disabled_message": "PathCheck vereist locatie diensten.",
     "location_disabled_title": "Het traceren van locatie is uitgeschakeld",
@@ -122,7 +135,8 @@
   },
   "screen_titles": {
     "about": "Informatie",
-    "legal": "Juridisch"
+    "legal": "Juridisch",
+    "more": "Meer"
   },
   "share": {
     "button_text": "Deel uw locatie gegevens",

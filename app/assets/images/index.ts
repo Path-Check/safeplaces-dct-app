@@ -1,8 +1,5 @@
-const BackArrow = require('./backArrow.png');
-const BackgroundAtRisk = require('./backgroundAtRisk.png');
 const BoxCheckedIcon = require('./boxCheckedIcon.png');
 const BoxUncheckedIcon = require('./boxUncheckedIcon.png');
-const Close = require('./closeIcon.png');
 const Doctors = require('./doctors.png');
 const Export = require('./export.png');
 const ForeArrow = require('./foreArrow.png');
@@ -20,19 +17,10 @@ const OnboardingBackground1 = require('./onboardingbg1.png');
 const OnboardingBackground2 = require('./onboardingbg2.png');
 const OnboardingBackground3 = require('./onboardingbg3.png');
 const EmptyPathBackground = require('./emptyPathBackground.png');
-const Newspaper = require('./newspaper.png');
-const PrivateKitQRCode = require('./privatekit_qrcode.png');
-const SaveIcon = require('./saveIcon.png');
-const UserGreen = require('./user-green.png');
-const Welcome1 = require('./welcome1.png');
-const WWW = require('./www.png');
 
 export const Images = {
-  BackArrow,
-  BackgroundAtRisk,
   BoxCheckedIcon,
   BoxUncheckedIcon,
-  Close,
   Doctors,
   EmptyPathBackground,
   Export,
@@ -50,10 +38,4 @@ export const Images = {
   OnboardingBackground1,
   OnboardingBackground2,
   OnboardingBackground3,
-  Newspaper,
-  PrivateKitQRCode,
-  SaveIcon,
-  UserGreen,
-  Welcome1,
-  WWW,
 };

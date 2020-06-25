@@ -5,9 +5,9 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
 
 project.ext.envConfigFiles = [
-    btedebug: ".env.bte",
-    btestaging: ".env.bte.staging",
-    bterelease: ".env.bte.release",
+    btdebug: ".env.bt",
+    btstaging: ".env.bt.staging",
+    btrelease: ".env.bt.release",
 
     gpsdebug: ".env.gps",
     gpsstaging: ".env.gps.staging",
@@ -94,11 +94,11 @@ import com.android.build.OutputFile
 project.ext.react = [
     entryFile: "index.js",
     bundleInGpsDebug: false,
-    bundleInBteDebug: false,
+    bundleInBtDebug: false,
     bundleInGpsStaging: true,
-    bundleInBteStaging: true,
+    bundleInBtStaging: true,
     devDisabledInGpsStaging: true,
-    devDisabledInBteStaging: true,
+    devDisabledInBtStaging: true,
     enableHermes: false,  // clean and rebuild if changing
 ]
 
@@ -212,8 +212,8 @@ android {
             applicationId 'org.pathcheck.covidsafepaths'
             dimension "version"
         }
-        bte {
-            applicationId 'org.pathcheck.covidsafepathsBte'
+        bt {
+            applicationId 'org.pathcheck.covidsafepathsBt'
             dimension "version"
         }
     }
@@ -232,10 +232,30 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"
-    implementation project(':@mauron85_react-native-background-geolocation-common')
+    gpsImplementation project(':@mauron85_react-native-background-geolocation-common')
     implementation 'com.bottlerocketstudios:vault:1.4.2'
     implementation 'com.google.android.gms:play-services-gcm:15.0.1'
     implementation 'com.google.android.gms:play-services-location:15.0.1'
+
+    // Imports to support Exposure Notifications implementation based on Google sample
+    // Annotation processing
+    kapt 'com.google.auto.value:auto-value:1.7'
+    // Libraries
+    btImplementation 'androidx.work:work-runtime:2.3.4'
+    btImplementation 'androidx.concurrent:concurrent-futures:1.0.0'
+    btImplementation 'com.google.android.gms:play-services-base:17.2.1'
+    btImplementation 'com.google.android.gms:play-services-basement:17.2.1'
+    btImplementation 'com.google.android.gms:play-services-tasks:17.0.2'
+    btImplementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
+    btImplementation 'com.google.guava:guava:29.0-android'
+    btImplementation 'com.google.auto.value:auto-value-annotations:1.7'
+    btImplementation 'com.android.volley:volley:1.1.1'
+    btImplementation 'commons-io:commons-io:2.5'
+    // Google EN library not available via Maven
+    btImplementation project(path: ':play-services-nearby-18.0.2-eap')
+    // Stetho for debugging Realm
+    btImplementation 'com.facebook.stetho:stetho:1.5.0'
+    btImplementation 'com.uphyca:stetho_realm:2.3.0'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/"
@@ -260,10 +280,12 @@ allprojects {
             resolutionStrategy.eachDependency { DependencyResolveDetails details ->
                 def requested = details.requested
                 if (requested.group == 'com.google.android.gms') {
-                    details.useVersion '12.0.1'
+                    // TODO verify no downstream issues with version bump
+                    details.useVersion '17+'
                 }
                 if (requested.group == 'com.google.firebase') {
-                    details.useVersion '12.0.1'
+                    // TODO verify no downstream issues with version bump
+                    details.useVersion '17+'
                 }
             }
         }

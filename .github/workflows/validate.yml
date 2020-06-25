@@ -23,11 +23,5 @@ jobs:
 
       - run: yarn --frozen-lockfile
 
-      # v1 is broken, the given sha was the latest master (but we dont want to track master)
-      - uses: tinovyatkin/action-eslint@8b32772f075413f9192f43641e03d9bd0abae621
-        with:
-          repo-token: ${{secrets.GITHUB_TOKEN}}
-          check-name: validate # this is the job name from above 👆
-
       - run: yarn validate
         if: ${{ always() }}

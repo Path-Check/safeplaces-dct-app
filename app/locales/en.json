@@ -17,7 +17,7 @@
     "complete_description": "By sharing your health status and location history anonymously with your community, you are being proactive about fighting the spread of COVID-19.",
     "complete_cta": "Done",
     "distancing_title": "Distancing & PPE",
-    "distancing_description": "Please follow your local, state, or national guidlines for <1>social distancing</1> and Personal Protection Equipment (PPE) like masks and/or gloves. No additional action is needed at this time.",
+    "distancing_description": "Please follow your local, state, or national guidelines for <1>social distancing</1> and Personal Protection Equipment (PPE) like masks and/or gloves. No additional action is needed at this time.",
     "distancing_cta": "Next",
     "emergency_title": "Call Emergency Services",
     "emergency_description": " Based on your reported symptoms, you should seek care immediately.",
@@ -48,12 +48,17 @@
   },
   "authorities": {
     "invalid_url_body": "The URL you entered was invalid, please try again",
-    "info_body": "Local and regional Health Departments can share information and resources about COVID-19 for their area, including verified data that allows PathCheck to estimate when you may have crossed paths with the virus.",
+    "info_body": "Local and regional Health Departments that partner with PathCheck can share information and resources about COVID-19 for their area using the PathCheck app, including anonymized data that allows PathCheck to estimate when you may have crossed paths with the virus.",
     "title": "Health Departments",
     "view_button_label": "View your Health Departments",
-    "automatically_follow": "Automatically follow Health Departments nearby"
+    "custom_url": "Manually Add Via URL",
+    "automatically_follow": "Automatically follow Health Departments nearby",
+    "url_instructions": "Enter a URL for the Health Department you would like to add",
+    "custom_url_title": "Add Via Url",
+    "invalid_url": "Invalid YAML URL"
   },
   "common": {
+    "add": "Add",
     "done": "Done",
     "next": "Next",
     "ok": "Ok",
@@ -83,10 +88,10 @@
     "publish_consent_body_bluetooth": "Sharing your positive diagnosis is optional and can only be done with your consent.\n\nIf you choose to do so, you're helping others in your community make informed decisions about their health and playing your part to contain the spread of the virus.\n\nThe only information shared will be the random set of numbers your phone exchanged over Bluetooth with other phones that were nearby during the past 14 days, along with a weighted risk score based on when your symptoms developed.",
     "publish_consent_title": "Publish anonymized data",
     "publish_consent_title_bluetooth": "Notify others in your community",
-    "select_ha_title": "Select your Healthcare Authority",
-    "start_body": "The representative from your Healthcare Authority will walk you through this process during your interview.",
+    "select_ha_title": "Select your Health Department",
+    "start_body": "Work with a representative from your local Health Department to remove personally-identifying information from your location history during your contact tracing interview.",
     "start_body_bluetooth": "Choose to anonymously notify others you may have encountered and help your community contain the spread of the virus.",
-    "start_title": "Share your location history anonymously with your community if you have tested positive for COVID-19.",
+    "start_title": "Share your anonymized location history with your community if you have tested positive for COVID-19.",
     "start_title_bluetooth": "Help contain the spread of the virus and protect others in your community if you're diagnosed or test positive for COVID-19.",
     "location_consent_title": "Use of location history",
     "location_consent_body": "Your location history is used by representatives of {{name}} to interview you about places you visited and when you were there.\n\nOnce you send your location history to {{name}}, they will retain your data for a specific period of time."
@@ -100,6 +105,22 @@
     "what_does_this_mean_para_location": "Based on your GPS history, it is possible that you may have been in contact with or close to somebody who was diagnosed with COVID-19. This does not mean you are infected but that you might be.\n\nFor further information on what you should do you can refer to the Mayo Clinic’s website.",
     "what_if_no_symptoms": "What if I’m not showing symptoms?",
     "what_if_no_symptoms_para": "If you have no symptoms but still would like to be tested you can go to your nearest testing site.\n\nIndividuals who don't exhibit symptoms can sometimes still carry the infection and infect others. Being careful about social distancing and coming in contact with large groups or at risk individuals (the elderly, those with significant other medical issues) is important to manage both your risk and the risk to others."
+  },
+  "exposure_history": {
+    "legend_button": "LEGEND",
+    "last_days": "Last 21 days",
+    "more_info_bt": {
+      "why_did_i_get_an_en": "Why did I get an exposure notification?",
+      "why_did_i_get_an_en_para": "You will receive an exposure notification when someone you crossed paths with later receives a confirmed, positive diagnosis or test for COVID-19 and chooses to notify others",
+      "how_does_this_work": "How does this work?",
+      "how_does_this_work_para": "When Exposure Notifications are on, your phone uses Bluetooth to swap and save random number strings (called ramdom IDs) from any phones it encounters that also have Exposure Notifications enabled. Random IDs won’t identify you personally to other users and change many times a day to protect your privacy. Date and duration of the encounter are recorded along with an estimate of how close the two phones may have been. When a person reports a positive diagnosis, their phone’s recent random IDs are flagged to anonymously notify others. No locations or personal info is shared."
+    },
+    "more_info_gps": {
+      "why_did_i_get_an_en": "Why did I get an exposure notification?",
+      "why_did_i_get_an_en_para": "You will receive exposure notifications when your PathCheck app estimates that your phone was, for an extended period, within 100 feet of another individual who later received a positive diagnosis and chose to share their location diary with their local Health Department.",
+      "how_does_this_work": "How does this work?",
+      "how_does_this_work_para": "Whenever location access is enabled for your PathCheck app, the app saves the following information about each place you take your phone: the GPS coordinates, date, and times your phone was at that location.\n\nThis information is stored in an encrypted list within your phone for 14 days. If one or more of your local or regional Health Departments has partnered with PathCheck, and you have elected to receive exposure notifications from them in your PathCheck app, they can send your app encrypted collections of anonymized GPS coordinates, dates, and times gathered from their community members who later received positive diagnoses and chose to share.\n\nYour phone then locally (within your app) compares your encrypted location history to the data shared by your selected local Health Departments to inform you about possible exposures."
+    }
   },
   "import": {
     "button_text": "Import past locations",
@@ -126,16 +147,19 @@
       "tracing_off_subheader": "PathCheck needs location access in Settings to privately save the places you visit",
       "tracing_off_button": "Allow Location Access",
       "all_services_on_header": "PathCheck",
-      "all_services_on_subheader": "PathCheck is privately saving the places you visit and comparing your locations to data from your local Health Department"
+      "all_services_on_subheader": "PathCheck is saving the places you visit to create your private location diary",
+      "all_services_on_no_ha_available": "You will not receive exposure notifications while you are outside a region served by Health Department partners",
+      "auto_start_header": "Auto Start Disabled",
+      "auto_start_subheader": "PathCheck needs to be able to auto start to privately save the places you visit. Please enable it in your app settings"
     },
     "bluetooth": {
+      "tracing_off_header": "Exposure Notifications Disabled",
+      "tracing_off_subheader": "Enable Exposure Notifications to receive information about possible exposures",
+      "tracing_off_button": "Allow Exposure Notifications",
       "all_services_on_header": "PathCheck",
       "all_services_on_subheader": "Exposure notifications are on",
-      "tracing_off_header": "Notifications Disabled",
-      "tracing_off_subheader": "You will not receive notifications about possible exposures",
-      "tracing_off_button": "Allow Notifications",
       "unavailable_header": "Exposure history notifications are not yet available",
-      "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck."
+      "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck"
     },
     "shared": {
       "notifications_off_header": "Notifications Disabled",
@@ -150,12 +174,12 @@
   },
   "settings": {
     "share_test_result": "Report a positive test result",
-    "share_test_result_description": "Share Covid-19 exporsure information with your health authority with a provided code"
+    "share_test_result_description": "Share Covid-19 exposure information with your health authority with a provided code"
   },
   "label": {
     "about_header_bluetooth": "PathCheck BT",
     "about_header_location": "PathCheck GPS",
-    "about_para": "PathCheck is a global movement to develop free, open-source, privacy-by-design tools for residents, public health officials, and larger communities to flatten the curve of COVID-19, reduce fear, and prevent a surveillance-state response to the pandemic. \n\nFor more information, visit",
+    "about_para": "The PathCheck app is made available by the PathCheck Foundation, a non-profit organization that is committed to providing free software to help stop the spread of COVID-19 and protect the privacy of individuals. \n\nFor more information, visit",
     "authorities_add_button_label": "Add Healthcare Authority",
     "authorities_add_url": "Add authority via URL",
     "authorities_desc": "Select one or more Healthcare Authorities in your area for information about COVID-19 near you, if available. \n\nEither select a name from the global registry or enter a web address provided by a Healthcare Authority that has implemented PathCheck.",
@@ -168,7 +192,7 @@
     "authorities_new_subscription_msg_plural": "You have been subscribed to {{count}} new authorities in your location",
     "authorities_new_subscription_title": "{{count}} New Subscription",
     "authorities_new_subscription_title_plural": "{{count}} New Subscriptions",
-    "authorities_no_sources": "No Healthcare Authorities",
+    "authorities_no_sources": "No Health Departments",
     "authorities_removal_alert_cancel": "Cancel",
     "authorities_removal_alert_desc": "Are you sure you want to remove this authority data source?",
     "authorities_removal_alert_proceed": "Proceed",
@@ -193,10 +217,9 @@
     "launch_done_subheader": "You’re ready to roll. Remember, you can always update your preferences later.",
     "launch_enable_auto_subscription": "Enable auto subscription",
     "launch_enable_bluetooth": "Enable Bluetooth",
-    "launch_enable_location": "Enable Location",
     "launch_enable_notif": "Enable Notifications",
     "launch_enable_exposure_notif": "Enable",
-    "launch_exposure_notif_subheader": "To be notified about updates to your exposure history, your phone needs permission to exchange anonymous Bluetooth random ID with other devices.\n\nExposure Notifcations only work with other devices with the setting enabled.\n\nYou can turn off this notifications at any time.",
+    "launch_exposure_notif_subheader": "To be notified about updates to your exposure history, your phone needs permission to exchange anonymous Bluetooth random ID with other devices.\n\nExposure Notifications only work with other devices with the setting enabled.\n\nYou can turn off this notifications at any time.",
     "launch_exposure_notif_header": "Enable Exposure Notifications",
     "launch_allow_location": "Allow Location Access",
     "launch_finish_set_up": "Finish Setup",
@@ -223,7 +246,7 @@
     "launch_set_up_phone_bluetooth": "Next",
     "launch_set_up_phone_location": "Set up my phone",
     "launch_subheader": "Don’t worry, information never leaves your device unless you explicitly decide to share.",
-    "legal_page_address": "PathCheck\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street\nBox 441621\nSomerville, MA 02144",
     "legal_page_header_bluetooth": "PathCheck BT",
     "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "loading data...",
@@ -253,10 +276,11 @@
     "eula_checkbox": "I accept the licensing agreement",
     "eula_continue": "Continue",
     "eula_message": "*You must accept in order to use PathCheck",
-    "notification_header": "Would you like to recieve notifications when you may have crossed paths with the virus?",
-    "notification_subheader": "To recieve exposure notifications, you need to be in an area covered by a local Health Department partner.\n\nIf there are no local or regional partner Health Department in your area yet, get notified when new Health Departments are added near you.",
+    "notification_header": "Would you like to receive notifications when you may have crossed paths with the virus?",
+    "notification_subheader": "PathCheck partners with local Health Departments to track the virus. If you are located in a jurisdiction served by a one of our Health Department partners, you can receive exposure notifications from your Health Department.",
     "location_header": "To determine when you may have crossed paths with the virus, PathCheck needs location access.",
-    "location_subheader": "Your PathCheck location diary only includes GPS coordinates, dates, and times.\n\nYour data will not be shared with anyone unless you choose to do so."
+    "location_subheader": "Your PathCheck location diary only includes GPS coordinates, dates, and times.\n\nYour data will not be shared with anyone unless you choose to do so.",
+    "maybe_later": "Maybe Later"
   },
   "share": {
     "button_text": "Share location data",
@@ -278,6 +302,7 @@
     "history": "History",
     "locations": "Locations",
     "partners": "Partners",
+    "self_assessment": "Health",
     "more": "More"
   },
   "screen_titles": {
@@ -285,6 +310,7 @@
     "faq": "FAQ",
     "report_issue": "Report an issue",
     "legal": "Legal",
-    "more": "More"
+    "more": "More",
+    "exposure_history": "Exposure History"
   }
 }

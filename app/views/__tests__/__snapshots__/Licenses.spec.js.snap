@@ -14,20 +14,9 @@ exports[`renders correctly 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#4051db",
-        "flexBasis": 0,
-        "flexGrow": 0,
-        "flexShrink": 1,
-      }
-    }
-  />
-  <View
-    style={
-      Object {
-        "backgroundColor": "#f8f8f8",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
+        "backgroundColor": "#1f2c9b",
+        "flex": 1,
+        "paddingTop": 0,
       }
     }
   >
@@ -35,241 +24,258 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#4051db",
-          "borderBottomColor": "#4051db",
-          "borderBottomWidth": 1,
+          "backgroundColor": "#1f2c9b",
           "flexDirection": "row",
-          "height": 55,
+          "justifyContent": "flex-start",
+          "paddingHorizontal": 16,
+          "paddingVertical": 8,
         }
       }
     >
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <SvgXml
+            color="#ffffff"
+            style={
+              Object {
+                "paddingTop": 12,
+              }
+            }
+            xml="
+  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
+  </svg>
+"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 3,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 19,
+                "fontWeight": "500",
+                "lineHeight": 40,
+                "textTransform": "uppercase",
+              },
+            ]
+          }
+        >
+          Legal
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#f8f8f8",
+          "flex": 1,
+        }
+      }
+    >
+      <RCTScrollView
+        alwaysBounceVertical={false}
+        contentContainerStyle={
+          Object {
+            "backgroundColor": "#f8f8f8",
+            "paddingHorizontal": 24,
+            "paddingTop": 24,
+          }
+        }
+      >
+        <View>
+          <View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#1f2c9b",
+                    "fontFamily": "IBMPlexSans-Bold",
+                    "fontSize": 28,
+                    "fontWeight": "500",
+                    "lineHeight": 40,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              PathCheck GPS
+            </Text>
+            <View
+              style={
+                Object {
+                  "paddingLeft": 20,
+                  "paddingTop": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#4e4e4e",
+                      "fontSize": 17,
+                      "lineHeight": 28,
+                    },
+                    Object {
+                      "writingDirection": "ltr",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                PathCheck Foundation
+58 Day Street
+Box 441621
+Somerville, MA 02144
+              </Text>
+              <View
+                style={
+                  Object {
+                    "height": 20,
+                  }
+                }
+              />
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#4e4e4e",
+                      "fontSize": 17,
+                      "lineHeight": 28,
+                    },
+                    Object {
+                      "writingDirection": "ltr",
+                    },
+                    Object {
+                      "color": "#1f2c9b",
+                      "textDecorationLine": "underline",
+                    },
+                  ]
+                }
+              >
+                info@pathcheck.org
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#4e4e4e",
+                      "fontSize": 17,
+                      "lineHeight": 28,
+                    },
+                    Object {
+                      "writingDirection": "ltr",
+                    },
+                    Object {
+                      "color": "#1f2c9b",
+                      "textDecorationLine": "underline",
+                    },
+                  ]
+                }
+              >
+                pathcheck.org
+              </Text>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
       <View
         accessible={true}
         focusable={true}
         isTVSelectable={true}
         style={
           Object {
-            "alignItems": "center",
-            "justifyContent": "center",
+            "backgroundColor": "#4051db",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
             "opacity": 1,
-            "width": 60,
-            "zIndex": 1,
+            "paddingHorizontal": 15,
+            "paddingVertical": 25,
           }
         }
       >
-        <SvgXml
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+              },
+            ]
+          }
+        >
+          Privacy Policy
+        </Text>
+        <View
           style={
             Object {
-              "color": "#ffffff",
-              "height": 18,
-              "width": 18,
+              "alignSelf": "center",
+              "paddingLeft": 20,
+              "paddingRight": 20,
             }
           }
-          xml="
-  <svg width=\\"23\\" height=\\"24\\" viewBox=\\"0 0 23 24\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
-    <path d=\\"M11.4854 3L2.22803 12.2573L11.4854 21.5146\\" stroke=\\"currentColor\\" stroke-opacity=\\"0.4\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" />
-  </svg>
-"
-        />
-      </View>
-      <Text
-        style={
-          Object {
-            "alignSelf": "center",
-            "color": "#ffffff",
-            "fontFamily": "IBMPlexSans-Bold",
-            "fontSize": 16,
-            "letterSpacing": 1,
-            "lineHeight": 34,
-            "paddingHorizontal": 20,
-            "position": "absolute",
-            "textAlign": "center",
-            "textTransform": "uppercase",
-            "width": "100%",
-          }
-        }
-      >
-        Legal
-      </Text>
-    </View>
-    <RCTScrollView
-      contentContainerStyle={
-        Object {
-          "backgroundColor": "#f8f8f8",
-          "paddingHorizontal": 26,
-          "paddingVertical": 40,
-          "width": "100%",
-        }
-      }
-    >
-      <View>
-        <View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#4051db",
-                  "fontFamily": "IBMPlexSans-Bold",
-                  "fontSize": 28,
-                  "fontWeight": "500",
-                  "lineHeight": 40,
-                },
-                Object {
-                  "writingDirection": "ltr",
-                },
-                Object {
-                  "color": "#000000",
-                  "marginBottom": 12,
-                },
-              ]
-            }
-          >
-            PathCheck GPS
-          </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#2e2e2e",
-                  "fontSize": 17,
-                  "lineHeight": 28,
-                },
-                Object {
-                  "writingDirection": "ltr",
-                },
-                Object {
-                  "color": "#000000",
-                  "marginBottom": 24,
-                },
-              ]
-            }
-          >
-            PathCheck
-58 Day Street
-Box 441621
-Somerville, MA 02144
-          </Text>
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
+        >
+          <Image
+            source={
               Object {
-                "opacity": 1,
+                "testUri": "../../../app/assets/images/foreArrow.png",
               }
             }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2e2e2e",
-                    "fontSize": 17,
-                    "lineHeight": 28,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Object {
-                    "color": "#4051db",
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 16,
-                    "marginBottom": 12,
-                    "textDecorationLine": "underline",
-                  },
-                ]
-              }
-            >
-              info@pathcheck.org
-            </Text>
-          </View>
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2e2e2e",
-                    "fontSize": 17,
-                    "lineHeight": 28,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Object {
-                    "color": "#4051db",
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 16,
-                    "marginBottom": 12,
-                    "textDecorationLine": "underline",
-                  },
-                ]
-              }
-            >
-              covidsafepaths.org
-            </Text>
-          </View>
+          />
         </View>
       </View>
-    </RCTScrollView>
-    <View
-      accessible={true}
-      focusable={true}
-      isTVSelectable={true}
-      style={
-        Object {
-          "backgroundColor": "#4051db",
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "opacity": 1,
-          "paddingHorizontal": 15,
-          "paddingVertical": 25,
-        }
-      }
-    >
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "#2e2e2e",
-              "fontSize": 17,
-              "lineHeight": 28,
-            },
-            Object {
-              "writingDirection": "ltr",
-            },
-            undefined,
-          ]
-        }
-      >
-        Privacy Policy
-      </Text>
-      <View
-        style={
-          Object {
-            "alignSelf": "center",
-            "paddingLeft": 20,
-            "paddingRight": 20,
-          }
-        }
-      >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../app/assets/images/foreArrow.png",
-            }
-          }
-        />
-      </View>
     </View>
-  </View>
+  </RCTSafeAreaView>
 </View>
 `;

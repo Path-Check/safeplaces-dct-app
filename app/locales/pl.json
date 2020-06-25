@@ -15,10 +15,17 @@
     "next": "Dalej"
   },
   "authorities": {
+    "automatically_follow": "Automatyczne śledzenie oddziałów opieki zdrowotnej w pobliżu",
+    "custom_url": "Dodaj ręcznie za pomocą adresu URL",
+    "custom_url_title": "Dodaj przez adres URL",
+    "invalid_url": "Nieprawidłowy adres YAML URL",
     "invalid_url_body": "Podany adres URL jest nieprawidłowy, spróbuj ponownie",
-    "invalid_url_title": "Nieprawidłowy adres URL"
+    "title": "Oddziały opieki zdrowotnej",
+    "url_instructions": "Wprowadź adres URL oddziału opieki zdrowotnej, który chcesz dodać",
+    "view_button_label": "Zobacz swoje odziały opieki zdrowotnej"
   },
   "common": {
+    "add": "Dodaj",
     "done": "Gotowe",
     "next": "Dalej",
     "ok": "Ok"
@@ -38,8 +45,20 @@
   },
   "home": {
     "bluetooth": {
+      "all_services_on_header": "PathCheck",
+      "all_services_on_subheader": "Powiadomienia o narażeniu są włączone",
+      "tracing_off_button": "Zezwolenie na powiadomienia o narażeniu",
+      "tracing_off_header": "Powiadomienia o narażeniu wyłączone",
+      "tracing_off_subheader": "Włącz powiadomienia o narażeniu, aby otrzymywać informacje o możliwych ekspozycjach",
       "unavailable_header": "Powiadomienia o historii narażenia nie są jeszcze dostępne",
       "unavailable_subheader": "Twój telefon nie jest obecnie objęty systemem PathCheck przez władze opieki zdrowotnej."
+    },
+    "gps": {
+      "all_services_on_header": "PathCheck"
+    },
+    "shared": {
+      "notifications_off_button": "Zezwalaj na powiadomienia",
+      "notifications_off_header": "Powiadomienia wyłączone"
     }
   },
   "import": {
@@ -88,6 +107,7 @@
     "event_history_subtitle": "Dowiedz się o swoim osobistym narażeniu na ryzyko zakażenia na podstawie informacji udostępnionych przez instytucje opieki zdrowotnej.",
     "event_history_title": "Historia narażenia na zakażenie",
     "filter_authorities_by_gps_history": "Filtruj według lokalizacji",
+    "home_no_contact_header_bluetooth": "PathCheck",
     "import_success": "Zaimportowano pomyślnie",
     "latest_news": "Najnowsze informacje",
     "launch_access_bluetooth": "Zezwalaj na śledzenie kontaktów",
@@ -109,7 +129,7 @@
     "launch_notif_header": "Powiadomienia poinformują Cię, jeśli spotkasz na swojej drodze osobę zakażoną.",
     "launch_notif_subheader": "Nie będziemy zawracać ci głowy, z wyjątkiem udostępniania aktualizacji o potencjalnym ryzyku narażenia na zakażenie.",
     "launch_notification_access": "Zezwalaj na powiadomienia",
-    "launch_screen1_header": "Droga do normalności zaczyna się tutaj.",
+    "launch_screen1_header": "Witamy w PathCheck",
     "launch_screen2_header_bluetooth": "Twój telefon zapamiętuje inne napotkane urządzenia, ale nie identyfikuje Cię w stosunku do innych osób.",
     "launch_screen2_header_location": "Otrzymuj powiadomienia, czy spotkałeś na swojej drodze osobę, u której później zdiagnozowano COVID-19.",
     "launch_screen2_subheader_bluetooth": "Data i czas trwania spotkania są rejestrowane wraz z oszacowaniem, jak blisko mogły znajdować się dwa telefony.",
@@ -125,7 +145,7 @@
     "launch_set_up_phone_bluetooth": "Dalej",
     "launch_set_up_phone_location": "Skonfiguruj mój telefon",
     "launch_subheader": "Nie martw się, informacje nigdy nie opuszczą Twojego urządzenia, chyba że wyraźnie zdecydujesz się je udostępnić.",
-    "legal_page_address": "PathCheck \n58 Day Street \nBox 441621 \nSomerville, MA 02144",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street \nBox 441621 \nSomerville, MA 02144",
     "legal_page_header_bluetooth": "PathCheck Bluetooth",
     "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "ładowanie danych...",
@@ -140,14 +160,14 @@
     "news_subtitle": "Znajdź najnowsze aktualizacje z PathCheck i lokalnych organów opieki zdrowotnej, jeśli są dostępne.",
     "news_title": "Najnowsze informacje",
     "no_data": "Brak danych",
+    "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
+    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
     "privacy_policy": "Polityka prywatności",
     "push_at_risk_message": "Spotkałeś na swojej drodze osobę zakażoną COVID-19",
     "push_at_risk_title": "Możesz być w niebezpieczeństwie",
     "see_exposure_history": "Zobacz historię narażenia",
     "settings_title": "Tablica",
     "skip_this_step": "Pomiń ten krok",
-    "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
-    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
     "team": "Zespół",
     "team_para": "Nasz zespół składa się z konsorcjum epidemiologów, inżynierów, naukowców, cyfrowych ewangelistów prywatności, profesorów i badaczy z uznanych instytucji, w tym: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young oraz Link Ventures.",
     "terms_of_use": "Warunki korzystania"
@@ -159,7 +179,11 @@
   },
   "screen_titles": {
     "about": "O nas",
-    "legal": "Informacje prawne"
+    "legal": "Informacje prawne",
+    "more": "Więcej"
+  },
+  "settings": {
+    "share_test_result": "Zgłoś pozytywny wynik testu"
   },
   "share": {
     "button_text": "Udostępnij dane o lokalizacji",

@@ -53,11 +53,12 @@ def gps_pods
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
 end
 
-def bte_pods
+def bt_pods
   ### These should be removed in a future commit
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
   pod 'Alamofire', '~> 4.9.1'
+  pod 'SSZipArchive'
 end
 
 target 'GPS' do
@@ -65,8 +66,8 @@ target 'GPS' do
   shared_pods
 end
 
-target 'BTE' do
-  bte_pods
+target 'BT' do
+  bt_pods
   shared_pods
 end
 
@@ -76,8 +77,8 @@ target 'GPSTests' do
   shared_pods
 end
 
-target 'BTETests' do
+target 'BTTests' do
   inherit! :search_paths
-  bte_pods
+  bt_pods
   shared_pods
 end

@@ -31,7 +31,7 @@ exports[`base 1`] = `
         style={
           Array [
             Object {
-              "color": "#4051db",
+              "color": "#1f2c9b",
               "fontFamily": "IBMPlexSans-Bold",
               "fontSize": 28,
               "fontWeight": "500",
@@ -103,7 +103,7 @@ exports[`base 1`] = `
                     Array [
                       Object {
                         "alignItems": "center",
-                        "borderColor": "#4051db",
+                        "borderColor": "#1f2c9b",
                         "borderRadius": 40,
                         "borderWidth": 2,
                         "height": 20,
@@ -180,7 +180,7 @@ exports[`base 1`] = `
                     Array [
                       Object {
                         "alignItems": "center",
-                        "borderColor": "#4051db",
+                        "borderColor": "#1f2c9b",
                         "borderRadius": 40,
                         "borderWidth": 2,
                         "height": 20,
@@ -247,7 +247,7 @@ exports[`base 1`] = `
                 "paddingVertical": 22,
               },
               Object {
-                "backgroundColor": "#e5e7fa",
+                "backgroundColor": undefined,
               },
             ]
           }
@@ -269,7 +269,7 @@ exports[`base 1`] = `
                     "textAlign": "center",
                   },
                   Object {
-                    "color": "#a5affb",
+                    "color": "#e5e7fa",
                   },
                 ],
               ]

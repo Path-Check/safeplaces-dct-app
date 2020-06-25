@@ -28,6 +28,7 @@ import { Distancing } from './endScreens/Distancing';
 import { Emergency } from './endScreens/Emergency';
 import { Isolate } from './endScreens/Isolate';
 import { Share } from './endScreens/Share';
+import { useStatusBarEffect } from '../../navigation';
 
 import { Colors } from '../../styles';
 
@@ -66,6 +67,8 @@ import { Colors } from '../../styles';
 const Stack = createStackNavigator();
 
 const Assessment = ({ navigation }) => {
+  useStatusBarEffect('dark-content');
+
   /** @type {React.MutableRefObject<SurveyAnswers>} */
   const answers = useRef({});
   const survey = useSurvey();

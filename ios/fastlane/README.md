@@ -26,21 +26,21 @@ fastlane ios sync_local_certs
 fastlane ios staging
 ```
 Push a new GPS Staging build for automation
-### ios staging_bte
+### ios staging_bt
 ```
-fastlane ios staging_bte
+fastlane ios staging_bt
 ```
-Push a new BTE Staging build for automation
+Push a new BT Staging build for automation
 ### ios release
 ```
 fastlane ios release
 ```
 Push a new GPS Release build to TestFlight
-### ios release_bte
+### ios release_bt
 ```
-fastlane ios release_bte
+fastlane ios release_bt
 ```
-Push a new BTE Release build to TestFlight
+Push a new BT Release build to TestFlight
 ### ios deploy
 ```
 fastlane ios deploy

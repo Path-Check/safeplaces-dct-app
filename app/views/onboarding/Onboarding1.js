@@ -19,7 +19,6 @@ import { NativePicker, Typography } from '../../components';
 import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import { EulaModal } from '../EulaModal';
-import { sharedStyles } from './styles';
 
 import { Colors } from '../../styles';
 
@@ -95,7 +94,7 @@ class Onboarding extends Component {
                   {languages.t('label.launch_screen1_header')}
                 </Typography>
               </View>
-              <View style={sharedStyles.footerContainer}>
+              <View style={styles.footerContainer}>
                 <EulaModal
                   continueFunction={() =>
                     this.props.navigation.replace('Onboarding2')
@@ -151,6 +150,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     textAlign: 'center',
     textTransform: 'uppercase',
+  },
+  footerContainer: {
+    position: 'absolute',
+    bottom: 0,
+    padding: 24,
+    width: '100%',
   },
 });
 

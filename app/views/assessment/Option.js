@@ -59,7 +59,7 @@ export const Option = ({
       let date = new Date();
       setDate(date);
       setShowDatePicker(true);
-      if (isPlatformiOS()) onSelect(String(date));
+      if (isPlatformiOS()) onSelect(date.toDateString());
       return;
     }
     onSelect(option.value);
@@ -68,7 +68,7 @@ export const Option = ({
   const handleDateTimePickerSelect = (e, date) => {
     if (date) {
       if (isPlatformAndroid()) setShowDatePicker(false);
-      onSelect(String(date));
+      onSelect(date.toDateString());
       setDate(date);
     }
   };

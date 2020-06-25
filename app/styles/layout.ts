@@ -15,6 +15,8 @@ export const xxSmallHeight = 0.03 * screenHeight;
 export const smallHeight = 0.05 * screenHeight;
 export const mediumHeight = 0.45 * screenHeight;
 
+export const tappableHeight = 0.1 * screenHeight;
+
 export const baseHorizontalMargin = Spacing.xSmall;
 export const horizontalMarginSmall = Spacing.xxxSmall;
 export const horizontalMarginMedium = Spacing.medium;
@@ -23,3 +25,5 @@ export const baseFullWidthWithMargin = screenWidth - baseHorizontalMargin * 2;
 export const fullWidthWithSmallMargin = screenWidth - horizontalMarginSmall * 2;
 export const fullWidthWithMediumMargin =
   screenWidth - horizontalMarginMedium * 2;
+
+export const navBar = tappableHeight;

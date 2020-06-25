@@ -199,7 +199,7 @@ PODS:
     - React
   - react-native-geolocation (2.0.2):
     - React
-  - react-native-safe-area-context (0.6.0):
+  - react-native-safe-area-context (3.0.5):
     - React
   - react-native-splash-screen (3.2.0):
     - React
@@ -343,6 +343,7 @@ DEPENDENCIES:
   - RNShare (from `../node_modules/react-native-share`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
+  - SSZipArchive
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -484,7 +485,7 @@ SPEC CHECKSUMS:
   react-native-config: 8f6b2b9e017f6a5e92a97353c768e19e67294bb1
   react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
-  react-native-safe-area-context: d288138da2c800caa111f9352e9333f186a06ead
+  react-native-safe-area-context: e768fca90207ee68924b3d0877633f2ce9cc9d68
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-uuid-generator: 82ffa2a1cac94242ebed52c4dedc5044d3412717
   react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
@@ -518,6 +519,6 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 6f352cde941e47e905ebcc940d3ea58d347b9a1a
+PODFILE CHECKSUM: 9a08aa9a889aaf07b523687a9641982820759f7b
 
 COCOAPODS: 1.9.1

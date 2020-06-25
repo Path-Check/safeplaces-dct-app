@@ -10,9 +10,9 @@
     "format": "yarn prettier --write",
     "lint": "eslint ./",
     "validate": "yarn prettier --list-different && yarn tsc && yarn lint",
-    "run-android-bte": "react-native run-android --variant=bteDebug --appId=org.pathcheck.covidsafepathsBte",
+    "run-android-bt": "react-native run-android --variant=btDebug --appId=org.pathcheck.covidsafepathsBt",
     "run-android-gps": "react-native run-android --variant=gpsDebug --appId=org.pathcheck.covidsafepaths",
-    "run-ios-bte": "yarn install:pod && react-native run-ios --scheme \"BTE_Development\" --simulator \"iPhone 11 (13.5)\"",
+    "run-ios-bt": "yarn install:pod && react-native run-ios --scheme \"BT_Development\" --simulator \"iPhone 11 (13.5)\"",
     "run-ios-gps": "yarn install:pod && react-native run-ios --scheme \"GPS_Development\"",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install --quiet && bundle exec pod install --silent",
@@ -65,6 +65,8 @@
     "@reduxjs/toolkit": "^1.3.6",
     "@types/js-yaml": "^3.12.4",
     "@types/react-redux": "^7.1.9",
+    "array-flat-polyfill": "^1.0.1",
+    "@types/semver": "^7.2.0",
     "dayjs": "^1.8.24",
     "emotion-theming": "^10.0.27",
     "geolib": "^3.2.1",
@@ -92,7 +94,7 @@
     "react-native-pulse": "^1.0.7",
     "react-native-push-notification": "^3.1.9",
     "react-native-reanimated": "^1.7.1",
-    "react-native-safe-area-context": "0.6.0",
+    "react-native-safe-area-context": "^3.0.5",
     "react-native-screens": "^2.8.0",
     "react-native-share": "^3.1.0",
     "react-native-splash-screen": "^3.2.0",
@@ -117,6 +119,7 @@
     "@babel/runtime": "^7.8.4",
     "@jumpn/react-native-jetifier": "^0.1.4",
     "@react-native-community/eslint-config": "^0.0.7",
+    "@testing-library/jest-native": "^3.1.0",
     "@testing-library/react-native": "^5.0.3",
     "@types/jest": "^25.2.3",
     "@types/react": "^16.9.35",
@@ -138,7 +141,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^4.0.0",
+    "eslint-plugin-react-hooks": "^4.0.3",
     "husky": "^4.2.3",
     "i18next-parser": "tstirrat/i18next-parser#guard-plural-rule",
     "import-sort-config": "^6.0.0",
@@ -152,7 +155,7 @@
     "prettier": "^2.0.5",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-version": "^4.0.0",
-    "react-test-renderer": "16.9.0",
+    "react-test-renderer": "^16.13.1",
     "typescript": "^3.9.3"
   },
   "importSort": {
@@ -198,25 +201,25 @@
           "type": "iPhone SE (2nd generation)"
         }
       },
-      "iphone11-bte.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BTE.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+      "iphone11-bt.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BT.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BT_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone 11"
         }
       },
-      "iphone8-bte.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BTE.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+      "iphone8-bt.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BT.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BT_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone 8"
         }
       },
-      "iphone-se-bte.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BTE.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BTE_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+      "iphone-se-bt.sim": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BT.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BT_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone SE (2nd generation)"

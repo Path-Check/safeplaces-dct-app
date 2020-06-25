@@ -14,9 +14,19 @@ const base: ViewStyle = {
 // Size
 export const baseHeight = 50;
 
+const tiny: ViewStyle = {
+  paddingVertical: Spacing.xxxSmall,
+  paddingHorizontal: Spacing.xSmall,
+};
+
 const large: ViewStyle = {
   paddingTop: Spacing.large,
   paddingBottom: Spacing.large + 1,
+};
+
+// Border
+const rounded: ViewStyle = {
+  borderRadius: Outlines.maxBorderRadius,
 };
 
 // Color
@@ -30,6 +40,11 @@ const white: ViewStyle = {
   borderColor: Colors.white,
 };
 
+const tertiary: ViewStyle = {
+  backgroundColor: Colors.tertiaryViolet,
+  borderColor: Colors.tertiaryViolet,
+};
+
 // Outline
 const outlined: ViewStyle = {
   borderWidth: 1,
@@ -37,21 +52,31 @@ const outlined: ViewStyle = {
 };
 
 // Combinations
-export const largeBlueOutline: ViewStyle = {
-  ...base,
-  ...large,
-  ...primaryBlue,
-  ...outlined,
-};
-
 export const largeBlue: ViewStyle = {
   ...base,
   ...large,
   ...primaryBlue,
 };
 
+export const largeBlueOutline: ViewStyle = {
+  ...largeBlue,
+  ...outlined,
+};
+
 export const largeWhite: ViewStyle = {
   ...base,
   ...large,
   ...white,
+};
+
+export const largeWhiteOutline: ViewStyle = {
+  ...largeWhite,
+  ...outlined,
+};
+
+export const tinyTeritiaryRounded: ViewStyle = {
+  ...base,
+  ...tiny,
+  ...rounded,
+  ...tertiary,
 };

@@ -1,37 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Import component renders correctly 1`] = `
-Array [
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
-    style={
-      Object {
-        "backgroundColor": "#4051db",
-        "flexBasis": 0,
-        "flexGrow": 0,
-        "flexShrink": 1,
-      }
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#1f2c9b",
+      "flex": 1,
+      "paddingTop": 0,
     }
-  />,
+  }
+>
   <View
     style={
       Object {
-        "backgroundColor": "#f8f8f8",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
+        "alignItems": "center",
+        "backgroundColor": "#1f2c9b",
+        "flexDirection": "row",
+        "justifyContent": "flex-start",
+        "paddingHorizontal": 16,
+        "paddingVertical": 8,
       }
     }
   >
     <View
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#4051db",
-          "borderBottomColor": "#4051db",
-          "borderBottomWidth": 1,
-          "flexDirection": "row",
-          "height": 55,
+          "flex": 1,
         }
       }
     >
@@ -48,20 +43,15 @@ Array [
         onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "alignItems": "center",
-            "justifyContent": "center",
             "opacity": 1,
-            "width": 60,
-            "zIndex": 1,
           }
         }
       >
         <SvgXml
+          color="#ffffff"
           style={
             Object {
-              "color": "#ffffff",
-              "height": 18,
-              "width": 18,
+              "paddingTop": 12,
             }
           }
           xml="
@@ -71,26 +61,56 @@ Array [
 "
         />
       </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 3,
+        }
+      }
+    >
       <Text
         style={
-          Object {
-            "alignSelf": "center",
-            "color": "#ffffff",
-            "fontFamily": "IBMPlexSans-Bold",
-            "fontSize": 16,
-            "letterSpacing": 1,
-            "lineHeight": 34,
-            "paddingHorizontal": 20,
-            "position": "absolute",
-            "textAlign": "center",
-            "textTransform": "uppercase",
-            "width": "100%",
-          }
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontSize": 17,
+              "lineHeight": 28,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Object {
+              "color": "#ffffff",
+              "fontFamily": "IBMPlexSans-Bold",
+              "fontSize": 19,
+              "fontWeight": "500",
+              "lineHeight": 40,
+              "textTransform": "uppercase",
+            },
+          ]
         }
       >
         Import Locations
       </Text>
     </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#f8f8f8",
+        "flex": 1,
+      }
+    }
+  >
     <RCTScrollView
       style={
         Object {
@@ -306,6 +326,6 @@ Array [
         </View>
       </View>
     </RCTScrollView>
-  </View>,
-]
+  </View>
+</RCTSafeAreaView>
 `;

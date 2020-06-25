@@ -58,6 +58,7 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
     public static final String ERROR_EVENT = "error";
 
     public static final String MY_PREFS_NAME = "MyPrefsFile";
+    public static final String IS_AUTO_START_ENABLED = "isAutoStartEnabled";
 
     private static final int PERMISSIONS_REQUEST_CODE = 1;
 
@@ -167,7 +168,12 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
 
     @ReactMethod
     public void configure(final ReadableMap options, final Callback success, final Callback error) {
-        checkGPSPermission();
+        String autoStartTitle = options.getString("enableAutoStartDialogueTitle");
+        String autoStartText = options.getString("enableAutoStartDialogueText");
+        String locationTitle = options.getString("enableLocationDialogueTitle");
+        String locationText = options.getString("enableLocationDialogueText");
+
+        checkGPSPermission(autoStartTitle, autoStartText, locationTitle, locationText);
         runOnBackgroundThread(new Runnable() {
             @Override
             public void run() {
@@ -420,7 +426,7 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
         sendEvent(HTTP_AUTHORIZATION_EVENT, null);
     }
 
-    public void showSettingsAlert(final Context context) {
+    public void showSettingsAlert(final String locationDialogueTitle, final String locationDialogueText) {
 
 
         new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -430,13 +436,13 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(getCurrentActivity());
 
                 // Setting Dialog Title
-                alertDialog.setTitle("GPS Settings");
+                alertDialog.setTitle(locationDialogueTitle);
                 // Setting Dialog Message
-                alertDialog.setMessage("GPS is not enabled in your phone. Please enable it in order to get proper location updates by going to the settings menu. Please contribute to detect the Corona.");
+                alertDialog.setMessage(locationDialogueText);
                 alertDialog.setCancelable(false);
 
                 // On pressing Settings button
-                alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                alertDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                         getCurrentActivity().startActivity(intent);
@@ -449,27 +455,27 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
         });
     }
 
-    private void checkGPSPermission() {
+    private void checkGPSPermission(String autoStartDialogueTitle, String autoStartDialogueText, String locationDialogueTitle, String locationDialogueText) {
 
         android.location.LocationManager locationManager = (android.location.LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
         boolean gpsStatus = locationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER);
         Log.e("gpsStatus", gpsStatus + "");
 
         if (!gpsStatus) {
-            showSettingsAlert(mContext);
+            showSettingsAlert(locationDialogueTitle, locationDialogueText);
         }
 
-        SharedPreferences pref = mContext.getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
-        boolean isAutoStartEnabled=pref.getBoolean("isAutoStartEnabled", false);
+        SharedPreferences pref = mContext.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        boolean isAutoStartEnabled=pref.getBoolean(IS_AUTO_START_ENABLED, false);
 
         Log.e("isAutoStartEnabled===", isAutoStartEnabled + "");
 
         if(!isAutoStartEnabled) {
-            addAutoStartup();
+            addAutoStartup(autoStartDialogueTitle, autoStartDialogueText);
         }
     }
 
-    private void addAutoStartup() {
+    private void addAutoStartup(final String autoStartDialogueTitle, final String autoStartDialogueText) {
 
         try {
             final Intent intent = new Intent();
@@ -487,7 +493,7 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
             }
 
             List<ResolveInfo> list = getCurrentActivity().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-            if  (list.size() > 0) {
+             if  (list.size() > 0) {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
@@ -495,24 +501,24 @@ public class BackgroundGeolocationModule extends ReactContextBaseJavaModule impl
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getCurrentActivity());
 
                         // Setting Dialog Title
-                        alertDialog.setTitle("AutoStart Settings");
+                        alertDialog.setTitle(autoStartDialogueTitle);
                         // Setting Dialog Message
-                        alertDialog.setMessage("Autostart settings should be enabled in order to get proper location upddates. Please enable it and contribute to detect the Corona. If you have already done that then please ignore it.");
+                        alertDialog.setMessage(autoStartDialogueText);
                         alertDialog.setCancelable(false);
 
                         // On pressing Settings button
-                        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 SharedPreferences.Editor editor = mContext.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                                editor.putBoolean("isAutoStartEnabled", true);
+                                editor.putBoolean(IS_AUTO_START_ENABLED, true);
                                 editor.apply();
 
                                 getCurrentActivity().startActivity(intent);
                             }
                         });
 
-                        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialog.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
                             }

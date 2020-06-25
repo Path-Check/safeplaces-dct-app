@@ -68,15 +68,15 @@ platform :android do
   end
 
   desc "Build a Staging AAB"
-  lane :staging_bte do
+  lane :staging_bt do
     gradle(
-      task: "clean assembleBteStaging",
+      task: "clean assembleBtStaging",
       print_command: false,
     )
   end 
 
   desc "Build a Release AAB"
-  lane :release_bte do
+  lane :release_bt do
 
     build_number =  ENV["GITHUB_RUN_NUMBER"]
 
@@ -87,7 +87,7 @@ platform :android do
 
     gradle(
       task: "bundle",
-      build_type: "bteRelease",
+      build_type: "btRelease",
       print_command: false,
       properties: {
         "android.injected.signing.store.password" => ENV["KEY_STORE_PASSWORD"],
@@ -99,7 +99,7 @@ platform :android do
   end
 
   desc "Upload to google play store beta track"
-  lane :play_store_bte do
+  lane :play_store_bt do
 
     validate_play_store_json_key(
       json_key: "app/json_key.json",
@@ -109,8 +109,8 @@ platform :android do
       track: 'beta',
       release_status: 'draft',
       skip_upload_apk: true,
-      package_name: 'org.pathcheck.covidsafepathsBte',
-      aab: "app/build/outputs/bundle/bteRelease/app.aab"
+      package_name: 'org.pathcheck.covidsafepathsBt',
+      aab: "app/build/outputs/bundle/btRelease/app.aab"
     )
 
   end

@@ -15,8 +15,7 @@
     "next": "Næste"
   },
   "authorities": {
-    "invalid_url_body": "Den angivne webadresse var ugyldig. Prøv igen",
-    "invalid_url_title": "Ugyldig URL"
+    "invalid_url_body": "Den angivne webadresse var ugyldig. Prøv igen"
   },
   "common": {
     "done": "Udført",
@@ -38,8 +37,12 @@
   },
   "home": {
     "bluetooth": {
+      "all_services_on_header": "PathCheck",
       "unavailable_header": "Underretninger om eksponeringshistorik er endnu ikke tilgængelige",
       "unavailable_subheader": "Din telefon er i øjeblikket ikke dækket af sundhedsmyndigheder, der bruger PathCheck."
+    },
+    "gps": {
+      "all_services_on_header": "PathCheck"
     }
   },
   "import": {
@@ -89,6 +92,7 @@
     "event_history_subtitle": "Forstå din egen eksponering for smitte ud fra data, som bliver delt med dig af sundhedsmyndigheder.",
     "event_history_title": "Eksponeringshistorik",
     "filter_authorities_by_gps_history": "Filtrér efter placering",
+    "home_no_contact_header_bluetooth": "PathCheck",
     "import_success": "Det lykkedes at importere",
     "latest_news": "Seneste nyheder",
     "launch_access_bluetooth": "Tillad sporing af kontakter",
@@ -110,8 +114,6 @@
     "launch_notif_header": "Notifikationer fortæller dig, om du har været i nærheden af en smittet person.",
     "launch_notif_subheader": "Vi vil ikke genere dig med notifikationer, medmindre det er for at fortælle dig om mulig udsættelser for smitte.",
     "launch_notification_access": "Tillad notifikationer",
-    "launch_screen1_header": "Vejen tilbage til en normal tilværelse begynder her.",
-    "launch_screen2_header_bluetooth": "PathCheck giver din telefon mulighed for at føre en anonym registrering af andre telefoner, den møder i løbet af dagen.",
     "launch_screen2_header_location": "Få besked, hvis du har været i nærheden af nogen, som senere bliver diagnosticeret med COVID-19.",
     "launch_screen2_subheader_bluetooth": "Dato for mødet og mødets varighed registreres sammen med et skøn over, hvor tæt de to telefoner kan have været.",
     "launch_screen2_subheader_location": "Viden er vores styrke.",
@@ -126,7 +128,7 @@
     "launch_set_up_phone_bluetooth": "Udført",
     "launch_set_up_phone_location": "Gør min telefon klar",
     "launch_subheader": "Bare rolig. Informationerne forlader aldrig din enhed, medmindre du selv vælger at dele dem.",
-    "legal_page_address": "PathCheck\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street\nBox 441621\nSomerville, MA 02144",
     "legal_page_header_bluetooth": "PathCheck BT",
     "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "henter data…",
@@ -147,10 +149,10 @@
     "see_exposure_history": "Se eksponeringshistorik",
     "settings_title": "Overblik",
     "skip_this_step": "Spring dette trin over",
-    "authorities_new_in_area_msg_plural": "Tilmeld dig til {{count}} nye betroede sundhedsmyndigheder i dit område",
     "team": "Holdet",
     "team_para": "Holdet bag denne applikation består af et konsortium af epidemiologer, ingeniører, dataloger, privatlivseksperter, professorer og forskere fra velrenommerede institutioner herunder: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young og Link Ventures.",
-    "terms_of_use": "Vilkår for brug"
+    "terms_of_use": "Vilkår for brug",
+    "authorities_new_in_area_msg_plural": "Tilmeld dig til {{count}} nye betroede sundhedsmyndigheder i dit område"
   },
   "onboarding": {
     "eula_checkbox": "Jeg accepterer licensaftalen",
@@ -159,7 +161,8 @@
   },
   "screen_titles": {
     "about": "Om",
-    "legal": "Juridisk"
+    "legal": "Juridisk",
+    "more": "Mere"
   },
   "share": {
     "button_text": "Del placeringsdata",

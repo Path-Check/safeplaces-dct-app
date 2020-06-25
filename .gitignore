@@ -83,16 +83,19 @@ ios/COVIDSafePaths-staging.ipa
 ios/COVIDSafePaths-staging.app
 ios/COVIDSafePaths-staging.app.dSYM.zip
 
-ios/COVIDSafePaths-bte.ipa
-ios/COVIDSafePaths-bte.app
-ios/COVIDSafePaths-bte.app.dSYM.zip
+ios/COVIDSafePaths-bt.ipa
+ios/COVIDSafePaths-bt.app
+ios/COVIDSafePaths-bt.app.dSYM.zip
 
-ios/COVIDSafePaths-staging-bte.ipa
-ios/COVIDSafePaths-staging-bte.app
-ios/COVIDSafePaths-stating-bte.app.dSYM.zip
+ios/COVIDSafePaths-staging-bt.ipa
+ios/COVIDSafePaths-staging-bt.app
+ios/COVIDSafePaths-stating-bt.app.dSYM.zip
 
 # Local Android build artifacts
 android/app/src/main/assets/index.android.bundle
 
 # Local Realm Artifact
 safepaths.realm
+
+# env files
+.env.bt*

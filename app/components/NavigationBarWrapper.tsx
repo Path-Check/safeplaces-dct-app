@@ -1,31 +1,21 @@
-import styled from '@emotion/native';
-import { useTheme } from 'emotion-theming';
-import PropTypes from 'prop-types';
-import * as React from 'react';
-import { Dimensions, StatusBar, Platform } from 'react-native';
+import React from 'react';
+import { SafeAreaView, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { Icons } from '../assets';
-import { Colors } from '../styles';
+import { useStatusBarEffect } from '../navigation';
+import { Typography } from './Typography';
 
-/**
- * Navigation bar and status bar. Optionally include bottom nav
- *
- * @param {{
- *   title: string,
- *   onBackPress: () => void,
- *   includeBottomNav: boolean
- * }} param0
- */
-const widthScale = Math.min(Dimensions.get('window').width / 400, 1.0);
+import { Icons } from '../assets';
+import { Spacing, Colors, Typography as TypographyStyles } from '../styles';
+import { isPlatformAndroid } from '../Util';
 
 interface NavigationBarWrapperProps {
   children: React.ReactNode;
   title: string;
-  onBackPress: () => void;
-  includeBottomNav?: boolean;
+  onBackPress?: () => void;
   includeBackButton?: boolean;
 }
+
 export interface ThemeProps {
   navBar: string;
   background: string;
@@ -43,90 +33,67 @@ export const NavigationBarWrapper = ({
   onBackPress,
   includeBackButton = true,
 }: NavigationBarWrapperProps): JSX.Element => {
-  const theme = useTheme<{ navBar: string }>();
+  useStatusBarEffect('light-content');
 
-  const barColor = (theme && theme.navBar) || Colors.primaryViolet;
+  const handleOnPressBack = () => {
+    if (onBackPress) {
+      onBackPress();
+    }
+  };
 
   return (
-    <>
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor={barColor}
-        translucent={Platform.OS === 'ios'}
-      />
-      <TopContainer />
-      <BottomContainer>
-        <Header>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headerContainer}>
+        <View style={styles.leftContent}>
           {includeBackButton ? (
-            <BackArrowIcon onPress={() => onBackPress()}>
-              <BackArrowSvg xml={Icons.BackArrow} />
-            </BackArrowIcon>
+            <TouchableOpacity onPress={handleOnPressBack}>
+              <SvgXml
+                xml={Icons.BackArrow}
+                color={Colors.white}
+                style={{ paddingTop: Spacing.xSmall }}
+              />
+            </TouchableOpacity>
           ) : null}
-          <Title>{title}</Title>
-        </Header>
-        {children}
-      </BottomContainer>
-    </>
+        </View>
+        <View style={styles.middleContent}>
+          <Typography style={styles.headerText}>{title}</Typography>
+        </View>
+        <View style={styles.rightContent} />
+      </View>
+      <View style={styles.contentContainer}>{children}</View>
+    </SafeAreaView>
   );
 };
 
-const themeNavBar = ({ theme }: Theme) => theme.navBar || Colors.primaryViolet;
-
-const TopContainer = styled.SafeAreaView`
-  flex: 0;
-  background-color: ${themeNavBar};
-`;
-
-const themeBackground = ({ theme }: Theme) =>
-  theme.background || Colors.primaryBackgroundFaintShade;
-
-const BottomContainer = styled.View`
-  flex: 1;
-  background-color: ${themeBackground};
-`;
-
-const themeNavBarBorder = ({ theme }: Theme) =>
-  theme.navBarBorder || Colors.primaryViolet;
-
-const Header = styled.View`
-  align-items: center;
-  background-color: ${themeNavBar};
-  border-bottom-color: ${themeNavBarBorder};
-  border-bottom-width: 1px;
-  flex-direction: row;
-  height: 55px;
-`;
-
-const themeOnNavBar = ({ theme }: Theme) => theme.onNavBar || Colors.white;
-
-const Title = styled.Text`
-  align-self: center;
-  color: ${themeOnNavBar};
-  font-family: IBMPlexSans-Bold;
-  font-size: ${16 * widthScale + 'px'};
-  line-height: 34px;
-  position: absolute;
-  padding-horizontal: 20px;
-  text-align: center;
-  text-transform: uppercase;
-  width: 100%;
-  letter-spacing: 1px;
-`;
-
-const BackArrowIcon = styled.TouchableOpacity`
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  z-index: 1;
-`;
-
-const BackArrowSvg = styled(SvgXml)`
-  height: 18px;
-  width: 18px;
-  color: ${Colors.white};
-`;
-
-NavigationBarWrapper.propTypes = {
-  title: PropTypes.string.isRequired,
-  onBackPress: PropTypes.func.isRequired,
-};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.navBar,
+    paddingTop: isPlatformAndroid() ? Spacing.xSmall : 0,
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: Colors.navBar,
+    paddingVertical: Spacing.xxSmall,
+    paddingHorizontal: Spacing.small,
+  },
+  leftContent: {
+    flex: 1,
+  },
+  middleContent: {
+    flex: 3,
+    alignItems: 'center',
+  },
+  rightContent: {
+    flex: 1,
+  },
+  headerText: {
+    ...TypographyStyles.navHeader,
+  },
+  contentContainer: {
+    backgroundColor: Colors.primaryBackground,
+    flex: 1,
+  },
+});

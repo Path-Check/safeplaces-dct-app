@@ -44,7 +44,7 @@
 		522B6187A48A4AF3A676D5A0 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */; };
 		527CA705E5514AF9BEAC9A2F /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C8CF282C4264C88A4ED8ABF /* IBMPlexMono-Medium.ttf */; };
 		57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */; };
-		626DB8AB8AF9D02B9E411601 /* libPods-BTE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FB16255EA745CC27C638A1 /* libPods-BTE.a */; };
+		626DB8AB8AF9D02B9E411601 /* libPods-BT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FB16255EA745CC27C638A1 /* libPods-BT.a */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
 		688D1F3F24858B7900AD21AE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
 		68D8970624809AA50091A254 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68D8970524809AA50091A254 /* Scrypt */; };
@@ -72,8 +72,15 @@
 		B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
 		B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
 		B52D88C2248F0FD90071ED51 /* GPSSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */; };
-		B52D88C4248F10FD0071ED51 /* BTESecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C3248F10FD0071ED51 /* BTESecureStorage.swift */; };
+		B52D88C4248F10FD0071ED51 /* BTSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */; };
+		B54CBF26249A72E700218477 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CBF25249A72E700218477 /* Region.swift */; };
+		B54CBF32249A738500218477 /* IndexFileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CBF31249A738500218477 /* IndexFileRequests.swift */; };
+		B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B5582D43249943DE001458A9 /* ExposureEventEmitter.m */; };
+		B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */; };
+		B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */; };
 		B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* PTCExposureManagerModule.m */; };
+		B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */; };
+		B5E79437249E666B00BD8596 /* Array+URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E79436249E666B00BD8596 /* Array+URLExtensions.swift */; };
 		B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */; };
 		B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */; };
 		B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0CE24916A4C00433980 /* DebugAction.swift */; };
@@ -92,7 +99,6 @@
 		B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */; };
 		B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */; };
 		B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E2248A82AE006474EB /* Exposure.swift */; };
-		B5FC37E8248A8302006474EB /* TestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E7248A8302006474EB /* TestResult.swift */; };
 		B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
 		BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */; };
@@ -149,7 +155,7 @@
 		D43E27B6F1E045D798270A11 /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4904B061CC24439783E20928 /* IBMPlexSans-SemiBold.ttf */; };
 		D668C3DAB08B4FCBB01E8C2D /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C8EDCCEFCE4874A747E404 /* IBMPlexMono-Light.ttf */; };
 		D7E714F18C9C4172BC01ADF8 /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */; };
-		DC5AA89EE2128B33D9D6BE1F /* libPods-BTETests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC95F63E93B2BB75824CCB3 /* libPods-BTETests.a */; };
+		DC5AA89EE2128B33D9D6BE1F /* libPods-BTTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC95F63E93B2BB75824CCB3 /* libPods-BTTests.a */; };
 		DED6BB86437B4610B1CD3302 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
 		E815ED8FD59D4635AD64CCB3 /* IBMPlexMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE25A1CE9ED048DC83FAE7B0 /* IBMPlexMono-Bold.ttf */; };
 		F3B14B1B97834BBC886F10D5 /* IBMPlexSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6CBA4DBBF104AC1AB920555 /* IBMPlexSans-BoldItalic.ttf */; };
@@ -178,7 +184,7 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C53FD07D24719AD1006D3268;
-			remoteInfo = BTE;
+			remoteInfo = BT;
 		};
 		C5C850E024804A0300A494CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -215,12 +221,12 @@
 		08445F6524284A42008754AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		08445F6724284A52008754AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		08F2A97BB10A459D962AB877 /* IBMPlexMono.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = IBMPlexMono.ttf; path = ../shared/assets/fonts/IBMPlexMono.ttf; sourceTree = "<group>"; };
-		0AA00174D067CC708D445BC1 /* Pods-BTETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTETests.debug.xcconfig"; path = "Target Support Files/Pods-BTETests/Pods-BTETests.debug.xcconfig"; sourceTree = "<group>"; };
+		0AA00174D067CC708D445BC1 /* Pods-BTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTTests.debug.xcconfig"; path = "Target Support Files/Pods-BTTests/Pods-BTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0AB0A08F38494307BF6F0EBC /* IBMPlexMono-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ThinItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-ThinItalic.ttf"; sourceTree = "<group>"; };
 		0DA5F38AAA9DAD3DC7E25DFE /* Pods-COVIDSafePathsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePathsTests.release.xcconfig"; path = "Target Support Files/Pods-COVIDSafePathsTests/Pods-COVIDSafePathsTests.release.xcconfig"; sourceTree = "<group>"; };
-		0DC95F63E93B2BB75824CCB3 /* libPods-BTETests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BTETests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DC95F63E93B2BB75824CCB3 /* libPods-BTTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BTTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD29292C60B45029B7823D6 /* IBMPlexSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLight.ttf"; path = "../app/assets/fonts/IBMPlexSans-ExtraLight.ttf"; sourceTree = "<group>"; };
-		1360DEA45F2DC8248DFD3B91 /* Pods-BTETests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTETests.beta.xcconfig"; path = "Target Support Files/Pods-BTETests/Pods-BTETests.beta.xcconfig"; sourceTree = "<group>"; };
+		1360DEA45F2DC8248DFD3B91 /* Pods-BTTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTTests.beta.xcconfig"; path = "Target Support Files/Pods-BTTests/Pods-BTTests.beta.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* GPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = COVIDSafePaths/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -230,7 +236,7 @@
 		1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Thin.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Thin.ttf"; sourceTree = "<group>"; };
 		167DF82F84E242A39CBEB042 /* IBMPlexMono-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ExtraLightItalic.ttf"; path = "../shared/assets/fonts/IBMPlexMono-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		1ACA74BACC8C2004F373876F /* Pods-GPSTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.staging.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.staging.xcconfig"; sourceTree = "<group>"; };
-		1C73DA2257D3A75481B746C2 /* Pods-BTETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTETests.release.xcconfig"; path = "Target Support Files/Pods-BTETests/Pods-BTETests.release.xcconfig"; sourceTree = "<group>"; };
+		1C73DA2257D3A75481B746C2 /* Pods-BTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTTests.release.xcconfig"; path = "Target Support Files/Pods-BTTests/Pods-BTTests.release.xcconfig"; sourceTree = "<group>"; };
 		20E5EE8E6065465F9558DCDB /* IBMPlexMono-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		210E5F50B07048118538B796 /* IBMPlexSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Italic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Italic.ttf"; sourceTree = "<group>"; };
 		271089AF24698720009AC76F /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
@@ -243,9 +249,9 @@
 		2E9077612439A903005C98DE /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		3053DF05D78949A09366B85D /* IBMPlexMono-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ExtraLight.ttf"; path = "../shared/assets/fonts/IBMPlexMono-ExtraLight.ttf"; sourceTree = "<group>"; };
 		3492B066E2C0B51DB382B59D /* libPods-GPS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3545C7084259A2C3DE79A3F8 /* Pods-BTE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTE.debug.xcconfig"; path = "Target Support Files/Pods-BTE/Pods-BTE.debug.xcconfig"; sourceTree = "<group>"; };
+		3545C7084259A2C3DE79A3F8 /* Pods-BT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BT.debug.xcconfig"; path = "Target Support Files/Pods-BT/Pods-BT.debug.xcconfig"; sourceTree = "<group>"; };
 		36B22BAB357B44949D2E168C /* IBMPlexSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLight.ttf"; path = "../shared/assets/fonts/IBMPlexSans-ExtraLight.ttf"; sourceTree = "<group>"; };
-		38AC1D8427675AE31E01A657 /* Pods-BTE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTE.release.xcconfig"; path = "Target Support Files/Pods-BTE/Pods-BTE.release.xcconfig"; sourceTree = "<group>"; };
+		38AC1D8427675AE31E01A657 /* Pods-BT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BT.release.xcconfig"; path = "Target Support Files/Pods-BT/Pods-BT.release.xcconfig"; sourceTree = "<group>"; };
 		3918820E06534ED8B0C3323C /* IBMPlexMono-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ThinItalic.ttf"; path = "../shared/assets/fonts/IBMPlexMono-ThinItalic.ttf"; sourceTree = "<group>"; };
 		3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLightItalic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		3CADAF81F25CF0AEB8EE6F82 /* Pods-COVIDSafePaths.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths.beta.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths.beta.xcconfig"; sourceTree = "<group>"; };
@@ -254,7 +260,7 @@
 		425FC7942F9E4A7282551030 /* IBMPlexMono-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-BoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		43AEA0E0E250167239F96DA4 /* Pods-GPS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.release.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.release.xcconfig"; sourceTree = "<group>"; };
 		450B58D199444B7D8DEE6A0A /* IBMPlexSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Italic.ttf"; path = "../app/assets/fonts/IBMPlexSans-Italic.ttf"; sourceTree = "<group>"; };
-		48FB16255EA745CC27C638A1 /* libPods-BTE.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BTE.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48FB16255EA745CC27C638A1 /* libPods-BT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4904B061CC24439783E20928 /* IBMPlexSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		5210A8DD90D9EAFD1A73B024 /* Pods-GPSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.debug.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		53A0C1C57CED4660822FE560 /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Medium.ttf"; path = "../app/assets/fonts/IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
@@ -279,7 +285,7 @@
 		71D1C872DB0CCC3BBC3D907E /* Pods-COVIDSafePaths.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths.debug.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths.debug.xcconfig"; sourceTree = "<group>"; };
 		71F26FBF5BDA423184286546 /* IBMPlexMono-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-MediumItalic.ttf"; path = "../shared/assets/fonts/IBMPlexMono-MediumItalic.ttf"; sourceTree = "<group>"; };
 		747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-SemiBoldItalic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		795EB96E2CB0CB5162881486 /* Pods-BTE.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTE.beta.xcconfig"; path = "Target Support Files/Pods-BTE/Pods-BTE.beta.xcconfig"; sourceTree = "<group>"; };
+		795EB96E2CB0CB5162881486 /* Pods-BT.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BT.beta.xcconfig"; path = "Target Support Files/Pods-BT/Pods-BT.beta.xcconfig"; sourceTree = "<group>"; };
 		7E34F61FD4EF1001B4517900 /* Pods-COVIDSafePaths.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths.staging.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths/Pods-COVIDSafePaths.staging.xcconfig"; sourceTree = "<group>"; };
 		86BC12080FD7AC01C8D8206B /* Pods-GPS.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.beta.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.beta.xcconfig"; sourceTree = "<group>"; };
 		89D241005D9647C4B0586127 /* IBMPlexSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = IBMPlexSans.ttf; path = ../shared/assets/fonts/IBMPlexSans.ttf; sourceTree = "<group>"; };
@@ -289,7 +295,7 @@
 		9B4A262ECA724F9CAB9A2C70 /* IBMPlexMono-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-BoldItalic.ttf"; path = "../shared/assets/fonts/IBMPlexMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		9FA39802441F3BE7A66ECEDB /* Pods-COVIDSafePaths-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePaths-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-COVIDSafePaths-tvOSTests/Pods-COVIDSafePaths-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		A57577D96B89452694B53982 /* IBMPlexSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-MediumItalic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-MediumItalic.ttf"; sourceTree = "<group>"; };
-		A57EBADB9939F6264CFDDCC3 /* Pods-BTE.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTE.staging.xcconfig"; path = "Target Support Files/Pods-BTE/Pods-BTE.staging.xcconfig"; sourceTree = "<group>"; };
+		A57EBADB9939F6264CFDDCC3 /* Pods-BT.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BT.staging.xcconfig"; path = "Target Support Files/Pods-BT/Pods-BT.staging.xcconfig"; sourceTree = "<group>"; };
 		AA3F8B702AA869F663C4CB5C /* Pods-GPS.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.staging.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.staging.xcconfig"; sourceTree = "<group>"; };
 		AD17896CB8387148B1D74914 /* Pods-GPS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.debug.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.debug.xcconfig"; sourceTree = "<group>"; };
 		AE25A1CE9ED048DC83FAE7B0 /* IBMPlexMono-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Bold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-Bold.ttf"; sourceTree = "<group>"; };
@@ -319,8 +325,16 @@
 		B3297E1A39360171CB7CC3C8 /* libPods-GPSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
 		B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSSecureStorage.swift; sourceTree = "<group>"; };
-		B52D88C3248F10FD0071ED51 /* BTESecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTESecureStorage.swift; sourceTree = "<group>"; };
+		B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSecureStorage.swift; sourceTree = "<group>"; };
+		B54CBF25249A72E700218477 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		B54CBF31249A738500218477 /* IndexFileRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexFileRequests.swift; sourceTree = "<group>"; };
+		B5582D43249943DE001458A9 /* ExposureEventEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExposureEventEmitter.m; sourceTree = "<group>"; };
+		B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		B596C0712488127D00943B79 /* PTCExposureManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTCExposureManagerModule.m; sourceTree = "<group>"; };
+		B5C490A72498F84000588A5F /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExposureManager+Extensions.swift"; sourceTree = "<group>"; };
+		B5E79436249E666B00BD8596 /* Array+URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+URLExtensions.swift"; sourceTree = "<group>"; };
 		B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebugMenuModule.m; sourceTree = "<group>"; };
 		B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisKeyUrlRequests.swift; sourceTree = "<group>"; };
 		B5FBB0CE24916A4C00433980 /* DebugAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugAction.swift; sourceTree = "<group>"; };
@@ -343,13 +357,15 @@
 		B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ENTemporaryExposureKey+Extensions.swift"; sourceTree = "<group>"; };
 		BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
-		C53FD0C124719AD1006D3268 /* BTE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C504FDC1249D15260024219C /* BT-Production.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BT-Production.entitlements"; sourceTree = "<group>"; };
+		C504FDC4249D155D0024219C /* BT-Development.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BT-Development.entitlements"; sourceTree = "<group>"; };
+		C504FDC5249D15990024219C /* GPS-Production.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "GPS-Production.entitlements"; sourceTree = "<group>"; };
+		C53FD0C124719AD1006D3268 /* BT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53FD0C224719AD2006D3268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C53FD116247454EA006D3268 /* COVIDSafePaths.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = COVIDSafePaths.entitlements; path = BTE/COVIDSafePaths.entitlements; sourceTree = "<group>"; };
-		C56190A12485332E009A6756 /* BTE-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BTE-Bridging-Header.h"; sourceTree = "<group>"; };
+		C56190A12485332E009A6756 /* BT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BT-Bridging-Header.h"; sourceTree = "<group>"; };
 		C58463E32486C51100BCB842 /* ExposureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureManager.swift; sourceTree = "<group>"; };
 		C5850A63247D5A41007A596B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C5AA24E124768FFF00BA0A99 /* BTETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5AA24E124768FFF00BA0A99 /* BTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C850C6248014F700A494CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C5C850C92480156200A494CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBackgroundGeolocation.xcodeproj; path = "../node_modules/@mauron85/react-native-background-geolocation/ios/RCTBackgroundGeolocation.xcodeproj"; sourceTree = "<group>"; };
@@ -382,7 +398,7 @@
 		F2FF56A5536545E693AF41DC /* IBMPlexMono-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-LightItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-LightItalic.ttf"; sourceTree = "<group>"; };
 		F3267DEC44754D9BB6ABA49D /* IBMPlexSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-BoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		F78DC3372D75A63AFE69ADCE /* Pods-COVIDSafePathsTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVIDSafePathsTests.staging.xcconfig"; path = "Target Support Files/Pods-COVIDSafePathsTests/Pods-COVIDSafePathsTests.staging.xcconfig"; sourceTree = "<group>"; };
-		F9475E01B42150CFCF453D52 /* Pods-BTETests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTETests.staging.xcconfig"; path = "Target Support Files/Pods-BTETests/Pods-BTETests.staging.xcconfig"; sourceTree = "<group>"; };
+		F9475E01B42150CFCF453D52 /* Pods-BTTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTTests.staging.xcconfig"; path = "Target Support Files/Pods-BTTests/Pods-BTTests.staging.xcconfig"; sourceTree = "<group>"; };
 		F9ABA426412C489ABAE6E56B /* IBMPlexSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-LightItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		FAA9C6E73C124FF5AF424D48 /* IBMPlexMono-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Thin.ttf"; path = "../app/assets/fonts/IBMPlexMono-Thin.ttf"; sourceTree = "<group>"; };
 		FCF549913C514FDC98379A78 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../app/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -442,7 +458,7 @@
 				C53FD09824719AD1006D3268 /* CoreData.framework in Frameworks */,
 				C53FD09924719AD1006D3268 /* Accelerate.framework in Frameworks */,
 				68EFB21324856EC6003D84F3 /* Scrypt in Frameworks */,
-				626DB8AB8AF9D02B9E411601 /* libPods-BTE.a in Frameworks */,
+				626DB8AB8AF9D02B9E411601 /* libPods-BT.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,7 +466,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC5AA89EE2128B33D9D6BE1F /* libPods-BTETests.a in Frameworks */,
+				DC5AA89EE2128B33D9D6BE1F /* libPods-BTTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,18 +510,18 @@
 				F78DC3372D75A63AFE69ADCE /* Pods-COVIDSafePathsTests.staging.xcconfig */,
 				3CADAF81F25CF0AEB8EE6F82 /* Pods-COVIDSafePaths.beta.xcconfig */,
 				D395048E013A063A99716F02 /* Pods-COVIDSafePathsTests.beta.xcconfig */,
-				3545C7084259A2C3DE79A3F8 /* Pods-BTE.debug.xcconfig */,
-				A57EBADB9939F6264CFDDCC3 /* Pods-BTE.staging.xcconfig */,
-				38AC1D8427675AE31E01A657 /* Pods-BTE.release.xcconfig */,
-				795EB96E2CB0CB5162881486 /* Pods-BTE.beta.xcconfig */,
+				3545C7084259A2C3DE79A3F8 /* Pods-BT.debug.xcconfig */,
+				A57EBADB9939F6264CFDDCC3 /* Pods-BT.staging.xcconfig */,
+				38AC1D8427675AE31E01A657 /* Pods-BT.release.xcconfig */,
+				795EB96E2CB0CB5162881486 /* Pods-BT.beta.xcconfig */,
 				AD17896CB8387148B1D74914 /* Pods-GPS.debug.xcconfig */,
 				AA3F8B702AA869F663C4CB5C /* Pods-GPS.staging.xcconfig */,
 				43AEA0E0E250167239F96DA4 /* Pods-GPS.release.xcconfig */,
 				86BC12080FD7AC01C8D8206B /* Pods-GPS.beta.xcconfig */,
-				0AA00174D067CC708D445BC1 /* Pods-BTETests.debug.xcconfig */,
-				F9475E01B42150CFCF453D52 /* Pods-BTETests.staging.xcconfig */,
-				1C73DA2257D3A75481B746C2 /* Pods-BTETests.release.xcconfig */,
-				1360DEA45F2DC8248DFD3B91 /* Pods-BTETests.beta.xcconfig */,
+				0AA00174D067CC708D445BC1 /* Pods-BTTests.debug.xcconfig */,
+				F9475E01B42150CFCF453D52 /* Pods-BTTests.staging.xcconfig */,
+				1C73DA2257D3A75481B746C2 /* Pods-BTTests.release.xcconfig */,
+				1360DEA45F2DC8248DFD3B91 /* Pods-BTTests.beta.xcconfig */,
 				5210A8DD90D9EAFD1A73B024 /* Pods-GPSTests.debug.xcconfig */,
 				1ACA74BACC8C2004F373876F /* Pods-GPSTests.staging.xcconfig */,
 				60B0614ED854C2369C1852FE /* Pods-GPSTests.release.xcconfig */,
@@ -581,7 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				B52D88BF248F0F130071ED51 /* Common */,
-				C53FD0C324719C25006D3268 /* BTE */,
+				C53FD0C324719C25006D3268 /* BT */,
 				C53FD07C247199A4006D3268 /* GPS */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -636,9 +652,9 @@
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				DCA1D1551CFF3D7C90EDC77C /* libPods-COVIDSafePaths-tvOS.a */,
 				3E10CA5A72D06133B886B461 /* libPods-COVIDSafePaths-tvOSTests.a */,
-				48FB16255EA745CC27C638A1 /* libPods-BTE.a */,
+				48FB16255EA745CC27C638A1 /* libPods-BT.a */,
 				3492B066E2C0B51DB382B59D /* libPods-GPS.a */,
-				0DC95F63E93B2BB75824CCB3 /* libPods-BTETests.a */,
+				0DC95F63E93B2BB75824CCB3 /* libPods-BTTests.a */,
 				B3297E1A39360171CB7CC3C8 /* libPods-GPSTests.a */,
 			);
 			name = Frameworks;
@@ -674,7 +690,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C53FD116247454EA006D3268 /* COVIDSafePaths.entitlements */,
 				08445F4924283AB5008754AC /* GoogleMaps.bundle */,
 				08445F4724283A46008754AC /* GoogleMapsCore.framework */,
 				08445F4524283A40008754AC /* GoogleMaps.framework */,
@@ -686,6 +701,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				08CFC7C2232A41A8F8E9E0B0 /* Pods */,
 				13AEDF79CAC944D79C55B9D6 /* Resources */,
+				B562F041249A64400006647B /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -697,8 +713,8 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* GPS.app */,
 				00E356EE1AD99517003FC87E /* GPSTests.xctest */,
-				C53FD0C124719AD1006D3268 /* BTE.app */,
-				C5AA24E124768FFF00BA0A99 /* BTETests.xctest */,
+				C53FD0C124719AD1006D3268 /* BT.app */,
+				C5AA24E124768FFF00BA0A99 /* BTTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -709,6 +725,42 @@
 				271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		B562F041249A64400006647B /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B5C490A72498F84000588A5F /* Region.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		B5E29D4A249E3A7D00E686DC /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				B5FBB0D224916B3600433980 /* String+Extensions.swift */,
+				B5E79436249E666B00BD8596 /* Array+URLExtensions.swift */,
+				B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */,
+				B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */,
+				B5FBB0D624916DE100433980 /* Notification+Extensions.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		B5E29D4D249E3A8700E686DC /* Exposure Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */,
+			);
+			path = "Exposure Notifications";
+			sourceTree = "<group>";
+		};
+		B5E29D4E249E3A8F00E686DC /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		B5FC37BD2489B05F006474EB /* API */ = {
@@ -731,6 +783,7 @@
 			children = (
 				B5FC37D7248A784F006474EB /* DiagnosisKeyRequests.swift */,
 				B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */,
+				B54CBF31249A738500218477 /* IndexFileRequests.swift */,
 				B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */,
 			);
 			path = Requests;
@@ -742,6 +795,7 @@
 				B5FC37DC248A78D2006474EB /* ExposureKey.swift */,
 				B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */,
 				B5FC37E7248A8302006474EB /* TestResult.swift */,
+				B54CBF25249A72E700218477 /* Region.swift */,
 				B5FC37E2248A82AE006474EB /* Exposure.swift */,
 				B5FBB0D424916D8900433980 /* UserState.swift */,
 			);
@@ -751,7 +805,7 @@
 		B5FC37E4248A82D6006474EB /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				B52D88C3248F10FD0071ED51 /* BTESecureStorage.swift */,
+				B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */,
 				B5FBB0D024916A7200433980 /* Persisted.swift */,
 			);
 			path = Storage;
@@ -760,9 +814,9 @@
 		B5FC37F2248A9934006474EB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */,
-				B5FBB0D224916B3600433980 /* String+Extensions.swift */,
-				B5FBB0D624916DE100433980 /* Notification+Extensions.swift */,
+				B5E29D4E249E3A8F00E686DC /* Other */,
+				B5E29D4D249E3A8700E686DC /* Exposure Notifications */,
+				B5E29D4A249E3A7D00E686DC /* Foundation */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -780,11 +834,12 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */,
 				C5C850FB24812AAB00A494CA /* GPS-Bridging-Header.h */,
+				C504FDC5249D15990024219C /* GPS-Production.entitlements */,
 			);
 			path = GPS;
 			sourceTree = "<group>";
 		};
-		C53FD0C324719C25006D3268 /* BTE */ = {
+		C53FD0C324719C25006D3268 /* BT */ = {
 			isa = PBXGroup;
 			children = (
 				B5FC37F2248A9934006474EB /* Extensions */,
@@ -795,11 +850,13 @@
 				C5C850C6248014F700A494CA /* main.m */,
 				C53FD0C224719AD2006D3268 /* Info.plist */,
 				C5850A63247D5A41007A596B /* Images.xcassets */,
-				C56190A12485332E009A6756 /* BTE-Bridging-Header.h */,
+				C56190A12485332E009A6756 /* BT-Bridging-Header.h */,
 				C58463E32486C51100BCB842 /* ExposureManager.swift */,
 				B5FBB0CE24916A4C00433980 /* DebugAction.swift */,
+				C504FDC1249D15260024219C /* BT-Production.entitlements */,
+				C504FDC4249D155D0024219C /* BT-Development.entitlements */,
 			);
-			path = BTE;
+			path = BT;
 			sourceTree = "<group>";
 		};
 		C57BDFB124883EF400CE62B1 /* bridge */ = {
@@ -807,6 +864,7 @@
 			children = (
 				B596C0712488127D00943B79 /* PTCExposureManagerModule.m */,
 				B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */,
+				B5582D43249943DE001458A9 /* ExposureEventEmitter.m */,
 			);
 			path = bridge;
 			sourceTree = "<group>";
@@ -866,9 +924,9 @@
 			productReference = 13B07F961A680F5B00A75B9A /* GPS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C53FD07D24719AD1006D3268 /* BTE */ = {
+		C53FD07D24719AD1006D3268 /* BT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C53FD0BC24719AD1006D3268 /* Build configuration list for PBXNativeTarget "BTE" */;
+			buildConfigurationList = C53FD0BC24719AD1006D3268 /* Build configuration list for PBXNativeTarget "BT" */;
 			buildPhases = (
 				C53FD07E24719AD1006D3268 /* [CP] Check Pods Manifest.lock */,
 				C53FD07F24719AD1006D3268 /* Start Packager */,
@@ -881,17 +939,17 @@
 			);
 			dependencies = (
 			);
-			name = BTE;
+			name = BT;
 			packageProductDependencies = (
 				68EFB21224856EC6003D84F3 /* Scrypt */,
 			);
 			productName = COVIDSafePaths;
-			productReference = C53FD0C124719AD1006D3268 /* BTE.app */;
+			productReference = C53FD0C124719AD1006D3268 /* BT.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C5AA24D124768FFF00BA0A99 /* BTETests */ = {
+		C5AA24D124768FFF00BA0A99 /* BTTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C5AA24DC24768FFF00BA0A99 /* Build configuration list for PBXNativeTarget "BTETests" */;
+			buildConfigurationList = C5AA24DC24768FFF00BA0A99 /* Build configuration list for PBXNativeTarget "BTTests" */;
 			buildPhases = (
 				C5AA24D424768FFF00BA0A99 /* [CP] Check Pods Manifest.lock */,
 				C5AA24D524768FFF00BA0A99 /* Sources */,
@@ -903,11 +961,11 @@
 			dependencies = (
 				C5AA24E42476901700BA0A99 /* PBXTargetDependency */,
 			);
-			name = BTETests;
+			name = BTTests;
 			packageProductDependencies = (
 			);
 			productName = COVIDSafePathsTests;
-			productReference = C5AA24E124768FFF00BA0A99 /* BTETests.xctest */;
+			productReference = C5AA24E124768FFF00BA0A99 /* BTTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -927,7 +985,6 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 79Z8HUPGC3;
 						LastSwiftMigration = 1130;
 					};
 					C5AA24D124768FFF00BA0A99 = {
@@ -975,8 +1032,8 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* GPS */,
 				00E356ED1AD99517003FC87E /* GPSTests */,
-				C53FD07D24719AD1006D3268 /* BTE */,
-				C5AA24D124768FFF00BA0A99 /* BTETests */,
+				C53FD07D24719AD1006D3268 /* BT */,
+				C5AA24D124768FFF00BA0A99 /* BTTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1142,7 +1199,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BTE-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BT-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1197,7 +1254,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BTETests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BTTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1291,10 +1348,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5FC37E8248A8302006474EB /* TestResult.swift in Sources */,
 				B5FBB0D524916D8900433980 /* UserState.swift in Sources */,
 				B5FBB0D724916DE100433980 /* Notification+Extensions.swift in Sources */,
-				B52D88C4248F10FD0071ED51 /* BTESecureStorage.swift in Sources */,
+				B54CBF26249A72E700218477 /* Region.swift in Sources */,
+				B54CBF32249A738500218477 /* IndexFileRequests.swift in Sources */,
+				B52D88C4248F10FD0071ED51 /* BTSecureStorage.swift in Sources */,
 				B5FC37CC2489B251006474EB /* Result.swift in Sources */,
 				C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */,
 				B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */,
@@ -1302,19 +1360,24 @@
 				B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */,
 				C5C850CA2480156200A494CA /* AppDelegate.m in Sources */,
 				B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */,
+				B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */,
 				B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */,
 				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
+				B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
 				B596C0722488127D00943B79 /* PTCExposureManagerModule.m in Sources */,
 				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
 				B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */,
 				B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */,
+				B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */,
 				B5FC37C12489B075006474EB /* APIClient.swift in Sources */,
 				B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */,
+				B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */,
 				B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */,
 				B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */,
 				B5FC37DD248A78D2006474EB /* ExposureKey.swift in Sources */,
 				B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */,
+				B5E79437249E666B00BD8596 /* Array+URLExtensions.swift in Sources */,
 				B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */,
 				B5FC37D02489B3DE006474EB /* StructuredError.swift in Sources */,
 			);
@@ -1340,7 +1403,7 @@
 		C5AA24E42476901700BA0A99 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
-			target = C53FD07D24719AD1006D3268 /* BTE */;
+			target = C53FD07D24719AD1006D3268 /* BT */;
 			targetProxy = C5AA24E32476901700BA0A99 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1464,12 +1527,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
@@ -1550,12 +1614,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
@@ -1690,12 +1755,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
@@ -1858,12 +1924,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
@@ -2072,18 +2139,18 @@
 		};
 		C53FD0BD24719AD1006D3268 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3545C7084259A2C3DE79A3F8 /* Pods-BTE.debug.xcconfig */;
+			baseConfigurationReference = 3545C7084259A2C3DE79A3F8 /* Pods-BT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = BTE/COVIDSafePaths.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = BTE/Info.plist;
+				INFOPLIST_FILE = BT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2096,9 +2163,9 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = BTE;
+				PRODUCT_NAME = BT;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
-				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2107,18 +2174,18 @@
 		};
 		C53FD0BE24719AD1006D3268 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A57EBADB9939F6264CFDDCC3 /* Pods-BTE.staging.xcconfig */;
+			baseConfigurationReference = A57EBADB9939F6264CFDDCC3 /* Pods-BT.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = BTE/COVIDSafePaths.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = BTE/Info.plist;
+				INFOPLIST_FILE = BT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2131,9 +2198,9 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = BTE;
+				PRODUCT_NAME = BT;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
-				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2142,18 +2209,18 @@
 		};
 		C53FD0BF24719AD1006D3268 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38AC1D8427675AE31E01A657 /* Pods-BTE.release.xcconfig */;
+			baseConfigurationReference = 38AC1D8427675AE31E01A657 /* Pods-BT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = BTE/COVIDSafePaths.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = BTE/Info.plist;
+				INFOPLIST_FILE = BT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2166,9 +2233,9 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = BTE;
+				PRODUCT_NAME = BT;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
-				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2176,18 +2243,18 @@
 		};
 		C53FD0C024719AD1006D3268 /* Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 795EB96E2CB0CB5162881486 /* Pods-BTE.beta.xcconfig */;
+			baseConfigurationReference = 795EB96E2CB0CB5162881486 /* Pods-BT.beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = BTE/COVIDSafePaths.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = BTE/Info.plist;
+				INFOPLIST_FILE = BT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2200,9 +2267,9 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.bt;
-				PRODUCT_NAME = BTE;
+				PRODUCT_NAME = BT;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
-				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2210,7 +2277,7 @@
 		};
 		C5AA24DD24768FFF00BA0A99 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AA00174D067CC708D445BC1 /* Pods-BTETests.debug.xcconfig */;
+			baseConfigurationReference = 0AA00174D067CC708D445BC1 /* Pods-BTTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2234,16 +2301,16 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BTE.app/BTE";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BT.app/BT";
 			};
 			name = Debug;
 		};
 		C5AA24DE24768FFF00BA0A99 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9475E01B42150CFCF453D52 /* Pods-BTETests.staging.xcconfig */;
+			baseConfigurationReference = F9475E01B42150CFCF453D52 /* Pods-BTTests.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2267,16 +2334,16 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BTE.app/BTE";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BT.app/BT";
 			};
 			name = Staging;
 		};
 		C5AA24DF24768FFF00BA0A99 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C73DA2257D3A75481B746C2 /* Pods-BTETests.release.xcconfig */;
+			baseConfigurationReference = 1C73DA2257D3A75481B746C2 /* Pods-BTTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2297,15 +2364,15 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BTE.app/BTE";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BT.app/BT";
 			};
 			name = Release;
 		};
 		C5AA24E024768FFF00BA0A99 /* Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1360DEA45F2DC8248DFD3B91 /* Pods-BTETests.beta.xcconfig */;
+			baseConfigurationReference = 1360DEA45F2DC8248DFD3B91 /* Pods-BTTests.beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2326,9 +2393,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BTE/BTE-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BTE.app/BTE";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BT.app/BT";
 			};
 			name = Beta;
 		};
@@ -2368,7 +2435,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C53FD0BC24719AD1006D3268 /* Build configuration list for PBXNativeTarget "BTE" */ = {
+		C53FD0BC24719AD1006D3268 /* Build configuration list for PBXNativeTarget "BT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C53FD0BD24719AD1006D3268 /* Debug */,
@@ -2379,7 +2446,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C5AA24DC24768FFF00BA0A99 /* Build configuration list for PBXNativeTarget "BTETests" */ = {
+		C5AA24DC24768FFF00BA0A99 /* Build configuration list for PBXNativeTarget "BTTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C5AA24DD24768FFF00BA0A99 /* Debug */,

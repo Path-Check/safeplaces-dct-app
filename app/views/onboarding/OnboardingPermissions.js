@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react';
 import {
-  Dimensions,
+  TouchableOpacity,
   ImageBackground,
   Platform,
-  ScrollView,
   StatusBar,
   StyleSheet,
   View,
@@ -11,21 +10,24 @@ import {
 import { SvgXml } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
 
-import { Icons, Images } from '../../assets';
-import { sharedStyles } from './styles';
-import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import { PARTICIPATE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
-import PermissionsContext, { PermissionStatus } from '../../PermissionsContext';
+import PermissionsContext, {
+  PermissionStatus,
+} from '../../gps/PermissionsContext';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
-import fontFamily from '../../constants/fonts';
 
-import { Colors } from '../../styles';
-
-const width = Dimensions.get('window').width;
+import { sharedStyles } from './styles';
+import { Icons, Images } from '../../assets';
+import {
+  Spacing,
+  Buttons,
+  Colors,
+  Typography as TypographyStyles,
+} from '../../styles';
 
 export const OnboardingPermissions = () => {
   const isiOS = Platform.OS === 'ios';
@@ -91,7 +93,7 @@ export const OnboardingPermissions = () => {
     }
   };
 
-  const onSkipStep = () => {
+  const handleOnPressMaybeLater = () => {
     moveToNextStep();
   };
 
@@ -99,6 +101,8 @@ export const OnboardingPermissions = () => {
     SetStoreData(PARTICIPATE, location.status === PermissionStatus.GRANTED);
     dispatchOnboardingComplete();
   };
+
+  const dontEnableText = 'Maybe Later';
 
   return (
     <Theme use='violet'>
@@ -111,7 +115,7 @@ export const OnboardingPermissions = () => {
           translucent
         />
 
-        <ScrollView
+        <View
           testID={'onboarding-permissions-screen'}
           style={styles.mainContainer}>
           <View style={styles.contentContainer}>
@@ -121,20 +125,25 @@ export const OnboardingPermissions = () => {
             <Typography style={styles.headerText}>{header}</Typography>
             <Typography style={styles.subheaderText}>{subHeader}</Typography>
           </View>
-        </ScrollView>
-        <View style={[styles.footerContainer]}>
-          <Button
-            label={'Maybe Later'}
-            secondary
-            style={styles.marginBottom}
-            onPress={onSkipStep}
-            testID={'onboarding-permissions-skip-button'}
-          />
-          <Button
-            label={buttonLabel}
-            onPress={handleButtonPress}
-            testID={'onboarding-permissions-button'}
-          />
+          <View style={styles.footerContainer}>
+            <TouchableOpacity
+              style={styles.dontEnableButton}
+              onPress={handleOnPressMaybeLater}
+              testID={'onboarding-permissions-skip-button'}>
+              <Typography style={styles.dontEnableButtonText}>
+                {dontEnableText}
+              </Typography>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.enableButton}
+              onPress={handleButtonPress}
+              testID={'onboarding-permissions-button'}>
+              <Typography style={styles.enableButtonText}>
+                {buttonLabel}
+              </Typography>
+            </TouchableOpacity>
+          </View>
         </View>
       </ImageBackground>
     </Theme>
@@ -150,34 +159,39 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
+    padding: Spacing.large,
   },
   contentContainer: {
-    width: width * 0.9,
+    flex: 3,
+    justifyContent: 'center',
+  },
+  footerContainer: {
     flex: 1,
-    alignSelf: 'center',
-    marginTop: 70,
+    width: '100%',
+    justifyContent: 'space-around',
   },
   headerText: {
-    lineHeight: 32,
-    color: Colors.white,
-    fontSize: 26,
-    fontFamily: fontFamily.primaryRegular,
+    ...TypographyStyles.header2,
+    color: Colors.invertedText,
   },
   subheaderText: {
-    color: Colors.white,
-    marginTop: 24,
-    lineHeight: 24,
-    fontSize: 18,
-    fontFamily: fontFamily.primaryRegular,
-  },
-  marginBottom: {
-    marginBottom: 21,
+    ...TypographyStyles.mainContent,
+    color: Colors.invertedText,
+    paddingTop: Spacing.medium,
   },
   iconCircle: {
     backgroundColor: Colors.white,
   },
-  footerContainer: {
-    padding: 24,
-    width: '100%',
+  enableButton: {
+    ...Buttons.largeWhite,
+  },
+  enableButtonText: {
+    ...TypographyStyles.buttonTextDark,
+  },
+  dontEnableButton: {
+    ...Buttons.largeWhiteOutline,
+  },
+  dontEnableButtonText: {
+    ...TypographyStyles.buttonTextLight,
   },
 });

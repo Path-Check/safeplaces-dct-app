@@ -1,21 +1,36 @@
 import React from 'react';
-import { Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import { Images } from '../assets';
 import { Typography } from './Typography';
 
+import { Forms } from '../styles';
+
 export const Checkbox = ({ label, onPress, checked }) => {
   return (
     <TouchableOpacity
-      style={{ flexDirection: 'row' }}
+      style={styles.checkbox}
       onPress={onPress}
       accessible
+      accessibilityRole='checkbox'
       accessibilityLabel={label}>
       <Image
         source={checked ? Images.BoxCheckedIcon : Images.BoxUncheckedIcon}
-        style={{ width: 25, height: 25, marginRight: 10 }}
+        style={styles.checkboxIcon}
       />
-      <Typography use='body1'>{label}</Typography>
+      <Typography style={styles.checkboxText}>{label}</Typography>
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  checkbox: {
+    ...Forms.checkbox,
+  },
+  checkboxIcon: {
+    ...Forms.checkboxIcon,
+  },
+  checkboxText: {
+    ...Forms.checkboxText,
+  },
+});

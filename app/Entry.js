@@ -12,11 +12,11 @@ import {
 } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 
-import { Main } from './views/Main';
 import SettingsScreen from './views/Settings';
 import AboutScreen from './views/About';
 import PartnersOverviewScreen from './views/Partners/PartnersOverview';
 import PartnersEditScreen from './views/Partners/PartnersEdit';
+import PartnersCustomUrlScreen from './views/Partners/PartnersCustomUrlScreen';
 
 import { LicensesScreen } from './views/Licenses';
 import {
@@ -28,10 +28,12 @@ import {
   ExportLocationConsent,
   ExportPublishConsent,
   ExportSelectHA,
+  ExportLocally,
 } from './views/Export';
 import ExposureHistoryScreen from './views/ExposureHistory';
 import Assessment from './views/assessment';
-import NextSteps from './views/NextSteps';
+import NextSteps from './views/ExposureHistory/NextSteps';
+import MoreInfo from './views/ExposureHistory/MoreInfo';
 import ENDebugMenu from './views/Settings/ENDebugMenu';
 import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
@@ -41,16 +43,19 @@ import Onboarding1 from './views/onboarding/Onboarding1';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
-import { OnboardingPermissions } from './views/onboarding/OnboardingPermissions';
+import OnboardingNotifications from './views/onboarding/OnboardingNotifications';
+import OnboardingLocations from './views/onboarding/OnboardingLocations';
 
 import { Screens, Stacks } from './navigation';
 
 import ExposureHistoryContext from './ExposureHistoryContext';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import { isGPS } from './COVIDSafePathsConfig';
-import * as Icons from './assets/svgs/TabBarNav';
+import { isPlatformAndroid } from './Util';
+import TracingStrategyContext from './TracingStrategyContext';
 
-import { Affordances, Colors, Spacing } from './styles';
+import * as Icons from './assets/svgs/TabBarNav';
+import { Layout, Affordances, Spacing, Colors } from './styles';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -108,14 +113,13 @@ const ExposureHistoryStack = ({ navigation }) => {
       mode='modal'
       screenOptions={{
         ...SCREEN_OPTIONS,
-        cardStyleInterpolator: fade,
-        gestureEnabled: false,
       }}>
       <Stack.Screen
         name={Screens.ExposureHistory}
         component={ExposureHistoryScreen}
       />
       <Stack.Screen name={Screens.NextSteps} component={NextSteps} />
+      <Stack.Screen name={Screens.MoreInfo} component={MoreInfo} />
     </Stack.Navigator>
   );
 };
@@ -144,12 +148,14 @@ const MoreTabStack = () => (
       name={Screens.ENLocalDiagnosisKey}
       component={ENLocalDiagnosisKeyScreen}
     />
+    <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
   </Stack.Navigator>
 );
 
 const MainAppTabs = () => {
   const { t } = useTranslation();
   const { userHasNewExposure } = useContext(ExposureHistoryContext);
+  const { homeScreenComponent } = useContext(TracingStrategyContext);
 
   const applyBadge = (icon) => {
     return (
@@ -174,14 +180,15 @@ const MainAppTabs = () => {
         activeTintColor: Colors.white,
         inactiveTintColor: Colors.primaryViolet,
         style: {
-          backgroundColor: Colors.violetTextDark,
-          borderTopColor: Colors.primaryViolet,
-          paddingVertical: Spacing.xxxSmall,
+          backgroundColor: Colors.navBar,
+          borderTopColor: Colors.navBar,
+          paddingTop: isPlatformAndroid() ? 0 : Spacing.xSmall,
+          height: Layout.navBar,
         },
       }}>
       <Tab.Screen
         name={Stacks.Main}
-        component={Main}
+        component={homeScreenComponent}
         options={{
           tabBarLabel: t('navigation.home'),
           tabBarIcon: ({ focused, size }) => (
@@ -201,7 +208,7 @@ const MainAppTabs = () => {
           tabBarIcon: ({ focused, size }) => {
             const tabIcon = (
               <SvgXml
-                xml={focused ? Icons.HistoryActive : Icons.HistoryInactive}
+                xml={focused ? Icons.CalendarActive : Icons.CalendarInactive}
                 width={size}
                 height={size}
               />
@@ -229,13 +236,13 @@ const MainAppTabs = () => {
       )}
       {isGPS ? (
         <Tab.Screen
-          name='Partners'
+          name={Stacks.Partners}
           component={PartnersStack}
           options={{
             tabBarLabel: t('navigation.partners'),
             tabBarIcon: ({ focused, size }) => (
               <SvgXml
-                xml={focused ? Icons.PartnersActive : Icons.PartnersInactive}
+                xml={focused ? Icons.ShieldActive : Icons.ShieldInactive}
                 width={size}
                 height={size}
               />
@@ -247,7 +254,7 @@ const MainAppTabs = () => {
           name={Stacks.SelfAssessment}
           component={SelfAssessmentStack}
           options={{
-            tabBarLabel: t('navigation.selfAssessment'),
+            tabBarLabel: t('navigation.self_assessment'),
             tabBarIcon: ({ focused, size }) => (
               <SvgXml
                 xml={
@@ -287,8 +294,12 @@ const OnboardingStack = () => (
     <Stack.Screen name={Screens.Onboarding3} component={Onboarding3} />
     <Stack.Screen name={Screens.Onboarding4} component={Onboarding4} />
     <Stack.Screen
-      name={Screens.OnboardingPermissions}
-      component={OnboardingPermissions}
+      name={Screens.OnboardingNotificationPermissions}
+      component={OnboardingNotifications}
+    />
+    <Stack.Screen
+      name={Screens.OnboardingLocationPermissions}
+      component={OnboardingLocations}
     />
     <Stack.Screen
       name={Screens.EnableExposureNotifications}
@@ -300,10 +311,14 @@ const OnboardingStack = () => (
 const PartnersStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen
-      name={'PartnersOverview'}
+      name={Screens.PartnersOverview}
       component={PartnersOverviewScreen}
     />
-    <Stack.Screen name={'PartnersEdit'} component={PartnersEditScreen} />
+    <Stack.Screen name={Screens.PartnersEdit} component={PartnersEditScreen} />
+    <Stack.Screen
+      name={Screens.PartnersCustomUrl}
+      component={PartnersCustomUrlScreen}
+    />
   </Stack.Navigator>
 );
 

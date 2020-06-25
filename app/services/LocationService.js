@@ -1,6 +1,5 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
-import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import { CROSSED_PATHS } from '../constants/storage';
@@ -14,21 +13,29 @@ const LOCATION_DISABLED_NOTIFICATION_ID = '55';
 // 5 minutes
 export const MIN_LOCATION_UPDATE_MS = 300000;
 
-export default class LocationServices {
-  /**
-   * Location services are disabled for the device
-   */
-  DEVICE_LOCATION_OFF = 'DEVICE_LOCATION_OFF';
-  /**
-   * Location services are disabled for this app
-   */
-  APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
-  /**
-   * User has granted location tracking permissions
-   * to the app, and device location services are running
-   */
-  ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
+//Device Location Statuses
+/**
+ * Location services are disabled for the device
+ */
+export const DEVICE_LOCATION_OFF = 'DEVICE_LOCATION_OFF';
+/**
+ * Location services are disabled for this app
+ */
+export const APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
+/**
+ * User has granted location tracking permissions
+ * to the app, and device location services are running
+ */
+export const ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
 
+/* 
+  On Android: isAppGpsEnabled = 0 means Never Use Location
+  On IOS: isAppGpsEnabled = 0 means Never Use Location. isAppGpsEnabled = 99 means Ask Next Time
+*/
+export const NEVER_USE_LOCATION_STATUS = 0;
+export const ASK_NEXT_TIME_STATUS = 99;
+
+export default class LocationServices {
   static async start() {
     // handles edge cases around Android where start might get called again even though
     // the service is already created.  Make sure the listeners are still bound and exit
@@ -37,18 +44,6 @@ export default class LocationServices {
       return;
     }
 
-    PushNotification.configure({
-      // (required) Called when a remote or local notification is opened or received
-      onNotification(notification) {
-        console.log('NOTIFICATION:', notification);
-        // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
-        notification.finish(PushNotificationIOS.FetchResult.NoData);
-      },
-      // Setting the permissions to true causes a crash on Android, because that configuration requires Firebase
-      // https://github.com/zo0r/react-native-push-notification#usage
-      requestPermissions: Platform.OS === 'ios',
-    });
-
     BackgroundGeolocation.configure({
       maxLocations: 0,
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
@@ -56,6 +51,10 @@ export default class LocationServices {
       distanceFilter: 5,
       notificationTitle: languages.t('label.location_enabled_title'),
       notificationText: languages.t('label.location_enabled_message'),
+      enableAutoStartDialogueTitle: languages.t('home.gps.auto_start_header'),
+      enableAutoStartDialogueText: languages.t('home.gps.auto_start_subheader'),
+      enableLocationDialogueTitle: languages.t('home.gps.tracing_off_header'),
+      enableLocationDialogueText: languages.t('home.gps.tracing_off_subheader'),
       debug: false,
       startOnBoot: true,
       stopOnTerminate: false,
@@ -187,16 +186,18 @@ export default class LocationServices {
     if (!isDeviceGpsEnabled) {
       return {
         canTrack: false,
-        reason: this.DEVICE_LOCATION_OFF,
+        reason: DEVICE_LOCATION_OFF,
         hasPotentialExposure,
         isRunning,
       };
     }
-
-    if (!isAppGpsEnabled) {
+    if (
+      isAppGpsEnabled === NEVER_USE_LOCATION_STATUS ||
+      isAppGpsEnabled === ASK_NEXT_TIME_STATUS
+    ) {
       return {
         canTrack: false,
-        reason: this.APP_NOT_AUTHORIZED,
+        reason: APP_NOT_AUTHORIZED,
         hasPotentialExposure,
         isRunning,
       };
@@ -204,7 +205,7 @@ export default class LocationServices {
 
     return {
       canTrack: true,
-      reason: this.ALL_CONDITIONS_MET,
+      reason: ALL_CONDITIONS_MET,
       hasPotentialExposure,
       isRunning,
     };

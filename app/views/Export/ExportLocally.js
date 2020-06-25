@@ -1,49 +1,18 @@
-import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  BackHandler,
-  NativeModules,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
+import React from 'react';
+import { NativeModules } from 'react-native';
 import RNFS from 'react-native-fs';
-import LinearGradient from 'react-native-linear-gradient';
 import Share from 'react-native-share';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import { Button, Typography } from '../../components';
-import fontFamily from '../../constants/fonts';
-import { Theme } from '../../constants/themes';
+import { NavigationBarWrapper } from '../../components';
 import { isPlatformiOS } from '../../Util';
-
-import { Icons } from '../../assets';
-import { Colors } from '../../styles';
+import ExportTemplate from './ExportTemplate';
 
 const base64 = RNFetchBlob.base64;
 
-// NOTE:
-// This is the old way we export. This is still the default, but will
-// become flipped behind the feature flag once we have staging for uploading.
+// NOTE: for testing data only.
 const ExportLocally = ({ navigation }) => {
-  const { t } = useTranslation();
-  function handleBackPress() {
-    navigation.goBack();
-    return true;
-  }
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-    return function cleanup() {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-    };
-  });
-
-  async function onShare() {
+  const onShare = async () => {
     try {
       let locationData = await NativeModules.SecureStorageManager.getLocations();
       let nowUTC = new Date().toISOString();
@@ -107,87 +76,22 @@ const ExportLocally = ({ navigation }) => {
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   return (
-    <Theme use='violet'>
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor={Colors.secondaryBlue}
-        translucent={false}
+    <NavigationBarWrapper
+      onBackPress={() => navigation.goBack()}
+      title={'Download Locally (DEV)'}>
+      <ExportTemplate
+        headline={'Download Locally (DEV)'}
+        body={
+          'Download your data for testing purposes as a JSON file. Not for production environments.'
+        }
+        onNext={onShare}
+        nextButtonLabel={'Download Locally'}
       />
-      <SafeAreaView style={styles.topSafeAreaContainer} />
-      <SafeAreaView style={styles.bottomSafeAreaContainer}>
-        <LinearGradient
-          start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: 1 }}
-          colors={[Colors.secondaryBlue, Colors.primaryBlue]}
-          style={{ flex: 1, height: '100%' }}>
-          <ScrollView contentContainerStyle={styles.contentContainer}>
-            <View style={styles.main}>
-              <Typography use='headline2' style={styles.exportSectionTitles}>
-                {t('share.title')}
-              </Typography>
-              <Typography use='body1' style={styles.exportSectionPara}>
-                {t('share.paragraph_first')}
-              </Typography>
-              <Typography use='body1' style={styles.exportSectionPara}>
-                {t('share.paragraph_second')}
-              </Typography>
-
-              <Button
-                style={styles.exportButton}
-                label={t('share.button_text')}
-                icon={Icons.Export}
-                onPress={onShare}
-              />
-            </View>
-          </ScrollView>
-        </LinearGradient>
-      </SafeAreaView>
-    </Theme>
+    </NavigationBarWrapper>
   );
-};
-
-const styles = StyleSheet.create({
-  // Container covers the entire screen
-  topSafeAreaContainer: {
-    flex: 0,
-    backgroundColor: Colors.secondaryBlue,
-  },
-  bottomSafeAreaContainer: {
-    flex: 1,
-    backgroundColor: Colors.primaryBlue,
-  },
-  contentContainer: {
-    flexDirection: 'column',
-    width: '100%',
-    flex: 1,
-    paddingHorizontal: 26,
-  },
-  exportSectionTitles: {
-    marginTop: 9,
-    fontWeight: 'normal',
-    fontFamily: fontFamily.primaryMedium,
-  },
-  exportSectionPara: {
-    marginTop: 22,
-  },
-  exportButton: {
-    marginTop: 48,
-  },
-  main: {
-    flex: 1,
-    paddingTop: 48,
-  },
-});
-
-ExportLocally.propTypes = {
-  shareButtonDisabled: PropTypes.bool,
-};
-
-ExportLocally.defaultProps = {
-  shareButtonDisabled: true,
 };
 
 export default ExportLocally;

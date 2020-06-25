@@ -1,17 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  StyleSheet,
-  View,
-  TouchableHighlight,
-  FlatList,
-  ActivityIndicator,
-} from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
+import { StyleSheet, View, TouchableHighlight, FlatList } from 'react-native';
 
 import { Icons } from '../../assets';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
@@ -20,14 +9,21 @@ import Colors from '../../constants/colors';
 
 import { SvgXml } from 'react-native-svg';
 import { useDispatch, useSelector } from 'react-redux';
-import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
 import getHealthcareAuthoritiesAction from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import type { HealthcareAuthority } from '../../store/types';
 import selectedHealthcareAuthoritiesSelector from '../../store/selectors/selectedHealthcareAuthoritiesSelector';
+import customUrlhealthcareAuthorityOptionsSelector from '../../store/selectors/customUrlhealthcareAuthorityOptionsSelector';
+import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
+import { Screens, NavigationProp } from '../../navigation';
+
 import toggleSelectedHealthcareAuthorityAction from '../../store/actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
+import { Button } from '../../components/Button';
+import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
+import { Spacing } from '../../styles';
+import { FeatureFlag } from '../../components/FeatureFlag';
 
 type PartnersEditScreenProps = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationProp;
 };
 
 const Separator = () => (
@@ -52,7 +48,10 @@ const PartnersScreen = ({
     dispatch(getHealthcareAuthoritiesAction());
   }, [dispatch]);
 
-  const authorities = useSelector(healthcareAuthorityOptionsSelector);
+  const authorityOptions = useSelector(healthcareAuthorityOptionsSelector);
+  const authorityOptionsFromCustomUrl = useSelector(
+    customUrlhealthcareAuthorityOptionsSelector,
+  );
   const selectedAuthorities = useSelector(
     selectedHealthcareAuthoritiesSelector,
   );
@@ -71,6 +70,8 @@ const PartnersScreen = ({
       }),
     );
   };
+
+  const authorities = [...authorityOptions, ...authorityOptionsFromCustomUrl];
 
   return (
     <NavigationBarWrapper
@@ -112,13 +113,30 @@ const PartnersScreen = ({
         contentContainerStyle={{ flexGrow: 1 }}
         data={authorities}
         ListEmptyComponent={
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            <ActivityIndicator size={'large'} />
+          <View style={styles.listEmptyWrapper}>
+            <NoAuthoritiesMessage />
           </View>
         }
         ItemSeparatorComponent={() => <Separator />}
       />
+      <FeatureFlag name={'custom_url'}>
+        <View style={{ padding: 24 }}>
+          <Button
+            label={t('authorities.custom_url')}
+            onPress={() => navigation.navigate(Screens.PartnersCustomUrl)}
+          />
+        </View>
+      </FeatureFlag>
     </NavigationBarWrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  listEmptyWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: Spacing.xLarge,
+  },
+});
 export default PartnersScreen;

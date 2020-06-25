@@ -101,7 +101,9 @@ const CodeInput = ({ code, length, setCode }) => {
           style={[
             styles.characterInput,
             {
-              borderColor: character ? Colors.primaryBorder : Colors.melrose,
+              borderColor: character
+                ? Colors.primaryBorder
+                : Colors.quaternaryViolet,
             },
           ]}
           keyboardType={'number-pad'}
@@ -135,7 +137,10 @@ export const ExportSelectHA = ({ route, navigation }) => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
-      const { valid } = await exportCodeApi(selectedAuthority, code);
+      let { valid } = await exportCodeApi(selectedAuthority, code);
+
+      if (!isGPS) valid = code === '123456';
+
       if (valid) {
         navigation.navigate(exportCodeInputNextRoute, {
           selectedAuthority,
@@ -146,7 +151,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
       }
       setIsCheckingCode(false);
     } catch (e) {
-      Alert.alert(t('common.something_went_wrong'));
+      Alert.alert(t('common.something_went_wrong'), e.message);
       setIsCheckingCode(false);
     }
   };
@@ -173,9 +178,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
             />
           </View>
           <View style={{ flex: 1, marginBottom: 20 }}>
-            <Typography use='headline2' style={styles.exportSectionTitles}>
-              {exportCodeTitle}
-            </Typography>
+            <Typography use='headline2'>{exportCodeTitle}</Typography>
             <View style={{ height: 8 }} />
             <Typography use='body1'>
               {exportCodeBody(selectedAuthority.name)}

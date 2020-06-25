@@ -3,8 +3,8 @@ import { View, Text, ViewStyle, TextStyle, StyleSheet } from 'react-native';
 import dayjs from 'dayjs';
 
 import { DateTimeUtils } from '../../helpers';
-import { ExposureDatum } from '../../ExposureHistoryContext';
-import { Outlines, Colors, Typography } from '../../styles';
+import { ExposureDatum } from '../../exposureHistory';
+import { Affordances, Outlines, Colors, Typography } from '../../styles';
 
 interface ExposureDatumIndicatorProps {
   exposureDatum: ExposureDatum;
@@ -17,17 +17,22 @@ const ExposureDatumIndicator = ({
   exposureDatum,
   isSelected,
 }: ExposureDatumIndicatorProps): JSX.Element => {
+  const isToday = DateTimeUtils.isToday(exposureDatum.date);
+
+  const applyBadge = (indicator: JSX.Element) => {
+    return (
+      <>
+        {indicator}
+        <View style={styles.selectedBadge} />
+      </>
+    );
+  };
+
   const applyRiskStyle = ([
     circleStyle,
     textStyle,
   ]: IndicatorStyle): IndicatorStyle => {
     switch (exposureDatum.kind) {
-      case 'Unknown': {
-        return [
-          { ...circleStyle },
-          { ...textStyle, color: Colors.tertiaryViolet },
-        ];
-      }
       case 'NoKnown': {
         return [
           { ...circleStyle },
@@ -51,10 +56,11 @@ const ExposureDatumIndicator = ({
     circleStyle,
     textStyle,
   ]: IndicatorStyle): IndicatorStyle => {
-    if (DateTimeUtils.isToday(exposureDatum.date)) {
+    if (isToday) {
       return [
-        circleStyle,
-
+        {
+          ...circleStyle,
+        },
         {
           ...textStyle,
           fontWeight: Typography.heaviestWeight,
@@ -91,9 +97,11 @@ const ExposureDatumIndicator = ({
 
   const dayNumber = dayjs(exposureDatum.date).format('D');
 
+  const indicator = <Text style={textStyle}>{dayNumber}</Text>;
+
   return (
     <View style={circleStyle}>
-      <Text style={textStyle}>{dayNumber}</Text>
+      {isToday ? applyBadge(indicator) : indicator}
     </View>
   );
 };
@@ -110,7 +118,11 @@ const styles = StyleSheet.create({
     borderWidth: Outlines.thick,
   },
   textBase: {
-    ...Typography.label,
+    ...Typography.smallFont,
+    color: Colors.primaryText,
+  },
+  selectedBadge: {
+    ...Affordances.bottomDotBadge(Colors.primaryText),
   },
 });
 
