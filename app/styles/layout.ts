@@ -5,6 +5,9 @@ import * as Spacing from './spacing';
 export const screenWidth = Dimensions.get('window').width;
 export const screenHeight = Dimensions.get('window').height;
 
+// iphone 8
+export const smallScreenWidth = 375;
+
 export const baseScreenPadding = Spacing.xSmall;
 
 export const xxSmallWidth = 0.05 * screenWidth;
