@@ -136,19 +136,31 @@ export const ExportSelectHA = ({ route, navigation }) => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
-      let { valid } = await exportCodeApi(selectedAuthority, code);
+      if (isGPS) {
+        const { valid } = await exportCodeApi(selectedAuthority, code);
 
-      if (!isGPS) valid = code === '123456';
-
-      if (valid) {
-        navigation.navigate(exportCodeInputNextRoute, {
-          selectedAuthority,
-          code,
-        });
+        if (valid) {
+          navigation.navigate(exportCodeInputNextRoute, {
+            selectedAuthority,
+            code,
+          });
+        } else {
+          setCodeInvalid(true);
+        }
+        setIsCheckingCode(false);
       } else {
-        setCodeInvalid(true);
+        const valid = code === '123456';
+
+        if (valid) {
+          navigation.navigate(exportCodeInputNextRoute, {
+            selectedAuthority,
+            code,
+          });
+        } else {
+          setCodeInvalid(true);
+        }
+        setIsCheckingCode(false);
       }
-      setIsCheckingCode(false);
     } catch (e) {
       Alert.alert(t('common.something_went_wrong'), e.message);
       setIsCheckingCode(false);
