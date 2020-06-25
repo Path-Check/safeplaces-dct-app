@@ -1,7 +1,5 @@
 import Foundation
 
-// MARK: - Helpers
-
 extension DownloadedPackage {
 
   func writeSignatureEntry(toDirectory directory: URL, filename: String) throws -> URL {

@@ -30,6 +30,7 @@ import {
   ExportSelectHA,
   ExportLocally,
 } from './views/Export';
+import { PublishConsent } from './bt/PositiveDiagnosis/PublishConsent';
 import ExposureHistoryScreen from './views/ExposureHistory';
 import Assessment from './views/assessment';
 import NextSteps from './views/ExposureHistory/NextSteps';
@@ -86,6 +87,7 @@ const ExportStack = () => (
       name={Screens.ExportLocationConsent}
       component={ExportLocationConsent}
     />
+    <Stack.Screen name={Screens.PublishConsent} component={PublishConsent} />
     <Stack.Screen
       name={Screens.ExportPublishConsent}
       component={ExportPublishConsent}

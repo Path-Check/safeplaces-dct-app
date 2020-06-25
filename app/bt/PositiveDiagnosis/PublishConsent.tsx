@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 
-import exitWarningAlert from './exitWarningAlert';
-import ExportTemplate from './ExportTemplate';
+import exitWarningAlert from '../../views/Export/exitWarningAlert';
+import ExportTemplate from '../../views/Export/ExportTemplate';
 import { useAssets } from '../../TracingStrategyAssets';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
-import * as BTNativeModule from '../../bt/nativeModule';
+import * as BTNativeModule from '../nativeModule';
 import {
   NavigationScreenProp,
   NavigationState,
@@ -15,15 +15,15 @@ import {
   NavigationRoute,
 } from 'react-navigation';
 
-interface ExportPublishConsentProps {
+interface PublishConsentProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   route: NavigationRoute;
 }
 
-export const ExportPublishConsent = ({
+export const PublishConsent = ({
   navigation,
   route,
-}: ExportPublishConsentProps): JSX.Element => {
+}: PublishConsentProps): JSX.Element => {
   const [isConsenting, setIsConsenting] = useState(false);
   const { t } = useTranslation();
   const {
@@ -73,4 +73,4 @@ export const ExportPublishConsent = ({
   );
 };
 
-export default ExportPublishConsent;
+export default PublishConsent;
