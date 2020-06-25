@@ -55,3 +55,9 @@ copyFile(
   './node_modules/@mauron85/react-native-background-geolocation/android/common/src/main/java/com/marianhello/bgloc/service/LocationServiceImpl.java',
   () => {},
 );
+
+copyFile(
+  './scripts/node-modules/react-native-background-geolocation/MAURDistanceFilterLocationProvider.m',
+  './node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation/MAURDistanceFilterLocationProvider.m',
+  () => {},
+);
