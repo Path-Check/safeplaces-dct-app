@@ -4,6 +4,7 @@ import {
   EventSubscription,
 } from 'react-native';
 
+// TODO All methods that call in to native.
 import { DeviceStatus } from './ExposureNotificationContext';
 import { ExposureInfo } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
@@ -58,6 +59,7 @@ export const requestAuthorization = async (
   cb: (data: string) => void,
 ): Promise<void> => {
   exposureNotificationModule.requestExposureNotificationAuthorization(cb);
+  // TODO I'll have to name my module exactly this "requestExposureNotificationAuthorization(cb)"
 };
 
 // Debug Module
