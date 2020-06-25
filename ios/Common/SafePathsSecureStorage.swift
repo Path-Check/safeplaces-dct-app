@@ -14,78 +14,88 @@
 import Foundation
 import RealmSwift
 
-class SafePathsSecureStorage {
+class SafePathsSecureStorage: NSObject {
   
-  let keyLastSavedTime: String
   let inMemory: Bool
   
   init(inMemory: Bool = false) {
     self.inMemory = inMemory
-    if (inMemory) {
-      self.keyLastSavedTime = "lastSavedTimeInMemory"
-    } else {
-      self.keyLastSavedTime = "lastSavedTime"
-    }
   }
 
   var keychainIdentifier: String {
     "org.pathcheck.covid-safepaths.realm"
   }
+
+  private lazy var keychainTag = keychainIdentifier.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+  private lazy var keychainAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlock, [], nil)!
+
+  private lazy var keychainQuery: [CFString: Any] = [
+    kSecClass: kSecClassKey,
+    kSecAttrApplicationTag: keychainTag,
+    kSecAttrKeySizeInBits: 512,
+    kSecReturnData: true,
+    kSecMatchLimit: kSecMatchLimitOne,
+  ]
+
+  private lazy var keychainUpdateQuery: [CFString: Any] = [
+    kSecClass: kSecClassKey,
+    kSecAttrApplicationTag: keychainTag,
+    kSecAttrKeySizeInBits: 512,
+  ]
   
-  func getEncyrptionKey() -> NSData? {
-    // Identifier for our keychain entry - should be unique for your application
-    let keychainIdentifierData = keychainIdentifier.data(using: String.Encoding.utf8, allowLossyConversion: false)!
-    
+  final func getEncryptionKey() -> NSData? {
     // First check in the keychain for an existing key
-    var query: [NSString: AnyObject] = [
-      kSecClass: kSecClassKey,
-      kSecAttrApplicationTag: keychainIdentifierData as AnyObject,
-      kSecAttrKeySizeInBits: 512 as AnyObject,
-      kSecReturnData: true as AnyObject
-    ]
-    
     // To avoid Swift optimization bug, should use withUnsafeMutablePointer() function to retrieve the keychain item
     // See also: http://stackoverflow.com/questions/24145838/querying-ios-keychain-using-swift/27721328#27721328
-    var dataTypeRef: AnyObject?
-    var status = withUnsafeMutablePointer(to: &dataTypeRef) { SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0)) }
-    if status == errSecSuccess {
-      return dataTypeRef as? NSData
+    var keychainData: CFTypeRef?
+    var status = withUnsafeMutablePointer(to: &keychainData) {
+      SecItemCopyMatching(keychainQuery as CFDictionary, UnsafeMutablePointer($0))
+    }
+
+    if status == errSecSuccess, let keychainData = keychainData as? NSData {
+      // For backwards compatibility, ensure existing items have the correct access control
+      status = SecItemUpdate(keychainUpdateQuery as CFDictionary, [
+        kSecAttrAccessControl: keychainAccessControl,
+      ] as CFDictionary)
+      assert(status == errSecSuccess, "Failed to set access control")
+
+      return keychainData
     }
     
     // No pre-existing key from this application, so generate a new one
     let keyData = NSMutableData(length: 64)!
-    let result = SecRandomCopyBytes(kSecRandomDefault, 64, keyData.mutableBytes.bindMemory(to: UInt8.self, capacity: 64))
-    assert(result == 0, "Failed to get random bytes")
-    if (result != 0) {
+    status = SecRandomCopyBytes(kSecRandomDefault, 64, keyData.mutableBytes.bindMemory(to: UInt8.self, capacity: 64))
+
+    guard status == errSecSuccess else {
+      assertionFailure("Failed to get random bytes")
       return nil
     }
     
     // Store the key in the keychain
-    query = [
+    let query: [CFString: Any] = [
       kSecClass: kSecClassKey,
-      kSecAttrApplicationTag: keychainIdentifierData as AnyObject,
+      kSecAttrApplicationTag: keychainTag,
+      kSecAttrAccessControl: keychainAccessControl,
       kSecAttrKeySizeInBits: 512 as AnyObject,
-      kSecValueData: keyData
+      kSecValueData: keyData,
     ]
     
     status = SecItemAdd(query as CFDictionary, nil)
-    assert(status == errSecSuccess, "Failed to insert the new key in the keychain")
-    if (status != errSecSuccess) {
+
+    guard status == errSecSuccess else {
+      assertionFailure("Failed to insert the new key in the keychain")
       return nil
     }
+
     return keyData
   }
   
   func getRealmConfig() -> Realm.Configuration? {
     preconditionFailure("Subclasses must override \(#function)")
-    return nil
   }
   
   func getRealmInstance() -> Realm? {
-    guard let config = getRealmConfig() else {
-      return nil
-    }
-    
-    return try! Realm(configuration: config)
+    return try? getRealmConfig().flatMap(Realm.init)
   }
+
 }

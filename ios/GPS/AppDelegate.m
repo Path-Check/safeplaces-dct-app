@@ -23,15 +23,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   MAURBackgroundGeolocationFacade.locationTransform = ^(MAURLocation * location) {
-    MAURLocation *locationToInsert = [location copy];
-    [[SecureStorage shared] saveDeviceLocationWithBackgroundLocation:locationToInsert];
-    
-    // nil out location so geolocation library doesn't save in its internval db
-    location = nil;
-    return location;
+    // The geolocation library sometimes returns nil times.
+    // Almost immediately after these locations, we receive an identical location containing a time.
+    if (location.hasTime) {
+      [[GPSSecureStorage shared] saveDeviceLocation:[location copy]];
+    }
+
+    // nil out location so geolocation library doesn't save in its internal db
+    return (MAURLocation *)nil;
   };
   
-  [[SecureStorage shared] trimLocations];
+  [[GPSSecureStorage shared] trimLocations];
   
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge

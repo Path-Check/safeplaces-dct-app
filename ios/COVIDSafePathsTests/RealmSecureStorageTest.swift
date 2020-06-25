@@ -18,13 +18,11 @@ class GPSSecureStorageTest: XCTestCase {
   override func setUp() {
     super.setUp()
     secureStorage = GPSSecureStorage(inMemory: true)
-    UserDefaults.standard.removeObject(forKey: secureStorage!.keyLastSavedTime)
     hold = secureStorage!.getRealmInstance()
   }
   
   override func tearDown() {
     super.tearDown()
-    UserDefaults.standard.removeObject(forKey: secureStorage!.keyLastSavedTime)
     hold = nil
   }
   
@@ -35,7 +33,7 @@ class GPSSecureStorageTest: XCTestCase {
     let backgroundLocation1 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
   
     // when
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
+    secureStorage!.saveDeviceLocation(backgroundLocation1)
     
     // then
     guard let resultLocation = querySingleLocationByTime(time: location1Time) else {
@@ -57,8 +55,8 @@ class GPSSecureStorageTest: XCTestCase {
     let backgroundLocation2 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
     
     // when
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation2)
+    secureStorage!.saveDeviceLocation(backgroundLocation1)
+    secureStorage!.saveDeviceLocation(backgroundLocation2)
       
     // then
     XCTAssertNotNil(querySingleLocationByTime(time: location1Time))
@@ -179,7 +177,7 @@ class GPSSecureStorageTest: XCTestCase {
     let location2Time = Int(location2TimeDouble / 1000)
     let location2 = [Location.KEY_TIME: location2TimeDouble, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297]
     let importLocations = NSArray(array: [location2])
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
+    secureStorage!.saveDeviceLocation(backgroundLocation1)
     secureStorage!.importLocations(
       locations: importLocations,
       source: Location.SOURCE_MIGRATION,
@@ -207,8 +205,8 @@ class GPSSecureStorageTest: XCTestCase {
     let location2Date = Date()
     let location2Time = Int(location2Date.timeIntervalSince1970)
     let backgroundLocation2 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation2)
+    secureStorage!.saveDeviceLocation(backgroundLocation1)
+    secureStorage!.saveDeviceLocation(backgroundLocation2)
     
     // when
     secureStorage!.trimLocations()
