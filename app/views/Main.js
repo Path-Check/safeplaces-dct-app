@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext } from 'react';
+import React, { useCallback, useState, useContext, useRef } from 'react';
 import { AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -23,6 +23,7 @@ import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
 import { useStatusBarEffect } from '../navigation';
 import { useDeepCompareEffect } from '../helpers/CustomHooks';
+import {debounce} from 'lodash';
 
 export const Main = () => {
   useStatusBarEffect('light-content');
@@ -30,6 +31,9 @@ export const Main = () => {
   const { notification } = useContext(PermissionsContext);
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
+
+  const debounceUpdateStateInfo = 
+    useRef(debounce(() => updateStateInfo(currentlySelectedAuthority), 1000)).current
 
   const selectedAuthorities = useSelector(
     selectedHealthcareAuthoritiesSelector,
@@ -60,7 +64,7 @@ export const Main = () => {
   }, [setCanTrack, notification.status]);
 
   useDeepCompareEffect(() => {
-    updateStateInfo(currentlySelectedAuthority);
+    debounceUpdateStateInfo();
     // refresh state if user backgrounds app
     AppState.addEventListener('change', updateStateInfo);
 
