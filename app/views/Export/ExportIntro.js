@@ -20,11 +20,36 @@ export const ExportIntro = ({ navigation }) => {
   const authorities = useSelector(healthcareAuthorityOptionsSelector);
   const selectedAuthorityDummy = authorities[0];
 
-  const onNext = () =>
-    navigation.navigate(Screens.ExportCodeInput, {
-      selectedAuthority: selectedAuthorityDummy,
-    });
+  const onNext = () => {
+    if (selectedAuthorityDummy) {
+      navigation.navigate(Screens.ExportCodeInput, {
+        selectedAuthority: selectedAuthorityDummy,
+      });
+    } else {
+      const fakeAuthority = {
+        name: 'Boston Health Commission',
+        bounds: {
+          ne: {
+            latitude: 42.0,
+            longitude: 71.0,
+          },
+          sw: {
+            latitude: 43.0,
+            longitude: 72.0,
+          },
+        },
+        org_id: '1234',
+        cursor_url: '',
+        public_api: '',
+        internal_id: '',
+      };
+      navigation.navigate(Screens.ExportCodeInput, {
+        selectedAuthority: fakeAuthority,
+      });
+    }
+  };
   const onClose = () => navigation.goBack();
+
   return (
     <ExportTemplate
       onNext={onNext}
