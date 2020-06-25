@@ -2,10 +2,10 @@
 #import <React/RCTBridgeModule.h>
 #import "BT-Swift.h"
 
-@interface PTCExposureManagerModule: NSObject <RCTBridgeModule>
+@interface ENPermissionsModule: NSObject <RCTBridgeModule>
 @end
 
-@implementation PTCExposureManagerModule
+@implementation ENPermissionsModule
 
 RCT_EXPORT_MODULE();
 

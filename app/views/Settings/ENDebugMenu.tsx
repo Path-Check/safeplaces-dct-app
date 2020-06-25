@@ -21,7 +21,7 @@ type ENDebugMenuProps = {
   navigation: NavigationProp;
 };
 
-const DEBUG_VERIFICATION_CODE = '111111';
+const DEBUG_VERIFICATION_CODE = '123456';
 
 const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   const [loading, setLoading] = useState(false);
