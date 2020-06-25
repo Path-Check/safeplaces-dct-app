@@ -8,6 +8,7 @@ import {
   getHealthcareAuthorities_success,
 } from '../actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import toggleSelectedHealthcareAuthorityAction from '../actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
+import getCurrentlySelectedAuthority from '../actions/healthcareAuthorities/getCurrentlySelectedAuthority';
 
 type HealthCareReducerState = {
   // Because we control this list to be super small and have type safety, we use the full models
@@ -15,6 +16,7 @@ type HealthCareReducerState = {
   availableAuthorities: HealthcareAuthority[];
   availableCustomAuthorities: HealthcareAuthority[];
   selectedAuthorities: HealthcareAuthority[];
+  currentlySelectedAuthority: any; // TODO: change this
   request: ApiRequest;
 };
 
@@ -22,6 +24,7 @@ const initialState: HealthCareReducerState = {
   availableAuthorities: [],
   availableCustomAuthorities: [], // For testing, from a custom uploaded YAML
   selectedAuthorities: [],
+  currentlySelectedAuthority: {},
   request: {
     status: ApiStatus.INITIAL,
     errorMessage: null,
@@ -77,6 +80,11 @@ const healthcareAuthoritiesReducer = createReducer(initialState, (builder) =>
         if (overrideValue) {
           state.selectedAuthorities.push(authority);
         }
+    })
+    .addCase(
+      getCurrentlySelectedAuthority,
+      (state, { payload: { authority, selectedValue } }) => {
+        if (selectedValue) state.currentlySelectedAuthority = authority
       },
     ),
 );

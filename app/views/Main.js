@@ -26,6 +26,12 @@ export const Main = () => {
   const { notification } = useContext(PermissionsContext);
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
+  
+  const selectedAuthorities = useSelector(selectedHealthcareAuthoritiesSelector);
+    
+  const currentlySelectedAuthority = useSelector((state) => {
+    return state.healthcareAuthorities.currentlySelectedAuthority;
+  })  
   const [canTrack, setCanTrack] = useState(true);
 
   const checkForPossibleExposure = () => {
@@ -53,7 +59,7 @@ export const Main = () => {
       AppState.removeEventListener('change', updateStateInfo);
       unsubscribe();
     };
-  }, [navigation, updateStateInfo]);
+  }, [navigation, updateStateInfo, currentlySelectedAuthority, selectedAuthorities]);
 
   if (!canTrack) {
     return <TracingOffScreen />;
