@@ -328,16 +328,25 @@ let hasMigratedOldData = false;
 const getTransformedLocalDataAndDayBins = async (gpsPeriodMS) => {
   // get the saved set of locations for the user, already sorted, and fill in the gaps
   const locationArray = await NativeModules.SecureStorageManager.getLocations();
-  const locationArrayWithoutOldData = discardOldData(locationArray, MAX_EXPOSURE_WINDOW_DAYS);
+  const locationArrayWithoutOldData = discardOldData(
+    locationArray,
+    MAX_EXPOSURE_WINDOW_DAYS,
+  );
   // generate an array with the asked number of day bins
-  const tempDayBins = initLocationBins(MAX_EXPOSURE_WINDOW_DAYS, locationArrayWithoutOldData);
-  const locationArrayWithoutGaps = fillLocationGaps(locationArrayWithoutOldData, gpsPeriodMS);
+  const tempDayBins = initLocationBins(
+    MAX_EXPOSURE_WINDOW_DAYS,
+    locationArrayWithoutOldData,
+  );
+  const locationArrayWithoutGaps = fillLocationGaps(
+    locationArrayWithoutOldData,
+    gpsPeriodMS,
+  );
 
   return {
     locationArray: locationArrayWithoutGaps,
-    tempDayBins
+    tempDayBins,
   };
-}
+};
 
 /**
  * Kicks off the intersection process.  Immediately returns after starting the
@@ -383,11 +392,10 @@ async function asyncCheckIntersect() {
 
   const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
 
-  let {
-    locationArray,
-    tempDayBins
-  } = await getTransformedLocalDataAndDayBins(gpsPeriodMS);
-  
+  let { locationArray, tempDayBins } = await getTransformedLocalDataAndDayBins(
+    gpsPeriodMS,
+  );
+
   // we also need locally saved data so we can know the last read page for each HA
   let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
   if (!localHAData) localHAData = [];
@@ -443,10 +451,9 @@ export async function asyncIntersectCheckForSingleHA(authority) {
 
   const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
 
-  let {
-    locationArray,
-    tempDayBins
-  } = getTransformedLocalDataAndDayBins(gpsPeriodMS);
+  let { locationArray, tempDayBins } = getTransformedLocalDataAndDayBins(
+    gpsPeriodMS,
+  );
 
   // we also need locally saved data so we can know the last read page for each HA
   let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
@@ -493,7 +500,13 @@ export async function asyncIntersectCheckForSingleHA(authority) {
   return dayBins;
 }
 
-const performIntersectionForSingleHA = async (authority, localHAData, locationArray, oldDayBins, gpsPeriodMS) => {
+const performIntersectionForSingleHA = async (
+  authority,
+  localHAData,
+  locationArray,
+  oldDayBins,
+  gpsPeriodMS,
+) => {
   let {
     name,
     api_endpoint_url,
@@ -537,7 +550,7 @@ const performIntersectionForSingleHA = async (authority, localHAData, locationAr
     matchRate,
     gpsPeriodMS,
   );
-}
+};
 
 /**
  * Notify the user that they are possibly at risk
