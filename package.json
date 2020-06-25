@@ -14,7 +14,6 @@
     "run-android-gps": "react-native run-android --variant=gpsDebug --appId=org.pathcheck.covidsafepaths",
     "run-ios-bt": "yarn install:pod && react-native run-ios --scheme \"BT_Development\" --simulator \"iPhone 11 (13.5)\"",
     "run-ios-gps": "yarn install:pod && react-native run-ios --scheme \"GPS_Development\"",
-    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install --quiet && bundle exec pod install --silent",
     "postinstall": "patch-package && node ./scripts/replace.js && npx react-native-jetifier",
     "postversion": "react-native-version",

@@ -17,30 +17,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Checkout submodules
-        uses: actions/checkout@v2
-        with:
-          repository: Path-Check/pathcheck-mobile-resources
-          token: ${{ secrets.ACCESS_TOKEN }}
-          path: pathcheck-mobile-resources
-          ref: master
-
-      - name: Setup env
-        run: sh ./setup_env.sh
-        shell: bash
-
-      - name: Cache node_modules/
-        uses: actions/cache@v1
+      - name: Cache node modules
         id: node_cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-      - name: Install Node Dependencies
+      - name: Install Dependencies
         if: steps.node_cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: npm install
 
       - name: Setup kernel for react native, increase watchers for release versions.
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
@@ -109,18 +102,23 @@ jobs:
         run: sh ./setup_env.sh
         shell: bash
 
-      - name: Cache node_modules/
-        uses: actions/cache@v1
+      - name: Cache node modules
         id: node_cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-      - name: Install Node Dependencies
+      - name: Install Dependencies
         if: steps.node_cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: npm install
 
       - name: Setup kernel for react native, increase watchers for release versions.
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
