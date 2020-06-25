@@ -49,18 +49,23 @@ jobs:
         run: sh ./setup_env.sh
         shell: bash
 
-      - name: Cache node_modules/
-        uses: actions/cache@v1
+      - name: Cache node modules
         id: node_cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-      - name: Install Node Dependencies
+      - name: Install Dependencies
         if: steps.node_cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: npm install
 
       - name: Setup kernel for react native, increase watchers for release versions.
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
@@ -141,18 +146,23 @@ jobs:
       - name: Set XCode Version
         run: sudo xcode-select -s /Applications/Xcode_11.5.app
 
-      - name: Cache node_modules/
-        uses: actions/cache@v1
+      - name: Cache node modules
         id: node_cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-      - name: Install Node Dependencies
+      - name: Install Dependencies
         if: steps.node_cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: npm install
 
       - name: Install bundler for ruby package management
         run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
@@ -228,18 +238,23 @@ jobs:
       - name: Set XCode Version
         run: sudo xcode-select -s /Applications/Xcode_11.5.app
 
-      - name: Cache node_modules/
-        uses: actions/cache@v1
+      - name: Cache node modules
         id: node_cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-      - name: Install Node Dependencies
+      - name: Install Dependencies
         if: steps.node_cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: npm install
 
       - name: Install bundler for ruby package management
         run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
@@ -324,18 +339,23 @@ jobs:
         run: sh ./setup_env.sh
         shell: bash
 
-      - name: Cache node_modules/
-        uses: actions/cache@v1
+      - name: Cache node modules
         id: node_cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-      - name: Install Node Dependencies
+      - name: Install Dependencies
         if: steps.node_cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: npm install
 
       - name: Setup kernel for react native, increase watchers for release versions.
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
