@@ -89,6 +89,7 @@ exports[`renders default values from the flags provider 1`] = `
                 "fontSize": 19,
                 "fontWeight": "500",
                 "lineHeight": 40,
+                "textTransform": "uppercase",
               },
             ]
           }

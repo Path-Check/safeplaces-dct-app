@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { checkIntersect } from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
+import NotificationService from '../services/NotificationService';
 import { AllServicesOnScreen } from './main/AllServicesOn';
 import {
   TracingOffScreen,
@@ -25,7 +26,7 @@ export const Main = () => {
   const { notification } = useContext(PermissionsContext);
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
-  const [trackingInfo, setTrackingInfo] = useState({ canTrack: true });
+  const [canTrack, setCanTrack] = useState(true);
 
   const checkForPossibleExposure = () => {
     BackgroundTaskServices.start();
@@ -34,9 +35,11 @@ export const Main = () => {
 
   const updateStateInfo = useCallback(async () => {
     checkForPossibleExposure();
-    const { canTrack } = await LocationServices.checkStatusAndStartOrStop();
-    setTrackingInfo({ canTrack });
-  }, [setTrackingInfo]);
+    const locationStatus = await LocationServices.checkStatusAndStartOrStop();
+    setCanTrack(locationStatus.canTrack);
+    notification.check();
+    NotificationService.configure(notification.status);
+  }, [setCanTrack, notification.status]);
 
   useEffect(() => {
     updateStateInfo();
@@ -52,7 +55,7 @@ export const Main = () => {
     };
   }, [navigation, updateStateInfo]);
 
-  if (!trackingInfo.canTrack) {
+  if (!canTrack) {
     return <TracingOffScreen />;
   } else if (notification.status === PermissionStatus.DENIED) {
     return <NotificationsOffScreen />;

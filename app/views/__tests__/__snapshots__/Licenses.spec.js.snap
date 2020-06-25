@@ -89,6 +89,7 @@ exports[`renders correctly 1`] = `
                 "fontSize": 19,
                 "fontWeight": "500",
                 "lineHeight": 40,
+                "textTransform": "uppercase",
               },
             ]
           }
@@ -166,7 +167,7 @@ exports[`renders correctly 1`] = `
                   ]
                 }
               >
-                PathCheck
+                PathCheck Foundation
 58 Day Street
 Box 441621
 Somerville, MA 02144
@@ -216,7 +217,7 @@ Somerville, MA 02144
                   ]
                 }
               >
-                covidsafepaths.org
+                pathcheck.org
               </Text>
             </View>
           </View>

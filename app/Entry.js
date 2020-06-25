@@ -28,6 +28,7 @@ import {
   ExportLocationConsent,
   ExportPublishConsent,
   ExportSelectHA,
+  ExportLocally,
 } from './views/Export';
 import ExposureHistoryScreen from './views/ExposureHistory';
 import Assessment from './views/assessment';
@@ -147,6 +148,7 @@ const MoreTabStack = () => (
       name={Screens.ENLocalDiagnosisKey}
       component={ENLocalDiagnosisKeyScreen}
     />
+    <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
   </Stack.Navigator>
 );
 
@@ -206,7 +208,7 @@ const MainAppTabs = () => {
           tabBarIcon: ({ focused, size }) => {
             const tabIcon = (
               <SvgXml
-                xml={focused ? Icons.HistoryActive : Icons.HistoryInactive}
+                xml={focused ? Icons.CalendarActive : Icons.CalendarInactive}
                 width={size}
                 height={size}
               />
@@ -240,7 +242,7 @@ const MainAppTabs = () => {
             tabBarLabel: t('navigation.partners'),
             tabBarIcon: ({ focused, size }) => (
               <SvgXml
-                xml={focused ? Icons.PartnersActive : Icons.PartnersInactive}
+                xml={focused ? Icons.ShieldActive : Icons.ShieldInactive}
                 width={size}
                 height={size}
               />

@@ -87,6 +87,7 @@ exports[`Import component renders correctly 1`] = `
               "fontSize": 19,
               "fontWeight": "500",
               "lineHeight": 40,
+              "textTransform": "uppercase",
             },
           ]
         }

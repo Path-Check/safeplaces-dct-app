@@ -64,6 +64,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 "fontSize": 19,
                 "fontWeight": "500",
                 "lineHeight": 40,
+                "textTransform": "uppercase",
               },
             ]
           }
@@ -652,6 +653,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 "fontSize": 19,
                 "fontWeight": "500",
                 "lineHeight": 40,
+                "textTransform": "uppercase",
               },
             ]
           }

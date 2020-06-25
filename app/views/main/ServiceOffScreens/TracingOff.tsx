@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useAssets } from '../../../TracingStrategyAssets';
 import { ServiceOffScreen } from './Base';
-import { openSettings } from 'react-native-permissions';
+import PermissionsContext from '../../../gps/PermissionsContext';
 
 export const TracingOffScreen = (): JSX.Element => {
   const {
@@ -9,12 +9,16 @@ export const TracingOffScreen = (): JSX.Element => {
     tracingOffScreenSubheader,
     tracingOffScreenButton,
   } = useAssets();
+  const { requestLocationSettings } = useContext(PermissionsContext);
 
   return (
     <ServiceOffScreen
       header={tracingOffScreenHeader}
       subheader={tracingOffScreenSubheader}
-      button={{ label: tracingOffScreenButton, onPress: openSettings }}
+      button={{
+        label: tracingOffScreenButton,
+        onPress: requestLocationSettings,
+      }}
     />
   );
 };

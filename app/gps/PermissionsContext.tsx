@@ -8,6 +8,7 @@ import {
   requestNotifications,
   Permission,
 } from 'react-native-permissions';
+import { openSettings } from 'react-native-permissions';
 
 import { HCAService } from '../services/HCAService.js';
 
@@ -17,7 +18,7 @@ export enum PermissionStatus {
   DENIED,
 }
 
-const statusToEnum = (status: string) => {
+export const statusToEnum = (status: string | void): PermissionStatus => {
   switch (status) {
     case 'unknown': {
       return PermissionStatus.UNKNOWN;
@@ -53,6 +54,8 @@ interface PermissionContextState {
     check: () => void;
     request: () => void;
   };
+  requestLocationSettings: () => void;
+  requestNotificationSettings: () => void;
 }
 
 const initialState = {
@@ -71,6 +74,8 @@ const initialState = {
     check: () => {},
     request: () => {},
   },
+  requestLocationSettings: () => {},
+  requestNotificationSettings: () => {},
 };
 
 const PermissionsContext = createContext<PermissionContextState>(initialState);
@@ -135,29 +140,49 @@ const PermissionsProvider = ({
   };
 
   const requestLocationPermission = async () => {
+    let status;
     if (Platform.OS === 'ios') {
-      await requestLocationForPlatform(PERMISSIONS.IOS.LOCATION_ALWAYS);
+      status = await requestLocationForPlatform(
+        PERMISSIONS.IOS.LOCATION_ALWAYS,
+      );
     } else if (Platform.OS === 'android') {
-      await requestLocationForPlatform(
+      status = await requestLocationForPlatform(
         PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
       );
     }
+    return status;
   };
 
   const requestLocationForPlatform = async (permission: Permission) => {
     const status = await request(permission);
     setLocationPermission(statusToEnum(status));
+    return status;
   };
 
   const requestNotificationPermission = async () => {
     const { status } = await requestNotifications(['alert', 'sound']);
     setNotificationPermission(statusToEnum(status));
+    return status;
   };
 
   const requestAuthSubscriptionPermission = async () => {
     await HCAService.enableAutoSubscription();
     const status = PermissionStatus.GRANTED;
     setAuthSubscriptionPermission(status);
+  };
+
+  const requestNotificationSettings = async () => {
+    const status = await requestNotificationPermission();
+    if (statusToEnum(status) === PermissionStatus.DENIED) {
+      openSettings();
+    }
+  };
+
+  const requestLocationSettings = async () => {
+    const status = await requestLocationPermission();
+    if (statusToEnum(status) === PermissionStatus.DENIED) {
+      openSettings();
+    }
   };
 
   return (
@@ -178,6 +203,8 @@ const PermissionsProvider = ({
           check: checkAuthSubscriptionPermission,
           request: requestAuthSubscriptionPermission,
         },
+        requestLocationSettings,
+        requestNotificationSettings,
       }}>
       {children}
     </PermissionsContext.Provider>

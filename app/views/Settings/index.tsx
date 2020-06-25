@@ -199,6 +199,16 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </View>
         ) : null}
 
+        <FeatureFlag name={'download_locally'}>
+          <View style={styles.section}>
+            <SettingsListItem
+              label={'Download Locally'}
+              onPress={navigateTo(Screens.ExportLocally)}
+              style={styles.lastListItem}
+            />
+          </View>
+        </FeatureFlag>
+
         {__DEV__ ? (
           <View style={styles.section}>
             <SettingsListItem
