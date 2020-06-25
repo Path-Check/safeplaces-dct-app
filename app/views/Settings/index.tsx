@@ -21,7 +21,7 @@ import {
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
 } from '../../locales/languages';
-import { FeatureFlag } from '../../components/FeatureFlag';
+import FeatureFlag from '../../components/FeatureFlag';
 import { NativePicker } from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
@@ -31,12 +31,15 @@ import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
 import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
+import { FeatureFlagOption, RootState } from '../../store/types';
+import { useSelector } from 'react-redux';
 
 interface SettingsScreenProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
 const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
+  const { enableFlags } = useSelector((state: RootState) => state.featureFlags);
   const { t, i18n } = useTranslation();
 
   const [userLocale, setUserLocale] = useState(
@@ -167,7 +170,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         )}
 
         {isGPS ? (
-          <FeatureFlag name={'google_import'}>
+          <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
             <View style={styles.section}>
               <View style={styles.listItem}>
                 <GoogleMapsImport navigation={navigation} />
@@ -199,7 +202,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </View>
         ) : null}
 
-        <FeatureFlag name={'download_locally'}>
+        <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
           <View style={styles.section}>
             <SettingsListItem
               label={'Download Locally'}
@@ -209,15 +212,15 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </View>
         </FeatureFlag>
 
-        {__DEV__ ? (
+        {enableFlags && (
           <View style={styles.section}>
             <SettingsListItem
-              label='Feature Flags (Dev mode only)'
+              label='Feature Flags (Developer)'
               onPress={navigateTo(Screens.FeatureFlags)}
               style={styles.lastListItem}
             />
           </View>
-        ) : null}
+        )}
       </ScrollView>
     </NavigationBarWrapper>
   );

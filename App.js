@@ -8,7 +8,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Theme } from './app/constants/themes';
 import { Entry } from './app/Entry';
 import { TracingStrategyProvider } from './app/TracingStrategyContext';
-import { FlagsProvider } from './app/helpers/Flags';
 import VersionCheckService from './app/services/VersionCheckService';
 import { store, persistor } from './app/store';
 import btStrategy from './app/bt';
@@ -33,15 +32,13 @@ const strategy = determineTracingStrategy();
 
 // For snapshot testing. In tests, we provide a mock store wrapper if needed.
 export const UnconnectedApp = () => (
-  <FlagsProvider>
-    <MenuProvider>
-      <Theme use='default'>
-        <TracingStrategyProvider strategy={strategy}>
-          <Entry />
-        </TracingStrategyProvider>
-      </Theme>
-    </MenuProvider>
-  </FlagsProvider>
+  <MenuProvider>
+    <Theme use='default'>
+      <TracingStrategyProvider strategy={strategy}>
+        <Entry />
+      </TracingStrategyProvider>
+    </Theme>
+  </MenuProvider>
 );
 
 const App = () => {

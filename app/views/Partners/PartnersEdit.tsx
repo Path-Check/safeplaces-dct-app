@@ -10,7 +10,7 @@ import Colors from '../../constants/colors';
 import { SvgXml } from 'react-native-svg';
 import { useDispatch, useSelector } from 'react-redux';
 import getHealthcareAuthoritiesAction from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
-import type { HealthcareAuthority } from '../../store/types';
+import { HealthcareAuthority, FeatureFlagOption } from '../../store/types';
 import selectedHealthcareAuthoritiesSelector from '../../store/selectors/selectedHealthcareAuthoritiesSelector';
 import customUrlhealthcareAuthorityOptionsSelector from '../../store/selectors/customUrlhealthcareAuthorityOptionsSelector';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
@@ -20,7 +20,7 @@ import toggleSelectedHealthcareAuthorityAction from '../../store/actions/healthc
 import { Button } from '../../components/Button';
 import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
 import { Spacing } from '../../styles';
-import { FeatureFlag } from '../../components/FeatureFlag';
+import FeatureFlag from '../../components/FeatureFlag';
 
 type PartnersEditScreenProps = {
   navigation: NavigationProp;
@@ -119,7 +119,7 @@ const PartnersScreen = ({
         }
         ItemSeparatorComponent={() => <Separator />}
       />
-      <FeatureFlag name={'custom_url'}>
+      <FeatureFlag flag={FeatureFlagOption.CUSTOM_URL}>
         <View style={{ padding: 24 }}>
           <Button
             label={t('authorities.custom_url')}

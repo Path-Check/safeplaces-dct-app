@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Dimensions,
@@ -16,8 +16,23 @@ import { NavigationBarWrapper, Typography } from '../components';
 import { useAssets } from '../TracingStrategyAssets';
 
 import { Colors, Spacing } from '../styles';
+import { useDispatch } from 'react-redux';
+import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleAllowFeatureFlagsEnabledAction';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export const AboutScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+
+  const [clickCount, setClickCount] = useState(0);
+  useEffect(() => {
+    console.log(clickCount);
+    if (clickCount === 20) {
+      dispatch(toggleAllowFeatureFlagsAction({ overrideValue: true }));
+    }
+  }, [clickCount, dispatch]);
+
+  const incrementClickCount = () => setClickCount(clickCount + 1);
+
   const { t } = useTranslation();
   const { aboutHeader } = useAssets();
 
@@ -35,7 +50,9 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.spacer} />
         <View style={styles.spacer} />
 
-        <Typography use='headline2'>{aboutHeader}</Typography>
+        <TouchableWithoutFeedback onPress={incrementClickCount}>
+          <Typography use='headline2'>{aboutHeader}</Typography>
+        </TouchableWithoutFeedback>
         <View style={{ height: 10 }} />
         <Typography use='body2'>
           {t('label.about_para')}
