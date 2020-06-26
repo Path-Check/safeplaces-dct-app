@@ -41,8 +41,7 @@ export const Main = () => {
 
   const checkForPossibleExposure = () => {
     BackgroundTaskServices.start();
-    const intersectionStatus = IntersectService.instance.checkIntersect(true);
-    console.log(`[intersection] ${intersectionStatus}`);
+    IntersectService.checkIntersect(true);
   };
 
   const updateStateInfo = useCallback(async () => {

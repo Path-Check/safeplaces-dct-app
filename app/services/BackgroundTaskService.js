@@ -6,7 +6,7 @@ import { INTERSECT_INTERVAL } from '../constants/history';
 import { HCAService } from '../services/HCAService';
 
 export function executeTask() {
-  IntersectService.instance.checkIntersect();
+  IntersectService.checkIntersect();
   __DEV__ && HCAService.findNewAuthorities();
 }
 
