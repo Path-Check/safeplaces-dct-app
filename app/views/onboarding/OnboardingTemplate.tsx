@@ -11,7 +11,7 @@ import { SvgXml } from 'react-native-svg';
 import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 
-import { Colors, Spacing } from '../../styles';
+import { Colors, Layout, Spacing } from '../../styles';
 import { Theme } from '../../constants/themes';
 
 type OnboardingTemplateProps = {
@@ -47,7 +47,9 @@ const OnboardingTemplate = ({
           backgroundColor='transparent'
           translucent
         />
-        <ImageBackground source={background} style={styles.backgroundImage} />
+        {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
+          <ImageBackground source={background} style={styles.backgroundImage} />
+        )}
         <View style={styles.content}>
           <ScrollView
             alwaysBounceVertical={false}

@@ -82,13 +82,11 @@ const NoKnownExposureDetail = ({
   datum: { date },
 }: NoKnownExposureDetailProps) => {
   const exposureDate = dayjs(date).format('dddd, MMM DD');
-  const dailyReports = `Current daily reports: 0`;
   const explainationContent =
     'Your exposure history will be updated if this changes in the future.';
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
-      <Typography style={styles.info}>{dailyReports}</Typography>
       <View style={styles.contentContainer}>
         <Typography style={styles.content}>{explainationContent}</Typography>
       </View>

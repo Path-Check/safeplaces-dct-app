@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     position: 'absolute',
     left: -(Layout.screenWidth / 2),
-    bottom: -(Layout.screenHeight / 2),
+    bottom: -(Layout.screenHeight / 3),
   },
   homeContainer: {
     flex: 1,

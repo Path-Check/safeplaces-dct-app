@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   header: {},
   headerRow: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: Spacing.xSmall,
   },
   headerText: {
@@ -116,6 +117,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flex: 1,
     marginTop: Spacing.small,
+    marginBottom: Spacing.huge,
   },
 });
 
