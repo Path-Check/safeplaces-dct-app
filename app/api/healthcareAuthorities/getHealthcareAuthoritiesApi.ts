@@ -25,7 +25,8 @@ const getHealthcareAuthoritiesApi = async (
   yamlUrl: string = AUTHORITIES_YAML_ROUTE,
 ): Promise<HealthcareAuthority[]> => {
   const yamlString = await fetch(yamlUrl).then((res) => res.text());
-  let { authorities } = Yaml.safeLoad(yamlString);
+  const record = Yaml.safeLoad(yamlString) as Record<string, any>;
+  let authorities = record.authorities;
   if (authorities === null) authorities = [];
   if (!Array.isArray(authorities)) {
     throw new Error('authorities yaml did not return an array of authorities');
