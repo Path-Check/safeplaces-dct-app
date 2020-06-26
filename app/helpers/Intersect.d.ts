@@ -1,5 +1,5 @@
-import {
-  checkIntersect as intersect,
-} from './Intersect';
+import { checkIntersect as intersect } from './Intersect';
 
-export const checkIntersect : (bypassTimer: boolean) => Promise<void> = intersect;
+export const checkIntersect: (
+  bypassTimer: boolean,
+) => Promise<void> = intersect;

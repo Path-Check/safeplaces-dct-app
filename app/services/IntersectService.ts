@@ -3,7 +3,7 @@ import { checkIntersect as intersect } from '../helpers/Intersect';
 class IntersectService {
   isServiceRunning = false;
 
-  checkIntersect = (bypassTimer : boolean) => {
+  checkIntersect = (bypassTimer: boolean) => {
     // TODO : add job queues!!
     if (this.isServiceRunning) return 'skipped';
     this.isServiceRunning = true;
