@@ -959,9 +959,9 @@
   dependencies:
     fast-glob "3.0.1"
 
-"@mauron85/react-native-background-geolocation@^0.6.3":
+"@mauron85/react-native-background-geolocation@https://github.com/Path-Check/react-native-background-geolocation.git":
   version "0.6.3"
-  resolved "https://registry.yarnpkg.com/@mauron85/react-native-background-geolocation/-/react-native-background-geolocation-0.6.3.tgz#9d0133e42021fbfa0ff7b6283d9561a18f127a2f"
+  resolved "https://github.com/Path-Check/react-native-background-geolocation.git#fff34ddba476cbb47b447adcfabed8dd5373305b"
   dependencies:
     plist "^3.0.1"
 
