@@ -67,6 +67,12 @@ final class ExposureManager: NSObject {
       }
     }
   }
+
+  /// Downloaded archives from the GAEN server
+  var downloadedPackages = [DownloadedPackage]()
+
+  /// Local urls of the bin/sig files from each archive
+  var localUncompressedURLs = [URL]()
   
   @discardableResult func detectExposures(completionHandler: ((Bool) -> Void)? = nil) -> Progress {
     
@@ -77,22 +83,12 @@ final class ExposureManager: NSObject {
       completionHandler?(false)
       return progress
     }
+
     detectingExposures = true
-    
-    var localCompressedURLs = [URL]()
-    var localUncompressedURLs = [URL]()
 
     func finish(_ result: Result<[Exposure]>) {
-      // Delete downloaded file from file system
-      do {
-        try localCompressedURLs.cleanup()
-        try localUncompressedURLs.cleanup()
-      } catch {
-        completionHandler?(false)
-        return
-      }
 
-      progress.cancel()
+      cleanup()
       
       if progress.isCancelled {
         detectingExposures = false
@@ -107,8 +103,8 @@ final class ExposureManager: NSObject {
           completionHandler?(true)
         case let .failure(error):
           BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
-          // Consider posting a user notification that an error occured
           detectingExposures = false
+          postExposureDetectionErrorNotification()
           completionHandler?(false)
         }
       }
@@ -118,15 +114,19 @@ final class ExposureManager: NSObject {
     BTSecureStorage.shared.getUserState { userState in
       APIClient.shared.requestString(IndexFileRequest.get, requestType: .downloadKeys) { result in
         let dispatchGroup = DispatchGroup()
-        var localCompressedURLResults = [Result<URL>]()
-        
+
         switch result {
         case let .success(indexFileString):
           let remoteURLs = indexFileString.gaenFilePaths
           for remoteURL in remoteURLs {
             dispatchGroup.enter()
             APIClient.shared.downloadRequest(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .downloadKeys) { result in
-              localCompressedURLResults.append(result)
+              switch result {
+              case .success (let package):
+                self.downloadedPackages.append(package)
+              case .failure(let error):
+                print("Error downloading from remote url (\(remoteURL): \(error)")
+              }
               dispatchGroup.leave()
             }
           }
@@ -136,21 +136,12 @@ final class ExposureManager: NSObject {
           return
         }
         dispatchGroup.notify(queue: .main) {
-          for result in localCompressedURLResults {
-            switch result {
-            case let .success(localURL):
-              localCompressedURLs.append(localURL)
-            case let .failure(error):
-              finish(.failure(error))
-              return
-            }
-          }
+          self.downloadedPackages.unpack { urls in
+            self.localUncompressedURLs = urls
 
-          localCompressedURLs.decompress { (uncompressedUrls) in
-            localUncompressedURLs = uncompressedUrls
             // TODO: Fetch configuration from API
             let enConfiguration = ExposureConfiguration.placeholder.asENExposureConfiguration
-            ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: uncompressedUrls) { summary, error in
+            ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: self.localUncompressedURLs) { summary, error in
               if let error = error {
                 finish(.failure(error))
                 return
@@ -202,19 +193,19 @@ final class ExposureManager: NSObject {
     }
   }
   
-  func getAndPostDiagnosisKeys(completion: @escaping (Error?) -> Void) {
+  @objc func getAndPostDiagnosisKeys(callback: @escaping RCTResponseSenderBlock) {
     manager.getDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
-        completion(error)
+        callback([error])
       } else {
         APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey },
                                                               [.US]),
                                  requestType: .postKeys) { result in
                                   switch result {
                                   case .success:
-                                    break
+                                    callback([NSNull(), String.genericSuccess])
                                   case .failure(let error):
-                                    completion(error)
+                                    callback([error, NSNull()])
                                   }
         }
       }
@@ -257,4 +248,29 @@ private extension ExposureManager {
       UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
     }
   }
+
+  func cleanup() {
+    // Delete downloaded files from file system
+    localUncompressedURLs.cleanup()
+    localUncompressedURLs = []
+    downloadedPackages = []
+  }
+
+  func postExposureDetectionErrorNotification() {
+    let identifier = String.exposureDetectionErrorNotificationIdentifier
+
+    let content = UNMutableNotificationContent()
+    content.title = String.exposureDetectionErrorNotificationTitle.localized
+    content.body = String.exposureDetectionErrorNotificationBody.localized
+    content.sound = .default
+    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
+    UNUserNotificationCenter.current().add(request) { error in
+      DispatchQueue.main.async {
+        if let error = error {
+          print("Error showing error user notification: \(error)")
+        }
+      }
+    }
+  }
+
 }

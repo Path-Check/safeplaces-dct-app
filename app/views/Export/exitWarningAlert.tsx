@@ -1,11 +1,19 @@
 import i18next from 'i18next';
 import { Alert } from 'react-native';
+import {
+  NavigationScreenProp,
+  NavigationState,
+  NavigationParams,
+} from 'react-navigation';
 
 /**
  * Triggers an alert before returning to the settings screen.
  * Use this on screens after the upload code.
  */
-const exitWarningAlert = (navigation, route = 'ExportStart') => {
+const exitWarningAlert = (
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>,
+  route = 'ExportStart',
+): void => {
   return Alert.alert(
     i18next.t('export.exit_warning_title'),
     i18next.t('export.exit_warning_body'),

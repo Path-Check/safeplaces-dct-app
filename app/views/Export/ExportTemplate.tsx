@@ -3,6 +3,7 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  TextStyle,
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
@@ -19,8 +20,17 @@ import { Icons } from '../../assets';
 import { Colors, Typography as TypographyStyles } from '../../styles';
 import { useStatusBarEffect } from '../../navigation';
 import { useFocusEffect } from '@react-navigation/native';
+import { Asset } from '../../TracingStrategyAssets';
 
-const BackgroundContainer = ({ lightTheme, children }) => {
+interface BackgroundContainerProps {
+  lightTheme?: string;
+  children: JSX.Element;
+}
+
+const BackgroundContainer = ({
+  lightTheme,
+  children,
+}: BackgroundContainerProps): JSX.Element => {
   if (lightTheme) {
     return <View style={styles.container}>{children}</View>;
   }
@@ -34,6 +44,24 @@ const BackgroundContainer = ({ lightTheme, children }) => {
     </LinearGradient>
   );
 };
+
+interface ExportTemplateProps {
+  headline: Asset;
+  body: string;
+  onNext: () => void;
+  nextButtonLabel: string;
+  // Optionals:
+  buttonSubtitle?: Asset;
+  onClose?: () => void;
+  icon?: Asset;
+  lightTheme?: string;
+  buttonLoading?: boolean;
+  // We can consider instead using the trans component:
+  // https://react.i18next.com/latest/trans-component
+  bodyLinkText?: string;
+  bodyLinkOnPress?: () => void;
+  ignoreModalStyling?: boolean; // So first screen can be slightly different in tabs
+}
 
 export const ExportTemplate = ({
   headline,
@@ -51,18 +79,20 @@ export const ExportTemplate = ({
   bodyLinkText,
   bodyLinkOnPress,
   ignoreModalStyling, // So first screen can be slightly different in tabs
-}) => {
+}: ExportTemplateProps): JSX.Element => {
   useStatusBarEffect(lightTheme ? 'dark-content' : 'light-content');
   useFocusEffect(() => {
     if (onClose) {
       const handleBackPress = () => {
         onClose();
+        return true;
       };
       BackHandler.addEventListener('hardwareBackPress', handleBackPress);
       return () =>
         BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     }
-  }, [onClose]);
+    return;
+  });
 
   return (
     <Theme use={lightTheme ? 'default' : 'violet'}>
@@ -87,23 +117,27 @@ export const ExportTemplate = ({
             {<View style={{ maxHeight: 20, flexGrow: 1 }} />}
             {icon && (
               <View style={styles.iconContainerCircle}>
-                <SvgXml xml={icon} width={30} height={30} />
+                <SvgXml xml={icon as string} width={30} height={30} />
               </View>
             )}
 
             <Typography
-              style={[
-                styles.exportSectionTitles,
-                lightTheme && { color: Colors.primaryHeaderText },
-              ]}>
-              {headline}
+              style={
+                [
+                  styles.exportSectionTitles,
+                  lightTheme && { color: Colors.primaryHeaderText },
+                ] as TextStyle
+              }>
+              {headline as string}
             </Typography>
             <View style={{ height: 8 }} />
             <Typography
-              style={[
-                styles.contentText,
-                lightTheme && { color: Colors.primaryText },
-              ]}>
+              style={
+                [
+                  styles.contentText,
+                  lightTheme && { color: Colors.primaryText },
+                ] as TextStyle
+              }>
               {body}
             </Typography>
             {bodyLinkText && (
@@ -130,7 +164,7 @@ export const ExportTemplate = ({
             <Typography
               style={{ paddingTop: 10, color: Colors.white }}
               use='body3'>
-              {buttonSubtitle}
+              {buttonSubtitle as string}
             </Typography>
           )}
           {/* Add extra padding on the bottom if available for phone. 
