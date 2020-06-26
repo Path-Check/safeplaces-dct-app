@@ -12,10 +12,11 @@ final class GPSSecureStorage: SafePathsSecureStorage {
 
   private let queue = DispatchQueue(label: "GPSSecureStorage")
 
-  @objc func saveDeviceLocation(_ backgroundLocation: MAURLocation) {
+  @objc func saveDeviceLocation(_ backgroundLocation: MAURLocation, completion: (() -> Void)? = nil) {
     queue.async {
       autoreleasepool { [weak self] in
         self?.saveDeviceLocationImmediately(backgroundLocation)
+        completion?()
       }
     }
   }
@@ -36,10 +37,11 @@ final class GPSSecureStorage: SafePathsSecureStorage {
     }
   }
 
-  @objc func trimLocations() {
+  @objc func trimLocations(completion: (() -> Void)? = nil) {
     queue.async {
       autoreleasepool { [weak self] in
         self?.trimLocationsImmediately()
+        completion?()
       }
     }
   }
@@ -73,7 +75,7 @@ final class GPSSecureStorage: SafePathsSecureStorage {
   override func getRealmConfig() -> Realm.Configuration? {
     if let key = getEncryptionKey() {
       if inMemory {
-        return Realm.Configuration(inMemoryIdentifier: "temp", encryptionKey: key as Data, schemaVersion: 1,
+        return Realm.Configuration(inMemoryIdentifier: identifier, encryptionKey: key as Data, schemaVersion: 1,
                                    migrationBlock: { _, _ in }, objectTypes: [Location.self])
       } else {
         return Realm.Configuration(encryptionKey: key as Data, schemaVersion: 1,

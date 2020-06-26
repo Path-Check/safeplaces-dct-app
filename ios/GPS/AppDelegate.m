@@ -26,14 +26,14 @@
     // The geolocation library sometimes returns nil times.
     // Almost immediately after these locations, we receive an identical location containing a time.
     if (location.hasTime) {
-      [[GPSSecureStorage shared] saveDeviceLocation:[location copy]];
+      [[GPSSecureStorage shared] saveDeviceLocation:[location copy] completion: nil];
     }
 
     // nil out location so geolocation library doesn't save in its internal db
     return (MAURLocation *)nil;
   };
   
-  [[GPSSecureStorage shared] trimLocations];
+  [[GPSSecureStorage shared] trimLocationsWithCompletion: nil];
   
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge

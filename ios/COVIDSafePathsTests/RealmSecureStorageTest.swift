@@ -31,10 +31,16 @@ class GPSSecureStorageTest: XCTestCase {
     let location1Date = Date()
     let location1Time = Int(location1Date.timeIntervalSince1970)
     let backgroundLocation1 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
-  
+
+    let expectation = XCTestExpectation(description: "Save Device Location")
+
     // when
-    secureStorage!.saveDeviceLocation(backgroundLocation1)
-    
+    secureStorage!.saveDeviceLocation(backgroundLocation1) {
+      expectation.fulfill()
+    }
+
+    wait(for: [expectation], timeout: 5)
+
     // then
     guard let resultLocation = querySingleLocationByTime(time: location1Time) else {
       XCTFail("Resulting location returned nil")
@@ -53,10 +59,19 @@ class GPSSecureStorageTest: XCTestCase {
     let location2Date = location1Date.addingTimeInterval(1)
     let location2Time = Int(location2Date.timeIntervalSince1970)
     let backgroundLocation2 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
-    
+
+    let expect1 = XCTestExpectation(description: "Save Device Location 1")
+    let expect2 = XCTestExpectation(description: "Save Device Location 2")
+
     // when
-    secureStorage!.saveDeviceLocation(backgroundLocation1)
-    secureStorage!.saveDeviceLocation(backgroundLocation2)
+    secureStorage!.saveDeviceLocation(backgroundLocation1) {
+      expect1.fulfill()
+    }
+    secureStorage!.saveDeviceLocation(backgroundLocation2) {
+      expect2.fulfill()
+    }
+
+    wait(for: [expect1, expect2], timeout: 5)
       
     // then
     XCTAssertNotNil(querySingleLocationByTime(time: location1Time))
@@ -74,15 +89,20 @@ class GPSSecureStorageTest: XCTestCase {
     let location2 = [Location.KEY_TIME: location2TimeString, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297] as [String : Any]
     let locations = NSArray(array: [location1, location2])
 
+    let expectation = XCTestExpectation(description: "Import Locations")
+
     // when
     secureStorage!.importLocations(
       locations: locations,
       source: Location.SOURCE_GOOGLE,
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
+        expectation.fulfill()
       },
-      reject: emptyRejecter()
+      reject: rejecterFulfilling(expectation: expectation)
     )
+
+    wait(for: [expectation], timeout: 5)
     
     // then
     guard let resultLocation = querySingleLocationByTime(time: location1Time) else {
@@ -114,15 +134,20 @@ class GPSSecureStorageTest: XCTestCase {
     let location2 = [Location.KEY_TIME: location2TimeString, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297] as [String : Any]
     let locations = NSArray(array: [location1, location2])
 
+    let expectation = XCTestExpectation(description: "Import Locations")
+
     // when
     secureStorage!.importLocations(
       locations: locations,
       source: Location.SOURCE_MIGRATION,
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
+        expectation.fulfill()
       },
-      reject: emptyRejecter()
+      reject: rejecterFulfilling(expectation: expectation)
     )
+
+    wait(for: [expectation], timeout: 5)
     
     // then
     guard let resultLocation = querySingleLocationByTime(time: location1Time) else {
@@ -153,15 +178,20 @@ class GPSSecureStorageTest: XCTestCase {
     let location2 = [Location.KEY_TIME: location2TimeDouble, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297]
     let locations = NSArray(array: [location1, location2])
 
+    let expectation = XCTestExpectation(description: "Import Locations")
+
     // when
     secureStorage!.importLocations(
       locations: locations,
       source: Location.SOURCE_MIGRATION,
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
+        expectation.fulfill()
       },
-      reject: emptyRejecter()
+      reject: rejecterFulfilling(expectation: expectation)
     )
+
+    wait(for: [expectation], timeout: 5)
     
     // then
     XCTAssertNil(querySingleLocationByTime(time: location1Time))
@@ -205,11 +235,26 @@ class GPSSecureStorageTest: XCTestCase {
     let location2Date = Date()
     let location2Time = Int(location2Date.timeIntervalSince1970)
     let backgroundLocation2 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
-    secureStorage!.saveDeviceLocation(backgroundLocation1)
-    secureStorage!.saveDeviceLocation(backgroundLocation2)
-    
+
+    let expect1 = XCTestExpectation(description: "Save Device Location 1")
+    let expect2 = XCTestExpectation(description: "Save Device Location 2")
+    let expect3 = XCTestExpectation(description: "Trim Locations")
+
+    secureStorage!.saveDeviceLocation(backgroundLocation1) {
+      expect1.fulfill()
+    }
+    secureStorage!.saveDeviceLocation(backgroundLocation2) {
+      expect2.fulfill()
+    }
+
+    wait(for: [expect1, expect2], timeout: 5)
+
     // when
-    secureStorage!.trimLocations()
+    secureStorage!.trimLocations() {
+      expect3.fulfill()
+    }
+
+    wait(for: [expect3], timeout: 5)
     
     // then
     XCTAssertNil(querySingleLocationByTime(time: location1Time))
@@ -284,6 +329,12 @@ class GPSSecureStorageTest: XCTestCase {
   func emptyRejecter() -> RCTPromiseRejectBlock {
     return { code, message, error in
       
+    }
+  }
+
+  func rejecterFulfilling(expectation: XCTestExpectation) -> RCTPromiseRejectBlock {
+    return { code, message, error in
+      expectation.fulfill()
     }
   }
   

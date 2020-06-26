@@ -15,10 +15,12 @@ import Foundation
 import RealmSwift
 
 class SafePathsSecureStorage: NSObject {
-  
+
+  let identifier: String
   let inMemory: Bool
   
   init(inMemory: Bool = false) {
+    self.identifier = UUID().uuidString
     self.inMemory = inMemory
   }
 
