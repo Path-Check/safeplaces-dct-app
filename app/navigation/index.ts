@@ -19,6 +19,7 @@ export type Screen =
   | 'ExportCodeInput'
   | 'ExportLocationConsent'
   | 'ExportPublishConsent'
+  | 'PublishConsent'
   | 'ExportConfirmUpload'
   | 'ExportDone'
   | 'ExportComplete'
@@ -53,6 +54,7 @@ export const Screens: { [key in Screen]: Screen } = {
   ExportCodeInput: 'ExportCodeInput',
   ExportLocationConsent: 'ExportLocationConsent',
   ExportPublishConsent: 'ExportPublishConsent',
+  PublishConsent: 'PublishConsent',
   ExportConfirmUpload: 'ExportConfirmUpload',
   ExportDone: 'ExportDone',
   ExportComplete: 'ExportComplete',

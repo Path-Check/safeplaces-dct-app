@@ -52,12 +52,21 @@ const toStatus = (data: string[]): DeviceStatus => {
   return result;
 };
 
-const exposureNotificationModule = NativeModules.PTCExposureManagerModule;
+const permissionsModule = NativeModules.ENPermissionsModule;
+const keySubmissionModule = NativeModules.KeySubmissionModule;
 
+// Permissions Module
 export const requestAuthorization = async (
   cb: (data: string) => void,
 ): Promise<void> => {
-  exposureNotificationModule.requestExposureNotificationAuthorization(cb);
+  permissionsModule.requestExposureNotificationAuthorization(cb);
+};
+
+// Key Submission Module
+export const submitDiagnosisKeys = async (
+  cb: (errorMessage: string, successMessage: string) => void,
+): Promise<void> => {
+  keySubmissionModule.postDiagnosisKeys(cb);
 };
 
 // Debug Module

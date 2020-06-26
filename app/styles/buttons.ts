@@ -74,6 +74,11 @@ export const largeWhiteOutline: ViewStyle = {
   ...outlined,
 };
 
+export const largeSecondary: ViewStyle = {
+  ...base,
+  ...large,
+};
+
 export const tinyTeritiaryRounded: ViewStyle = {
   ...base,
   ...tiny,

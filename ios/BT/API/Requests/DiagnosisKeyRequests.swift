@@ -56,7 +56,7 @@ enum DiagnosisKeyListRequest: APIRequest {
         "regions": regions.map { $0.rawValue },
         "appPackageName": Bundle.main.bundleIdentifier!,
         "verificationPayload": "TODO",
-        "hmackey": "TODO",
+        "hmackey": ReactNativeConfig.env(for: .hmackey)!,
         "padding": String(decoding: Data(), as: UTF8.self)
       ]
     }
