@@ -178,48 +178,48 @@
     },
     "configurations": {
       "iphone11.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/GPS.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Development -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "binaryPath": "ios/build/Build/Products/Release-GPS-iphonesimulator/GPS.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release-GPS -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone 11"
         }
       },
       "iphone8.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/GPS.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "binaryPath": "ios/build/Build/Products/Release-GPS-iphonesimulator/GPS.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release-GPS -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone 8"
         }
       },
       "iphone-se.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/GPS.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "binaryPath": "ios/build/Build/Products/Release-GPS-iphonesimulator/GPS.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme GPS_Production -configuration Release-GPS -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone SE (2nd generation)"
         }
       },
       "iphone11-bt.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BT.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BT_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "binaryPath": "ios/build/Build/Products/Release-BT-iphonesimulator/BT.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BT_Production -configuration Release-BT -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone 11"
         }
       },
       "iphone8-bt.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BT.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BT_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "binaryPath": "ios/build/Build/Products/Release-BT-iphonesimulator/BT.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BT_Production -configuration Release-BT -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone 8"
         }
       },
       "iphone-se-bt.sim": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BT.app",
-        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BT_Production -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "binaryPath": "ios/build/Build/Products/Release-BT-iphonesimulator/BT.app",
+        "build": "xcodebuild -workspace ios/COVIDSafePaths.xcworkspace -scheme BT_Production -configuration Release-BT -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "device": {
           "type": "iPhone SE (2nd generation)"
