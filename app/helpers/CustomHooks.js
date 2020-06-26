@@ -15,7 +15,7 @@ export function useSurvey() {
   return survey;
 }
 
-const deepCompare = (value) => {
+const useDeepCompare = (value) => {
   const ref = useRef();
   if (!isEqual(value, ref.current)) {
     ref.current = value;
@@ -24,5 +24,5 @@ const deepCompare = (value) => {
 };
 
 export const useDeepCompareEffect = (callback, dependencies) => {
-  useEffect(callback, deepCompare(dependencies));
+  useEffect(callback, useDeepCompare(dependencies));
 };
