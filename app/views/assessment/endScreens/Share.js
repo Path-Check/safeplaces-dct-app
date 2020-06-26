@@ -1,8 +1,10 @@
-import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { Icons } from '../../../assets';
-import { Typography } from '../../../components/Typography';
+import getHealthcareAuthorities from '../../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
+import healthcareAuthorityOptionsSelector from '../../../store/selectors/healthcareAuthorityOptionsSelector';
 import { Info } from '../Info';
 
 import { Colors } from '../../../styles';
@@ -10,6 +12,15 @@ import { Colors } from '../../../styles';
 /** @type {React.FunctionComponent<{}>} */
 export const Share = ({ navigation }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getHealthcareAuthorities());
+  }, [dispatch]);
+  const authorities = useSelector(healthcareAuthorityOptionsSelector);
+  const selectedAuthorityDummy = authorities[0];
+  const shareDescription = t('assessment.share_description', {
+    ha_name: selectedAuthorityDummy.name,
+  });
 
   return (
     <Info
@@ -19,13 +30,7 @@ export const Share = ({ navigation }) => {
       icon={Icons.AnonymizedDataInverted}
       backgroundColor={Colors.primaryBackgroundFaintShade}
       ctaTitle={t('assessment.share_cta')}
-      description={
-        <>
-          <Trans t={t} i18nKey='assessment.share_description'>
-            <Typography />
-          </Trans>
-        </>
-      }
+      description={shareDescription}
       title={t('assessment.share_title')}
     />
   );

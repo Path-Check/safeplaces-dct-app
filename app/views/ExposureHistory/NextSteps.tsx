@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Screens, useStatusBarEffect } from '../../navigation';
+import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
+import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
 const NextSteps = (): JSX.Element => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getHealthcareAuthorities());
+  }, [dispatch]);
+  const authorities = useSelector(healthcareAuthorityOptionsSelector);
+  const selectedAuthorityDummy = authorities[0];
+
   const navigation = useNavigation();
   useStatusBarEffect('light-content');
 
@@ -16,9 +26,9 @@ const NextSteps = (): JSX.Element => {
     navigation.goBack();
   };
 
-  const healthAuthority = 'Boston Public Health Commission';
+  const healthAuthorityName = selectedAuthorityDummy.name;
 
-  const headerText = `${healthAuthority} recommends you take a self-assessment`;
+  const headerText = `${healthAuthorityName} recommends you take a self-assessment`;
 
   const contentTextOne =
     'It is possible that you may have crossed paths with somebody who has been diagnosed with COVID-19.';

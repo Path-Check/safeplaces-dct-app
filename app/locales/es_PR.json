@@ -34,7 +34,7 @@
     "settings_title": "Encuesta",
     "share_cta": "Entiendo y doy mi consentimiento",
     "share_cta_skip": "No gracias, no quiero compartir datos",
-    "share_description": "Sus datos anónimos ayudan a la Comisión de Salud Pública de Boston a analizar, rastrear y contener la propagación de COVID-19. Sus datos serán agregados a los de otros usuarios de PathCheck que elijan compartir.\n\nSus datos contienen sus respuestas a la encuesta y el código postal, pero ninguna información adicional o de identificación personal.\n\nLa Comisión de Salud Pública de Boston retendrá sus datos anónimos por un período de tiempo específico.",
+    "share_description": "Sus datos anónimos ayudan a la {{ha_name}} a analizar, rastrear y contener la propagación de COVID-19. Sus datos serán agregados a los de otros usuarios de PathCheck que elijan compartir.\n\nSus datos contienen sus respuestas a la encuesta y el código postal, pero ninguna información adicional o de identificación personal.\n\nLa {{ha_name}} retendrá sus datos anónimos por un período de tiempo específico.",
     "share_screening_description": "Comparta las respuestas anónimas a las preguntas de detección con su autoridad sanitaria local.",
     "share_screening_title": "Datos de cernimiento anónimos",
     "share_title": "Publicar datos anónimos",

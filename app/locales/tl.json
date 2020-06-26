@@ -8,7 +8,7 @@
     "next": "Sa susunod",
     "share_cta": "Naiintindihan ko at pumapayag ako",
     "share_cta_skip": "Salamat na lang, ayaw ko'ng magbahagi ng data",
-    "share_description": "Ang anonimong, o walang pangalan na, na data ay tumutulong sa Boston Public Health Commission sa paganalisa, pagsubaybay at pagpigil sa paglaganap ng COVID-19. Ang iyong data ay isasama sa impormasyon ng ibang gumagamit ng PathCheck na pinili ang makipagbigay-alam.",
+    "share_description": "Ang anonimong, o walang pangalan na, na data ay tumutulong sa {{ha_name}} sa paganalisa, pagsubaybay at pagpigil sa paglaganap ng COVID-19. Ang iyong data ay isasama sa impormasyon ng ibang gumagamit ng PathCheck na pinili ang makipagbigay-alam.",
     "share_screening_description": "Ipamahagi ang anonimo, o walang pangalan, na sagot sa mga screening questions sa iyong Departamentong Pangkalusugan.",
     "share_screening_title": "Anonimong, o walang pangalan na, Data ng Screening",
     "start_cta": "Simula",

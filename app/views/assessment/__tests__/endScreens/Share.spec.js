@@ -6,6 +6,15 @@ import i18n from '../../../../locales/languages';
 import { MetaContext } from '../../Context';
 import { Share } from '../../endScreens/Share';
 
+jest.mock('react-redux', () => ({
+  useDispatch: jest.fn(jest.fn),
+  useSelector: () => [
+    {
+      name: 'Boston Public Health Commission',
+    },
+  ],
+}));
+
 test('base', () => {
   const { asJSON } = render(<Share />, { wrapper: Wrapper });
   expect(asJSON()).toMatchSnapshot();
