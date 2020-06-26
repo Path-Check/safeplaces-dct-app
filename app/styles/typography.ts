@@ -190,10 +190,10 @@ export const buttonTextTinyDark: TextStyle = {
   ...tinyFont,
 };
 
-// Assesment
-export const assesmentInstruction: TextStyle = {
-  ...smallFont,
-  color: Colors.primaryText,
+// Assessment
+export const assessmentInstruction: TextStyle = {
+  ...mediumFont,
+  color: Colors.secondaryHeaderText,
   lineHeight: smallerLineHeight,
 };
 
