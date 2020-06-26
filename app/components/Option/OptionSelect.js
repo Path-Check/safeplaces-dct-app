@@ -12,6 +12,8 @@ import {
 
 import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
 
+const checkboxInput = SCREEN_TYPE_CHECKBOX
+
 export function OptionSelect({
   wrapperStyle,
   isValidType,
@@ -20,16 +22,17 @@ export function OptionSelect({
   icon,
   title,
 }) {
+
+  const indicatorStyle = (inputType === SCREEN_TYPE_CHECKBOX) ? styles.indicatorCheck : styles.indicatorRadio
+
   return (
     <View style={wrapperStyle}>
       {isValidType && (
         <View
-          style={[styles.indicator, isSelected && styles.indicatorSelected]}>
+          style={[indicatorStyle, isSelected && styles.indicatorSelected]}>
           {isSelected && inputType === SCREEN_TYPE_CHECKBOX && (
             <SvgXml
-              height={Spacing.medium * 0.5}
-              style={styles.indicatorIcon}
-              width={Spacing.medium * 0.5}
+              width={Spacing.medium}
               xml={icon}
             />
           )}
@@ -44,17 +47,28 @@ export function OptionSelect({
   );
 }
 
-const styles = StyleSheet.create({
+const inputStyle = StyleSheet.create({
   indicator: {
     alignItems: 'center',
-    borderColor: Colors.primaryViolet,
-    borderRadius: Spacing.medium * 2,
+    borderColor: Colors.radioBorder,
     borderWidth: 2,
     height: Spacing.large,
     justifyContent: 'center',
     marginTop: Spacing.tiny,
     marginRight: Spacing.large,
     width: Spacing.large,
+  },
+});
+
+const styles = StyleSheet.create({
+  indicatorRadio: {
+    ...inputStyle.indicator,
+    borderRadius: Spacing.medium * 2,
+  },
+  indicatorCheck: {
+    ...inputStyle.indicator,
+    borderWidth: 2,
+    borderRadius: Spacing.tiny,
   },
   indicatorSelected: {
     backgroundColor: Colors.secondaryBlue,
