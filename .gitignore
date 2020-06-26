@@ -98,4 +98,12 @@ android/app/src/main/assets/index.android.bundle
 safepaths.realm
 
 # env files
-.env.bt*
+.env.bt
+.env.bt.staging
+.env.bt.release
+
+.env.gps
+.env.gps.staging
+.env.gps.release
+
+
