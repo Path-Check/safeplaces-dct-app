@@ -26,6 +26,7 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
+import org.pathcheck.covidsafepaths.MainActivity;
 
 import javax.annotation.Nonnull;
 
@@ -88,12 +89,16 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                             if (apiException.getStatusCode()
                                     == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
                                 Log.e("HELLO123", "Resolution Required", exception);
+                                MainActivity mainActivity = (MainActivity) reactContext.getCurrentActivity();
+                                mainActivity.showPermission(apiException);
+
                             } else {
                                 Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
                             }
                         })
                 .addOnCanceledListener(() ->
                         Log.d("HELLO123", "cancelled"));
+
 
         //startExposureNotifications(promise);
     }
