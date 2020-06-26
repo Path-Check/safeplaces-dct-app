@@ -160,6 +160,29 @@ export function fillLocationGaps(
   return filled;
 }
 
+const getTransformedLocalDataAndDayBins = async (gpsPeriodMS) => {
+  // get the saved set of locations for the user, already sorted, and fill in the gaps
+  const locationArray = await NativeModules.SecureStorageManager.getLocations();
+  const locationArrayWithoutOldData = discardOldData(
+    locationArray,
+    MAX_EXPOSURE_WINDOW_DAYS,
+  );
+  const locationArrayWithoutGaps = fillLocationGaps(
+    locationArrayWithoutOldData,
+    gpsPeriodMS,
+  );
+  // generate an array with the asked number of day bins
+  const dayBins = initLocationBins(
+    MAX_EXPOSURE_WINDOW_DAYS,
+    locationArrayWithoutOldData,
+  );
+
+  return {
+    locationArray: locationArrayWithoutGaps,
+    dayBins,
+  };
+};
+
 /**
  * Updates the `hasMatch` flag of recorded GPS data points
  * that are in the HA's list of concern points.
@@ -325,29 +348,6 @@ export async function migrateOldData() {
 /** The old data has been migrated already for this session/app. */
 let hasMigratedOldData = false;
 
-const getTransformedLocalDataAndDayBins = async (gpsPeriodMS) => {
-  // get the saved set of locations for the user, already sorted, and fill in the gaps
-  const locationArray = await NativeModules.SecureStorageManager.getLocations();
-  const locationArrayWithoutOldData = discardOldData(
-    locationArray,
-    MAX_EXPOSURE_WINDOW_DAYS,
-  );
-  // generate an array with the asked number of day bins
-  const tempDayBins = initLocationBins(
-    MAX_EXPOSURE_WINDOW_DAYS,
-    locationArrayWithoutOldData,
-  );
-  const locationArrayWithoutGaps = fillLocationGaps(
-    locationArrayWithoutOldData,
-    gpsPeriodMS,
-  );
-
-  return {
-    locationArray: locationArrayWithoutGaps,
-    tempDayBins,
-  };
-};
-
 /**
  * Kicks off the intersection process.  Immediately returns after starting the
  * background intersection.  Typically would be run about every 12 hours, but
@@ -388,12 +388,10 @@ async function asyncCheckIntersect(bypassTimer = false) {
   ) {
     return null;
   }
-  // Fetch previous dayBins for intersections
-  let dayBins = await GetStoreData(CROSSED_PATHS, false);
 
   const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
 
-  let { locationArray, tempDayBins } = await getTransformedLocalDataAndDayBins(
+  let { locationArray, dayBins } = await getTransformedLocalDataAndDayBins(
     gpsPeriodMS,
   );
 
@@ -405,11 +403,11 @@ async function asyncCheckIntersect(bypassTimer = false) {
 
   for (const authority of selectedAuthorities) {
     try {
-      tempDayBins = await performIntersectionForSingleHA(
+      dayBins = await performIntersectionForSingleHA(
         authority,
         localHAData,
         locationArray,
-        tempDayBins,
+        dayBins,
         gpsPeriodMS,
       );
     } catch (error) {
@@ -420,17 +418,6 @@ async function asyncCheckIntersect(bypassTimer = false) {
       //
     }
   }
-
-  // Update each day's bin with the result from the intersection.  To keep the
-  //  difference between no data (==-1) and exposure data (>=0), there
-  //  are a total of 3 cases to consider.
-  if (!dayBins) dayBins = tempDayBins;
-  else
-    dayBins = tempDayBins.map((currentValue, i) => {
-      if (currentValue < 0) return dayBins[i];
-      if (dayBins[i] < 0) return currentValue;
-      return currentValue + dayBins[i];
-    });
 
   // if any of the bins are > 0, tell the user
   if (dayBins.some((a) => a > 0)) notifyUserOfRisk();
