@@ -94,6 +94,8 @@ export const underlayPrimaryBackground = moonRaker;
 // Borders
 export const primaryBorder = primaryViolet;
 export const secondaryBorder = lighterGray;
+export const radioBorder = lightGray;
+export const checkboxBorder = lightGray;
 
 // Nav
 export const mainNav = primaryViolet;
