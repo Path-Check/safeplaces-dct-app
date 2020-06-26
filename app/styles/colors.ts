@@ -20,7 +20,7 @@ export const mediumGray = '#606060';
 export const darkGray = '#4e4e4e';
 export const darkestGray = '#2e2e2e';
 export const silver = '#bebebe';
-export const porcelain = '#ecfof1';
+export const porcelain = '#ecf0f1';
 
 // Reds
 export const red = '#ff0000';
