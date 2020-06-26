@@ -89,8 +89,6 @@ final class ExposureManager: NSObject {
     func finish(_ result: Result<[Exposure]>) {
 
       cleanup()
-
-      progress.cancel()
       
       if progress.isCancelled {
         detectingExposures = false
