@@ -10,8 +10,12 @@ import {
   SCREEN_TYPE_RADIO,
 } from '../../views/assessment/constants';
 
-import { Colors, Forms, Spacing, Typography as TypographyStyles } from '../../styles';
-
+import {
+  Colors,
+  Forms,
+  Spacing,
+  Typography as TypographyStyles,
+} from '../../styles';
 
 export function OptionSelect({
   wrapperStyle,
