@@ -28,14 +28,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderColor: Colors.secondaryBorder,
     borderRadius: Spacing.xxSmall,
-    borderWidth: 1,
+    borderWidth: 2,
     marginBottom: Spacing.small,
     paddingHorizontal: Spacing.medium,
     paddingVertical: Spacing.medium,
   },
   containerSelected: {
     backgroundColor: Colors.secondaryBackground,
-    borderColor: Colors.primaryViolet,
+    borderColor: Colors.secondaryBlue,
   },
   primary: {
     alignItems: 'flex-start',
