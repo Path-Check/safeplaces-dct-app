@@ -10,9 +10,8 @@ import {
   SCREEN_TYPE_RADIO,
 } from '../../views/assessment/constants';
 
-import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
+import { Colors, Forms, Spacing, Typography as TypographyStyles } from '../../styles';
 
-const checkboxInput = SCREEN_TYPE_CHECKBOX;
 
 export function OptionSelect({
   wrapperStyle,
@@ -45,26 +44,13 @@ export function OptionSelect({
   );
 }
 
-const inputStyle = StyleSheet.create({
-  indicator: {
-    alignItems: 'center',
-    borderColor: Colors.radioBorder,
-    borderWidth: 2,
-    height: Spacing.large,
-    justifyContent: 'center',
-    marginTop: Spacing.tiny,
-    marginRight: Spacing.large,
-    width: Spacing.large,
-  },
-});
-
 const styles = StyleSheet.create({
   indicatorRadio: {
-    ...inputStyle.indicator,
+    ...Forms.inputIndicator,
     borderRadius: Spacing.medium * 2,
   },
   indicatorCheck: {
-    ...inputStyle.indicator,
+    ...Forms.inputIndicator,
     borderWidth: 2,
     borderRadius: Spacing.tiny,
   },
