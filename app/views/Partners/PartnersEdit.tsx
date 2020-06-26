@@ -17,7 +17,6 @@ import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcare
 import { Screens, NavigationProp } from '../../navigation';
 
 import toggleSelectedHealthcareAuthorityAction from '../../store/actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
-import getCurrentlySelectedAuthority from '../../store/actions/healthcareAuthorities/getCurrentlySelectedAuthority';
 import { Button } from '../../components/Button';
 import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
 import { Spacing } from '../../styles';
@@ -68,12 +67,6 @@ const PartnersScreen = ({
       toggleSelectedHealthcareAuthorityAction({
         authority: HA,
         overrideValue: !isSelected(HA),
-      }),
-    );
-    dispatch(
-      getCurrentlySelectedAuthority({
-        authority: HA,
-        selectedValue: !isSelected(HA),
       }),
     );
   };

@@ -2,13 +2,10 @@ import React, { useCallback, useState, useContext, useRef } from 'react';
 import { AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import {
-  checkIntersect,
-  asyncIntersectCheckForSingleHA,
-} from '../helpers/Intersect';
 import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
 import NotificationService from '../services/NotificationService';
+import IntersectService from '../services/IntersectService';
 import { AllServicesOnScreen } from './main/AllServicesOn';
 import {
   TracingOffScreen,
@@ -23,7 +20,7 @@ import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
 import { useStatusBarEffect } from '../navigation';
 import { useDeepCompareEffect } from '../helpers/CustomHooks';
-import {debounce} from 'lodash';
+import { debounce } from 'lodash';
 
 export const Main = () => {
   useStatusBarEffect('light-content');
@@ -32,31 +29,24 @@ export const Main = () => {
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
 
-  const debounceUpdateStateInfo = 
-    useRef(debounce(() => updateStateInfo(currentlySelectedAuthority), 1000)).current
+  const debounceUpdateStateInfo = useRef(
+    debounce(() => updateStateInfo(), 1000),
+  ).current;
 
   const selectedAuthorities = useSelector(
     selectedHealthcareAuthoritiesSelector,
   );
 
-  const currentlySelectedAuthority = useSelector((state) => {
-    return state.healthcareAuthorities.currentlySelectedAuthority;
-  });
   const [canTrack, setCanTrack] = useState(true);
 
-  const checkForPossibleExposure = (currentlySelectedAuthority) => {
+  const checkForPossibleExposure = () => {
     BackgroundTaskServices.start();
-
-    // TODO: add this par of redux state to blacklist or move to custom hook
-    if (currentlySelectedAuthority) {
-      asyncIntersectCheckForSingleHA(currentlySelectedAuthority);
-    } else {
-      checkIntersect();
-    }
+    const intersectionStatus = IntersectService.instance.checkIntersect(true);
+    console.log(`[intersection] ${intersectionStatus}`);
   };
 
   const updateStateInfo = useCallback(async () => {
-    checkForPossibleExposure(currentlySelectedAuthority);
+    checkForPossibleExposure();
     const locationStatus = await LocationServices.checkStatusAndStartOrStop();
     setCanTrack(locationStatus.canTrack);
     notification.check();
@@ -78,8 +68,8 @@ export const Main = () => {
   }, [
     navigation,
     updateStateInfo,
-    currentlySelectedAuthority,
     selectedAuthorities,
+    debounceUpdateStateInfo,
   ]);
 
   if (!canTrack) {

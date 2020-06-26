@@ -357,9 +357,10 @@ const getTransformedLocalDataAndDayBins = async (gpsPeriodMS) => {
  *        from the authority (e.g. the news url) since we get that in the same call.
  *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
-export async function checkIntersect() {
+export async function checkIntersect(bypassTimer = false) {
   console.log(
-    `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}`,
+    `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}; `,
+    `is bypassing timer = ${bypassTimer}`,
   );
 
   // TODO: remove this after June 1 once 14 day old history is irrelevant
@@ -368,7 +369,7 @@ export async function checkIntersect() {
     hasMigratedOldData = true;
   }
 
-  const result = await asyncCheckIntersect();
+  const result = await asyncCheckIntersect(bypassTimer);
   console.log(`[intersect] ${result ? 'completed' : 'skipped'}`);
 }
 
@@ -378,15 +379,15 @@ export async function checkIntersect() {
  *
  * Returns the array of day bins (mostly for debugging purposes)
  */
-async function asyncCheckIntersect() {
+async function asyncCheckIntersect(bypassTimer = false) {
   // first things first ... is it time to actually try the intersection?
   let lastCheckedMs = Number(await GetStoreData(LAST_CHECKED));
   if (
-    lastCheckedMs + MIN_CHECK_INTERSECT_INTERVAL * 60 * 1000 >
-    dayjs().valueOf()
-  )
+    !bypassTimer &&
+    lastCheckedMs + MIN_CHECK_INTERSECT_INTERVAL * 60e3 > dayjs().valueOf()
+  ) {
     return null;
-
+  }
   // Fetch previous dayBins for intersections
   let dayBins = await GetStoreData(CROSSED_PATHS, false);
 
@@ -415,6 +416,8 @@ async function asyncCheckIntersect() {
       // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
       //       Should do better than this.
       console.log('[authority] fetch/parse error :', error);
+    } finally {
+      //
     }
   }
 
@@ -445,17 +448,7 @@ async function asyncCheckIntersect() {
   return dayBins;
 }
 
-let runningJobs = {};
-
 export async function asyncIntersectCheckForSingleHA(authority) {
-  if (runningJobs[authority]) {
-    console.log('skip');
-    return;
-  }
-  console.log(runningJobs);
-
-  runningJobs[authority] = true;
-
   // Fetch previous dayBins for intersections
   let dayBins = await GetStoreData(CROSSED_PATHS, false);
 
@@ -482,7 +475,7 @@ export async function asyncIntersectCheckForSingleHA(authority) {
     //       Should do better than this.
     console.log('[authority] fetch/parse error :', error);
   } finally {
-    runningJobs[authority] = false;
+    // runningJobs[authority] = false;
   }
 
   // Update each day's bin with the result from the intersection.  To keep the

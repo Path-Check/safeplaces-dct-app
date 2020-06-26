@@ -1,11 +1,12 @@
 import BackgroundFetch from 'react-native-background-fetch';
 
+import IntersectService from './IntersectService';
 import { INTERSECT_INTERVAL } from '../constants/history';
-import { checkIntersect } from '../helpers/Intersect';
+// import { checkIntersect } from '../helpers/Intersect';
 import { HCAService } from '../services/HCAService';
 
 export function executeTask() {
-  checkIntersect();
+  IntersectService.instance.checkIntersect();
   __DEV__ && HCAService.findNewAuthorities();
 }
 
