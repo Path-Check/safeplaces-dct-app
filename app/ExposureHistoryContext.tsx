@@ -55,8 +55,10 @@ const ExposureHistoryProvider = ({
   useEffect(() => {
     const subscription = exposureInfoSubscription(
       (exposureInfo: ExposureInfo) => {
+        console.log('in context', exposureInfo);
         const days = calendarDays(Date.now(), CALENDAR_DAY_COUNT);
         const exposureHistory = toExposureHistory(exposureInfo, days);
+        console.log('exposureHistory', exposureHistory);
         setExposureHistory(exposureHistory);
       },
     );

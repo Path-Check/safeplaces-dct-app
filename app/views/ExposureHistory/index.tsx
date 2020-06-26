@@ -9,15 +9,18 @@ import {
 import { SvgXml } from 'react-native-svg';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
+import dayjs from 'dayjs';
 
 import ExposureHistoryContext from '../../ExposureHistoryContext';
-import { ExposureDatum } from '../../exposureHistory';
+import { ExposureInfo, ExposureDatum } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import ExposureDatumDetail from './ExposureDatumDetail';
 import { DateTimeUtils } from '../../helpers';
 import Calendar from './Calendar';
 import { Screens, useStatusBarEffect } from '../../navigation';
 import { isGPS } from '../../COVIDSafePathsConfig';
+
+import { emitGPSExposureInfo } from '../../gps/exposureInfo';
 
 import { Icons } from '../../assets';
 import {
@@ -51,6 +54,21 @@ const ExposureHistoryScreen = (): JSX.Element => {
   const showExposureDetail =
     selectedDatum && !DateTimeUtils.isInFuture(selectedDatum.date);
 
+  const handleFakeGPSExposure = () => {
+    const beginngingOfDay = dayjs(Date.now()).startOf('day').valueOf();
+    const fakeInfo: ExposureInfo = {
+      [beginngingOfDay]: {
+        kind: 'Possible',
+        date: beginngingOfDay,
+        duration: 120,
+        totalRiskScore: 2,
+        transmissionRiskLevel: 3,
+      },
+    };
+
+    emitGPSExposureInfo(fakeInfo);
+  };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={styles.container} alwaysBounceVertical={false}>
@@ -78,6 +96,9 @@ const ExposureHistoryScreen = (): JSX.Element => {
             selectedDatum={selectedDatum}
           />
         </View>
+        <TouchableOpacity onPress={handleFakeGPSExposure}>
+          <Typography>{'TEST'}</Typography>
+        </TouchableOpacity>
         <View style={styles.detailsContainer}>
           {selectedDatum && showExposureDetail ? (
             <ExposureDatumDetail exposureDatum={selectedDatum} />

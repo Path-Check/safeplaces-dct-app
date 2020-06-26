@@ -31,6 +31,8 @@ const TracingStrategyProvider = ({
 }: TracingStrategyProps): JSX.Element => {
   const StrategyPermissionsProvider = strategy.permissionsProvider;
 
+  console.log('subscription', strategy.exposureInfoSubscription);
+
   return (
     <TracingStrategyContext.Provider
       value={{

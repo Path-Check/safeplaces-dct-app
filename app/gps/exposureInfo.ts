@@ -1,45 +1,63 @@
-import { AppState, EventSubscription } from 'react-native';
+import { EventSubscription } from 'react-native';
 
 import { ExposureInfo } from '../exposureHistory';
 
-type Foo = string;
+type Event = 'onGPSExposureInfoUpdated';
 
-type Event = "onGPSExposureInfoUpdated"
+type HandleOnExposureInfoUpdated = (data: ExposureInfo) => void;
 
-type Subscriber = (data: ExposureInfo) => void
+interface Subscriber {
+  eventName: Event;
+  callback: HandleOnExposureInfoUpdated;
+}
 
 interface GPSExposureInfoEventEmitter {
-  subscribers: Subscriber[]
-  dispatch: (event: Event, data: ExposureInfo) => void
-  subscribe: (event: Event, callback: Subscriber) => void
+  subscribers: Subscriber[];
+  emit: (event: Event, data: ExposureInfo) => void;
+  addListener: (
+    event: Event,
+    callback: HandleOnExposureInfoUpdated,
+  ) => {
+    remove: () => void;
+  };
 }
 
-const GPSExposureInfoEventEmitter = {
-  subscribers: Subscriber,
-  dispatch: function (event: Event, data: ExposureInfo) {
+const ExposureEvents: GPSExposureInfoEventEmitter = {
+  subscribers: [],
+  emit: function (event: Event, data: ExposureInfo) {
     this.subscribers.forEach((subscriber: Subscriber) => {
-      subscriber(data)
-    })
+      if (subscriber.eventName === event) {
+        subscriber.callback(data);
+      }
+    });
   },
-  subscribe: function (event: Event, subscriber: Subscriber) => void) {
-    this.subscribers.push(subscriber)
-  }
-
-}
+  addListener: function (event: Event, callback: HandleOnExposureInfoUpdated) {
+    const nextSubscriber: Subscriber = {
+      eventName: event,
+      callback,
+    };
+    this.subscribers.push(nextSubscriber);
+    return {
+      remove: () => {
+        this.subscribers = [];
+      },
+    };
+  },
+};
 
 export const subscribeToExposureEvents = (
   cb: (exposureInfo: ExposureInfo) => void,
-): EventSubscription => {
-  MYFOO.addEventListener('onGPSExpsoureInfoUpdated', (foo: Foo[]) => {
-    cb(toExposureInfo(foo));
-  });
-  return {
-    remove: () => {
-      MFOO.removeEventListener('onGPSExpsoureInfoUpdated')
-    }
-  }
+) => {
+  return ExposureEvents.addListener(
+    'onGPSExposureInfoUpdated',
+    (data: ExposureInfo) => {
+      console.log('subscribeCallback', data);
+      cb(data);
+    },
+  );
 };
 
-const toExposureInfo = (foo: Foo[]): ExposureInfo => {
-  return [];
+export const emitGPSExposureInfo = (fakeInfo: ExposureInfo): void => {
+  console.log('emit fn', fakeInfo);
+  ExposureEvents.emit('onGPSExposureInfoUpdated', fakeInfo);
 };
