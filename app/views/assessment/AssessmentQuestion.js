@@ -56,7 +56,10 @@ export const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
     SCREEN_TYPE_DATE,
   ].includes(question.screen_type);
 
-  const assessmentInputInstruction = (question.question_type === QUESTION_TYPE_MULTI) ? "Select all that apply" : "Select one";
+  const assessmentInputInstruction =
+    question.question_type === QUESTION_TYPE_MULTI
+      ? 'Select all that apply'
+      : 'Select one';
 
   const options =
     displayAsOption &&
@@ -121,10 +124,10 @@ export const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
         </View>
         <View style={styles.scrollViewContent}>
           {description}
-          <Typography style={styles.instruction}>{assessmentInputInstruction}</Typography>
-          <View style={styles.optionsWrapper}>
-            {options}
-          </View>
+          <Typography style={styles.instruction}>
+            {assessmentInputInstruction}
+          </Typography>
+          <View style={styles.optionsWrapper}>{options}</View>
         </View>
       </ScrollView>
       <View style={styles.footer}>

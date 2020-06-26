@@ -12,7 +12,7 @@ import {
 
 import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
 
-const checkboxInput = SCREEN_TYPE_CHECKBOX
+const checkboxInput = SCREEN_TYPE_CHECKBOX;
 
 export function OptionSelect({
   wrapperStyle,
@@ -22,19 +22,17 @@ export function OptionSelect({
   icon,
   title,
 }) {
-
-  const indicatorStyle = (inputType === SCREEN_TYPE_CHECKBOX) ? styles.indicatorCheck : styles.indicatorRadio
+  const indicatorStyle =
+    inputType === SCREEN_TYPE_CHECKBOX
+      ? styles.indicatorCheck
+      : styles.indicatorRadio;
 
   return (
     <View style={wrapperStyle}>
       {isValidType && (
-        <View
-          style={[indicatorStyle, isSelected && styles.indicatorSelected]}>
+        <View style={[indicatorStyle, isSelected && styles.indicatorSelected]}>
           {isSelected && inputType === SCREEN_TYPE_CHECKBOX && (
-            <SvgXml
-              width={Spacing.medium}
-              xml={icon}
-            />
+            <SvgXml width={Spacing.medium} xml={icon} />
           )}
           {isSelected &&
             (inputType === SCREEN_TYPE_RADIO || inputType === SCREEN_TYPE_DATE)}
@@ -77,6 +75,6 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     flexWrap: 'wrap',
-    ...TypographyStyles.inputLabel
+    ...TypographyStyles.inputLabel,
   },
 });

@@ -20,7 +20,7 @@ export const Button = ({ color, onPress, title, disabled = false }) => {
     ? color
     : disabled
     ? Colors.secondaryBackground
-    : Colors.secondaryBlue
+    : Colors.secondaryBlue;
   let textColor = color
     ? color
     : disabled
