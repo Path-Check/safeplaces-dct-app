@@ -33,6 +33,8 @@ const ExposureNotificationsProvider = ({
   const [deviceStatus, setDeviceStatus] = useState<DeviceStatus>(initialStatus);
 
   useEffect(() => {
+    getCurrentENPermissionsStatus();
+
     const subscription = BTNativeModule.subscribeToEnabledStatusEvents(
       (status: DeviceStatus) => {
         setDeviceStatus(status);
@@ -47,6 +49,13 @@ const ExposureNotificationsProvider = ({
   const requestENAuthorization = () => {
     const handleNativeResponse = () => {};
     BTNativeModule.requestAuthorization(handleNativeResponse);
+  };
+
+  const getCurrentENPermissionsStatus = () => {
+    const handleNativeResponse = (status: DeviceStatus) => {
+      setDeviceStatus(status);
+    };
+    BTNativeModule.getCurrentENPermissionsStatus(handleNativeResponse);
   };
 
   return (

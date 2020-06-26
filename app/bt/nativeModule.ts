@@ -62,6 +62,15 @@ export const requestAuthorization = async (
   permissionsModule.requestExposureNotificationAuthorization(cb);
 };
 
+export const getCurrentENPermissionsStatus = async (
+  cb: (status: DeviceStatus) => void,
+): Promise<void> => {
+  permissionsModule.getCurrentENPermissionsStatus((data: string[]) => {
+    const status = toStatus(data);
+    cb(status);
+  });
+};
+
 // Key Submission Module
 export const submitDiagnosisKeys = async (
   cb: (errorMessage: string, successMessage: string) => void,
