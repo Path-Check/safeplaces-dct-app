@@ -11,32 +11,7 @@ import {
 import { openSettings } from 'react-native-permissions';
 
 import { HCAService } from '../services/HCAService.js';
-
-export enum PermissionStatus {
-  UNKNOWN,
-  GRANTED,
-  DENIED,
-}
-
-export const statusToEnum = (status: string | void): PermissionStatus => {
-  switch (status) {
-    case 'unknown': {
-      return PermissionStatus.UNKNOWN;
-    }
-    case 'denied': {
-      return PermissionStatus.DENIED;
-    }
-    case 'blocked': {
-      return PermissionStatus.DENIED;
-    }
-    case 'granted': {
-      return PermissionStatus.GRANTED;
-    }
-    default: {
-      return PermissionStatus.UNKNOWN;
-    }
-  }
-};
+import { PermissionStatus, statusToEnum } from '../helpers/PermissionsHelpers';
 
 interface PermissionContextState {
   location: {
