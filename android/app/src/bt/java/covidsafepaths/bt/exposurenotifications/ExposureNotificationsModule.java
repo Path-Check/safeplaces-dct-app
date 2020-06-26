@@ -10,14 +10,17 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.Nearby;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -67,8 +70,32 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
      * Method with the same name as iOS, just calls client "start" method which enables EN
      */
     @ReactMethod
-    public void requestExposureNotificationAuthorization(final Promise promise) {
-        startExposureNotifications(promise);
+    public void requestExposureNotificationAuthorization(final Callback callback) {
+        Log.d("HELLO123", "requestExposureNotificationAuthorization");
+        ExposureNotificationClientWrapper.get(getReactApplicationContext())
+                .start()
+                .addOnSuccessListener(
+                        unused -> {
+                            Log.d("HELLO123", "success");
+                        })
+                .addOnFailureListener(
+                        exception -> {
+                            if (!(exception instanceof ApiException)) {
+                                Log.e("HELLO123", "Unknown error when attempting to start API", exception);
+                                return;
+                            }
+                            ApiException apiException = (ApiException) exception;
+                            if (apiException.getStatusCode()
+                                    == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
+                                Log.e("HELLO123", "Resolution Required", exception);
+                            } else {
+                                Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
+                            }
+                        })
+                .addOnCanceledListener(() ->
+                        Log.d("HELLO123", "cancelled"));
+
+        //startExposureNotifications(promise);
     }
 
     /**
