@@ -1,0 +1,4 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "Ligtas na iniimbak ng PathCheck ang iyong mga coordinates sa GPS isang beses kada limang minuto sa device o aparatong ito.";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "Nakasara ang PathCheck";
