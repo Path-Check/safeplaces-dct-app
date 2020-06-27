@@ -1,4 +1,10 @@
-import React, { useCallback, useState, useContext, useRef, useEffect } from 'react';
+import React, {
+  useCallback,
+  useState,
+  useContext,
+  useRef,
+  useEffect,
+} from 'react';
 import { AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -62,17 +68,11 @@ export const Main = () => {
       AppState.removeEventListener('change', updateStateInfo);
       unsubscribe();
     };
-  }, [
-    navigation,
-    updateStateInfo,
-  ]);
+  }, [navigation, updateStateInfo]);
 
   useEffect(() => {
     debounceCheckIntersect();
-  }, [
-    selectedAuthorities,
-    debounceCheckIntersect,
-  ]);
+  }, [selectedAuthorities, debounceCheckIntersect]);
 
   if (!canTrack) {
     return <TracingOffScreen />;
