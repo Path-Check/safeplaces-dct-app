@@ -11,7 +11,7 @@ import {
 import { openSettings } from 'react-native-permissions';
 
 import { HCAService } from '../services/HCAService.js';
-import { PermissionStatus, statusToEnum } from '../helpers/PermissionsHelpers';
+import { PermissionStatus, statusToEnum } from '../permissionStatus';
 
 interface PermissionContextState {
   location: {

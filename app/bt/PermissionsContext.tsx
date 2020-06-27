@@ -7,7 +7,7 @@ import {
   requestNotifications,
 } from 'react-native-permissions';
 import { Platform } from 'react-native';
-import { PermissionStatus, statusToEnum } from '../helpers/PermissionsHelpers';
+import { PermissionStatus, statusToEnum } from '../permissionStatus';
 
 type ENEnablement = `DISABLED` | `ENABLED`;
 type ENAuthorization = `UNAUTHORIZED` | `AUTHORIZED`;

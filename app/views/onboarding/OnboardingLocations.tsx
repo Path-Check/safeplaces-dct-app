@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import { SetStoreData } from '../../helpers/General';
 import { PARTICIPATE } from '../../constants/storage';
-import { PermissionStatus } from '../../helpers/PermissionsHelpers';
+import { PermissionStatus } from '../../permissionStatus';
 
 const OnboardingLocations = (): JSX.Element => {
   const { authSubscription, location } = useContext(PermissionsContext);

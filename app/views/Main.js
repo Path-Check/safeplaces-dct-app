@@ -13,7 +13,7 @@ import {
   // SelectAuthorityScreen,
 } from './main/ServiceOffScreens';
 import PermissionsContext from '../gps/PermissionsContext';
-import { PermissionStatus } from '../helpers/PermissionsHelpers';
+import { PermissionStatus } from '../permissionStatus';
 
 import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
