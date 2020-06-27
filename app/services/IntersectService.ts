@@ -1,14 +1,18 @@
 import { checkIntersect as intersect } from '../helpers/Intersect';
+import { HealthcareAuthority } from '../store/types';
 
 class IntersectService {
   isServiceRunning = false;
 
-  checkIntersect = (bypassTimer: boolean): string => {
+  checkIntersect = (
+    healthcareAuthorities: HealthcareAuthority[],
+    bypassTimer: boolean,
+  ): string => {
     // TODO : add job queues!!
     if (this.isServiceRunning) return 'skipped';
     this.isServiceRunning = true;
 
-    intersect(bypassTimer).then(() => {
+    intersect(healthcareAuthorities, bypassTimer).then(() => {
       this.isServiceRunning = false;
     });
 

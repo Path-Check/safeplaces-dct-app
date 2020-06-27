@@ -1,14 +1,21 @@
-import { Dispatch, Middleware, AnyAction } from 'redux';
-import { TOGGLE_SELECTED_HEALTHCARE_AUTHORITY } from '../actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
+import { Dispatch, Middleware, AnyAction, MiddlewareAPI } from 'redux';
 import IntersectService from '../../services/IntersectService';
 
-const onChangedSelectedHealthAuthorities: Middleware<Dispatch> = () => (
-  next: Dispatch<AnyAction>,
-) => (action: AnyAction): unknown => {
+const onChangedSelectedHealthAuthorities: Middleware<Dispatch> = (
+  store: MiddlewareAPI,
+) => (next: Dispatch<AnyAction>) => (action: AnyAction): unknown => {
+  const {
+    healthcareAuthorities: { selectedAuthorities: stateBefore },
+  } = store.getState();
+
   const result = next(action);
 
-  if (action.type === TOGGLE_SELECTED_HEALTHCARE_AUTHORITY) {
-    IntersectService.checkIntersect(true);
+  const {
+    healthcareAuthorities: { selectedAuthorities: stateAfter },
+  } = store.getState();
+
+  if (stateBefore !== stateAfter) {
+    IntersectService.checkIntersect(stateAfter, true);
   }
   return result;
 };

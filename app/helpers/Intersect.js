@@ -357,7 +357,10 @@ let hasMigratedOldData = false;
  *        from the authority (e.g. the news url) since we get that in the same call.
  *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
-export async function checkIntersect(bypassTimer = false) {
+export async function checkIntersect(
+  healthcareAuthorities,
+  bypassTimer = false,
+) {
   console.log(
     `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}; `,
     `is bypassing timer = ${bypassTimer}`,
@@ -369,7 +372,7 @@ export async function checkIntersect(bypassTimer = false) {
     hasMigratedOldData = true;
   }
 
-  const result = await asyncCheckIntersect(bypassTimer);
+  const result = await asyncCheckIntersect(healthcareAuthorities, bypassTimer);
   console.log(`[intersect] ${result ? 'completed' : 'skipped'}`);
 }
 
@@ -379,7 +382,7 @@ export async function checkIntersect(bypassTimer = false) {
  *
  * Returns the array of day bins (mostly for debugging purposes)
  */
-async function asyncCheckIntersect(bypassTimer = false) {
+async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
   // first things first ... is it time to actually try the intersection?
   let lastCheckedMs = Number(await GetStoreData(LAST_CHECKED));
   if (
@@ -399,7 +402,11 @@ async function asyncCheckIntersect(bypassTimer = false) {
   let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
   if (!localHAData) localHAData = [];
 
-  const { selectedAuthorities } = store.getState().healthcareAuthorities;
+  let selectedAuthorities = healthcareAuthorities
+    ? healthcareAuthorities
+    : ({
+        healthcareAuthorities: { selectedAuthorities },
+      } = store.getState());
 
   for (const authority of selectedAuthorities) {
     try {
