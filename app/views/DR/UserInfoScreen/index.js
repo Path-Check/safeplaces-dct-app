@@ -171,6 +171,25 @@ export default function UserInfo({ navigation }) {
     return await validate(data);
   };
 
+  const isPassport = usePassport => {
+    if (usePassport) {
+      return (
+        <View>
+          <Text style={styles.textSemiBold}>
+            {t('report.userInfo.name_and_lastname')}
+          </Text>
+          <Input
+            value={passportName}
+            onChange={text => setSelectedOption('passportName', text)}
+            style={{ marginBottom: 12 }}
+            keyboardType={'default'}
+            maxLength={35}
+          />
+        </View>
+      );
+    }
+  };
+
   const setSelectedOption = (option, selected) => {
     setGlobalState({
       type: 'ADD_ANSWERS',
@@ -340,33 +359,19 @@ export default function UserInfo({ navigation }) {
                   />
                 )}
 
-                {usePassport ? (
-                  <View>
-                    <Text style={styles.textSemiBold}>
-                      {t('report.userInfo.name_and_lastname')}
-                    </Text>
-                    <Input
-                      value={passportName}
-                      onChange={text => setSelectedOption('passportName', text)}
-                      style={{ marginBottom: 12 }}
-                      keyboardType={'default'}
-                      maxLength={35}
-                    />
-                  </View>
-                ) : (
-                  <View>
-                    <Text style={styles.textSemiBold}>
-                      {t('report.userInfo.tel_number')}
-                    </Text>
-                    <PhoneInput
-                      value={phoneNumber}
-                      handleOnChange={text =>
-                        setSelectedOption('phoneNumber', text)
-                      }
-                      style={{ marginBottom: 12 }}
-                    />
-                  </View>
-                )}
+                {isPassport(usePassport)}
+
+                <Text style={styles.textSemiBold}>
+                  {t('report.userInfo.tel_number')}
+                </Text>
+                <PhoneInput
+                  value={phoneNumber}
+                  handleOnChange={text =>
+                    setSelectedOption('phoneNumber', text)
+                  }
+                  style={{ marginBottom: 12 }}
+                />
+
                 <Text style={[styles.textSemiBold, { marginBottom: 10 }]}>
                   {t('report.userInfo.birthdate')}
                 </Text>
