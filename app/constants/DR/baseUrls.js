@@ -8,6 +8,10 @@ export const COV_CASES_SERVICE = env.COV_CASES_URL;
 export const FIREBASE_SERVICE = env.FIREBASE_URL;
 export const REST_COUNTRIES_SERVICE = env.REST_COUNTRIES_URL;
 export const HEALTH_SERVICES_SERVICE = env.HEALTH_SERVICES_URL;
+export const COVID_BASE_ID = (env.GOV_DO_TOKEN || '').replace(
+  '" #ignoreline',
+  '',
+);
 export const GOV_DO_TOKEN = (env.GOV_DO_TOKEN || '').replace(
   '" #ignoreline',
   '',

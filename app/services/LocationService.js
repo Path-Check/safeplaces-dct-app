@@ -4,6 +4,7 @@ import { NativeModules, Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import {
+  COVID_BASE_ID,
   GOV_DO_TOKEN,
   MEPYD_C5I_API_URL,
   MEPYD_C5I_SERVICE,
@@ -14,7 +15,6 @@ import languages from '../locales/languages';
 
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION = '55';
-const COVID_BASE_ID = '5590D7B3781E7592F6638F0D0D778282';
 
 export const Reason = {
   LOCATION_OFF: 'LOCATION_OFF',
