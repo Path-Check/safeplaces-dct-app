@@ -1,17 +1,9 @@
-import React, {
-  useCallback,
-  useState,
-  useContext,
-  useRef,
-  useEffect,
-} from 'react';
+import React, { useCallback, useState, useContext, useEffect } from 'react';
 import { AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
 import NotificationService from '../services/NotificationService';
-import IntersectService from '../services/IntersectService';
 import { AllServicesOnScreen } from './main/AllServicesOn';
 import {
   TracingOffScreen,
@@ -25,7 +17,6 @@ import PermissionsContext, {
 import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
 import { useStatusBarEffect } from '../navigation';
-import { debounce } from 'lodash';
 
 export const Main = () => {
   useStatusBarEffect('light-content');
@@ -34,20 +25,7 @@ export const Main = () => {
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
 
-  const debounceCheckIntersect = useRef(
-    debounce(() => checkForPossibleExposure(), 1000),
-  ).current;
-
-  const selectedAuthorities = useSelector(
-    selectedHealthcareAuthoritiesSelector,
-  );
-
   const [canTrack, setCanTrack] = useState(true);
-
-  const checkForPossibleExposure = () => {
-    BackgroundTaskServices.start();
-    IntersectService.checkIntersect(true);
-  };
 
   const updateStateInfo = useCallback(async () => {
     const locationStatus = await LocationServices.checkStatusAndStartOrStop();
@@ -69,10 +47,6 @@ export const Main = () => {
       unsubscribe();
     };
   }, [navigation, updateStateInfo]);
-
-  useEffect(() => {
-    debounceCheckIntersect();
-  }, [selectedAuthorities, debounceCheckIntersect]);
 
   if (!canTrack) {
     return <TracingOffScreen />;
