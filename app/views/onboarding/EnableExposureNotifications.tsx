@@ -12,7 +12,7 @@ import { SvgXml } from 'react-native-svg';
 
 import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
-import ExposureNotificationContext from '../../bt/ExposureNotificationContext';
+import PermissionsContext from '../../bt/PermissionsContext';
 import { useDispatch } from 'react-redux';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 
@@ -25,7 +25,7 @@ import {
 import { Icons, Images } from '../../assets';
 
 export const EnableExposureNotifications = (): JSX.Element => {
-  const { requestENAuthorization } = useContext(ExposureNotificationContext);
+  const { exposureNotifications } = useContext(PermissionsContext);
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
   const titleText = t('label.launch_exposure_notif_header');
 
   const handleOnPressEnable = () => {
-    requestENAuthorization();
+    exposureNotifications.request();
     dispatchOnboardingComplete();
   };
 

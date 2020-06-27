@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-import PermissionsContext, {
-  PermissionStatus,
-} from '../../gps/PermissionsContext';
+import PermissionsContext from '../../gps/PermissionsContext';
 
 import { Icons, Images } from '../../assets';
 
@@ -11,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import { SetStoreData } from '../../helpers/General';
 import { PARTICIPATE } from '../../constants/storage';
+import { PermissionStatus } from '../../permissionStatus';
 
 const OnboardingLocations = (): JSX.Element => {
   const { authSubscription, location } = useContext(PermissionsContext);

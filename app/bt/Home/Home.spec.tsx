@@ -7,20 +7,20 @@ import {
 } from '@testing-library/react-native';
 import '@testing-library/jest-native/extend-expect';
 
-import { DeviceStatus } from '../ExposureNotificationContext';
+import { ENPermissionStatus } from '../PermissionsContext';
 import Home from './Home';
 
 afterEach(cleanup);
 
 describe('Home', () => {
-  describe('When the deviceStatus is enabled and authorized', () => {
+  describe('When the enPermissionStatus is enabled and authorized', () => {
     it('renders a notifications are enabled message', () => {
-      const deviceStatus: DeviceStatus = ['AUTHORIZED', 'ENABLED'];
+      const enPermissionStatus: ENPermissionStatus = ['AUTHORIZED', 'ENABLED'];
       const requestPermission = jest.fn();
 
       const { getByTestId, queryByTestId } = render(
         <Home
-          deviceStatus={deviceStatus}
+          enPermissionStatus={enPermissionStatus}
           requestPermission={requestPermission}
         />,
       );
@@ -35,14 +35,14 @@ describe('Home', () => {
     });
   });
 
-  describe('When the deviceStatus is not enabled', () => {
+  describe('When the enPermissionStatus is not enabled', () => {
     it('it renders a notification are not enabled message', () => {
-      const deviceStatus: DeviceStatus = ['AUTHORIZED', 'DISABLED'];
+      const enPermissionStatus: ENPermissionStatus = ['AUTHORIZED', 'DISABLED'];
       const requestPermission = jest.fn();
 
       const { getByTestId } = render(
         <Home
-          deviceStatus={deviceStatus}
+          enPermissionStatus={enPermissionStatus}
           requestPermission={requestPermission}
         />,
       );
@@ -57,12 +57,12 @@ describe('Home', () => {
     });
 
     it('it renders an Enable Notifications button which requests permissions', async () => {
-      const deviceStatus: DeviceStatus = ['AUTHORIZED', 'DISABLED'];
+      const enPermissionStatus: ENPermissionStatus = ['AUTHORIZED', 'DISABLED'];
       const requestPermission = jest.fn();
 
       const { getByTestId } = render(
         <Home
-          deviceStatus={deviceStatus}
+          enPermissionStatus={enPermissionStatus}
           requestPermission={requestPermission}
         />,
       );
