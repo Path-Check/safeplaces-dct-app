@@ -152,7 +152,7 @@ final class ExposureManager: NSObject {
                 finish(.failure(error))
                 return
               }
-              let userExplanation = NSLocalizedString("USER_NOTIFICATION_EXPLANATION", comment: "User notification")
+              let userExplanation = NSLocalizedString(String.newExposureNotificationBody, comment: "User notification")
               ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
                 if let error = error {
                   finish(.failure(error))
