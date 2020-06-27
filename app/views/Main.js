@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext, useRef } from 'react';
+import React, { useCallback, useState, useContext, useRef, useEffect } from 'react';
 import { AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -19,7 +19,6 @@ import PermissionsContext, {
 import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
 import { useStatusBarEffect } from '../navigation';
-import { useDeepCompareEffect } from '../helpers/CustomHooks';
 import { debounce } from 'lodash';
 
 export const Main = () => {
@@ -29,8 +28,8 @@ export const Main = () => {
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
 
-  const debounceUpdateStateInfo = useRef(
-    debounce(() => updateStateInfo(), 1000),
+  const debounceCheckIntersect = useRef(
+    debounce(() => checkForPossibleExposure(), 1000),
   ).current;
 
   const selectedAuthorities = useSelector(
@@ -45,15 +44,14 @@ export const Main = () => {
   };
 
   const updateStateInfo = useCallback(async () => {
-    checkForPossibleExposure();
     const locationStatus = await LocationServices.checkStatusAndStartOrStop();
     setCanTrack(locationStatus.canTrack);
     notification.check();
     NotificationService.configure(notification.status);
   }, [setCanTrack, notification.status]);
 
-  useDeepCompareEffect(() => {
-    debounceUpdateStateInfo();
+  useEffect(() => {
+    updateStateInfo();
     // refresh state if user backgrounds app
     AppState.addEventListener('change', updateStateInfo);
 
@@ -67,8 +65,13 @@ export const Main = () => {
   }, [
     navigation,
     updateStateInfo,
+  ]);
+
+  useEffect(() => {
+    debounceCheckIntersect();
+  }, [
     selectedAuthorities,
-    debounceUpdateStateInfo,
+    debounceCheckIntersect,
   ]);
 
   if (!canTrack) {
