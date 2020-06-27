@@ -25,7 +25,7 @@ const getHealthcareAuthoritiesApi = async (
   yamlUrl: string = AUTHORITIES_YAML_ROUTE,
 ): Promise<HealthcareAuthority[]> => {
   const yamlString = await fetch(yamlUrl).then((res) => res.text());
-  const record = Yaml.safeLoad(yamlString) as Record<string, any>;
+  const record: Record<string, any> = Yaml.safeLoad(yamlString);
   let authorities = record.authorities;
   if (authorities === null) authorities = [];
   if (!Array.isArray(authorities)) {
