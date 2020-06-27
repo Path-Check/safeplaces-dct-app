@@ -155,17 +155,6 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </NativePicker>
         </View>
 
-        {!isGPS && (
-          <View style={styles.section}>
-            <SettingsListItem
-              label={t('settings.share_test_result')}
-              onPress={navigateTo('ExportFlow')}
-              description={t('settings.share_test_result_description')}
-              style={styles.lastListItem}
-            />
-          </View>
-        )}
-
         {isGPS ? (
           <FeatureFlag name={'google_import'}>
             <View style={styles.section}>
