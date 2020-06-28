@@ -1,24 +1,10 @@
-import styled from '@emotion/native';
 import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-
-import { themeTextColor } from '../constants/themes';
-
-/**
- * A theme aware icon button
- *
- * @param {{
- *   icon: SvgXml;
- *   accessibilityLabel: string;
- *   secondary?: boolean;
- *   size?: number;
- * }} param0
- */
 
 interface IconButtonProps {
   icon: string;
   accessibilityLabel?: string;
-  secondary?: boolean;
   size?: number;
   onPress?: () => void;
 }
@@ -26,27 +12,20 @@ interface IconButtonProps {
 export const IconButton = ({
   icon,
   accessibilityLabel,
-  secondary,
   size,
-  ...otherProps
 }: IconButtonProps): JSX.Element => {
   return (
-    <Container accessibilityLabel={accessibilityLabel} {...otherProps}>
-      <Icon
-        xml={icon}
-        secondary={secondary}
-        width={size || 24}
-        height={size || 24}
-      />
-    </Container>
+    <TouchableOpacity
+      accessibilityLabel={accessibilityLabel}
+      style={styles.icon}>
+      <SvgXml xml={icon} width={size || 24} height={size || 24} />
+    </TouchableOpacity>
   );
 };
 
-const Container = styled.TouchableOpacity`
-  align-items: center;
-  align-content: center;
-`;
-
-const Icon = styled(SvgXml)`
-  color: ${themeTextColor};
-`;
+const styles = StyleSheet.create({
+  icon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

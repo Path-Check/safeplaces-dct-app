@@ -12,7 +12,6 @@ import { useDispatch } from 'react-redux';
 
 import { Typography } from '../../components/Typography';
 import { PARTICIPATE } from '../../constants/storage';
-import { Theme } from '../../constants/themes';
 import { SetStoreData } from '../../helpers/General';
 import languages from '../../locales/languages';
 import PermissionsContext, {
@@ -104,7 +103,7 @@ export const OnboardingPermissions = () => {
   const dontEnableText = 'Maybe Later';
 
   return (
-    <Theme use='violet'>
+    <>
       <ImageBackground
         source={Images.LaunchScreenBackground}
         style={styles.backgroundImage}>
@@ -145,7 +144,7 @@ export const OnboardingPermissions = () => {
           </View>
         </View>
       </ImageBackground>
-    </Theme>
+    </>
   );
 };
 

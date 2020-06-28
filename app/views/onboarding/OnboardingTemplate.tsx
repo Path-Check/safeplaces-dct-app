@@ -12,7 +12,6 @@ import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 
 import { Colors, Layout, Spacing } from '../../styles';
-import { Theme } from '../../constants/themes';
 
 type OnboardingTemplateProps = {
   iconXml: string;
@@ -22,7 +21,6 @@ type OnboardingTemplateProps = {
   primaryButtonOnPress: () => void;
   secondaryButtonLabel?: string;
   secondaryButtonOnPress?: () => void;
-  theme: 'light' | 'dark';
   background: ImageSourcePropType;
   invertIcon?: boolean;
 };
@@ -37,51 +35,40 @@ const OnboardingTemplate = ({
   secondaryButtonLabel,
   secondaryButtonOnPress,
   invertIcon,
-  theme,
 }: OnboardingTemplateProps): JSX.Element => {
   return (
-    <Theme use={theme === 'light' ? 'default' : 'violet'}>
-      <View style={[styles.wrapper, theme === 'dark' && styles.darkWrapper]}>
-        <StatusBar
-          barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
-          backgroundColor='transparent'
-          translucent
-        />
-        {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
-          <ImageBackground source={background} style={styles.backgroundImage} />
+    <View style={styles.wrapper}>
+      <StatusBar
+        barStyle={'light-content'}
+        backgroundColor='transparent'
+        translucent
+      />
+      {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
+        <ImageBackground source={background} style={styles.backgroundImage} />
+      )}
+      <View style={styles.content}>
+        <ScrollView
+          alwaysBounceVertical={false}
+          contentContainerStyle={{ paddingBottom: Spacing.large }}>
+          <View style={[styles.iconCircle, invertIcon && styles.goldIcon]}>
+            <SvgXml xml={iconXml} width={30} height={30} />
+          </View>
+          <Typography use={'headline2'}>{title}</Typography>
+          <View style={{ height: Spacing.medium }} />
+          <Typography use={'body2'}>{body}</Typography>
+        </ScrollView>
+        {secondaryButtonOnPress && secondaryButtonLabel && (
+          <>
+            <Button
+              label={secondaryButtonLabel}
+              onPress={secondaryButtonOnPress}
+            />
+            <View style={{ height: Spacing.xSmall }} />
+          </>
         )}
-        <View style={styles.content}>
-          <ScrollView
-            alwaysBounceVertical={false}
-            contentContainerStyle={{ paddingBottom: Spacing.large }}>
-            <View style={[styles.iconCircle, invertIcon && styles.goldIcon]}>
-              <SvgXml xml={iconXml} width={30} height={30} />
-            </View>
-            <Typography
-              use={'headline2'}
-              style={theme === 'dark' ? styles.lightText : {}}>
-              {title}
-            </Typography>
-            <View style={{ height: Spacing.medium }} />
-            <Typography
-              use={'body2'}
-              style={theme === 'dark' ? styles.lightText : {}}>
-              {body}
-            </Typography>
-          </ScrollView>
-          {secondaryButtonOnPress && secondaryButtonLabel && (
-            <>
-              <Button
-                label={secondaryButtonLabel}
-                onPress={secondaryButtonOnPress}
-              />
-              <View style={{ height: Spacing.xSmall }} />
-            </>
-          )}
-          <Button label={primaryButtonLabel} onPress={primaryButtonOnPress} />
-        </View>
+        <Button label={primaryButtonLabel} onPress={primaryButtonOnPress} />
       </View>
-    </Theme>
+    </View>
   );
 };
 
@@ -108,15 +95,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primaryBackgroundFaintShade,
   },
-  darkWrapper: {
-    backgroundColor: Colors.royalBlue,
-  },
   content: {
     flex: 1,
     padding: Spacing.large,
-  },
-  lightText: {
-    color: Colors.white,
   },
 });
 

@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 
 import { Typography } from '../../components/Typography';
-import { Theme } from '../../constants/themes';
 import ExposureNotificationContext from '../../bt/ExposureNotificationContext';
 import { useDispatch } from 'react-redux';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
@@ -46,7 +45,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
   };
 
   return (
-    <Theme use='violet'>
+    <>
       <ImageBackground
         source={Images.LaunchScreenBackground}
         style={styles.backgroundImage}>
@@ -93,7 +92,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
           </View>
         </View>
       </ImageBackground>
-    </Theme>
+    </>
   );
 };
 

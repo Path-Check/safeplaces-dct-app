@@ -15,7 +15,6 @@ export const ExportComplete = ({ navigation }) => {
 
   return (
     <ExportTemplate
-      lightTheme
       onNext={onClose}
       nextButtonLabel={t('common.done')}
       headline={t('export.complete_title')}

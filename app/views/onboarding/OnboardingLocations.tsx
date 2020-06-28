@@ -32,7 +32,6 @@ const OnboardingLocations = (): JSX.Element => {
   return (
     <OnboardingTemplate
       background={Images.LaunchScreenBackground}
-      theme={'dark'}
       iconXml={Icons.LocationPin}
       title={t('onboarding.location_header')}
       body={t('onboarding.location_subheader')}

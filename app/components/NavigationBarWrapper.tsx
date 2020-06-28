@@ -16,17 +16,6 @@ interface NavigationBarWrapperProps {
   includeBackButton?: boolean;
 }
 
-export interface ThemeProps {
-  navBar: string;
-  background: string;
-  navBarBorder: string;
-  onNavBar: string;
-}
-
-export interface Theme {
-  theme: ThemeProps;
-}
-
 export const NavigationBarWrapper = ({
   children,
   title,

@@ -14,7 +14,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
-import { Theme } from '../../constants/themes';
 import exitWarningAlert from './exitWarningAlert';
 import exportCodeApi from '../../api/export/exportCodeApi';
 import { Screens } from '../../navigation';
@@ -168,7 +167,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
   };
 
   return (
-    <Theme use='default'>
+    <>
       <StatusBar
         barStyle='dark-content'
         backgroundColor={Colors.primaryBackgroundFaintShade}
@@ -220,7 +219,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
           </View>
         </KeyboardAvoidingView>
       </SafeAreaView>
-    </Theme>
+    </>
   );
 };
 

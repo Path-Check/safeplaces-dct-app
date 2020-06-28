@@ -5,7 +5,6 @@ import { StyleSheet, View } from 'react-native';
 import { NavigationBarWrapper, Switch, Typography } from '../components';
 import { getBuildtimeFlags } from '../constants/flagsEnv';
 import { DEBUG_MODE } from '../constants/storage';
-import { Theme } from '../constants/themes';
 import { getCleanedFlagName } from '../helpers/Flags';
 import { GetStoreData } from '../helpers/General';
 import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
@@ -110,16 +109,14 @@ export const FeatureFlagsScreen = ({ navigation }) => {
 
   return (
     <NavigationBarWrapper title={'Feature Flags'} onBackPress={backToMain}>
-      <Theme use='default'>
-        <Typography use='body1' style={styles.headerText} bold>
-          Notice
-        </Typography>
-        <Typography use='body2' style={styles.headerText}>
-          This screen is only available when running the application in
-          development or testing
-        </Typography>
-        <FlagToggleList />
-      </Theme>
+      <Typography use='body1' style={styles.headerText} bold>
+        Notice
+      </Typography>
+      <Typography use='body2' style={styles.headerText}>
+        This screen is only available when running the application in
+        development or testing
+      </Typography>
+      <FlagToggleList />
     </NavigationBarWrapper>
   );
 };

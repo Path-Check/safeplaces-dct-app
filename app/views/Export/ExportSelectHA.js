@@ -15,7 +15,6 @@ import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
 import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
-import { Theme } from '../../constants/themes';
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
 
@@ -44,7 +43,7 @@ export const ExportSelectHA = ({ navigation }) => {
   };
 
   return (
-    <Theme use='default'>
+    <>
       <StatusBar
         barStyle='dark-content'
         backgroundColor={Colors.primaryBackgroundFaintShade}
@@ -126,7 +125,7 @@ export const ExportSelectHA = ({ navigation }) => {
           </SafeAreaView>
         </View>
       </View>
-    </Theme>
+    </>
   );
 };
 

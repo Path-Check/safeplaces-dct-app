@@ -34,7 +34,6 @@ const OnboardingNotifications = ({
   return (
     <OnboardingTemplate
       background={Images.LaunchScreenBackground}
-      theme={'dark'}
       iconXml={Icons.Bell}
       title={t('onboarding.notification_header')}
       body={t('onboarding.notification_subheader')}
