@@ -1,17 +1,10 @@
 import BackgroundFetch from 'react-native-background-fetch';
 
-import IntersectService from './IntersectService';
 import { INTERSECT_INTERVAL } from '../constants/history';
-// import { checkIntersect } from '../helpers/Intersect';
-import { HCAService } from '../services/HCAService';
+import IntersectService from './IntersectService';
 
-export function executeTask() {
-  IntersectService.checkIntersect();
-  __DEV__ && HCAService.findNewAuthorities();
-}
-
-export default class BackgroundTaskServices {
-  static start() {
+class BackgroundTaskService {
+  start() {
     // Configure it.
     console.log('creating background task object');
     BackgroundFetch.configure(
@@ -29,7 +22,7 @@ export default class BackgroundTaskServices {
       },
       async (taskId) => {
         console.log('[js] Received background-fetch event: ', taskId);
-        executeTask();
+        IntersectService.checkIntersect(null, false);
         BackgroundFetch.finish(taskId);
       },
       (error) => {
@@ -38,7 +31,11 @@ export default class BackgroundTaskServices {
     );
   }
 
-  static stop() {
+  stop() {
     BackgroundFetch.stop();
   }
 }
+
+const singleton = new BackgroundTaskService();
+
+export default singleton as BackgroundTaskService;

@@ -1,12 +1,13 @@
 import { checkIntersect as intersect } from '../helpers/Intersect';
 import { HealthcareAuthority } from '../store/types';
+import BackgroundTaskService from './BackgroundTaskService';
 
 class IntersectService {
   isServiceRunning = false;
   nextJob: HealthcareAuthority[] | null = null;
 
   checkIntersect = (
-    healthcareAuthorities: HealthcareAuthority[],
+    healthcareAuthorities: HealthcareAuthority[] | null,
     bypassTimer: boolean,
   ): string => {
     if (this.isServiceRunning) {
@@ -24,6 +25,7 @@ class IntersectService {
       }
     });
 
+    BackgroundTaskService.start();
     return 'started';
   };
 }
