@@ -1,5 +1,3 @@
-import { EventSubscription } from 'react-native';
-
 import { ExposureInfo } from '../exposureHistory';
 
 type Event = 'onGPSExposureInfoUpdated';
@@ -47,17 +45,15 @@ const ExposureEvents: GPSExposureInfoEventEmitter = {
 
 export const subscribeToExposureEvents = (
   cb: (exposureInfo: ExposureInfo) => void,
-) => {
+): { remove: () => void } => {
   return ExposureEvents.addListener(
     'onGPSExposureInfoUpdated',
     (data: ExposureInfo) => {
-      console.log('subscribeCallback', data);
       cb(data);
     },
   );
 };
 
-export const emitGPSExposureInfo = (fakeInfo: ExposureInfo): void => {
-  console.log('emit fn', fakeInfo);
-  ExposureEvents.emit('onGPSExposureInfoUpdated', fakeInfo);
+export const emitGPSExposureInfo = (exposureInfo: ExposureInfo): void => {
+  ExposureEvents.emit('onGPSExposureInfoUpdated', exposureInfo);
 };
