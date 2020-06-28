@@ -442,63 +442,6 @@ async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
   return dayBins;
 }
 
-export async function asyncIntersectCheckForSingleHA(authority) {
-  // Fetch previous dayBins for intersections
-  let dayBins = await GetStoreData(CROSSED_PATHS, false);
-
-  const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
-
-  let { locationArray, tempDayBins } = await getTransformedLocalDataAndDayBins(
-    gpsPeriodMS,
-  );
-
-  // we also need locally saved data so we can know the last read page for each HA
-  let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
-  if (!localHAData) localHAData = [];
-
-  try {
-    tempDayBins = await performIntersectionForSingleHA(
-      authority,
-      localHAData,
-      locationArray,
-      tempDayBins,
-      gpsPeriodMS,
-    );
-  } catch (error) {
-    // TODO: We silently fail.  Could be a JSON parsing issue, could be a network issue, etc.
-    //       Should do better than this.
-    console.log('[authority] fetch/parse error :', error);
-  } finally {
-    // runningJobs[authority] = false;
-  }
-
-  // Update each day's bin with the result from the intersection.  To keep the
-  //  difference between no data (==-1) and exposure data (>=0), there
-  //  are a total of 3 cases to consider.
-  if (!dayBins) dayBins = tempDayBins;
-  else
-    dayBins = tempDayBins.map((currentValue, i) => {
-      if (currentValue < 0) return dayBins[i];
-      if (dayBins[i] < 0) return currentValue;
-      return currentValue + dayBins[i];
-    });
-
-  // if any of the bins are > 0, tell the user
-  if (dayBins.some((a) => a > 0)) notifyUserOfRisk();
-
-  // store the results
-  SetStoreData(CROSSED_PATHS, dayBins); // TODO: Store per authority?
-
-  // store updated cursors
-  SetStoreData(AUTHORITY_SOURCE_SETTINGS, localHAData);
-
-  // save off the current time as the last checked time
-  let unixTimeUTC = dayjs().valueOf();
-  SetStoreData(LAST_CHECKED, unixTimeUTC);
-
-  return dayBins;
-}
-
 const performIntersectionForSingleHA = async (
   authority,
   localHAData,
