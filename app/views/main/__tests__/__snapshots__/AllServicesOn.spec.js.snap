@@ -131,7 +131,6 @@ exports[`all services on matches snapshot 1`] = `
             },
             Object {
               "color": "#ffffff",
-              "fontFamily": "IBMPlexSans-Medium",
               "fontSize": 26,
               "lineHeight": 34,
               "marginBottom": 24,
@@ -155,7 +154,6 @@ exports[`all services on matches snapshot 1`] = `
             },
             Object {
               "color": "#ffffff",
-              "fontFamily": "IBMPlexSans",
               "fontSize": 18,
               "lineHeight": 24.5,
               "marginBottom": 24,

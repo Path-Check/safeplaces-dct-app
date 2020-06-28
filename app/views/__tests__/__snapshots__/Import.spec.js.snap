@@ -148,7 +148,6 @@ exports[`Import component renders correctly 1`] = `
                   "writingDirection": "ltr",
                 },
                 Object {
-                  "fontFamily": "IBMPlexSans",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginTop": 12,
@@ -170,7 +169,6 @@ exports[`Import component renders correctly 1`] = `
                   "writingDirection": "ltr",
                 },
                 Object {
-                  "fontFamily": "IBMPlexSans",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginTop": 12,
@@ -192,7 +190,6 @@ exports[`Import component renders correctly 1`] = `
                   "writingDirection": "ltr",
                 },
                 Object {
-                  "fontFamily": "IBMPlexSans",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginTop": 12,
