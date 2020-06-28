@@ -46,7 +46,9 @@ const PartnersScreen = ({
   useEffect(onRequestComplete, [onRequestComplete, fetchCustomStatus]);
 
   // Fetch list on screen mount
-  const searchForUrl = () => dispatch(getHealthcareAuthoritiesAction(url));
+  const searchForUrl = () => {
+    dispatch(getHealthcareAuthoritiesAction(url));
+  };
 
   return (
     <NavigationBarWrapper

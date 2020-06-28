@@ -72,7 +72,6 @@ const OnboardingTemplate = ({
           {secondaryButtonOnPress && secondaryButtonLabel && (
             <>
               <Button
-                secondary
                 label={secondaryButtonLabel}
                 onPress={secondaryButtonOnPress}
               />
