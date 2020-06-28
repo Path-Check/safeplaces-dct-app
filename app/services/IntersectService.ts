@@ -9,7 +9,6 @@ class IntersectService {
     healthcareAuthorities: HealthcareAuthority[],
     bypassTimer: boolean,
   ): string => {
-    // TODO : add job queues!!
     if (this.isServiceRunning) {
       this.nextJob = healthcareAuthorities;
       return 'skipped';
