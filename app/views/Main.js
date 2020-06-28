@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext, useEffect } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -24,7 +24,6 @@ export const Main = () => {
   const { notification } = useContext(PermissionsContext);
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
-
   const [canTrack, setCanTrack] = useState(true);
 
   const updateStateInfo = useCallback(async () => {
