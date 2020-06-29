@@ -272,7 +272,7 @@
     "eula_continue": "Continue",
     "eula_message": "*You must accept in order to use PathCheck",
     "notification_header": "Would you like to receive notifications when you may have crossed paths with the virus?",
-    "notification_subheader": "PathCheck partners with local Health Departments to track the virus. If you are located in a jurisdiction served by a one of our Health Department partners, you can receive exposure notifications from your Health Department.",
+    "notification_subheader": "PathCheck partners with local Health Departments to track the virus. If you are located in a jurisdiction served by one of our Health Department partners, you can receive exposure notifications from your Health Department.",
     "location_header": "To determine when you may have crossed paths with the virus, PathCheck needs location access.",
     "location_subheader": "Your PathCheck location diary only includes GPS coordinates, dates, and times.\n\nYour data will not be shared with anyone unless you choose to do so.",
     "maybe_later": "Maybe Later"
