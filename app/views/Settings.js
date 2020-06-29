@@ -123,7 +123,7 @@ export const SettingsScreen = ({ navigation }) => {
           <NativePicker
             items={LOCALE_LIST}
             value={userLocale}
-            onValueChange={localeChanged}>
+            onValueChange={picker => localeChanged(picker)}>
             {({ label, openPicker }) => (
               <Item
                 last
@@ -177,6 +177,10 @@ export const SettingsScreen = ({ navigation }) => {
           <Item
             label={t('label.legal_page_title')}
             onPress={() => navigation.navigate('LicensesScreen')}
+          />
+          <Item
+            label={t('label.terms_and_conditions')}
+            onPress={() => navigation.navigate('TermsCondition')}
           />
           <Item
             label={t('label.label_faqs')}

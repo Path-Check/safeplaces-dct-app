@@ -870,6 +870,56 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
+                Terms & Conditions
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 1,
+                "width": "100%",
+              }
+            }
+          />
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "opacity": 1,
+                "paddingBottom": 18,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 18,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 18,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body1"
+              >
                 FAQS
               </Text>
             </View>
@@ -1548,6 +1598,56 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 use="body1"
               >
                 Legal
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 1,
+                "width": "100%",
+              }
+            }
+          />
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "opacity": 1,
+                "paddingBottom": 18,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 18,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 18,
+                    "fontWeight": "normal",
+                    "lineHeight": 24,
+                    "writingDirection": "ltr",
+                  }
+                }
+                use="body1"
+              >
+                Terms & Conditions
               </Text>
             </View>
           </View>
