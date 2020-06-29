@@ -141,6 +141,11 @@ export const mainContent: TextStyle = {
   color: Colors.primaryText,
 };
 
+export const mainContentViolet: TextStyle = {
+  ...mediumFont,
+  color: Colors.secondaryViolet,
+};
+
 export const secondaryContent: TextStyle = {
   ...mediumFont,
   ...base,
@@ -148,7 +153,7 @@ export const secondaryContent: TextStyle = {
   lineHeight: mediumLineHeight,
 };
 
-export const tertirayContent: TextStyle = {
+export const tertiaryContent: TextStyle = {
   ...smallFont,
   color: Colors.tertiaryText,
   lineHeight: smallLineHeight,

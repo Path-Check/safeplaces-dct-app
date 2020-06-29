@@ -8,11 +8,11 @@ import { Icons, Images } from '../assets';
 
 export const btAssets: StrategyAssets = {
   onboarding2Background: Images.LaunchScreen2BT,
-  onboarding2Icon: Icons.LocationPin,
-  onboarding3Background: Images.LaunchScreen3BT,
-  onboarding3Icon: Icons.Heart,
-  onboarding4Background: Images.LaunchScreen1BT,
-  onboarding4Icon: Icons.BellYellow,
+  onboarding2Icon: Icons.RadioWave,
+  onboarding3Background: Images.OnboardingBackground3,
+  onboarding3Icon: Icons.BellYellow,
+  onboarding4Background: Images.OnboardingBackground2,
+  onboarding4Icon: Icons.Heart,
   exportPublishIcon: Icons.Bell,
 };
 

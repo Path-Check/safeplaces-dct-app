@@ -101,10 +101,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   contentContainer: {
-    paddingTop: Spacing.large,
+    paddingVertical: Spacing.large,
   },
   iconContainer: {
     ...Iconography.largeBlueIcon,
+    marginBottom: Spacing.xHuge,
   },
   headerText: {
     ...TypographyStyles.header2,
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
     ...TypographyStyles.mainContent,
     color: Colors.invertedText,
     marginBottom: Spacing.xHuge,
+    marginTop: Spacing.xLarge,
   },
   footerContainer: {
     height: 'auto',
