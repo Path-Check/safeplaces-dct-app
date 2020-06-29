@@ -264,13 +264,13 @@
     "skip_this_step": "Skip this step",
     "team": "Team",
     "team_para": "Our team is composed of a consortium of epidemiologists, engineers, data scientists, digital privacy evangelists, professors and researchers from reputable institutions, including: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young and Link Ventures.",
-    "terms_of_use": "Terms of use",
+    "terms_of_use": "Terms of Use",
     "unknown": "unknown"
   },
   "onboarding": {
     "eula_checkbox": "I accept the licensing agreement",
     "eula_continue": "Continue",
-    "eula_message": "*You must accept in order to use PathCheck",
+    "eula_message": "I accept the Terms of Use.",
     "notification_header": "Would you like to receive notifications when you may have crossed paths with the virus?",
     "notification_subheader": "PathCheck partners with local Health Departments to track the virus. If you are located in a jurisdiction served by one of our Health Department partners, you can receive exposure notifications from your Health Department.",
     "location_header": "To determine when you may have crossed paths with the virus, PathCheck needs location access.",

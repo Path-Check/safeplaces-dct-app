@@ -3,7 +3,6 @@ import Onboarding1 from '../pages/Onboarding1.po.js';
 import Onboarding2 from '../pages/Onboarding2.po.js';
 import Onboarding3 from '../pages/Onboarding3.po.js';
 import Onboarding4 from '../pages/Onboarding4.po.js';
-import SignEula from '../pages/SignEula.po.js';
 
 describe.each(languages)(
   `Onboarding test suite in %s`,
@@ -22,11 +21,8 @@ describe.each(languages)(
       it('Navigates through the onboarding without visual regression', async () => {
         await Onboarding1.isOnScreen(languageStrings);
         await Onboarding1.takeScreenshot();
-        await Onboarding1.tapButton(languageStrings);
-
-        await SignEula.sign(languageStrings);
-        await SignEula.takeScreenshot();
-        await SignEula.tapButton(languageStrings);
+        await Onboarding1.tapCheckbox();
+        await Onboarding1.tapGetStarted();
 
         await Onboarding2.isOnScreen(languageStrings);
         await Onboarding2.takeScreenshot();

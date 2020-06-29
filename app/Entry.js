@@ -40,7 +40,7 @@ import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyS
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
-import Onboarding1 from './views/onboarding/Onboarding1';
+import Welcome from './views/onboarding/Welcome';
 import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
@@ -291,7 +291,7 @@ const MainAppTabs = () => {
 
 const OnboardingStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
-    <Stack.Screen name={Screens.Onboarding1} component={Onboarding1} />
+    <Stack.Screen name={Screens.Welcome} component={Welcome} />
     <Stack.Screen name={Screens.Onboarding2} component={Onboarding2} />
     <Stack.Screen name={Screens.Onboarding3} component={Onboarding3} />
     <Stack.Screen name={Screens.Onboarding4} component={Onboarding4} />

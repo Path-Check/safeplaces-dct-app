@@ -8,4 +8,7 @@ module.exports = {
     'node_modules/(?!(@react-native-community|react-native)/)',
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  transform: {
+    '^.+\\.html?$': 'html-loader-jest',
+  },
 };
