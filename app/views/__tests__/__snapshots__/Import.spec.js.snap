@@ -106,7 +106,7 @@ exports[`Import component renders correctly 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#f8f8f8",
+        "backgroundColor": "#f8f8ff",
         "flex": 1,
       }
     }
@@ -148,7 +148,6 @@ exports[`Import component renders correctly 1`] = `
                   "writingDirection": "ltr",
                 },
                 Object {
-                  "fontFamily": "IBMPlexSans",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginTop": 12,
@@ -170,7 +169,6 @@ exports[`Import component renders correctly 1`] = `
                   "writingDirection": "ltr",
                 },
                 Object {
-                  "fontFamily": "IBMPlexSans",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginTop": 12,
@@ -192,7 +190,6 @@ exports[`Import component renders correctly 1`] = `
                   "writingDirection": "ltr",
                 },
                 Object {
-                  "fontFamily": "IBMPlexSans",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginTop": 12,

@@ -19,6 +19,11 @@ const tiny: ViewStyle = {
   paddingHorizontal: Spacing.xSmall,
 };
 
+const medium: ViewStyle = {
+  paddingVertical: Spacing.small,
+  paddingHorizontal: Spacing.medium,
+};
+
 const large: ViewStyle = {
   paddingTop: Spacing.large,
   paddingBottom: Spacing.large + 1,
@@ -61,6 +66,12 @@ export const largeBlue: ViewStyle = {
 export const largeBlueOutline: ViewStyle = {
   ...largeBlue,
   ...outlined,
+};
+
+export const mediumBlue: ViewStyle = {
+  ...base,
+  ...medium,
+  ...primaryBlue,
 };
 
 export const largeWhite: ViewStyle = {

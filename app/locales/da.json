@@ -7,6 +7,12 @@
     "version": "Version:"
   },
   "assessment": {
+    "agree_alert_description": "Hvis du vil bruge SafePaths COVID-19-screeningen, skal du angive, at du accepterer og forstår dens formål.",
+    "agree_alert_title": "Aftale påkrævet",
+    "agree_option_agree": "Jeg er enig",
+    "agree_option_disagree": "Jeg er ikke enig",
+    "agree_question_description": "Screeningen hjælper dig med at tage beslutninger om at søge passende medicinsk behandling. Den er ikke beregnet til diagnose eller behandling af sygdom eller andre tilstande.",
+    "agree_question_text": "Formål med denne COVID-19-screening",
     "cancel": "Annullér",
     "caregiver_cta": "Næste",
     "complete_cta": "Udført",

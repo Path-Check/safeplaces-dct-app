@@ -1,6 +1,11 @@
 import { TracingStrategy } from '../tracingStrategy';
 import { PermissionsProvider } from './PermissionsContext';
 import Home from './Home';
+import {
+  useGPSCopyContent,
+  useGPSInterpolatedCopyContent,
+  gpsAssets,
+} from './content';
 
 const gpsStrategy: TracingStrategy = {
   name: 'bt',
@@ -11,6 +16,9 @@ const gpsStrategy: TracingStrategy = {
   },
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: Home,
+  assets: gpsAssets,
+  useCopy: useGPSCopyContent,
+  useInterpolatedCopy: useGPSInterpolatedCopyContent,
 };
 
 export default gpsStrategy;

@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Dimensions,
   Linking,
   Platform,
   ScrollView,
   StyleSheet,
-  View,
   Text,
+  View,
 } from 'react-native';
 
+import { useStrategyContent } from '../TracingStrategyContext';
 import packageJson from '../../package.json';
-import fontFamily from './../constants/fonts';
 import { NavigationBarWrapper, Typography } from '../components';
-import { useAssets } from '../TracingStrategyAssets';
 
-import { Colors, Spacing } from '../styles';
 import { useDispatch } from 'react-redux';
 import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleAllowFeatureFlagsEnabledAction';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
 export const AboutScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -34,7 +32,7 @@ export const AboutScreen = ({ navigation }) => {
   const incrementClickCount = () => setClickCount(clickCount + 1);
 
   const { t } = useTranslation();
-  const { aboutHeader } = useAssets();
+  const { StrategyCopy } = useStrategyContent();
 
   const backToMain = () => {
     navigation.goBack();
@@ -47,76 +45,39 @@ export const AboutScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
-        <View style={styles.spacer} />
-        <View style={styles.spacer} />
-
-        <TouchableWithoutFeedback onPress={incrementClickCount}>
-          <Typography use='headline2'>{aboutHeader}</Typography>
-        </TouchableWithoutFeedback>
-        <View style={{ height: 10 }} />
-        <Typography use='body2'>
-          {t('label.about_para')}
-          {/* Space between the copy & link*/}
-          <Text> </Text>
-          <Typography
-            style={styles.hyperlink}
-            onPress={() => {
-              Linking.openURL('https://covidsafepaths.org/');
-            }}>
-            {/* eslint-disable-next-line react-native/no-raw-text */}
-            {'covidsafepaths.org'}
-          </Typography>
+        <Typography use='headline2' style={styles.heading}>
+          {StrategyCopy.aboutHeader}
+        </Typography>
+        <Typography use='body2'>{t('label.about_para')}</Typography>
+        <Typography
+          style={styles.hyperlink}
+          onPress={() => {
+            Linking.openURL('https://covidsafepaths.org/');
+          }}>
+          <Text>{'covidsafepaths.org'}</Text>
         </Typography>
 
-        <View style={styles.spacer} />
-        <View style={styles.spacer} />
-
-        <View style={styles.main}>
-          <View>
-            <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>
+        <View style={styles.rowContainer}>
+          <View style={styles.row}>
+            <TouchableWithoutFeedback onPress={incrementClickCount}>
+              <Typography style={styles.aboutSectionParaLabel}>
                 {t('about.version')}
               </Typography>
-            </View>
+            </TouchableWithoutFeedback>
 
-            <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>
-                {t('about.operating_system_abbr')}
-              </Typography>
-            </View>
-
-            <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>
-                {t('about.dimensions')}
-              </Typography>
-            </View>
+            <Typography style={styles.aboutSectionParaContent}>
+              {packageJson.version}
+            </Typography>
           </View>
-
-          <View>
-            <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>
-                {packageJson.version}
-              </Typography>
-            </View>
-
-            <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>
-                {Platform.OS + ' v' + Platform.Version}
-              </Typography>
-            </View>
-
-            <View style={styles.row}>
-              <Typography style={styles.aboutSectionParaBold}>
-                {Math.trunc(Dimensions.get('screen').width) +
-                  ' x ' +
-                  Math.trunc(Dimensions.get('screen').height)}
-              </Typography>
-            </View>
+          <View style={styles.row}>
+            <Typography style={styles.aboutSectionParaLabel}>
+              {t('about.operating_system_abbr')}
+            </Typography>
+            <Typography style={styles.aboutSectionParaContent}>
+              {Platform.OS + ' v' + Platform.Version}
+            </Typography>
           </View>
         </View>
-
-        <View style={styles.spacer} />
-        <View style={styles.spacer} />
       </ScrollView>
     </NavigationBarWrapper>
   );
@@ -124,33 +85,31 @@ export const AboutScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    flexDirection: 'column',
     backgroundColor: Colors.primaryBackground,
     paddingHorizontal: Spacing.medium,
+    paddingTop: Spacing.huge,
+  },
+  heading: {
+    marginBottom: Spacing.small,
   },
   hyperlink: {
     color: Colors.linkText,
     textDecorationLine: 'underline',
   },
-  aboutSectionParaBold: {
-    color: Colors.primaryViolet,
-    fontSize: 16,
-    lineHeight: 22.5,
-    marginTop: 20,
-    alignSelf: 'center',
-    fontFamily: fontFamily.primaryBold,
+  aboutSectionParaLabel: {
+    ...TypographyStyles.header5,
+    width: Spacing.xxxHuge * 2,
+    marginTop: Spacing.small,
   },
-  spacer: {
-    marginVertical: '2%',
+  aboutSectionParaContent: {
+    ...TypographyStyles.mainContent,
+    marginTop: Spacing.small,
   },
-  main: {
-    flexDirection: 'row',
+  rowContainer: {
+    marginTop: Spacing.medium,
   },
   row: {
     flexDirection: 'row',
-    color: Colors.primaryText,
-    alignItems: 'flex-start',
-    marginRight: 20,
   },
 });
 

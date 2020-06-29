@@ -68,6 +68,12 @@ final class ExposureManager: NSObject {
     }
   }
 
+  @objc func getCurrentENPermissionsStatus(callback: @escaping RCTResponseSenderBlock) {
+        let enablement = self.manager.exposureNotificationEnabled ? EnabledState.ENABLED : EnabledState.DISABLED
+        let authorization = ENManager.authorizationStatus == .authorized ? AuthorizationState.AUTHORIZED : AuthorizationState.UNAUTHORIZED
+        callback([[authorization.rawValue, enablement.rawValue]])
+  }
+
   /// Downloaded archives from the GAEN server
   var downloadedPackages = [DownloadedPackage]()
 
@@ -89,8 +95,6 @@ final class ExposureManager: NSObject {
     func finish(_ result: Result<[Exposure]>) {
 
       cleanup()
-
-      progress.cancel()
       
       if progress.isCancelled {
         detectingExposures = false
@@ -148,7 +152,7 @@ final class ExposureManager: NSObject {
                 finish(.failure(error))
                 return
               }
-              let userExplanation = NSLocalizedString("USER_NOTIFICATION_EXPLANATION", comment: "User notification")
+              let userExplanation = NSLocalizedString(String.newExposureNotificationBody, comment: "User notification")
               ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
                 if let error = error {
                   finish(.failure(error))

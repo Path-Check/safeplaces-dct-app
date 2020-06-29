@@ -2,10 +2,8 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View, TouchableHighlight, FlatList } from 'react-native';
 
-import { Icons } from '../../assets';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Typography } from '../../components/Typography';
-import Colors from '../../constants/colors';
 
 import { SvgXml } from 'react-native-svg';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,6 +20,9 @@ import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
 import { Spacing } from '../../styles';
 import FeatureFlag from '../../components/FeatureFlag';
 
+import { Icons } from '../../assets';
+import { Colors } from '../../styles';
+
 type PartnersEditScreenProps = {
   navigation: NavigationProp;
 };
@@ -29,7 +30,7 @@ type PartnersEditScreenProps = {
 const Separator = () => (
   <View
     style={{
-      backgroundColor: Colors.DIVIDER,
+      backgroundColor: Colors.primaryBackground,
       height: StyleSheet.hairlineWidth,
       width: '100%',
     }}
@@ -82,7 +83,7 @@ const PartnersScreen = ({
         keyExtractor={({ name }, i) => `${name}:${i}`}
         renderItem={({ item: HA }) => (
           <TouchableHighlight
-            underlayColor={Colors.UNDERLAY}
+            underlayColor={Colors.faintGray}
             style={{
               paddingVertical: 20,
               paddingHorizontal: 24,
