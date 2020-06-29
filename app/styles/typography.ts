@@ -49,6 +49,10 @@ export const mediumBold: TextStyle = {
   fontFamily: mediumFontFamily,
 };
 
+export const base: TextStyle = {
+  fontFamily: baseFontFamily,
+};
+
 export const monospace: TextStyle = {
   fontFamily: monospaceFontFamily,
 };
@@ -119,6 +123,12 @@ export const header5: TextStyle = {
   color: Colors.primaryHeaderText,
 };
 
+export const header6: TextStyle = {
+  ...largerFont,
+  ...bold,
+  color: Colors.black,
+};
+
 export const title: TextStyle = {
   ...largeFont,
   fontWeight: heaviestWeight,
@@ -133,6 +143,7 @@ export const mainContent: TextStyle = {
 
 export const secondaryContent: TextStyle = {
   ...mediumFont,
+  ...base,
   color: Colors.secondaryText,
   lineHeight: mediumLineHeight,
 };
