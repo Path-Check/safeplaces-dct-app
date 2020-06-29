@@ -21,6 +21,8 @@ const featureFlagsReducer = createReducer(initialState, (builder) =>
       toggleAllowFeatureFlagsEnabledAction,
       (state, { payload: { overrideValue } }) => {
         state.enableFlags = overrideValue;
+        // Reset flags while enabling / disabling. this alleviates issues from migrations not including new flags
+        state.flags = AllFlagsOff;
       },
     )
     .addCase(

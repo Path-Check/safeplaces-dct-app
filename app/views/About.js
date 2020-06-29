@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Alert,
 } from 'react-native';
 
 import { useStrategyContent } from '../TracingStrategyContext';
@@ -18,13 +19,15 @@ import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleA
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
+const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
+
 export const AboutScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const [clickCount, setClickCount] = useState(0);
   useEffect(() => {
-    console.log(clickCount);
-    if (clickCount === 20) {
+    if (clickCount === CLICKS_TO_ENABLE_FEATURE_FLAGS) {
+      Alert.alert('Feature Flags Enabled!');
       dispatch(toggleAllowFeatureFlagsAction({ overrideValue: true }));
     }
   }, [clickCount, dispatch]);
@@ -45,9 +48,11 @@ export const AboutScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
-        <Typography use='headline2' style={styles.heading}>
-          {StrategyCopy.aboutHeader}
-        </Typography>
+        <TouchableWithoutFeedback onPress={incrementClickCount}>
+          <Typography use='headline2' style={styles.heading}>
+            {StrategyCopy.aboutHeader}
+          </Typography>
+        </TouchableWithoutFeedback>
         <Typography use='body2'>{t('label.about_para')}</Typography>
         <Typography
           style={styles.hyperlink}
@@ -59,11 +64,9 @@ export const AboutScreen = ({ navigation }) => {
 
         <View style={styles.rowContainer}>
           <View style={styles.row}>
-            <TouchableWithoutFeedback onPress={incrementClickCount}>
-              <Typography style={styles.aboutSectionParaLabel}>
-                {t('about.version')}
-              </Typography>
-            </TouchableWithoutFeedback>
+            <Typography style={styles.aboutSectionParaLabel}>
+              {t('about.version')}
+            </Typography>
 
             <Typography style={styles.aboutSectionParaContent}>
               {packageJson.version}
