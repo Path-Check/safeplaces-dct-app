@@ -83,9 +83,12 @@ export const primaryBackgroundFaintShade = faintGray;
 export const secondaryBackground = moonRaker;
 export const tertiaryBackground = lighterGray;
 export const quaternaryBackground = lightGray;
+
+export const invertedPrimaryBackground = primaryBlue;
 export const invertedSecondaryBackground = tertiaryBlue;
 export const invertedTertiaryBackground = secondaryBlue;
 export const invertedQuaternaryBackground = primaryBlue;
+
 export const bottomSheetBackground = white;
 
 // Underlays, corresponding to the background to be used for

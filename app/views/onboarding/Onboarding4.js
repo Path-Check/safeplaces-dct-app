@@ -26,14 +26,13 @@ const Onboarding4 = (props) => {
 
   return (
     <OnboardingTemplate
-      theme={'light'}
       invertIcon
       background={StrategyAssets.onboarding4Background}
       iconXml={StrategyAssets.onboarding4Icon}
       title={StrategyCopy.onboarding4Header}
       body={StrategyCopy.onboarding4Subheader}
-      primaryButtonLabel={t('label.launch_set_up_phone_location')}
-      primaryButtonOnPress={handleOnPressNext}
+      buttonLabel={t('label.launch_set_up_phone_location')}
+      buttonOnPress={handleOnPressNext}
     />
   );
 };
