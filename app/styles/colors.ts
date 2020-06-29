@@ -93,7 +93,9 @@ export const underlayPrimaryBackground = moonRaker;
 
 // Borders
 export const primaryBorder = primaryViolet;
-export const secondaryBorder = gray;
+export const secondaryBorder = lighterGray;
+export const radioBorder = lightGray;
+export const checkboxBorder = lightGray;
 
 // Nav
 export const mainNav = primaryViolet;
@@ -106,6 +108,7 @@ export const icon = mediumGray;
 
 // Buttons
 export const disabledButton = darkGray;
+export const disabledButtonText = quaternaryViolet;
 export const violetButton = cornflowerBlue;
 export const violetButtonLight = moonRaker;
 export const violetButtonDark = royalBlue;

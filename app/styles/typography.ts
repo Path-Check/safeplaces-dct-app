@@ -200,3 +200,17 @@ export const buttonTextTinyDark: TextStyle = {
   ...buttonTextDark,
   ...tinyFont,
 };
+
+// Assessment
+export const assessmentInstruction: TextStyle = {
+  ...mediumFont,
+  color: Colors.secondaryHeaderText,
+  lineHeight: smallerLineHeight,
+};
+
+export const inputLabel: TextStyle = {
+  ...bold,
+  color: Colors.primaryText,
+  fontSize: large,
+  lineHeight: mediumLineHeight,
+};
