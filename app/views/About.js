@@ -19,13 +19,15 @@ import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleA
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
+const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
+
 export const AboutScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const [clickCount, setClickCount] = useState(0);
   useEffect(() => {
-    if (clickCount === 20) {
-      Alert.alert('Feature Flags Enabled');
+    if (clickCount === CLICKS_TO_ENABLE_FEATURE_FLAGS) {
+      Alert.alert('Feature Flags Enabled!');
       dispatch(toggleAllowFeatureFlagsAction({ overrideValue: true }));
     }
   }, [clickCount, dispatch]);

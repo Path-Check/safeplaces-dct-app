@@ -2,12 +2,18 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 
-import { NavigationBarWrapper, Switch, Typography } from '../components';
+import {
+  NavigationBarWrapper,
+  Switch,
+  Typography,
+  Button,
+} from '../components';
 import { useDispatch, useSelector } from 'react-redux';
 import toggleFeatureFlagAction from '../store/actions/featureFlags/toggleFeatureFlagAction';
 import { Spacing } from '../styles';
 import { FeatureFlagOption } from '../store/types';
 import { initDevLanguages, initProdLanguages } from '../locales/languages';
+import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleAllowFeatureFlagsEnabledAction';
 
 const flagToName = (flag) => {
   switch (flag) {
@@ -19,6 +25,9 @@ const flagToName = (flag) => {
       return 'Import from Google';
     case FeatureFlagOption.DEV_LANGUAGES:
       return 'All Language Options';
+    // For development ease:
+    default:
+      return flag;
   }
 };
 
@@ -53,12 +62,18 @@ export const FeatureFlagsScreen = ({ navigation }) => {
       initProdLanguages();
     }
   }, [devLanguagesEnabled]);
+  const dispatch = useDispatch();
+
+  const disableFeatureFlags = () => {
+    dispatch(toggleAllowFeatureFlagsAction({ overrideValue: false }));
+    navigation.goBack();
+  };
 
   return (
     <NavigationBarWrapper
       title={'Feature Flags'}
       onBackPress={() => navigation.goBack()}>
-      <View style={{ padding: Spacing.large }}>
+      <View style={{ padding: Spacing.large, flex: 1 }}>
         <Typography use='body1' style={styles.headerText} bold>
           Notice
         </Typography>
@@ -67,10 +82,12 @@ export const FeatureFlagsScreen = ({ navigation }) => {
         </Typography>
         <View style={{ height: Spacing.large }} />
         <FlatList
+          alwaysBounceVertical={false}
           data={flags}
           keyExtractor={(_, i) => `${i}`}
           renderItem={({ item: flag }) => <FlagToggleRow flag={flag} />}
         />
+        <Button label='Disable Feature Flags' onPress={disableFeatureFlags} />
       </View>
     </NavigationBarWrapper>
   );
