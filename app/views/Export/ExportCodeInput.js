@@ -15,11 +15,11 @@ import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
-import { useAssets } from '../../TracingStrategyAssets';
 import exitWarningAlert from './exitWarningAlert';
 import exportCodeApi from '../../api/export/exportCodeApi';
 import { Screens } from '../../navigation';
 import { isGPS } from '../../COVIDSafePathsConfig';
+import { useStrategyContent } from '../../TracingStrategyContext';
 
 import { Icons } from '../../assets';
 import { Colors } from '../../styles';
@@ -119,7 +119,7 @@ const CodeInput = ({ code, length, setCode }) => {
 
 export const ExportSelectHA = ({ route, navigation }) => {
   const { t } = useTranslation();
-  const { exportCodeBody, exportCodeTitle } = useAssets();
+  const { InterpolatedStrategyCopy, StrategyCopy } = useStrategyContent();
 
   const exportCodeInputNextRoute = isGPS
     ? Screens.ExportLocationConsent
@@ -189,10 +189,12 @@ export const ExportSelectHA = ({ route, navigation }) => {
             />
           </View>
           <View style={{ flex: 1, marginBottom: 20 }}>
-            <Typography use='headline2'>{exportCodeTitle}</Typography>
+            <Typography use='headline2'>
+              {StrategyCopy.exportCodeTitle}
+            </Typography>
             <View style={{ height: 8 }} />
             <Typography use='body1'>
-              {exportCodeBody(selectedAuthority.name)}
+              {InterpolatedStrategyCopy.exportCodeBody(selectedAuthority.name)}
             </Typography>
             {/* These flex grows allow for a lot of flexibility across device sizes */}
             <View style={{ maxHeight: 60, flexGrow: 1 }} />

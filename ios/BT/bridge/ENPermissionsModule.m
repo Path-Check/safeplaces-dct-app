@@ -13,4 +13,8 @@ RCT_EXPORT_METHOD(requestExposureNotificationAuthorization: (RCTResponseSenderBl
   [[ExposureManager shared] requestExposureNotificationAuthorizationWithEnabled:YES callback:callback];
 }
 
+RCT_EXPORT_METHOD(getCurrentENPermissionsStatus: (RCTResponseSenderBlock)callback) {
+  [[ExposureManager shared] getCurrentENPermissionsStatusWithCallback:callback];
+}
+
 @end

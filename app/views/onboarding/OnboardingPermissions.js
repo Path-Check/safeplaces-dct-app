@@ -20,7 +20,6 @@ import PermissionsContext, {
 } from '../../gps/PermissionsContext';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 
-import { sharedStyles } from './styles';
 import { Icons, Images } from '../../assets';
 import {
   Spacing,
@@ -119,7 +118,7 @@ export const OnboardingPermissions = () => {
           testID={'onboarding-permissions-screen'}
           style={styles.mainContainer}>
           <View style={styles.contentContainer}>
-            <View style={[sharedStyles.iconCircle, styles.iconCircle]}>
+            <View style={styles.iconCircle}>
               <SvgXml xml={icon} width={30} height={30} />
             </View>
             <Typography style={styles.headerText}>{header}</Typography>

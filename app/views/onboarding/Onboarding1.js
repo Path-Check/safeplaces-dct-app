@@ -16,7 +16,6 @@ import languages, {
 } from './../../locales/languages';
 import { Images } from '../../assets';
 import { NativePicker, Typography } from '../../components';
-import fontFamily from '../../constants/fonts';
 import { Theme } from '../../constants/themes';
 import { EulaModal } from '../EulaModal';
 
@@ -133,7 +132,6 @@ const styles = StyleSheet.create({
     lineHeight: 35,
     color: Colors.white,
     fontSize: 26,
-    fontFamily: fontFamily.primaryMedium,
   },
   // eslint-disable-next-line react-native/no-color-literals
   languageSelector: {

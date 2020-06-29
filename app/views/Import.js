@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 
 import { Button, NavigationBarWrapper, Typography } from '../components';
-import fontFamily from '../constants/fonts';
 import { pickFile } from '../helpers/General';
 import {
   EmptyFilePathError,
@@ -127,14 +126,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginTop: 12,
-    fontFamily: fontFamily.primaryRegular,
   },
   importResults: {
     fontSize: 12,
     lineHeight: 20,
     marginTop: 10,
     textAlign: 'center',
-    fontFamily: fontFamily.primaryRegular,
     color: Colors.violetText,
   },
   importResultsError: {

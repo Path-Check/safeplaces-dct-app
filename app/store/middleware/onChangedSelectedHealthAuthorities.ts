@@ -14,8 +14,12 @@ const onChangedSelectedHealthAuthorities: Middleware<Dispatch> = (
     healthcareAuthorities: { selectedAuthorities: stateAfter },
   } = store.getState();
 
-  if (stateBefore !== stateAfter) {
-    IntersectService.checkIntersect(stateAfter, true);
+  try {
+    if (stateBefore !== stateAfter) {
+      IntersectService.checkIntersect(stateAfter, true);
+    }
+  } catch (e) {
+    console.log('[intersect] failed ', e);
   }
   return result;
 };

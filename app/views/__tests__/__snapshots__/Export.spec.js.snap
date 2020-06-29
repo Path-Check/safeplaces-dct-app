@@ -108,7 +108,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f8f8f8",
+          "backgroundColor": "#f8f8ff",
           "flex": 1,
         }
       }

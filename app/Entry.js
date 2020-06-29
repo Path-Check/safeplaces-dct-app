@@ -53,7 +53,7 @@ import ExposureHistoryContext from './ExposureHistoryContext';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import { isGPS } from './COVIDSafePathsConfig';
 import { isPlatformAndroid } from './Util';
-import TracingStrategyContext from './TracingStrategyContext';
+import { useTracingStrategyContext } from './TracingStrategyContext';
 
 import * as Icons from './assets/svgs/TabBarNav';
 import { Layout, Affordances, Spacing, Colors } from './styles';
@@ -157,7 +157,7 @@ const MoreTabStack = () => (
 const MainAppTabs = () => {
   const { t } = useTranslation();
   const { userHasNewExposure } = useContext(ExposureHistoryContext);
-  const { homeScreenComponent } = useContext(TracingStrategyContext);
+  const { homeScreenComponent } = useTracingStrategyContext();
 
   const applyBadge = (icon) => {
     return (

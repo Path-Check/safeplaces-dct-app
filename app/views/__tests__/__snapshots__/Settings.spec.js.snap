@@ -83,7 +83,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f8f8f8",
+          "backgroundColor": "#f8f8ff",
           "flex": 1,
         }
       }
@@ -672,7 +672,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f8f8f8",
+          "backgroundColor": "#f8f8ff",
           "flex": 1,
         }
       }

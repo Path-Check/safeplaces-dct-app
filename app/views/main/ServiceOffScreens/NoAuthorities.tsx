@@ -1,17 +1,15 @@
 import React from 'react';
-import { useAssets } from '../../../TracingStrategyAssets';
+import { useTranslation } from 'react-i18next';
+
 import { ServiceOffScreen } from './Base';
 
 export const NoAuthoritiesScreen = (): JSX.Element => {
-  const {
-    noAuthoritiesScreenHeader,
-    noAuthoritiesScreenSubheader,
-  } = useAssets();
+  const { t } = useTranslation();
 
   return (
     <ServiceOffScreen
-      header={noAuthoritiesScreenHeader}
-      subheader={noAuthoritiesScreenSubheader}
+      header={t('home.shared.no_authorities_header')}
+      subheader={t('home.shared.no_authorities_subheader')}
     />
   );
 };

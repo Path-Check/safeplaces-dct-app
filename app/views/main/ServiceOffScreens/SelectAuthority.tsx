@@ -1,17 +1,13 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
-import { useAssets } from '../../../TracingStrategyAssets';
 import { ServiceOffScreen } from './Base';
 import { Screens } from '../../../navigation';
 
 export const SelectAuthorityScreen = (): JSX.Element => {
+  const { t } = useTranslation();
   const navigation = useNavigation();
-  const {
-    selectAuthorityScreenHeader,
-    selectAuthorityScreenSubheader,
-    selectAuthorityScreenButton,
-  } = useAssets();
 
   const onPress = () => {
     navigation.navigate(Screens.PartnersEdit);
@@ -19,9 +15,12 @@ export const SelectAuthorityScreen = (): JSX.Element => {
 
   return (
     <ServiceOffScreen
-      header={selectAuthorityScreenHeader}
-      subheader={selectAuthorityScreenSubheader}
-      button={{ label: selectAuthorityScreenButton, onPress: onPress }}
+      header={t('home.shared.select_authority_header')}
+      subheader={t('home.shared.select_authority_subheader')}
+      button={{
+        label: t('home.shared.select_authority_button'),
+        onPress: onPress,
+      }}
     />
   );
 };

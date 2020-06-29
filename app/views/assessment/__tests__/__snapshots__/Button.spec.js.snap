@@ -160,7 +160,7 @@ exports[`disabled 1`] = `
             "paddingVertical": 22,
           },
           Object {
-            "backgroundColor": undefined,
+            "backgroundColor": "#e5e7fa",
           },
         ]
       }
@@ -182,7 +182,7 @@ exports[`disabled 1`] = `
                 "textAlign": "center",
               },
               Object {
-                "color": "#e5e7fa",
+                "color": "#a5affb",
               },
             ],
           ]

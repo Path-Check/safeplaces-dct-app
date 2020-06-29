@@ -58,6 +58,7 @@ const jacksonsPurple = '#1f2c9b';
 const moonRaker = '#e5e7fa';
 const indigo = '#4754C5';
 const melrose = '#a5affb';
+const faintViolet = '#f8f8ff';
 
 export const primaryViolet = jacksonsPurple;
 export const secondaryViolet = indigo;
@@ -77,7 +78,7 @@ export const defaultBlue = primaryBlue;
 export const defaultRed = primaryRed;
 
 // Backgrounds
-export const primaryBackground = faintGray;
+export const primaryBackground = faintViolet;
 export const primaryBackgroundFaintShade = faintGray;
 export const secondaryBackground = moonRaker;
 export const tertiaryBackground = lighterGray;
@@ -92,7 +93,9 @@ export const underlayPrimaryBackground = moonRaker;
 
 // Borders
 export const primaryBorder = primaryViolet;
-export const secondaryBorder = gray;
+export const secondaryBorder = lighterGray;
+export const radioBorder = lightGray;
+export const checkboxBorder = lightGray;
 
 // Nav
 export const mainNav = primaryViolet;
@@ -105,6 +108,7 @@ export const icon = mediumGray;
 
 // Buttons
 export const disabledButton = darkGray;
+export const disabledButtonText = quaternaryViolet;
 export const violetButton = cornflowerBlue;
 export const violetButtonLight = moonRaker;
 export const violetButtonDark = royalBlue;

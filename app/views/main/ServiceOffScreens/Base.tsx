@@ -14,14 +14,13 @@ import { Typography } from '../../../components/Typography';
 import { Button } from '../../../components/Button';
 import { Theme } from '../../../constants/themes';
 import { styles } from '../style';
-import { Asset } from '../../../TracingStrategyAssets';
 import { useStatusBarEffect } from '../../../navigation';
 
 export interface ServiceOffScreenProps {
-  header: Asset;
-  subheader: Asset;
+  header: string;
+  subheader: string;
   button?: {
-    label: Asset;
+    label: string;
     onPress: (ev: NativeSyntheticEvent<NativeTouchEvent>) => void;
   };
 }
