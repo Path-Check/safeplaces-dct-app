@@ -1,6 +1,7 @@
 import { NativeModules } from 'react-native';
 
 import * as languages from '../languages';
+import { initDevLanguages } from '../languages';
 
 const BACKUP_SETTINGS_MANAGER = NativeModules.SettingsManager;
 
@@ -12,6 +13,10 @@ const setDeviceLocale = (locale) => {
 };
 
 describe('supportedDeviceLanguageOrEnglish()', () => {
+  beforeAll(() => {
+    initDevLanguages();
+  });
+
   afterEach(() => {
     NativeModules.SettingsManager = BACKUP_SETTINGS_MANAGER;
   });
