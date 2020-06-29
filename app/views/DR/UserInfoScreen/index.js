@@ -32,7 +32,12 @@ import {
 } from '../../../constants/DR/baseUrls';
 import { COVID_POSITIVE } from '../../../constants/storage';
 
-export default function UserInfo({ navigation }) {
+export default function UserInfo({
+  navigation,
+  route: {
+    params: { type },
+  },
+}) {
   navigation.setOptions({
     headerShown: false,
   });
@@ -46,6 +51,7 @@ export default function UserInfo({ navigation }) {
   const [useIdCard, setUseIdCard] = useState(false);
   const [useNss, setUseNss] = useState(false);
   const [error, setError] = useState(false);
+  const [positiveError, setPositiveError] = useState(false);
   const [
     {
       answers: {
@@ -127,6 +133,9 @@ export default function UserInfo({ navigation }) {
               storeData('UserPersonalInfo', data.body);
             }
             navigation.navigate('EpidemiologicResponse');
+          } else if (type && !positive) {
+            setShowValidationDialog(true);
+            setPositiveError(true);
           } else {
             navigation.navigate('Report');
           }
@@ -287,7 +296,11 @@ export default function UserInfo({ navigation }) {
                 size={30}
                 style={{ marginBottom: 12, alignSelf: 'center' }}
               />
-              <Text>{t('report.userInfo.api_down_error_msg')}</Text>
+              {positiveError ? (
+                <Text>{t('report.userInfo.is_not_positive_msg')}</Text>
+              ) : (
+                <Text>{t('report.userInfo.api_down_error_msg')}</Text>
+              )}
               <Button
                 style={[
                   styles.buttons,
@@ -438,53 +451,57 @@ export default function UserInfo({ navigation }) {
                   />
                 </Card>
               </TouchableHighlight>
-              <TouchableHighlight
-                onPress={() => {
-                  setShowDialog(true);
-                  setUsePassport(true);
-                }}
-                underlayColor='#FFF'>
-                <Card style={[styles.bigCards, styles.userDataCard]}>
-                  <Text
+              {!type && (
+                <TouchableHighlight
+                  onPress={() => {
+                    setShowDialog(true);
+                    setUsePassport(true);
+                  }}
+                  underlayColor='#FFF'>
+                  <Card style={[styles.bigCards, styles.userDataCard]}>
+                    <Text
+                      style={[
+                        styles.textSemiBold,
+                        { marginVertical: 10, marginHorizontal: 12 },
+                      ]}>
+                      {t('report.userInfo.start_with_passport')}
+                    </Text>
+                    <Icon
+                      name='passport'
+                      size={wp('9%')}
+                      color={Colors.BLUE_RIBBON}
+                    />
+                  </Card>
+                </TouchableHighlight>
+              )}
+              {!type && (
+                <TouchableHighlight
+                  onPress={() => {
+                    setShowDialog(true);
+                    setUseNss(true);
+                  }}
+                  underlayColor='#FFF'>
+                  <Card
                     style={[
-                      styles.textSemiBold,
-                      { marginVertical: 10, marginHorizontal: 12 },
+                      styles.bigCards,
+                      styles.userDataCard,
+                      { alignItems: 'center' },
                     ]}>
-                    {t('report.userInfo.start_with_passport')}
-                  </Text>
-                  <Icon
-                    name='passport'
-                    size={wp('9%')}
-                    color={Colors.BLUE_RIBBON}
-                  />
-                </Card>
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={() => {
-                  setShowDialog(true);
-                  setUseNss(true);
-                }}
-                underlayColor='#FFF'>
-                <Card
-                  style={[
-                    styles.bigCards,
-                    styles.userDataCard,
-                    { alignItems: 'center' },
-                  ]}>
-                  <Text
-                    style={[
-                      styles.textSemiBold,
-                      { marginVertical: 10, marginHorizontal: 12 },
-                    ]}>
-                    {t('report.userInfo.start_with_nss')}
-                  </Text>
-                  <Icon
-                    name='id-card-alt'
-                    size={wp('8.5%')}
-                    color={Colors.BLUE_RIBBON}
-                  />
-                </Card>
-              </TouchableHighlight>
+                    <Text
+                      style={[
+                        styles.textSemiBold,
+                        { marginVertical: 10, marginHorizontal: 12 },
+                      ]}>
+                      {t('report.userInfo.start_with_nss')}
+                    </Text>
+                    <Icon
+                      name='id-card-alt'
+                      size={wp('8.5%')}
+                      color={Colors.BLUE_RIBBON}
+                    />
+                  </Card>
+                </TouchableHighlight>
+              )}
             </View>
           </View>
         </ScrollView>

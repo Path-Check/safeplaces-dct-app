@@ -14,7 +14,7 @@ import { isPlatformiOS } from './Util';
 import HomeScreen from './views/DR/HomeScreen';
 import Maps from './views/DR/Maps';
 import NewsMainScreen from './views/DR/News';
-import ReportScreen from './views/DR/ReportScreen';
+import ReportScreen from './views/DR/ReportScreen/';
 
 const Tab = createBottomTabNavigator();
 

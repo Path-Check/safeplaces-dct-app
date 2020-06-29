@@ -18,6 +18,7 @@ import EpidemiologicScreen from './views/DR/EpidemiologicalResponseScreen';
 import FAQ from './views/DR/FAQ';
 import Details from './views/DR/News/Details';
 import Report from './views/DR/ReportScreen/ReportScreenQuestions';
+import ReportType from './views/DR/ReportScreen/ReportType';
 import ResultsScreen from './views/DR/ReportScreen/Results';
 import Sponsors from './views/DR/Sponsors';
 import TermsCondition from './views/DR/Terms&Condition';
@@ -177,6 +178,11 @@ class Entry extends Component {
           <Stack.Screen
             name='UserInfo'
             component={UserInfo}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ReportType'
+            component={ReportType}
             options={{ headerShown: false }}
           />
           <Stack.Screen
