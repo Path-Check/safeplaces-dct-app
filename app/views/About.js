@@ -9,15 +9,15 @@ import {
   View,
 } from 'react-native';
 
+import { useStrategyContent } from '../TracingStrategyContext';
 import packageJson from '../../package.json';
 import { NavigationBarWrapper, Typography } from '../components';
-import { useAssets } from '../TracingStrategyAssets';
 
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
 export const AboutScreen = ({ navigation }) => {
   const { t } = useTranslation();
-  const { aboutHeader } = useAssets();
+  const { StrategyCopy } = useStrategyContent();
 
   const backToMain = () => {
     navigation.goBack();
@@ -31,7 +31,7 @@ export const AboutScreen = ({ navigation }) => {
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
         <Typography use='headline2' style={styles.heading}>
-          {aboutHeader}
+          {StrategyCopy.aboutHeader}
         </Typography>
         <Typography use='body2'>{t('label.about_para')}</Typography>
         <Typography

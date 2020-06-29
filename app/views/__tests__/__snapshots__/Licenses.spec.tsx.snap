@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`LicensesScreen renders correctly 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -141,6 +141,7 @@ exports[`renders correctly 1`] = `
                   undefined,
                 ]
               }
+              testID="licenses-legal-header"
             >
               PathCheck GPS
             </Text>

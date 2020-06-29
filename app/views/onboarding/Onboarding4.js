@@ -1,19 +1,15 @@
 import React from 'react';
-import { useAssets } from '../../TracingStrategyAssets';
 import { useTranslation } from 'react-i18next';
+
 import OnboardingTemplate from './OnboardingTemplate';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
 import { isPlatformiOS } from '../../Util';
+import { useStrategyContent } from '../../TracingStrategyContext';
 
 const Onboarding4 = (props) => {
-  const {
-    onboarding4Background,
-    onboarding4Header,
-    onboarding4Subheader,
-    onboarding4Icon,
-  } = useAssets();
   const { t } = useTranslation();
+  const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
   const gpsNext = () =>
     props.navigation.replace(
@@ -32,10 +28,10 @@ const Onboarding4 = (props) => {
     <OnboardingTemplate
       theme={'light'}
       invertIcon
-      background={onboarding4Background}
-      iconXml={onboarding4Icon}
-      title={onboarding4Header}
-      body={onboarding4Subheader}
+      background={StrategyAssets.onboarding4Background}
+      iconXml={StrategyAssets.onboarding4Icon}
+      title={StrategyCopy.onboarding4Header}
+      body={StrategyCopy.onboarding4Subheader}
       primaryButtonLabel={t('label.launch_set_up_phone_location')}
       primaryButtonOnPress={handleOnPressNext}
     />
