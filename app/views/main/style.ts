@@ -1,6 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import fontFamily from '../../constants/fonts';
 import { Colors, Spacing } from '../../styles';
 
 const PULSE_GAP = 80;
@@ -60,14 +59,12 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
     color: Colors.white,
     fontSize: 28,
-    fontFamily: fontFamily.primaryMedium,
   },
   mainTextBelow: {
     textAlign: 'center',
     lineHeight: 34,
     color: Colors.white,
     fontSize: 26,
-    fontFamily: fontFamily.primaryMedium,
     marginBottom: 24,
   },
   subheaderText: {
@@ -76,14 +73,12 @@ export const styles = StyleSheet.create({
     lineHeight: 24.5,
     color: Colors.white,
     fontSize: 18,
-    fontFamily: fontFamily.primaryRegular,
   },
   subsubheaderText: {
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.white,
     fontSize: 16,
-    fontFamily: fontFamily.primaryLight,
     marginBottom: 24,
   },
   mayoInfoRow: {
@@ -100,13 +95,11 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
     color: Colors.lightGray,
     fontSize: 18,
-    fontFamily: fontFamily.primaryBold,
   },
   mainMayoSubtext: {
     textAlign: 'left',
     color: Colors.lightGray,
     fontSize: 18,
-    fontFamily: fontFamily.primaryRegular,
   },
   arrowContainer: {
     alignSelf: 'center',

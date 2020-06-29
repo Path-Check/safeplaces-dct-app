@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import { StyleSheet, View, TextInput, Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 import getHealthcareAuthoritiesAction from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
@@ -8,6 +9,7 @@ import { Typography } from '../../components/Typography';
 import { Button } from '../../components/Button';
 import { RootState } from '../../store/types';
 import { NavigationProp } from '../../navigation';
+
 import { Forms } from '../../styles';
 
 type PartnersEditScreenProps = {
