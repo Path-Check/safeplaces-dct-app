@@ -1,28 +1,32 @@
 import React from 'react';
 import {
   ImageBackground,
-  StatusBar,
   StyleSheet,
+  TouchableOpacity,
   View,
   ScrollView,
   ImageSourcePropType,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { Button } from '../../components/Button';
+
+import { useStatusBarEffect } from '../../navigation';
 import { Typography } from '../../components/Typography';
 
-import { Colors, Layout, Spacing } from '../../styles';
-import { Theme } from '../../constants/themes';
+import {
+  Buttons,
+  Colors,
+  Layout,
+  Spacing,
+  Iconography,
+  Typography as TypographyStyles,
+} from '../../styles';
 
 type OnboardingTemplateProps = {
   iconXml: string;
   title: string;
   body: string;
-  primaryButtonLabel: string;
-  primaryButtonOnPress: () => void;
-  secondaryButtonLabel?: string;
-  secondaryButtonOnPress?: () => void;
-  theme: 'light' | 'dark';
+  buttonLabel: string;
+  buttonOnPress: () => void;
   background: ImageSourcePropType;
   invertIcon?: boolean;
 };
@@ -32,56 +36,35 @@ const OnboardingTemplate = ({
   iconXml,
   title,
   body,
-  primaryButtonLabel,
-  primaryButtonOnPress,
-  secondaryButtonLabel,
-  secondaryButtonOnPress,
+  buttonLabel,
+  buttonOnPress,
   invertIcon,
-  theme,
 }: OnboardingTemplateProps): JSX.Element => {
+  useStatusBarEffect('dark-content');
+
+  const iconStyle = invertIcon ? styles.goldIcon : styles.blueIcon;
+
   return (
-    <Theme use={theme === 'light' ? 'default' : 'violet'}>
-      <View style={[styles.wrapper, theme === 'dark' && styles.darkWrapper]}>
-        <StatusBar
-          barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
-          backgroundColor='transparent'
-          translucent
-        />
-        {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
-          <ImageBackground source={background} style={styles.backgroundImage} />
-        )}
-        <View style={styles.content}>
-          <ScrollView
-            alwaysBounceVertical={false}
-            contentContainerStyle={{ paddingBottom: Spacing.large }}>
-            <View style={[styles.iconCircle, invertIcon && styles.goldIcon]}>
-              <SvgXml xml={iconXml} width={30} height={30} />
-            </View>
-            <Typography
-              use={'headline2'}
-              style={theme === 'dark' ? styles.lightText : {}}>
-              {title}
-            </Typography>
-            <View style={{ height: Spacing.medium }} />
-            <Typography
-              use={'body2'}
-              style={theme === 'dark' ? styles.lightText : {}}>
-              {body}
-            </Typography>
-          </ScrollView>
-          {secondaryButtonOnPress && secondaryButtonLabel && (
-            <>
-              <Button
-                label={secondaryButtonLabel}
-                onPress={secondaryButtonOnPress}
-              />
-              <View style={{ height: Spacing.xSmall }} />
-            </>
-          )}
-          <Button label={primaryButtonLabel} onPress={primaryButtonOnPress} />
-        </View>
+    <View style={styles.wrapper}>
+      {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
+        <ImageBackground source={background} style={styles.backgroundImage} />
+      )}
+      <View style={styles.content}>
+        <ScrollView
+          alwaysBounceVertical={false}
+          contentContainerStyle={{ paddingBottom: Spacing.large }}>
+          <View style={iconStyle}>
+            <SvgXml xml={iconXml} width={30} height={30} />
+          </View>
+          <Typography style={styles.headerText}>{title}</Typography>
+          <View style={{ height: Spacing.medium }} />
+          <Typography style={styles.contentText}>{body}</Typography>
+        </ScrollView>
+        <TouchableOpacity onPress={buttonOnPress} style={styles.button}>
+          <Typography style={styles.buttonText}>{buttonLabel}</Typography>
+        </TouchableOpacity>
       </View>
-    </Theme>
+    </View>
   );
 };
 
@@ -92,31 +75,31 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     position: 'absolute',
   },
-  iconCircle: {
-    height: 70,
-    width: 70,
-    backgroundColor: Colors.onboardingIconBlue,
-    borderRadius: 70,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: Spacing.large,
+  blueIcon: {
+    ...Iconography.largeBlueIcon,
   },
   goldIcon: {
-    backgroundColor: Colors.onboardingIconYellow,
+    ...Iconography.largeGoldIcon,
   },
   wrapper: {
     flex: 1,
     backgroundColor: Colors.primaryBackgroundFaintShade,
   },
-  darkWrapper: {
-    backgroundColor: Colors.royalBlue,
-  },
   content: {
     flex: 1,
     padding: Spacing.large,
   },
-  lightText: {
-    color: Colors.white,
+  headerText: {
+    ...TypographyStyles.header2,
+  },
+  contentText: {
+    ...TypographyStyles.mainContent,
+  },
+  button: {
+    ...Buttons.largeBlue,
+  },
+  buttonText: {
+    ...TypographyStyles.buttonTextLight,
   },
 });
 
