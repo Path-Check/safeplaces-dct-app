@@ -8,6 +8,7 @@ const AllFlagsOff: Record<FeatureFlagOption, boolean> = {
   [FeatureFlagOption.GOOGLE_IMPORT]: false,
   [FeatureFlagOption.CUSTOM_URL]: false,
   [FeatureFlagOption.DOWNLOAD_LOCALLY]: false,
+  [FeatureFlagOption.DEV_LANGUAGES]: false,
 };
 
 const initialState = {

@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Alert,
 } from 'react-native';
 
 import { useStrategyContent } from '../TracingStrategyContext';
@@ -23,8 +24,8 @@ export const AboutScreen = ({ navigation }) => {
 
   const [clickCount, setClickCount] = useState(0);
   useEffect(() => {
-    console.log(clickCount);
     if (clickCount === 20) {
+      Alert.alert('Feature Flags Enabled');
       dispatch(toggleAllowFeatureFlagsAction({ overrideValue: true }));
     }
   }, [clickCount, dispatch]);
@@ -45,9 +46,11 @@ export const AboutScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
-        <Typography use='headline2' style={styles.heading}>
-          {StrategyCopy.aboutHeader}
-        </Typography>
+        <TouchableWithoutFeedback onPress={incrementClickCount}>
+          <Typography use='headline2' style={styles.heading}>
+            {StrategyCopy.aboutHeader}
+          </Typography>
+        </TouchableWithoutFeedback>
         <Typography use='body2'>{t('label.about_para')}</Typography>
         <Typography
           style={styles.hyperlink}
@@ -59,12 +62,9 @@ export const AboutScreen = ({ navigation }) => {
 
         <View style={styles.rowContainer}>
           <View style={styles.row}>
-            <TouchableWithoutFeedback onPress={incrementClickCount}>
-              <Typography style={styles.aboutSectionParaLabel}>
-                {t('about.version')}
-              </Typography>
-            </TouchableWithoutFeedback>
-
+            <Typography style={styles.aboutSectionParaLabel}>
+              {t('about.version')}
+            </Typography>
             <Typography style={styles.aboutSectionParaContent}>
               {packageJson.version}
             </Typography>

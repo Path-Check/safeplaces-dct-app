@@ -15,7 +15,7 @@ import {
 } from 'react-navigation';
 
 import {
-  LOCALE_LIST,
+  getLocaleList,
   getLanguageFromLocale,
   getUserLocaleOverride,
   setUserLocaleOverride,
@@ -41,6 +41,7 @@ interface SettingsScreenProps {
 const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   const { enableFlags } = useSelector((state: RootState) => state.featureFlags);
   const { t, i18n } = useTranslation();
+  const localeList = getLocaleList();
 
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
@@ -139,7 +140,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
       <ScrollView style={styles.container}>
         <View style={styles.section}>
           <NativePicker
-            items={LOCALE_LIST}
+            items={localeList}
             value={userLocale}
             onValueChange={localeChanged}>
             {({

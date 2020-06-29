@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-raw-text */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 
 import { NavigationBarWrapper, Switch, Typography } from '../components';
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import toggleFeatureFlagAction from '../store/actions/featureFlags/toggleFeatureFlagAction';
 import { Spacing } from '../styles';
 import { FeatureFlagOption } from '../store/types';
+import { initDevLanguages, initProdLanguages } from '../locales/languages';
 
 const flagToName = (flag) => {
   switch (flag) {
@@ -16,6 +17,8 @@ const flagToName = (flag) => {
       return 'Download Locally';
     case FeatureFlagOption.GOOGLE_IMPORT:
       return 'Import from Google';
+    case FeatureFlagOption.DEV_LANGUAGES:
+      return 'All Language Options';
   }
 };
 
@@ -40,6 +43,16 @@ export const FlagToggleRow = ({ flag }) => {
 export const FeatureFlagsScreen = ({ navigation }) => {
   const flagMap = useSelector((state) => state.featureFlags.flags);
   const flags = Object.keys(flagMap);
+  const devLanguagesEnabled = flagMap[FeatureFlagOption.DEV_LANGUAGES];
+
+  // Dev languages requires an init step, not just conditional render
+  useEffect(() => {
+    if (devLanguagesEnabled) {
+      initDevLanguages();
+    } else {
+      initProdLanguages();
+    }
+  }, [devLanguagesEnabled]);
 
   return (
     <NavigationBarWrapper

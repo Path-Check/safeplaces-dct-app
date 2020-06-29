@@ -70,36 +70,37 @@ export async function setUserLocaleOverride(locale) {
   await setLocale(locale);
   await SetStoreData(LANG_OVERRIDE, locale);
 }
-
 /* eslint-disable no-underscore-dangle */
-/** Languages only available in dev builds. */
-const DEV_LANGUAGES = __DEV__
-  ? {
-      ar: { label: ar._display_name, translation: ar },
-      da: { label: da._display_name, translation: da },
-      es: { label: es._display_name, translation: es },
-      es_419: { label: es_419._display_name, translation: es_419 },
-      es_PR: { label: es_PR._display_name, translation: es_PR },
-      ht: { label: ht._display_name, translation: ht },
-      fil: { label: fil._display_name, translation: fil },
-      fr: { label: fr._display_name, translation: fr },
-      id: { label: id._display_name, translation: id },
-      it: { label: it._display_name, translation: it },
-      ja: { label: ja._display_name, translation: ja },
-      ml: { label: ml._display_name, translation: ml },
-      nl: { label: nl._display_name, translation: nl },
-      pl: { label: pl._display_name, translation: pl },
-      pt_BR: { label: pt_BR._display_name, translation: pt_BR },
-      ro: { label: ro._display_name, translation: ro },
-      ru: { label: ru._display_name, translation: ru },
-      sk: { label: sk._display_name, translation: sk },
-      tl: { label: tl._display_name, translation: tl },
-      vi: { label: vi._display_name, translation: vi },
-      zh_Hant: { label: zh_Hant._display_name, translation: zh_Hant },
-    }
-  : {};
+const PROD_RESOURCES = {
+  en: { label: en._display_name, translation: en },
+};
 
-i18next.use(initReactI18next).init({
+/** Languages only available in feature flag. */
+const DEV_RESOURCES = {
+  ar: { label: ar._display_name, translation: ar },
+  da: { label: da._display_name, translation: da },
+  es: { label: es._display_name, translation: es },
+  es_419: { label: es_419._display_name, translation: es_419 },
+  es_PR: { label: es_PR._display_name, translation: es_PR },
+  ht: { label: ht._display_name, translation: ht },
+  fil: { label: fil._display_name, translation: fil },
+  fr: { label: fr._display_name, translation: fr },
+  id: { label: id._display_name, translation: id },
+  it: { label: it._display_name, translation: it },
+  ja: { label: ja._display_name, translation: ja },
+  ml: { label: ml._display_name, translation: ml },
+  nl: { label: nl._display_name, translation: nl },
+  pl: { label: pl._display_name, translation: pl },
+  pt_BR: { label: pt_BR._display_name, translation: pt_BR },
+  ro: { label: ro._display_name, translation: ro },
+  ru: { label: ru._display_name, translation: ru },
+  sk: { label: sk._display_name, translation: sk },
+  tl: { label: tl._display_name, translation: tl },
+  vi: { label: vi._display_name, translation: vi },
+  zh_Hant: { label: zh_Hant._display_name, translation: zh_Hant },
+};
+
+const config = {
   interpolation: {
     // React already does escaping
     escapeValue: false,
@@ -108,28 +109,44 @@ i18next.use(initReactI18next).init({
   fallbackLng: 'en', // If language detector fails
   returnEmptyString: false,
   resources: {
-    en: { label: en._display_name, translation: en },
-    ...DEV_LANGUAGES,
+    ...PROD_RESOURCES,
   },
-});
-/* eslint-enable no-underscore-dangle */
+};
+
+export const initProdLanguages = () => {
+  i18next.use(initReactI18next).init(config);
+};
+
+initProdLanguages();
+
+export const initDevLanguages = () => {
+  i18next.use(initReactI18next).init({
+    ...config,
+    resources: {
+      ...PROD_RESOURCES,
+      ...DEV_RESOURCES,
+    },
+  });
+};
 
 /** The known locale list */
-export const LOCALE_LIST = Object.entries(i18next.options.resources)
-  .map(([langCode, lang]) => ({
-    value: langCode,
-    label: lang.label,
-  }))
-  .sort((a, b) => a.value > b.value);
+export const getLocaleList = () =>
+  Object.entries(i18next.options.resources)
+    .map(([langCode, lang]) => ({
+      value: langCode,
+      label: lang.label,
+    }))
+    .sort((a, b) => a.value > b.value);
 
 /** A map of locale code to name. */
-export const LOCALE_NAME = Object.entries(i18next.options.resources).reduce(
-  (output, [langCode, lang]) => {
-    output[langCode] = lang.label;
-    return output;
-  },
-  {},
-);
+const getLocalNames = () =>
+  Object.entries(i18next.options.resources).reduce(
+    (output, [langCode, lang]) => {
+      output[langCode] = lang.label;
+      return output;
+    },
+    {},
+  );
 
 /** Get the device locale e.g. en_US */
 export function getDeviceLocale() {
@@ -148,7 +165,8 @@ export function getDeviceLocale() {
 export function supportedDeviceLanguageOrEnglish() {
   const locale = getDeviceLocale(); // en_US
   const langCode = getLanguageFromLocale(locale); // en
-  const found = Object.keys(LOCALE_NAME).find(
+  const localeNames = getLocalNames();
+  const found = Object.keys(localeNames).find(
     (l) => l === langCode || toIETFLanguageTag(l) === toIETFLanguageTag(locale),
   );
   return found || 'en';

@@ -9,7 +9,7 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import languages, {
-  LOCALE_LIST,
+  getLocaleList,
   getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
@@ -74,7 +74,7 @@ class Onboarding extends Component {
                   zIndex: 10,
                 }}>
                 <NativePicker
-                  items={LOCALE_LIST}
+                  items={getLocaleList()}
                   value={this.state.locale}
                   onValueChange={this.onLocaleChange}>
                   {({ label, openPicker }) => (
