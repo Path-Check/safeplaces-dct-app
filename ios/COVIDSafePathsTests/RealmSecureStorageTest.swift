@@ -207,13 +207,24 @@ class GPSSecureStorageTest: XCTestCase {
     let location2Time = Int(location2TimeDouble / 1000)
     let location2 = [Location.KEY_TIME: location2TimeDouble, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297]
     let importLocations = NSArray(array: [location2])
-    secureStorage!.saveDeviceLocation(backgroundLocation1)
+
+    let expect1 = XCTestExpectation(description: "Save Location")
+    let expect2 = XCTestExpectation(description: "Save Location")
+
+    secureStorage!.saveDeviceLocation(backgroundLocation1) {
+      expect1.fulfill()
+    }
+
     secureStorage!.importLocations(
       locations: importLocations,
       source: Location.SOURCE_MIGRATION,
-      resolve: emptyResolver(),
-      reject: emptyRejecter()
+      resolve: resolverFulfilling(expectation: expect2),
+      reject: rejecterFulfilling(expectation: expect2)
     )
+
+    wait(for: [expect1, expect2], timeout: 5)
+
+    let expect3 = XCTestExpectation(description: "Get Locations")
     
     // when
     secureStorage!.getLocations(resolve: { result in
@@ -224,7 +235,10 @@ class GPSSecureStorageTest: XCTestCase {
       XCTAssertEqual(40.730610, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_LATITUDE) as! Double)
       XCTAssertEqual(-73.935242, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_LONGITUDE) as! Double)
       XCTAssertEqual(location1Time * 1000, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_TIME) as! Int)
-    }, reject: emptyRejecter())
+      expect3.fulfill()
+    }, reject: rejecterFulfilling(expectation: expect3))
+
+    wait(for: [expect3], timeout: 5)
   }
   
   func testOldLocationsTrimmed() {
@@ -319,21 +333,15 @@ class GPSSecureStorageTest: XCTestCase {
   func querySingleLocationByTime(time: Int) -> Location? {
     return secureStorage!.getRealmInstance()!.objects(Location.self).filter("\(Location.KEY_TIME)==\(time)").first
   }
-  
-  func emptyResolver() -> RCTPromiseResolveBlock {
-    return { result in
-        
-    }
-  }
-  
-  func emptyRejecter() -> RCTPromiseRejectBlock {
-    return { code, message, error in
-      
+
+  func resolverFulfilling(expectation: XCTestExpectation) -> RCTPromiseResolveBlock {
+    return { _ in
+      expectation.fulfill()
     }
   }
 
   func rejecterFulfilling(expectation: XCTestExpectation) -> RCTPromiseRejectBlock {
-    return { code, message, error in
+    return { _, _, _ in
       expectation.fulfill()
     }
   }
