@@ -19,7 +19,11 @@ const bgTaskConfig = {
 
 class IntersectService {
   isServiceRunning = false;
-  nextJob: HealthcareAuthority[] | null = null;
+  private nextJob: HealthcareAuthority[] | null = null;
+
+  constructor() {
+    this.startBackgroundTask();
+  }
 
   checkIntersect = (
     healthcareAuthorities: HealthcareAuthority[] | null,
@@ -43,7 +47,6 @@ class IntersectService {
       }
     });
 
-    this.startBackgroundTask();
     return 'started';
   };
 
