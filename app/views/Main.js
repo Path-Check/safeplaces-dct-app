@@ -2,8 +2,6 @@ import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { checkIntersect } from '../helpers/Intersect';
-import BackgroundTaskServices from '../services/BackgroundTaskService';
 import LocationServices from '../services/LocationService';
 import NotificationService from '../services/NotificationService';
 import { AllServicesOnScreen } from './main/AllServicesOn';
@@ -27,13 +25,7 @@ export const Main = () => {
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
   const [canTrack, setCanTrack] = useState(true);
 
-  const checkForPossibleExposure = () => {
-    BackgroundTaskServices.start();
-    checkIntersect();
-  };
-
   const updateStateInfo = useCallback(async () => {
-    checkForPossibleExposure();
     const locationStatus = await LocationServices.checkStatusAndStartOrStop();
     setCanTrack(locationStatus.canTrack);
     notification.check();
