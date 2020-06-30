@@ -140,7 +140,7 @@ export const getLocaleList = () =>
     .sort((a, b) => a.value > b.value);
 
 /** A map of locale code to name. */
-const getLocalNames = () =>
+export const getLocalNames = () =>
   Object.entries(i18next.options.resources).reduce(
     (output, [langCode, lang]) => {
       output[langCode] = lang.label;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Dimensions,
   ImageBackground,
@@ -9,20 +9,22 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { Images } from '../../assets';
-import { NativePicker, Typography } from '../../components';
+import { Typography } from '../../components';
 import { EulaModal } from '../EulaModal';
 
 import { Colors } from '../../styles';
 import { Screens } from '../../navigation';
 import { useTranslation } from 'react-i18next';
+import { getLocalNames } from '../../locales/languages';
 
 const width = Dimensions.get('window').width;
 
 const Onboarding = ({ navigation }) => {
   const {
     t,
-    i18n: { language },
+    i18n: { language: localeCode },
   } = useTranslation();
+  const languageName = getLocalNames()[localeCode];
   return (
     <ImageBackground
       source={Images.LaunchScreenBackground}
@@ -47,7 +49,7 @@ const Onboarding = ({ navigation }) => {
               onPress={() => navigation.navigate(Screens.LanguageSelection)}
               style={styles.languageSelector}>
               <Typography style={styles.languageSelectorText}>
-                {'Choose Language'}
+                {languageName}
               </Typography>
             </TouchableOpacity>
           </View>
@@ -59,7 +61,7 @@ const Onboarding = ({ navigation }) => {
           <View style={styles.footerContainer}>
             <EulaModal
               continueFunction={() => navigation.replace('Onboarding2')}
-              selectedLocale={language}
+              selectedLocale={localeCode}
             />
           </View>
         </View>
