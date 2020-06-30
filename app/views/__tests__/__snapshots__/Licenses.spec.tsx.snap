@@ -158,6 +158,7 @@ exports[`LicensesScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#4e4e4e",
+                      "fontFamily": "IBMPlexSans",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -185,6 +186,7 @@ Somerville, MA 02144
                   Array [
                     Object {
                       "color": "#4e4e4e",
+                      "fontFamily": "IBMPlexSans",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -205,6 +207,7 @@ Somerville, MA 02144
                   Array [
                     Object {
                       "color": "#4e4e4e",
+                      "fontFamily": "IBMPlexSans",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },

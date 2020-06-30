@@ -26,6 +26,7 @@ import {
   Typography as TypographyStyles,
   Colors,
 } from '../../styles';
+import dayjs from 'dayjs';
 
 const ExposureHistoryScreen = (): JSX.Element => {
   const { t } = useTranslation();
@@ -37,8 +38,14 @@ const ExposureHistoryScreen = (): JSX.Element => {
 
   useStatusBarEffect('dark-content');
 
+  const isTodayOrBefore = (date: number) => {
+    return !dayjs(date).isAfter(dayjs(), 'day');
+  };
+
   const handleOnSelectDate = (datum: ExposureDatum) => {
-    setSelectedDatum(datum);
+    if (isTodayOrBefore(datum.date)) {
+      setSelectedDatum(datum);
+    }
   };
 
   const handleOnPressMoreInfo = () => {
@@ -54,13 +61,16 @@ const ExposureHistoryScreen = (): JSX.Element => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={styles.container} alwaysBounceVertical={false}>
-        <View style={styles.header}>
+        <View>
           <View style={styles.headerRow}>
             <Typography style={styles.headerText}>{titleText}</Typography>
             <TouchableOpacity
               onPress={handleOnPressMoreInfo}
               style={styles.moreInfoButton}>
-              <SvgXml xml={Icons.QuestionMark} />
+              <SvgXml
+                xml={Icons.QuestionMark}
+                style={styles.moreInfoButtonIcon}
+              />
             </TouchableOpacity>
           </View>
           {!isGPS ? (
@@ -93,7 +103,6 @@ const styles = StyleSheet.create({
     padding: Spacing.medium,
     backgroundColor: Colors.primaryBackground,
   },
-  header: {},
   headerRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -105,11 +114,16 @@ const styles = StyleSheet.create({
   },
   subHeaderText: {
     ...TypographyStyles.header4,
+    ...TypographyStyles.bold,
   },
   moreInfoButton: {
     ...Buttons.tinyTeritiaryRounded,
-    minHeight: 44,
-    minWidth: 44,
+    minHeight: Spacing.xHuge,
+    minWidth: Spacing.xHuge,
+  },
+  moreInfoButtonIcon: {
+    minHeight: Spacing.small,
+    minWidth: Spacing.small,
   },
   calendarContainer: {
     marginTop: Spacing.xxLarge,
