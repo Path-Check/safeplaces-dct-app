@@ -14,13 +14,7 @@ import {
   NavigationState,
 } from 'react-navigation';
 
-import {
-  getLocaleList,
-  getLanguageFromLocale,
-  getUserLocaleOverride,
-  setUserLocaleOverride,
-  supportedDeviceLanguageOrEnglish,
-} from '../../locales/languages';
+import { getLocaleList, setUserLocaleOverride } from '../../locales/languages';
 import FeatureFlag from '../../components/FeatureFlag';
 import { NativePicker } from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
@@ -43,30 +37,15 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   const { t, i18n } = useTranslation();
   const localeList = getLocaleList();
 
-  const [userLocale, setUserLocale] = useState(
-    supportedDeviceLanguageOrEnglish(),
-  );
-
-  useEffect(() => {
-    const setOverrideLocale = async () => {
-      const userSelectedLocale = await getUserLocaleOverride();
-      if (userSelectedLocale) {
-        setUserLocale(getLanguageFromLocale(userSelectedLocale));
-      }
-    };
-    setOverrideLocale();
-  }, []);
-
   useStatusBarEffect('light-content');
 
   const navigateTo = (screen: string) => {
     return () => navigation.navigate(screen);
   };
 
-  const localeChanged = async (locale: string) => {
+  const localeChanged = (locale: string) => {
     try {
-      await setUserLocaleOverride(locale);
-      setUserLocale(locale);
+      setUserLocaleOverride(locale);
     } catch (e) {
       console.log('something went wrong in lang change', e);
     }

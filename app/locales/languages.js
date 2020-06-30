@@ -73,6 +73,7 @@ export async function setUserLocaleOverride(locale) {
 /* eslint-disable no-underscore-dangle */
 const PROD_RESOURCES = {
   en: { label: en._display_name, translation: en },
+  es_PR: { label: es_PR._display_name, translation: es_PR },
 };
 
 /** Languages only available in feature flag. */
@@ -162,7 +163,7 @@ export function getDeviceLocale() {
  * e.g. device locale `en_AU` would find `en`
  *      device locale `pt_BR` would find `pt-BR`
  */
-export function supportedDeviceLanguageOrEnglish() {
+function supportedDeviceLanguageOrEnglish() {
   const locale = getDeviceLocale(); // en_US
   const langCode = getLanguageFromLocale(locale); // en
   const localeNames = getLocalNames();
