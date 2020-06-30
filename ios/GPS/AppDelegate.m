@@ -20,8 +20,7 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   MAURBackgroundGeolocationFacade.locationTransform = ^(MAURLocation * location) {
     // The geolocation library sometimes returns nil times.
     // Almost immediately after these locations, we receive an identical location containing a time.
@@ -32,8 +31,6 @@
     // nil out location so geolocation library doesn't save in its internal db
     return (MAURLocation *)nil;
   };
-  
-  [[GPSSecureStorage shared] trimLocationsWithCompletion: nil];
   
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
@@ -57,8 +54,15 @@
   return YES;
 }
 
-- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
-{
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [[GPSSecureStorage shared] trimLocationsWithResolve:^(id result) {
+    // no-op
+  } reject:^(NSString *code, NSString *message, NSError *error) {
+    //no-op
+  }];
+}
+
+- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge {
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 #else
@@ -67,52 +71,34 @@
 }
 
 // Required to register for notifications
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
-{
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
  [RNCPushNotificationIOS didRegisterUserNotificationSettings:notificationSettings];
 }
 // Required for the register event.
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
  [RNCPushNotificationIOS didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 // Required for the notification event. You must call the completion handler after handling the remote notification.
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-{
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
   [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
 }
 // Required for the registrationError event.
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-{
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
  [RNCPushNotificationIOS didFailToRegisterForRemoteNotificationsWithError:error];
 }
 // Required for the localNotification event.
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
  [RNCPushNotificationIOS didReceiveLocalNotification:notification];
-}
-
--(BOOL) isFirstTimeClosing {
-  //Show local notifiation at first time only.
-  if(![[NSUserDefaults standardUserDefaults] boolForKey:@"cxfed_NotificationAtFirstTimeOnly"]) {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"cxfed_NotificationAtFirstTimeOnly"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    return TRUE;
-  }
-  return FALSE;
 }
 
 -(BOOL) hasNotificationPermissions {
   //Checking local notification permission or not.
   UIUserNotificationSettings *grantedSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-  if (grantedSettings.types != UIUserNotificationTypeNone){
-    return TRUE;
-  }
-  return FALSE;
+  return (grantedSettings.types != UIUserNotificationTypeNone);
 }
 
--(void) notifThatWeAreStillTracking {
+-(void) notifyThatWeAreStillTracking {
   // Set local notification.
   UILocalNotification *_localNotification = [[UILocalNotification alloc] init];
   _localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
@@ -124,9 +110,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-  if([self isFirstTimeClosing] && [self hasNotificationPermissions]) {
-    // Show local notification at first time only when app quit.
-    [self notifThatWeAreStillTracking];
+  if([self hasNotificationPermissions]) {
+//    [self notifyThatWeAreStillTracking];
   }
 }
 
