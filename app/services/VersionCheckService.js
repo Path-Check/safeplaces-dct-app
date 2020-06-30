@@ -1,11 +1,8 @@
-import Yaml from 'js-yaml';
 import { Alert, Linking } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
-import PushNotification from 'react-native-push-notification';
 import VersionCheck from 'react-native-version-check';
 
 import languages from '../locales/languages';
-import { isPlatformiOS, isVersionGreater } from '../Util';
 
 const POLL_INTERVAL = 24 * 60 * 60 * 1000; //one day
 
