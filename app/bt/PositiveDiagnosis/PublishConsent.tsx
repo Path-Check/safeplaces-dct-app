@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
-
-import exitWarningAlert from '../../views/Export/exitWarningAlert';
-import ExportTemplate from '../../views/Export/ExportTemplate';
-import { useAssets } from '../../TracingStrategyAssets';
-import { isGPS } from '../../COVIDSafePathsConfig';
-import { Screens } from '../../navigation';
-import * as BTNativeModule from '../nativeModule';
+import { useTranslation } from 'react-i18next';
 import {
   NavigationScreenProp,
   NavigationState,
   NavigationParams,
   NavigationRoute,
 } from 'react-navigation';
+
+import exitWarningAlert from '../../views/Export/exitWarningAlert';
+import ExportTemplate from '../../views/Export/ExportTemplate';
+import { useStrategyContent } from '../../TracingStrategyContext';
+import { isGPS } from '../../COVIDSafePathsConfig';
+import { Screens } from '../../navigation';
+import * as BTNativeModule from '../nativeModule';
 
 interface PublishConsentProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -26,12 +26,13 @@ export const PublishConsent = ({
 }: PublishConsentProps): JSX.Element => {
   const [isConsenting, setIsConsenting] = useState(false);
   const { t } = useTranslation();
+
   const {
-    exportPublishBody,
-    exportPublishButtonSubtitle,
-    exportPublishIcon,
-    exportPublishTitle,
-  } = useAssets();
+    InterpolatedStrategyCopy,
+    StrategyCopy,
+    StrategyAssets,
+  } = useStrategyContent();
+
   const exportPublishNextRoute = isGPS
     ? Screens.ExportConfirmUpload
     : Screens.ExportComplete;
@@ -62,13 +63,11 @@ export const PublishConsent = ({
       onClose={onClose}
       onNext={consent}
       nextButtonLabel={t('export.consent_button_title')}
-      buttonSubtitle={exportPublishButtonSubtitle}
-      headline={exportPublishTitle}
-      body={(exportPublishBody as (name: string) => string)(
-        selectedAuthority.name,
-      )}
+      buttonSubtitle={StrategyCopy.exportPublishButtonSubtitle}
+      headline={StrategyCopy.exportPublishTitle}
+      body={InterpolatedStrategyCopy.exportPublishBody(selectedAuthority.name)}
       buttonLoading={isConsenting}
-      icon={exportPublishIcon}
+      icon={StrategyAssets.exportPublishIcon}
     />
   );
 };

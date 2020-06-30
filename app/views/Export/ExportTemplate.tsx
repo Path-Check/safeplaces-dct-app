@@ -20,7 +20,6 @@ import { Icons } from '../../assets';
 import { Colors, Typography as TypographyStyles } from '../../styles';
 import { useStatusBarEffect } from '../../navigation';
 import { useFocusEffect } from '@react-navigation/native';
-import { Asset } from '../../TracingStrategyAssets';
 
 interface BackgroundContainerProps {
   lightTheme?: string;
@@ -46,14 +45,14 @@ const BackgroundContainer = ({
 };
 
 interface ExportTemplateProps {
-  headline: Asset;
+  headline: string;
   body: string;
   onNext: () => void;
   nextButtonLabel: string;
   // Optionals:
-  buttonSubtitle?: Asset;
+  buttonSubtitle?: string;
   onClose?: () => void;
-  icon?: Asset;
+  icon?: string;
   lightTheme?: string;
   buttonLoading?: boolean;
   // We can consider instead using the trans component:
@@ -160,6 +159,7 @@ export const ExportTemplate = ({
             onPress={onNext}
             loading={buttonLoading}
           />
+
           {buttonSubtitle && (
             <Typography
               style={{ paddingTop: 10, color: Colors.white }}

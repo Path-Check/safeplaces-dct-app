@@ -1,0 +1,5 @@
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. Nakalaan ang lahat ng mga karapatan.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Ang iyong kasaysayan ng lokasyon o location history ay iniimbak sa iyong cellphone o device, at ibabahagi lamang sa iba kung pipiliin mong gawin ito.";
+"NSLocationAlwaysUsageDescription" = "Ang iyong kasaysayan ng lokasyon o location history ay iiimbak sa iyong cellphone o device, at ibabahagi lamang sa iba kung pinili mong gawin ito. ";
+"NSLocationWhenInUseUsageDescription" = "Ang iyong kasaysayan ng lokasyon o location history ay iniimbak sa iyong cellphone o device, at ibabahagi lamang sa iba kung pipiliin mong gawin ito.";
+"NSMotionUsageDescription" = "Ginagamit namin ang inyong accelerometer para sa wastong kasaysayan ng lokasyon o location history.";

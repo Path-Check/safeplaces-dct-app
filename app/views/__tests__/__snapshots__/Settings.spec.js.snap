@@ -83,7 +83,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f8f8f8",
+          "backgroundColor": "#f8f8ff",
           "flex": 1,
         }
       }
@@ -339,61 +339,45 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.
               </Text>
               <View
+                accessible={true}
+                focusable={true}
+                isTVSelectable={true}
                 style={
                   Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#4051db",
+                    "borderColor": "#4051db",
+                    "borderRadius": 8,
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginVertical": 20,
+                    "opacity": 1,
+                    "paddingBottom": 25,
+                    "paddingTop": 24,
                   }
                 }
               >
-                <View
-                  accessibilityLabel="Import past locations"
-                  accessibilityRole="button"
-                  accessible={true}
-                  focusable={true}
-                  isTVSelectable={true}
+                <Text
                   style={
-                    Object {
-                      "alignContent": "center",
-                      "alignItems": "center",
-                      "alignSelf": "stretch",
-                      "borderBottomLeftRadius": 8,
-                      "borderBottomRightRadius": 8,
-                      "borderColor": "transparent",
-                      "borderStyle": "solid",
-                      "borderTopLeftRadius": 8,
-                      "borderTopRightRadius": 8,
-                      "borderWidth": 2,
-                      "flexDirection": "row",
-                      "height": 72,
-                      "justifyContent": "center",
-                      "opacity": 1,
-                      "paddingHorizontal": 16,
-                    }
+                    Array [
+                      Object {
+                        "color": "#2e2e2e",
+                        "fontSize": 17,
+                        "lineHeight": 28,
+                      },
+                      Object {
+                        "writingDirection": "ltr",
+                      },
+                      Object {
+                        "color": "#ffffff",
+                        "fontSize": 19,
+                        "fontWeight": "500",
+                      },
+                    ]
                   }
                 >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#2e2e2e",
-                          "fontSize": 17,
-                          "lineHeight": 28,
-                        },
-                        Object {
-                          "writingDirection": "ltr",
-                        },
-                        Object {
-                          "fontFamily": "IBMPlexSans-Medium",
-                          "fontSize": 20,
-                          "fontWeight": "normal",
-                          "lineHeight": 40,
-                        },
-                      ]
-                    }
-                  >
-                    Import past locations
-                  </Text>
-                </View>
+                  Import past locations
+                </Text>
               </View>
               <Text
                 style={
@@ -672,7 +656,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f8f8f8",
+          "backgroundColor": "#f8f8ff",
           "flex": 1,
         }
       }

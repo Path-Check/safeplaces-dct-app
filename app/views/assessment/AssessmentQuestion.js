@@ -13,7 +13,8 @@ import {
   SCREEN_TYPE_RADIO,
 } from './constants';
 
-import { Colors } from '../../styles';
+import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
+
 /**
  * @typedef { import(".").SurveyQuestion } SurveyQuestion
  * @typedef { import(".").SurveyOption } SurveyOption
@@ -56,6 +57,11 @@ export const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
     SCREEN_TYPE_RADIO,
     SCREEN_TYPE_DATE,
   ].includes(question.screen_type);
+
+  const assessmentInputInstruction =
+    question.question_type === QUESTION_TYPE_MULTI
+      ? 'Select all that apply'
+      : 'Select one';
 
   const options =
     displayAsOption &&
@@ -114,13 +120,16 @@ export const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Typography use='headline2'>{question.question_text}</Typography>
-      </View>
       <ScrollView style={styles.scrollView}>
+        <View style={styles.header}>
+          <Typography use='headline2'>{question.question_text}</Typography>
+        </View>
         <View style={styles.scrollViewContent}>
           {description}
-          {options}
+          <Typography style={styles.instruction}>
+            {assessmentInputInstruction}
+          </Typography>
+          <View style={styles.optionsWrapper}>{options}</View>
         </View>
       </ScrollView>
       <View style={styles.footer}>
@@ -137,23 +146,33 @@ export const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.primaryBackgroundFaintShade,
+    backgroundColor: Colors.primaryBackground,
   },
   header: {
-    paddingHorizontal: 20,
-    marginVertical: 40,
+    paddingHorizontal: Spacing.medium,
+    marginTop: Spacing.small,
   },
   scrollView: {
     flex: 1,
   },
   scrollViewContent: {
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingHorizontal: Spacing.medium,
+  },
+  description: {
+    fontFamily: TypographyStyles.baseFontFamily,
   },
   descriptionWrapper: {
-    marginBottom: 20,
+    marginTop: Spacing.small,
+  },
+  optionsWrapper: {
+    marginTop: Spacing.medium,
+  },
+  instruction: {
+    ...TypographyStyles.assessmentInstruction,
+    fontFamily: TypographyStyles.baseFontFamily,
+    marginTop: Spacing.xLarge,
   },
   footer: {
-    padding: 20,
+    padding: Spacing.medium,
   },
 });

@@ -1,3 +1,4 @@
+export const tiny = 2;
 export const xxxSmall = 4;
 export const xxSmall = 8;
 export const xSmall = 12;

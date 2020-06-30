@@ -3,16 +3,19 @@ import { StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import { Typography } from '../../components/Typography';
+
 import {
   SCREEN_TYPE_CHECKBOX,
   SCREEN_TYPE_DATE,
   SCREEN_TYPE_RADIO,
 } from '../../views/assessment/constants';
 
-import { Colors } from '../../styles';
-
-const INDICATOR_WIDTH = 20;
-const INDICATOR_MARGIN = 10;
+import {
+  Colors,
+  Forms,
+  Spacing,
+  Typography as TypographyStyles,
+} from '../../styles';
 
 export function OptionSelect({
   wrapperStyle,
@@ -22,24 +25,23 @@ export function OptionSelect({
   icon,
   title,
 }) {
+  const indicatorStyle =
+    inputType === SCREEN_TYPE_CHECKBOX
+      ? styles.indicatorCheck
+      : styles.indicatorRadio;
+
   return (
     <View style={wrapperStyle}>
       {isValidType && (
-        <View
-          style={[styles.indicator, isSelected && styles.indicatorSelected]}>
+        <View style={[indicatorStyle, isSelected && styles.indicatorSelected]}>
           {isSelected && inputType === SCREEN_TYPE_CHECKBOX && (
-            <SvgXml
-              height={INDICATOR_WIDTH * 0.5}
-              style={styles.indicatorIcon}
-              width={INDICATOR_WIDTH * 0.5}
-              xml={icon}
-            />
+            <SvgXml width={Spacing.medium} xml={icon} />
           )}
           {isSelected &&
             (inputType === SCREEN_TYPE_RADIO || inputType === SCREEN_TYPE_DATE)}
         </View>
       )}
-      <Typography use='body1' style={styles.title} testID='label'>
+      <Typography style={styles.title} testID='label'>
         {title}
       </Typography>
     </View>
@@ -47,15 +49,14 @@ export function OptionSelect({
 }
 
 const styles = StyleSheet.create({
-  indicator: {
-    alignItems: 'center',
-    borderColor: Colors.primaryViolet,
-    borderRadius: INDICATOR_WIDTH * 2,
+  indicatorRadio: {
+    ...Forms.inputIndicator,
+    borderRadius: Spacing.medium * 2,
+  },
+  indicatorCheck: {
+    ...Forms.inputIndicator,
     borderWidth: 2,
-    height: INDICATOR_WIDTH,
-    justifyContent: 'center',
-    marginRight: INDICATOR_MARGIN,
-    width: INDICATOR_WIDTH,
+    borderRadius: Spacing.tiny,
   },
   indicatorSelected: {
     backgroundColor: Colors.secondaryBlue,
@@ -64,6 +65,6 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     flexWrap: 'wrap',
-    color: Colors.black,
+    ...TypographyStyles.inputLabel,
   },
 });

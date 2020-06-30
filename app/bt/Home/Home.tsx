@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { DeviceStatus } from '../ExposureNotificationContext';
+import { ENPermissionStatus } from '../PermissionsContext';
 import { Typography } from '../../components/Typography';
 
 import {
@@ -14,13 +14,16 @@ import {
 } from '../../styles';
 
 interface HomeProps {
-  deviceStatus: DeviceStatus;
+  enPermissionStatus: ENPermissionStatus;
   requestPermission: () => void;
 }
 
-const Home = ({ deviceStatus, requestPermission }: HomeProps): JSX.Element => {
+const Home = ({
+  enPermissionStatus,
+  requestPermission,
+}: HomeProps): JSX.Element => {
   const { t } = useTranslation();
-  const [authorization, enablement] = deviceStatus;
+  const [authorization, enablement] = enPermissionStatus;
   const isEnabled = enablement === 'ENABLED';
   const isAuthorized = authorization === 'AUTHORIZED';
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Server URI for diagnosis key file download -->
+  <string name="key_server_download_base_uri">https://federationout-2kabcv6c4a-uc.a.run.app/</string>
+  <!-- TODO remove and put into build.gradle -->
+  <string name="key_server_upload_uri">https://exposure-2kabcv6c4a-uc.a.run.app/</string>
+</resources>

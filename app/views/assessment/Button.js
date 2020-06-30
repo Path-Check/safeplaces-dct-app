@@ -20,13 +20,13 @@ export const Button = ({ textColor, backgroundColor, onPress, title, buttonStyle
 
   const dynamicBackgroundColor = () => {
     if (backgroundColor) return backgroundColor
-    else if (disabled) return Colors.moonRaker
+    else if (disabled) return Colors.secondaryBackground
     else return Colors.secondaryBlue  
   }
 
   const dynamicTextColor = () => {
     if (textColor) return textColor
-    else if (disabled) return Colors.tertiaryViolet
+    else if (disabled) return Colors.disabledButtonText
     else return Colors.white  
   }
 

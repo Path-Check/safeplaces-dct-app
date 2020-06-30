@@ -19,6 +19,11 @@ const tiny: ViewStyle = {
   paddingHorizontal: Spacing.xSmall,
 };
 
+const medium: ViewStyle = {
+  paddingVertical: Spacing.small,
+  paddingHorizontal: Spacing.medium,
+};
+
 const large: ViewStyle = {
   paddingTop: Spacing.large,
   paddingBottom: Spacing.large + 1,
@@ -45,6 +50,10 @@ const tertiary: ViewStyle = {
   borderColor: Colors.tertiaryViolet,
 };
 
+const transparent: ViewStyle = {
+  backgroundColor: 'transparent',
+};
+
 // Outline
 const outlined: ViewStyle = {
   borderWidth: 1,
@@ -61,6 +70,12 @@ export const largeBlue: ViewStyle = {
 export const largeBlueOutline: ViewStyle = {
   ...largeBlue,
   ...outlined,
+};
+
+export const mediumBlue: ViewStyle = {
+  ...base,
+  ...medium,
+  ...primaryBlue,
 };
 
 export const largeWhite: ViewStyle = {
@@ -84,4 +99,10 @@ export const tinyTeritiaryRounded: ViewStyle = {
   ...tiny,
   ...rounded,
   ...tertiary,
+};
+
+export const largeTransparent: ViewStyle = {
+  ...base,
+  ...large,
+  ...transparent,
 };
