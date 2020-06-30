@@ -7,11 +7,11 @@ import {
 import { Icons, Images } from '../assets';
 
 export const btAssets: StrategyAssets = {
-  personalPrivacyBackground: Images.LaunchScreen2BT,
+  personalPrivacyBackground: Images.SingleCrossPathBackground,
   personalPrivacyIcon: Icons.RadioWave,
-  notificationDetailsBackground: Images.NotificationDetailsBackground,
+  notificationDetailsBackground: Images.MultipleCrossPathBackground,
   notificationDetailsIcon: Icons.BellYellow,
-  shareDiagnosisBackground: Images.NotificationDetailsBackground,
+  shareDiagnosisBackground: Images.EmptyPathBackground,
   shareDiagnosisIcon: Icons.Heart,
   exportPublishIcon: Icons.Bell,
 };

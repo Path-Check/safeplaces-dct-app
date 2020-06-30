@@ -1,17 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { isGPS } from '../../COVIDSafePathsConfig';
 
 import { useStrategyContent } from '../../TracingStrategyContext';
 import Template from './Template';
 
-const NotificatioNDetails = (props) => {
+const NotificationDetails = (props) => {
   const { t } = useTranslation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
   return (
     <Template
       theme={'light'}
-      invertIcon
+      invertIcon={!isGPS}
       background={StrategyAssets.notificationDetailsBackground}
       iconXml={StrategyAssets.notificationDetailsIcon}
       title={StrategyCopy.notificationDetailsHeader}
@@ -22,4 +23,4 @@ const NotificatioNDetails = (props) => {
   );
 };
 
-export default NotificatioNDetails;
+export default NotificationDetails;

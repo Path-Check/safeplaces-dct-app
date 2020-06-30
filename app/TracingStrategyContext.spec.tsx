@@ -105,7 +105,7 @@ describe('TracingStrategyProvider', () => {
       const strategy = factories.tracingStrategy.build({
         assets: {
           ...testStrategyAssets,
-          onboarding2Background: expectedAsset,
+          personalPrivacyBackground: expectedAsset,
         },
         useCopy: () => {
           return {

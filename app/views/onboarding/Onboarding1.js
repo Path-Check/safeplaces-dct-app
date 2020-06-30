@@ -53,10 +53,10 @@ class Onboarding extends Component {
   render() {
     return (
       <ImageBackground
-        source={Images.LaunchScreenBackground}
+        source={Images.BlueGradientBackground}
         style={styles.backgroundImage}>
         <ImageBackground
-          source={Images.LaunchScreenBackgroundOverlay}
+          source={Images.ConcentricCircles}
           style={styles.backgroundImage}>
           <StatusBar
             barStyle='light-content'

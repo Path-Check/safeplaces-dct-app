@@ -7,11 +7,11 @@ import {
 import { Icons, Images } from '../assets';
 
 export const gpsAssets: StrategyAssets = {
-  personalPrivacyBackground: Images.PersonalPrivacyBackground,
+  personalPrivacyBackground: Images.SingleCrossPathBackground,
   personalPrivacyIcon: Icons.LocationPin,
-  notificationDetailsBackground: Images.PersonalPrivacyBackground,
+  notificationDetailsBackground: Images.EmptyPathBackground,
   notificationDetailsIcon: Icons.Heart,
-  shareDiagnosisBackground: Images.NotificationDetailsBackground,
+  shareDiagnosisBackground: Images.MultipleCrossPathBackground,
   shareDiagnosisIcon: Icons.BellYellow,
   exportPublishIcon: Icons.Publish,
 };

@@ -27,6 +27,7 @@ const ShareDiagnosis = (props) => {
   return (
     <Template
       theme={'light'}
+      invertIcon={isGPS}
       background={StrategyAssets.shareDiagnosisBackground}
       iconXml={StrategyAssets.shareDiagnosisIcon}
       title={StrategyCopy.shareDiagnosisHeader}
