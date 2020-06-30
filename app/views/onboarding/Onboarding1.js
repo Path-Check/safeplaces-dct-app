@@ -16,7 +16,6 @@ import languages, {
 } from './../../locales/languages';
 import { Images } from '../../assets';
 import { NativePicker, Typography } from '../../components';
-import { Theme } from '../../constants/themes';
 import { EulaModal } from '../EulaModal';
 
 import { Colors } from '../../styles';
@@ -53,58 +52,56 @@ class Onboarding extends Component {
 
   render() {
     return (
-      <Theme use='violet'>
+      <ImageBackground
+        source={Images.LaunchScreenBackground}
+        style={styles.backgroundImage}>
         <ImageBackground
-          source={Images.LaunchScreenBackground}
+          source={Images.LaunchScreenBackgroundOverlay}
           style={styles.backgroundImage}>
-          <ImageBackground
-            source={Images.LaunchScreenBackgroundOverlay}
-            style={styles.backgroundImage}>
-            <StatusBar
-              barStyle='light-content'
-              backgroundColor='transparent'
-              translucent
-            />
-            <View style={styles.mainContainer}>
-              <View
-                style={{
-                  paddingTop: 60,
-                  position: 'absolute',
-                  alignSelf: 'center',
-                  zIndex: 10,
-                }}>
-                <NativePicker
-                  items={getLocaleList()}
-                  value={this.state.locale}
-                  onValueChange={this.onLocaleChange}>
-                  {({ label, openPicker }) => (
-                    <TouchableOpacity
-                      onPress={openPicker}
-                      style={styles.languageSelector}>
-                      <Typography style={styles.languageSelectorText}>
-                        {label}
-                      </Typography>
-                    </TouchableOpacity>
-                  )}
-                </NativePicker>
-              </View>
-              <View style={styles.contentContainer}>
-                <Typography style={styles.mainText}>
-                  {languages.t('label.launch_screen1_header')}
-                </Typography>
-              </View>
-              <View style={styles.footerContainer}>
-                <EulaModal
-                  continueFunction={() =>
-                    this.props.navigation.replace('Onboarding2')
-                  }
-                  selectedLocale={this.state.locale}
-                />
-              </View>
+          <StatusBar
+            barStyle='light-content'
+            backgroundColor='transparent'
+            translucent
+          />
+          <View style={styles.mainContainer}>
+            <View
+              style={{
+                paddingTop: 60,
+                position: 'absolute',
+                alignSelf: 'center',
+                zIndex: 10,
+              }}>
+              <NativePicker
+                items={getLocaleList()}
+                value={this.state.locale}
+                onValueChange={this.onLocaleChange}>
+                {({ label, openPicker }) => (
+                  <TouchableOpacity
+                    onPress={openPicker}
+                    style={styles.languageSelector}>
+                    <Typography style={styles.languageSelectorText}>
+                      {label}
+                    </Typography>
+                  </TouchableOpacity>
+                )}
+              </NativePicker>
             </View>
-          </ImageBackground>
+            <View style={styles.contentContainer}>
+              <Typography style={styles.mainText}>
+                {languages.t('label.launch_screen1_header')}
+              </Typography>
+            </View>
+            <View style={styles.footerContainer}>
+              <EulaModal
+                continueFunction={() =>
+                  this.props.navigation.replace('Onboarding2')
+                }
+                selectedLocale={this.state.locale}
+              />
+            </View>
+          </View>
         </ImageBackground>
-      </Theme>
+      </ImageBackground>
     );
   }
 }

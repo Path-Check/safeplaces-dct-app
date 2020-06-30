@@ -10,13 +10,12 @@ const Onboarding3 = (props) => {
 
   return (
     <OnboardingTemplate
-      theme={'light'}
       background={StrategyAssets.onboarding3Background}
       iconXml={StrategyAssets.onboarding3Icon}
       title={StrategyCopy.onboarding3Header}
       body={StrategyCopy.onboarding3Subheader}
-      primaryButtonLabel={t('label.launch_next')}
-      primaryButtonOnPress={() => props.navigation.replace('Onboarding4')}
+      buttonLabel={t('label.launch_next')}
+      buttonOnPress={() => props.navigation.replace('Onboarding4')}
     />
   );
 };

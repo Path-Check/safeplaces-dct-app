@@ -18,13 +18,11 @@ class GPSSecureStorageTest: XCTestCase {
   override func setUp() {
     super.setUp()
     secureStorage = GPSSecureStorage(inMemory: true)
-    UserDefaults.standard.removeObject(forKey: secureStorage!.keyLastSavedTime)
     hold = secureStorage!.getRealmInstance()
   }
   
   override func tearDown() {
     super.tearDown()
-    UserDefaults.standard.removeObject(forKey: secureStorage!.keyLastSavedTime)
     hold = nil
   }
   
@@ -33,10 +31,16 @@ class GPSSecureStorageTest: XCTestCase {
     let location1Date = Date()
     let location1Time = Int(location1Date.timeIntervalSince1970)
     let backgroundLocation1 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
-  
+
+    let expectation = XCTestExpectation(description: "Save Device Location")
+
     // when
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
-    
+    secureStorage!.saveDeviceLocation(backgroundLocation1) {
+      expectation.fulfill()
+    }
+
+    wait(for: [expectation], timeout: 5)
+
     // then
     guard let resultLocation = querySingleLocationByTime(time: location1Time) else {
       XCTFail("Resulting location returned nil")
@@ -55,10 +59,19 @@ class GPSSecureStorageTest: XCTestCase {
     let location2Date = location1Date.addingTimeInterval(1)
     let location2Time = Int(location2Date.timeIntervalSince1970)
     let backgroundLocation2 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
-    
+
+    let expect1 = XCTestExpectation(description: "Save Device Location 1")
+    let expect2 = XCTestExpectation(description: "Save Device Location 2")
+
     // when
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation2)
+    secureStorage!.saveDeviceLocation(backgroundLocation1) {
+      expect1.fulfill()
+    }
+    secureStorage!.saveDeviceLocation(backgroundLocation2) {
+      expect2.fulfill()
+    }
+
+    wait(for: [expect1, expect2], timeout: 5)
       
     // then
     XCTAssertNotNil(querySingleLocationByTime(time: location1Time))
@@ -76,15 +89,20 @@ class GPSSecureStorageTest: XCTestCase {
     let location2 = [Location.KEY_TIME: location2TimeString, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297] as [String : Any]
     let locations = NSArray(array: [location1, location2])
 
+    let expectation = XCTestExpectation(description: "Import Locations")
+
     // when
     secureStorage!.importLocations(
       locations: locations,
       source: Location.SOURCE_GOOGLE,
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
+        expectation.fulfill()
       },
-      reject: emptyRejecter()
+      reject: rejecterFulfilling(expectation: expectation)
     )
+
+    wait(for: [expectation], timeout: 5)
     
     // then
     guard let resultLocation = querySingleLocationByTime(time: location1Time) else {
@@ -116,15 +134,20 @@ class GPSSecureStorageTest: XCTestCase {
     let location2 = [Location.KEY_TIME: location2TimeString, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297] as [String : Any]
     let locations = NSArray(array: [location1, location2])
 
+    let expectation = XCTestExpectation(description: "Import Locations")
+
     // when
     secureStorage!.importLocations(
       locations: locations,
       source: Location.SOURCE_MIGRATION,
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
+        expectation.fulfill()
       },
-      reject: emptyRejecter()
+      reject: rejecterFulfilling(expectation: expectation)
     )
+
+    wait(for: [expectation], timeout: 5)
     
     // then
     guard let resultLocation = querySingleLocationByTime(time: location1Time) else {
@@ -155,15 +178,20 @@ class GPSSecureStorageTest: XCTestCase {
     let location2 = [Location.KEY_TIME: location2TimeDouble, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297]
     let locations = NSArray(array: [location1, location2])
 
+    let expectation = XCTestExpectation(description: "Import Locations")
+
     // when
     secureStorage!.importLocations(
       locations: locations,
       source: Location.SOURCE_MIGRATION,
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
+        expectation.fulfill()
       },
-      reject: emptyRejecter()
+      reject: rejecterFulfilling(expectation: expectation)
     )
+
+    wait(for: [expectation], timeout: 5)
     
     // then
     XCTAssertNil(querySingleLocationByTime(time: location1Time))
@@ -179,13 +207,24 @@ class GPSSecureStorageTest: XCTestCase {
     let location2Time = Int(location2TimeDouble / 1000)
     let location2 = [Location.KEY_TIME: location2TimeDouble, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297]
     let importLocations = NSArray(array: [location2])
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
+
+    let expect1 = XCTestExpectation(description: "Save Location")
+    let expect2 = XCTestExpectation(description: "Save Location")
+
+    secureStorage!.saveDeviceLocation(backgroundLocation1) {
+      expect1.fulfill()
+    }
+
     secureStorage!.importLocations(
       locations: importLocations,
       source: Location.SOURCE_MIGRATION,
-      resolve: emptyResolver(),
-      reject: emptyRejecter()
+      resolve: resolverFulfilling(expectation: expect2),
+      reject: rejecterFulfilling(expectation: expect2)
     )
+
+    wait(for: [expect1, expect2], timeout: 5)
+
+    let expect3 = XCTestExpectation(description: "Get Locations")
     
     // when
     secureStorage!.getLocations(resolve: { result in
@@ -196,7 +235,10 @@ class GPSSecureStorageTest: XCTestCase {
       XCTAssertEqual(40.730610, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_LATITUDE) as! Double)
       XCTAssertEqual(-73.935242, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_LONGITUDE) as! Double)
       XCTAssertEqual(location1Time * 1000, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_TIME) as! Int)
-    }, reject: emptyRejecter())
+      expect3.fulfill()
+    }, reject: rejecterFulfilling(expectation: expect3))
+
+    wait(for: [expect3], timeout: 5)
   }
   
   func testOldLocationsTrimmed() {
@@ -207,11 +249,26 @@ class GPSSecureStorageTest: XCTestCase {
     let location2Date = Date()
     let location2Time = Int(location2Date.timeIntervalSince1970)
     let backgroundLocation2 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation1)
-    secureStorage!.saveDeviceLocation(backgroundLocation: backgroundLocation2)
-    
+
+    let expect1 = XCTestExpectation(description: "Save Device Location 1")
+    let expect2 = XCTestExpectation(description: "Save Device Location 2")
+    let expect3 = XCTestExpectation(description: "Trim Locations")
+
+    secureStorage!.saveDeviceLocation(backgroundLocation1) {
+      expect1.fulfill()
+    }
+    secureStorage!.saveDeviceLocation(backgroundLocation2) {
+      expect2.fulfill()
+    }
+
+    wait(for: [expect1, expect2], timeout: 5)
+
     // when
-    secureStorage!.trimLocations()
+    secureStorage!.trimLocations() {
+      expect3.fulfill()
+    }
+
+    wait(for: [expect3], timeout: 5)
     
     // then
     XCTAssertNil(querySingleLocationByTime(time: location1Time))
@@ -276,16 +333,16 @@ class GPSSecureStorageTest: XCTestCase {
   func querySingleLocationByTime(time: Int) -> Location? {
     return secureStorage!.getRealmInstance()!.objects(Location.self).filter("\(Location.KEY_TIME)==\(time)").first
   }
-  
-  func emptyResolver() -> RCTPromiseResolveBlock {
-    return { result in
-        
+
+  func resolverFulfilling(expectation: XCTestExpectation) -> RCTPromiseResolveBlock {
+    return { _ in
+      expectation.fulfill()
     }
   }
-  
-  func emptyRejecter() -> RCTPromiseRejectBlock {
-    return { code, message, error in
-      
+
+  func rejecterFulfilling(expectation: XCTestExpectation) -> RCTPromiseRejectBlock {
+    return { _, _, _ in
+      expectation.fulfill()
     }
   }
   

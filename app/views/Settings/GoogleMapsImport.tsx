@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 import {
@@ -12,8 +12,7 @@ import { Typography } from '../../components/Typography';
 import { Screens } from '../../navigation';
 
 import { Icons } from '../../assets';
-import { Spacing, Typography as TypographyStyles } from '../../styles';
-import { Button } from '../../components/Button';
+import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
 interface GoogleMapsImportProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -39,9 +38,11 @@ const GoogleMapsImport = ({
 
       <Typography use='body2'>{t('import.subtitle')}</Typography>
 
-      <View style={styles.buttonWrapper}>
-        <Button onPress={handleImportPressed} label={t('import.button_text')} />
-      </View>
+      <TouchableOpacity onPress={handleImportPressed} style={styles.button}>
+        <Typography style={styles.buttonText}>
+          {t('import.button_text')}
+        </Typography>
+      </TouchableOpacity>
 
       <Typography style={styles.disclaimerText}>
         {t('import.google.disclaimer')}
@@ -59,11 +60,12 @@ const styles = StyleSheet.create({
   titleText: {
     marginLeft: Spacing.xxSmall,
   },
-  buttonWrapper: {
+  button: {
+    ...Buttons.largeBlue,
     marginVertical: Spacing.medium,
   },
   buttonText: {
-    ...TypographyStyles.buttonTextDark,
+    ...TypographyStyles.buttonTextLight,
   },
   disclaimerText: {
     ...TypographyStyles.disclaimer,

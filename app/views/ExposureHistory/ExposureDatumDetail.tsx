@@ -44,7 +44,7 @@ const PossibleExposureDetail = ({
   const navigation = useNavigation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');
   const exposureTime = `Possible Exposure Time: ${exposureDurationText}`;
-  const explainationContent = `For ${exposureDurationText}, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis.`;
+  const explanationContent = `For ${exposureDurationText}, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis.`;
 
   const handleOnPressNextSteps = () => {
     navigation.navigate(Screens.NextSteps);
@@ -58,7 +58,7 @@ const PossibleExposureDetail = ({
         <Typography style={styles.date}>{exposureDate}</Typography>
         <Typography style={styles.info}>{exposureTime}</Typography>
         <View style={styles.contentContainer}>
-          <Typography style={styles.content}>{explainationContent}</Typography>
+          <Typography style={styles.content}>{explanationContent}</Typography>
         </View>
       </View>
       <View style={styles.ctaContainer}>
@@ -82,13 +82,13 @@ const NoKnownExposureDetail = ({
   datum: { date },
 }: NoKnownExposureDetailProps) => {
   const exposureDate = dayjs(date).format('dddd, MMM DD');
-  const explainationContent =
+  const explanationContent =
     'Your exposure history will be updated if this changes in the future.';
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
       <View style={styles.contentContainer}>
-        <Typography style={styles.content}>{explainationContent}</Typography>
+        <Typography style={styles.content}>{explanationContent}</Typography>
       </View>
     </View>
   );
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.lighterGray,
   },
   date: {
-    ...TypographyStyles.header2,
+    ...TypographyStyles.header6,
   },
   info: {
     lineHeight: TypographyStyles.largeLineHeight,

@@ -3,6 +3,7 @@ export enum PermissionStatus {
   GRANTED,
   DENIED,
 }
+
 export const statusToEnum = (status: string | void): PermissionStatus => {
   switch (status) {
     case 'unknown': {

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { StyleSheet, View, TouchableHighlight, FlatList } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { SvgXml } from 'react-native-svg';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Typography } from '../../components/Typography';
 
-import { SvgXml } from 'react-native-svg';
-import { useDispatch, useSelector } from 'react-redux';
 import getHealthcareAuthoritiesAction from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import { HealthcareAuthority, FeatureFlagOption } from '../../store/types';
 import selectedHealthcareAuthoritiesSelector from '../../store/selectors/selectedHealthcareAuthoritiesSelector';
@@ -17,11 +17,10 @@ import { Screens, NavigationProp } from '../../navigation';
 import toggleSelectedHealthcareAuthorityAction from '../../store/actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
 import { Button } from '../../components/Button';
 import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
-import { Spacing } from '../../styles';
 import FeatureFlag from '../../components/FeatureFlag';
 
 import { Icons } from '../../assets';
-import { Colors } from '../../styles';
+import { Colors, Buttons, Spacing } from '../../styles';
 
 type PartnersEditScreenProps = {
   navigation: NavigationProp;
@@ -121,10 +120,11 @@ const PartnersScreen = ({
         ItemSeparatorComponent={() => <Separator />}
       />
       <FeatureFlag flag={FeatureFlagOption.CUSTOM_URL}>
-        <View style={{ padding: 24 }}>
+        <View style={{ padding: Spacing.large }}>
           <Button
             label={t('authorities.custom_url')}
             onPress={() => navigation.navigate(Screens.PartnersCustomUrl)}
+            style={styles.button}
           />
         </View>
       </FeatureFlag>
@@ -138,6 +138,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: Spacing.xLarge,
+  },
+  button: {
+    ...Buttons.largeBlue,
   },
 });
 export default PartnersScreen;

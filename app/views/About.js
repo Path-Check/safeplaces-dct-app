@@ -67,6 +67,7 @@ export const AboutScreen = ({ navigation }) => {
             <Typography style={styles.aboutSectionParaLabel}>
               {t('about.version')}
             </Typography>
+
             <Typography style={styles.aboutSectionParaContent}>
               {packageJson.version}
             </Typography>
