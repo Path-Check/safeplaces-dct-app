@@ -203,10 +203,6 @@ export default class LocationServices {
       };
     }
 
-    // if (hasExposure) {
-    // emitGPSExposureInfo(myInfo)
-    // }
-
     return {
       canTrack: true,
       reason: ALL_CONDITIONS_MET,
