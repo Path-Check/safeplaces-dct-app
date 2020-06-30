@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
-import { PermissionStatus } from '../gps/PermissionsContext';
+import { PermissionStatus } from '../permissionStatus';
 
 export default class NotificationService {
   static async configure(notificationStatus) {
