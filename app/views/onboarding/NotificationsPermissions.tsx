@@ -6,15 +6,12 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 import { SvgXml } from 'react-native-svg';
 
 import PermissionsContext from '../../gps/PermissionsContext';
-import { PermissionStatus } from '../../permissionStatus';
-import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
-import { SetStoreData } from '../../helpers/General';
-import { PARTICIPATE } from '../../constants/storage';
+import { Screens } from '../../navigation';
 import { Typography } from '../../components/Typography';
 import { useStatusBarEffect } from '../../navigation';
 
@@ -27,32 +24,28 @@ import {
   Typography as TypographyStyles,
 } from '../../styles';
 
-const OnboardingLocations = (): JSX.Element => {
+const NotificationsPermissions = (): JSX.Element => {
+  const navigation = useNavigation();
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const { authSubscription, location } = useContext(PermissionsContext);
+  const { notification } = useContext(PermissionsContext);
 
   useStatusBarEffect('dark-content');
 
-  const requestLocationAccess = async () => {
-    await location.request();
-    authSubscription.request();
-    completeOnboarding();
+  const requestPermission = async () => {
+    await notification.request();
   };
 
-  const completeOnboarding = () => {
-    const storeData = location.status === PermissionStatus.GRANTED;
-    SetStoreData(PARTICIPATE, JSON.stringify(storeData));
-    dispatch(onboardingCompleteAction());
+  const continueOnboarding = () => {
+    navigation.navigate(Screens.OnboardingLocationPermissions);
   };
 
-  const handleOnPressEnable = () => {
-    requestLocationAccess();
-    completeOnboarding();
+  const handleOnPressEnable = async () => {
+    await requestPermission();
+    continueOnboarding();
   };
 
   const handleOnPressMaybeLater = () => {
-    completeOnboarding();
+    continueOnboarding();
   };
 
   return (
@@ -64,7 +57,7 @@ const OnboardingLocations = (): JSX.Element => {
           alwaysBounceVertical={false}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={styles.iconCircle}>
-            <SvgXml xml={Icons.LocationPin} width={30} height={30} />
+            <SvgXml xml={Icons.Bell} width={30} height={30} />
           </View>
           <Typography style={styles.headerText}>
             {t('onboarding.notification_header')}
@@ -74,12 +67,11 @@ const OnboardingLocations = (): JSX.Element => {
             {t('onboarding.notification_subheader')}
           </Typography>
         </ScrollView>
-
         <TouchableOpacity
           onPress={handleOnPressEnable}
           style={styles.enableButton}>
           <Typography style={styles.enableButtonText}>
-            {t('label.launch_allow_location')}
+            {t('label.launch_enable_notif')}
           </Typography>
         </TouchableOpacity>
 
@@ -131,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OnboardingLocations;
+export default NotificationsPermissions;

@@ -94,7 +94,7 @@ class Onboarding extends Component {
             <View style={styles.footerContainer}>
               <EulaModal
                 continueFunction={() =>
-                  this.props.navigation.replace('Onboarding2')
+                  this.props.navigation.replace('PersonalPrivacy')
                 }
                 selectedLocale={this.state.locale}
               />

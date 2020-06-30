@@ -15,8 +15,8 @@ const LaunchScreen3BT = require('./launchScreen3BT.png');
 const LaunchScreenBackground = require('./launchScreenBackground.png');
 const LaunchScreenBackgroundOverlay = require('./launchScreenBackgroundOverlay.png');
 const OnboardingBackground1 = require('./onboardingbg1.png');
-const OnboardingBackground2 = require('./onboardingbg2.png');
-const OnboardingBackground3 = require('./onboardingbg3.png');
+const PersonalPrivacyBackground = require('./onboardingbg2.png');
+const NotificationDetailsBackground = require('./onboardingbg3.png');
 const EmptyPathBackground = require('./emptyPathBackground.png');
 
 export const Images = {
@@ -38,6 +38,6 @@ export const Images = {
   LaunchScreenBackground,
   LaunchScreenBackgroundOverlay,
   OnboardingBackground1,
-  OnboardingBackground2,
-  OnboardingBackground3,
+  PersonalPrivacyBackground,
+  NotificationDetailsBackground,
 };

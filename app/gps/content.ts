@@ -7,12 +7,12 @@ import {
 import { Icons, Images } from '../assets';
 
 export const gpsAssets: StrategyAssets = {
-  onboarding2Background: Images.OnboardingBackground2,
-  onboarding2Icon: Icons.LocationPin,
-  onboarding3Background: Images.OnboardingBackground2,
-  onboarding3Icon: Icons.Heart,
-  onboarding4Background: Images.OnboardingBackground3,
-  onboarding4Icon: Icons.BellYellow,
+  personalPrivacyBackground: Images.PersonalPrivacyBackground,
+  personalPrivacyIcon: Icons.LocationPin,
+  notificationDetailsBackground: Images.PersonalPrivacyBackground,
+  notificationDetailsIcon: Icons.Heart,
+  shareDiagnosisBackground: Images.NotificationDetailsBackground,
+  shareDiagnosisIcon: Icons.BellYellow,
   exportPublishIcon: Icons.Publish,
 };
 
@@ -47,13 +47,13 @@ export const useGPSCopyContent: StrategyCopyContentHook = (t) => {
     legalHeader: t('label.legal_page_header_location'),
     moreInfoHowContent: t('exposure_history.gps.how_does_this_work_para'),
     moreInfoWhyContent: t('exposure_history.gps.why_did_i_get_an_en_para'),
-    onboarding2Header: t('label.launch_screen2_header_location'),
-    onboarding2Subheader: t('label.launch_screen2_subheader_location'),
-    onboarding3Header: t('label.launch_screen3_header_location'),
-    onboarding3Subheader: t('label.launch_screen3_subheader_location'),
-    onboarding4Button: t('label.launch_set_up_phone_location'),
-    onboarding4Header: t('label.launch_screen4_header_location'),
-    onboarding4Subheader: t('label.launch_screen4_subheader_location'),
+    personalPrivacyHeader: t('label.launch_screen2_header_location'),
+    personalPrivacySubheader: t('label.launch_screen2_subheader_location'),
+    notificationDetailsHeader: t('label.launch_screen3_header_location'),
+    notificationDetailsSubheader: t('label.launch_screen3_subheader_location'),
+    shareDiagnosisButton: t('label.launch_set_up_phone_location'),
+    shareDiagnosisHeader: t('label.launch_screen4_header_location'),
+    shareDiagnosisSubheader: t('label.launch_screen4_subheader_location'),
     settingsLoggingActive: t('label.logging_active_location'),
     settingsLoggingInactive: t('label.logging_inactive_location'),
   };

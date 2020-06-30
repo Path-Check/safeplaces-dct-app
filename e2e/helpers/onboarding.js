@@ -1,8 +1,8 @@
 import FinishSetup from '../pages/FinishSetup.po.js';
 import Onboarding1 from '../pages/Onboarding1.po.js';
-import Onboarding2 from '../pages/Onboarding2.po.js';
-import Onboarding3 from '../pages/Onboarding3.po.js';
-import Onboarding4 from '../pages/Onboarding4.po.js';
+import PersonalPrivacy from '../pages/PersonalPrivacy.po.js';
+import NotificatioNDetails from '../pages/NotificationDetails.po.js';
+import ShareDiagnosis from '../pages/ShareDiagnosis.po.js';
 import SignEula from '../pages/SignEula.po.js';
 
 export const navigateThroughPermissions = async (languageStrings) => {
@@ -12,14 +12,14 @@ export const navigateThroughPermissions = async (languageStrings) => {
   await SignEula.sign(languageStrings);
   await SignEula.tapButton(languageStrings);
 
-  await Onboarding2.isOnScreen(languageStrings);
-  await Onboarding2.tapButton(languageStrings);
+  await PersonalPrivacy.isOnScreen(languageStrings);
+  await PersonalPrivacy.tapButton(languageStrings);
 
-  await Onboarding3.isOnScreen(languageStrings);
-  await Onboarding3.tapButton(languageStrings);
+  await NotificatioNDetails.isOnScreen(languageStrings);
+  await NotificatioNDetails.tapButton(languageStrings);
 
-  await Onboarding4.isOnScreen(languageStrings);
-  await Onboarding4.tapButton(languageStrings);
+  await ShareDiagnosis.isOnScreen(languageStrings);
+  await ShareDiagnosis.tapButton(languageStrings);
 };
 
 export const navigateThroughOnboarding = async (languageStrings) => {

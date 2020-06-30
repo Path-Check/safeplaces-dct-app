@@ -3,23 +3,23 @@ import { useTranslation } from 'react-i18next';
 
 import { useStatusBarEffect } from '../../navigation';
 import { useStrategyContent } from '../../TracingStrategyContext';
-import OnboardingTemplate from './OnboardingTemplate';
+import Template from './Template';
 
-const Onboarding2 = (props) => {
+const PersonalPrivacy = (props) => {
   useStatusBarEffect('dark-content');
   const { t } = useTranslation();
   const { StrategyAssets, StrategyCopy } = useStrategyContent();
 
   return (
-    <OnboardingTemplate
-      background={StrategyAssets.onboarding2Background}
-      iconXml={StrategyAssets.onboarding2Icon}
-      title={StrategyCopy.onboarding2Header}
-      body={StrategyCopy.onboarding2Subheader}
+    <Template
+      background={StrategyAssets.personalPrivacyBackground}
+      iconXml={StrategyAssets.personalPrivacyIcon}
+      title={StrategyCopy.personalPrivacyHeader}
+      body={StrategyCopy.personalPrivacySubheader}
       buttonLabel={t('label.launch_next')}
-      buttonOnPress={() => props.navigation.replace('Onboarding3')}
+      buttonOnPress={() => props.navigation.replace('NotificatioNDetails')}
     />
   );
 };
 
-export default Onboarding2;
+export default PersonalPrivacy;

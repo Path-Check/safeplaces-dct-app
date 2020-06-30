@@ -7,12 +7,12 @@ import {
 import { Icons, Images } from '../assets';
 
 export const btAssets: StrategyAssets = {
-  onboarding2Background: Images.LaunchScreen2BT,
-  onboarding2Icon: Icons.RadioWave,
-  onboarding3Background: Images.OnboardingBackground3,
-  onboarding3Icon: Icons.BellYellow,
-  onboarding4Background: Images.OnboardingBackground2,
-  onboarding4Icon: Icons.Heart,
+  personalPrivacyBackground: Images.LaunchScreen2BT,
+  personalPrivacyIcon: Icons.RadioWave,
+  notificationDetailsBackground: Images.NotificationDetailsBackground,
+  notificationDetailsIcon: Icons.BellYellow,
+  shareDiagnosisBackground: Images.NotificationDetailsBackground,
+  shareDiagnosisIcon: Icons.Heart,
   exportPublishIcon: Icons.Bell,
 };
 
@@ -49,13 +49,13 @@ export const useBTCopyContent: StrategyCopyContentHook = (t) => {
     legalHeader: t('label.legal_page_header_bluetooth'),
     moreInfoHowContent: t('exposure_history.bt.how_does_this_work_para'),
     moreInfoWhyContent: t('exposure_history.bt.why_did_i_get_an_en_para'),
-    onboarding2Header: t('label.launch_screen2_header_bluetooth'),
-    onboarding2Subheader: t('label.launch_screen2_subheader_bluetooth'),
-    onboarding3Header: t('label.launch_screen3_header_bluetooth'),
-    onboarding3Subheader: t('label.launch_screen3_subheader_bluetooth'),
-    onboarding4Button: t('label.launch_set_up_phone_bluetooth'),
-    onboarding4Header: t('label.launch_screen4_header_bluetooth'),
-    onboarding4Subheader: t('label.launch_screen4_subheader_bluetooth'),
+    personalPrivacyHeader: t('label.launch_screen2_header_bluetooth'),
+    personalPrivacySubheader: t('label.launch_screen2_subheader_bluetooth'),
+    notificationDetailsHeader: t('label.launch_screen3_header_bluetooth'),
+    notificationDetailsSubheader: t('label.launch_screen3_subheader_bluetooth'),
+    shareDiagnosisButton: t('label.launch_set_up_phone_bluetooth'),
+    shareDiagnosisHeader: t('label.launch_screen4_header_bluetooth'),
+    shareDiagnosisSubheader: t('label.launch_screen4_subheader_bluetooth'),
     settingsLoggingActive: t('label.logging_active_bluetooth'),
     settingsLoggingInactive: t('label.logging_inactive_bluetooth'),
   };
