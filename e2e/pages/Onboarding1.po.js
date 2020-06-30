@@ -1,9 +1,17 @@
 /* eslint-disable */
 const screenshotText = 'Onboarding - Page 1';
 
-class Onboarding1 {
+class Welcome {
   async tapButton(languageStrings) {
     await element(by.label(languageStrings.label.launch_get_started)).tap();
+  }
+
+  async tapGetStarted() {
+    await element(by.id('welcome-button')).tap();
+  }
+
+  async tapCheckbox() {
+    await element(by.id('welcome-eula-checkbox')).tap();
   }
 
   async takeScreenshot() {
@@ -17,4 +25,4 @@ class Onboarding1 {
   }
 }
 
-export default new Onboarding1();
+export default new Welcome();

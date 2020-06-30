@@ -1,5 +1,6 @@
-import styled from '@emotion/native';
 import React from 'react';
+import { ViewStyle } from 'react-native';
+import styled from '@emotion/native';
 import { SvgXml } from 'react-native-svg';
 
 import { themeTextColor } from '../constants/themes';
@@ -21,6 +22,7 @@ interface IconButtonProps {
   secondary?: boolean;
   size?: number;
   onPress?: () => void;
+  style?: ViewStyle;
 }
 
 export const IconButton = ({
@@ -28,10 +30,14 @@ export const IconButton = ({
   accessibilityLabel,
   secondary,
   size,
+  style,
   ...otherProps
 }: IconButtonProps): JSX.Element => {
   return (
-    <Container accessibilityLabel={accessibilityLabel} {...otherProps}>
+    <Container
+      accessibilityLabel={accessibilityLabel}
+      style={style}
+      {...otherProps}>
       <Icon
         xml={icon}
         secondary={secondary}
