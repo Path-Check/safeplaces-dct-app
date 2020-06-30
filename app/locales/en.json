@@ -107,6 +107,12 @@
     "last_days": "Last 21 days",
     "why_did_i_get_an_en": "Why did I get an exposure notification?",
     "how_does_this_work": "How does this work?",
+    "legend": {
+      "exposure_likely": "Exposure very likely",
+      "exposure_possible": "Exposure possible",
+      "no_exposure_detected": "No exposure detected",
+      "today": "Today"
+    },
     "bt": {
       "why_did_i_get_an_en_para": "You will receive an exposure notification when someone you crossed paths with later receives a confirmed, positive diagnosis or test for COVID-19 and chooses to notify others",
       "how_does_this_work": "How does this work?",

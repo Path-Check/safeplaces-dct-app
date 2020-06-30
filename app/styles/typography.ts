@@ -49,12 +49,12 @@ export const mediumBold: TextStyle = {
   fontFamily: mediumFontFamily,
 };
 
-export const base: TextStyle = {
-  fontFamily: baseFontFamily,
-};
-
 export const monospace: TextStyle = {
   fontFamily: monospaceFontFamily,
+};
+
+export const base: TextStyle = {
+  fontFamily: baseFontFamily,
 };
 
 // Standard Font Types
@@ -148,7 +148,7 @@ export const secondaryContent: TextStyle = {
   lineHeight: mediumLineHeight,
 };
 
-export const tertirayContent: TextStyle = {
+export const tertiaryContent: TextStyle = {
   ...smallFont,
   color: Colors.tertiaryText,
   lineHeight: smallLineHeight,

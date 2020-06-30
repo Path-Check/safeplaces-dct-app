@@ -73,13 +73,13 @@ const ExposureHistoryScreen = (): JSX.Element => {
               />
             </TouchableOpacity>
           </View>
-          {!isGPS ? (
-            <View style={styles.headerRow}>
+          <View style={styles.headerRow}>
+            {!isGPS ? (
               <Typography style={styles.subHeaderText}>
                 {lastDaysText}
               </Typography>
-            </View>
-          ) : null}
+            ) : null}
+          </View>
         </View>
         <View style={styles.calendarContainer}>
           <Calendar
