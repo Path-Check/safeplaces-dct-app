@@ -51,7 +51,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
 
   return (
     <ImageBackground
-      source={Images.BackgroundBlueGradient}
+      source={Images.BlueGradientBackground}
       style={styles.backgroundImage}>
       <View testID={'onboarding-permissions-screen'} style={styles.container}>
         <ScrollView style={styles.contentContainer}>
