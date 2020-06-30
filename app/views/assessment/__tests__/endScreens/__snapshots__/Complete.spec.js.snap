@@ -101,6 +101,7 @@ exports[`base 1`] = `
                 Array [
                   Object {
                     "color": "#2e2e2e",
+                    "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
                     "lineHeight": 28,
                   },
@@ -158,6 +159,7 @@ exports[`base 1`] = `
                 Array [
                   Object {
                     "color": "#2e2e2e",
+                    "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
                     "lineHeight": 28,
                   },

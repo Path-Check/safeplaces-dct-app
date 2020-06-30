@@ -35,6 +35,10 @@ export const mediumFontFamily = 'IBMPlexSans-Medium';
 export const boldFontFamily = 'IBMPlexSans-Bold';
 export const monospaceFontFamily = 'IBMPlexMono';
 
+const base: TextStyle = {
+  fontFamily: baseFontFamily,
+};
+
 export const extraBold: TextStyle = {
   fontFamily: boldFontFamily,
   fontWeight: heaviestWeight,
@@ -49,46 +53,49 @@ export const mediumBold: TextStyle = {
   fontFamily: mediumFontFamily,
 };
 
-export const base: TextStyle = {
-  fontFamily: baseFontFamily,
-};
-
 export const monospace: TextStyle = {
   fontFamily: monospaceFontFamily,
 };
 
 // Standard Font Types
 export const tinyFont: TextStyle = {
+  ...base,
   lineHeight: smallestLineHeight,
   fontSize: tiny,
 };
 
 export const smallFont: TextStyle = {
+  ...base,
   lineHeight: smallLineHeight,
   fontSize: small,
 };
 
 export const mediumFont: TextStyle = {
+  ...base,
   lineHeight: mediumLineHeight,
   fontSize: medium,
 };
 
 export const largeFont: TextStyle = {
+  ...base,
   lineHeight: largestLineHeight,
   fontSize: large,
 };
 
 export const largerFont: TextStyle = {
+  ...base,
   lineHeight: largestLineHeight,
   fontSize: larger,
 };
 
 export const largestFont: TextStyle = {
+  ...base,
   lineHeight: largestLineHeight,
   fontSize: largest,
 };
 
 export const hugeFont: TextStyle = {
+  ...base,
   lineHeight: hugeLineHeight,
   fontSize: huge,
 };
@@ -148,7 +155,7 @@ export const secondaryContent: TextStyle = {
   lineHeight: mediumLineHeight,
 };
 
-export const tertirayContent: TextStyle = {
+export const tertiaryContent: TextStyle = {
   ...smallFont,
   color: Colors.tertiaryText,
   lineHeight: smallLineHeight,
