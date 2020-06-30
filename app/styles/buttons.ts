@@ -50,6 +50,10 @@ const tertiary: ViewStyle = {
   borderColor: Colors.tertiaryViolet,
 };
 
+const transparent: ViewStyle = {
+  backgroundColor: 'transparent',
+};
+
 // Outline
 const outlined: ViewStyle = {
   borderWidth: 1,
@@ -95,4 +99,10 @@ export const tinyTeritiaryRounded: ViewStyle = {
   ...tiny,
   ...rounded,
   ...tertiary,
+};
+
+export const largeTransparent: ViewStyle = {
+  ...base,
+  ...large,
+  ...transparent,
 };

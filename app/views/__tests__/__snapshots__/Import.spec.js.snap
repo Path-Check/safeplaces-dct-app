@@ -114,27 +114,99 @@ exports[`Import component renders correctly 1`] = `
     <RCTScrollView
       style={
         Object {
-          "alignSelf": "center",
-          "flex": 1,
-          "flexDirection": "column",
-          "paddingLeft": 20,
-          "paddingRight": 20,
-          "textAlignVertical": "top",
-          "width": "100%",
+          "padding": 20,
         }
       }
     >
       <View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "marginBottom": 16,
+              },
+            ]
+          }
+        >
+          Adding location data from Google will give you a head start on building your recent locations.
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "marginBottom": 16,
+              },
+            ]
+          }
+        >
+          Before you can import, you must first "Take out" your location data from Google.
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontSize": 17,
+                "lineHeight": 28,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "marginBottom": 16,
+              },
+            ]
+          }
+        >
+          Visit Google Takeout and export your Location History using the following settings: 
+1. Delivery method: "Add to Drive" 
+2. Frequency: "Export once" 
+3. File type & size: ".zip" and "1GB"
+4. Google sends an email when the export is ready 
+5. Return here to import locations from Google Drive
+        </Text>
         <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "fontSize": 22,
-              "fontWeight": "bold",
-              "padding": 5,
-              "paddingBottom": 20,
-              "textAlign": "center",
+              "alignItems": "center",
+              "backgroundColor": "#4051db",
+              "borderColor": "#4051db",
+              "borderRadius": 8,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "marginBottom": 20,
+              "opacity": 1,
+              "paddingHorizontal": 20,
+              "paddingVertical": 16,
             }
           }
+          testID="google-takeout-link"
         >
           <Text
             style={
@@ -148,15 +220,43 @@ exports[`Import component renders correctly 1`] = `
                   "writingDirection": "ltr",
                 },
                 Object {
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginTop": 12,
+                  "color": "#ffffff",
+                  "fontSize": 19,
+                  "fontWeight": "500",
                 },
               ]
             }
           >
-            Adding location data from Google will give you a head start on building your recent locations.
+            Visit Google Takeout
           </Text>
+        </View>
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#4051db",
+              "borderColor": "#4051db",
+              "borderRadius": 8,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "marginBottom": 20,
+              "opacity": 1,
+              "paddingHorizontal": 20,
+              "paddingVertical": 16,
+            }
+          }
+          testID="google-takeout-import-btn"
+        >
           <Text
             style={
               Array [
@@ -169,157 +269,15 @@ exports[`Import component renders correctly 1`] = `
                   "writingDirection": "ltr",
                 },
                 Object {
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginTop": 12,
+                  "color": "#ffffff",
+                  "fontSize": 19,
+                  "fontWeight": "500",
                 },
               ]
             }
           >
-            Before you can import, you must first "Take out" your location data from Google.
+            Import Locations
           </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#2e2e2e",
-                  "fontSize": 17,
-                  "lineHeight": 28,
-                },
-                Object {
-                  "writingDirection": "ltr",
-                },
-                Object {
-                  "fontSize": 16,
-                  "lineHeight": 24,
-                  "marginTop": 12,
-                },
-              ]
-            }
-          >
-            Visit Google Takeout and export your Location History using the following settings: 
-1. Delivery method: "Add to Drive" 
-2. Frequency: "Export once" 
-3. File type & size: ".zip" and "1GB"
-4. Google sends an email when the export is ready 
-5. Return here to import locations from Google Drive
-          </Text>
-          <View
-            accessibilityLabel="Visit Google Takeout"
-            accessibilityRole="button"
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignContent": "center",
-                "alignItems": "center",
-                "alignSelf": "stretch",
-                "borderBottomLeftRadius": 8,
-                "borderBottomRightRadius": 8,
-                "borderColor": "transparent",
-                "borderStyle": "solid",
-                "borderTopLeftRadius": 8,
-                "borderTopRightRadius": 8,
-                "borderWidth": 2,
-                "flexDirection": "row",
-                "height": 48,
-                "justifyContent": "center",
-                "marginTop": 24,
-                "opacity": 1,
-                "paddingHorizontal": 14,
-              }
-            }
-            testID="google-takeout-link"
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2e2e2e",
-                    "fontSize": 17,
-                    "lineHeight": 28,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Object {
-                    "fontFamily": "IBMPlexSans-Medium",
-                    "fontSize": 14,
-                    "fontWeight": "normal",
-                    "lineHeight": 21,
-                  },
-                ]
-              }
-            >
-              Visit Google Takeout
-            </Text>
-          </View>
-          <View
-            accessibilityLabel="Import Locations"
-            accessibilityRole="button"
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignContent": "center",
-                "alignItems": "center",
-                "alignSelf": "stretch",
-                "borderBottomLeftRadius": 8,
-                "borderBottomRightRadius": 8,
-                "borderColor": "transparent",
-                "borderStyle": "solid",
-                "borderTopLeftRadius": 8,
-                "borderTopRightRadius": 8,
-                "borderWidth": 2,
-                "flexDirection": "row",
-                "height": 48,
-                "justifyContent": "center",
-                "marginTop": 24,
-                "opacity": 1,
-                "paddingHorizontal": 14,
-              }
-            }
-            testID="google-takeout-import-btn"
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2e2e2e",
-                    "fontSize": 17,
-                    "lineHeight": 28,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Object {
-                    "fontFamily": "IBMPlexSans-Medium",
-                    "fontSize": 14,
-                    "fontWeight": "normal",
-                    "lineHeight": 21,
-                  },
-                ]
-              }
-            >
-              Import Locations
-            </Text>
-          </View>
         </View>
       </View>
     </RCTScrollView>

@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import {
+  TouchableOpacity,
+  Linking,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 
-import { Button, NavigationBarWrapper, Typography } from '../components';
+import { NavigationBarWrapper, Typography } from '../components';
 import { pickFile } from '../helpers/General';
 import {
   EmptyFilePathError,
@@ -11,7 +16,12 @@ import {
   importTakeoutData,
 } from '../helpers/GoogleTakeOutAutoImport';
 
-import { Colors } from '../styles';
+import {
+  Typography as TypographyStyles,
+  Colors,
+  Spacing,
+  Buttons,
+} from '../styles';
 
 const makeImportResults = (label = '', error = false) => ({
   error,
@@ -57,85 +67,73 @@ const ImportScreen = (props) => {
 
   return (
     <NavigationBarWrapper title={t('import.title')} onBackPress={goBack}>
-      <ScrollView style={styles.main}>
-        <View style={styles.subHeaderTitle}>
-          <Typography style={styles.sectionDescription}>
-            {t('import.google.instructions_first')}
-          </Typography>
-          {/* eslint-disable react/no-unescaped-entities */}
-          <Typography style={styles.sectionDescription}>
-            {t('import.google.instructions_second')}
-          </Typography>
-          <Typography style={styles.sectionDescription}>
-            {t('import.google.instructions_detailed')}
-          </Typography>
+      <ScrollView style={styles.container}>
+        <Typography style={styles.sectionDescription}>
+          {t('import.google.instructions_first')}
+        </Typography>
+        {/* eslint-disable react/no-unescaped-entities */}
+        <Typography style={styles.sectionDescription}>
+          {t('import.google.instructions_second')}
+        </Typography>
+        <Typography style={styles.sectionDescription}>
+          {t('import.google.instructions_detailed')}
+        </Typography>
 
-          <Button
-            small
-            label={t('import.google.visit_button_text')}
-            testID='google-takeout-link'
-            onPress={() =>
-              Linking.openURL(
-                'https://takeout.google.com/settings/takeout/custom/location_history',
-              )
-            }
-            style={{ marginTop: 24 }}
-          />
+        <TouchableOpacity
+          testID='google-takeout-link'
+          onPress={() =>
+            Linking.openURL(
+              'https://takeout.google.com/settings/takeout/custom/location_history',
+            )
+          }
+          style={styles.button}>
+          <Typography style={styles.buttonText}>
+            {t('import.google.visit_button_text')}
+          </Typography>
+        </TouchableOpacity>
 
-          <Button
-            small
-            label={t('import.title')}
-            testID='google-takeout-import-btn'
-            onPress={importPickFile}
-            style={{ marginTop: 24 }}
-          />
+        <TouchableOpacity
+          testID='google-takeout-import-btn'
+          onPress={importPickFile}
+          style={styles.button}>
+          <Typography style={styles.buttonText}>{t('import.title')}</Typography>
+        </TouchableOpacity>
 
-          {importResults.label ? (
-            <Typography
-              style={{
-                ...styles.importResults,
-                ...(importResults?.error ? styles.importResultsError : {}),
-              }}>
-              {importResults.label}
-            </Typography>
-          ) : null}
-        </View>
+        {importResults.label ? (
+          <Typography
+            style={{
+              ...styles.importResults,
+              ...(importResults?.error ? styles.importResultsError : {}),
+            }}>
+            {importResults.label}
+          </Typography>
+        ) : null}
       </ScrollView>
     </NavigationBarWrapper>
   );
 };
 
 const styles = StyleSheet.create({
-  subHeaderTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 22,
-    padding: 5,
-    paddingBottom: 20,
-  },
-  main: {
-    flex: 1,
-    flexDirection: 'column',
-    textAlignVertical: 'top',
-    paddingLeft: 20,
-    paddingRight: 20,
-    width: '100%',
-    alignSelf: 'center',
+  container: {
+    padding: Spacing.medium,
   },
   sectionDescription: {
-    fontSize: 16,
-    lineHeight: 24,
-    marginTop: 12,
+    ...Typography.sectionDescription,
+    marginBottom: Spacing.small,
+  },
+  button: {
+    ...Buttons.mediumBlue,
+    marginBottom: Spacing.medium,
+  },
+  buttonText: {
+    ...TypographyStyles.buttonTextLight,
   },
   importResults: {
-    fontSize: 12,
-    lineHeight: 20,
-    marginTop: 10,
-    textAlign: 'center',
-    color: Colors.violetText,
+    flex: 1,
   },
   importResultsError: {
     color: Colors.errorText,
   },
 });
+
 export default ImportScreen;
