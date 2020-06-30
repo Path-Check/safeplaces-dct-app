@@ -1,15 +1,10 @@
 import { checkIntersect as intersect } from '../helpers/Intersect';
 import { HealthcareAuthority } from '../store/types';
 import { emitGPSExposureInfo } from '../gps/exposureInfo';
-import BackgroundTaskService from './BackgroundTaskService';
 
 class IntersectService {
   isServiceRunning = false;
   private nextJob: HealthcareAuthority[] | null = null;
-
-  constructor() {
-    BackgroundTaskService.start();
-  }
 
   checkIntersect = (
     healthcareAuthorities: HealthcareAuthority[] | null,
