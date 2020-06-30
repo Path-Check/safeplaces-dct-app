@@ -8,7 +8,7 @@ final class GPSSecureStorage: SafePathsSecureStorage {
   static let DAYS_TO_KEEP = 14
   static let LOCATION_INTERVAL = 60 * 5
   static let MINIMUM_TIME_INTERVAL = 60 * 4
-  static let MAX_BACKFILL_TIME = 60 * 60 * 24
+  static let MAX_BACKFILL_TIME = 60 * 60
 
   private let queue = DispatchQueue(label: "GPSSecureStorage")
 
@@ -21,7 +21,7 @@ final class GPSSecureStorage: SafePathsSecureStorage {
     }
   }
 
-  @objc func importLocations(locations: NSArray, source: Int, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+  @objc func importLocations(locations: NSArray, source: Location.Source, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     queue.async {
       autoreleasepool { [weak self] in
         self?.importLocationsImmediately(locations, source: source, resolve: resolve, reject: reject)
@@ -37,11 +37,10 @@ final class GPSSecureStorage: SafePathsSecureStorage {
     }
   }
 
-  @objc func trimLocations(completion: (() -> Void)? = nil) {
+  @objc func trimLocations(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     queue.async {
       autoreleasepool { [weak self] in
-        self?.trimLocationsImmediately()
-        completion?()
+        self?.trimLocationsImmediately(resolve: resolve, reject: reject)
       }
     }
   }
@@ -65,7 +64,11 @@ final class GPSSecureStorage: SafePathsSecureStorage {
       let latestDesiredBackfill = newLocationTime - GPSSecureStorage.LOCATION_INTERVAL
       let earliestDesiredBackfill = max(newLocationTime - GPSSecureStorage.MAX_BACKFILL_TIME, previousLocation.time + GPSSecureStorage.LOCATION_INTERVAL)
       for time in stride(from: latestDesiredBackfill, through: earliestDesiredBackfill, by: -GPSSecureStorage.LOCATION_INTERVAL) {
-        assumedLocationsToInsert.append(Location.createAssumedLocation(time: time, latitude: previousLocation.latitude, longitude: previousLocation.longitude))
+        assumedLocationsToInsert.append(Location.fromAssumed(
+          time: time,
+          latitude: previousLocation.latitude,
+          longitude: previousLocation.longitude
+        ))
       }
     }
 
@@ -138,8 +141,8 @@ private extension GPSSecureStorage {
 
     // Check if a previous location has been recorded
     if let previousLocation = realm.objects(Location.self)
-      .filter("\(Location.KEY_SOURCE)=\(Location.SOURCE_DEVICE)")
-      .sorted(byKeyPath: Location.KEY_TIME, ascending: false)
+      .filter("\(Location.Key.source.rawValue)=\(Location.Source.device.rawValue)")
+      .sorted(byKeyPath: Location.Key.time.rawValue, ascending: false)
       .first {
 
       // If within the minimum time interval, discard the new location
@@ -155,14 +158,14 @@ private extension GPSSecureStorage {
     }
 
     newLocations.append(
-      Location.fromBackgroundLocation(backgroundLocation: backgroundLocation)
+      Location.fromBackgroundLocation(backgroundLocation: backgroundLocation, source: .device)
     )
 
     realm.write(locations: newLocations)
   }
 
   /// This function should be called only on self.queue
-  func importLocationsImmediately(_ locations: NSArray, source: Int, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+  func importLocationsImmediately(_ locations: NSArray, source: Location.Source, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     guard let realm = getRealmInstance() else {
       resolve(false)
       return
@@ -185,18 +188,23 @@ private extension GPSSecureStorage {
     }
 
     let results = realm.objects(Location.self)
-      .filter("\(Location.KEY_TIME)>=\(cutoffTime)")
-      .sorted(byKeyPath: Location.KEY_TIME, ascending: true)
+      .filter("\(Location.Key.time.rawValue)>=\(cutoffTime)")
+      .sorted(byKeyPath: Location.Key.time.rawValue, ascending: true)
 
     resolve(Array(results.map { $0.toSharableDictionary() }))
   }
 
   /// This function should be called only on self.queue
-  func trimLocationsImmediately() {
+  func trimLocationsImmediately(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     guard let realm = getRealmInstance() else {
+      resolve(false)
       return
     }
-    realm.delete(locations: realm.objects(Location.self).filter("\(Location.KEY_TIME)<\(cutoffTime)"))
+    realm.delete(
+      locations: realm.objects(Location.self).filter("\(Location.Key.time.rawValue)<\(cutoffTime)"),
+      resolve: resolve,
+      reject: reject
+    )
   }
 
 }
