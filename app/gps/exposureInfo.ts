@@ -11,7 +11,7 @@ interface Subscriber {
 
 interface GPSExposureInfoEventEmitter {
   subscriber: Subscriber | null;
-  emit: (event: Event, data: ExposureInfo) => void;
+  emit: (data: ExposureInfo) => void;
   addListener: (
     event: Event,
     callback: HandleOnExposureInfoUpdated,
@@ -22,7 +22,7 @@ interface GPSExposureInfoEventEmitter {
 
 const ExposureEvents: GPSExposureInfoEventEmitter = {
   subscriber: null,
-  emit: function (event: Event, data: ExposureInfo) {
+  emit: function (data: ExposureInfo) {
     if (this.subscriber) {
       this.subscriber.callback(data);
     }
@@ -53,5 +53,5 @@ export const subscribeToExposureEvents = (
 };
 
 export const emitGPSExposureInfo = (exposureInfo: ExposureInfo): void => {
-  ExposureEvents.emit('onGPSExposureInfoUpdated', exposureInfo);
+  ExposureEvents.emit(exposureInfo);
 };
