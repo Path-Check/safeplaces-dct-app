@@ -82,11 +82,11 @@ class GPSSecureStorageTest: XCTestCase {
     // given
     let location1TimeDouble = Date().timeIntervalSince1970 * 1000
     let location1Time = Int(location1TimeDouble / 1000)
-    let location1 = [Location.KEY_TIME: location1TimeDouble, Location.KEY_LATITUDE: 40.730610, Location.KEY_LONGITUDE: -73.935242]
+    let location1 = [Location.Key.time.rawValue: location1TimeDouble, Location.Key.latitude.rawValue: 40.730610, Location.Key.longitude.rawValue: -73.935242]
     let location2TimeDouble = Date().addingTimeInterval(10).timeIntervalSince1970 * 1000
     let location2TimeString = String(format:"%.0f", location2TimeDouble)
     let location2Time = Int(location2TimeDouble / 1000)
-    let location2 = [Location.KEY_TIME: location2TimeString, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297] as [String : Any]
+    let location2 = [Location.Key.time.rawValue: location2TimeString, Location.Key.latitude.rawValue: 37.773972, Location.Key.longitude.rawValue: -122.431297] as [String : Any]
     let locations = NSArray(array: [location1, location2])
 
     let expectation = XCTestExpectation(description: "Import Locations")
@@ -94,7 +94,7 @@ class GPSSecureStorageTest: XCTestCase {
     // when
     secureStorage!.importLocations(
       locations: locations,
-      source: Location.SOURCE_GOOGLE,
+      source: .google,
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
         expectation.fulfill()
@@ -112,7 +112,7 @@ class GPSSecureStorageTest: XCTestCase {
     XCTAssertEqual(40.730610, resultLocation.latitude)
     XCTAssertEqual(-73.935242, resultLocation.longitude)
     XCTAssertEqual(location1Time, resultLocation.time)
-    XCTAssertEqual(Location.SOURCE_GOOGLE, resultLocation.source)
+    XCTAssertEqual(Location.Source.google.rawValue, resultLocation.source)
     guard let resultLocation2 = querySingleLocationByTime(time: location2Time) else {
       XCTFail("Resulting location 2 returned nil")
       return
@@ -120,18 +120,18 @@ class GPSSecureStorageTest: XCTestCase {
     XCTAssertEqual(37.773972, resultLocation2.latitude)
     XCTAssertEqual(-122.431297, resultLocation2.longitude)
     XCTAssertEqual(location2Time, resultLocation2.time)
-    XCTAssertEqual(Location.SOURCE_GOOGLE, resultLocation2.source)
+    XCTAssertEqual(Location.Source.google.rawValue, resultLocation2.source)
   }
   
   func testImportSuccessFromMigration() {
     // given
     let location1TimeDouble = Date().timeIntervalSince1970 * 1000
     let location1Time = Int(location1TimeDouble / 1000)
-    let location1 = [Location.KEY_TIME: location1TimeDouble, Location.KEY_LATITUDE: 40.730610, Location.KEY_LONGITUDE: -73.935242]
+    let location1 = [Location.Key.time.rawValue: location1TimeDouble, Location.Key.latitude.rawValue: 40.730610, Location.Key.longitude.rawValue: -73.935242]
     let location2TimeDouble = Date().addingTimeInterval(10).timeIntervalSince1970 * 1000
     let location2TimeString = String(format:"%.0f", location2TimeDouble)
     let location2Time = Int(location2TimeDouble / 1000)
-    let location2 = [Location.KEY_TIME: location2TimeString, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297] as [String : Any]
+    let location2 = [Location.Key.time.rawValue: location2TimeString, Location.Key.latitude.rawValue: 37.773972, Location.Key.longitude.rawValue: -122.431297] as [String : Any]
     let locations = NSArray(array: [location1, location2])
 
     let expectation = XCTestExpectation(description: "Import Locations")
@@ -139,7 +139,7 @@ class GPSSecureStorageTest: XCTestCase {
     // when
     secureStorage!.importLocations(
       locations: locations,
-      source: Location.SOURCE_MIGRATION,
+      source: .migration,
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
         expectation.fulfill()
@@ -157,7 +157,7 @@ class GPSSecureStorageTest: XCTestCase {
     XCTAssertEqual(40.730610, resultLocation.latitude)
     XCTAssertEqual(-73.935242, resultLocation.longitude)
     XCTAssertEqual(location1Time, resultLocation.time)
-    XCTAssertEqual(Location.SOURCE_MIGRATION, resultLocation.source)
+    XCTAssertEqual(Location.Source.migration.rawValue, resultLocation.source)
     guard let resultLocation2 = querySingleLocationByTime(time: location2Time) else {
       XCTFail("Resulting location 2 returned nil")
       return
@@ -165,17 +165,17 @@ class GPSSecureStorageTest: XCTestCase {
     XCTAssertEqual(37.773972, resultLocation2.latitude)
     XCTAssertEqual(-122.431297, resultLocation2.longitude)
     XCTAssertEqual(location2Time, resultLocation2.time)
-    XCTAssertEqual(Location.SOURCE_MIGRATION, resultLocation2.source)
+    XCTAssertEqual(Location.Source.migration.rawValue, resultLocation2.source)
   }
   
   func testImportFailsIfLocationOlderThanMinimum() {
     // given
     let location1TimeDouble = Date().addingTimeInterval(-15*24*60*60).timeIntervalSince1970 * 1000
     let location1Time = Int(location1TimeDouble / 1000)
-    let location1 = [Location.KEY_TIME: location1TimeDouble, Location.KEY_LATITUDE: 40.730610, Location.KEY_LONGITUDE: -73.935242]
+    let location1 = [Location.Key.time.rawValue: location1TimeDouble, Location.Key.latitude.rawValue: 40.730610, Location.Key.longitude.rawValue: -73.935242]
     let location2TimeDouble = Date().timeIntervalSince1970 * 1000
     let location2Time = Int(location2TimeDouble / 1000)
-    let location2 = [Location.KEY_TIME: location2TimeDouble, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297]
+    let location2 = [Location.Key.time.rawValue: location2TimeDouble, Location.Key.latitude.rawValue: 37.773972, Location.Key.longitude.rawValue: -122.431297]
     let locations = NSArray(array: [location1, location2])
 
     let expectation = XCTestExpectation(description: "Import Locations")
@@ -183,7 +183,7 @@ class GPSSecureStorageTest: XCTestCase {
     // when
     secureStorage!.importLocations(
       locations: locations,
-      source: Location.SOURCE_MIGRATION,
+      source: .migration,
       resolve: { result in
         XCTAssertEqual(true, result as! Bool)
         expectation.fulfill()
@@ -205,7 +205,7 @@ class GPSSecureStorageTest: XCTestCase {
     let backgroundLocation1 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
     let location2TimeDouble = Date().addingTimeInterval(-10*24*60*60).timeIntervalSince1970 * 1000
     let location2Time = Int(location2TimeDouble / 1000)
-    let location2 = [Location.KEY_TIME: location2TimeDouble, Location.KEY_LATITUDE: 37.773972, Location.KEY_LONGITUDE: -122.431297]
+    let location2 = [Location.Key.time.rawValue: location2TimeDouble, Location.Key.latitude.rawValue: 37.773972, Location.Key.longitude.rawValue: -122.431297]
     let importLocations = NSArray(array: [location2])
 
     let expect1 = XCTestExpectation(description: "Save Location")
@@ -217,7 +217,7 @@ class GPSSecureStorageTest: XCTestCase {
 
     secureStorage!.importLocations(
       locations: importLocations,
-      source: Location.SOURCE_MIGRATION,
+      source: .migration,
       resolve: resolverFulfilling(expectation: expect2),
       reject: rejecterFulfilling(expectation: expect2)
     )
@@ -229,12 +229,12 @@ class GPSSecureStorageTest: XCTestCase {
     // when
     secureStorage!.getLocations(resolve: { result in
       XCTAssertEqual(2, (result as! NSArray).count)
-      XCTAssertEqual(37.773972, ((result as! NSArray).object(at: 0) as! NSDictionary).object(forKey: Location.KEY_LATITUDE) as! Double)
-      XCTAssertEqual(-122.431297, ((result as! NSArray).object(at: 0) as! NSDictionary).object(forKey: Location.KEY_LONGITUDE) as! Double)
-      XCTAssertEqual(location2Time * 1000, ((result as! NSArray).object(at: 0) as! NSDictionary).object(forKey: Location.KEY_TIME) as! Int)
-      XCTAssertEqual(40.730610, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_LATITUDE) as! Double)
-      XCTAssertEqual(-73.935242, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_LONGITUDE) as! Double)
-      XCTAssertEqual(location1Time * 1000, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.KEY_TIME) as! Int)
+      XCTAssertEqual(37.773972, ((result as! NSArray).object(at: 0) as! NSDictionary).object(forKey: Location.Key.latitude.rawValue) as! Double)
+      XCTAssertEqual(-122.431297, ((result as! NSArray).object(at: 0) as! NSDictionary).object(forKey: Location.Key.longitude.rawValue) as! Double)
+      XCTAssertEqual(location2Time * 1000, ((result as! NSArray).object(at: 0) as! NSDictionary).object(forKey: Location.Key.time.rawValue) as! Int)
+      XCTAssertEqual(40.730610, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.Key.latitude.rawValue) as! Double)
+      XCTAssertEqual(-73.935242, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.Key.longitude.rawValue) as! Double)
+      XCTAssertEqual(location1Time * 1000, ((result as! NSArray).object(at: 1) as! NSDictionary).object(forKey: Location.Key.time.rawValue) as! Int)
       expect3.fulfill()
     }, reject: rejecterFulfilling(expectation: expect3))
 
@@ -264,9 +264,10 @@ class GPSSecureStorageTest: XCTestCase {
     wait(for: [expect1, expect2], timeout: 5)
 
     // when
-    secureStorage!.trimLocations() {
-      expect3.fulfill()
-    }
+    secureStorage!.trimLocations(
+      resolve: resolverFulfilling(expectation: expect3),
+      reject: rejecterFulfilling(expectation: expect3)
+    )
 
     wait(for: [expect3], timeout: 5)
     
@@ -298,14 +299,14 @@ class GPSSecureStorageTest: XCTestCase {
   
   func testMaxAssumedLocationListGenerated() {
     let newLocationDate =  Date()
-    let oldLocationDate = newLocationDate.addingTimeInterval(-24*60*60)
+    let oldLocationDate = newLocationDate.addingTimeInterval(-TimeInterval(GPSSecureStorage.MAX_BACKFILL_TIME))
 
     let oldLocation = createTestLocation(time: Int(oldLocationDate.timeIntervalSince1970), latitude: 10.0, longitude: 10.0)
     let newLocation = TestMAURLocation(latitude: 10.0, longitude: 10.0, date: newLocationDate)
     
     let assumedLocations = secureStorage!.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
     
-    XCTAssertEqual(287, assumedLocations.count)
+    XCTAssertEqual((GPSSecureStorage.MAX_BACKFILL_TIME / GPSSecureStorage.LOCATION_INTERVAL) - 1, assumedLocations.count)
   }
   
   func testMaxAssumedLocationListEmptyIfTimeTooClose() {
@@ -331,7 +332,7 @@ class GPSSecureStorageTest: XCTestCase {
   }
   
   func querySingleLocationByTime(time: Int) -> Location? {
-    return secureStorage!.getRealmInstance()!.objects(Location.self).filter("\(Location.KEY_TIME)==\(time)").first
+    return secureStorage!.getRealmInstance()!.objects(Location.self).filter("\(Location.Key.time.rawValue)==\(time)").first
   }
 
   func resolverFulfilling(expectation: XCTestExpectation) -> RCTPromiseResolveBlock {
