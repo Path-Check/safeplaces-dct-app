@@ -159,6 +159,7 @@ export const ExportTemplate = ({
             onPress={onNext}
             loading={buttonLoading}
           />
+
           {buttonSubtitle && (
             <Typography
               style={{ paddingTop: 10, color: Colors.white }}

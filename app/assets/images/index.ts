@@ -1,3 +1,4 @@
+const BackgroundBlueGradient = require('./backgroundBlueGradient.png');
 const BoxCheckedIcon = require('./boxCheckedIcon.png');
 const BoxUncheckedIcon = require('./boxUncheckedIcon.png');
 const Doctors = require('./doctors.png');
@@ -19,6 +20,7 @@ const OnboardingBackground3 = require('./onboardingbg3.png');
 const EmptyPathBackground = require('./emptyPathBackground.png');
 
 export const Images = {
+  BackgroundBlueGradient,
   BoxCheckedIcon,
   BoxUncheckedIcon,
   Doctors,
