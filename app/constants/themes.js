@@ -6,7 +6,7 @@ import Color from './colors';
 
 /** Violet on pale violet bg. e.g. Settings */
 export const defaultTheme = {
-  background: Color.LIGHT_BLUE,
+  background: Color.WHITE,
   textPrimaryOnBackground: Color.BLUE_RIBBON,
   textSecondaryOnBackground: Color.BLACK,
 

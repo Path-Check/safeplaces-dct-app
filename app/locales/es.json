@@ -81,6 +81,7 @@
     "event_history_subtitle": "Entiende tu exposición al COVID-19 según los datos publicados por las autoridades sanitarias.",
     "event_history_title": "Historial de exposición",
     "epidemiologic_report_title": "Apoyo a positivos al virus",
+    "epidemiologic_report_title_new": "Reportar que soy positivo a COVID-19",
     "epidemiologic_report_subtitle": "Puedes revisar tu estado de alta epidemiológica y recibir consejos de salud.",
     "hospital_subtitle": "Revisa todos los hospitales disponibles para el COVID.",
     "hospital_title": "Mapa de Hospitales",
@@ -160,6 +161,8 @@
     "report_symptoms_title": "¿Cómo te sientes?",
     "see_exposure_history": "Ver historial de exposición",
     "settings_title": "Panel de control",
+    "share_loc_active": "Estás compartiendo tu ubicación con el Ministerio de Salud Pública.",
+    "share_loc_inactive": "No estás compartiendo tu ubicación con el Ministerio de Salud Pública.",
     "skip_this_step": "Omitir este paso",
     "sponsor_title": "Auspiciadores",
     "sponsors": "Auspiciado por",
@@ -199,7 +202,12 @@
     "feel_bad": "No me siento bien",
     "feel_great": "¡Me siento genial!",
     "share_location_data_title": "¿Compartir datos de ubicación?",
-    "share_location_data_subtitle": "Al aceptar, los datos de sus ubicaciones recientes serán compartidos con la autoridad de salud de República Dominicana."
+    "share_location_data_subtitle": "Al aceptar, los datos de sus ubicaciones recientes serán compartidos con la autoridad de salud de República Dominicana.",
+    "you_can_add_more": "Puedes agregar más usuarios desde la opción Reportar",
+    "who_is_using": "¿Quien está usando?",
+    "you_are_positive": "Vemos que has sido diagnosticado positivo a COVID-19",
+    "insert_nickname": "Para poder darte un seguimiento apropiado y personalizado, ingresa un nombre con el que desees que la aplicación te identifique",
+    "nickname_exist": "Este identificador ya existe"
   },
   "maps": {
     "error_location": "En estos momentos no hemos podido localizarte. Asegurese de tener el GPS activado.",

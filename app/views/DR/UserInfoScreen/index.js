@@ -1,6 +1,5 @@
 import 'moment/locale/es';
 
-import AsyncStorage from '@react-native-community/async-storage';
 import moment from 'moment';
 import { Button, Card, Container, Content, Text } from 'native-base';
 import React, { useContext, useState } from 'react';
@@ -30,7 +29,7 @@ import {
   MEPYD_C5I_API_URL,
   MEPYD_C5I_SERVICE,
 } from '../../../constants/DR/baseUrls';
-import { COVID_POSITIVE } from '../../../constants/storage';
+import { GetStoreData } from '../../../helpers/General';
 
 export default function UserInfo({
   navigation,
@@ -44,7 +43,6 @@ export default function UserInfo({
   const { t } = useTranslation();
 
   const [showDialog, setShowDialog] = useState(false);
-  const [showShareLocDialog, setShowShareLocDialog] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showValidationDialog, setShowValidationDialog] = useState(false);
   const [usePassport, setUsePassport] = useState(false);
@@ -61,13 +59,11 @@ export default function UserInfo({
         passportName = '',
         nssId = '',
         phoneNumber,
-        usage,
       },
     },
     setGlobalState,
   ] = useContext(context);
 
-  const use = usage === '' ? 'mySelf' : usage;
   const closeDialog = final => {
     setError(false);
     setShowDialog(false);
@@ -92,20 +88,15 @@ export default function UserInfo({
         },
       );
       response = await response.json();
+      console.log(response);
       return response;
     } catch (e) {
       console.log('ha ocurrido un error', e);
     }
   };
 
-  const storeData = async (key, value) => {
-    try {
-      await AsyncStorage.setItem(key, JSON.stringify(value));
-    } catch (e) {
-      console.log(e);
-    }
-  };
   const validate = async data => {
+    const { body } = data;
     try {
       let response = await fetch(
         `${MEPYD_C5I_SERVICE}/${MEPYD_C5I_API_URL}/Person`,
@@ -115,24 +106,41 @@ export default function UserInfo({
             'Content-Type': 'application/json',
             gov_do_token: GOV_DO_TOKEN,
           },
-          body: JSON.stringify(data.body),
+          body: JSON.stringify(body),
         },
       );
 
       response = await response.json();
       setLoading(false);
+
       if (response.valid !== undefined) {
         if (response.valid) {
           getAge(birth);
-          let { positive } = await validateCovidPositive(data.body);
+          let { positive } = await validateCovidPositive(body);
           closeDialog(false);
           if (positive) {
-            if (use === 'mySelf') {
-              setShowShareLocDialog(true);
-              storeData(COVID_POSITIVE, positive);
-              storeData('UserPersonalInfo', data.body);
-            }
-            navigation.navigate('EpidemiologicResponse');
+            GetStoreData('users', false).then(data => {
+              if (data !== null) {
+                let same = false;
+                let name = '';
+                data.map(user => {
+                  if (JSON.stringify(user.data) === JSON.stringify(body)) {
+                    same = true;
+                    name = user.data.name;
+                  }
+                });
+                same
+                  ? navigation.navigate('EpidemiologicResponse', {
+                      screen: 'EpidemiologicReport',
+                      params: { nickname: name },
+                    })
+                  : navigation.navigate('PositiveOnboarding', {
+                      positive,
+                      body,
+                    });
+              }
+            });
+            navigation.navigate('PositiveOnboarding', { positive, body });
           } else if (type && !positive) {
             setShowValidationDialog(true);
             setPositiveError(true);
@@ -149,6 +157,7 @@ export default function UserInfo({
       return response;
     } catch (e) {
       setLoading(false);
+      closeDialog();
       setShowValidationDialog(true);
       console.log('ha ocurrido un error', e);
     }
@@ -227,65 +236,6 @@ export default function UserInfo({
       <Content>
         <ScrollView>
           <View style={{ flex: 1 }}>
-            <Dialog
-              visible={showShareLocDialog}
-              dialogStyle={{ backgroundColor: Colors.WHITE }}>
-              <View>
-                <Text style={styles.textSemiBold}>
-                  {t('positives.share_location_data_title')}
-                </Text>
-                <Text style={styles.text}>
-                  {t('positives.share_location_data_subtitle')}
-                </Text>
-                <View
-                  style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                  <Button
-                    style={[
-                      styles.buttons,
-                      {
-                        borderWidth: 1.5,
-                        borderColor: Colors.RED_BUTTON,
-                        backgroundColor: Colors.WHITE,
-                        width: '40%',
-                        marginTop: hp('3%'),
-                      },
-                    ]}
-                    onPress={() => {
-                      setTimeout(async () => {
-                        await AsyncStorage.removeItem('shareLocation');
-                        setShowShareLocDialog(false);
-                      }, 1000);
-                    }}>
-                    <Text style={[styles.text, { color: Colors.RED_BUTTON }]}>
-                      {t('report.no')}
-                    </Text>
-                  </Button>
-                  <Button
-                    style={[
-                      styles.buttons,
-                      {
-                        borderWidth: 1.5,
-                        borderColor: Colors.GREEN,
-                        backgroundColor: Colors.WHITE,
-                        width: '40%',
-                        marginTop: hp('3%'),
-                      },
-                    ]}
-                    onPress={() => {
-                      setTimeout(() => {
-                        storeData('shareLocation', 'yes');
-                        setShowShareLocDialog(false);
-                      }, 900);
-                    }}>
-                    <Text
-                      style={[styles.textSemiBold, { color: Colors.GREEN }]}>
-                      {t('report.yes')}
-                    </Text>
-                  </Button>
-                </View>
-              </View>
-            </Dialog>
-
             <Dialog
               visible={showValidationDialog}
               onTouchOutside={() => closeDialog(true)}

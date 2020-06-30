@@ -12,8 +12,8 @@ import { FeatureFlag } from '../components/FeatureFlag';
 import NativePicker from '../components/NativePicker';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import Colors from '../constants/colors';
-import { COVID_POSITIVE, PARTICIPATE } from '../constants/storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
+import { PARTICIPATE } from '../constants/storage';
+import { GetStoreData, SetStoreData, getMyself } from '../helpers/General';
 import {
   LOCALE_LIST,
   getUserLocaleOverride,
@@ -28,7 +28,7 @@ export const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
   const [isLogging, setIsLogging] = useState(undefined);
   const [isSharing, setIsSharing] = useState(false);
-  const [isCovidPositive, setIsCovpositive] = useState();
+  const [isCovidPositive, setIsCovpositive] = useState([]);
   const [userLocale, setUserLocale] = useState(
     supportedDeviceLanguageOrEnglish(),
   );
@@ -37,12 +37,15 @@ export const SettingsScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const getCovidpositive = async () => {
-    const isPositive = await AsyncStorage.getItem(COVID_POSITIVE);
-    const sharing = await AsyncStorage.getItem('shareLocation');
-    setIsCovpositive(isPositive);
-    setIsSharing(sharing !== null ? true : false);
+  const getCovidpositive = () => {
+    GetStoreData('shareLocation').then(sharing =>
+      setIsSharing(sharing !== null ? true : false),
+    );
+    GetStoreData('users').then(users =>
+      setIsCovpositive(users !== null ? JSON.parse(users) : []),
+    );
   };
+
   useEffect(() => {
     const handleBackPress = () => {
       navigation.goBack();
@@ -109,7 +112,7 @@ export const SettingsScreen = ({ navigation }) => {
             icon={isLogging ? checkmarkIcon : xmarkIcon}
             onPress={locationToggleButtonPressed}
           />
-          {isCovidPositive !== null && (
+          {isCovidPositive.length > 0 && getMyself(isCovidPositive) && (
             <Item
               label={
                 isSharing
@@ -146,13 +149,17 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('ExposureHistoryScreen')}
           />
           <Item
-            label={t('label.epidemiologic_report_title')}
+            label={
+              isCovidPositive.length > 0
+                ? t('label.epidemiologic_report_title')
+                : t('label.epidemiologic_report_title_new')
+            }
             description={t('label.epidemiologic_report_subtitle')}
             onPress={() => {
-              if (isCovidPositive !== null) {
-                navigation.navigate('EpidemiologicResponse');
+              if (isCovidPositive.length > 0) {
+                navigation.navigate('UseFor');
               } else {
-                navigation.navigate('UserInfo');
+                navigation.navigate('ReportScreen', { back: true });
               }
             }}
             last

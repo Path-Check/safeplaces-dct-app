@@ -15,14 +15,17 @@ import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 import AuroraScreen from './views/DR/Aurora';
 import EpidemiologicScreen from './views/DR/EpidemiologicalResponseScreen';
+import UseFor from './views/DR/EpidemiologicalResponseScreen/useFor';
 import FAQ from './views/DR/FAQ';
 import Details from './views/DR/News/Details';
+import ReportScreen from './views/DR/ReportScreen';
 import Report from './views/DR/ReportScreen/ReportScreenQuestions';
 import ReportType from './views/DR/ReportScreen/ReportType';
 import ResultsScreen from './views/DR/ReportScreen/Results';
 import Sponsors from './views/DR/Sponsors';
 import TermsCondition from './views/DR/Terms&Condition';
 import UserInfo from './views/DR/UserInfoScreen/index';
+import PositiveOnboarding from './views/DR/UserInfoScreen/positiveOnboarding';
 import { ExportScreen } from './views/Export';
 import { ExposureHistoryScreen } from './views/ExposureHistory/ExposureHistory';
 import ImportScreen from './views/Import';
@@ -181,6 +184,11 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
+            name='PositiveOnboarding'
+            component={PositiveOnboarding}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
             name='ReportType'
             component={ReportType}
             options={{ headerShown: false }}
@@ -191,8 +199,18 @@ class Entry extends Component {
             options={{ headerShown: false }}
           />
           <Stack.Screen
+            name='UseFor'
+            component={UseFor}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
             name='Report'
             component={Report}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='ReportScreen'
+            component={ReportScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

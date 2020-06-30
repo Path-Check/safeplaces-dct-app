@@ -13,12 +13,12 @@ import styles from '../../../components/DR/Header/style';
 import ToggleButtons from '../../../components/DR/ToggleButtons';
 import Colors from '../../../constants/colors';
 
-const EpidemiologicalStatus = ({ navigation }) => {
+const EpidemiologicalStatus = ({ route, navigation }) => {
   //Change for a call to the goverment's epidemiology department API, to validate the status of the user
   //by the moment the response state is always waiting dor results.
+  const { nickname } = route.params;
   const valid = true;
   const { t } = useTranslation();
-
   const [todaysFeeling, setTodaysFeeling] = useState('');
   const [showDialog, setShowDialog] = useState(false);
 
@@ -72,6 +72,9 @@ const EpidemiologicalStatus = ({ navigation }) => {
         </View>
       </Dialog>
       <View style={styles.formContainer}>
+        <Text style={[styles.subtitles, { alignSelf: 'center' }]}>
+          Hola {nickname}!
+        </Text>
         <Text style={styles.subtitles}>
           {t('positives.epidemiological_discharge')}
         </Text>

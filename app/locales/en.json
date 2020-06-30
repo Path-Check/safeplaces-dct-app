@@ -84,7 +84,8 @@
     "enter_authority_url": "Enter or paste URL",
     "event_history_subtitle": "Understand your personal exposure based on information shared by health authorities.",
     "event_history_title": "Exposure history",
-    "epidemiologic_report_title": "Epidemiological report",
+    "epidemiologic_report_title": "Support for virus positives",
+    "epidemiologic_report_title_new": "Report that I am positive to COVID-19",
     "epidemiologic_report_subtitle": "You can review your epidemiological discharge status and receive health advice.",
     "filter_authorities_by_gps_history": "Filter by your locations",
     "hospital_subtitle": "View all hospitals available for COVID.",
@@ -205,7 +206,12 @@
     "feel_bad": "I don't feel well",
     "feel_great": "I feel great!",
     "share_location_data_title": "Share location data?",
-    "share_location_data_subtitle": "By accepting, the data of your recent locations will be shared with the Dominican Republic health authority."
+    "share_location_data_subtitle": "By accepting, the data of your recent locations will be shared with the Dominican Republic health authority.",
+    "you_can_add_more": "You can add more users from the Report option",
+    "who_is_using": "Who is using?",
+    "you_are_positive": "We see that you have been diagnosed positive for COVID-19",
+    "insert_nickname": "In order to give you an appropriate and personalized follow-up, enter a name with which you want the application to identify you",
+    "nickname_exist": "This identifier already exists"
   },
   "maps": {
     "error_location": "At the moment we have not been able to locate you. Make sure you have GPS activated.",

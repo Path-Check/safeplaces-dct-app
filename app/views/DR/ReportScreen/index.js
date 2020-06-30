@@ -11,7 +11,7 @@ import Header from '../../../components/DR/Header';
 import Colors from '../../../constants/colors';
 import styles from './style';
 
-export default function main({ navigation }) {
+export default function Main({ navigation }) {
   const { t } = useTranslation();
 
   return (
@@ -19,6 +19,8 @@ export default function main({ navigation }) {
       <Content>
         <View style={{ flex: 1 }}>
           <Header
+            iconName='chevron-left'
+            close
             title={t('report.title')}
             text={t('report.usage.header_selector')}
             navigation={navigation}

@@ -454,7 +454,7 @@ exports[`<Settings /> renders correctly with google import flag 1`] = `
                 }
                 use="body1"
               >
-                Epidemiological report
+                Report that I am positive to COVID-19
               </Text>
               <Text
                 secondary={true}
@@ -1401,7 +1401,7 @@ exports[`<Settings /> renders correctly without google import flag 1`] = `
                 }
                 use="body1"
               >
-                Epidemiological report
+                Report that I am positive to COVID-19
               </Text>
               <Text
                 secondary={true}

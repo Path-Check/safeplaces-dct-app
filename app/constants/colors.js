@@ -69,6 +69,7 @@ const colors = {
   MONO_SECONDARY: '#757677',
 
   BLUE_RIBBON: '#0161F2',
+  BLUE_DISABLED: '#658bc2',
   LIGHT_BLUE: '#EFF4F9',
   DOVE_GRAY: '#6B6B6B',
   SUN: '#FEB313',
