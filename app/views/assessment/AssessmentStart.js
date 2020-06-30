@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { InfoText } from './components/InfoText';
 
 // /**
 //  * @typedef { import(".").SurveyQuestion } SurveyQuestion
@@ -28,10 +29,11 @@ export const AssessmentStart = ({ navigation }) => {
       backgroundColor={Colors.surveyPrimaryBackground}
       backgroundImage={Images.EmptyPathBackground}
       icon={Icons.SelfAssessment}
-      ctaTitle={t('assessment.start_cta')}
-      title={t('assessment.start_title')}
-      description={t('assessment.start_description')}
-    />
+      ctaTitle={t('assessment.start_cta')}>
+        <InfoText useTitleStyle='headline2'
+          title={t('assessment.start_title')}
+          description={t('assessment.start_description')} />
+    </Info>
   );
 };
 

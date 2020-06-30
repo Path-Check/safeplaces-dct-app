@@ -7,8 +7,6 @@ import {
   View,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-
-import { Typography } from '../../components/Typography';
 import { Button } from './Button';
 
 /**
@@ -33,12 +31,8 @@ export const Info = ({
   ctaTextColor,
   ctaTitle,
   scrollStyle,
-  description,
-  titleStyle = 'headline2',
-  descriptionStyle = 'body1',
   footer,
   icon,
-  title,
 }) => {
   return (
     <SafeAreaView
@@ -49,24 +43,7 @@ export const Info = ({
         style={assessmentStyles.backgroundImage}>
         <ScrollView style={assessmentStyles.scrollView}>
           <View style={[assessmentStyles.scrollViewContent, scrollStyle]}>
-            {icon && 
-              // <View style={{alignItems: 'center'}}>
-                <SvgXml xml={icon} />
-              // </View>
-            }
-            <Typography
-              use={titleStyle}
-              style={[assessmentStyles.headingSpacing]}>
-              {title}
-            </Typography>
-            {description && (
-              <Typography
-                use={descriptionStyle}
-                style={assessmentStyles.description}
-                testID='description'>
-                {description}
-              </Typography>
-            )}
+            {icon && <SvgXml xml={icon} />}
             {children}
           </View>
         </ScrollView>
@@ -103,17 +80,7 @@ export const assessmentStyles = StyleSheet.create({
     padding: 20,
     borderTopWidth: 0
   },
-  headingSpacing: {
-    marginVertical: 30,
-  },
   footer: {
     padding: 20,
-  },
-  description: {
-    marginBottom: 20,
-    // TODO: remove on refactor
-    textAlign: 'center',
-    fontSize: 18,
-    lineHeight: 24
   },
 });

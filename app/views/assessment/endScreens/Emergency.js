@@ -1,11 +1,11 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { Linking, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { Linking, StyleSheet } from 'react-native';
 
-import { Icons, Images } from '../../../assets';
+import { Icons } from '../../../assets';
 import { Button } from '../Button';
-import { Typography } from '../../../components/Typography';
 import { Info } from '../Info';
+import { InfoText } from '../components/InfoText';
 
 import { Colors } from '../../../styles';
 
@@ -19,41 +19,41 @@ export const Emergency = () => {
         Linking.openURL('tel:911');
       }}
       backgroundColor={Colors.primaryBackgroundFaintShade}
-      //backgroundImage={Images.IsolatePathBackground}
-      icon={Icons.Warning}
-      scrollStyle={{alignItems: 'center'}}
-      description={
-        <Trans t={t} i18nKey='assessment.emergency_description'>
-          <Typography />
-        </Trans>
-      }
-      title={t('assessment.emergency_title')}
-      footer={<EmergencyButton title={t('assessment.emergency_cta')} />}
-    />
+      icon={Icons.SelfAssessment} // TODO: Placeholder, replace when we get icon
+      scrollStyle={styles.containerItemsAlignment}
+      footer={<EmergencyButton title={t('assessment.emergency_cta')} />}>
+        <InfoText useTitleStyle='headline2'
+          title={t('assessment.emergency_title')}
+          description={t('assessment.emergency_description')}
+          titleStyle={styles.title}
+          descriptionStyle={styles.description} />
+    </Info>
+  
   );
 };
 
 const EmergencyButton = ({title, onPress}) => (
-  <Button buttonStyle={{borderWidth: 2, borderColor: Colors.emergencyRed}}
+  <Button buttonStyle={styles.button}
     onPress={onPress}
     title={title}
     backgroundColor={Colors.white}
     textColor={Colors.black} />
 )
 
-// TODO: Finish refactoring this
-const EmergencyInfo = () => (
-  <View>
-    <Typography
-      //use={titleStyle}
-      style={[assessmentStyles.headingSpacing]}>
-      {title}
-    </Typography>
-    <Typography
-      //use={descriptionStyle}
-      style={assessmentStyles.description}
-      testID='description'>
-      {description}
-    </Typography>
-  </View>
-)
+const styles = StyleSheet.create({
+  containerItemsAlignment: {
+    alignItems: 'center'
+  },
+  title: {
+    textAlign: 'center'
+  },
+  description: {
+    textAlign: 'center',
+    fontSize: 18,
+    lineHeight: 24
+  },
+  button: {
+    borderWidth: 2, 
+    borderColor: Colors.emergencyRed
+  }
+});

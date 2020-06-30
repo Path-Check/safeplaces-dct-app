@@ -148,6 +148,7 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions(),
                 headerLeft: () => null,
+                headerRight: () => null,
               }}
             />
             <Stack.Screen

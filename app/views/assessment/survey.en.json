@@ -1,24 +1,5 @@
 {
   "questions": [
-    // {
-    //   "conditions": [
-    //     {
-    //       "jump_to_key": "end_emergency",
-    //       "response": "0"
-    //     },
-    //     {
-    //       "jump_to_key": "2",
-    //       "response": "1"
-    //     }
-    //   ],
-    //   "option_key": "option_1",
-    //   "question_key": "1",
-    //   "question_text": "Is this an emergency?",
-    //   "question_description": "Stop and call emergency services if you are experiencing:\n • Severe, constant chest pain or pressure \n• Extreme difficulty breathing \n• Severe, constant lightheadedness \n• Serious disorientation or unresponsiveness",
-    //   "question_type": "TEXT",
-    //   "required": false,
-    //   "screen_type": "Radio"
-    // },
     {
       "conditions": [
         {
@@ -192,19 +173,6 @@
     }
   ],
   "options": [
-    // {
-    //   "key": "option_1",
-    //   "values": [
-    //     {
-    //       "label": "I am experiencing at least one of these symptoms",
-    //       "value": "0"
-    //     },
-    //     {
-    //       "label": "I am not experiencing any of these symptoms",
-    //       "value": "1"
-    //     }
-    //   ]
-    // },
     {
       "key": "option_2",
       "values": [

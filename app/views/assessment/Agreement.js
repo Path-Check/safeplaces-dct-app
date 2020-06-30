@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { InfoText } from './components/InfoText';
 
 /**
  * @typedef { import(".").SurveyQuestion } SurveyQuestion
@@ -26,17 +27,16 @@ export const Agreement = ({ navigation }) => {
         navigation.push('EmergencyAssessment');
       }}
       backgroundColor={Colors.invertedQuaternaryBackground}
-      titleStyle='headline3'
-      descriptionStyle='body4'
-      //backgroundImage={Images.EmptyPathBackground}
       ctaBackgroundColor={Colors.white}
-      ctaTextColor={Colors.violetTextLight}
+      ctaTextColor={Colors.black}
       icon={Icons.SelfAssessment}
       ctaTitle={t('assessment.agreement_cta')}
-      title={t('assessment.agreement_title')}
-      description={t('assessment.agreement_description')}
-      footer={<AgreementFooter  description={t('assessment.agreement_footer')} />}
-    />
+      footer={<AgreementFooter  description={t('assessment.agreement_footer')} />}>
+        <InfoText useTitleStyle='headline3'
+          useDescriptionStyle='body4'
+          title={t('assessment.agreement_title')}
+          description={t('assessment.agreement_description')} />
+    </Info>      
   );
 };
 

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { Icons, Images } from '../../../assets';
-import { Typography } from '../../../components/Typography';
 import { MetaContext } from '../Context';
 import { Info } from '../Info';
+import { InfoText } from '../components/InfoText';
 
 import { Colors } from '../../../styles';
 
@@ -20,13 +20,10 @@ export const Isolate = ({ navigation }) => {
       backgroundColor={Colors.primaryBackgroundFaintShade}
       backgroundImage={Images.IsolatePathBackground}
       icon={Icons.Isolate}
-      ctaTitle={t('assessment.isolate_cta')}
-      description={
-        <Trans t={t} i18nKey='assessment.isolate_description'>
-          <Typography />
-        </Trans>
-      }
-      title={t('assessment.isolate_title')}
-    />
+      ctaTitle={t('assessment.isolate_cta')}>
+      <InfoText useTitleStyle='headline2'
+        title={t('assessment.isolate_title')}
+        description={t('assessment.isolate_description')} />
+  </Info>
   );
 };

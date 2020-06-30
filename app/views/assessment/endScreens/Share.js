@@ -1,9 +1,9 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { Icons } from '../../../assets';
-import { Typography } from '../../../components/Typography';
 import { Info } from '../Info';
+import { InfoText } from '../components/InfoText';
 
 import { Colors } from '../../../styles';
 
@@ -21,14 +21,12 @@ export const Share = ({ navigation }) => {
       titleStyle='headline3'
       descriptionStyle='body4'
       ctaBackgroundColor={Colors.white}
-      ctaTextColor={Colors.violetTextLight}
-      ctaTitle={t('assessment.share_cta')}
-      description={
-        <Trans t={t} i18nKey='assessment.share_description'>
-          <Typography />
-        </Trans>
-      }
-      title={t('assessment.share_title')}
-    />
+      ctaTextColor={Colors.black}
+      ctaTitle={t('assessment.share_cta')}>
+        <InfoText useTitleStyle='headline5'
+          useDescriptionStyle='body4'
+          title={t('assessment.share_title')}
+          description={t('assessment.share_description')} />
+    </Info>
   );
 };

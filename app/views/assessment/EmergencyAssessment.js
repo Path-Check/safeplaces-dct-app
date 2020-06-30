@@ -8,7 +8,6 @@ import { Typography } from '../../components/Typography';
  * @typedef { import(".").SurveyQuestion } SurveyQuestion
  * @typedef { import(".").SurveyOption } SurveyOption
  */
-import i18n from '../../locales/languages';
 import {
   OPTION_VALUE_AGREE,
   OPTION_VALUE_DISAGREE,
@@ -20,6 +19,7 @@ import { useSurvey } from '../../helpers/CustomHooks';
 import { Info } from './Info';
 // import { Typography } from '../../components/Typography'; 
 import { Colors } from '../../styles';
+import { InfoText } from './components/InfoText';
 
 /** @type {React.FunctionComponent<{}>} */
 export const EmergencyAssessment = ({ navigation }) => {
@@ -41,35 +41,22 @@ export const EmergencyAssessment = ({ navigation }) => {
 
   return (
     <Info
-      ctaAction={() => {
-        navigation.push('AssessmentQuestion', {
-          question: agreeQuestion,
-          option: agreeOption,
-        });
-      }}
       backgroundColor={Colors.surveyPrimaryBackground}
-      title={t('assessment.agree_question_text')}
-      description={t('assessment.agree_question_description')}
       footer={
         <ChoiceButtons agreePress={handleAgreePress}
-          agreeTitle={
-            <Trans t={t} i18nKey={'assessment.agree_option_agree'}>
-              <Typography />
-              <Typography style={{fontWeight: 'bold'}} />
-            </Trans>
-          }
+          agreeTitle={<TranslationButtonText translator={t} text={'assessment.agree_option_agree'} />}
           disagreePress={handleDisagreePress}
-          disagreeTitle={
-            <Trans t={t} i18nKey={'assessment.agree_option_disagree'}>
-              <Typography />
-              <Typography style={{fontWeight: 'bold'}} />
-            </Trans>
-          } />
-      }
-    />
+          disagreeTitle={<TranslationButtonText translator={t} text={'assessment.agree_option_disagree'} />}
+        />
+      }>
+        <InfoText useTitleStyle='headline2'
+          title={t('assessment.agree_question_text')}
+          description={t('assessment.agree_question_description')} />
+    </Info>    
   );
 };
 
+//TODO: we should map these for like multi choices and stuff
 const ChoiceButtons = ({agreeTitle, disagreeTitle, agreePress, disagreePress}) => {
   return (
     <View>
@@ -91,12 +78,19 @@ const ChoiceButtons = ({agreeTitle, disagreeTitle, agreePress, disagreePress}) =
   )
 }
 
+const TranslationButtonText = ({ translator, text }) => (
+  <Trans t={translator} i18nKey={text}>
+    <Typography />
+    <Typography style={{fontWeight: 'bold'}} />
+  </Trans>
+)
+
 /** @type {SurveyQuestion} */
 const agreeQuestion = {
   option_key: QUESTION_KEY_AGREE,
   //question_description: 'How old are you',
   question_key: QUESTION_KEY_AGREE,
-  question_text: 'How are you?',
+  question_text: 'Placeholder question',
   question_type: 'RADIO',
   required: true,
   screen_type: SCREEN_TYPE_RADIO,
@@ -107,11 +101,11 @@ const agreeOption = {
   key: QUESTION_KEY_AGREE,
   values: [
     {
-      label: 'Excellent!',
+      label: 'Proceed',
       value: OPTION_VALUE_AGREE,
     },
     {
-      label: 'Pretty good!',
+      label: 'Stop here',
       value: OPTION_VALUE_DISAGREE,
     },
   ],

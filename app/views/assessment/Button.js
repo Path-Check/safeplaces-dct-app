@@ -30,8 +30,6 @@ export const Button = ({ textColor, backgroundColor, onPress, title, buttonStyle
     else return Colors.white  
   }
 
-  //const borderStyle = border ? {borderWidth: 1, borderColor: "#20232a"} : {}
-
   return (
     <TouchableOpacity
       onPress={onPress}

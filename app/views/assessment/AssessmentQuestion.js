@@ -33,6 +33,8 @@ export const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
     answers[question.id] || [],
   );
 
+  console.log('questions: ', question, option)
+
   // Allow line breaks in the description
   const description = useMemo(() => {
     if (!question.question_description) return null;
