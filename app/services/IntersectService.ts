@@ -21,7 +21,7 @@ class IntersectService {
     }
     this.isServiceRunning = true;
 
-    intersect(healthcareAuthorities, bypassTimer).then((result) => {
+    intersect(healthcareAuthorities, bypassTimer).then((exposureInfo) => {
       this.isServiceRunning = false;
 
       if (this.nextJob) {
@@ -29,7 +29,7 @@ class IntersectService {
         this.nextJob = null;
         this.checkIntersect(job, bypassTimer);
       } else {
-        emitGPSExposureInfo(result);
+        emitGPSExposureInfo(exposureInfo);
       }
     });
 

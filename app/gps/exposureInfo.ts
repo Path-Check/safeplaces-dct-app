@@ -10,7 +10,7 @@ interface Subscriber {
 }
 
 interface GPSExposureInfoEventEmitter {
-  subscribers: Subscriber[];
+  subscriber: Subscriber | null;
   emit: (event: Event, data: ExposureInfo) => void;
   addListener: (
     event: Event,
@@ -21,23 +21,21 @@ interface GPSExposureInfoEventEmitter {
 }
 
 const ExposureEvents: GPSExposureInfoEventEmitter = {
-  subscribers: [],
+  subscriber: null,
   emit: function (event: Event, data: ExposureInfo) {
-    this.subscribers.forEach((subscriber: Subscriber) => {
-      if (subscriber.eventName === event) {
-        subscriber.callback(data);
-      }
-    });
+    if (this.subscriber) {
+      this.subscriber.callback(data);
+    }
   },
   addListener: function (event: Event, callback: HandleOnExposureInfoUpdated) {
     const nextSubscriber: Subscriber = {
       eventName: event,
       callback,
     };
-    this.subscribers.push(nextSubscriber);
+    this.subscriber = nextSubscriber;
     return {
       remove: () => {
-        this.subscribers = [];
+        this.subscriber = null;
       },
     };
   },

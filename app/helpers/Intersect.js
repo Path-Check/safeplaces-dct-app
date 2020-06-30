@@ -323,12 +323,12 @@ export function fillDayBins(
 }
 
 const transformDayBinsToExposureInfo = (dayBins) => {
-  return dayBins.reduce((ei, duration, index) => {
+  return dayBins.reduce((exposureInfo, duration, index) => {
     const startOfDayAgo = dayjs()
       .startOf('day')
       .subtract(index, 'day')
       .valueOf();
-    ei[startOfDayAgo] =
+    exposureInfo[startOfDayAgo] =
       duration > 0
         ? {
             kind: 'Possible',
@@ -342,7 +342,7 @@ const transformDayBinsToExposureInfo = (dayBins) => {
             date: startOfDayAgo,
           };
 
-    return ei;
+    return exposureInfo;
   }, {});
 };
 
