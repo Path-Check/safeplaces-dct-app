@@ -286,7 +286,7 @@ class GPSSecureStorageTest: XCTestCase {
     let oldLocation = createTestLocation(time: oldLocationTimesteamp, latitude: 39.09772, longitude: -94.582959)
     let newLocation = TestMAURLocation(latitude: 39.097769, longitude: -94.582937, date: newLocationDate)
     
-    let assumedLocations = secureStorage!.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
+    let assumedLocations = GPSSecureStorage.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
     
     XCTAssertEqual(2, assumedLocations.count)
     XCTAssertEqual(newLocationTimestamp - (GPSSecureStorage.LOCATION_INTERVAL * 2), assumedLocations[1].time)
@@ -304,7 +304,7 @@ class GPSSecureStorageTest: XCTestCase {
     let oldLocation = createTestLocation(time: Int(oldLocationDate.timeIntervalSince1970), latitude: 10.0, longitude: 10.0)
     let newLocation = TestMAURLocation(latitude: 10.0, longitude: 10.0, date: newLocationDate)
     
-    let assumedLocations = secureStorage!.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
+    let assumedLocations = GPSSecureStorage.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
     
     XCTAssertEqual((GPSSecureStorage.MAX_BACKFILL_TIME / GPSSecureStorage.LOCATION_INTERVAL) - 1, assumedLocations.count)
   }
@@ -315,7 +315,7 @@ class GPSSecureStorageTest: XCTestCase {
     let oldLocation = createTestLocation(time: Int(location1Date.timeIntervalSince1970), latitude: 10.0, longitude: 10.0)
     let newLocation = TestMAURLocation(latitude: 10.0, longitude: 10.0, date: Date())
     
-    let assumedLocations = secureStorage!.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
+    let assumedLocations = GPSSecureStorage.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
     
     XCTAssertEqual(0, assumedLocations.count)
   }
@@ -326,7 +326,7 @@ class GPSSecureStorageTest: XCTestCase {
     let oldLocation = createTestLocation(time: Int(location1Date.timeIntervalSince1970), latitude: 10.0, longitude: 10.0)
     let newLocation = TestMAURLocation(latitude: -10.0, longitude: -10.0, date: Date())
     
-    let assumedLocations = secureStorage!.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
+    let assumedLocations = GPSSecureStorage.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
     
     XCTAssertEqual(0, assumedLocations.count)
   }
