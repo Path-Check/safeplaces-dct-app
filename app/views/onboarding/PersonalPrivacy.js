@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useStatusBarEffect } from '../../navigation';
 import { useStrategyContent } from '../../TracingStrategyContext';
-import Template from './Template';
+import OnboardingTemplate from './OnboardingTemplate';
 
 const PersonalPrivacy = (props) => {
   useStatusBarEffect('dark-content');
@@ -11,7 +11,7 @@ const PersonalPrivacy = (props) => {
   const { StrategyAssets, StrategyCopy } = useStrategyContent();
 
   return (
-    <Template
+    <OnboardingTemplate
       background={StrategyAssets.personalPrivacyBackground}
       iconXml={StrategyAssets.personalPrivacyIcon}
       title={StrategyCopy.personalPrivacyHeader}

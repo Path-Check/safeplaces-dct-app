@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { isGPS } from '../../COVIDSafePathsConfig';
 
 import { useStrategyContent } from '../../TracingStrategyContext';
-import Template from './Template';
+import OnboardingTemplate from './OnboardingTemplate';
 
 const NotificationDetails = (props) => {
   const { t } = useTranslation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
   return (
-    <Template
+    <OnboardingTemplate
       theme={'light'}
       invertIcon={!isGPS}
       background={StrategyAssets.notificationDetailsBackground}

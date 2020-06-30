@@ -21,7 +21,7 @@ import {
   Typography as TypographyStyles,
 } from '../../styles';
 
-type TemplateProps = {
+type OnboardingTemplateProps = {
   iconXml: string;
   title: string;
   body: string;
@@ -31,7 +31,7 @@ type TemplateProps = {
   invertIcon?: boolean;
 };
 
-const Template = ({
+const OnboardingTemplate = ({
   background,
   iconXml,
   title,
@@ -39,7 +39,7 @@ const Template = ({
   buttonLabel,
   buttonOnPress,
   invertIcon,
-}: TemplateProps): JSX.Element => {
+}: OnboardingTemplateProps): JSX.Element => {
   useStatusBarEffect('dark-content');
 
   const iconStyle = invertIcon ? styles.goldIcon : styles.blueIcon;
@@ -109,4 +109,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Template;
+export default OnboardingTemplate;

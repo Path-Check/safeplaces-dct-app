@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Template from './Template';
+import OnboardingTemplate from './OnboardingTemplate';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
 import { isPlatformiOS } from '../../Util';
@@ -25,7 +25,7 @@ const ShareDiagnosis = (props) => {
   const handleOnPressNext = isGPS ? gpsNext : btNext;
 
   return (
-    <Template
+    <OnboardingTemplate
       theme={'light'}
       invertIcon={isGPS}
       background={StrategyAssets.shareDiagnosisBackground}
