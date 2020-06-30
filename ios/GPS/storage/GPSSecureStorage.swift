@@ -12,6 +12,35 @@ final class GPSSecureStorage: SafePathsSecureStorage {
 
   private let queue = DispatchQueue(label: "GPSSecureStorage")
 
+  static func createAssumedLocations(previousLocation: Location, newLocation: MAURLocation) -> [Location] {
+    var assumedLocations = [Location]()
+
+    let newTime = Int(newLocation.time.timeIntervalSince1970)
+    let isNearbyPrevious = Location.areLocationsNearby(
+      lat1: previousLocation.latitude,
+      lon1: previousLocation.longitude,
+      lat2: newLocation.latitude.doubleValue,
+      lon2: newLocation.longitude.doubleValue)
+    let isTimeWithinThreshold = (newTime - previousLocation.time <= MAX_BACKFILL_TIME)
+
+    if isNearbyPrevious && isTimeWithinThreshold {
+      let latestTime = newTime - LOCATION_INTERVAL
+      let earliestTime = max(newTime - MAX_BACKFILL_TIME, previousLocation.time + LOCATION_INTERVAL)
+
+      assumedLocations.append(contentsOf: stride(
+        from: latestTime, through: earliestTime, by: -LOCATION_INTERVAL
+      ).map {
+        Location.fromAssumed(
+          time: $0,
+          latitude: previousLocation.latitude,
+          longitude: previousLocation.longitude
+        )
+      })
+    }
+
+    return assumedLocations
+  }
+
   @objc func saveDeviceLocation(_ backgroundLocation: MAURLocation, completion: (() -> Void)? = nil) {
     queue.async {
       autoreleasepool { [weak self] in
@@ -43,36 +72,6 @@ final class GPSSecureStorage: SafePathsSecureStorage {
         self?.trimLocationsImmediately(resolve: resolve, reject: reject)
       }
     }
-  }
-
-  func createAssumedLocations(previousLocation: Location?, newLocation: MAURLocation) -> [Location] {
-    var assumedLocationsToInsert: [Location] = []
-
-    guard let previousLocation = previousLocation else {
-      return assumedLocationsToInsert
-    }
-
-    let newLocationTime = Int(newLocation.time.timeIntervalSince1970)
-    let isNearbyPrevious = Location.areLocationsNearby(
-      lat1: previousLocation.latitude,
-      lon1: previousLocation.longitude,
-      lat2: newLocation.latitude.doubleValue,
-      lon2: newLocation.longitude.doubleValue)
-    let isTimeWithinThreshold = newLocationTime - previousLocation.time <= GPSSecureStorage.MAX_BACKFILL_TIME
-
-    if isNearbyPrevious && isTimeWithinThreshold {
-      let latestDesiredBackfill = newLocationTime - GPSSecureStorage.LOCATION_INTERVAL
-      let earliestDesiredBackfill = max(newLocationTime - GPSSecureStorage.MAX_BACKFILL_TIME, previousLocation.time + GPSSecureStorage.LOCATION_INTERVAL)
-      for time in stride(from: latestDesiredBackfill, through: earliestDesiredBackfill, by: -GPSSecureStorage.LOCATION_INTERVAL) {
-        assumedLocationsToInsert.append(Location.fromAssumed(
-          time: time,
-          latitude: previousLocation.latitude,
-          longitude: previousLocation.longitude
-        ))
-      }
-    }
-
-    return assumedLocationsToInsert
   }
 
   override func getRealmConfig() -> Realm.Configuration? {
@@ -140,10 +139,7 @@ private extension GPSSecureStorage {
     var newLocations = [Location]()
 
     // Check if a previous location has been recorded
-    if let previousLocation = realm.objects(Location.self)
-      .filter("\(Location.Key.source.rawValue)=\(Location.Source.device.rawValue)")
-      .sorted(byKeyPath: Location.Key.time.rawValue, ascending: false)
-      .first {
+    if let previousLocation = realm.previousLocation {
 
       // If within the minimum time interval, discard the new location
       if currentTime - previousLocation.time < GPSSecureStorage.MINIMUM_TIME_INTERVAL {
@@ -153,7 +149,10 @@ private extension GPSSecureStorage {
 
       // Backfill locations if outside the desired interval
       if currentTime - previousLocation.time > GPSSecureStorage.LOCATION_INTERVAL {
-        newLocations = createAssumedLocations(previousLocation: previousLocation, newLocation: backgroundLocation)
+        newLocations = GPSSecureStorage.createAssumedLocations(
+          previousLocation: previousLocation,
+          newLocation: backgroundLocation
+        )
       }
     }
 
@@ -200,9 +199,12 @@ private extension GPSSecureStorage {
       resolve(false)
       return
     }
+
     realm.delete(
       locations: realm.objects(Location.self).filter("\(Location.Key.time.rawValue)<\(cutoffTime)"),
-      resolve: resolve,
+      resolve: { _ in
+        realm.backfillLocations(resolve: resolve, reject: reject)
+      },
       reject: reject
     )
   }
@@ -211,6 +213,43 @@ private extension GPSSecureStorage {
 
 private extension Realm {
 
+  var previousLocation: Location? {
+    return objects(Location.self)
+    .filter("\(Location.Key.source.rawValue)=\(Location.Source.device.rawValue)")
+    .sorted(byKeyPath: Location.Key.time.rawValue, ascending: false)
+    .first
+  }
+
+  /// Backfills locations if necessary. `resolve` and `reject` will be invoked on the same thread before returning.
+  func backfillLocations(resolve: RCTPromiseResolveBlock? = nil, reject: RCTPromiseRejectBlock? = nil) {
+    guard let previousLocation = previousLocation else {
+      resolve?(true)
+      return
+    }
+
+    let now = Date()
+
+    guard now.timeIntervalSince(previousLocation.date) > 2 * TimeInterval(GPSSecureStorage.LOCATION_INTERVAL) else {
+      resolve?(true)
+      return
+    }
+
+    let currentLocation = MAURLocation(location: previousLocation)
+    currentLocation.time = now
+
+    let assumedLocations = GPSSecureStorage.createAssumedLocations(
+      previousLocation: previousLocation,
+      newLocation: currentLocation
+    )
+
+    if assumedLocations.count > 0 {
+      Log.storage.debug("Backfilling \(assumedLocations.count) locations")
+    }
+
+    write(locations: assumedLocations, resolve: resolve, reject: reject)
+  }
+
+  /// Inserts the given locations. `resolve` and `reject` will be invoked on the same thread before returning.
   func write<T: Collection>(locations: T, resolve: RCTPromiseResolveBlock? = nil, reject: RCTPromiseRejectBlock? = nil) where T.Element == Location {
     guard !locations.isEmpty else {
       resolve?(true)
@@ -220,7 +259,7 @@ private extension Realm {
       try write {
         add(locations, update: .modified)
 
-        Log.storage.error("Wrote \(locations.count) locations to Realm")
+        Log.storage.debug("Wrote \(locations.count) locations to Realm")
         resolve?(true)
       }
     }
@@ -230,6 +269,7 @@ private extension Realm {
     }
   }
 
+  /// Deletes the given locations. `resolve` and `reject` will be invoked on the same thread before returning.
   func delete<T: Collection>(locations: T, resolve: RCTPromiseResolveBlock? = nil, reject: RCTPromiseRejectBlock? = nil) where T.Element == Location {
     guard !locations.isEmpty else {
       resolve?(true)
@@ -239,7 +279,7 @@ private extension Realm {
       try write {
         delete(locations)
 
-        Log.storage.error("Deleted \(locations.count) locations from Realm")
+        Log.storage.debug("Deleted \(locations.count) locations from Realm")
         resolve?(true)
       }
     }
