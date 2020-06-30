@@ -40,6 +40,10 @@ class Location: Object {
   let accuracy = RealmOptional<Float>()
   let altitudeAccuracy = RealmOptional<Float>()
   let bearing = RealmOptional<Float>()
+
+  var date: Date {
+    return Date(timeIntervalSince1970: TimeInterval(time))
+  }
   
   override static func primaryKey() -> String? {
     return Key.time.rawValue
