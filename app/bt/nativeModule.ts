@@ -6,6 +6,7 @@ import {
 
 // TODO All methods that call in to native.
 import { DeviceStatus } from './ExposureNotificationContext';
+import { ENPermissionStatus } from './PermissionsContext';
 import { ExposureInfo } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureInfo } from './exposureNotifications';
@@ -26,7 +27,7 @@ export const subscribeToExposureEvents = (
 };
 
 export const subscribeToEnabledStatusEvents = (
-  cb: (status: DeviceStatus) => void,
+  cb: (status: ENPermissionStatus) => void,
 ): EventSubscription => {
   const ExposureEvents = new NativeEventEmitter(
     NativeModules.ExposureEventEmitter,
@@ -40,10 +41,10 @@ export const subscribeToEnabledStatusEvents = (
   );
 };
 
-const toStatus = (data: string[]): DeviceStatus => {
+const toStatus = (data: string[]): ENPermissionStatus => {
   const networkAuthorization = data[0];
   const networkEnablement = data[1];
-  const result: DeviceStatus = ['UNAUTHORIZED', 'DISABLED'];
+  const result: ENPermissionStatus = ['UNAUTHORIZED', 'DISABLED'];
   if (networkAuthorization === 'AUTHORIZED') {
     result[0] = 'AUTHORIZED';
   }
@@ -53,11 +54,31 @@ const toStatus = (data: string[]): DeviceStatus => {
   return result;
 };
 
-const exposureNotificationModule = NativeModules.PTCExposureManagerModule;
+const permissionsModule = NativeModules.ENPermissionsModule;
+const keySubmissionModule = NativeModules.KeySubmissionModule;
 
+// Permissions Module
 export const requestAuthorization = async (
   cb: (data: string) => void,
 ): Promise<void> => {
+  // TODO I'll have to name my module exactly this "requestExposureNotificationAuthorization(cb)"
+  permissionsModule.requestExposureNotificationAuthorization(cb);
+};
+
+export const getCurrentENPermissionsStatus = async (
+  cb: (status: ENPermissionStatus) => void,
+): Promise<void> => {
+  permissionsModule.getCurrentENPermissionsStatus((data: string[]) => {
+    const status = toStatus(data);
+    cb(status);
+  });
+};
+
+// Key Submission Module
+export const submitDiagnosisKeys = async (
+  cb: (errorMessage: string, successMessage: string) => void,
+): Promise<void> => {
+  keySubmissionModule.postDiagnosisKeys(cb);
   exposureNotificationModule.requestExposureNotificationAuthorization(cb);
   // TODO I'll have to name my module exactly this "requestExposureNotificationAuthorization(cb)"
 };

@@ -36,14 +36,14 @@ const Calendar = ({
     return (
       <View style={styles.calendarRow}>
         {week.map((datum: ExposureDatum) => {
+          const isSelected = datum.date === selectedDatum?.date;
+
           return (
             <TouchableOpacity
               key={`calendar-day-${datum.date}`}
               onPress={() => onSelectDate(datum)}>
               <ExposureDatumIndicator
-                isSelected={
-                  selectedDatum ? datum.date === selectedDatum.date : false
-                }
+                isSelected={isSelected}
                 exposureDatum={datum}
               />
             </TouchableOpacity>
@@ -60,7 +60,7 @@ const Calendar = ({
         {labels.map((label: string, idx: number) => {
           return (
             <View style={styles.labelStyle} key={`calendar-label-${idx}`}>
-              <Text>{label}</Text>
+              <Text style={styles.labelTextStyle}>{label}</Text>
             </View>
           );
         })}
@@ -93,12 +93,16 @@ const styles = StyleSheet.create({
   },
   monthText: {
     ...TypographyStyles.label,
+    ...TypographyStyles.bold,
     color: Colors.secondaryHeaderText,
   },
-  calendarContainer: { flex: 1, paddingVertical: Spacing.small },
+  calendarContainer: {
+    flex: 1,
+    paddingVertical: Spacing.small,
+  },
   calendarRow: {
     flex: 1,
-    paddingVertical: Spacing.xSmall,
+    paddingVertical: Spacing.xxSmall,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -106,7 +110,10 @@ const styles = StyleSheet.create({
   labelStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 36,
+    width: Spacing.xHuge,
+  },
+  labelTextStyle: {
+    ...TypographyStyles.base,
   },
 });
 

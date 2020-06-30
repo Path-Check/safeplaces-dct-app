@@ -14,7 +14,7 @@ enum IndexFileRequest: APIRequest {
   }
 
   var path: String {
-    "spl-be/index.txt"
+    "spl/index.txt"
   }
 
 }

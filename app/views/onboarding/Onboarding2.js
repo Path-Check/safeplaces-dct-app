@@ -1,29 +1,23 @@
 import React from 'react';
-import { useAssets } from '../../TracingStrategyAssets';
 import { useTranslation } from 'react-i18next';
+
 import { useStatusBarEffect } from '../../navigation';
+import { useStrategyContent } from '../../TracingStrategyContext';
 import OnboardingTemplate from './OnboardingTemplate';
 
 const Onboarding2 = (props) => {
-  const {
-    onboarding2Background,
-    onboarding2Header,
-    onboarding2Subheader,
-    onboarding2Icon,
-  } = useAssets();
-
-  const { t } = useTranslation();
   useStatusBarEffect('dark-content');
+  const { t } = useTranslation();
+  const { StrategyAssets, StrategyCopy } = useStrategyContent();
 
   return (
     <OnboardingTemplate
-      theme={'light'}
-      background={onboarding2Background}
-      iconXml={onboarding2Icon}
-      title={onboarding2Header}
-      body={onboarding2Subheader}
-      primaryButtonLabel={t('label.launch_next')}
-      primaryButtonOnPress={() => props.navigation.replace('Onboarding3')}
+      background={StrategyAssets.onboarding2Background}
+      iconXml={StrategyAssets.onboarding2Icon}
+      title={StrategyCopy.onboarding2Header}
+      body={StrategyCopy.onboarding2Subheader}
+      buttonLabel={t('label.launch_next')}
+      buttonOnPress={() => props.navigation.replace('Onboarding3')}
     />
   );
 };

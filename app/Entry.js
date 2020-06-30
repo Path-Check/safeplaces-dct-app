@@ -30,6 +30,7 @@ import {
   ExportSelectHA,
   ExportLocally,
 } from './views/Export';
+import { PublishConsent } from './bt/PositiveDiagnosis/PublishConsent';
 import ExposureHistoryScreen from './views/ExposureHistory';
 import Assessment from './views/assessment';
 import NextSteps from './views/ExposureHistory/NextSteps';
@@ -52,7 +53,7 @@ import ExposureHistoryContext from './ExposureHistoryContext';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import { isGPS } from './COVIDSafePathsConfig';
 import { isPlatformAndroid } from './Util';
-import TracingStrategyContext from './TracingStrategyContext';
+import { useTracingStrategyContext } from './TracingStrategyContext';
 
 import * as Icons from './assets/svgs/TabBarNav';
 import { Layout, Affordances, Spacing, Colors } from './styles';
@@ -86,6 +87,7 @@ const ExportStack = () => (
       name={Screens.ExportLocationConsent}
       component={ExportLocationConsent}
     />
+    <Stack.Screen name={Screens.PublishConsent} component={PublishConsent} />
     <Stack.Screen
       name={Screens.ExportPublishConsent}
       component={ExportPublishConsent}
@@ -155,7 +157,7 @@ const MoreTabStack = () => (
 const MainAppTabs = () => {
   const { t } = useTranslation();
   const { userHasNewExposure } = useContext(ExposureHistoryContext);
-  const { homeScreenComponent } = useContext(TracingStrategyContext);
+  const { homeScreenComponent } = useTracingStrategyContext();
 
   const applyBadge = (icon) => {
     return (

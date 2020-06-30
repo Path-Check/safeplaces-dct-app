@@ -14,12 +14,12 @@ import {
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
+import { SvgXml } from 'react-native-svg';
 
-import { Images, Icons } from '../../assets';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Typography } from '../../components/Typography';
 
-import { SvgXml } from 'react-native-svg';
+import { Images, Icons } from '../../assets';
 import { Colors } from '../../styles';
 
 // For fixing image width issues

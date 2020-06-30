@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { StyleSheet, ImageBackground, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import ExposureNotificationsContext from '../ExposureNotificationContext';
+import PermissionsContext from '../PermissionsContext';
 import { useStatusBarEffect } from '../../navigation';
 import Home from './Home';
 
@@ -11,9 +11,7 @@ import { Spacing, Layout } from '../../styles';
 
 const HomeScreen = (): JSX.Element => {
   useStatusBarEffect('light-content');
-  const { deviceStatus, requestENAuthorization } = useContext(
-    ExposureNotificationsContext,
-  );
+  const { exposureNotifications } = useContext(PermissionsContext);
 
   return (
     <ImageBackground
@@ -28,8 +26,8 @@ const HomeScreen = (): JSX.Element => {
       </View>
       <View style={styles.homeContainer}>
         <Home
-          deviceStatus={deviceStatus}
-          requestPermission={requestENAuthorization}
+          enPermissionStatus={exposureNotifications.status}
+          requestPermission={exposureNotifications.request}
         />
       </View>
     </ImageBackground>

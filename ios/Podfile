@@ -1,9 +1,16 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
+project 'COVIDSafePaths.xcodeproj',
+'Debug-BT' => :debug,
+'Debug-GPS' => :debug,
+'Release-BT' => :release,
+'Release-GPS' => :release,
+'Staging-BT' => :release,
+'Staging-GPS' => :release
+
 def shared_pods
   # Pods for COVIDSafePaths
-  project 'COVIDSafePaths.xcodeproj'
 
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
@@ -58,7 +65,7 @@ def bt_pods
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
   pod 'Alamofire', '~> 4.9.1'
-  pod 'SSZipArchive'
+  pod 'ZIPFoundation'
 end
 
 target 'GPS' do

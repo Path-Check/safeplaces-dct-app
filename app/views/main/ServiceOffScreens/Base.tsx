@@ -6,22 +6,22 @@ import {
   Text,
   NativeSyntheticEvent,
   NativeTouchEvent,
+  TouchableOpacity,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { Icons, Images } from '../../../assets';
 import { Typography } from '../../../components/Typography';
-import { Button } from '../../../components/Button';
 import { Theme } from '../../../constants/themes';
-import { styles } from '../style';
-import { Asset } from '../../../TracingStrategyAssets';
 import { useStatusBarEffect } from '../../../navigation';
+import { styles } from '../style';
+
+import { Icons, Images } from '../../../assets';
 
 export interface ServiceOffScreenProps {
-  header: Asset;
-  subheader: Asset;
+  header: string;
+  subheader: string;
   button?: {
-    label: Asset;
+    label: string;
     onPress: (ev: NativeSyntheticEvent<NativeTouchEvent>) => void;
   };
 }
@@ -33,7 +33,7 @@ export const ServiceOffScreen = ({
 }: ServiceOffScreenProps): JSX.Element => {
   const size = Dimensions.get('window').height;
 
-  const subheaderText: string = subheader as string;
+  const subheaderText = subheader;
   useStatusBarEffect('light-content');
 
   return (
@@ -56,11 +56,11 @@ export const ServiceOffScreen = ({
           <Text style={styles.mainTextBelow}>{header}</Text>
           <Typography style={styles.subheaderText}>{subheaderText}</Typography>
           {button && (
-            <Button
-              label={button.label}
+            <TouchableOpacity
               onPress={button.onPress}
-              style={styles.buttonContainer}
-            />
+              style={styles.buttonContainer}>
+              <Typography>{button.label}</Typography>
+            </TouchableOpacity>
           )}
         </View>
       </View>

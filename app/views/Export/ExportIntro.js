@@ -4,14 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
-import { useAssets } from '../../TracingStrategyAssets';
 import ExportTemplate from './ExportTemplate';
-import { Icons } from '../../assets';
 import { Screens } from '../../navigation';
+import { useStrategyContent } from '../../TracingStrategyContext';
+
+import { Icons } from '../../assets';
 
 export const ExportIntro = ({ navigation }) => {
   const { t } = useTranslation();
-  const { exportStartTitle, exportStartBody } = useAssets();
+  const { StrategyCopy } = useStrategyContent();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,8 +31,8 @@ export const ExportIntro = ({ navigation }) => {
       onNext={onNext}
       onClose={onClose}
       icon={Icons.Heart}
-      headline={exportStartTitle}
-      body={exportStartBody}
+      headline={StrategyCopy.exportStartTitle}
+      body={StrategyCopy.exportStartBody}
       nextButtonLabel={t('common.start')}
       ignoreModalStyling // this is in a tab
     />

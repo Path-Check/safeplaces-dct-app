@@ -92,6 +92,22 @@
     "start_title": "Pataje lis lokalizasyon ou anoniman avèk kominote w si ou teste pozitif pou COVID-19.",
     "start_title_bluetooth": "Ede evite pwopagasyon viris la epi pwoteje lòt moun nan kominote w la si w dyagnostike oswa teste pozitif pou COVID-19."
   },
+  "exposure_history": {
+    "last_days": "21 jou pase yo",
+    "legend_button": "LEJAND",
+    "more_info_bt": {
+      "how_does_this_work": "Kouman travay sa a fèt?",
+      "how_does_this_work_para": "Lè Notifikasyon Ekspozisyon yo aktive, telefòn ou itilize Bluetooth pou echanje e anrejistre nimewo o aza (yo rele sa idantifikasyon o aza) apati nenpot ki telefòn li rankontre ki gen Notifikasyon Ekspozisyon aktive tou. Idantifikasyon o aza pa pral idantifye ou pèsonèlman kote lòt itilizatè yo ni fè echanj plizyè fwa nan yon jounen pou pwoteje vi prive ou. Dat ak dire rankont lan anrejistre daprè estimasyon distans de telefòn yo te ye yonn pa rapò ak lòt. Lè yon moun rapòte yon dyagnostik pozitif, dènye idantifikasyon o aza telefòn nan siyale lòt moun yo pa notifikasyon anonim. Pa gen lokalizasyon oswa enfòmasyon pèsonèl ki pataje.",
+      "why_did_i_get_an_en": "Poukisa mwen te resevwa yon notifikasyon ekspozisyon?",
+      "why_did_i_get_an_en_para": "Ou pral resevwa yon Notifikasyon ekspoze le yon moun ou janbe chemen ak pita recieves yon konfime, dyagnostik pozitif oswa tes pou COVID-19 e chwazi notifye lot moun"
+    },
+    "more_info_gps": {
+      "how_does_this_work": "Kouman travay sa a fèt?",
+      "how_does_this_work_para": "Chak fwa aksè lokalizasyon ou aktive pou aplikasyon PathCheck ou a, aplikasyon an ap anrejistre enfòmasyon sa yo sou chak kote ou pran telefòn ou: kowòdone GPS yo, dat, ak lè telefòn ou te nan ki kote sa. \n\nEnfòmasyon sa a estoke nan yon lis kode nan telefòn ou pou 14 jou. Si youn oswa plizyè Depatman Sante lokal oswa rejyonal te kolabore ak PathCheck, epi ou te eli pou resevwa notifikasyon ekspozisyon nan men yo nan aplikasyon PathCheck ou, yo ka voye koleksyon kode aplikasyon ou a ki se  kowòdone GPS anonim, dat, ak lè li te kolekte yo a pati manm kominote yo ki pral resevwa yon dyagnostik pozitif aprè e ki ap chwazi pataje yo. \n\nTelefòn ou Lè sa a, lokalman (nan aplikasyon ou a) konpare lis lokalizasyon kode ou a ak done ki pataje pa Depatman sante lokal ou te chwazi pou enfòme w sou ekspozisyon posib yo.",
+      "why_did_i_get_an_en": "Poukisa mwen te resevwa yon notifikasyon ekspozisyon?",
+      "why_did_i_get_an_en_para": "Ou ap resevwa notifikasyon ekspozisyon lè aplikasyon PathCheck ou estime ke telefòn ou te, pandan yon peryòd pwolonje, a 100 pye(30,49 mèt) de yon lòt moun ki pral resevwa yon dyagnostik pozitif aprè e ki ap chwazi pataje lis lokalizasyon li yo ak Depatman Sante lokal yo."
+    }
+  },
   "history": {
     "no_exposure": "Pa gen kontak",
     "possible_exposure": "Posib",
@@ -114,7 +130,10 @@
     },
     "gps": {
       "all_services_on_header": "PathCheck",
+      "all_services_on_no_ha_available": "Ou pap resevwa notifikasyon ekspoz5syon pandan ou deyò yon rejyon ki kouvri pa patnè Depatman Sante yo",
       "all_services_on_subheader": "PathCheck ap arejistre kote ou vizite yo an prive e konpare kote ou yo ak done ki sòti nan Depatman sante lokal ou a",
+      "auto_start_header": "Demaraj otomatik dezaktive",
+      "auto_start_subheader": "PathCheck bezwen aksè pou li kapab Komanse arejistre an prive kote ou ale yo de fason otomatik. Tanpri aktive li nan tablodbò aplikasyon ou an.",
       "tracing_off_button": "Pèmèt aksè a lokalizasyon",
       "tracing_off_header": "Aksè lokalizasyon dezaktive",
       "tracing_off_subheader": "PathCheck bezwen aksè kote nan tablodbò a pou anregistre kote ou te ale yo."
@@ -254,7 +273,8 @@
     "home": "Lakay",
     "locations": "Lokalizasyon yo",
     "more": "Plis",
-    "partners": "Patnè yo"
+    "partners": "Patnè yo",
+    "self_assessment": "Sante"
   },
   "onboarding": {
     "eula_checkbox": "Mwen aksepte akò lisans la",
@@ -262,11 +282,13 @@
     "eula_message": "*Ou dwe aksepte pou itilize PathCheck 'Chase Kowona",
     "location_header": "Pou detèmine ki lè ou ka te kwaze chemen ak viris la, PathCheck bezwen aksè lokalizasyon.",
     "location_subheader": "Lis lokalizasyon PathCheck ou a gen ladan sèlman kowòdone GPS, dat ak lè. \n\n Done ou yo pa pral pataje ak okenn moun sof si ou chwazi yo fè sa.",
+    "maybe_later": "Petèt pita",
     "notification_header": "Èske ou ta renmen resevwa notifikasyon lè ou ka te kwaze chemen ak viris la?",
     "notification_subheader": "Pou resevwa notifikasyon ekspozisyon, ou dwe nan yon zòn ki reprezante pa yon patnè Depatman Sante lokal yo. \n\nSi poko gen okenn patnè Depatman Sante lokal oswa rejyonal nan zòn ou an, resevwa notifikasyon lè nouvo Depatman Sante yo ajoute tou pre ou."
   },
   "screen_titles": {
     "about": "Apropo",
+    "exposure_history": "Lis ekspozisyon",
     "faq": "FAQ",
     "legal": "Legal",
     "more": "Plis",
@@ -275,7 +297,7 @@
   },
   "settings": {
     "share_test_result": "Rapòte yon rezilta tès pozitif",
-    "share_test_result_description": "Pataje enfòmasyon ekspozisyon Covid-19 ak otorite sante pa yon kòd"
+    "share_test_result_description": "Pataje enfòmasyon ekspozisyon Covid-19 ak otorite sante w a ak yon kòd."
   },
   "share": {
     "button_text": "Pataje done lokalizasyon",

@@ -35,6 +35,11 @@ export const mediumFontFamily = 'IBMPlexSans-Medium';
 export const boldFontFamily = 'IBMPlexSans-Bold';
 export const monospaceFontFamily = 'IBMPlexMono';
 
+export const extraBold: TextStyle = {
+  fontFamily: boldFontFamily,
+  fontWeight: heaviestWeight,
+};
+
 export const bold: TextStyle = {
   fontFamily: boldFontFamily,
   fontWeight: heavyWeight,
@@ -42,6 +47,10 @@ export const bold: TextStyle = {
 
 export const mediumBold: TextStyle = {
   fontFamily: mediumFontFamily,
+};
+
+export const base: TextStyle = {
+  fontFamily: baseFontFamily,
 };
 
 export const monospace: TextStyle = {
@@ -108,6 +117,18 @@ export const header4: TextStyle = {
   color: Colors.secondaryHeaderText,
 };
 
+export const header5: TextStyle = {
+  ...mediumFont,
+  ...extraBold,
+  color: Colors.primaryHeaderText,
+};
+
+export const header6: TextStyle = {
+  ...largerFont,
+  ...bold,
+  color: Colors.black,
+};
+
 export const title: TextStyle = {
   ...largeFont,
   fontWeight: heaviestWeight,
@@ -122,6 +143,7 @@ export const mainContent: TextStyle = {
 
 export const secondaryContent: TextStyle = {
   ...mediumFont,
+  ...base,
   color: Colors.secondaryText,
   lineHeight: mediumLineHeight,
 };
@@ -188,4 +210,18 @@ export const buttonTextLight: TextStyle = {
 export const buttonTextTinyDark: TextStyle = {
   ...buttonTextDark,
   ...tinyFont,
+};
+
+// Assessment
+export const assessmentInstruction: TextStyle = {
+  ...mediumFont,
+  color: Colors.secondaryHeaderText,
+  lineHeight: smallerLineHeight,
+};
+
+export const inputLabel: TextStyle = {
+  ...bold,
+  color: Colors.primaryText,
+  fontSize: large,
+  lineHeight: mediumLineHeight,
 };
