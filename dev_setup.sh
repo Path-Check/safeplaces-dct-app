@@ -271,3 +271,12 @@ echo "      $ ./1_start_react.sh"
 echo "  In a second terminal:"
 echo "      $ ./2_start_android_app.sh"
 echo "  You can edit files and repeat step 2 again as necessary to debug."
+
+printf "Setting up configurable environment variables...\n"
+printf "$spacer"
+if [ ! -f .env.gps ]; then
+  cp .sample.env.gps .env.gps
+fi
+if [ ! -f .env.bt ]; then
+  cp .sample.env.bt .env.bt
+fi
