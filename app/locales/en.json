@@ -174,8 +174,8 @@
     }
   },
   "settings": {
-    "share_test_result": "Report a positive test result",
-    "share_test_result_description": "Share Covid-19 exposure information with your health authority with a provided code"
+    "share_test_result": "Report Positive Test Result",
+    "share_test_result_description": "Anonymously notify others you may have recently encountered if you test positive for COVID-19"
   },
   "label": {
     "about_header_bluetooth": "PathCheck BT",
