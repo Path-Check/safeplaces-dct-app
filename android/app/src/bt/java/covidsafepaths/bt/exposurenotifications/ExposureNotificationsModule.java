@@ -99,10 +99,6 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                         })
                 .addOnCanceledListener(() ->
                         callback.invoke(CallbackMessages.CANCELLED));
-
-
-
-        //startExposureNotifications(promise);
     }
 
     /**

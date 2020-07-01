@@ -53,7 +53,7 @@ public class MainActivity extends ReactActivity {
               .startResolutionForResult(
                       this, RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION);
     }catch (IntentSender.SendIntentException e) {
-      Log.d("HELLO123", "Error calling startResolutionForResult", apiException);
+      Log.d("MainActivity", "Error calling startResolutionForResult", apiException);
     }
   }
 
@@ -74,9 +74,9 @@ public class MainActivity extends ReactActivity {
       return;
     }
     if (resultCode == Activity.RESULT_OK) {
-      Log.d("HELLO123", "RESULT_OK");
+      Log.d("MainActivity", "RESULT_OK");
     } else {
-      Log.d("HELLO123", "NOT RESULT_OK");
+      Log.d("MainActivity", "NOT RESULT_OK");
     }
   }
 }
