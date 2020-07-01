@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
-import { Typography } from '../../components/Typography';
+import { Typography } from '../../../components/Typography';
 
-import { Colors } from '../../styles';
+import { Colors } from '../../../styles';
 
 /**
  * @typedef { import("react").ReactNode } ReactNode

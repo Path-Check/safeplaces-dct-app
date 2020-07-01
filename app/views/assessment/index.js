@@ -184,7 +184,7 @@ const Assessment = ({ navigation }) => {
             <Stack.Screen
               component={Distancing}
               name={SCREEN_TYPE_DISTANCING}
-              options={screenOptions}
+              options={screenOptions()}
             />
             <Stack.Screen
               component={Emergency}

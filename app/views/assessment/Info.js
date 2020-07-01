@@ -7,7 +7,6 @@ import {
   View,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { Button } from './Button';
 
 /**
  * @typedef { import("react").ReactNode } ReactNode
@@ -26,10 +25,6 @@ export const Info = ({
   backgroundColor,
   backgroundImage,
   children,
-  ctaAction,
-  ctaBackgroundColor,
-  ctaTextColor,
-  ctaTitle,
   scrollStyle,
   footer,
   icon,
@@ -48,13 +43,6 @@ export const Info = ({
           </View>
         </ScrollView>
         <View style={assessmentStyles.footer}>
-          {ctaTitle && (
-            <Button
-              backgroundColor={ctaBackgroundColor}
-              textColor={ctaTextColor} 
-              onPress={ctaAction} 
-              title={ctaTitle} />
-            )}
           {footer}
         </View>
       </ImageBackground>

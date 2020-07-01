@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 
 import { Typography } from '../../components/Typography';
-import { Button } from './Button';
+import { Button } from './components/Button';
 import { AnswersContext } from './Context';
 import { Option } from './Option';
 import {
@@ -33,8 +33,6 @@ export const AssessmentQuestion = ({ onNext, onChange, option, question }) => {
   const [selectedValues, setSelectedValues] = useState(
     answers[question.id] || [],
   );
-
-  console.log('questions: ', question, option)
 
   // Allow line breaks in the description
   const description = useMemo(() => {

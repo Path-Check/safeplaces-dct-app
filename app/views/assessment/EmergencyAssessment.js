@@ -1,7 +1,9 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { Trans, useTranslation } from 'react-i18next';
+
 import { View } from 'react-native';
-import { Button } from './Button';
+import { Button } from './components/Button';
 import { Typography } from '../../components/Typography';
 
 /**
@@ -9,8 +11,6 @@ import { Typography } from '../../components/Typography';
  * @typedef { import(".").SurveyOption } SurveyOption
  */
 import {
-  OPTION_VALUE_AGREE,
-  OPTION_VALUE_DISAGREE,
   QUESTION_KEY_AGREE,
   SCREEN_TYPE_RADIO,
   SCREEN_TYPE_EMERGENCY
@@ -62,15 +62,15 @@ export const EmergencyAssessment = ({ navigation }) => {
 const ChoiceButtons = ({agreeTitle, disagreeTitle, agreePress, disagreePress}) => {
   return (
     <View>
-      <Button textStyle={{textAlign: 'left', paddingHorizontal: 30}}
-        buttonStyle={{borderWidth: 1, borderColor: Colors.steelGray}}
+      <Button textStyle={styles.choiceTextStyle}
+        buttonStyle={styles.choiceButtonsStyle}
         onPress={agreePress}
         title={agreeTitle}
         backgroundColor={Colors.white}
         textColor={Colors.black} />
-      <View style={{paddingTop: 10}}>
-        <Button textStyle={{textAlign: 'left', paddingHorizontal: 30}}
-          buttonStyle={{borderWidth: 1, borderColor: Colors.steelGray}}
+      <View style={styles.disagreeButtonContainerStyle}>
+        <Button textStyle={styles.choiceTextStyle}
+          buttonStyle={styles.choiceButtonsStyle}
           onPress={disagreePress}
           title={disagreeTitle}
           backgroundColor={Colors.white}
@@ -140,3 +140,17 @@ const agreeOption = {
     }
   ]
 };
+
+const styles = StyleSheet.create({
+  choiceTextStyle: {
+    textAlign: 'left',
+    paddingHorizontal: 30
+  },
+  choiceButtonsStyle: {
+    borderWidth: 1,
+    borderColor: Colors.steelGray
+  },
+  disagreeButtonContainerStyle: {
+    paddingTop: 10
+  }
+});

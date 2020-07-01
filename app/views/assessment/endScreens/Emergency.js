@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Linking, StyleSheet } from 'react-native';
 
 import { Icons } from '../../../assets';
-import { Button } from '../Button';
+import { Button } from '../components/Button';
 import { Info } from '../Info';
 import { InfoText } from '../components/InfoText';
 
@@ -12,16 +12,16 @@ import { Colors } from '../../../styles';
 /** @type {React.FunctionComponent<{}>} */
 export const Emergency = () => {
   let { t } = useTranslation();
+  
+  // TODO: This would need to be localized per country
+  const handleEmergencyCall = () => Linking.openURL('tel://911')
+
   return (
     <Info
-      ctaAction={() => {
-        // TODO: This would need to be localized per country
-        Linking.openURL('tel:911');
-      }}
       backgroundColor={Colors.primaryBackgroundFaintShade}
       icon={Icons.SelfAssessment} // TODO: Placeholder, replace when we get icon
       scrollStyle={styles.containerItemsAlignment}
-      footer={<EmergencyButton title={t('assessment.emergency_cta')} />}>
+      footer={<EmergencyButton title={t('assessment.emergency_cta')} onPress={handleEmergencyCall} />}>
         <InfoText useTitleStyle='headline2'
           title={t('assessment.emergency_title')}
           description={t('assessment.emergency_description')}

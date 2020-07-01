@@ -5,6 +5,7 @@ import { Icons, Images } from '../../../assets';
 import { MetaContext } from '../Context';
 import { Info } from '../Info';
 import { InfoText } from '../components/InfoText';
+import { Button } from '../components/Button';
 
 import { Colors } from '../../../styles';
 
@@ -12,15 +13,15 @@ import { Colors } from '../../../styles';
 export const Distancing = ({ navigation }) => {
   let { t } = useTranslation();
   let { completeRoute } = useContext(MetaContext);
+
+  const handleButtonPress = () => navigation.push(completeRoute);
+
   return (
     <Info
-      ctaAction={() => {
-        navigation.push(completeRoute);
-      }}
       backgroundColor={Colors.primaryBackgroundFaintShade}
       backgroundImage={Images.IsolatePathBackground}
       icon={Icons.Isolate}
-      ctaTitle={t('assessment.distancing_cta')}>
+      footer={<Button onPress={handleButtonPress} title={t('assessment.distancing_cta')} />}>
       <InfoText useTitleStyle='headline2'
         title={t('assessment.distancing_title')}
         description={t('assessment.distancing_description')} />
