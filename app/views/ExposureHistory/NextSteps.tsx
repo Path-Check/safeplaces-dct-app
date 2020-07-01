@@ -8,6 +8,8 @@ import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
+import { AUTHORITY_NAME as healthAuthority }  from '../../constants/authorities';
+
 const NextSteps = (): JSX.Element => {
   const navigation = useNavigation();
   useStatusBarEffect('light-content');
@@ -15,8 +17,6 @@ const NextSteps = (): JSX.Element => {
   const handleOnBackPress = () => {
     navigation.goBack();
   };
-
-  const healthAuthority = 'Boston Public Health Commission';
 
   const headerText = `${healthAuthority} recommends you take a self-assessment`;
 
