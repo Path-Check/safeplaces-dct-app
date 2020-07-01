@@ -4,7 +4,6 @@ import {
   EventSubscription,
 } from 'react-native';
 
-// TODO All methods that call in to native.
 import { ENPermissionStatus } from './PermissionsContext';
 import { ExposureInfo } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
@@ -60,7 +59,6 @@ const keySubmissionModule = NativeModules.KeySubmissionModule;
 export const requestAuthorization = async (
   cb: (data: string) => void,
 ): Promise<void> => {
-  // TODO I'll have to name my module exactly this "requestExposureNotificationAuthorization(cb)"
   permissionsModule.requestExposureNotificationAuthorization(cb);
 };
 
@@ -79,7 +77,6 @@ export const submitDiagnosisKeys = async (
 ): Promise<void> => {
   keySubmissionModule.postDiagnosisKeys(cb);
   permissionsModule.requestExposureNotificationAuthorization(cb);
-  // TODO I'll have to name my module exactly this "requestExposureNotificationAuthorization(cb)"
 };
 
 // Debug Module
