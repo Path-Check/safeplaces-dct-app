@@ -16,7 +16,7 @@
     "run-ios-gps": "yarn install:pod && react-native run-ios --scheme \"GPS_Development\" --configuration \"Debug-GPS\"",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install --quiet && bundle exec pod install --silent",
-    "postinstall": "patch-package && node ./scripts/replace.js && npx react-native-jetifier",
+    "postinstall": "./scripts/install-submodules.sh node_modules/\\@mauron85/react-native-background-geolocation && patch-package && node ./scripts/replace.js && npx react-native-jetifier",
     "postversion": "react-native-version",
     "format:all": "prettier --write ./app/**/*.js",
     "format:eula": "prettier --write ./app/locales/eula/en.html",
@@ -52,7 +52,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/native": "^10.0.27",
-    "@mauron85/react-native-background-geolocation": "^0.6.3",
+    "@mauron85/react-native-background-geolocation": "https://github.com/Path-Check/react-native-background-geolocation.git",
     "@react-native-community/async-storage": "^1.8.1",
     "@react-native-community/datetimepicker": "^2.3.2",
     "@react-native-community/geolocation": "^2.0.2",

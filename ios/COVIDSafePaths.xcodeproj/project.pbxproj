@@ -35,7 +35,6 @@
 		271089B024698720009AC76F /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
 		271881C02461AF76001DE067 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
 		271881C32461BF19001DE067 /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
-		276AB157245238E400D39B58 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB156245238E400D39B58 /* SecureStorage.swift */; };
 		276AB15C245291DE00D39B58 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB15B245291DE00D39B58 /* Location.swift */; };
 		27F931572459E28800E1024C /* SecureStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F931562459E28800E1024C /* SecureStorageManager.m */; };
 		27F9315A2459E2BD00E1024C /* SecureStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F931592459E2BD00E1024C /* SecureStorageManager.swift */; };
@@ -48,7 +47,6 @@
 		527CA705E5514AF9BEAC9A2F /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C8CF282C4264C88A4ED8ABF /* IBMPlexMono-Medium.ttf */; };
 		57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
-		688D1F3F24858B7900AD21AE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
 		68D8970624809AA50091A254 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68D8970524809AA50091A254 /* Scrypt */; };
 		68D8970C24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */; };
 		68D8970D24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */; };
@@ -157,6 +155,7 @@
 		C5C850CA2480156200A494CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C850C92480156200A494CA /* AppDelegate.m */; };
 		C5EF723724864F8500AA39D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EF72202485D0E600AA39D5 /* main.m */; };
 		D43E27B6F1E045D798270A11 /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4904B061CC24439783E20928 /* IBMPlexSans-SemiBold.ttf */; };
+		D4CB4FC224A382EC00405D61 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
 		D668C3DAB08B4FCBB01E8C2D /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C8EDCCEFCE4874A747E404 /* IBMPlexMono-Light.ttf */; };
 		D7E714F18C9C4172BC01ADF8 /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */; };
 		DED6BB86437B4610B1CD3302 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
@@ -227,7 +226,7 @@
 		0AB0A08F38494307BF6F0EBC /* IBMPlexMono-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ThinItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-ThinItalic.ttf"; sourceTree = "<group>"; };
 		0DD29292C60B45029B7823D6 /* IBMPlexSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLight.ttf"; path = "../app/assets/fonts/IBMPlexSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* GPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = COVIDSafePaths/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -242,7 +241,6 @@
 		271089AF24698720009AC76F /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafePathsSecureStorage.swift; sourceTree = "<group>"; };
 		271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSecureStorageTest.swift; sourceTree = "<group>"; };
-		276AB156245238E400D39B58 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 		276AB15B245291DE00D39B58 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		27F931562459E28800E1024C /* SecureStorageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecureStorageManager.m; sourceTree = "<group>"; };
 		27F931592459E2BD00E1024C /* SecureStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageManager.swift; sourceTree = "<group>"; };
@@ -604,9 +602,8 @@
 				C53FD0C324719C25006D3268 /* BT */,
 				C53FD07C247199A4006D3268 /* GPS */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
-				68EFB214248570C2003D84F3 /* Log.swift */,
+				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				B2A58212244CE76C000F39A6 /* Localizable.strings */,
 			);
 			name = COVIDSafePaths;
@@ -624,7 +621,6 @@
 		276F786C245B6CB400312927 /* storage */ = {
 			isa = PBXGroup;
 			children = (
-				276AB156245238E400D39B58 /* SecureStorage.swift */,
 				276AB15B245291DE00D39B58 /* Location.swift */,
 				68D8970E24809CEB0091A254 /* Geohash.swift */,
 				B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */,
@@ -841,6 +837,7 @@
 				276F786C245B6CB400312927 /* storage */,
 				276F786A245B6C8A00312927 /* bridge */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				68EFB214248570C2003D84F3 /* Log.swift */,
 				C5EF72202485D0E600AA39D5 /* main.m */,
 				B2A5821B244CE80C000F39A6 /* InfoPlist.strings */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -1344,7 +1341,7 @@
 			files = (
 				271881C32461BF19001DE067 /* RealmSecureStorageTest.swift in Sources */,
 				68D8971624809E4B0091A254 /* String+Extension.swift in Sources */,
-				688D1F3F24858B7900AD21AE /* Log.swift in Sources */,
+				D4CB4FC224A382EC00405D61 /* Log.swift in Sources */,
 				68D8970D24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */,
 				68D8971024809CEB0091A254 /* Geohash.swift in Sources */,
 				68D8971324809DAE0091A254 /* Array+Extension.swift in Sources */,
@@ -1373,7 +1370,6 @@
 				68D8970C24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */,
 				276AB15C245291DE00D39B58 /* Location.swift in Sources */,
 				27F9315A2459E2BD00E1024C /* SecureStorageManager.swift in Sources */,
-				276AB157245238E400D39B58 /* SecureStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

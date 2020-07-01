@@ -108,6 +108,7 @@ exports[`HomeScreen renders 1`] = `
               Array [
                 Object {
                   "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
                   "fontSize": 17,
                   "lineHeight": 28,
                 },
@@ -133,6 +134,7 @@ exports[`HomeScreen renders 1`] = `
               Array [
                 Object {
                   "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
                   "fontSize": 17,
                   "lineHeight": 28,
                 },
@@ -141,6 +143,7 @@ exports[`HomeScreen renders 1`] = `
                 },
                 Object {
                   "color": "#ffffff",
+                  "fontFamily": "IBMPlexSans",
                   "fontSize": 15,
                   "lineHeight": 24,
                   "marginTop": 20,
@@ -178,6 +181,7 @@ exports[`HomeScreen renders 1`] = `
               Array [
                 Object {
                   "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
                   "fontSize": 17,
                   "lineHeight": 28,
                 },

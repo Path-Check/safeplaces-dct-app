@@ -26,3 +26,16 @@ export const bottomDotBadge = (color: string): ViewStyle => {
     alignItems: 'center',
   };
 };
+
+export const smallBottomDotBadge = (color: string): ViewStyle => {
+  return {
+    position: 'absolute',
+    bottom: -2,
+    backgroundColor: color,
+    borderRadius: 2,
+    width: 4,
+    height: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  };
+};

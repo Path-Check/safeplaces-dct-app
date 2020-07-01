@@ -68,6 +68,7 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
             Array [
               Object {
                 "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
                 "lineHeight": 28,
               },
@@ -163,6 +164,7 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
             Array [
               Object {
                 "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
                 "lineHeight": 28,
               },

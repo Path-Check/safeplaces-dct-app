@@ -1,6 +1,7 @@
 import { TracingStrategy } from '../tracingStrategy';
 import { PermissionsProvider } from './PermissionsContext';
 import Home from './Home';
+import { subscribeToExposureEvents } from './exposureInfo';
 import {
   useGPSCopyContent,
   useGPSInterpolatedCopyContent,
@@ -9,11 +10,7 @@ import {
 
 const gpsStrategy: TracingStrategy = {
   name: 'bt',
-  exposureInfoSubscription: () => {
-    return {
-      remove: () => {},
-    };
-  },
+  exposureInfoSubscription: subscribeToExposureEvents,
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: Home,
   assets: gpsAssets,

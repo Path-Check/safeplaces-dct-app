@@ -1,5 +1,5 @@
 import {
-  LOCALE_LIST as localList,
+  getLocaleList as getLocaleListUntyped,
   getUserLocaleOverride as getOverride,
   setUserLocaleOverride as setOverride,
   supportedDeviceLanguageOrEnglish as supportedDevice,
@@ -7,7 +7,10 @@ import {
   getLanguageFromLocale as localeLanguage,
 } from './languages';
 
-export const LOCALE_LIST: Record<unknown, unknown> = localList;
+export const getLocaleList: () => Record<
+  unknown,
+  unknown
+> = getLocaleListUntyped;
 export const setUserLocaleOverride: (
   locale: string,
 ) => Promise<void> = setOverride;
