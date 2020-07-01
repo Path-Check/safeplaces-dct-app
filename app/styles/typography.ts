@@ -57,6 +57,10 @@ export const monospace: TextStyle = {
   fontFamily: monospaceFontFamily,
 };
 
+export const base: TextStyle = {
+  fontFamily: baseFontFamily,
+};
+
 // Standard Font Types
 export const tinyFont: TextStyle = {
   ...base,
