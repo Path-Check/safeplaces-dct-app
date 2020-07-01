@@ -8,17 +8,17 @@ enum RequestType {
 final class APIClient {
   
   let postKeysUrl: URL
-  let downloadUrl: URL
+  let downloadBaseUrl: URL
   static let shared = APIClient(
     postKeysUrl: URL(string: ReactNativeConfig.env(for: .postKeysUrl))!,
-    downloadUrl: URL(string: ReactNativeConfig.env(for: .downloadUrl))!
+    downloadBaseUrl: URL(string: ReactNativeConfig.env(for: .downloadBaseUrl))!
   )
   
   private let sessionManager: SessionManager
   
-  init(postKeysUrl: URL, downloadUrl: URL) {
+  init(postKeysUrl: URL, downloadBaseUrl: URL) {
     self.postKeysUrl = postKeysUrl
-    self.downloadUrl = downloadUrl
+    self.downloadBaseUrl = downloadBaseUrl
     
     let configuration = URLSessionConfiguration.default
     
@@ -115,7 +115,7 @@ private extension APIClient {
   }
   
   func downloadRequest<T: APIRequest>(for request: T) -> DataRequest {
-    let r = sessionManager.request(downloadUrl.appendingPathComponent(request.path))
+    let r = sessionManager.request(downloadBaseUrl.appendingPathComponent(request.path))
     debugPrint(r)
     return r
   }
@@ -126,7 +126,7 @@ private extension APIClient {
     case .postKeys:
       baseUrl = postKeysUrl
     case .downloadKeys:
-      baseUrl = downloadUrl
+      baseUrl = downloadBaseUrl
     }
     let r = sessionManager.request(
       baseUrl.appendingPathComponent(request.path, isDirectory: false),
