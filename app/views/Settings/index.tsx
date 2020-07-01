@@ -5,6 +5,8 @@ import {
   StyleSheet,
   ScrollView,
   TouchableHighlight,
+  Linking,
+  Alert,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
@@ -71,6 +73,25 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
       console.log('something went wrong in lang change', e);
     }
   };
+
+  const reportIssue = async () => {
+    console.log('REPORT ISSUE')
+    const url = 'mailto:support@pathcheck.org';
+    let emailSupported;
+    try {
+      emailSupported = await Linking.canOpenURL(url);
+    } catch (e) {
+      console.log(e)
+    }
+
+    if (emailSupported) {
+      console.log('SUPPORTED')
+      Linking.openURL(url)
+    } else {
+      console.log('NOT SUPPORTED')
+      Alert.alert('Unable to open email client')
+    }
+  }
 
   interface LanguageSelectionListItemProps {
     icon: string;
@@ -184,6 +205,11 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           <SettingsListItem
             label={t('screen_titles.about')}
             onPress={navigateTo(Screens.About)}
+          />
+          <Divider />
+          <SettingsListItem
+            label={t('screen_titles.report_issue')}
+            onPress={reportIssue}
           />
           <Divider />
           <SettingsListItem
