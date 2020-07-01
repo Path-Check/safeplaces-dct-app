@@ -188,8 +188,8 @@
     "title": "Share location history"
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths is outdated",
-    "alert_sublabel": "Update to a new version?",
+    "alert_label": "COVID-RD is outdated",
+    "alert_sublabel": "Do you want to upgrade to the new version?",
     "later": "Later",
     "push_notification_message": "Please update your application",
     "push_notification_title": "Application is outdated",

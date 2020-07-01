@@ -184,8 +184,8 @@
     "title": "Compartir ubicaciones"
   },
   "version_update": {
-    "alert_label": "COVID Safe Paths no está actualizado",
-    "alert_sublabel": "¿Actualizar con la nueva versión?",
+    "alert_label": "COVID-RD no está actualizado",
+    "alert_sublabel": "¿Desea actualizar a la nueva versión?",
     "later": "Más tarde",
     "push_notification_message": "Por favor actualice su aplicación",
     "push_notification_title": "La aplicación no está sactualizada",

@@ -1,22 +1,11 @@
-import Yaml from 'js-yaml';
 import { Alert, Linking } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
-import PushNotification from 'react-native-push-notification';
+import VersionCheck from 'react-native-version-check';
 
-import { version as currentVersion } from '../../package.json';
-import {
-  APPSTORE_URL,
-  PLAYSTORE_URL,
-  VERSION_URL,
-  YAML_LATEST_VERSION_KEY,
-  YAML_MANDATORY_VERSION_KEY,
-} from '../constants/versionCheck';
 import languages from '../locales/languages';
-import { isPlatformiOS, isVersionGreater } from '../Util';
 
 const POLL_INTERVAL = 24 * 60 * 60 * 1000; //one day
 
-const updateLink = isPlatformiOS() ? APPSTORE_URL : PLAYSTORE_URL;
 let isPollStarted = false;
 //make sure we show only one notification
 let notificationShown = false;
@@ -41,35 +30,19 @@ export default class VersionCheckService {
   }
 
   static async checkUpdate() {
-    if (notificationShown) return;
-    let mandatoryVersion, latestVersion;
-    try {
-      const response = await fetch(VERSION_URL);
-      const responseText = await response.text();
-      const parsedFile = Yaml.safeLoad(responseText);
-      mandatoryVersion = parsedFile[YAML_MANDATORY_VERSION_KEY];
-      latestVersion = parsedFile[YAML_LATEST_VERSION_KEY];
-    } catch (err) {
-      console.log(err);
-      return;
+    const isUpdateNeeded = await VersionCheck.needUpdate();
+    if (isUpdateNeeded.isNeeded) {
+      this.showNotifications(isUpdateNeeded);
     }
-
-    if (!isVersionGreater(latestVersion, currentVersion)) return;
-
-    const isMandatoryUpdate = isVersionGreater(
-      mandatoryVersion,
-      currentVersion,
-    );
-    this.showNotifications(isMandatoryUpdate);
   }
 
-  static showNotifications(isMandatoryUpdate) {
+  static showNotifications({ storeUrl }) {
     const updateOption = {
       text: languages.t('version_update.update'),
       onPress: () => {
         notificationShown = false;
-        Linking.canOpenURL(updateLink).then(
-          supported => supported && Linking.openURL(updateLink),
+        Linking.canOpenURL(storeUrl).then(
+          supported => supported && Linking.openURL(storeUrl),
           err => console.log(err),
         );
       },
@@ -83,16 +56,14 @@ export default class VersionCheckService {
       style: 'cancel',
     };
 
-    const alertOptions = [updateOption];
+    const alertOptions = [updateOption, laterOption];
 
-    if (isMandatoryUpdate) {
-      PushNotification.localNotification({
-        title: languages.t('version_update.push_notification_title'),
-        message: languages.t('version_update.push_notification_message'),
-      });
-    } else {
-      alertOptions.push(laterOption);
-    }
+    // This could be use it in the future
+    //   PushNotification.localNotification({
+    //     title: languages.t('version_update.push_notification_title'),
+    //     message: languages.t('version_update.push_notification_message'),
+    //   });
+    //
 
     notificationShown = true;
     Alert.alert(
