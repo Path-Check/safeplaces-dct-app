@@ -65,13 +65,13 @@ const DescriptionTemplate = ({
   const iconStyle = invertIcon ? styles.goldIcon : styles.blueIcon;
 
   const primaryButtonTextStyles = {
-    ...primaryButtonTextStyle,
     ...styles.primaryButtonText,
+    ...primaryButtonTextStyle,
   };
 
   const secondaryButtonTextStyles = {
-    ...secondaryButtonTextStyle,
     ...styles.secondaryButtonText,
+    ...secondaryButtonTextStyle,
   };
 
   const headerStyles = {
