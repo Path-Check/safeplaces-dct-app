@@ -15,10 +15,13 @@
     "agree_question_text": "Scopo di questo screening COVID-19",
     "cancel": "Annulla",
     "caregiver_cta": "Prossimo",
+    "caregiver_description": "Avvisare un operatore sanitario nella struttura di assistenza a lungo termine. Vivere in una struttura di cura a lungo termine o in una casa di cura può mettere a rischio di gravi malattie. \n\n<1>Informa un assistente</1> presso la struttura che sei malato e devi consultare un medico il prima possibile.",
+    "caregiver_title": "Notifica a un Assistente",
     "complete_cta": "Fatto",
     "complete_description": "Continua a usare questa applicazione ed esegui nuovamente lo screening la <1>prossima settimana</1> per proteggere te stessi e la tua comunità.",
     "complete_title": "Completato!",
     "distancing_cta": "Prossimo",
+    "distancing_description": "Seguire le linee guida locali, statali o nazionali per il <1>distanziamento sociale</1> e per i dispositivi di protezione individuale (DPI) come maschere e / o guanti. Non è necessaria alcuna azione aggiuntiva in questo momento.",
     "distancing_title": "Distanziamento e DPI",
     "emergency_cta": "Chiama i servizi di emergenza",
     "emergency_description": "Potresti avere <1>un'emergenza medica</1>. È necessaria assistenza medica immediata. \n\nInforma l'operatore di emergenza se sei stato in contatto con qualcuno con il COVID-19 o se sei stato di recente in un'area in cui COVID-19 si sta diffondendo.",
@@ -31,6 +34,7 @@
     "settings_title": "Questionario",
     "share_cta": "Capisco e acconsento",
     "share_cta_skip": "No grazie, non voglio condividere i dati",
+    "share_description": "I tuoi dati anonimi aiutano la Boston Public Health Commission ad analizzare, tracciare e contenere la diffusione del COVID-19. I tuoi dati verranno aggregati a quelli di altri utenti PathCheck che scelgono di condividere. \n\nI tuoi dati contengono le risposte al sondaggio e il codice postale, ma nessuna informazione aggiuntiva o d'identificazione personale. \n\nLa Commissione per la salute pubblica di Boston conserverà i tuoi dati anonimi per un determinato periodo di tempo.",
     "share_screening_description": "Condividi le risposte alle domande di screening in maniera anonima con la tua istituzione sanitaria.",
     "share_screening_title": "Dati di screening anonimi",
     "share_title": "Pubblica dati anonimi",
@@ -58,12 +62,15 @@
     "start": "Inizio"
   },
   "export": {
+    "code_input_body": "Il rappresentante di {{name}} fornirà un codice di verifica al telefono per collegare i tuoi dati con {{name}}.",
+    "code_input_body_bluetooth": "Digita il codice di verifica fornito da {{name}} con il risultato del test per verificare la diagnosi.",
     "code_input_error": "Prova un codice diverso",
     "code_input_title": "Inserisci il tuo codice di verifica",
     "code_input_title_bluetooth": "Verifica la tua diagnosi",
     "complete_body": "Condividendo, in modo anonimo, il tuo stato di salute e la cronologia delle posizioni con la tua comunità, sei attivo nel combattere la diffusione del COVID-19.",
     "complete_body_bluetooth": "Scegliendo di condividere il tuo stato e avvisare anonimamente gli altri, stai aiutando a contenere la diffusione del virus e proteggere gli altri nella tua comunità.",
     "complete_title": "Grazie per aver tenuto al sicuro la tua comunità!",
+    "confirm_upload_body": "Questo aiuterà a rintracciare i contatti.\n\nSe scegli di non inviare la tua Cronologia delle posizioni a {{name}}, stai scegliendo di annullare gli sforzi per il tracciamento dei contatti al fine di proteggere la tua comunità.",
     "confirm_upload_button": "Invia lo Storico delle Posizioni",
     "confirm_upload_title": "Invia la cronologia delle posizioni alla tua Istituzione Sanitaria",
     "consent_button_subtitle": "Procedendo, accetti che la tua Istituzione Sanitaria possa conservare i tuoi dati per un periodo di tempo.",
@@ -72,14 +79,34 @@
     "exit_warning_cancel": "Annulla",
     "exit_warning_confirm": "Sì, sono sicuro",
     "exit_warning_title": "Sei sicuro?",
+    "location_consent_body": "La cronologia delle posizioni viene utilizzata dai rappresentanti di {{name}} per intervistarti sui luoghi che hai visitato e quando. \n\nUna volta inviata la cronologia delle posizioni a {{name}}, questa verrà mantenuta solo per un periodo di tempo specifico.",
     "location_consent_link": "Si prega di consultare la loro politica sulla privacy qui.",
     "location_consent_title": "Utilizza lo storico delle esposizioni",
+    "publish_consent_body": "Durante il colloquio con {{name}} l'intervistatore può rimuovere le aree private, come la tua case e il tuo appartamento. Eventualmente possono anche aggiungere eventuali altri luoghi che ritieni debbano essere menzionati.\n\n{{name}} può condividere le coordinate GPS della cronologia delle posizioni, insieme alla data, l'ora e la durata delle visite per far sapere agli altri membri della tua comunità se possono essere entrati in contatto con il virus.\n\nCapisco che il rappresentante {{name}} mi chiederà verbalmente alla fine del colloquio, se acconsento.",
+    "publish_consent_body_bluetooth": "La condivisione della diagnosi positiva è facoltativa e può essere effettuata solo con il tuo consenso. \n\nSe scegli di farlo, stai aiutando gli altri nella tua comunità a prendere decisioni informate sulla loro salute e facendo la tua parte per contenere la diffusione del virus. \n\nLe uniche informazioni condivise saranno delle liste di numeri casuali scambiati dal telefono tramite Bluetooth con altri telefoni vicini negli ultimi 14 giorni, insieme a un punteggio di rischio ponderato basato sullo sviluppo dei sintomi.",
     "publish_consent_title": "Pubblica dati anonimi",
     "publish_consent_title_bluetooth": "Avvisare gli altri nella tua comunità",
     "select_ha_title": "Seleziona le Istituzioni Sanitarie",
     "start_body": "Il rappresentante della tua istituzione sanitaria ti guiderà attraverso questo processo durante il colloquio.",
     "start_body_bluetooth": "Scegli di avvisare anonimamente gli altri che potresti aver incontrato e di aiutare la tua comunità a contenere la diffusione del virus.",
-    "start_title": "Condividi, in modo anonimo, la tua cronologia delle posizioni con la tua comunità se positivo per il COVID-19."
+    "start_title": "Condividi, in modo anonimo, la tua cronologia delle posizioni con la tua comunità se positivo per il COVID-19.",
+    "start_title_bluetooth": "Aiuta a contenere la diffusione del virus e proteggi gli altri nella tua comunità se ti viene diagnosticato o se risulti positivo al test per il COVID-19."
+  },
+  "exposure_history": {
+    "bt": {
+      "how_does_this_work": "Come funziona?",
+      "why_did_i_get_an_en_para": "Riceverai una notifica di esposizione quando qualcuno che hai incrociato riceverà in seguito una diagnosi o un test confermati e positivi per COVID-19 e sceglie d'informare gli altri"
+    },
+    "how_does_this_work": "Come funziona?",
+    "last_days": "Ultimi 21 giorni",
+    "legend_button": "LEGENDA",
+    "legend": {
+      "exposure_likely": "Esposizione molto probabile",
+      "exposure_possible": "Esposizione possibile",
+      "no_exposure_detected": "Nessuna esposizione rilevata",
+      "today": "Oggi"
+    },
+    "why_did_i_get_an_en": "Perché ho ricevuto una notifica di esposizione?"
   },
   "history": {
     "no_exposure": "Non noto",
@@ -103,6 +130,10 @@
     },
     "gps": {
       "all_services_on_header": "PathCheck",
+      "all_services_on_no_ha_available": "Non riceverai notifiche di esposizione mentre ti trovi al di fuori di una regione servita dai partner della Istituzione Sanitaria",
+      "all_services_on_subheader": "PathCheck sta salvando in maniera sicura e privata i luoghi che hai visitato e li confronta con i dati a disposizione della Istituzione Sanitaria locale",
+      "auto_start_header": "Avvio automatico disabilitato",
+      "auto_start_subheader": "PathCheck deve essere in grado di avviarsi automaticamente per salvare internamente i luoghi visitati. Abilitalo nelle impostazioni dell'app",
       "tracing_off_button": "Consenti accesso alla localizzazione",
       "tracing_off_header": "Accesso alla posizione disabilitato",
       "tracing_off_subheader": "PathCheck necessita dell'accesso alla posizione in Impostazioni per salvare privatamente i luoghi visitati"
@@ -140,7 +171,6 @@
   "label": {
     "about_header_bluetooth": "PathCheck Bluetooth",
     "about_header_location": "PathCheck GPS",
-    "about_para": "PathCheck è un movimento globale per sviluppare strumenti gratuiti, open-source, e orientati alla privacy per i residenti, i funzionari della sanità pubblica e le comunità più grandi al fine di appiattire la curva di COVID-19, ridurre la paura e prevenire una risposta dello stato di sorveglianza alla pandemia. \n\nPer ulteriori informazioni, visitare il sito",
     "authorities_add_button_label": "Aggiungi istituzione sanitaria",
     "authorities_add_url": "Aggiungi istituzione sanitaria via URL",
     "authorities_desc": "Seleziona le istituzioni sanitarie nella tua area per ottenere i dati sulle possibilità di esposizione.\n\nSeleziona un nome dal registro globale o inserisci l'indirizzo internet fornito da una istituzione sanitaria che partecipa a PathCheck.",
@@ -153,6 +183,7 @@
     "authorities_new_subscription_title": "{{count}} Nuova Sottoscrizione",
     "authorities_new_subscription_title_plural": "{{count}} Nuove Sottoscrizioni",
     "authorities_no_sources": "Nessuna fonte di dati per ora",
+    "authorities_new_in_area_msg_plural": "Iscritto a {{count}} Istitituzioni Sanitarie accreditate per la tua area.",
     "authorities_removal_alert_cancel": "Annulla",
     "authorities_removal_alert_desc": "Sei sicuro di voler rimuovere questa fonte di dati sanitari?",
     "authorities_removal_alert_proceed": "Procedi",
@@ -161,14 +192,10 @@
     "choose_provider_subtitle": "Per essere informato sulle possibilità di esposizione devi aggiungere almeno una Istituzione Sanitaria.",
     "choose_provider_title": "Seleziona le Istituzioni Sanitarie",
     "default_news_site_name": "Novità su PathCheck",
-    "authorities_new_in_area_msg_plural": "Iscritto a {{count}} Istitituzioni Sanitarie accreditate per la tua area.",
     "enter_authority_url": "Inserisci o incolla l'URL",
     "event_history_subtitle": "Controlla la tua possibile esposizione sulla base delle informazioni condivise dalle istituzioni sanitarie",
     "event_history_title": "Storico delle esposizioni",
     "filter_authorities_by_gps_history": "Filtra in base alle tue località",
-    "home_no_contact_header_bluetooth": "PathCheck",
-    "home_no_contact_subtext_bluetooth": "Le notifiche di esposizione sono attive",
-    "home_setting_off_header_bluetooth": "Notifiche disabilitate",
     "import_success": "Importazione completata con successo",
     "latest_news": "Ultime novità",
     "launch_access_bluetooth": "Consenti il tracciamento dei contatti",
@@ -183,9 +210,9 @@
     "launch_enable_auto_subscription": "Attiva sottoscrizione automatica",
     "launch_enable_bluetooth": "Attivare il Bluetooth",
     "launch_enable_exposure_notif": "Attiva",
-    "launch_enable_location": "Attiva la Localizzazione",
     "launch_enable_notif": "Attiva le Notifiche",
     "launch_exposure_notif_header": "Attiva le notifiche di esposizione",
+    "launch_exposure_notif_subheader": "Per ricevere notifiche sugli aggiornamenti della cronologia delle esposizioni, il telefono deve disporre dell'autorizzazione per scambiare un codice identificativo casuale e anonimo Bluetooth con altri dispositivi. \n\nLe notifiche di esposizione funzionano solo con altri dispositivi con l'impostazione abilitata. \n\nPuoi disattivare queste notifiche in qualsiasi momento.",
     "launch_finish_set_up": "Finisci la Configurazione",
     "launch_get_started": "Cominciamo",
     "launch_header_bluetooth": "Per sapere con chi sei stato in contatto, il tuo telefono deve poter accedere al Bluetooth.",
@@ -194,6 +221,8 @@
     "launch_notif_header": "Le notifiche ti avviseranno se hai incrociato il tuo percorso con una persona che ha contratto l'infezione",
     "launch_notif_subheader": "Non ti daremo ulteriore fastidio se non per condividere aggiornamenti sulla tua potenziale esposizione",
     "launch_notification_access": "Abilita Notifiche",
+    "launch_screen1_header": "Benvenuti in PathCheck",
+    "launch_screen2_header_bluetooth": "Il telefono ricorda gli altri dispositivi che incontra, ma non ti identificherà con altre persone.",
     "launch_screen2_header_location": "Ricevi notifiche se hai incrociato il percorso di chi è stato in seguito diagnosticato con COVID-19.",
     "launch_screen2_subheader_bluetooth": "La data e la durata dell'incontro sono registrate insieme a una stima della vicinanza fra i due telefoni.",
     "launch_screen2_subheader_location": "Il diario di localizzazione PathCheck è crittografato e non lascia mai il telefono a meno che non si scelga di inviarlo al dipartimento sanitario locale o regionale.",
@@ -239,7 +268,8 @@
     "home": "Home",
     "locations": "Posizioni",
     "more": "Altro",
-    "partners": "Partner"
+    "partners": "Partner",
+    "self_assessment": "Salute"
   },
   "onboarding": {
     "eula_checkbox": "Accetto il contratto di licenza",
@@ -247,15 +277,18 @@
     "eula_message": "*È necessario accettare per utilizzare PathCheck",
     "location_header": "Per determinare quando potresti aver incrociato percorsi con il virus, PathCheck necessita dell'accesso alla posizione.",
     "location_subheader": "Il diario di localizzazione PathCheck include solo coordinate GPS, date e orari. \n\n I tuoi dati non saranno condivisi con nessuno a meno che tu non scelga di farlo.",
-    "notification_header": "Desideri ricevere notifiche quando potresti aver incrociato percorsi con il virus?"
+    "maybe_later": "Forse più tardi",
+    "notification_header": "Desideri ricevere notifiche quando potresti aver incrociato percorsi con il virus?",
+    "notification_subheader": "Per ricevere le notifiche di esposizione, è necessario trovarsi in un'area controllata da una Istituzione Sanitaria locale.\n\nSe non ci sono ancora Istituzioni Sanitarie locali o regionali nella tua zona, riceverai una notifica quando vengono aggiunte nuove Istituzioni Sanitarie vicino a te."
   },
   "screen_titles": {
     "about": "Informazioni",
+    "exposure_history": "Cronologia delle esposizioni",
     "faq": "Domande frequenti",
     "legal": "Legale",
     "more": "Altro",
-    "report_issue": "Segnala un problema",
-    "report_positive_test": "Segnala un risultato positivo del test"
+    "more_info": "Ulteriori informazioni",
+    "report_issue": "Segnala un problema"
   },
   "settings": {
     "share_test_result": "Segnala un risultato positivo del test",

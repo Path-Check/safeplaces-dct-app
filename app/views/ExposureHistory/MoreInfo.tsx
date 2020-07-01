@@ -20,20 +20,20 @@ const MoreInfo = (): JSX.Element => {
   };
 
   const headerTextOne = isGPS
-    ? t('exposure_history.more_info_gps.why_did_i_get_an_en')
-    : t('exposure_history.more_info_bt.why_did_i_get_an_en');
+    ? t('exposure_history.why_did_i_get_an_en')
+    : t('exposure_history.why_did_i_get_an_en');
 
   const contentTextOne = isGPS
-    ? t('exposure_history.more_info_gps.why_did_i_get_an_en_para')
-    : t('exposure_history.more_info_bt.why_did_i_get_an_en_para');
+    ? t('exposure_history.gps.why_did_i_get_an_en_para')
+    : t('exposure_history.bt.why_did_i_get_an_en_para');
 
   const headerTextTwo = isGPS
-    ? t('exposure_history.more_info_gps.how_does_this_work')
-    : t('exposure_history.more_info_bt.how_does_this_work');
+    ? t('exposure_history.how_does_this_work')
+    : t('exposure_history.how_does_this_work');
 
   const contentTextTwo = isGPS
-    ? t('exposure_history.more_info_gps.how_does_this_work_para')
-    : t('exposure_history.more_info_bt.how_does_this_work_para');
+    ? t('exposure_history.gps.how_does_this_work_para')
+    : t('exposure_history.bt.how_does_this_work_para');
 
   const title = 'More Info';
 

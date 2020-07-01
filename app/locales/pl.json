@@ -7,17 +7,35 @@
     "version": "Wersja:"
   },
   "assessment": {
+    "agree_alert_title": "Wymagana umowa",
+    "agree_option_agree": "Zgadzam się",
+    "agree_option_disagree": "Nie zgadzam się",
     "cancel": "Anuluj",
     "caregiver_cta": "Dalej",
+    "caregiver_title": "Powiadom opiekuna",
     "complete_cta": "Gotowe",
+    "complete_title": "Wszystko gotowe!",
     "distancing_cta": "Dalej",
+    "emergency_cta": "Wezwij służby ratunkowe",
+    "emergency_title": "Służby ratunkowe",
     "isolate_cta": "Dalej",
-    "next": "Dalej"
+    "isolate_title": "Odizoluj się",
+    "next": "Dalej",
+    "settings_title": "Ankieta",
+    "share_cta": "Rozumiem i wyrażam zgodę",
+    "share_cta_skip": "Nie, dziękuję, nie chcę udostępniać danych",
+    "share_screening_description": "Podziel się anonimowo odpowiedziami na pytania dotyczące badań przesiewowych z lokalnymi władzami opieki zdrowotnej.",
+    "share_screening_title": "Anonimowe dane z badań przesiewowych",
+    "share_title": "Publikuj anonimowe dane",
+    "start_cta": "Start",
+    "start_description": "Twoje informacje są prywatne, anonimowe i szyfrowane. Żadne dane nie opuszczają twojego urządzenia, chyba że wyrazisz na to zgodę.",
+    "start_title": "Odpowiedz na pytania dotyczące objawów i historii medycznej, aby dowiedzieć się, co dalej robić z COVID-19"
   },
   "authorities": {
     "automatically_follow": "Automatyczne śledzenie oddziałów opieki zdrowotnej w pobliżu",
     "custom_url": "Dodaj ręcznie za pomocą adresu URL",
     "custom_url_title": "Dodaj przez adres URL",
+    "info_body": "Lokalne i regionalne departamenty zdrowia mogą dzielić się informacjami i zasobami na temat COVID-19 dla swojego obszaru, w tym zweryfikowanymi danymi, które pozwalają PathCheck oszacować, kiedy mogły się pojawić ścieżki, na których wystąpił wirus.",
     "invalid_url": "Nieprawidłowy adres YAML URL",
     "invalid_url_body": "Podany adres URL jest nieprawidłowy, spróbuj ponownie",
     "title": "Oddziały opieki zdrowotnej",
@@ -28,10 +46,40 @@
     "add": "Dodaj",
     "done": "Gotowe",
     "next": "Dalej",
-    "ok": "Ok"
+    "ok": "Ok",
+    "something_went_wrong": "Coś poszło nie tak",
+    "start": "Start"
   },
   "export": {
-    "exit_warning_cancel": "Anuluj"
+    "code_input_error": "Wypróbuj inny kod",
+    "code_input_title": "Wpisz swój kod weryfikacyjny",
+    "code_input_title_bluetooth": "Zweryfikuj swoją diagnozę",
+    "complete_body_bluetooth": "Wybierając opcję dzielenia się swoim statusem i anonimowego powiadamiania innych, pomagasz powstrzymać rozprzestrzenianie się wirusa i chronić innych w swojej społeczności.",
+    "complete_title": "Dziękujemy za zapewnienie bezpieczeństwa Twojej społeczności!",
+    "confirm_upload_button": "Wyślij historię lokalizacji",
+    "consent_button_title": "Rozumiem i wyrażam zgodę",
+    "exit_warning_body": "Będziesz musiał wznowić ten proces",
+    "exit_warning_cancel": "Anuluj",
+    "exit_warning_confirm": "Tak, jestem pewny",
+    "exit_warning_title": "Jesteś pewien?",
+    "location_consent_link": "Proszę zapoznać się z ich polityką prywatności tutaj.",
+    "location_consent_title": "Korzystanie z historii lokalizacji",
+    "publish_consent_body_bluetooth": "Udostępnianie pozytywnej diagnozy jest opcjonalne i możne odbywać się tylko za Twoją zgodą. \n\nJeśli zdecydujesz się to zrobić, pomagasz innym członkom społeczności w podejmowaniu świadomych decyzji dotyczących ich zdrowia i odgrywasz swoją rolę w powstrzymywaniu rozprzestrzeniania się wirusa. \n\nJedyne udostępniane informacje to losowy zestaw liczb wymienianych przez telefon przez Bluetooth z innymi telefonami, które były w pobliżu w ciągu ostatnich 14 dni, wraz z ważoną oceną ryzyka na podstawie czasu wystąpienia objawów.",
+    "publish_consent_title": "Publikuj anonimowe dane",
+    "publish_consent_title_bluetooth": "Powiadom innych w swojej społeczności",
+    "select_ha_title": "Wybierz organ opieki zdrowotnej",
+    "start_body_bluetooth": "Wybierz anonimowe powiadomienie innych osób, z którymi mogłeś się spotkać i pomóż swojej społeczności powstrzymać rozprzestrzenianie się wirusa.",
+    "start_title": "Podziel się anonimowo historią lokalizacji ze swoją społecznością jeśli uzyskałeś pozytywny wynik testu na COVID-19.",
+    "start_title_bluetooth": "Pomóż powstrzymać rozprzestrzenianie się wirusa i chroń innych w Twojej społeczności, jeśli zdiagnozowano u Ciebie pozytywny wynik testu na COVID-19."
+  },
+  "exposure_history": {
+    "bt": {
+      "how_does_this_work": "Jak to działa?"
+    },
+    "how_does_this_work": "Jak to działa?",
+    "last_days": "Ostatnie 21 dni",
+    "legend_button": "LEGENDA",
+    "why_did_i_get_an_en": "Dlaczego otrzymałem powiadomienie o ekspozycji?"
   },
   "history": {
     "no_exposure": "Brak narażenia",
@@ -54,11 +102,24 @@
       "unavailable_subheader": "Twój telefon nie jest obecnie objęty systemem PathCheck przez władze opieki zdrowotnej."
     },
     "gps": {
-      "all_services_on_header": "PathCheck"
+      "all_services_on_header": "PathCheck",
+      "all_services_on_no_ha_available": "Twój telefon znajduje się obecnie poza obszarem objętym przez Departament Zdrowia.",
+      "all_services_on_subheader": "PathCheck prywatnie zapisuje odwiedzane miejsca i porównuje twoje lokalizacje z danymi z lokalnego Departamentu Zdrowia",
+      "auto_start_header": "Automatyczne uruchamianie wyłączone",
+      "auto_start_subheader": "PathCheck musi mieć możliwość automatycznego rozpoczęcia prywatnego zapisywania odwiedzanych miejsc. Włącz je w ustawieniach aplikacji",
+      "tracing_off_button": "Zezwól na dostęp do lokalizacji",
+      "tracing_off_header": "Dostęp do lokalizacji wyłączony",
+      "tracing_off_subheader": "PathCheck potrzebuje dostępu do lokalizacji w Ustawieniach, aby prywatnie zapisać odwiedzane miejsca"
     },
     "shared": {
+      "no_authorities_header": "Brak lokalnego Departamentu Zdrowia",
+      "no_authorities_subheader": "Twój telefon znajduje się poza obszarami objętymi przez Departament Zdrowia na PathCheck \n\nZostaniesz powiadomiony, gdy Departamenty Zdrowia zostaną dodane w pobliżu",
       "notifications_off_button": "Zezwalaj na powiadomienia",
-      "notifications_off_header": "Powiadomienia wyłączone"
+      "notifications_off_header": "Powiadomienia wyłączone",
+      "notifications_off_subheader": "Nie będziesz otrzymywać powiadomień o możliwych zagrożeniach ani o dodaniu nowych Departamentów Zdrowia w Twojej okolicy",
+      "select_authority_button": "Dodaj Departament Zdrowia",
+      "select_authority_header": "Nie wybrano lokalnego Departamentu Zdrowia",
+      "select_authority_subheader": "Zezwalaj PathCheck na dodanie lokalnego Departamentu Zdrowia lub wybierz go samodzielnie, aby otrzymywać informacje o COVID-19 w Twojej okolicy"
     }
   },
   "import": {
@@ -83,7 +144,6 @@
   "label": {
     "about_header_bluetooth": "PathCheck Bluetooth",
     "about_header_location": "PathCheck GPS",
-    "about_para": "PathCheck to globalny ruch mający na celu rozwój darmowych narzędzi o otwartym kodzie źródłowym (open-source) i zgodnych z zasadą poszanowania prywatności w fazie projektowania (privacy-by-design) dla mieszkańców, urzędników służby zdrowia i większych społeczności, aby spłaszczyć krzywą COVID-19, zmniejszyć strach i zapobiec inwigilującej reakcji państwa na pandemię.\n\nAby uzyskać więcej informacji, odwiedź stronę",
     "authorities_add_button_label": "Dodaj organ opieki zdrowotnej",
     "authorities_add_url": "Dodaj instytucję poprzez adres URL",
     "authorities_desc": "Wybierz jeden lub więcej organów opieki zdrowotnej w Twojej okolicy, aby uzyskać informacje na temat COVID-19 w pobliżu, jeśli są dostępne. \n\nWybierz nazwę z rejestru globalnego lub wprowadź adres internetowy podany przez organ opieki zdrowotnej, który wdrożył PathCheck.",
@@ -107,19 +167,22 @@
     "event_history_subtitle": "Dowiedz się o swoim osobistym narażeniu na ryzyko zakażenia na podstawie informacji udostępnionych przez instytucje opieki zdrowotnej.",
     "event_history_title": "Historia narażenia na zakażenie",
     "filter_authorities_by_gps_history": "Filtruj według lokalizacji",
-    "home_no_contact_header_bluetooth": "PathCheck",
     "import_success": "Zaimportowano pomyślnie",
     "latest_news": "Najnowsze informacje",
     "launch_access_bluetooth": "Zezwalaj na śledzenie kontaktów",
     "launch_access_location": "Dostęp do lokalizacji",
+    "launch_allow_location": "Zezwól na dostęp do lokalizacji",
     "launch_authority_access": "Subskrybuj pobliskie instytucje opieki zdrowotnej",
     "launch_authority_header": "Instytucje opieki zdrowotnej przekażą na Twoje urządzenie dane lokalne, aby dowiedzieć się, czy spotkałeś na swojej drodze osobę zakażoną.",
     "launch_authority_subheader": "Automatyczna subskrypcja, aby otrzymywać najnowsze aktualizacje od instytucji opieki zdrowotnej w Twojej okolicy.",
+    "launch_disable_exposure_notif": "Nie włączaj",
     "launch_done_header": "Wszystko ukończone",
     "launch_done_subheader": "Możesz zaczynać. Pamiętaj, że zawsze możesz później zaktualizować swoje preferencje.",
     "launch_enable_auto_subscription": "Włącz automatyczną subskrypcję",
     "launch_enable_bluetooth": "Włącz Bluetooth",
-    "launch_enable_location": "Włącz lokalizację",
+    "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
+    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
+    "launch_enable_exposure_notif": "Włącz",
     "launch_enable_notif": "Włącz powiadomienia",
     "launch_finish_set_up": "Zakończ konfigurację",
     "launch_get_started": "Zaczynamy",
@@ -160,8 +223,6 @@
     "news_subtitle": "Znajdź najnowsze aktualizacje z PathCheck i lokalnych organów opieki zdrowotnej, jeśli są dostępne.",
     "news_title": "Najnowsze informacje",
     "no_data": "Brak danych",
-    "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
-    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
     "privacy_policy": "Polityka prywatności",
     "push_at_risk_message": "Spotkałeś na swojej drodze osobę zakażoną COVID-19",
     "push_at_risk_title": "Możesz być w niebezpieczeństwie",
@@ -170,7 +231,15 @@
     "skip_this_step": "Pomiń ten krok",
     "team": "Zespół",
     "team_para": "Nasz zespół składa się z konsorcjum epidemiologów, inżynierów, naukowców, cyfrowych ewangelistów prywatności, profesorów i badaczy z uznanych instytucji, w tym: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young oraz Link Ventures.",
-    "terms_of_use": "Warunki korzystania"
+    "terms_of_use": "Warunki korzystania",
+    "unknown": "nieznany"
+  },
+  "navigation": {
+    "history": "Historia",
+    "locations": "Lokalizacje",
+    "more": "Więcej",
+    "partners": "Partnerzy",
+    "self_assessment": "Zdrowie"
   },
   "onboarding": {
     "eula_checkbox": "Akceptuję umowę licencyjną",
@@ -179,11 +248,16 @@
   },
   "screen_titles": {
     "about": "O nas",
+    "exposure_history": "Historia Ekspozycji",
+    "faq": "FAQ",
     "legal": "Informacje prawne",
-    "more": "Więcej"
+    "more": "Więcej",
+    "more_info": "Więcej informacji",
+    "report_issue": "Zgłoś problem"
   },
   "settings": {
-    "share_test_result": "Zgłoś pozytywny wynik testu"
+    "share_test_result": "Zgłoś pozytywny wynik testu",
+    "share_test_result_description": "Podziel się informacjami o narażeniu na Covid-19 z Twoim organem odpowiedzialnym za ochronę zdrowia, podając dostarczony kod"
   },
   "share": {
     "button_text": "Udostępnij dane o lokalizacji",
