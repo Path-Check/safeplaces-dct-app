@@ -101,6 +101,31 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                         callback.invoke(CallbackMessages.CANCELLED));
     }
 
+    @ReactMethod
+    public void getCurrentENPermissionsStatus(final Callback callback) {
+        ExposureNotificationClientWrapper.get(getReactApplicationContext())
+                .isEnabled().addOnSuccessListener(
+                enabled -> {
+                    if(enabled) {
+                        callback.invoke(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED,
+                                CallbackMessages.EN_ENABLEMENT_ENABLED);
+                    } else {
+                        callback.invoke(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED,
+                                CallbackMessages.EN_ENABLEMENT_DISABLED);
+                    }
+                })
+                .addOnFailureListener(
+                        exception -> {
+                            if (!(exception instanceof ApiException)) {
+                                callback.invoke(CallbackMessages.ERROR_UNKNOWN);
+                            } else {
+                                ApiException apiException = (ApiException) exception;
+                                callback.invoke(apiException.getStatus().toString());
+                            }
+                        });
+
+    }
+
     /**
      * Calls start on the Exposure Notifications API.
      */
