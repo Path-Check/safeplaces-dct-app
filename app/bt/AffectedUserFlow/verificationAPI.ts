@@ -1,13 +1,19 @@
 import Config from 'react-native-config';
+import * as Sentry from '@sentry/react-native';
 
-const baseUrl = Config.GAEN_VERIFY_URL;
+const baseUrl =
+  Config.GAEN_VERIFY_URL || 'https://api.gaen.extremesolution.com';
 const verifyUrl = `${baseUrl}/api/verify`;
 const certificateUrl = `${baseUrl}/api/certificate`;
+
+const apiKey =
+  Config.GAEN_VERIFY_API_TOKEN ||
+  'VfgDO2Qy0YI/hhU1CbFt2wu2QOJjFtr9V9dbOiMSFpzeR4RXEfKR+DnRoLuSBCvzR6vSbXPQAtZrdfjAo6SYVg';
 
 const defaultHeaders = {
   'content-type': 'application/json',
   accept: 'application/json',
-  'X-API-Key': Config.GAEN_VERIFY_API_TOKEN,
+  'X-API-Key': apiKey,
 };
 
 export type Token = string;
@@ -54,6 +60,7 @@ export const postVerificationCode = async (
     });
 
     const json = await response.json();
+
     if (response.ok) {
       const body: VerifiedCodeResponse = {
         error: json.error,
@@ -63,6 +70,7 @@ export const postVerificationCode = async (
       };
       return { kind: 'success', body };
     } else {
+      Sentry.captureMessage(`url: ${Config.GAEN_VERIFY_URL} ${json.error}`);
       switch (json.error) {
         case 'internal serer error':
           return { kind: 'failure', error: 'InvalidCode' };
@@ -73,7 +81,8 @@ export const postVerificationCode = async (
       }
     }
   } catch (e) {
-    return { kind: 'failure', error: 'Unknown' };
+    Sentry.captureMessage(`url: ${Config.GAEN_VERIFY_URL} ${e}`);
+    throw new Error(e);
   }
 };
 
@@ -83,10 +92,10 @@ type VerificationTokenFailure = 'InvalidToken' | 'Unknown';
 
 export const postVerificationToken = async (
   token: Token,
-  hmac: string,
 ): Promise<
   NetworkResponse<VerificationTokenSuccess, VerificationTokenFailure>
 > => {
+  const hmac = 'asdf';
   const data = {
     token,
     ekeyhmac: hmac,

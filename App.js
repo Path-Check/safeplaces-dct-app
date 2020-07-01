@@ -15,6 +15,13 @@ import gpsStrategy from './app/gps';
 import BackgroundTaskService from './app/services/BackgroundTaskService';
 import { isGPS } from './app/COVIDSafePathsConfig';
 
+import * as Sentry from '@sentry/react-native';
+
+Sentry.init({
+  dsn:
+    'https://a087b70421574d8d9d66234f52c3ca4b@o418441.ingest.sentry.io/5321381',
+});
+
 const determineTracingStrategy = () => {
   switch (Config.TRACING_STRATEGY) {
     case 'gps': {

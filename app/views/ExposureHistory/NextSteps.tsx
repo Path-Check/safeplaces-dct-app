@@ -29,12 +29,9 @@ const NextSteps = (): JSX.Element => {
   const footerText = t('exposure_history.next_steps.ha_self_assessment', {
     healthAuthorityName,
   });
-  const contentTextOne = t(
-    'exposure_history.next_steps.possible_crossed_paths',
-  );
-  const contentTextTwo = t(
-    'exposure_history.next_steps.possible_infection_precaution',
-  );
+
+  const contentTextOne = t('history.what_does_this_mean_para_bluetooth');
+
   const buttonText = t('exposure_history.next_steps.button_text');
 
   const handleOnPressTakeAssessment = () => {
@@ -48,7 +45,6 @@ const NextSteps = (): JSX.Element => {
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <Typography style={styles.contentText}>{contentTextOne}</Typography>
-          <Typography style={styles.contentText}>{contentTextTwo}</Typography>
         </View>
         <View style={styles.buttonContainer}>
           <Typography style={styles.footerText}>{footerText}</Typography>

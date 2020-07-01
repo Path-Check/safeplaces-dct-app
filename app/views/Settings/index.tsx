@@ -109,7 +109,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
       title={t('navigation.more')}
       includeBackButton={false}>
       <ScrollView style={styles.container}>
-        {!isGPS && (
+        {!isGPS ? (
           <View style={styles.sectionPrimary}>
             <Typography>
               {t('settings.share_test_result_description')}
@@ -122,7 +122,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
               </Typography>
             </TouchableOpacity>
           </View>
-        )}
+        ) : null}
 
         <View style={styles.section}>
           <LanguageSelectionListItem

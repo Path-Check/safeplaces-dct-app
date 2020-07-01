@@ -51,16 +51,15 @@ const CodeInputScreen = (): JSX.Element => {
     navigation.navigate(Screens.Settings);
   };
 
-  const handleOnPressNext = async () => {
+  const handleOnPressSubmit = async () => {
     setIsLoading(true);
     setErrorMessage(defaultErrorMessage);
     try {
       const response = await API.postVerificationCode(code);
 
       if (response.kind === 'success') {
-        const token = response.body.token;
-        const fakeHMAC = 'abcd1234';
-        API.postVerificationToken(token, fakeHMAC);
+        // const token = response.body.token;
+        // API.postVerificationToken(token);
 
         navigation.navigate(Screens.AffectedUserPublishConsent);
       } else {
@@ -138,7 +137,7 @@ const CodeInputScreen = (): JSX.Element => {
 
             <View>
               <TouchableOpacity
-                onPress={handleOnPressNext}
+                onPress={handleOnPressSubmit}
                 accessible
                 accessibilityLabel={t('common.submit')}
                 accessibilityRole='button'
