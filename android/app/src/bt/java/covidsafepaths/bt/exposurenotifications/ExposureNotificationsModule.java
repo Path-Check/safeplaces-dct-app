@@ -10,19 +10,24 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.Nearby;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.swmansion.reanimated.Utils;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
+import org.pathcheck.covidsafepaths.MainActivity;
 
 import javax.annotation.Nonnull;
 
@@ -31,6 +36,7 @@ import covidsafepaths.bt.exposurenotifications.nearby.ExposureConfigurations;
 import covidsafepaths.bt.exposurenotifications.nearby.ProvideDiagnosisKeysWorker;
 import covidsafepaths.bt.exposurenotifications.nearby.StateUpdatedWorker;
 import covidsafepaths.bt.exposurenotifications.notify.ShareDiagnosisManager;
+import covidsafepaths.bt.exposurenotifications.utils.CallbackMessages;
 
 import static covidsafepaths.bt.exposurenotifications.ExposureNotificationsModule.MODULE_NAME;
 import static covidsafepaths.bt.exposurenotifications.nearby.StateUpdatedWorker.IS_EXPOSED_KEY;
@@ -39,7 +45,7 @@ import static covidsafepaths.bt.exposurenotifications.nearby.StateUpdatedWorker.
 public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
     private static ReactApplicationContext reactContext;
 
-    public static final String MODULE_NAME = "PTCExposureManagerModule";
+    public static final String MODULE_NAME = "ENPermissionsModule";
     public static final String TAG = "ENModule";
     private static final String EXPOSURE_ALERT_EVENT = "ExposureAlertEvent";
 
@@ -67,8 +73,32 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
      * Method with the same name as iOS, just calls client "start" method which enables EN
      */
     @ReactMethod
-    public void requestExposureNotificationAuthorization(final Promise promise) {
-        startExposureNotifications(promise);
+    public void requestExposureNotificationAuthorization(final Callback callback) {
+        ExposureNotificationClientWrapper.get(getReactApplicationContext())
+                .start()
+                .addOnSuccessListener(
+                        unused -> {
+                            callback.invoke(CallbackMessages.GENERIC_SUCCESS);
+                        })
+                .addOnFailureListener(
+                        exception -> {
+                            if (!(exception instanceof ApiException)) {
+                                callback.invoke(CallbackMessages.ERROR_UNKNOWN);
+                                return;
+                            }
+                            ApiException apiException = (ApiException) exception;
+                            if (apiException.getStatusCode()
+                                    == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
+                                callback.invoke(CallbackMessages.RESOLUTION_REQUIRED);
+                                MainActivity mainActivity = (MainActivity) reactContext.getCurrentActivity();
+                                mainActivity.showPermission(apiException);
+
+                            } else {
+                                callback.invoke(apiException.getStatus().toString());
+                            }
+                        })
+                .addOnCanceledListener(() ->
+                        callback.invoke(CallbackMessages.CANCELLED));
     }
 
     /**
