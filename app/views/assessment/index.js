@@ -115,25 +115,23 @@ const Assessment = ({ navigation }) => {
   };
 
   const AssessmentBackButton = () => {
-    return <TouchableOpacity
-      onPress={() => navigation.pop()}
-      style = {styles.assessmentIconContainer}
-      >
-        <SvgXml
-          xml={Icons.BackArrow}
-          style = {styles.assessmentIcon} />
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.pop()}
+        style={styles.assessmentIconContainer}>
+        <SvgXml xml={Icons.BackArrow} style={styles.assessmentIcon} />
       </TouchableOpacity>
+    );
   };
 
   const AssessmentCloseButton = () => {
-    return <TouchableOpacity
-      onPress={() => navigation.popToTop()}
-      style = {styles.assessmentIconContainer}
-      >
-        <SvgXml
-          xml={Icons.Close}
-          style = {styles.assessmentIcon} />
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.popToTop()}
+        style={styles.assessmentIconContainer}>
+        <SvgXml xml={Icons.Close} style={styles.assessmentIcon} />
       </TouchableOpacity>
+    );
   };
 
   return (
@@ -166,7 +164,7 @@ const Assessment = ({ navigation }) => {
               name='AssessmentQuestion'
               options={{
                 ...screenOptions,
-                headerLeft: () => <AssessmentBackButton/>,
+                headerLeft: () => <AssessmentBackButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -190,8 +188,8 @@ const Assessment = ({ navigation }) => {
               name='EndShare'
               options={{
                 ...screenOptions,
-                headerLeft: () => <AssessmentBackButton/>,
-                headerRight: () => <AssessmentCloseButton/>,
+                headerLeft: () => <AssessmentBackButton />,
+                headerRight: () => <AssessmentCloseButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -203,7 +201,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_CAREGIVER}
               options={{
                 ...screenOptions,
-                headerLeft: () => <AssessmentBackButton/>,
+                headerLeft: () => <AssessmentBackButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -215,7 +213,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_DISTANCING}
               options={{
                 ...screenOptions,
-                headerLeft: () => <AssessmentBackButton/>,
+                headerLeft: () => <AssessmentBackButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -227,7 +225,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_EMERGENCY}
               options={{
                 ...screenOptions,
-                headerLeft: () => <AssessmentBackButton/>,
+                headerLeft: () => <AssessmentBackButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -239,7 +237,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_ISOLATE}
               options={{
                 ...screenOptions,
-                headerLeft: () => <AssessmentBackButton/>,
+                headerLeft: () => <AssessmentBackButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -323,11 +321,11 @@ function showAgreeAlert() {
   });
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   assessmentIconContainer: {
     padding: Spacing.medium,
   },
   assessmentIcon: {
     color: Colors.quaternaryViolet,
-  }
-})
+  },
+});
