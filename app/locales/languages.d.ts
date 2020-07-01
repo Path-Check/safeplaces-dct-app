@@ -14,7 +14,7 @@ export const getLocaleList: () => Record<
 export const setUserLocaleOverride: (
   locale: string,
 ) => Promise<void> = setOverride;
-export const getUserLocaleOverride: () => Promise<string> = getOverride;
+export const getUserLocaleOverride: () => string = getOverride;
 export const supportedDeviceLanguageOrEnglish: () => string = supportedDevice;
 export const useLanguageDirection: () =>
   | 'rtl'
