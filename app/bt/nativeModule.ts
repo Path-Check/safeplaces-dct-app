@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 
 // TODO All methods that call in to native.
-import { DeviceStatus } from './ExposureNotificationContext';
 import { ENPermissionStatus } from './PermissionsContext';
 import { ExposureInfo } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
@@ -79,7 +78,7 @@ export const submitDiagnosisKeys = async (
   cb: (errorMessage: string, successMessage: string) => void,
 ): Promise<void> => {
   keySubmissionModule.postDiagnosisKeys(cb);
-  exposureNotificationModule.requestExposureNotificationAuthorization(cb);
+  permissionsModule.requestExposureNotificationAuthorization(cb);
   // TODO I'll have to name my module exactly this "requestExposureNotificationAuthorization(cb)"
 };
 

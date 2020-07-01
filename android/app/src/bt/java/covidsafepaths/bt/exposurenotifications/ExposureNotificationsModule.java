@@ -24,6 +24,7 @@ import com.google.android.gms.nearby.exposurenotification.ExposureNotificationSt
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.swmansion.reanimated.Utils;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.pathcheck.covidsafepaths.MainActivity;
@@ -35,6 +36,7 @@ import covidsafepaths.bt.exposurenotifications.nearby.ExposureConfigurations;
 import covidsafepaths.bt.exposurenotifications.nearby.ProvideDiagnosisKeysWorker;
 import covidsafepaths.bt.exposurenotifications.nearby.StateUpdatedWorker;
 import covidsafepaths.bt.exposurenotifications.notify.ShareDiagnosisManager;
+import covidsafepaths.bt.exposurenotifications.utils.CallbackMessages;
 
 import static covidsafepaths.bt.exposurenotifications.ExposureNotificationsModule.MODULE_NAME;
 import static covidsafepaths.bt.exposurenotifications.nearby.StateUpdatedWorker.IS_EXPOSED_KEY;
@@ -43,7 +45,7 @@ import static covidsafepaths.bt.exposurenotifications.nearby.StateUpdatedWorker.
 public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
     private static ReactApplicationContext reactContext;
 
-    public static final String MODULE_NAME = "PTCExposureManagerModule";
+    public static final String MODULE_NAME = "ENPermissionsModule";
     public static final String TAG = "ENModule";
     private static final String EXPOSURE_ALERT_EVENT = "ExposureAlertEvent";
 
@@ -72,32 +74,32 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void requestExposureNotificationAuthorization(final Callback callback) {
-        Log.d("HELLO123", "requestExposureNotificationAuthorization");
         ExposureNotificationClientWrapper.get(getReactApplicationContext())
                 .start()
                 .addOnSuccessListener(
                         unused -> {
-                            Log.d("HELLO123", "success");
+                            callback.invoke(CallbackMessages.GENERIC_SUCCESS);
                         })
                 .addOnFailureListener(
                         exception -> {
                             if (!(exception instanceof ApiException)) {
-                                Log.e("HELLO123", "Unknown error when attempting to start API", exception);
+                                callback.invoke(CallbackMessages.ERROR_UNKNOWN);
                                 return;
                             }
                             ApiException apiException = (ApiException) exception;
                             if (apiException.getStatusCode()
                                     == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
-                                Log.e("HELLO123", "Resolution Required", exception);
+                                callback.invoke(CallbackMessages.RESOLUTION_REQUIRED);
                                 MainActivity mainActivity = (MainActivity) reactContext.getCurrentActivity();
                                 mainActivity.showPermission(apiException);
 
                             } else {
-                                Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
+                                callback.invoke(apiException.getStatus().toString());
                             }
                         })
                 .addOnCanceledListener(() ->
-                        Log.d("HELLO123", "cancelled"));
+                        callback.invoke(CallbackMessages.CANCELLED));
+
 
 
         //startExposureNotifications(promise);
