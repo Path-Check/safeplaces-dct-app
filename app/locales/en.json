@@ -23,7 +23,7 @@
     "emergency_description": "You may be having a <1>medical emergency</1>. Immediate medical attention is needed.\n\nTell the emergency operator if you have been in contact with someone with COVID-19 or if you have recently been to an area where COVID-19 is spreading.",
     "emergency_cta": "Call Emergency Services",
     "isolate_title": "Isolate Yourself",
-    "isolate_description": "You <1>have some symptoms</1> that may be related to COVID-19. Call your healthcare provider if your symtoms get worse. Start home isolation.",
+    "isolate_description": "You <1>have some symptoms</1> that may be related to COVID-19. Call your healthcare provider if your symptoms get worse. Start home isolation.",
     "isolate_cta": "Next",
     "share_title": "Publish anonymized data",
     "share_description": "Your anonymous data helps the {{authority}} analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.\n\nYour data contains your survey responses and zip code, but no additional or personally-identifying information.\n\nThe {{authority}} will retain your anonymous data for a specific period of time.",
