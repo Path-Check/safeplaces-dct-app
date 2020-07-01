@@ -35,10 +35,6 @@ export const mediumFontFamily = 'IBMPlexSans-Medium';
 export const boldFontFamily = 'IBMPlexSans-Bold';
 export const monospaceFontFamily = 'IBMPlexMono';
 
-const base: TextStyle = {
-  fontFamily: baseFontFamily,
-};
-
 export const extraBold: TextStyle = {
   fontFamily: boldFontFamily,
   fontWeight: heaviestWeight,
