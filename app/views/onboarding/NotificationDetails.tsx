@@ -18,9 +18,9 @@ const NotificationDetails = ({
   return (
     <DescriptionTemplate
       invertIcon={!isGPS}
-      background={StrategyAssets.notificationDetailsBackground}
+      backgroundImage={StrategyAssets.notificationDetailsBackground}
       iconXml={StrategyAssets.notificationDetailsIcon}
-      title={StrategyCopy.notificationDetailsHeader}
+      header={StrategyCopy.notificationDetailsHeader}
       body={StrategyCopy.notificationDetailsSubheader}
       primaryButtonLabel={t('label.launch_next')}
       primaryButtonOnPress={() => navigation.replace('ShareDiagnosis')}

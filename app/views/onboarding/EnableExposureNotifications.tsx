@@ -22,10 +22,10 @@ export const EnableExposureNotifications = (): JSX.Element => {
     dispatch(onboardingCompleteAction());
   };
 
+  const headerText = t('label.launch_exposure_notif_header');
+  const bodyText = t('label.launch_exposure_notif_subheader');
   const buttonLabel = t('label.launch_enable_exposure_notif');
   const disableButtonLabel = t('label.launch_disable_exposure_notif');
-  const subTitleText = t('label.launch_exposure_notif_subheader');
-  const titleText = t('label.launch_exposure_notif_header');
 
   const handleOnPressEnable = () => {
     exposureNotifications.request();
@@ -39,24 +39,24 @@ export const EnableExposureNotifications = (): JSX.Element => {
   return (
     <DescriptionTemplate
       iconXml={Icons.ExposureIcon}
-      title={titleText}
-      titleStyle={styles.titleStyle}
-      body={subTitleText}
-      bodyStyle={styles.bodyStyle}
+      header={headerText}
+      headerStyle={styles.header}
+      body={bodyText}
+      bodyStyle={styles.body}
       primaryButtonLabel={buttonLabel}
       primaryButtonOnPress={handleOnPressEnable}
       secondaryButtonLabel={disableButtonLabel}
       secondaryButtonOnPress={handleOnPressDontEnable}
-      background={Images.BlueGradientBackground}
+      backgroundImage={Images.BlueGradientBackground}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  titleStyle: {
+  header: {
     color: Colors.white,
   },
-  bodyStyle: {
+  body: {
     color: Colors.white,
   },
 });

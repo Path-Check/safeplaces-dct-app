@@ -67,7 +67,7 @@ const LocationsPermissions = (): JSX.Element => {
             <SvgXml xml={Icons.LocationPin} width={30} height={30} />
           </View>
           <Typography style={styles.headerText}>
-            {t('onboarding.maybe_later')}
+            {t('onboarding.notification_header')}
           </Typography>
           <View style={{ height: Spacing.medium }} />
           <Typography style={styles.contentText}>

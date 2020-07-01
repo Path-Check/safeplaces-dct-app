@@ -25,8 +25,8 @@ import {
 
 type DescriptionTemplateProps = {
   iconXml: string;
-  title: string;
-  titleStyle?: TextStyle;
+  header: string;
+  headerStyle?: TextStyle;
   body: string;
   bodyStyle?: TextStyle;
   primaryButtonLabel: string;
@@ -37,15 +37,15 @@ type DescriptionTemplateProps = {
   secondaryButtonContainerStyle?: ViewStyle;
   secondaryButtonTextStyle?: TextStyle;
   secondaryButtonOnPress?: () => void;
-  background: ImageSourcePropType;
+  backgroundImage: ImageSourcePropType;
   backgroundStyle?: ViewStyle;
   invertIcon?: boolean;
 };
 
 const DescriptionTemplate = ({
   iconXml,
-  title,
-  titleStyle,
+  header,
+  headerStyle,
   body,
   bodyStyle,
   primaryButtonLabel,
@@ -56,7 +56,7 @@ const DescriptionTemplate = ({
   secondaryButtonContainerStyle,
   secondaryButtonTextStyle,
   secondaryButtonOnPress,
-  background,
+  backgroundImage,
   backgroundStyle,
   invertIcon,
 }: DescriptionTemplateProps): JSX.Element => {
@@ -76,7 +76,7 @@ const DescriptionTemplate = ({
 
   const headerStyles = {
     ...styles.headerText,
-    ...titleStyle,
+    ...headerStyle,
   };
 
   const contentStyles = {
@@ -88,7 +88,7 @@ const DescriptionTemplate = ({
     <View style={styles.outerContainer}>
       {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
         <ImageBackground
-          source={background}
+          source={backgroundImage}
           style={[styles.background, backgroundStyle]}
         />
       )}
@@ -100,7 +100,7 @@ const DescriptionTemplate = ({
           <View style={iconStyle}>
             <SvgXml xml={iconXml} />
           </View>
-          <Typography style={headerStyles}>{title}</Typography>
+          <Typography style={headerStyles}>{header}</Typography>
           <Typography style={contentStyles}>{body}</Typography>
         </ScrollView>
         <TouchableOpacity

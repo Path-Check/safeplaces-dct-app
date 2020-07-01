@@ -38,24 +38,24 @@ const NotificationsPermissions = (): JSX.Element => {
   return (
     <DescriptionTemplate
       iconXml={Icons.Bell}
-      title={t('onboarding.notification_header')}
-      titleStyle={styles.titleStyle}
+      header={t('onboarding.notification_header')}
+      headerStyle={styles.header}
       body={t('onboarding.notification_subheader')}
-      bodyStyle={styles.bodyStyle}
+      bodyStyle={styles.body}
       primaryButtonLabel={t('label.launch_enable_notif')}
       primaryButtonOnPress={handleOnPressEnable}
       secondaryButtonLabel={t('onboarding.maybe_later')}
       secondaryButtonOnPress={handleOnPressMaybeLater}
-      background={Images.BlueGradientBackground}
+      backgroundImage={Images.BlueGradientBackground}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  titleStyle: {
+  header: {
     color: Colors.white,
   },
-  bodyStyle: {
+  body: {
     color: Colors.white,
   },
 });

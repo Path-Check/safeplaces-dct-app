@@ -16,9 +16,9 @@ const PersonalPrivacy = ({ navigation }: PersonalPrivacyProps): JSX.Element => {
 
   return (
     <DescriptionTemplate
-      background={StrategyAssets.personalPrivacyBackground}
+      backgroundImage={StrategyAssets.personalPrivacyBackground}
       iconXml={StrategyAssets.personalPrivacyIcon}
-      title={StrategyCopy.personalPrivacyHeader}
+      header={StrategyCopy.personalPrivacyHeader}
       body={StrategyCopy.personalPrivacySubheader}
       primaryButtonLabel={t('label.launch_next')}
       primaryButtonOnPress={() => navigation.replace('NotificatioNDetails')}
