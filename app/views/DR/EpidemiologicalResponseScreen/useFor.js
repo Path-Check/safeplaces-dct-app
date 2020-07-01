@@ -45,12 +45,13 @@ export default function UserFor({ navigation }) {
           <View style={{ marginTop: 15, height: hp('72%') }}>
             {nicknameArray.map(user => (
               <TouchableHighlight
-                onPress={() =>
+                onPress={() => {
                   navigation.navigate('EpidemiologicResponse', {
                     screen: 'EpidemiologicReport',
+                    path: true,
                     params: { nickname: user.name },
-                  })
-                }
+                  });
+                }}
                 underlayColor={Colors.WHITE}
                 key={user.name}>
                 <Card style={[styles.bigCards, styles.userDataCard]}>

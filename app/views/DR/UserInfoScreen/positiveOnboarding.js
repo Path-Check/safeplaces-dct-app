@@ -1,5 +1,5 @@
 import { Button, Text } from 'native-base';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, KeyboardAvoidingView, ScrollView, View } from 'react-native';
 import {
@@ -10,7 +10,6 @@ import { Dialog } from 'react-native-simple-dialogs';
 
 import styles from '../../../components/DR/Header/style';
 import Input from '../../../components/DR/Input/index';
-import context from '../../../components/DR/Reduces/context.js';
 import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
 import Colors from '../../../constants/colors';
 import {
@@ -20,17 +19,12 @@ import {
 } from '../../../helpers/General';
 
 const PositiveOnboarding = ({ route, navigation }) => {
-  const { positive, body } = route.params;
+  const { positive, body, usage } = route.params;
   const { t } = useTranslation();
   const [showShareLocDialog, setShowShareLocDialog] = useState(false);
   const [error, showError] = useState(false);
   const [nickname, setNickname] = useState('');
   const [nicknameArray, setNicknameArray] = useState([]);
-  const [
-    {
-      answers: { usage },
-    },
-  ] = useContext(context);
 
   useEffect(() => {
     getUsers().then(data => setNicknameArray(data !== null ? data : []));
@@ -58,12 +52,12 @@ const PositiveOnboarding = ({ route, navigation }) => {
   };
   const verifyAndAccept = async () => {
     if (!getNicknamesCoincidences(nicknameArray, nickname)) {
-      nicknameArray.push(createEntry(nickname, body, positive));
+      nicknameArray.push(createEntry(nickname, body, positive, usage));
       await SetStoreData('users', nicknameArray);
       setShowShareLocDialog(true);
       navigation.navigate('EpidemiologicResponse', {
         screen: 'EpidemiologicReport',
-        params: { nickname: nickname },
+        params: { nickname: nickname, path: false },
       });
     } else {
       showError(true);
@@ -108,7 +102,7 @@ const PositiveOnboarding = ({ route, navigation }) => {
                       setTimeout(async () => {
                         await RemoveStoreData('shareLocation');
                         setShowShareLocDialog(false);
-                      }, 1000);
+                      }, 500);
                     }}>
                     <Text style={[styles.text, { color: Colors.RED_BUTTON }]}>
                       {t('report.no')}
@@ -192,6 +186,7 @@ const PositiveOnboarding = ({ route, navigation }) => {
                   width: wp('50%'),
                   textAlign: 'center',
                 }}
+                autoFocus
                 keyboardType={'default'}
                 maxLength={16}
               />

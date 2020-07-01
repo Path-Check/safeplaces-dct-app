@@ -63,6 +63,8 @@ const EpidemiologicalStatus = ({ route, navigation }) => {
               closeDialog();
               if (todaysFeeling === t('positives.feel_bad')) {
                 navigation.navigate('Report');
+              } else {
+                navigation.navigate('mentalHealthAdvices');
               }
             }}>
             <Text style={[styles.text, { color: Colors.WHITE }]}>

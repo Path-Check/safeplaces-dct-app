@@ -24,7 +24,12 @@ export default function ReportScreen({
   });
   const { t } = useTranslation();
 
-  const [, setGlobalState] = useContext(context);
+  const [
+    {
+      answers: { usage },
+    },
+    setGlobalState,
+  ] = useContext(context);
   const [users, setUsers] = useState([]);
 
   getUsers().then(data => {
@@ -66,7 +71,7 @@ export default function ReportScreen({
                 ]}
                 onPress={() => {
                   setSelectedOption('mySelf');
-                  navigation.navigate('UserInfo', { type });
+                  navigation.navigate('UserInfo', { type, usage });
                 }}>
                 <Text
                   style={[
@@ -80,7 +85,7 @@ export default function ReportScreen({
             <Button
               onPress={() => {
                 setSelectedOption('others');
-                navigation.navigate('UserInfo', { type });
+                navigation.navigate('UserInfo', { type, usage });
               }}
               style={[
                 styles.buttons,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 
+import Colors from '../../../constants/colors';
 import styles from '../Header/style';
 
 export default function PhoneInput({
@@ -41,7 +42,7 @@ export default function PhoneInput({
   return (
     <TextInput
       value={value}
-      style={[styles.inputs, style]}
+      style={[styles.inputs, style, { color: Colors.BLACK }]}
       onChangeText={text => handleOnChangePhone(text)}
       maxLength={maxLength}
       keyboardType='number-pad'

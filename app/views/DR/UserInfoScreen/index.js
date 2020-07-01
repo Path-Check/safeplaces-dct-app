@@ -34,7 +34,7 @@ import { GetStoreData } from '../../../helpers/General';
 export default function UserInfo({
   navigation,
   route: {
-    params: { type },
+    params: { type, usage },
   },
 }) {
   navigation.setOptions({
@@ -120,27 +120,32 @@ export default function UserInfo({
           closeDialog(false);
           if (positive) {
             GetStoreData('users', false).then(data => {
+              let same = false;
+              let name = '';
               if (data !== null) {
-                let same = false;
-                let name = '';
                 data.map(user => {
-                  if (JSON.stringify(user.data) === JSON.stringify(body)) {
+                  console.log(user);
+
+                  if (
+                    (body.cid !== undefined && user.data.cid === body.cid) ||
+                    (body.nssid !== undefined && user.data.nssid === body.nssid)
+                  ) {
                     same = true;
-                    name = user.data.name;
+                    name = user.name;
                   }
                 });
-                same
-                  ? navigation.navigate('EpidemiologicResponse', {
-                      screen: 'EpidemiologicReport',
-                      params: { nickname: name },
-                    })
-                  : navigation.navigate('PositiveOnboarding', {
-                      positive,
-                      body,
-                    });
               }
+              same
+                ? navigation.navigate('EpidemiologicResponse', {
+                    screen: 'EpidemiologicReport',
+                    params: { nickname: name },
+                  })
+                : navigation.navigate('PositiveOnboarding', {
+                    positive,
+                    body,
+                    usage,
+                  });
             });
-            navigation.navigate('PositiveOnboarding', { positive, body });
           } else if (type && !positive) {
             setShowValidationDialog(true);
             setPositiveError(true);

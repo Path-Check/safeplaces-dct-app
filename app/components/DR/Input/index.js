@@ -25,7 +25,12 @@ export default function Input({
         onFocus={() => setfocused(true)}
         onBlur={() => setfocused(false)}
         multiline={multiLine}
-        style={[styles.inputs, focused && inputStyle, style]}
+        style={[
+          styles.inputs,
+          focused && inputStyle,
+          { color: Colors.BLACK },
+          style,
+        ]}
         onChangeText={text => onChange(text)}
         {...props}
       />
