@@ -40,6 +40,11 @@ const primaryBlue: ViewStyle = {
   borderColor: Colors.primaryBlue,
 };
 
+const secondaryBlue: ViewStyle = {
+  backgroundColor: Colors.cornflowerBlue,
+  borderColor: Colors.cornflowerBlue,
+};
+
 const white: ViewStyle = {
   backgroundColor: Colors.white,
   borderColor: Colors.white,
@@ -70,6 +75,12 @@ export const largeBlue: ViewStyle = {
 export const largeBlueOutline: ViewStyle = {
   ...largeBlue,
   ...outlined,
+};
+
+export const largeSecondaryBlue: ViewStyle = {
+  ...base,
+  ...large,
+  ...secondaryBlue,
 };
 
 export const mediumBlue: ViewStyle = {

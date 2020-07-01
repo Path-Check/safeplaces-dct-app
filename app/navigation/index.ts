@@ -34,12 +34,13 @@ export type Screen =
   | 'Licenses'
   | 'FeatureFlags'
   | 'Import'
-  | 'Onboarding1'
-  | 'Onboarding2'
-  | 'Onboarding3'
-  | 'Onboarding4'
+  | 'Welcome'
+  | 'PersonalPrivacy'
+  | 'NotificatioNDetails'
+  | 'ShareDiagnosis'
   | 'OnboardingLocationPermissions'
   | 'OnboardingNotificationPermissions'
+  | 'NotificationPermissionsBT'
   | 'EnableExposureNotifications'
   | 'ExportFlow'
   | 'SelfAssessment'
@@ -69,12 +70,13 @@ export const Screens: { [key in Screen]: Screen } = {
   Licenses: 'Licenses',
   FeatureFlags: 'FeatureFlags',
   Import: 'Import',
-  Onboarding1: 'Onboarding1',
-  Onboarding2: 'Onboarding2',
-  Onboarding3: 'Onboarding3',
-  Onboarding4: 'Onboarding4',
+  Welcome: 'Welcome',
+  PersonalPrivacy: 'PersonalPrivacy',
+  NotificatioNDetails: 'NotificatioNDetails',
+  ShareDiagnosis: 'ShareDiagnosis',
   OnboardingLocationPermissions: 'OnboardingLocationPermissions',
   OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',
+  NotificationPermissionsBT: 'NotificationPermissionsBT',
   EnableExposureNotifications: 'EnableExposureNotifications',
   ExportFlow: 'ExportFlow',
   SelfAssessment: 'SelfAssessment',

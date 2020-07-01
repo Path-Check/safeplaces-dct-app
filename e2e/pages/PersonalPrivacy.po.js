@@ -1,7 +1,7 @@
 /* eslint-disable */
-const screenshotText = 'Onboarding - Page 2';
+const screenshotText = 'Onboarding - PersonalPrivacy';
 
-class Onboarding2 {
+class PersonalPrivacy {
   async tapButton(languageStrings) {
     await element(by.label(languageStrings.label.launch_next)).tap();
   }
@@ -18,4 +18,4 @@ class Onboarding2 {
   }
 }
 
-export default new Onboarding2();
+export default new PersonalPrivacy();

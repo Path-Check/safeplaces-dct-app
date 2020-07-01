@@ -45,19 +45,19 @@ const OnboardingTemplate = ({
   const iconStyle = invertIcon ? styles.goldIcon : styles.blueIcon;
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.outerContainer}>
       {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
         <ImageBackground source={background} style={styles.backgroundImage} />
       )}
       <View style={styles.content}>
         <ScrollView
           alwaysBounceVertical={false}
+          style={styles.innerContainer}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={iconStyle}>
             <SvgXml xml={iconXml} width={30} height={30} />
           </View>
           <Typography style={styles.headerText}>{title}</Typography>
-          <View style={{ height: Spacing.medium }} />
           <Typography style={styles.contentText}>{body}</Typography>
         </ScrollView>
         <TouchableOpacity onPress={buttonOnPress} style={styles.button}>
@@ -69,6 +69,13 @@ const OnboardingTemplate = ({
 };
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1,
+    backgroundColor: Colors.primaryBackground,
+  },
+  innerContainer: {
+    paddingVertical: Spacing.large,
+  },
   backgroundImage: {
     width: '100%',
     height: '100%',
@@ -77,13 +84,11 @@ const styles = StyleSheet.create({
   },
   blueIcon: {
     ...Iconography.largeBlueIcon,
+    marginBottom: Spacing.xHuge,
   },
   goldIcon: {
     ...Iconography.largeGoldIcon,
-  },
-  wrapper: {
-    flex: 1,
-    backgroundColor: Colors.primaryBackgroundFaintShade,
+    marginBottom: Spacing.xHuge,
   },
   content: {
     flex: 1,
@@ -93,10 +98,11 @@ const styles = StyleSheet.create({
     ...TypographyStyles.header2,
   },
   contentText: {
-    ...TypographyStyles.mainContent,
+    ...TypographyStyles.mainContentViolet,
+    marginTop: Spacing.xLarge,
   },
   button: {
-    ...Buttons.largeBlue,
+    ...Buttons.largeSecondaryBlue,
   },
   buttonText: {
     ...TypographyStyles.buttonTextLight,

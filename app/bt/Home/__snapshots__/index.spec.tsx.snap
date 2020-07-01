@@ -23,7 +23,7 @@ exports[`HomeScreen renders 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../app/assets/images/launchScreenBackground.png",
+          "testUri": "../../../app/assets/images/blueGradientBackground.png",
         }
       }
       style={

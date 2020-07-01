@@ -13,12 +13,12 @@ export interface TracingStrategy {
 }
 
 export interface StrategyAssets {
-  onboarding2Background: string;
-  onboarding2Icon: string;
-  onboarding3Background: string;
-  onboarding3Icon: string;
-  onboarding4Background: string;
-  onboarding4Icon: string;
+  personalPrivacyBackground: string;
+  personalPrivacyIcon: string;
+  notificationDetailsBackground: string;
+  notificationDetailsIcon: string;
+  shareDiagnosisBackground: string;
+  shareDiagnosisIcon: string;
   exportPublishIcon: string;
 }
 
@@ -38,13 +38,13 @@ export interface StrategyCopyContent {
   legalHeader: string;
   moreInfoHowContent: string;
   moreInfoWhyContent: string;
-  onboarding2Header: string;
-  onboarding2Subheader: string;
-  onboarding3Header: string;
-  onboarding3Subheader: string;
-  onboarding4Button: string;
-  onboarding4Header: string;
-  onboarding4Subheader: string;
+  personalPrivacyHeader: string;
+  personalPrivacySubheader: string;
+  notificationDetailsHeader: string;
+  notificationDetailsSubheader: string;
+  shareDiagnosisButton: string;
+  shareDiagnosisHeader: string;
+  shareDiagnosisSubheader: string;
   settingsLoggingActive: string;
   settingsLoggingInactive: string;
 }
