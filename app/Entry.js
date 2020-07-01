@@ -40,7 +40,7 @@ import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyS
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
-import Onboarding1 from './views/onboarding/Onboarding1';
+import Welcome from './views/onboarding/Welcome';
 import PersonalPrivacy from './views/onboarding/PersonalPrivacy';
 import NotificatioNDetails from './views/onboarding/NotificationDetails';
 import ShareDiagnosis from './views/onboarding/ShareDiagnosis';
@@ -291,7 +291,7 @@ const MainAppTabs = () => {
 
 const OnboardingStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
-    <Stack.Screen name={Screens.Onboarding1} component={Onboarding1} />
+    <Stack.Screen name={Screens.Welcome} component={Welcome} />
     <Stack.Screen name={Screens.PersonalPrivacy} component={PersonalPrivacy} />
     <Stack.Screen
       name={Screens.NotificatioNDetails}

@@ -1,5 +1,5 @@
 import { languages } from '../helpers/language';
-import Onboarding1 from '../pages/Onboarding1.po.js';
+import Welcome from '../pages/Welcome.po.js';
 import PersonalPrivacy from '../pages/PersonalPrivacy.po.js';
 import NotificatioNDetails from '../pages/NotificationDetails.po.js';
 import ShareDiagnosis from '../pages/ShareDiagnosis.po.js';
@@ -20,9 +20,9 @@ describe.each(languages)(
 
     describe('Onboarding visual appearance', () => {
       it('Navigates through the onboarding without visual regression', async () => {
-        await Onboarding1.isOnScreen(languageStrings);
-        await Onboarding1.takeScreenshot();
-        await Onboarding1.tapButton(languageStrings);
+        await Welcome.isOnScreen(languageStrings);
+        await Welcome.takeScreenshot();
+        await Welcome.tapButton(languageStrings);
 
         await SignEula.sign(languageStrings);
         await SignEula.takeScreenshot();

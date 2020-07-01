@@ -13,7 +13,7 @@ import languages, {
   getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
-} from './../../locales/languages';
+} from '../../locales/languages';
 import { Images } from '../../assets';
 import { NativePicker, Typography } from '../../components';
 import { EulaModal } from '../EulaModal';
@@ -22,7 +22,7 @@ import { Colors } from '../../styles';
 
 const width = Dimensions.get('window').width;
 
-class Onboarding extends Component {
+class Welcome extends Component {
   constructor(props) {
     super(props);
 
@@ -154,4 +154,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboarding;
+export default Welcome;
