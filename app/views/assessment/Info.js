@@ -50,10 +50,10 @@ export const Info = ({
         <View style={assessmentStyles.footer}>
           {ctaTitle && (
             <Button
-            backgroundColor={ctaBackgroundColor}
-            textColor={ctaTextColor} 
-            onPress={ctaAction} 
-            title={ctaTitle} />
+              backgroundColor={ctaBackgroundColor}
+              textColor={ctaTextColor} 
+              onPress={ctaAction} 
+              title={ctaTitle} />
             )}
           {footer}
         </View>
