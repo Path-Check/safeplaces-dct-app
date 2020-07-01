@@ -136,6 +136,7 @@ exports[`no authorities screen matches snapshot 1`] = `
           Array [
             Object {
               "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
               "fontSize": 17,
               "lineHeight": 28,
             },

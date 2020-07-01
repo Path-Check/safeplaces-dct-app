@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     width: Spacing.xHuge,
   },
   labelTextStyle: {
-    ...TypographyStyles.base,
+    ...TypographyStyles.label,
   },
 });
 
