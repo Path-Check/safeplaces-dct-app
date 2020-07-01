@@ -7,7 +7,7 @@ import { Info } from '../Info';
 
 import { Colors } from '../../../styles';
 
-import { AUTHORITY_NAME as authority }  from '../../../constants/authorities';
+import { AUTHORITY_NAME as authority } from '../../../constants/authorities';
 
 /** @type {React.FunctionComponent<{}>} */
 export const Share = ({ navigation }) => {
@@ -24,7 +24,7 @@ export const Share = ({ navigation }) => {
       description={
         <>
           <Typography>
-            {t('assessment.share_description', {authority})}
+            {t('assessment.share_description', { authority })}
           </Typography>
         </>
       }

@@ -8,7 +8,7 @@ import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
-import { AUTHORITY_NAME as healthAuthority }  from '../../constants/authorities';
+import { AUTHORITY_NAME as healthAuthority } from '../../constants/authorities';
 
 const NextSteps = (): JSX.Element => {
   const navigation = useNavigation();
