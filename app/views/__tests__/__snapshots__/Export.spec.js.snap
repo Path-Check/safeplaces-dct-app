@@ -77,6 +77,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
                 "lineHeight": 28,
               },
@@ -179,6 +180,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#2e2e2e",
+                      "fontFamily": "IBMPlexSans",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -212,6 +214,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#2e2e2e",
+                      "fontFamily": "IBMPlexSans",
                       "fontSize": 17,
                       "lineHeight": 28,
                     },
@@ -221,6 +224,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                     Array [
                       Object {
                         "color": "#ffffff",
+                        "fontFamily": "IBMPlexSans",
                         "fontSize": 17,
                         "lineHeight": 28,
                       },
@@ -241,23 +245,16 @@ exports[`<ExportScreen /> renders correctly 1`] = `
             isTVSelectable={true}
             style={
               Object {
-                "alignContent": "center",
                 "alignItems": "center",
-                "alignSelf": "stretch",
                 "backgroundColor": "#ffffff",
-                "borderBottomLeftRadius": 8,
-                "borderBottomRightRadius": 8,
-                "borderColor": "transparent",
-                "borderStyle": "solid",
-                "borderTopLeftRadius": 8,
-                "borderTopRightRadius": 8,
-                "borderWidth": 2,
+                "borderColor": "#ffffff",
+                "borderRadius": 8,
                 "flexDirection": "row",
-                "height": 72,
                 "justifyContent": "center",
                 "marginTop": 10,
                 "opacity": 1,
-                "paddingHorizontal": 16,
+                "paddingBottom": 25,
+                "paddingTop": 24,
               }
             }
           >
@@ -266,6 +263,7 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                 Array [
                   Object {
                     "color": "#2e2e2e",
+                    "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
                     "lineHeight": 28,
                   },
@@ -274,10 +272,8 @@ exports[`<ExportScreen /> renders correctly 1`] = `
                   },
                   Object {
                     "color": "#1f2c9b",
-                    "fontFamily": "IBMPlexSans-Medium",
-                    "fontSize": 20,
-                    "fontWeight": "normal",
-                    "lineHeight": 40,
+                    "fontSize": 19,
+                    "fontWeight": "500",
                   },
                 ]
               }

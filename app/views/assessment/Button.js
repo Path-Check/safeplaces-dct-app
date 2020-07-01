@@ -19,12 +19,12 @@ export const Button = ({ color, onPress, title, disabled = false }) => {
   let backgroundColor = color
     ? color
     : disabled
-    ? Colors.moonRaker
+    ? Colors.secondaryBackground
     : Colors.secondaryBlue;
   let textColor = color
     ? color
     : disabled
-    ? Colors.tertiaryViolet
+    ? Colors.disabledButtonText
     : Colors.white;
   return (
     <TouchableOpacity

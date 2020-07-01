@@ -23,7 +23,7 @@ export type ExposureHistory = ExposureDatum[];
 
 export const toExposureHistory: (
   exposureInfo: ExposureInfo,
-  calendary: Posix[],
+  calendar: Posix[],
 ) => ExposureHistory = (exposureInfo, calendar) => {
   return calendar.map((date: Posix) => {
     if (exposureInfo[date]) {

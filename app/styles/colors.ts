@@ -83,9 +83,12 @@ export const primaryBackgroundFaintShade = faintGray;
 export const secondaryBackground = moonRaker;
 export const tertiaryBackground = lighterGray;
 export const quaternaryBackground = lightGray;
+
+export const invertedPrimaryBackground = primaryBlue;
 export const invertedSecondaryBackground = tertiaryBlue;
 export const invertedTertiaryBackground = secondaryBlue;
 export const invertedQuaternaryBackground = primaryBlue;
+
 export const bottomSheetBackground = white;
 
 // Underlays, corresponding to the background to be used for
@@ -93,7 +96,9 @@ export const underlayPrimaryBackground = moonRaker;
 
 // Borders
 export const primaryBorder = primaryViolet;
-export const secondaryBorder = gray;
+export const secondaryBorder = lighterGray;
+export const radioBorder = lightGray;
+export const checkboxBorder = lightGray;
 
 // Nav
 export const mainNav = primaryViolet;
@@ -106,6 +111,7 @@ export const icon = mediumGray;
 
 // Buttons
 export const disabledButton = darkGray;
+export const disabledButtonText = quaternaryViolet;
 export const violetButton = cornflowerBlue;
 export const violetButtonLight = moonRaker;
 export const violetButtonDark = royalBlue;
@@ -151,4 +157,5 @@ export const onboardingIconYellow = champangne;
 export const onboardingIconBlue = moonRaker;
 
 // Exposure History
-export const exposureRiskWarning = royalBlue;
+export const possibleExposure = royalBlue;
+export const expectedExposure = amber;

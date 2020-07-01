@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Linking,
@@ -7,17 +7,35 @@ import {
   StyleSheet,
   Text,
   View,
+  Alert,
 } from 'react-native';
 
+import { useStrategyContent } from '../TracingStrategyContext';
 import packageJson from '../../package.json';
 import { NavigationBarWrapper, Typography } from '../components';
-import { useAssets } from '../TracingStrategyAssets';
 
+import { useDispatch } from 'react-redux';
+import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleAllowFeatureFlagsEnabledAction';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
+const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
+
 export const AboutScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+
+  const [clickCount, setClickCount] = useState(0);
+  useEffect(() => {
+    if (clickCount === CLICKS_TO_ENABLE_FEATURE_FLAGS) {
+      Alert.alert('Feature Flags Enabled!');
+      dispatch(toggleAllowFeatureFlagsAction({ overrideValue: true }));
+    }
+  }, [clickCount, dispatch]);
+
+  const incrementClickCount = () => setClickCount(clickCount + 1);
+
   const { t } = useTranslation();
-  const { aboutHeader } = useAssets();
+  const { StrategyCopy } = useStrategyContent();
 
   const backToMain = () => {
     navigation.goBack();
@@ -30,9 +48,11 @@ export const AboutScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
-        <Typography use='headline2' style={styles.heading}>
-          {aboutHeader}
-        </Typography>
+        <TouchableWithoutFeedback onPress={incrementClickCount}>
+          <Typography use='headline2' style={styles.heading}>
+            {StrategyCopy.aboutHeader}
+          </Typography>
+        </TouchableWithoutFeedback>
         <Typography use='body2'>{t('label.about_para')}</Typography>
         <Typography
           style={styles.hyperlink}
@@ -47,6 +67,7 @@ export const AboutScreen = ({ navigation }) => {
             <Typography style={styles.aboutSectionParaLabel}>
               {t('about.version')}
             </Typography>
+
             <Typography style={styles.aboutSectionParaContent}>
               {packageJson.version}
             </Typography>

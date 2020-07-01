@@ -53,38 +53,49 @@ export const monospace: TextStyle = {
   fontFamily: monospaceFontFamily,
 };
 
+export const base: TextStyle = {
+  fontFamily: baseFontFamily,
+};
+
 // Standard Font Types
 export const tinyFont: TextStyle = {
+  ...base,
   lineHeight: smallestLineHeight,
   fontSize: tiny,
 };
 
 export const smallFont: TextStyle = {
+  ...base,
   lineHeight: smallLineHeight,
   fontSize: small,
 };
 
 export const mediumFont: TextStyle = {
+  ...base,
   lineHeight: mediumLineHeight,
   fontSize: medium,
 };
 
 export const largeFont: TextStyle = {
+  ...base,
   lineHeight: largestLineHeight,
   fontSize: large,
 };
 
 export const largerFont: TextStyle = {
+  ...base,
   lineHeight: largestLineHeight,
   fontSize: larger,
 };
 
 export const largestFont: TextStyle = {
+  ...base,
   lineHeight: largestLineHeight,
   fontSize: largest,
 };
 
 export const hugeFont: TextStyle = {
+  ...base,
   lineHeight: hugeLineHeight,
   fontSize: huge,
 };
@@ -119,6 +130,12 @@ export const header5: TextStyle = {
   color: Colors.primaryHeaderText,
 };
 
+export const header6: TextStyle = {
+  ...largerFont,
+  ...bold,
+  color: Colors.black,
+};
+
 export const title: TextStyle = {
   ...largeFont,
   fontWeight: heaviestWeight,
@@ -131,13 +148,19 @@ export const mainContent: TextStyle = {
   color: Colors.primaryText,
 };
 
+export const mainContentViolet: TextStyle = {
+  ...mediumFont,
+  color: Colors.secondaryViolet,
+};
+
 export const secondaryContent: TextStyle = {
   ...mediumFont,
+  ...base,
   color: Colors.secondaryText,
   lineHeight: mediumLineHeight,
 };
 
-export const tertirayContent: TextStyle = {
+export const tertiaryContent: TextStyle = {
   ...smallFont,
   color: Colors.tertiaryText,
   lineHeight: smallLineHeight,
@@ -199,4 +222,18 @@ export const buttonTextLight: TextStyle = {
 export const buttonTextTinyDark: TextStyle = {
   ...buttonTextDark,
   ...tinyFont,
+};
+
+// Assessment
+export const assessmentInstruction: TextStyle = {
+  ...mediumFont,
+  color: Colors.secondaryHeaderText,
+  lineHeight: smallerLineHeight,
+};
+
+export const inputLabel: TextStyle = {
+  ...bold,
+  color: Colors.primaryText,
+  fontSize: large,
+  lineHeight: mediumLineHeight,
 };

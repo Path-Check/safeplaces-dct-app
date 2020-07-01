@@ -7,7 +7,6 @@
 //
 import Foundation
 import Scrypt
-import os.log
 
 public extension MAURLocation {
   /// Generates rounded time windows for interval before and after timestamp
@@ -35,17 +34,16 @@ public extension MAURLocation {
 
   /// Encodes geoHashes with the scrypt algorithm
   var scryptHashes: [String] {
-    if #available(iOS 10.0, *) {
-      let start = DispatchTime.now()
-      let scryptGeoHashes = geoHashes.map(scrypt)
-      let end = DispatchTime.now()
-      let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
-      let timeInterval = Double(nanoTime) / 1_000_000_000
-      os_log("Hashing completed in: %d seconds", log: Log.scryptHashing, type: .debug, timeInterval)
-      return scryptGeoHashes
-    } else {
-      return geoHashes.map(scrypt)
-    }
+    let start = DispatchTime.now()
+    let scryptGeoHashes = geoHashes.map(scrypt)
+    let end = DispatchTime.now()
+
+    let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+    let timeInterval = Double(nanoTime) / 1_000_000_000
+
+    Log.scryptHashing.debug(String(format: "Hashing completed in: %.4f seconds", timeInterval))
+
+    return scryptGeoHashes
   }
 
   /// Apply scrypt hash algorithm on a String

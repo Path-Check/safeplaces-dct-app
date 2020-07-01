@@ -44,3 +44,14 @@ export const checkboxText: TextStyle = {
   ...Typography.mediumFont,
   color: Colors.invertedText,
 };
+
+export const inputIndicator: ViewStyle = {
+  alignItems: 'center',
+  borderColor: Colors.radioBorder,
+  borderWidth: 2,
+  height: Spacing.large,
+  justifyContent: 'center',
+  marginTop: Spacing.tiny,
+  marginRight: Spacing.large,
+  width: Spacing.large,
+};

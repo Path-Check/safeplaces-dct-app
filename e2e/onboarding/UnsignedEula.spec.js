@@ -1,5 +1,5 @@
 import { languages } from '../helpers/language';
-import Onboarding1 from '../pages/Onboarding1.po.js';
+import Welcome from '../pages/Welcome.po.js';
 import SignEula from '../pages/SignEula.po.js';
 
 describe.each(languages)(
@@ -18,8 +18,8 @@ describe.each(languages)(
 
     describe('Cannot continue without signing the EULA', () => {
       it('Does not allow the user to proceed', async () => {
-        await Onboarding1.isOnScreen(languageStrings);
-        await Onboarding1.tapButton(languageStrings);
+        await Welcome.isOnScreen(languageStrings);
+        await Welcome.tapButton(languageStrings);
 
         await SignEula.tapButton(languageStrings);
         await device.takeScreenshot('Unsigned Eula Continue Attempt');

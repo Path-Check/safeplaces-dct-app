@@ -80,7 +80,7 @@ jobs:
       # TODO(https://pathcheck.atlassian.net/browse/SAF-250): remove the skip on COVIDSafePathsTests/testRendersWelcomeScreen once it's passing
       - run: |
           xcodebuild test -workspace COVIDSafePaths.xcworkspace \
-            -scheme GPS_Tests \
+            -scheme GPS_Development \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
             -skip-testing GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen
         working-directory: ./ios
@@ -146,7 +146,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-iphonesimulator/GPS.app
+          path: ios/build/Build/Products/Release-GPS-iphonesimulator/GPS.app
 
   e2e-iphone-se:
     runs-on: macOS-latest
@@ -188,7 +188,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-iphonesimulator/GPS.app
+          path: ios/build/Build/Products/Release-GPS-iphonesimulator/GPS.app
 
       - run: yarn test:e2e:iphone-se
 

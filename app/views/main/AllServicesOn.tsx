@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimensions, ImageBackground, StatusBar, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
 
@@ -7,9 +8,8 @@ import { Icons, Images } from '../../assets';
 import { Typography } from '../../components/Typography';
 import { Theme } from '../../constants/themes';
 import { isGPS } from '../../COVIDSafePathsConfig';
-import { useAssets } from '../../TracingStrategyAssets';
-import { styles } from './style';
 
+import { styles } from './style';
 import { Colors } from '../../styles';
 
 type AllServicesOnProps = {
@@ -19,21 +19,14 @@ type AllServicesOnProps = {
 export const AllServicesOnScreen = ({
   noHaAvailable,
 }: AllServicesOnProps): JSX.Element => {
-  const {
-    allServicesOnScreenHeader,
-    allServicesOnScreenSubheader,
-    allServicesOnNoHaAvailableSubHeader,
-  } = useAssets();
-  const size = Dimensions.get('window').height;
+  const { t } = useTranslation();
 
-  const allServicesOnScreenHeaderText: string = allServicesOnScreenHeader as string;
-  const allServicesOnScreenSubheaderText: string = allServicesOnScreenSubheader as string;
-  const allServicesOnNoHaAvailableSubHeaderText: string = allServicesOnNoHaAvailableSubHeader as string;
+  const size = Dimensions.get('window').height;
 
   return (
     <Theme use='violet'>
       <ImageBackground
-        source={Images.LaunchScreenBackground}
+        source={Images.BlueGradientBackground}
         style={styles.backgroundImage}>
         <StatusBar
           barStyle='light-content'
@@ -63,14 +56,14 @@ export const AllServicesOnScreen = ({
         <View style={styles.contentAbovePulse} />
         <View style={styles.contentBelowPulse}>
           <Typography style={styles.mainTextBelow}>
-            {allServicesOnScreenHeaderText}
+            {t('home.gps.all_services_on_header')}
           </Typography>
           <Typography style={styles.subheaderText}>
-            {allServicesOnScreenSubheaderText}
+            {t('home.gps.all_services_on_subheader')}
           </Typography>
           {noHaAvailable && (
             <Typography style={styles.subheaderText}>
-              {allServicesOnNoHaAvailableSubHeaderText}
+              {t('home.gps.all_services_on_no_ha_available')}
             </Typography>
           )}
         </View>

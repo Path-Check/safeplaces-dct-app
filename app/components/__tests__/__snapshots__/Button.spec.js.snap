@@ -18,22 +18,15 @@ exports[`allows small override 1`] = `
     isTVSelectable={true}
     style={
       Object {
-        "alignContent": "center",
         "alignItems": "center",
-        "alignSelf": "stretch",
-        "backgroundColor": "#1f2c9b",
-        "borderBottomLeftRadius": 8,
-        "borderBottomRightRadius": 8,
-        "borderColor": "transparent",
-        "borderStyle": "solid",
-        "borderTopLeftRadius": 8,
-        "borderTopRightRadius": 8,
-        "borderWidth": 2,
+        "backgroundColor": "#ffffff",
+        "borderColor": "#ffffff",
+        "borderRadius": 8,
         "flexDirection": "row",
-        "height": 48,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingHorizontal": 14,
+        "paddingBottom": 25,
+        "paddingTop": 24,
       }
     }
   >
@@ -42,6 +35,7 @@ exports[`allows small override 1`] = `
         Array [
           Object {
             "color": "#2e2e2e",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 17,
             "lineHeight": 28,
           },
@@ -49,11 +43,9 @@ exports[`allows small override 1`] = `
             "writingDirection": "ltr",
           },
           Object {
-            "color": "#ffffff",
-            "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 14,
-            "fontWeight": "normal",
-            "lineHeight": 21,
+            "color": "#1f2c9b",
+            "fontSize": 19,
+            "fontWeight": "500",
           },
         ]
       }
@@ -82,22 +74,15 @@ exports[`changes color based on theme 1`] = `
     isTVSelectable={true}
     style={
       Object {
-        "alignContent": "center",
         "alignItems": "center",
-        "alignSelf": "stretch",
-        "backgroundColor": "#1f2c9b",
-        "borderBottomLeftRadius": 8,
-        "borderBottomRightRadius": 8,
-        "borderColor": "transparent",
-        "borderStyle": "solid",
-        "borderTopLeftRadius": 8,
-        "borderTopRightRadius": 8,
-        "borderWidth": 2,
+        "backgroundColor": "#ffffff",
+        "borderColor": "#ffffff",
+        "borderRadius": 8,
         "flexDirection": "row",
-        "height": 72,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingHorizontal": 16,
+        "paddingBottom": 25,
+        "paddingTop": 24,
       }
     }
   >
@@ -106,6 +91,7 @@ exports[`changes color based on theme 1`] = `
         Array [
           Object {
             "color": "#2e2e2e",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 17,
             "lineHeight": 28,
           },
@@ -113,11 +99,9 @@ exports[`changes color based on theme 1`] = `
             "writingDirection": "ltr",
           },
           Object {
-            "color": "#ffffff",
-            "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 20,
-            "fontWeight": "normal",
-            "lineHeight": 40,
+            "color": "#1f2c9b",
+            "fontSize": 19,
+            "fontWeight": "500",
           },
         ]
       }
@@ -133,22 +117,15 @@ exports[`changes color based on theme 1`] = `
     isTVSelectable={true}
     style={
       Object {
-        "alignContent": "center",
         "alignItems": "center",
-        "alignSelf": "stretch",
         "backgroundColor": "#ffffff",
-        "borderBottomLeftRadius": 8,
-        "borderBottomRightRadius": 8,
-        "borderColor": "transparent",
-        "borderStyle": "solid",
-        "borderTopLeftRadius": 8,
-        "borderTopRightRadius": 8,
-        "borderWidth": 2,
+        "borderColor": "#ffffff",
+        "borderRadius": 8,
         "flexDirection": "row",
-        "height": 72,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingHorizontal": 16,
+        "paddingBottom": 25,
+        "paddingTop": 24,
       }
     }
   >
@@ -157,6 +134,7 @@ exports[`changes color based on theme 1`] = `
         Array [
           Object {
             "color": "#2e2e2e",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 17,
             "lineHeight": 28,
           },
@@ -164,11 +142,9 @@ exports[`changes color based on theme 1`] = `
             "writingDirection": "ltr",
           },
           Object {
-            "color": "#4e4e4e",
-            "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 20,
-            "fontWeight": "normal",
-            "lineHeight": 40,
+            "color": "#1f2c9b",
+            "fontSize": 19,
+            "fontWeight": "500",
           },
         ]
       }
@@ -184,22 +160,15 @@ exports[`changes color based on theme 1`] = `
     isTVSelectable={true}
     style={
       Object {
-        "alignContent": "center",
         "alignItems": "center",
-        "alignSelf": "stretch",
         "backgroundColor": "#ffffff",
-        "borderBottomLeftRadius": 8,
-        "borderBottomRightRadius": 8,
-        "borderColor": "transparent",
-        "borderStyle": "solid",
-        "borderTopLeftRadius": 8,
-        "borderTopRightRadius": 8,
-        "borderWidth": 2,
+        "borderColor": "#ffffff",
+        "borderRadius": 8,
         "flexDirection": "row",
-        "height": 72,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingHorizontal": 16,
+        "paddingBottom": 25,
+        "paddingTop": 24,
       }
     }
   >
@@ -208,6 +177,7 @@ exports[`changes color based on theme 1`] = `
         Array [
           Object {
             "color": "#2e2e2e",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 17,
             "lineHeight": 28,
           },
@@ -216,10 +186,8 @@ exports[`changes color based on theme 1`] = `
           },
           Object {
             "color": "#1f2c9b",
-            "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 20,
-            "fontWeight": "normal",
-            "lineHeight": 40,
+            "fontSize": 19,
+            "fontWeight": "500",
           },
         ]
       }
@@ -248,22 +216,15 @@ exports[`renders a violet 72px button on default theme 1`] = `
     isTVSelectable={true}
     style={
       Object {
-        "alignContent": "center",
         "alignItems": "center",
-        "alignSelf": "stretch",
-        "backgroundColor": "#1f2c9b",
-        "borderBottomLeftRadius": 8,
-        "borderBottomRightRadius": 8,
-        "borderColor": "transparent",
-        "borderStyle": "solid",
-        "borderTopLeftRadius": 8,
-        "borderTopRightRadius": 8,
-        "borderWidth": 2,
+        "backgroundColor": "#ffffff",
+        "borderColor": "#ffffff",
+        "borderRadius": 8,
         "flexDirection": "row",
-        "height": 72,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingHorizontal": 16,
+        "paddingBottom": 25,
+        "paddingTop": 24,
       }
     }
   >
@@ -272,6 +233,7 @@ exports[`renders a violet 72px button on default theme 1`] = `
         Array [
           Object {
             "color": "#2e2e2e",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 17,
             "lineHeight": 28,
           },
@@ -279,11 +241,9 @@ exports[`renders a violet 72px button on default theme 1`] = `
             "writingDirection": "ltr",
           },
           Object {
-            "color": "#ffffff",
-            "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 20,
-            "fontWeight": "normal",
-            "lineHeight": 40,
+            "color": "#1f2c9b",
+            "fontSize": 19,
+            "fontWeight": "500",
           },
         ]
       }
@@ -312,22 +272,15 @@ exports[`renders an icon and space-between if supplied 1`] = `
     isTVSelectable={true}
     style={
       Object {
-        "alignContent": "center",
         "alignItems": "center",
-        "alignSelf": "stretch",
-        "backgroundColor": "#1f2c9b",
-        "borderBottomLeftRadius": 8,
-        "borderBottomRightRadius": 8,
-        "borderColor": "transparent",
-        "borderStyle": "solid",
-        "borderTopLeftRadius": 8,
-        "borderTopRightRadius": 8,
-        "borderWidth": 2,
+        "backgroundColor": "#ffffff",
+        "borderColor": "#ffffff",
+        "borderRadius": 8,
         "flexDirection": "row",
-        "height": 72,
-        "justifyContent": "space-between",
+        "justifyContent": "center",
         "opacity": 1,
-        "paddingHorizontal": 16,
+        "paddingBottom": 25,
+        "paddingTop": 24,
       }
     }
   >
@@ -336,6 +289,7 @@ exports[`renders an icon and space-between if supplied 1`] = `
         Array [
           Object {
             "color": "#2e2e2e",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 17,
             "lineHeight": 28,
           },
@@ -343,25 +297,15 @@ exports[`renders an icon and space-between if supplied 1`] = `
             "writingDirection": "ltr",
           },
           Object {
-            "color": "#ffffff",
-            "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 20,
-            "fontWeight": "normal",
-            "lineHeight": 40,
+            "color": "#1f2c9b",
+            "fontSize": 19,
+            "fontWeight": "500",
           },
         ]
       }
     >
       Button
     </Text>
-    <SvgXml
-      style={
-        Object {
-          "marginRight": 8,
-        }
-      }
-      xml="<g />"
-    />
   </View>
 </View>
 `;
@@ -384,22 +328,15 @@ exports[`renders different color for secondary 1`] = `
     isTVSelectable={true}
     style={
       Object {
-        "alignContent": "center",
         "alignItems": "center",
-        "alignSelf": "stretch",
-        "backgroundColor": "transparent",
-        "borderBottomLeftRadius": 8,
-        "borderBottomRightRadius": 8,
-        "borderColor": "#1f2c9b",
-        "borderStyle": "solid",
-        "borderTopLeftRadius": 8,
-        "borderTopRightRadius": 8,
-        "borderWidth": 2,
+        "backgroundColor": "#ffffff",
+        "borderColor": "#ffffff",
+        "borderRadius": 8,
         "flexDirection": "row",
-        "height": 72,
         "justifyContent": "center",
         "opacity": 1,
-        "paddingHorizontal": 16,
+        "paddingBottom": 25,
+        "paddingTop": 24,
       }
     }
   >
@@ -408,6 +345,7 @@ exports[`renders different color for secondary 1`] = `
         Array [
           Object {
             "color": "#2e2e2e",
+            "fontFamily": "IBMPlexSans",
             "fontSize": 17,
             "lineHeight": 28,
           },
@@ -416,10 +354,8 @@ exports[`renders different color for secondary 1`] = `
           },
           Object {
             "color": "#1f2c9b",
-            "fontFamily": "IBMPlexSans-Medium",
-            "fontSize": 20,
-            "fontWeight": "normal",
-            "lineHeight": 40,
+            "fontSize": 19,
+            "fontWeight": "500",
           },
         ]
       }
