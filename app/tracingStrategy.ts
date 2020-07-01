@@ -1,8 +1,8 @@
+import { ImageSourcePropType } from 'react-native';
+
 import { TFunction } from 'i18next';
 
 import { ExposureInfoSubscription } from './ExposureHistoryContext';
-
-import { ImageSourcePropType } from 'react-native';
 
 export interface TracingStrategy {
   name: string;
