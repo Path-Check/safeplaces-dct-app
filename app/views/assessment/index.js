@@ -1,6 +1,6 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
 import React, { useMemo, useRef } from 'react';
-import { Alert, TouchableOpacity } from 'react-native';
+import { Alert, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { SvgXml } from 'react-native-svg';
@@ -28,7 +28,7 @@ import { Isolate } from './endScreens/Isolate';
 import { Share } from './endScreens/Share';
 import { useStatusBarEffect } from '../../navigation';
 
-import { Colors } from '../../styles';
+import { Colors, Spacing } from '../../styles';
 
 /**
  * @typedef {"Checkbox" | "Date" | Radio" | "EndCaregiver" | "EndDistancing" | "EndEmergency" | "EndIsolate" } SurveyScreen
@@ -112,8 +112,28 @@ const Assessment = ({ navigation }) => {
     headerStyle: {
       backgroundColor: Colors.primaryBackgroundFaintShade,
     },
-    //eslint-disable-next-line
-    headerRight: () => <AssessmentCancel />,
+  };
+
+  const AssessmentBackButton = () => {
+    return <TouchableOpacity
+      onPress={() => navigation.pop()}
+      style = {styles.assessmentIconContainer}
+      >
+        <SvgXml
+          xml={Icons.BackArrow}
+          style = {styles.assessmentIcon} />
+      </TouchableOpacity>
+  };
+
+  const AssessmentCloseButton = () => {
+    return <TouchableOpacity
+      onPress={() => navigation.popToTop()}
+      style = {styles.assessmentIconContainer}
+      >
+        <SvgXml
+          xml={Icons.Close}
+          style = {styles.assessmentIcon} />
+      </TouchableOpacity>
   };
 
   return (
@@ -135,24 +155,33 @@ const Assessment = ({ navigation }) => {
               name='AssessmentStart'
               options={{
                 ...screenOptions,
-                headerRight: () => null,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
+                  shadowColor: 'transparent',
                 },
               }}
             />
             <Stack.Screen
               component={QuestionScreen}
               name='AssessmentQuestion'
-              options={screenOptions}
+              options={{
+                ...screenOptions,
+                headerLeft: () => <AssessmentBackButton/>,
+                headerStyle: {
+                  backgroundColor: Colors.primaryBackgroundFaintShade,
+                  shadowColor: 'transparent',
+                },
+              }}
             />
             <Stack.Screen
               component={AssessmentComplete}
               name='AssessmentComplete'
               options={{
                 ...screenOptions,
+                headerLeft: () => null,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
+                  shadowColor: 'transparent',
                 },
               }}
             />
@@ -161,8 +190,11 @@ const Assessment = ({ navigation }) => {
               name='EndShare'
               options={{
                 ...screenOptions,
+                headerLeft: () => <AssessmentBackButton/>,
+                headerRight: () => <AssessmentCloseButton/>,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
+                  shadowColor: 'transparent',
                 },
               }}
             />
@@ -171,8 +203,10 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_CAREGIVER}
               options={{
                 ...screenOptions,
+                headerLeft: () => <AssessmentBackButton/>,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
+                  shadowColor: 'transparent',
                 },
               }}
             />
@@ -181,8 +215,10 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_DISTANCING}
               options={{
                 ...screenOptions,
+                headerLeft: () => <AssessmentBackButton/>,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
+                  shadowColor: 'transparent',
                 },
               }}
             />
@@ -191,8 +227,10 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_EMERGENCY}
               options={{
                 ...screenOptions,
+                headerLeft: () => <AssessmentBackButton/>,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
+                  shadowColor: 'transparent',
                 },
               }}
             />
@@ -201,8 +239,10 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_ISOLATE}
               options={{
                 ...screenOptions,
+                headerLeft: () => <AssessmentBackButton/>,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
+                  shadowColor: 'transparent',
                 },
               }}
             />
@@ -282,3 +322,12 @@ function showAgreeAlert() {
     );
   });
 }
+
+const styles = StyleSheet.create ({
+  assessmentIconContainer: {
+    padding: Spacing.medium,
+  },
+  assessmentIcon: {
+    color: Colors.quaternaryViolet,
+  }
+})
