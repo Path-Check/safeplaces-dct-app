@@ -8,7 +8,7 @@ import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Typography } from '../../components/Typography';
 
 import getHealthcareAuthoritiesAction from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
-import type { HealthcareAuthority } from '../../store/types';
+import { HealthcareAuthority, FeatureFlagOption } from '../../store/types';
 import selectedHealthcareAuthoritiesSelector from '../../store/selectors/selectedHealthcareAuthoritiesSelector';
 import customUrlhealthcareAuthorityOptionsSelector from '../../store/selectors/customUrlhealthcareAuthorityOptionsSelector';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
@@ -17,7 +17,7 @@ import { Screens, NavigationProp } from '../../navigation';
 import toggleSelectedHealthcareAuthorityAction from '../../store/actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
 import { Button } from '../../components/Button';
 import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
-import { FeatureFlag } from '../../components/FeatureFlag';
+import FeatureFlag from '../../components/FeatureFlag';
 
 import { Icons } from '../../assets';
 import { Colors, Buttons, Spacing } from '../../styles';
@@ -119,9 +119,8 @@ const PartnersScreen = ({
         }
         ItemSeparatorComponent={() => <Separator />}
       />
-
-      <FeatureFlag name={'custom_url'}>
-        <View style={{ padding: 240 }}>
+      <FeatureFlag flag={FeatureFlagOption.CUSTOM_URL}>
+        <View style={{ padding: Spacing.large }}>
           <Button
             label={t('authorities.custom_url')}
             onPress={() => navigation.navigate(Screens.PartnersCustomUrl)}

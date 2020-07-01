@@ -28,3 +28,10 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+export enum FeatureFlagOption {
+  GOOGLE_IMPORT = 'GOOGLE_IMPORT',
+  CUSTOM_URL = 'CUSTOM_URL',
+  DOWNLOAD_LOCALLY = 'DOWNLOAD_LOCALLY',
+  DEV_LANGUAGES = 'DEV_LANGAUGES',
+}

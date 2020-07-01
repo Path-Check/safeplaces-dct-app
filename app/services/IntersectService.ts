@@ -1,10 +1,10 @@
 import { checkIntersect as intersect } from '../helpers/Intersect';
 import { HealthcareAuthority } from '../store/types';
-import BackgroundTaskService from './BackgroundTaskService';
+import { emitGPSExposureInfo } from '../gps/exposureInfo';
 
 class IntersectService {
   isServiceRunning = false;
-  nextJob: HealthcareAuthority[] | null = null;
+  private nextJob: HealthcareAuthority[] | null = null;
 
   checkIntersect = (
     healthcareAuthorities: HealthcareAuthority[] | null,
@@ -16,16 +16,18 @@ class IntersectService {
     }
     this.isServiceRunning = true;
 
-    intersect(healthcareAuthorities, bypassTimer).then(() => {
+    intersect(healthcareAuthorities, bypassTimer).then((exposureInfo) => {
       this.isServiceRunning = false;
+
       if (this.nextJob) {
         const job = this.nextJob;
         this.nextJob = null;
         this.checkIntersect(job, bypassTimer);
+      } else {
+        emitGPSExposureInfo(exposureInfo);
       }
     });
 
-    BackgroundTaskService.start();
     return 'started';
   };
 }

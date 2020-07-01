@@ -161,4 +161,5 @@ export const onboardingIconYellow = champangne;
 export const onboardingIconBlue = moonRaker;
 
 // Exposure History
-export const exposureRiskWarning = royalBlue;
+export const possibleExposure = royalBlue;
+export const expectedExposure = amber;

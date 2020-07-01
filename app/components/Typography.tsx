@@ -52,7 +52,7 @@ export const Typography = ({
         return TypographyStyles.secondaryContent;
       }
       case 'body3': {
-        return TypographyStyles.tertirayContent;
+        return TypographyStyles.tertiaryContent;
       }
       case 'body4': {
         return TypographyStyles.quaternaryContent;
