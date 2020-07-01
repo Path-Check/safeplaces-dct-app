@@ -23,7 +23,7 @@ export const Share = ({ navigation }) => {
       ctaBackgroundColor={Colors.white}
       ctaTextColor={Colors.black}
       ctaTitle={t('assessment.share_cta')}>
-        <InfoText useTitleStyle='headline6'
+        <InfoText useTitleStyle='headline7'
           useDescriptionStyle='body4'
           title={t('assessment.share_title')}
           description={t('assessment.share_description')} />

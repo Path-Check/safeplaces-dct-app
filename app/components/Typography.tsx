@@ -5,8 +5,8 @@ import { useLanguageDirection } from '../locales/languages';
 
 import { Typography as TypographyStyles } from '../styles';
 
-type TypographicUse = 'headline1' | 'headline2' | 'headline3' | 'headline4' | 'headline5' | 'headline6' | 
-  'body1' | 'body2' | 'body3' | 'body4';
+type TypographicUse = 'headline1' | 'headline2' | 'headline3' | 'headline4' |
+  'headline5' | 'headline6' | 'headline7' | 'body1' | 'body2' | 'body3' | 'body4';
 
 interface TypographyProps {
   use?: TypographicUse;
@@ -44,6 +44,9 @@ export const Typography = ({
       }
       case 'headline6': {
         return TypographyStyles.header6;
+      }
+      case 'headline7': {
+        return TypographyStyles.header7;
       }
       case 'body1': {
         return TypographyStyles.mainContent;

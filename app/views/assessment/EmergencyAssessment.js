@@ -33,6 +33,8 @@ export const EmergencyAssessment = ({ navigation }) => {
   }
 
   const handleDisagreePress = () => {
+    // TODO: This question handling is a mess and should be refactored
+    // to support dynamic questions
     navigation.push('AssessmentQuestion', {
       question: agreeQuestion,
       option: agreeOption,
@@ -90,9 +92,9 @@ const agreeQuestion = {
   option_key: QUESTION_KEY_AGREE,
   //question_description: 'How old are you',
   question_key: QUESTION_KEY_AGREE,
-  question_text: 'Placeholder question',
-  question_type: 'RADIO',
-  required: true,
+  question_text: 'How old are you?',
+  question_type: 'TEXT',
+  required: false,
   screen_type: SCREEN_TYPE_RADIO,
 };
 
@@ -101,12 +103,40 @@ const agreeOption = {
   key: QUESTION_KEY_AGREE,
   values: [
     {
-      label: 'Proceed',
-      value: OPTION_VALUE_AGREE,
+      "label": "< 18",
+      "value": "0"
     },
     {
-      label: 'Stop here',
-      value: OPTION_VALUE_DISAGREE,
+      "label": "19-29",
+      "value": "1"
     },
-  ],
+    {
+      "label": "30-39",
+      "value": "2"
+    },
+    {
+      "label": "40-49",
+      "value": "3"
+    },
+    {
+      "label": "50-59",
+      "value": "4"
+    },
+    {
+      "label": "60-69",
+      "value": "5"
+    },
+    {
+      "label": "70-79",
+      "value": "6"
+    },
+    {
+      "label": "80+",
+      "value": "7"
+    },
+    {
+      "label": "Choose not to answer",
+      "value": "8"
+    }
+  ]
 };

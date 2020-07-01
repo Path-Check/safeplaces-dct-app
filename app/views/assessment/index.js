@@ -1,12 +1,11 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
 import React, { useMemo, useRef } from 'react';
-import { Alert, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { SvgXml } from 'react-native-svg';
 import { Icons } from '../../assets';
 import { useSurvey } from '../../helpers/CustomHooks';
-import i18n from '../../locales/languages';
 import { AnswersContext, MetaContext, SurveyContext } from './Context';
 import { AssessmentQuestion } from './AssessmentQuestion';
 import { AssessmentStart } from './AssessmentStart';
@@ -14,8 +13,6 @@ import { Agreement } from './Agreement';
 import { EmergencyAssessment } from './EmergencyAssessment';
 import {
   END_ROUTES,
-  OPTION_VALUE_DISAGREE,
-  QUESTION_KEY_AGREE,
   SCREEN_TYPE_CAREGIVER,
   SCREEN_TYPE_DISTANCING,
   SCREEN_TYPE_EMERGENCY,
@@ -74,6 +71,9 @@ const Assessment = ({ navigation }) => {
   const survey = useSurvey();
 
   const QuestionScreen = useMemo(
+    // TODO: This question handling is a mess and should be refactored
+    // to support dynamic questions
+    
     // memoize assessment question
     () => ({ navigation, route }) => (
       <AssessmentQuestion
@@ -227,11 +227,6 @@ function onNextQuestion({ answers, navigation, route, survey }) {
   /** @type {{ question: SurveyQuestion }} */
   const { question } = route.params;
   const response = answers.current[question.question_key];
-  if (question.question_key === QUESTION_KEY_AGREE) {
-    if (response.some((r) => r.value === OPTION_VALUE_DISAGREE)) {
-      return showAgreeAlert();
-    }
-  }
 
   const nextKey = selectNextQuestion(survey, question, response);
 
@@ -260,15 +255,4 @@ function selectNextQuestion(survey, question, answer) {
     }
   }
   return survey.questions[index + 1].question_key;
-}
-
-function showAgreeAlert() {
-  return new Promise((resolve) => {
-    Alert.alert(
-      i18n.t('assessment.agree_alert_title'),
-      i18n.t('assessment.agree_alert_description'),
-      [{ text: 'OK', onPress: resolve }],
-      { cancelable: false },
-    );
-  });
 }
