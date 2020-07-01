@@ -80,13 +80,13 @@ final class ExposureManager: NSObject {
   /// Local urls of the bin/sig files from each archive
   var localUncompressedURLs = [URL]()
   
-  @discardableResult func detectExposures(completionHandler: ((Bool) -> Void)? = nil) -> Progress {
+  @discardableResult func detectExposures(completionHandler: ((Error?) -> Void)? = nil) -> Progress {
     
     let progress = Progress()
     
     // Disallow concurrent exposure detection, because if allowed we might try to detect the same diagnosis keys more than once
     guard !detectingExposures else {
-      completionHandler?(false)
+      completionHandler?(GenericError.unknown)
       return progress
     }
     
@@ -98,7 +98,7 @@ final class ExposureManager: NSObject {
       
       if progress.isCancelled {
         detectingExposures = false
-        completionHandler?(false)
+        completionHandler?(GenericError.unknown)
       } else {
         switch result {
         case let .success(newExposures):
@@ -106,12 +106,12 @@ final class ExposureManager: NSObject {
           BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
           BTSecureStorage.shared.exposures.append(objectsIn: newExposures)
           detectingExposures = false
-          completionHandler?(true)
+          completionHandler?(nil)
         case let .failure(error):
           BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
           detectingExposures = false
           postExposureDetectionErrorNotification()
-          completionHandler?(false)
+          completionHandler?(error)
         }
       }
       
@@ -188,8 +188,12 @@ final class ExposureManager: NSObject {
       self?.notifyUserBlueToothOffIfNeeded()
       
       // Perform the exposure detection
-      let progress = ExposureManager.shared.detectExposures { success in
-        task.setTaskCompleted(success: success)
+      let progress = ExposureManager.shared.detectExposures { error in
+        if error != nil {
+          task.setTaskCompleted(success: false)
+        } else {
+          task.setTaskCompleted(success: true)
+        }
       }
       
       // Handle running out of time

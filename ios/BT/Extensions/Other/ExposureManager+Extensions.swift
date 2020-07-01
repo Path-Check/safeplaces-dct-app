@@ -14,11 +14,11 @@ extension ExposureManager {
         }
       }
     case .detectExposuresNow:
-      detectExposures { success in
-        if success {
-          callback([NSNull(), "Exposure detection successfully executed."])
+      detectExposures { error in
+        if let error = error {
+          callback(["Exposure detection error: \((error as NSError).userInfo)", NSNull()])
         } else {
-          callback(["Exposure detection error.", NSNull()])
+          callback([NSNull(), "Exposure detection successfully executed."])
         }
       }
     case .simulateExposureDetectionError:
