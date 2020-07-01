@@ -80,7 +80,7 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
         <View style={{ height: 24 }} />
       </ScrollView>
       {/* UI is ready, this is currently not a feature though. */}
-      {__DEV__ && (
+      {false && (
         <View style={styles.bottomSheet}>
           <Typography
             style={{

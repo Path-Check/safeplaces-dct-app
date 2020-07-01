@@ -44,7 +44,8 @@ export type Screen =
   | 'SelfAssessment'
   | 'PartnersOverview'
   | 'PartnersEdit'
-  | 'PartnersCustomUrl';
+  | 'PartnersCustomUrl'
+  | 'LanguageSelection';
 
 export const Screens: { [key in Screen]: Screen } = {
   ExportStart: 'ExportStart',
@@ -79,6 +80,7 @@ export const Screens: { [key in Screen]: Screen } = {
   PartnersOverview: 'PartnersOverview',
   PartnersEdit: 'PartnersEdit',
   PartnersCustomUrl: 'PartnersCustomUrl',
+  LanguageSelection: 'LanguageSelection',
 };
 
 export type Stack =

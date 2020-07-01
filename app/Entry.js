@@ -45,7 +45,7 @@ import Onboarding3 from './views/onboarding/Onboarding3';
 import Onboarding4 from './views/onboarding/Onboarding4';
 import OnboardingNotifications from './views/onboarding/OnboardingNotifications';
 import OnboardingLocations from './views/onboarding/OnboardingLocations';
-
+import LanguageSelection from './views/LanguageSelection';
 import { Screens, Stacks } from './navigation';
 
 import ExposureHistoryContext from './ExposureHistoryContext';
@@ -333,10 +333,17 @@ export const Entry = () => {
         ) : (
           <Stack.Screen name={Stacks.Onboarding} component={OnboardingStack} />
         )}
-        {/* Modal View: */}
+        {/* Modal Views: */}
         <Stack.Screen
           name={Screens.ExportFlow}
           component={ExportStack}
+          options={{
+            ...TransitionPresets.ModalSlideFromBottomIOS,
+          }}
+        />
+        <Stack.Screen
+          name={Screens.LanguageSelection}
+          component={LanguageSelection}
           options={{
             ...TransitionPresets.ModalSlideFromBottomIOS,
           }}

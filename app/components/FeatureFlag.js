@@ -23,5 +23,5 @@ export const FeatureFlag = ({ name, children, fallback }) => {
   const [flags] = useFlags();
   const fallbackRender = fallback || null;
 
-  return flags[name] ? children : fallbackRender;
+  return flags[name] ? null : fallbackRender;
 };
