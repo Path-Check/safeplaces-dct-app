@@ -3,9 +3,11 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
+  TextStyle,
   View,
   ScrollView,
   ImageSourcePropType,
+  ViewStyle,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
@@ -25,29 +27,56 @@ type DescriptionTemplateProps = {
   iconXml: string;
   title: string;
   body: string;
-  buttonLabel: string;
-  buttonOnPress: () => void;
+  primaryButtonLabel: string;
+  primaryButtonContainerStyle?: ViewStyle;
+  primaryButtonTextStyle?: TextStyle;
+  primaryButtonOnPress: () => void;
+  secondaryButtonLabel?: string;
+  secondaryButtonContainerStyle?: ViewStyle;
+  secondaryButtonTextStyle?: TextStyle;
+  secondaryButtonOnPress?: () => void;
   background: ImageSourcePropType;
+  backgroundStyle?: ViewStyle;
   invertIcon?: boolean;
 };
 
 const DescriptionTemplate = ({
-  background,
   iconXml,
   title,
   body,
-  buttonLabel,
-  buttonOnPress,
+  primaryButtonLabel,
+  primaryButtonContainerStyle,
+  primaryButtonTextStyle,
+  primaryButtonOnPress,
+  secondaryButtonLabel,
+  secondaryButtonContainerStyle,
+  secondaryButtonTextStyle,
+  secondaryButtonOnPress,
+  background,
+  backgroundStyle,
   invertIcon,
 }: DescriptionTemplateProps): JSX.Element => {
   useStatusBarEffect('dark-content');
 
   const iconStyle = invertIcon ? styles.goldIcon : styles.blueIcon;
 
+  const primaryButtonTextStyles = {
+    ...primaryButtonTextStyle,
+    ...styles.primaryButtonText,
+  };
+
+  const secondaryButtonTextStyles = {
+    ...secondaryButtonTextStyle,
+    ...styles.secondaryButtonText,
+  };
+
   return (
     <View style={styles.outerContainer}>
       {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
-        <ImageBackground source={background} style={styles.backgroundImage} />
+        <ImageBackground
+          source={background}
+          style={[styles.background, backgroundStyle]}
+        />
       )}
       <View style={styles.content}>
         <ScrollView
@@ -60,9 +89,22 @@ const DescriptionTemplate = ({
           <Typography style={styles.headerText}>{title}</Typography>
           <Typography style={styles.contentText}>{body}</Typography>
         </ScrollView>
-        <TouchableOpacity onPress={buttonOnPress} style={styles.button}>
-          <Typography style={styles.buttonText}>{buttonLabel}</Typography>
+        <TouchableOpacity
+          onPress={primaryButtonOnPress}
+          style={[styles.primaryButton, primaryButtonContainerStyle]}>
+          <Typography style={primaryButtonTextStyles}>
+            {primaryButtonLabel}
+          </Typography>
         </TouchableOpacity>
+        {secondaryButtonLabel && (
+          <TouchableOpacity
+            onPress={secondaryButtonOnPress}
+            style={[styles.secondaryButton, secondaryButtonContainerStyle]}>
+            <Typography style={secondaryButtonTextStyles}>
+              {secondaryButtonLabel}
+            </Typography>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -76,7 +118,7 @@ const styles = StyleSheet.create({
   innerContainer: {
     paddingVertical: Spacing.large,
   },
-  backgroundImage: {
+  background: {
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
@@ -101,10 +143,16 @@ const styles = StyleSheet.create({
     ...TypographyStyles.mainContentViolet,
     marginTop: Spacing.xLarge,
   },
-  button: {
+  primaryButton: {
     ...Buttons.largeSecondaryBlue,
   },
-  buttonText: {
+  secondaryButton: {
+    ...Buttons.largeSecondaryBlue,
+  },
+  primaryButtonText: {
+    ...TypographyStyles.buttonTextLight,
+  },
+  secondaryButtonText: {
     ...TypographyStyles.buttonTextLight,
   },
 });
