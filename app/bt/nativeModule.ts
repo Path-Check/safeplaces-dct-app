@@ -76,7 +76,6 @@ export const submitDiagnosisKeys = async (
   cb: (errorMessage: string, successMessage: string) => void,
 ): Promise<void> => {
   keySubmissionModule.postDiagnosisKeys(cb);
-  permissionsModule.requestExposureNotificationAuthorization(cb);
 };
 
 // Debug Module
