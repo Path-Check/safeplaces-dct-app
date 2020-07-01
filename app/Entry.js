@@ -40,12 +40,12 @@ import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyS
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
-import Onboarding1 from './views/onboarding/Onboarding1';
-import Onboarding2 from './views/onboarding/Onboarding2';
-import Onboarding3 from './views/onboarding/Onboarding3';
-import Onboarding4 from './views/onboarding/Onboarding4';
-import OnboardingNotifications from './views/onboarding/OnboardingNotifications';
-import OnboardingLocations from './views/onboarding/OnboardingLocations';
+import Welcome from './views/onboarding/Welcome';
+import PersonalPrivacy from './views/onboarding/PersonalPrivacy';
+import NotificatioNDetails from './views/onboarding/NotificationDetails';
+import ShareDiagnosis from './views/onboarding/ShareDiagnosis';
+import NotificationsPermissions from './views/onboarding/NotificationsPermissions';
+import LocationsPermissions from './views/onboarding/LocationsPermissions';
 
 import { Screens, Stacks } from './navigation';
 
@@ -291,17 +291,20 @@ const MainAppTabs = () => {
 
 const OnboardingStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
-    <Stack.Screen name={Screens.Onboarding1} component={Onboarding1} />
-    <Stack.Screen name={Screens.Onboarding2} component={Onboarding2} />
-    <Stack.Screen name={Screens.Onboarding3} component={Onboarding3} />
-    <Stack.Screen name={Screens.Onboarding4} component={Onboarding4} />
+    <Stack.Screen name={Screens.Welcome} component={Welcome} />
+    <Stack.Screen name={Screens.PersonalPrivacy} component={PersonalPrivacy} />
+    <Stack.Screen
+      name={Screens.NotificatioNDetails}
+      component={NotificatioNDetails}
+    />
+    <Stack.Screen name={Screens.ShareDiagnosis} component={ShareDiagnosis} />
     <Stack.Screen
       name={Screens.OnboardingNotificationPermissions}
-      component={OnboardingNotifications}
+      component={NotificationsPermissions}
     />
     <Stack.Screen
       name={Screens.OnboardingLocationPermissions}
-      component={OnboardingLocations}
+      component={LocationsPermissions}
     />
     <Stack.Screen
       name={Screens.EnableExposureNotifications}

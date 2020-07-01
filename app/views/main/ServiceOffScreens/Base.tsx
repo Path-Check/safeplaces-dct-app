@@ -39,7 +39,7 @@ export const ServiceOffScreen = ({
   return (
     <Theme use='violet'>
       <ImageBackground
-        source={Images.LaunchScreenBackground}
+        source={Images.BlueGradientBackground}
         style={styles.backgroundImage}>
         <View style={styles.pulseContainer}>
           <SvgXml
