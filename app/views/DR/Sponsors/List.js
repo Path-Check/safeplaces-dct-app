@@ -43,4 +43,9 @@ export const sponsorsList = {
     img: require('../../../assets/images/sponsors/11.png'),
     url: 'http://arcoirisrd.org/',
   },
+  CEGES: {
+    img: require('../../../assets/images/sponsors/12.png'),
+    url:
+      'https://presidencia.gob.do/coronavirusrd/comite-de-emergencia-y-gestion-sanitaria',
+  },
 };

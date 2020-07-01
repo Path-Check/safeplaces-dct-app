@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BackHandler, Dimensions } from 'react-native';
 import PDFView from 'react-native-pdf';
 import { WebView } from 'react-native-webview';
 
 import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
+import DialogAdvices from '../../DialogAdvices';
 
 // This is to make the images responsive in the page of a new
 const fixerImage = `
@@ -20,6 +22,14 @@ const Details = ({
   },
 }) => {
   navigation.setOptions({ headerShown: false });
+
+  const { t } = useTranslation();
+  const [timer, setNewTimer] = useState(null);
+  const [showDialog, setShowDialog] = useState(false);
+  const [dialogText, setDialogText] = useState('');
+  const closeDialog = () => {
+    setShowDialog(false);
+  };
 
   const backToMain = () => {
     navigation.goBack();
@@ -43,6 +53,11 @@ const Details = ({
 
   return (
     <NavigationBarWrapper title='Atrás' onBackPress={backToMain.bind(this)}>
+      <DialogAdvices
+        visible={showDialog}
+        text={dialogText}
+        close={closeDialog}
+      />
       {switchScreenTo === 'PDFView' && (
         <PDFView
           source={source}
@@ -58,6 +73,21 @@ const Details = ({
           source={source}
           startInLoadingState
           injectedJavaScript={fixerImage}
+          onLoadStart={() => {
+            setNewTimer(
+              setTimeout(() => {
+                setDialogText(t('label.dialog_interval_advice'));
+                setShowDialog(true);
+              }, 10000),
+            );
+          }}
+          onLoadEnd={() => {
+            clearTimeout(timer);
+          }}
+          onError={() => {
+            setDialogText(t('label.dialog_error_advice'));
+            setShowDialog(true);
+          }}
         />
       )}
     </NavigationBarWrapper>
