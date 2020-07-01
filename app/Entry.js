@@ -31,6 +31,7 @@ import {
   ExportLocally,
 } from './views/Export';
 import { PublishConsent } from './bt/PositiveDiagnosis/PublishConsent';
+import NotificationPermissionsBT from './bt/NotificationPermissionsBT';
 import ExposureHistoryScreen from './views/ExposureHistory';
 import Assessment from './views/assessment';
 import NextSteps from './views/ExposureHistory/NextSteps';
@@ -305,6 +306,10 @@ const OnboardingStack = () => (
     <Stack.Screen
       name={Screens.OnboardingLocationPermissions}
       component={LocationsPermissions}
+    />
+    <Stack.Screen
+      name={Screens.NotificationPermissionsBT}
+      component={NotificationPermissionsBT}
     />
     <Stack.Screen
       name={Screens.EnableExposureNotifications}

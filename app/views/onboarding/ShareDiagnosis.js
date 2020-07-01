@@ -20,7 +20,7 @@ const ShareDiagnosis = (props) => {
     );
 
   const btNext = () =>
-    props.navigation.replace(Screens.EnableExposureNotifications);
+    props.navigation.replace(Screens.NotificationPermissionsBT);
 
   const handleOnPressNext = isGPS ? gpsNext : btNext;
 
