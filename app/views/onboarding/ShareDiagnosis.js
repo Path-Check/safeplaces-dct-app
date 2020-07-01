@@ -7,7 +7,7 @@ import { Screens } from '../../navigation';
 import { isPlatformiOS } from '../../Util';
 import { useStrategyContent } from '../../TracingStrategyContext';
 
-const Onboarding4 = (props) => {
+const ShareDiagnosis = (props) => {
   const { t } = useTranslation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
@@ -20,21 +20,22 @@ const Onboarding4 = (props) => {
     );
 
   const btNext = () =>
-    props.navigation.replace(Screens.EnableExposureNotifications);
+    props.navigation.replace(Screens.NotificationPermissionsBT);
 
   const handleOnPressNext = isGPS ? gpsNext : btNext;
 
   return (
     <OnboardingTemplate
-      invertIcon
-      background={StrategyAssets.onboarding4Background}
-      iconXml={StrategyAssets.onboarding4Icon}
-      title={StrategyCopy.onboarding4Header}
-      body={StrategyCopy.onboarding4Subheader}
+      theme={'light'}
+      invertIcon={isGPS}
+      background={StrategyAssets.shareDiagnosisBackground}
+      iconXml={StrategyAssets.shareDiagnosisIcon}
+      title={StrategyCopy.shareDiagnosisHeader}
+      body={StrategyCopy.shareDiagnosisSubheader}
       buttonLabel={t('label.launch_set_up_phone_location')}
       buttonOnPress={handleOnPressNext}
     />
   );
 };
 
-export default Onboarding4;
+export default ShareDiagnosis;

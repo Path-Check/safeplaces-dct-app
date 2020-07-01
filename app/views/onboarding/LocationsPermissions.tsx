@@ -27,7 +27,7 @@ import {
   Typography as TypographyStyles,
 } from '../../styles';
 
-const OnboardingLocations = (): JSX.Element => {
+const LocationsPermissions = (): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { authSubscription, location } = useContext(PermissionsContext);
@@ -57,7 +57,7 @@ const OnboardingLocations = (): JSX.Element => {
 
   return (
     <ImageBackground
-      source={Images.BackgroundBlueGradient}
+      source={Images.BlueGradientBackground}
       style={styles.backgroundImage}>
       <View style={styles.container}>
         <ScrollView
@@ -131,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OnboardingLocations;
+export default LocationsPermissions;

@@ -1,7 +1,7 @@
 /* eslint-disable */
 const screenshotText = 'Onboarding - Page 1';
 
-class Onboarding1 {
+class Welcome {
   async tapButton(languageStrings) {
     await element(by.label(languageStrings.label.launch_get_started)).tap();
   }
@@ -17,4 +17,4 @@ class Onboarding1 {
   }
 }
 
-export default new Onboarding1();
+export default new Welcome();

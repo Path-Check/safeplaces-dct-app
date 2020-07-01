@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableHighlight,
+  TouchableOpacity,
   Linking,
   Alert,
 } from 'react-native';
@@ -32,7 +33,12 @@ import GoogleMapsImport from './GoogleMapsImport';
 import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
-import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
+import {
+  Buttons,
+  Colors,
+  Spacing,
+  Typography as TypographyStyles,
+} from '../../styles';
 import { FeatureFlagOption, RootState } from '../../store/types';
 import { useSelector } from 'react-redux';
 
@@ -159,6 +165,21 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
       title={t('navigation.more')}
       includeBackButton={false}>
       <ScrollView style={styles.container}>
+        {!isGPS && (
+          <View style={styles.sectionPrimary}>
+            <Typography>
+              {t('settings.share_test_result_description')}
+            </Typography>
+            <TouchableOpacity
+              onPress={navigateTo(Screens.ExportFlow)}
+              style={styles.button}>
+              <Typography style={styles.buttonText}>
+                {t('settings.share_test_result')}
+              </Typography>
+            </TouchableOpacity>
+          </View>
+        )}
+
         <View style={styles.section}>
           <NativePicker
             items={localeList}
@@ -179,17 +200,6 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
             )}
           </NativePicker>
         </View>
-
-        {!isGPS && (
-          <View style={styles.section}>
-            <SettingsListItem
-              label={t('settings.share_test_result')}
-              onPress={navigateTo('ExportFlow')}
-              description={t('settings.share_test_result_description')}
-              style={styles.lastListItem}
-            />
-          </View>
-        )}
 
         {isGPS ? (
           <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
@@ -257,7 +267,7 @@ const Divider = () => <View style={styles.divider} />;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.primaryBackgroundFaintShade,
+    backgroundColor: Colors.primaryBackground,
   },
   divider: {
     marginHorizontal: Spacing.small,
@@ -272,6 +282,17 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: Colors.tertiaryViolet,
+  },
+  sectionPrimary: {
+    flex: 1,
+    margin: Spacing.medium,
+  },
+  button: {
+    ...Buttons.largeSecondaryBlue,
+    marginTop: Spacing.medium,
+  },
+  buttonText: {
+    ...TypographyStyles.buttonTextLight,
   },
   icon: {
     maxWidth: Spacing.icon,
