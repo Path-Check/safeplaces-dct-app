@@ -135,7 +135,7 @@
     },
     "gps": {
       "all_services_on_header": "Chase Kowona (\"PathCheck\")",
-      "all_services_on_no_ha_available": "Ou pap resevwa notifikasyon ekspoz5syon pandan ou deyò yon rejyon ki kouvri pa patnè Depatman Sante yo",
+      "all_services_on_no_ha_available": "Ou pap resevwa notifikasyon ekspozisyon pandan ou deyò yon rejyon ki kouvri pa patnè Depatman Sante yo",
       "all_services_on_subheader": "Chase Kowona (\"PathCheck\") ap arejistre kote ou vizite yo an prive e konpare kote ou yo ak done ki sòti nan Depatman sante lokal ou a",
       "auto_start_header": "Demaraj otomatik dezaktive",
       "auto_start_subheader": "Chase Kowona (\"PathCheck\") bezwen aksè pou li kapab Komanse arejistre an prive kote ou ale yo de fason otomatik. Tanpri aktive li nan tablodbò aplikasyon ou an.",
