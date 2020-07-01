@@ -5,20 +5,25 @@ import { isGPS } from '../../COVIDSafePathsConfig';
 import { useStrategyContent } from '../../TracingStrategyContext';
 import DescriptionTemplate from '../common/DescriptionTemplate';
 
-const NotificationDetails = (props) => {
+interface NotificationDetailsProps {
+  navigation: any;
+}
+
+const NotificationDetails = ({
+  navigation,
+}: NotificationDetailsProps): JSX.Element => {
   const { t } = useTranslation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
   return (
     <DescriptionTemplate
-      theme={'light'}
       invertIcon={!isGPS}
       background={StrategyAssets.notificationDetailsBackground}
       iconXml={StrategyAssets.notificationDetailsIcon}
       title={StrategyCopy.notificationDetailsHeader}
       body={StrategyCopy.notificationDetailsSubheader}
-      buttonLabel={t('label.launch_next')}
-      buttonOnPress={() => props.navigation.replace('ShareDiagnosis')}
+      primaryButtonLabel={t('label.launch_next')}
+      primaryButtonOnPress={() => navigation.replace('ShareDiagnosis')}
     />
   );
 };

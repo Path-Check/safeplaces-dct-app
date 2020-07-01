@@ -26,7 +26,9 @@ import {
 type DescriptionTemplateProps = {
   iconXml: string;
   title: string;
+  titleStyle?: TextStyle;
   body: string;
+  bodyStyle?: TextStyle;
   primaryButtonLabel: string;
   primaryButtonContainerStyle?: ViewStyle;
   primaryButtonTextStyle?: TextStyle;
@@ -43,7 +45,9 @@ type DescriptionTemplateProps = {
 const DescriptionTemplate = ({
   iconXml,
   title,
+  titleStyle,
   body,
+  bodyStyle,
   primaryButtonLabel,
   primaryButtonContainerStyle,
   primaryButtonTextStyle,
@@ -70,6 +74,16 @@ const DescriptionTemplate = ({
     ...styles.secondaryButtonText,
   };
 
+  const headerStyles = {
+    ...styles.headerText,
+    ...titleStyle,
+  };
+
+  const contentStyles = {
+    ...styles.contentText,
+    ...bodyStyle,
+  };
+
   return (
     <View style={styles.outerContainer}>
       {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
@@ -84,10 +98,10 @@ const DescriptionTemplate = ({
           style={styles.innerContainer}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={iconStyle}>
-            <SvgXml xml={iconXml} width={30} height={30} />
+            <SvgXml xml={iconXml} />
           </View>
-          <Typography style={styles.headerText}>{title}</Typography>
-          <Typography style={styles.contentText}>{body}</Typography>
+          <Typography style={headerStyles}>{title}</Typography>
+          <Typography style={contentStyles}>{body}</Typography>
         </ScrollView>
         <TouchableOpacity
           onPress={primaryButtonOnPress}
@@ -147,7 +161,7 @@ const styles = StyleSheet.create({
     ...Buttons.largeSecondaryBlue,
   },
   secondaryButton: {
-    ...Buttons.largeSecondaryBlue,
+    ...Buttons.largeTransparent,
   },
   primaryButtonText: {
     ...TypographyStyles.buttonTextLight,

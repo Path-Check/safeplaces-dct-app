@@ -7,33 +7,35 @@ import { Screens } from '../../navigation';
 import { isPlatformiOS } from '../../Util';
 import { useStrategyContent } from '../../TracingStrategyContext';
 
-const ShareDiagnosis = (props) => {
+interface ShareDiagnosisProps {
+  navigation: any;
+}
+
+const ShareDiagnosis = ({ navigation }: ShareDiagnosisProps): JSX.Element => {
   const { t } = useTranslation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
   const gpsNext = () =>
-    props.navigation.replace(
+    navigation.replace(
       // Skip notification permissions on android
       isPlatformiOS()
         ? Screens.OnboardingNotificationPermissions
         : Screens.OnboardingLocationPermissions,
     );
 
-  const btNext = () =>
-    props.navigation.replace(Screens.NotificationPermissionsBT);
+  const btNext = () => navigation.replace(Screens.NotificationPermissionsBT);
 
   const handleOnPressNext = isGPS ? gpsNext : btNext;
 
   return (
     <DescriptionTemplate
-      theme={'light'}
       invertIcon={isGPS}
       background={StrategyAssets.shareDiagnosisBackground}
       iconXml={StrategyAssets.shareDiagnosisIcon}
       title={StrategyCopy.shareDiagnosisHeader}
       body={StrategyCopy.shareDiagnosisSubheader}
-      buttonLabel={t('label.launch_set_up_phone_location')}
-      buttonOnPress={handleOnPressNext}
+      primaryButtonLabel={t('label.launch_set_up_phone_location')}
+      primaryButtonOnPress={handleOnPressNext}
     />
   );
 };
