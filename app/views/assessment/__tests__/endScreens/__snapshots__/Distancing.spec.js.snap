@@ -15,6 +15,7 @@ exports[`base 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
+        "borderTopWidth": 0,
         "flex": 1,
       }
     }
@@ -23,6 +24,7 @@ exports[`base 1`] = `
       accessibilityIgnoresInvertColors={true}
       style={
         Object {
+          "borderTopWidth": 0,
           "flex": 1,
           "justifyContent": "center",
           "resizeMode": "cover",
@@ -62,9 +64,13 @@ exports[`base 1`] = `
         <View>
           <View
             style={
-              Object {
-                "padding": 20,
-              }
+              Array [
+                Object {
+                  "borderTopWidth": 0,
+                  "padding": 20,
+                },
+                undefined,
+              ]
             }
           >
             <SvgXml
@@ -92,9 +98,12 @@ exports[`base 1`] = `
                   Object {
                     "writingDirection": "ltr",
                   },
-                  Object {
-                    "marginVertical": 30,
-                  },
+                  Array [
+                    Object {
+                      "marginVertical": 30,
+                    },
+                    undefined,
+                  ],
                 ]
               }
             >
@@ -112,16 +121,17 @@ exports[`base 1`] = `
                   Object {
                     "writingDirection": "ltr",
                   },
-                  Object {
-                    "marginBottom": 20,
-                  },
+                  Array [
+                    Object {
+                      "marginBottom": 20,
+                    },
+                    undefined,
+                  ],
                 ]
               }
               testID="description"
             >
-              Please follow your local, state, or national guidelines for 
-              social distancing
-               and Personal Protection Equipment (PPE) like masks and/or gloves. No additional action is needed at this time.
+              Please follow your local, state, or national guidelines for social distancing and Personal Protection Equipment (PPE) like masks and/or gloves. No additional action is needed at this time.
             </Text>
           </View>
         </View>
@@ -152,6 +162,7 @@ exports[`base 1`] = `
                   "paddingHorizontal": 14,
                   "paddingVertical": 22,
                 },
+                undefined,
                 Object {
                   "backgroundColor": "#6979f8",
                 },
@@ -175,6 +186,7 @@ exports[`base 1`] = `
                       "color": "#f8f8f8",
                       "textAlign": "center",
                     },
+                    undefined,
                     Object {
                       "color": "#ffffff",
                     },

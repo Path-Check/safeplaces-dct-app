@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 import { Typography } from '../../../components/Typography';
 
 export const InfoText = ({
-  titleStyle, 
-  descriptionStyle, 
-  useTitleStyle, 
-  useDescriptionStyle, 
-  title, 
-  description
+  titleStyle,
+  descriptionStyle,
+  useTitleStyle,
+  useDescriptionStyle,
+  title,
+  description,
 }) => {
   return (
     <>
@@ -18,15 +18,16 @@ export const InfoText = ({
         {title}
       </Typography>
       {description && (
-        <Typography use={useDescriptionStyle}
+        <Typography
+          use={useDescriptionStyle}
           style={[styles.description, descriptionStyle]}
           testID='description'>
           {description}
         </Typography>
-    )}
-    </>         
-  )
-}
+      )}
+    </>
+  );
+};
 
 export const styles = StyleSheet.create({
   headingSpacing: {

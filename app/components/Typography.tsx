@@ -5,8 +5,18 @@ import { useLanguageDirection } from '../locales/languages';
 
 import { Typography as TypographyStyles } from '../styles';
 
-type TypographicUse = 'headline1' | 'headline2' | 'headline3' | 'headline4' |
-  'headline5' | 'headline6' | 'headline7' | 'body1' | 'body2' | 'body3' | 'body4';
+type TypographicUse =
+  | 'headline1'
+  | 'headline2'
+  | 'headline3'
+  | 'headline4'
+  | 'headline5'
+  | 'headline6'
+  | 'headline7'
+  | 'body1'
+  | 'body2'
+  | 'body3'
+  | 'body4';
 
 interface TypographyProps {
   use?: TypographicUse;

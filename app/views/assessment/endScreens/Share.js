@@ -22,15 +22,19 @@ export const Share = ({ navigation }) => {
       titleStyle='headline3'
       descriptionStyle='body4'
       footer={
-        <Button onPress={handleButtonPress} 
+        <Button
+          onPress={handleButtonPress}
           title={t('assessment.share_cta')}
           backgroundColor={Colors.white}
-          textColor={Colors.black} />
+          textColor={Colors.black}
+        />
       }>
-      <InfoText useTitleStyle='headline7'
+      <InfoText
+        useTitleStyle='headline7'
         useDescriptionStyle='body4'
         title={t('assessment.share_title')}
-        description={t('assessment.share_description')} />
+        description={t('assessment.share_description')}
+      />
     </Info>
   );
 };

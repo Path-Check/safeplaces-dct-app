@@ -73,7 +73,7 @@ const Assessment = ({ navigation }) => {
   const QuestionScreen = useMemo(
     // TODO: This question handling is a mess and should be refactored
     // to support dynamic questions
-    
+
     // memoize assessment question
     () => ({ navigation, route }) => (
       <AssessmentQuestion
@@ -92,7 +92,7 @@ const Assessment = ({ navigation }) => {
 
   const AssessmentCancel = () => (
     <TouchableOpacity
-      style={{paddingRight: 25}}
+      style={{ paddingRight: 25 }}
       onPress={() => {
         navigation.navigate('AssessmentStart');
       }}>
@@ -102,7 +102,7 @@ const Assessment = ({ navigation }) => {
 
   const AssessmentBack = () => (
     <TouchableOpacity
-      style={{paddingLeft: 25}}
+      style={{ paddingLeft: 25 }}
       onPress={() => navigation.pop()}>
       <SvgXml xml={Icons.BackArrow} color={Colors.quaternaryViolet} />
     </TouchableOpacity>
@@ -122,10 +122,10 @@ const Assessment = ({ navigation }) => {
     headerTitle: '',
     headerStyle: {
       backgroundColor: backgroundColor,
-      shadowOffset: { height: 0, width: 0 } // this removes the header border
+      shadowOffset: { height: 0, width: 0 }, // this removes the header border
     },
     headerLeft: AssessmentBack,
-    headerRight: AssessmentCancel
+    headerRight: AssessmentCancel,
   });
 
   return (
@@ -154,13 +154,15 @@ const Assessment = ({ navigation }) => {
             <Stack.Screen
               component={Agreement}
               name='Agreement'
-              options={{...screenOptions(Colors.invertedQuaternaryBackground)}}
-            /> 
+              options={{
+                ...screenOptions(Colors.invertedQuaternaryBackground),
+              }}
+            />
             <Stack.Screen
               component={EmergencyAssessment}
               name='EmergencyAssessment'
               options={screenOptions()}
-            /> 
+            />
             <Stack.Screen
               component={QuestionScreen}
               name='AssessmentQuestion'
@@ -174,7 +176,9 @@ const Assessment = ({ navigation }) => {
             <Stack.Screen
               component={Share}
               name='EndShare'
-              options={{...screenOptions(Colors.invertedQuaternaryBackground)}}
+              options={{
+                ...screenOptions(Colors.invertedQuaternaryBackground),
+              }}
             />
             <Stack.Screen
               component={Caregiver}

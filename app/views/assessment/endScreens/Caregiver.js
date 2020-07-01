@@ -21,10 +21,17 @@ export const Caregiver = ({ navigation }) => {
       backgroundColor={Colors.primaryBackgroundFaintShade}
       backgroundImage={Images.IsolatePathBackground}
       icon={Icons.Isolate}
-      footer={<Button onPress={handleButtonPress} title={t('assessment.caregiver_cta')} />}>
-      <InfoText useTitleStyle='headline2'
+      footer={
+        <Button
+          onPress={handleButtonPress}
+          title={t('assessment.caregiver_cta')}
+        />
+      }>
+      <InfoText
+        useTitleStyle='headline2'
         title={t('assessment.caregiver_title')}
-        description={t('assessment.caregiver_description')} />
+        description={t('assessment.caregiver_description')}
+      />
     </Info>
   );
 };

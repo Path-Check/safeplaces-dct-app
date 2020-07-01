@@ -19,10 +19,14 @@ export const AssessmentComplete = () => {
       backgroundColor={Colors.primaryBackgroundFaintShade}
       backgroundImage={Images.EmptyPathBackground}
       icon={Icons.SelfAssessment}
-      footer={<Button onPress={dismiss} title={t('assessment.complete_cta')} />}>
-      <InfoText useTitleStyle='headline2'
+      footer={
+        <Button onPress={dismiss} title={t('assessment.complete_cta')} />
+      }>
+      <InfoText
+        useTitleStyle='headline2'
         title={t('assessment.complete_title')}
-        description={t('assessment.complete_description')} />
+        description={t('assessment.complete_description')}
+      />
     </Info>
   );
 };

@@ -42,9 +42,7 @@ export const Info = ({
             {children}
           </View>
         </ScrollView>
-        <View style={assessmentStyles.footer}>
-          {footer}
-        </View>
+        <View style={assessmentStyles.footer}>{footer}</View>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -53,20 +51,20 @@ export const Info = ({
 export const assessmentStyles = StyleSheet.create({
   container: {
     flex: 1,
-    borderTopWidth: 0
+    borderTopWidth: 0,
   },
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
-    borderTopWidth: 0
+    borderTopWidth: 0,
   },
   scrollView: {
     flex: 1,
   },
   scrollViewContent: {
     padding: 20,
-    borderTopWidth: 0
+    borderTopWidth: 0,
   },
   footer: {
     padding: 20,

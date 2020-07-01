@@ -21,7 +21,7 @@ test('cta', () => {
   });
   const cta = getByTestId('assessment-button');
   fireEvent.press(cta);
-  expect(openURL).toHaveBeenCalledWith('tel:911');
+  expect(openURL).toHaveBeenCalledWith('tel://911');
 });
 
 function Wrapper({ children }) {

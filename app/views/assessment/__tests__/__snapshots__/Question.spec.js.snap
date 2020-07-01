@@ -289,6 +289,7 @@ exports[`base 1`] = `
                 "paddingHorizontal": 14,
                 "paddingVertical": 22,
               },
+              undefined,
               Object {
                 "backgroundColor": "#e5e7fa",
               },
@@ -312,6 +313,7 @@ exports[`base 1`] = `
                     "color": "#f8f8f8",
                     "textAlign": "center",
                   },
+                  undefined,
                   Object {
                     "color": "#a5affb",
                   },

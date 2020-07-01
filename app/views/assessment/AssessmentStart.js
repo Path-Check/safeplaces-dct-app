@@ -19,12 +19,13 @@ export const AssessmentStart = ({ navigation }) => {
       backgroundImage={Images.EmptyPathBackground}
       icon={Icons.SelfAssessment}
       footer={
-        <Button onPress={handleButtonPress} 
-          title={t('assessment.start_cta')}/>
+        <Button onPress={handleButtonPress} title={t('assessment.start_cta')} />
       }>
-      <InfoText useTitleStyle='headline2'
+      <InfoText
+        useTitleStyle='headline2'
         title={t('assessment.start_title')}
-        description={t('assessment.start_description')} />
+        description={t('assessment.start_description')}
+      />
     </Info>
   );
 };
