@@ -15,26 +15,26 @@
     "agree_question_text": "El propósito de este cernimiento de COVID-19",
     "cancel": "Cancelar",
     "caregiver_cta": "Siguiente",
-    "caregiver_description": "Notifique a un proveedor de atención médica en su centro de cuidados a largo plazo. Vivir en un centro de cuidados a largo plazo o en un hogar de ancianos puede ponerlo en riesgo de padecer una enfermedad grave.\n\nDígale<1> a un</1> cuidador del centro que está enfermo y que necesita ver a un proveedor médico lo antes posible.",
+    "caregiver_description": "Notifique a un proveedor de atención médica en su centro de cuidados a largo plazo. Vivir en un centro de cuidados a largo plazo o en un hogar de ancianos puede ponerlo en riesgo de padecer una enfermedad grave.\n\n<1>Dígale a un cuidador</1> del centro que está enfermo y que necesita ver a un proveedor médico lo antes posible.",
     "caregiver_title": "Notifica al cuidador",
     "complete_cta": "Hecho",
     "complete_description": "Continúe usando esta aplicación y vuelva a hacer esta prueba la <1>próxima semana</1> para ayudar a protegerse a sí mismo y a su comunidad.",
     "complete_title": "¡Todo listo!",
     "distancing_cta": "Siguiente",
-    "distancing_description": "Por favor, siga las directrices locales, estatales o nacionales de distanciamiento <1>social</1> y equipo de protección personal (PPE) como máscaras y/o guantes. No se necesita ninguna acción adicional en este momento.",
+    "distancing_description": "Por favor, siga las directrices locales, estatales o nacionales de <1>distanciamiento social</1> y equipo de protección personal (PPE) como máscaras y/o guantes. No se necesita ninguna acción adicional en este momento.",
     "distancing_title": "Distanciamiento y PPE",
     "emergency_cta": "Llama a los servicios de emergencia",
-    "emergency_description": "Puede que tenga una emergencia <1>médica</1>. Se necesita atención médica inmediata.\n\nDígale al operador de emergencias si ha estado en contacto con alguien con COVID-19 o si ha estado recientemente en una zona donde se está propagando COVID-19.",
+    "emergency_description": "Puede que tenga una  <1>emergencia médica</1>. Se necesita atención médica inmediata.\n\nDígale al operador de emergencias si ha estado en contacto con alguien con COVID-19 o si ha estado recientemente en una zona donde se está propagando COVID-19.",
     "emergency_title": "Servicios de Emergencia",
     "isolate_cta": "Siguiente",
-    "isolate_description": "Usted <1> tiene algunos síntomas </1> que pueden estar relacionados con COVID-19. Llame a su proveedor de atención médica si sus síntomas empeoran. Comience el aislamiento en el hogar.",
+    "isolate_description": "Usted <1>tiene algunos síntomas</1> que pueden estar relacionados con COVID-19. Llame a su proveedor de atención médica si sus síntomas empeoran. Comience el aislamiento en el hogar.",
     "isolate_title": "Aislarse",
     "next": "Siguiente",
     "settings_subtitle": "Encuesta de autoinforme",
     "settings_title": "Encuesta",
     "share_cta": "Entiendo y doy mi consentimiento",
     "share_cta_skip": "No gracias, no quiero compartir datos",
-    "share_description": "Sus datos anónimos ayudan a la Comisión de Salud Pública de Boston a analizar, rastrear y contener la propagación de COVID-19. Sus datos serán agregados a los de otros usuarios de PathCheck que elijan compartir.\n\nSus datos contienen sus respuestas a la encuesta y el código postal, pero ninguna información adicional o de identificación personal.\n\nLa Comisión de Salud Pública de Boston retendrá sus datos anónimos por un período de tiempo específico.",
+    "share_description": "Sus datos anónimos ayudan {{authority}} a analizar, rastrear y contener la propagación de COVID-19. Sus datos serán agregados a los de otros usuarios de PathCheck que elijan compartir.\n\nSus datos contienen sus respuestas a la encuesta y el código postal, pero ninguna información adicional o de identificación personal.\n\nLa {{authority}} retendrá sus datos anónimos por un período de tiempo específico.",
     "share_screening_description": "Comparta las respuestas anónimas a las preguntas de detección con su autoridad sanitaria local.",
     "share_screening_title": "Datos de cernimiento anónimos",
     "share_title": "Publicar datos anónimos",
@@ -47,6 +47,7 @@
     "custom_url": "Agregar manualmente vía URL",
     "custom_url_title": "Agregar vía URL",
     "info_body": "Los Departamentos de Salud locales y regionales pueden compartir información y recursos sobre COVID-19 para su área, incluyendo datos verificados que permiten a PathCheck estimar cuándo puede haberse cruzado con el virus.",
+    "invalid_url": "URL de YAML no válida",
     "invalid_url_body": "El URL que introdujo no era válida, por favor, inténtelo de nuevo",
     "title": "Departamentos de Salud",
     "view_button_label": "Vea sus Departamentos de Salud"
@@ -77,7 +78,7 @@
     "exit_warning_cancel": "Cancelar",
     "exit_warning_confirm": "Sí, estoy seguro",
     "exit_warning_title": "¿Estás seguro?",
-    "location_consent_body": "Su historial de ubicación es usado por los representantes de{{name}} para entrevistarlo sobre los lugares que visitó y cuando estuvo allí.\n\nUna vez que envíes tu historial de localización a {{name}}, ellos retendrán tus datos por un período de tiempo específico.",
+    "location_consent_body": "Su historial de ubicación es usado por los representantes de {{name}} para entrevistarlo sobre los lugares que visitó y cuando estuvo allí.\n\nUna vez que envíes tu historial de localización a {{name}}, ellos retendrán tus datos por un período de tiempo específico.",
     "location_consent_link": "Por favor, vea su política de privacidad aquí.",
     "location_consent_title": "Uso de la historia de la ubicación",
     "publish_consent_body": "Durante la entrevista con {{name}} el entrevistador puede eliminar ubicaciones privadas, como casas y apartamentos. También pueden agregar cualquier lugar adicional que creas que debería incluirse. \n\n {{name}} puede compartir las coordenadas GPS del historial de su ubicación, incluida la fecha, la hora y la duración de sus visitas para informar a otras personas de su comunidad si se han cruzado con el virus. \n\n Entiendo que el representante de {{name}} me preguntará verbalmente al final de la entrevista si doy mi consentimiento.",
@@ -89,6 +90,19 @@
     "start_body_bluetooth": "Elija notificar anónimamente a otras personas que pueda haber encontrado y ayude a su comunidad a contener la propagación del virus.",
     "start_title": "Comparta su historial de ubicaciones de forma anónima con su comunidad si ha dado positivo por COVID-19.",
     "start_title_bluetooth": "Ayude a contener la propagación del virus y a proteger a los demás en su comunidad si se le diagnostica o da positivo en la prueba de COVID-19."
+  },
+  "exposure_history": {
+    "bt": {
+      "how_does_this_work": "¿Como funciona esto?"
+    },
+    "how_does_this_work": "¿Como funciona esto?",
+    "last_days": "Los últimos 21 días",
+    "legend": {
+      "exposure_likely": "Exposición muy probable",
+      "no_exposure_detected": "No se detectó exposición",
+      "today": "Hoy"
+    },
+    "why_did_i_get_an_en": "¿Por qué recibí una notificación de exposición?"
   },
   "history": {
     "no_exposure": "Desconocido",
@@ -112,14 +126,14 @@
     },
     "gps": {
       "all_services_on_header": "PathCheck",
-      "all_services_on_subheader": "PathCheck guarda en privado los lugares que visita y compara sus ubicaciones con los datos de su Departamento de Salud local",
+      "all_services_on_subheader": "PathCheck está guardando los lugares que visita para crear su diario de ubicación privada",
       "tracing_off_button": "Permitir acceso a la ubicación",
       "tracing_off_header": "Acceso a la localización fue desactivado",
       "tracing_off_subheader": "PathCheck necesita acceso a la ubicación en Configuración para guardar en privado los lugares que visita"
     },
     "shared": {
       "no_authorities_header": "No hay Departamento de Salud local",
-      "no_authorities_subheader": "Su teléfono está fuera de cualquier área cubierta por el Departamento de Salud en PathCheck \n\n Se le notificará cuando se agreguen Departamentos de Salud cerca de usted",
+      "no_authorities_subheader": "Su teléfono está fuera de cualquier área cubierta por el Departamento de Salud en PathCheck \n\nSe le notificará cuando se agreguen Departamentos de Salud cerca de usted",
       "notifications_off_button": "Permitir notificaciones",
       "notifications_off_header": "Notificaciones Desactivadas",
       "notifications_off_subheader": "Usted no recibirá notificaciones acerca de las posibles exposiciones ni cuando los nuevos Departamentos de Salud se agregan en su área",
@@ -150,7 +164,6 @@
   "label": {
     "about_header_bluetooth": "BT de PathCheck",
     "about_header_location": "GPS de PathCheck",
-    "about_para": "PathCheck es un movimiento global para desarrollar herramientas gratuitas, de código abierto y con  diseño de privacidad para residentes, funcionarios de salud pública y comunidades grandes para aplanar la curva de COVID-19, reducir el miedo y prevenir una respuesta del estado de vigilancia a la pandemia. \n\n Para más información, visite",
     "authorities_add_button_label": "Agregar Autoridad de Salud",
     "authorities_add_url": "Agregar autoridad a través de URL",
     "authorities_desc": "Seleccione una o más Autoridades de Salud en su área para obtener información sobre COVID-19 cerca de usted, si está disponible. \n\nSeleccione un nombre del registro global o introduzca una dirección web proporcionada por una Autoridad Sanitaria que haya implementado PathCheck.",
@@ -161,7 +174,7 @@
     "authorities_new_subscription_msg": "Te has suscrito a {{count}} nueva Autoridad en tu ubicación",
     "authorities_new_subscription_msg_plural": "Te has suscrito a {{count}} nuevas Autoridades en tu ubicación",
     "authorities_new_subscription_title": "{{count}} Nueva Subscripción",
-    "authorities_new_subscription_title_plural": "Subscripciones Nuevas",
+    "authorities_new_subscription_title_plural": "{{count}} Subscripciones Nuevas",
     "authorities_no_sources": "No hay Autoridades de Salud",
     "authorities_removal_alert_cancel": "Cancelar",
     "authorities_removal_alert_desc": "¿Está seguro de que desea eliminar esta fuente de datos?",
@@ -170,15 +183,12 @@
     "auto_subscribe_checkbox": "Habilitar suscripción automática",
     "choose_provider_subtitle": "Selecciona una Autoridad de Salud para saber sobre COVID-19 en tu área, donde esté disponible",
     "choose_provider_title": "Su Autoridad de Salud",
+    "authorities_new_in_area_msg_plural": "Suscríbase a {{count}} nueva Autoridades de Salud que sean confiables en su ubicación",
     "default_news_site_name": "Noticias de PathCheck",
     "enter_authority_url": "Escriba o pegue el URL",
     "event_history_subtitle": "Comprenda su exposición personal basándose en la información compartida por las autoridades sanitarias.",
     "event_history_title": "Historial de exposición",
-    "authorities_new_in_area_msg_plural": "Suscríbase a {{count}} nueva Autoridades de Salud que sean confiables en su ubicación",
     "filter_authorities_by_gps_history": "Filtrar por sus ubicaciones",
-    "home_no_contact_header_bluetooth": "PathCheck",
-    "home_no_contact_subtext_bluetooth": "Notificación de exposición está activa",
-    "home_setting_off_header_bluetooth": "Notificaciones Desactivadas",
     "import_success": "Importado exitosamente",
     "latest_news": "Noticias más recientes",
     "launch_access_bluetooth": "Permitir rastreo de contactos",
@@ -193,7 +203,6 @@
     "launch_enable_auto_subscription": "Habilitar la suscripción automática",
     "launch_enable_bluetooth": "Habilitar el Bluetooth",
     "launch_enable_exposure_notif": "Habilitar",
-    "launch_enable_location": "Habilitar Ubicación",
     "launch_enable_notif": "Permitir notificaciones",
     "launch_exposure_notif_header": "Permitir Notificación de Exposición",
     "launch_exposure_notif_subheader": "Para recibir notificaciones sobre las actualizaciones de su historial de exposición, su teléfono necesita permiso para intercambiar ID aleatoria Bluetooth anónima con otros dispositivos. \n\n Las notificaciones de exposición solo funcionan con otros dispositivos con la configuración habilitada. \n\n Puede desactivar estas notificaciones en cualquier momento.",
@@ -221,7 +230,7 @@
     "launch_set_up_phone_bluetooth": "Siguiente",
     "launch_set_up_phone_location": "Configurar mi teléfono",
     "launch_subheader": "No se preocupe, la información nunca sale de su dispositivo, a menos que decida explícitamente compartirla.",
-    "legal_page_address": "PathCheck Foundation\n58 Day Street \nBox 441621 \nSomerville, MA 02144",
+    "legal_page_address": "PathCheck Foundation \n58 Day Street \nBox 441621 \nSomerville, MA 02144",
     "legal_page_header_bluetooth": "BT de PathCheck",
     "legal_page_header_location": "GPS de PathCheck",
     "loading_public_data": "cargando datos...",
@@ -252,7 +261,8 @@
     "home": "Inicio",
     "locations": "Ubicaciones",
     "more": "Más",
-    "partners": "Socios"
+    "partners": "Socios",
+    "self_assessment": "Salud"
   },
   "onboarding": {
     "eula_checkbox": "Acepto el acuerdo de licencia",
@@ -265,11 +275,12 @@
   },
   "screen_titles": {
     "about": "Acerca de",
+    "exposure_history": "Historial de exposición",
     "faq": "Preguntas frecuentes",
     "legal": "Legal",
     "more": "Más",
-    "report_issue": "Reportar un problema",
-    "report_positive_test": "Informe de un resultado positivo de la prueba"
+    "more_info": "Más información",
+    "report_issue": "Reportar un problema"
   },
   "settings": {
     "share_test_result": "Informe de un resultado positivo de la prueba",

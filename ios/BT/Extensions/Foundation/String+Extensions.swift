@@ -9,7 +9,8 @@ extension String {
   static let keyPathDateLastPerformedExposureDetection = "dateLastPerformedExposureDetection"
   static let keyPathExposures = "exposures"
   static let postKeysUrl = "POST_DIAGNOSIS_KEYS_URL"
-  static let downloadUrl = "INDEX_FILE_URL"
+  static let downloadBaseUrl = "DOWNLOAD_BASE_URL"
+  static let downloadPath = "DOWNLOAD_PATH"
   static let hmackey = "HMAC_KEY"
   static let bluetoothNotificationTitle = "Bluetooth Off"
   static let bluetoothNotificationBody = "You must enable bluetooth to receive Exposure Notifications."
@@ -21,7 +22,7 @@ extension String {
   static let genericSuccess = "success"
 
   var gaenFilePaths: [String] {
-    split(separator: "\n").map { String($0) }
+    split(separator: "\n").map { String($0) }.filter { $0.contains(ReactNativeConfig.env(for: .downloadPath)) }
   }
 
   var localized: String {

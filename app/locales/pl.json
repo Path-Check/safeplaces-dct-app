@@ -73,18 +73,13 @@
     "start_title_bluetooth": "Pomóż powstrzymać rozprzestrzenianie się wirusa i chroń innych w Twojej społeczności, jeśli zdiagnozowano u Ciebie pozytywny wynik testu na COVID-19."
   },
   "exposure_history": {
+    "bt": {
+      "how_does_this_work": "Jak to działa?"
+    },
+    "how_does_this_work": "Jak to działa?",
     "last_days": "Ostatnie 21 dni",
     "legend_button": "LEGENDA",
-    "more_info_bt": {
-      "how_does_this_work": "Jak to działa?",
-      "why_did_i_get_an_en": "Dlaczego otrzymałem powiadomienie o ekspozycji?",
-      "why_did_i_get_an_en_para": "Otrzymasz powiadomienie o narażeniu, gdy osoba, z którą przekroczyłeś ścieżki, otrzyma potwierdzenie pozytywnej diagnozy lub testu na COVID-19 i zdecyduje się powiadomić innych"
-    },
-    "more_info_gps": {
-      "how_does_this_work": "Jak to działa?",
-      "why_did_i_get_an_en": "Dlaczego otrzymałem powiadomienie o ekspozycji?",
-      "why_did_i_get_an_en_para": "Będziesz otrzymywać powiadomienia o narażeniu za każdym razem, gdy aplikacja PathCheck oceni, że Twój telefon znajdował się w odległości 30 metrów od innego członka społeczności, który później otrzymał pozytywną diagnozę i postanowił udostępnić dziennik lokalizacji swojemu lokalnemu Departamentowi Zdrowia."
-    }
+    "why_did_i_get_an_en": "Dlaczego otrzymałem powiadomienie o ekspozycji?"
   },
   "history": {
     "no_exposure": "Brak narażenia",
@@ -149,7 +144,6 @@
   "label": {
     "about_header_bluetooth": "PathCheck Bluetooth",
     "about_header_location": "PathCheck GPS",
-    "about_para": "PathCheck to globalny ruch mający na celu rozwój darmowych narzędzi o otwartym kodzie źródłowym (open-source) i zgodnych z zasadą poszanowania prywatności w fazie projektowania (privacy-by-design) dla mieszkańców, urzędników służby zdrowia i większych społeczności, aby spłaszczyć krzywą COVID-19, zmniejszyć strach i zapobiec inwigilującej reakcji państwa na pandemię.\n\nAby uzyskać więcej informacji, odwiedź stronę",
     "authorities_add_button_label": "Dodaj organ opieki zdrowotnej",
     "authorities_add_url": "Dodaj instytucję poprzez adres URL",
     "authorities_desc": "Wybierz jeden lub więcej organów opieki zdrowotnej w Twojej okolicy, aby uzyskać informacje na temat COVID-19 w pobliżu, jeśli są dostępne. \n\nWybierz nazwę z rejestru globalnego lub wprowadź adres internetowy podany przez organ opieki zdrowotnej, który wdrożył PathCheck.",
@@ -173,14 +167,10 @@
     "event_history_subtitle": "Dowiedz się o swoim osobistym narażeniu na ryzyko zakażenia na podstawie informacji udostępnionych przez instytucje opieki zdrowotnej.",
     "event_history_title": "Historia narażenia na zakażenie",
     "filter_authorities_by_gps_history": "Filtruj według lokalizacji",
-    "home_no_contact_header_bluetooth": "PathCheck",
-    "home_setting_off_header_bluetooth": "Powiadomienia wyłączone",
     "import_success": "Zaimportowano pomyślnie",
     "latest_news": "Najnowsze informacje",
     "launch_access_bluetooth": "Zezwalaj na śledzenie kontaktów",
     "launch_access_location": "Dostęp do lokalizacji",
-    "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
-    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
     "launch_allow_location": "Zezwól na dostęp do lokalizacji",
     "launch_authority_access": "Subskrybuj pobliskie instytucje opieki zdrowotnej",
     "launch_authority_header": "Instytucje opieki zdrowotnej przekażą na Twoje urządzenie dane lokalne, aby dowiedzieć się, czy spotkałeś na swojej drodze osobę zakażoną.",
@@ -190,8 +180,9 @@
     "launch_done_subheader": "Możesz zaczynać. Pamiętaj, że zawsze możesz później zaktualizować swoje preferencje.",
     "launch_enable_auto_subscription": "Włącz automatyczną subskrypcję",
     "launch_enable_bluetooth": "Włącz Bluetooth",
+    "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
+    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
     "launch_enable_exposure_notif": "Włącz",
-    "launch_enable_location": "Włącz lokalizację",
     "launch_enable_notif": "Włącz powiadomienia",
     "launch_finish_set_up": "Zakończ konfigurację",
     "launch_get_started": "Zaczynamy",
@@ -261,8 +252,8 @@
     "faq": "FAQ",
     "legal": "Informacje prawne",
     "more": "Więcej",
-    "report_issue": "Zgłoś problem",
-    "report_positive_test": "Zgłoś pozytywny wynik testu"
+    "more_info": "Więcej informacji",
+    "report_issue": "Zgłoś problem"
   },
   "settings": {
     "share_test_result": "Zgłoś pozytywny wynik testu",
