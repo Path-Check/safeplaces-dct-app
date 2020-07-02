@@ -14,9 +14,10 @@ import Heart from './heart';
 import Isolate from './isolate';
 import LanguagesIcon from './languagesIcon';
 import LocationPin from './locationPin';
-import QuestionMark from './questionMark';
-import SelfAssessment from './selfAssessment';
 import Publish from './publish';
+import QuestionMark from './questionMark';
+import RadioWave from './radioWave';
+import SelfAssessment from './selfAssessment';
 import StateNoContact from './stateNoContact';
 import StateUnknown from './stateUnknown';
 import Upload from './upload';
@@ -38,9 +39,10 @@ export const Icons = {
   Isolate,
   LanguagesIcon,
   LocationPin,
-  QuestionMark,
-  SelfAssessment,
   Publish,
+  QuestionMark,
+  RadioWave,
+  SelfAssessment,
   StateNoContact,
   StateUnknown,
   Upload,

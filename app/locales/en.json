@@ -26,7 +26,7 @@
     "isolate_description": "You <1>have some symptoms</1> that may be related to COVID-19. Call your healthcare provider if your symtoms get worse. Start home isolation.",
     "isolate_cta": "Next",
     "share_title": "Publish anonymized data",
-    "share_description": "Your anonymous data helps the Boston Public Health Commission analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.\n\nYour data contains your survey responses and zip code, but no additional or personally-identifying information.\n\nThe Boston Public Health Commission will retain your anonymous data for a specific period of time.",
+    "share_description": "Your anonymous data helps the {{authority}} analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.\n\nYour data contains your survey responses and zip code, but no additional or personally-identifying information.\n\nThe {{authority}} will retain your anonymous data for a specific period of time.",
     "share_screening_title": "Anonymized Screening Data",
     "share_screening_description": "Share anonymized answers to screening questions with your local healthcare authority.",
     "share_cta_skip": "No thanks, I don't want to share data",
@@ -107,6 +107,12 @@
     "last_days": "Last 21 days",
     "why_did_i_get_an_en": "Why did I get an exposure notification?",
     "how_does_this_work": "How does this work?",
+    "legend": {
+      "exposure_likely": "Exposure very likely",
+      "exposure_possible": "Exposure possible",
+      "no_exposure_detected": "No exposure detected",
+      "today": "Today"
+    },
     "bt": {
       "why_did_i_get_an_en_para": "You will receive an exposure notification when someone you crossed paths with later receives a confirmed, positive diagnosis or test for COVID-19 and chooses to notify others",
       "how_does_this_work": "How does this work?",
@@ -168,8 +174,8 @@
     }
   },
   "settings": {
-    "share_test_result": "Report a positive test result",
-    "share_test_result_description": "Share Covid-19 exposure information with your health authority with a provided code"
+    "share_test_result": "Report Positive Test Result",
+    "share_test_result_description": "Anonymously notify others you may have recently encountered if you test positive for COVID-19"
   },
   "label": {
     "about_header_bluetooth": "PathCheck BT",
@@ -264,13 +270,13 @@
     "skip_this_step": "Skip this step",
     "team": "Team",
     "team_para": "Our team is composed of a consortium of epidemiologists, engineers, data scientists, digital privacy evangelists, professors and researchers from reputable institutions, including: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young and Link Ventures.",
-    "terms_of_use": "Terms of Use",
+    "terms_of_use": "Terms of use",
     "unknown": "unknown"
   },
   "onboarding": {
     "eula_checkbox": "I accept the licensing agreement",
     "eula_continue": "Continue",
-    "eula_message": "I accept the Terms of Use.",
+    "eula_message": "*You must accept in order to use PathCheck",
     "notification_header": "Would you like to receive notifications when you may have crossed paths with the virus?",
     "notification_subheader": "PathCheck partners with local Health Departments to track the virus. If you are located in a jurisdiction served by one of our Health Department partners, you can receive exposure notifications from your Health Department.",
     "location_header": "To determine when you may have crossed paths with the virus, PathCheck needs location access.",
