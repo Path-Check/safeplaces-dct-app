@@ -9,6 +9,8 @@ import {
   StrategyInterpolatedCopyContent,
 } from '../tracingStrategy';
 
+import { Images } from '../../app/assets/images';
+
 export default Factory.define<TracingStrategy>(() => ({
   name: 'test-tracing-strategy',
   exposureInfoSubscription: () => {
@@ -61,11 +63,11 @@ export const testStrategyCopy: StrategyCopyContent = {
 };
 
 export const testStrategyAssets: StrategyAssets = {
-  personalPrivacyBackground: '',
+  personalPrivacyBackground: Images.BlueGradientBackground,
   personalPrivacyIcon: '',
-  notificationDetailsBackground: '',
+  notificationDetailsBackground: Images.BlueGradientBackground,
   notificationDetailsIcon: '',
-  shareDiagnosisBackground: '',
+  shareDiagnosisBackground: Images.BlueGradientBackground,
   shareDiagnosisIcon: '',
   exportPublishIcon: '',
 };
