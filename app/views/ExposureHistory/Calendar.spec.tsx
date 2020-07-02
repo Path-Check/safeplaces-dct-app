@@ -1,10 +1,10 @@
 import React from 'react';
 import { cleanup, render } from '@testing-library/react-native';
 
-import { calendarDays, toExposureHistory } from '../../exposureHistory';
 import { factories } from '../../factories';
 
 import Calendar from './Calendar';
+import { toExposureHistory } from '../../bt/exposureNotifications';
 
 afterEach(cleanup);
 
@@ -27,10 +27,9 @@ describe('Calendar', () => {
 });
 
 const buildExposureHistory = () => {
-  const datum = factories.exposureDatum.build();
-  const exposureInfo = {
-    [datum.date]: datum,
-  };
-  const calendar = calendarDays(Date.now(), 21);
-  return toExposureHistory(exposureInfo, calendar);
+  const rawExposure = factories.rawExposure.build();
+  return toExposureHistory([rawExposure], {
+    initDate: Date.now(),
+    totalDays: 21,
+  });
 };
