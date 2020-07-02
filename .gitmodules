@@ -1,0 +1,3 @@
+[submodule "pathcheck-mobile-resources"]
+	path = pathcheck-mobile-resources
+	url = git@github.com:Path-Check/pathcheck-mobile-resources.git
