@@ -1271,6 +1271,11 @@
     merge-deep "^3.0.2"
     svgo "^1.2.2"
 
+"@synapsestudios/react-native-zendesk-support@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@synapsestudios/react-native-zendesk-support/-/react-native-zendesk-support-1.1.0.tgz#689ff47110be78843ddc71caa42c8ae959c6fa6f"
+  integrity sha512-3UBzrMP4US6q/6AUTH1HlCRwHy1miMlQfNAXjtxnupjEdnmuqRzRZFh5IlLxQT1dsbciCD3KxQ+kstfzm+n1GA==
+
 "@testing-library/jest-native@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@testing-library/jest-native/-/jest-native-3.1.0.tgz#414c834dfb524ca82b86509d5479e365d4d5bbec"

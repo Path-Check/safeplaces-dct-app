@@ -45,6 +45,7 @@ def shared_pods
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+  pod 'react-native-zendesk-support', :path => '../node_modules/@synapsestudios/react-native-zendesk-support'
 
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
@@ -88,4 +89,12 @@ target 'BTTests' do
   inherit! :search_paths
   bt_pods
   shared_pods
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      target.build_settings(config.name)['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+    end
+  end
 end

@@ -47,7 +47,7 @@
 		527CA705E5514AF9BEAC9A2F /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C8CF282C4264C88A4ED8ABF /* IBMPlexMono-Medium.ttf */; };
 		57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
-		68D8970624809AA50091A254 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68D8970524809AA50091A254 /* Scrypt */; };
+		68D8970624809AA50091A254 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 68D8970524809AA50091A254 /* SwiftPackageProductDependency */; };
 		68D8970C24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */; };
 		68D8970D24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */; };
 		68D8970F24809CEB0091A254 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970E24809CEB0091A254 /* Geohash.swift */; };
@@ -59,7 +59,7 @@
 		68D8971824809F5C0091A254 /* MARULocation+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971724809F5C0091A254 /* MARULocation+ExtensionTests.swift */; };
 		68D8971A24809F9C0091A254 /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971924809F9C0091A254 /* GeohashTests.swift */; };
 		68D8971C24809FB50091A254 /* Array+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */; };
-		68EFB21324856EC6003D84F3 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68EFB21224856EC6003D84F3 /* Scrypt */; };
+		68EFB21324856EC6003D84F3 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 68EFB21224856EC6003D84F3 /* SwiftPackageProductDependency */; };
 		68EFB215248570C2003D84F3 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
 		7A2281C376904F23BCA10FCA /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
 		8A5B44AA7D724388B70F100B /* IBMPlexSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36B22BAB357B44949D2E168C /* IBMPlexSans-ExtraLight.ttf */; };
@@ -439,7 +439,7 @@
 				08445F50242849C1008754AC /* CoreGraphics.framework in Frameworks */,
 				08445F4E24283B0B008754AC /* CoreData.framework in Frameworks */,
 				08445F4C24283AFF008754AC /* Accelerate.framework in Frameworks */,
-				68D8970624809AA50091A254 /* Scrypt in Frameworks */,
+				68D8970624809AA50091A254 /* BuildFile in Frameworks */,
 				0814DA4E882656978623FE96 /* libPods-GPS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,7 +463,7 @@
 				C53FD09724719AD1006D3268 /* CoreGraphics.framework in Frameworks */,
 				C53FD09824719AD1006D3268 /* CoreData.framework in Frameworks */,
 				C53FD09924719AD1006D3268 /* Accelerate.framework in Frameworks */,
-				68EFB21324856EC6003D84F3 /* Scrypt in Frameworks */,
+				68EFB21324856EC6003D84F3 /* BuildFile in Frameworks */,
 				49C5264730115D459DEB65DA /* libPods-BT.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -922,6 +922,7 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				D272A7188CE27074A1D03F80 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -943,6 +944,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				FF232028FE6AE36CA8C05302 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -950,7 +952,7 @@
 			);
 			name = GPS;
 			packageProductDependencies = (
-				68D8970524809AA50091A254 /* Scrypt */,
+				68D8970524809AA50091A254 /* SwiftPackageProductDependency */,
 			);
 			productName = COVIDSafePaths;
 			productReference = 13B07F961A680F5B00A75B9A /* GPS.app */;
@@ -966,6 +968,7 @@
 				C53FD08A24719AD1006D3268 /* Frameworks */,
 				C53FD09B24719AD1006D3268 /* Resources */,
 				C53FD0BB24719AD1006D3268 /* Bundle React Native code and images */,
+				C3A9A0E8650DAD1390A92DF9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -973,7 +976,7 @@
 			);
 			name = BT;
 			packageProductDependencies = (
-				68EFB21224856EC6003D84F3 /* Scrypt */,
+				68EFB21224856EC6003D84F3 /* SwiftPackageProductDependency */,
 			);
 			productName = COVIDSafePaths;
 			productReference = C53FD0C124719AD1006D3268 /* BT.app */;
@@ -987,6 +990,7 @@
 				C5AA24D524768FFF00BA0A99 /* Sources */,
 				C5AA24D924768FFF00BA0A99 /* Frameworks */,
 				C5AA24DB24768FFF00BA0A99 /* Resources */,
+				A7A109BE69B003E3ECFE0911 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1044,7 +1048,7 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
-				68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */,
+				68D8970424809AA40091A254 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -1236,6 +1240,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A7A109BE69B003E3ECFE0911 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BTTests/Pods-BTTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BTTests/Pods-BTTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BTTests/Pods-BTTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B8B3F66D67BD3E6B2C9A66F0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1256,6 +1277,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3A9A0E8650DAD1390A92DF9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BT/Pods-BT-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BT/Pods-BT-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BT/Pods-BT-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C53FD07F24719AD1006D3268 /* Start Packager */ = {
@@ -1313,6 +1351,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D272A7188CE27074A1D03F80 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GPSTests/Pods-GPSTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GPSTests/Pods-GPSTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GPSTests/Pods-GPSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1330,6 +1385,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FF232028FE6AE36CA8C05302 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GPS/Pods-GPS-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GPS/Pods-GPS-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GPS/Pods-GPS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2896,7 +2968,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */ = {
+		68D8970424809AA40091A254 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MichaelNeas/swift-scrypt.git";
 			requirement = {
@@ -2907,14 +2979,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		68D8970524809AA50091A254 /* Scrypt */ = {
+		68D8970524809AA50091A254 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
+			package = 68D8970424809AA40091A254 /* RemoteSwiftPackageReference */;
 			productName = Scrypt;
 		};
-		68EFB21224856EC6003D84F3 /* Scrypt */ = {
+		68EFB21224856EC6003D84F3 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
+			package = 68D8970424809AA40091A254 /* RemoteSwiftPackageReference */;
 			productName = Scrypt;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Config from 'react-native-config';
+import ZendeskSupport from '@synapsestudios/react-native-zendesk-support';
 
 import LocationServices from '../services/LocationService';
 import NotificationService from '../services/NotificationService';
@@ -45,6 +47,26 @@ export const Main = () => {
       unsubscribe();
     };
   }, [navigation, updateStateInfo]);
+
+  useEffect(() => {
+    console.log('CONFIG')
+    console.log(Config)
+    const configureZendesk = async () => {
+      const config = {
+        appId: Config.ZENDESK_APP_ID,
+        zendeskUrl: Config.ZENDESK_URL,
+        clientId: Config.ZENDESK_CLIENT_ID
+      }
+      await ZendeskSupport.initialize(config)
+  
+      const identity = {
+        customerEmail: 'foo@bar.com',
+        customerName: 'Foo Bar'
+      }
+      await ZendeskSupport.setupIdentity(identity)
+    }
+    configureZendesk()
+  }, []);
 
   if (!canTrack) {
     return <TracingOffScreen />;

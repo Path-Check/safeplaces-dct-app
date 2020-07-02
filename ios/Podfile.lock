@@ -209,6 +209,9 @@ PODS:
     - React
   - react-native-webview (8.2.1):
     - React
+  - react-native-zendesk-support (1.1.0):
+    - React
+    - ZendeskSDK (~> 1.11.2.1)
   - React-RCTActionSheet (0.61.5):
     - React-Core/RCTActionSheetHeaders (= 0.61.5)
   - React-RCTAnimation (0.61.5):
@@ -284,6 +287,12 @@ PODS:
     - SSZipArchive (= 2.2.2)
   - SSZipArchive (2.2.2)
   - Yoga (1.14.0)
+  - ZendeskSDK (1.11.2.1):
+    - ZendeskSDK/Providers (= 1.11.2.1)
+    - ZendeskSDK/UI (= 1.11.2.1)
+  - ZendeskSDK/Providers (1.11.2.1)
+  - ZendeskSDK/UI (1.11.2.1):
+    - ZendeskSDK/Providers
   - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
@@ -317,6 +326,7 @@ DEPENDENCIES:
   - react-native-uuid-generator (from `../node_modules/react-native-uuid-generator`)
   - "react-native-viewpager (from `../node_modules/@react-native-community/viewpager`)"
   - react-native-webview (from `../node_modules/react-native-webview`)
+  - "react-native-zendesk-support (from `../node_modules/@synapsestudios/react-native-zendesk-support`)"
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -354,6 +364,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SSZipArchive
+    - ZendeskSDK
     - ZIPFoundation
 
 EXTERNAL SOURCES:
@@ -411,6 +422,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/viewpager"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
+  react-native-zendesk-support:
+    :path: "../node_modules/@synapsestudios/react-native-zendesk-support"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -492,6 +505,7 @@ SPEC CHECKSUMS:
   react-native-uuid-generator: 82ffa2a1cac94242ebed52c4dedc5044d3412717
   react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
   react-native-webview: 160ac8d6bb974e2933f2de6bb7464a8e934ff31d
+  react-native-zendesk-support: 402997dd5b7c1c6256230fdd813ad0ec6d1aafa1
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -520,8 +534,9 @@ SPEC CHECKSUMS:
   RNZipArchive: ab51bc004a31657f34010254a9182014c6a81217
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
+  ZendeskSDK: 2cda4db2ba6b10ba89aeb8dddaa94e97c85946a0
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: d641f53b267b5fdc2398388c8211cf0739401d29
+PODFILE CHECKSUM: c93cd6232f0cb0500a19752b5ed4562ea5693a0d
 
 COCOAPODS: 1.9.1

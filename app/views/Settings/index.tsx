@@ -14,6 +14,7 @@ import {
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
+import ZendeskSupport from '@synapsestudios/react-native-zendesk-support';
 
 import {
   getLocaleList,
@@ -77,6 +78,10 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
       console.log('something went wrong in lang change', e);
     }
   };
+
+  const reportIssue = async () => {
+    ZendeskSupport.showHelpCenter()
+  }
 
   interface LanguageSelectionListItemProps {
     icon: string;
@@ -194,6 +199,11 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           <SettingsListItem
             label={t('screen_titles.about')}
             onPress={navigateTo(Screens.About)}
+          />
+          <Divider />
+          <SettingsListItem
+            label={t('screen_titles.report_issue')}
+            onPress={reportIssue}
           />
           <Divider />
           <SettingsListItem
