@@ -1,6 +1,6 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
 import React, { useMemo, useRef } from 'react';
-import { Alert, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { SvgXml } from 'react-native-svg';
@@ -86,15 +86,6 @@ const Assessment = ({ navigation }) => {
       />
     ),
     [answers, survey],
-  );
-
-  const AssessmentCancel = () => (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('AssessmentStart');
-      }}>
-      <SvgXml xml={Icons.Close} />
-    </TouchableOpacity>
   );
 
   const meta = useMemo(
