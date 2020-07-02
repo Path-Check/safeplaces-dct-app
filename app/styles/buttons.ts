@@ -35,10 +35,14 @@ const rounded: ViewStyle = {
 };
 
 // Color
-
 const primaryBlue: ViewStyle = {
   backgroundColor: Colors.primaryBlue,
   borderColor: Colors.primaryBlue,
+};
+
+const secondaryBlue: ViewStyle = {
+  backgroundColor: Colors.cornflowerBlue,
+  borderColor: Colors.cornflowerBlue,
 };
 
 const white: ViewStyle = {
@@ -73,6 +77,12 @@ export const largeBlueOutline: ViewStyle = {
   ...outlined,
 };
 
+export const largeSecondaryBlue: ViewStyle = {
+  ...base,
+  ...large,
+  ...secondaryBlue,
+};
+
 export const mediumBlue: ViewStyle = {
   ...base,
   ...medium,
@@ -83,11 +93,6 @@ export const largeWhite: ViewStyle = {
   ...base,
   ...large,
   ...white,
-};
-
-export const largeWhiteDisabled: ViewStyle = {
-  ...largeWhite,
-  backgroundColor: Colors.semiTransparentWhite,
 };
 
 export const largeWhiteOutline: ViewStyle = {
@@ -111,11 +116,4 @@ export const largeTransparent: ViewStyle = {
   ...base,
   ...large,
   ...transparent,
-};
-
-export const pill: ViewStyle = {
-  borderRadius: 100,
-  paddingVertical: Spacing.small,
-  paddingHorizontal: Spacing.xLarge,
-  backgroundColor: Colors.transparentWhite,
 };

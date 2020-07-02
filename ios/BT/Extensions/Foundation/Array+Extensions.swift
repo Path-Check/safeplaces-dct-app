@@ -2,7 +2,7 @@ import Foundation
 
 extension Array where Element == DownloadedPackage {
 
-  func unpack(_ completion: @escaping (([URL]) -> Void)) {
+  func unpack(_ completion: @escaping (([URL]) -> Void)) throws {
     guard count > 0 else {
       completion([])
       return
@@ -20,7 +20,7 @@ extension Array where Element == DownloadedPackage {
       }
     } catch {
       uncompressedFileUrls.cleanup()
-      completion([])
+      throw GenericError.unknown
     }
 
   }

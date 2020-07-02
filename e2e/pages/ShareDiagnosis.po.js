@@ -1,7 +1,7 @@
 /* eslint-disable */
 const screenshotText = 'Onboarding - Page 4';
 
-class Onboarding4 {
+class ShareDiagnosis {
   async tapButton(languageStrings) {
     await element(
       by.label(languageStrings.label.launch_set_up_phone_location),
@@ -20,4 +20,4 @@ class Onboarding4 {
   }
 }
 
-export default new Onboarding4();
+export default new ShareDiagnosis();

@@ -9,6 +9,7 @@ import {
   Outlines,
   Colors,
   Typography,
+  Iconography,
   Spacing,
 } from '../../styles';
 
@@ -49,8 +50,7 @@ const ExposureDatumIndicator = ({
         return [
           {
             ...circleStyle,
-            backgroundColor: Colors.exposureRiskWarning,
-            borderColor: Colors.exposureRiskWarning,
+            ...Iconography.possibleExposure,
           },
           { ...textStyle, color: Colors.white },
         ];

@@ -68,7 +68,6 @@ export const quaternaryViolet = melrose;
 // Transparent
 export const transparent = 'rgba(0, 0, 0, 0)';
 export const transparentWhite = applyOpacity(white, 0.1);
-export const semiTransparentWhite = applyOpacity(white, 0.65);
 export const transparentGray = applyOpacity(gray, 0.1);
 export const transparentYellow = 'rgba(100, 100, 77, 0.4)';
 export const transparentDark = 'rgba(0,0,0,0.7)';
@@ -158,4 +157,5 @@ export const onboardingIconYellow = champangne;
 export const onboardingIconBlue = moonRaker;
 
 // Exposure History
-export const exposureRiskWarning = royalBlue;
+export const possibleExposure = royalBlue;
+export const expectedExposure = amber;

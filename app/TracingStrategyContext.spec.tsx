@@ -38,7 +38,7 @@ const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
       <View>
         <Text testID={'tracing-strategy-name'}>{name}</Text>
         <Text testID={'tracing-strategy-assets'}>
-          {StrategyAssets.onboarding2Background}
+          {StrategyAssets.personalPrivacyBackground}
         </Text>
         <Text testID={'tracing-strategy-copy'}>{StrategyCopy.aboutHeader}</Text>
         <Text testID={'tracing-strategy-interpolated-copy'}>
@@ -105,7 +105,7 @@ describe('TracingStrategyProvider', () => {
       const strategy = factories.tracingStrategy.build({
         assets: {
           ...testStrategyAssets,
-          onboarding2Background: expectedAsset,
+          personalPrivacyBackground: expectedAsset,
         },
         useCopy: () => {
           return {

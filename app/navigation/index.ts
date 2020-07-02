@@ -36,11 +36,12 @@ export type Screen =
   | 'Import'
   | 'ImportFromUrl'
   | 'Welcome'
-  | 'Onboarding2'
-  | 'Onboarding3'
-  | 'Onboarding4'
+  | 'PersonalPrivacy'
+  | 'NotificatioNDetails'
+  | 'ShareDiagnosis'
   | 'OnboardingLocationPermissions'
   | 'OnboardingNotificationPermissions'
+  | 'NotificationPermissionsBT'
   | 'EnableExposureNotifications'
   | 'ExportFlow'
   | 'SelfAssessment'
@@ -72,11 +73,12 @@ export const Screens: { [key in Screen]: Screen } = {
   Import: 'Import',
   ImportFromUrl: 'ImportFromUrl',
   Welcome: 'Welcome',
-  Onboarding2: 'Onboarding2',
-  Onboarding3: 'Onboarding3',
-  Onboarding4: 'Onboarding4',
+  PersonalPrivacy: 'PersonalPrivacy',
+  NotificatioNDetails: 'NotificatioNDetails',
+  ShareDiagnosis: 'ShareDiagnosis',
   OnboardingLocationPermissions: 'OnboardingLocationPermissions',
   OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',
+  NotificationPermissionsBT: 'NotificationPermissionsBT',
   EnableExposureNotifications: 'EnableExposureNotifications',
   ExportFlow: 'ExportFlow',
   SelfAssessment: 'SelfAssessment',

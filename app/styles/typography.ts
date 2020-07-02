@@ -49,46 +49,53 @@ export const mediumBold: TextStyle = {
   fontFamily: mediumFontFamily,
 };
 
-export const base: TextStyle = {
-  fontFamily: baseFontFamily,
-};
-
 export const monospace: TextStyle = {
   fontFamily: monospaceFontFamily,
 };
 
+export const base: TextStyle = {
+  fontFamily: baseFontFamily,
+};
+
 // Standard Font Types
 export const tinyFont: TextStyle = {
+  ...base,
   lineHeight: smallestLineHeight,
   fontSize: tiny,
 };
 
 export const smallFont: TextStyle = {
+  ...base,
   lineHeight: smallLineHeight,
   fontSize: small,
 };
 
 export const mediumFont: TextStyle = {
+  ...base,
   lineHeight: mediumLineHeight,
   fontSize: medium,
 };
 
 export const largeFont: TextStyle = {
+  ...base,
   lineHeight: largestLineHeight,
   fontSize: large,
 };
 
 export const largerFont: TextStyle = {
+  ...base,
   lineHeight: largestLineHeight,
   fontSize: larger,
 };
 
 export const largestFont: TextStyle = {
+  ...base,
   lineHeight: largestLineHeight,
   fontSize: largest,
 };
 
 export const hugeFont: TextStyle = {
+  ...base,
   lineHeight: hugeLineHeight,
   fontSize: huge,
 };
@@ -141,6 +148,11 @@ export const mainContent: TextStyle = {
   color: Colors.primaryText,
 };
 
+export const mainContentViolet: TextStyle = {
+  ...mediumFont,
+  color: Colors.secondaryViolet,
+};
+
 export const secondaryContent: TextStyle = {
   ...mediumFont,
   ...base,
@@ -148,7 +160,7 @@ export const secondaryContent: TextStyle = {
   lineHeight: mediumLineHeight,
 };
 
-export const tertirayContent: TextStyle = {
+export const tertiaryContent: TextStyle = {
   ...smallFont,
   color: Colors.tertiaryText,
   lineHeight: smallLineHeight,
@@ -191,12 +203,6 @@ export const tappableListItem: TextStyle = {
   color: Colors.primaryViolet,
 };
 
-export const linkYellow: TextStyle = {
-  ...mediumFont,
-  color: Colors.primaryYellow,
-  textDecorationLine: 'underline',
-};
-
 // Buttons
 export const buttonText: TextStyle = {
   fontSize: large,
@@ -204,11 +210,6 @@ export const buttonText: TextStyle = {
 };
 
 export const buttonTextDark: TextStyle = {
-  ...buttonText,
-  color: Colors.primaryViolet,
-};
-
-export const buttonTextDarkDisabled: TextStyle = {
   ...buttonText,
   color: Colors.primaryViolet,
 };

@@ -1,4 +1,4 @@
-import { ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import { ViewStyle, TextStyle } from 'react-native';
 
 import * as Colors from './colors';
 import * as Spacing from './spacing';
@@ -34,7 +34,7 @@ export const checkbox: ViewStyle = {
   alignItems: 'center',
 };
 
-export const checkboxIcon: ImageStyle = {
+export const checkboxIcon: ViewStyle = {
   width: 25,
   height: 25,
   marginRight: Spacing.medium,
