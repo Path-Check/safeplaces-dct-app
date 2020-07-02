@@ -24,7 +24,7 @@ import {
 } from '../../styles';
 
 type DescriptionTemplateContent = {
-  iconXml: string;
+  icon: string;
   header: string;
   body: string;
   primaryButtonLabel: string;
@@ -102,7 +102,7 @@ const DescriptionTemplate = ({
           style={styles.innerContainer}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={iconStyle}>
-            <SvgXml xml={descriptionTemplateContent.iconXml} />
+            <SvgXml xml={descriptionTemplateContent.icon} />
           </View>
           <Typography style={headerStyles}>
             {descriptionTemplateContent.header}

@@ -18,7 +18,7 @@ const NotificationDetails = ({
   const descriptionTemplateContent = {
     invertIcon: !isGPS,
     backgroundImage: StrategyAssets.notificationDetailsBackground,
-    iconXml: StrategyAssets.notificationDetailsIcon,
+    icon: StrategyAssets.notificationDetailsIcon,
     header: StrategyCopy.notificationDetailsHeader,
     body: StrategyCopy.notificationDetailsSubheader,
     primaryButtonLabel: t('label.launch_next'),

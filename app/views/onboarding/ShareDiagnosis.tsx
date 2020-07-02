@@ -30,7 +30,7 @@ const ShareDiagnosis = ({ navigation }: ShareDiagnosisProps): JSX.Element => {
   const descriptionTemplateContent = {
     invertIcon: isGPS,
     backgroundImage: StrategyAssets.shareDiagnosisBackground,
-    iconXml: StrategyAssets.shareDiagnosisIcon,
+    icon: StrategyAssets.shareDiagnosisIcon,
     header: StrategyCopy.shareDiagnosisHeader,
     body: StrategyCopy.shareDiagnosisSubheader,
     primaryButtonLabel: t('label.launch_set_up_phone_location'),

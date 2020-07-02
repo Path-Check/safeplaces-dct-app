@@ -16,7 +16,7 @@ const PersonalPrivacy = ({ navigation }: PersonalPrivacyProps): JSX.Element => {
 
   const descriptionTemplateContent = {
     backgroundImage: StrategyAssets.personalPrivacyBackground,
-    iconXml: StrategyAssets.personalPrivacyIcon,
+    icon: StrategyAssets.personalPrivacyIcon,
     header: StrategyCopy.personalPrivacyHeader,
     body: StrategyCopy.personalPrivacySubheader,
     primaryButtonLabel: t('label.launch_next'),

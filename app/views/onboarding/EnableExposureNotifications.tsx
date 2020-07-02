@@ -38,7 +38,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
 
   const descriptionTemplateContent = {
     backgroundImage: Images.BlueGradientBackground,
-    iconXml: Icons.ExposureIcon,
+    icon: Icons.ExposureIcon,
     header: headerText,
     body: bodyText,
     primaryButtonLabel: buttonLabel,
