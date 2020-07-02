@@ -37,7 +37,7 @@ const NotificationsPermissions = (): JSX.Element => {
     continueOnboarding();
   };
 
-  const descriptionTemplateContent = {
+  const explanationScreenContent = {
     backgroundImage: Images.BlueGradientBackground,
     icon: Icons.Bell,
     header: t('onboarding.notification_header'),
@@ -46,22 +46,22 @@ const NotificationsPermissions = (): JSX.Element => {
     secondaryButtonLabel: t('onboarding.maybe_later'),
   };
 
-  const descriptionTemplateStyles = {
+  const explanationScreenStyles = {
     headerStyle: styles.header,
     bodyStyle: styles.body,
     iconStyle: IconStyle.Blue,
   };
 
-  const descriptionTemplateActions = {
+  const explanationScreenActions = {
     primaryButtonOnPress: handleOnPressEnable,
     secondaryButtonOnPress: handleOnPressMaybeLater,
   };
 
   return (
     <ExplanationScreen
-      descriptionTemplateContent={descriptionTemplateContent}
-      descriptionTemplateStyles={descriptionTemplateStyles}
-      descriptionTemplateActions={descriptionTemplateActions}
+      explanationScreenContent={explanationScreenContent}
+      explanationScreenStyles={explanationScreenStyles}
+      explanationScreenActions={explanationScreenActions}
     />
   );
 };

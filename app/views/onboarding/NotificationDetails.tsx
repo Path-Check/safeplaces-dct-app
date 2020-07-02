@@ -15,7 +15,7 @@ const NotificationDetails = ({
   const { t } = useTranslation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
-  const descriptionTemplateContent = {
+  const explanationScreenContent = {
     backgroundImage: StrategyAssets.notificationDetailsBackground,
     icon: StrategyAssets.notificationDetailsIcon,
     header: StrategyCopy.notificationDetailsHeader,
@@ -25,19 +25,19 @@ const NotificationDetails = ({
 
   const iconStyle = isGPS ? IconStyle.Blue : IconStyle.Gold;
 
-  const descriptionTemplateStyles = {
+  const explanationScreenStyles = {
     iconStyle: iconStyle,
   };
 
-  const descriptionTemplateActions = {
+  const explanationScreenActions = {
     primaryButtonOnPress: () => navigation.replace('ShareDiagnosis'),
   };
 
   return (
     <ExplanationScreen
-      descriptionTemplateContent={descriptionTemplateContent}
-      descriptionTemplateStyles={descriptionTemplateStyles}
-      descriptionTemplateActions={descriptionTemplateActions}
+      explanationScreenContent={explanationScreenContent}
+      explanationScreenStyles={explanationScreenStyles}
+      explanationScreenActions={explanationScreenActions}
     />
   );
 };

@@ -27,7 +27,7 @@ const ShareDiagnosis = ({ navigation }: ShareDiagnosisProps): JSX.Element => {
 
   const handleOnPressNext = isGPS ? gpsNext : btNext;
 
-  const descriptionTemplateContent = {
+  const explanationScreenContent = {
     backgroundImage: StrategyAssets.shareDiagnosisBackground,
     icon: StrategyAssets.shareDiagnosisIcon,
     header: StrategyCopy.shareDiagnosisHeader,
@@ -37,19 +37,19 @@ const ShareDiagnosis = ({ navigation }: ShareDiagnosisProps): JSX.Element => {
 
   const iconStyle = isGPS ? IconStyle.Gold : IconStyle.Blue;
 
-  const descriptionTemplateStyles = {
+  const explanationScreenStyles = {
     iconStyle: iconStyle,
   };
 
-  const descriptionTemplateActions = {
+  const explanationScreenActions = {
     primaryButtonOnPress: handleOnPressNext,
   };
 
   return (
     <ExplanationScreen
-      descriptionTemplateContent={descriptionTemplateContent}
-      descriptionTemplateStyles={descriptionTemplateStyles}
-      descriptionTemplateActions={descriptionTemplateActions}
+      explanationScreenContent={explanationScreenContent}
+      explanationScreenStyles={explanationScreenStyles}
+      explanationScreenActions={explanationScreenActions}
     />
   );
 };

@@ -54,41 +54,41 @@ type ExplanationScreenActions = {
 };
 
 interface ExplanationScreenProps {
-  descriptionTemplateContent: ExplanationScreenContent;
-  descriptionTemplateStyles: ExplanationScreenStyles;
-  descriptionTemplateActions: ExplanationScreenActions;
+  explanationScreenContent: ExplanationScreenContent;
+  explanationScreenStyles: ExplanationScreenStyles;
+  explanationScreenActions: ExplanationScreenActions;
 }
 
 const ExplanationScreen = ({
-  descriptionTemplateContent,
-  descriptionTemplateStyles,
-  descriptionTemplateActions,
+  explanationScreenContent,
+  explanationScreenStyles,
+  explanationScreenActions,
 }: ExplanationScreenProps): JSX.Element => {
   useStatusBarEffect('dark-content');
 
   const iconStyle =
-    descriptionTemplateStyles.iconStyle == IconStyle.Blue
+    explanationScreenStyles.iconStyle == IconStyle.Blue
       ? styles.blueIcon
       : styles.goldIcon;
 
   const primaryButtonTextStyles = {
     ...styles.primaryButtonText,
-    ...descriptionTemplateStyles.primaryButtonTextStyle,
+    ...explanationScreenStyles.primaryButtonTextStyle,
   };
 
   const secondaryButtonTextStyles = {
     ...styles.secondaryButtonText,
-    ...descriptionTemplateStyles.secondaryButtonTextStyle,
+    ...explanationScreenStyles.secondaryButtonTextStyle,
   };
 
   const headerStyles = {
     ...styles.headerText,
-    ...descriptionTemplateStyles.headerStyle,
+    ...explanationScreenStyles.headerStyle,
   };
 
   const contentStyles = {
     ...styles.contentText,
-    ...descriptionTemplateStyles.bodyStyle,
+    ...explanationScreenStyles.bodyStyle,
   };
 
   const smallScreenWidth = Layout.screenWidth <= Layout.smallScreenWidth;
@@ -97,8 +97,8 @@ const ExplanationScreen = ({
     <View style={styles.outerContainer}>
       {smallScreenWidth ? null : (
         <ImageBackground
-          source={descriptionTemplateContent.backgroundImage}
-          style={[styles.background, descriptionTemplateStyles.backgroundStyle]}
+          source={explanationScreenContent.backgroundImage}
+          style={[styles.background, explanationScreenStyles.backgroundStyle]}
         />
       )}
       <View style={styles.content}>
@@ -107,34 +107,34 @@ const ExplanationScreen = ({
           style={styles.innerContainer}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={iconStyle}>
-            <SvgXml xml={descriptionTemplateContent.icon} />
+            <SvgXml xml={explanationScreenContent.icon} />
           </View>
           <Typography style={headerStyles}>
-            {descriptionTemplateContent.header}
+            {explanationScreenContent.header}
           </Typography>
           <Typography style={contentStyles}>
-            {descriptionTemplateContent.body}
+            {explanationScreenContent.body}
           </Typography>
         </ScrollView>
         <TouchableOpacity
-          onPress={descriptionTemplateActions.primaryButtonOnPress}
+          onPress={explanationScreenActions.primaryButtonOnPress}
           style={[
             styles.primaryButton,
-            descriptionTemplateStyles.primaryButtonContainerStyle,
+            explanationScreenStyles.primaryButtonContainerStyle,
           ]}>
           <Typography style={primaryButtonTextStyles}>
-            {descriptionTemplateContent.primaryButtonLabel}
+            {explanationScreenContent.primaryButtonLabel}
           </Typography>
         </TouchableOpacity>
-        {descriptionTemplateContent.secondaryButtonLabel && (
+        {explanationScreenContent.secondaryButtonLabel && (
           <TouchableOpacity
-            onPress={descriptionTemplateActions.secondaryButtonOnPress}
+            onPress={explanationScreenActions.secondaryButtonOnPress}
             style={[
               styles.secondaryButton,
-              descriptionTemplateStyles.secondaryButtonContainerStyle,
+              explanationScreenStyles.secondaryButtonContainerStyle,
             ]}>
             <Typography style={secondaryButtonTextStyles}>
-              {descriptionTemplateContent.secondaryButtonLabel}
+              {explanationScreenContent.secondaryButtonLabel}
             </Typography>
           </TouchableOpacity>
         )}

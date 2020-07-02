@@ -14,7 +14,7 @@ const PersonalPrivacy = ({ navigation }: PersonalPrivacyProps): JSX.Element => {
   const { t } = useTranslation();
   const { StrategyAssets, StrategyCopy } = useStrategyContent();
 
-  const descriptionTemplateContent = {
+  const explanationScreenContent = {
     backgroundImage: StrategyAssets.personalPrivacyBackground,
     icon: StrategyAssets.personalPrivacyIcon,
     header: StrategyCopy.personalPrivacyHeader,
@@ -22,19 +22,19 @@ const PersonalPrivacy = ({ navigation }: PersonalPrivacyProps): JSX.Element => {
     primaryButtonLabel: t('label.launch_next'),
   };
 
-  const descriptionTemplateStyles = {
+  const explanationScreenStyles = {
     iconStyle: IconStyle.Blue,
   };
 
-  const descriptionTemplateActions = {
+  const explanationScreenActions = {
     primaryButtonOnPress: () => navigation.replace('NotificatioNDetails'),
   };
 
   return (
     <ExplanationScreen
-      descriptionTemplateContent={descriptionTemplateContent}
-      descriptionTemplateStyles={descriptionTemplateStyles}
-      descriptionTemplateActions={descriptionTemplateActions}
+      explanationScreenContent={explanationScreenContent}
+      explanationScreenStyles={explanationScreenStyles}
+      explanationScreenActions={explanationScreenActions}
     />
   );
 };

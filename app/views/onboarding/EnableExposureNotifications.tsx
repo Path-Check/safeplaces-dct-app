@@ -38,7 +38,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
     dispatchOnboardingComplete();
   };
 
-  const descriptionTemplateContent = {
+  const explanationScreenContent = {
     backgroundImage: Images.BlueGradientBackground,
     icon: Icons.ExposureIcon,
     header: headerText,
@@ -47,22 +47,22 @@ export const EnableExposureNotifications = (): JSX.Element => {
     secondaryButtonLabel: disableButtonLabel,
   };
 
-  const descriptionTemplateStyles = {
+  const explanationScreenStyles = {
     headerStyle: styles.header,
     bodyStyle: styles.body,
     iconStyle: IconStyle.Blue,
   };
 
-  const descriptionTemplateActions = {
+  const explanationScreenActions = {
     primaryButtonOnPress: handleOnPressEnable,
     secondaryButtonOnPress: handleOnPressDontEnable,
   };
 
   return (
     <ExplanationScreen
-      descriptionTemplateContent={descriptionTemplateContent}
-      descriptionTemplateStyles={descriptionTemplateStyles}
-      descriptionTemplateActions={descriptionTemplateActions}
+      explanationScreenContent={explanationScreenContent}
+      explanationScreenStyles={explanationScreenStyles}
+      explanationScreenActions={explanationScreenActions}
     />
   );
 };
