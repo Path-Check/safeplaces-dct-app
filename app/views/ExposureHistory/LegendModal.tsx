@@ -43,13 +43,6 @@ const LegendModal = ({
   const { t } = useTranslation();
   const legendItems: LegendItem[] = [
     {
-      backgroundStyle: styles.expectedExposureIcon,
-      badgeStyle: null,
-      textStyle: styles.expectedExposureText,
-      iconContent: '1',
-      itemText: t('exposure_history.legend.exposure_likely'),
-    },
-    {
       backgroundStyle: styles.possibleExposureIcon,
       badgeStyle: null,
       textStyle: styles.possibleExposureText,
