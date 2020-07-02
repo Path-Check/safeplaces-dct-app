@@ -15,6 +15,7 @@ import {
   NoRecentLocationsError,
   importTakeoutData,
 } from '../helpers/GoogleTakeOutAutoImport';
+import { Screens } from '../navigation';
 
 import {
   Typography as TypographyStyles,
@@ -31,7 +32,7 @@ const makeImportResults = (label = '', error = false) => ({
 const ImportScreen = (props) => {
   const { t } = useTranslation();
   const {
-    navigation: { goBack },
+    navigation: { goBack, navigate },
   } = props;
   const [importResults, _setImportResults] = useState(makeImportResults());
   const setImportResults = (...args) =>
@@ -65,6 +66,10 @@ const ImportScreen = (props) => {
     }
   }
 
+  const handleImportMockData = () => {
+    navigate(Screens.ImportFromUrl);
+  };
+
   return (
     <NavigationBarWrapper title={t('import.title')} onBackPress={goBack}>
       <ScrollView style={styles.container}>
@@ -97,6 +102,13 @@ const ImportScreen = (props) => {
           onPress={importPickFile}
           style={styles.button}>
           <Typography style={styles.buttonText}>{t('import.title')}</Typography>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          // TODO: add testID
+          onPress={handleImportMockData}
+          style={styles.button}>
+          <Typography style={styles.buttonText}>{t('import.mockData.custom_url_title')}</Typography>
         </TouchableOpacity>
 
         {importResults.label ? (

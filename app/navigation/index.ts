@@ -34,6 +34,7 @@ export type Screen =
   | 'Licenses'
   | 'FeatureFlags'
   | 'Import'
+  | 'ImportFromUrl'
   | 'Welcome'
   | 'Onboarding2'
   | 'Onboarding3'
@@ -69,6 +70,7 @@ export const Screens: { [key in Screen]: Screen } = {
   Licenses: 'Licenses',
   FeatureFlags: 'FeatureFlags',
   Import: 'Import',
+  ImportFromUrl: 'ImportFromUrl',
   Welcome: 'Welcome',
   Onboarding2: 'Onboarding2',
   Onboarding3: 'Onboarding3',
