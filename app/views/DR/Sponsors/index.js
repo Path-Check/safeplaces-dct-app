@@ -1,5 +1,5 @@
 import { Card } from 'native-base';
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -7,28 +7,26 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
 import Colors from '../../../constants/colors';
-import DialogAdvices from '../../DialogAdvices';
 import { sponsorsList } from './List';
-
-function CreateCard(img, url, navigate) {
-  return (
-    <TouchableOpacity
-      onPress={() => navigate('Details', { source: { uri: url } })}>
-      <Card style={styles.imageContainer}>
-        <Image source={img} style={styles.images} />
-      </Card>
-    </TouchableOpacity>
-  );
-}
 
 export default function Index({ navigation: { navigate, goBack } }) {
   const { t } = useTranslation();
 
-  const [showDialog, setShowDialog] = useState(true);
-  const closeDialog = () => {
-    setShowDialog(false);
+  const CreateCard = (img, url, navigate) => {
+    return (
+      <TouchableOpacity
+        onPress={() =>
+          navigate('Details', {
+            source: { uri: url },
+            textFirstDialog: t('label.dialog_advice'),
+          })
+        }>
+        <Card style={styles.imageContainer}>
+          <Image source={img} style={styles.images} />
+        </Card>
+      </TouchableOpacity>
+    );
   };
-
   const createAllCard = () => {
     const allCards = [];
     for (let sponsor in sponsorsList) {
@@ -45,11 +43,6 @@ export default function Index({ navigation: { navigate, goBack } }) {
       onBackPress={() => goBack()}>
       <View style={styles.container}>
         <ScrollView>
-          <DialogAdvices
-            visible={showDialog}
-            text={t('label.dialog_advice')}
-            close={closeDialog}
-          />
           <View style={styles.cardsContainer}>{createAllCard()}</View>
         </ScrollView>
       </View>

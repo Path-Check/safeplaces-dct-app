@@ -18,7 +18,7 @@ const fixerImage = `
 const Details = ({
   navigation,
   route: {
-    params: { source, switchScreenTo = 'WebView' },
+    params: { source, switchScreenTo = 'WebView', textFirstDialog },
   },
 }) => {
   navigation.setOptions({ headerShown: false });
@@ -74,11 +74,15 @@ const Details = ({
           startInLoadingState
           injectedJavaScript={fixerImage}
           onLoadStart={() => {
+            if (textFirstDialog) {
+              setShowDialog(true);
+              setDialogText(textFirstDialog);
+            }
             setNewTimer(
               setTimeout(() => {
                 setDialogText(t('label.dialog_interval_advice'));
                 setShowDialog(true);
-              }, 10000),
+              }, 30000),
             );
           }}
           onLoadEnd={() => {

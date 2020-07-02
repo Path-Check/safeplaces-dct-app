@@ -75,7 +75,7 @@
     "current_situation_label": "Текущая ситуация",
     "deceased_label": "Deceaseds",
     "default_news_site_name": "Новости о безопасных путях",
-    "dialog_advice": "Unii dintre sponsori au nevoie de un moment pentru a se încărca datorită paginii acestuia",
+    "dialog_advice": "Некоторые из наших спонсорских порталов могут загружаться",
     "dialog_error_advice": "Произошла ошибка во время загрузки. Пожалуйста, попробуйте позже.",
     "dialog_interval_advice": "Это займет больше времени, чем ожидалось, пожалуйста, подождите или проверьте подключение к Интернету.",
     "enter_authority_url": "Введите или вставьте URL",

@@ -79,7 +79,7 @@
     "current_situation_label": "現在の状況",
     "deceased_label": "故人",
     "default_news_site_name": "安全な道のニュース",
-    "dialog_advice": "一部のスポンサーは、そのスポンサーのページのためにロードに少し時間がかかります",
+    "dialog_advice": "一部のスポンサーポータルの読み込みには時間がかかる場合があります",
     "dialog_error_advice": "ロード中にエラーが発生しました。 後でもう一度やり直してください。",
     "dialog_interval_advice": "予想よりも時間がかかっています。しばらく待つか、インターネット接続を確認してください。",
     "enter_authority_url": "URLを入力または貼り付け",

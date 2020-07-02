@@ -34,7 +34,7 @@
     "commitment": "Engagement",
     "commitment_para": "Safe Paths enregistre votre position de façon sécurisée et l’utilise pour déterminer votre risque d’exposition. Vos données ne quitteront JAMAIS votre appareil sans votre consentement.",
     "default_news_site_name": "Nouvelles SafePaths (en anglais)",
-    "dialog_advice": "Certains des sponsors prennent un moment à charger en raison de la page de ce sponsor",
+    "dialog_advice": "Certains de nos portails de sponsors peuvent prendre un moment à charger",
     "dialog_error_advice": "Une erreur s'est produite lors du chargement. Veuillez réessayer plus tard.",
     "dialog_interval_advice": "Cela prend plus de temps que prévu, veuillez patienter un instant ou vérifier votre connexion Internet.",
     "event_history_subtitle": "Comprendre son exposition personnelle à partie des informations partagées par les autorités sanitaires.",
