@@ -14,6 +14,7 @@ import {
   testInterpolatedStrategyCopy,
 } from './factories/tracingStrategy';
 import { factories } from './factories';
+import { Images } from '../app/assets/images/';
 
 import { TracingStrategy } from './tracingStrategy';
 
@@ -96,7 +97,7 @@ describe('TracingStrategyProvider', () => {
     });
 
     it('provides the correct strategy content', () => {
-      const expectedAsset = 'Test Asset';
+      const expectedAsset = Images.BlueGradientBackground;
       const expectedCopy = 'Test About Header';
       const expectedCodeBody = (name: string) => {
         return `expectedCodeBody ${name}`;
