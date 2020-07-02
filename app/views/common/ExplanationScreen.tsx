@@ -91,9 +91,11 @@ const ExplanationScreen = ({
     ...descriptionTemplateStyles.bodyStyle,
   };
 
+  const smallScreenWidth = Layout.screenWidth <= Layout.smallScreenWidth;
+
   return (
     <View style={styles.outerContainer}>
-      {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
+      {smallScreenWidth ? null : (
         <ImageBackground
           source={descriptionTemplateContent.backgroundImage}
           style={[styles.background, descriptionTemplateStyles.backgroundStyle]}
