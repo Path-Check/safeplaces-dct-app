@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { isGPS } from '../../COVIDSafePathsConfig';
 
 import { useStrategyContent } from '../../TracingStrategyContext';
-import DescriptionTemplate from '../common/DescriptionTemplate';
+import ExplanationScreen, { IconStyle } from '../common/ExplanationScreen';
 
 interface NotificationDetailsProps {
   navigation: any;
@@ -16,7 +16,6 @@ const NotificationDetails = ({
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
   const descriptionTemplateContent = {
-    invertIcon: !isGPS,
     backgroundImage: StrategyAssets.notificationDetailsBackground,
     icon: StrategyAssets.notificationDetailsIcon,
     header: StrategyCopy.notificationDetailsHeader,
@@ -24,13 +23,20 @@ const NotificationDetails = ({
     primaryButtonLabel: t('label.launch_next'),
   };
 
+  const iconStyle = isGPS ? IconStyle.Blue : IconStyle.Gold;
+
+  const descriptionTemplateStyles = {
+    iconStyle: iconStyle,
+  };
+
   const descriptionTemplateActions = {
     primaryButtonOnPress: () => navigation.replace('ShareDiagnosis'),
   };
 
   return (
-    <DescriptionTemplate
+    <ExplanationScreen
       descriptionTemplateContent={descriptionTemplateContent}
+      descriptionTemplateStyles={descriptionTemplateStyles}
       descriptionTemplateActions={descriptionTemplateActions}
     />
   );

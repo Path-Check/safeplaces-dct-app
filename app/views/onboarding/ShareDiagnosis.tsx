@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import DescriptionTemplate from '../common/DescriptionTemplate';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
 import { isPlatformiOS } from '../../Util';
 import { useStrategyContent } from '../../TracingStrategyContext';
+import ExplanationScreen, { IconStyle } from '../common/ExplanationScreen';
 
 interface ShareDiagnosisProps {
   navigation: any;
@@ -28,7 +28,6 @@ const ShareDiagnosis = ({ navigation }: ShareDiagnosisProps): JSX.Element => {
   const handleOnPressNext = isGPS ? gpsNext : btNext;
 
   const descriptionTemplateContent = {
-    invertIcon: isGPS,
     backgroundImage: StrategyAssets.shareDiagnosisBackground,
     icon: StrategyAssets.shareDiagnosisIcon,
     header: StrategyCopy.shareDiagnosisHeader,
@@ -36,13 +35,20 @@ const ShareDiagnosis = ({ navigation }: ShareDiagnosisProps): JSX.Element => {
     primaryButtonLabel: t('label.launch_set_up_phone_location'),
   };
 
+  const iconStyle = isGPS ? IconStyle.Gold : IconStyle.Blue;
+
+  const descriptionTemplateStyles = {
+    iconStyle: iconStyle,
+  };
+
   const descriptionTemplateActions = {
     primaryButtonOnPress: handleOnPressNext,
   };
 
   return (
-    <DescriptionTemplate
+    <ExplanationScreen
       descriptionTemplateContent={descriptionTemplateContent}
+      descriptionTemplateStyles={descriptionTemplateStyles}
       descriptionTemplateActions={descriptionTemplateActions}
     />
   );

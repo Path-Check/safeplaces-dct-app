@@ -23,7 +23,12 @@ import {
   Typography as TypographyStyles,
 } from '../../styles';
 
-type DescriptionTemplateContent = {
+export enum IconStyle {
+  Blue,
+  Gold,
+}
+
+type ExplanationScreenContent = {
   icon: string;
   header: string;
   body: string;
@@ -32,7 +37,7 @@ type DescriptionTemplateContent = {
   backgroundImage: ImageSourcePropType;
 };
 
-type DescriptionTemplateStyles = {
+type ExplanationScreenStyles = {
   headerStyle?: TextStyle;
   bodyStyle?: TextStyle;
   primaryButtonContainerStyle?: ViewStyle;
@@ -40,49 +45,50 @@ type DescriptionTemplateStyles = {
   secondaryButtonContainerStyle?: ViewStyle;
   secondaryButtonTextStyle?: TextStyle;
   backgroundStyle?: ViewStyle;
-  invertIcon?: boolean;
+  iconStyle: IconStyle;
 };
 
-type DescriptionTemplateActions = {
+type ExplanationScreenActions = {
   primaryButtonOnPress: () => void;
   secondaryButtonOnPress?: () => void;
 };
 
-interface DescriptionTemplateProps {
-  descriptionTemplateContent: DescriptionTemplateContent;
-  descriptionTemplateStyles?: DescriptionTemplateStyles;
-  descriptionTemplateActions: DescriptionTemplateActions;
+interface ExplanationScreenProps {
+  descriptionTemplateContent: ExplanationScreenContent;
+  descriptionTemplateStyles: ExplanationScreenStyles;
+  descriptionTemplateActions: ExplanationScreenActions;
 }
 
-const DescriptionTemplate = ({
+const ExplanationScreen = ({
   descriptionTemplateContent,
   descriptionTemplateStyles,
   descriptionTemplateActions,
-}: DescriptionTemplateProps): JSX.Element => {
+}: ExplanationScreenProps): JSX.Element => {
   useStatusBarEffect('dark-content');
 
-  const iconStyle = descriptionTemplateStyles?.invertIcon
-    ? styles.goldIcon
-    : styles.blueIcon;
+  const iconStyle =
+    descriptionTemplateStyles.iconStyle == IconStyle.Blue
+      ? styles.blueIcon
+      : styles.goldIcon;
 
   const primaryButtonTextStyles = {
     ...styles.primaryButtonText,
-    ...descriptionTemplateStyles?.primaryButtonTextStyle,
+    ...descriptionTemplateStyles.primaryButtonTextStyle,
   };
 
   const secondaryButtonTextStyles = {
     ...styles.secondaryButtonText,
-    ...descriptionTemplateStyles?.secondaryButtonTextStyle,
+    ...descriptionTemplateStyles.secondaryButtonTextStyle,
   };
 
   const headerStyles = {
     ...styles.headerText,
-    ...descriptionTemplateStyles?.headerStyle,
+    ...descriptionTemplateStyles.headerStyle,
   };
 
   const contentStyles = {
     ...styles.contentText,
-    ...descriptionTemplateStyles?.bodyStyle,
+    ...descriptionTemplateStyles.bodyStyle,
   };
 
   return (
@@ -90,10 +96,7 @@ const DescriptionTemplate = ({
       {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
         <ImageBackground
           source={descriptionTemplateContent.backgroundImage}
-          style={[
-            styles.background,
-            descriptionTemplateStyles?.backgroundStyle,
-          ]}
+          style={[styles.background, descriptionTemplateStyles.backgroundStyle]}
         />
       )}
       <View style={styles.content}>
@@ -115,7 +118,7 @@ const DescriptionTemplate = ({
           onPress={descriptionTemplateActions.primaryButtonOnPress}
           style={[
             styles.primaryButton,
-            descriptionTemplateStyles?.primaryButtonContainerStyle,
+            descriptionTemplateStyles.primaryButtonContainerStyle,
           ]}>
           <Typography style={primaryButtonTextStyles}>
             {descriptionTemplateContent.primaryButtonLabel}
@@ -126,7 +129,7 @@ const DescriptionTemplate = ({
             onPress={descriptionTemplateActions.secondaryButtonOnPress}
             style={[
               styles.secondaryButton,
-              descriptionTemplateStyles?.secondaryButtonContainerStyle,
+              descriptionTemplateStyles.secondaryButtonContainerStyle,
             ]}>
             <Typography style={secondaryButtonTextStyles}>
               {descriptionTemplateContent.secondaryButtonLabel}
@@ -185,4 +188,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DescriptionTemplate;
+export default ExplanationScreen;

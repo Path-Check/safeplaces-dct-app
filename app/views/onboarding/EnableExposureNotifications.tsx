@@ -6,7 +6,9 @@ import { useDispatch } from 'react-redux';
 import PermissionsContext from '../../bt/PermissionsContext';
 import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
 import { useStatusBarEffect } from '../../navigation';
-import DescriptionTemplate from '../../views/common/DescriptionTemplate';
+import ExplanationScreen, {
+  IconStyle,
+} from '../../views/common/ExplanationScreen';
 
 import { Icons, Images } from '../../assets';
 import { Colors } from '../../styles';
@@ -48,6 +50,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
   const descriptionTemplateStyles = {
     headerStyle: styles.header,
     bodyStyle: styles.body,
+    iconStyle: IconStyle.Blue,
   };
 
   const descriptionTemplateActions = {
@@ -56,7 +59,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
   };
 
   return (
-    <DescriptionTemplate
+    <ExplanationScreen
       descriptionTemplateContent={descriptionTemplateContent}
       descriptionTemplateStyles={descriptionTemplateStyles}
       descriptionTemplateActions={descriptionTemplateActions}

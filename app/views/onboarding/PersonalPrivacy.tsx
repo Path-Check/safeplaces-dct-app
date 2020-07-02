@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useStatusBarEffect } from '../../navigation';
 import { useStrategyContent } from '../../TracingStrategyContext';
-import DescriptionTemplate from '../common/DescriptionTemplate';
+import ExplanationScreen, { IconStyle } from '../common/ExplanationScreen';
 
 interface PersonalPrivacyProps {
   navigation: any;
@@ -22,13 +22,18 @@ const PersonalPrivacy = ({ navigation }: PersonalPrivacyProps): JSX.Element => {
     primaryButtonLabel: t('label.launch_next'),
   };
 
+  const descriptionTemplateStyles = {
+    iconStyle: IconStyle.Blue,
+  };
+
   const descriptionTemplateActions = {
     primaryButtonOnPress: () => navigation.replace('NotificatioNDetails'),
   };
 
   return (
-    <DescriptionTemplate
+    <ExplanationScreen
       descriptionTemplateContent={descriptionTemplateContent}
+      descriptionTemplateStyles={descriptionTemplateStyles}
       descriptionTemplateActions={descriptionTemplateActions}
     />
   );

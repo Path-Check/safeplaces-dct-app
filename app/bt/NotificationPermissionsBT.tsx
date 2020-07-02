@@ -6,7 +6,9 @@ import { StyleSheet } from 'react-native';
 import PermissionsContext from './PermissionsContext';
 import { Screens } from '../navigation';
 import { useStatusBarEffect } from '../navigation';
-import DescriptionTemplate from '../views/common/DescriptionTemplate';
+import ExplanationScreen, {
+  IconStyle,
+} from '../views/common/ExplanationScreen';
 
 import { Icons, Images } from '../assets';
 import { Colors } from '../styles';
@@ -47,6 +49,7 @@ const NotificationsPermissions = (): JSX.Element => {
   const descriptionTemplateStyles = {
     headerStyle: styles.header,
     bodyStyle: styles.body,
+    iconStyle: IconStyle.Blue,
   };
 
   const descriptionTemplateActions = {
@@ -55,7 +58,7 @@ const NotificationsPermissions = (): JSX.Element => {
   };
 
   return (
-    <DescriptionTemplate
+    <ExplanationScreen
       descriptionTemplateContent={descriptionTemplateContent}
       descriptionTemplateStyles={descriptionTemplateStyles}
       descriptionTemplateActions={descriptionTemplateActions}
