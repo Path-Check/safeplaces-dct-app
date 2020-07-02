@@ -24,7 +24,6 @@ import com.google.android.gms.nearby.exposurenotification.ExposureNotificationSt
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.swmansion.reanimated.Utils;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.pathcheck.covidsafepaths.MainActivity;
@@ -37,6 +36,7 @@ import covidsafepaths.bt.exposurenotifications.nearby.ProvideDiagnosisKeysWorker
 import covidsafepaths.bt.exposurenotifications.nearby.StateUpdatedWorker;
 import covidsafepaths.bt.exposurenotifications.notify.ShareDiagnosisManager;
 import covidsafepaths.bt.exposurenotifications.utils.CallbackMessages;
+import covidsafepaths.bt.exposurenotifications.utils.Util;
 
 import static covidsafepaths.bt.exposurenotifications.ExposureNotificationsModule.MODULE_NAME;
 import static covidsafepaths.bt.exposurenotifications.nearby.StateUpdatedWorker.IS_EXPOSED_KEY;
@@ -107,11 +107,9 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                 .isEnabled().addOnSuccessListener(
                 enabled -> {
                     if(enabled) {
-                        callback.invoke(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED,
-                                CallbackMessages.EN_ENABLEMENT_ENABLED);
+                        callback.invoke(Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED, CallbackMessages.EN_ENABLEMENT_ENABLED));
                     } else {
-                        callback.invoke(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED,
-                                CallbackMessages.EN_ENABLEMENT_DISABLED);
+                        callback.invoke(Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED));
                     }
                 })
                 .addOnFailureListener(
@@ -123,7 +121,6 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                                 callback.invoke(apiException.getStatus().toString());
                             }
                         });
-
     }
 
     /**
