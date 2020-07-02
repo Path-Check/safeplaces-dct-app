@@ -121,7 +121,6 @@ export const ExportSelectHA = ({ route, navigation }) => {
   const { t } = useTranslation();
   const { InterpolatedStrategyCopy, StrategyCopy } = useStrategyContent();
 
-
   const exportCodeInputNextRoute = isGPS
     ? Screens.ExportLocationConsent
     : Screens.PublishConsent;
