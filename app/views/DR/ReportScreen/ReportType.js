@@ -1,5 +1,5 @@
 import { Button, Container, Content, Text } from 'native-base';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import {
@@ -32,9 +32,11 @@ export default function ReportScreen({
   ] = useContext(context);
   const [users, setUsers] = useState([]);
 
-  getUsers().then(data => {
-    setUsers(data !== null ? data : []);
-  });
+  useEffect(() => {
+    getUsers().then(data => {
+      setUsers(data !== null ? data : []);
+    });
+  }, []);
 
   const setSelectedOption = selected => {
     setGlobalState({

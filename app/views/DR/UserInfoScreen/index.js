@@ -88,7 +88,6 @@ export default function UserInfo({
         },
       );
       response = await response.json();
-      console.log(response);
       return response;
     } catch (e) {
       console.log('ha ocurrido un error', e);
@@ -124,8 +123,6 @@ export default function UserInfo({
               let name = '';
               if (data !== null) {
                 data.map(user => {
-                  console.log(user);
-
                   if (
                     (body.cid !== undefined && user.data.cid === body.cid) ||
                     (body.nssid !== undefined && user.data.nssid === body.nssid)
