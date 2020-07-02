@@ -206,7 +206,18 @@ final class ExposureManager: NSObject {
       self?.scheduleBackgroundTaskIfNeeded()
     }
   }
-  
+
+  @objc func scheduleBackgroundTaskIfNeeded() {
+    guard ENManager.authorizationStatus == .authorized else { return }
+    let taskRequest = BGProcessingTaskRequest(identifier: ExposureManager.backgroundTaskIdentifier)
+    taskRequest.requiresNetworkConnectivity = true
+    do {
+      try BGTaskScheduler.shared.submit(taskRequest)
+    } catch {
+      print("Unable to schedule background task: \(error)")
+    }
+  }
+
   @objc func getAndPostDiagnosisKeys(callback: @escaping RCTResponseSenderBlock) {
     manager.getDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
@@ -229,17 +240,6 @@ final class ExposureManager: NSObject {
 }
 
 private extension ExposureManager {
-  
-  @objc func scheduleBackgroundTaskIfNeeded() {
-    guard ENManager.authorizationStatus == .authorized else { return }
-    let taskRequest = BGProcessingTaskRequest(identifier: ExposureManager.backgroundTaskIdentifier)
-    taskRequest.requiresNetworkConnectivity = true
-    do {
-      try BGTaskScheduler.shared.submit(taskRequest)
-    } catch {
-      print("Unable to schedule background task: \(error)")
-    }
-  }
   
   func notifyUserBlueToothOffIfNeeded() {
     let identifier = String.bluetoothNotificationIdentifier
