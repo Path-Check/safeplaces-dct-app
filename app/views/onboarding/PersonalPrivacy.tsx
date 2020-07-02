@@ -14,14 +14,22 @@ const PersonalPrivacy = ({ navigation }: PersonalPrivacyProps): JSX.Element => {
   const { t } = useTranslation();
   const { StrategyAssets, StrategyCopy } = useStrategyContent();
 
+  const descriptionTemplateContent = {
+    backgroundImage: StrategyAssets.personalPrivacyBackground,
+    iconXml: StrategyAssets.personalPrivacyIcon,
+    header: StrategyCopy.personalPrivacyHeader,
+    body: StrategyCopy.personalPrivacySubheader,
+    primaryButtonLabel: t('label.launch_next'),
+  };
+
+  const descriptionTemplateActions = {
+    primaryButtonOnPress: () => navigation.replace('NotificatioNDetails'),
+  };
+
   return (
     <DescriptionTemplate
-      backgroundImage={StrategyAssets.personalPrivacyBackground}
-      iconXml={StrategyAssets.personalPrivacyIcon}
-      header={StrategyCopy.personalPrivacyHeader}
-      body={StrategyCopy.personalPrivacySubheader}
-      primaryButtonLabel={t('label.launch_next')}
-      primaryButtonOnPress={() => navigation.replace('NotificatioNDetails')}
+      descriptionTemplateContent={descriptionTemplateContent}
+      descriptionTemplateActions={descriptionTemplateActions}
     />
   );
 };

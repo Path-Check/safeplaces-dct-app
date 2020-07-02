@@ -27,15 +27,23 @@ const ShareDiagnosis = ({ navigation }: ShareDiagnosisProps): JSX.Element => {
 
   const handleOnPressNext = isGPS ? gpsNext : btNext;
 
+  const descriptionTemplateContent = {
+    invertIcon: isGPS,
+    backgroundImage: StrategyAssets.shareDiagnosisBackground,
+    iconXml: StrategyAssets.shareDiagnosisIcon,
+    header: StrategyCopy.shareDiagnosisHeader,
+    body: StrategyCopy.shareDiagnosisSubheader,
+    primaryButtonLabel: t('label.launch_set_up_phone_location'),
+  };
+
+  const descriptionTemplateActions = {
+    primaryButtonOnPress: handleOnPressNext,
+  };
+
   return (
     <DescriptionTemplate
-      invertIcon={isGPS}
-      backgroundImage={StrategyAssets.shareDiagnosisBackground}
-      iconXml={StrategyAssets.shareDiagnosisIcon}
-      header={StrategyCopy.shareDiagnosisHeader}
-      body={StrategyCopy.shareDiagnosisSubheader}
-      primaryButtonLabel={t('label.launch_set_up_phone_location')}
-      primaryButtonOnPress={handleOnPressNext}
+      descriptionTemplateContent={descriptionTemplateContent}
+      descriptionTemplateActions={descriptionTemplateActions}
     />
   );
 };

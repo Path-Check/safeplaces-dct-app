@@ -23,73 +23,77 @@ import {
   Typography as TypographyStyles,
 } from '../../styles';
 
-type DescriptionTemplateProps = {
+type DescriptionTemplateContent = {
   iconXml: string;
   header: string;
-  headerStyle?: TextStyle;
   body: string;
-  bodyStyle?: TextStyle;
   primaryButtonLabel: string;
+  secondaryButtonLabel?: string;
+  backgroundImage: ImageSourcePropType;
+};
+
+type DescriptionTemplateStyles = {
+  headerStyle?: TextStyle;
+  bodyStyle?: TextStyle;
   primaryButtonContainerStyle?: ViewStyle;
   primaryButtonTextStyle?: TextStyle;
-  primaryButtonOnPress: () => void;
-  secondaryButtonLabel?: string;
   secondaryButtonContainerStyle?: ViewStyle;
   secondaryButtonTextStyle?: TextStyle;
-  secondaryButtonOnPress?: () => void;
-  backgroundImage: ImageSourcePropType;
   backgroundStyle?: ViewStyle;
   invertIcon?: boolean;
 };
 
+type DescriptionTemplateActions = {
+  primaryButtonOnPress: () => void;
+  secondaryButtonOnPress?: () => void;
+};
+
+interface DescriptionTemplateProps {
+  descriptionTemplateContent: DescriptionTemplateContent;
+  descriptionTemplateStyles?: DescriptionTemplateStyles;
+  descriptionTemplateActions: DescriptionTemplateActions;
+}
+
 const DescriptionTemplate = ({
-  iconXml,
-  header,
-  headerStyle,
-  body,
-  bodyStyle,
-  primaryButtonLabel,
-  primaryButtonContainerStyle,
-  primaryButtonTextStyle,
-  primaryButtonOnPress,
-  secondaryButtonLabel,
-  secondaryButtonContainerStyle,
-  secondaryButtonTextStyle,
-  secondaryButtonOnPress,
-  backgroundImage,
-  backgroundStyle,
-  invertIcon,
+  descriptionTemplateContent,
+  descriptionTemplateStyles,
+  descriptionTemplateActions,
 }: DescriptionTemplateProps): JSX.Element => {
   useStatusBarEffect('dark-content');
 
-  const iconStyle = invertIcon ? styles.goldIcon : styles.blueIcon;
+  const iconStyle = descriptionTemplateStyles?.invertIcon
+    ? styles.goldIcon
+    : styles.blueIcon;
 
   const primaryButtonTextStyles = {
     ...styles.primaryButtonText,
-    ...primaryButtonTextStyle,
+    ...descriptionTemplateStyles?.primaryButtonTextStyle,
   };
 
   const secondaryButtonTextStyles = {
     ...styles.secondaryButtonText,
-    ...secondaryButtonTextStyle,
+    ...descriptionTemplateStyles?.secondaryButtonTextStyle,
   };
 
   const headerStyles = {
     ...styles.headerText,
-    ...headerStyle,
+    ...descriptionTemplateStyles?.headerStyle,
   };
 
   const contentStyles = {
     ...styles.contentText,
-    ...bodyStyle,
+    ...descriptionTemplateStyles?.bodyStyle,
   };
 
   return (
     <View style={styles.outerContainer}>
       {Layout.screenWidth <= Layout.smallScreenWidth ? null : (
         <ImageBackground
-          source={backgroundImage}
-          style={[styles.background, backgroundStyle]}
+          source={descriptionTemplateContent.backgroundImage}
+          style={[
+            styles.background,
+            descriptionTemplateStyles?.backgroundStyle,
+          ]}
         />
       )}
       <View style={styles.content}>
@@ -98,24 +102,34 @@ const DescriptionTemplate = ({
           style={styles.innerContainer}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={iconStyle}>
-            <SvgXml xml={iconXml} />
+            <SvgXml xml={descriptionTemplateContent.iconXml} />
           </View>
-          <Typography style={headerStyles}>{header}</Typography>
-          <Typography style={contentStyles}>{body}</Typography>
+          <Typography style={headerStyles}>
+            {descriptionTemplateContent.header}
+          </Typography>
+          <Typography style={contentStyles}>
+            {descriptionTemplateContent.body}
+          </Typography>
         </ScrollView>
         <TouchableOpacity
-          onPress={primaryButtonOnPress}
-          style={[styles.primaryButton, primaryButtonContainerStyle]}>
+          onPress={descriptionTemplateActions.primaryButtonOnPress}
+          style={[
+            styles.primaryButton,
+            descriptionTemplateStyles?.primaryButtonContainerStyle,
+          ]}>
           <Typography style={primaryButtonTextStyles}>
-            {primaryButtonLabel}
+            {descriptionTemplateContent.primaryButtonLabel}
           </Typography>
         </TouchableOpacity>
-        {secondaryButtonLabel && (
+        {descriptionTemplateContent.secondaryButtonLabel && (
           <TouchableOpacity
-            onPress={secondaryButtonOnPress}
-            style={[styles.secondaryButton, secondaryButtonContainerStyle]}>
+            onPress={descriptionTemplateActions.secondaryButtonOnPress}
+            style={[
+              styles.secondaryButton,
+              descriptionTemplateStyles?.secondaryButtonContainerStyle,
+            ]}>
             <Typography style={secondaryButtonTextStyles}>
-              {secondaryButtonLabel}
+              {descriptionTemplateContent.secondaryButtonLabel}
             </Typography>
           </TouchableOpacity>
         )}

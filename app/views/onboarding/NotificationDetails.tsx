@@ -15,15 +15,23 @@ const NotificationDetails = ({
   const { t } = useTranslation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
+  const descriptionTemplateContent = {
+    invertIcon: !isGPS,
+    backgroundImage: StrategyAssets.notificationDetailsBackground,
+    iconXml: StrategyAssets.notificationDetailsIcon,
+    header: StrategyCopy.notificationDetailsHeader,
+    body: StrategyCopy.notificationDetailsSubheader,
+    primaryButtonLabel: t('label.launch_next'),
+  };
+
+  const descriptionTemplateActions = {
+    primaryButtonOnPress: () => navigation.replace('ShareDiagnosis'),
+  };
+
   return (
     <DescriptionTemplate
-      invertIcon={!isGPS}
-      backgroundImage={StrategyAssets.notificationDetailsBackground}
-      iconXml={StrategyAssets.notificationDetailsIcon}
-      header={StrategyCopy.notificationDetailsHeader}
-      body={StrategyCopy.notificationDetailsSubheader}
-      primaryButtonLabel={t('label.launch_next')}
-      primaryButtonOnPress={() => navigation.replace('ShareDiagnosis')}
+      descriptionTemplateContent={descriptionTemplateContent}
+      descriptionTemplateActions={descriptionTemplateActions}
     />
   );
 };

@@ -35,18 +35,30 @@ const NotificationsPermissions = (): JSX.Element => {
     continueOnboarding();
   };
 
+  const descriptionTemplateContent = {
+    backgroundImage: Images.BlueGradientBackground,
+    iconXml: Icons.Bell,
+    header: t('onboarding.notification_header'),
+    body: t('onboarding.notification_subheader'),
+    primaryButtonLabel: t('label.launch_enable_notif'),
+    secondaryButtonLabel: t('onboarding.maybe_later'),
+  };
+
+  const descriptionTemplateStyles = {
+    headerStyle: styles.header,
+    bodyStyle: styles.body,
+  };
+
+  const descriptionTemplateActions = {
+    primaryButtonOnPress: handleOnPressEnable,
+    secondaryButtonOnPress: handleOnPressMaybeLater,
+  };
+
   return (
     <DescriptionTemplate
-      iconXml={Icons.Bell}
-      header={t('onboarding.notification_header')}
-      headerStyle={styles.header}
-      body={t('onboarding.notification_subheader')}
-      bodyStyle={styles.body}
-      primaryButtonLabel={t('label.launch_enable_notif')}
-      primaryButtonOnPress={handleOnPressEnable}
-      secondaryButtonLabel={t('onboarding.maybe_later')}
-      secondaryButtonOnPress={handleOnPressMaybeLater}
-      backgroundImage={Images.BlueGradientBackground}
+      descriptionTemplateContent={descriptionTemplateContent}
+      descriptionTemplateStyles={descriptionTemplateStyles}
+      descriptionTemplateActions={descriptionTemplateActions}
     />
   );
 };

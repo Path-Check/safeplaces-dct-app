@@ -36,18 +36,30 @@ export const EnableExposureNotifications = (): JSX.Element => {
     dispatchOnboardingComplete();
   };
 
+  const descriptionTemplateContent = {
+    backgroundImage: Images.BlueGradientBackground,
+    iconXml: Icons.ExposureIcon,
+    header: headerText,
+    body: bodyText,
+    primaryButtonLabel: buttonLabel,
+    secondaryButtonLabel: disableButtonLabel,
+  };
+
+  const descriptionTemplateStyles = {
+    headerStyle: styles.header,
+    bodyStyle: styles.body,
+  };
+
+  const descriptionTemplateActions = {
+    primaryButtonOnPress: handleOnPressEnable,
+    secondaryButtonOnPress: handleOnPressDontEnable,
+  };
+
   return (
     <DescriptionTemplate
-      iconXml={Icons.ExposureIcon}
-      header={headerText}
-      headerStyle={styles.header}
-      body={bodyText}
-      bodyStyle={styles.body}
-      primaryButtonLabel={buttonLabel}
-      primaryButtonOnPress={handleOnPressEnable}
-      secondaryButtonLabel={disableButtonLabel}
-      secondaryButtonOnPress={handleOnPressDontEnable}
-      backgroundImage={Images.BlueGradientBackground}
+      descriptionTemplateContent={descriptionTemplateContent}
+      descriptionTemplateStyles={descriptionTemplateStyles}
+      descriptionTemplateActions={descriptionTemplateActions}
     />
   );
 };
