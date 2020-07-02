@@ -24,7 +24,7 @@ import { useStrategyContent } from '../../TracingStrategyContext';
 import { Icons } from '../../assets';
 import { Colors } from '../../styles';
 
-const CODE_LENGTH = 6;
+const CODE_LENGTH = 8;
 
 const CodeInput = ({ code, length, setCode }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -121,6 +121,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
   const { t } = useTranslation();
   const { InterpolatedStrategyCopy, StrategyCopy } = useStrategyContent();
 
+
   const exportCodeInputNextRoute = isGPS
     ? Screens.ExportLocationConsent
     : Screens.PublishConsent;
@@ -149,7 +150,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
         }
         setIsCheckingCode(false);
       } else {
-        const valid = code === '123456';
+        const valid = code === '12345678';
 
         if (valid) {
           navigation.navigate(exportCodeInputNextRoute, {
