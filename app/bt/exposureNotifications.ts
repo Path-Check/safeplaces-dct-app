@@ -1,6 +1,12 @@
 import dayjs from 'dayjs';
 
-import { Possible, ExposureInfo } from '../exposureHistory';
+import {
+  Possible,
+  ExposureInfo,
+  ExposureHistory,
+  calendarDays,
+  ExposureCalendarOptions,
+} from '../exposureHistory';
 
 type UUID = string;
 type Posix = number;
@@ -13,9 +19,27 @@ export interface RawExposure {
   transmissionRiskLevel: number;
 }
 
+export const toExposureHistory: (
+  rawExposures: RawExposure[],
+  calendarOptions: ExposureCalendarOptions,
+) => ExposureHistory = (rawExposures, calendarOptions) => {
+  const exposureInfo = toExposureInfo(rawExposures);
+  const { initDate, totalDays } = calendarOptions;
+  const calendar = calendarDays(initDate, totalDays);
+  return calendar.map((date: Posix) => {
+    if (exposureInfo[date]) {
+      return exposureInfo[date];
+    } else {
+      return {
+        kind: 'NoKnown',
+        date,
+      };
+    }
+  });
+};
+
 export const toExposureInfo = (rawExposures: RawExposure[]): ExposureInfo => {
-  const possibleExposures = rawExposures.map(toPossible);
-  return groupedByDate(possibleExposures, combinePossibles);
+  return rawExposures.map(toPossible).reduce(groupByDate, {});
 };
 
 const toPossible = (r: RawExposure): Possible => {
@@ -41,17 +65,15 @@ const combinePossibles = (a: Possible, b: Possible): Possible => {
   };
 };
 
-const groupedByDate = (
-  exposures: Possible[],
-  combine: (a: Possible, b: Possible) => Possible,
+const groupByDate = (
+  groupedExposures: Record<Posix, Possible>,
+  exposure: Possible,
 ): Record<Posix, Possible> => {
-  return exposures.reduce<Record<Posix, Possible>>((result, exposure) => {
-    const date = exposure.date;
-    if (result[date]) {
-      result[date] = combine(result[date], exposure);
-    } else {
-      result[date] = exposure;
-    }
-    return result;
-  }, {});
+  const date = exposure.date;
+  if (groupedExposures[date]) {
+    groupedExposures[date] = combinePossibles(groupedExposures[date], exposure);
+  } else {
+    groupedExposures[date] = exposure;
+  }
+  return groupedExposures;
 };

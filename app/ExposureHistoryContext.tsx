@@ -1,10 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react';
 
 import {
-  ExposureInfo,
+  blankExposureHistory,
   ExposureHistory,
-  calendarDays,
-  toExposureHistory,
+  ExposureCalendarOptions,
 } from './exposureHistory';
 
 interface ExposureHistoryState {
@@ -28,7 +27,8 @@ const ExposureHistoryContext = createContext<ExposureHistoryState>(
 );
 
 export type ExposureInfoSubscription = (
-  cb: (exposureInfo: ExposureInfo) => void,
+  cb: (exposureHistory: ExposureHistory) => void,
+  calendarConfig: ExposureCalendarOptions,
 ) => { remove: () => void };
 
 interface ExposureHistoryProps {
@@ -38,10 +38,12 @@ interface ExposureHistoryProps {
 
 const CALENDAR_DAY_COUNT = 21;
 
-const blankHistory = toExposureHistory(
-  {},
-  calendarDays(Date.now(), CALENDAR_DAY_COUNT),
-);
+const blankHistoryConfig: ExposureCalendarOptions = {
+  initDate: Date.now(),
+  totalDays: CALENDAR_DAY_COUNT,
+};
+
+const blankHistory = blankExposureHistory(blankHistoryConfig);
 
 const ExposureHistoryProvider = ({
   children,
@@ -54,11 +56,10 @@ const ExposureHistoryProvider = ({
 
   useEffect(() => {
     const subscription = exposureInfoSubscription(
-      (exposureInfo: ExposureInfo) => {
-        const days = calendarDays(Date.now(), CALENDAR_DAY_COUNT);
-        const exposureHistory = toExposureHistory(exposureInfo, days);
+      (exposureHistory: ExposureHistory) => {
         setExposureHistory(exposureHistory);
       },
+      blankHistoryConfig,
     );
 
     return subscription.remove;

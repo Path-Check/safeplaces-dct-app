@@ -15,30 +15,33 @@ export interface NoKnown {
   date: Posix;
 }
 
-export type ExposureDatum = Possible | NoKnown;
+export interface NoData {
+  kind: 'NoData';
+  date: Posix;
+}
+
+export type ExposureDatum = Possible | NoKnown | NoData;
 
 export type ExposureInfo = Record<Posix, ExposureDatum>;
 
 export type ExposureHistory = ExposureDatum[];
 
-export const toExposureHistory: (
-  exposureInfo: ExposureInfo,
-  calendar: Posix[],
-) => ExposureHistory = (exposureInfo, calendar) => {
-  return calendar.map((date: Posix) => {
-    if (exposureInfo[date]) {
-      return exposureInfo[date];
-    } else {
-      return {
-        kind: 'NoKnown',
-        date,
-      };
-    }
-  });
+export interface ExposureCalendarOptions {
+  initDate: Posix;
+  totalDays: number;
+}
+
+export const blankExposureHistory: (
+  calendarOptions: ExposureCalendarOptions,
+) => ExposureHistory = ({ initDate, totalDays }) => {
+  return calendarDays(initDate, totalDays).map((date: Posix) => ({
+    kind: 'NoKnown',
+    date,
+  }));
 };
 
-export const calendarDays = (today: Posix, totalDays: number): Posix[] => {
-  const saturday = nextSaturday(today);
+export const calendarDays = (initDate: Posix, totalDays: number): Posix[] => {
+  const saturday = nextSaturday(initDate);
 
   const daysAgo = [...Array(totalDays)].map((_v, idx: number) => {
     return totalDays - 1 - idx;

@@ -322,30 +322,6 @@ export function fillDayBins(
   return dayBins;
 }
 
-const transformDayBinsToExposureInfo = (dayBins) => {
-  return dayBins.reduce((exposureInfo, duration, index) => {
-    const startOfDayAgo = dayjs()
-      .startOf('day')
-      .subtract(index, 'day')
-      .valueOf();
-    exposureInfo[startOfDayAgo] =
-      duration > 0
-        ? {
-            kind: 'Possible',
-            date: startOfDayAgo,
-            duration: duration,
-            totalRiskScore: 0,
-            transmissionRiskLevel: 0,
-          }
-        : {
-            kind: 'NoKnown',
-            date: startOfDayAgo,
-          };
-
-    return exposureInfo;
-  }, {});
-};
-
 // rounds the number of milliseconds to nearest valid exposure period
 function roundExposure(diffMS, gpsPeriodMS) {
   return Math.round(diffMS / gpsPeriodMS) * gpsPeriodMS;
@@ -464,7 +440,7 @@ async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
   let unixTimeUTC = dayjs().valueOf();
   SetStoreData(LAST_CHECKED, unixTimeUTC);
 
-  return transformDayBinsToExposureInfo(dayBins);
+  return dayBins;
 }
 
 const performIntersectionForSingleHA = async (

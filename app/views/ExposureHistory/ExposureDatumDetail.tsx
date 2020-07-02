@@ -3,7 +3,12 @@ import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import dayjs from 'dayjs';
 
-import { ExposureDatum, Possible, NoKnown } from '../../exposureHistory';
+import {
+  ExposureDatum,
+  Possible,
+  NoKnown,
+  NoData,
+} from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import { TimeHelpers } from '../utils';
 import { Screens } from '../../navigation';
@@ -29,6 +34,9 @@ const ExposureDatumDetail = ({
     }
     case 'NoKnown': {
       return <NoKnownExposureDetail datum={exposureDatum} />;
+    }
+    case 'NoData': {
+      return <NoDataExposureDetail datum={exposureDatum} />;
     }
   }
 };
@@ -83,7 +91,27 @@ const NoKnownExposureDetail = ({
 }: NoKnownExposureDetailProps) => {
   const exposureDate = dayjs(date).format('dddd, MMM DD');
   const explanationContent =
-    'Your exposure history will be updated if this changes in the future.';
+    'There are currently no reports for this day. Your exposure history will be updated if this changes in the future.';
+  return (
+    <View style={styles.container}>
+      <Typography style={styles.date}>{exposureDate}</Typography>
+      <View style={styles.contentContainer}>
+        <Typography style={styles.content}>{explanationContent}</Typography>
+      </View>
+    </View>
+  );
+};
+
+interface NoDataExposureDetailProps {
+  datum: NoData;
+}
+
+const NoDataExposureDetail = ({
+  datum: { date },
+}: NoDataExposureDetailProps) => {
+  const exposureDate = dayjs(date).format('dddd, MMM DD');
+  const explanationContent =
+    'This happens when location access is disabled for your PathCheck app or the date selected was more than 14 days ago. No exposure notifications will be available for this day.';
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>

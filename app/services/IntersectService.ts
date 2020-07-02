@@ -1,6 +1,6 @@
 import { checkIntersect as intersect } from '../helpers/Intersect';
 import { HealthcareAuthority } from '../store/types';
-import { emitGPSExposureInfo } from '../gps/exposureInfo';
+import { emitResultDayBins } from '../gps/exposureInfo';
 
 class IntersectService {
   isServiceRunning = false;
@@ -16,7 +16,7 @@ class IntersectService {
     }
     this.isServiceRunning = true;
 
-    intersect(healthcareAuthorities, bypassTimer).then((exposureInfo) => {
+    intersect(healthcareAuthorities, bypassTimer).then((dayBins) => {
       this.isServiceRunning = false;
 
       if (this.nextJob) {
@@ -24,7 +24,7 @@ class IntersectService {
         this.nextJob = null;
         this.checkIntersect(job, bypassTimer);
       } else {
-        emitGPSExposureInfo(exposureInfo);
+        emitResultDayBins(dayBins);
       }
     });
 
