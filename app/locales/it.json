@@ -93,16 +93,20 @@
     "start_title_bluetooth": "Aiuta a contenere la diffusione del virus e proteggi gli altri nella tua comunità se ti viene diagnosticato o se risulti positivo al test per il COVID-19."
   },
   "exposure_history": {
+    "bt": {
+      "how_does_this_work": "Come funziona?",
+      "why_did_i_get_an_en_para": "Riceverai una notifica di esposizione quando qualcuno che hai incrociato riceverà in seguito una diagnosi o un test confermati e positivi per COVID-19 e sceglie d'informare gli altri"
+    },
+    "how_does_this_work": "Come funziona?",
     "last_days": "Ultimi 21 giorni",
     "legend_button": "LEGENDA",
-    "more_info_bt": {
-      "how_does_this_work": "Come funziona?",
-      "why_did_i_get_an_en": "Perché ho ricevuto una notifica di esposizione?"
+    "legend": {
+      "exposure_likely": "Esposizione molto probabile",
+      "exposure_possible": "Esposizione possibile",
+      "no_exposure_detected": "Nessuna esposizione rilevata",
+      "today": "Oggi"
     },
-    "more_info_gps": {
-      "how_does_this_work": "Come funziona?",
-      "why_did_i_get_an_en": "Perché ho ricevuto una notifica di esposizione?"
-    }
+    "why_did_i_get_an_en": "Perché ho ricevuto una notifica di esposizione?"
   },
   "history": {
     "no_exposure": "Non noto",
@@ -126,6 +130,7 @@
     },
     "gps": {
       "all_services_on_header": "PathCheck",
+      "all_services_on_no_ha_available": "Non riceverai notifiche di esposizione mentre ti trovi al di fuori di una regione servita dai partner della Istituzione Sanitaria",
       "all_services_on_subheader": "PathCheck sta salvando in maniera sicura e privata i luoghi che hai visitato e li confronta con i dati a disposizione della Istituzione Sanitaria locale",
       "auto_start_header": "Avvio automatico disabilitato",
       "auto_start_subheader": "PathCheck deve essere in grado di avviarsi automaticamente per salvare internamente i luoghi visitati. Abilitalo nelle impostazioni dell'app",
@@ -166,7 +171,6 @@
   "label": {
     "about_header_bluetooth": "PathCheck Bluetooth",
     "about_header_location": "PathCheck GPS",
-    "about_para": "PathCheck è un movimento globale per sviluppare strumenti gratuiti, open-source, e orientati alla privacy per i residenti, i funzionari della sanità pubblica e le comunità più grandi al fine di appiattire la curva di COVID-19, ridurre la paura e prevenire una risposta dello stato di sorveglianza alla pandemia. \n\nPer ulteriori informazioni, visitare il sito",
     "authorities_add_button_label": "Aggiungi istituzione sanitaria",
     "authorities_add_url": "Aggiungi istituzione sanitaria via URL",
     "authorities_desc": "Seleziona le istituzioni sanitarie nella tua area per ottenere i dati sulle possibilità di esposizione.\n\nSeleziona un nome dal registro globale o inserisci l'indirizzo internet fornito da una istituzione sanitaria che partecipa a PathCheck.",
@@ -179,8 +183,8 @@
     "authorities_new_subscription_title": "{{count}} Nuova Sottoscrizione",
     "authorities_new_subscription_title_plural": "{{count}} Nuove Sottoscrizioni",
     "authorities_no_sources": "Nessuna fonte di dati per ora",
-    "authorities_removal_alert_cancel": "Annulla",
     "authorities_new_in_area_msg_plural": "Iscritto a {{count}} Istitituzioni Sanitarie accreditate per la tua area.",
+    "authorities_removal_alert_cancel": "Annulla",
     "authorities_removal_alert_desc": "Sei sicuro di voler rimuovere questa fonte di dati sanitari?",
     "authorities_removal_alert_proceed": "Procedi",
     "authorities_removal_alert_title": "Rimuovi Istituzione Sanitaria",
@@ -192,9 +196,6 @@
     "event_history_subtitle": "Controlla la tua possibile esposizione sulla base delle informazioni condivise dalle istituzioni sanitarie",
     "event_history_title": "Storico delle esposizioni",
     "filter_authorities_by_gps_history": "Filtra in base alle tue località",
-    "home_no_contact_header_bluetooth": "PathCheck",
-    "home_no_contact_subtext_bluetooth": "Le notifiche di esposizione sono attive",
-    "home_setting_off_header_bluetooth": "Notifiche disabilitate",
     "import_success": "Importazione completata con successo",
     "latest_news": "Ultime novità",
     "launch_access_bluetooth": "Consenti il tracciamento dei contatti",
@@ -209,7 +210,6 @@
     "launch_enable_auto_subscription": "Attiva sottoscrizione automatica",
     "launch_enable_bluetooth": "Attivare il Bluetooth",
     "launch_enable_exposure_notif": "Attiva",
-    "launch_enable_location": "Attiva la Localizzazione",
     "launch_enable_notif": "Attiva le Notifiche",
     "launch_exposure_notif_header": "Attiva le notifiche di esposizione",
     "launch_exposure_notif_subheader": "Per ricevere notifiche sugli aggiornamenti della cronologia delle esposizioni, il telefono deve disporre dell'autorizzazione per scambiare un codice identificativo casuale e anonimo Bluetooth con altri dispositivi. \n\nLe notifiche di esposizione funzionano solo con altri dispositivi con l'impostazione abilitata. \n\nPuoi disattivare queste notifiche in qualsiasi momento.",
@@ -277,6 +277,7 @@
     "eula_message": "*È necessario accettare per utilizzare PathCheck",
     "location_header": "Per determinare quando potresti aver incrociato percorsi con il virus, PathCheck necessita dell'accesso alla posizione.",
     "location_subheader": "Il diario di localizzazione PathCheck include solo coordinate GPS, date e orari. \n\n I tuoi dati non saranno condivisi con nessuno a meno che tu non scelga di farlo.",
+    "maybe_later": "Forse più tardi",
     "notification_header": "Desideri ricevere notifiche quando potresti aver incrociato percorsi con il virus?",
     "notification_subheader": "Per ricevere le notifiche di esposizione, è necessario trovarsi in un'area controllata da una Istituzione Sanitaria locale.\n\nSe non ci sono ancora Istituzioni Sanitarie locali o regionali nella tua zona, riceverai una notifica quando vengono aggiunte nuove Istituzioni Sanitarie vicino a te."
   },
@@ -286,8 +287,8 @@
     "faq": "Domande frequenti",
     "legal": "Legale",
     "more": "Altro",
-    "report_issue": "Segnala un problema",
-    "report_positive_test": "Segnala un risultato positivo del test"
+    "more_info": "Ulteriori informazioni",
+    "report_issue": "Segnala un problema"
   },
   "settings": {
     "share_test_result": "Segnala un risultato positivo del test",
