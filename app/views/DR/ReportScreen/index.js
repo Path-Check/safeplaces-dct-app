@@ -11,16 +11,16 @@ import Header from '../../../components/DR/Header';
 import Colors from '../../../constants/colors';
 import styles from './style';
 
-export default function Main({ navigation }) {
+export default function Main({ route, navigation }) {
   const { t } = useTranslation();
-
+  const canBack = route.params?.back ?? false;
   return (
     <Container>
       <Content>
         <View style={{ flex: 1 }}>
           <Header
             iconName='chevron-left'
-            close
+            close={canBack}
             title={t('report.title')}
             text={t('report.usage.header_selector')}
             navigation={navigation}
