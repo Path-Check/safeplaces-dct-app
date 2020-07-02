@@ -105,7 +105,7 @@ const Assessment = ({ navigation }) => {
     },
   };
 
-  const AssessmentBackButton = () => {
+  const assessmentBackButton = () => {
     return (
       <TouchableOpacity
         onPress={() => navigation.pop()}
@@ -115,7 +115,7 @@ const Assessment = ({ navigation }) => {
     );
   };
 
-  const AssessmentCloseButton = () => {
+  const assessmentCloseButton = () => {
     return (
       <TouchableOpacity
         onPress={() => navigation.popToTop()}
@@ -155,8 +155,7 @@ const Assessment = ({ navigation }) => {
               name='AssessmentQuestion'
               options={{
                 ...screenOptions,
-                // eslint-disable-next-line react/display-name
-                headerLeft: () => <AssessmentBackButton />,
+                headerLeft: assessmentBackButton,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -180,10 +179,8 @@ const Assessment = ({ navigation }) => {
               name='EndShare'
               options={{
                 ...screenOptions,
-                // eslint-disable-next-line react/display-name
-                headerLeft: () => <AssessmentBackButton />,
-                // eslint-disable-next-line react/display-name
-                headerRight: () => <AssessmentCloseButton />,
+                headerLeft: assessmentBackButton,
+                headerRight: assessmentCloseButton,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -195,8 +192,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_CAREGIVER}
               options={{
                 ...screenOptions,
-                // eslint-disable-next-line react/display-name
-                headerLeft: () => <AssessmentBackButton />,
+                headerLeft: assessmentBackButton,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -208,8 +204,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_DISTANCING}
               options={{
                 ...screenOptions,
-                // eslint-disable-next-line react/display-name
-                headerLeft: () => <AssessmentBackButton />,
+                headerLeft: assessmentBackButton,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -221,8 +216,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_EMERGENCY}
               options={{
                 ...screenOptions,
-                // eslint-disable-next-line react/display-name
-                headerLeft: () => <AssessmentBackButton />,
+                headerLeft: assessmentBackButton,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
@@ -234,8 +228,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_ISOLATE}
               options={{
                 ...screenOptions,
-                // eslint-disable-next-line react/display-name
-                headerLeft: () => <AssessmentBackButton />,
+                headerLeft: assessmentBackButton,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
                   shadowColor: 'transparent',
