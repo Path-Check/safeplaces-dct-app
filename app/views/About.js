@@ -19,7 +19,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
 const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
-const VERSION = '1.1.3 (2)';
+const VERSION = 'ALPHA (6.30.20)';
 export const AboutScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
