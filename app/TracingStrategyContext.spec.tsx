@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet } from 'react-native';
 import { render, cleanup } from '@testing-library/react-native';
 import '@testing-library/jest-native/extend-expect';
 
@@ -38,9 +38,11 @@ const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
     return (
       <View>
         <Text testID={'tracing-strategy-name'}>{name}</Text>
-        <Text testID={'tracing-strategy-assets'}>
-          {StrategyAssets.personalPrivacyBackground}
-        </Text>
+        <ImageBackground
+          source={StrategyAssets.personalPrivacyBackground}
+          testID={'tracing-strategy-assets'}
+          style={styles.background}
+        />
         <Text testID={'tracing-strategy-copy'}>{StrategyCopy.aboutHeader}</Text>
         <Text testID={'tracing-strategy-interpolated-copy'}>
           {InterpolatedStrategyCopy.exportCodeBody('code-body-name')}
@@ -130,7 +132,9 @@ describe('TracingStrategyProvider', () => {
         'tracing-strategy-interpolated-copy',
       );
 
-      expect(assets).toHaveTextContent(expectedAsset);
+      expect(assets).toHaveProp('source', {
+        testUri: '../../../app/assets/images/blueGradientBackground.png',
+      });
       expect(copy).toHaveTextContent(expectedCopy);
       expect(interpolatedCopy).toHaveTextContent(
         expectedCodeBody('code-body-name'),
@@ -155,4 +159,13 @@ describe('TracingStrategyProvider', () => {
       });
     });
   });
+});
+
+const styles = StyleSheet.create({
+  background: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+    position: 'absolute',
+  },
 });
