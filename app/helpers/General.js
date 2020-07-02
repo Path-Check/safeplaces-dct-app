@@ -76,7 +76,7 @@ export async function pickFile() {
 export function getMyself(data) {
   let response = false;
   data.map(users => {
-    if (users.usage === 'mySelf') {
+    if (users.use === 'mySelf') {
       return (response = true);
     }
   });

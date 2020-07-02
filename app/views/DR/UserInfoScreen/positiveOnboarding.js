@@ -19,7 +19,7 @@ import {
 } from '../../../helpers/General';
 
 const PositiveOnboarding = ({ route, navigation }) => {
-  const { positive, body, usage } = route.params;
+  const { positive, body, use } = route.params;
   const { t } = useTranslation();
   const [showShareLocDialog, setShowShareLocDialog] = useState(false);
   const [error, showError] = useState(false);
@@ -35,7 +35,7 @@ const PositiveOnboarding = ({ route, navigation }) => {
       name: nickname,
       data,
       positive,
-      usage,
+      use,
     };
   };
 
@@ -52,7 +52,7 @@ const PositiveOnboarding = ({ route, navigation }) => {
   };
   const verifyAndAccept = async () => {
     if (!getNicknamesCoincidences(nicknameArray, nickname)) {
-      nicknameArray.push(createEntry(nickname, body, positive, usage));
+      nicknameArray.push(createEntry(nickname, body, positive, use));
       await SetStoreData('users', nicknameArray);
       setShowShareLocDialog(true);
       navigation.navigate('EpidemiologicResponse', {
@@ -76,7 +76,7 @@ const PositiveOnboarding = ({ route, navigation }) => {
           style={{ flex: 1, backgroundColor: Colors.WHITE }}>
           <View>
             <Dialog
-              visible={showShareLocDialog && usage === 'mySelf'}
+              visible={showShareLocDialog && use === 'mySelf'}
               dialogStyle={{ backgroundColor: Colors.WHITE }}>
               <View>
                 <Text style={styles.textSemiBold}>

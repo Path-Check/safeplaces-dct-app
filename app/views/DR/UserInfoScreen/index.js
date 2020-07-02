@@ -34,7 +34,7 @@ import { GetStoreData } from '../../../helpers/General';
 export default function UserInfo({
   navigation,
   route: {
-    params: { type, usage },
+    params: { type, use },
   },
 }) {
   navigation.setOptions({
@@ -140,7 +140,7 @@ export default function UserInfo({
                 : navigation.navigate('PositiveOnboarding', {
                     positive,
                     body,
-                    usage,
+                    use,
                   });
             });
           } else if (type && !positive) {
