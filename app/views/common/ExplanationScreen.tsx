@@ -66,10 +66,14 @@ const ExplanationScreen = ({
 }: ExplanationScreenProps): JSX.Element => {
   useStatusBarEffect('dark-content');
 
-  const iconStyle =
-    explanationScreenStyles.iconStyle == IconStyle.Blue
-      ? styles.blueIcon
-      : styles.goldIcon;
+  function getIconStyle(iconStyle: IconStyle) {
+    switch (iconStyle) {
+      case IconStyle.Blue:
+        return styles.blueIcon;
+      case IconStyle.Gold:
+        return styles.goldIcon;
+    }
+  }
 
   const primaryButtonTextStyles = {
     ...styles.primaryButtonText,
@@ -106,7 +110,7 @@ const ExplanationScreen = ({
           alwaysBounceVertical={false}
           style={styles.innerContainer}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
-          <View style={iconStyle}>
+          <View style={getIconStyle(explanationScreenStyles.iconStyle)}>
             <SvgXml xml={explanationScreenContent.icon} />
           </View>
           <Typography style={headerStyles}>
