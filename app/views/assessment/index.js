@@ -155,6 +155,7 @@ const Assessment = ({ navigation }) => {
               name='AssessmentQuestion'
               options={{
                 ...screenOptions,
+                // eslint-disable-next-line react/display-name
                 headerLeft: () => <AssessmentBackButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
@@ -179,7 +180,9 @@ const Assessment = ({ navigation }) => {
               name='EndShare'
               options={{
                 ...screenOptions,
+                // eslint-disable-next-line react/display-name
                 headerLeft: () => <AssessmentBackButton />,
+                // eslint-disable-next-line react/display-name
                 headerRight: () => <AssessmentCloseButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
@@ -192,6 +195,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_CAREGIVER}
               options={{
                 ...screenOptions,
+                // eslint-disable-next-line react/display-name
                 headerLeft: () => <AssessmentBackButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
@@ -204,6 +208,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_DISTANCING}
               options={{
                 ...screenOptions,
+                // eslint-disable-next-line react/display-name
                 headerLeft: () => <AssessmentBackButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
@@ -216,6 +221,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_EMERGENCY}
               options={{
                 ...screenOptions,
+                // eslint-disable-next-line react/display-name
                 headerLeft: () => <AssessmentBackButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
@@ -228,6 +234,7 @@ const Assessment = ({ navigation }) => {
               name={SCREEN_TYPE_ISOLATE}
               options={{
                 ...screenOptions,
+                // eslint-disable-next-line react/display-name
                 headerLeft: () => <AssessmentBackButton />,
                 headerStyle: {
                   backgroundColor: Colors.primaryBackgroundFaintShade,
