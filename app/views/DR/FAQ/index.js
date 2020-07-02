@@ -60,6 +60,7 @@ const FAQ = ({ navigation }) => {
         <View style={{ flex: 4 }}>
           <WebView
             injectedJavaScript={removeGoogleHeader}
+            javaScriptEnabled={false}
             originWhitelist={['*']}
             source={{
               uri: i18n.language === 'es' ? spanishFAQ : englishFAQ,
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: '100%',
     backgroundColor: Colors.INTRO_WHITE_BG,
-    paddingRight: 40,
+    padding: 7,
     flex: 1,
   },
   termsInfoRow: {
