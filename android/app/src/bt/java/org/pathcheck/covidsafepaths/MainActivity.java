@@ -66,8 +66,6 @@ public class MainActivity extends ReactActivity {
     }
   }
 
-  // TODO Perhaps use React Native activity result listener flow to get result:
-  // https://reactnative.dev/docs/native-modules-android#getting-activity-result-from-startactivityforresult
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
