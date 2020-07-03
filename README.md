@@ -119,7 +119,7 @@ dev_setup.bat
 
 #### Environment
 
-Populate the following 3 `.env` files with the relevant urls for your GAEN server:
+Populate the following 2 `.env` files with the relevant urls for your GAEN server:
 
 ```
 .env.bt
