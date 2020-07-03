@@ -28,7 +28,6 @@ import com.google.common.util.concurrent.ListenableFuture;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.pathcheck.covidsafepaths.MainActivity;
 
-import android.os.Handler;
 import javax.annotation.Nonnull;
 
 import covidsafepaths.bt.exposurenotifications.common.AppExecutors;
@@ -79,21 +78,17 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                 .start()
                 .addOnSuccessListener(
                         unused -> {
-                            Log.d("HELLO123", "request success");
                             callback.invoke(CallbackMessages.GENERIC_SUCCESS);
                         })
                 .addOnFailureListener(
                         exception -> {
-                            Log.d("HELLO123", "request failure");
                             if (!(exception instanceof ApiException)) {
                                 callback.invoke(CallbackMessages.ERROR_UNKNOWN);
-                                Log.d("HELLO123", "error unkown");
                                 return;
                             }
                             ApiException apiException = (ApiException) exception;
                             if (apiException.getStatusCode()
                                     == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
-                                Log.d("HELLO123", "res required");
                                 callback.invoke(CallbackMessages.GENERIC_SUCCESS);
                                 MainActivity mainActivity = (MainActivity) reactContext.getCurrentActivity();
                                 mainActivity.showPermission(apiException);
@@ -103,7 +98,6 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                             }
                         })
                 .addOnCanceledListener(() -> {
-                        Log.d("HELLO123", "request cancelled");
                         callback.invoke(CallbackMessages.CANCELLED);
                 });
     }
@@ -114,16 +108,13 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                 .isEnabled().addOnSuccessListener(
                 enabled -> {
                     if(enabled) {
-                        Log.d("HELLO123", "enabled");
                         callback.invoke(Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED, CallbackMessages.EN_ENABLEMENT_ENABLED));
                     } else {
-                        Log.d("HELLO123", "disabled");
                         callback.invoke(Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED));
                     }
                 })
                 .addOnFailureListener(
                         exception -> {
-                            Log.d("HELLO123", "failure");
                             if (!(exception instanceof ApiException)) {
                                 callback.invoke(CallbackMessages.ERROR_UNKNOWN);
                             } else {
