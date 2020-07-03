@@ -902,8 +902,7 @@ exports[`Calendar renders 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#4051db",
-                "borderColor": "#4051db",
+                "borderColor": "rgba(0, 0, 0, 0)",
                 "borderRadius": 500,
                 "borderWidth": 4,
                 "flex": 1,
@@ -916,7 +915,7 @@ exports[`Calendar renders 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#ffffff",
+                  "color": "#1f2c9b",
                   "fontFamily": "IBMPlexMono",
                   "fontSize": 15,
                   "fontWeight": "500",
@@ -942,7 +941,8 @@ exports[`Calendar renders 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "borderColor": "rgba(0, 0, 0, 0)",
+                "backgroundColor": "#4051db",
+                "borderColor": "#4051db",
                 "borderRadius": 500,
                 "borderWidth": 4,
                 "flex": 1,
@@ -955,7 +955,7 @@ exports[`Calendar renders 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#1f2c9b",
+                  "color": "#ffffff",
                   "fontFamily": "IBMPlexMono",
                   "fontSize": 15,
                   "fontWeight": "500",
@@ -997,27 +997,13 @@ exports[`Calendar renders 1`] = `
                   "color": "#1f2c9b",
                   "fontFamily": "IBMPlexMono",
                   "fontSize": 15,
-                  "fontWeight": "700",
+                  "fontWeight": "500",
                   "lineHeight": 24,
                 }
               }
             >
               1
             </Text>
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#2e2e2e",
-                  "borderRadius": 6,
-                  "bottom": -4,
-                  "height": 6,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "width": 6,
-                }
-              }
-            />
           </View>
         </View>
         <View
@@ -1050,13 +1036,27 @@ exports[`Calendar renders 1`] = `
                   "color": "#1f2c9b",
                   "fontFamily": "IBMPlexMono",
                   "fontSize": 15,
-                  "fontWeight": "500",
+                  "fontWeight": "700",
                   "lineHeight": 24,
                 }
               }
             >
               2
             </Text>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#2e2e2e",
+                  "borderRadius": 6,
+                  "bottom": -4,
+                  "height": 6,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "width": 6,
+                }
+              }
+            />
           </View>
         </View>
         <View
