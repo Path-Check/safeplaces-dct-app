@@ -23,7 +23,6 @@ interface PermissionContextState {
     request: () => void;
   };
   exposureNotifications: {
-    // TODO
     status: ENPermissionStatus;
     check: () => void;
     request: () => void;
