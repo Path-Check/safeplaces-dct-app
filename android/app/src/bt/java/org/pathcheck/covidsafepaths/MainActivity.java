@@ -11,12 +11,20 @@ import androidx.annotation.Nullable;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.google.android.gms.common.api.ApiException;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
 import org.devio.rn.splashscreen.SplashScreen;
 
+import covidsafepaths.bt.exposurenotifications.utils.CallbackMessages;
 import covidsafepaths.bt.exposurenotifications.utils.RequestCodes;
+import covidsafepaths.bt.exposurenotifications.utils.Util;
 
 public class MainActivity extends ReactActivity {
 
@@ -46,7 +54,6 @@ public class MainActivity extends ReactActivity {
   }
 
   public void showPermission(ApiException apiException) {
-
     try {
       apiException
               .getStatus()
@@ -57,6 +64,8 @@ public class MainActivity extends ReactActivity {
     }
   }
 
+  // TODO Perhaps use React Native activity result listener flow to get result:
+  // https://reactnative.dev/docs/native-modules-android#getting-activity-result-from-startactivityforresult
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
@@ -75,8 +84,26 @@ public class MainActivity extends ReactActivity {
     }
     if (resultCode == Activity.RESULT_OK) {
       Log.d("MainActivity", "RESULT_OK");
+      sendEvent(true);
     } else {
       Log.d("MainActivity", "NOT RESULT_OK");
+      sendEvent(false);
     }
+  }
+
+  private void sendEvent(boolean enabled) {
+    Log.d("HELLO123", "sendEvent");
+    final ReactContext reactContext = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
+    WritableArray params = null;
+
+    if(enabled) {
+      params = Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED, CallbackMessages.EN_ENABLEMENT_ENABLED);
+    } else {
+     params = Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED);
+    }
+
+    reactContext
+            .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+            .emit("onEnabledStatusUpdated", params);
   }
 }
