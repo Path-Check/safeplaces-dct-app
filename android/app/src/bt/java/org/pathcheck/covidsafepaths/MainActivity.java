@@ -34,37 +34,6 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     SplashScreen.show(this, R.style.SplashTheme);
     super.onCreate(savedInstanceState);
-    hitIt(5);
-
-  }
-
-  private void hitIt(int repeat) {
-    if(repeat == 0) {
-      return;
-    }
-    ExposureNotificationClientWrapper.get(this)
-            .isEnabled().addOnSuccessListener(
-            enabled -> {
-              if(enabled) {
-                Log.d("HELLO123", " MainActivity enabled");
-                hitIt(repeat - 1);
-                //callback.invoke(Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED, CallbackMessages.EN_ENABLEMENT_ENABLED));
-              } else {
-                Log.d("HELLO123", "MainActivity disabled");
-                hitIt(repeat - 1);
-                //callback.invoke(Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED));
-              }
-            })
-            .addOnFailureListener(
-                    exception -> {
-                      Log.d("HELLO123", "failure");
-                      if (!(exception instanceof ApiException)) {
-                        //callback.invoke(CallbackMessages.ERROR_UNKNOWN);
-                      } else {
-                        ApiException apiException = (ApiException) exception;
-                        //callback.invoke(apiException.getStatus().toString());
-                      }
-                    });
   }
 
   /**
@@ -116,44 +85,26 @@ public class MainActivity extends ReactActivity {
       return;
     }
     if (resultCode == Activity.RESULT_OK) {
-      Log.d("MainActivity", "RESULT_OK");
-      sendEvent(true);
       final ReactContext reactContext = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
       ExposureNotificationClientWrapper.get(reactContext)
               .start()
               .addOnSuccessListener(
                       unused -> {
-                        Log.d("HELLO123", "request success");
+                        sendEvent(true);
                       })
               .addOnFailureListener(
                       exception -> {
-                        Log.d("HELLO123", "request failure");
-                        if (!(exception instanceof ApiException)) {
-                          Log.d("HELLO123", "error unkown");
-                          return;
-                        }
-                        ApiException apiException = (ApiException) exception;
-                        if (apiException.getStatusCode()
-                                == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
-                          Log.d("HELLO123", "res required");
-                          MainActivity mainActivity = (MainActivity) reactContext.getCurrentActivity();
-                          mainActivity.showPermission(apiException);
-
-                        } else {
-                        }
+                        sendEvent(false);
                       })
               .addOnCanceledListener(() -> {
-                Log.d("HELLO123", "request cancelled");
-                //callback.invoke(CallbackMessages.CANCELLED);
+                sendEvent(false);
               });
     } else {
-      Log.d("MainActivity", "NOT RESULT_OK");
       sendEvent(false);
     }
   }
 
   private void sendEvent(boolean enabled) {
-    Log.d("HELLO123", "sendEvent");
     final ReactContext reactContext = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
     WritableArray params = null;
 
