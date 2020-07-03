@@ -88,7 +88,7 @@ const Calendar = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View testID={'exposure-history-calendar'} style={styles.container}>
       <View style={styles.header}>
         <Typography style={styles.monthText}>{title}</Typography>
         <TouchableOpacity
