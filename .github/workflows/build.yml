@@ -26,7 +26,7 @@ jobs:
           ref: master
 
       - name: Setup env
-        run: sh ./setup_env.sh pc
+        run: sh ./setup_env.sh github
         shell: bash
 
       - name: Cache node_modules/
@@ -106,7 +106,7 @@ jobs:
           ref: master
 
       - name: Setup env
-        run: sh ./setup_env.sh pc
+        run: sh ./setup_env.sh github
         shell: bash
 
       - name: Cache node_modules/

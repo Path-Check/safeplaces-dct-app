@@ -98,7 +98,9 @@ android/app/src/main/assets/index.android.bundle
 safepaths.realm
 
 # env files
-.env.bt*
+.env.bt
+.env.bt.staging
+.env.bt.release
 
 # private resources
-pathcheck-mobile-resources/
+pathcheck-mobile-resources
