@@ -123,11 +123,10 @@ Populate the following 3 `.env` files with the relevant urls for your GAEN serve
 
 ```
 .env.bt
-.env.bt.staging
 .env.bt.release
 ```
 
-**Note:** Members of the `Path-Check` org can complete this step by running `yarn set-config` and passing in the 2-letter config as the first argument (i.e. `yarn set-config pc`)
+**Note:** Members of the `Path-Check` org can complete this step by running `yarn set-ha` and passing in the 2-letter ha abbreviation as the first argument (i.e. `yarn set-ha pc`)
 
 ## Running
 

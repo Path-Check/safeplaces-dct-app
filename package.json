@@ -18,7 +18,7 @@
     "install:pod": "cd ios && bundle install --quiet && bundle exec pod install --silent",
     "postinstall": "./scripts/install-submodules.sh node_modules/\\@mauron85/react-native-background-geolocation && patch-package && node ./scripts/replace.js && npx react-native-jetifier",
     "postversion": "react-native-version",
-    "set-config": "./setup_env.sh",
+    "set-ha": "./setup_env.sh",
     "format:all": "prettier --write ./app/**/*.js",
     "format:eula": "prettier --write ./app/locales/eula/en.html",
     "detox-setup": "detox clean-framework-cache && detox build-framework-cache",
