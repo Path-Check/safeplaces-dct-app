@@ -40,6 +40,7 @@ export const subscribeToEnabledStatusEvents = (
 };
 
 const toStatus = (data: string[]): ENPermissionStatus => {
+  console.log(data);
   const networkAuthorization = data[0];
   const networkEnablement = data[1];
   const result: ENPermissionStatus = ['UNAUTHORIZED', 'DISABLED'];
