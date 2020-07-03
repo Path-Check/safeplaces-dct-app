@@ -62,7 +62,7 @@ public class MainActivity extends ReactActivity {
               .startResolutionForResult(
                       this, RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION);
     }catch (IntentSender.SendIntentException e) {
-      Log.d("MainActivity", "Error calling startResolutionForResult", apiException);
+
     }
   }
 
