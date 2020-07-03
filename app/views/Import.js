@@ -108,7 +108,9 @@ const ImportScreen = (props) => {
           // TODO: add testID
           onPress={handleImportMockData}
           style={styles.button}>
-          <Typography style={styles.buttonText}>{t('import.mockData.custom_url_title')}</Typography>
+          <Typography style={styles.buttonText}>
+            {t('import.mockData.custom_url_title')}
+          </Typography>
         </TouchableOpacity>
 
         {importResults.label ? (

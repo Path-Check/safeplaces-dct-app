@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Alert, NativeModules } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Alert,
+  NativeModules,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
-import importLocationsApi from '../../api/import/importLocationsApi'
+import importLocationsApi from '../../api/import/importLocationsApi';
 
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 
@@ -15,29 +21,27 @@ type ImportFromUrlProps = {
   navigation: NavigationProp;
 };
 
-const ImportFromUrl = ({
-  navigation,
-}: ImportFromUrlProps): JSX.Element => {
+const ImportFromUrl = ({ navigation }: ImportFromUrlProps): JSX.Element => {
   const { t } = useTranslation();
   const [url, setUrl] = useState('');
 
   // TODO: add logic to filter mocked data. We should agree on flag name
 
   const importData = async () => {
-      try {
-        // Data must be an array of objects!
-        const mockData = await importLocationsApi(url);
+    try {
+      // Data must be an array of objects!
+      const mockData = await importLocationsApi(url);
 
-        if(mockData) {
-          await NativeModules.SecureStorageManager.importGoogleLocations(
-            mockData,
-          )
-          return navigation.goBack();
-        }
-        throw new Error
-      } catch (e) {
-        return Alert.alert(t('import.mockData.invalid_url'));
+      if (mockData) {
+        await NativeModules.SecureStorageManager.importGoogleLocations(
+          mockData,
+        );
+        return navigation.goBack();
       }
+      throw new Error();
+    } catch (e) {
+      return Alert.alert(t('import.mockData.invalid_url'));
+    }
   };
 
   // TODO: add a way to delete imported test data on demand

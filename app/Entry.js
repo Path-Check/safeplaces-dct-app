@@ -37,7 +37,7 @@ import Assessment from './views/assessment';
 import NextSteps from './views/ExposureHistory/NextSteps';
 import MoreInfo from './views/ExposureHistory/MoreInfo';
 import ENDebugMenu from './views/Settings/ENDebugMenu';
-import ImportFromUrl from './views/Settings/ImportFromUrl'
+import ImportFromUrl from './views/Settings/ImportFromUrl';
 import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
