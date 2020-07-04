@@ -10,7 +10,7 @@ afterEach(cleanup);
 
 describe('Calendar', () => {
   it('renders', () => {
-    const exposureHistory = buildExposureHistory();
+    const exposureHistory = buildBlankExposureHistory();
     const onSelectDate = () => {};
     const selectedDatum = exposureHistory[0];
 
@@ -26,7 +26,7 @@ describe('Calendar', () => {
   });
 });
 
-const buildExposureHistory = () => {
+const buildBlankExposureHistory = () => {
   const datum = factories.exposureDatum.build();
   const exposureInfo = {
     [datum.date]: datum,
