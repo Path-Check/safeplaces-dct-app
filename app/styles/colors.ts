@@ -124,6 +124,7 @@ export const switchEnabled = defaultBlue;
 export const primaryText = darkestGray;
 export const secondaryText = darkGray;
 export const tertiaryText = secondaryBlue;
+export const violetTextDark = royalBlue;
 
 export const invertedText = white;
 export const invertedSecondaryText = lightGray;

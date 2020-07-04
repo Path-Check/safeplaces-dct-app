@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, MutableRefObject } from 'react';
 import { useTranslation } from 'react-i18next';
+import { TextInputKeyPressEventData } from 'react-native';
 import {
   Alert,
   KeyboardAvoidingView,
@@ -8,6 +9,7 @@ import {
   TextInput,
   View,
   Platform,
+  NativeSyntheticEvent,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -23,21 +25,36 @@ import { useStrategyContent } from '../../TracingStrategyContext';
 
 import { Icons } from '../../assets';
 import { Colors } from '../../styles';
+import {
+  NavigationScreenProp,
+  NavigationRoute,
+  NavigationState,
+  NavigationParams,
+} from 'react-navigation';
+import { HealthcareAuthority } from '../../store/types';
 
 const CODE_LENGTH = 6;
 
-const CodeInput = ({ code, length, setCode }) => {
+const CodeInput = ({
+  code,
+  length,
+  setCode,
+}: {
+  code: string;
+  length: number;
+  setCode: (code: string) => void;
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  let characters = [];
+  const characters: string[] = [];
   for (let i = 0; i < length; i++) characters.push(code[i]);
 
-  const characterRefs = useRef([]);
+  const characterRefs: MutableRefObject<TextInput[]> = useRef([]);
   useEffect(() => {
     characterRefs.current = characterRefs.current.slice(0, length);
   }, [length]);
 
-  const focus = (i) => {
+  const focus = (i: number) => {
     characterRefs.current[i].focus();
   };
 
@@ -48,7 +65,7 @@ const CodeInput = ({ code, length, setCode }) => {
     }, 0); // allow waiting for transition to end & first paint
   }, []);
 
-  const onFocus = (i) => {
+  const onFocus = (i: number) => {
     if (i > currentIndex) {
       // prohibit skipping forward
       focus(currentIndex);
@@ -60,7 +77,7 @@ const CodeInput = ({ code, length, setCode }) => {
   };
 
   // Adding characters
-  const onChangeCharacter = (d) => {
+  const onChangeCharacter = (d: string) => {
     if (d.length) {
       setCode(code.slice(0, currentIndex) + d);
       const nextIndex = currentIndex + 1;
@@ -72,7 +89,7 @@ const CodeInput = ({ code, length, setCode }) => {
   };
 
   // Removing characters
-  const onKeyPress = (e) => {
+  const onKeyPress = (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
     if (e.nativeEvent.key === 'Backspace') {
       // go to previous
       if (!code[currentIndex]) {
@@ -94,7 +111,11 @@ const CodeInput = ({ code, length, setCode }) => {
     <View style={{ flexDirection: 'row', flexShrink: 1 }}>
       {characters.map((character, i) => (
         <TextInput
-          ref={(ref) => (characterRefs.current[i] = ref)}
+          ref={(ref) => {
+            if (ref != null) {
+              characterRefs.current[i] = ref;
+            }
+          }}
           key={`${i}CodeCharacter`}
           value={character}
           style={[
@@ -111,13 +132,20 @@ const CodeInput = ({ code, length, setCode }) => {
           onKeyPress={onKeyPress}
           blurOnSubmit={false}
           onFocus={() => onFocus(i)}
+          testID={`input${i}`}
         />
       ))}
     </View>
   );
 };
 
-export const ExportSelectHA = ({ route, navigation }) => {
+export const ExportCodeInput = ({
+  route,
+  navigation,
+}: {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  route: NavigationRoute;
+}): JSX.Element => {
   const { t } = useTranslation();
   const { InterpolatedStrategyCopy, StrategyCopy } = useStrategyContent();
 
@@ -131,13 +159,14 @@ export const ExportSelectHA = ({ route, navigation }) => {
   const [isCheckingCode, setIsCheckingCode] = useState(false);
   const [codeInvalid, setCodeInvalid] = useState(false);
 
-  const { selectedAuthority } = route.params;
+  const selectedAuthority: HealthcareAuthority =
+    route.params?.selectedAuthority;
   const validateCode = async () => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
       if (isGPS) {
-        const { valid } = await exportCodeApi(selectedAuthority, code);
+        const { valid } = await exportCodeApi(selectedAuthority, Number(code));
 
         if (valid) {
           navigation.navigate(exportCodeInputNextRoute, {
@@ -216,6 +245,7 @@ export const ExportSelectHA = ({ route, navigation }) => {
               loading={isCheckingCode}
               label={t('common.next')}
               onPress={validateCode}
+              testID='next-button'
             />
           </View>
         </KeyboardAvoidingView>
@@ -257,4 +287,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ExportSelectHA;
+export default ExportCodeInput;

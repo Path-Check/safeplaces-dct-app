@@ -16,6 +16,7 @@ interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   style?: ViewStyle;
+  testID?: string;
 }
 
 export const Button = ({
@@ -24,6 +25,7 @@ export const Button = ({
   disabled,
   loading,
   style,
+  testID,
 }: ButtonProps): JSX.Element => {
   const textStyle =
     disabled || loading ? styles.textDisabled : styles.textEnabled;
@@ -35,7 +37,8 @@ export const Button = ({
       accessibilityLabel={label}
       accessibilityRole='button'
       disabled={disabled || loading}
-      style={[styles.button, style]}>
+      style={[styles.button, style]}
+      testID={testID}>
       {loading ? (
         <ActivityIndicator size={'large'} />
       ) : (
