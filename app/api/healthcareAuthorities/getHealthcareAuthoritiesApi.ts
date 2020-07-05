@@ -1,14 +1,11 @@
 import Yaml from 'js-yaml';
 import env from 'react-native-config';
 
-const { AUTHORITIES_YAML_ROUTE } = env;
-
 type Coordinates = {
   latitude: number;
   longitude: number;
 };
 
-// From API
 export type HealthcareAuthority = {
   name: string;
   bounds: {
@@ -21,11 +18,13 @@ export type HealthcareAuthority = {
   internal_id: string;
 };
 
+const { AUTHORITIES_YAML_ROUTE } = env;
+
 const getHealthcareAuthoritiesApi = async (
   yamlUrl: string = AUTHORITIES_YAML_ROUTE,
 ): Promise<HealthcareAuthority[]> => {
   const yamlString = await fetch(yamlUrl).then((res) => res.text());
-  const record: Record<string, any> = Yaml.safeLoad(yamlString);
+  const record: Record<string, unknown> = Yaml.safeLoad(yamlString);
   let authorities = record.authorities;
   if (authorities === null) authorities = [];
   if (!Array.isArray(authorities)) {

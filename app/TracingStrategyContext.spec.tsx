@@ -11,7 +11,6 @@ import {
 import {
   testStrategyAssets,
   testStrategyCopy,
-  testInterpolatedStrategyCopy,
 } from './factories/tracingStrategy';
 import { factories } from './factories';
 import { Images } from '../app/assets/images/';
@@ -27,11 +26,7 @@ jest.mock('react-i18next', () => ({
 const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
   const TestTracingStrategyConsumer = () => {
     const { name, homeScreenComponent } = useTracingStrategyContext();
-    const {
-      StrategyAssets,
-      StrategyCopy,
-      InterpolatedStrategyCopy,
-    } = useStrategyContent();
+    const { StrategyAssets, StrategyCopy } = useStrategyContent();
 
     const HomeScreen = homeScreenComponent;
 
@@ -44,9 +39,6 @@ const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
           style={styles.background}
         />
         <Text testID={'tracing-strategy-copy'}>{StrategyCopy.aboutHeader}</Text>
-        <Text testID={'tracing-strategy-interpolated-copy'}>
-          {InterpolatedStrategyCopy.exportCodeBody('code-body-name')}
-        </Text>
         <HomeScreen testID={'home-screen'} />
       </View>
     );
@@ -101,9 +93,6 @@ describe('TracingStrategyProvider', () => {
     it('provides the correct strategy content', () => {
       const expectedAsset = Images.BlueGradientBackground;
       const expectedCopy = 'Test About Header';
-      const expectedCodeBody = (name: string) => {
-        return `expectedCodeBody ${name}`;
-      };
 
       const strategy = factories.tracingStrategy.build({
         assets: {
@@ -116,29 +105,17 @@ describe('TracingStrategyProvider', () => {
             aboutHeader: expectedCopy,
           };
         },
-        useInterpolatedCopy: () => {
-          return {
-            ...testInterpolatedStrategyCopy,
-            exportCodeBody: expectedCodeBody,
-          };
-        },
       });
 
       const { getByTestId } = renderTracingStrategyProvider(strategy);
 
       const assets = getByTestId('tracing-strategy-assets');
       const copy = getByTestId('tracing-strategy-copy');
-      const interpolatedCopy = getByTestId(
-        'tracing-strategy-interpolated-copy',
-      );
 
       expect(assets).toHaveProp('source', {
         testUri: '../../../app/assets/images/blueGradientBackground.png',
       });
       expect(copy).toHaveTextContent(expectedCopy);
-      expect(interpolatedCopy).toHaveTextContent(
-        expectedCodeBody('code-body-name'),
-      );
     });
 
     describe('when the user is on the HomeScreen', () => {

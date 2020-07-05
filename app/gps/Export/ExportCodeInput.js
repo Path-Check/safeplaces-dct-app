@@ -18,8 +18,6 @@ import { Theme } from '../../constants/themes';
 import exitWarningAlert from './exitWarningAlert';
 import exportCodeApi from '../../api/export/exportCodeApi';
 import { Screens } from '../../navigation';
-import { isGPS } from '../../COVIDSafePathsConfig';
-import { useStrategyContent } from '../../TracingStrategyContext';
 
 import { Icons } from '../../assets';
 import { Colors } from '../../styles';
@@ -119,13 +117,6 @@ const CodeInput = ({ code, length, setCode }) => {
 
 export const ExportSelectHA = ({ route, navigation }) => {
   const { t } = useTranslation();
-  const { InterpolatedStrategyCopy, StrategyCopy } = useStrategyContent();
-
-  const exportCodeInputNextRoute = isGPS
-    ? Screens.ExportLocationConsent
-    : Screens.PublishConsent;
-
-  const exportExitRoute = isGPS ? Screens.ExportStart : Screens.Settings;
 
   const [code, setCode] = useState('');
   const [isCheckingCode, setIsCheckingCode] = useState(false);
@@ -136,31 +127,17 @@ export const ExportSelectHA = ({ route, navigation }) => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
-      if (isGPS) {
-        const { valid } = await exportCodeApi(selectedAuthority, code);
+      const { valid } = await exportCodeApi(selectedAuthority, code);
 
-        if (valid) {
-          navigation.navigate(exportCodeInputNextRoute, {
-            selectedAuthority,
-            code,
-          });
-        } else {
-          setCodeInvalid(true);
-        }
-        setIsCheckingCode(false);
+      if (valid) {
+        navigation.navigate(Screens.ExportLocationConsent, {
+          selectedAuthority,
+          code,
+        });
       } else {
-        const valid = code === '123456';
-
-        if (valid) {
-          navigation.navigate(exportCodeInputNextRoute, {
-            selectedAuthority,
-            code,
-          });
-        } else {
-          setCodeInvalid(true);
-        }
-        setIsCheckingCode(false);
+        setCodeInvalid(true);
       }
+      setIsCheckingCode(false);
     } catch (e) {
       Alert.alert(t('common.something_went_wrong'), e.message);
       setIsCheckingCode(false);
@@ -185,16 +162,18 @@ export const ExportSelectHA = ({ route, navigation }) => {
             <IconButton
               icon={Icons.Close}
               size={22}
-              onPress={() => exitWarningAlert(navigation, exportExitRoute)}
+              onPress={() => exitWarningAlert(navigation, Screens.ExportStart)}
             />
           </View>
           <View style={{ flex: 1, marginBottom: 20 }}>
             <Typography use='headline2'>
-              {StrategyCopy.exportCodeTitle}
+              {t('export.code_input_title')}
             </Typography>
             <View style={{ height: 8 }} />
             <Typography use='body1'>
-              {InterpolatedStrategyCopy.exportCodeBody(selectedAuthority.name)}
+              {t('export.code_input_body', {
+                name: selectedAuthority.name,
+              })}
             </Typography>
             {/* These flex grows allow for a lot of flexibility across device sizes */}
             <View style={{ maxHeight: 60, flexGrow: 1 }} />
