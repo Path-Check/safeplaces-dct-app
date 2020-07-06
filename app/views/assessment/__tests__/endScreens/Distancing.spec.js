@@ -3,7 +3,7 @@ import React from 'react';
 import { I18nextProvider } from 'react-i18next';
 
 import i18n from '../../../../locales/languages';
-import { MetaContext } from '../../Context';
+import { AssessmentNavigationContext } from '../../Context';
 import { Distancing } from '../../endScreens/Distancing';
 
 test('base', () => {
@@ -24,9 +24,9 @@ test('cta', () => {
 function Wrapper({ children }) {
   return (
     <I18nextProvider i18n={i18n}>
-      <MetaContext.Provider value={{ completeRoute: 'MyRoute' }}>
+      <AssessmentNavigationContext.Provider value={{ completeRoute: 'MyRoute' }}>
         {children}
-      </MetaContext.Provider>
+      </AssessmentNavigationContext.Provider>
     </I18nextProvider>
   );
 }

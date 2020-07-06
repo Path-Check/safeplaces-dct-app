@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Icons, Images } from '../../../assets';
-import { MetaContext } from '../Context';
+import { AssessmentNavigationContext } from '../Context';
 import { Info } from '../Info';
 import { InfoText } from '../components/InfoText';
 import { Button } from '../components/Button';
@@ -12,7 +12,7 @@ import { Colors } from '../../../styles';
 /** @type {React.FunctionComponent<{}>} */
 export const AssessmentComplete = () => {
   const { t } = useTranslation();
-  const { dismiss } = useContext(MetaContext);
+  const { dismiss } = useContext(AssessmentNavigationContext);
 
   return (
     <Info

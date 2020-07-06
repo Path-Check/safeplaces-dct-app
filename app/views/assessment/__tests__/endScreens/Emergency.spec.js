@@ -3,7 +3,7 @@ import React from 'react';
 import { I18nextProvider } from 'react-i18next';
 
 import i18n from '../../../../locales/languages';
-import { MetaContext } from '../../Context';
+import { AssessmentNavigationContext } from '../../Context';
 import { Emergency } from '../../endScreens/Emergency';
 
 test('base', () => {
@@ -27,7 +27,7 @@ test('cta', () => {
 function Wrapper({ children }) {
   return (
     <I18nextProvider i18n={i18n}>
-      <MetaContext.Provider value={{}}>{children}</MetaContext.Provider>
+      <AssessmentNavigationContext.Provider value={{}}>{children}</AssessmentNavigationContext.Provider>
     </I18nextProvider>
   );
 }

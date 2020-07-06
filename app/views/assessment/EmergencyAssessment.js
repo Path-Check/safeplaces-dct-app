@@ -17,7 +17,6 @@ import {
 } from './constants';
 import { useSurvey } from '../../helpers/CustomHooks';
 import { Info } from './Info';
-// import { Typography } from '../../components/Typography';
 import { Colors } from '../../styles';
 import { InfoText } from './components/InfoText';
 

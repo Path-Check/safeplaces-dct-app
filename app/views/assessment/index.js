@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { SvgXml } from 'react-native-svg';
 import { Icons } from '../../assets';
 import { useSurvey } from '../../helpers/CustomHooks';
-import { AnswersContext, MetaContext, SurveyContext } from './Context';
+import { AnswersContext, AssessmentNavigationContext, SurveyContext } from './Context';
 import { AssessmentQuestion } from './AssessmentQuestion';
 import { AssessmentStart } from './AssessmentStart';
 import { Agreement } from './Agreement';
@@ -129,7 +129,7 @@ const Assessment = ({ navigation }) => {
   });
 
   return (
-    <MetaContext.Provider value={meta}>
+    <AssessmentNavigationContext.Provider value={meta}>
       <SurveyContext.Provider value={survey}>
         {/* Since answers.current is on object, it won't trigger context updates
         when mutated, but that's ok — just trying to avoid prop drilling.*/}
@@ -203,7 +203,7 @@ const Assessment = ({ navigation }) => {
           </Stack.Navigator>
         </AnswersContext.Provider>
       </SurveyContext.Provider>
-    </MetaContext.Provider>
+    </AssessmentNavigationContext.Provider>
   );
 };
 
