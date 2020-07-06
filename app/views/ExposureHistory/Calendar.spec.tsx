@@ -10,11 +10,11 @@ afterEach(cleanup);
 
 describe('Calendar', () => {
   it('renders', () => {
-    const exposureHistory = buildExposureHistory();
+    const exposureHistory = buildBlankExposureHistory();
     const onSelectDate = () => {};
     const selectedDatum = exposureHistory[0];
 
-    const { asJSON } = render(
+    const { getByTestId } = render(
       <Calendar
         exposureHistory={exposureHistory}
         onSelectDate={onSelectDate}
@@ -22,11 +22,11 @@ describe('Calendar', () => {
       />,
     );
 
-    expect(asJSON()).toMatchSnapshot();
+    expect(getByTestId('exposure-history-calendar')).not.toBeNull();
   });
 });
 
-const buildExposureHistory = () => {
+const buildBlankExposureHistory = () => {
   const datum = factories.exposureDatum.build();
   const exposureInfo = {
     [datum.date]: datum,

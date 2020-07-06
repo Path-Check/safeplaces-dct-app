@@ -11,12 +11,22 @@ import androidx.annotation.Nullable;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
 import org.devio.rn.splashscreen.SplashScreen;
 
+import covidsafepaths.bt.exposurenotifications.ExposureNotificationClientWrapper;
+import covidsafepaths.bt.exposurenotifications.utils.CallbackMessages;
 import covidsafepaths.bt.exposurenotifications.utils.RequestCodes;
+import covidsafepaths.bt.exposurenotifications.utils.Util;
 
 public class MainActivity extends ReactActivity {
 
@@ -46,14 +56,13 @@ public class MainActivity extends ReactActivity {
   }
 
   public void showPermission(ApiException apiException) {
-
     try {
       apiException
               .getStatus()
               .startResolutionForResult(
                       this, RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION);
     }catch (IntentSender.SendIntentException e) {
-      Log.d("MainActivity", "Error calling startResolutionForResult", apiException);
+
     }
   }
 
@@ -74,9 +83,37 @@ public class MainActivity extends ReactActivity {
       return;
     }
     if (resultCode == Activity.RESULT_OK) {
-      Log.d("MainActivity", "RESULT_OK");
+      final ReactContext reactContext = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
+      ExposureNotificationClientWrapper.get(reactContext)
+              .start()
+              .addOnSuccessListener(
+                      unused -> {
+                        sendEvent(true);
+                      })
+              .addOnFailureListener(
+                      exception -> {
+                        sendEvent(false);
+                      })
+              .addOnCanceledListener(() -> {
+                sendEvent(false);
+              });
     } else {
-      Log.d("MainActivity", "NOT RESULT_OK");
+      sendEvent(false);
     }
+  }
+
+  private void sendEvent(boolean enabled) {
+    final ReactContext reactContext = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
+    WritableArray params = null;
+
+    if(enabled) {
+      params = Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED, CallbackMessages.EN_ENABLEMENT_ENABLED);
+    } else {
+     params = Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED);
+    }
+
+    reactContext
+            .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+            .emit("onEnabledStatusUpdated", params);
   }
 }

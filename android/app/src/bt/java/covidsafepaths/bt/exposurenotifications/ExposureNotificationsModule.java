@@ -24,7 +24,6 @@ import com.google.android.gms.nearby.exposurenotification.ExposureNotificationSt
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.swmansion.reanimated.Utils;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.pathcheck.covidsafepaths.MainActivity;
@@ -37,6 +36,7 @@ import covidsafepaths.bt.exposurenotifications.nearby.ProvideDiagnosisKeysWorker
 import covidsafepaths.bt.exposurenotifications.nearby.StateUpdatedWorker;
 import covidsafepaths.bt.exposurenotifications.notify.ShareDiagnosisManager;
 import covidsafepaths.bt.exposurenotifications.utils.CallbackMessages;
+import covidsafepaths.bt.exposurenotifications.utils.Util;
 
 import static covidsafepaths.bt.exposurenotifications.ExposureNotificationsModule.MODULE_NAME;
 import static covidsafepaths.bt.exposurenotifications.nearby.StateUpdatedWorker.IS_EXPOSED_KEY;
@@ -89,7 +89,7 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                             ApiException apiException = (ApiException) exception;
                             if (apiException.getStatusCode()
                                     == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
-                                callback.invoke(CallbackMessages.RESOLUTION_REQUIRED);
+                                callback.invoke(CallbackMessages.GENERIC_SUCCESS);
                                 MainActivity mainActivity = (MainActivity) reactContext.getCurrentActivity();
                                 mainActivity.showPermission(apiException);
 
@@ -97,8 +97,31 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
                                 callback.invoke(apiException.getStatus().toString());
                             }
                         })
-                .addOnCanceledListener(() ->
-                        callback.invoke(CallbackMessages.CANCELLED));
+                .addOnCanceledListener(() -> {
+                        callback.invoke(CallbackMessages.CANCELLED);
+                });
+    }
+
+    @ReactMethod
+    public void getCurrentENPermissionsStatus(final Callback callback) {
+        ExposureNotificationClientWrapper.get(reactContext.getCurrentActivity())
+                .isEnabled().addOnSuccessListener(
+                enabled -> {
+                    if(enabled) {
+                        callback.invoke(Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED, CallbackMessages.EN_ENABLEMENT_ENABLED));
+                    } else {
+                        callback.invoke(Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED));
+                    }
+                })
+                .addOnFailureListener(
+                        exception -> {
+                            if (!(exception instanceof ApiException)) {
+                                callback.invoke(CallbackMessages.ERROR_UNKNOWN);
+                            } else {
+                                ApiException apiException = (ApiException) exception;
+                                callback.invoke(apiException.getStatus().toString());
+                            }
+                        });
     }
 
     /**
