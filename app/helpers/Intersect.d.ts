@@ -9,7 +9,6 @@ type Posix = number;
 
 export const checkIntersect: (
   healthcareAuthorities: HealthcareAuthority[] | null,
-  bypassTimer: boolean,
 ) => Promise<Record<Posix, ExposureDatum>> = intersect;
 
 export const transformDayBinsToExposureInfo: (
