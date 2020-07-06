@@ -13,7 +13,7 @@ import { Buttons, Typography as TypographyStyles } from '../styles';
 
 interface ButtonProps {
   label: string;
-  onPress: (() => void) | undefined;
+  onPress: () => void;
   loading?: boolean;
   disabled?: boolean;
   style?: ViewStyle;

@@ -136,14 +136,15 @@ const ExplanationScreen = ({
           style={primaryButtonStyles}
           textStyle={primaryButtonTextStyles}
         />
-        {explanationScreenContent.secondaryButtonLabel && (
-          <Button
-            label={explanationScreenContent.secondaryButtonLabel}
-            onPress={explanationScreenActions.secondaryButtonOnPress}
-            style={secondaryButtonStyles}
-            textStyle={secondaryButtonTextStyles}
-          />
-        )}
+        {explanationScreenActions.secondaryButtonOnPress &&
+          explanationScreenContent.secondaryButtonLabel && (
+            <Button
+              label={explanationScreenContent.secondaryButtonLabel}
+              onPress={explanationScreenActions.secondaryButtonOnPress}
+              style={secondaryButtonStyles}
+              textStyle={secondaryButtonTextStyles}
+            />
+          )}
       </View>
     </View>
   );
