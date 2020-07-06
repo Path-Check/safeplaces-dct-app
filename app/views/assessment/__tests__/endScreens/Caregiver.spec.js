@@ -24,7 +24,8 @@ test('cta', () => {
 function Wrapper({ children }) {
   return (
     <I18nextProvider i18n={i18n}>
-      <AssessmentNavigationContext.Provider value={{ completeRoute: 'MyRoute' }}>
+      <AssessmentNavigationContext.Provider
+        value={{ completeRoute: 'MyRoute' }}>
         {children}
       </AssessmentNavigationContext.Provider>
     </I18nextProvider>

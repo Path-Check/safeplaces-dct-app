@@ -121,28 +121,11 @@ exports[`base 1`] = `
               }
               testID="description"
             >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#2e2e2e",
-                      "fontFamily": "IBMPlexSans",
-                      "fontSize": 17,
-                      "lineHeight": 28,
-                    },
-                    Object {
-                      "writingDirection": "ltr",
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Your anonymous data helps the Boston Public Health Commission analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.
+              Your anonymous data helps the Boston Public Health Commission analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.
 
 Your data contains your survey responses and zip code, but no additional or personally-identifying information.
 
 The Boston Public Health Commission will retain your anonymous data for a specific period of time.
-              </Text>
             </Text>
           </View>
         </View>

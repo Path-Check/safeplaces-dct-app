@@ -6,7 +6,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { SvgXml } from 'react-native-svg';
 import { Icons } from '../../assets';
 import { useSurvey } from '../../helpers/CustomHooks';
-import { AnswersContext, AssessmentNavigationContext, SurveyContext } from './Context';
+import {
+  AnswersContext,
+  AssessmentNavigationContext,
+  SurveyContext,
+} from './Context';
 import { AssessmentQuestion } from './AssessmentQuestion';
 import { AssessmentStart } from './AssessmentStart';
 import { Agreement } from './Agreement';

@@ -27,7 +27,9 @@ test('cta', () => {
 function Wrapper({ children }) {
   return (
     <I18nextProvider i18n={i18n}>
-      <AssessmentNavigationContext.Provider value={{}}>{children}</AssessmentNavigationContext.Provider>
+      <AssessmentNavigationContext.Provider value={{}}>
+        {children}
+      </AssessmentNavigationContext.Provider>
     </I18nextProvider>
   );
 }
