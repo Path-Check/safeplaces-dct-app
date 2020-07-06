@@ -32,7 +32,9 @@ afterEach(cleanup);
 
 describe('<ExportCodeInputScreen />', () => {
   beforeEach(() => {});
-  it('when there is no text input', () => {
+  describe('when there is no text input', () => {
+     it('renders with the next button disabled', () => {
+     
     const strategy = factories.tracingStrategy.build({
       name: 'test-strategy',
     });
