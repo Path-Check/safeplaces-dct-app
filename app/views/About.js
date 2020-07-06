@@ -57,9 +57,9 @@ export const AboutScreen = ({ navigation }) => {
         <Typography
           style={styles.hyperlink}
           onPress={() => {
-            Linking.openURL('https://covidsafepaths.org/');
+            Linking.openURL('https://pathcheck.org/');
           }}>
-          <Text>{'covidsafepaths.org'}</Text>
+          <Text>{'pathcheck.org'}</Text>
         </Typography>
 
         <View style={styles.rowContainer}>

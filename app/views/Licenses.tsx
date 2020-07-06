@@ -17,7 +17,7 @@ import { useStrategyContent } from '../TracingStrategyContext';
 import { Images } from '../assets';
 import { Colors, Spacing } from '../styles';
 
-const PRIVACY_POLICY_URL = 'https://covidsafepaths.org/privacy-policy/';
+const PRIVACY_POLICY_URL = 'https://pathcheck.org/privacy-policy/';
 
 export const LicensesScreen = (): JSX.Element => {
   const { t } = useTranslation();
@@ -60,7 +60,7 @@ export const LicensesScreen = (): JSX.Element => {
             </Typography>
             <Typography
               use='body2'
-              onPress={handleOnPressOpenUrl('https://covidsafepaths.org/')}
+              onPress={handleOnPressOpenUrl('https://pathcheck.org/')}
               style={styles.hyperlink}>
               {pathCheckAddress}
             </Typography>
