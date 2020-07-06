@@ -5,9 +5,9 @@ import {
   Alert,
   KeyboardAvoidingView,
   StyleSheet,
+  Platform,
   TextInput,
   View,
-  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -41,6 +41,8 @@ const CodeInputScreen = (): JSX.Element => {
     setCode(code);
   };
 
+  const isIOS = Platform.OS === 'ios';
+
   const handleOnPressNext = async () => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
@@ -64,40 +66,37 @@ const CodeInputScreen = (): JSX.Element => {
       <SafeAreaView
         style={{ flex: 1 }}
         testID={'affected-user-code-input-screen'}>
-        <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
-          <View style={styles.headerContainer}>
-            <Typography style={styles.header}>
-              {t('export.code_input_title_bluetooth')}
-            </Typography>
+        <KeyboardAvoidingView
+          keyboardVerticalOffset={Spacing.tiny}
+          behavior={isIOS ? 'padding' : undefined}>
+          <View style={styles.container}>
+            <View>
+              <Typography style={styles.header}>
+                {t('export.code_input_title_bluetooth')}
+              </Typography>
 
-            <Typography use='body1'>
-              {t('export.code_input_body_bluetooth')}
-            </Typography>
+              <Typography style={styles.subheader}>
+                {t('export.code_input_body_bluetooth')}
+              </Typography>
+            </View>
 
-            {/* there's a flex end bug on android, this is a hack to ensure some spacing */}
-            <View
-              style={{
-                flexGrow: 1,
-                marginVertical: Platform.OS === 'ios' ? 0 : 10,
-              }}>
-              <View style={styles.codeInputContainer}>
-                <TextInput
-                  testID={'code-input'}
-                  value={code}
-                  maxLength={length}
-                  style={styles.codeInput}
-                  keyboardType={'number-pad'}
-                  returnKeyType={'done'}
-                  onChangeText={handleOnChangeText}
-                  blurOnSubmit={false}
-                />
-              </View>
+            <View>
+              <TextInput
+                testID={'code-input'}
+                value={code}
+                placeholder={'00000000'}
+                placeholderTextColor={Colors.placeholderTextColor}
+                maxLength={length}
+                style={styles.codeInput}
+                keyboardType={'number-pad'}
+                returnKeyType={'done'}
+                onChangeText={handleOnChangeText}
+                blurOnSubmit={false}
+              />
 
-              {codeInvalid && (
-                <Typography style={styles.errorSubtitle} use='body2'>
-                  {t('export.code_input_error')}
-                </Typography>
-              )}
+              <Typography style={styles.errorSubtitle} use='body2'>
+                {codeInvalid ? t('export.code_input_error') : ' '}
+              </Typography>
             </View>
 
             <Button
@@ -115,33 +114,28 @@ const CodeInputScreen = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: Spacing.medium,
-    paddingTop: Layout.oneTenthHeight,
-    backgroundColor: Colors.primaryBackgroundFaintShade,
-  },
   backgroundImage: {
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
     backgroundColor: Colors.faintGray,
-    flex: 1,
   },
-  headerContainer: {
-    flex: 1,
-    marginBottom: Spacing.large,
+  container: {
+    height: '100%',
+    justifyContent: 'space-between',
+    padding: Spacing.medium,
+    paddingTop: Layout.oneTenthHeight,
+    backgroundColor: Colors.primaryBackgroundFaintShade,
   },
   header: {
     ...TypographyStyles.header2,
   },
-  errorSubtitle: {
-    marginTop: Spacing.medium,
-    color: Colors.errorText,
+  subheader: {
+    ...TypographyStyles.header4,
+    color: Colors.secondaryText,
   },
-  codeInputContainer: {
-    flex: 1,
-    paddingVertical: Spacing.large,
+  errorSubtitle: {
+    color: Colors.errorText,
   },
   codeInput: {
     ...Forms.textInput,

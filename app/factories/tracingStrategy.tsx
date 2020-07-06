@@ -44,8 +44,6 @@ export const testStrategyCopy: StrategyCopyContent = {
   exportCompleteBody: 'exportCompleteBody',
   exportPublishButtonSubtitle: 'exportPublishButtonSubtitle',
   exportPublishTitle: 'exportPublishTitle',
-  exportStartBody: 'exportStartBody',
-  exportStartTitle: 'exportStartTitle',
   exposureNotificationsNotAvailableHeader:
     'exposureNotificationsNotAvailableHeader',
   exposureNotificationsNotAvailableSubheader:
