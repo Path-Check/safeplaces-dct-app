@@ -65,7 +65,7 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.rowContainer}>
           <View style={styles.row}>
             <Typography style={styles.aboutSectionParaLabel}>
-              {t('about.version')}
+              {t("ALPHA 7.6.2020")}
             </Typography>
 
             <Typography style={styles.aboutSectionParaContent}>
