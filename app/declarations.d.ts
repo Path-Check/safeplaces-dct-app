@@ -18,3 +18,5 @@ declare module 'react-native-pulse' {
   const Pulse: any;
   export default Pulse;
 }
+
+declare module 'react-native-push-notification';
