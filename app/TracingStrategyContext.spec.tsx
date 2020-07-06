@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet } from 'react-native';
 import { render, cleanup } from '@testing-library/react-native';
 import '@testing-library/jest-native/extend-expect';
 
@@ -14,6 +14,7 @@ import {
   testInterpolatedStrategyCopy,
 } from './factories/tracingStrategy';
 import { factories } from './factories';
+import { Images } from '../app/assets/images/';
 
 import { TracingStrategy } from './tracingStrategy';
 
@@ -37,9 +38,11 @@ const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
     return (
       <View>
         <Text testID={'tracing-strategy-name'}>{name}</Text>
-        <Text testID={'tracing-strategy-assets'}>
-          {StrategyAssets.personalPrivacyBackground}
-        </Text>
+        <ImageBackground
+          source={StrategyAssets.personalPrivacyBackground}
+          testID={'tracing-strategy-assets'}
+          style={styles.background}
+        />
         <Text testID={'tracing-strategy-copy'}>{StrategyCopy.aboutHeader}</Text>
         <Text testID={'tracing-strategy-interpolated-copy'}>
           {InterpolatedStrategyCopy.exportCodeBody('code-body-name')}
@@ -96,7 +99,7 @@ describe('TracingStrategyProvider', () => {
     });
 
     it('provides the correct strategy content', () => {
-      const expectedAsset = 'Test Asset';
+      const expectedAsset = Images.BlueGradientBackground;
       const expectedCopy = 'Test About Header';
       const expectedCodeBody = (name: string) => {
         return `expectedCodeBody ${name}`;
@@ -129,7 +132,9 @@ describe('TracingStrategyProvider', () => {
         'tracing-strategy-interpolated-copy',
       );
 
-      expect(assets).toHaveTextContent(expectedAsset);
+      expect(assets).toHaveProp('source', {
+        testUri: '../../../app/assets/images/blueGradientBackground.png',
+      });
       expect(copy).toHaveTextContent(expectedCopy);
       expect(interpolatedCopy).toHaveTextContent(
         expectedCodeBody('code-body-name'),
@@ -154,4 +159,13 @@ describe('TracingStrategyProvider', () => {
       });
     });
   });
+});
+
+const styles = StyleSheet.create({
+  background: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+    position: 'absolute',
+  },
 });

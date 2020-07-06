@@ -14,6 +14,14 @@ final class ExposureManager: NSObject {
   let manager = ENManager()
   
   var detectingExposures = false
+
+  var detectionPermitted: Bool {
+    if let lastDetectionDate = BTSecureStorage.shared.$dateLastPerformedExposureDetection.wrappedValue,
+      Calendar.current.dateComponents([.hour], from: lastDetectionDate, to: Date()).hour ?? 0 < 3 {
+      return false
+    }
+    return true
+  }
   
   enum EnabledState: String {
     case ENABLED, DISABLED
@@ -81,6 +89,11 @@ final class ExposureManager: NSObject {
   var localUncompressedURLs = [URL]()
   
   @discardableResult func detectExposures(completionHandler: ((Error?) -> Void)? = nil) -> Progress {
+
+    // Exit if last detection date was < 3 hours ago
+    if !detectionPermitted {
+      completionHandler?(nil)
+    }
     
     let progress = Progress()
     
@@ -236,6 +249,25 @@ final class ExposureManager: NSObject {
       }
     }
   }
+
+  func postExposureDetectionErrorNotification() {
+    #if DEBUG
+    let identifier = String.exposureDetectionErrorNotificationIdentifier
+
+    let content = UNMutableNotificationContent()
+    content.title = String.exposureDetectionErrorNotificationTitle.localized
+    content.body = String.exposureDetectionErrorNotificationBody.localized
+    content.sound = .default
+    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
+    UNUserNotificationCenter.current().add(request) { error in
+      DispatchQueue.main.async {
+        if let error = error {
+          print("Error showing error user notification: \(error)")
+        }
+      }
+    }
+    #endif
+  }
   
 }
 
@@ -268,23 +300,6 @@ private extension ExposureManager {
     localUncompressedURLs.cleanup()
     localUncompressedURLs = []
     downloadedPackages = []
-  }
-  
-  func postExposureDetectionErrorNotification() {
-    let identifier = String.exposureDetectionErrorNotificationIdentifier
-    
-    let content = UNMutableNotificationContent()
-    content.title = String.exposureDetectionErrorNotificationTitle.localized
-    content.body = String.exposureDetectionErrorNotificationBody.localized
-    content.sound = .default
-    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
-    UNUserNotificationCenter.current().add(request) { error in
-      DispatchQueue.main.async {
-        if let error = error {
-          print("Error showing error user notification: \(error)")
-        }
-      }
-    }
   }
   
 }
