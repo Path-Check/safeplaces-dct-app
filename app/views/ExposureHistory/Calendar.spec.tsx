@@ -14,7 +14,7 @@ describe('Calendar', () => {
     const onSelectDate = () => {};
     const selectedDatum = exposureHistory[0];
 
-    const { asJSON } = render(
+    const { getByTestId } = render(
       <Calendar
         exposureHistory={exposureHistory}
         onSelectDate={onSelectDate}
@@ -22,7 +22,7 @@ describe('Calendar', () => {
       />,
     );
 
-    expect(asJSON()).toMatchSnapshot();
+    expect(getByTestId('exposure-history-calendar')).not.toBeNull();
   });
 });
 

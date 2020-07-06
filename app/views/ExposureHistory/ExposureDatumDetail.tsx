@@ -71,6 +71,7 @@ const PossibleExposureDetail = ({
       </View>
       <View style={styles.ctaContainer}>
         <TouchableOpacity
+          testID={'exposure-history-next-steps-button'}
           style={styles.nextStepsButton}
           onPress={handleOnPressNextSteps}>
           <Typography style={styles.nextStepsButtonText}>

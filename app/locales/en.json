@@ -23,7 +23,7 @@
     "emergency_description": "You may be having a <1>medical emergency</1>. Immediate medical attention is needed.\n\nTell the emergency operator if you have been in contact with someone with COVID-19 or if you have recently been to an area where COVID-19 is spreading.",
     "emergency_cta": "Call Emergency Services",
     "isolate_title": "Isolate Yourself",
-    "isolate_description": "You <1>have some symptoms</1> that may be related to COVID-19. Call your healthcare provider if your symtoms get worse. Start home isolation.",
+    "isolate_description": "You <1>have some symptoms</1> that may be related to COVID-19. Call your healthcare provider if your symptoms get worse. Start home isolation.",
     "isolate_cta": "Next",
     "share_title": "Publish anonymized data",
     "share_description": "Your anonymous data helps the {{authority}} analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.\n\nYour data contains your survey responses and zip code, but no additional or personally-identifying information.\n\nThe {{authority}} will retain your anonymous data for a specific period of time.",
@@ -72,7 +72,7 @@
     "complete_title": "Thanks for keeping your community safe!",
     "confirm_upload_body": "This will help in contact tracing efforts.\n\nIf you choose not to send your Location History to {{name}}, you are choosing to opt out of contact tracing efforts that help keep your community safe.",
     "consent_button_title": "I understand and consent",
-    "consent_button_subtitle": "By proceeding, you agree that your Heathcare Authority can retain your data for a period of time.",
+    "consent_button_subtitle": "By proceeding, you agree that your Healthcare Authority can retain your data for a period of time.",
     "location_consent_link": "Please view their privacy policy here.",
     "confirm_upload_button": "Send Location History",
     "confirm_upload_title": "Send your location history to your HA",
@@ -116,7 +116,7 @@
     "bt": {
       "why_did_i_get_an_en_para": "You will receive an exposure notification when someone you crossed paths with later receives a confirmed, positive diagnosis or test for COVID-19 and chooses to notify others",
       "how_does_this_work": "How does this work?",
-      "how_does_this_work_para": "When Exposure Notifications are on, your phone uses Bluetooth to swap and save random number strings (called ramdom IDs) from any phones it encounters that also have Exposure Notifications enabled. Random IDs won’t identify you personally to other users and change many times a day to protect your privacy. Date and duration of the encounter are recorded along with an estimate of how close the two phones may have been. When a person reports a positive diagnosis, their phone’s recent random IDs are flagged to anonymously notify others. No locations or personal info is shared."
+      "how_does_this_work_para": "When Exposure Notifications are on, your phone uses Bluetooth to swap and save random number strings (called random IDs) from any phones it encounters that also have Exposure Notifications enabled. Random IDs won’t identify you personally to other users and change many times a day to protect your privacy. Date and duration of the encounter are recorded along with an estimate of how close the two phones may have been. When a person reports a positive diagnosis, their phone’s recent random IDs are flagged to anonymously notify others. No locations or personal info is shared."
     },
     "gps": {
       "why_did_i_get_an_en_para": "You will receive exposure notifications when your PathCheck app estimates that your phone was, for an extended period, within 100 feet of another individual who later received a positive diagnosis and chose to share their location diary with their local Health Department.",
