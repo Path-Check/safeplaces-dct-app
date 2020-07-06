@@ -24,7 +24,7 @@ import { useStrategyContent } from '../../TracingStrategyContext';
 import { Icons } from '../../assets';
 import { Colors } from '../../styles';
 
-const CODE_LENGTH = 8;
+const CODE_LENGTH = isGPS ? 6 : 8;
 
 const CodeInput = ({ code, length, setCode }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
