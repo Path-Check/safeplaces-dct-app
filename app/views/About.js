@@ -8,6 +8,7 @@ import {
   Text,
   View,
   Alert,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import { useStrategyContent } from '../TracingStrategyContext';
@@ -16,7 +17,6 @@ import { NavigationBarWrapper, Typography } from '../components';
 
 import { useDispatch } from 'react-redux';
 import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleAllowFeatureFlagsEnabledAction';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
 const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;

@@ -9,9 +9,9 @@ export interface TracingStrategy {
   exposureInfoSubscription: ExposureInfoSubscription;
   permissionsProvider: ({ children }: { children: JSX.Element }) => JSX.Element;
   homeScreenComponent: ({ testID }: { testID: string }) => JSX.Element;
+  affectedUserFlow: () => JSX.Element;
   assets: StrategyAssets;
   useCopy: StrategyCopyContentHook;
-  useInterpolatedCopy: StrategyInterpolatedCopyContentHook;
 }
 
 export interface StrategyAssets {
@@ -29,7 +29,6 @@ export type StrategyCopyContentHook = (t: TFunction) => StrategyCopyContent;
 export interface StrategyCopyContent {
   aboutHeader: string;
   detailedHistoryWhatThisMeansPara: string;
-  exportCodeTitle: string;
   exportCompleteBody: string;
   exportPublishButtonSubtitle: string;
   exportPublishTitle: string;
@@ -49,13 +48,4 @@ export interface StrategyCopyContent {
   shareDiagnosisSubheader: string;
   settingsLoggingActive: string;
   settingsLoggingInactive: string;
-}
-
-export type StrategyInterpolatedCopyContentHook = (
-  t: TFunction,
-) => StrategyInterpolatedCopyContent;
-
-export interface StrategyInterpolatedCopyContent {
-  exportCodeBody: (name: string) => string;
-  exportPublishBody: (name: string) => string;
 }

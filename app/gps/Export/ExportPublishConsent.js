@@ -14,7 +14,7 @@ export const ExportPublishConsent = ({ navigation, route }) => {
   const [isConsenting, setIsConsenting] = useState(false);
   const { t } = useTranslation();
 
-  const { InterpolatedStrategyCopy, StrategyCopy } = useStrategyContent();
+  const { StrategyCopy } = useStrategyContent();
   const { StrategyAssets } = useTracingStrategyContext();
 
   const exportPublishNextRoute = isGPS
@@ -45,7 +45,7 @@ export const ExportPublishConsent = ({ navigation, route }) => {
       nextButtonLabel={t('export.consent_button_title')}
       buttonSubtitle={StrategyCopy.exportPublishButtonSubtitle}
       headline={StrategyCopy.exportPublishTitle}
-      body={InterpolatedStrategyCopy.exportPublishBody(selectedAuthority.name)}
+      body={t('export.publish_consent_body', { name: selectedAuthority.name })}
       buttonLoading={isConsenting}
       icon={StrategyAssets.exportPublishIcon}
     />
