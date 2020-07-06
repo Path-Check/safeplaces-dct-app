@@ -1,7 +1,11 @@
 import BackgroundFetch from 'react-native-background-fetch';
 
-import { INTERSECT_INTERVAL } from '../constants/history';
+import { BACKGROUND_TASK_INTERVAL } from '../constants/history';
 import IntersectService from './IntersectService';
+import { Platform, NativeModules } from 'react-native';
+import { GetStoreData, SetStoreData } from '../helpers/General';
+import { LAST_CHECKED } from '../constants/storage';
+import dayjs from 'dayjs';
 
 class BackgroundTaskService {
   start() {
@@ -9,7 +13,7 @@ class BackgroundTaskService {
     console.log('creating background task object');
     BackgroundFetch.configure(
       {
-        minimumFetchInterval: INTERSECT_INTERVAL,
+        minimumFetchInterval: BACKGROUND_TASK_INTERVAL,
         // Android options
         forceAlarmManager: false, // <-- Set true to bypass JobScheduler.
         stopOnTerminate: false,
@@ -22,7 +26,17 @@ class BackgroundTaskService {
       },
       async (taskId) => {
         console.log('[js] Received background-fetch event: ', taskId);
-        IntersectService.checkIntersect(null, false);
+
+        if (Platform.OS === 'ios') {
+          NativeModules.SecureStorageManager.trimLocations();
+        }
+
+        const lastCheckedMs = Number(await GetStoreData(LAST_CHECKED));
+        if (dayjs().diff(lastCheckedMs, 'hour') >= 12) {
+          IntersectService.checkIntersect(null);
+          await SetStoreData(LAST_CHECKED, String(dayjs().valueOf()));
+        }
+
         BackgroundFetch.finish(taskId);
       },
       (error) => {
