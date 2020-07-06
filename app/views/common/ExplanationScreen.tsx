@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ImageBackground,
   StyleSheet,
-  TouchableOpacity,
   TextStyle,
   View,
   ScrollView,
@@ -11,6 +10,7 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
+import { Button } from '../../components/Button';
 import { useStatusBarEffect } from '../../navigation';
 import { Typography } from '../../components/Typography';
 
@@ -95,6 +95,16 @@ const ExplanationScreen = ({
     ...explanationScreenStyles.bodyStyle,
   };
 
+  const primaryButtonStyles = {
+    ...styles.primaryButton,
+    ...explanationScreenStyles.primaryButtonContainerStyle,
+  };
+
+  const secondaryButtonStyles = {
+    ...styles.secondaryButton,
+    ...explanationScreenStyles.secondaryButtonContainerStyle,
+  };
+
   const smallScreenWidth = Layout.screenWidth <= Layout.smallScreenWidth;
 
   return (
@@ -120,27 +130,19 @@ const ExplanationScreen = ({
             {explanationScreenContent.body}
           </Typography>
         </ScrollView>
-        <TouchableOpacity
+        <Button
+          label={explanationScreenContent.primaryButtonLabel}
           onPress={explanationScreenActions.primaryButtonOnPress}
-          style={[
-            styles.primaryButton,
-            explanationScreenStyles.primaryButtonContainerStyle,
-          ]}>
-          <Typography style={primaryButtonTextStyles}>
-            {explanationScreenContent.primaryButtonLabel}
-          </Typography>
-        </TouchableOpacity>
+          style={primaryButtonStyles}
+          textStyle={primaryButtonTextStyles}
+        />
         {explanationScreenContent.secondaryButtonLabel && (
-          <TouchableOpacity
+          <Button
+            label={explanationScreenContent.secondaryButtonLabel}
             onPress={explanationScreenActions.secondaryButtonOnPress}
-            style={[
-              styles.secondaryButton,
-              explanationScreenStyles.secondaryButtonContainerStyle,
-            ]}>
-            <Typography style={secondaryButtonTextStyles}>
-              {explanationScreenContent.secondaryButtonLabel}
-            </Typography>
-          </TouchableOpacity>
+            style={secondaryButtonStyles}
+            textStyle={secondaryButtonTextStyles}
+          />
         )}
       </View>
     </View>
