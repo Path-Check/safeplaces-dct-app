@@ -28,7 +28,7 @@ export const APP_NOT_AUTHORIZED = 'APP_NOT_AUTHORIZED';
  */
 export const ALL_CONDITIONS_MET = 'ALL_CONDITIONS_MET';
 
-/* 
+/*
   On Android: isAppGpsEnabled = 0 means Never Use Location
   On IOS: isAppGpsEnabled = 0 means Never Use Location. isAppGpsEnabled = 99 means Ask Next Time
 */
@@ -58,13 +58,13 @@ export default class LocationServices {
       debug: false,
       startOnBoot: true,
       stopOnTerminate: false,
-      locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
+      locationProvider: BackgroundGeolocation.CONTINUOUS_RAW_PROVIDER,
       interval: MIN_LOCATION_UPDATE_MS,
       fastestInterval: MIN_LOCATION_UPDATE_MS,
       activitiesInterval: MIN_LOCATION_UPDATE_MS,
       activityType: 'AutomotiveNavigation',
       pauseLocationUpdates: false,
-      saveBatteryOnBackground: true,
+      saveBatteryOnBackground: false,
       stopOnStillActivity: false,
     });
 
