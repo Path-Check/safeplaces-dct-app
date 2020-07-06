@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from 'react-native';
+
 import { TFunction } from 'i18next';
 
 import { ExposureInfoSubscription } from './ExposureHistoryContext';
@@ -13,11 +15,11 @@ export interface TracingStrategy {
 }
 
 export interface StrategyAssets {
-  personalPrivacyBackground: string;
+  personalPrivacyBackground: ImageSourcePropType;
   personalPrivacyIcon: string;
-  notificationDetailsBackground: string;
+  notificationDetailsBackground: ImageSourcePropType;
   notificationDetailsIcon: string;
-  shareDiagnosisBackground: string;
+  shareDiagnosisBackground: ImageSourcePropType;
   shareDiagnosisIcon: string;
   exportPublishIcon: string;
 }
