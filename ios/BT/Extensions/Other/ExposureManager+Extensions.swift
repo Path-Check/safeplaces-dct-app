@@ -23,6 +23,7 @@ extension ExposureManager {
       }
     case .simulateExposureDetectionError:
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
+      ExposureManager.shared.postExposureDetectionErrorNotification()
       callback([NSNull(), "Exposure deteaction error message: \(BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription)"])
     case .simulateExposure:
       let exposure = Exposure(id: UUID().uuidString,
