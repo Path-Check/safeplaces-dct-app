@@ -142,10 +142,11 @@ const styles = StyleSheet.create({
   },
   ctaBox: {
     padding: 15,
-    paddingTop: 0,
+    paddingTop: 10,
     backgroundColor: Colors.BLUE_RIBBON,
   },
   closeIcon: {
+    marginTop: 50,
     marginBottom: 6,
     marginRight: 8,
     alignSelf: 'flex-end',

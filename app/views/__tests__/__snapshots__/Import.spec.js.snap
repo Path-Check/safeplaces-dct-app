@@ -183,6 +183,7 @@ Array [
             style={
               Object {
                 "alignItems": "center",
+                "alignSelf": "center",
                 "backgroundColor": "#0161F2",
                 "borderBottomWidth": null,
                 "borderColor": "#007aff",
@@ -196,7 +197,6 @@ Array [
                 "height": 77.5,
                 "justifyContent": "center",
                 "marginBottom": 20,
-                "marginLeft": 23,
                 "marginTop": 40,
                 "opacity": 1,
                 "paddingBottom": 6,
@@ -253,6 +253,7 @@ Array [
             style={
               Object {
                 "alignItems": "center",
+                "alignSelf": "center",
                 "backgroundColor": "#0161F2",
                 "borderBottomWidth": null,
                 "borderColor": "#007aff",
@@ -265,7 +266,6 @@ Array [
                 "flexDirection": "row",
                 "height": 77.5,
                 "justifyContent": "center",
-                "marginLeft": 23,
                 "opacity": 1,
                 "paddingBottom": 6,
                 "paddingTop": 6,

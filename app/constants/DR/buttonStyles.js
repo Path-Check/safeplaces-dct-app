@@ -1,13 +1,10 @@
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import Colors from '../colors';
 
 export default {
   buttonText: {
-    fontSize: wp('5%'),
+    fontSize: wp('4.5%'),
     textTransform: 'uppercase',
     color: Colors.WHITE,
     paddingVertical: 4,
@@ -16,11 +13,11 @@ export default {
     fontWeight: '900',
   },
   buttonStyle: {
-    marginLeft: 23,
     borderRadius: 40,
+    alignSelf: 'center',
     justifyContent: 'center',
     width: wp('75%'),
-    height: hp('6.5%'),
+    height: wp('11%'),
     backgroundColor: Colors.BLUE_RIBBON,
   },
 };
