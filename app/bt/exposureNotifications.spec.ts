@@ -16,7 +16,7 @@ describe('toExposureHistory', () => {
         const rawExposures: RawExposure[] = [];
 
         const result = toExposureHistory(rawExposures, {
-          initDate: today,
+          startDate: today,
           totalDays: 21,
         });
 
@@ -67,7 +67,7 @@ describe('toExposureHistory', () => {
         };
 
         const result = toExposureHistory(rawExposures, {
-          initDate: today,
+          startDate: today,
           totalDays: 21,
         });
 

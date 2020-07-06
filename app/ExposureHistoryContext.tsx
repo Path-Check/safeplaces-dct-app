@@ -39,7 +39,7 @@ interface ExposureHistoryProps {
 const CALENDAR_DAY_COUNT = 21;
 
 const blankHistoryConfig: ExposureCalendarOptions = {
-  initDate: Date.now(),
+  startDate: Date.now(),
   totalDays: CALENDAR_DAY_COUNT,
 };
 

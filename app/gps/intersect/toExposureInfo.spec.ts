@@ -10,7 +10,7 @@ describe('toExposureHistory', () => {
         const rawExposures: DayBins = [];
 
         const result = toExposureHistory(rawExposures, {
-          initDate: today,
+          startDate: today,
           totalDays: 21,
         });
 
@@ -46,7 +46,7 @@ describe('toExposureHistory', () => {
         };
 
         const result = toExposureHistory(dayBins, {
-          initDate: today,
+          startDate: today,
           totalDays: 21,
         });
 

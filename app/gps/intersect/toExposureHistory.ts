@@ -9,9 +9,9 @@ import dayjs from 'dayjs';
 
 export type DayBins = number[];
 
-const toExposureInfo = (dayBins: DayBins, initDate: number): ExposureInfo => {
+const toExposureInfo = (dayBins: DayBins, startDate: number): ExposureInfo => {
   return dayBins.reduce((exposureInfo: ExposureInfo, duration, index) => {
-    const startOfDayAgo = dayjs(initDate)
+    const startOfDayAgo = dayjs(startDate)
       .startOf('day')
       .subtract(index, 'day')
       .valueOf();
@@ -44,9 +44,9 @@ export const toExposureHistory = (
   dayBins: DayBins,
   calendarOptions: ExposureCalendarOptions,
 ): ExposureHistory => {
-  const { initDate, totalDays } = calendarOptions;
-  const exposureInfo = toExposureInfo(dayBins, initDate);
-  const calendar = calendarDays(initDate, totalDays);
+  const { startDate, totalDays } = calendarOptions;
+  const exposureInfo = toExposureInfo(dayBins, startDate);
+  const calendar = calendarDays(startDate, totalDays);
   return calendar.map((date: Posix) => {
     if (exposureInfo[date]) {
       return exposureInfo[date];

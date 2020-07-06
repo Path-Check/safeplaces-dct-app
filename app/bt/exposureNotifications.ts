@@ -24,8 +24,8 @@ export const toExposureHistory: (
   calendarOptions: ExposureCalendarOptions,
 ) => ExposureHistory = (rawExposures, calendarOptions) => {
   const exposureInfo = toExposureInfo(rawExposures);
-  const { initDate, totalDays } = calendarOptions;
-  const calendar = calendarDays(initDate, totalDays);
+  const { startDate, totalDays } = calendarOptions;
+  const calendar = calendarDays(startDate, totalDays);
   return calendar.map((date: Posix) => {
     if (exposureInfo[date]) {
       return exposureInfo[date];
@@ -43,10 +43,10 @@ export const toExposureInfo = (rawExposures: RawExposure[]): ExposureInfo => {
 };
 
 const toPossible = (r: RawExposure): Possible => {
-  const beginngingOfDay = (date: Posix) => dayjs(date).startOf('day');
+  const beginningOfDay = (date: Posix) => dayjs(date).startOf('day');
   return {
     kind: 'Possible',
-    date: beginngingOfDay(r.date).valueOf(),
+    date: beginningOfDay(r.date).valueOf(),
     duration: r.duration,
     transmissionRiskLevel: r.transmissionRiskLevel,
     totalRiskScore: r.totalRiskScore,

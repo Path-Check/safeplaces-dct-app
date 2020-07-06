@@ -27,21 +27,21 @@ export type ExposureInfo = Record<Posix, ExposureDatum>;
 export type ExposureHistory = ExposureDatum[];
 
 export interface ExposureCalendarOptions {
-  initDate: Posix;
+  startDate: Posix;
   totalDays: number;
 }
 
 export const blankExposureHistory: (
   calendarOptions: ExposureCalendarOptions,
-) => ExposureHistory = ({ initDate, totalDays }) => {
-  return calendarDays(initDate, totalDays).map((date: Posix) => ({
+) => ExposureHistory = ({ startDate, totalDays }) => {
+  return calendarDays(startDate, totalDays).map((date: Posix) => ({
     kind: 'NoKnown',
     date,
   }));
 };
 
-export const calendarDays = (initDate: Posix, totalDays: number): Posix[] => {
-  const saturday = nextSaturday(initDate);
+export const calendarDays = (startDate: Posix, totalDays: number): Posix[] => {
+  const saturday = nextSaturday(startDate);
 
   const daysAgo = [...Array(totalDays)].map((_v, idx: number) => {
     return totalDays - 1 - idx;

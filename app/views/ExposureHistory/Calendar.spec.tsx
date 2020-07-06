@@ -29,7 +29,7 @@ describe('Calendar', () => {
 const buildExposureHistory = () => {
   const rawExposure = factories.rawExposure.build();
   return toExposureHistory([rawExposure], {
-    initDate: Date.now(),
+    startDate: Date.now(),
     totalDays: 21,
   });
 };
