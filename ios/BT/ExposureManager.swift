@@ -271,6 +271,7 @@ private extension ExposureManager {
   }
   
   func postExposureDetectionErrorNotification() {
+    #if DEBUG
     let identifier = String.exposureDetectionErrorNotificationIdentifier
     
     let content = UNMutableNotificationContent()
@@ -285,6 +286,7 @@ private extension ExposureManager {
         }
       }
     }
+    #endif
   }
   
 }
