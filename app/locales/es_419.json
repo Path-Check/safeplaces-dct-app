@@ -64,12 +64,9 @@
     "default_news_site_name": "Noticias de PathCheck",
     "event_history_title": "Historial de exposición",
     "filter_authorities_by_gps_history": "Filtrar por sus ubicaciones",
-    "home_no_contact_header_bluetooth": "PathCheck",
-    "home_setting_off_header_bluetooth": "Notificaciones Desactivadas",
     "launch_allow_location": "Permitir acceso a la ubicación",
     "launch_enable_auto_subscription": "Habilitar la suscripción automática",
     "launch_enable_exposure_notif": "Habilitar",
-    "launch_enable_location": "Habilitar ubicación",
     "launch_enable_notif": "Permitir notificaciones",
     "launch_next": "Siguiente",
     "launch_notification_access": "Permitir notificaciones",
@@ -88,7 +85,7 @@
     "launch_set_up_phone_bluetooth": "Siguiente",
     "launch_set_up_phone_location": "Configurar mi teléfono",
     "launch_subheader": "No se preocupe, la información nunca sale de su dispositivo a menos que decida explícitamente compartirla.",
-    "legal_page_address": "PathCheck Foundation\n 58 Day Street \n Box 441621 \n Somerville, MA 02144",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street \nBox 441621 \nSomerville, MA 02144",
     "legal_page_header_bluetooth": "PathCheck Bluetooth",
     "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "cargando datos...",
@@ -117,8 +114,7 @@
     "faq": "Preguntas frecuentes",
     "legal": "Legal",
     "more": "Más",
-    "report_issue": "Reportar un problema",
-    "report_positive_test": "Informar un resultado positivo de la prueba"
+    "report_issue": "Reportar un problema"
   },
   "settings": {
     "share_test_result": "Informar un resultado positivo de la prueba"
