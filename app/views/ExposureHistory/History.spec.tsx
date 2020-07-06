@@ -6,7 +6,7 @@ import {
   render,
 } from '@testing-library/react-native';
 
-import { calendarDays, toExposureHistory } from '../../exposureHistory';
+import { toExposureHistory } from '../../bt/exposureNotifications';
 import { DateTimeUtils } from '../../helpers';
 import { factories } from '../../factories';
 
@@ -33,15 +33,14 @@ describe('History', () => {
         const twoDaysAgo = DateTimeUtils.beginningOfDay(
           DateTimeUtils.daysAgo(2),
         );
-        const datum = factories.exposureDatum.build({
-          kind: 'Possible',
+        const rawExposure = factories.rawExposure.build({
+          id: 'Possible',
           date: twoDaysAgo,
         });
-        const exposureInfo = {
-          [datum.date]: datum,
-        };
-        const calendar = calendarDays(Date.now(), CALENDAR_LENGTH);
-        const exposureHistory = toExposureHistory(exposureInfo, calendar);
+        const exposureHistory = toExposureHistory([rawExposure], {
+          startDate: Date.now(),
+          totalDays: CALENDAR_LENGTH,
+        });
 
         const { queryByTestId, getByTestId } = render(
           <History exposureHistory={exposureHistory} />,
@@ -64,10 +63,9 @@ describe('History', () => {
 });
 
 const buildBlankExposureHistory = () => {
-  const datum = factories.exposureDatum.build();
-  const exposureInfo = {
-    [datum.date]: datum,
-  };
-  const calendar = calendarDays(Date.now(), CALENDAR_LENGTH);
-  return toExposureHistory(exposureInfo, calendar);
+  const rawExposure = factories.rawExposure.build();
+  return toExposureHistory([rawExposure], {
+    startDate: Date.now(),
+    totalDays: CALENDAR_LENGTH,
+  });
 };
