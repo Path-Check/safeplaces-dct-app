@@ -13,6 +13,7 @@ import RealmSwift
 class Location: Object {
 
   enum Key: String {
+    case id
     case time
     case latitude
     case longitude
@@ -28,25 +29,28 @@ class Location: Object {
     case assumed
   }
 
-  // Store date as Int primary key to prevent duplicates. Loses millisecond precision
-  dynamic var time: Int = 0
+  dynamic var id: String = UUID().uuidString
+
+  dynamic var time: Double = 0
   dynamic var latitude: Double = 0
   dynamic var longitude: Double = 0
   dynamic var source: Int = -1
   dynamic var provider: String?
-  var hashes = List<String>()
+
   let altitude = RealmOptional<Double>()
   let speed = RealmOptional<Float>()
   let accuracy = RealmOptional<Float>()
   let altitudeAccuracy = RealmOptional<Float>()
   let bearing = RealmOptional<Float>()
 
+  var hashes = List<String>()
+
   var date: Date {
-    return Date(timeIntervalSince1970: TimeInterval(time))
+    return Date(timeIntervalSince1970: time)
   }
   
   override static func primaryKey() -> String? {
-    return Key.time.rawValue
+    return Key.id.rawValue
   }
   
   func toSharableDictionary() -> [String : Any] {
@@ -58,9 +62,9 @@ class Location: Object {
     ]
   }
 
-  static func fromAssumed(time: Int, latitude: Double, longitude: Double) -> Location {
+  static func fromAssumed(time: Double, latitude: Double, longitude: Double) -> Location {
     let backgroundLocation = MAURLocation()
-    backgroundLocation.time = Date(timeIntervalSince1970: TimeInterval(time))
+    backgroundLocation.time = Date(timeIntervalSince1970: time)
     backgroundLocation.latitude = latitude as NSNumber
     backgroundLocation.longitude = longitude as NSNumber
 
@@ -69,7 +73,7 @@ class Location: Object {
   
   static func fromBackgroundLocation(backgroundLocation: MAURLocation, source: Source) -> Location {
     let location = Location()
-    location.time = Int(backgroundLocation.time.timeIntervalSince1970)
+    location.time = backgroundLocation.time.timeIntervalSince1970
     location.latitude = backgroundLocation.latitude.doubleValue
     location.longitude = backgroundLocation.longitude.doubleValue
     location.altitude.value = backgroundLocation.altitude?.doubleValue
@@ -85,14 +89,13 @@ class Location: Object {
   static func fromImportLocation(dictionary: NSDictionary?, source: Source) -> Location? {
     guard let dictionary  = dictionary else { return nil }
 
-    var parsedTime: Int?
+    var parsedTime: Double?
+
     switch dictionary[Key.time.rawValue] {
     case let stringTime as String:
-      if let doubleTime = Double(stringTime) {
-        parsedTime = Int(TimeInterval(doubleTime) / 1000)
-      }
+      parsedTime = Double(stringTime).map { $0 / 1000.0 }
     case let doubleTime as Double:
-      parsedTime = Int(TimeInterval(doubleTime) / 1000)
+      parsedTime = doubleTime / 1000.0
     default:
       break
     }
