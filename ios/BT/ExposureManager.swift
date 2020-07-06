@@ -14,6 +14,14 @@ final class ExposureManager: NSObject {
   let manager = ENManager()
   
   var detectingExposures = false
+
+  var detectionPermitted: Bool {
+    if let lastDetectionDate = BTSecureStorage.shared.$dateLastPerformedExposureDetection.wrappedValue,
+      Calendar.current.dateComponents([.hour], from: lastDetectionDate, to: Date()).hour ?? 0 < 3 {
+      return false
+    }
+    return true
+  }
   
   enum EnabledState: String {
     case ENABLED, DISABLED
@@ -81,6 +89,11 @@ final class ExposureManager: NSObject {
   var localUncompressedURLs = [URL]()
   
   @discardableResult func detectExposures(completionHandler: ((Error?) -> Void)? = nil) -> Progress {
+
+    // Exit if last detection date was < 3 hours ago
+    if !detectionPermitted {
+      completionHandler?(nil)
+    }
     
     let progress = Progress()
     

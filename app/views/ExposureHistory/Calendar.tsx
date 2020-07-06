@@ -52,6 +52,7 @@ const Calendar = ({
           return (
             <TouchableOpacity
               key={`calendar-day-${datum.date}`}
+              testID={`calendar-day-${datum.date}`}
               onPress={() => onSelectDate(datum)}>
               <ExposureDatumIndicator
                 isSelected={isSelected}
@@ -88,7 +89,7 @@ const Calendar = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View testID={'exposure-history-calendar'} style={styles.container}>
       <View style={styles.header}>
         <Typography style={styles.monthText}>{title}</Typography>
         <TouchableOpacity
