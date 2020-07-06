@@ -13,7 +13,7 @@ import languages, {
   getUserLocaleOverride,
   setUserLocaleOverride,
   supportedDeviceLanguageOrEnglish,
-} from './../../locales/languages';
+} from '../../locales/languages';
 import { Images } from '../../assets';
 import { NativePicker, Typography } from '../../components';
 import { EulaModal } from '../EulaModal';
@@ -22,7 +22,7 @@ import { Colors } from '../../styles';
 
 const width = Dimensions.get('window').width;
 
-class Onboarding extends Component {
+class Welcome extends Component {
   constructor(props) {
     super(props);
 
@@ -53,10 +53,10 @@ class Onboarding extends Component {
   render() {
     return (
       <ImageBackground
-        source={Images.LaunchScreenBackground}
+        source={Images.BlueGradientBackground}
         style={styles.backgroundImage}>
         <ImageBackground
-          source={Images.LaunchScreenBackgroundOverlay}
+          source={Images.ConcentricCircles}
           style={styles.backgroundImage}>
           <StatusBar
             barStyle='light-content'
@@ -94,7 +94,7 @@ class Onboarding extends Component {
             <View style={styles.footerContainer}>
               <EulaModal
                 continueFunction={() =>
-                  this.props.navigation.replace('Onboarding2')
+                  this.props.navigation.replace('PersonalPrivacy')
                 }
                 selectedLocale={this.state.locale}
               />
@@ -154,4 +154,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboarding;
+export default Welcome;

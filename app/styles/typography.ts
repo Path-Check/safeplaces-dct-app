@@ -153,6 +153,11 @@ export const mainContent: TextStyle = {
   color: Colors.primaryText,
 };
 
+export const mainContentViolet: TextStyle = {
+  ...mediumFont,
+  color: Colors.secondaryViolet,
+};
+
 export const secondaryContent: TextStyle = {
   ...mediumFont,
   ...base,

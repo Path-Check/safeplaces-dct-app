@@ -10,21 +10,21 @@ import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { SvgXml } from 'react-native-svg';
 
-import PermissionsContext from '../../gps/PermissionsContext';
-import { Screens } from '../../navigation';
-import { Typography } from '../../components/Typography';
-import { useStatusBarEffect } from '../../navigation';
+import PermissionsContext from './PermissionsContext';
+import { Screens } from '../navigation';
+import { Typography } from '../components/Typography';
+import { useStatusBarEffect } from '../navigation';
 
-import { Icons, Images } from '../../assets';
+import { Icons, Images } from '../assets';
 import {
   Buttons,
   Spacing,
   Colors,
   Iconography,
   Typography as TypographyStyles,
-} from '../../styles';
+} from '../styles';
 
-const OnboardingNotifications = (): JSX.Element => {
+const NotificationsPermissions = (): JSX.Element => {
   const navigation = useNavigation();
   const { t } = useTranslation();
   const { notification } = useContext(PermissionsContext);
@@ -36,7 +36,7 @@ const OnboardingNotifications = (): JSX.Element => {
   };
 
   const continueOnboarding = () => {
-    navigation.navigate(Screens.OnboardingLocationPermissions);
+    navigation.navigate(Screens.EnableExposureNotifications);
   };
 
   const handleOnPressEnable = async () => {
@@ -50,7 +50,7 @@ const OnboardingNotifications = (): JSX.Element => {
 
   return (
     <ImageBackground
-      source={Images.BackgroundBlueGradient}
+      source={Images.BlueGradientBackground}
       style={styles.backgroundImage}>
       <View style={styles.container}>
         <ScrollView
@@ -123,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OnboardingNotifications;
+export default NotificationsPermissions;

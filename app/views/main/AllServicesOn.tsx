@@ -26,7 +26,7 @@ export const AllServicesOnScreen = ({
   return (
     <Theme use='violet'>
       <ImageBackground
-        source={Images.LaunchScreenBackground}
+        source={Images.BlueGradientBackground}
         style={styles.backgroundImage}>
         <StatusBar
           barStyle='light-content'

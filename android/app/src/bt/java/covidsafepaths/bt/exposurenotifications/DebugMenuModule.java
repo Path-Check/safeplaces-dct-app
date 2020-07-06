@@ -43,7 +43,7 @@ public class DebugMenuModule extends ReactContextBaseJavaModule {
     /**
      * Debug method to get a fake set of diagnosis keys and post them to the server.
      * Does NOT currently interact with GAEN API
-     * TODO - JS is always interpreting callback as error because js layer is expecting an array.
+     * Second value is success message, first value is error message
      */
     @ReactMethod
     public void getAndPostDiagnosisKeys(Callback callback) {
@@ -54,7 +54,7 @@ public class DebugMenuModule extends ReactContextBaseJavaModule {
             public void onSuccess(Boolean result) {
                 if (result) {
                     String successMessage = "Shared debug keys with server";
-                    callback.invoke(successMessage);
+                    callback.invoke(null, successMessage);
                     Log.d(MODULE_NAME, successMessage);
                 } else {
                     this.onFailure(new Throwable("Error sharing debug keys with server"));
@@ -63,7 +63,7 @@ public class DebugMenuModule extends ReactContextBaseJavaModule {
 
             @Override
             public void onFailure(Throwable t) {
-                callback.invoke(t.getMessage());
+                callback.invoke(t.getMessage(), null);
                 Log.e(MODULE_NAME, "Error sharing debug keys with server", t);
             }
         };
