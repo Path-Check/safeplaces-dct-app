@@ -7,7 +7,7 @@ final class GPSSecureStorage: SafePathsSecureStorage {
 
   static let DAYS_TO_KEEP: TimeInterval = 14
   static let LOCATION_INTERVAL: TimeInterval = 60 * 5
-  static let MAX_BACKFILL_TIME: TimeInterval = 60 * 60
+  static let MAX_BACKFILL_TIME: TimeInterval = 12 * 60 * 60
 
   private let queue = DispatchQueue(label: "GPSSecureStorage")
 
@@ -166,7 +166,7 @@ private extension GPSSecureStorage {
 
     // If within the minimum time interval, update the existing location
     if previousLocations.count >= 2 && previousLocations[0].time - previousLocations[1].time < GPSSecureStorage.LOCATION_INTERVAL {
-      Log.storage.debug("Within minimum interval, updting previous location")
+      Log.storage.debug("Within minimum interval, updating previous location")
       currentLocation.id = previousLocations[0].id
     }
 
