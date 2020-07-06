@@ -5,37 +5,37 @@ final class GPSSecureStorage: SafePathsSecureStorage {
 
   @objc static let shared = GPSSecureStorage()
 
-  static let DAYS_TO_KEEP = 14
-  static let LOCATION_INTERVAL = 60 * 5
-  static let MINIMUM_TIME_INTERVAL = 60 * 4
-  static let MAX_BACKFILL_TIME = 60 * 60
+  static let DAYS_TO_KEEP: TimeInterval = 14
+  static let LOCATION_INTERVAL: TimeInterval = 60 * 5
+  static let MAX_BACKFILL_TIME: TimeInterval = 60 * 60
 
   private let queue = DispatchQueue(label: "GPSSecureStorage")
 
+  /// Creates stationary locations at `previousLocation` ever `LOCATION_INTERVAL` until `newLocation`.
+  /// Returns locations in descending chronological order.
   static func createAssumedLocations(previousLocation: Location, newLocation: MAURLocation) -> [Location] {
     var assumedLocations = [Location]()
 
-    let newTime = Int(newLocation.time.timeIntervalSince1970)
     let isNearbyPrevious = Location.areLocationsNearby(
       lat1: previousLocation.latitude,
       lon1: previousLocation.longitude,
       lat2: newLocation.latitude.doubleValue,
-      lon2: newLocation.longitude.doubleValue)
-    let isTimeWithinThreshold = (newTime - previousLocation.time <= MAX_BACKFILL_TIME)
+      lon2: newLocation.longitude.doubleValue
+    )
 
-    if isNearbyPrevious && isTimeWithinThreshold {
-      let latestTime = newTime - LOCATION_INTERVAL
-      let earliestTime = max(newTime - MAX_BACKFILL_TIME, previousLocation.time + LOCATION_INTERVAL)
+    if isNearbyPrevious {
+      let earliestTime = previousLocation.time + LOCATION_INTERVAL
+      let latestTime = min(previousLocation.time + MAX_BACKFILL_TIME, newLocation.time.timeIntervalSince1970)
 
       assumedLocations.append(contentsOf: stride(
-        from: latestTime, through: earliestTime, by: -LOCATION_INTERVAL
+        from: earliestTime, to: latestTime, by: LOCATION_INTERVAL
       ).map {
         Location.fromAssumed(
           time: $0,
           latitude: previousLocation.latitude,
           longitude: previousLocation.longitude
         )
-      })
+      }.reversed())
     }
 
     return assumedLocations
@@ -116,8 +116,8 @@ final class GPSSecureStorage: SafePathsSecureStorage {
 
 private extension GPSSecureStorage {
 
-  var cutoffTime: Int {
-    return Int(Date().timeIntervalSince1970) - (GPSSecureStorage.DAYS_TO_KEEP * 86400)
+  var cutoffTime: TimeInterval {
+    return (Date().timeIntervalSince1970 - (GPSSecureStorage.DAYS_TO_KEEP * 86400))
   }
 
   /// This function should be called only on self.queue
@@ -134,31 +134,33 @@ private extension GPSSecureStorage {
       return
     }
 
-    let currentTime = Int(backgroundLocation.time.timeIntervalSince1970)
+    let currentLocation = Location.fromBackgroundLocation(backgroundLocation: backgroundLocation, source: .device)
+    var previousLocations = Array(realm.previousLocations.prefix(2))
 
     var newLocations = [Location]()
 
-    // Check if a previous location has been recorded
-    if let previousLocation = realm.previousLocation {
+    // Backfill locations if outside the desired interval
+    if let previousLocation = previousLocations.first {
+      let assumedLocations = GPSSecureStorage.createAssumedLocations(
+        previousLocation: previousLocation,
+        newLocation: backgroundLocation
+      )
 
-      // If within the minimum time interval, discard the new location
-      if currentTime - previousLocation.time < GPSSecureStorage.MINIMUM_TIME_INTERVAL {
-        Log.storage.debug("Discarding location due to minimum interval")
-        return
+      if assumedLocations.count > 0 {
+        Log.storage.debug("Backfilling \(assumedLocations.count) locations")
+        newLocations.append(contentsOf: assumedLocations)
       }
 
-      // Backfill locations if outside the desired interval
-      if currentTime - previousLocation.time > GPSSecureStorage.LOCATION_INTERVAL {
-        newLocations = GPSSecureStorage.createAssumedLocations(
-          previousLocation: previousLocation,
-          newLocation: backgroundLocation
-        )
-      }
+      previousLocations = assumedLocations + previousLocations
     }
 
-    newLocations.append(
-      Location.fromBackgroundLocation(backgroundLocation: backgroundLocation, source: .device)
-    )
+    // If within the minimum time interval, update the existing location
+    if previousLocations.count >= 2 && previousLocations[0].time - previousLocations[1].time < GPSSecureStorage.LOCATION_INTERVAL {
+      Log.storage.debug("Within minimum interval, updting previous location")
+      currentLocation.id = previousLocations[0].id
+    }
+
+    newLocations.insert(currentLocation, at: 0)
 
     realm.write(locations: newLocations)
   }
@@ -213,23 +215,22 @@ private extension GPSSecureStorage {
 
 private extension Realm {
 
-  var previousLocation: Location? {
+  var previousLocations: Results<Location> {
     return objects(Location.self)
     .filter("\(Location.Key.source.rawValue)=\(Location.Source.device.rawValue)")
     .sorted(byKeyPath: Location.Key.time.rawValue, ascending: false)
-    .first
   }
 
   /// Backfills locations if necessary. `resolve` and `reject` will be invoked on the same thread before returning.
   func backfillLocations(resolve: RCTPromiseResolveBlock? = nil, reject: RCTPromiseRejectBlock? = nil) {
-    guard let previousLocation = previousLocation else {
+    guard let previousLocation = previousLocations.first else {
       resolve?(true)
       return
     }
 
     let now = Date()
 
-    guard now.timeIntervalSince(previousLocation.date) > 2 * TimeInterval(GPSSecureStorage.LOCATION_INTERVAL) else {
+    guard now.timeIntervalSince(previousLocation.date) > GPSSecureStorage.LOCATION_INTERVAL else {
       resolve?(true)
       return
     }
@@ -260,6 +261,7 @@ private extension Realm {
         add(locations, update: .modified)
 
         Log.storage.debug("Wrote \(locations.count) locations to Realm")
+        Log.storage.debug("There are now \(previousLocations.count) locations in Realm")
         resolve?(true)
       }
     }
@@ -280,6 +282,7 @@ private extension Realm {
         delete(locations)
 
         Log.storage.debug("Deleted \(locations.count) locations from Realm")
+        Log.storage.debug("There are now \(previousLocations.count) locations in Realm")
         resolve?(true)
       }
     }
