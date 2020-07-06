@@ -1,18 +1,18 @@
 import React from 'react';
-import {
-  NavigationScreenProp,
-  NavigationRoute,
-  NavigationState,
-  NavigationParams,
-} from 'react-navigation';
 import { render, cleanup } from '@testing-library/react-native';
 import '@testing-library/jest-native/extend-expect';
 import { fireEvent } from '@testing-library/react-native';
 
-import { TracingStrategy } from '../../../app/tracingStrategy';
-import { factories } from '../../../app/factories';
-import ExportCodeInput from '../../../app/views/Export/ExportCodeInput';
+import { TracingStrategy } from '../../tracingStrategy';
+import { factories } from '../../factories';
 import { TracingStrategyProvider } from '../../TracingStrategyContext';
+import ExportCodeInput from '../Export/ExportCodeInput';
+import {
+  NavigationScreenProp,
+  NavigationState,
+  NavigationParams,
+  NavigationRoute,
+} from 'react-navigation';
 
 const createTestProps = (): unknown => ({
   navigation: jest.fn(),
@@ -30,7 +30,7 @@ interface NavProps {
 
 afterEach(cleanup);
 
-describe('<ExportCodeInputScreen />', () => {
+describe('<ExportCodeInput />', () => {
   it('when there is no text input', () => {
     const strategy = factories.tracingStrategy.build({
       name: 'test-strategy',
