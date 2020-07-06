@@ -8,9 +8,9 @@ import {
 import { render, cleanup } from '@testing-library/react-native';
 import '@testing-library/jest-native/extend-expect';
 import { fireEvent } from '@testing-library/react-native';
+
 import { TracingStrategy } from '../../../app/tracingStrategy';
 import { factories } from '../../../app/factories';
-
 import ExportCodeInput from '../../../app/views/Export/ExportCodeInput';
 import { TracingStrategyProvider } from '../../TracingStrategyContext';
 
@@ -31,10 +31,7 @@ interface NavProps {
 afterEach(cleanup);
 
 describe('<ExportCodeInputScreen />', () => {
-  beforeEach(() => {});
-  describe('when there is no text input', () => {
-     it('renders with the next button disabled', () => {
-     
+  it('when there is no text input', () => {
     const strategy = factories.tracingStrategy.build({
       name: 'test-strategy',
     });
