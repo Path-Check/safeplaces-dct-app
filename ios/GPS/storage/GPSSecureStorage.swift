@@ -75,13 +75,23 @@ final class GPSSecureStorage: SafePathsSecureStorage {
   }
 
   override func getRealmConfig() -> Realm.Configuration? {
+    // TODO: Create appropriate migration blocks as needed
     if let key = getEncryptionKey() {
       if inMemory {
-        return Realm.Configuration(inMemoryIdentifier: identifier, encryptionKey: key as Data, schemaVersion: 1,
-                                   migrationBlock: { _, _ in }, objectTypes: [Location.self])
+        return Realm.Configuration(
+          inMemoryIdentifier: identifier,
+          encryptionKey: key as Data,
+          schemaVersion: 1,
+          deleteRealmIfMigrationNeeded: true,
+          objectTypes: [Location.self]
+        )
       } else {
-        return Realm.Configuration(encryptionKey: key as Data, schemaVersion: 1,
-                                   migrationBlock: { _, _ in }, objectTypes: [Location.self])
+        return Realm.Configuration(
+          encryptionKey: key as Data,
+          schemaVersion: 1,
+          deleteRealmIfMigrationNeeded: true,
+          objectTypes: [Location.self]
+        )
       }
     } else {
       return nil
