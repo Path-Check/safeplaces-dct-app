@@ -117,6 +117,17 @@ dev_setup.sh
 dev_setup.bat
 ```
 
+#### Environment
+
+Populate the following 2 `.env` files with the relevant urls for your GAEN server:
+
+```
+.env.bt
+.env.bt.release
+```
+
+**Note:** Members of the `Path-Check` org can complete this step by running `yarn set-ha` and passing in the 2-letter ha abbreviation as the first argument (i.e. `yarn set-ha pc`)
+
 ## Running
 
 **Note:** In some cases, these procedures can lead to the error `Failed to load bundle - Could not connect to development server`. In these cases, kill all other react-native processes and try it again.
