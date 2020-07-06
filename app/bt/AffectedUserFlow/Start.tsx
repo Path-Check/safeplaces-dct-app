@@ -14,12 +14,10 @@ export const ExportIntro = (): JSX.Element => {
   const { StrategyCopy } = useStrategyContent();
 
   const onNext = () => navigation.navigate(Screens.AffectedUserCodeInput);
-  const onClose = () => navigation.goBack();
 
   return (
     <ExportTemplate
       onNext={onNext}
-      onClose={onClose}
       icon={Icons.Heart}
       headline={StrategyCopy.exportStartTitle}
       body={StrategyCopy.exportStartBody}

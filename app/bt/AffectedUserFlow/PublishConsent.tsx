@@ -14,8 +14,6 @@ const PublishConsent = (): JSX.Element => {
 
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
-  const onClose = () => navigation.navigate(Screens.Settings);
-
   const consent = async () => {
     setIsConsenting(true);
     const cb = (_errorMessage: string, _successMessage: string) => {
@@ -28,7 +26,6 @@ const PublishConsent = (): JSX.Element => {
   return (
     <ExportTemplate
       onNext={consent}
-      onClose={onClose}
       icon={StrategyAssets.exportPublishIcon}
       headline={StrategyCopy.exportPublishTitle}
       body={t('export.publish_consent_body_bluetooth')}

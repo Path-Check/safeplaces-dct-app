@@ -191,7 +191,10 @@ export const error: TextStyle = {
 
 // Forms
 export const primaryTextInput: TextStyle = {
-  ...mainContent,
+  ...extraBold,
+  fontSize: larger,
+  lineHeight: largest,
+  textAlign: 'center',
   color: Colors.primaryText,
 };
 
