@@ -111,7 +111,7 @@ const CodeInputScreen = (): JSX.Element => {
             <View>
               <Button
                 loading={isCheckingCode}
-                label={'Submit Code'}
+                label={t('export.code_input_button_submit')}
                 onPress={handleOnPressNext}
                 style={styles.button}
                 textStyle={styles.buttonText}
@@ -120,7 +120,7 @@ const CodeInputScreen = (): JSX.Element => {
                 onPress={handleOnPressCancel}
                 style={styles.secondaryButton}>
                 <Typography style={styles.secondaryButtonText}>
-                  {'Cancel'}
+                  {t('export.code_input_button_cancel')}
                 </Typography>
               </TouchableOpacity>
             </View>

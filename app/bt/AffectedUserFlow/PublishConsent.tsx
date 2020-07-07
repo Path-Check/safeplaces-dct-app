@@ -84,7 +84,7 @@ const PublishConsent = (): JSX.Element => {
               onPress={handleOnPressCancel}
               style={styles.secondaryButton}>
               <Typography style={styles.secondaryButtonText}>
-                {'Cancel'}
+                {t('export.consent_button_cancel')}
               </Typography>
             </TouchableOpacity>
           </View>
