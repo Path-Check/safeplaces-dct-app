@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 
 import { useStrategyContent } from '../TracingStrategyContext';
-import packageJson from '../../package.json';
 import { NavigationBarWrapper, Typography } from '../components';
 
 import { useDispatch } from 'react-redux';
@@ -19,6 +18,7 @@ import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleA
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
+const VERSION = 'ALPHA 7.6.2020';
 const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
 
 export const AboutScreen = ({ navigation }) => {
@@ -65,11 +65,11 @@ export const AboutScreen = ({ navigation }) => {
         <View style={styles.rowContainer}>
           <View style={styles.row}>
             <Typography style={styles.aboutSectionParaLabel}>
-              {t("ALPHA 7.6.2020")}
+              {t('about.version')}
             </Typography>
 
             <Typography style={styles.aboutSectionParaContent}>
-              {packageJson.version}
+              {VERSION}
             </Typography>
           </View>
           <View style={styles.row}>
