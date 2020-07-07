@@ -9,6 +9,7 @@ import {
 import { SvgXml } from 'react-native-svg';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
+import dayjs from 'dayjs';
 
 import { ExposureDatum, ExposureHistory } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
@@ -25,7 +26,7 @@ import {
   Typography as TypographyStyles,
   Colors,
 } from '../../styles';
-import dayjs from 'dayjs';
+import DateInfoHeader from './DateInfoHeader';
 
 interface HistoryProps {
   exposureHistory: ExposureHistory;
@@ -53,10 +54,10 @@ const History = ({ exposureHistory }: HistoryProps): JSX.Element => {
   };
 
   const titleText = t('screen_titles.exposure_history');
-  const lastDaysText = t('exposure_history.last_days');
 
   const showExposureDetail =
     selectedDatum && !DateTimeUtils.isInFuture(selectedDatum.date);
+  const isBT = !isGPS;
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -74,11 +75,7 @@ const History = ({ exposureHistory }: HistoryProps): JSX.Element => {
             </TouchableOpacity>
           </View>
           <View style={styles.headerRow}>
-            {!isGPS ? (
-              <Typography style={styles.subHeaderText}>
-                {lastDaysText}
-              </Typography>
-            ) : null}
+            {isBT ? <DateInfoHeader /> : null}
           </View>
         </View>
         <View style={styles.calendarContainer}>
@@ -111,10 +108,6 @@ const styles = StyleSheet.create({
   headerText: {
     ...TypographyStyles.header2,
     marginRight: Spacing.medium,
-  },
-  subHeaderText: {
-    ...TypographyStyles.header4,
-    ...TypographyStyles.bold,
   },
   moreInfoButton: {
     ...Buttons.tinyTeritiaryRounded,

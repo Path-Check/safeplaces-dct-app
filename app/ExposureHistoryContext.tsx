@@ -81,6 +81,7 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
           exposureInfo,
           blankHistoryConfig,
         );
+
         setExposureHistory(exposureHistory);
       },
     );
