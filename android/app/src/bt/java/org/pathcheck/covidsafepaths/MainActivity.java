@@ -4,21 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
-import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableArray;
-import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
 import org.devio.rn.splashscreen.SplashScreen;
@@ -28,12 +23,20 @@ import covidsafepaths.bt.exposurenotifications.utils.CallbackMessages;
 import covidsafepaths.bt.exposurenotifications.utils.RequestCodes;
 import covidsafepaths.bt.exposurenotifications.utils.Util;
 
+import static covidsafepaths.bt.exposurenotifications.utils.CallbackMessages.EN_STATUS_EVENT;
+
 public class MainActivity extends ReactActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     SplashScreen.show(this, R.style.SplashTheme);
     super.onCreate(savedInstanceState);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    checkIfExposureNotificationsEnabled();
   }
 
   /**
@@ -53,6 +56,21 @@ public class MainActivity extends ReactActivity {
        return new RNGestureHandlerEnabledRootView(MainActivity.this);
       }
     };
+  }
+
+  /**
+   * Must check every time the app resumes to handle the case when a different app on the device
+   * requests Exposure Notifications. If that happens, our app loses access to Exposure Notifications.
+   * Checking on resume will ensure the user is shown that Exposure Notifications are disabled in
+   * this app.
+   */
+  private void checkIfExposureNotificationsEnabled() {
+    ExposureNotificationClientWrapper.get(this)
+            .isEnabled().addOnSuccessListener(
+            enabled -> {
+              sendEvent(enabled);
+            });
+
   }
 
   public void showPermission(ApiException apiException) {
@@ -112,8 +130,11 @@ public class MainActivity extends ReactActivity {
      params = Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED);
     }
 
-    reactContext
-            .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-            .emit("onEnabledStatusUpdated", params);
+    if(reactContext != null) {
+      reactContext
+              .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+              .emit(EN_STATUS_EVENT, params);
+
+    }
   }
 }
