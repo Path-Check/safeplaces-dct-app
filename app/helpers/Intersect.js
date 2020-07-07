@@ -32,7 +32,7 @@ import {
 import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
 import languages from '../locales/languages';
 
-import { store } from '../store';
+import StoreAccessor from '../store/StoreAccessor';
 
 import getCursor from '../api/healthcareAuthorities/getCursorApi';
 
@@ -426,6 +426,14 @@ async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
   // we also need locally saved data so we can know the last read page for each HA
   let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
   if (!localHAData) localHAData = [];
+
+  const store = StoreAccessor.getStore();
+
+  if (store === null) {
+    throw Error.new(
+      'Attempting to access a not set store checking for intersect',
+    );
+  }
 
   let selectedAuthorities = healthcareAuthorities
     ? healthcareAuthorities
