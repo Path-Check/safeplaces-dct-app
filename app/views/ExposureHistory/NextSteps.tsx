@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
@@ -12,21 +13,23 @@ import { AUTHORITY_NAME as healthAuthority } from '../../constants/authorities';
 
 const NextSteps = (): JSX.Element => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   useStatusBarEffect('light-content');
 
   const handleOnBackPress = () => {
     navigation.goBack();
   };
 
-  const headerText = `${healthAuthority} recommends you take a self-assessment`;
-
-  const contentTextOne =
-    'It is possible that you may have crossed paths with somebody who has been diagnosed with COVID-19.';
-
-  const contentTextTwo =
-    "This does not mean that you are infected, but you should take precautions anyway. People who don't exhibit symptoms can sometimes still be contagious.";
-
-  const buttonText = 'Take Self Assessment';
+  const headerText = t('exposure_history.next_steps.ha_self_assessment', {
+    healthAuthority,
+  });
+  const contentTextOne = t(
+    'exposure_history.next_steps.possible_crossed_paths',
+  );
+  const contentTextTwo = t(
+    'exposure_history.next_steps.possible_infection_precaution',
+  );
+  const buttonText = t('exposure_history.next_steps.button_text');
 
   const handleOnPressTakeAssessment = () => {
     navigation.navigate(Screens.SelfAssessment);
