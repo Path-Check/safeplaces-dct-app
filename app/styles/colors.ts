@@ -141,6 +141,7 @@ export const formText = primaryText;
 export const formPlaceholderText = mediumGray;
 export const formInputBackground = primaryBackgroundFaintShade;
 export const formInputBorder = tertiaryBackground;
+export const placeholderTextColor = lightGray;
 
 export const success = primaryGreen;
 export const warning = primaryYellow;

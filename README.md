@@ -1,16 +1,16 @@
 <div align="center">
   <h1>COVID Safe Paths</h1>
 
-  <a href="https://covidsafepaths.org">
+  <a href="https://pathcheck.org/">
     <img
       width="80"
       height="67"
-      alt="safe paths logo"
+      alt="pathcheck logo"
       src="./assets/Safe_Paths_Logo.png"
     />
   </a>
   
-  <b>**https://covidsafepaths.org**</b>
+  <b>**https://pathcheck.org/**</b>
 </div>
 
 <hr />

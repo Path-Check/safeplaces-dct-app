@@ -46,7 +46,13 @@ export type Screen =
   | 'SelfAssessment'
   | 'PartnersOverview'
   | 'PartnersEdit'
-  | 'PartnersCustomUrl';
+  | 'PartnersCustomUrl'
+  | 'AffectedUserStart'
+  | 'AffectedUserCodeInput'
+  | 'AffectedUserPublishConsent'
+  | 'AffectedUserConfirmUpload'
+  | 'AffectedUserExportDone'
+  | 'AffectedUserComplete';
 
 export const Screens: { [key in Screen]: Screen } = {
   ExportStart: 'ExportStart',
@@ -83,6 +89,12 @@ export const Screens: { [key in Screen]: Screen } = {
   PartnersOverview: 'PartnersOverview',
   PartnersEdit: 'PartnersEdit',
   PartnersCustomUrl: 'PartnersCustomUrl',
+  AffectedUserStart: 'AffectedUserStart',
+  AffectedUserCodeInput: 'AffectedUserCodeInput',
+  AffectedUserPublishConsent: 'AffectedUserPublishConsent',
+  AffectedUserConfirmUpload: 'AffectedUserConfirmUpload',
+  AffectedUserExportDone: 'AffectedUserExportDone',
+  AffectedUserComplete: 'AffectedUserComplete',
 };
 
 export type Stack =
