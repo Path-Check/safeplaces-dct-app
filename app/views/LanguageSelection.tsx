@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { getLocaleList, setUserLocaleOverride } from '../locales/languages';
-import { Colors } from '../styles';
+import { Colors, Spacing } from '../styles';
 import { Typography } from '../components/Typography';
 
 const Separator = () => (
@@ -39,8 +39,8 @@ const LanguageSelection = (): JSX.Element => {
           <TouchableHighlight
             underlayColor={Colors.underlayPrimaryBackground}
             style={{
-              paddingVertical: 20,
-              paddingHorizontal: 24,
+              paddingVertical: Spacing.medium,
+              paddingHorizontal: Spacing.large,
             }}
             onPress={() => onSelectLanguage(value)}>
             <Typography
