@@ -15,7 +15,6 @@ import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
 import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
-import { Theme } from '../../constants/themes';
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
 
@@ -44,7 +43,7 @@ export const ExportSelectHA = ({ navigation }) => {
   };
 
   return (
-    <Theme use='default'>
+    <View style={{ flex: 1 }}>
       <StatusBar
         barStyle='dark-content'
         backgroundColor={Colors.primaryBackgroundFaintShade}
@@ -62,6 +61,7 @@ export const ExportSelectHA = ({ navigation }) => {
               <IconButton
                 icon={Icons.Close}
                 size={22}
+                color={Colors.primaryViolet}
                 onPress={() => navigation.navigate(Screens.ExportStart)}
               />
             </View>
@@ -113,7 +113,7 @@ export const ExportSelectHA = ({ navigation }) => {
           <SafeAreaView style={{ marginVertical: 44 }}>
             <View style={{ paddingHorizontal: 24 }}>
               <Button
-                style={styles.exportButton}
+                invert
                 label={t('common.next')}
                 onPress={() =>
                   navigation.navigate(Screens.ExportCodeInput, {
@@ -126,7 +126,7 @@ export const ExportSelectHA = ({ navigation }) => {
           </SafeAreaView>
         </View>
       </View>
-    </Theme>
+    </View>
   );
 };
 

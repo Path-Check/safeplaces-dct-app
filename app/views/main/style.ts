@@ -38,12 +38,7 @@ export const styles = StyleSheet.create({
   contentBelowPulse: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'center',
     paddingTop: PULSE_GAP,
-  },
-  buttonContainer: {
-    marginTop: 24,
-    height: 54, // fixes overlaying buttons on really small screens
   },
   pulseContainer: {
     position: 'absolute',
@@ -72,33 +67,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 24.5,
     color: Colors.white,
-    fontSize: 18,
-  },
-  subsubheaderText: {
-    textAlign: 'center',
-    lineHeight: 24.5,
-    color: Colors.white,
-    fontSize: 16,
-    marginBottom: 24,
-  },
-  mayoInfoRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  mayoInfoContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignContent: 'flex-end',
-    padding: 20,
-  },
-  mainMayoHeader: {
-    textAlign: 'left',
-    color: Colors.lightGray,
-    fontSize: 18,
-  },
-  mainMayoSubtext: {
-    textAlign: 'left',
-    color: Colors.lightGray,
     fontSize: 18,
   },
   arrowContainer: {

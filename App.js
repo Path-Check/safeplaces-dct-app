@@ -6,7 +6,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import Config from 'react-native-config';
 import 'array-flat-polyfill';
 
-import { Theme } from './app/constants/themes';
 import { Entry } from './app/Entry';
 import { TracingStrategyProvider } from './app/TracingStrategyContext';
 import VersionCheckService from './app/services/VersionCheckService';
@@ -35,11 +34,9 @@ const strategy = determineTracingStrategy();
 // For snapshot testing. In tests, we provide a mock store wrapper if needed.
 export const UnconnectedApp = () => (
   <MenuProvider>
-    <Theme use='default'>
-      <TracingStrategyProvider strategy={strategy}>
-        <Entry />
-      </TracingStrategyProvider>
-    </Theme>
+    <TracingStrategyProvider strategy={strategy}>
+      <Entry />
+    </TracingStrategyProvider>
   </MenuProvider>
 );
 
