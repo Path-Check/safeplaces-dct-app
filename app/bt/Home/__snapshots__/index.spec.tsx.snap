@@ -23,7 +23,7 @@ exports[`HomeScreen renders 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../app/assets/images/launchScreenBackground.png",
+          "testUri": "../../../app/assets/images/blueGradientBackground.png",
         }
       }
       style={
@@ -108,8 +108,9 @@ exports[`HomeScreen renders 1`] = `
               Array [
                 Object {
                   "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
                   "fontSize": 17,
-                  "lineHeight": 28,
+                  "lineHeight": 24,
                 },
                 Object {
                   "writingDirection": "ltr",
@@ -119,7 +120,7 @@ exports[`HomeScreen renders 1`] = `
                   "fontFamily": "IBMPlexSans-Bold",
                   "fontSize": 22,
                   "fontWeight": "500",
-                  "lineHeight": 28,
+                  "lineHeight": 24,
                   "textAlign": "center",
                 },
               ]
@@ -133,16 +134,18 @@ exports[`HomeScreen renders 1`] = `
               Array [
                 Object {
                   "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
                   "fontSize": 17,
-                  "lineHeight": 28,
+                  "lineHeight": 24,
                 },
                 Object {
                   "writingDirection": "ltr",
                 },
                 Object {
                   "color": "#ffffff",
+                  "fontFamily": "IBMPlexSans",
                   "fontSize": 15,
-                  "lineHeight": 24,
+                  "lineHeight": 20,
                   "marginTop": 20,
                   "textAlign": "center",
                 },
@@ -178,8 +181,9 @@ exports[`HomeScreen renders 1`] = `
               Array [
                 Object {
                   "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
                   "fontSize": 17,
-                  "lineHeight": 28,
+                  "lineHeight": 24,
                 },
                 Object {
                   "writingDirection": "ltr",

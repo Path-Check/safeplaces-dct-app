@@ -15,6 +15,7 @@ exports[`base 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
+        "borderTopWidth": 0,
         "flex": 1,
       }
     }
@@ -23,6 +24,7 @@ exports[`base 1`] = `
       accessibilityIgnoresInvertColors={true}
       style={
         Object {
+          "borderTopWidth": 0,
           "flex": 1,
           "justifyContent": "center",
           "resizeMode": "cover",
@@ -62,9 +64,13 @@ exports[`base 1`] = `
         <View>
           <View
             style={
-              Object {
-                "padding": 20,
-              }
+              Array [
+                Object {
+                  "borderTopWidth": 0,
+                  "padding": 20,
+                },
+                undefined,
+              ]
             }
           >
             <SvgXml
@@ -83,40 +89,45 @@ exports[`base 1`] = `
                     "fontFamily": "IBMPlexSans-Bold",
                     "fontSize": 28,
                     "fontWeight": "500",
-                    "lineHeight": 40,
+                    "lineHeight": 32,
                   },
                   Object {
                     "writingDirection": "ltr",
                   },
-                  Object {
-                    "marginVertical": 30,
-                  },
+                  Array [
+                    Object {
+                      "marginVertical": 30,
+                    },
+                    undefined,
+                  ],
                 ]
               }
             >
-              All done!
+              Thanks for keeping your community safe!
             </Text>
             <Text
               style={
                 Array [
                   Object {
                     "color": "#2e2e2e",
+                    "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
-                    "lineHeight": 28,
+                    "lineHeight": 24,
                   },
                   Object {
                     "writingDirection": "ltr",
                   },
-                  Object {
-                    "marginBottom": 20,
-                  },
+                  Array [
+                    Object {
+                      "marginBottom": 20,
+                    },
+                    undefined,
+                  ],
                 ]
               }
               testID="description"
             >
-              Continue to use this app and take this screening 
-              again in the next week
-               to help protect yourself and your community.
+              By sharing your health status and location history anonymously with your community, you are being proactive about fighting the spread of COVID-19.
             </Text>
           </View>
         </View>
@@ -147,6 +158,7 @@ exports[`base 1`] = `
                   "paddingHorizontal": 14,
                   "paddingVertical": 22,
                 },
+                undefined,
                 Object {
                   "backgroundColor": "#6979f8",
                 },
@@ -158,8 +170,9 @@ exports[`base 1`] = `
                 Array [
                   Object {
                     "color": "#2e2e2e",
+                    "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
-                    "lineHeight": 28,
+                    "lineHeight": 24,
                   },
                   Object {
                     "writingDirection": "ltr",
@@ -169,6 +182,7 @@ exports[`base 1`] = `
                       "color": "#f8f8f8",
                       "textAlign": "center",
                     },
+                    undefined,
                     Object {
                       "color": "#ffffff",
                     },

@@ -4,7 +4,14 @@ import dayjs from 'dayjs';
 
 import { DateTimeUtils } from '../../helpers';
 import { ExposureDatum } from '../../exposureHistory';
-import { Affordances, Outlines, Colors, Typography } from '../../styles';
+import {
+  Affordances,
+  Outlines,
+  Colors,
+  Typography,
+  Iconography,
+  Spacing,
+} from '../../styles';
 
 interface ExposureDatumIndicatorProps {
   exposureDatum: ExposureDatum;
@@ -43,8 +50,7 @@ const ExposureDatumIndicator = ({
         return [
           {
             ...circleStyle,
-            backgroundColor: Colors.exposureRiskWarning,
-            borderColor: Colors.exposureRiskWarning,
+            ...Iconography.possibleExposure,
           },
           { ...textStyle, color: Colors.white },
         ];
@@ -111,15 +117,17 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 36,
-    height: 36,
+    width: Spacing.xHuge,
+    height: Spacing.xHuge,
     borderRadius: Outlines.maxBorderRadius,
     borderColor: Colors.transparent,
-    borderWidth: Outlines.thick,
+    borderWidth: Outlines.extraThick,
   },
   textBase: {
     ...Typography.smallFont,
+    ...Typography.monospace,
     color: Colors.primaryText,
+    fontWeight: Typography.heavyWeight,
   },
   selectedBadge: {
     ...Affordances.bottomDotBadge(Colors.primaryText),

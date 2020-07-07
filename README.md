@@ -1,16 +1,16 @@
 <div align="center">
   <h1>COVID Safe Paths</h1>
 
-  <a href="https://covidsafepaths.org">
+  <a href="https://pathcheck.org/">
     <img
       width="80"
       height="67"
-      alt="safe paths logo"
+      alt="pathcheck logo"
       src="./assets/Safe_Paths_Logo.png"
     />
   </a>
   
-  <b>**https://covidsafepaths.org**</b>
+  <b>**https://pathcheck.org/**</b>
 </div>
 
 <hr />
@@ -116,6 +116,17 @@ dev_setup.sh
 ```
 dev_setup.bat
 ```
+
+#### Environment
+
+Populate the following 2 `.env` files with the relevant urls for your GAEN server:
+
+```
+.env.bt
+.env.bt.release
+```
+
+**Note:** Members of the `Path-Check` org can complete this step by running `yarn set-ha` and passing in the 2-letter ha abbreviation as the first argument (i.e. `yarn set-ha pc`)
 
 ## Running
 

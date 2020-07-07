@@ -26,11 +26,11 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
         Array [
           Object {
             "backgroundColor": "#ffffff",
-            "borderColor": "#333333",
+            "borderColor": "#d3d3d3",
             "borderRadius": 8,
-            "borderWidth": 1,
+            "borderWidth": 2,
             "marginBottom": 16,
-            "paddingHorizontal": 10,
+            "paddingHorizontal": 20,
             "paddingVertical": 20,
           },
           undefined,
@@ -40,7 +40,7 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
       <View
         style={
           Object {
-            "alignItems": "center",
+            "alignItems": "flex-start",
             "flexDirection": "row",
           }
         }
@@ -50,13 +50,14 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "#1f2c9b",
-                "borderRadius": 40,
+                "borderColor": "#999999",
+                "borderRadius": 2,
                 "borderWidth": 2,
-                "height": 20,
+                "height": 24,
                 "justifyContent": "center",
-                "marginRight": 10,
-                "width": 20,
+                "marginRight": 24,
+                "marginTop": 2,
+                "width": 24,
               },
               undefined,
             ]
@@ -67,16 +68,21 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
             Array [
               Object {
                 "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
               },
               Object {
-                "color": "#000000",
+                "color": "#2e2e2e",
                 "flex": 1,
                 "flexWrap": "wrap",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 19,
+                "fontWeight": "500",
+                "lineHeight": 24,
               },
             ]
           }
@@ -116,11 +122,11 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
         Array [
           Object {
             "backgroundColor": "#ffffff",
-            "borderColor": "#333333",
+            "borderColor": "#d3d3d3",
             "borderRadius": 8,
-            "borderWidth": 1,
+            "borderWidth": 2,
             "marginBottom": 16,
-            "paddingHorizontal": 10,
+            "paddingHorizontal": 20,
             "paddingVertical": 20,
           },
           undefined,
@@ -130,7 +136,7 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
       <View
         style={
           Object {
-            "alignItems": "center",
+            "alignItems": "flex-start",
             "flexDirection": "row",
           }
         }
@@ -140,13 +146,14 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "#1f2c9b",
+                "borderColor": "#999999",
                 "borderRadius": 40,
                 "borderWidth": 2,
-                "height": 20,
+                "height": 24,
                 "justifyContent": "center",
-                "marginRight": 10,
-                "width": 20,
+                "marginRight": 24,
+                "marginTop": 2,
+                "width": 24,
               },
               undefined,
             ]
@@ -157,16 +164,21 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
             Array [
               Object {
                 "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
               },
               Object {
-                "color": "#000000",
+                "color": "#2e2e2e",
                 "flex": 1,
                 "flexWrap": "wrap",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 19,
+                "fontWeight": "500",
+                "lineHeight": 24,
               },
             ]
           }

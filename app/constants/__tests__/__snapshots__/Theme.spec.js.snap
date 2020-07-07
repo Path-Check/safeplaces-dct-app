@@ -15,8 +15,9 @@ exports[`changes text color based on theme 1`] = `
       Array [
         Object {
           "color": "#2e2e2e",
+          "fontFamily": "IBMPlexSans",
           "fontSize": 17,
-          "lineHeight": 28,
+          "lineHeight": 24,
         },
         Object {
           "writingDirection": "ltr",
@@ -32,8 +33,9 @@ exports[`changes text color based on theme 1`] = `
       Array [
         Object {
           "color": "#2e2e2e",
+          "fontFamily": "IBMPlexSans",
           "fontSize": 17,
-          "lineHeight": 28,
+          "lineHeight": 24,
         },
         Object {
           "writingDirection": "ltr",
@@ -72,7 +74,7 @@ exports[`includes extra background View if setBackground=true 1`] = `
             "fontFamily": "IBMPlexSans-Bold",
             "fontSize": 52,
             "fontWeight": "500",
-            "lineHeight": 52,
+            "lineHeight": 50,
           },
           Object {
             "writingDirection": "ltr",

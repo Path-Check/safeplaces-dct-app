@@ -20,11 +20,14 @@ export const mediumGray = '#606060';
 export const darkGray = '#4e4e4e';
 export const darkestGray = '#2e2e2e';
 export const silver = '#bebebe';
+export const steelGray = '#9BA0AA';
+export const grayBlue = '#F8F8FF';
 export const porcelain = '#ecf0f1';
 
 // Reds
 export const red = '#ff0000';
 export const persimmon = '#ff5656';
+export const emergencyRed = '#D00000';
 
 export const primaryRed = red;
 
@@ -83,9 +86,13 @@ export const primaryBackgroundFaintShade = faintGray;
 export const secondaryBackground = moonRaker;
 export const tertiaryBackground = lighterGray;
 export const quaternaryBackground = lightGray;
+
+export const invertedPrimaryBackground = primaryBlue;
 export const invertedSecondaryBackground = tertiaryBlue;
 export const invertedTertiaryBackground = secondaryBlue;
 export const invertedQuaternaryBackground = primaryBlue;
+export const surveyPrimaryBackground = grayBlue;
+
 export const bottomSheetBackground = white;
 
 // Underlays, corresponding to the background to be used for
@@ -93,7 +100,9 @@ export const underlayPrimaryBackground = moonRaker;
 
 // Borders
 export const primaryBorder = primaryViolet;
-export const secondaryBorder = gray;
+export const secondaryBorder = lighterGray;
+export const radioBorder = lightGray;
+export const checkboxBorder = lightGray;
 
 // Nav
 export const mainNav = primaryViolet;
@@ -106,6 +115,7 @@ export const icon = mediumGray;
 
 // Buttons
 export const disabledButton = darkGray;
+export const disabledButtonText = quaternaryViolet;
 export const violetButton = cornflowerBlue;
 export const violetButtonLight = moonRaker;
 export const violetButtonDark = royalBlue;
@@ -135,6 +145,7 @@ export const formText = primaryText;
 export const formPlaceholderText = mediumGray;
 export const formInputBackground = primaryBackgroundFaintShade;
 export const formInputBorder = tertiaryBackground;
+export const placeholderTextColor = lightGray;
 
 export const success = primaryGreen;
 export const warning = primaryYellow;
@@ -151,4 +162,5 @@ export const onboardingIconYellow = champangne;
 export const onboardingIconBlue = moonRaker;
 
 // Exposure History
-export const exposureRiskWarning = royalBlue;
+export const possibleExposure = royalBlue;
+export const expectedExposure = amber;

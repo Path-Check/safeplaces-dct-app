@@ -1,31 +1,33 @@
-import React, { createContext } from 'react';
-import { TracingStrategy } from './tracingStrategy';
+import React, { createContext, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import {
+  TracingStrategy,
+  StrategyCopyContent,
+  StrategyCopyContentHook,
+  StrategyAssets,
+} from './tracingStrategy';
+
 import { ExposureHistoryProvider } from './ExposureHistoryContext';
 
 interface TracingStrategyContextState {
   name: string;
-  homeScreenComponent: () => JSX.Element;
+  homeScreenComponent: ({ testID }: { testID: string }) => JSX.Element;
+  affectedUserFlow: () => JSX.Element;
+  assets: StrategyAssets;
+  useCopy: StrategyCopyContentHook;
 }
 
-const DefaultHomeScreenComponent = () => {
-  return <></>;
-};
-
-const defaultState = {
-  name: 'initializingTracingStrategy',
-  homeScreenComponent: DefaultHomeScreenComponent,
-};
-
-const TracingStrategyContext = createContext<TracingStrategyContextState>(
-  defaultState,
-);
+const TracingStrategyContext = createContext<
+  TracingStrategyContextState | undefined
+>(undefined);
 
 interface TracingStrategyProps {
   children: JSX.Element;
   strategy: TracingStrategy;
 }
 
-const TracingStrategyProvider = ({
+export const TracingStrategyProvider = ({
   children,
   strategy,
 }: TracingStrategyProps): JSX.Element => {
@@ -36,6 +38,9 @@ const TracingStrategyProvider = ({
       value={{
         name: strategy.name,
         homeScreenComponent: strategy.homeScreenComponent,
+        affectedUserFlow: strategy.affectedUserFlow,
+        assets: strategy.assets,
+        useCopy: strategy.useCopy,
       }}>
       <StrategyPermissionsProvider>
         <ExposureHistoryProvider
@@ -47,5 +52,21 @@ const TracingStrategyProvider = ({
   );
 };
 
-export { TracingStrategyProvider };
-export default TracingStrategyContext;
+export const useTracingStrategyContext = (): TracingStrategyContextState => {
+  const context = useContext(TracingStrategyContext);
+  if (context === undefined) {
+    throw new Error('TracingStrategyContext must be used with a provider');
+  }
+  return context;
+};
+
+export const useStrategyContent = (): {
+  StrategyCopy: StrategyCopyContent;
+  StrategyAssets: StrategyAssets;
+} => {
+  const { t } = useTranslation();
+  const { useCopy, assets } = useTracingStrategyContext();
+  const StrategyCopy = useCopy(t);
+  const StrategyAssets = assets;
+  return { StrategyCopy, StrategyAssets };
+};

@@ -1,125 +1,94 @@
 /* eslint-disable react-native/no-raw-text */
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
 
-import { NavigationBarWrapper, Switch, Typography } from '../components';
-import { getBuildtimeFlags } from '../constants/flagsEnv';
-import { DEBUG_MODE } from '../constants/storage';
-import { Theme } from '../constants/themes';
-import { getCleanedFlagName } from '../helpers/Flags';
-import { GetStoreData } from '../helpers/General';
-import { disableDebugMode, enableDebugMode } from '../helpers/Intersect';
-import { useFlags } from '../services/hooks/useFlags';
+import {
+  NavigationBarWrapper,
+  Switch,
+  Typography,
+  Button,
+} from '../components';
+import { useDispatch, useSelector } from 'react-redux';
+import toggleFeatureFlagAction from '../store/actions/featureFlags/toggleFeatureFlagAction';
+import { Spacing } from '../styles';
+import { FeatureFlagOption } from '../store/types';
+import { initDevLanguages, initProdLanguages } from '../locales/languages';
+import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleAllowFeatureFlagsEnabledAction';
 
-import { Colors } from '../styles';
+const flagToName = (flag) => {
+  switch (flag) {
+    case FeatureFlagOption.CUSTOM_URL:
+      return 'Custom Yaml URL';
+    case FeatureFlagOption.DOWNLOAD_LOCALLY:
+      return 'Download Locally';
+    case FeatureFlagOption.GOOGLE_IMPORT:
+      return 'Import from Google';
+    case FeatureFlagOption.DEV_LANGUAGES:
+      return 'All Language Options';
+    // For development ease:
+    default:
+      return flag;
+  }
+};
 
-export const FEATURE_FLAG_SCREEN_NAME = 'FeatureFlagsScreen';
-
-export const FlagToggleRow = ({ name, val, onValueChange }) => {
-  const buildtimeFlags = getBuildtimeFlags();
-
-  const getBuildtimeFlagVal = (flagName) =>
-    buildtimeFlags[flagName] ? 'On' : 'Off';
-
+export const FlagToggleRow = ({ flag }) => {
+  const dispatch = useDispatch();
+  const flags = useSelector((state) => state.featureFlags.flags);
+  const isActive = flags[flag];
+  const toggleActive = () =>
+    dispatch(toggleFeatureFlagAction({ flag, overrideValue: !isActive }));
   return (
     <View style={styles.toggleRow}>
-      <Switch
-        testID={name}
-        value={val}
-        onValueChange={() => onValueChange(name)}
-      />
+      <Switch value={isActive} onValueChange={toggleActive} />
       <View style={styles.toggleRowText}>
         <Typography use='body1' bold>
-          {`${getCleanedFlagName(name)}`}
-        </Typography>
-        <Typography use='body2'>
-          Default:
-          <Typography style={styles.toggleDefaultVal} use='body3'>
-            {` ${getBuildtimeFlagVal(name)}`}
-          </Typography>
+          {flagToName(flag)}
         </Typography>
       </View>
     </View>
   );
 };
 
-export const ExposureModeToggleRow = () => {
-  const [isExposed, setIsExposed] = useState(false);
-
-  useEffect(() => {
-    const setInitalExposureVal = async () => {
-      const isExposed = await GetStoreData(DEBUG_MODE, false);
-      setIsExposed(isExposed);
-    };
-    setInitalExposureVal();
-  }, []);
-
-  const toggleExposureMode = (val) => {
-    val ? enableDebugMode() : disableDebugMode();
-    setIsExposed(val);
-  };
-
-  return (
-    <View style={styles.toggleRow}>
-      <Switch
-        value={isExposed}
-        onValueChange={toggleExposureMode}
-        trackColor={{ false: Colors.mediumGray, true: Colors.errorText }}
-      />
-      <Typography
-        use='body1'
-        bold
-        style={
-          isExposed
-            ? { ...styles.toggleRowText, color: Colors.errorText }
-            : styles.toggleRowText
-        }>
-        Exposure Mode
-      </Typography>
-    </View>
-  );
-};
-
-export const FlagToggleList = () => {
-  const [flags, setFlag] = useFlags();
-  const alphabetizedFlags = Object.keys(flags).sort(); // Prevents toggle reordering
-
-  const toggleFlag = async (key) => setFlag(key, !flags[key]);
-
-  return (
-    <View style={styles.toggleList}>
-      <ExposureModeToggleRow />
-      {alphabetizedFlags.map((key) => {
-        return (
-          <FlagToggleRow
-            key={key}
-            name={key}
-            val={flags[key]}
-            onValueChange={toggleFlag}
-          />
-        );
-      })}
-    </View>
-  );
-};
-
 export const FeatureFlagsScreen = ({ navigation }) => {
-  const backToMain = () => {
+  const flagMap = useSelector((state) => state.featureFlags.flags);
+  const flags = Object.keys(flagMap);
+  const devLanguagesEnabled = flagMap[FeatureFlagOption.DEV_LANGUAGES];
+
+  // Dev languages requires an init step, not just conditional render
+  useEffect(() => {
+    if (devLanguagesEnabled) {
+      initDevLanguages();
+    } else {
+      initProdLanguages();
+    }
+  }, [devLanguagesEnabled]);
+  const dispatch = useDispatch();
+
+  const disableFeatureFlags = () => {
+    dispatch(toggleAllowFeatureFlagsAction({ overrideValue: false }));
     navigation.goBack();
   };
 
   return (
-    <NavigationBarWrapper title={'Feature Flags'} onBackPress={backToMain}>
-      <Theme use='default'>
+    <NavigationBarWrapper
+      title={'Feature Flags'}
+      onBackPress={() => navigation.goBack()}>
+      <View style={{ padding: Spacing.large, flex: 1 }}>
         <Typography use='body1' style={styles.headerText} bold>
           Notice
         </Typography>
         <Typography use='body2' style={styles.headerText}>
-          This screen is only available when running the application in
-          development or testing
+          This screen is for enabling advanced debugging features
         </Typography>
-        <FlagToggleList />
-      </Theme>
+        <View style={{ height: Spacing.large }} />
+        <FlatList
+          alwaysBounceVertical={false}
+          data={flags}
+          keyExtractor={(_, i) => `${i}`}
+          renderItem={({ item: flag }) => <FlagToggleRow flag={flag} />}
+        />
+        <Button label='Disable Feature Flags' onPress={disableFeatureFlags} />
+      </View>
     </NavigationBarWrapper>
   );
 };
@@ -130,11 +99,6 @@ const styles = StyleSheet.create({
     paddingTop: 7.5,
     marginHorizontal: 15,
   },
-  toggleList: {
-    paddingTop: 20,
-    marginHorizontal: 10,
-    width: '80%',
-  },
   toggleRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -144,8 +108,5 @@ const styles = StyleSheet.create({
   },
   toggleRowText: {
     paddingLeft: 15,
-  },
-  toggleDefaultVal: {
-    fontStyle: 'italic',
   },
 });

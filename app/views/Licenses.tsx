@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Image,
   Linking,
@@ -8,28 +7,24 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 
-import { Images } from '../assets';
 import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
-import { useAssets } from '../TracingStrategyAssets';
-import { NavigationProp } from '../navigation';
+import { useStrategyContent } from '../TracingStrategyContext';
 
+import { Images } from '../assets';
 import { Colors, Spacing } from '../styles';
 
-type LicensesScreenProps = {
-  navigation: NavigationProp;
-};
+const PRIVACY_POLICY_URL = 'https://pathcheck.org/privacy-policy/';
 
-const PRIVACY_POLICY_URL = 'https://covidsafepaths.org/privacy-policy/';
-
-export const LicensesScreen = ({
-  navigation,
-}: LicensesScreenProps): JSX.Element => {
+export const LicensesScreen = (): JSX.Element => {
   const { t } = useTranslation();
-  const { legalHeader } = useAssets();
+  const navigation = useNavigation();
+  const { StrategyCopy } = useStrategyContent();
 
-  const legalHeaderText: string = legalHeader as string;
+  const legalHeaderText = StrategyCopy.legalHeader;
 
   const backToMain = () => {
     navigation.goBack();
@@ -50,7 +45,9 @@ export const LicensesScreen = ({
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
         <View>
-          <Typography use='headline2'>{legalHeaderText}</Typography>
+          <Typography use='headline2' testID={'licenses-legal-header'}>
+            {legalHeaderText}
+          </Typography>
           <View
             style={{ paddingTop: Spacing.xSmall, paddingLeft: Spacing.medium }}>
             <Typography use='body2'>{t('label.legal_page_address')}</Typography>
@@ -63,7 +60,7 @@ export const LicensesScreen = ({
             </Typography>
             <Typography
               use='body2'
-              onPress={handleOnPressOpenUrl('https://covidsafepaths.org/')}
+              onPress={handleOnPressOpenUrl('https://pathcheck.org/')}
               style={styles.hyperlink}>
               {pathCheckAddress}
             </Typography>

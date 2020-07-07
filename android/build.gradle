@@ -52,6 +52,11 @@ allprojects {
             url 'https://github.com/WickeDev/stetho-realm/raw/master/maven-repo'
         }
 
+        maven {
+            // react-native-background-fetch
+            url("${project(':react-native-background-fetch').projectDir}/libs")
+        }
+
         google()
         jcenter()
         maven { url 'https://jitpack.io' }

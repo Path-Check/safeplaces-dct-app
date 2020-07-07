@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   ViewStyle,
   View,
   StyleSheet,
   ScrollView,
   TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
@@ -14,15 +15,8 @@ import {
   NavigationState,
 } from 'react-navigation';
 
-import {
-  LOCALE_LIST,
-  getLanguageFromLocale,
-  getUserLocaleOverride,
-  setUserLocaleOverride,
-  supportedDeviceLanguageOrEnglish,
-} from '../../locales/languages';
-import { FeatureFlag } from '../../components/FeatureFlag';
-import { NativePicker } from '../../components/NativePicker';
+import { getLocalNames } from '../../locales/languages';
+import FeatureFlag from '../../components/FeatureFlag';
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { isGPS } from '../../COVIDSafePathsConfig';
@@ -30,73 +24,54 @@ import GoogleMapsImport from './GoogleMapsImport';
 import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
-import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
+import {
+  Buttons,
+  Colors,
+  Spacing,
+  Typography as TypographyStyles,
+} from '../../styles';
+import { FeatureFlagOption, RootState } from '../../store/types';
+import { useSelector } from 'react-redux';
 
 interface SettingsScreenProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
+interface LanguageSelectionListItemProps {
+  icon: string;
+  label: string;
+  onPress: () => void;
+}
+const LanguageSelectionListItem = ({
+  icon,
+  label,
+  onPress,
+}: LanguageSelectionListItemProps) => (
+  <TouchableHighlight
+    underlayColor={Colors.underlayPrimaryBackground}
+    style={styles.listItem}
+    onPress={onPress}>
+    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <SvgXml
+        xml={icon}
+        style={[styles.icon, { marginRight: Spacing.small }]}
+      />
+      <Typography use={'body1'}>{label}</Typography>
+    </View>
+  </TouchableHighlight>
+);
+
 const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
-  const { t, i18n } = useTranslation();
-
-  const [userLocale, setUserLocale] = useState(
-    supportedDeviceLanguageOrEnglish(),
-  );
-
-  useEffect(() => {
-    const setOverrideLocale = async () => {
-      const userSelectedLocale = await getUserLocaleOverride();
-      if (userSelectedLocale) {
-        setUserLocale(getLanguageFromLocale(userSelectedLocale));
-      }
-    };
-    setOverrideLocale();
-  }, []);
-
+  const { enableFlags } = useSelector((state: RootState) => state.featureFlags);
+  const {
+    t,
+    i18n: { language: localeCode },
+  } = useTranslation();
+  const languageName = getLocalNames()[localeCode];
   useStatusBarEffect('light-content');
 
   const navigateTo = (screen: string) => {
     return () => navigation.navigate(screen);
-  };
-
-  const localeChanged = async (locale: string) => {
-    try {
-      await setUserLocaleOverride(locale);
-      setUserLocale(locale);
-    } catch (e) {
-      console.log('something went wrong in lang change', e);
-    }
-  };
-
-  interface LanguageSelectionListItemProps {
-    icon: string;
-    label: string;
-    onPress: () => void;
-  }
-
-  const LanguageSelectionListItem = ({
-    icon,
-    label,
-    onPress,
-  }: LanguageSelectionListItemProps) => {
-    const iconStyle =
-      i18n.dir() === 'rtl'
-        ? { marginLeft: Spacing.xSmall }
-        : { marginRight: Spacing.xSmall };
-
-    const flexDirection = i18n.dir() === 'rtl' ? 'row-reverse' : 'row';
-
-    return (
-      <TouchableHighlight
-        underlayColor={Colors.underlayPrimaryBackground}
-        style={[styles.listItem]}
-        onPress={onPress}>
-        <View style={{ flexDirection, alignItems: 'center' }}>
-          <SvgXml xml={icon} style={[styles.icon, iconStyle]} />
-          <Typography use={'body1'}>{label}</Typography>
-        </View>
-      </TouchableHighlight>
-    );
   };
 
   interface SettingsListItemProps {
@@ -134,40 +109,31 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
       title={t('navigation.more')}
       includeBackButton={false}>
       <ScrollView style={styles.container}>
-        <View style={styles.section}>
-          <NativePicker
-            items={LOCALE_LIST}
-            value={userLocale}
-            onValueChange={localeChanged}>
-            {({
-              label,
-              openPicker,
-            }: {
-              label: string;
-              openPicker: () => void;
-            }) => (
-              <LanguageSelectionListItem
-                label={label || t('label.unknown')}
-                icon={Icons.LanguagesIcon}
-                onPress={openPicker}
-              />
-            )}
-          </NativePicker>
-        </View>
-
         {!isGPS && (
-          <View style={styles.section}>
-            <SettingsListItem
-              label={t('settings.share_test_result')}
-              onPress={navigateTo('ExportFlow')}
-              description={t('settings.share_test_result_description')}
-              style={styles.lastListItem}
-            />
+          <View style={styles.sectionPrimary}>
+            <Typography>
+              {t('settings.share_test_result_description')}
+            </Typography>
+            <TouchableOpacity
+              onPress={navigateTo(Screens.ExportFlow)}
+              style={styles.button}>
+              <Typography style={styles.buttonText}>
+                {t('settings.share_test_result')}
+              </Typography>
+            </TouchableOpacity>
           </View>
         )}
 
+        <View style={styles.section}>
+          <LanguageSelectionListItem
+            label={languageName || t('label.unknown')}
+            icon={Icons.LanguagesIcon}
+            onPress={navigateTo(Screens.LanguageSelection)}
+          />
+        </View>
+
         {isGPS ? (
-          <FeatureFlag name={'google_import'}>
+          <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
             <View style={styles.section}>
               <View style={styles.listItem}>
                 <GoogleMapsImport navigation={navigation} />
@@ -199,7 +165,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </View>
         ) : null}
 
-        <FeatureFlag name={'download_locally'}>
+        <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
           <View style={styles.section}>
             <SettingsListItem
               label={'Download Locally'}
@@ -209,15 +175,15 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </View>
         </FeatureFlag>
 
-        {__DEV__ ? (
+        {enableFlags && (
           <View style={styles.section}>
             <SettingsListItem
-              label='Feature Flags (Dev mode only)'
+              label='Feature Flags (Developer)'
               onPress={navigateTo(Screens.FeatureFlags)}
               style={styles.lastListItem}
             />
           </View>
-        ) : null}
+        )}
       </ScrollView>
     </NavigationBarWrapper>
   );
@@ -227,7 +193,7 @@ const Divider = () => <View style={styles.divider} />;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.primaryBackgroundFaintShade,
+    backgroundColor: Colors.primaryBackground,
   },
   divider: {
     marginHorizontal: Spacing.small,
@@ -242,6 +208,17 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: Colors.tertiaryViolet,
+  },
+  sectionPrimary: {
+    flex: 1,
+    margin: Spacing.medium,
+  },
+  button: {
+    ...Buttons.largeSecondaryBlue,
+    marginTop: Spacing.medium,
+  },
+  buttonText: {
+    ...TypographyStyles.buttonTextLight,
   },
   icon: {
     maxWidth: Spacing.icon,

@@ -14,39 +14,11 @@ exports[`base 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "#f8f8f8",
+        "backgroundColor": "#f8f8ff",
         "flex": 1,
       }
     }
   >
-    <View
-      style={
-        Object {
-          "marginVertical": 40,
-          "paddingHorizontal": 20,
-        }
-      }
-    >
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "#1f2c9b",
-              "fontFamily": "IBMPlexSans-Bold",
-              "fontSize": 28,
-              "fontWeight": "500",
-              "lineHeight": 40,
-            },
-            Object {
-              "writingDirection": "ltr",
-            },
-            undefined,
-          ]
-        }
-      >
-        What is the answer?
-      </Text>
-    </View>
     <RCTScrollView
       style={
         Object {
@@ -58,162 +30,233 @@ exports[`base 1`] = `
         <View
           style={
             Object {
+              "marginTop": 16,
               "paddingHorizontal": 20,
-              "paddingVertical": 20,
             }
           }
         >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1f2c9b",
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 28,
+                  "fontWeight": "500",
+                  "lineHeight": 32,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                undefined,
+              ]
+            }
+          >
+            What is the answer?
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "paddingHorizontal": 20,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 17,
+                  "lineHeight": 24,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "color": "#4754C5",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 17,
+                  "lineHeight": 16,
+                  "marginTop": 28,
+                },
+              ]
+            }
+          >
+            Select one
+          </Text>
           <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
             style={
               Object {
-                "opacity": 1,
+                "marginTop": 20,
               }
             }
-            testID="option"
           >
             <View
+              accessible={true}
+              focusable={true}
+              isTVSelectable={true}
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#333333",
-                    "borderRadius": 8,
-                    "borderWidth": 1,
-                    "marginBottom": 16,
-                    "paddingHorizontal": 10,
-                    "paddingVertical": 20,
-                  },
-                  false,
-                ]
+                Object {
+                  "opacity": 1,
+                }
               }
+              testID="option"
             >
               <View
                 style={
-                  Object {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "#ffffff",
+                      "borderColor": "#d3d3d3",
+                      "borderRadius": 8,
+                      "borderWidth": 2,
+                      "marginBottom": 16,
+                      "paddingHorizontal": 20,
+                      "paddingVertical": 20,
+                    },
+                    false,
+                  ]
                 }
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderColor": "#1f2c9b",
-                        "borderRadius": 40,
-                        "borderWidth": 2,
-                        "height": 20,
-                        "justifyContent": "center",
-                        "marginRight": 10,
-                        "width": 20,
-                      },
-                      false,
-                    ]
+                    Object {
+                      "alignItems": "flex-start",
+                      "flexDirection": "row",
+                    }
                   }
-                />
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#2e2e2e",
-                        "fontSize": 17,
-                        "lineHeight": 28,
-                      },
-                      Object {
-                        "writingDirection": "ltr",
-                      },
-                      Object {
-                        "color": "#000000",
-                        "flex": 1,
-                        "flexWrap": "wrap",
-                      },
-                    ]
-                  }
-                  testID="label"
                 >
-                  A
-                </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "borderColor": "#999999",
+                          "borderRadius": 40,
+                          "borderWidth": 2,
+                          "height": 24,
+                          "justifyContent": "center",
+                          "marginRight": 24,
+                          "marginTop": 2,
+                          "width": 24,
+                        },
+                        false,
+                      ]
+                    }
+                  />
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#2e2e2e",
+                          "fontFamily": "IBMPlexSans",
+                          "fontSize": 17,
+                          "lineHeight": 24,
+                        },
+                        Object {
+                          "writingDirection": "ltr",
+                        },
+                        Object {
+                          "color": "#2e2e2e",
+                          "flex": 1,
+                          "flexWrap": "wrap",
+                          "fontFamily": "IBMPlexSans-Bold",
+                          "fontSize": 19,
+                          "fontWeight": "500",
+                          "lineHeight": 24,
+                        },
+                      ]
+                    }
+                    testID="label"
+                  >
+                    A
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
-          <View
-            accessible={true}
-            focusable={true}
-            isTVSelectable={true}
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
-            testID="option"
-          >
             <View
+              accessible={true}
+              focusable={true}
+              isTVSelectable={true}
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#333333",
-                    "borderRadius": 8,
-                    "borderWidth": 1,
-                    "marginBottom": 16,
-                    "paddingHorizontal": 10,
-                    "paddingVertical": 20,
-                  },
-                  false,
-                ]
+                Object {
+                  "opacity": 1,
+                }
               }
+              testID="option"
             >
               <View
                 style={
-                  Object {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "#ffffff",
+                      "borderColor": "#d3d3d3",
+                      "borderRadius": 8,
+                      "borderWidth": 2,
+                      "marginBottom": 16,
+                      "paddingHorizontal": 20,
+                      "paddingVertical": 20,
+                    },
+                    false,
+                  ]
                 }
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderColor": "#1f2c9b",
-                        "borderRadius": 40,
-                        "borderWidth": 2,
-                        "height": 20,
-                        "justifyContent": "center",
-                        "marginRight": 10,
-                        "width": 20,
-                      },
-                      false,
-                    ]
+                    Object {
+                      "alignItems": "flex-start",
+                      "flexDirection": "row",
+                    }
                   }
-                />
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#2e2e2e",
-                        "fontSize": 17,
-                        "lineHeight": 28,
-                      },
-                      Object {
-                        "writingDirection": "ltr",
-                      },
-                      Object {
-                        "color": "#000000",
-                        "flex": 1,
-                        "flexWrap": "wrap",
-                      },
-                    ]
-                  }
-                  testID="label"
                 >
-                  B
-                </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "borderColor": "#999999",
+                          "borderRadius": 40,
+                          "borderWidth": 2,
+                          "height": 24,
+                          "justifyContent": "center",
+                          "marginRight": 24,
+                          "marginTop": 2,
+                          "width": 24,
+                        },
+                        false,
+                      ]
+                    }
+                  />
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#2e2e2e",
+                          "fontFamily": "IBMPlexSans",
+                          "fontSize": 17,
+                          "lineHeight": 24,
+                        },
+                        Object {
+                          "writingDirection": "ltr",
+                        },
+                        Object {
+                          "color": "#2e2e2e",
+                          "flex": 1,
+                          "flexWrap": "wrap",
+                          "fontFamily": "IBMPlexSans-Bold",
+                          "fontSize": 19,
+                          "fontWeight": "500",
+                          "lineHeight": 24,
+                        },
+                      ]
+                    }
+                    testID="label"
+                  >
+                    B
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -246,8 +289,9 @@ exports[`base 1`] = `
                 "paddingHorizontal": 14,
                 "paddingVertical": 22,
               },
+              undefined,
               Object {
-                "backgroundColor": undefined,
+                "backgroundColor": "#e5e7fa",
               },
             ]
           }
@@ -257,8 +301,9 @@ exports[`base 1`] = `
               Array [
                 Object {
                   "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
                   "fontSize": 17,
-                  "lineHeight": 28,
+                  "lineHeight": 24,
                 },
                 Object {
                   "writingDirection": "ltr",
@@ -268,8 +313,9 @@ exports[`base 1`] = `
                     "color": "#f8f8f8",
                     "textAlign": "center",
                   },
+                  undefined,
                   Object {
-                    "color": "#e5e7fa",
+                    "color": "#a5affb",
                   },
                 ],
               ]

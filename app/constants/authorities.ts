@@ -3,3 +3,5 @@ export const PUBLIC_DATA_URL =
 
 export const AUTHORITIES_LIST_URL =
   'https://raw.githubusercontent.com/Path-Check/safeplaces-frontend/develop/healthcare-authorities.yaml';
+
+export const AUTHORITY_NAME = 'Boston Public Health Commission';

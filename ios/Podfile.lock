@@ -193,7 +193,7 @@ PODS:
   - React-jsinspector (0.61.5)
   - react-native-background-timer (2.2.0):
     - React
-  - react-native-config (0.11.7):
+  - react-native-config (1.2.1):
     - React
   - react-native-document-picker (3.2.0):
     - React
@@ -484,7 +484,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-background-timer: 1f7d560647b40e6a60b01c452ba29c54bf581fc4
-  react-native-config: 8f6b2b9e017f6a5e92a97353c768e19e67294bb1
+  react-native-config: ae9ef3bdbf539f2d14ebaf4ebeba508f766e066a
   react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-safe-area-context: e768fca90207ee68924b3d0877633f2ce9cc9d68
@@ -522,6 +522,6 @@ SPEC CHECKSUMS:
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: 9ea91427dcab32db09cce2e3c6201a754ae32e66
+PODFILE CHECKSUM: d641f53b267b5fdc2398388c8211cf0739401d29
 
 COCOAPODS: 1.9.1

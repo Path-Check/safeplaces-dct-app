@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 
 import { ExposureDatum, Possible, NoKnown } from '../../exposureHistory';
@@ -42,15 +43,19 @@ const PossibleExposureDetail = ({
 }: PossibleExposureDetailProps) => {
   const exposureDurationText = TimeHelpers.durationMsToString(duration);
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');
-  const exposureTime = `Possible Exposure Time: ${exposureDurationText}`;
-  const explainationContent = `For ${exposureDurationText}, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis.`;
+  const exposureTime = t('exposure_datum.possible.duration', {
+    duration: exposureDurationText,
+  });
+  const explanationContent = t('exposure_datum.possible.explanation', {
+    duration: exposureDurationText,
+  });
+  const nextStepsButtonText = t('exposure_datum.possible.what_next');
 
   const handleOnPressNextSteps = () => {
     navigation.navigate(Screens.NextSteps);
   };
-
-  const nextStepsButtonText = 'What should I do next?';
 
   return (
     <>
@@ -58,11 +63,12 @@ const PossibleExposureDetail = ({
         <Typography style={styles.date}>{exposureDate}</Typography>
         <Typography style={styles.info}>{exposureTime}</Typography>
         <View style={styles.contentContainer}>
-          <Typography style={styles.content}>{explainationContent}</Typography>
+          <Typography style={styles.content}>{explanationContent}</Typography>
         </View>
       </View>
       <View style={styles.ctaContainer}>
         <TouchableOpacity
+          testID={'exposure-history-next-steps-button'}
           style={styles.nextStepsButton}
           onPress={handleOnPressNextSteps}>
           <Typography style={styles.nextStepsButtonText}>
@@ -81,14 +87,14 @@ interface NoKnownExposureDetailProps {
 const NoKnownExposureDetail = ({
   datum: { date },
 }: NoKnownExposureDetailProps) => {
+  const { t } = useTranslation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');
-  const explainationContent =
-    'Your exposure history will be updated if this changes in the future.';
+  const explanationContent = t('exposure_datum.no_known.explanation');
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
       <View style={styles.contentContainer}>
-        <Typography style={styles.content}>{explainationContent}</Typography>
+        <Typography style={styles.content}>{explanationContent}</Typography>
       </View>
     </View>
   );
@@ -103,7 +109,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.lighterGray,
   },
   date: {
-    ...TypographyStyles.header2,
+    ...TypographyStyles.header6,
   },
   info: {
     lineHeight: TypographyStyles.largeLineHeight,

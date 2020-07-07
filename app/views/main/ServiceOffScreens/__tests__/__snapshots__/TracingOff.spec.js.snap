@@ -26,7 +26,7 @@ exports[`tracing off screen matches snapshot 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../app/assets/images/launchScreenBackground.png",
+          "testUri": "../../../app/assets/images/blueGradientBackground.png",
         }
       }
       style={
@@ -122,7 +122,6 @@ exports[`tracing off screen matches snapshot 1`] = `
         style={
           Object {
             "color": "#ffffff",
-            "fontFamily": "IBMPlexSans-Medium",
             "fontSize": 26,
             "lineHeight": 34,
             "marginBottom": 24,
@@ -137,15 +136,15 @@ exports[`tracing off screen matches snapshot 1`] = `
           Array [
             Object {
               "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
             },
             Object {
               "color": "#ffffff",
-              "fontFamily": "IBMPlexSans",
               "fontSize": 18,
               "lineHeight": 24.5,
               "marginBottom": 24,
@@ -157,30 +156,14 @@ exports[`tracing off screen matches snapshot 1`] = `
         PathCheck needs location access in Settings to privately save the places you visit
       </Text>
       <View
-        accessibilityLabel="Allow Location Access"
-        accessibilityRole="button"
         accessible={true}
         focusable={true}
         isTVSelectable={true}
         style={
           Object {
-            "alignContent": "center",
-            "alignItems": "center",
-            "alignSelf": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderBottomLeftRadius": 8,
-            "borderBottomRightRadius": 8,
-            "borderColor": "transparent",
-            "borderStyle": "solid",
-            "borderTopLeftRadius": 8,
-            "borderTopRightRadius": 8,
-            "borderWidth": 2,
-            "flexDirection": "row",
             "height": 54,
-            "justifyContent": "center",
             "marginTop": 24,
             "opacity": 1,
-            "paddingHorizontal": 16,
           }
         }
       >
@@ -189,19 +172,14 @@ exports[`tracing off screen matches snapshot 1`] = `
             Array [
               Object {
                 "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
               },
-              Object {
-                "color": "#1f2c9b",
-                "fontFamily": "IBMPlexSans-Medium",
-                "fontSize": 20,
-                "fontWeight": "normal",
-                "lineHeight": 40,
-              },
+              undefined,
             ]
           }
         >

@@ -29,6 +29,7 @@ exports[`base 1`] = `
             "paddingHorizontal": 14,
             "paddingVertical": 22,
           },
+          undefined,
           Object {
             "backgroundColor": "#6979f8",
           },
@@ -40,8 +41,9 @@ exports[`base 1`] = `
           Array [
             Object {
               "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
@@ -51,6 +53,7 @@ exports[`base 1`] = `
                 "color": "#f8f8f8",
                 "textAlign": "center",
               },
+              undefined,
               Object {
                 "color": "#ffffff",
               },
@@ -94,8 +97,9 @@ exports[`color 1`] = `
             "paddingHorizontal": 14,
             "paddingVertical": 22,
           },
+          undefined,
           Object {
-            "backgroundColor": "red",
+            "backgroundColor": "#6979f8",
           },
         ]
       }
@@ -105,8 +109,9 @@ exports[`color 1`] = `
           Array [
             Object {
               "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
@@ -116,8 +121,9 @@ exports[`color 1`] = `
                 "color": "#f8f8f8",
                 "textAlign": "center",
               },
+              undefined,
               Object {
-                "color": "red",
+                "color": "#ffffff",
               },
             ],
           ]
@@ -159,8 +165,9 @@ exports[`disabled 1`] = `
             "paddingHorizontal": 14,
             "paddingVertical": 22,
           },
+          undefined,
           Object {
-            "backgroundColor": undefined,
+            "backgroundColor": "#e5e7fa",
           },
         ]
       }
@@ -170,8 +177,9 @@ exports[`disabled 1`] = `
           Array [
             Object {
               "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
@@ -181,8 +189,9 @@ exports[`disabled 1`] = `
                 "color": "#f8f8f8",
                 "textAlign": "center",
               },
+              undefined,
               Object {
-                "color": "#e5e7fa",
+                "color": "#a5affb",
               },
             ],
           ]

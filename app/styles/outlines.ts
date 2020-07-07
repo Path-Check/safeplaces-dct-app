@@ -9,6 +9,7 @@ export const maxBorderRadius = 500;
 export const hairline = 1;
 export const thin = 2;
 export const thick = 3;
+export const extraThick = 4;
 
 export const roundedBorder: ViewStyle = {
   borderWidth: 1,
@@ -66,4 +67,11 @@ export const bottomHRule: ViewStyle = {
 export const topHRule: ViewStyle = {
   ...baseHRule,
   borderTopWidth: 1,
+};
+
+// Forms
+export const textInput: ViewStyle = {
+  borderWidth: 2,
+  borderRadius: 10,
+  borderColor: Colors.primaryViolet,
 };

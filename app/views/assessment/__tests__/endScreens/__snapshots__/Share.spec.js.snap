@@ -11,10 +11,11 @@ exports[`base 1`] = `
   }
 >
   <RCTSafeAreaView
-    backgroundColor="#f8f8f8"
+    backgroundColor="#4051db"
     emulateUnlessSupported={true}
     style={
       Object {
+        "borderTopWidth": 0,
         "flex": 1,
       }
     }
@@ -23,6 +24,7 @@ exports[`base 1`] = `
       accessibilityIgnoresInvertColors={true}
       style={
         Object {
+          "borderTopWidth": 0,
           "flex": 1,
           "justifyContent": "center",
           "resizeMode": "cover",
@@ -57,9 +59,13 @@ exports[`base 1`] = `
         <View>
           <View
             style={
-              Object {
-                "padding": 20,
-              }
+              Array [
+                Object {
+                  "borderTopWidth": 0,
+                  "padding": 20,
+                },
+                undefined,
+              ]
             }
           >
             <SvgXml
@@ -74,18 +80,20 @@ exports[`base 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#1f2c9b",
-                    "fontFamily": "IBMPlexSans-Bold",
-                    "fontSize": 28,
-                    "fontWeight": "500",
-                    "lineHeight": 40,
+                    "color": "#ffffff",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 22,
+                    "lineHeight": 32,
                   },
                   Object {
                     "writingDirection": "ltr",
                   },
-                  Object {
-                    "marginVertical": 30,
-                  },
+                  Array [
+                    Object {
+                      "marginVertical": 30,
+                    },
+                    undefined,
+                  ],
                 ]
               }
             >
@@ -95,16 +103,20 @@ exports[`base 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#2e2e2e",
-                    "fontSize": 17,
-                    "lineHeight": 28,
+                    "color": "#ffffff",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 15,
+                    "lineHeight": 20,
                   },
                   Object {
                     "writingDirection": "ltr",
                   },
-                  Object {
-                    "marginBottom": 20,
-                  },
+                  Array [
+                    Object {
+                      "marginBottom": 20,
+                    },
+                    undefined,
+                  ],
                 ]
               }
               testID="description"
@@ -144,8 +156,9 @@ The Boston Public Health Commission will retain your anonymous data for a specif
                   "paddingHorizontal": 14,
                   "paddingVertical": 22,
                 },
+                undefined,
                 Object {
-                  "backgroundColor": "#6979f8",
+                  "backgroundColor": "#ffffff",
                 },
               ]
             }
@@ -155,8 +168,9 @@ The Boston Public Health Commission will retain your anonymous data for a specif
                 Array [
                   Object {
                     "color": "#2e2e2e",
+                    "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
-                    "lineHeight": 28,
+                    "lineHeight": 24,
                   },
                   Object {
                     "writingDirection": "ltr",
@@ -166,8 +180,9 @@ The Boston Public Health Commission will retain your anonymous data for a specif
                       "color": "#f8f8f8",
                       "textAlign": "center",
                     },
+                    undefined,
                     Object {
-                      "color": "#ffffff",
+                      "color": "#000000",
                     },
                   ],
                 ]

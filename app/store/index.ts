@@ -5,11 +5,18 @@ import { createMigrate, persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+import StoreAccessor from './StoreAccessor';
+import onChangedSelectedHealthAuthorities from './middleware/onChangedSelectedHealthAuthorities';
+
 import migrations from './migrations';
 import rootReducer from './reducers/rootReducer';
 
 const enhancers = composeWithDevTools(
-  applyMiddleware(thunk, createImmutableStateInvariantMiddleware()),
+  applyMiddleware(
+    thunk,
+    createImmutableStateInvariantMiddleware(),
+    onChangedSelectedHealthAuthorities,
+  ),
 );
 
 export const STORE_VERSION = 1;
@@ -25,4 +32,5 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(persistedReducer, {}, enhancers);
+StoreAccessor.setStore(store);
 export const persistor = persistStore(store);
