@@ -14,13 +14,13 @@ export const largest = 28;
 export const huge = 52;
 
 // Line Heights
-export const smallestLineHeight = 16;
-export const smallerLineHeight = 20;
-export const smallLineHeight = 24;
-export const mediumLineHeight = 28;
-export const largeLineHeight = 32;
-export const largestLineHeight = 40;
-export const hugeLineHeight = 52;
+export const smallestLineHeight = 14;
+export const smallerLineHeight = 16;
+export const smallLineHeight = 20;
+export const mediumLineHeight = 24;
+export const largeLineHeight = 28;
+export const largestLineHeight = 32;
+export const hugeLineHeight = 50;
 
 // Font Weights
 export const lighterWeight = '200';

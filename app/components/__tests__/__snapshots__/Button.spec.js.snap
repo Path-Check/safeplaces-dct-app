@@ -37,7 +37,7 @@ exports[`allows small override 1`] = `
             "color": "#2e2e2e",
             "fontFamily": "IBMPlexSans",
             "fontSize": 17,
-            "lineHeight": 28,
+            "lineHeight": 24,
           },
           Object {
             "writingDirection": "ltr",
@@ -93,7 +93,7 @@ exports[`changes color based on theme 1`] = `
             "color": "#2e2e2e",
             "fontFamily": "IBMPlexSans",
             "fontSize": 17,
-            "lineHeight": 28,
+            "lineHeight": 24,
           },
           Object {
             "writingDirection": "ltr",
@@ -136,7 +136,7 @@ exports[`changes color based on theme 1`] = `
             "color": "#2e2e2e",
             "fontFamily": "IBMPlexSans",
             "fontSize": 17,
-            "lineHeight": 28,
+            "lineHeight": 24,
           },
           Object {
             "writingDirection": "ltr",
@@ -179,7 +179,7 @@ exports[`changes color based on theme 1`] = `
             "color": "#2e2e2e",
             "fontFamily": "IBMPlexSans",
             "fontSize": 17,
-            "lineHeight": 28,
+            "lineHeight": 24,
           },
           Object {
             "writingDirection": "ltr",
@@ -235,7 +235,7 @@ exports[`renders a violet 72px button on default theme 1`] = `
             "color": "#2e2e2e",
             "fontFamily": "IBMPlexSans",
             "fontSize": 17,
-            "lineHeight": 28,
+            "lineHeight": 24,
           },
           Object {
             "writingDirection": "ltr",
@@ -291,7 +291,7 @@ exports[`renders an icon and space-between if supplied 1`] = `
             "color": "#2e2e2e",
             "fontFamily": "IBMPlexSans",
             "fontSize": 17,
-            "lineHeight": 28,
+            "lineHeight": 24,
           },
           Object {
             "writingDirection": "ltr",
@@ -347,7 +347,7 @@ exports[`renders different color for secondary 1`] = `
             "color": "#2e2e2e",
             "fontFamily": "IBMPlexSans",
             "fontSize": 17,
-            "lineHeight": 28,
+            "lineHeight": 24,
           },
           Object {
             "writingDirection": "ltr",
