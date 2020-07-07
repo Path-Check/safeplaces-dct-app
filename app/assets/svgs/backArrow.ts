@@ -1,5 +1,5 @@
 export default `
-  <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M11.4854 3L2.22803 12.2573L11.4854 21.5146" stroke="currentColor" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <svg width="16" height="27" viewBox="0 0 16 27"  xmlns="http://www.w3.org/2000/svg">
+  <path d="M14.6216 0.226764L15.0632 0.650056C15.3787 0.952408 15.3787 1.3757 15.0632 1.67805L2.76011 13.4698L15.0632 25.3219C15.3787 25.6243 15.3787 26.0476 15.0632 26.3499L14.6216 26.7732C14.3061 27.0756 13.8644 27.0756 13.549 26.7732L0.236403 14.014C-0.0790606 13.7116 -0.0790606 13.2884 0.236403 12.986L13.549 0.226764C13.8644 -0.0755879 14.3061 -0.0755879 14.6216 0.226764Z" fill="currentColor"/>
   </svg>
 `;

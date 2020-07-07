@@ -61,6 +61,7 @@ export const ExportSelectHA = ({ navigation }) => {
               <IconButton
                 icon={Icons.Close}
                 size={22}
+                color={Colors.primaryViolet}
                 onPress={() => navigation.navigate(Screens.ExportStart)}
               />
             </View>

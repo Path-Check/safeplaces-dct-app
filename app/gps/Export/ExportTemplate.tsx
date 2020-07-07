@@ -98,7 +98,12 @@ export const ExportTemplate = ({
         <SafeAreaView style={{ flex: 1, marginBottom: 24 }}>
           {onClose && (
             <View style={styles.header}>
-              <IconButton icon={Icons.Close} size={22} onPress={onClose} />
+              <IconButton
+                icon={Icons.Close}
+                size={22}
+                onPress={onClose}
+                color={lightTheme ? Colors.primaryViolet : Colors.white}
+              />
             </View>
           )}
           <ScrollView

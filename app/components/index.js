@@ -1,6 +1,5 @@
 export { Button } from './Button';
 export { Checkbox } from './Checkbox';
-export { DynamicTextInput } from './DynamicTextInput';
 export { FeatureFlag } from './FeatureFlag';
 export { IconButton } from './IconButton';
 export { NativePicker } from './NativePicker';

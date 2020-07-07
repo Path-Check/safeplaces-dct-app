@@ -156,11 +156,13 @@ export const ExportSelectHA = ({ route, navigation }) => {
             <IconButton
               icon={Icons.BackArrow}
               size={27}
+              color={Colors.primaryViolet}
               onPress={() => navigation.goBack()}
             />
             <IconButton
               icon={Icons.Close}
               size={22}
+              color={Colors.primaryViolet}
               onPress={() => exitWarningAlert(navigation, Screens.ExportStart)}
             />
           </View>
