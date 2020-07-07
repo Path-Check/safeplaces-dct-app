@@ -38,6 +38,7 @@ import NotificatioNDetails from './views/onboarding/NotificationDetails';
 import ShareDiagnosis from './views/onboarding/ShareDiagnosis';
 import NotificationsPermissions from './views/onboarding/NotificationsPermissions';
 import LocationsPermissions from './views/onboarding/LocationsPermissions';
+import LanguageSelection from './views/LanguageSelection';
 
 import { Screens, Stacks } from './navigation';
 
@@ -308,10 +309,17 @@ export const Entry = () => {
         ) : (
           <Stack.Screen name={Stacks.Onboarding} component={OnboardingStack} />
         )}
-        {/* Modal View: */}
+        {/* Modal Views: */}
         <Stack.Screen
           name={Screens.ExportFlow}
           component={tracingStrategy.affectedUserFlow}
+          options={{
+            ...TransitionPresets.ModalSlideFromBottomIOS,
+          }}
+        />
+        <Stack.Screen
+          name={Screens.LanguageSelection}
+          component={LanguageSelection}
           options={{
             ...TransitionPresets.ModalSlideFromBottomIOS,
           }}

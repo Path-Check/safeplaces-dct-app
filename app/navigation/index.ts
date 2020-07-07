@@ -48,6 +48,7 @@ export type Screen =
   | 'PartnersOverview'
   | 'PartnersEdit'
   | 'PartnersCustomUrl'
+  | 'LanguageSelection'
   | 'AffectedUserStart'
   | 'AffectedUserCodeInput'
   | 'AffectedUserPublishConsent'
@@ -91,6 +92,7 @@ export const Screens: { [key in Screen]: Screen } = {
   PartnersOverview: 'PartnersOverview',
   PartnersEdit: 'PartnersEdit',
   PartnersCustomUrl: 'PartnersCustomUrl',
+  LanguageSelection: 'LanguageSelection',
   AffectedUserStart: 'AffectedUserStart',
   AffectedUserCodeInput: 'AffectedUserCodeInput',
   AffectedUserPublishConsent: 'AffectedUserPublishConsent',
