@@ -99,7 +99,6 @@
   "label": {
     "about_header_bluetooth": "PathCheck Bluetooth",
     "about_header_location": "PathCheck GPS",
-    "about_para": "PathCheck es un movimiento global para crear herramientas gratuitas, de código abierto y respuetuosas con la privacidad para ciudadanos, funcionarios de salud pública y comunidades locales, con el fin de aplanar la curva del COVID-19, reducir el miedo y evitar un excesivo control estatal después de la pandemia.\n\n Para más información, visite",
     "authorities_add_button_label": "Añadir fuente de datos fiable",
     "authorities_add_url": "Añadir organismo vía web",
     "authorities_desc": "Elige las autoridades sanitarias de tu zona para obtener datos sobre posibles contactos con el COVID. Selecciona un nombre de la lista global, o introduce la URL del sitio web de una autoridad sanitaria que haya usado PathCheck.",
@@ -124,9 +123,6 @@
     "event_history_subtitle": "Entiende tu exposición al COVID-19 según los datos publicados por las autoridades sanitarias.",
     "event_history_title": "Historial de exposición",
     "filter_authorities_by_gps_history": "Filtrar por sus ubicaciones",
-    "home_no_contact_header_bluetooth": "PathCheck",
-    "home_no_contact_subtext_bluetooth": "Las notificaciones de exposición están activadas",
-    "home_setting_off_header_bluetooth": "Notificaciones Desactivadas",
     "import_success": "Importado con éxito",
     "latest_news": "Últimas noticias",
     "launch_access_bluetooth": "Permitir rastreabilidad de contactos",
@@ -140,7 +136,6 @@
     "launch_enable_auto_subscription": "Habilitar la suscripción automática",
     "launch_enable_bluetooth": "Habilitar Bluetooth",
     "launch_enable_exposure_notif": "Habilitar",
-    "launch_enable_location": "Habilitar ubicación",
     "launch_enable_notif": "Permitir notificaciones",
     "launch_finish_set_up": "Finalizar configuración",
     "launch_get_started": "Iniciar",
@@ -166,13 +161,12 @@
     "launch_set_up_phone_bluetooth": "Siguiente",
     "launch_set_up_phone_location": "Configurar mi dispositivo",
     "launch_subheader": "No te preocupes, estos datos nunca saldrán de tu móvil sin tu consentimiento expreso.",
-    "legal_page_address": "PathCheck Foundation\n 58 Day Street \n Box 441621 \n Somerville, MA 02144",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street \nBox 441621 \nSomerville, MA 02144",
     "legal_page_header_bluetooth": "PathCheck Bluetooth",
     "legal_page_header_location": "PathCheck GPS",
     "loading_public_data": "cargando datos…",
     "location_disabled_message": "PathCheck necesita tu ubicación.",
     "location_disabled_title": "Registro de ubicación desactivado",
-    "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona",
     "location_enabled_message": "PathCheck está registrando en tu dispositivo tus coordenadas GPS cada 5 minutos de forma segura.",
     "location_enabled_title": "PathCheck habilitado",
     "logging_active_bluetooth": "Notificaciones de Exposición Activas",
@@ -181,6 +175,7 @@
     "logging_inactive_location": "Localización desactivada",
     "news_subtitle": "Novedades sobre el COVID-19 de tus autoridades sanitarias y noticias en general.",
     "news_title": "Últimas Noticias",
+    "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona",
     "no_data": "No hay datos",
     "privacy_policy": "Política de privacidad",
     "push_at_risk_message": "Has estado cerca de alguien con COVID-19",
@@ -213,8 +208,7 @@
     "faq": "Preguntas frecuentes",
     "legal": "Aviso legal",
     "more": "Más",
-    "report_issue": "Reportar un problema",
-    "report_positive_test": "Informar un resultado positivo de la prueba"
+    "report_issue": "Reportar un problema"
   },
   "settings": {
     "share_test_result": "Informar un resultado positivo de la prueba"

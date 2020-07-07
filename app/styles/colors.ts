@@ -141,6 +141,7 @@ export const formText = primaryText;
 export const formPlaceholderText = mediumGray;
 export const formInputBackground = primaryBackgroundFaintShade;
 export const formInputBorder = tertiaryBackground;
+export const placeholderTextColor = lightGray;
 
 export const success = primaryGreen;
 export const warning = primaryYellow;
@@ -157,4 +158,5 @@ export const onboardingIconYellow = champangne;
 export const onboardingIconBlue = moonRaker;
 
 // Exposure History
-export const exposureRiskWarning = royalBlue;
+export const possibleExposure = royalBlue;
+export const expectedExposure = amber;

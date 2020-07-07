@@ -34,19 +34,26 @@ export type Screen =
   | 'Licenses'
   | 'FeatureFlags'
   | 'Import'
-  | 'Onboarding1'
-  | 'Onboarding2'
-  | 'Onboarding3'
-  | 'Onboarding4'
+  | 'Welcome'
+  | 'PersonalPrivacy'
+  | 'NotificatioNDetails'
+  | 'ShareDiagnosis'
   | 'OnboardingLocationPermissions'
   | 'OnboardingNotificationPermissions'
+  | 'NotificationPermissionsBT'
   | 'EnableExposureNotifications'
   | 'ExportFlow'
   | 'SelfAssessment'
   | 'PartnersOverview'
   | 'PartnersEdit'
   | 'PartnersCustomUrl'
-  | 'LanguageSelection';
+  | 'LanguageSelection'
+  | 'AffectedUserStart'
+  | 'AffectedUserCodeInput'
+  | 'AffectedUserPublishConsent'
+  | 'AffectedUserConfirmUpload'
+  | 'AffectedUserExportDone'
+  | 'AffectedUserComplete';
 
 export const Screens: { [key in Screen]: Screen } = {
   ExportStart: 'ExportStart',
@@ -70,12 +77,13 @@ export const Screens: { [key in Screen]: Screen } = {
   Licenses: 'Licenses',
   FeatureFlags: 'FeatureFlags',
   Import: 'Import',
-  Onboarding1: 'Onboarding1',
-  Onboarding2: 'Onboarding2',
-  Onboarding3: 'Onboarding3',
-  Onboarding4: 'Onboarding4',
+  Welcome: 'Welcome',
+  PersonalPrivacy: 'PersonalPrivacy',
+  NotificatioNDetails: 'NotificatioNDetails',
+  ShareDiagnosis: 'ShareDiagnosis',
   OnboardingLocationPermissions: 'OnboardingLocationPermissions',
   OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',
+  NotificationPermissionsBT: 'NotificationPermissionsBT',
   EnableExposureNotifications: 'EnableExposureNotifications',
   ExportFlow: 'ExportFlow',
   SelfAssessment: 'SelfAssessment',
@@ -83,6 +91,12 @@ export const Screens: { [key in Screen]: Screen } = {
   PartnersEdit: 'PartnersEdit',
   PartnersCustomUrl: 'PartnersCustomUrl',
   LanguageSelection: 'LanguageSelection',
+  AffectedUserStart: 'AffectedUserStart',
+  AffectedUserCodeInput: 'AffectedUserCodeInput',
+  AffectedUserPublishConsent: 'AffectedUserPublishConsent',
+  AffectedUserConfirmUpload: 'AffectedUserConfirmUpload',
+  AffectedUserExportDone: 'AffectedUserExportDone',
+  AffectedUserComplete: 'AffectedUserComplete',
 };
 
 export type Stack =

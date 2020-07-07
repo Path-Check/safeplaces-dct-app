@@ -2,4 +2,9 @@
 <resources>
   <!-- Channel label for notifications shown in App > Notifications > Path Check BT -->
   <string name="notification_channel_description">Notificaciones de PathCheck BT</string>
+  <!-- Server URI for diagnosis key file download -->
+  <string name="key_server_download_base_uri">https://federationout-2kabcv6c4a-uc.a.run.app/</string>
+  <!-- TODO remove and put into build.gradle -->
+  <string name="key_server_upload_uri">https://exposure-2kabcv6c4a-uc.a.run.app/</string>
+
 </resources>

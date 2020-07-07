@@ -40,8 +40,9 @@ exports[`base 1`] = `
           Array [
             Object {
               "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
@@ -105,8 +106,9 @@ exports[`color 1`] = `
           Array [
             Object {
               "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
@@ -170,8 +172,9 @@ exports[`disabled 1`] = `
           Array [
             Object {
               "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",

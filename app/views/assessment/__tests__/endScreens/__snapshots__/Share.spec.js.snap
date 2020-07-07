@@ -78,7 +78,7 @@ exports[`base 1`] = `
                     "fontFamily": "IBMPlexSans-Bold",
                     "fontSize": 28,
                     "fontWeight": "500",
-                    "lineHeight": 40,
+                    "lineHeight": 32,
                   },
                   Object {
                     "writingDirection": "ltr",
@@ -96,8 +96,9 @@ exports[`base 1`] = `
                 Array [
                   Object {
                     "color": "#2e2e2e",
+                    "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
-                    "lineHeight": 28,
+                    "lineHeight": 24,
                   },
                   Object {
                     "writingDirection": "ltr",
@@ -109,11 +110,28 @@ exports[`base 1`] = `
               }
               testID="description"
             >
-              Your anonymous data helps the Boston Public Health Commission analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#2e2e2e",
+                      "fontFamily": "IBMPlexSans",
+                      "fontSize": 17,
+                      "lineHeight": 24,
+                    },
+                    Object {
+                      "writingDirection": "ltr",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                Your anonymous data helps the Boston Public Health Commission analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.
 
 Your data contains your survey responses and zip code, but no additional or personally-identifying information.
 
 The Boston Public Health Commission will retain your anonymous data for a specific period of time.
+              </Text>
             </Text>
           </View>
         </View>
@@ -155,8 +173,9 @@ The Boston Public Health Commission will retain your anonymous data for a specif
                 Array [
                   Object {
                     "color": "#2e2e2e",
+                    "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
-                    "lineHeight": 28,
+                    "lineHeight": 24,
                   },
                   Object {
                     "writingDirection": "ltr",

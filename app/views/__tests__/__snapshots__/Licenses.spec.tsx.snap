@@ -77,8 +77,9 @@ exports[`LicensesScreen renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
@@ -88,7 +89,7 @@ exports[`LicensesScreen renders correctly 1`] = `
                 "fontFamily": "IBMPlexSans-Bold",
                 "fontSize": 19,
                 "fontWeight": "500",
-                "lineHeight": 40,
+                "lineHeight": 32,
                 "textTransform": "uppercase",
               },
             ]
@@ -133,7 +134,7 @@ exports[`LicensesScreen renders correctly 1`] = `
                     "fontFamily": "IBMPlexSans-Bold",
                     "fontSize": 28,
                     "fontWeight": "500",
-                    "lineHeight": 40,
+                    "lineHeight": 32,
                   },
                   Object {
                     "writingDirection": "ltr",
@@ -160,7 +161,7 @@ exports[`LicensesScreen renders correctly 1`] = `
                       "color": "#4e4e4e",
                       "fontFamily": "IBMPlexSans",
                       "fontSize": 17,
-                      "lineHeight": 28,
+                      "lineHeight": 24,
                     },
                     Object {
                       "writingDirection": "ltr",
@@ -188,7 +189,7 @@ Somerville, MA 02144
                       "color": "#4e4e4e",
                       "fontFamily": "IBMPlexSans",
                       "fontSize": 17,
-                      "lineHeight": 28,
+                      "lineHeight": 24,
                     },
                     Object {
                       "writingDirection": "ltr",
@@ -209,7 +210,7 @@ Somerville, MA 02144
                       "color": "#4e4e4e",
                       "fontFamily": "IBMPlexSans",
                       "fontSize": 17,
-                      "lineHeight": 28,
+                      "lineHeight": 24,
                     },
                     Object {
                       "writingDirection": "ltr",
@@ -247,8 +248,9 @@ Somerville, MA 02144
             Array [
               Object {
                 "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",

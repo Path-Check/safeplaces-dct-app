@@ -16,7 +16,7 @@ const HomeScreen = (): JSX.Element => {
   return (
     <ImageBackground
       style={styles.backgroundImage}
-      source={Images.LaunchScreenBackground}>
+      source={Images.BlueGradientBackground}>
       <View style={styles.iconContainer}>
         <SvgXml
           xml={Icons.StateNoContact}

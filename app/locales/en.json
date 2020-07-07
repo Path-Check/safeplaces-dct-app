@@ -23,10 +23,10 @@
     "emergency_description": "You may be having a <1>medical emergency</1>. Immediate medical attention is needed.\n\nTell the emergency operator if you have been in contact with someone with COVID-19 or if you have recently been to an area where COVID-19 is spreading.",
     "emergency_cta": "Call Emergency Services",
     "isolate_title": "Isolate Yourself",
-    "isolate_description": "You <1>have some symptoms</1> that may be related to COVID-19. Call your healthcare provider if your symtoms get worse. Start home isolation.",
+    "isolate_description": "You <1>have some symptoms</1> that may be related to COVID-19. Call your healthcare provider if your symptoms get worse. Start home isolation.",
     "isolate_cta": "Next",
     "share_title": "Publish anonymized data",
-    "share_description": "Your anonymous data helps the Boston Public Health Commission analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.\n\nYour data contains your survey responses and zip code, but no additional or personally-identifying information.\n\nThe Boston Public Health Commission will retain your anonymous data for a specific period of time.",
+    "share_description": "Your anonymous data helps the {{authority}} analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.\n\nYour data contains your survey responses and zip code, but no additional or personally-identifying information.\n\nThe {{authority}} will retain your anonymous data for a specific period of time.",
     "share_screening_title": "Anonymized Screening Data",
     "share_screening_description": "Share anonymized answers to screening questions with your local healthcare authority.",
     "share_cta_skip": "No thanks, I don't want to share data",
@@ -64,7 +64,7 @@
   },
   "export": {
     "code_input_body": "The representative from {{name}} will provide a verification code over the phone to link your data with {{name}}.",
-    "code_input_body_bluetooth": "Type in the verification code provided by {{name}} with your test result to verify your diagnosis.",
+    "code_input_body_bluetooth": "Type in your verification code.",
     "code_input_error": "Try a different code",
     "code_input_title": "Enter your verification code",
     "code_input_title_bluetooth": "Verify your diagnosis",
@@ -73,7 +73,7 @@
     "complete_title": "Thanks for keeping your community safe!",
     "confirm_upload_body": "This will help in contact tracing efforts.\n\nIf you choose not to send your Location History to {{name}}, you are choosing to opt out of contact tracing efforts that help keep your community safe.",
     "consent_button_title": "I understand and consent",
-    "consent_button_subtitle": "By proceeding, you agree that your Heathcare Authority can retain your data for a period of time.",
+    "consent_button_subtitle": "By proceeding, you agree that your Healthcare Authority can retain your data for a period of time.",
     "location_consent_link": "Please view their privacy policy here.",
     "confirm_upload_button": "Send Location History",
     "confirm_upload_title": "Send your location history to your HA",
@@ -84,7 +84,7 @@
     "publish_consent_body": "During the interview with {{name}} your interviewer can remove private locations, such as homes and apartments. They can also add any additional places you believe should be included.\n\n{{name}} may share the GPS coordinates from your location history, including date, time, and duration of your visits to let others in your community know if they may have crossed paths with the virus.\n\nI understand that the {{name}} representative will ask me verbally at the end of the interview if I consent.",
     "publish_consent_body_bluetooth": "Sharing your positive diagnosis is optional and can only be done with your consent.\n\nIf you choose to do so, you're helping others in your community make informed decisions about their health and playing your part to contain the spread of the virus.\n\nThe only information shared will be the random set of numbers your phone exchanged over Bluetooth with other phones that were nearby during the past 14 days, along with a weighted risk score based on when your symptoms developed.",
     "publish_consent_title": "Publish anonymized data",
-    "publish_consent_title_bluetooth": "Notify others in your community",
+    "publish_consent_title_bluetooth": "Notify your community",
     "select_ha_title": "Select your Health Department",
     "start_body": "Work with a representative from your local Health Department to remove personally-identifying information from your location history during your contact tracing interview.",
     "start_body_bluetooth": "Choose to anonymously notify others you may have encountered and help your community contain the spread of the virus.",
@@ -108,10 +108,16 @@
     "last_days": "Last 21 days",
     "why_did_i_get_an_en": "Why did I get an exposure notification?",
     "how_does_this_work": "How does this work?",
+    "legend": {
+      "exposure_likely": "Exposure very likely",
+      "exposure_possible": "Exposure possible",
+      "no_exposure_detected": "No exposure detected",
+      "today": "Today"
+    },
     "bt": {
       "why_did_i_get_an_en_para": "You will receive an exposure notification when someone you crossed paths with later receives a confirmed, positive diagnosis or test for COVID-19 and chooses to notify others",
       "how_does_this_work": "How does this work?",
-      "how_does_this_work_para": "When Exposure Notifications are on, your phone uses Bluetooth to swap and save random number strings (called ramdom IDs) from any phones it encounters that also have Exposure Notifications enabled. Random IDs won’t identify you personally to other users and change many times a day to protect your privacy. Date and duration of the encounter are recorded along with an estimate of how close the two phones may have been. When a person reports a positive diagnosis, their phone’s recent random IDs are flagged to anonymously notify others. No locations or personal info is shared."
+      "how_does_this_work_para": "When Exposure Notifications are on, your phone uses Bluetooth to swap and save random number strings (called random IDs) from any phones it encounters that also have Exposure Notifications enabled. Random IDs won’t identify you personally to other users and change many times a day to protect your privacy. Date and duration of the encounter are recorded along with an estimate of how close the two phones may have been. When a person reports a positive diagnosis, their phone’s recent random IDs are flagged to anonymously notify others. No locations or personal info is shared."
     },
     "gps": {
       "why_did_i_get_an_en_para": "You will receive exposure notifications when your PathCheck app estimates that your phone was, for an extended period, within 100 feet of another individual who later received a positive diagnosis and chose to share their location diary with their local Health Department.",
@@ -169,8 +175,8 @@
     }
   },
   "settings": {
-    "share_test_result": "Report a positive test result",
-    "share_test_result_description": "Share Covid-19 exposure information with your health authority with a provided code"
+    "share_test_result": "Report Positive Test Result",
+    "share_test_result_description": "Anonymously notify others you may have recently encountered if you test positive for COVID-19"
   },
   "label": {
     "about_header_bluetooth": "PathCheck BT",

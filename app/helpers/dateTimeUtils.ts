@@ -9,6 +9,10 @@ export const isToday = (date: Posix): boolean => {
   return beginningOfToday <= date && endOfToday >= date;
 };
 
+export const daysAgo = (days: number): Posix => {
+  return dayjs(Date.now()).subtract(days, 'day').valueOf();
+};
+
 export const beginningOfDay = (date: Posix): Posix => {
   return dayjs(date).startOf('day').valueOf();
 };

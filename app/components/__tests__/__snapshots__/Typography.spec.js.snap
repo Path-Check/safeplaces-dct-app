@@ -15,8 +15,9 @@ exports[`body1 is regular 1`] = `
       Array [
         Object {
           "color": "#2e2e2e",
+          "fontFamily": "IBMPlexSans",
           "fontSize": 17,
-          "lineHeight": 28,
+          "lineHeight": 24,
         },
         Object {
           "writingDirection": "ltr",
@@ -48,7 +49,7 @@ exports[`headline1 is large and bold 1`] = `
           "fontFamily": "IBMPlexSans-Bold",
           "fontSize": 52,
           "fontWeight": "500",
-          "lineHeight": 52,
+          "lineHeight": 50,
         },
         Object {
           "writingDirection": "ltr",

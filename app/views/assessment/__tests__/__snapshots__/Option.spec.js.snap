@@ -68,8 +68,9 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
             Array [
               Object {
                 "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
@@ -81,7 +82,7 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
                 "fontFamily": "IBMPlexSans-Bold",
                 "fontSize": 19,
                 "fontWeight": "500",
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
             ]
           }
@@ -163,8 +164,9 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
             Array [
               Object {
                 "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
@@ -176,7 +178,7 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
                 "fontFamily": "IBMPlexSans-Bold",
                 "fontSize": 19,
                 "fontWeight": "500",
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
             ]
           }
