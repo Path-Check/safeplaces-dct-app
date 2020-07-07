@@ -158,6 +158,12 @@
       "title": "Google Maps",
       "visit_button_text": "Visit Google Takeout"
     },
+    "mockData": {
+      "custom_url_title": "Import from URL",
+      "url_instructions": "Enter a URL containing test location data you would like to add",
+      "instruction_info": "Data must be in JSON format!",
+      "invalid_url": "Invalid JSON URL!"
+    },
     "subtitle": "To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.",
     "success": "Recent locations has been successfully imported!",
     "title": "Import Locations"

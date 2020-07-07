@@ -285,6 +285,55 @@ exports[`Import component renders correctly 1`] = `
             Import Locations
           </Text>
         </View>
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#4051db",
+              "borderColor": "#4051db",
+              "borderRadius": 8,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "marginBottom": 20,
+              "opacity": 1,
+              "paddingHorizontal": 20,
+              "paddingVertical": 16,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 17,
+                  "lineHeight": 24,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 19,
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            Import from URL
+          </Text>
+        </View>
       </View>
     </RCTScrollView>
   </View>
