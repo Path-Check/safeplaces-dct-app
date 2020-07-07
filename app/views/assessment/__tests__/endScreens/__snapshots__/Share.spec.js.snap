@@ -83,7 +83,7 @@ exports[`base 1`] = `
                     "color": "#ffffff",
                     "fontFamily": "IBMPlexSans",
                     "fontSize": 22,
-                    "lineHeight": 40,
+                    "lineHeight": 32,
                   },
                   Object {
                     "writingDirection": "ltr",
@@ -106,7 +106,7 @@ exports[`base 1`] = `
                     "color": "#ffffff",
                     "fontFamily": "IBMPlexSans",
                     "fontSize": 15,
-                    "lineHeight": 24,
+                    "lineHeight": 20,
                   },
                   Object {
                     "writingDirection": "ltr",
