@@ -32,11 +32,8 @@ const ImportFromUrl = ({ navigation }: ImportFromUrlProps): JSX.Element => {
       // Data must be an array of objects!
       const mockData = await importLocationsApi(url);
 
-      await NativeModules.SecureStorageManager.importGoogleLocations(
-          mockData,
-        );
+      await NativeModules.SecureStorageManager.importGoogleLocations(mockData);
       return navigation.goBack();
-      
     } catch (e) {
       return Alert.alert(t('import.mockData.invalid_url'), e.message);
     }
