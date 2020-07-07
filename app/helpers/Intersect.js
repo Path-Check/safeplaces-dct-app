@@ -597,7 +597,11 @@ async function getPageData(authority, page) {
 
 async function shouldDownloadPageData() {
   const reduxState = store.getState();
-  if (reduxState.settings && reduxState.settings.downloadHaDataOverWifiOnly) {
+  if (
+    reduxState &&
+    reduxState.settings &&
+    reduxState.settings.downloadHaDataOverWifiOnly
+  ) {
     const connectionState = await NetInfo.fetch();
     if (connectionState.type !== NetInfoStateType.wifi) {
       // if user decides to only use wifi, don't download if not connected to wifi
