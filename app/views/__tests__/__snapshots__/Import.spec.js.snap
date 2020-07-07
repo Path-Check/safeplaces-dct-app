@@ -77,7 +77,7 @@ exports[`Import component renders correctly 1`] = `
               "color": "#2e2e2e",
               "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
@@ -87,7 +87,7 @@ exports[`Import component renders correctly 1`] = `
               "fontFamily": "IBMPlexSans-Bold",
               "fontSize": 19,
               "fontWeight": "500",
-              "lineHeight": 40,
+              "lineHeight": 32,
               "textTransform": "uppercase",
             },
           ]
@@ -127,7 +127,7 @@ exports[`Import component renders correctly 1`] = `
                 "color": "#2e2e2e",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
@@ -147,7 +147,7 @@ exports[`Import component renders correctly 1`] = `
                 "color": "#2e2e2e",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
@@ -167,7 +167,7 @@ exports[`Import component renders correctly 1`] = `
                 "color": "#2e2e2e",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
@@ -219,7 +219,7 @@ exports[`Import component renders correctly 1`] = `
                   "color": "#2e2e2e",
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 17,
-                  "lineHeight": 28,
+                  "lineHeight": 24,
                 },
                 Object {
                   "writingDirection": "ltr",
@@ -269,7 +269,7 @@ exports[`Import component renders correctly 1`] = `
                   "color": "#2e2e2e",
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 17,
-                  "lineHeight": 28,
+                  "lineHeight": 24,
                 },
                 Object {
                   "writingDirection": "ltr",

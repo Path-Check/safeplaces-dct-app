@@ -249,6 +249,25 @@ final class ExposureManager: NSObject {
       }
     }
   }
+
+  func postExposureDetectionErrorNotification() {
+    #if DEBUG
+    let identifier = String.exposureDetectionErrorNotificationIdentifier
+
+    let content = UNMutableNotificationContent()
+    content.title = String.exposureDetectionErrorNotificationTitle.localized
+    content.body = String.exposureDetectionErrorNotificationBody.localized
+    content.sound = .default
+    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
+    UNUserNotificationCenter.current().add(request) { error in
+      DispatchQueue.main.async {
+        if let error = error {
+          print("Error showing error user notification: \(error)")
+        }
+      }
+    }
+    #endif
+  }
   
 }
 
@@ -281,23 +300,6 @@ private extension ExposureManager {
     localUncompressedURLs.cleanup()
     localUncompressedURLs = []
     downloadedPackages = []
-  }
-  
-  func postExposureDetectionErrorNotification() {
-    let identifier = String.exposureDetectionErrorNotificationIdentifier
-    
-    let content = UNMutableNotificationContent()
-    content.title = String.exposureDetectionErrorNotificationTitle.localized
-    content.body = String.exposureDetectionErrorNotificationBody.localized
-    content.sound = .default
-    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
-    UNUserNotificationCenter.current().add(request) { error in
-      DispatchQueue.main.async {
-        if let error = error {
-          print("Error showing error user notification: \(error)")
-        }
-      }
-    }
   }
   
 }

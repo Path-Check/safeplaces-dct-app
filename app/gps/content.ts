@@ -1,8 +1,4 @@
-import {
-  StrategyAssets,
-  StrategyCopyContentHook,
-  StrategyInterpolatedCopyContentHook,
-} from '../tracingStrategy';
+import { StrategyAssets, StrategyCopyContentHook } from '../tracingStrategy';
 
 import { Icons, Images } from '../assets';
 
@@ -16,23 +12,12 @@ export const gpsAssets: StrategyAssets = {
   exportPublishIcon: Icons.Publish,
 };
 
-export const useGPSInterpolatedCopyContent: StrategyInterpolatedCopyContentHook = (
-  t,
-) => {
-  return {
-    exportCodeBody: (name: string) => t('export.code_input_body', { name }),
-    exportPublishBody: (name: string) =>
-      t('export.publish_consent_body', { name }),
-  };
-};
-
 export const useGPSCopyContent: StrategyCopyContentHook = (t) => {
   return {
     aboutHeader: t('label.about_header_location'),
     detailedHistoryWhatThisMeansPara: t(
       'history.what_does_this_mean_para_location',
     ),
-    exportCodeTitle: t('export.code_input_title'),
     exportCompleteBody: t('export.complete_body'),
     exportPublishButtonSubtitle: t('export.consent_button_subtitle'),
     exportPublishTitle: t('export.publish_consent_title'),

@@ -19,18 +19,8 @@ import PartnersEditScreen from './views/Partners/PartnersEdit';
 import PartnersCustomUrlScreen from './views/Partners/PartnersCustomUrlScreen';
 
 import { LicensesScreen } from './views/Licenses';
-import {
-  ExportCodeInput,
-  ExportComplete,
-  ExportConfirmUpload,
-  ExportIntro,
-  ExportStart,
-  ExportLocationConsent,
-  ExportPublishConsent,
-  ExportSelectHA,
-  ExportLocally,
-} from './views/Export';
-import { PublishConsent } from './bt/PositiveDiagnosis/PublishConsent';
+import { ExportStart, ExportLocally } from './gps/Export';
+
 import NotificationPermissionsBT from './bt/NotificationPermissionsBT';
 import ExposureHistoryScreen from './views/ExposureHistory';
 import Assessment from './views/assessment';
@@ -72,36 +62,6 @@ const SCREEN_OPTIONS = {
   },
   headerShown: false,
 };
-
-const ExportStack = () => (
-  <Stack.Navigator
-    mode='modal'
-    screenOptions={{
-      ...SCREEN_OPTIONS,
-      cardStyleInterpolator: fade,
-      gestureEnabled: false,
-    }}
-    initialRouteName={isGPS ? Screens.ExportSelectHA : Screens.ExportIntro}>
-    <Stack.Screen name={Screens.ExportIntro} component={ExportIntro} />
-    <Stack.Screen name={Screens.ExportSelectHA} component={ExportSelectHA} />
-    <Stack.Screen name={Screens.ExportCodeInput} component={ExportCodeInput} />
-    <Stack.Screen
-      name={Screens.ExportLocationConsent}
-      component={ExportLocationConsent}
-    />
-    <Stack.Screen name={Screens.PublishConsent} component={PublishConsent} />
-    <Stack.Screen
-      name={Screens.ExportPublishConsent}
-      component={ExportPublishConsent}
-    />
-    <Stack.Screen
-      name={Screens.ExportConfirmUpload}
-      component={ExportConfirmUpload}
-    />
-    <Stack.Screen name={Screens.ExportDone} component={ExportCodeInput} />
-    <Stack.Screen name={Screens.ExportComplete} component={ExportComplete} />
-  </Stack.Navigator>
-);
 
 const ExposureHistoryStack = ({ navigation }) => {
   const { observeExposures } = useContext(ExposureHistoryContext);
@@ -153,7 +113,9 @@ const MoreTabStack = () => (
       name={Screens.ENLocalDiagnosisKey}
       component={ENLocalDiagnosisKeyScreen}
     />
-    <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
+    {isGPS ? (
+      <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
+    ) : null}
   </Stack.Navigator>
 );
 
@@ -336,6 +298,7 @@ const PartnersStack = () => (
 
 export const Entry = () => {
   const onboardingComplete = useSelector(isOnboardingCompleteSelector);
+  const tracingStrategy = useTracingStrategyContext();
 
   return (
     <NavigationContainer>
@@ -348,7 +311,7 @@ export const Entry = () => {
         {/* Modal View: */}
         <Stack.Screen
           name={Screens.ExportFlow}
-          component={ExportStack}
+          component={tracingStrategy.affectedUserFlow}
           options={{
             ...TransitionPresets.ModalSlideFromBottomIOS,
           }}
