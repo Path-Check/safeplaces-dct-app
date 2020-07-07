@@ -12,17 +12,16 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button } from '../../components/Button';
-import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
 import { useAffectedUserContext } from './AffectedUserContext';
 
 import { Screens } from '../../navigation';
-import { Icons } from '../../assets';
 import {
   Spacing,
   Buttons,
+  Layout,
+  Forms,
   Colors,
-  Outlines,
   Typography as TypographyStyles,
 } from '../../styles';
 
@@ -39,9 +38,7 @@ const CodeInputScreen = (): JSX.Element => {
   const length = CODE_LENGTH;
 
   const handleOnChangeText = (code: string) => {
-    if (code.length <= length) {
-      setCode(code);
-    }
+    setCode(code);
   };
 
   const handleOnPressNext = async () => {
@@ -68,19 +65,6 @@ const CodeInputScreen = (): JSX.Element => {
         style={{ flex: 1 }}
         testID={'affected-user-code-input-screen'}>
         <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
-          <View style={styles.headerIcons}>
-            <IconButton
-              icon={Icons.BackArrow}
-              size={27}
-              onPress={() => navigation.goBack()}
-            />
-            <IconButton
-              icon={Icons.Close}
-              size={22}
-              onPress={() => navigation.navigate(Screens.Settings)}
-            />
-          </View>
-
           <View style={styles.headerContainer}>
             <Typography style={styles.header}>
               {t('export.code_input_title_bluetooth')}
@@ -100,6 +84,7 @@ const CodeInputScreen = (): JSX.Element => {
                 <TextInput
                   testID={'code-input'}
                   value={code}
+                  maxLength={length}
                   style={styles.codeInput}
                   keyboardType={'number-pad'}
                   returnKeyType={'done'}
@@ -133,6 +118,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: Spacing.medium,
+    paddingTop: Layout.oneTenthHeight,
     backgroundColor: Colors.primaryBackgroundFaintShade,
   },
   backgroundImage: {
@@ -153,19 +139,12 @@ const styles = StyleSheet.create({
     marginTop: Spacing.medium,
     color: Colors.errorText,
   },
-  headerIcons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   codeInputContainer: {
     flex: 1,
     paddingVertical: Spacing.large,
   },
   codeInput: {
-    ...TypographyStyles.primaryTextInput,
-    ...Outlines.textInput,
-    padding: Spacing.small,
-    textAlign: 'center',
+    ...Forms.textInput,
   },
   button: {
     ...Buttons.largeBlue,

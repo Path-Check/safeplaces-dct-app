@@ -16,6 +16,7 @@ export const largeWidth = 0.6 * screenWidth;
 
 export const xxSmallHeight = 0.03 * screenHeight;
 export const smallHeight = 0.05 * screenHeight;
+export const oneTenthHeight = 0.1 * screenHeight;
 export const mediumHeight = 0.45 * screenHeight;
 
 export const tappableHeight = 0.1 * screenHeight;

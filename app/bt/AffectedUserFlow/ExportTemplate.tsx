@@ -4,26 +4,27 @@ import {
   ImageBackground,
   StyleSheet,
   View,
-  BackHandler,
   SafeAreaView,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import { Button } from '../../components/Button';
-import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
 import { useStatusBarEffect } from '../../navigation';
-import { useFocusEffect } from '@react-navigation/native';
 
-import { Icons, Images } from '../../assets';
-import { Colors, Typography as TypographyStyles } from '../../styles';
+import { Images } from '../../assets';
+import {
+  Spacing,
+  Layout,
+  Colors,
+  Typography as TypographyStyles,
+} from '../../styles';
 
 interface ExportTemplateProps {
   headline: string;
   body: string;
   onNext: () => void;
   nextButtonLabel: string;
-  onClose?: () => void;
   icon?: string;
   buttonLoading?: boolean;
   ignoreModalStyling?: boolean; // So first screen can be slightly different in tabs
@@ -34,25 +35,11 @@ export const ExportTemplate = ({
   body,
   onNext,
   nextButtonLabel,
-  onClose,
   icon,
   buttonLoading,
   ignoreModalStyling, // So first screen can be slightly different in tabs
 }: ExportTemplateProps): JSX.Element => {
   useStatusBarEffect('dark-content');
-
-  useFocusEffect(() => {
-    if (onClose) {
-      const handleBackPress = () => {
-        onClose();
-        return true;
-      };
-      BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-      return () =>
-        BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
-    }
-    return;
-  });
 
   return (
     <ImageBackground
@@ -60,11 +47,6 @@ export const ExportTemplate = ({
       style={styles.backgroundImage}>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
-          {onClose && (
-            <View style={styles.headerContainer}>
-              <IconButton icon={Icons.Close} size={22} onPress={onClose} />
-            </View>
-          )}
           <ScrollView
             alwaysBounceVertical={false}
             style={{ flexGrow: 1 }}
@@ -104,17 +86,14 @@ export const ExportTemplate = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
+    paddingTop: Layout.oneTenthHeight,
+    paddingHorizontal: Spacing.large,
   },
   backgroundImage: {
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
     flex: 1,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
   },
   header: {
     ...TypographyStyles.header2,

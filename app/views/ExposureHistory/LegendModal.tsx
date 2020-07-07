@@ -126,17 +126,11 @@ const styles = StyleSheet.create({
   possibleExposureIcon: {
     ...Iconography.possibleExposure,
   },
-  expectedExposureIcon: {
-    ...Iconography.expectedExposure,
-  },
   todayIcon: {
     ...Affordances.smallBottomDotBadge(Colors.primaryBlue),
   },
   possibleExposureText: {
     ...Iconography.possibleExposureText,
-  },
-  expectedExposureText: {
-    ...Iconography.expectedExposureText,
   },
   noExposureText: {
     ...Iconography.noExposureText,
