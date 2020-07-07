@@ -17,6 +17,7 @@ import { Typography } from '../../components/Typography';
 import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
+import customUrlhealthcareAuthorityOptionsSelector from '../../store/selectors/customUrlhealthcareAuthorityOptionsSelector';
 
 import { Screens } from '../../navigation';
 
@@ -31,7 +32,13 @@ export const ExportSelectHA = ({ navigation }) => {
     dispatch(getHealthcareAuthorities());
   }, [dispatch]);
 
-  const authorities = useSelector(healthcareAuthorityOptionsSelector);
+  const authorityOptions = useSelector(healthcareAuthorityOptionsSelector);
+  const authorityOptionsFromCustomUrl = useSelector(
+    customUrlhealthcareAuthorityOptionsSelector,
+  );
+
+  const authorities = [...authorityOptions, ...authorityOptionsFromCustomUrl];
+
   const [selectedAuthority, setSelectedAuthority] = useState(null);
 
   const toggleSelected = (HA) => {
