@@ -11,7 +11,6 @@ import {
 import { SvgXml } from 'react-native-svg';
 
 import { Typography } from '../../../components/Typography';
-import { Theme } from '../../../constants/themes';
 import { useStatusBarEffect } from '../../../navigation';
 import { styles } from '../style';
 
@@ -37,7 +36,7 @@ export const ServiceOffScreen = ({
   useStatusBarEffect('light-content');
 
   return (
-    <Theme use='violet'>
+    <>
       <ImageBackground
         source={Images.BlueGradientBackground}
         style={styles.backgroundImage}>
@@ -64,6 +63,6 @@ export const ServiceOffScreen = ({
           )}
         </View>
       </View>
-    </Theme>
+    </>
   );
 };
