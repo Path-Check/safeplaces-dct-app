@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
@@ -10,14 +11,16 @@ import { useStrategyContent } from '../../TracingStrategyContext';
 
 import { Icons } from '../../assets';
 
-export const ExportIntro = ({ navigation }) => {
+export const ExportIntro = () => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const { StrategyCopy } = useStrategyContent();
-
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getHealthcareAuthorities());
   }, [dispatch]);
+
   const authorities = useSelector(healthcareAuthorityOptionsSelector);
   const selectedAuthorityDummy = authorities[0];
 
@@ -26,6 +29,7 @@ export const ExportIntro = ({ navigation }) => {
       selectedAuthority: selectedAuthorityDummy,
     });
   const onClose = () => navigation.goBack();
+
   return (
     <ExportTemplate
       onNext={onNext}

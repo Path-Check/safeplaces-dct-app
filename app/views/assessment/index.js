@@ -1,6 +1,6 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
 import React, { useMemo, useRef } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { SvgXml } from 'react-native-svg';
@@ -31,7 +31,7 @@ import { Isolate } from './endScreens/Isolate';
 import { Share } from './endScreens/Share';
 import { useStatusBarEffect } from '../../navigation';
 
-import { Colors } from '../../styles';
+import { Colors, Spacing } from '../../styles';
 
 /**
  * @typedef {"Checkbox" | "Date" | Radio" | "EndCaregiver" | "EndDistancing" | "EndEmergency" | "EndIsolate" } SurveyScreen
@@ -94,24 +94,6 @@ const Assessment = ({ navigation }) => {
     [answers, survey],
   );
 
-  const AssessmentCancel = () => (
-    <TouchableOpacity
-      style={{ paddingRight: 25 }}
-      onPress={() => {
-        navigation.navigate('AssessmentStart');
-      }}>
-      <SvgXml xml={Icons.Close} fill={Colors.quaternaryViolet} />
-    </TouchableOpacity>
-  );
-
-  const AssessmentBack = () => (
-    <TouchableOpacity
-      style={{ paddingLeft: 25 }}
-      onPress={() => navigation.pop()}>
-      <SvgXml xml={Icons.BackArrow} color={Colors.quaternaryViolet} />
-    </TouchableOpacity>
-  );
-
   const meta = useMemo(
     () => ({
       completeRoute: 'EndShare',
@@ -126,11 +108,31 @@ const Assessment = ({ navigation }) => {
     headerTitle: '',
     headerStyle: {
       backgroundColor: backgroundColor,
+      shadowColor: Colors.transparent,
       shadowOffset: { height: 0, width: 0 }, // this removes the header border
     },
-    headerLeft: AssessmentBack,
-    headerRight: AssessmentCancel,
+    headerLeft: AssessmentBackButton,
   });
+
+  const AssessmentBackButton = () => {
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.pop()}
+        style={styles.assessmentIconContainer}>
+        <SvgXml xml={Icons.BackArrow} style={styles.assessmentIcon} />
+      </TouchableOpacity>
+    );
+  };
+
+  const AssessmentCloseButton = () => {
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.popToTop()}
+        style={styles.assessmentIconContainer}>
+        <SvgXml xml={Icons.Close} style={styles.assessmentIcon} />
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <AssessmentNavigationContext.Provider value={meta}>
@@ -152,7 +154,6 @@ const Assessment = ({ navigation }) => {
               options={{
                 ...screenOptions(),
                 headerLeft: () => null,
-                headerRight: () => null,
               }}
             />
             <Stack.Screen
@@ -175,13 +176,17 @@ const Assessment = ({ navigation }) => {
             <Stack.Screen
               component={AssessmentComplete}
               name='AssessmentComplete'
-              options={screenOptions()}
+              options={{
+                ...screenOptions(),
+                headerLeft: () => null,
+              }}
             />
             <Stack.Screen
               component={Share}
               name='EndShare'
               options={{
                 ...screenOptions(Colors.invertedQuaternaryBackground),
+                headerRight: AssessmentCloseButton,
               }}
             />
             <Stack.Screen
@@ -264,3 +269,12 @@ function selectNextQuestion(survey, question, answer) {
   }
   return survey.questions[index + 1].question_key;
 }
+
+const styles = StyleSheet.create({
+  assessmentIconContainer: {
+    padding: Spacing.medium,
+  },
+  assessmentIcon: {
+    color: Colors.quaternaryViolet,
+  },
+});

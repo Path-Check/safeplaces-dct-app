@@ -14,6 +14,10 @@ extension ExposureManager {
         }
       }
     case .detectExposuresNow:
+      guard ExposureManager.shared.detectionPermitted else {
+        callback(["Exposure detection error: you must wait until 3 hours have passed since last detection", NSNull()])
+        return
+      }
       detectExposures { error in
         if let error = error {
           callback(["Exposure detection error: \((error as NSError).userInfo)", NSNull()])
@@ -23,6 +27,7 @@ extension ExposureManager {
       }
     case .simulateExposureDetectionError:
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
+      ExposureManager.shared.postExposureDetectionErrorNotification()
       callback([NSNull(), "Exposure deteaction error message: \(BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription)"])
     case .simulateExposure:
       let exposure = Exposure(id: UUID().uuidString,

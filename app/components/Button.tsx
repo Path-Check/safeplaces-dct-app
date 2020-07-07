@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   ViewStyle,
+  TextStyle,
   TouchableOpacity,
 } from 'react-native';
 
@@ -16,6 +17,7 @@ interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   style?: ViewStyle;
+  textStyle?: TextStyle;
 }
 
 export const Button = ({
@@ -24,9 +26,12 @@ export const Button = ({
   disabled,
   loading,
   style,
+  textStyle,
 }: ButtonProps): JSX.Element => {
-  const textStyle =
-    disabled || loading ? styles.textDisabled : styles.textEnabled;
+  const buttonTextStyle =
+    disabled || loading
+      ? { ...styles.textDisabled, ...textStyle }
+      : { ...styles.textEnabled, ...textStyle };
 
   return (
     <TouchableOpacity
@@ -39,7 +44,7 @@ export const Button = ({
       {loading ? (
         <ActivityIndicator size={'large'} />
       ) : (
-        <Typography style={textStyle}>{label}</Typography>
+        <Typography style={buttonTextStyle}>{label}</Typography>
       )}
     </TouchableOpacity>
   );

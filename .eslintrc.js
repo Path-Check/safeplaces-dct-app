@@ -58,7 +58,7 @@ module.exports = {
     'no-undef': 2, // Disallow Undeclared Variables
     'no-underscore-dangle': 2, // Disallow dangling underscores in identifiers
     'no-unreachable': 2, // Disallow unreachable code after return, throw, continue, and break statements
-    'no-unused-vars': 2, // Disallow Unused Variables
+    'no-unused-vars': [2, { argsIgnorePattern: '^_' }], // Disallow Unused Variables
     'no-useless-escape': 2, // Disallow unnecessary escape usage
     'no-console': 0, // disallow the use of console
     'no-var': 2, // require let or const instead of var
@@ -84,6 +84,7 @@ module.exports = {
     'react/prefer-stateless-function': 2, // Use functional components vs classes
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-empty-function': [2, { allow: ['arrowFunctions'] }],
+    '@typescript-eslint/no-unused-vars': [2, { argsIgnorePattern: '^_' }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   overrides: [

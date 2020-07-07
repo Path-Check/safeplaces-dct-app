@@ -200,6 +200,12 @@ export const error: TextStyle = {
   fontWeight: heavyWeight,
 };
 
+// Forms
+export const primaryTextInput: TextStyle = {
+  ...mainContent,
+  color: Colors.primaryText,
+};
+
 // Navigation
 export const navHeader: TextStyle = {
   ...largeFont,

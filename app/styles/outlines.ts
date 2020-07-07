@@ -68,3 +68,10 @@ export const topHRule: ViewStyle = {
   ...baseHRule,
   borderTopWidth: 1,
 };
+
+// Forms
+export const textInput: ViewStyle = {
+  borderWidth: 2,
+  borderRadius: 10,
+  borderColor: Colors.primaryViolet,
+};

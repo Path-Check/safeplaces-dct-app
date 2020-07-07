@@ -67,7 +67,7 @@
   },
   "export": {
     "code_input_body": "The representative from {{name}} will provide a verification code over the phone to link your data with {{name}}.",
-    "code_input_body_bluetooth": "Type in the verification code provided by {{name}} with your test result to verify your diagnosis.",
+    "code_input_body_bluetooth": "Type in the verification code provided to you with your test result to verify your diagnosis.",
     "code_input_error": "Try a different code",
     "code_input_title": "Enter your verification code",
     "code_input_title_bluetooth": "Verify your diagnosis",
