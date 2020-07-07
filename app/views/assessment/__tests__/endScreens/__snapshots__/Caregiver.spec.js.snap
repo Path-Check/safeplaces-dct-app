@@ -93,7 +93,7 @@ exports[`base 1`] = `
                     "fontFamily": "IBMPlexSans-Bold",
                     "fontSize": 28,
                     "fontWeight": "500",
-                    "lineHeight": 40,
+                    "lineHeight": 32,
                   },
                   Object {
                     "writingDirection": "ltr",
@@ -116,7 +116,7 @@ exports[`base 1`] = `
                     "color": "#2e2e2e",
                     "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
-                    "lineHeight": 28,
+                    "lineHeight": 24,
                   },
                   Object {
                     "writingDirection": "ltr",
@@ -178,7 +178,7 @@ Tell a caregiver at the facility that you are sick and need to see a medical pro
                     "color": "#2e2e2e",
                     "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
-                    "lineHeight": 28,
+                    "lineHeight": 24,
                   },
                   Object {
                     "writingDirection": "ltr",

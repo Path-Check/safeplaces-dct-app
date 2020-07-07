@@ -170,7 +170,7 @@ The Boston Public Health Commission will retain your anonymous data for a specif
                     "color": "#2e2e2e",
                     "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
-                    "lineHeight": 28,
+                    "lineHeight": 24,
                   },
                   Object {
                     "writingDirection": "ltr",

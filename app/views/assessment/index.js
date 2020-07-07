@@ -2,8 +2,8 @@ import { CardStyleInterpolators } from '@react-navigation/stack';
 import React, { useMemo, useRef } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import { SvgXml } from 'react-native-svg';
+
 import { Icons } from '../../assets';
 import { useSurvey } from '../../helpers/CustomHooks';
 import {

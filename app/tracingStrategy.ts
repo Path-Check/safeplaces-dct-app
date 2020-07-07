@@ -16,10 +16,10 @@ export interface TracingStrategy {
 
 export interface StrategyAssets {
   personalPrivacyBackground: ImageSourcePropType;
-  personalPrivacyIcon: string;
   notificationDetailsBackground: ImageSourcePropType;
-  notificationDetailsIcon: string;
   shareDiagnosisBackground: ImageSourcePropType;
+  personalPrivacyIcon: string;
+  notificationDetailsIcon: string;
   shareDiagnosisIcon: string;
   exportPublishIcon: string;
 }
@@ -32,8 +32,6 @@ export interface StrategyCopyContent {
   exportCompleteBody: string;
   exportPublishButtonSubtitle: string;
   exportPublishTitle: string;
-  exportStartBody: string;
-  exportStartTitle: string;
   exposureNotificationsNotAvailableHeader: string;
   exposureNotificationsNotAvailableSubheader: string;
   legalHeader: string;

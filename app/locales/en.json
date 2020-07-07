@@ -67,7 +67,7 @@
   },
   "export": {
     "code_input_body": "The representative from {{name}} will provide a verification code over the phone to link your data with {{name}}.",
-    "code_input_body_bluetooth": "Type in the verification code provided to you with your test result to verify your diagnosis.",
+    "code_input_body_bluetooth": "Type in your verification code.",
     "code_input_error": "Try a different code",
     "code_input_title": "Enter your verification code",
     "code_input_title_bluetooth": "Verify your diagnosis",
@@ -87,7 +87,7 @@
     "publish_consent_body": "During the interview with {{name}} your interviewer can remove private locations, such as homes and apartments. They can also add any additional places you believe should be included.\n\n{{name}} may share the GPS coordinates from your location history, including date, time, and duration of your visits to let others in your community know if they may have crossed paths with the virus.\n\nI understand that the {{name}} representative will ask me verbally at the end of the interview if I consent.",
     "publish_consent_body_bluetooth": "Sharing your positive diagnosis is optional and can only be done with your consent.\n\nIf you choose to do so, you're helping others in your community make informed decisions about their health and playing your part to contain the spread of the virus.\n\nThe only information shared will be the random set of numbers your phone exchanged over Bluetooth with other phones that were nearby during the past 14 days, along with a weighted risk score based on when your symptoms developed.",
     "publish_consent_title": "Publish anonymized data",
-    "publish_consent_title_bluetooth": "Notify others in your community",
+    "publish_consent_title_bluetooth": "Notify your community",
     "select_ha_title": "Select your Health Department",
     "start_body": "Work with a representative from your local Health Department to remove personally-identifying information from your location history during your contact tracing interview.",
     "start_body_bluetooth": "Choose to anonymously notify others you may have encountered and help your community contain the spread of the virus.",

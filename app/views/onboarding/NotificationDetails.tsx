@@ -1,18 +1,15 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import { isGPS } from '../../COVIDSafePathsConfig';
 
+import { isGPS } from '../../COVIDSafePathsConfig';
 import { useStrategyContent } from '../../TracingStrategyContext';
 import ExplanationScreen, { IconStyle } from '../common/ExplanationScreen';
+import { Screens } from '../../navigation';
 
-interface NotificationDetailsProps {
-  navigation: any;
-}
-
-const NotificationDetails = ({
-  navigation,
-}: NotificationDetailsProps): JSX.Element => {
+const NotificationDetails = (): JSX.Element => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
   const explanationScreenContent = {
@@ -30,7 +27,7 @@ const NotificationDetails = ({
   };
 
   const explanationScreenActions = {
-    primaryButtonOnPress: () => navigation.replace('ShareDiagnosis'),
+    primaryButtonOnPress: () => navigation.navigate(Screens.ShareDiagnosis),
   };
 
   return (

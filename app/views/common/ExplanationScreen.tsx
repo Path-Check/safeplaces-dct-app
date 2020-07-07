@@ -33,8 +33,8 @@ type ExplanationScreenContent = {
   header: string;
   body: string;
   primaryButtonLabel: string;
-  secondaryButtonLabel?: string;
   backgroundImage: ImageSourcePropType;
+  secondaryButtonLabel?: string;
 };
 
 type ExplanationScreenStyles = {

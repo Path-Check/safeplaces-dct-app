@@ -125,7 +125,7 @@ exports[`all services on matches snapshot 1`] = `
               "color": "#2e2e2e",
               "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
@@ -149,7 +149,7 @@ exports[`all services on matches snapshot 1`] = `
               "color": "#2e2e2e",
               "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
