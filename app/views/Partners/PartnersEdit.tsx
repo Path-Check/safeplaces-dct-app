@@ -29,7 +29,7 @@ type PartnersEditScreenProps = {
 const Separator = () => (
   <View
     style={{
-      backgroundColor: Colors.primaryBackground,
+      backgroundColor: Colors.formInputBorder,
       height: StyleSheet.hairlineWidth,
       width: '100%',
     }}
@@ -82,7 +82,7 @@ const PartnersScreen = ({
         keyExtractor={({ name }, i) => `${name}:${i}`}
         renderItem={({ item: HA }) => (
           <TouchableHighlight
-            underlayColor={Colors.faintGray}
+            underlayColor={Colors.underlayPrimaryBackground}
             style={{
               paddingVertical: 20,
               paddingHorizontal: 24,

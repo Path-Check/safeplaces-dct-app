@@ -6,7 +6,6 @@ import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
 import { Typography } from '../../components/Typography';
-import { Theme } from '../../constants/themes';
 import { isGPS } from '../../COVIDSafePathsConfig';
 
 import { styles } from './style';
@@ -24,7 +23,7 @@ export const AllServicesOnScreen = ({
   const size = Dimensions.get('window').height;
 
   return (
-    <Theme use='violet'>
+    <View style={{ flex: 1 }}>
       <ImageBackground
         source={Images.BlueGradientBackground}
         style={styles.backgroundImage}>
@@ -68,6 +67,6 @@ export const AllServicesOnScreen = ({
           )}
         </View>
       </View>
-    </Theme>
+    </View>
   );
 };
