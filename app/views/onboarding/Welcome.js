@@ -27,10 +27,10 @@ const Welcome = ({ navigation }) => {
   const languageName = getLocalNames()[localeCode];
   return (
     <ImageBackground
-      source={Images.LaunchScreenBackground}
+      source={Images.BlueGradientBackground}
       style={styles.backgroundImage}>
       <ImageBackground
-        source={Images.LaunchScreenBackgroundOverlay}
+        source={Images.ConcentricCircles}
         style={styles.backgroundImage}>
         <StatusBar
           barStyle='light-content'
@@ -60,7 +60,9 @@ const Welcome = ({ navigation }) => {
           </View>
           <View style={styles.footerContainer}>
             <EulaModal
-              continueFunction={() => navigation.replace('Onboarding2')}
+              continueFunction={() =>
+                navigation.replace(Screens.PersonalPrivacy)
+              }
               selectedLocale={localeCode}
             />
           </View>

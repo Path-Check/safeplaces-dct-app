@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { FlatList, View, StyleSheet, TouchableHighlight } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 
@@ -19,7 +19,9 @@ const Separator = () => (
 );
 
 const LanguageSelection = (): JSX.Element => {
-  const { t } = useTranslation();
+  const {
+    i18n: { language },
+  } = useTranslation();
   const navigation = useNavigation();
   const localeList = getLocaleList();
 
@@ -29,23 +31,24 @@ const LanguageSelection = (): JSX.Element => {
   };
 
   return (
-    <NavigationBarWrapper
-      title={t('common.language')}
-      includeBackButton={false}>
+    <NavigationBarWrapper title={' '} includeBackButton={false}>
       <FlatList
         keyExtractor={(_, i) => `${i}`}
         data={localeList}
         renderItem={({ item: { value, label } }) => (
-          <TouchableOpacity
+          <TouchableHighlight
+            underlayColor={Colors.underlayPrimaryBackground}
             style={{
               paddingVertical: 20,
               paddingHorizontal: 24,
             }}
             onPress={() => onSelectLanguage(value)}>
-            <Typography style={{ fontWeight: '500' }} use='body1'>
+            <Typography
+              style={{ fontWeight: language === value ? '700' : '500' }}
+              use='body1'>
               {label}
             </Typography>
-          </TouchableOpacity>
+          </TouchableHighlight>
         )}
         ItemSeparatorComponent={() => <Separator />}
       />
