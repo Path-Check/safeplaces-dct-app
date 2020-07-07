@@ -239,6 +239,26 @@ export const buttonTextLight: TextStyle = {
   color: Colors.white,
 };
 
+export const buttonTextPrimary: TextStyle = {
+  ...buttonText,
+  color: Colors.white,
+};
+
+export const buttonTextPrimaryInverted: TextStyle = {
+  ...buttonText,
+  color: Colors.primaryViolet,
+};
+
+export const buttonTextSecondary: TextStyle = {
+  ...buttonText,
+  color: Colors.darkGray,
+};
+
+export const buttonTextSecondaryInverted: TextStyle = {
+  ...buttonText,
+  color: Colors.white,
+};
+
 export const buttonTextTinyDark: TextStyle = {
   ...buttonTextDark,
   ...tinyFont,

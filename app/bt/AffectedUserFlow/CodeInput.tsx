@@ -6,8 +6,10 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   Platform,
+  TouchableOpacity,
   TextInput,
   View,
+  Keyboard,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -61,6 +63,10 @@ const CodeInputScreen = (): JSX.Element => {
     }
   };
 
+  const handleOnPressCancel = () => {
+    navigation.navigate(Screens.Settings);
+  };
+
   return (
     <View style={styles.backgroundImage}>
       <SafeAreaView
@@ -71,41 +77,53 @@ const CodeInputScreen = (): JSX.Element => {
           behavior={isIOS ? 'padding' : undefined}>
           <View style={styles.container}>
             <View>
-              <Typography style={styles.header}>
-                {t('export.code_input_title_bluetooth')}
-              </Typography>
+              <View style={styles.headerContainer}>
+                <Typography style={styles.header}>
+                  {t('export.code_input_title_bluetooth')}
+                </Typography>
 
-              <Typography style={styles.subheader}>
-                {t('export.code_input_body_bluetooth')}
-              </Typography>
-            </View>
+                <Typography style={styles.subheader}>
+                  {t('export.code_input_body_bluetooth')}
+                </Typography>
+              </View>
 
-            <View>
-              <TextInput
-                testID={'code-input'}
-                value={code}
-                placeholder={'00000000'}
-                placeholderTextColor={Colors.placeholderTextColor}
-                maxLength={length}
-                style={styles.codeInput}
-                keyboardType={'number-pad'}
-                returnKeyType={'done'}
-                onChangeText={handleOnChangeText}
-                blurOnSubmit={false}
-              />
+              <View>
+                <TextInput
+                  testID={'code-input'}
+                  value={code}
+                  placeholder={'00000000'}
+                  placeholderTextColor={Colors.placeholderTextColor}
+                  maxLength={length}
+                  style={styles.codeInput}
+                  keyboardType={'number-pad'}
+                  returnKeyType={'done'}
+                  onChangeText={handleOnChangeText}
+                  blurOnSubmit={false}
+                  onSubmitEditing={Keyboard.dismiss}
+                />
+              </View>
 
               <Typography style={styles.errorSubtitle} use='body2'>
                 {codeInvalid ? t('export.code_input_error') : ' '}
               </Typography>
             </View>
 
-            <Button
-              loading={isCheckingCode}
-              label={t('common.next')}
-              onPress={handleOnPressNext}
-              style={styles.button}
-              textStyle={styles.buttonText}
-            />
+            <View>
+              <Button
+                loading={isCheckingCode}
+                label={'Submit Code'}
+                onPress={handleOnPressNext}
+                style={styles.button}
+                textStyle={styles.buttonText}
+              />
+              <TouchableOpacity
+                onPress={handleOnPressCancel}
+                style={styles.secondaryButton}>
+                <Typography style={styles.secondaryButtonText}>
+                  {'Cancel'}
+                </Typography>
+              </TouchableOpacity>
+            </View>
           </View>
         </KeyboardAvoidingView>
       </SafeAreaView>
@@ -123,12 +141,16 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     justifyContent: 'space-between',
-    padding: Spacing.medium,
+    paddingHorizontal: Spacing.medium,
     paddingTop: Layout.oneTenthHeight,
     backgroundColor: Colors.primaryBackgroundFaintShade,
   },
+  headerContainer: {
+    marginBottom: Spacing.xxxHuge,
+  },
   header: {
     ...TypographyStyles.header2,
+    marginBottom: Spacing.xxSmall,
   },
   subheader: {
     ...TypographyStyles.header4,
@@ -141,10 +163,16 @@ const styles = StyleSheet.create({
     ...Forms.textInput,
   },
   button: {
-    ...Buttons.largeBlue,
+    ...Buttons.primary,
   },
   buttonText: {
-    ...TypographyStyles.buttonTextLight,
+    ...TypographyStyles.buttonTextPrimary,
+  },
+  secondaryButton: {
+    ...Buttons.secondary,
+  },
+  secondaryButtonText: {
+    ...TypographyStyles.buttonTextSecondary,
   },
 });
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   ScrollView,
   ImageBackground,
+  TouchableOpacity,
   StyleSheet,
   View,
   SafeAreaView,
@@ -19,9 +20,9 @@ import * as BTNativeModule from '../nativeModule';
 import { Screens } from '../../navigation';
 import { Images } from '../../assets';
 import {
-  Layout,
   Colors,
   Spacing,
+  Buttons,
   Iconography,
   Typography as TypographyStyles,
 } from '../../styles';
@@ -41,6 +42,10 @@ const PublishConsent = (): JSX.Element => {
       setIsLoading(false);
     };
     BTNativeModule.submitDiagnosisKeys(cb);
+  };
+
+  const handleOnPressCancel = () => {
+    navigation.navigate(Screens.Settings);
   };
 
   const title = StrategyCopy.exportPublishTitle;
@@ -67,11 +72,22 @@ const PublishConsent = (): JSX.Element => {
             <Typography style={styles.contentText}>{body}</Typography>
           </View>
 
-          <Button
-            label={t('export.consent_button_title')}
-            onPress={handleOnPressConfirm}
-            loading={isLoading}
-          />
+          <View>
+            <Button
+              loading={isLoading}
+              label={t('export.consent_button_title')}
+              onPress={handleOnPressConfirm}
+              style={styles.button}
+              textStyle={styles.buttonText}
+            />
+            <TouchableOpacity
+              onPress={handleOnPressCancel}
+              style={styles.secondaryButton}>
+              <Typography style={styles.secondaryButtonText}>
+                {'Cancel'}
+              </Typography>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </SafeAreaView>
     </ImageBackground>
@@ -80,7 +96,6 @@ const PublishConsent = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingTop: Layout.oneTenthHeight,
     paddingHorizontal: Spacing.large,
     paddingBottom: Spacing.huge,
   },
@@ -91,7 +106,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   content: {
-    paddingBottom: Spacing.xHuge,
+    paddingBottom: Spacing.xxHuge,
   },
   header: {
     ...TypographyStyles.header2,
@@ -105,6 +120,18 @@ const styles = StyleSheet.create({
   contentText: {
     ...TypographyStyles.secondaryContent,
     color: Colors.white,
+  },
+  button: {
+    ...Buttons.primaryInverted,
+  },
+  buttonText: {
+    ...TypographyStyles.buttonTextPrimaryInverted,
+  },
+  secondaryButton: {
+    ...Buttons.secondary,
+  },
+  secondaryButtonText: {
+    ...TypographyStyles.buttonTextSecondaryInverted,
   },
 });
 
