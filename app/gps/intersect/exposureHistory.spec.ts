@@ -1,4 +1,4 @@
-import { DayBins, toExposureHistory } from './toExposureHistory';
+import { DayBins, toExposureHistory } from './exposureHistory';
 import { ExposureDatum } from '../../exposureHistory';
 import dayjs from 'dayjs';
 

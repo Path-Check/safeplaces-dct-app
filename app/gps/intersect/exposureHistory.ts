@@ -7,7 +7,9 @@ import {
 } from '../../exposureHistory';
 import dayjs from 'dayjs';
 
-export type DayBins = number[];
+type IntersectionDuration = number;
+
+export type DayBins = IntersectionDuration[];
 
 const toExposureInfo = (dayBins: DayBins, startDate: number): ExposureInfo => {
   return dayBins.reduce((exposureInfo: ExposureInfo, duration, index) => {

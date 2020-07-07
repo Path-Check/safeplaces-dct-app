@@ -1,5 +1,5 @@
 import { ExposureHistory, ExposureCalendarOptions } from '../exposureHistory';
-import { DayBins, toExposureHistory } from './intersect/toExposureHistory';
+import { DayBins, toExposureHistory } from './intersect/exposureHistory';
 
 type Event = 'onGPSExposureInfoUpdated';
 
