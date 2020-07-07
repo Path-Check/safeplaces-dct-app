@@ -14,10 +14,6 @@ extension ExposureManager {
         }
       }
     case .detectExposuresNow:
-      guard ExposureManager.shared.detectionPermitted else {
-        callback(["Exposure detection error: you must wait until 3 hours have passed since last detection", NSNull()])
-        return
-      }
       detectExposures { error in
         if let error = error {
           callback(["Exposure detection error: \((error as NSError).userInfo)", NSNull()])

@@ -14,14 +14,6 @@ final class ExposureManager: NSObject {
   let manager = ENManager()
   
   var detectingExposures = false
-
-  var detectionPermitted: Bool {
-    if let lastDetectionDate = BTSecureStorage.shared.$dateLastPerformedExposureDetection.wrappedValue,
-      Calendar.current.dateComponents([.hour], from: lastDetectionDate, to: Date()).hour ?? 0 < 3 {
-      return false
-    }
-    return true
-  }
   
   enum EnabledState: String {
     case ENABLED, DISABLED
@@ -89,11 +81,6 @@ final class ExposureManager: NSObject {
   var localUncompressedURLs = [URL]()
   
   @discardableResult func detectExposures(completionHandler: ((Error?) -> Void)? = nil) -> Progress {
-
-    // Exit if last detection date was < 3 hours ago
-    if !detectionPermitted {
-      completionHandler?(nil)
-    }
     
     let progress = Progress()
     
@@ -105,7 +92,7 @@ final class ExposureManager: NSObject {
     
     detectingExposures = true
     
-    func finish(_ result: Result<[Exposure]>) {
+    func finish(_ result: Result<([Exposure], Int)>) {
       
       cleanup()
       
@@ -114,7 +101,8 @@ final class ExposureManager: NSObject {
         completionHandler?(GenericError.unknown)
       } else {
         switch result {
-        case let .success(newExposures):
+        case let .success((newExposures, nextDiagnosisKeyFileIndex)):
+          BTSecureStorage.shared.nextDiagnosisKeyFileIndex = nextDiagnosisKeyFileIndex
           BTSecureStorage.shared.dateLastPerformedExposureDetection = Date()
           BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
           BTSecureStorage.shared.exposures.append(objectsIn: newExposures)
@@ -129,6 +117,8 @@ final class ExposureManager: NSObject {
       }
       
     }
+
+    let nextDiagnosisKeyFileIndex = BTSecureStorage.shared.nextDiagnosisKeyFileIndex
     
     BTSecureStorage.shared.getUserState { userState in
       APIClient.shared.requestString(IndexFileRequest.get, requestType: .downloadKeys) { result in
@@ -136,7 +126,7 @@ final class ExposureManager: NSObject {
         
         switch result {
         case let .success(indexFileString):
-          let remoteURLs = indexFileString.gaenFilePaths
+          let remoteURLs = indexFileString.gaenFilePaths(startingAt: nextDiagnosisKeyFileIndex, batchSize: .keyBatchMaxSize)
           for remoteURL in remoteURLs {
             dispatchGroup.enter()
             APIClient.shared.downloadRequest(DiagnosisKeyUrlRequest.get(remoteURL), requestType: .downloadKeys) { result in
@@ -179,7 +169,7 @@ final class ExposureManager: NSObject {
                              totalRiskScore: exposure.totalRiskScore,
                              transmissionRiskLevel: exposure.transmissionRiskLevel)
                   }
-                  finish(.success(newExposures))
+                  finish(.success((newExposures, nextDiagnosisKeyFileIndex + self.localUncompressedURLs.count)))
                 }
               }
             }

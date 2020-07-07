@@ -8,6 +8,7 @@ extension String {
   static let keyPathExposureDetectionErrorLocalizedDescription = "exposureDetectionErrorLocalizedDescription"
   static let keyPathDateLastPerformedExposureDetection = "dateLastPerformedExposureDetection"
   static let keyPathExposures = "exposures"
+  static let keyPathNextDiagnosisKeyFileIndex = "nextDiagnosisKeyFileIndex"
   static let postKeysUrl = "POST_DIAGNOSIS_KEYS_URL"
   static let downloadBaseUrl = "DOWNLOAD_BASE_URL"
   static let downloadPath = "DOWNLOAD_PATH"
@@ -21,8 +22,13 @@ extension String {
   static let exposureDetectionErrorNotificationIdentifier = "expososure-notification-error"
   static let genericSuccess = "success"
 
-  var gaenFilePaths: [String] {
-    split(separator: "\n").map { String($0) }.filter { $0.contains(ReactNativeConfig.env(for: .downloadPath)) }
+  func gaenFilePaths(startingAt idx: Int, batchSize: Int) -> [String] {
+    guard !self.isEmpty else {
+      return []
+    }
+    let relevantUrls = split(separator: "\n").map { String($0) }.filter { $0.contains(ReactNativeConfig.env(for: .downloadPath)) }
+    let endIndex = Int(min(relevantUrls.count, idx + batchSize))
+    return Array(relevantUrls[idx..<endIndex])
   }
 
   var localized: String {

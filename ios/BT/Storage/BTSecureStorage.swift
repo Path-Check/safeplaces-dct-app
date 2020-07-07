@@ -66,6 +66,9 @@ final class BTSecureStorage: SafePathsSecureStorage {
              notificationName: .DateLastPerformedExposureDetectionDidChange, defaultValue: nil)
   var dateLastPerformedExposureDetection: Date?
 
+  @Persisted(keyPath: .keyPathNextDiagnosisKeyFileIndex, notificationName: .NextDiagnosisKeyFileIndexDidChange, defaultValue: 0)
+  var nextDiagnosisKeyFileIndex: Int
+
   @Persisted(keyPath: .keyPathExposureDetectionErrorLocalizedDescription, notificationName:
     .StorageExposureDetectionErrorLocalizedDescriptionDidChange, defaultValue: .default)
   var exposureDetectionErrorLocalizedDescription: String
