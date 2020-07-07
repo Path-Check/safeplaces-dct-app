@@ -6,7 +6,7 @@ import { initReactI18next, useTranslation } from 'react-i18next';
 import { NativeModules, Platform } from 'react-native';
 
 import { LANG_OVERRIDE } from '../constants/storage';
-import { CONVERT_ISO_TO_IETF } from '../constants/locale' 
+import { CONVERT_ISO_TO_IETF } from '../constants/locale';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import ar from './ar.json';
 import da from './da.json';
@@ -30,8 +30,6 @@ import sk from './sk.json';
 import tl from './tl.json';
 import vi from './vi.json';
 import zh_Hant from './zh_Hant.json';
-
-
 
 // Refer this for checking the codes and creating new folders https://developer.chrome.com/webstore/i18n
 
@@ -180,8 +178,6 @@ setLocale(supportedDeviceLanguageOrEnglish());
 
 // detect user override
 getUserLocaleOverride().then((locale) => locale && setLocale(locale));
-
-
 
 export default i18next;
 
