@@ -163,7 +163,7 @@ export function getDeviceLocale() {
  * e.g. device locale `en_AU` would find `en`
  *      device locale `pt_BR` would find `pt-BR`
  */
-function supportedDeviceLanguageOrEnglish() {
+export function supportedDeviceLanguageOrEnglish() {
   const locale = getDeviceLocale(); // en_US
   const langCode = getLanguageFromLocale(locale); // en
   const localeNames = getLocalNames();
