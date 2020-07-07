@@ -2,10 +2,7 @@ import { Button, Text } from 'native-base';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Linking, ScrollView, StyleSheet, View } from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
@@ -66,7 +63,12 @@ const ImportScreen = props => {
     <NavigationBarWrapper title={t('import.title')} onBackPress={goBack}>
       <ScrollView style={styles.main}>
         <View style={styles.subHeaderTitle}>
-          <Typography style={styles.sectionDescription}>
+          <Typography
+            bold
+            style={[
+              { fontFamily: fontFamily.primarySemiBold },
+              styles.sectionDescription,
+            ]}>
             {t('import.google.instructions_first')}
           </Typography>
           {/* eslint-disable react/no-unescaped-entities */}
@@ -74,6 +76,12 @@ const ImportScreen = props => {
             {t('import.google.instructions_second')}
           </Typography>
           <Typography style={styles.sectionDescription}>
+            {t('import.google.instructions_detailed_title')}
+          </Typography>
+          <View style={styles.bottomLine} />
+
+          <Typography
+            style={[styles.sectionDescription, { marginLeft: wp('4.5%') }]}>
             {t('import.google.instructions_detailed')}
           </Typography>
 
@@ -89,7 +97,7 @@ const ImportScreen = props => {
               ...buttonStyle.buttonStyle,
               marginTop: 40,
               marginBottom: 20,
-              height: hp('5.8%'),
+              height: wp('11%'),
             }}>
             <Text style={{ ...buttonStyle.buttonText, fontSize: wp('4%') }}>
               {t('import.google.visit_button_text')}
@@ -102,7 +110,7 @@ const ImportScreen = props => {
             onPress={importPickFile}
             style={{
               ...buttonStyle.buttonStyle,
-              height: hp('5.8%'),
+              height: wp('11%'),
             }}>
             <Text style={{ ...buttonStyle.buttonText, fontSize: wp('4%') }}>
               {t('import.title')}
@@ -125,9 +133,14 @@ const ImportScreen = props => {
 };
 
 const styles = StyleSheet.create({
+  bottomLine: {
+    width: 30,
+    borderBottomColor: colors.PINK,
+    borderBottomWidth: 2,
+    marginTop: 15,
+  },
   subHeaderTitle: {
     textAlign: 'center',
-    fontWeight: 'bold',
     fontSize: 22,
     padding: 5,
     paddingBottom: 20,
@@ -144,7 +157,7 @@ const styles = StyleSheet.create({
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
-    marginTop: 12,
+    marginTop: 20,
     fontFamily: fontFamily.primaryRegular,
     color: colors.BLACK,
   },

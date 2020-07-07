@@ -109,7 +109,6 @@ Array [
           style={
             Object {
               "fontSize": 22,
-              "fontWeight": "bold",
               "padding": 5,
               "paddingBottom": 20,
               "textAlign": "center",
@@ -117,14 +116,15 @@ Array [
           }
         >
           <Text
+            bold={true}
             style={
               Object {
                 "color": "#000",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 16,
-                "fontWeight": "normal",
+                "fontWeight": "bold",
                 "lineHeight": 24,
-                "marginTop": 12,
+                "marginTop": 20,
                 "writingDirection": "ltr",
               }
             }
@@ -140,7 +140,7 @@ Array [
                 "fontSize": 16,
                 "fontWeight": "normal",
                 "lineHeight": 24,
-                "marginTop": 12,
+                "marginTop": 20,
                 "writingDirection": "ltr",
               }
             }
@@ -156,14 +156,40 @@ Array [
                 "fontSize": 16,
                 "fontWeight": "normal",
                 "lineHeight": 24,
-                "marginTop": 12,
+                "marginTop": 20,
                 "writingDirection": "ltr",
               }
             }
             use="body1"
           >
             Visit Google Takeout and export your Location History using the following settings: 
-1. Delivery method: "Add to Drive" 
+          </Text>
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#F1485B",
+                "borderBottomWidth": 2,
+                "marginTop": 15,
+                "width": 30,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#000",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 16,
+                "fontWeight": "normal",
+                "lineHeight": 24,
+                "marginLeft": 34,
+                "marginTop": 20,
+                "writingDirection": "ltr",
+              }
+            }
+            use="body1"
+          >
+            1. Delivery method: "Add to Drive" 
 2. Frequency: "Export once" 
 3. File type & size: ".zip" and "1GB"
 4. Google sends an email when the export is ready 
@@ -194,7 +220,7 @@ Array [
                 "borderWidth": undefined,
                 "elevation": 2,
                 "flexDirection": "row",
-                "height": 77.5,
+                "height": 82.5,
                 "justifyContent": "center",
                 "marginBottom": 20,
                 "marginTop": 40,
@@ -264,7 +290,7 @@ Array [
                 "borderWidth": undefined,
                 "elevation": 2,
                 "flexDirection": "row",
-                "height": 77.5,
+                "height": 82.5,
                 "justifyContent": "center",
                 "opacity": 1,
                 "paddingBottom": 6,
