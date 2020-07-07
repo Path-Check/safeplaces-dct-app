@@ -14,6 +14,7 @@ import { store, persistor } from './app/store';
 import btStrategy from './app/bt';
 import gpsStrategy from './app/gps';
 import BackgroundTaskService from './app/services/BackgroundTaskService';
+import { isGPS } from './app/COVIDSafePathsConfig';
 
 const determineTracingStrategy = () => {
   switch (Config.TRACING_STRATEGY) {
@@ -46,7 +47,7 @@ const App = () => {
   useEffect(() => {
     SplashScreen.hide();
     VersionCheckService.start();
-    BackgroundTaskService.start();
+    isGPS && BackgroundTaskService.start();
   }, []);
 
   return (
