@@ -9,7 +9,7 @@ import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 
-import { AUTHORITY_NAME as healthAuthority } from '../../constants/authorities';
+import { AUTHORITY_NAME as healthAuthorityName } from '../../constants/authorities';
 
 const NextSteps = (): JSX.Element => {
   const navigation = useNavigation();
@@ -21,7 +21,7 @@ const NextSteps = (): JSX.Element => {
   };
 
   const headerText = t('exposure_history.next_steps.ha_self_assessment', {
-    healthAuthority,
+    healthAuthorityName,
   });
   const contentTextOne = t(
     'exposure_history.next_steps.possible_crossed_paths',
