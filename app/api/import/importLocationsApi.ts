@@ -6,7 +6,7 @@ const importLocationsApi = async (
 
   if (!success) {
     throw new Error(
-      `Import code validation API failed with status code: ${res.status}`,
+      `Import Location API failed with status code: ${res.status}`,
     );
   }
   return await res.json();
