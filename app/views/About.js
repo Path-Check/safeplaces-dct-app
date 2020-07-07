@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexDirection: 'column',
     width: '100%',
+    height: '100%',
     backgroundColor: Colors.INTRO_WHITE_BG,
     paddingHorizontal: 26,
     paddingBottom: 42,
