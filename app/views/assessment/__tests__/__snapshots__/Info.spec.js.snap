@@ -14,6 +14,7 @@ exports[`base 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
+        "borderTopWidth": 0,
         "flex": 1,
       }
     }
@@ -22,6 +23,7 @@ exports[`base 1`] = `
       accessibilityIgnoresInvertColors={true}
       style={
         Object {
+          "borderTopWidth": 0,
           "flex": 1,
           "justifyContent": "center",
           "resizeMode": "cover",
@@ -56,34 +58,15 @@ exports[`base 1`] = `
         <View>
           <View
             style={
-              Object {
-                "padding": 20,
-              }
+              Array [
+                Object {
+                  "borderTopWidth": 0,
+                  "padding": 20,
+                },
+                undefined,
+              ]
             }
-          >
-            <SvgXml />
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#1f2c9b",
-                    "fontFamily": "IBMPlexSans-Bold",
-                    "fontSize": 28,
-                    "fontWeight": "500",
-                    "lineHeight": 32,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Object {
-                    "marginVertical": 30,
-                  },
-                ]
-              }
-            >
-              End
-            </Text>
-          </View>
+          />
         </View>
       </RCTScrollView>
       <View
