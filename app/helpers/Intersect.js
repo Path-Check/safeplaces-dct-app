@@ -580,8 +580,13 @@ async function getPageData(authority, page) {
   let pageData = await GetStoreData(cacheKey);
   if (!pageData) {
     if (await shouldDownloadPageData()) {
-      pageData = await retrieveUrlAsJson(page.filename);
-      SetStoreData(cacheKey, pageData);
+      try {
+        pageData = await retrieveUrlAsJson(page.filename);
+        SetStoreData(cacheKey, pageData);
+      } catch (e) {
+        // sometimes the url isn't right, the download will fail
+        pageData = {};
+      }
     } else {
       // no cache and can't download, skip this page.
       pageData = {};
