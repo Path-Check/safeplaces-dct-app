@@ -32,7 +32,7 @@ import {
 } from '../helpers/General';
 import languages from '../locales/languages';
 import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
-import { store } from '../store';
+import StoreAccessor from '../store/StoreAccessor';
 import { isPlatformiOS } from './../Util';
 
 /**
@@ -426,6 +426,14 @@ async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
   let localHAData = await GetStoreData(AUTHORITY_SOURCE_SETTINGS, false);
   if (!localHAData) localHAData = [];
 
+  const store = StoreAccessor.getStore();
+
+  if (store === null) {
+    throw Error.new(
+      'Attempting to access a not set store checking for intersect',
+    );
+  }
+
   let selectedAuthorities = healthcareAuthorities
     ? healthcareAuthorities
     : ({
@@ -596,11 +604,19 @@ async function getPageData(authority, page) {
 }
 
 async function shouldDownloadPageData() {
+  const store = StoreAccessor.getStore();
+
+  if (store === null) {
+    throw Error.new(
+      'Attempting to access a not set store checking for intersect',
+    );
+  }
+
   const reduxState = store.getState();
   if (
     reduxState &&
     reduxState.settings &&
-    reduxState.settings.downloadHaDataOverWifiOnly
+    reduxState.settings.downloadLargeDataOverWifiOnly
   ) {
     const connectionState = await NetInfo.fetch();
     if (connectionState.type !== NetInfoStateType.wifi) {

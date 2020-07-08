@@ -1,12 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import toggleDownloadHaDataOverWifiOnlyAction from '../actions/settings/downloadHaDataOverWifiAction';
+import toggleDownloadLargeDataOverWifiOnlyAction from '../actions/settings/downloadLargeDataOverWifiOnlyAction';
 
-const initialState = { downloadHaDataOverWifiOnly: false };
+const initialState = { downloadLargeDataOverWifiOnly: false };
 
 const settingsReducer = createReducer(initialState, (builder) =>
-  builder.addCase(toggleDownloadHaDataOverWifiOnlyAction, (state) => {
-    state.downloadHaDataOverWifiOnly = !state.downloadHaDataOverWifiOnly;
+  builder.addCase(toggleDownloadLargeDataOverWifiOnlyAction, (state) => {
+    state.downloadLargeDataOverWifiOnly = !state.downloadLargeDataOverWifiOnly;
   }),
 );
 
