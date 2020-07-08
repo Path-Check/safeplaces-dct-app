@@ -226,9 +226,7 @@ private extension GPSSecureStorage {
 private extension Realm {
 
   var previousLocations: Results<Location> {
-    return objects(Location.self)
-    .filter("\(Location.Key.source.rawValue)=\(Location.Source.device.rawValue)")
-    .sorted(byKeyPath: Location.Key.time.rawValue, ascending: false)
+    return objects(Location.self).sorted(byKeyPath: Location.Key.time.rawValue, ascending: false)
   }
 
   /// Backfills locations if necessary. `resolve` and `reject` will be invoked on the same thread before returning.
