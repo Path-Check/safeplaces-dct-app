@@ -8,6 +8,7 @@ import {
   Text,
   View,
   Alert,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import { useStrategyContent } from '../TracingStrategyContext';
@@ -16,7 +17,6 @@ import { NavigationBarWrapper, Typography } from '../components';
 
 import { useDispatch } from 'react-redux';
 import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleAllowFeatureFlagsEnabledAction';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
 const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
@@ -57,9 +57,9 @@ export const AboutScreen = ({ navigation }) => {
         <Typography
           style={styles.hyperlink}
           onPress={() => {
-            Linking.openURL('https://covidsafepaths.org/');
+            Linking.openURL('https://pathcheck.org/');
           }}>
-          <Text>{'covidsafepaths.org'}</Text>
+          <Text>{'pathcheck.org'}</Text>
         </Typography>
 
         <View style={styles.rowContainer}>

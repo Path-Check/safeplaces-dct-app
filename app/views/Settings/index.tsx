@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   ViewStyle,
   View,
@@ -15,15 +15,8 @@ import {
   NavigationState,
 } from 'react-navigation';
 
-import {
-  getLocaleList,
-  getLanguageFromLocale,
-  getUserLocaleOverride,
-  setUserLocaleOverride,
-  supportedDeviceLanguageOrEnglish,
-} from '../../locales/languages';
+import { getLocalNames } from '../../locales/languages';
 import FeatureFlag from '../../components/FeatureFlag';
-import { NativePicker } from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { isGPS } from '../../COVIDSafePathsConfig';
@@ -44,69 +37,41 @@ interface SettingsScreenProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
+interface LanguageSelectionListItemProps {
+  icon: string;
+  label: string;
+  onPress: () => void;
+}
+const LanguageSelectionListItem = ({
+  icon,
+  label,
+  onPress,
+}: LanguageSelectionListItemProps) => (
+  <TouchableHighlight
+    underlayColor={Colors.underlayPrimaryBackground}
+    style={styles.listItem}
+    onPress={onPress}>
+    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <SvgXml
+        xml={icon}
+        style={[styles.icon, { marginRight: Spacing.small }]}
+      />
+      <Typography use={'body1'}>{label}</Typography>
+    </View>
+  </TouchableHighlight>
+);
+
 const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   const { enableFlags } = useSelector((state: RootState) => state.featureFlags);
-  const { t, i18n } = useTranslation();
-  const localeList = getLocaleList();
-
-  const [userLocale, setUserLocale] = useState(
-    supportedDeviceLanguageOrEnglish(),
-  );
-
-  useEffect(() => {
-    const setOverrideLocale = async () => {
-      const userSelectedLocale = await getUserLocaleOverride();
-      if (userSelectedLocale) {
-        setUserLocale(getLanguageFromLocale(userSelectedLocale));
-      }
-    };
-    setOverrideLocale();
-  }, []);
-
+  const {
+    t,
+    i18n: { language: localeCode },
+  } = useTranslation();
+  const languageName = getLocalNames()[localeCode];
   useStatusBarEffect('light-content');
 
   const navigateTo = (screen: string) => {
     return () => navigation.navigate(screen);
-  };
-
-  const localeChanged = async (locale: string) => {
-    try {
-      await setUserLocaleOverride(locale);
-      setUserLocale(locale);
-    } catch (e) {
-      console.log('something went wrong in lang change', e);
-    }
-  };
-
-  interface LanguageSelectionListItemProps {
-    icon: string;
-    label: string;
-    onPress: () => void;
-  }
-
-  const LanguageSelectionListItem = ({
-    icon,
-    label,
-    onPress,
-  }: LanguageSelectionListItemProps) => {
-    const iconStyle =
-      i18n.dir() === 'rtl'
-        ? { marginLeft: Spacing.xSmall }
-        : { marginRight: Spacing.xSmall };
-
-    const flexDirection = i18n.dir() === 'rtl' ? 'row-reverse' : 'row';
-
-    return (
-      <TouchableHighlight
-        underlayColor={Colors.underlayPrimaryBackground}
-        style={[styles.listItem]}
-        onPress={onPress}>
-        <View style={{ flexDirection, alignItems: 'center' }}>
-          <SvgXml xml={icon} style={[styles.icon, iconStyle]} />
-          <Typography use={'body1'}>{label}</Typography>
-        </View>
-      </TouchableHighlight>
-    );
   };
 
   interface SettingsListItemProps {
@@ -160,24 +125,11 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         )}
 
         <View style={styles.section}>
-          <NativePicker
-            items={localeList}
-            value={userLocale}
-            onValueChange={localeChanged}>
-            {({
-              label,
-              openPicker,
-            }: {
-              label: string;
-              openPicker: () => void;
-            }) => (
-              <LanguageSelectionListItem
-                label={label || t('label.unknown')}
-                icon={Icons.LanguagesIcon}
-                onPress={openPicker}
-              />
-            )}
-          </NativePicker>
+          <LanguageSelectionListItem
+            label={languageName || t('label.unknown')}
+            icon={Icons.LanguagesIcon}
+            onPress={navigateTo(Screens.LanguageSelection)}
+          />
         </View>
 
         {isGPS ? (

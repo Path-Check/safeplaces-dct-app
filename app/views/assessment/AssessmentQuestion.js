@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 
 import { Typography } from '../../components/Typography';
-import { Button } from './Button';
+import { Button } from './components/Button';
 import { AnswersContext } from './Context';
 import { Option } from './Option';
 import {

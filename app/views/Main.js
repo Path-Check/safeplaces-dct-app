@@ -30,7 +30,7 @@ export const Main = () => {
     setCanTrack(locationStatus.canTrack);
     notification.check();
     NotificationService.configure(notification.status);
-  }, [setCanTrack, notification.status]);
+  }, [setCanTrack, notification]);
 
   useEffect(() => {
     updateStateInfo();

@@ -15,7 +15,9 @@ const exportConsentApi = async (
   });
   const success = res.status === 200;
   if (!success) {
-    throw res.status;
+    throw new Error(
+      `Export consent API failed with status code: ${res.status}`,
+    );
   }
   return;
 };

@@ -2,6 +2,7 @@
 
 HA=$1
 
+git submodule add -f git@github.com:Path-Check/pathcheck-mobile-resources.git
 git submodule update --remote --merge
 
 if [[ $# -eq 0 ]] ; then
