@@ -1555,7 +1555,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4E3ED4D343165DDCF8CF6F14 /* Pods-GPS.debug-bt.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1638,7 +1637,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 977BE49F665F3E0768AD52E3 /* Pods-GPS.release-bt.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1823,7 +1821,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FB93AEF93E757536F638DE58 /* Pods-BT.debug-bt.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1855,7 +1852,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 67DC43BDE1EF8997F26F2108 /* Pods-BT.release-bt.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2001,7 +1997,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 667ABCBB6E3FBF03F44D3672 /* Pods-GPS.debug-gps.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -2117,7 +2112,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BFBEC306069776E19FE33586 /* Pods-BT.debug-gps.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2229,7 +2223,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2CE99177C2D5C9E6462639A1 /* Pods-GPS.staging-bt.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -2340,7 +2333,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 844C843F62B5585C2F2346EA /* Pods-BT.staging-bt.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2447,7 +2439,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 145476A32A7724DCC004C292 /* Pods-GPS.staging-gps.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -2558,7 +2549,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB49F7B51E4014329A4AA36D /* Pods-BT.staging-gps.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2665,7 +2655,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 22E0DA6B2DECC1B29A4C7B64 /* Pods-GPS.release-gps.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -2776,7 +2765,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A5B812656CA17568F2153FC2 /* Pods-BT.release-gps.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
