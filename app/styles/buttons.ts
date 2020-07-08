@@ -112,7 +112,31 @@ export const tinyTeritiaryRounded: ViewStyle = {
   ...tertiary,
 };
 
+export const mediumTransparent: ViewStyle = {
+  ...base,
+  ...medium,
+  ...transparent,
+};
+
 export const largeTransparent: ViewStyle = {
+  ...base,
+  ...large,
+  ...transparent,
+};
+
+export const primary: ViewStyle = {
+  ...base,
+  ...large,
+  ...primaryBlue,
+};
+
+export const primaryInverted: ViewStyle = {
+  ...base,
+  ...large,
+  ...white,
+};
+
+export const secondary: ViewStyle = {
   ...base,
   ...large,
   ...transparent,
