@@ -4,10 +4,17 @@ import { PermissionsProvider } from './PermissionsContext';
 import Home from './Home';
 import AffectedUserFlow from './AffectedUserFlow';
 import { useBTCopyContent, btAssets } from './content';
+import { toExposureHistory } from './exposureNotifications';
+import { ExposureEventStrategyContext } from '../ExposureHistoryContext';
+
+const btExposureEventContext: ExposureEventStrategyContext = {
+  exposureInfoSubscription: BTNativeModule.subscribeToExposureEvents,
+  toExposureHistory: toExposureHistory,
+};
 
 const btStrategy: TracingStrategy = {
   name: 'bt',
-  exposureInfoSubscription: BTNativeModule.subscribeToExposureEvents,
+  exposureEventsStrategyContext: btExposureEventContext,
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: Home,
   affectedUserFlow: AffectedUserFlow,

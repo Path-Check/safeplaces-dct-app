@@ -20,10 +20,9 @@ export interface RawExposure {
 }
 
 export const toExposureHistory: (
-  rawExposures: RawExposure[],
+  exposureInfo: ExposureInfo,
   calendarOptions: ExposureCalendarOptions,
-) => ExposureHistory = (rawExposures, calendarOptions) => {
-  const exposureInfo = toExposureInfo(rawExposures);
+) => ExposureHistory = (exposureInfo, calendarOptions) => {
   const { startDate, totalDays } = calendarOptions;
   const calendar = calendarDays(startDate, totalDays);
   return calendar.map((date: Posix) => {

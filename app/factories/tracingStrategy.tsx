@@ -12,8 +12,11 @@ import { Images } from '../../app/assets/images';
 
 export default Factory.define<TracingStrategy>(() => ({
   name: 'test-tracing-strategy',
-  exposureInfoSubscription: () => {
-    return { remove: () => {} };
+  exposureEventsStrategyContext: {
+    exposureInfoSubscription: () => {
+      return { remove: () => {} };
+    },
+    toExposureHistory: () => [],
   },
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: HomeScreen,

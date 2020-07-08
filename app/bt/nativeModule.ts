@@ -5,13 +5,12 @@ import {
 } from 'react-native';
 
 import { ENPermissionStatus } from './PermissionsContext';
-import { ExposureHistory, ExposureCalendarOptions } from '../exposureHistory';
+import { ExposureInfo } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
-import { RawExposure, toExposureHistory } from './exposureNotifications';
+import { RawExposure, toExposureInfo } from './exposureNotifications';
 
 export const subscribeToExposureEvents = (
-  cb: (exposureHistory: ExposureHistory) => void,
-  calendarConfig: ExposureCalendarOptions,
+  cb: (exposureInfo: ExposureInfo) => void,
 ): EventSubscription => {
   const ExposureEvents = new NativeEventEmitter(
     NativeModules.ExposureEventEmitter,
@@ -20,7 +19,7 @@ export const subscribeToExposureEvents = (
     'onExposureRecordUpdated',
     (rawExposure: string) => {
       const rawExposures: RawExposure[] = JSON.parse(rawExposure);
-      cb(toExposureHistory(rawExposures, calendarConfig));
+      cb(toExposureInfo(rawExposures));
     },
   );
 };

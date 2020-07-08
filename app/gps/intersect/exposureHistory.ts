@@ -11,7 +11,10 @@ type IntersectionDuration = number;
 
 export type DayBins = IntersectionDuration[];
 
-const toExposureInfo = (dayBins: DayBins, startDate: number): ExposureInfo => {
+export const toExposureInfo = (
+  dayBins: DayBins,
+  startDate: Posix = Date.now(),
+): ExposureInfo => {
   return dayBins.reduce((exposureInfo: ExposureInfo, duration, index) => {
     const startOfDayAgo = dayjs(startDate)
       .startOf('day')
@@ -43,11 +46,10 @@ const toExposureInfo = (dayBins: DayBins, startDate: number): ExposureInfo => {
 };
 
 export const toExposureHistory = (
-  dayBins: DayBins,
+  exposureInfo: ExposureInfo,
   calendarOptions: ExposureCalendarOptions,
 ): ExposureHistory => {
   const { startDate, totalDays } = calendarOptions;
-  const exposureInfo = toExposureInfo(dayBins, startDate);
   const calendar = calendarDays(startDate, totalDays);
   return calendar.map((date: Posix) => {
     if (exposureInfo[date]) {

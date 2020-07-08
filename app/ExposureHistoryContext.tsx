@@ -4,6 +4,7 @@ import {
   blankExposureHistory,
   ExposureHistory,
   ExposureCalendarOptions,
+  ExposureInfo,
 } from './exposureHistory';
 
 interface ExposureHistoryState {
@@ -26,14 +27,21 @@ const ExposureHistoryContext = createContext<ExposureHistoryState>(
   initialState,
 );
 
-export type ExposureInfoSubscription = (
-  cb: (exposureHistory: ExposureHistory) => void,
-  calendarConfig: ExposureCalendarOptions,
+type ExposureInfoSubscription = (
+  cb: (exposureInfo: ExposureInfo) => void,
 ) => { remove: () => void };
+
+export interface ExposureEventStrategyContext {
+  exposureInfoSubscription: ExposureInfoSubscription;
+  toExposureHistory: (
+    exposureInfo: ExposureInfo,
+    calendarOptions: ExposureCalendarOptions,
+  ) => ExposureHistory;
+}
 
 interface ExposureHistoryProps {
   children: JSX.Element;
-  exposureInfoSubscription: ExposureInfoSubscription;
+  exposureEventsStrategyContext: ExposureEventStrategyContext;
 }
 
 const CALENDAR_DAY_COUNT = 21;
@@ -47,8 +55,12 @@ const blankHistory = blankExposureHistory(blankHistoryConfig);
 
 const ExposureHistoryProvider = ({
   children,
-  exposureInfoSubscription,
+  exposureEventsStrategyContext,
 }: ExposureHistoryProps): JSX.Element => {
+  const {
+    exposureInfoSubscription,
+    toExposureHistory,
+  } = exposureEventsStrategyContext;
   const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
     blankHistory,
   );
@@ -56,14 +68,17 @@ const ExposureHistoryProvider = ({
 
   useEffect(() => {
     const subscription = exposureInfoSubscription(
-      (exposureHistory: ExposureHistory) => {
+      (exposureInfo: ExposureInfo) => {
+        const exposureHistory = toExposureHistory(
+          exposureInfo,
+          blankHistoryConfig,
+        );
         setExposureHistory(exposureHistory);
       },
-      blankHistoryConfig,
     );
 
     return subscription.remove;
-  }, [exposureInfoSubscription]);
+  }, [exposureInfoSubscription, toExposureHistory]);
 
   const observeExposures = () => {
     setUserHasNewExposure(false);

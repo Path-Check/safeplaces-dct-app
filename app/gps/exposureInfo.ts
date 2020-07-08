@@ -1,5 +1,5 @@
-import { ExposureHistory, ExposureCalendarOptions } from '../exposureHistory';
-import { DayBins, toExposureHistory } from './intersect/exposureHistory';
+import { ExposureInfo } from '../exposureHistory';
+import { toExposureInfo, DayBins } from '../gps/intersect/exposureHistory';
 
 type Event = 'onGPSExposureInfoUpdated';
 
@@ -43,13 +43,12 @@ const ExposureEvents: GPSExposureHistoryEventEmitter = {
 };
 
 export const subscribeToExposureEvents = (
-  cb: (exposureHistory: ExposureHistory) => void,
-  calendarConfig: ExposureCalendarOptions,
+  cb: (exposureHistory: ExposureInfo) => void,
 ): { remove: () => void } => {
   return ExposureEvents.addListener(
     'onGPSExposureInfoUpdated',
     (dayBins: DayBins) => {
-      cb(toExposureHistory(dayBins, calendarConfig));
+      cb(toExposureInfo(dayBins));
     },
   );
 };
