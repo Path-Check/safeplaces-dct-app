@@ -60,6 +60,21 @@ jest.mock('redux-devtools-extension', () => ({
   composeWithDevTools: () => {},
 }));
 
+jest.mock('@react-navigation/stack', () => {
+  return {
+    createStackNavigator: () => {
+      return {
+        Screen: jest.fn(),
+        Stack: jest.fn(),
+        Navigator: jest.fn(),
+      };
+    },
+    CardStyleInterpolators: {
+      forHorizontalIOS: jest.fn(),
+    },
+  };
+});
+
 jest.mock('@react-navigation/native', () => {
   return {
     createAppContainer: jest
@@ -69,7 +84,6 @@ jest.mock('@react-navigation/native', () => {
       }),
     createDrawerNavigator: jest.fn(),
     createMaterialTopTabNavigator: jest.fn(),
-    createStackNavigator: jest.fn(),
     StackActions: {
       push: jest
         .fn()

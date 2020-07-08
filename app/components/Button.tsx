@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   ViewStyle,
+  TextStyle,
   TouchableOpacity,
 } from 'react-native';
 
@@ -16,6 +17,8 @@ interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   style?: ViewStyle;
+  textStyle?: TextStyle;
+  invert?: boolean;
 }
 
 export const Button = ({
@@ -24,9 +27,14 @@ export const Button = ({
   disabled,
   loading,
   style,
+  textStyle,
+  invert,
 }: ButtonProps): JSX.Element => {
-  const textStyle =
-    disabled || loading ? styles.textDisabled : styles.textEnabled;
+  const styles = invert ? darkStyle : lightStyle;
+  const buttonTextStyle =
+    disabled || loading
+      ? { ...styles.textDisabled, ...textStyle }
+      : { ...styles.textEnabled, ...textStyle };
 
   return (
     <TouchableOpacity
@@ -39,13 +47,14 @@ export const Button = ({
       {loading ? (
         <ActivityIndicator size={'large'} />
       ) : (
-        <Typography style={textStyle}>{label}</Typography>
+        <Typography style={buttonTextStyle}>{label}</Typography>
       )}
     </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({
+/* eslint-disable react-native/no-unused-styles */
+const lightStyle = StyleSheet.create({
   button: {
     ...Buttons.largeWhite,
   },
@@ -54,5 +63,19 @@ const styles = StyleSheet.create({
   },
   textDisabled: {
     ...TypographyStyles.buttonTextDark,
+    opacity: 0.5,
+  },
+});
+
+const darkStyle = StyleSheet.create({
+  button: {
+    ...Buttons.largeBlue,
+  },
+  textEnabled: {
+    ...TypographyStyles.buttonTextLight,
+  },
+  textDisabled: {
+    ...TypographyStyles.buttonTextLight,
+    opacity: 0.5,
   },
 });

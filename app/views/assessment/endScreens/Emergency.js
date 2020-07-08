@@ -1,32 +1,67 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { Linking } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { Linking, StyleSheet } from 'react-native';
 
-import { Icons, Images } from '../../../assets';
-import { Typography } from '../../../components/Typography';
+import { Icons } from '../../../assets';
+import { Button } from '../components/Button';
 import { Info } from '../Info';
+import { InfoText } from '../components/InfoText';
 
 import { Colors } from '../../../styles';
 
 /** @type {React.FunctionComponent<{}>} */
 export const Emergency = () => {
   let { t } = useTranslation();
+
+  // TODO: This would need to be localized per country
+  const handleEmergencyCall = () => Linking.openURL('tel://911');
+
   return (
     <Info
-      ctaAction={() => {
-        // TODO: This would need to be localized per country
-        Linking.openURL('tel:911');
-      }}
       backgroundColor={Colors.primaryBackgroundFaintShade}
-      backgroundImage={Images.IsolatePathBackground}
-      icon={Icons.Isolate}
-      ctaTitle={t('assessment.emergency_cta')}
-      description={
-        <Trans t={t} i18nKey='assessment.emergency_description'>
-          <Typography />
-        </Trans>
-      }
-      title={t('assessment.emergency_title')}
-    />
+      icon={Icons.SelfAssessment} // TODO: Placeholder, replace when we get icon
+      scrollStyle={styles.containerItemsAlignment}
+      footer={
+        <EmergencyButton
+          title={t('assessment.emergency_cta')}
+          onPress={handleEmergencyCall}
+        />
+      }>
+      <InfoText
+        useTitleStyle='headline2'
+        title={t('assessment.emergency_title')}
+        description={t('assessment.emergency_description')}
+        titleStyle={styles.title}
+        descriptionStyle={styles.description}
+      />
+    </Info>
   );
 };
+
+const EmergencyButton = ({ title, onPress }) => (
+  <Button
+    buttonStyle={styles.button}
+    onPress={onPress}
+    title={title}
+    backgroundColor={Colors.white}
+    textColor={Colors.black}
+  />
+);
+
+const styles = StyleSheet.create({
+  containerItemsAlignment: {
+    alignItems: 'center',
+  },
+  title: {
+    textAlign: 'center',
+  },
+  description: {
+    textAlign: 'center',
+    fontSize: 18,
+    lineHeight: 24,
+  },
+  button: {
+    borderWidth: 2,
+    borderColor: Colors.emergencyRed,
+  },
+});

@@ -8,9 +8,6 @@ import {
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { Typography } from '../../components/Typography';
-import { Button } from './Button';
-
 /**
  * @typedef { import("react").ReactNode } ReactNode
  */
@@ -28,14 +25,9 @@ export const Info = ({
   backgroundColor,
   backgroundImage,
   children,
-  ctaAction,
-  ctaColor,
-  ctaTitle,
-  description,
-  fontColor,
+  scrollStyle,
   footer,
   icon,
-  title,
 }) => {
   return (
     <SafeAreaView
@@ -45,32 +37,12 @@ export const Info = ({
         source={backgroundImage}
         style={assessmentStyles.backgroundImage}>
         <ScrollView style={assessmentStyles.scrollView}>
-          <View style={assessmentStyles.scrollViewContent}>
-            <SvgXml xml={icon} />
-            <Typography
-              color={fontColor}
-              use='headline2'
-              style={assessmentStyles.headingSpacing}>
-              {title}
-            </Typography>
-            {description && (
-              <Typography
-                color={fontColor}
-                use='body1'
-                style={assessmentStyles.description}
-                testID='description'>
-                {description}
-              </Typography>
-            )}
+          <View style={[assessmentStyles.scrollViewContent, scrollStyle]}>
+            {icon && <SvgXml xml={icon} />}
             {children}
           </View>
         </ScrollView>
-        <View style={assessmentStyles.footer}>
-          {footer}
-          {ctaTitle && (
-            <Button color={ctaColor} onPress={ctaAction} title={ctaTitle} />
-          )}
-        </View>
+        <View style={assessmentStyles.footer}>{footer}</View>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -79,25 +51,22 @@ export const Info = ({
 export const assessmentStyles = StyleSheet.create({
   container: {
     flex: 1,
+    borderTopWidth: 0,
   },
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
+    borderTopWidth: 0,
   },
   scrollView: {
     flex: 1,
   },
   scrollViewContent: {
     padding: 20,
-  },
-  headingSpacing: {
-    marginVertical: 30,
+    borderTopWidth: 0,
   },
   footer: {
     padding: 20,
-  },
-  description: {
-    marginBottom: 20,
   },
 });

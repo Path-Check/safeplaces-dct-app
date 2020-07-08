@@ -34,6 +34,7 @@ export type Screen =
   | 'Licenses'
   | 'FeatureFlags'
   | 'Import'
+  | 'ImportFromUrl'
   | 'Welcome'
   | 'PersonalPrivacy'
   | 'NotificatioNDetails'
@@ -46,7 +47,14 @@ export type Screen =
   | 'SelfAssessment'
   | 'PartnersOverview'
   | 'PartnersEdit'
-  | 'PartnersCustomUrl';
+  | 'PartnersCustomUrl'
+  | 'LanguageSelection'
+  | 'AffectedUserStart'
+  | 'AffectedUserCodeInput'
+  | 'AffectedUserPublishConsent'
+  | 'AffectedUserConfirmUpload'
+  | 'AffectedUserExportDone'
+  | 'AffectedUserComplete';
 
 export const Screens: { [key in Screen]: Screen } = {
   ExportStart: 'ExportStart',
@@ -70,6 +78,7 @@ export const Screens: { [key in Screen]: Screen } = {
   Licenses: 'Licenses',
   FeatureFlags: 'FeatureFlags',
   Import: 'Import',
+  ImportFromUrl: 'ImportFromUrl',
   Welcome: 'Welcome',
   PersonalPrivacy: 'PersonalPrivacy',
   NotificatioNDetails: 'NotificatioNDetails',
@@ -83,6 +92,13 @@ export const Screens: { [key in Screen]: Screen } = {
   PartnersOverview: 'PartnersOverview',
   PartnersEdit: 'PartnersEdit',
   PartnersCustomUrl: 'PartnersCustomUrl',
+  LanguageSelection: 'LanguageSelection',
+  AffectedUserStart: 'AffectedUserStart',
+  AffectedUserCodeInput: 'AffectedUserCodeInput',
+  AffectedUserPublishConsent: 'AffectedUserPublishConsent',
+  AffectedUserConfirmUpload: 'AffectedUserConfirmUpload',
+  AffectedUserExportDone: 'AffectedUserExportDone',
+  AffectedUserComplete: 'AffectedUserComplete',
 };
 
 export type Stack =

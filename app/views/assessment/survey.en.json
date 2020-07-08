@@ -33,22 +33,14 @@
     {
       "option_key": "option_3",
       "question_key": "3",
-      "question_text": "How old are you?",
-      "question_type": "TEXT",
-      "required": false,
-      "screen_type": "Radio"
-    },
-    {
-      "option_key": "option_4",
-      "question_key": "4",
       "question_text": "Do you have any chronic conditions?",
       "question_type": "MULTI",
       "required": false,
       "screen_type": "Checkbox"
     },
     {
-      "option_key": "option_5",
-      "question_key": "5",
+      "option_key": "option_4",
+      "question_key": "4",
       "question_text": "Do you have other people in your household who might have significantly greater risk of exposure than you do?",
       "question_type": "TEXT",
       "required": false,
@@ -61,8 +53,8 @@
           "response": "0"
         }
       ],
-      "option_key": "option_6",
-      "question_key": "6",
+      "option_key": "option_5",
+      "question_key": "5",
       "question_text": "Do you live in a long-term care facility or nursing home?",
       "question_type": "TEXT",
       "required": false,
@@ -75,8 +67,8 @@
           "response": "1"
         }
       ],
-      "option_key": "option_7",
-      "question_key": "7",
+      "option_key": "option_6",
+      "question_key": "6",
       "question_text": "Are you feeling ill?",
       "question_type": "TEXT",
       "required": false,
@@ -89,8 +81,8 @@
           "response": "0"
         }
       ],
-      "option_key": "option_8",
-      "question_key": "8",
+      "option_key": "option_7",
+      "question_key": "7",
       "question_text": "Do you have any life-threatening symptoms? Symptoms include, but are not limited to:",
       "question_description": "• Moderate to severe difficulty breathing (unable to speak full sentences)\n• Coughing up blood (more than about 1 teaspoon)\n• Signs of low blood pressure (feeling cold, pale, clammy skin, light-headed, too weak to stand)\n• Gasping for air or cannot talk without catching your breath (extremely difficult breathing), Blue-colored lips or face\n• Severe and constant pain or pressure in the chest\n• Severe and constant dizziness or lightheadedness\n• Acting confused (new or worsening)\n• Unconscious or very difficult to wake up\n• Slurred speech (new or worsening)\n• New seizure or seizures that won’t stop",
       "question_type": "TEXT",
@@ -132,8 +124,8 @@
           "response": "7"
         }
       ],
-      "option_key": "option_9",
-      "question_key": "9",
+      "option_key": "option_8",
+      "question_key": "8",
       "question_text": "Do you have one or more of the following symptoms?",
       "question_type": "MULTI",
       "required": false,
@@ -187,6 +179,32 @@
       ]
     },
     {
+      "key": "option_2",
+      "values": [
+        {
+          "label": "Yes",
+          "value": "0"
+        },
+        {
+          "label": "No",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "key": "option_2",
+      "values": [
+        {
+          "label": "Yes",
+          "value": "0"
+        },
+        {
+          "label": "No",
+          "value": "1"
+        }
+      ]
+    },
+    {
       "key": "option_2a",
       "values": [
         {
@@ -201,47 +219,6 @@
     },
     {
       "key": "option_3",
-      "values": [
-        {
-          "label": "< 18",
-          "value": "0"
-        },
-        {
-          "label": "19-29",
-          "value": "1"
-        },
-        {
-          "label": "30-39",
-          "value": "2"
-        },
-        {
-          "label": "40-49",
-          "value": "3"
-        },
-        {
-          "label": "50-59",
-          "value": "4"
-        },
-        {
-          "label": "60-69",
-          "value": "5"
-        },
-        {
-          "label": "70-79",
-          "value": "6"
-        },
-        {
-          "label": "80+",
-          "value": "7"
-        },
-        {
-          "label": "Choose not to answer",
-          "value": "8"
-        }
-      ]
-    },
-    {
-      "key": "option_4",
       "values": [
         {
           "label": "Chronic lung disease, moderate to severe asthma, or smoking",
@@ -278,6 +255,23 @@
       ]
     },
     {
+      "key": "option_4",
+      "values": [
+        {
+          "label": "Yes",
+          "value": "0"
+        },
+        {
+          "label": "No",
+          "value": "1"
+        },
+        {
+          "label": "Choose not to answer",
+          "value": "2"
+        }
+      ]
+    },
+    {
       "key": "option_5",
       "values": [
         {
@@ -306,7 +300,7 @@
           "value": "1"
         },
         {
-          "label": "Choose not to answer",
+          "label": "Not sure",
           "value": "2"
         }
       ]
@@ -323,30 +317,13 @@
           "value": "1"
         },
         {
-          "label": "Not sure",
-          "value": "2"
-        }
-      ]
-    },
-    {
-      "key": "option_8",
-      "values": [
-        {
-          "label": "Yes",
-          "value": "0"
-        },
-        {
-          "label": "No",
-          "value": "1"
-        },
-        {
           "label": "Choose not to answer",
           "value": "2"
         }
       ]
     },
     {
-      "key": "option_9",
+      "key": "option_8",
       "values": [
         {
           "label": "Fever or feeling feverish (chills, sweating)",
