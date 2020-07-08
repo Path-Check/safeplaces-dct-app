@@ -22,7 +22,7 @@ export const darkestGray = '#2e2e2e';
 export const silver = '#bebebe';
 export const steelGray = '#9BA0AA';
 export const grayBlue = '#F8F8FF';
-export const porcelain = '#ecfof1';
+export const porcelain = '#ecf0f1';
 
 // Reds
 export const red = '#ff0000';
