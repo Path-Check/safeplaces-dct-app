@@ -51,7 +51,7 @@ class GPSSecureStorageTest: XCTestCase {
     XCTAssertEqual(location1Time, resultLocation.time)
   }
   
-  func testSaveDeviceLocationIgnoredIfPreviousInsertTooClose() {
+  func testSaveDeviceLocationIfPreviousTooClose() {
     // given
     let location1Date = Date()
     let location1Time = location1Date.timeIntervalSince1970
@@ -219,7 +219,7 @@ class GPSSecureStorageTest: XCTestCase {
     let expect1 = XCTestExpectation(description: "Save Location")
     let expect2 = XCTestExpectation(description: "Save Location")
 
-    secureStorage!.saveDeviceLocation(backgroundLocation1) {
+    secureStorage!.saveDeviceLocation(backgroundLocation1, backfill: false) {
       expect1.fulfill()
     }
 
@@ -262,10 +262,10 @@ class GPSSecureStorageTest: XCTestCase {
     let expect2 = XCTestExpectation(description: "Save Device Location 2")
     let expect3 = XCTestExpectation(description: "Trim Locations")
 
-    secureStorage!.saveDeviceLocation(backgroundLocation1) {
+    secureStorage!.saveDeviceLocation(backgroundLocation1, backfill: false) {
       expect1.fulfill()
     }
-    secureStorage!.saveDeviceLocation(backgroundLocation2) {
+    secureStorage!.saveDeviceLocation(backgroundLocation2, backfill: false) {
       expect2.fulfill()
     }
 
@@ -273,6 +273,7 @@ class GPSSecureStorageTest: XCTestCase {
 
     // when
     secureStorage!.trimLocations(
+      backfill: false,
       resolve: resolverFulfilling(expectation: expect3),
       reject: rejecterFulfilling(expectation: expect3)
     )
@@ -302,18 +303,22 @@ class GPSSecureStorageTest: XCTestCase {
     XCTAssertEqual(oldLocationTimestamp + 2 * GPSSecureStorage.LOCATION_INTERVAL, assumedLocations[0].time)
     XCTAssertEqual(oldLocation.latitude, assumedLocations[0].latitude)
     XCTAssertEqual(oldLocation.longitude, assumedLocations[0].longitude)
+    XCTAssertGreaterThan(assumedLocations[0].hashes.count, 0)
+    XCTAssertGreaterThan(assumedLocations[1].hashes.count, 0)
   }
   
   func testMaxAssumedLocationListGenerated() {
     let newLocationDate =  Date()
-    let oldLocationDate = newLocationDate.addingTimeInterval(-GPSSecureStorage.MAX_BACKFILL_TIME)
+    let oldLocationDate = newLocationDate.addingTimeInterval(-24 * 60 * 60)
 
     let oldLocation = createTestLocation(time: oldLocationDate.timeIntervalSince1970, latitude: 10.0, longitude: 10.0)
     let newLocation = TestMAURLocation(latitude: 10.0, longitude: 10.0, date: newLocationDate)
     
     let assumedLocations = GPSSecureStorage.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
+    let assumedLocationsWithHashes = assumedLocations.filter { !$0.hashes.isEmpty }
     
-    XCTAssertEqual(Int(GPSSecureStorage.MAX_BACKFILL_TIME / GPSSecureStorage.LOCATION_INTERVAL) - 1, assumedLocations.count)
+    XCTAssertEqual(Int(newLocationDate.timeIntervalSince(oldLocationDate) / GPSSecureStorage.LOCATION_INTERVAL) - 1, assumedLocations.count)
+    XCTAssertEqual(GPSSecureStorage.MAX_BACKFILL_HASHES, assumedLocationsWithHashes.count)
   }
   
   func testMaxAssumedLocationListEmptyIfTimeTooClose() {
@@ -321,17 +326,6 @@ class GPSSecureStorageTest: XCTestCase {
 
     let oldLocation = createTestLocation(time: location1Date.timeIntervalSince1970, latitude: 10.0, longitude: 10.0)
     let newLocation = TestMAURLocation(latitude: 10.0, longitude: 10.0, date: Date())
-    
-    let assumedLocations = GPSSecureStorage.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
-    
-    XCTAssertEqual(0, assumedLocations.count)
-  }
-  
-  func testAssumedLocationListEmptyIfNotNearby() {
-    let location1Date = Date().addingTimeInterval(-16*60)
-
-    let oldLocation = createTestLocation(time: location1Date.timeIntervalSince1970, latitude: 10.0, longitude: 10.0)
-    let newLocation = TestMAURLocation(latitude: -10.0, longitude: -10.0, date: Date())
     
     let assumedLocations = GPSSecureStorage.createAssumedLocations(previousLocation: oldLocation, newLocation: newLocation)
     

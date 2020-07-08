@@ -62,16 +62,16 @@ class Location: Object {
     ]
   }
 
-  static func fromAssumed(time: Double, latitude: Double, longitude: Double) -> Location {
+  static func fromAssumed(time: Double, latitude: Double, longitude: Double, hash: Bool) -> Location {
     let backgroundLocation = MAURLocation()
     backgroundLocation.time = Date(timeIntervalSince1970: time)
     backgroundLocation.latitude = latitude as NSNumber
     backgroundLocation.longitude = longitude as NSNumber
 
-    return fromBackgroundLocation(backgroundLocation: backgroundLocation, source: .assumed)
+    return fromBackgroundLocation(backgroundLocation: backgroundLocation, source: .assumed, hash: hash)
   }
   
-  static func fromBackgroundLocation(backgroundLocation: MAURLocation, source: Source) -> Location {
+  static func fromBackgroundLocation(backgroundLocation: MAURLocation, source: Source, hash: Bool = true) -> Location {
     let location = Location()
     location.time = backgroundLocation.time.timeIntervalSince1970
     location.latitude = backgroundLocation.latitude.doubleValue
@@ -82,7 +82,11 @@ class Location: Object {
     location.altitudeAccuracy.value = backgroundLocation.altitudeAccuracy?.floatValue
     location.bearing.value = backgroundLocation.heading?.floatValue
     location.source = source.rawValue
-    location.hashes.append(objectsIn: backgroundLocation.scryptHashes)
+
+    if hash {
+      location.hashes.append(objectsIn: backgroundLocation.scryptHashes)
+    }
+
     return location;
   }
   
@@ -151,8 +155,7 @@ class Location: Object {
     let R = 6371e3; // gives d in metres
     let d =
       acos(
-          sin(p1) * sin(p2) +
-              cos(p1) * cos(p2) * cos(deltaLambda)
+        max(-1, min(sin(p1) * sin(p2) + cos(p1) * cos(p2) * cos(deltaLambda), 1))
       ) * R
 
     // closer than the "nearby" distance?

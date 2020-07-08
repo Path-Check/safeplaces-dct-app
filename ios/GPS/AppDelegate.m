@@ -25,7 +25,7 @@
     // The geolocation library sometimes returns nil times.
     // Almost immediately after these locations, we receive an identical location containing a time.
     if (location.hasTime) {
-      [[GPSSecureStorage shared] saveDeviceLocation:[location copy] completion: nil];
+      [[GPSSecureStorage shared] saveDeviceLocation:[location copy] backfill:YES completion:nil];
     }
 
     // nil out location so geolocation library doesn't save in its internal db
@@ -55,7 +55,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-  [[GPSSecureStorage shared] trimLocationsWithResolve:^(id result) {
+  [[GPSSecureStorage shared] trimLocationsWithBackfill:YES resolve:^(id result) {
     // no-op
   } reject:^(NSString *code, NSString *message, NSError *error) {
     //no-op

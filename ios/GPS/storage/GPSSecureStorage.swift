@@ -7,7 +7,9 @@ final class GPSSecureStorage: SafePathsSecureStorage {
 
   static let DAYS_TO_KEEP: TimeInterval = 14
   static let LOCATION_INTERVAL: TimeInterval = 60 * 5
-  static let MAX_BACKFILL_TIME: TimeInterval = 12 * 60 * 60
+
+  /// Hashing is very computationally expensive, so limit the number of hashes computed during a single backfill.
+  static let MAX_BACKFILL_HASHES = 60
 
   private let queue = DispatchQueue(label: "GPSSecureStorage")
 
@@ -16,35 +18,26 @@ final class GPSSecureStorage: SafePathsSecureStorage {
   static func createAssumedLocations(previousLocation: Location, newLocation: MAURLocation) -> [Location] {
     var assumedLocations = [Location]()
 
-    let isNearbyPrevious = Location.areLocationsNearby(
-      lat1: previousLocation.latitude,
-      lon1: previousLocation.longitude,
-      lat2: newLocation.latitude.doubleValue,
-      lon2: newLocation.longitude.doubleValue
-    )
-
-    if isNearbyPrevious {
-      let earliestTime = previousLocation.time + LOCATION_INTERVAL
-      let latestTime = min(previousLocation.time + MAX_BACKFILL_TIME, newLocation.time.timeIntervalSince1970)
-
-      assumedLocations.append(contentsOf: stride(
-        from: earliestTime, to: latestTime, by: LOCATION_INTERVAL
-      ).map {
-        Location.fromAssumed(
-          time: $0,
-          latitude: previousLocation.latitude,
-          longitude: previousLocation.longitude
-        )
-      }.reversed())
-    }
+    assumedLocations.append(contentsOf: stride(
+      from: previousLocation.time + LOCATION_INTERVAL,
+      to: newLocation.time.timeIntervalSince1970,
+      by: LOCATION_INTERVAL
+    ).enumerated().map { idx, time in
+      return Location.fromAssumed(
+        time: time,
+        latitude: previousLocation.latitude,
+        longitude: previousLocation.longitude,
+        hash: idx < MAX_BACKFILL_HASHES
+      )
+    }.reversed())
 
     return assumedLocations
   }
 
-  @objc func saveDeviceLocation(_ backgroundLocation: MAURLocation, completion: (() -> Void)? = nil) {
+  @objc func saveDeviceLocation(_ backgroundLocation: MAURLocation, backfill: Bool = true, completion: (() -> Void)? = nil) {
     queue.async {
       autoreleasepool { [weak self] in
-        self?.saveDeviceLocationImmediately(backgroundLocation)
+        self?.saveDeviceLocationImmediately(backgroundLocation, backfill: backfill)
         completion?()
       }
     }
@@ -66,10 +59,10 @@ final class GPSSecureStorage: SafePathsSecureStorage {
     }
   }
 
-  @objc func trimLocations(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+  @objc func trimLocations(backfill: Bool, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     queue.async {
       autoreleasepool { [weak self] in
-        self?.trimLocationsImmediately(resolve: resolve, reject: reject)
+        self?.trimLocationsImmediately(backfill: backfill, resolve: resolve, reject: reject)
       }
     }
   }
@@ -131,7 +124,7 @@ private extension GPSSecureStorage {
   }
 
   /// This function should be called only on self.queue
-  func saveDeviceLocationImmediately(_ backgroundLocation: MAURLocation) {
+  func saveDeviceLocationImmediately(_ backgroundLocation: MAURLocation, backfill: Bool) {
     Log.storage.debug("Processing \(backgroundLocation)")
 
     // The geolocation library sometimes returns nil times.
@@ -150,7 +143,7 @@ private extension GPSSecureStorage {
     var newLocations = [Location]()
 
     // Backfill locations if outside the desired interval
-    if let previousLocation = previousLocations.first {
+    if backfill, let previousLocation = previousLocations.first {
       let assumedLocations = GPSSecureStorage.createAssumedLocations(
         previousLocation: previousLocation,
         newLocation: backgroundLocation
@@ -206,16 +199,23 @@ private extension GPSSecureStorage {
   }
 
   /// This function should be called only on self.queue
-  func trimLocationsImmediately(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+  func trimLocationsImmediately(backfill: Bool, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     guard let realm = getRealmInstance() else {
       resolve(false)
       return
     }
 
+    Log.storage.debug("Trimming locations")
+
     realm.delete(
       locations: realm.objects(Location.self).filter("\(Location.Key.time.rawValue)<\(cutoffTime)"),
       resolve: { _ in
-        realm.backfillLocations(resolve: resolve, reject: reject)
+        if backfill {
+          realm.backfillLocations(resolve: resolve, reject: reject)
+        }
+        else {
+          resolve(true)
+        }
       },
       reject: reject
     )
