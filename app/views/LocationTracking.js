@@ -178,7 +178,6 @@ class LocationTracking extends Component {
 
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     // refresh state if settings have changed
     this.unsubscribe = this.props.navigation.addListener('focus', () => {
       this.checkIfUserAtRisk();
@@ -213,7 +212,6 @@ class LocationTracking extends Component {
   componentWillUnmount() {
     AppState.removeEventListener('change', this.handleAppStateChange);
     clearInterval(this.state.timer_intersect);
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     this.unsubscribe();
   }
 
@@ -227,11 +225,6 @@ class LocationTracking extends Component {
       this.checkCurrentState();
     }
     this.setState({ appState: nextAppState });
-  };
-
-  handleBackPress = () => {
-    BackHandler.exitApp(); // works best when the goBack is async
-    return true;
   };
 
   export() {
@@ -442,7 +435,7 @@ const PULSE_GAP = 80;
 const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
-    height: '100%',
+    height: '50%',
     resizeMode: 'cover',
     flex: 1,
     justifyContent: 'flex-end',
@@ -482,8 +475,11 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
+    width: '100%',
+    height: 'auto',
     marginTop: 24,
-    height: 54, // fixes overlaying buttons on really small screens
+    minHeight: 54, // fixes overlaying buttons on really small screens
+    maxHeight: 90,
   },
   pulseContainer: {
     backgroundColor: Colors.BLUE_RIBBON,
