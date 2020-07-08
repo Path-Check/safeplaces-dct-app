@@ -63,11 +63,17 @@
     "next": "Next",
     "ok": "Ok",
     "something_went_wrong": "Something went wrong",
-    "start": "Start"
+    "start": "Start",
+    "submit": "Submit"
   },
   "export": {
+    "error": {
+      "verification_code_used": "Verification code has already been used",
+      "invalid_code": "Try a different code",
+      "unknown_code_verification_error": "Try a different code"
+    },
     "code_input_body": "The representative from {{name}} will provide a verification code over the phone to link your data with {{name}}.",
-    "code_input_body_bluetooth": "Type in your verification code.",
+    "code_input_body_bluetooth": "Enter your verification code",
     "code_input_error": "Try a different code",
     "code_input_title": "Enter your verification code",
     "code_input_title_bluetooth": "Verify your diagnosis",
