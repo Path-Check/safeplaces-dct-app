@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
+import activityIndicatorLoadingView from '../../../components/DR/ActivityIndicator';
+
 export default function AuroraScreen({ navigation }) {
   let webViewRef;
   const form = 'https://aurorasalud.org.do/chat/';
@@ -23,7 +25,9 @@ export default function AuroraScreen({ navigation }) {
         source={{
           uri: form,
         }}
+        startInLoadingState
         onResponderReject={res => console.log(res)}
+        renderLoading={activityIndicatorLoadingView}
       />
     </View>
   );

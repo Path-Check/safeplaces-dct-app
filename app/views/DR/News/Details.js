@@ -4,6 +4,7 @@ import { BackHandler, Dimensions } from 'react-native';
 import PDFView from 'react-native-pdf';
 import { WebView } from 'react-native-webview';
 
+import activityIndicatorLoadingView from '../../../components/DR/ActivityIndicator';
 import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
 import DialogAdvices from '../../DialogAdvices';
 
@@ -66,6 +67,7 @@ const Details = ({
             height: Dimensions.get('window').height,
             backgroundColor: 'white',
           }}
+          activityIndicator={activityIndicatorLoadingView()}
         />
       )}
       {switchScreenTo === 'WebView' && (
@@ -73,6 +75,7 @@ const Details = ({
           source={source}
           startInLoadingState
           injectedJavaScript={fixerImage}
+          renderLoading={activityIndicatorLoadingView}
           onLoadStart={() => {
             if (textFirstDialog) {
               setShowDialog(true);
