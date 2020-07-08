@@ -18,6 +18,7 @@ interface ButtonProps {
   disabled?: boolean;
   style?: ViewStyle;
   textStyle?: TextStyle;
+  invert?: boolean;
 }
 
 export const Button = ({
@@ -27,7 +28,9 @@ export const Button = ({
   loading,
   style,
   textStyle,
+  invert,
 }: ButtonProps): JSX.Element => {
+  const styles = invert ? darkStyle : lightStyle;
   const buttonTextStyle =
     disabled || loading
       ? { ...styles.textDisabled, ...textStyle }
@@ -50,7 +53,8 @@ export const Button = ({
   );
 };
 
-const styles = StyleSheet.create({
+/* eslint-disable react-native/no-unused-styles */
+const lightStyle = StyleSheet.create({
   button: {
     ...Buttons.largeWhite,
   },
@@ -59,5 +63,19 @@ const styles = StyleSheet.create({
   },
   textDisabled: {
     ...TypographyStyles.buttonTextDark,
+    opacity: 0.5,
+  },
+});
+
+const darkStyle = StyleSheet.create({
+  button: {
+    ...Buttons.largeBlue,
+  },
+  textEnabled: {
+    ...TypographyStyles.buttonTextLight,
+  },
+  textDisabled: {
+    ...TypographyStyles.buttonTextLight,
+    opacity: 0.5,
   },
 });

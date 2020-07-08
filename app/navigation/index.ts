@@ -34,6 +34,7 @@ export type Screen =
   | 'Licenses'
   | 'FeatureFlags'
   | 'Import'
+  | 'ImportFromUrl'
   | 'Welcome'
   | 'PersonalPrivacy'
   | 'NotificatioNDetails'
@@ -47,6 +48,7 @@ export type Screen =
   | 'PartnersOverview'
   | 'PartnersEdit'
   | 'PartnersCustomUrl'
+  | 'LanguageSelection'
   | 'AffectedUserStart'
   | 'AffectedUserCodeInput'
   | 'AffectedUserPublishConsent'
@@ -76,6 +78,7 @@ export const Screens: { [key in Screen]: Screen } = {
   Licenses: 'Licenses',
   FeatureFlags: 'FeatureFlags',
   Import: 'Import',
+  ImportFromUrl: 'ImportFromUrl',
   Welcome: 'Welcome',
   PersonalPrivacy: 'PersonalPrivacy',
   NotificatioNDetails: 'NotificatioNDetails',
@@ -89,6 +92,7 @@ export const Screens: { [key in Screen]: Screen } = {
   PartnersOverview: 'PartnersOverview',
   PartnersEdit: 'PartnersEdit',
   PartnersCustomUrl: 'PartnersCustomUrl',
+  LanguageSelection: 'LanguageSelection',
   AffectedUserStart: 'AffectedUserStart',
   AffectedUserCodeInput: 'AffectedUserCodeInput',
   AffectedUserPublishConsent: 'AffectedUserPublishConsent',

@@ -2,26 +2,18 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 
-import { useTracingStrategyContext } from '../../TracingStrategyContext';
 import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
 import exportConsentApi from '../../api/export/exportConsentApi';
-import { isGPS } from '../../COVIDSafePathsConfig';
 import { useStrategyContent } from '../../TracingStrategyContext';
 import { Screens } from '../../navigation';
+import { Icons } from '../../assets';
 
 export const ExportPublishConsent = ({ navigation, route }) => {
   const [isConsenting, setIsConsenting] = useState(false);
   const { t } = useTranslation();
 
   const { StrategyCopy } = useStrategyContent();
-  const { StrategyAssets } = useTracingStrategyContext();
-
-  const exportPublishNextRoute = isGPS
-    ? Screens.ExportConfirmUpload
-    : Screens.ExportComplete;
-  const exportExitRoute = isGPS ? Screens.ExportStart : Screens.Settings;
-
   const { selectedAuthority, code } = route.params;
 
   const consent = async () => {
@@ -29,14 +21,14 @@ export const ExportPublishConsent = ({ navigation, route }) => {
     try {
       await exportConsentApi(selectedAuthority, true, code);
       setIsConsenting(false);
-      navigation.navigate(exportPublishNextRoute, { selectedAuthority, code });
+      navigation.navigate(Screens.ExportComplete, { selectedAuthority, code });
     } catch (e) {
-      Alert.alert('Something went wrong');
+      Alert.alert(t('common.something_went_wrong'), e.message);
       setIsConsenting(false);
     }
   };
 
-  const onClose = () => exitWarningAlert(navigation, exportExitRoute);
+  const onClose = () => exitWarningAlert(navigation, Screens.ExportStart);
 
   return (
     <ExportTemplate
@@ -47,7 +39,7 @@ export const ExportPublishConsent = ({ navigation, route }) => {
       headline={StrategyCopy.exportPublishTitle}
       body={t('export.publish_consent_body', { name: selectedAuthority.name })}
       buttonLoading={isConsenting}
-      icon={StrategyAssets.exportPublishIcon}
+      icon={Icons.Publish}
     />
   );
 };

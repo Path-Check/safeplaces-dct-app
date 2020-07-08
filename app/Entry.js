@@ -27,6 +27,7 @@ import Assessment from './views/assessment';
 import NextSteps from './views/ExposureHistory/NextSteps';
 import MoreInfo from './views/ExposureHistory/MoreInfo';
 import ENDebugMenu from './views/Settings/ENDebugMenu';
+import ImportFromUrl from './views/Settings/ImportFromUrl';
 import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
@@ -37,6 +38,7 @@ import NotificatioNDetails from './views/onboarding/NotificationDetails';
 import ShareDiagnosis from './views/onboarding/ShareDiagnosis';
 import NotificationsPermissions from './views/onboarding/NotificationsPermissions';
 import LocationsPermissions from './views/onboarding/LocationsPermissions';
+import LanguageSelection from './views/LanguageSelection';
 
 import { Screens, Stacks } from './navigation';
 
@@ -106,6 +108,7 @@ const MoreTabStack = () => (
     <Stack.Screen name={Screens.Licenses} component={LicensesScreen} />
     <Stack.Screen name={Screens.FeatureFlags} component={FeatureFlagsScreen} />
     <Stack.Screen name={Screens.Import} component={ImportScreen} />
+    <Stack.Screen name={Screens.ImportFromUrl} component={ImportFromUrl} />
     <Stack.Screen name={Screens.ENDebugMenu} component={ENDebugMenu} />
     <Stack.Screen
       name={Screens.ENLocalDiagnosisKey}
@@ -306,10 +309,17 @@ export const Entry = () => {
         ) : (
           <Stack.Screen name={Stacks.Onboarding} component={OnboardingStack} />
         )}
-        {/* Modal View: */}
+        {/* Modal Views: */}
         <Stack.Screen
           name={Screens.ExportFlow}
           component={tracingStrategy.affectedUserFlow}
+          options={{
+            ...TransitionPresets.ModalSlideFromBottomIOS,
+          }}
+        />
+        <Stack.Screen
+          name={Screens.LanguageSelection}
+          component={LanguageSelection}
           options={{
             ...TransitionPresets.ModalSlideFromBottomIOS,
           }}

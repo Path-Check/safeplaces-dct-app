@@ -22,7 +22,7 @@ extension String {
   static let genericSuccess = "success"
 
   var gaenFilePaths: [String] {
-    split(separator: "\n").map { String($0) }.filter { $0.contains(ReactNativeConfig.env(for: .downloadPath)) }
+    split(separator: "\n").map { String($0) }
   }
 
   var localized: String {

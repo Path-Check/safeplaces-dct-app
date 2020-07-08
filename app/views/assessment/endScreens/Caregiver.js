@@ -1,32 +1,37 @@
 import React, { useContext } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { Icons, Images } from '../../../assets';
-import { Typography } from '../../../components/Typography';
-import { MetaContext } from '../Context';
+import { AssessmentNavigationContext } from '../Context';
 import { Info } from '../Info';
+import { InfoText } from '../components/InfoText';
+import { Button } from '../components/Button';
 
 import { Colors } from '../../../styles';
 
 /** @type {React.FunctionComponent<{}>} */
 export const Caregiver = ({ navigation }) => {
-  let { t } = useTranslation();
-  let { completeRoute } = useContext(MetaContext);
+  const { t } = useTranslation();
+  const { completeRoute } = useContext(AssessmentNavigationContext);
+
+  const handleButtonPress = () => navigation.push(completeRoute);
+
   return (
     <Info
-      ctaAction={() => {
-        navigation.push(completeRoute);
-      }}
       backgroundColor={Colors.primaryBackgroundFaintShade}
       backgroundImage={Images.IsolatePathBackground}
       icon={Icons.Isolate}
-      ctaTitle={t('assessment.caregiver_cta')}
-      description={
-        <Trans t={t} i18nKey='assessment.caregiver_description'>
-          <Typography />
-        </Trans>
-      }
-      title={t('assessment.caregiver_title')}
-    />
+      footer={
+        <Button
+          onPress={handleButtonPress}
+          title={t('assessment.caregiver_cta')}
+        />
+      }>
+      <InfoText
+        useTitleStyle='headline2'
+        title={t('assessment.caregiver_title')}
+        description={t('assessment.caregiver_description')}
+      />
+    </Info>
   );
 };

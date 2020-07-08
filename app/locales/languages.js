@@ -74,6 +74,7 @@ export async function setUserLocaleOverride(locale) {
 /* eslint-disable no-underscore-dangle */
 const PROD_RESOURCES = {
   en: { label: en._display_name, translation: en },
+  es_PR: { label: es_PR._display_name, translation: es_PR },
 };
 
 /** Languages only available in feature flag. */
@@ -82,7 +83,6 @@ const DEV_RESOURCES = {
   da: { label: da._display_name, translation: da },
   es: { label: es._display_name, translation: es },
   es_419: { label: es_419._display_name, translation: es_419 },
-  es_PR: { label: es_PR._display_name, translation: es_PR },
   ht: { label: ht._display_name, translation: ht },
   fil: { label: fil._display_name, translation: fil },
   fr: { label: fr._display_name, translation: fr },
@@ -140,7 +140,7 @@ export const getLocaleList = () =>
     .sort((a, b) => a.value > b.value);
 
 /** A map of locale code to name. */
-const getLocalNames = () =>
+export const getLocalNames = () =>
   Object.entries(i18next.options.resources).reduce(
     (output, [langCode, lang]) => {
       output[langCode] = lang.label;

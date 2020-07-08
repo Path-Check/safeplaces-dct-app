@@ -11,57 +11,64 @@ exports[`all services on matches snapshot 1`] = `
   }
 >
   <View
-    accessibilityIgnoresInvertColors={true}
     style={
       Object {
         "flex": 1,
-        "height": "110%",
-        "justifyContent": "flex-end",
-        "resizeMode": "cover",
-        "top": 0,
-        "width": "100%",
       }
     }
   >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../app/assets/images/blueGradientBackground.png",
-        }
-      }
-      style={
-        Array [
-          Object {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          },
-          Object {
-            "height": "110%",
-            "width": "100%",
-          },
-          undefined,
-        ]
-      }
-    />
     <View
+      accessibilityIgnoresInvertColors={true}
       style={
         Object {
-          "alignItems": "center",
-          "left": 0,
-          "position": "absolute",
-          "resizeMode": "contain",
-          "right": 0,
-          "top": "-17%",
+          "flex": 1,
+          "height": "110%",
+          "justifyContent": "flex-end",
+          "resizeMode": "cover",
+          "top": 0,
+          "width": "100%",
         }
       }
     >
-      <SvgXml
-        height={1334}
-        width={1334}
-        xml="<svg width=\\"850\\" height=\\"850\\" viewBox=\\"0 0 850 850\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+      <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/blueGradientBackground.png",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "height": "110%",
+              "width": "100%",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "left": 0,
+            "position": "absolute",
+            "resizeMode": "contain",
+            "right": 0,
+            "top": "-17%",
+          }
+        }
+      >
+        <SvgXml
+          height={1334}
+          width={1334}
+          xml="<svg width=\\"850\\" height=\\"850\\" viewBox=\\"0 0 850 850\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
 <g opacity=\\"0.2\\">
 <circle cx=\\"425\\" cy=\\"425\\" r=\\"85.5\\" stroke=\\"white\\"/>
 <circle cx=\\"425\\" cy=\\"425\\" r=\\"149.5\\" stroke=\\"white\\"/>
@@ -82,90 +89,90 @@ exports[`all services on matches snapshot 1`] = `
 </defs>
 </svg>
 "
-      />
+        />
+      </View>
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "height": "100%",
-        "left": 0,
-        "paddingBottom": 12,
-        "paddingHorizontal": 24,
-        "position": "absolute",
-        "right": 0,
-        "top": "-10%",
-      }
-    }
-  >
     <View
       style={
         Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "flex-end",
-          "paddingBottom": 40,
-        }
-      }
-    />
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "flex-start",
-          "paddingTop": 80,
+          "height": "100%",
+          "left": 0,
+          "paddingBottom": 12,
+          "paddingHorizontal": 24,
+          "position": "absolute",
+          "right": 0,
+          "top": "-10%",
         }
       }
     >
-      <Text
+      <View
         style={
-          Array [
-            Object {
-              "color": "#2e2e2e",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 17,
-              "lineHeight": 24,
-            },
-            Object {
-              "writingDirection": "ltr",
-            },
-            Object {
-              "color": "#ffffff",
-              "fontSize": 26,
-              "lineHeight": 34,
-              "marginBottom": 24,
-              "textAlign": "center",
-            },
-          ]
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "flex-end",
+            "paddingBottom": 40,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "flex-start",
+            "paddingTop": 80,
+          }
         }
       >
-        PathCheck
-      </Text>
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "#2e2e2e",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 17,
-              "lineHeight": 24,
-            },
-            Object {
-              "writingDirection": "ltr",
-            },
-            Object {
-              "color": "#ffffff",
-              "fontSize": 18,
-              "lineHeight": 24.5,
-              "marginBottom": 24,
-              "textAlign": "center",
-            },
-          ]
-        }
-      >
-        PathCheck is saving the places you visit to create your private location diary
-      </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 17,
+                "lineHeight": 24,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontSize": 26,
+                "lineHeight": 34,
+                "marginBottom": 24,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          PathCheck
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 17,
+                "lineHeight": 24,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontSize": 18,
+                "lineHeight": 24.5,
+                "marginBottom": 24,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          PathCheck is saving the places you visit to create your private location diary
+        </Text>
+      </View>
     </View>
   </View>
 </View>
