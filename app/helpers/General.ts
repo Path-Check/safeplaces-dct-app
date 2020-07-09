@@ -36,14 +36,6 @@ export async function SetStoreData(
   }
 }
 
-export async function RemoveStoreData(key: string): Promise<void> {
-  try {
-    return await AsyncStorage.removeItem(key);
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
 export async function pickFile(): Promise<string | null> {
   // Pick a single file - returns actual path on Android, file:// uri on iOS
   try {
