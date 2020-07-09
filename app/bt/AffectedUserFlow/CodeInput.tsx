@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import {
+  ActivityIndicator,
   Alert,
   KeyboardAvoidingView,
   StyleSheet,
   Platform,
+  TouchableOpacity,
   TextInput,
   View,
+  Keyboard,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Button } from '../../components/Button';
 import { Typography } from '../../components/Typography';
 import { useAffectedUserContext } from './AffectedUserContext';
+import * as API from './verificationAPI';
 
 import { Screens } from '../../navigation';
 import {
@@ -22,44 +25,74 @@ import {
   Layout,
   Forms,
   Colors,
+  Outlines,
   Typography as TypographyStyles,
 } from '../../styles';
 
-const CODE_LENGTH = 8;
+const defaultErrorMessage = ' ';
 
 const CodeInputScreen = (): JSX.Element => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
   const { code, setCode } = useAffectedUserContext();
-  const [isCheckingCode, setIsCheckingCode] = useState(false);
-  const [codeInvalid, setCodeInvalid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(defaultErrorMessage);
 
-  const length = CODE_LENGTH;
+  const isIOS = Platform.OS === 'ios';
+  const codeLength = 8;
 
   const handleOnChangeText = (code: string) => {
+    setErrorMessage('');
     setCode(code);
   };
 
-  const isIOS = Platform.OS === 'ios';
+  const handleOnPressCancel = () => {
+    navigation.navigate(Screens.Settings);
+  };
 
   const handleOnPressNext = async () => {
-    setIsCheckingCode(true);
-    setCodeInvalid(false);
+    setIsLoading(true);
+    setErrorMessage(defaultErrorMessage);
     try {
-      const valid = code === '12345678';
+      const response = await API.postVerificationCode(code);
 
-      if (valid) {
+      if (response.kind === 'success') {
+        const token = response.body.token;
+        const fakeHMAC = 'abcd1234';
+        API.postVerificationToken(token, fakeHMAC);
+
         navigation.navigate(Screens.AffectedUserPublishConsent);
       } else {
-        setCodeInvalid(true);
+        setErrorMessage(showError(response.error));
       }
-      setIsCheckingCode(false);
+      setIsLoading(false);
     } catch (e) {
       Alert.alert(t('common.something_went_wrong'), e.message);
-      setIsCheckingCode(false);
+      setIsLoading(false);
     }
   };
+
+  const showError = (error: API.CodeVerificationError): string => {
+    switch (error) {
+      case 'InvalidCode': {
+        return t('export.error.invalid_code');
+      }
+      case 'VerificationCodeUsed': {
+        return t('export.error.verification_code_used');
+      }
+      default: {
+        return t('export.error.unknown_code_verification_error');
+      }
+    }
+  };
+
+  const isDisabled = code.length !== codeLength;
+
+  const buttonStyle = isDisabled ? styles.disabledButton : styles.button;
+  const buttonTextStyle = isDisabled
+    ? styles.disabledButtonText
+    : styles.buttonText;
 
   return (
     <View style={styles.backgroundImage}>
@@ -71,47 +104,80 @@ const CodeInputScreen = (): JSX.Element => {
           behavior={isIOS ? 'padding' : undefined}>
           <View style={styles.container}>
             <View>
-              <Typography style={styles.header}>
-                {t('export.code_input_title_bluetooth')}
-              </Typography>
+              <View style={styles.headerContainer}>
+                <Typography style={styles.header}>
+                  {t('export.code_input_title_bluetooth')}
+                </Typography>
 
-              <Typography style={styles.subheader}>
-                {t('export.code_input_body_bluetooth')}
-              </Typography>
-            </View>
+                <Typography style={styles.subheader}>
+                  {t('export.code_input_body_bluetooth')}
+                </Typography>
+              </View>
 
-            <View>
-              <TextInput
-                testID={'code-input'}
-                value={code}
-                placeholder={'00000000'}
-                placeholderTextColor={Colors.placeholderTextColor}
-                maxLength={length}
-                style={styles.codeInput}
-                keyboardType={'number-pad'}
-                returnKeyType={'done'}
-                onChangeText={handleOnChangeText}
-                blurOnSubmit={false}
-              />
+              <View>
+                <TextInput
+                  testID={'code-input'}
+                  value={code}
+                  placeholder={'00000000'}
+                  placeholderTextColor={Colors.placeholderTextColor}
+                  maxLength={codeLength}
+                  style={styles.codeInput}
+                  keyboardType={'number-pad'}
+                  returnKeyType={'done'}
+                  onChangeText={handleOnChangeText}
+                  blurOnSubmit={false}
+                  onSubmitEditing={Keyboard.dismiss}
+                />
+              </View>
 
               <Typography style={styles.errorSubtitle} use='body2'>
-                {codeInvalid ? t('export.code_input_error') : ' '}
+                {errorMessage}
               </Typography>
             </View>
+            {isLoading ? <LoadingIndicator /> : null}
 
-            <Button
-              loading={isCheckingCode}
-              label={t('common.next')}
-              onPress={handleOnPressNext}
-              style={styles.button}
-              textStyle={styles.buttonText}
-            />
+            <View>
+              <TouchableOpacity
+                onPress={handleOnPressNext}
+                accessible
+                accessibilityLabel={t('common.submit')}
+                accessibilityRole='button'
+                disabled={isDisabled}
+                style={buttonStyle}>
+                <Typography style={buttonTextStyle}>
+                  {t('common.submit')}
+                </Typography>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={handleOnPressCancel}
+                style={styles.secondaryButton}>
+                <Typography style={styles.secondaryButtonText}>
+                  {t('export.code_input_button_cancel')}
+                </Typography>
+              </TouchableOpacity>
+            </View>
           </View>
         </KeyboardAvoidingView>
       </SafeAreaView>
     </View>
   );
 };
+
+const LoadingIndicator = () => {
+  return (
+    <View style={styles.activityIndicatorContainer}>
+      <ActivityIndicator
+        size={'large'}
+        color={Colors.darkGray}
+        style={styles.activityIndicator}
+        testID={'loading-indicator'}
+      />
+    </View>
+  );
+};
+
+const indicatorWidth = 120;
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -123,28 +189,60 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     justifyContent: 'space-between',
-    padding: Spacing.medium,
+    paddingHorizontal: Spacing.medium,
     paddingTop: Layout.oneTenthHeight,
     backgroundColor: Colors.primaryBackgroundFaintShade,
   },
+  headerContainer: {
+    marginBottom: Spacing.xxxHuge,
+  },
   header: {
     ...TypographyStyles.header2,
+    marginBottom: Spacing.xxSmall,
   },
   subheader: {
     ...TypographyStyles.header4,
     color: Colors.secondaryText,
   },
   errorSubtitle: {
+    ...TypographyStyles.header4,
     color: Colors.errorText,
+    paddingTop: Spacing.xxSmall,
   },
   codeInput: {
     ...Forms.textInput,
   },
+  activityIndicatorContainer: {
+    position: 'absolute',
+    zIndex: Layout.level1,
+    left: Layout.halfWidth,
+    top: Layout.halfHeight,
+    marginLeft: -(indicatorWidth / 2),
+    marginTop: -(indicatorWidth / 2),
+  },
+  activityIndicator: {
+    width: indicatorWidth,
+    height: indicatorWidth,
+    backgroundColor: Colors.transparentDarkGray,
+    borderRadius: Outlines.baseBorderRadius,
+  },
   button: {
-    ...Buttons.largeBlue,
+    ...Buttons.primary,
   },
   buttonText: {
-    ...TypographyStyles.buttonTextLight,
+    ...TypographyStyles.buttonTextPrimary,
+  },
+  disabledButton: {
+    ...Buttons.primaryDisabled,
+  },
+  disabledButtonText: {
+    ...TypographyStyles.buttonTextPrimaryDisabled,
+  },
+  secondaryButton: {
+    ...Buttons.secondary,
+  },
+  secondaryButtonText: {
+    ...TypographyStyles.buttonTextSecondary,
   },
 });
 
