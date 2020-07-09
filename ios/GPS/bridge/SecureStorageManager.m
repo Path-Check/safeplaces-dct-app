@@ -16,7 +16,7 @@ RCT_EXTERN_METHOD(
 )
 
 RCT_EXTERN_METHOD(
-                  importGoogleLocations: (NSArray)locations
+                  importMockLocations: (NSArray)locations
                   resolve: (RCTPromiseResolveBlock)resolve
                   rejecter: (RCTPromiseRejectBlock)reject
 )
