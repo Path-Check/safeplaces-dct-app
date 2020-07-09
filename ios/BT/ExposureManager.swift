@@ -269,7 +269,17 @@ final class ExposureManager: NSObject {
     #endif
   }
   
-  func getExposureKeys() {}
+  @objc func getExposureKeys(callback: @escaping RCTResponseSenderBlock) {
+    manager.getDiagnosisKeys { (keys, error) in
+      if let error = error {
+        callback([error, NSNull()])
+      } else {
+        callback([NSNull(), (keys ?? []).map { $0.asDictionary }])
+      }
+    }
+  }
+
+  @objc func storeHMACKey(callback: @escaping RCTResponseSenderBlock) {}
 
 }
 
