@@ -18,7 +18,8 @@ import PartnersEditScreen from './views/Partners/PartnersEdit';
 import PartnersCustomUrlScreen from './views/Partners/PartnersCustomUrlScreen';
 
 import { LicensesScreen } from './views/Licenses';
-import { ExportStart, ExportLocally } from './gps/Export';
+import { ExportSelectHA, ExportStart, ExportLocally } from './gps/Export';
+import ExportStack from './bt/AffectedUserFlow';
 
 import NotificationPermissionsBT from './bt/NotificationPermissionsBT';
 import ExposureHistoryScreen from './views/ExposureHistory';
@@ -96,8 +97,6 @@ const SelfAssessmentStack = () => (
 );
 
 const MoreTabStack = () => {
-  const tracingStrategy = useTracingStrategyContext();
-
   return (
     <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
       <Stack.Screen name={Screens.Settings} component={SettingsScreen} />
@@ -116,7 +115,7 @@ const MoreTabStack = () => {
       />
       <Stack.Screen
         name={Screens.ExportFlow}
-        component={tracingStrategy.affectedUserFlow}
+        component={ExportStack}
         options={{
           ...TransitionPresets.ModalSlideFromBottomIOS,
           gestureEnabled: false,
@@ -133,11 +132,34 @@ const MoreTabStack = () => {
   );
 };
 
-const screensWithNoTabBar = [Screens.ExportFlow];
+const screensWithNoTabBar = [Screens.ExportSelectHA, Screens.ExportFlow];
 
 const determineTabBarVisibility = (route) => {
   const routeName = route.state?.routes[route.state.index].name;
   return !screensWithNoTabBar.includes(routeName);
+};
+
+const GPSExportStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={Screens.ExportStart}
+        component={ExportStart}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={Screens.ExportSelectHA}
+        component={ExportSelectHA}
+        options={{
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
 };
 
 const MainAppTabs = () => {
@@ -207,9 +229,10 @@ const MainAppTabs = () => {
       />
       {isGPS && (
         <Tab.Screen
-          name={Screens.ExportStart}
-          component={ExportStart}
-          options={{
+          name={'Export Start'}
+          component={GPSExportStack}
+          options={({ route }) => ({
+            tabBarVisible: determineTabBarVisibility(route),
             tabBarLabel: t('navigation.locations'),
             tabBarIcon: ({ focused, size }) => (
               <SvgXml
@@ -218,7 +241,7 @@ const MainAppTabs = () => {
                 height={size}
               />
             ),
-          }}
+          })}
         />
       )}
       {isGPS ? (
