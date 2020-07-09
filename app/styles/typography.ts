@@ -244,6 +244,11 @@ export const buttonTextPrimary: TextStyle = {
   color: Colors.white,
 };
 
+export const buttonTextPrimaryDisabled: TextStyle = {
+  ...buttonText,
+  color: Colors.white,
+};
+
 export const buttonTextPrimaryInverted: TextStyle = {
   ...buttonText,
   color: Colors.primaryViolet,
