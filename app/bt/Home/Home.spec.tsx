@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert, Platform } from 'react-native';
 import {
   render,
   cleanup,
@@ -9,7 +10,6 @@ import '@testing-library/jest-native/extend-expect';
 
 import { ENPermissionStatus } from '../PermissionsContext';
 import Home from './Home';
-import { Alert } from 'react-native';
 
 afterEach(cleanup);
 
@@ -56,7 +56,11 @@ describe('Home', () => {
 
         fireEvent.press(button);
         await wait(() => {
-          expect(alert).toHaveBeenCalled();
+          if (Platform.OS === 'ios') {
+            expect(alert).toHaveBeenCalled();
+          } else {
+            expect(alert).not.toHaveBeenCalled();
+          }
         });
       });
     });
