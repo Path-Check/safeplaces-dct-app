@@ -171,6 +171,14 @@
     "success": "Recent locations has been successfully imported!",
     "title": "Import Locations"
   },
+  "location": {
+    "data": {
+      "delete_warning_cancel": "Cancel",
+      "delete_warning_confirm": "Yes, I'm sure",
+      "delete_warning_title": "Are you sure?",
+      "delete_warning_body": "This will delete your location history stored on this phone."
+    }
+  },
   "home": {
     "gps": {
       "tracing_off_header": "Location Access Disabled",
@@ -342,6 +350,7 @@
     "legal": "Legal",
     "more": "More",
     "exposure_history": "Exposure History",
-    "more_info": "More Info"
+    "more_info": "More Info",
+    "delete_location_history": "Delete Location History"
   }
 }
