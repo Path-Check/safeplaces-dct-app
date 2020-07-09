@@ -1,8 +1,6 @@
-import AsyncStorage from '@react-native-community/async-storage';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import MockDate from 'mockdate';
-import { NativeModules } from 'react-native';
 
 import {
   DEFAULT_EXPOSURE_PERIOD_MINUTES,
@@ -13,7 +11,6 @@ import {
   fillDayBins,
   fillLocationGaps,
   initLocationBins,
-  migrateOldData,
   normalizeAndSortLocations,
   updateMatchFlags,
 } from '../Intersect';
@@ -905,51 +902,3 @@ describe('calculate exposure durations', () => {
     return { locations, hashes };
   }
 }); // intersectSetIntoBins
-
-describe('migrateOldData', () => {
-  it('resolves to false where there is no data to migrate', async () => {
-    AsyncStorage.getItem.mockResolvedValueOnce(null);
-
-    await expect(migrateOldData()).resolves.toBe(false);
-  });
-
-  it('resolves to false where the array is empty', async () => {
-    AsyncStorage.getItem.mockResolvedValueOnce('[]');
-
-    await expect(migrateOldData()).resolves.toBe(false);
-  });
-
-  it('resolves to false if stored locations is not an array', async () => {
-    AsyncStorage.getItem.mockResolvedValueOnce('null');
-
-    await expect(migrateOldData()).resolves.toBe(false);
-  });
-
-  it('migrates the old data if present', async () => {
-    NativeModules.SecureStorageManager.migrateExistingLocations.mockResolvedValue();
-    AsyncStorage.getItem.mockResolvedValueOnce('[1,2,3]');
-
-    await migrateOldData();
-
-    await expect(
-      NativeModules.SecureStorageManager.migrateExistingLocations,
-    ).toHaveBeenCalledWith([1, 2, 3]);
-  });
-
-  it('deletes the old data after migration', async () => {
-    NativeModules.SecureStorageManager.migrateExistingLocations.mockResolvedValue();
-    AsyncStorage.getItem.mockResolvedValueOnce('[1,2,3]');
-    AsyncStorage.removeItem.mockResolvedValue();
-
-    await migrateOldData();
-
-    await expect(AsyncStorage.removeItem).toHaveBeenCalledWith('LOCATION_DATA');
-  });
-
-  it('resolves to true if data was migrated', async () => {
-    NativeModules.SecureStorageManager.migrateExistingLocations.mockResolvedValue();
-    AsyncStorage.getItem.mockResolvedValueOnce('[1,2,3]');
-
-    await expect(migrateOldData()).resolves.toBe(true);
-  });
-}); // migrateOldData

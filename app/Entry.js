@@ -34,7 +34,7 @@ import ImportScreen from './views/Import';
 import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
 import Welcome from './views/onboarding/Welcome';
 import PersonalPrivacy from './views/onboarding/PersonalPrivacy';
-import NotificatioNDetails from './views/onboarding/NotificationDetails';
+import NotificationDetails from './views/onboarding/NotificationDetails';
 import ShareDiagnosis from './views/onboarding/ShareDiagnosis';
 import NotificationsPermissions from './views/onboarding/NotificationsPermissions';
 import LocationsPermissions from './views/onboarding/LocationsPermissions';
@@ -260,8 +260,8 @@ const OnboardingStack = () => (
     <Stack.Screen name={Screens.Welcome} component={Welcome} />
     <Stack.Screen name={Screens.PersonalPrivacy} component={PersonalPrivacy} />
     <Stack.Screen
-      name={Screens.NotificatioNDetails}
-      component={NotificatioNDetails}
+      name={Screens.NotificationDetails}
+      component={NotificationDetails}
     />
     <Stack.Screen name={Screens.ShareDiagnosis} component={ShareDiagnosis} />
     <Stack.Screen

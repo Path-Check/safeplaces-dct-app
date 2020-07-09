@@ -4,5 +4,4 @@ import { DayBins } from '../gps/intersect/exposureHistory';
 
 export const checkIntersect: (
   healthcareAuthorities: HealthcareAuthority[] | null,
-  bypassTimer: boolean,
 ) => Promise<DayBins> = intersect;

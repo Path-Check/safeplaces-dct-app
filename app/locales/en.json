@@ -63,19 +63,28 @@
     "next": "Next",
     "ok": "Ok",
     "something_went_wrong": "Something went wrong",
-    "start": "Start"
+    "start": "Start",
+    "submit": "Submit"
   },
   "export": {
+    "error": {
+      "verification_code_used": "Verification code has already been used",
+      "invalid_code": "Try a different code",
+      "unknown_code_verification_error": "Try a different code"
+    },
     "code_input_body": "The representative from {{name}} will provide a verification code over the phone to link your data with {{name}}.",
-    "code_input_body_bluetooth": "Type in your verification code.",
+    "code_input_body_bluetooth": "Enter your verification code",
     "code_input_error": "Try a different code",
     "code_input_title": "Enter your verification code",
     "code_input_title_bluetooth": "Verify your diagnosis",
+    "code_input_button_submit": "Submit",
+    "code_input_button_cancel": "Cancel",
     "complete_body": "By sharing your health status and location history anonymously with your community, you’re being proactive about fighting the spread of COVID-19.",
     "complete_body_bluetooth": "By choosing to share your status and anonymously notify others, you’re helping contain the spread of the virus and protect others in your community.",
     "complete_title": "Thanks for keeping your community safe!",
     "confirm_upload_body": "This will help in contact tracing efforts.\n\nIf you choose not to send your Location History to {{name}}, you are choosing to opt out of contact tracing efforts that help keep your community safe.",
     "consent_button_title": "I understand and consent",
+    "consent_button_cancel": "Cancel",
     "consent_button_subtitle": "By proceeding, you agree that your Healthcare Authority can retain your data for a period of time.",
     "location_consent_link": "Please view their privacy policy here.",
     "confirm_upload_button": "Send Location History",

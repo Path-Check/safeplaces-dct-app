@@ -22,7 +22,7 @@ export const darkestGray = '#2e2e2e';
 export const silver = '#bebebe';
 export const steelGray = '#9BA0AA';
 export const grayBlue = '#F8F8FF';
-export const porcelain = '#ecfof1';
+export const porcelain = '#ecf0f1';
 
 // Reds
 export const red = '#ff0000';
@@ -72,6 +72,7 @@ export const quaternaryViolet = melrose;
 export const transparent = 'rgba(0, 0, 0, 0)';
 export const transparentWhite = applyOpacity(white, 0.1);
 export const transparentGray = applyOpacity(gray, 0.1);
+export const transparentDarkGray = applyOpacity(lighterGray, 0.8);
 export const transparentYellow = 'rgba(100, 100, 77, 0.4)';
 export const transparentDark = 'rgba(0,0,0,0.7)';
 

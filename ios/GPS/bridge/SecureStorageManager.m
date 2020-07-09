@@ -22,8 +22,8 @@ RCT_EXTERN_METHOD(
 )
 
 RCT_EXTERN_METHOD(
-                  migrateExistingLocations: (NSArray)locations
-                  resolve: (RCTPromiseResolveBlock)resolve
+                  trimLocations: (RCTPromiseResolveBlock)resolve
                   rejecter: (RCTPromiseRejectBlock)reject
 )
+
 @end
